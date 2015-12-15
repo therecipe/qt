@@ -5,7 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
 
@@ -29,7 +29,7 @@ func NewQProgressBarFromPointer(ptr unsafe.Pointer) *QProgressBar {
 	var n = new(QProgressBar)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QProgressBar_") {
-		n.SetObjectName("QProgressBar_" + qt.RandomIdentifier())
+		n.SetObjectName("QProgressBar_" + qt.Identifier())
 	}
 	return n
 }
@@ -47,11 +47,7 @@ const (
 )
 
 func (ptr *QProgressBar) Alignment() core.Qt__AlignmentFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::alignment")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::alignment")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__AlignmentFlag(C.QProgressBar_Alignment(ptr.Pointer()))
@@ -60,11 +56,7 @@ func (ptr *QProgressBar) Alignment() core.Qt__AlignmentFlag {
 }
 
 func (ptr *QProgressBar) Format() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::format")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::format")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QProgressBar_Format(ptr.Pointer()))
@@ -73,11 +65,7 @@ func (ptr *QProgressBar) Format() string {
 }
 
 func (ptr *QProgressBar) InvertedAppearance() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::invertedAppearance")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::invertedAppearance")
 
 	if ptr.Pointer() != nil {
 		return C.QProgressBar_InvertedAppearance(ptr.Pointer()) != 0
@@ -86,11 +74,7 @@ func (ptr *QProgressBar) InvertedAppearance() bool {
 }
 
 func (ptr *QProgressBar) IsTextVisible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::isTextVisible")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::isTextVisible")
 
 	if ptr.Pointer() != nil {
 		return C.QProgressBar_IsTextVisible(ptr.Pointer()) != 0
@@ -99,11 +83,7 @@ func (ptr *QProgressBar) IsTextVisible() bool {
 }
 
 func (ptr *QProgressBar) Maximum() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::maximum")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::maximum")
 
 	if ptr.Pointer() != nil {
 		return int(C.QProgressBar_Maximum(ptr.Pointer()))
@@ -112,11 +92,7 @@ func (ptr *QProgressBar) Maximum() int {
 }
 
 func (ptr *QProgressBar) Minimum() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::minimum")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::minimum")
 
 	if ptr.Pointer() != nil {
 		return int(C.QProgressBar_Minimum(ptr.Pointer()))
@@ -125,11 +101,7 @@ func (ptr *QProgressBar) Minimum() int {
 }
 
 func (ptr *QProgressBar) Orientation() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::orientation")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::orientation")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QProgressBar_Orientation(ptr.Pointer()))
@@ -138,11 +110,7 @@ func (ptr *QProgressBar) Orientation() core.Qt__Orientation {
 }
 
 func (ptr *QProgressBar) ResetFormat() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::resetFormat")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::resetFormat")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_ResetFormat(ptr.Pointer())
@@ -150,11 +118,7 @@ func (ptr *QProgressBar) ResetFormat() {
 }
 
 func (ptr *QProgressBar) SetAlignment(alignment core.Qt__AlignmentFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::setAlignment")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::setAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_SetAlignment(ptr.Pointer(), C.int(alignment))
@@ -162,11 +126,7 @@ func (ptr *QProgressBar) SetAlignment(alignment core.Qt__AlignmentFlag) {
 }
 
 func (ptr *QProgressBar) SetFormat(format string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::setFormat")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::setFormat")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_SetFormat(ptr.Pointer(), C.CString(format))
@@ -174,11 +134,7 @@ func (ptr *QProgressBar) SetFormat(format string) {
 }
 
 func (ptr *QProgressBar) SetInvertedAppearance(invert bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::setInvertedAppearance")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::setInvertedAppearance")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_SetInvertedAppearance(ptr.Pointer(), C.int(qt.GoBoolToInt(invert)))
@@ -186,11 +142,7 @@ func (ptr *QProgressBar) SetInvertedAppearance(invert bool) {
 }
 
 func (ptr *QProgressBar) SetMaximum(maximum int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::setMaximum")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::setMaximum")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_SetMaximum(ptr.Pointer(), C.int(maximum))
@@ -198,11 +150,7 @@ func (ptr *QProgressBar) SetMaximum(maximum int) {
 }
 
 func (ptr *QProgressBar) SetMinimum(minimum int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::setMinimum")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::setMinimum")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_SetMinimum(ptr.Pointer(), C.int(minimum))
@@ -210,11 +158,7 @@ func (ptr *QProgressBar) SetMinimum(minimum int) {
 }
 
 func (ptr *QProgressBar) SetOrientation(v core.Qt__Orientation) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::setOrientation")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::setOrientation")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_SetOrientation(ptr.Pointer(), C.int(v))
@@ -222,11 +166,7 @@ func (ptr *QProgressBar) SetOrientation(v core.Qt__Orientation) {
 }
 
 func (ptr *QProgressBar) SetTextDirection(textDirection QProgressBar__Direction) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::setTextDirection")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::setTextDirection")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_SetTextDirection(ptr.Pointer(), C.int(textDirection))
@@ -234,11 +174,7 @@ func (ptr *QProgressBar) SetTextDirection(textDirection QProgressBar__Direction)
 }
 
 func (ptr *QProgressBar) SetTextVisible(visible bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::setTextVisible")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::setTextVisible")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_SetTextVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
@@ -246,11 +182,7 @@ func (ptr *QProgressBar) SetTextVisible(visible bool) {
 }
 
 func (ptr *QProgressBar) SetValue(value int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::setValue")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::setValue")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_SetValue(ptr.Pointer(), C.int(value))
@@ -258,11 +190,7 @@ func (ptr *QProgressBar) SetValue(value int) {
 }
 
 func (ptr *QProgressBar) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::text")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QProgressBar_Text(ptr.Pointer()))
@@ -271,11 +199,7 @@ func (ptr *QProgressBar) Text() string {
 }
 
 func (ptr *QProgressBar) TextDirection() QProgressBar__Direction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::textDirection")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::textDirection")
 
 	if ptr.Pointer() != nil {
 		return QProgressBar__Direction(C.QProgressBar_TextDirection(ptr.Pointer()))
@@ -284,11 +208,7 @@ func (ptr *QProgressBar) TextDirection() QProgressBar__Direction {
 }
 
 func (ptr *QProgressBar) Value() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::value")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::value")
 
 	if ptr.Pointer() != nil {
 		return int(C.QProgressBar_Value(ptr.Pointer()))
@@ -297,21 +217,44 @@ func (ptr *QProgressBar) Value() int {
 }
 
 func NewQProgressBar(parent QWidget_ITF) *QProgressBar {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::QProgressBar")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::QProgressBar")
 
 	return NewQProgressBarFromPointer(C.QProgressBar_NewQProgressBar(PointerFromQWidget(parent)))
 }
 
+func (ptr *QProgressBar) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QProgressBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QProgressBar) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QProgressBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQProgressBarPaintEvent
+func callbackQProgressBarPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QProgressBar::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QProgressBar) Reset() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::reset")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::reset")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_Reset(ptr.Pointer())
@@ -319,11 +262,7 @@ func (ptr *QProgressBar) Reset() {
 }
 
 func (ptr *QProgressBar) SetRange(minimum int, maximum int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::setRange")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::setRange")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_SetRange(ptr.Pointer(), C.int(minimum), C.int(maximum))
@@ -331,11 +270,7 @@ func (ptr *QProgressBar) SetRange(minimum int, maximum int) {
 }
 
 func (ptr *QProgressBar) ConnectValueChanged(f func(value int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::valueChanged")
-		}
-	}()
+	defer qt.Recovering("connect QProgressBar::valueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_ConnectValueChanged(ptr.Pointer())
@@ -344,11 +279,7 @@ func (ptr *QProgressBar) ConnectValueChanged(f func(value int)) {
 }
 
 func (ptr *QProgressBar) DisconnectValueChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::valueChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QProgressBar::valueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_DisconnectValueChanged(ptr.Pointer())
@@ -358,21 +289,17 @@ func (ptr *QProgressBar) DisconnectValueChanged() {
 
 //export callbackQProgressBarValueChanged
 func callbackQProgressBarValueChanged(ptrName *C.char, value C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::valueChanged")
-		}
-	}()
+	defer qt.Recovering("callback QProgressBar::valueChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "valueChanged").(func(int))(int(value))
+	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
+	if signal != nil {
+		signal.(func(int))(int(value))
+	}
+
 }
 
 func (ptr *QProgressBar) DestroyQProgressBar() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressBar::~QProgressBar")
-		}
-	}()
+	defer qt.Recovering("QProgressBar::~QProgressBar")
 
 	if ptr.Pointer() != nil {
 		C.QProgressBar_DestroyQProgressBar(ptr.Pointer())

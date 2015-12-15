@@ -3,7 +3,7 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"strings"
 	"unsafe"
 )
@@ -34,6 +34,9 @@ func PointerFromQMediaServiceSupportedFormatsInterface(ptr QMediaServiceSupporte
 func NewQMediaServiceSupportedFormatsInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceSupportedFormatsInterface {
 	var n = new(QMediaServiceSupportedFormatsInterface)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QMediaServiceSupportedFormatsInterface_") {
+		n.SetObjectNameAbs("QMediaServiceSupportedFormatsInterface_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,11 +45,7 @@ func (ptr *QMediaServiceSupportedFormatsInterface) QMediaServiceSupportedFormats
 }
 
 func (ptr *QMediaServiceSupportedFormatsInterface) SupportedMimeTypes() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaServiceSupportedFormatsInterface::supportedMimeTypes")
-		}
-	}()
+	defer qt.Recovering("QMediaServiceSupportedFormatsInterface::supportedMimeTypes")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr.Pointer())), ",,,")
@@ -55,13 +54,26 @@ func (ptr *QMediaServiceSupportedFormatsInterface) SupportedMimeTypes() []string
 }
 
 func (ptr *QMediaServiceSupportedFormatsInterface) DestroyQMediaServiceSupportedFormatsInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface")
-		}
-	}()
+	defer qt.Recovering("QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface")
 
 	if ptr.Pointer() != nil {
 		C.QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) ObjectNameAbs() string {
+	defer qt.Recovering("QMediaServiceSupportedFormatsInterface::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QMediaServiceSupportedFormatsInterface_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QMediaServiceSupportedFormatsInterface::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceSupportedFormatsInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

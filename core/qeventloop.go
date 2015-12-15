@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQEventLoopFromPointer(ptr unsafe.Pointer) *QEventLoop {
 	var n = new(QEventLoop)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QEventLoop_") {
-		n.SetObjectName("QEventLoop_" + qt.RandomIdentifier())
+		n.SetObjectName("QEventLoop_" + qt.Identifier())
 	}
 	return n
 }
@@ -51,21 +50,13 @@ const (
 )
 
 func NewQEventLoop(parent QObject_ITF) *QEventLoop {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEventLoop::QEventLoop")
-		}
-	}()
+	defer qt.Recovering("QEventLoop::QEventLoop")
 
 	return NewQEventLoopFromPointer(C.QEventLoop_NewQEventLoop(PointerFromQObject(parent)))
 }
 
 func (ptr *QEventLoop) Event(event QEvent_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEventLoop::event")
-		}
-	}()
+	defer qt.Recovering("QEventLoop::event")
 
 	if ptr.Pointer() != nil {
 		return C.QEventLoop_Event(ptr.Pointer(), PointerFromQEvent(event)) != 0
@@ -74,11 +65,7 @@ func (ptr *QEventLoop) Event(event QEvent_ITF) bool {
 }
 
 func (ptr *QEventLoop) Exec(flags QEventLoop__ProcessEventsFlag) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEventLoop::exec")
-		}
-	}()
+	defer qt.Recovering("QEventLoop::exec")
 
 	if ptr.Pointer() != nil {
 		return int(C.QEventLoop_Exec(ptr.Pointer(), C.int(flags)))
@@ -87,11 +74,7 @@ func (ptr *QEventLoop) Exec(flags QEventLoop__ProcessEventsFlag) int {
 }
 
 func (ptr *QEventLoop) Exit(returnCode int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEventLoop::exit")
-		}
-	}()
+	defer qt.Recovering("QEventLoop::exit")
 
 	if ptr.Pointer() != nil {
 		C.QEventLoop_Exit(ptr.Pointer(), C.int(returnCode))
@@ -99,11 +82,7 @@ func (ptr *QEventLoop) Exit(returnCode int) {
 }
 
 func (ptr *QEventLoop) IsRunning() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEventLoop::isRunning")
-		}
-	}()
+	defer qt.Recovering("QEventLoop::isRunning")
 
 	if ptr.Pointer() != nil {
 		return C.QEventLoop_IsRunning(ptr.Pointer()) != 0
@@ -112,11 +91,7 @@ func (ptr *QEventLoop) IsRunning() bool {
 }
 
 func (ptr *QEventLoop) ProcessEvents(flags QEventLoop__ProcessEventsFlag) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEventLoop::processEvents")
-		}
-	}()
+	defer qt.Recovering("QEventLoop::processEvents")
 
 	if ptr.Pointer() != nil {
 		return C.QEventLoop_ProcessEvents(ptr.Pointer(), C.int(flags)) != 0
@@ -125,11 +100,7 @@ func (ptr *QEventLoop) ProcessEvents(flags QEventLoop__ProcessEventsFlag) bool {
 }
 
 func (ptr *QEventLoop) ProcessEvents2(flags QEventLoop__ProcessEventsFlag, maxTime int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEventLoop::processEvents")
-		}
-	}()
+	defer qt.Recovering("QEventLoop::processEvents")
 
 	if ptr.Pointer() != nil {
 		C.QEventLoop_ProcessEvents2(ptr.Pointer(), C.int(flags), C.int(maxTime))
@@ -137,11 +108,7 @@ func (ptr *QEventLoop) ProcessEvents2(flags QEventLoop__ProcessEventsFlag, maxTi
 }
 
 func (ptr *QEventLoop) Quit() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEventLoop::quit")
-		}
-	}()
+	defer qt.Recovering("QEventLoop::quit")
 
 	if ptr.Pointer() != nil {
 		C.QEventLoop_Quit(ptr.Pointer())
@@ -149,11 +116,7 @@ func (ptr *QEventLoop) Quit() {
 }
 
 func (ptr *QEventLoop) WakeUp() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEventLoop::wakeUp")
-		}
-	}()
+	defer qt.Recovering("QEventLoop::wakeUp")
 
 	if ptr.Pointer() != nil {
 		C.QEventLoop_WakeUp(ptr.Pointer())
@@ -161,11 +124,7 @@ func (ptr *QEventLoop) WakeUp() {
 }
 
 func (ptr *QEventLoop) DestroyQEventLoop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEventLoop::~QEventLoop")
-		}
-	}()
+	defer qt.Recovering("QEventLoop::~QEventLoop")
 
 	if ptr.Pointer() != nil {
 		C.QEventLoop_DestroyQEventLoop(ptr.Pointer())

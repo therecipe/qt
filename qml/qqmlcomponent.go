@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQQmlComponentFromPointer(ptr unsafe.Pointer) *QQmlComponent {
 	var n = new(QQmlComponent)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlComponent_") {
-		n.SetObjectName("QQmlComponent_" + qt.RandomIdentifier())
+		n.SetObjectName("QQmlComponent_" + qt.Identifier())
 	}
 	return n
 }
@@ -57,11 +56,7 @@ const (
 )
 
 func (ptr *QQmlComponent) Progress() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::progress")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::progress")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQmlComponent_Progress(ptr.Pointer()))
@@ -70,11 +65,7 @@ func (ptr *QQmlComponent) Progress() float64 {
 }
 
 func (ptr *QQmlComponent) Status() QQmlComponent__Status {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::status")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::status")
 
 	if ptr.Pointer() != nil {
 		return QQmlComponent__Status(C.QQmlComponent_Status(ptr.Pointer()))
@@ -83,61 +74,37 @@ func (ptr *QQmlComponent) Status() QQmlComponent__Status {
 }
 
 func NewQQmlComponent(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlComponent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::QQmlComponent")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::QQmlComponent")
 
 	return NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlComponent4(engine QQmlEngine_ITF, fileName string, mode QQmlComponent__CompilationMode, parent core.QObject_ITF) *QQmlComponent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::QQmlComponent")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::QQmlComponent")
 
 	return NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent4(PointerFromQQmlEngine(engine), C.CString(fileName), C.int(mode), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlComponent3(engine QQmlEngine_ITF, fileName string, parent core.QObject_ITF) *QQmlComponent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::QQmlComponent")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::QQmlComponent")
 
 	return NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent3(PointerFromQQmlEngine(engine), C.CString(fileName), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlComponent6(engine QQmlEngine_ITF, url core.QUrl_ITF, mode QQmlComponent__CompilationMode, parent core.QObject_ITF) *QQmlComponent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::QQmlComponent")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::QQmlComponent")
 
 	return NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent6(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), C.int(mode), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlComponent5(engine QQmlEngine_ITF, url core.QUrl_ITF, parent core.QObject_ITF) *QQmlComponent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::QQmlComponent")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::QQmlComponent")
 
 	return NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent5(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlComponent) BeginCreate(publicContext QQmlContext_ITF) *core.QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::beginCreate")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::beginCreate")
 
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QQmlComponent_BeginCreate(ptr.Pointer(), PointerFromQQmlContext(publicContext)))
@@ -145,24 +112,39 @@ func (ptr *QQmlComponent) BeginCreate(publicContext QQmlContext_ITF) *core.QObje
 	return nil
 }
 
-func (ptr *QQmlComponent) CompleteCreate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::completeCreate")
-		}
-	}()
+func (ptr *QQmlComponent) ConnectCompleteCreate(f func()) {
+	defer qt.Recovering("connect QQmlComponent::completeCreate")
 
 	if ptr.Pointer() != nil {
-		C.QQmlComponent_CompleteCreate(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "completeCreate", f)
 	}
 }
 
+func (ptr *QQmlComponent) DisconnectCompleteCreate() {
+	defer qt.Recovering("disconnect QQmlComponent::completeCreate")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "completeCreate")
+	}
+}
+
+//export callbackQQmlComponentCompleteCreate
+func callbackQQmlComponentCompleteCreate(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQmlComponent::completeCreate")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "completeCreate")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QQmlComponent) Create(context QQmlContext_ITF) *core.QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::create")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::create")
 
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QQmlComponent_Create(ptr.Pointer(), PointerFromQQmlContext(context)))
@@ -171,11 +153,7 @@ func (ptr *QQmlComponent) Create(context QQmlContext_ITF) *core.QObject {
 }
 
 func (ptr *QQmlComponent) Create2(incubator QQmlIncubator_ITF, context QQmlContext_ITF, forContext QQmlContext_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::create")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::create")
 
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_Create2(ptr.Pointer(), PointerFromQQmlIncubator(incubator), PointerFromQQmlContext(context), PointerFromQQmlContext(forContext))
@@ -183,11 +161,7 @@ func (ptr *QQmlComponent) Create2(incubator QQmlIncubator_ITF, context QQmlConte
 }
 
 func (ptr *QQmlComponent) CreationContext() *QQmlContext {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::creationContext")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::creationContext")
 
 	if ptr.Pointer() != nil {
 		return NewQQmlContextFromPointer(C.QQmlComponent_CreationContext(ptr.Pointer()))
@@ -196,11 +170,7 @@ func (ptr *QQmlComponent) CreationContext() *QQmlContext {
 }
 
 func (ptr *QQmlComponent) IsError() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::isError")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::isError")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_IsError(ptr.Pointer()) != 0
@@ -209,11 +179,7 @@ func (ptr *QQmlComponent) IsError() bool {
 }
 
 func (ptr *QQmlComponent) IsLoading() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::isLoading")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::isLoading")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_IsLoading(ptr.Pointer()) != 0
@@ -222,11 +188,7 @@ func (ptr *QQmlComponent) IsLoading() bool {
 }
 
 func (ptr *QQmlComponent) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::isNull")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_IsNull(ptr.Pointer()) != 0
@@ -235,11 +197,7 @@ func (ptr *QQmlComponent) IsNull() bool {
 }
 
 func (ptr *QQmlComponent) IsReady() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::isReady")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::isReady")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_IsReady(ptr.Pointer()) != 0
@@ -248,11 +206,7 @@ func (ptr *QQmlComponent) IsReady() bool {
 }
 
 func (ptr *QQmlComponent) LoadUrl(url core.QUrl_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::loadUrl")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::loadUrl")
 
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_LoadUrl(ptr.Pointer(), core.PointerFromQUrl(url))
@@ -260,11 +214,7 @@ func (ptr *QQmlComponent) LoadUrl(url core.QUrl_ITF) {
 }
 
 func (ptr *QQmlComponent) LoadUrl2(url core.QUrl_ITF, mode QQmlComponent__CompilationMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::loadUrl")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::loadUrl")
 
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_LoadUrl2(ptr.Pointer(), core.PointerFromQUrl(url), C.int(mode))
@@ -272,11 +222,7 @@ func (ptr *QQmlComponent) LoadUrl2(url core.QUrl_ITF, mode QQmlComponent__Compil
 }
 
 func (ptr *QQmlComponent) SetData(data core.QByteArray_ITF, url core.QUrl_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::setData")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::setData")
 
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_SetData(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(url))
@@ -284,11 +230,7 @@ func (ptr *QQmlComponent) SetData(data core.QByteArray_ITF, url core.QUrl_ITF) {
 }
 
 func (ptr *QQmlComponent) ConnectStatusChanged(f func(status QQmlComponent__Status)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::statusChanged")
-		}
-	}()
+	defer qt.Recovering("connect QQmlComponent::statusChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_ConnectStatusChanged(ptr.Pointer())
@@ -297,11 +239,7 @@ func (ptr *QQmlComponent) ConnectStatusChanged(f func(status QQmlComponent__Stat
 }
 
 func (ptr *QQmlComponent) DisconnectStatusChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::statusChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QQmlComponent::statusChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DisconnectStatusChanged(ptr.Pointer())
@@ -311,21 +249,17 @@ func (ptr *QQmlComponent) DisconnectStatusChanged() {
 
 //export callbackQQmlComponentStatusChanged
 func callbackQQmlComponentStatusChanged(ptrName *C.char, status C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::statusChanged")
-		}
-	}()
+	defer qt.Recovering("callback QQmlComponent::statusChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "statusChanged").(func(QQmlComponent__Status))(QQmlComponent__Status(status))
+	var signal = qt.GetSignal(C.GoString(ptrName), "statusChanged")
+	if signal != nil {
+		signal.(func(QQmlComponent__Status))(QQmlComponent__Status(status))
+	}
+
 }
 
 func (ptr *QQmlComponent) DestroyQQmlComponent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlComponent::~QQmlComponent")
-		}
-	}()
+	defer qt.Recovering("QQmlComponent::~QQmlComponent")
 
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DestroyQQmlComponent(ptr.Pointer())

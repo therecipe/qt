@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQXmlDTDHandler(ptr QXmlDTDHandler_ITF) unsafe.Pointer {
 func NewQXmlDTDHandlerFromPointer(ptr unsafe.Pointer) *QXmlDTDHandler {
 	var n = new(QXmlDTDHandler)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QXmlDTDHandler_") {
+		n.SetObjectNameAbs("QXmlDTDHandler_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QXmlDTDHandler) QXmlDTDHandler_PTR() *QXmlDTDHandler {
 }
 
 func (ptr *QXmlDTDHandler) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDTDHandler::errorString")
-		}
-	}()
+	defer qt.Recovering("QXmlDTDHandler::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlDTDHandler_ErrorString(ptr.Pointer()))
@@ -54,11 +53,7 @@ func (ptr *QXmlDTDHandler) ErrorString() string {
 }
 
 func (ptr *QXmlDTDHandler) NotationDecl(name string, publicId string, systemId string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDTDHandler::notationDecl")
-		}
-	}()
+	defer qt.Recovering("QXmlDTDHandler::notationDecl")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDTDHandler_NotationDecl(ptr.Pointer(), C.CString(name), C.CString(publicId), C.CString(systemId)) != 0
@@ -67,11 +62,7 @@ func (ptr *QXmlDTDHandler) NotationDecl(name string, publicId string, systemId s
 }
 
 func (ptr *QXmlDTDHandler) UnparsedEntityDecl(name string, publicId string, systemId string, notationName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDTDHandler::unparsedEntityDecl")
-		}
-	}()
+	defer qt.Recovering("QXmlDTDHandler::unparsedEntityDecl")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDTDHandler_UnparsedEntityDecl(ptr.Pointer(), C.CString(name), C.CString(publicId), C.CString(systemId), C.CString(notationName)) != 0
@@ -80,13 +71,26 @@ func (ptr *QXmlDTDHandler) UnparsedEntityDecl(name string, publicId string, syst
 }
 
 func (ptr *QXmlDTDHandler) DestroyQXmlDTDHandler() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDTDHandler::~QXmlDTDHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlDTDHandler::~QXmlDTDHandler")
 
 	if ptr.Pointer() != nil {
 		C.QXmlDTDHandler_DestroyQXmlDTDHandler(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlDTDHandler) ObjectNameAbs() string {
+	defer qt.Recovering("QXmlDTDHandler::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlDTDHandler_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QXmlDTDHandler) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QXmlDTDHandler::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QXmlDTDHandler_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

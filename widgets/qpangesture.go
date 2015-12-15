@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQPanGestureFromPointer(ptr unsafe.Pointer) *QPanGesture {
 	var n = new(QPanGesture)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QPanGesture_") {
-		n.SetObjectName("QPanGesture_" + qt.RandomIdentifier())
+		n.SetObjectName("QPanGesture_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QPanGesture) QPanGesture_PTR() *QPanGesture {
 }
 
 func (ptr *QPanGesture) Acceleration() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPanGesture::acceleration")
-		}
-	}()
+	defer qt.Recovering("QPanGesture::acceleration")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPanGesture_Acceleration(ptr.Pointer()))
@@ -52,11 +47,7 @@ func (ptr *QPanGesture) Acceleration() float64 {
 }
 
 func (ptr *QPanGesture) SetAcceleration(value float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPanGesture::setAcceleration")
-		}
-	}()
+	defer qt.Recovering("QPanGesture::setAcceleration")
 
 	if ptr.Pointer() != nil {
 		C.QPanGesture_SetAcceleration(ptr.Pointer(), C.double(value))
@@ -64,11 +55,7 @@ func (ptr *QPanGesture) SetAcceleration(value float64) {
 }
 
 func (ptr *QPanGesture) SetLastOffset(value core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPanGesture::setLastOffset")
-		}
-	}()
+	defer qt.Recovering("QPanGesture::setLastOffset")
 
 	if ptr.Pointer() != nil {
 		C.QPanGesture_SetLastOffset(ptr.Pointer(), core.PointerFromQPointF(value))
@@ -76,11 +63,7 @@ func (ptr *QPanGesture) SetLastOffset(value core.QPointF_ITF) {
 }
 
 func (ptr *QPanGesture) SetOffset(value core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPanGesture::setOffset")
-		}
-	}()
+	defer qt.Recovering("QPanGesture::setOffset")
 
 	if ptr.Pointer() != nil {
 		C.QPanGesture_SetOffset(ptr.Pointer(), core.PointerFromQPointF(value))
@@ -88,11 +71,7 @@ func (ptr *QPanGesture) SetOffset(value core.QPointF_ITF) {
 }
 
 func (ptr *QPanGesture) DestroyQPanGesture() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPanGesture::~QPanGesture")
-		}
-	}()
+	defer qt.Recovering("QPanGesture::~QPanGesture")
 
 	if ptr.Pointer() != nil {
 		C.QPanGesture_DestroyQPanGesture(ptr.Pointer())

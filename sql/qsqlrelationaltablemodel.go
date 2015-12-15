@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQSqlRelationalTableModelFromPointer(ptr unsafe.Pointer) *QSqlRelationalT
 	var n = new(QSqlRelationalTableModel)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSqlRelationalTableModel_") {
-		n.SetObjectName("QSqlRelationalTableModel_" + qt.RandomIdentifier())
+		n.SetObjectName("QSqlRelationalTableModel_" + qt.Identifier())
 	}
 	return n
 }
@@ -46,24 +45,39 @@ const (
 	QSqlRelationalTableModel__LeftJoin  = QSqlRelationalTableModel__JoinMode(1)
 )
 
-func (ptr *QSqlRelationalTableModel) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlRelationalTableModel::clear")
-		}
-	}()
+func (ptr *QSqlRelationalTableModel) ConnectClear(f func()) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::clear")
 
 	if ptr.Pointer() != nil {
-		C.QSqlRelationalTableModel_Clear(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "clear", f)
 	}
 }
 
+func (ptr *QSqlRelationalTableModel) DisconnectClear() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::clear")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "clear")
+	}
+}
+
+//export callbackQSqlRelationalTableModelClear
+func callbackQSqlRelationalTableModelClear(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::clear")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "clear")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSqlRelationalTableModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlRelationalTableModel::data")
-		}
-	}()
+	defer qt.Recovering("QSqlRelationalTableModel::data")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSqlRelationalTableModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
@@ -72,11 +86,7 @@ func (ptr *QSqlRelationalTableModel) Data(index core.QModelIndex_ITF, role int) 
 }
 
 func (ptr *QSqlRelationalTableModel) RelationModel(column int) *QSqlTableModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlRelationalTableModel::relationModel")
-		}
-	}()
+	defer qt.Recovering("QSqlRelationalTableModel::relationModel")
 
 	if ptr.Pointer() != nil {
 		return NewQSqlTableModelFromPointer(C.QSqlRelationalTableModel_RelationModel(ptr.Pointer(), C.int(column)))
@@ -85,11 +95,7 @@ func (ptr *QSqlRelationalTableModel) RelationModel(column int) *QSqlTableModel {
 }
 
 func (ptr *QSqlRelationalTableModel) RemoveColumns(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlRelationalTableModel::removeColumns")
-		}
-	}()
+	defer qt.Recovering("QSqlRelationalTableModel::removeColumns")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlRelationalTableModel_RemoveColumns(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
@@ -97,24 +103,39 @@ func (ptr *QSqlRelationalTableModel) RemoveColumns(column int, count int, parent
 	return false
 }
 
-func (ptr *QSqlRelationalTableModel) RevertRow(row int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlRelationalTableModel::revertRow")
-		}
-	}()
+func (ptr *QSqlRelationalTableModel) ConnectRevertRow(f func(row int)) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::revertRow")
 
 	if ptr.Pointer() != nil {
-		C.QSqlRelationalTableModel_RevertRow(ptr.Pointer(), C.int(row))
+
+		qt.ConnectSignal(ptr.ObjectName(), "revertRow", f)
 	}
 }
 
+func (ptr *QSqlRelationalTableModel) DisconnectRevertRow() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::revertRow")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "revertRow")
+	}
+}
+
+//export callbackQSqlRelationalTableModelRevertRow
+func callbackQSqlRelationalTableModelRevertRow(ptrName *C.char, row C.int) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::revertRow")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "revertRow")
+	if signal != nil {
+		defer signal.(func(int))(int(row))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSqlRelationalTableModel) Select() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlRelationalTableModel::select")
-		}
-	}()
+	defer qt.Recovering("QSqlRelationalTableModel::select")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlRelationalTableModel_Select(ptr.Pointer()) != 0
@@ -123,11 +144,7 @@ func (ptr *QSqlRelationalTableModel) Select() bool {
 }
 
 func (ptr *QSqlRelationalTableModel) SetData(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlRelationalTableModel::setData")
-		}
-	}()
+	defer qt.Recovering("QSqlRelationalTableModel::setData")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlRelationalTableModel_SetData(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(role)) != 0
@@ -136,47 +153,46 @@ func (ptr *QSqlRelationalTableModel) SetData(index core.QModelIndex_ITF, value c
 }
 
 func (ptr *QSqlRelationalTableModel) SetJoinMode(joinMode QSqlRelationalTableModel__JoinMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlRelationalTableModel::setJoinMode")
-		}
-	}()
+	defer qt.Recovering("QSqlRelationalTableModel::setJoinMode")
 
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalTableModel_SetJoinMode(ptr.Pointer(), C.int(joinMode))
 	}
 }
 
-func (ptr *QSqlRelationalTableModel) SetRelation(column int, relation QSqlRelation_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlRelationalTableModel::setRelation")
-		}
-	}()
+func (ptr *QSqlRelationalTableModel) ConnectSetTable(f func(table string)) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::setTable")
 
 	if ptr.Pointer() != nil {
-		C.QSqlRelationalTableModel_SetRelation(ptr.Pointer(), C.int(column), PointerFromQSqlRelation(relation))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setTable", f)
 	}
 }
 
-func (ptr *QSqlRelationalTableModel) SetTable(table string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlRelationalTableModel::setTable")
-		}
-	}()
+func (ptr *QSqlRelationalTableModel) DisconnectSetTable() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::setTable")
 
 	if ptr.Pointer() != nil {
-		C.QSqlRelationalTableModel_SetTable(ptr.Pointer(), C.CString(table))
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setTable")
 	}
+}
+
+//export callbackQSqlRelationalTableModelSetTable
+func callbackQSqlRelationalTableModelSetTable(ptrName *C.char, table *C.char) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::setTable")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setTable")
+	if signal != nil {
+		defer signal.(func(string))(C.GoString(table))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QSqlRelationalTableModel) DestroyQSqlRelationalTableModel() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlRelationalTableModel::~QSqlRelationalTableModel")
-		}
-	}()
+	defer qt.Recovering("QSqlRelationalTableModel::~QSqlRelationalTableModel")
 
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalTableModel_DestroyQSqlRelationalTableModel(ptr.Pointer())

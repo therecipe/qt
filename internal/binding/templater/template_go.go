@@ -67,9 +67,14 @@ func GoTemplate(c *parser.Class) (o string) {
 
 		if isObjectSubClass(c.Name) {
 			o += fmt.Sprintf("for len(n.ObjectName()) < len(\"%v_\") {\n", c.Name)
-			o += fmt.Sprintf("n.SetObjectName(\"%v_\" + qt.RandomIdentifier())\n", c.Name)
+			o += fmt.Sprintf("n.SetObjectName(\"%v_\" + qt.Identifier())\n", c.Name)
+			o += "}\n"
+		} else if c.Name != "QMetaType" && hasVirtualFunction(c) && isSupportedClass(c) {
+			o += fmt.Sprintf("for len(n.ObjectNameAbs()) < len(\"%v_\") {\n", c.Name)
+			o += fmt.Sprintf("n.SetObjectNameAbs(\"%v_\" + qt.Identifier())\n", c.Name)
 			o += "}\n"
 		}
+
 		o += "return n\n}\n\n"
 
 		o += fmt.Sprintf("func (ptr *%v) %v_PTR() *%v {\n", c.Name, c.Name, c.Name)

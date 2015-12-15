@@ -3,8 +3,8 @@ package xmlpatterns
 //#include "xmlpatterns.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,41 +42,25 @@ func (ptr *QSourceLocation) QSourceLocation_PTR() *QSourceLocation {
 }
 
 func NewQSourceLocation() *QSourceLocation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSourceLocation::QSourceLocation")
-		}
-	}()
+	defer qt.Recovering("QSourceLocation::QSourceLocation")
 
 	return NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation())
 }
 
 func NewQSourceLocation2(other QSourceLocation_ITF) *QSourceLocation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSourceLocation::QSourceLocation")
-		}
-	}()
+	defer qt.Recovering("QSourceLocation::QSourceLocation")
 
 	return NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation2(PointerFromQSourceLocation(other)))
 }
 
 func NewQSourceLocation3(u core.QUrl_ITF, l int, c int) *QSourceLocation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSourceLocation::QSourceLocation")
-		}
-	}()
+	defer qt.Recovering("QSourceLocation::QSourceLocation")
 
 	return NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation3(core.PointerFromQUrl(u), C.int(l), C.int(c)))
 }
 
 func (ptr *QSourceLocation) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSourceLocation::isNull")
-		}
-	}()
+	defer qt.Recovering("QSourceLocation::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QSourceLocation_IsNull(ptr.Pointer()) != 0
@@ -85,11 +69,7 @@ func (ptr *QSourceLocation) IsNull() bool {
 }
 
 func (ptr *QSourceLocation) SetUri(newUri core.QUrl_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSourceLocation::setUri")
-		}
-	}()
+	defer qt.Recovering("QSourceLocation::setUri")
 
 	if ptr.Pointer() != nil {
 		C.QSourceLocation_SetUri(ptr.Pointer(), core.PointerFromQUrl(newUri))
@@ -97,11 +77,7 @@ func (ptr *QSourceLocation) SetUri(newUri core.QUrl_ITF) {
 }
 
 func (ptr *QSourceLocation) DestroyQSourceLocation() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSourceLocation::~QSourceLocation")
-		}
-	}()
+	defer qt.Recovering("QSourceLocation::~QSourceLocation")
 
 	if ptr.Pointer() != nil {
 		C.QSourceLocation_DestroyQSourceLocation(ptr.Pointer())

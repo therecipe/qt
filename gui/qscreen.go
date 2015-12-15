@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQScreenFromPointer(ptr unsafe.Pointer) *QScreen {
 	var n = new(QScreen)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QScreen_") {
-		n.SetObjectName("QScreen_" + qt.RandomIdentifier())
+		n.SetObjectName("QScreen_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QScreen) QScreen_PTR() *QScreen {
 }
 
 func (ptr *QScreen) Depth() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::depth")
-		}
-	}()
+	defer qt.Recovering("QScreen::depth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QScreen_Depth(ptr.Pointer()))
@@ -52,11 +47,7 @@ func (ptr *QScreen) Depth() int {
 }
 
 func (ptr *QScreen) DevicePixelRatio() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::devicePixelRatio")
-		}
-	}()
+	defer qt.Recovering("QScreen::devicePixelRatio")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QScreen_DevicePixelRatio(ptr.Pointer()))
@@ -65,11 +56,7 @@ func (ptr *QScreen) DevicePixelRatio() float64 {
 }
 
 func (ptr *QScreen) LogicalDotsPerInch() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::logicalDotsPerInch")
-		}
-	}()
+	defer qt.Recovering("QScreen::logicalDotsPerInch")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QScreen_LogicalDotsPerInch(ptr.Pointer()))
@@ -78,11 +65,7 @@ func (ptr *QScreen) LogicalDotsPerInch() float64 {
 }
 
 func (ptr *QScreen) LogicalDotsPerInchX() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::logicalDotsPerInchX")
-		}
-	}()
+	defer qt.Recovering("QScreen::logicalDotsPerInchX")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QScreen_LogicalDotsPerInchX(ptr.Pointer()))
@@ -91,11 +74,7 @@ func (ptr *QScreen) LogicalDotsPerInchX() float64 {
 }
 
 func (ptr *QScreen) LogicalDotsPerInchY() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::logicalDotsPerInchY")
-		}
-	}()
+	defer qt.Recovering("QScreen::logicalDotsPerInchY")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QScreen_LogicalDotsPerInchY(ptr.Pointer()))
@@ -104,11 +83,7 @@ func (ptr *QScreen) LogicalDotsPerInchY() float64 {
 }
 
 func (ptr *QScreen) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::name")
-		}
-	}()
+	defer qt.Recovering("QScreen::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScreen_Name(ptr.Pointer()))
@@ -117,11 +92,7 @@ func (ptr *QScreen) Name() string {
 }
 
 func (ptr *QScreen) NativeOrientation() core.Qt__ScreenOrientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::nativeOrientation")
-		}
-	}()
+	defer qt.Recovering("QScreen::nativeOrientation")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ScreenOrientation(C.QScreen_NativeOrientation(ptr.Pointer()))
@@ -130,11 +101,7 @@ func (ptr *QScreen) NativeOrientation() core.Qt__ScreenOrientation {
 }
 
 func (ptr *QScreen) Orientation() core.Qt__ScreenOrientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::orientation")
-		}
-	}()
+	defer qt.Recovering("QScreen::orientation")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ScreenOrientation(C.QScreen_Orientation(ptr.Pointer()))
@@ -143,11 +110,7 @@ func (ptr *QScreen) Orientation() core.Qt__ScreenOrientation {
 }
 
 func (ptr *QScreen) PhysicalDotsPerInch() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::physicalDotsPerInch")
-		}
-	}()
+	defer qt.Recovering("QScreen::physicalDotsPerInch")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QScreen_PhysicalDotsPerInch(ptr.Pointer()))
@@ -156,11 +119,7 @@ func (ptr *QScreen) PhysicalDotsPerInch() float64 {
 }
 
 func (ptr *QScreen) PhysicalDotsPerInchX() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::physicalDotsPerInchX")
-		}
-	}()
+	defer qt.Recovering("QScreen::physicalDotsPerInchX")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QScreen_PhysicalDotsPerInchX(ptr.Pointer()))
@@ -169,11 +128,7 @@ func (ptr *QScreen) PhysicalDotsPerInchX() float64 {
 }
 
 func (ptr *QScreen) PhysicalDotsPerInchY() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::physicalDotsPerInchY")
-		}
-	}()
+	defer qt.Recovering("QScreen::physicalDotsPerInchY")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QScreen_PhysicalDotsPerInchY(ptr.Pointer()))
@@ -182,11 +137,7 @@ func (ptr *QScreen) PhysicalDotsPerInchY() float64 {
 }
 
 func (ptr *QScreen) PrimaryOrientation() core.Qt__ScreenOrientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::primaryOrientation")
-		}
-	}()
+	defer qt.Recovering("QScreen::primaryOrientation")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ScreenOrientation(C.QScreen_PrimaryOrientation(ptr.Pointer()))
@@ -195,11 +146,7 @@ func (ptr *QScreen) PrimaryOrientation() core.Qt__ScreenOrientation {
 }
 
 func (ptr *QScreen) RefreshRate() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::refreshRate")
-		}
-	}()
+	defer qt.Recovering("QScreen::refreshRate")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QScreen_RefreshRate(ptr.Pointer()))
@@ -208,11 +155,7 @@ func (ptr *QScreen) RefreshRate() float64 {
 }
 
 func (ptr *QScreen) AngleBetween(a core.Qt__ScreenOrientation, b core.Qt__ScreenOrientation) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::angleBetween")
-		}
-	}()
+	defer qt.Recovering("QScreen::angleBetween")
 
 	if ptr.Pointer() != nil {
 		return int(C.QScreen_AngleBetween(ptr.Pointer(), C.int(a), C.int(b)))
@@ -221,11 +164,7 @@ func (ptr *QScreen) AngleBetween(a core.Qt__ScreenOrientation, b core.Qt__Screen
 }
 
 func (ptr *QScreen) IsLandscape(o core.Qt__ScreenOrientation) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::isLandscape")
-		}
-	}()
+	defer qt.Recovering("QScreen::isLandscape")
 
 	if ptr.Pointer() != nil {
 		return C.QScreen_IsLandscape(ptr.Pointer(), C.int(o)) != 0
@@ -234,11 +173,7 @@ func (ptr *QScreen) IsLandscape(o core.Qt__ScreenOrientation) bool {
 }
 
 func (ptr *QScreen) IsPortrait(o core.Qt__ScreenOrientation) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::isPortrait")
-		}
-	}()
+	defer qt.Recovering("QScreen::isPortrait")
 
 	if ptr.Pointer() != nil {
 		return C.QScreen_IsPortrait(ptr.Pointer(), C.int(o)) != 0
@@ -247,11 +182,7 @@ func (ptr *QScreen) IsPortrait(o core.Qt__ScreenOrientation) bool {
 }
 
 func (ptr *QScreen) ConnectOrientationChanged(f func(orientation core.Qt__ScreenOrientation)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::orientationChanged")
-		}
-	}()
+	defer qt.Recovering("connect QScreen::orientationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QScreen_ConnectOrientationChanged(ptr.Pointer())
@@ -260,11 +191,7 @@ func (ptr *QScreen) ConnectOrientationChanged(f func(orientation core.Qt__Screen
 }
 
 func (ptr *QScreen) DisconnectOrientationChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::orientationChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QScreen::orientationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QScreen_DisconnectOrientationChanged(ptr.Pointer())
@@ -274,21 +201,17 @@ func (ptr *QScreen) DisconnectOrientationChanged() {
 
 //export callbackQScreenOrientationChanged
 func callbackQScreenOrientationChanged(ptrName *C.char, orientation C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::orientationChanged")
-		}
-	}()
+	defer qt.Recovering("callback QScreen::orientationChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "orientationChanged").(func(core.Qt__ScreenOrientation))(core.Qt__ScreenOrientation(orientation))
+	var signal = qt.GetSignal(C.GoString(ptrName), "orientationChanged")
+	if signal != nil {
+		signal.(func(core.Qt__ScreenOrientation))(core.Qt__ScreenOrientation(orientation))
+	}
+
 }
 
 func (ptr *QScreen) OrientationUpdateMask() core.Qt__ScreenOrientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::orientationUpdateMask")
-		}
-	}()
+	defer qt.Recovering("QScreen::orientationUpdateMask")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ScreenOrientation(C.QScreen_OrientationUpdateMask(ptr.Pointer()))
@@ -297,11 +220,7 @@ func (ptr *QScreen) OrientationUpdateMask() core.Qt__ScreenOrientation {
 }
 
 func (ptr *QScreen) ConnectPrimaryOrientationChanged(f func(orientation core.Qt__ScreenOrientation)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::primaryOrientationChanged")
-		}
-	}()
+	defer qt.Recovering("connect QScreen::primaryOrientationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QScreen_ConnectPrimaryOrientationChanged(ptr.Pointer())
@@ -310,11 +229,7 @@ func (ptr *QScreen) ConnectPrimaryOrientationChanged(f func(orientation core.Qt_
 }
 
 func (ptr *QScreen) DisconnectPrimaryOrientationChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::primaryOrientationChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QScreen::primaryOrientationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QScreen_DisconnectPrimaryOrientationChanged(ptr.Pointer())
@@ -324,21 +239,17 @@ func (ptr *QScreen) DisconnectPrimaryOrientationChanged() {
 
 //export callbackQScreenPrimaryOrientationChanged
 func callbackQScreenPrimaryOrientationChanged(ptrName *C.char, orientation C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::primaryOrientationChanged")
-		}
-	}()
+	defer qt.Recovering("callback QScreen::primaryOrientationChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "primaryOrientationChanged").(func(core.Qt__ScreenOrientation))(core.Qt__ScreenOrientation(orientation))
+	var signal = qt.GetSignal(C.GoString(ptrName), "primaryOrientationChanged")
+	if signal != nil {
+		signal.(func(core.Qt__ScreenOrientation))(core.Qt__ScreenOrientation(orientation))
+	}
+
 }
 
 func (ptr *QScreen) SetOrientationUpdateMask(mask core.Qt__ScreenOrientation) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::setOrientationUpdateMask")
-		}
-	}()
+	defer qt.Recovering("QScreen::setOrientationUpdateMask")
 
 	if ptr.Pointer() != nil {
 		C.QScreen_SetOrientationUpdateMask(ptr.Pointer(), C.int(mask))
@@ -346,11 +257,7 @@ func (ptr *QScreen) SetOrientationUpdateMask(mask core.Qt__ScreenOrientation) {
 }
 
 func (ptr *QScreen) DestroyQScreen() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScreen::~QScreen")
-		}
-	}()
+	defer qt.Recovering("QScreen::~QScreen")
 
 	if ptr.Pointer() != nil {
 		C.QScreen_DestroyQScreen(ptr.Pointer())

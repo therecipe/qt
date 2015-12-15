@@ -3,8 +3,8 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQMediaServiceSupportedDevicesInterface(ptr QMediaServiceSupporte
 func NewQMediaServiceSupportedDevicesInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceSupportedDevicesInterface {
 	var n = new(QMediaServiceSupportedDevicesInterface)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QMediaServiceSupportedDevicesInterface_") {
+		n.SetObjectNameAbs("QMediaServiceSupportedDevicesInterface_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,11 +45,7 @@ func (ptr *QMediaServiceSupportedDevicesInterface) QMediaServiceSupportedDevices
 }
 
 func (ptr *QMediaServiceSupportedDevicesInterface) DeviceDescription(service core.QByteArray_ITF, device core.QByteArray_ITF) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaServiceSupportedDevicesInterface::deviceDescription")
-		}
-	}()
+	defer qt.Recovering("QMediaServiceSupportedDevicesInterface::deviceDescription")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMediaServiceSupportedDevicesInterface_DeviceDescription(ptr.Pointer(), core.PointerFromQByteArray(service), core.PointerFromQByteArray(device)))
@@ -55,13 +54,26 @@ func (ptr *QMediaServiceSupportedDevicesInterface) DeviceDescription(service cor
 }
 
 func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupportedDevicesInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface")
-		}
-	}()
+	defer qt.Recovering("QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface")
 
 	if ptr.Pointer() != nil {
 		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) ObjectNameAbs() string {
+	defer qt.Recovering("QMediaServiceSupportedDevicesInterface::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QMediaServiceSupportedDevicesInterface_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QMediaServiceSupportedDevicesInterface::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceSupportedDevicesInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

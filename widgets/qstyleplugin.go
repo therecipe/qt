@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQStylePluginFromPointer(ptr unsafe.Pointer) *QStylePlugin {
 	var n = new(QStylePlugin)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QStylePlugin_") {
-		n.SetObjectName("QStylePlugin_" + qt.RandomIdentifier())
+		n.SetObjectName("QStylePlugin_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QStylePlugin) QStylePlugin_PTR() *QStylePlugin {
 }
 
 func (ptr *QStylePlugin) Create(key string) *QStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStylePlugin::create")
-		}
-	}()
+	defer qt.Recovering("QStylePlugin::create")
 
 	if ptr.Pointer() != nil {
 		return NewQStyleFromPointer(C.QStylePlugin_Create(ptr.Pointer(), C.CString(key)))
@@ -52,11 +47,7 @@ func (ptr *QStylePlugin) Create(key string) *QStyle {
 }
 
 func (ptr *QStylePlugin) DestroyQStylePlugin() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStylePlugin::~QStylePlugin")
-		}
-	}()
+	defer qt.Recovering("QStylePlugin::~QStylePlugin")
 
 	if ptr.Pointer() != nil {
 		C.QStylePlugin_DestroyQStylePlugin(ptr.Pointer())

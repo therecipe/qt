@@ -110,7 +110,11 @@ func CppBodyInputCallback(f *parser.Function) (o string) {
 
 func CppBodyOutputCallback(f *parser.Function) (o string) {
 
-	o += fmt.Sprintf("%v", cppOutput("this->objectName()", "QString", f))
+	if parser.ClassMap[f.Class()].IsQObjectSubClass() {
+		o += fmt.Sprintf("%v", cppOutput("this->objectName()", "QString", f))
+	} else {
+		o += fmt.Sprintf("%v", cppOutput("this->objectNameAbs()", "QString", f))
+	}
 
 	for _, p := range f.Parameters {
 		o += fmt.Sprintf(", %v", cppOutput(p.Name, p.Value, f))

@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQLibraryFromPointer(ptr unsafe.Pointer) *QLibrary {
 	var n = new(QLibrary)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QLibrary_") {
-		n.SetObjectName("QLibrary_" + qt.RandomIdentifier())
+		n.SetObjectName("QLibrary_" + qt.Identifier())
 	}
 	return n
 }
@@ -49,11 +48,7 @@ const (
 )
 
 func (ptr *QLibrary) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::fileName")
-		}
-	}()
+	defer qt.Recovering("QLibrary::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QLibrary_FileName(ptr.Pointer()))
@@ -62,11 +57,7 @@ func (ptr *QLibrary) FileName() string {
 }
 
 func (ptr *QLibrary) LoadHints() QLibrary__LoadHint {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::loadHints")
-		}
-	}()
+	defer qt.Recovering("QLibrary::loadHints")
 
 	if ptr.Pointer() != nil {
 		return QLibrary__LoadHint(C.QLibrary_LoadHints(ptr.Pointer()))
@@ -75,11 +66,7 @@ func (ptr *QLibrary) LoadHints() QLibrary__LoadHint {
 }
 
 func (ptr *QLibrary) SetFileName(fileName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::setFileName")
-		}
-	}()
+	defer qt.Recovering("QLibrary::setFileName")
 
 	if ptr.Pointer() != nil {
 		C.QLibrary_SetFileName(ptr.Pointer(), C.CString(fileName))
@@ -87,11 +74,7 @@ func (ptr *QLibrary) SetFileName(fileName string) {
 }
 
 func (ptr *QLibrary) SetFileNameAndVersion(fileName string, versionNumber int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::setFileNameAndVersion")
-		}
-	}()
+	defer qt.Recovering("QLibrary::setFileNameAndVersion")
 
 	if ptr.Pointer() != nil {
 		C.QLibrary_SetFileNameAndVersion(ptr.Pointer(), C.CString(fileName), C.int(versionNumber))
@@ -99,11 +82,7 @@ func (ptr *QLibrary) SetFileNameAndVersion(fileName string, versionNumber int) {
 }
 
 func (ptr *QLibrary) SetLoadHints(hints QLibrary__LoadHint) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::setLoadHints")
-		}
-	}()
+	defer qt.Recovering("QLibrary::setLoadHints")
 
 	if ptr.Pointer() != nil {
 		C.QLibrary_SetLoadHints(ptr.Pointer(), C.int(hints))
@@ -111,51 +90,31 @@ func (ptr *QLibrary) SetLoadHints(hints QLibrary__LoadHint) {
 }
 
 func NewQLibrary(parent QObject_ITF) *QLibrary {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::QLibrary")
-		}
-	}()
+	defer qt.Recovering("QLibrary::QLibrary")
 
 	return NewQLibraryFromPointer(C.QLibrary_NewQLibrary(PointerFromQObject(parent)))
 }
 
 func NewQLibrary2(fileName string, parent QObject_ITF) *QLibrary {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::QLibrary")
-		}
-	}()
+	defer qt.Recovering("QLibrary::QLibrary")
 
 	return NewQLibraryFromPointer(C.QLibrary_NewQLibrary2(C.CString(fileName), PointerFromQObject(parent)))
 }
 
 func NewQLibrary4(fileName string, version string, parent QObject_ITF) *QLibrary {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::QLibrary")
-		}
-	}()
+	defer qt.Recovering("QLibrary::QLibrary")
 
 	return NewQLibraryFromPointer(C.QLibrary_NewQLibrary4(C.CString(fileName), C.CString(version), PointerFromQObject(parent)))
 }
 
 func NewQLibrary3(fileName string, verNum int, parent QObject_ITF) *QLibrary {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::QLibrary")
-		}
-	}()
+	defer qt.Recovering("QLibrary::QLibrary")
 
 	return NewQLibraryFromPointer(C.QLibrary_NewQLibrary3(C.CString(fileName), C.int(verNum), PointerFromQObject(parent)))
 }
 
 func (ptr *QLibrary) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::errorString")
-		}
-	}()
+	defer qt.Recovering("QLibrary::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QLibrary_ErrorString(ptr.Pointer()))
@@ -164,21 +123,13 @@ func (ptr *QLibrary) ErrorString() string {
 }
 
 func QLibrary_IsLibrary(fileName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::isLibrary")
-		}
-	}()
+	defer qt.Recovering("QLibrary::isLibrary")
 
 	return C.QLibrary_QLibrary_IsLibrary(C.CString(fileName)) != 0
 }
 
 func (ptr *QLibrary) IsLoaded() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::isLoaded")
-		}
-	}()
+	defer qt.Recovering("QLibrary::isLoaded")
 
 	if ptr.Pointer() != nil {
 		return C.QLibrary_IsLoaded(ptr.Pointer()) != 0
@@ -187,11 +138,7 @@ func (ptr *QLibrary) IsLoaded() bool {
 }
 
 func (ptr *QLibrary) Load() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::load")
-		}
-	}()
+	defer qt.Recovering("QLibrary::load")
 
 	if ptr.Pointer() != nil {
 		return C.QLibrary_Load(ptr.Pointer()) != 0
@@ -200,11 +147,7 @@ func (ptr *QLibrary) Load() bool {
 }
 
 func (ptr *QLibrary) SetFileNameAndVersion2(fileName string, version string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::setFileNameAndVersion")
-		}
-	}()
+	defer qt.Recovering("QLibrary::setFileNameAndVersion")
 
 	if ptr.Pointer() != nil {
 		C.QLibrary_SetFileNameAndVersion2(ptr.Pointer(), C.CString(fileName), C.CString(version))
@@ -212,11 +155,7 @@ func (ptr *QLibrary) SetFileNameAndVersion2(fileName string, version string) {
 }
 
 func (ptr *QLibrary) Unload() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::unload")
-		}
-	}()
+	defer qt.Recovering("QLibrary::unload")
 
 	if ptr.Pointer() != nil {
 		return C.QLibrary_Unload(ptr.Pointer()) != 0
@@ -225,11 +164,7 @@ func (ptr *QLibrary) Unload() bool {
 }
 
 func (ptr *QLibrary) DestroyQLibrary() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibrary::~QLibrary")
-		}
-	}()
+	defer qt.Recovering("QLibrary::~QLibrary")
 
 	if ptr.Pointer() != nil {
 		C.QLibrary_DestroyQLibrary(ptr.Pointer())

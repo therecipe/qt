@@ -4,7 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
 
@@ -28,7 +28,7 @@ func NewQFocusFrameFromPointer(ptr unsafe.Pointer) *QFocusFrame {
 	var n = new(QFocusFrame)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QFocusFrame_") {
-		n.SetObjectName("QFocusFrame_" + qt.RandomIdentifier())
+		n.SetObjectName("QFocusFrame_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,21 +38,44 @@ func (ptr *QFocusFrame) QFocusFrame_PTR() *QFocusFrame {
 }
 
 func NewQFocusFrame(parent QWidget_ITF) *QFocusFrame {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFocusFrame::QFocusFrame")
-		}
-	}()
+	defer qt.Recovering("QFocusFrame::QFocusFrame")
 
 	return NewQFocusFrameFromPointer(C.QFocusFrame_NewQFocusFrame(PointerFromQWidget(parent)))
 }
 
+func (ptr *QFocusFrame) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QFocusFrame::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QFocusFrame) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QFocusFrame::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQFocusFramePaintEvent
+func callbackQFocusFramePaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFocusFrame::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QFocusFrame) SetWidget(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFocusFrame::setWidget")
-		}
-	}()
+	defer qt.Recovering("QFocusFrame::setWidget")
 
 	if ptr.Pointer() != nil {
 		C.QFocusFrame_SetWidget(ptr.Pointer(), PointerFromQWidget(widget))
@@ -60,11 +83,7 @@ func (ptr *QFocusFrame) SetWidget(widget QWidget_ITF) {
 }
 
 func (ptr *QFocusFrame) Widget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFocusFrame::widget")
-		}
-	}()
+	defer qt.Recovering("QFocusFrame::widget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QFocusFrame_Widget(ptr.Pointer()))
@@ -73,11 +92,7 @@ func (ptr *QFocusFrame) Widget() *QWidget {
 }
 
 func (ptr *QFocusFrame) DestroyQFocusFrame() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFocusFrame::~QFocusFrame")
-		}
-	}()
+	defer qt.Recovering("QFocusFrame::~QFocusFrame")
 
 	if ptr.Pointer() != nil {
 		C.QFocusFrame_DestroyQFocusFrame(ptr.Pointer())

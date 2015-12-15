@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQQuickRenderControlFromPointer(ptr unsafe.Pointer) *QQuickRenderControl 
 	var n = new(QQuickRenderControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickRenderControl_") {
-		n.SetObjectName("QQuickRenderControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QQuickRenderControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,21 +39,13 @@ func (ptr *QQuickRenderControl) QQuickRenderControl_PTR() *QQuickRenderControl {
 }
 
 func NewQQuickRenderControl(parent core.QObject_ITF) *QQuickRenderControl {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::QQuickRenderControl")
-		}
-	}()
+	defer qt.Recovering("QQuickRenderControl::QQuickRenderControl")
 
 	return NewQQuickRenderControlFromPointer(C.QQuickRenderControl_NewQQuickRenderControl(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQuickRenderControl) Initialize(gl gui.QOpenGLContext_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::initialize")
-		}
-	}()
+	defer qt.Recovering("QQuickRenderControl::initialize")
 
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_Initialize(ptr.Pointer(), gui.PointerFromQOpenGLContext(gl))
@@ -62,11 +53,7 @@ func (ptr *QQuickRenderControl) Initialize(gl gui.QOpenGLContext_ITF) {
 }
 
 func (ptr *QQuickRenderControl) Invalidate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::invalidate")
-		}
-	}()
+	defer qt.Recovering("QQuickRenderControl::invalidate")
 
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_Invalidate(ptr.Pointer())
@@ -74,11 +61,7 @@ func (ptr *QQuickRenderControl) Invalidate() {
 }
 
 func (ptr *QQuickRenderControl) PolishItems() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::polishItems")
-		}
-	}()
+	defer qt.Recovering("QQuickRenderControl::polishItems")
 
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_PolishItems(ptr.Pointer())
@@ -86,11 +69,7 @@ func (ptr *QQuickRenderControl) PolishItems() {
 }
 
 func (ptr *QQuickRenderControl) PrepareThread(targetThread core.QThread_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::prepareThread")
-		}
-	}()
+	defer qt.Recovering("QQuickRenderControl::prepareThread")
 
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_PrepareThread(ptr.Pointer(), core.PointerFromQThread(targetThread))
@@ -98,11 +77,7 @@ func (ptr *QQuickRenderControl) PrepareThread(targetThread core.QThread_ITF) {
 }
 
 func (ptr *QQuickRenderControl) Render() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::render")
-		}
-	}()
+	defer qt.Recovering("QQuickRenderControl::render")
 
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_Render(ptr.Pointer())
@@ -110,11 +85,7 @@ func (ptr *QQuickRenderControl) Render() {
 }
 
 func (ptr *QQuickRenderControl) ConnectRenderRequested(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::renderRequested")
-		}
-	}()
+	defer qt.Recovering("connect QQuickRenderControl::renderRequested")
 
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_ConnectRenderRequested(ptr.Pointer())
@@ -123,11 +94,7 @@ func (ptr *QQuickRenderControl) ConnectRenderRequested(f func()) {
 }
 
 func (ptr *QQuickRenderControl) DisconnectRenderRequested() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::renderRequested")
-		}
-	}()
+	defer qt.Recovering("disconnect QQuickRenderControl::renderRequested")
 
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_DisconnectRenderRequested(ptr.Pointer())
@@ -137,21 +104,17 @@ func (ptr *QQuickRenderControl) DisconnectRenderRequested() {
 
 //export callbackQQuickRenderControlRenderRequested
 func callbackQQuickRenderControlRenderRequested(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::renderRequested")
-		}
-	}()
+	defer qt.Recovering("callback QQuickRenderControl::renderRequested")
 
-	qt.GetSignal(C.GoString(ptrName), "renderRequested").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "renderRequested")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QQuickRenderControl) RenderWindow(offset core.QPoint_ITF) *gui.QWindow {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::renderWindow")
-		}
-	}()
+	defer qt.Recovering("QQuickRenderControl::renderWindow")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQWindowFromPointer(C.QQuickRenderControl_RenderWindow(ptr.Pointer(), core.PointerFromQPoint(offset)))
@@ -160,21 +123,13 @@ func (ptr *QQuickRenderControl) RenderWindow(offset core.QPoint_ITF) *gui.QWindo
 }
 
 func QQuickRenderControl_RenderWindowFor(win QQuickWindow_ITF, offset core.QPoint_ITF) *gui.QWindow {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::renderWindowFor")
-		}
-	}()
+	defer qt.Recovering("QQuickRenderControl::renderWindowFor")
 
 	return gui.NewQWindowFromPointer(C.QQuickRenderControl_QQuickRenderControl_RenderWindowFor(PointerFromQQuickWindow(win), core.PointerFromQPoint(offset)))
 }
 
 func (ptr *QQuickRenderControl) ConnectSceneChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::sceneChanged")
-		}
-	}()
+	defer qt.Recovering("connect QQuickRenderControl::sceneChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_ConnectSceneChanged(ptr.Pointer())
@@ -183,11 +138,7 @@ func (ptr *QQuickRenderControl) ConnectSceneChanged(f func()) {
 }
 
 func (ptr *QQuickRenderControl) DisconnectSceneChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::sceneChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QQuickRenderControl::sceneChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_DisconnectSceneChanged(ptr.Pointer())
@@ -197,21 +148,17 @@ func (ptr *QQuickRenderControl) DisconnectSceneChanged() {
 
 //export callbackQQuickRenderControlSceneChanged
 func callbackQQuickRenderControlSceneChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::sceneChanged")
-		}
-	}()
+	defer qt.Recovering("callback QQuickRenderControl::sceneChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "sceneChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "sceneChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QQuickRenderControl) Sync() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::sync")
-		}
-	}()
+	defer qt.Recovering("QQuickRenderControl::sync")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickRenderControl_Sync(ptr.Pointer()) != 0
@@ -220,11 +167,7 @@ func (ptr *QQuickRenderControl) Sync() bool {
 }
 
 func (ptr *QQuickRenderControl) DestroyQQuickRenderControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickRenderControl::~QQuickRenderControl")
-		}
-	}()
+	defer qt.Recovering("QQuickRenderControl::~QQuickRenderControl")
 
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_DestroyQQuickRenderControl(ptr.Pointer())

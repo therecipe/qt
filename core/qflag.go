@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,11 +41,7 @@ func (ptr *QFlag) QFlag_PTR() *QFlag {
 }
 
 func NewQFlag(value int) *QFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFlag::QFlag")
-		}
-	}()
+	defer qt.Recovering("QFlag::QFlag")
 
 	return NewQFlagFromPointer(C.QFlag_NewQFlag(C.int(value)))
 }

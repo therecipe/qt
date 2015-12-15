@@ -3,7 +3,7 @@ package network
 //#include "network.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QDnsDomainNameRecord) QDnsDomainNameRecord_PTR() *QDnsDomainNameRecor
 }
 
 func NewQDnsDomainNameRecord() *QDnsDomainNameRecord {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsDomainNameRecord::QDnsDomainNameRecord")
-		}
-	}()
+	defer qt.Recovering("QDnsDomainNameRecord::QDnsDomainNameRecord")
 
 	return NewQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord())
 }
 
 func NewQDnsDomainNameRecord2(other QDnsDomainNameRecord_ITF) *QDnsDomainNameRecord {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsDomainNameRecord::QDnsDomainNameRecord")
-		}
-	}()
+	defer qt.Recovering("QDnsDomainNameRecord::QDnsDomainNameRecord")
 
 	return NewQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord2(PointerFromQDnsDomainNameRecord(other)))
 }
 
 func (ptr *QDnsDomainNameRecord) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsDomainNameRecord::name")
-		}
-	}()
+	defer qt.Recovering("QDnsDomainNameRecord::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDnsDomainNameRecord_Name(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QDnsDomainNameRecord) Name() string {
 }
 
 func (ptr *QDnsDomainNameRecord) Swap(other QDnsDomainNameRecord_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsDomainNameRecord::swap")
-		}
-	}()
+	defer qt.Recovering("QDnsDomainNameRecord::swap")
 
 	if ptr.Pointer() != nil {
 		C.QDnsDomainNameRecord_Swap(ptr.Pointer(), PointerFromQDnsDomainNameRecord(other))
@@ -86,11 +70,7 @@ func (ptr *QDnsDomainNameRecord) Swap(other QDnsDomainNameRecord_ITF) {
 }
 
 func (ptr *QDnsDomainNameRecord) Value() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsDomainNameRecord::value")
-		}
-	}()
+	defer qt.Recovering("QDnsDomainNameRecord::value")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDnsDomainNameRecord_Value(ptr.Pointer()))
@@ -99,11 +79,7 @@ func (ptr *QDnsDomainNameRecord) Value() string {
 }
 
 func (ptr *QDnsDomainNameRecord) DestroyQDnsDomainNameRecord() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsDomainNameRecord::~QDnsDomainNameRecord")
-		}
-	}()
+	defer qt.Recovering("QDnsDomainNameRecord::~QDnsDomainNameRecord")
 
 	if ptr.Pointer() != nil {
 		C.QDnsDomainNameRecord_DestroyQDnsDomainNameRecord(ptr.Pointer())

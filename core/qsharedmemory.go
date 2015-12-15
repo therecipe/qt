@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQSharedMemoryFromPointer(ptr unsafe.Pointer) *QSharedMemory {
 	var n = new(QSharedMemory)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSharedMemory_") {
-		n.SetObjectName("QSharedMemory_" + qt.RandomIdentifier())
+		n.SetObjectName("QSharedMemory_" + qt.Identifier())
 	}
 	return n
 }
@@ -61,31 +60,19 @@ const (
 )
 
 func NewQSharedMemory2(parent QObject_ITF) *QSharedMemory {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::QSharedMemory")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::QSharedMemory")
 
 	return NewQSharedMemoryFromPointer(C.QSharedMemory_NewQSharedMemory2(PointerFromQObject(parent)))
 }
 
 func NewQSharedMemory(key string, parent QObject_ITF) *QSharedMemory {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::QSharedMemory")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::QSharedMemory")
 
 	return NewQSharedMemoryFromPointer(C.QSharedMemory_NewQSharedMemory(C.CString(key), PointerFromQObject(parent)))
 }
 
 func (ptr *QSharedMemory) Attach(mode QSharedMemory__AccessMode) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::attach")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::attach")
 
 	if ptr.Pointer() != nil {
 		return C.QSharedMemory_Attach(ptr.Pointer(), C.int(mode)) != 0
@@ -94,11 +81,7 @@ func (ptr *QSharedMemory) Attach(mode QSharedMemory__AccessMode) bool {
 }
 
 func (ptr *QSharedMemory) ConstData() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::constData")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::constData")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QSharedMemory_ConstData(ptr.Pointer()))
@@ -107,11 +90,7 @@ func (ptr *QSharedMemory) ConstData() unsafe.Pointer {
 }
 
 func (ptr *QSharedMemory) Create(size int, mode QSharedMemory__AccessMode) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::create")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::create")
 
 	if ptr.Pointer() != nil {
 		return C.QSharedMemory_Create(ptr.Pointer(), C.int(size), C.int(mode)) != 0
@@ -120,11 +99,7 @@ func (ptr *QSharedMemory) Create(size int, mode QSharedMemory__AccessMode) bool 
 }
 
 func (ptr *QSharedMemory) Data() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::data")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::data")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QSharedMemory_Data(ptr.Pointer()))
@@ -133,11 +108,7 @@ func (ptr *QSharedMemory) Data() unsafe.Pointer {
 }
 
 func (ptr *QSharedMemory) Data2() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::data")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::data")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QSharedMemory_Data2(ptr.Pointer()))
@@ -146,11 +117,7 @@ func (ptr *QSharedMemory) Data2() unsafe.Pointer {
 }
 
 func (ptr *QSharedMemory) Detach() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::detach")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::detach")
 
 	if ptr.Pointer() != nil {
 		return C.QSharedMemory_Detach(ptr.Pointer()) != 0
@@ -159,11 +126,7 @@ func (ptr *QSharedMemory) Detach() bool {
 }
 
 func (ptr *QSharedMemory) Error() QSharedMemory__SharedMemoryError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::error")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::error")
 
 	if ptr.Pointer() != nil {
 		return QSharedMemory__SharedMemoryError(C.QSharedMemory_Error(ptr.Pointer()))
@@ -172,11 +135,7 @@ func (ptr *QSharedMemory) Error() QSharedMemory__SharedMemoryError {
 }
 
 func (ptr *QSharedMemory) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::errorString")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSharedMemory_ErrorString(ptr.Pointer()))
@@ -185,11 +144,7 @@ func (ptr *QSharedMemory) ErrorString() string {
 }
 
 func (ptr *QSharedMemory) IsAttached() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::isAttached")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::isAttached")
 
 	if ptr.Pointer() != nil {
 		return C.QSharedMemory_IsAttached(ptr.Pointer()) != 0
@@ -198,11 +153,7 @@ func (ptr *QSharedMemory) IsAttached() bool {
 }
 
 func (ptr *QSharedMemory) Key() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::key")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::key")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSharedMemory_Key(ptr.Pointer()))
@@ -211,11 +162,7 @@ func (ptr *QSharedMemory) Key() string {
 }
 
 func (ptr *QSharedMemory) Lock() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::lock")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::lock")
 
 	if ptr.Pointer() != nil {
 		return C.QSharedMemory_Lock(ptr.Pointer()) != 0
@@ -224,11 +171,7 @@ func (ptr *QSharedMemory) Lock() bool {
 }
 
 func (ptr *QSharedMemory) NativeKey() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::nativeKey")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::nativeKey")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSharedMemory_NativeKey(ptr.Pointer()))
@@ -237,11 +180,7 @@ func (ptr *QSharedMemory) NativeKey() string {
 }
 
 func (ptr *QSharedMemory) SetKey(key string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::setKey")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::setKey")
 
 	if ptr.Pointer() != nil {
 		C.QSharedMemory_SetKey(ptr.Pointer(), C.CString(key))
@@ -249,11 +188,7 @@ func (ptr *QSharedMemory) SetKey(key string) {
 }
 
 func (ptr *QSharedMemory) SetNativeKey(key string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::setNativeKey")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::setNativeKey")
 
 	if ptr.Pointer() != nil {
 		C.QSharedMemory_SetNativeKey(ptr.Pointer(), C.CString(key))
@@ -261,11 +196,7 @@ func (ptr *QSharedMemory) SetNativeKey(key string) {
 }
 
 func (ptr *QSharedMemory) Size() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::size")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::size")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSharedMemory_Size(ptr.Pointer()))
@@ -274,11 +205,7 @@ func (ptr *QSharedMemory) Size() int {
 }
 
 func (ptr *QSharedMemory) Unlock() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::unlock")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::unlock")
 
 	if ptr.Pointer() != nil {
 		return C.QSharedMemory_Unlock(ptr.Pointer()) != 0
@@ -287,11 +214,7 @@ func (ptr *QSharedMemory) Unlock() bool {
 }
 
 func (ptr *QSharedMemory) DestroyQSharedMemory() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedMemory::~QSharedMemory")
-		}
-	}()
+	defer qt.Recovering("QSharedMemory::~QSharedMemory")
 
 	if ptr.Pointer() != nil {
 		C.QSharedMemory_DestroyQSharedMemory(ptr.Pointer())

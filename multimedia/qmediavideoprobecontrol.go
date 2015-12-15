@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQMediaVideoProbeControlFromPointer(ptr unsafe.Pointer) *QMediaVideoProbe
 	var n = new(QMediaVideoProbeControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaVideoProbeControl_") {
-		n.SetObjectName("QMediaVideoProbeControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QMediaVideoProbeControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QMediaVideoProbeControl) QMediaVideoProbeControl_PTR() *QMediaVideoPr
 }
 
 func (ptr *QMediaVideoProbeControl) ConnectFlush(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaVideoProbeControl::flush")
-		}
-	}()
+	defer qt.Recovering("connect QMediaVideoProbeControl::flush")
 
 	if ptr.Pointer() != nil {
 		C.QMediaVideoProbeControl_ConnectFlush(ptr.Pointer())
@@ -51,11 +46,7 @@ func (ptr *QMediaVideoProbeControl) ConnectFlush(f func()) {
 }
 
 func (ptr *QMediaVideoProbeControl) DisconnectFlush() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaVideoProbeControl::flush")
-		}
-	}()
+	defer qt.Recovering("disconnect QMediaVideoProbeControl::flush")
 
 	if ptr.Pointer() != nil {
 		C.QMediaVideoProbeControl_DisconnectFlush(ptr.Pointer())
@@ -65,21 +56,17 @@ func (ptr *QMediaVideoProbeControl) DisconnectFlush() {
 
 //export callbackQMediaVideoProbeControlFlush
 func callbackQMediaVideoProbeControlFlush(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaVideoProbeControl::flush")
-		}
-	}()
+	defer qt.Recovering("callback QMediaVideoProbeControl::flush")
 
-	qt.GetSignal(C.GoString(ptrName), "flush").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "flush")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QMediaVideoProbeControl) DestroyQMediaVideoProbeControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaVideoProbeControl::~QMediaVideoProbeControl")
-		}
-	}()
+	defer qt.Recovering("QMediaVideoProbeControl::~QMediaVideoProbeControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaVideoProbeControl_DestroyQMediaVideoProbeControl(ptr.Pointer())

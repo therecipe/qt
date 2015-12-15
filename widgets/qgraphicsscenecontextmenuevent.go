@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -44,11 +44,7 @@ const (
 )
 
 func (ptr *QGraphicsSceneContextMenuEvent) Modifiers() core.Qt__KeyboardModifier {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneContextMenuEvent::modifiers")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneContextMenuEvent::modifiers")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__KeyboardModifier(C.QGraphicsSceneContextMenuEvent_Modifiers(ptr.Pointer()))
@@ -57,11 +53,7 @@ func (ptr *QGraphicsSceneContextMenuEvent) Modifiers() core.Qt__KeyboardModifier
 }
 
 func (ptr *QGraphicsSceneContextMenuEvent) Reason() QGraphicsSceneContextMenuEvent__Reason {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneContextMenuEvent::reason")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneContextMenuEvent::reason")
 
 	if ptr.Pointer() != nil {
 		return QGraphicsSceneContextMenuEvent__Reason(C.QGraphicsSceneContextMenuEvent_Reason(ptr.Pointer()))
@@ -69,12 +61,17 @@ func (ptr *QGraphicsSceneContextMenuEvent) Reason() QGraphicsSceneContextMenuEve
 	return 0
 }
 
+func (ptr *QGraphicsSceneContextMenuEvent) ScreenPos() *core.QPoint {
+	defer qt.Recovering("QGraphicsSceneContextMenuEvent::screenPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QGraphicsSceneContextMenuEvent_ScreenPos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsSceneContextMenuEvent) DestroyQGraphicsSceneContextMenuEvent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneContextMenuEvent::~QGraphicsSceneContextMenuEvent")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneContextMenuEvent::~QGraphicsSceneContextMenuEvent")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneContextMenuEvent_DestroyQGraphicsSceneContextMenuEvent(ptr.Pointer())

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQVideoWindowControlFromPointer(ptr unsafe.Pointer) *QVideoWindowControl 
 	var n = new(QVideoWindowControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoWindowControl_") {
-		n.SetObjectName("QVideoWindowControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QVideoWindowControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QVideoWindowControl) QVideoWindowControl_PTR() *QVideoWindowControl {
 }
 
 func (ptr *QVideoWindowControl) AspectRatioMode() core.Qt__AspectRatioMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::aspectRatioMode")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::aspectRatioMode")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__AspectRatioMode(C.QVideoWindowControl_AspectRatioMode(ptr.Pointer()))
@@ -52,11 +47,7 @@ func (ptr *QVideoWindowControl) AspectRatioMode() core.Qt__AspectRatioMode {
 }
 
 func (ptr *QVideoWindowControl) Brightness() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::brightness")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::brightness")
 
 	if ptr.Pointer() != nil {
 		return int(C.QVideoWindowControl_Brightness(ptr.Pointer()))
@@ -65,11 +56,7 @@ func (ptr *QVideoWindowControl) Brightness() int {
 }
 
 func (ptr *QVideoWindowControl) ConnectBrightnessChanged(f func(brightness int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::brightnessChanged")
-		}
-	}()
+	defer qt.Recovering("connect QVideoWindowControl::brightnessChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_ConnectBrightnessChanged(ptr.Pointer())
@@ -78,11 +65,7 @@ func (ptr *QVideoWindowControl) ConnectBrightnessChanged(f func(brightness int))
 }
 
 func (ptr *QVideoWindowControl) DisconnectBrightnessChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::brightnessChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QVideoWindowControl::brightnessChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_DisconnectBrightnessChanged(ptr.Pointer())
@@ -92,21 +75,17 @@ func (ptr *QVideoWindowControl) DisconnectBrightnessChanged() {
 
 //export callbackQVideoWindowControlBrightnessChanged
 func callbackQVideoWindowControlBrightnessChanged(ptrName *C.char, brightness C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::brightnessChanged")
-		}
-	}()
+	defer qt.Recovering("callback QVideoWindowControl::brightnessChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "brightnessChanged").(func(int))(int(brightness))
+	var signal = qt.GetSignal(C.GoString(ptrName), "brightnessChanged")
+	if signal != nil {
+		signal.(func(int))(int(brightness))
+	}
+
 }
 
 func (ptr *QVideoWindowControl) Contrast() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::contrast")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::contrast")
 
 	if ptr.Pointer() != nil {
 		return int(C.QVideoWindowControl_Contrast(ptr.Pointer()))
@@ -115,11 +94,7 @@ func (ptr *QVideoWindowControl) Contrast() int {
 }
 
 func (ptr *QVideoWindowControl) ConnectContrastChanged(f func(contrast int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::contrastChanged")
-		}
-	}()
+	defer qt.Recovering("connect QVideoWindowControl::contrastChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_ConnectContrastChanged(ptr.Pointer())
@@ -128,11 +103,7 @@ func (ptr *QVideoWindowControl) ConnectContrastChanged(f func(contrast int)) {
 }
 
 func (ptr *QVideoWindowControl) DisconnectContrastChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::contrastChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QVideoWindowControl::contrastChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_DisconnectContrastChanged(ptr.Pointer())
@@ -142,21 +113,17 @@ func (ptr *QVideoWindowControl) DisconnectContrastChanged() {
 
 //export callbackQVideoWindowControlContrastChanged
 func callbackQVideoWindowControlContrastChanged(ptrName *C.char, contrast C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::contrastChanged")
-		}
-	}()
+	defer qt.Recovering("callback QVideoWindowControl::contrastChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "contrastChanged").(func(int))(int(contrast))
+	var signal = qt.GetSignal(C.GoString(ptrName), "contrastChanged")
+	if signal != nil {
+		signal.(func(int))(int(contrast))
+	}
+
 }
 
 func (ptr *QVideoWindowControl) ConnectFullScreenChanged(f func(fullScreen bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::fullScreenChanged")
-		}
-	}()
+	defer qt.Recovering("connect QVideoWindowControl::fullScreenChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_ConnectFullScreenChanged(ptr.Pointer())
@@ -165,11 +132,7 @@ func (ptr *QVideoWindowControl) ConnectFullScreenChanged(f func(fullScreen bool)
 }
 
 func (ptr *QVideoWindowControl) DisconnectFullScreenChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::fullScreenChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QVideoWindowControl::fullScreenChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_DisconnectFullScreenChanged(ptr.Pointer())
@@ -179,21 +142,17 @@ func (ptr *QVideoWindowControl) DisconnectFullScreenChanged() {
 
 //export callbackQVideoWindowControlFullScreenChanged
 func callbackQVideoWindowControlFullScreenChanged(ptrName *C.char, fullScreen C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::fullScreenChanged")
-		}
-	}()
+	defer qt.Recovering("callback QVideoWindowControl::fullScreenChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "fullScreenChanged").(func(bool))(int(fullScreen) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "fullScreenChanged")
+	if signal != nil {
+		signal.(func(bool))(int(fullScreen) != 0)
+	}
+
 }
 
 func (ptr *QVideoWindowControl) Hue() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::hue")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::hue")
 
 	if ptr.Pointer() != nil {
 		return int(C.QVideoWindowControl_Hue(ptr.Pointer()))
@@ -202,11 +161,7 @@ func (ptr *QVideoWindowControl) Hue() int {
 }
 
 func (ptr *QVideoWindowControl) ConnectHueChanged(f func(hue int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::hueChanged")
-		}
-	}()
+	defer qt.Recovering("connect QVideoWindowControl::hueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_ConnectHueChanged(ptr.Pointer())
@@ -215,11 +170,7 @@ func (ptr *QVideoWindowControl) ConnectHueChanged(f func(hue int)) {
 }
 
 func (ptr *QVideoWindowControl) DisconnectHueChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::hueChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QVideoWindowControl::hueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_DisconnectHueChanged(ptr.Pointer())
@@ -229,21 +180,17 @@ func (ptr *QVideoWindowControl) DisconnectHueChanged() {
 
 //export callbackQVideoWindowControlHueChanged
 func callbackQVideoWindowControlHueChanged(ptrName *C.char, hue C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::hueChanged")
-		}
-	}()
+	defer qt.Recovering("callback QVideoWindowControl::hueChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "hueChanged").(func(int))(int(hue))
+	var signal = qt.GetSignal(C.GoString(ptrName), "hueChanged")
+	if signal != nil {
+		signal.(func(int))(int(hue))
+	}
+
 }
 
 func (ptr *QVideoWindowControl) IsFullScreen() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::isFullScreen")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::isFullScreen")
 
 	if ptr.Pointer() != nil {
 		return C.QVideoWindowControl_IsFullScreen(ptr.Pointer()) != 0
@@ -252,11 +199,7 @@ func (ptr *QVideoWindowControl) IsFullScreen() bool {
 }
 
 func (ptr *QVideoWindowControl) ConnectNativeSizeChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::nativeSizeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QVideoWindowControl::nativeSizeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_ConnectNativeSizeChanged(ptr.Pointer())
@@ -265,11 +208,7 @@ func (ptr *QVideoWindowControl) ConnectNativeSizeChanged(f func()) {
 }
 
 func (ptr *QVideoWindowControl) DisconnectNativeSizeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::nativeSizeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QVideoWindowControl::nativeSizeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_DisconnectNativeSizeChanged(ptr.Pointer())
@@ -279,21 +218,17 @@ func (ptr *QVideoWindowControl) DisconnectNativeSizeChanged() {
 
 //export callbackQVideoWindowControlNativeSizeChanged
 func callbackQVideoWindowControlNativeSizeChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::nativeSizeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QVideoWindowControl::nativeSizeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "nativeSizeChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "nativeSizeChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QVideoWindowControl) Repaint() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::repaint")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::repaint")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_Repaint(ptr.Pointer())
@@ -301,11 +236,7 @@ func (ptr *QVideoWindowControl) Repaint() {
 }
 
 func (ptr *QVideoWindowControl) Saturation() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::saturation")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::saturation")
 
 	if ptr.Pointer() != nil {
 		return int(C.QVideoWindowControl_Saturation(ptr.Pointer()))
@@ -314,11 +245,7 @@ func (ptr *QVideoWindowControl) Saturation() int {
 }
 
 func (ptr *QVideoWindowControl) ConnectSaturationChanged(f func(saturation int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::saturationChanged")
-		}
-	}()
+	defer qt.Recovering("connect QVideoWindowControl::saturationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_ConnectSaturationChanged(ptr.Pointer())
@@ -327,11 +254,7 @@ func (ptr *QVideoWindowControl) ConnectSaturationChanged(f func(saturation int))
 }
 
 func (ptr *QVideoWindowControl) DisconnectSaturationChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::saturationChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QVideoWindowControl::saturationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_DisconnectSaturationChanged(ptr.Pointer())
@@ -341,21 +264,17 @@ func (ptr *QVideoWindowControl) DisconnectSaturationChanged() {
 
 //export callbackQVideoWindowControlSaturationChanged
 func callbackQVideoWindowControlSaturationChanged(ptrName *C.char, saturation C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::saturationChanged")
-		}
-	}()
+	defer qt.Recovering("callback QVideoWindowControl::saturationChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "saturationChanged").(func(int))(int(saturation))
+	var signal = qt.GetSignal(C.GoString(ptrName), "saturationChanged")
+	if signal != nil {
+		signal.(func(int))(int(saturation))
+	}
+
 }
 
 func (ptr *QVideoWindowControl) SetAspectRatioMode(mode core.Qt__AspectRatioMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::setAspectRatioMode")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::setAspectRatioMode")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_SetAspectRatioMode(ptr.Pointer(), C.int(mode))
@@ -363,11 +282,7 @@ func (ptr *QVideoWindowControl) SetAspectRatioMode(mode core.Qt__AspectRatioMode
 }
 
 func (ptr *QVideoWindowControl) SetBrightness(brightness int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::setBrightness")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::setBrightness")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_SetBrightness(ptr.Pointer(), C.int(brightness))
@@ -375,11 +290,7 @@ func (ptr *QVideoWindowControl) SetBrightness(brightness int) {
 }
 
 func (ptr *QVideoWindowControl) SetContrast(contrast int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::setContrast")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::setContrast")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_SetContrast(ptr.Pointer(), C.int(contrast))
@@ -387,11 +298,7 @@ func (ptr *QVideoWindowControl) SetContrast(contrast int) {
 }
 
 func (ptr *QVideoWindowControl) SetDisplayRect(rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::setDisplayRect")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::setDisplayRect")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_SetDisplayRect(ptr.Pointer(), core.PointerFromQRect(rect))
@@ -399,11 +306,7 @@ func (ptr *QVideoWindowControl) SetDisplayRect(rect core.QRect_ITF) {
 }
 
 func (ptr *QVideoWindowControl) SetFullScreen(fullScreen bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::setFullScreen")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::setFullScreen")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_SetFullScreen(ptr.Pointer(), C.int(qt.GoBoolToInt(fullScreen)))
@@ -411,11 +314,7 @@ func (ptr *QVideoWindowControl) SetFullScreen(fullScreen bool) {
 }
 
 func (ptr *QVideoWindowControl) SetHue(hue int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::setHue")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::setHue")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_SetHue(ptr.Pointer(), C.int(hue))
@@ -423,11 +322,7 @@ func (ptr *QVideoWindowControl) SetHue(hue int) {
 }
 
 func (ptr *QVideoWindowControl) SetSaturation(saturation int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::setSaturation")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::setSaturation")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_SetSaturation(ptr.Pointer(), C.int(saturation))
@@ -435,11 +330,7 @@ func (ptr *QVideoWindowControl) SetSaturation(saturation int) {
 }
 
 func (ptr *QVideoWindowControl) DestroyQVideoWindowControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoWindowControl::~QVideoWindowControl")
-		}
-	}()
+	defer qt.Recovering("QVideoWindowControl::~QVideoWindowControl")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_DestroyQVideoWindowControl(ptr.Pointer())

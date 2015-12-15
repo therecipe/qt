@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -60,61 +60,37 @@ const (
 )
 
 func NewQTimeZone() *QTimeZone {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::QTimeZone")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::QTimeZone")
 
 	return NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone())
 }
 
 func NewQTimeZone2(ianaId QByteArray_ITF) *QTimeZone {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::QTimeZone")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::QTimeZone")
 
 	return NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone2(PointerFromQByteArray(ianaId)))
 }
 
 func NewQTimeZone4(ianaId QByteArray_ITF, offsetSeconds int, name string, abbreviation string, country QLocale__Country, comment string) *QTimeZone {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::QTimeZone")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::QTimeZone")
 
 	return NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone4(PointerFromQByteArray(ianaId), C.int(offsetSeconds), C.CString(name), C.CString(abbreviation), C.int(country), C.CString(comment)))
 }
 
 func NewQTimeZone5(other QTimeZone_ITF) *QTimeZone {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::QTimeZone")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::QTimeZone")
 
 	return NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone5(PointerFromQTimeZone(other)))
 }
 
 func NewQTimeZone3(offsetSeconds int) *QTimeZone {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::QTimeZone")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::QTimeZone")
 
 	return NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone3(C.int(offsetSeconds)))
 }
 
 func (ptr *QTimeZone) Abbreviation(atDateTime QDateTime_ITF) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::abbreviation")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::abbreviation")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTimeZone_Abbreviation(ptr.Pointer(), PointerFromQDateTime(atDateTime)))
@@ -123,11 +99,7 @@ func (ptr *QTimeZone) Abbreviation(atDateTime QDateTime_ITF) string {
 }
 
 func (ptr *QTimeZone) Comment() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::comment")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::comment")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTimeZone_Comment(ptr.Pointer()))
@@ -136,11 +108,7 @@ func (ptr *QTimeZone) Comment() string {
 }
 
 func (ptr *QTimeZone) Country() QLocale__Country {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::country")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::country")
 
 	if ptr.Pointer() != nil {
 		return QLocale__Country(C.QTimeZone_Country(ptr.Pointer()))
@@ -149,11 +117,7 @@ func (ptr *QTimeZone) Country() QLocale__Country {
 }
 
 func (ptr *QTimeZone) DaylightTimeOffset(atDateTime QDateTime_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::daylightTimeOffset")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::daylightTimeOffset")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimeZone_DaylightTimeOffset(ptr.Pointer(), PointerFromQDateTime(atDateTime)))
@@ -162,11 +126,7 @@ func (ptr *QTimeZone) DaylightTimeOffset(atDateTime QDateTime_ITF) int {
 }
 
 func (ptr *QTimeZone) DisplayName2(timeType QTimeZone__TimeType, nameType QTimeZone__NameType, locale QLocale_ITF) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::displayName")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::displayName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTimeZone_DisplayName2(ptr.Pointer(), C.int(timeType), C.int(nameType), PointerFromQLocale(locale)))
@@ -175,11 +135,7 @@ func (ptr *QTimeZone) DisplayName2(timeType QTimeZone__TimeType, nameType QTimeZ
 }
 
 func (ptr *QTimeZone) DisplayName(atDateTime QDateTime_ITF, nameType QTimeZone__NameType, locale QLocale_ITF) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::displayName")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::displayName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTimeZone_DisplayName(ptr.Pointer(), PointerFromQDateTime(atDateTime), C.int(nameType), PointerFromQLocale(locale)))
@@ -188,11 +144,7 @@ func (ptr *QTimeZone) DisplayName(atDateTime QDateTime_ITF, nameType QTimeZone__
 }
 
 func (ptr *QTimeZone) HasDaylightTime() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::hasDaylightTime")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::hasDaylightTime")
 
 	if ptr.Pointer() != nil {
 		return C.QTimeZone_HasDaylightTime(ptr.Pointer()) != 0
@@ -201,11 +153,7 @@ func (ptr *QTimeZone) HasDaylightTime() bool {
 }
 
 func (ptr *QTimeZone) HasTransitions() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::hasTransitions")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::hasTransitions")
 
 	if ptr.Pointer() != nil {
 		return C.QTimeZone_HasTransitions(ptr.Pointer()) != 0
@@ -214,21 +162,13 @@ func (ptr *QTimeZone) HasTransitions() bool {
 }
 
 func QTimeZone_IanaIdToWindowsId(ianaId QByteArray_ITF) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::ianaIdToWindowsId")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::ianaIdToWindowsId")
 
 	return NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_IanaIdToWindowsId(PointerFromQByteArray(ianaId)))
 }
 
 func (ptr *QTimeZone) Id() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::id")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::id")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QTimeZone_Id(ptr.Pointer()))
@@ -237,11 +177,7 @@ func (ptr *QTimeZone) Id() *QByteArray {
 }
 
 func (ptr *QTimeZone) IsDaylightTime(atDateTime QDateTime_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::isDaylightTime")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::isDaylightTime")
 
 	if ptr.Pointer() != nil {
 		return C.QTimeZone_IsDaylightTime(ptr.Pointer(), PointerFromQDateTime(atDateTime)) != 0
@@ -250,21 +186,13 @@ func (ptr *QTimeZone) IsDaylightTime(atDateTime QDateTime_ITF) bool {
 }
 
 func QTimeZone_IsTimeZoneIdAvailable(ianaId QByteArray_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::isTimeZoneIdAvailable")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::isTimeZoneIdAvailable")
 
 	return C.QTimeZone_QTimeZone_IsTimeZoneIdAvailable(PointerFromQByteArray(ianaId)) != 0
 }
 
 func (ptr *QTimeZone) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::isValid")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QTimeZone_IsValid(ptr.Pointer()) != 0
@@ -273,11 +201,7 @@ func (ptr *QTimeZone) IsValid() bool {
 }
 
 func (ptr *QTimeZone) OffsetFromUtc(atDateTime QDateTime_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::offsetFromUtc")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::offsetFromUtc")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimeZone_OffsetFromUtc(ptr.Pointer(), PointerFromQDateTime(atDateTime)))
@@ -286,11 +210,7 @@ func (ptr *QTimeZone) OffsetFromUtc(atDateTime QDateTime_ITF) int {
 }
 
 func (ptr *QTimeZone) StandardTimeOffset(atDateTime QDateTime_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::standardTimeOffset")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::standardTimeOffset")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimeZone_StandardTimeOffset(ptr.Pointer(), PointerFromQDateTime(atDateTime)))
@@ -299,11 +219,7 @@ func (ptr *QTimeZone) StandardTimeOffset(atDateTime QDateTime_ITF) int {
 }
 
 func (ptr *QTimeZone) Swap(other QTimeZone_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::swap")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::swap")
 
 	if ptr.Pointer() != nil {
 		C.QTimeZone_Swap(ptr.Pointer(), PointerFromQTimeZone(other))
@@ -311,61 +227,37 @@ func (ptr *QTimeZone) Swap(other QTimeZone_ITF) {
 }
 
 func QTimeZone_SystemTimeZone() *QTimeZone {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::systemTimeZone")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::systemTimeZone")
 
 	return NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_SystemTimeZone())
 }
 
 func QTimeZone_SystemTimeZoneId() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::systemTimeZoneId")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::systemTimeZoneId")
 
 	return NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_SystemTimeZoneId())
 }
 
 func QTimeZone_Utc() *QTimeZone {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::utc")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::utc")
 
 	return NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_Utc())
 }
 
 func QTimeZone_WindowsIdToDefaultIanaId(windowsId QByteArray_ITF) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::windowsIdToDefaultIanaId")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::windowsIdToDefaultIanaId")
 
 	return NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(PointerFromQByteArray(windowsId)))
 }
 
 func QTimeZone_WindowsIdToDefaultIanaId2(windowsId QByteArray_ITF, country QLocale__Country) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::windowsIdToDefaultIanaId")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::windowsIdToDefaultIanaId")
 
 	return NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(PointerFromQByteArray(windowsId), C.int(country)))
 }
 
 func (ptr *QTimeZone) DestroyQTimeZone() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeZone::~QTimeZone")
-		}
-	}()
+	defer qt.Recovering("QTimeZone::~QTimeZone")
 
 	if ptr.Pointer() != nil {
 		C.QTimeZone_DestroyQTimeZone(ptr.Pointer())

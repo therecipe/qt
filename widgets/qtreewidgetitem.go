@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -37,6 +36,9 @@ func PointerFromQTreeWidgetItem(ptr QTreeWidgetItem_ITF) unsafe.Pointer {
 func NewQTreeWidgetItemFromPointer(ptr unsafe.Pointer) *QTreeWidgetItem {
 	var n = new(QTreeWidgetItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QTreeWidgetItem_") {
+		n.SetObjectNameAbs("QTreeWidgetItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -62,51 +64,31 @@ const (
 )
 
 func NewQTreeWidgetItem5(parent QTreeWidget_ITF, preceding QTreeWidgetItem_ITF, ty int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::QTreeWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::QTreeWidgetItem")
 
 	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem5(PointerFromQTreeWidget(parent), PointerFromQTreeWidgetItem(preceding), C.int(ty)))
 }
 
 func NewQTreeWidgetItem4(parent QTreeWidget_ITF, strin []string, ty int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::QTreeWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::QTreeWidgetItem")
 
 	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem4(PointerFromQTreeWidget(parent), C.CString(strings.Join(strin, ",,,")), C.int(ty)))
 }
 
 func NewQTreeWidgetItem3(parent QTreeWidget_ITF, ty int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::QTreeWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::QTreeWidgetItem")
 
 	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem3(PointerFromQTreeWidget(parent), C.int(ty)))
 }
 
 func NewQTreeWidgetItem8(parent QTreeWidgetItem_ITF, preceding QTreeWidgetItem_ITF, ty int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::QTreeWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::QTreeWidgetItem")
 
 	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem8(PointerFromQTreeWidgetItem(parent), PointerFromQTreeWidgetItem(preceding), C.int(ty)))
 }
 
 func (ptr *QTreeWidgetItem) Flags() core.Qt__ItemFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::flags")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::flags")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ItemFlag(C.QTreeWidgetItem_Flags(ptr.Pointer()))
@@ -115,11 +97,7 @@ func (ptr *QTreeWidgetItem) Flags() core.Qt__ItemFlag {
 }
 
 func (ptr *QTreeWidgetItem) SetFlags(flags core.Qt__ItemFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setFlags")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setFlags")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetFlags(ptr.Pointer(), C.int(flags))
@@ -127,61 +105,37 @@ func (ptr *QTreeWidgetItem) SetFlags(flags core.Qt__ItemFlag) {
 }
 
 func NewQTreeWidgetItem7(parent QTreeWidgetItem_ITF, strin []string, ty int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::QTreeWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::QTreeWidgetItem")
 
 	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem7(PointerFromQTreeWidgetItem(parent), C.CString(strings.Join(strin, ",,,")), C.int(ty)))
 }
 
 func NewQTreeWidgetItem6(parent QTreeWidgetItem_ITF, ty int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::QTreeWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::QTreeWidgetItem")
 
 	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem6(PointerFromQTreeWidgetItem(parent), C.int(ty)))
 }
 
 func NewQTreeWidgetItem2(strin []string, ty int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::QTreeWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::QTreeWidgetItem")
 
 	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem2(C.CString(strings.Join(strin, ",,,")), C.int(ty)))
 }
 
 func NewQTreeWidgetItem9(other QTreeWidgetItem_ITF) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::QTreeWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::QTreeWidgetItem")
 
 	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem9(PointerFromQTreeWidgetItem(other)))
 }
 
 func NewQTreeWidgetItem(ty int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::QTreeWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::QTreeWidgetItem")
 
 	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem(C.int(ty)))
 }
 
 func (ptr *QTreeWidgetItem) AddChild(child QTreeWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::addChild")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::addChild")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_AddChild(ptr.Pointer(), PointerFromQTreeWidgetItem(child))
@@ -189,11 +143,7 @@ func (ptr *QTreeWidgetItem) AddChild(child QTreeWidgetItem_ITF) {
 }
 
 func (ptr *QTreeWidgetItem) Background(column int) *gui.QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::background")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::background")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQBrushFromPointer(C.QTreeWidgetItem_Background(ptr.Pointer(), C.int(column)))
@@ -202,11 +152,7 @@ func (ptr *QTreeWidgetItem) Background(column int) *gui.QBrush {
 }
 
 func (ptr *QTreeWidgetItem) CheckState(column int) core.Qt__CheckState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::checkState")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::checkState")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__CheckState(C.QTreeWidgetItem_CheckState(ptr.Pointer(), C.int(column)))
@@ -215,11 +161,7 @@ func (ptr *QTreeWidgetItem) CheckState(column int) core.Qt__CheckState {
 }
 
 func (ptr *QTreeWidgetItem) Child(index int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::child")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::child")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_Child(ptr.Pointer(), C.int(index)))
@@ -228,11 +170,7 @@ func (ptr *QTreeWidgetItem) Child(index int) *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidgetItem) ChildCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::childCount")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::childCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTreeWidgetItem_ChildCount(ptr.Pointer()))
@@ -241,11 +179,7 @@ func (ptr *QTreeWidgetItem) ChildCount() int {
 }
 
 func (ptr *QTreeWidgetItem) ChildIndicatorPolicy() QTreeWidgetItem__ChildIndicatorPolicy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::childIndicatorPolicy")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::childIndicatorPolicy")
 
 	if ptr.Pointer() != nil {
 		return QTreeWidgetItem__ChildIndicatorPolicy(C.QTreeWidgetItem_ChildIndicatorPolicy(ptr.Pointer()))
@@ -254,11 +188,7 @@ func (ptr *QTreeWidgetItem) ChildIndicatorPolicy() QTreeWidgetItem__ChildIndicat
 }
 
 func (ptr *QTreeWidgetItem) ColumnCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::columnCount")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::columnCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTreeWidgetItem_ColumnCount(ptr.Pointer()))
@@ -267,11 +197,7 @@ func (ptr *QTreeWidgetItem) ColumnCount() int {
 }
 
 func (ptr *QTreeWidgetItem) Data(column int, role int) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::data")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::data")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QTreeWidgetItem_Data(ptr.Pointer(), C.int(column), C.int(role)))
@@ -280,11 +206,7 @@ func (ptr *QTreeWidgetItem) Data(column int, role int) *core.QVariant {
 }
 
 func (ptr *QTreeWidgetItem) Clone() *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::clone")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::clone")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_Clone(ptr.Pointer()))
@@ -293,11 +215,7 @@ func (ptr *QTreeWidgetItem) Clone() *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidgetItem) Foreground(column int) *gui.QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::foreground")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::foreground")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQBrushFromPointer(C.QTreeWidgetItem_Foreground(ptr.Pointer(), C.int(column)))
@@ -306,11 +224,7 @@ func (ptr *QTreeWidgetItem) Foreground(column int) *gui.QBrush {
 }
 
 func (ptr *QTreeWidgetItem) IndexOfChild(child QTreeWidgetItem_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::indexOfChild")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::indexOfChild")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTreeWidgetItem_IndexOfChild(ptr.Pointer(), PointerFromQTreeWidgetItem(child)))
@@ -319,11 +233,7 @@ func (ptr *QTreeWidgetItem) IndexOfChild(child QTreeWidgetItem_ITF) int {
 }
 
 func (ptr *QTreeWidgetItem) InsertChild(index int, child QTreeWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::insertChild")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::insertChild")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_InsertChild(ptr.Pointer(), C.int(index), PointerFromQTreeWidgetItem(child))
@@ -331,11 +241,7 @@ func (ptr *QTreeWidgetItem) InsertChild(index int, child QTreeWidgetItem_ITF) {
 }
 
 func (ptr *QTreeWidgetItem) IsDisabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::isDisabled")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::isDisabled")
 
 	if ptr.Pointer() != nil {
 		return C.QTreeWidgetItem_IsDisabled(ptr.Pointer()) != 0
@@ -344,11 +250,7 @@ func (ptr *QTreeWidgetItem) IsDisabled() bool {
 }
 
 func (ptr *QTreeWidgetItem) IsExpanded() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::isExpanded")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::isExpanded")
 
 	if ptr.Pointer() != nil {
 		return C.QTreeWidgetItem_IsExpanded(ptr.Pointer()) != 0
@@ -357,11 +259,7 @@ func (ptr *QTreeWidgetItem) IsExpanded() bool {
 }
 
 func (ptr *QTreeWidgetItem) IsFirstColumnSpanned() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::isFirstColumnSpanned")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::isFirstColumnSpanned")
 
 	if ptr.Pointer() != nil {
 		return C.QTreeWidgetItem_IsFirstColumnSpanned(ptr.Pointer()) != 0
@@ -370,11 +268,7 @@ func (ptr *QTreeWidgetItem) IsFirstColumnSpanned() bool {
 }
 
 func (ptr *QTreeWidgetItem) IsHidden() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::isHidden")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::isHidden")
 
 	if ptr.Pointer() != nil {
 		return C.QTreeWidgetItem_IsHidden(ptr.Pointer()) != 0
@@ -383,11 +277,7 @@ func (ptr *QTreeWidgetItem) IsHidden() bool {
 }
 
 func (ptr *QTreeWidgetItem) IsSelected() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::isSelected")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::isSelected")
 
 	if ptr.Pointer() != nil {
 		return C.QTreeWidgetItem_IsSelected(ptr.Pointer()) != 0
@@ -396,11 +286,7 @@ func (ptr *QTreeWidgetItem) IsSelected() bool {
 }
 
 func (ptr *QTreeWidgetItem) Parent() *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::parent")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::parent")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_Parent(ptr.Pointer()))
@@ -408,24 +294,8 @@ func (ptr *QTreeWidgetItem) Parent() *QTreeWidgetItem {
 	return nil
 }
 
-func (ptr *QTreeWidgetItem) Read(in core.QDataStream_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::read")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QTreeWidgetItem_Read(ptr.Pointer(), core.PointerFromQDataStream(in))
-	}
-}
-
 func (ptr *QTreeWidgetItem) RemoveChild(child QTreeWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::removeChild")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::removeChild")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_RemoveChild(ptr.Pointer(), PointerFromQTreeWidgetItem(child))
@@ -433,11 +303,7 @@ func (ptr *QTreeWidgetItem) RemoveChild(child QTreeWidgetItem_ITF) {
 }
 
 func (ptr *QTreeWidgetItem) SetBackground(column int, brush gui.QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setBackground")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setBackground")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetBackground(ptr.Pointer(), C.int(column), gui.PointerFromQBrush(brush))
@@ -445,11 +311,7 @@ func (ptr *QTreeWidgetItem) SetBackground(column int, brush gui.QBrush_ITF) {
 }
 
 func (ptr *QTreeWidgetItem) SetCheckState(column int, state core.Qt__CheckState) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setCheckState")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setCheckState")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetCheckState(ptr.Pointer(), C.int(column), C.int(state))
@@ -457,35 +319,46 @@ func (ptr *QTreeWidgetItem) SetCheckState(column int, state core.Qt__CheckState)
 }
 
 func (ptr *QTreeWidgetItem) SetChildIndicatorPolicy(policy QTreeWidgetItem__ChildIndicatorPolicy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setChildIndicatorPolicy")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setChildIndicatorPolicy")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetChildIndicatorPolicy(ptr.Pointer(), C.int(policy))
 	}
 }
 
-func (ptr *QTreeWidgetItem) SetData(column int, role int, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setData")
-		}
-	}()
+func (ptr *QTreeWidgetItem) ConnectSetData(f func(column int, role int, value *core.QVariant)) {
+	defer qt.Recovering("connect QTreeWidgetItem::setData")
 
 	if ptr.Pointer() != nil {
-		C.QTreeWidgetItem_SetData(ptr.Pointer(), C.int(column), C.int(role), core.PointerFromQVariant(value))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setData", f)
 	}
 }
 
+func (ptr *QTreeWidgetItem) DisconnectSetData() {
+	defer qt.Recovering("disconnect QTreeWidgetItem::setData")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setData")
+	}
+}
+
+//export callbackQTreeWidgetItemSetData
+func callbackQTreeWidgetItemSetData(ptrName *C.char, column C.int, role C.int, value unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTreeWidgetItem::setData")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setData")
+	if signal != nil {
+		defer signal.(func(int, int, *core.QVariant))(int(column), int(role), core.NewQVariantFromPointer(value))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTreeWidgetItem) SetDisabled(disabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setDisabled")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setDisabled")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetDisabled(ptr.Pointer(), C.int(qt.GoBoolToInt(disabled)))
@@ -493,11 +366,7 @@ func (ptr *QTreeWidgetItem) SetDisabled(disabled bool) {
 }
 
 func (ptr *QTreeWidgetItem) SetExpanded(expand bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setExpanded")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setExpanded")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetExpanded(ptr.Pointer(), C.int(qt.GoBoolToInt(expand)))
@@ -505,11 +374,7 @@ func (ptr *QTreeWidgetItem) SetExpanded(expand bool) {
 }
 
 func (ptr *QTreeWidgetItem) SetFirstColumnSpanned(span bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setFirstColumnSpanned")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setFirstColumnSpanned")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetFirstColumnSpanned(ptr.Pointer(), C.int(qt.GoBoolToInt(span)))
@@ -517,11 +382,7 @@ func (ptr *QTreeWidgetItem) SetFirstColumnSpanned(span bool) {
 }
 
 func (ptr *QTreeWidgetItem) SetFont(column int, font gui.QFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setFont")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setFont")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetFont(ptr.Pointer(), C.int(column), gui.PointerFromQFont(font))
@@ -529,11 +390,7 @@ func (ptr *QTreeWidgetItem) SetFont(column int, font gui.QFont_ITF) {
 }
 
 func (ptr *QTreeWidgetItem) SetForeground(column int, brush gui.QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setForeground")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setForeground")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetForeground(ptr.Pointer(), C.int(column), gui.PointerFromQBrush(brush))
@@ -541,11 +398,7 @@ func (ptr *QTreeWidgetItem) SetForeground(column int, brush gui.QBrush_ITF) {
 }
 
 func (ptr *QTreeWidgetItem) SetHidden(hide bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setHidden")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setHidden")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetHidden(ptr.Pointer(), C.int(qt.GoBoolToInt(hide)))
@@ -553,11 +406,7 @@ func (ptr *QTreeWidgetItem) SetHidden(hide bool) {
 }
 
 func (ptr *QTreeWidgetItem) SetIcon(column int, icon gui.QIcon_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setIcon")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setIcon")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetIcon(ptr.Pointer(), C.int(column), gui.PointerFromQIcon(icon))
@@ -565,11 +414,7 @@ func (ptr *QTreeWidgetItem) SetIcon(column int, icon gui.QIcon_ITF) {
 }
 
 func (ptr *QTreeWidgetItem) SetSelected(sele bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setSelected")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setSelected")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetSelected(ptr.Pointer(), C.int(qt.GoBoolToInt(sele)))
@@ -577,11 +422,7 @@ func (ptr *QTreeWidgetItem) SetSelected(sele bool) {
 }
 
 func (ptr *QTreeWidgetItem) SetSizeHint(column int, size core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setSizeHint")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setSizeHint")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetSizeHint(ptr.Pointer(), C.int(column), core.PointerFromQSize(size))
@@ -589,11 +430,7 @@ func (ptr *QTreeWidgetItem) SetSizeHint(column int, size core.QSize_ITF) {
 }
 
 func (ptr *QTreeWidgetItem) SetStatusTip(column int, statusTip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setStatusTip")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setStatusTip")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetStatusTip(ptr.Pointer(), C.int(column), C.CString(statusTip))
@@ -601,11 +438,7 @@ func (ptr *QTreeWidgetItem) SetStatusTip(column int, statusTip string) {
 }
 
 func (ptr *QTreeWidgetItem) SetText(column int, text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setText")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setText")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetText(ptr.Pointer(), C.int(column), C.CString(text))
@@ -613,11 +446,7 @@ func (ptr *QTreeWidgetItem) SetText(column int, text string) {
 }
 
 func (ptr *QTreeWidgetItem) SetTextAlignment(column int, alignment int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setTextAlignment")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setTextAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetTextAlignment(ptr.Pointer(), C.int(column), C.int(alignment))
@@ -625,11 +454,7 @@ func (ptr *QTreeWidgetItem) SetTextAlignment(column int, alignment int) {
 }
 
 func (ptr *QTreeWidgetItem) SetToolTip(column int, toolTip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setToolTip")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setToolTip")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetToolTip(ptr.Pointer(), C.int(column), C.CString(toolTip))
@@ -637,11 +462,7 @@ func (ptr *QTreeWidgetItem) SetToolTip(column int, toolTip string) {
 }
 
 func (ptr *QTreeWidgetItem) SetWhatsThis(column int, whatsThis string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::setWhatsThis")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::setWhatsThis")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetWhatsThis(ptr.Pointer(), C.int(column), C.CString(whatsThis))
@@ -649,11 +470,7 @@ func (ptr *QTreeWidgetItem) SetWhatsThis(column int, whatsThis string) {
 }
 
 func (ptr *QTreeWidgetItem) SortChildren(column int, order core.Qt__SortOrder) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::sortChildren")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::sortChildren")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SortChildren(ptr.Pointer(), C.int(column), C.int(order))
@@ -661,11 +478,7 @@ func (ptr *QTreeWidgetItem) SortChildren(column int, order core.Qt__SortOrder) {
 }
 
 func (ptr *QTreeWidgetItem) StatusTip(column int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::statusTip")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::statusTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTreeWidgetItem_StatusTip(ptr.Pointer(), C.int(column)))
@@ -674,11 +487,7 @@ func (ptr *QTreeWidgetItem) StatusTip(column int) string {
 }
 
 func (ptr *QTreeWidgetItem) TakeChild(index int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::takeChild")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::takeChild")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_TakeChild(ptr.Pointer(), C.int(index)))
@@ -687,11 +496,7 @@ func (ptr *QTreeWidgetItem) TakeChild(index int) *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidgetItem) Text(column int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::text")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTreeWidgetItem_Text(ptr.Pointer(), C.int(column)))
@@ -700,11 +505,7 @@ func (ptr *QTreeWidgetItem) Text(column int) string {
 }
 
 func (ptr *QTreeWidgetItem) TextAlignment(column int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::textAlignment")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::textAlignment")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTreeWidgetItem_TextAlignment(ptr.Pointer(), C.int(column)))
@@ -713,11 +514,7 @@ func (ptr *QTreeWidgetItem) TextAlignment(column int) int {
 }
 
 func (ptr *QTreeWidgetItem) ToolTip(column int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::toolTip")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::toolTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTreeWidgetItem_ToolTip(ptr.Pointer(), C.int(column)))
@@ -726,11 +523,7 @@ func (ptr *QTreeWidgetItem) ToolTip(column int) string {
 }
 
 func (ptr *QTreeWidgetItem) TreeWidget() *QTreeWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::treeWidget")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::treeWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetFromPointer(C.QTreeWidgetItem_TreeWidget(ptr.Pointer()))
@@ -739,11 +532,7 @@ func (ptr *QTreeWidgetItem) TreeWidget() *QTreeWidget {
 }
 
 func (ptr *QTreeWidgetItem) Type() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::type")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::type")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTreeWidgetItem_Type(ptr.Pointer()))
@@ -752,11 +541,7 @@ func (ptr *QTreeWidgetItem) Type() int {
 }
 
 func (ptr *QTreeWidgetItem) WhatsThis(column int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::whatsThis")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::whatsThis")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTreeWidgetItem_WhatsThis(ptr.Pointer(), C.int(column)))
@@ -764,26 +549,27 @@ func (ptr *QTreeWidgetItem) WhatsThis(column int) string {
 	return ""
 }
 
-func (ptr *QTreeWidgetItem) Write(out core.QDataStream_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::write")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QTreeWidgetItem_Write(ptr.Pointer(), core.PointerFromQDataStream(out))
-	}
-}
-
 func (ptr *QTreeWidgetItem) DestroyQTreeWidgetItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidgetItem::~QTreeWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidgetItem::~QTreeWidgetItem")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_DestroyQTreeWidgetItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QTreeWidgetItem) ObjectNameAbs() string {
+	defer qt.Recovering("QTreeWidgetItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QTreeWidgetItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QTreeWidgetItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QTreeWidgetItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidgetItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

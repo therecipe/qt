@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,31 +35,19 @@ func (ptr *QAccessibleValueChangeEvent) QAccessibleValueChangeEvent_PTR() *QAcce
 }
 
 func NewQAccessibleValueChangeEvent2(iface QAccessibleInterface_ITF, val core.QVariant_ITF) *QAccessibleValueChangeEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleValueChangeEvent::QAccessibleValueChangeEvent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleValueChangeEvent::QAccessibleValueChangeEvent")
 
 	return NewQAccessibleValueChangeEventFromPointer(C.QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent2(PointerFromQAccessibleInterface(iface), core.PointerFromQVariant(val)))
 }
 
 func NewQAccessibleValueChangeEvent(object core.QObject_ITF, value core.QVariant_ITF) *QAccessibleValueChangeEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleValueChangeEvent::QAccessibleValueChangeEvent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleValueChangeEvent::QAccessibleValueChangeEvent")
 
 	return NewQAccessibleValueChangeEventFromPointer(C.QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent(core.PointerFromQObject(object), core.PointerFromQVariant(value)))
 }
 
 func (ptr *QAccessibleValueChangeEvent) SetValue(value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleValueChangeEvent::setValue")
-		}
-	}()
+	defer qt.Recovering("QAccessibleValueChangeEvent::setValue")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleValueChangeEvent_SetValue(ptr.Pointer(), core.PointerFromQVariant(value))
@@ -67,11 +55,7 @@ func (ptr *QAccessibleValueChangeEvent) SetValue(value core.QVariant_ITF) {
 }
 
 func (ptr *QAccessibleValueChangeEvent) Value() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleValueChangeEvent::value")
-		}
-	}()
+	defer qt.Recovering("QAccessibleValueChangeEvent::value")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QAccessibleValueChangeEvent_Value(ptr.Pointer()))

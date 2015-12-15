@@ -3,8 +3,8 @@ package xmlpatterns
 //#include "xmlpatterns.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQAbstractXmlReceiver(ptr QAbstractXmlReceiver_ITF) unsafe.Pointe
 func NewQAbstractXmlReceiverFromPointer(ptr unsafe.Pointer) *QAbstractXmlReceiver {
 	var n = new(QAbstractXmlReceiver)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QAbstractXmlReceiver_") {
+		n.SetObjectNameAbs("QAbstractXmlReceiver_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,11 +45,7 @@ func (ptr *QAbstractXmlReceiver) QAbstractXmlReceiver_PTR() *QAbstractXmlReceive
 }
 
 func (ptr *QAbstractXmlReceiver) Attribute(name QXmlName_ITF, value core.QStringRef_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::attribute")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::attribute")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_Attribute(ptr.Pointer(), PointerFromQXmlName(name), core.PointerFromQStringRef(value))
@@ -54,11 +53,7 @@ func (ptr *QAbstractXmlReceiver) Attribute(name QXmlName_ITF, value core.QString
 }
 
 func (ptr *QAbstractXmlReceiver) Characters(value core.QStringRef_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::characters")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::characters")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_Characters(ptr.Pointer(), core.PointerFromQStringRef(value))
@@ -66,11 +61,7 @@ func (ptr *QAbstractXmlReceiver) Characters(value core.QStringRef_ITF) {
 }
 
 func (ptr *QAbstractXmlReceiver) Comment(value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::comment")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::comment")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_Comment(ptr.Pointer(), C.CString(value))
@@ -78,11 +69,7 @@ func (ptr *QAbstractXmlReceiver) Comment(value string) {
 }
 
 func (ptr *QAbstractXmlReceiver) EndDocument() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::endDocument")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::endDocument")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_EndDocument(ptr.Pointer())
@@ -90,11 +77,7 @@ func (ptr *QAbstractXmlReceiver) EndDocument() {
 }
 
 func (ptr *QAbstractXmlReceiver) EndElement() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::endElement")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::endElement")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_EndElement(ptr.Pointer())
@@ -102,11 +85,7 @@ func (ptr *QAbstractXmlReceiver) EndElement() {
 }
 
 func (ptr *QAbstractXmlReceiver) EndOfSequence() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::endOfSequence")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::endOfSequence")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_EndOfSequence(ptr.Pointer())
@@ -114,11 +93,7 @@ func (ptr *QAbstractXmlReceiver) EndOfSequence() {
 }
 
 func (ptr *QAbstractXmlReceiver) NamespaceBinding(name QXmlName_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::namespaceBinding")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::namespaceBinding")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_NamespaceBinding(ptr.Pointer(), PointerFromQXmlName(name))
@@ -126,11 +101,7 @@ func (ptr *QAbstractXmlReceiver) NamespaceBinding(name QXmlName_ITF) {
 }
 
 func (ptr *QAbstractXmlReceiver) ProcessingInstruction(target QXmlName_ITF, value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::processingInstruction")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::processingInstruction")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_ProcessingInstruction(ptr.Pointer(), PointerFromQXmlName(target), C.CString(value))
@@ -138,11 +109,7 @@ func (ptr *QAbstractXmlReceiver) ProcessingInstruction(target QXmlName_ITF, valu
 }
 
 func (ptr *QAbstractXmlReceiver) StartDocument() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::startDocument")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::startDocument")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_StartDocument(ptr.Pointer())
@@ -150,11 +117,7 @@ func (ptr *QAbstractXmlReceiver) StartDocument() {
 }
 
 func (ptr *QAbstractXmlReceiver) StartElement(name QXmlName_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::startElement")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::startElement")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_StartElement(ptr.Pointer(), PointerFromQXmlName(name))
@@ -162,11 +125,7 @@ func (ptr *QAbstractXmlReceiver) StartElement(name QXmlName_ITF) {
 }
 
 func (ptr *QAbstractXmlReceiver) StartOfSequence() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::startOfSequence")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::startOfSequence")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_StartOfSequence(ptr.Pointer())
@@ -174,13 +133,26 @@ func (ptr *QAbstractXmlReceiver) StartOfSequence() {
 }
 
 func (ptr *QAbstractXmlReceiver) DestroyQAbstractXmlReceiver() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractXmlReceiver::~QAbstractXmlReceiver")
-		}
-	}()
+	defer qt.Recovering("QAbstractXmlReceiver::~QAbstractXmlReceiver")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_DestroyQAbstractXmlReceiver(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractXmlReceiver) ObjectNameAbs() string {
+	defer qt.Recovering("QAbstractXmlReceiver::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAbstractXmlReceiver_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAbstractXmlReceiver) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QAbstractXmlReceiver::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractXmlReceiver_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

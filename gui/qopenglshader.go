@@ -28,7 +28,7 @@ func NewQOpenGLShaderFromPointer(ptr unsafe.Pointer) *QOpenGLShader {
 	var n = new(QOpenGLShader)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLShader_") {
-		n.SetObjectName("QOpenGLShader_" + qt.RandomIdentifier())
+		n.SetObjectName("QOpenGLShader_" + qt.Identifier())
 	}
 	return n
 }

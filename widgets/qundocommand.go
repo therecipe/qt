@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQUndoCommand(ptr QUndoCommand_ITF) unsafe.Pointer {
 func NewQUndoCommandFromPointer(ptr unsafe.Pointer) *QUndoCommand {
 	var n = new(QUndoCommand)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QUndoCommand_") {
+		n.SetObjectNameAbs("QUndoCommand_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,31 +44,19 @@ func (ptr *QUndoCommand) QUndoCommand_PTR() *QUndoCommand {
 }
 
 func NewQUndoCommand(parent QUndoCommand_ITF) *QUndoCommand {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::QUndoCommand")
-		}
-	}()
+	defer qt.Recovering("QUndoCommand::QUndoCommand")
 
 	return NewQUndoCommandFromPointer(C.QUndoCommand_NewQUndoCommand(PointerFromQUndoCommand(parent)))
 }
 
 func NewQUndoCommand2(text string, parent QUndoCommand_ITF) *QUndoCommand {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::QUndoCommand")
-		}
-	}()
+	defer qt.Recovering("QUndoCommand::QUndoCommand")
 
 	return NewQUndoCommandFromPointer(C.QUndoCommand_NewQUndoCommand2(C.CString(text), PointerFromQUndoCommand(parent)))
 }
 
 func (ptr *QUndoCommand) ActionText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::actionText")
-		}
-	}()
+	defer qt.Recovering("QUndoCommand::actionText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QUndoCommand_ActionText(ptr.Pointer()))
@@ -74,11 +65,7 @@ func (ptr *QUndoCommand) ActionText() string {
 }
 
 func (ptr *QUndoCommand) Child(index int) *QUndoCommand {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::child")
-		}
-	}()
+	defer qt.Recovering("QUndoCommand::child")
 
 	if ptr.Pointer() != nil {
 		return NewQUndoCommandFromPointer(C.QUndoCommand_Child(ptr.Pointer(), C.int(index)))
@@ -87,11 +74,7 @@ func (ptr *QUndoCommand) Child(index int) *QUndoCommand {
 }
 
 func (ptr *QUndoCommand) ChildCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::childCount")
-		}
-	}()
+	defer qt.Recovering("QUndoCommand::childCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QUndoCommand_ChildCount(ptr.Pointer()))
@@ -100,11 +83,7 @@ func (ptr *QUndoCommand) ChildCount() int {
 }
 
 func (ptr *QUndoCommand) Id() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::id")
-		}
-	}()
+	defer qt.Recovering("QUndoCommand::id")
 
 	if ptr.Pointer() != nil {
 		return int(C.QUndoCommand_Id(ptr.Pointer()))
@@ -113,11 +92,7 @@ func (ptr *QUndoCommand) Id() int {
 }
 
 func (ptr *QUndoCommand) MergeWith(command QUndoCommand_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::mergeWith")
-		}
-	}()
+	defer qt.Recovering("QUndoCommand::mergeWith")
 
 	if ptr.Pointer() != nil {
 		return C.QUndoCommand_MergeWith(ptr.Pointer(), PointerFromQUndoCommand(command)) != 0
@@ -125,24 +100,39 @@ func (ptr *QUndoCommand) MergeWith(command QUndoCommand_ITF) bool {
 	return false
 }
 
-func (ptr *QUndoCommand) Redo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::redo")
-		}
-	}()
+func (ptr *QUndoCommand) ConnectRedo(f func()) {
+	defer qt.Recovering("connect QUndoCommand::redo")
 
 	if ptr.Pointer() != nil {
-		C.QUndoCommand_Redo(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "redo", f)
 	}
 }
 
+func (ptr *QUndoCommand) DisconnectRedo() {
+	defer qt.Recovering("disconnect QUndoCommand::redo")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "redo")
+	}
+}
+
+//export callbackQUndoCommandRedo
+func callbackQUndoCommandRedo(ptrName *C.char) bool {
+	defer qt.Recovering("callback QUndoCommand::redo")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "redo")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QUndoCommand) SetText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::setText")
-		}
-	}()
+	defer qt.Recovering("QUndoCommand::setText")
 
 	if ptr.Pointer() != nil {
 		C.QUndoCommand_SetText(ptr.Pointer(), C.CString(text))
@@ -150,11 +140,7 @@ func (ptr *QUndoCommand) SetText(text string) {
 }
 
 func (ptr *QUndoCommand) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::text")
-		}
-	}()
+	defer qt.Recovering("QUndoCommand::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QUndoCommand_Text(ptr.Pointer()))
@@ -162,26 +148,58 @@ func (ptr *QUndoCommand) Text() string {
 	return ""
 }
 
-func (ptr *QUndoCommand) Undo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::undo")
-		}
-	}()
+func (ptr *QUndoCommand) ConnectUndo(f func()) {
+	defer qt.Recovering("connect QUndoCommand::undo")
 
 	if ptr.Pointer() != nil {
-		C.QUndoCommand_Undo(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "undo", f)
 	}
 }
 
+func (ptr *QUndoCommand) DisconnectUndo() {
+	defer qt.Recovering("disconnect QUndoCommand::undo")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "undo")
+	}
+}
+
+//export callbackQUndoCommandUndo
+func callbackQUndoCommandUndo(ptrName *C.char) bool {
+	defer qt.Recovering("callback QUndoCommand::undo")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "undo")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QUndoCommand) DestroyQUndoCommand() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoCommand::~QUndoCommand")
-		}
-	}()
+	defer qt.Recovering("QUndoCommand::~QUndoCommand")
 
 	if ptr.Pointer() != nil {
 		C.QUndoCommand_DestroyQUndoCommand(ptr.Pointer())
+	}
+}
+
+func (ptr *QUndoCommand) ObjectNameAbs() string {
+	defer qt.Recovering("QUndoCommand::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QUndoCommand_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QUndoCommand) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QUndoCommand::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QUndoCommand_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

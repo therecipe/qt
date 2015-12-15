@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,41 +41,25 @@ func (ptr *QPoint) QPoint_PTR() *QPoint {
 }
 
 func NewQPoint() *QPoint {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPoint::QPoint")
-		}
-	}()
+	defer qt.Recovering("QPoint::QPoint")
 
 	return NewQPointFromPointer(C.QPoint_NewQPoint())
 }
 
 func NewQPoint2(xpos int, ypos int) *QPoint {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPoint::QPoint")
-		}
-	}()
+	defer qt.Recovering("QPoint::QPoint")
 
 	return NewQPointFromPointer(C.QPoint_NewQPoint2(C.int(xpos), C.int(ypos)))
 }
 
 func QPoint_DotProduct(p1 QPoint_ITF, p2 QPoint_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPoint::dotProduct")
-		}
-	}()
+	defer qt.Recovering("QPoint::dotProduct")
 
 	return int(C.QPoint_QPoint_DotProduct(PointerFromQPoint(p1), PointerFromQPoint(p2)))
 }
 
 func (ptr *QPoint) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPoint::isNull")
-		}
-	}()
+	defer qt.Recovering("QPoint::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QPoint_IsNull(ptr.Pointer()) != 0
@@ -84,11 +68,7 @@ func (ptr *QPoint) IsNull() bool {
 }
 
 func (ptr *QPoint) ManhattanLength() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPoint::manhattanLength")
-		}
-	}()
+	defer qt.Recovering("QPoint::manhattanLength")
 
 	if ptr.Pointer() != nil {
 		return int(C.QPoint_ManhattanLength(ptr.Pointer()))
@@ -97,11 +77,7 @@ func (ptr *QPoint) ManhattanLength() int {
 }
 
 func (ptr *QPoint) Rx() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPoint::rx")
-		}
-	}()
+	defer qt.Recovering("QPoint::rx")
 
 	if ptr.Pointer() != nil {
 		return int(C.QPoint_Rx(ptr.Pointer()))
@@ -110,11 +86,7 @@ func (ptr *QPoint) Rx() int {
 }
 
 func (ptr *QPoint) Ry() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPoint::ry")
-		}
-	}()
+	defer qt.Recovering("QPoint::ry")
 
 	if ptr.Pointer() != nil {
 		return int(C.QPoint_Ry(ptr.Pointer()))
@@ -123,11 +95,7 @@ func (ptr *QPoint) Ry() int {
 }
 
 func (ptr *QPoint) SetX(x int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPoint::setX")
-		}
-	}()
+	defer qt.Recovering("QPoint::setX")
 
 	if ptr.Pointer() != nil {
 		C.QPoint_SetX(ptr.Pointer(), C.int(x))
@@ -135,11 +103,7 @@ func (ptr *QPoint) SetX(x int) {
 }
 
 func (ptr *QPoint) SetY(y int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPoint::setY")
-		}
-	}()
+	defer qt.Recovering("QPoint::setY")
 
 	if ptr.Pointer() != nil {
 		C.QPoint_SetY(ptr.Pointer(), C.int(y))
@@ -147,11 +111,7 @@ func (ptr *QPoint) SetY(y int) {
 }
 
 func (ptr *QPoint) X() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPoint::x")
-		}
-	}()
+	defer qt.Recovering("QPoint::x")
 
 	if ptr.Pointer() != nil {
 		return int(C.QPoint_X(ptr.Pointer()))
@@ -160,11 +120,7 @@ func (ptr *QPoint) X() int {
 }
 
 func (ptr *QPoint) Y() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPoint::y")
-		}
-	}()
+	defer qt.Recovering("QPoint::y")
 
 	if ptr.Pointer() != nil {
 		return int(C.QPoint_Y(ptr.Pointer()))

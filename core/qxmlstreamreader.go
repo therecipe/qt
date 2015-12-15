@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -79,11 +78,7 @@ const (
 )
 
 func (ptr *QXmlStreamReader) NamespaceProcessing() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::namespaceProcessing")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::namespaceProcessing")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_NamespaceProcessing(ptr.Pointer()) != 0
@@ -92,11 +87,7 @@ func (ptr *QXmlStreamReader) NamespaceProcessing() bool {
 }
 
 func (ptr *QXmlStreamReader) SetNamespaceProcessing(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::setNamespaceProcessing")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::setNamespaceProcessing")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_SetNamespaceProcessing(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -104,61 +95,37 @@ func (ptr *QXmlStreamReader) SetNamespaceProcessing(v bool) {
 }
 
 func NewQXmlStreamReader() *QXmlStreamReader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::QXmlStreamReader")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::QXmlStreamReader")
 
 	return NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader())
 }
 
 func NewQXmlStreamReader2(device QIODevice_ITF) *QXmlStreamReader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::QXmlStreamReader")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::QXmlStreamReader")
 
 	return NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader2(PointerFromQIODevice(device)))
 }
 
 func NewQXmlStreamReader3(data QByteArray_ITF) *QXmlStreamReader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::QXmlStreamReader")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::QXmlStreamReader")
 
 	return NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader3(PointerFromQByteArray(data)))
 }
 
 func NewQXmlStreamReader4(data string) *QXmlStreamReader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::QXmlStreamReader")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::QXmlStreamReader")
 
 	return NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader4(C.CString(data)))
 }
 
 func NewQXmlStreamReader5(data string) *QXmlStreamReader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::QXmlStreamReader")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::QXmlStreamReader")
 
 	return NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader5(C.CString(data)))
 }
 
 func (ptr *QXmlStreamReader) AddData(data QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::addData")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::addData")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_AddData(ptr.Pointer(), PointerFromQByteArray(data))
@@ -166,11 +133,7 @@ func (ptr *QXmlStreamReader) AddData(data QByteArray_ITF) {
 }
 
 func (ptr *QXmlStreamReader) AddData2(data string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::addData")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::addData")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_AddData2(ptr.Pointer(), C.CString(data))
@@ -178,11 +141,7 @@ func (ptr *QXmlStreamReader) AddData2(data string) {
 }
 
 func (ptr *QXmlStreamReader) AddData3(data string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::addData")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::addData")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_AddData3(ptr.Pointer(), C.CString(data))
@@ -190,11 +149,7 @@ func (ptr *QXmlStreamReader) AddData3(data string) {
 }
 
 func (ptr *QXmlStreamReader) AddExtraNamespaceDeclaration(extraNamespaceDeclaration QXmlStreamNamespaceDeclaration_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::addExtraNamespaceDeclaration")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::addExtraNamespaceDeclaration")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_AddExtraNamespaceDeclaration(ptr.Pointer(), PointerFromQXmlStreamNamespaceDeclaration(extraNamespaceDeclaration))
@@ -202,11 +157,7 @@ func (ptr *QXmlStreamReader) AddExtraNamespaceDeclaration(extraNamespaceDeclarat
 }
 
 func (ptr *QXmlStreamReader) AtEnd() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::atEnd")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::atEnd")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_AtEnd(ptr.Pointer()) != 0
@@ -215,11 +166,7 @@ func (ptr *QXmlStreamReader) AtEnd() bool {
 }
 
 func (ptr *QXmlStreamReader) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::clear")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::clear")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_Clear(ptr.Pointer())
@@ -227,11 +174,7 @@ func (ptr *QXmlStreamReader) Clear() {
 }
 
 func (ptr *QXmlStreamReader) Device() *QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::device")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::device")
 
 	if ptr.Pointer() != nil {
 		return NewQIODeviceFromPointer(C.QXmlStreamReader_Device(ptr.Pointer()))
@@ -240,11 +183,7 @@ func (ptr *QXmlStreamReader) Device() *QIODevice {
 }
 
 func (ptr *QXmlStreamReader) DocumentEncoding() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::documentEncoding")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::documentEncoding")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_DocumentEncoding(ptr.Pointer()))
@@ -253,11 +192,7 @@ func (ptr *QXmlStreamReader) DocumentEncoding() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) DocumentVersion() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::documentVersion")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::documentVersion")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_DocumentVersion(ptr.Pointer()))
@@ -266,11 +201,7 @@ func (ptr *QXmlStreamReader) DocumentVersion() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) DtdName() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::dtdName")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::dtdName")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_DtdName(ptr.Pointer()))
@@ -279,11 +210,7 @@ func (ptr *QXmlStreamReader) DtdName() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) DtdPublicId() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::dtdPublicId")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::dtdPublicId")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_DtdPublicId(ptr.Pointer()))
@@ -292,11 +219,7 @@ func (ptr *QXmlStreamReader) DtdPublicId() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) DtdSystemId() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::dtdSystemId")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::dtdSystemId")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_DtdSystemId(ptr.Pointer()))
@@ -305,11 +228,7 @@ func (ptr *QXmlStreamReader) DtdSystemId() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) EntityResolver() *QXmlStreamEntityResolver {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::entityResolver")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::entityResolver")
 
 	if ptr.Pointer() != nil {
 		return NewQXmlStreamEntityResolverFromPointer(C.QXmlStreamReader_EntityResolver(ptr.Pointer()))
@@ -318,11 +237,7 @@ func (ptr *QXmlStreamReader) EntityResolver() *QXmlStreamEntityResolver {
 }
 
 func (ptr *QXmlStreamReader) Error() QXmlStreamReader__Error {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::error")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::error")
 
 	if ptr.Pointer() != nil {
 		return QXmlStreamReader__Error(C.QXmlStreamReader_Error(ptr.Pointer()))
@@ -331,11 +246,7 @@ func (ptr *QXmlStreamReader) Error() QXmlStreamReader__Error {
 }
 
 func (ptr *QXmlStreamReader) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::errorString")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlStreamReader_ErrorString(ptr.Pointer()))
@@ -344,11 +255,7 @@ func (ptr *QXmlStreamReader) ErrorString() string {
 }
 
 func (ptr *QXmlStreamReader) HasError() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::hasError")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::hasError")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_HasError(ptr.Pointer()) != 0
@@ -357,11 +264,7 @@ func (ptr *QXmlStreamReader) HasError() bool {
 }
 
 func (ptr *QXmlStreamReader) IsCDATA() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isCDATA")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isCDATA")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsCDATA(ptr.Pointer()) != 0
@@ -370,11 +273,7 @@ func (ptr *QXmlStreamReader) IsCDATA() bool {
 }
 
 func (ptr *QXmlStreamReader) IsCharacters() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isCharacters")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isCharacters")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsCharacters(ptr.Pointer()) != 0
@@ -383,11 +282,7 @@ func (ptr *QXmlStreamReader) IsCharacters() bool {
 }
 
 func (ptr *QXmlStreamReader) IsComment() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isComment")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isComment")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsComment(ptr.Pointer()) != 0
@@ -396,11 +291,7 @@ func (ptr *QXmlStreamReader) IsComment() bool {
 }
 
 func (ptr *QXmlStreamReader) IsDTD() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isDTD")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isDTD")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsDTD(ptr.Pointer()) != 0
@@ -409,11 +300,7 @@ func (ptr *QXmlStreamReader) IsDTD() bool {
 }
 
 func (ptr *QXmlStreamReader) IsEndDocument() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isEndDocument")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isEndDocument")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsEndDocument(ptr.Pointer()) != 0
@@ -422,11 +309,7 @@ func (ptr *QXmlStreamReader) IsEndDocument() bool {
 }
 
 func (ptr *QXmlStreamReader) IsEndElement() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isEndElement")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isEndElement")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsEndElement(ptr.Pointer()) != 0
@@ -435,11 +318,7 @@ func (ptr *QXmlStreamReader) IsEndElement() bool {
 }
 
 func (ptr *QXmlStreamReader) IsEntityReference() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isEntityReference")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isEntityReference")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsEntityReference(ptr.Pointer()) != 0
@@ -448,11 +327,7 @@ func (ptr *QXmlStreamReader) IsEntityReference() bool {
 }
 
 func (ptr *QXmlStreamReader) IsProcessingInstruction() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isProcessingInstruction")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isProcessingInstruction")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsProcessingInstruction(ptr.Pointer()) != 0
@@ -461,11 +336,7 @@ func (ptr *QXmlStreamReader) IsProcessingInstruction() bool {
 }
 
 func (ptr *QXmlStreamReader) IsStandaloneDocument() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isStandaloneDocument")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isStandaloneDocument")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsStandaloneDocument(ptr.Pointer()) != 0
@@ -474,11 +345,7 @@ func (ptr *QXmlStreamReader) IsStandaloneDocument() bool {
 }
 
 func (ptr *QXmlStreamReader) IsStartDocument() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isStartDocument")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isStartDocument")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsStartDocument(ptr.Pointer()) != 0
@@ -487,11 +354,7 @@ func (ptr *QXmlStreamReader) IsStartDocument() bool {
 }
 
 func (ptr *QXmlStreamReader) IsStartElement() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isStartElement")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isStartElement")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsStartElement(ptr.Pointer()) != 0
@@ -500,11 +363,7 @@ func (ptr *QXmlStreamReader) IsStartElement() bool {
 }
 
 func (ptr *QXmlStreamReader) IsWhitespace() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::isWhitespace")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::isWhitespace")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_IsWhitespace(ptr.Pointer()) != 0
@@ -513,11 +372,7 @@ func (ptr *QXmlStreamReader) IsWhitespace() bool {
 }
 
 func (ptr *QXmlStreamReader) Name() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::name")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::name")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_Name(ptr.Pointer()))
@@ -526,11 +381,7 @@ func (ptr *QXmlStreamReader) Name() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) NamespaceUri() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::namespaceUri")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::namespaceUri")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_NamespaceUri(ptr.Pointer()))
@@ -539,11 +390,7 @@ func (ptr *QXmlStreamReader) NamespaceUri() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) Prefix() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::prefix")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::prefix")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_Prefix(ptr.Pointer()))
@@ -552,11 +399,7 @@ func (ptr *QXmlStreamReader) Prefix() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) ProcessingInstructionData() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::processingInstructionData")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::processingInstructionData")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_ProcessingInstructionData(ptr.Pointer()))
@@ -565,11 +408,7 @@ func (ptr *QXmlStreamReader) ProcessingInstructionData() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) ProcessingInstructionTarget() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::processingInstructionTarget")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::processingInstructionTarget")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_ProcessingInstructionTarget(ptr.Pointer()))
@@ -578,11 +417,7 @@ func (ptr *QXmlStreamReader) ProcessingInstructionTarget() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) QualifiedName() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::qualifiedName")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::qualifiedName")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_QualifiedName(ptr.Pointer()))
@@ -591,11 +426,7 @@ func (ptr *QXmlStreamReader) QualifiedName() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) RaiseError(message string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::raiseError")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::raiseError")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_RaiseError(ptr.Pointer(), C.CString(message))
@@ -603,11 +434,7 @@ func (ptr *QXmlStreamReader) RaiseError(message string) {
 }
 
 func (ptr *QXmlStreamReader) ReadElementText(behaviour QXmlStreamReader__ReadElementTextBehaviour) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::readElementText")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::readElementText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlStreamReader_ReadElementText(ptr.Pointer(), C.int(behaviour)))
@@ -616,11 +443,7 @@ func (ptr *QXmlStreamReader) ReadElementText(behaviour QXmlStreamReader__ReadEle
 }
 
 func (ptr *QXmlStreamReader) ReadNext() QXmlStreamReader__TokenType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::readNext")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::readNext")
 
 	if ptr.Pointer() != nil {
 		return QXmlStreamReader__TokenType(C.QXmlStreamReader_ReadNext(ptr.Pointer()))
@@ -629,11 +452,7 @@ func (ptr *QXmlStreamReader) ReadNext() QXmlStreamReader__TokenType {
 }
 
 func (ptr *QXmlStreamReader) ReadNextStartElement() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::readNextStartElement")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::readNextStartElement")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_ReadNextStartElement(ptr.Pointer()) != 0
@@ -642,11 +461,7 @@ func (ptr *QXmlStreamReader) ReadNextStartElement() bool {
 }
 
 func (ptr *QXmlStreamReader) SetDevice(device QIODevice_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::setDevice")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::setDevice")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_SetDevice(ptr.Pointer(), PointerFromQIODevice(device))
@@ -654,11 +469,7 @@ func (ptr *QXmlStreamReader) SetDevice(device QIODevice_ITF) {
 }
 
 func (ptr *QXmlStreamReader) SetEntityResolver(resolver QXmlStreamEntityResolver_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::setEntityResolver")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::setEntityResolver")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_SetEntityResolver(ptr.Pointer(), PointerFromQXmlStreamEntityResolver(resolver))
@@ -666,11 +477,7 @@ func (ptr *QXmlStreamReader) SetEntityResolver(resolver QXmlStreamEntityResolver
 }
 
 func (ptr *QXmlStreamReader) SkipCurrentElement() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::skipCurrentElement")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::skipCurrentElement")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_SkipCurrentElement(ptr.Pointer())
@@ -678,11 +485,7 @@ func (ptr *QXmlStreamReader) SkipCurrentElement() {
 }
 
 func (ptr *QXmlStreamReader) Text() *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::text")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::text")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamReader_Text(ptr.Pointer()))
@@ -691,11 +494,7 @@ func (ptr *QXmlStreamReader) Text() *QStringRef {
 }
 
 func (ptr *QXmlStreamReader) TokenString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::tokenString")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::tokenString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlStreamReader_TokenString(ptr.Pointer()))
@@ -704,11 +503,7 @@ func (ptr *QXmlStreamReader) TokenString() string {
 }
 
 func (ptr *QXmlStreamReader) TokenType() QXmlStreamReader__TokenType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::tokenType")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::tokenType")
 
 	if ptr.Pointer() != nil {
 		return QXmlStreamReader__TokenType(C.QXmlStreamReader_TokenType(ptr.Pointer()))
@@ -717,11 +512,7 @@ func (ptr *QXmlStreamReader) TokenType() QXmlStreamReader__TokenType {
 }
 
 func (ptr *QXmlStreamReader) DestroyQXmlStreamReader() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamReader::~QXmlStreamReader")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamReader::~QXmlStreamReader")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_DestroyQXmlStreamReader(ptr.Pointer())

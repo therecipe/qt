@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"strings"
 	"unsafe"
 )
@@ -42,21 +42,13 @@ func (ptr *QStyleFactory) QStyleFactory_PTR() *QStyleFactory {
 }
 
 func QStyleFactory_Create(key string) *QStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleFactory::create")
-		}
-	}()
+	defer qt.Recovering("QStyleFactory::create")
 
 	return NewQStyleFromPointer(C.QStyleFactory_QStyleFactory_Create(C.CString(key)))
 }
 
 func QStyleFactory_Keys() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleFactory::keys")
-		}
-	}()
+	defer qt.Recovering("QStyleFactory::keys")
 
 	return strings.Split(C.GoString(C.QStyleFactory_QStyleFactory_Keys()), ",,,")
 }

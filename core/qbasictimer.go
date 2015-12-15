@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,11 +41,7 @@ func (ptr *QBasicTimer) QBasicTimer_PTR() *QBasicTimer {
 }
 
 func (ptr *QBasicTimer) Start(msec int, object QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBasicTimer::start")
-		}
-	}()
+	defer qt.Recovering("QBasicTimer::start")
 
 	if ptr.Pointer() != nil {
 		C.QBasicTimer_Start(ptr.Pointer(), C.int(msec), PointerFromQObject(object))
@@ -53,21 +49,13 @@ func (ptr *QBasicTimer) Start(msec int, object QObject_ITF) {
 }
 
 func NewQBasicTimer() *QBasicTimer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBasicTimer::QBasicTimer")
-		}
-	}()
+	defer qt.Recovering("QBasicTimer::QBasicTimer")
 
 	return NewQBasicTimerFromPointer(C.QBasicTimer_NewQBasicTimer())
 }
 
 func (ptr *QBasicTimer) IsActive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBasicTimer::isActive")
-		}
-	}()
+	defer qt.Recovering("QBasicTimer::isActive")
 
 	if ptr.Pointer() != nil {
 		return C.QBasicTimer_IsActive(ptr.Pointer()) != 0
@@ -76,11 +64,7 @@ func (ptr *QBasicTimer) IsActive() bool {
 }
 
 func (ptr *QBasicTimer) Start2(msec int, timerType Qt__TimerType, obj QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBasicTimer::start")
-		}
-	}()
+	defer qt.Recovering("QBasicTimer::start")
 
 	if ptr.Pointer() != nil {
 		C.QBasicTimer_Start2(ptr.Pointer(), C.int(msec), C.int(timerType), PointerFromQObject(obj))
@@ -88,11 +72,7 @@ func (ptr *QBasicTimer) Start2(msec int, timerType Qt__TimerType, obj QObject_IT
 }
 
 func (ptr *QBasicTimer) Stop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBasicTimer::stop")
-		}
-	}()
+	defer qt.Recovering("QBasicTimer::stop")
 
 	if ptr.Pointer() != nil {
 		C.QBasicTimer_Stop(ptr.Pointer())
@@ -100,11 +80,7 @@ func (ptr *QBasicTimer) Stop() {
 }
 
 func (ptr *QBasicTimer) TimerId() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBasicTimer::timerId")
-		}
-	}()
+	defer qt.Recovering("QBasicTimer::timerId")
 
 	if ptr.Pointer() != nil {
 		return int(C.QBasicTimer_TimerId(ptr.Pointer()))
@@ -113,11 +89,7 @@ func (ptr *QBasicTimer) TimerId() int {
 }
 
 func (ptr *QBasicTimer) DestroyQBasicTimer() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBasicTimer::~QBasicTimer")
-		}
-	}()
+	defer qt.Recovering("QBasicTimer::~QBasicTimer")
 
 	if ptr.Pointer() != nil {
 		C.QBasicTimer_DestroyQBasicTimer(ptr.Pointer())

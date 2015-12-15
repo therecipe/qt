@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQQuickTextDocumentFromPointer(ptr unsafe.Pointer) *QQuickTextDocument {
 	var n = new(QQuickTextDocument)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickTextDocument_") {
-		n.SetObjectName("QQuickTextDocument_" + qt.RandomIdentifier())
+		n.SetObjectName("QQuickTextDocument_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,21 +39,13 @@ func (ptr *QQuickTextDocument) QQuickTextDocument_PTR() *QQuickTextDocument {
 }
 
 func NewQQuickTextDocument(parent QQuickItem_ITF) *QQuickTextDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickTextDocument::QQuickTextDocument")
-		}
-	}()
+	defer qt.Recovering("QQuickTextDocument::QQuickTextDocument")
 
 	return NewQQuickTextDocumentFromPointer(C.QQuickTextDocument_NewQQuickTextDocument(PointerFromQQuickItem(parent)))
 }
 
 func (ptr *QQuickTextDocument) TextDocument() *gui.QTextDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickTextDocument::textDocument")
-		}
-	}()
+	defer qt.Recovering("QQuickTextDocument::textDocument")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQTextDocumentFromPointer(C.QQuickTextDocument_TextDocument(ptr.Pointer()))

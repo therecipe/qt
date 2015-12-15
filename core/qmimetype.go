@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"strings"
 	"unsafe"
 )
@@ -42,31 +42,19 @@ func (ptr *QMimeType) QMimeType_PTR() *QMimeType {
 }
 
 func NewQMimeType() *QMimeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::QMimeType")
-		}
-	}()
+	defer qt.Recovering("QMimeType::QMimeType")
 
 	return NewQMimeTypeFromPointer(C.QMimeType_NewQMimeType())
 }
 
 func NewQMimeType2(other QMimeType_ITF) *QMimeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::QMimeType")
-		}
-	}()
+	defer qt.Recovering("QMimeType::QMimeType")
 
 	return NewQMimeTypeFromPointer(C.QMimeType_NewQMimeType2(PointerFromQMimeType(other)))
 }
 
 func (ptr *QMimeType) FilterString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::filterString")
-		}
-	}()
+	defer qt.Recovering("QMimeType::filterString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMimeType_FilterString(ptr.Pointer()))
@@ -75,11 +63,7 @@ func (ptr *QMimeType) FilterString() string {
 }
 
 func (ptr *QMimeType) GenericIconName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::genericIconName")
-		}
-	}()
+	defer qt.Recovering("QMimeType::genericIconName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMimeType_GenericIconName(ptr.Pointer()))
@@ -88,11 +72,7 @@ func (ptr *QMimeType) GenericIconName() string {
 }
 
 func (ptr *QMimeType) GlobPatterns() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::globPatterns")
-		}
-	}()
+	defer qt.Recovering("QMimeType::globPatterns")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QMimeType_GlobPatterns(ptr.Pointer())), ",,,")
@@ -101,11 +81,7 @@ func (ptr *QMimeType) GlobPatterns() []string {
 }
 
 func (ptr *QMimeType) IconName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::iconName")
-		}
-	}()
+	defer qt.Recovering("QMimeType::iconName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMimeType_IconName(ptr.Pointer()))
@@ -114,11 +90,7 @@ func (ptr *QMimeType) IconName() string {
 }
 
 func (ptr *QMimeType) Inherits(mimeTypeName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::inherits")
-		}
-	}()
+	defer qt.Recovering("QMimeType::inherits")
 
 	if ptr.Pointer() != nil {
 		return C.QMimeType_Inherits(ptr.Pointer(), C.CString(mimeTypeName)) != 0
@@ -127,11 +99,7 @@ func (ptr *QMimeType) Inherits(mimeTypeName string) bool {
 }
 
 func (ptr *QMimeType) IsDefault() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::isDefault")
-		}
-	}()
+	defer qt.Recovering("QMimeType::isDefault")
 
 	if ptr.Pointer() != nil {
 		return C.QMimeType_IsDefault(ptr.Pointer()) != 0
@@ -140,11 +108,7 @@ func (ptr *QMimeType) IsDefault() bool {
 }
 
 func (ptr *QMimeType) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::isValid")
-		}
-	}()
+	defer qt.Recovering("QMimeType::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QMimeType_IsValid(ptr.Pointer()) != 0
@@ -153,11 +117,7 @@ func (ptr *QMimeType) IsValid() bool {
 }
 
 func (ptr *QMimeType) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::name")
-		}
-	}()
+	defer qt.Recovering("QMimeType::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMimeType_Name(ptr.Pointer()))
@@ -166,11 +126,7 @@ func (ptr *QMimeType) Name() string {
 }
 
 func (ptr *QMimeType) DestroyQMimeType() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::~QMimeType")
-		}
-	}()
+	defer qt.Recovering("QMimeType::~QMimeType")
 
 	if ptr.Pointer() != nil {
 		C.QMimeType_DestroyQMimeType(ptr.Pointer())
@@ -178,11 +134,7 @@ func (ptr *QMimeType) DestroyQMimeType() {
 }
 
 func (ptr *QMimeType) Aliases() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::aliases")
-		}
-	}()
+	defer qt.Recovering("QMimeType::aliases")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QMimeType_Aliases(ptr.Pointer())), ",,,")
@@ -191,11 +143,7 @@ func (ptr *QMimeType) Aliases() []string {
 }
 
 func (ptr *QMimeType) AllAncestors() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::allAncestors")
-		}
-	}()
+	defer qt.Recovering("QMimeType::allAncestors")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QMimeType_AllAncestors(ptr.Pointer())), ",,,")
@@ -204,11 +152,7 @@ func (ptr *QMimeType) AllAncestors() []string {
 }
 
 func (ptr *QMimeType) Comment() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::comment")
-		}
-	}()
+	defer qt.Recovering("QMimeType::comment")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMimeType_Comment(ptr.Pointer()))
@@ -217,11 +161,7 @@ func (ptr *QMimeType) Comment() string {
 }
 
 func (ptr *QMimeType) ParentMimeTypes() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::parentMimeTypes")
-		}
-	}()
+	defer qt.Recovering("QMimeType::parentMimeTypes")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QMimeType_ParentMimeTypes(ptr.Pointer())), ",,,")
@@ -230,11 +170,7 @@ func (ptr *QMimeType) ParentMimeTypes() []string {
 }
 
 func (ptr *QMimeType) PreferredSuffix() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::preferredSuffix")
-		}
-	}()
+	defer qt.Recovering("QMimeType::preferredSuffix")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMimeType_PreferredSuffix(ptr.Pointer()))
@@ -243,11 +179,7 @@ func (ptr *QMimeType) PreferredSuffix() string {
 }
 
 func (ptr *QMimeType) Suffixes() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::suffixes")
-		}
-	}()
+	defer qt.Recovering("QMimeType::suffixes")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QMimeType_Suffixes(ptr.Pointer())), ",,,")
@@ -256,11 +188,7 @@ func (ptr *QMimeType) Suffixes() []string {
 }
 
 func (ptr *QMimeType) Swap(other QMimeType_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeType::swap")
-		}
-	}()
+	defer qt.Recovering("QMimeType::swap")
 
 	if ptr.Pointer() != nil {
 		C.QMimeType_Swap(ptr.Pointer(), PointerFromQMimeType(other))

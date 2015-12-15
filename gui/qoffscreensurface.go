@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -40,7 +39,7 @@ func NewQOffscreenSurfaceFromPointer(ptr unsafe.Pointer) *QOffscreenSurface {
 	var n = new(QOffscreenSurface)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QOffscreenSurface_") {
-		n.SetObjectName("QOffscreenSurface_" + qt.RandomIdentifier())
+		n.SetObjectName("QOffscreenSurface_" + qt.Identifier())
 	}
 	return n
 }
@@ -50,21 +49,13 @@ func (ptr *QOffscreenSurface) QOffscreenSurface_PTR() *QOffscreenSurface {
 }
 
 func NewQOffscreenSurface(targetScreen QScreen_ITF) *QOffscreenSurface {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::QOffscreenSurface")
-		}
-	}()
+	defer qt.Recovering("QOffscreenSurface::QOffscreenSurface")
 
 	return NewQOffscreenSurfaceFromPointer(C.QOffscreenSurface_NewQOffscreenSurface(PointerFromQScreen(targetScreen)))
 }
 
 func (ptr *QOffscreenSurface) Create() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::create")
-		}
-	}()
+	defer qt.Recovering("QOffscreenSurface::create")
 
 	if ptr.Pointer() != nil {
 		C.QOffscreenSurface_Create(ptr.Pointer())
@@ -72,11 +63,7 @@ func (ptr *QOffscreenSurface) Create() {
 }
 
 func (ptr *QOffscreenSurface) Destroy() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::destroy")
-		}
-	}()
+	defer qt.Recovering("QOffscreenSurface::destroy")
 
 	if ptr.Pointer() != nil {
 		C.QOffscreenSurface_Destroy(ptr.Pointer())
@@ -84,11 +71,7 @@ func (ptr *QOffscreenSurface) Destroy() {
 }
 
 func (ptr *QOffscreenSurface) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::isValid")
-		}
-	}()
+	defer qt.Recovering("QOffscreenSurface::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QOffscreenSurface_IsValid(ptr.Pointer()) != 0
@@ -97,11 +80,7 @@ func (ptr *QOffscreenSurface) IsValid() bool {
 }
 
 func (ptr *QOffscreenSurface) Screen() *QScreen {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::screen")
-		}
-	}()
+	defer qt.Recovering("QOffscreenSurface::screen")
 
 	if ptr.Pointer() != nil {
 		return NewQScreenFromPointer(C.QOffscreenSurface_Screen(ptr.Pointer()))
@@ -110,11 +89,7 @@ func (ptr *QOffscreenSurface) Screen() *QScreen {
 }
 
 func (ptr *QOffscreenSurface) ConnectScreenChanged(f func(screen *QScreen)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::screenChanged")
-		}
-	}()
+	defer qt.Recovering("connect QOffscreenSurface::screenChanged")
 
 	if ptr.Pointer() != nil {
 		C.QOffscreenSurface_ConnectScreenChanged(ptr.Pointer())
@@ -123,11 +98,7 @@ func (ptr *QOffscreenSurface) ConnectScreenChanged(f func(screen *QScreen)) {
 }
 
 func (ptr *QOffscreenSurface) DisconnectScreenChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::screenChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QOffscreenSurface::screenChanged")
 
 	if ptr.Pointer() != nil {
 		C.QOffscreenSurface_DisconnectScreenChanged(ptr.Pointer())
@@ -137,21 +108,17 @@ func (ptr *QOffscreenSurface) DisconnectScreenChanged() {
 
 //export callbackQOffscreenSurfaceScreenChanged
 func callbackQOffscreenSurfaceScreenChanged(ptrName *C.char, screen unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::screenChanged")
-		}
-	}()
+	defer qt.Recovering("callback QOffscreenSurface::screenChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "screenChanged").(func(*QScreen))(NewQScreenFromPointer(screen))
+	var signal = qt.GetSignal(C.GoString(ptrName), "screenChanged")
+	if signal != nil {
+		signal.(func(*QScreen))(NewQScreenFromPointer(screen))
+	}
+
 }
 
 func (ptr *QOffscreenSurface) SetFormat(format QSurfaceFormat_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::setFormat")
-		}
-	}()
+	defer qt.Recovering("QOffscreenSurface::setFormat")
 
 	if ptr.Pointer() != nil {
 		C.QOffscreenSurface_SetFormat(ptr.Pointer(), PointerFromQSurfaceFormat(format))
@@ -159,11 +126,7 @@ func (ptr *QOffscreenSurface) SetFormat(format QSurfaceFormat_ITF) {
 }
 
 func (ptr *QOffscreenSurface) SetScreen(newScreen QScreen_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::setScreen")
-		}
-	}()
+	defer qt.Recovering("QOffscreenSurface::setScreen")
 
 	if ptr.Pointer() != nil {
 		C.QOffscreenSurface_SetScreen(ptr.Pointer(), PointerFromQScreen(newScreen))
@@ -171,11 +134,7 @@ func (ptr *QOffscreenSurface) SetScreen(newScreen QScreen_ITF) {
 }
 
 func (ptr *QOffscreenSurface) SurfaceType() QSurface__SurfaceType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::surfaceType")
-		}
-	}()
+	defer qt.Recovering("QOffscreenSurface::surfaceType")
 
 	if ptr.Pointer() != nil {
 		return QSurface__SurfaceType(C.QOffscreenSurface_SurfaceType(ptr.Pointer()))
@@ -184,11 +143,7 @@ func (ptr *QOffscreenSurface) SurfaceType() QSurface__SurfaceType {
 }
 
 func (ptr *QOffscreenSurface) DestroyQOffscreenSurface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOffscreenSurface::~QOffscreenSurface")
-		}
-	}()
+	defer qt.Recovering("QOffscreenSurface::~QOffscreenSurface")
 
 	if ptr.Pointer() != nil {
 		C.QOffscreenSurface_DestroyQOffscreenSurface(ptr.Pointer())

@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -121,21 +121,13 @@ const (
 )
 
 func NewQPixelFormat() *QPixelFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPixelFormat::QPixelFormat")
-		}
-	}()
+	defer qt.Recovering("QPixelFormat::QPixelFormat")
 
 	return NewQPixelFormatFromPointer(C.QPixelFormat_NewQPixelFormat())
 }
 
 func (ptr *QPixelFormat) AlphaPosition() QPixelFormat__AlphaPosition {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPixelFormat::alphaPosition")
-		}
-	}()
+	defer qt.Recovering("QPixelFormat::alphaPosition")
 
 	if ptr.Pointer() != nil {
 		return QPixelFormat__AlphaPosition(C.QPixelFormat_AlphaPosition(ptr.Pointer()))
@@ -144,11 +136,7 @@ func (ptr *QPixelFormat) AlphaPosition() QPixelFormat__AlphaPosition {
 }
 
 func (ptr *QPixelFormat) AlphaUsage() QPixelFormat__AlphaUsage {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPixelFormat::alphaUsage")
-		}
-	}()
+	defer qt.Recovering("QPixelFormat::alphaUsage")
 
 	if ptr.Pointer() != nil {
 		return QPixelFormat__AlphaUsage(C.QPixelFormat_AlphaUsage(ptr.Pointer()))
@@ -157,11 +145,7 @@ func (ptr *QPixelFormat) AlphaUsage() QPixelFormat__AlphaUsage {
 }
 
 func (ptr *QPixelFormat) ByteOrder() QPixelFormat__ByteOrder {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPixelFormat::byteOrder")
-		}
-	}()
+	defer qt.Recovering("QPixelFormat::byteOrder")
 
 	if ptr.Pointer() != nil {
 		return QPixelFormat__ByteOrder(C.QPixelFormat_ByteOrder(ptr.Pointer()))
@@ -170,11 +154,7 @@ func (ptr *QPixelFormat) ByteOrder() QPixelFormat__ByteOrder {
 }
 
 func (ptr *QPixelFormat) ColorModel() QPixelFormat__ColorModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPixelFormat::colorModel")
-		}
-	}()
+	defer qt.Recovering("QPixelFormat::colorModel")
 
 	if ptr.Pointer() != nil {
 		return QPixelFormat__ColorModel(C.QPixelFormat_ColorModel(ptr.Pointer()))
@@ -183,11 +163,7 @@ func (ptr *QPixelFormat) ColorModel() QPixelFormat__ColorModel {
 }
 
 func (ptr *QPixelFormat) Premultiplied() QPixelFormat__AlphaPremultiplied {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPixelFormat::premultiplied")
-		}
-	}()
+	defer qt.Recovering("QPixelFormat::premultiplied")
 
 	if ptr.Pointer() != nil {
 		return QPixelFormat__AlphaPremultiplied(C.QPixelFormat_Premultiplied(ptr.Pointer()))
@@ -196,11 +172,7 @@ func (ptr *QPixelFormat) Premultiplied() QPixelFormat__AlphaPremultiplied {
 }
 
 func (ptr *QPixelFormat) TypeInterpretation() QPixelFormat__TypeInterpretation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPixelFormat::typeInterpretation")
-		}
-	}()
+	defer qt.Recovering("QPixelFormat::typeInterpretation")
 
 	if ptr.Pointer() != nil {
 		return QPixelFormat__TypeInterpretation(C.QPixelFormat_TypeInterpretation(ptr.Pointer()))
@@ -209,11 +181,7 @@ func (ptr *QPixelFormat) TypeInterpretation() QPixelFormat__TypeInterpretation {
 }
 
 func (ptr *QPixelFormat) YuvLayout() QPixelFormat__YUVLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPixelFormat::yuvLayout")
-		}
-	}()
+	defer qt.Recovering("QPixelFormat::yuvLayout")
 
 	if ptr.Pointer() != nil {
 		return QPixelFormat__YUVLayout(C.QPixelFormat_YuvLayout(ptr.Pointer()))

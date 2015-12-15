@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -64,11 +64,7 @@ var (
 )
 
 func NewQStyleHintReturn(version int, ty int) *QStyleHintReturn {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHintReturn::QStyleHintReturn")
-		}
-	}()
+	defer qt.Recovering("QStyleHintReturn::QStyleHintReturn")
 
 	return NewQStyleHintReturnFromPointer(C.QStyleHintReturn_NewQStyleHintReturn(C.int(version), C.int(ty)))
 }

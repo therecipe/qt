@@ -4,7 +4,6 @@ package quick
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +33,9 @@ func PointerFromQSGNode(ptr QSGNode_ITF) unsafe.Pointer {
 func NewQSGNodeFromPointer(ptr unsafe.Pointer) *QSGNode {
 	var n = new(QSGNode)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QSGNode_") {
+		n.SetObjectNameAbs("QSGNode_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -78,11 +80,7 @@ const (
 )
 
 func (ptr *QSGNode) ChildAtIndex(i int) *QSGNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::childAtIndex")
-		}
-	}()
+	defer qt.Recovering("QSGNode::childAtIndex")
 
 	if ptr.Pointer() != nil {
 		return NewQSGNodeFromPointer(C.QSGNode_ChildAtIndex(ptr.Pointer(), C.int(i)))
@@ -91,11 +89,7 @@ func (ptr *QSGNode) ChildAtIndex(i int) *QSGNode {
 }
 
 func (ptr *QSGNode) ChildCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::childCount")
-		}
-	}()
+	defer qt.Recovering("QSGNode::childCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSGNode_ChildCount(ptr.Pointer()))
@@ -104,21 +98,13 @@ func (ptr *QSGNode) ChildCount() int {
 }
 
 func NewQSGNode() *QSGNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::QSGNode")
-		}
-	}()
+	defer qt.Recovering("QSGNode::QSGNode")
 
 	return NewQSGNodeFromPointer(C.QSGNode_NewQSGNode())
 }
 
 func (ptr *QSGNode) AppendChildNode(node QSGNode_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::appendChildNode")
-		}
-	}()
+	defer qt.Recovering("QSGNode::appendChildNode")
 
 	if ptr.Pointer() != nil {
 		C.QSGNode_AppendChildNode(ptr.Pointer(), PointerFromQSGNode(node))
@@ -126,11 +112,7 @@ func (ptr *QSGNode) AppendChildNode(node QSGNode_ITF) {
 }
 
 func (ptr *QSGNode) FirstChild() *QSGNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::firstChild")
-		}
-	}()
+	defer qt.Recovering("QSGNode::firstChild")
 
 	if ptr.Pointer() != nil {
 		return NewQSGNodeFromPointer(C.QSGNode_FirstChild(ptr.Pointer()))
@@ -139,11 +121,7 @@ func (ptr *QSGNode) FirstChild() *QSGNode {
 }
 
 func (ptr *QSGNode) Flags() QSGNode__Flag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::flags")
-		}
-	}()
+	defer qt.Recovering("QSGNode::flags")
 
 	if ptr.Pointer() != nil {
 		return QSGNode__Flag(C.QSGNode_Flags(ptr.Pointer()))
@@ -152,11 +130,7 @@ func (ptr *QSGNode) Flags() QSGNode__Flag {
 }
 
 func (ptr *QSGNode) InsertChildNodeAfter(node QSGNode_ITF, after QSGNode_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::insertChildNodeAfter")
-		}
-	}()
+	defer qt.Recovering("QSGNode::insertChildNodeAfter")
 
 	if ptr.Pointer() != nil {
 		C.QSGNode_InsertChildNodeAfter(ptr.Pointer(), PointerFromQSGNode(node), PointerFromQSGNode(after))
@@ -164,11 +138,7 @@ func (ptr *QSGNode) InsertChildNodeAfter(node QSGNode_ITF, after QSGNode_ITF) {
 }
 
 func (ptr *QSGNode) InsertChildNodeBefore(node QSGNode_ITF, before QSGNode_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::insertChildNodeBefore")
-		}
-	}()
+	defer qt.Recovering("QSGNode::insertChildNodeBefore")
 
 	if ptr.Pointer() != nil {
 		C.QSGNode_InsertChildNodeBefore(ptr.Pointer(), PointerFromQSGNode(node), PointerFromQSGNode(before))
@@ -176,11 +146,7 @@ func (ptr *QSGNode) InsertChildNodeBefore(node QSGNode_ITF, before QSGNode_ITF) 
 }
 
 func (ptr *QSGNode) IsSubtreeBlocked() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::isSubtreeBlocked")
-		}
-	}()
+	defer qt.Recovering("QSGNode::isSubtreeBlocked")
 
 	if ptr.Pointer() != nil {
 		return C.QSGNode_IsSubtreeBlocked(ptr.Pointer()) != 0
@@ -189,11 +155,7 @@ func (ptr *QSGNode) IsSubtreeBlocked() bool {
 }
 
 func (ptr *QSGNode) LastChild() *QSGNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::lastChild")
-		}
-	}()
+	defer qt.Recovering("QSGNode::lastChild")
 
 	if ptr.Pointer() != nil {
 		return NewQSGNodeFromPointer(C.QSGNode_LastChild(ptr.Pointer()))
@@ -202,11 +164,7 @@ func (ptr *QSGNode) LastChild() *QSGNode {
 }
 
 func (ptr *QSGNode) MarkDirty(bits QSGNode__DirtyStateBit) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::markDirty")
-		}
-	}()
+	defer qt.Recovering("QSGNode::markDirty")
 
 	if ptr.Pointer() != nil {
 		C.QSGNode_MarkDirty(ptr.Pointer(), C.int(bits))
@@ -214,11 +172,7 @@ func (ptr *QSGNode) MarkDirty(bits QSGNode__DirtyStateBit) {
 }
 
 func (ptr *QSGNode) NextSibling() *QSGNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::nextSibling")
-		}
-	}()
+	defer qt.Recovering("QSGNode::nextSibling")
 
 	if ptr.Pointer() != nil {
 		return NewQSGNodeFromPointer(C.QSGNode_NextSibling(ptr.Pointer()))
@@ -227,11 +181,7 @@ func (ptr *QSGNode) NextSibling() *QSGNode {
 }
 
 func (ptr *QSGNode) Parent() *QSGNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::parent")
-		}
-	}()
+	defer qt.Recovering("QSGNode::parent")
 
 	if ptr.Pointer() != nil {
 		return NewQSGNodeFromPointer(C.QSGNode_Parent(ptr.Pointer()))
@@ -240,35 +190,46 @@ func (ptr *QSGNode) Parent() *QSGNode {
 }
 
 func (ptr *QSGNode) PrependChildNode(node QSGNode_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::prependChildNode")
-		}
-	}()
+	defer qt.Recovering("QSGNode::prependChildNode")
 
 	if ptr.Pointer() != nil {
 		C.QSGNode_PrependChildNode(ptr.Pointer(), PointerFromQSGNode(node))
 	}
 }
 
-func (ptr *QSGNode) Preprocess() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::preprocess")
-		}
-	}()
+func (ptr *QSGNode) ConnectPreprocess(f func()) {
+	defer qt.Recovering("connect QSGNode::preprocess")
 
 	if ptr.Pointer() != nil {
-		C.QSGNode_Preprocess(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "preprocess", f)
 	}
 }
 
+func (ptr *QSGNode) DisconnectPreprocess() {
+	defer qt.Recovering("disconnect QSGNode::preprocess")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "preprocess")
+	}
+}
+
+//export callbackQSGNodePreprocess
+func callbackQSGNodePreprocess(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSGNode::preprocess")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "preprocess")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSGNode) PreviousSibling() *QSGNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::previousSibling")
-		}
-	}()
+	defer qt.Recovering("QSGNode::previousSibling")
 
 	if ptr.Pointer() != nil {
 		return NewQSGNodeFromPointer(C.QSGNode_PreviousSibling(ptr.Pointer()))
@@ -277,11 +238,7 @@ func (ptr *QSGNode) PreviousSibling() *QSGNode {
 }
 
 func (ptr *QSGNode) RemoveAllChildNodes() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::removeAllChildNodes")
-		}
-	}()
+	defer qt.Recovering("QSGNode::removeAllChildNodes")
 
 	if ptr.Pointer() != nil {
 		C.QSGNode_RemoveAllChildNodes(ptr.Pointer())
@@ -289,11 +246,7 @@ func (ptr *QSGNode) RemoveAllChildNodes() {
 }
 
 func (ptr *QSGNode) RemoveChildNode(node QSGNode_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::removeChildNode")
-		}
-	}()
+	defer qt.Recovering("QSGNode::removeChildNode")
 
 	if ptr.Pointer() != nil {
 		C.QSGNode_RemoveChildNode(ptr.Pointer(), PointerFromQSGNode(node))
@@ -301,11 +254,7 @@ func (ptr *QSGNode) RemoveChildNode(node QSGNode_ITF) {
 }
 
 func (ptr *QSGNode) SetFlag(f QSGNode__Flag, enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::setFlag")
-		}
-	}()
+	defer qt.Recovering("QSGNode::setFlag")
 
 	if ptr.Pointer() != nil {
 		C.QSGNode_SetFlag(ptr.Pointer(), C.int(f), C.int(qt.GoBoolToInt(enabled)))
@@ -313,11 +262,7 @@ func (ptr *QSGNode) SetFlag(f QSGNode__Flag, enabled bool) {
 }
 
 func (ptr *QSGNode) SetFlags(f QSGNode__Flag, enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::setFlags")
-		}
-	}()
+	defer qt.Recovering("QSGNode::setFlags")
 
 	if ptr.Pointer() != nil {
 		C.QSGNode_SetFlags(ptr.Pointer(), C.int(f), C.int(qt.GoBoolToInt(enabled)))
@@ -325,11 +270,7 @@ func (ptr *QSGNode) SetFlags(f QSGNode__Flag, enabled bool) {
 }
 
 func (ptr *QSGNode) Type() QSGNode__NodeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::type")
-		}
-	}()
+	defer qt.Recovering("QSGNode::type")
 
 	if ptr.Pointer() != nil {
 		return QSGNode__NodeType(C.QSGNode_Type(ptr.Pointer()))
@@ -338,13 +279,26 @@ func (ptr *QSGNode) Type() QSGNode__NodeType {
 }
 
 func (ptr *QSGNode) DestroyQSGNode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGNode::~QSGNode")
-		}
-	}()
+	defer qt.Recovering("QSGNode::~QSGNode")
 
 	if ptr.Pointer() != nil {
 		C.QSGNode_DestroyQSGNode(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGNode) ObjectNameAbs() string {
+	defer qt.Recovering("QSGNode::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QSGNode_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSGNode) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QSGNode::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QSGNode_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

@@ -4,7 +4,6 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQOrientationReadingFromPointer(ptr unsafe.Pointer) *QOrientationReading 
 	var n = new(QOrientationReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QOrientationReading_") {
-		n.SetObjectName("QOrientationReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QOrientationReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -51,11 +50,7 @@ const (
 )
 
 func (ptr *QOrientationReading) Orientation() QOrientationReading__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOrientationReading::orientation")
-		}
-	}()
+	defer qt.Recovering("QOrientationReading::orientation")
 
 	if ptr.Pointer() != nil {
 		return QOrientationReading__Orientation(C.QOrientationReading_Orientation(ptr.Pointer()))
@@ -64,11 +59,7 @@ func (ptr *QOrientationReading) Orientation() QOrientationReading__Orientation {
 }
 
 func (ptr *QOrientationReading) SetOrientation(orientation QOrientationReading__Orientation) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOrientationReading::setOrientation")
-		}
-	}()
+	defer qt.Recovering("QOrientationReading::setOrientation")
 
 	if ptr.Pointer() != nil {
 		C.QOrientationReading_SetOrientation(ptr.Pointer(), C.int(orientation))

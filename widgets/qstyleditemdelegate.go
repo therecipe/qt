@@ -5,8 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +28,7 @@ func NewQStyledItemDelegateFromPointer(ptr unsafe.Pointer) *QStyledItemDelegate 
 	var n = new(QStyledItemDelegate)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QStyledItemDelegate_") {
-		n.SetObjectName("QStyledItemDelegate_" + qt.RandomIdentifier())
+		n.SetObjectName("QStyledItemDelegate_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,21 +38,13 @@ func (ptr *QStyledItemDelegate) QStyledItemDelegate_PTR() *QStyledItemDelegate {
 }
 
 func NewQStyledItemDelegate(parent core.QObject_ITF) *QStyledItemDelegate {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyledItemDelegate::QStyledItemDelegate")
-		}
-	}()
+	defer qt.Recovering("QStyledItemDelegate::QStyledItemDelegate")
 
 	return NewQStyledItemDelegateFromPointer(C.QStyledItemDelegate_NewQStyledItemDelegate(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QStyledItemDelegate) CreateEditor(parent QWidget_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyledItemDelegate::createEditor")
-		}
-	}()
+	defer qt.Recovering("QStyledItemDelegate::createEditor")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QStyledItemDelegate_CreateEditor(ptr.Pointer(), PointerFromQWidget(parent), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
@@ -63,11 +53,7 @@ func (ptr *QStyledItemDelegate) CreateEditor(parent QWidget_ITF, option QStyleOp
 }
 
 func (ptr *QStyledItemDelegate) DisplayText(value core.QVariant_ITF, locale core.QLocale_ITF) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyledItemDelegate::displayText")
-		}
-	}()
+	defer qt.Recovering("QStyledItemDelegate::displayText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStyledItemDelegate_DisplayText(ptr.Pointer(), core.PointerFromQVariant(value), core.PointerFromQLocale(locale)))
@@ -75,12 +61,39 @@ func (ptr *QStyledItemDelegate) DisplayText(value core.QVariant_ITF, locale core
 	return ""
 }
 
+func (ptr *QStyledItemDelegate) ConnectInitStyleOption(f func(option *QStyleOptionViewItem, index *core.QModelIndex)) {
+	defer qt.Recovering("connect QStyledItemDelegate::initStyleOption")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "initStyleOption", f)
+	}
+}
+
+func (ptr *QStyledItemDelegate) DisconnectInitStyleOption() {
+	defer qt.Recovering("disconnect QStyledItemDelegate::initStyleOption")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "initStyleOption")
+	}
+}
+
+//export callbackQStyledItemDelegateInitStyleOption
+func callbackQStyledItemDelegateInitStyleOption(ptrName *C.char, option unsafe.Pointer, index unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStyledItemDelegate::initStyleOption")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "initStyleOption")
+	if signal != nil {
+		defer signal.(func(*QStyleOptionViewItem, *core.QModelIndex))(NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QStyledItemDelegate) ItemEditorFactory() *QItemEditorFactory {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyledItemDelegate::itemEditorFactory")
-		}
-	}()
+	defer qt.Recovering("QStyledItemDelegate::itemEditorFactory")
 
 	if ptr.Pointer() != nil {
 		return NewQItemEditorFactoryFromPointer(C.QStyledItemDelegate_ItemEditorFactory(ptr.Pointer()))
@@ -88,72 +101,78 @@ func (ptr *QStyledItemDelegate) ItemEditorFactory() *QItemEditorFactory {
 	return nil
 }
 
-func (ptr *QStyledItemDelegate) Paint(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyledItemDelegate::paint")
-		}
-	}()
+func (ptr *QStyledItemDelegate) ConnectSetEditorData(f func(editor *QWidget, index *core.QModelIndex)) {
+	defer qt.Recovering("connect QStyledItemDelegate::setEditorData")
 
 	if ptr.Pointer() != nil {
-		C.QStyledItemDelegate_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setEditorData", f)
 	}
 }
 
-func (ptr *QStyledItemDelegate) SetEditorData(editor QWidget_ITF, index core.QModelIndex_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyledItemDelegate::setEditorData")
-		}
-	}()
+func (ptr *QStyledItemDelegate) DisconnectSetEditorData() {
+	defer qt.Recovering("disconnect QStyledItemDelegate::setEditorData")
 
 	if ptr.Pointer() != nil {
-		C.QStyledItemDelegate_SetEditorData(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setEditorData")
 	}
+}
+
+//export callbackQStyledItemDelegateSetEditorData
+func callbackQStyledItemDelegateSetEditorData(ptrName *C.char, editor unsafe.Pointer, index unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStyledItemDelegate::setEditorData")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setEditorData")
+	if signal != nil {
+		defer signal.(func(*QWidget, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QStyledItemDelegate) SetItemEditorFactory(factory QItemEditorFactory_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyledItemDelegate::setItemEditorFactory")
-		}
-	}()
+	defer qt.Recovering("QStyledItemDelegate::setItemEditorFactory")
 
 	if ptr.Pointer() != nil {
 		C.QStyledItemDelegate_SetItemEditorFactory(ptr.Pointer(), PointerFromQItemEditorFactory(factory))
 	}
 }
 
-func (ptr *QStyledItemDelegate) SetModelData(editor QWidget_ITF, model core.QAbstractItemModel_ITF, index core.QModelIndex_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyledItemDelegate::setModelData")
-		}
-	}()
+func (ptr *QStyledItemDelegate) ConnectSetModelData(f func(editor *QWidget, model *core.QAbstractItemModel, index *core.QModelIndex)) {
+	defer qt.Recovering("connect QStyledItemDelegate::setModelData")
 
 	if ptr.Pointer() != nil {
-		C.QStyledItemDelegate_SetModelData(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQAbstractItemModel(model), core.PointerFromQModelIndex(index))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setModelData", f)
 	}
 }
 
-func (ptr *QStyledItemDelegate) UpdateEditorGeometry(editor QWidget_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyledItemDelegate::updateEditorGeometry")
-		}
-	}()
+func (ptr *QStyledItemDelegate) DisconnectSetModelData() {
+	defer qt.Recovering("disconnect QStyledItemDelegate::setModelData")
 
 	if ptr.Pointer() != nil {
-		C.QStyledItemDelegate_UpdateEditorGeometry(ptr.Pointer(), PointerFromQWidget(editor), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setModelData")
 	}
+}
+
+//export callbackQStyledItemDelegateSetModelData
+func callbackQStyledItemDelegateSetModelData(ptrName *C.char, editor unsafe.Pointer, model unsafe.Pointer, index unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStyledItemDelegate::setModelData")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setModelData")
+	if signal != nil {
+		defer signal.(func(*QWidget, *core.QAbstractItemModel, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QStyledItemDelegate) DestroyQStyledItemDelegate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyledItemDelegate::~QStyledItemDelegate")
-		}
-	}()
+	defer qt.Recovering("QStyledItemDelegate::~QStyledItemDelegate")
 
 	if ptr.Pointer() != nil {
 		C.QStyledItemDelegate_DestroyQStyledItemDelegate(ptr.Pointer())

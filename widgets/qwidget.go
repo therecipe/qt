@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -41,7 +40,7 @@ func NewQWidgetFromPointer(ptr unsafe.Pointer) *QWidget {
 	var n = new(QWidget)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QWidget_") {
-		n.SetObjectName("QWidget_" + qt.RandomIdentifier())
+		n.SetObjectName("QWidget_" + qt.Identifier())
 	}
 	return n
 }
@@ -60,11 +59,7 @@ const (
 )
 
 func (ptr *QWidget) AcceptDrops() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::acceptDrops")
-		}
-	}()
+	defer qt.Recovering("QWidget::acceptDrops")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_AcceptDrops(ptr.Pointer()) != 0
@@ -73,11 +68,7 @@ func (ptr *QWidget) AcceptDrops() bool {
 }
 
 func (ptr *QWidget) AccessibleDescription() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::accessibleDescription")
-		}
-	}()
+	defer qt.Recovering("QWidget::accessibleDescription")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWidget_AccessibleDescription(ptr.Pointer()))
@@ -86,11 +77,7 @@ func (ptr *QWidget) AccessibleDescription() string {
 }
 
 func (ptr *QWidget) AccessibleName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::accessibleName")
-		}
-	}()
+	defer qt.Recovering("QWidget::accessibleName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWidget_AccessibleName(ptr.Pointer()))
@@ -98,12 +85,39 @@ func (ptr *QWidget) AccessibleName() string {
 	return ""
 }
 
+func (ptr *QWidget) ConnectActionEvent(f func(event *gui.QActionEvent)) {
+	defer qt.Recovering("connect QWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "actionEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectActionEvent() {
+	defer qt.Recovering("disconnect QWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "actionEvent")
+	}
+}
+
+//export callbackQWidgetActionEvent
+func callbackQWidgetActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::actionEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "actionEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) ActivateWindow() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::activateWindow")
-		}
-	}()
+	defer qt.Recovering("QWidget::activateWindow")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ActivateWindow(ptr.Pointer())
@@ -111,11 +125,7 @@ func (ptr *QWidget) ActivateWindow() {
 }
 
 func (ptr *QWidget) AutoFillBackground() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::autoFillBackground")
-		}
-	}()
+	defer qt.Recovering("QWidget::autoFillBackground")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_AutoFillBackground(ptr.Pointer()) != 0
@@ -124,11 +134,7 @@ func (ptr *QWidget) AutoFillBackground() bool {
 }
 
 func (ptr *QWidget) ChildrenRegion() *gui.QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::childrenRegion")
-		}
-	}()
+	defer qt.Recovering("QWidget::childrenRegion")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQRegionFromPointer(C.QWidget_ChildrenRegion(ptr.Pointer()))
@@ -137,11 +143,7 @@ func (ptr *QWidget) ChildrenRegion() *gui.QRegion {
 }
 
 func (ptr *QWidget) ClearMask() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::clearMask")
-		}
-	}()
+	defer qt.Recovering("QWidget::clearMask")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ClearMask(ptr.Pointer())
@@ -149,11 +151,7 @@ func (ptr *QWidget) ClearMask() {
 }
 
 func (ptr *QWidget) ContextMenuPolicy() core.Qt__ContextMenuPolicy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::contextMenuPolicy")
-		}
-	}()
+	defer qt.Recovering("QWidget::contextMenuPolicy")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ContextMenuPolicy(C.QWidget_ContextMenuPolicy(ptr.Pointer()))
@@ -161,12 +159,225 @@ func (ptr *QWidget) ContextMenuPolicy() core.Qt__ContextMenuPolicy {
 	return 0
 }
 
+func (ptr *QWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
+	defer qt.Recovering("connect QWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectDragEnterEvent() {
+	defer qt.Recovering("disconnect QWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+	}
+}
+
+//export callbackQWidgetDragEnterEvent
+func callbackQWidgetDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::dragEnterEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dragEnterEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
+	defer qt.Recovering("connect QWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectDragLeaveEvent() {
+	defer qt.Recovering("disconnect QWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+	}
+}
+
+//export callbackQWidgetDragLeaveEvent
+func callbackQWidgetDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::dragLeaveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
+	defer qt.Recovering("connect QWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectDragMoveEvent() {
+	defer qt.Recovering("disconnect QWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+	}
+}
+
+//export callbackQWidgetDragMoveEvent
+func callbackQWidgetDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::dragMoveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dragMoveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
+	defer qt.Recovering("connect QWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectDropEvent() {
+	defer qt.Recovering("disconnect QWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+	}
+}
+
+//export callbackQWidgetDropEvent
+func callbackQWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::dropEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "enterEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectEnterEvent() {
+	defer qt.Recovering("disconnect QWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "enterEvent")
+	}
+}
+
+//export callbackQWidgetEnterEvent
+func callbackQWidgetEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::enterEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "enterEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQWidgetFocusInEvent
+func callbackQWidgetFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::focusInEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+//export callbackQWidgetFocusOutEvent
+func callbackQWidgetFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::focusOutEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) FocusPolicy() core.Qt__FocusPolicy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::focusPolicy")
-		}
-	}()
+	defer qt.Recovering("QWidget::focusPolicy")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__FocusPolicy(C.QWidget_FocusPolicy(ptr.Pointer()))
@@ -175,11 +386,7 @@ func (ptr *QWidget) FocusPolicy() core.Qt__FocusPolicy {
 }
 
 func (ptr *QWidget) GrabKeyboard() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::grabKeyboard")
-		}
-	}()
+	defer qt.Recovering("QWidget::grabKeyboard")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_GrabKeyboard(ptr.Pointer())
@@ -187,11 +394,7 @@ func (ptr *QWidget) GrabKeyboard() {
 }
 
 func (ptr *QWidget) GrabMouse() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::grabMouse")
-		}
-	}()
+	defer qt.Recovering("QWidget::grabMouse")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_GrabMouse(ptr.Pointer())
@@ -199,11 +402,7 @@ func (ptr *QWidget) GrabMouse() {
 }
 
 func (ptr *QWidget) GrabMouse2(cursor gui.QCursor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::grabMouse")
-		}
-	}()
+	defer qt.Recovering("QWidget::grabMouse")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_GrabMouse2(ptr.Pointer(), gui.PointerFromQCursor(cursor))
@@ -211,11 +410,7 @@ func (ptr *QWidget) GrabMouse2(cursor gui.QCursor_ITF) {
 }
 
 func (ptr *QWidget) HasFocus() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::hasFocus")
-		}
-	}()
+	defer qt.Recovering("QWidget::hasFocus")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_HasFocus(ptr.Pointer()) != 0
@@ -223,12 +418,39 @@ func (ptr *QWidget) HasFocus() bool {
 	return false
 }
 
+func (ptr *QWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
+	defer qt.Recovering("connect QWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectHideEvent() {
+	defer qt.Recovering("disconnect QWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+	}
+}
+
+//export callbackQWidgetHideEvent
+func callbackQWidgetHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::hideEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "hideEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) InputMethodHints() core.Qt__InputMethodHint {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::inputMethodHints")
-		}
-	}()
+	defer qt.Recovering("QWidget::inputMethodHints")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__InputMethodHint(C.QWidget_InputMethodHints(ptr.Pointer()))
@@ -237,11 +459,7 @@ func (ptr *QWidget) InputMethodHints() core.Qt__InputMethodHint {
 }
 
 func (ptr *QWidget) IsActiveWindow() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isActiveWindow")
-		}
-	}()
+	defer qt.Recovering("QWidget::isActiveWindow")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsActiveWindow(ptr.Pointer()) != 0
@@ -250,11 +468,7 @@ func (ptr *QWidget) IsActiveWindow() bool {
 }
 
 func (ptr *QWidget) IsFullScreen() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isFullScreen")
-		}
-	}()
+	defer qt.Recovering("QWidget::isFullScreen")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsFullScreen(ptr.Pointer()) != 0
@@ -263,11 +477,7 @@ func (ptr *QWidget) IsFullScreen() bool {
 }
 
 func (ptr *QWidget) IsMaximized() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isMaximized")
-		}
-	}()
+	defer qt.Recovering("QWidget::isMaximized")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsMaximized(ptr.Pointer()) != 0
@@ -276,11 +486,7 @@ func (ptr *QWidget) IsMaximized() bool {
 }
 
 func (ptr *QWidget) IsMinimized() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isMinimized")
-		}
-	}()
+	defer qt.Recovering("QWidget::isMinimized")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsMinimized(ptr.Pointer()) != 0
@@ -289,11 +495,7 @@ func (ptr *QWidget) IsMinimized() bool {
 }
 
 func (ptr *QWidget) IsWindowModified() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isWindowModified")
-		}
-	}()
+	defer qt.Recovering("QWidget::isWindowModified")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsWindowModified(ptr.Pointer()) != 0
@@ -302,21 +504,13 @@ func (ptr *QWidget) IsWindowModified() bool {
 }
 
 func QWidget_KeyboardGrabber() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::keyboardGrabber")
-		}
-	}()
+	defer qt.Recovering("QWidget::keyboardGrabber")
 
 	return NewQWidgetFromPointer(C.QWidget_QWidget_KeyboardGrabber())
 }
 
 func (ptr *QWidget) LayoutDirection() core.Qt__LayoutDirection {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::layoutDirection")
-		}
-	}()
+	defer qt.Recovering("QWidget::layoutDirection")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__LayoutDirection(C.QWidget_LayoutDirection(ptr.Pointer()))
@@ -324,34 +518,102 @@ func (ptr *QWidget) LayoutDirection() core.Qt__LayoutDirection {
 	return 0
 }
 
+func (ptr *QWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "leaveEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectLeaveEvent() {
+	defer qt.Recovering("disconnect QWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "leaveEvent")
+	}
+}
+
+//export callbackQWidgetLeaveEvent
+func callbackQWidgetLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::leaveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "leaveEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) MapFromGlobal(pos core.QPoint_ITF) *core.QPoint {
+	defer qt.Recovering("QWidget::mapFromGlobal")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QWidget_MapFromGlobal(ptr.Pointer(), core.PointerFromQPoint(pos)))
+	}
+	return nil
+}
+
+func (ptr *QWidget) MapToGlobal(pos core.QPoint_ITF) *core.QPoint {
+	defer qt.Recovering("QWidget::mapToGlobal")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QWidget_MapToGlobal(ptr.Pointer(), core.PointerFromQPoint(pos)))
+	}
+	return nil
+}
+
 func QWidget_MouseGrabber() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::mouseGrabber")
-		}
-	}()
+	defer qt.Recovering("QWidget::mouseGrabber")
 
 	return NewQWidgetFromPointer(C.QWidget_QWidget_MouseGrabber())
 }
 
 func (ptr *QWidget) Move(v core.QPoint_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::move")
-		}
-	}()
+	defer qt.Recovering("QWidget::move")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Move(ptr.Pointer(), core.PointerFromQPoint(v))
 	}
 }
 
+func (ptr *QWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
+	defer qt.Recovering("connect QWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "moveEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectMoveEvent() {
+	defer qt.Recovering("disconnect QWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "moveEvent")
+	}
+}
+
+//export callbackQWidgetMoveEvent
+func callbackQWidgetMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::moveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "moveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) PaintEngine() *gui.QPaintEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::paintEngine")
-		}
-	}()
+	defer qt.Recovering("QWidget::paintEngine")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQPaintEngineFromPointer(C.QWidget_PaintEngine(ptr.Pointer()))
@@ -359,12 +621,48 @@ func (ptr *QWidget) PaintEngine() *gui.QPaintEngine {
 	return nil
 }
 
+func (ptr *QWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQWidgetPaintEvent
+func callbackQWidgetPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) Pos() *core.QPoint {
+	defer qt.Recovering("QWidget::pos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QWidget_Pos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWidget) ReleaseKeyboard() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::releaseKeyboard")
-		}
-	}()
+	defer qt.Recovering("QWidget::releaseKeyboard")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ReleaseKeyboard(ptr.Pointer())
@@ -372,11 +670,7 @@ func (ptr *QWidget) ReleaseKeyboard() {
 }
 
 func (ptr *QWidget) ReleaseMouse() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::releaseMouse")
-		}
-	}()
+	defer qt.Recovering("QWidget::releaseMouse")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ReleaseMouse(ptr.Pointer())
@@ -384,11 +678,7 @@ func (ptr *QWidget) ReleaseMouse() {
 }
 
 func (ptr *QWidget) Resize(v core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::resize")
-		}
-	}()
+	defer qt.Recovering("QWidget::resize")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Resize(ptr.Pointer(), core.PointerFromQSize(v))
@@ -396,11 +686,7 @@ func (ptr *QWidget) Resize(v core.QSize_ITF) {
 }
 
 func (ptr *QWidget) SetAcceptDrops(on bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setAcceptDrops")
-		}
-	}()
+	defer qt.Recovering("QWidget::setAcceptDrops")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetAcceptDrops(ptr.Pointer(), C.int(qt.GoBoolToInt(on)))
@@ -408,11 +694,7 @@ func (ptr *QWidget) SetAcceptDrops(on bool) {
 }
 
 func (ptr *QWidget) SetAccessibleDescription(description string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setAccessibleDescription")
-		}
-	}()
+	defer qt.Recovering("QWidget::setAccessibleDescription")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetAccessibleDescription(ptr.Pointer(), C.CString(description))
@@ -420,11 +702,7 @@ func (ptr *QWidget) SetAccessibleDescription(description string) {
 }
 
 func (ptr *QWidget) SetAccessibleName(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setAccessibleName")
-		}
-	}()
+	defer qt.Recovering("QWidget::setAccessibleName")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetAccessibleName(ptr.Pointer(), C.CString(name))
@@ -432,11 +710,7 @@ func (ptr *QWidget) SetAccessibleName(name string) {
 }
 
 func (ptr *QWidget) SetAutoFillBackground(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setAutoFillBackground")
-		}
-	}()
+	defer qt.Recovering("QWidget::setAutoFillBackground")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetAutoFillBackground(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -444,11 +718,7 @@ func (ptr *QWidget) SetAutoFillBackground(enabled bool) {
 }
 
 func (ptr *QWidget) SetContextMenuPolicy(policy core.Qt__ContextMenuPolicy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setContextMenuPolicy")
-		}
-	}()
+	defer qt.Recovering("QWidget::setContextMenuPolicy")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetContextMenuPolicy(ptr.Pointer(), C.int(policy))
@@ -456,11 +726,7 @@ func (ptr *QWidget) SetContextMenuPolicy(policy core.Qt__ContextMenuPolicy) {
 }
 
 func (ptr *QWidget) SetCursor(v gui.QCursor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setCursor")
-		}
-	}()
+	defer qt.Recovering("QWidget::setCursor")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetCursor(ptr.Pointer(), gui.PointerFromQCursor(v))
@@ -468,11 +734,7 @@ func (ptr *QWidget) SetCursor(v gui.QCursor_ITF) {
 }
 
 func (ptr *QWidget) SetEnabled(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setEnabled")
-		}
-	}()
+	defer qt.Recovering("QWidget::setEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -480,11 +742,7 @@ func (ptr *QWidget) SetEnabled(v bool) {
 }
 
 func (ptr *QWidget) SetFixedSize2(w int, h int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setFixedSize")
-		}
-	}()
+	defer qt.Recovering("QWidget::setFixedSize")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetFixedSize2(ptr.Pointer(), C.int(w), C.int(h))
@@ -492,11 +750,7 @@ func (ptr *QWidget) SetFixedSize2(w int, h int) {
 }
 
 func (ptr *QWidget) SetFocusPolicy(policy core.Qt__FocusPolicy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setFocusPolicy")
-		}
-	}()
+	defer qt.Recovering("QWidget::setFocusPolicy")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetFocusPolicy(ptr.Pointer(), C.int(policy))
@@ -504,11 +758,7 @@ func (ptr *QWidget) SetFocusPolicy(policy core.Qt__FocusPolicy) {
 }
 
 func (ptr *QWidget) SetFont(v gui.QFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setFont")
-		}
-	}()
+	defer qt.Recovering("QWidget::setFont")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetFont(ptr.Pointer(), gui.PointerFromQFont(v))
@@ -516,11 +766,7 @@ func (ptr *QWidget) SetFont(v gui.QFont_ITF) {
 }
 
 func (ptr *QWidget) SetGeometry(v core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setGeometry")
-		}
-	}()
+	defer qt.Recovering("QWidget::setGeometry")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetGeometry(ptr.Pointer(), core.PointerFromQRect(v))
@@ -528,11 +774,7 @@ func (ptr *QWidget) SetGeometry(v core.QRect_ITF) {
 }
 
 func (ptr *QWidget) SetInputMethodHints(hints core.Qt__InputMethodHint) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setInputMethodHints")
-		}
-	}()
+	defer qt.Recovering("QWidget::setInputMethodHints")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetInputMethodHints(ptr.Pointer(), C.int(hints))
@@ -540,11 +782,7 @@ func (ptr *QWidget) SetInputMethodHints(hints core.Qt__InputMethodHint) {
 }
 
 func (ptr *QWidget) SetLayout(layout QLayout_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setLayout")
-		}
-	}()
+	defer qt.Recovering("QWidget::setLayout")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetLayout(ptr.Pointer(), PointerFromQLayout(layout))
@@ -552,11 +790,7 @@ func (ptr *QWidget) SetLayout(layout QLayout_ITF) {
 }
 
 func (ptr *QWidget) SetLayoutDirection(direction core.Qt__LayoutDirection) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setLayoutDirection")
-		}
-	}()
+	defer qt.Recovering("QWidget::setLayoutDirection")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetLayoutDirection(ptr.Pointer(), C.int(direction))
@@ -564,11 +798,7 @@ func (ptr *QWidget) SetLayoutDirection(direction core.Qt__LayoutDirection) {
 }
 
 func (ptr *QWidget) SetLocale(locale core.QLocale_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setLocale")
-		}
-	}()
+	defer qt.Recovering("QWidget::setLocale")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetLocale(ptr.Pointer(), core.PointerFromQLocale(locale))
@@ -576,11 +806,7 @@ func (ptr *QWidget) SetLocale(locale core.QLocale_ITF) {
 }
 
 func (ptr *QWidget) SetMask(bitmap gui.QBitmap_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setMask")
-		}
-	}()
+	defer qt.Recovering("QWidget::setMask")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetMask(ptr.Pointer(), gui.PointerFromQBitmap(bitmap))
@@ -588,11 +814,7 @@ func (ptr *QWidget) SetMask(bitmap gui.QBitmap_ITF) {
 }
 
 func (ptr *QWidget) SetMask2(region gui.QRegion_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setMask")
-		}
-	}()
+	defer qt.Recovering("QWidget::setMask")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetMask2(ptr.Pointer(), gui.PointerFromQRegion(region))
@@ -600,11 +822,7 @@ func (ptr *QWidget) SetMask2(region gui.QRegion_ITF) {
 }
 
 func (ptr *QWidget) SetMaximumHeight(maxh int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setMaximumHeight")
-		}
-	}()
+	defer qt.Recovering("QWidget::setMaximumHeight")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetMaximumHeight(ptr.Pointer(), C.int(maxh))
@@ -612,11 +830,7 @@ func (ptr *QWidget) SetMaximumHeight(maxh int) {
 }
 
 func (ptr *QWidget) SetMaximumWidth(maxw int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setMaximumWidth")
-		}
-	}()
+	defer qt.Recovering("QWidget::setMaximumWidth")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetMaximumWidth(ptr.Pointer(), C.int(maxw))
@@ -624,11 +838,7 @@ func (ptr *QWidget) SetMaximumWidth(maxw int) {
 }
 
 func (ptr *QWidget) SetMinimumHeight(minh int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setMinimumHeight")
-		}
-	}()
+	defer qt.Recovering("QWidget::setMinimumHeight")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetMinimumHeight(ptr.Pointer(), C.int(minh))
@@ -636,11 +846,7 @@ func (ptr *QWidget) SetMinimumHeight(minh int) {
 }
 
 func (ptr *QWidget) SetMinimumWidth(minw int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setMinimumWidth")
-		}
-	}()
+	defer qt.Recovering("QWidget::setMinimumWidth")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetMinimumWidth(ptr.Pointer(), C.int(minw))
@@ -648,11 +854,7 @@ func (ptr *QWidget) SetMinimumWidth(minw int) {
 }
 
 func (ptr *QWidget) SetPalette(v gui.QPalette_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setPalette")
-		}
-	}()
+	defer qt.Recovering("QWidget::setPalette")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetPalette(ptr.Pointer(), gui.PointerFromQPalette(v))
@@ -660,11 +862,7 @@ func (ptr *QWidget) SetPalette(v gui.QPalette_ITF) {
 }
 
 func (ptr *QWidget) SetSizePolicy(v QSizePolicy_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setSizePolicy")
-		}
-	}()
+	defer qt.Recovering("QWidget::setSizePolicy")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetSizePolicy(ptr.Pointer(), PointerFromQSizePolicy(v))
@@ -672,11 +870,7 @@ func (ptr *QWidget) SetSizePolicy(v QSizePolicy_ITF) {
 }
 
 func (ptr *QWidget) SetStatusTip(v string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setStatusTip")
-		}
-	}()
+	defer qt.Recovering("QWidget::setStatusTip")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetStatusTip(ptr.Pointer(), C.CString(v))
@@ -684,11 +878,7 @@ func (ptr *QWidget) SetStatusTip(v string) {
 }
 
 func (ptr *QWidget) SetStyleSheet(styleSheet string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setStyleSheet")
-		}
-	}()
+	defer qt.Recovering("QWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
@@ -696,11 +886,7 @@ func (ptr *QWidget) SetStyleSheet(styleSheet string) {
 }
 
 func (ptr *QWidget) SetToolTip(v string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setToolTip")
-		}
-	}()
+	defer qt.Recovering("QWidget::setToolTip")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetToolTip(ptr.Pointer(), C.CString(v))
@@ -708,11 +894,7 @@ func (ptr *QWidget) SetToolTip(v string) {
 }
 
 func (ptr *QWidget) SetToolTipDuration(msec int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setToolTipDuration")
-		}
-	}()
+	defer qt.Recovering("QWidget::setToolTipDuration")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetToolTipDuration(ptr.Pointer(), C.int(msec))
@@ -720,35 +902,46 @@ func (ptr *QWidget) SetToolTipDuration(msec int) {
 }
 
 func (ptr *QWidget) SetUpdatesEnabled(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setUpdatesEnabled")
-		}
-	}()
+	defer qt.Recovering("QWidget::setUpdatesEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetUpdatesEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
-func (ptr *QWidget) SetVisible(visible bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setVisible")
-		}
-	}()
+func (ptr *QWidget) ConnectSetVisible(f func(visible bool)) {
+	defer qt.Recovering("connect QWidget::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QWidget_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
 	}
 }
 
+func (ptr *QWidget) DisconnectSetVisible() {
+	defer qt.Recovering("disconnect QWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+	}
+}
+
+//export callbackQWidgetSetVisible
+func callbackQWidgetSetVisible(ptrName *C.char, visible C.int) bool {
+	defer qt.Recovering("callback QWidget::setVisible")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
+	if signal != nil {
+		defer signal.(func(bool))(int(visible) != 0)
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) SetWhatsThis(v string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setWhatsThis")
-		}
-	}()
+	defer qt.Recovering("QWidget::setWhatsThis")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetWhatsThis(ptr.Pointer(), C.CString(v))
@@ -756,11 +949,7 @@ func (ptr *QWidget) SetWhatsThis(v string) {
 }
 
 func (ptr *QWidget) SetWindowFilePath(filePath string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setWindowFilePath")
-		}
-	}()
+	defer qt.Recovering("QWidget::setWindowFilePath")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetWindowFilePath(ptr.Pointer(), C.CString(filePath))
@@ -768,11 +957,7 @@ func (ptr *QWidget) SetWindowFilePath(filePath string) {
 }
 
 func (ptr *QWidget) SetWindowFlags(ty core.Qt__WindowType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setWindowFlags")
-		}
-	}()
+	defer qt.Recovering("QWidget::setWindowFlags")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetWindowFlags(ptr.Pointer(), C.int(ty))
@@ -780,11 +965,7 @@ func (ptr *QWidget) SetWindowFlags(ty core.Qt__WindowType) {
 }
 
 func (ptr *QWidget) SetWindowIcon(icon gui.QIcon_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setWindowIcon")
-		}
-	}()
+	defer qt.Recovering("QWidget::setWindowIcon")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetWindowIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
@@ -792,11 +973,7 @@ func (ptr *QWidget) SetWindowIcon(icon gui.QIcon_ITF) {
 }
 
 func (ptr *QWidget) SetWindowIconText(v string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setWindowIconText")
-		}
-	}()
+	defer qt.Recovering("QWidget::setWindowIconText")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetWindowIconText(ptr.Pointer(), C.CString(v))
@@ -804,11 +981,7 @@ func (ptr *QWidget) SetWindowIconText(v string) {
 }
 
 func (ptr *QWidget) SetWindowModality(windowModality core.Qt__WindowModality) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setWindowModality")
-		}
-	}()
+	defer qt.Recovering("QWidget::setWindowModality")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetWindowModality(ptr.Pointer(), C.int(windowModality))
@@ -816,11 +989,7 @@ func (ptr *QWidget) SetWindowModality(windowModality core.Qt__WindowModality) {
 }
 
 func (ptr *QWidget) SetWindowModified(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setWindowModified")
-		}
-	}()
+	defer qt.Recovering("QWidget::setWindowModified")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetWindowModified(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -828,11 +997,7 @@ func (ptr *QWidget) SetWindowModified(v bool) {
 }
 
 func (ptr *QWidget) SetWindowOpacity(level float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setWindowOpacity")
-		}
-	}()
+	defer qt.Recovering("QWidget::setWindowOpacity")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetWindowOpacity(ptr.Pointer(), C.double(level))
@@ -840,11 +1005,7 @@ func (ptr *QWidget) SetWindowOpacity(level float64) {
 }
 
 func (ptr *QWidget) SetWindowState(windowState core.Qt__WindowState) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setWindowState")
-		}
-	}()
+	defer qt.Recovering("QWidget::setWindowState")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetWindowState(ptr.Pointer(), C.int(windowState))
@@ -852,23 +1013,46 @@ func (ptr *QWidget) SetWindowState(windowState core.Qt__WindowState) {
 }
 
 func (ptr *QWidget) SetWindowTitle(v string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setWindowTitle")
-		}
-	}()
+	defer qt.Recovering("QWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetWindowTitle(ptr.Pointer(), C.CString(v))
 	}
 }
 
+func (ptr *QWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
+	defer qt.Recovering("connect QWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectShowEvent() {
+	defer qt.Recovering("disconnect QWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+	}
+}
+
+//export callbackQWidgetShowEvent
+func callbackQWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::showEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) StatusTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::statusTip")
-		}
-	}()
+	defer qt.Recovering("QWidget::statusTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWidget_StatusTip(ptr.Pointer()))
@@ -877,11 +1061,7 @@ func (ptr *QWidget) StatusTip() string {
 }
 
 func (ptr *QWidget) StyleSheet() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::styleSheet")
-		}
-	}()
+	defer qt.Recovering("QWidget::styleSheet")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWidget_StyleSheet(ptr.Pointer()))
@@ -890,11 +1070,7 @@ func (ptr *QWidget) StyleSheet() string {
 }
 
 func (ptr *QWidget) ToolTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::toolTip")
-		}
-	}()
+	defer qt.Recovering("QWidget::toolTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWidget_ToolTip(ptr.Pointer()))
@@ -903,11 +1079,7 @@ func (ptr *QWidget) ToolTip() string {
 }
 
 func (ptr *QWidget) ToolTipDuration() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::toolTipDuration")
-		}
-	}()
+	defer qt.Recovering("QWidget::toolTipDuration")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidget_ToolTipDuration(ptr.Pointer()))
@@ -916,11 +1088,7 @@ func (ptr *QWidget) ToolTipDuration() int {
 }
 
 func (ptr *QWidget) UnsetCursor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::unsetCursor")
-		}
-	}()
+	defer qt.Recovering("QWidget::unsetCursor")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_UnsetCursor(ptr.Pointer())
@@ -928,11 +1096,7 @@ func (ptr *QWidget) UnsetCursor() {
 }
 
 func (ptr *QWidget) UnsetLayoutDirection() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::unsetLayoutDirection")
-		}
-	}()
+	defer qt.Recovering("QWidget::unsetLayoutDirection")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_UnsetLayoutDirection(ptr.Pointer())
@@ -940,11 +1104,7 @@ func (ptr *QWidget) UnsetLayoutDirection() {
 }
 
 func (ptr *QWidget) UnsetLocale() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::unsetLocale")
-		}
-	}()
+	defer qt.Recovering("QWidget::unsetLocale")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_UnsetLocale(ptr.Pointer())
@@ -952,11 +1112,7 @@ func (ptr *QWidget) UnsetLocale() {
 }
 
 func (ptr *QWidget) WhatsThis() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::whatsThis")
-		}
-	}()
+	defer qt.Recovering("QWidget::whatsThis")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWidget_WhatsThis(ptr.Pointer()))
@@ -965,11 +1121,7 @@ func (ptr *QWidget) WhatsThis() string {
 }
 
 func (ptr *QWidget) WindowFilePath() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowFilePath")
-		}
-	}()
+	defer qt.Recovering("QWidget::windowFilePath")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWidget_WindowFilePath(ptr.Pointer()))
@@ -978,11 +1130,7 @@ func (ptr *QWidget) WindowFilePath() string {
 }
 
 func (ptr *QWidget) WindowIconText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowIconText")
-		}
-	}()
+	defer qt.Recovering("QWidget::windowIconText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWidget_WindowIconText(ptr.Pointer()))
@@ -991,11 +1139,7 @@ func (ptr *QWidget) WindowIconText() string {
 }
 
 func (ptr *QWidget) WindowModality() core.Qt__WindowModality {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowModality")
-		}
-	}()
+	defer qt.Recovering("QWidget::windowModality")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__WindowModality(C.QWidget_WindowModality(ptr.Pointer()))
@@ -1004,11 +1148,7 @@ func (ptr *QWidget) WindowModality() core.Qt__WindowModality {
 }
 
 func (ptr *QWidget) WindowOpacity() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowOpacity")
-		}
-	}()
+	defer qt.Recovering("QWidget::windowOpacity")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QWidget_WindowOpacity(ptr.Pointer()))
@@ -1017,11 +1157,7 @@ func (ptr *QWidget) WindowOpacity() float64 {
 }
 
 func (ptr *QWidget) WindowTitle() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowTitle")
-		}
-	}()
+	defer qt.Recovering("QWidget::windowTitle")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWidget_WindowTitle(ptr.Pointer()))
@@ -1030,11 +1166,7 @@ func (ptr *QWidget) WindowTitle() string {
 }
 
 func (ptr *QWidget) X() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::x")
-		}
-	}()
+	defer qt.Recovering("QWidget::x")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidget_X(ptr.Pointer()))
@@ -1043,11 +1175,7 @@ func (ptr *QWidget) X() int {
 }
 
 func (ptr *QWidget) Y() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::y")
-		}
-	}()
+	defer qt.Recovering("QWidget::y")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidget_Y(ptr.Pointer()))
@@ -1056,21 +1184,13 @@ func (ptr *QWidget) Y() int {
 }
 
 func NewQWidget(parent QWidget_ITF, f core.Qt__WindowType) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::QWidget")
-		}
-	}()
+	defer qt.Recovering("QWidget::QWidget")
 
 	return NewQWidgetFromPointer(C.QWidget_NewQWidget(PointerFromQWidget(parent), C.int(f)))
 }
 
 func (ptr *QWidget) AddAction(action QAction_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::addAction")
-		}
-	}()
+	defer qt.Recovering("QWidget::addAction")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_AddAction(ptr.Pointer(), PointerFromQAction(action))
@@ -1078,11 +1198,7 @@ func (ptr *QWidget) AddAction(action QAction_ITF) {
 }
 
 func (ptr *QWidget) AdjustSize() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::adjustSize")
-		}
-	}()
+	defer qt.Recovering("QWidget::adjustSize")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_AdjustSize(ptr.Pointer())
@@ -1090,11 +1206,7 @@ func (ptr *QWidget) AdjustSize() {
 }
 
 func (ptr *QWidget) BackgroundRole() gui.QPalette__ColorRole {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::backgroundRole")
-		}
-	}()
+	defer qt.Recovering("QWidget::backgroundRole")
 
 	if ptr.Pointer() != nil {
 		return gui.QPalette__ColorRole(C.QWidget_BackgroundRole(ptr.Pointer()))
@@ -1103,11 +1215,7 @@ func (ptr *QWidget) BackgroundRole() gui.QPalette__ColorRole {
 }
 
 func (ptr *QWidget) BackingStore() *gui.QBackingStore {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::backingStore")
-		}
-	}()
+	defer qt.Recovering("QWidget::backingStore")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQBackingStoreFromPointer(C.QWidget_BackingStore(ptr.Pointer()))
@@ -1115,12 +1223,39 @@ func (ptr *QWidget) BackingStore() *gui.QBackingStore {
 	return nil
 }
 
+func (ptr *QWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQWidgetChangeEvent
+func callbackQWidgetChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) ChildAt2(p core.QPoint_ITF) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::childAt")
-		}
-	}()
+	defer qt.Recovering("QWidget::childAt")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidget_ChildAt2(ptr.Pointer(), core.PointerFromQPoint(p)))
@@ -1129,11 +1264,7 @@ func (ptr *QWidget) ChildAt2(p core.QPoint_ITF) *QWidget {
 }
 
 func (ptr *QWidget) ChildAt(x int, y int) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::childAt")
-		}
-	}()
+	defer qt.Recovering("QWidget::childAt")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidget_ChildAt(ptr.Pointer(), C.int(x), C.int(y)))
@@ -1142,11 +1273,7 @@ func (ptr *QWidget) ChildAt(x int, y int) *QWidget {
 }
 
 func (ptr *QWidget) ClearFocus() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::clearFocus")
-		}
-	}()
+	defer qt.Recovering("QWidget::clearFocus")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ClearFocus(ptr.Pointer())
@@ -1154,11 +1281,7 @@ func (ptr *QWidget) ClearFocus() {
 }
 
 func (ptr *QWidget) Close() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::close")
-		}
-	}()
+	defer qt.Recovering("QWidget::close")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_Close(ptr.Pointer()) != 0
@@ -1166,12 +1289,99 @@ func (ptr *QWidget) Close() bool {
 	return false
 }
 
+func (ptr *QWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
+	defer qt.Recovering("connect QWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectCloseEvent() {
+	defer qt.Recovering("disconnect QWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+	}
+}
+
+//export callbackQWidgetCloseEvent
+func callbackQWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::closeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "closeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
+	defer qt.Recovering("connect QWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectContextMenuEvent() {
+	defer qt.Recovering("disconnect QWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+	}
+}
+
+//export callbackQWidgetContextMenuEvent
+func callbackQWidgetContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::contextMenuEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "contextMenuEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectCustomContextMenuRequested(f func(pos *core.QPoint)) {
+	defer qt.Recovering("connect QWidget::customContextMenuRequested")
+
+	if ptr.Pointer() != nil {
+		C.QWidget_ConnectCustomContextMenuRequested(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "customContextMenuRequested", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectCustomContextMenuRequested() {
+	defer qt.Recovering("disconnect QWidget::customContextMenuRequested")
+
+	if ptr.Pointer() != nil {
+		C.QWidget_DisconnectCustomContextMenuRequested(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "customContextMenuRequested")
+	}
+}
+
+//export callbackQWidgetCustomContextMenuRequested
+func callbackQWidgetCustomContextMenuRequested(ptrName *C.char, pos unsafe.Pointer) {
+	defer qt.Recovering("callback QWidget::customContextMenuRequested")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "customContextMenuRequested")
+	if signal != nil {
+		signal.(func(*core.QPoint))(core.NewQPointFromPointer(pos))
+	}
+
+}
+
 func (ptr *QWidget) EnsurePolished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::ensurePolished")
-		}
-	}()
+	defer qt.Recovering("QWidget::ensurePolished")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_EnsurePolished(ptr.Pointer())
@@ -1179,11 +1389,7 @@ func (ptr *QWidget) EnsurePolished() {
 }
 
 func (ptr *QWidget) FocusProxy() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::focusProxy")
-		}
-	}()
+	defer qt.Recovering("QWidget::focusProxy")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidget_FocusProxy(ptr.Pointer()))
@@ -1192,11 +1398,7 @@ func (ptr *QWidget) FocusProxy() *QWidget {
 }
 
 func (ptr *QWidget) FocusWidget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::focusWidget")
-		}
-	}()
+	defer qt.Recovering("QWidget::focusWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidget_FocusWidget(ptr.Pointer()))
@@ -1205,11 +1407,7 @@ func (ptr *QWidget) FocusWidget() *QWidget {
 }
 
 func (ptr *QWidget) ForegroundRole() gui.QPalette__ColorRole {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::foregroundRole")
-		}
-	}()
+	defer qt.Recovering("QWidget::foregroundRole")
 
 	if ptr.Pointer() != nil {
 		return gui.QPalette__ColorRole(C.QWidget_ForegroundRole(ptr.Pointer()))
@@ -1218,11 +1416,7 @@ func (ptr *QWidget) ForegroundRole() gui.QPalette__ColorRole {
 }
 
 func (ptr *QWidget) GetContentsMargins(left int, top int, right int, bottom int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::getContentsMargins")
-		}
-	}()
+	defer qt.Recovering("QWidget::getContentsMargins")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_GetContentsMargins(ptr.Pointer(), C.int(left), C.int(top), C.int(right), C.int(bottom))
@@ -1230,11 +1424,7 @@ func (ptr *QWidget) GetContentsMargins(left int, top int, right int, bottom int)
 }
 
 func (ptr *QWidget) GrabGesture(gesture core.Qt__GestureType, flags core.Qt__GestureFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::grabGesture")
-		}
-	}()
+	defer qt.Recovering("QWidget::grabGesture")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_GrabGesture(ptr.Pointer(), C.int(gesture), C.int(flags))
@@ -1242,11 +1432,7 @@ func (ptr *QWidget) GrabGesture(gesture core.Qt__GestureType, flags core.Qt__Ges
 }
 
 func (ptr *QWidget) GrabShortcut(key gui.QKeySequence_ITF, context core.Qt__ShortcutContext) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::grabShortcut")
-		}
-	}()
+	defer qt.Recovering("QWidget::grabShortcut")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidget_GrabShortcut(ptr.Pointer(), gui.PointerFromQKeySequence(key), C.int(context)))
@@ -1255,11 +1441,7 @@ func (ptr *QWidget) GrabShortcut(key gui.QKeySequence_ITF, context core.Qt__Shor
 }
 
 func (ptr *QWidget) GraphicsEffect() *QGraphicsEffect {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::graphicsEffect")
-		}
-	}()
+	defer qt.Recovering("QWidget::graphicsEffect")
 
 	if ptr.Pointer() != nil {
 		return NewQGraphicsEffectFromPointer(C.QWidget_GraphicsEffect(ptr.Pointer()))
@@ -1268,11 +1450,7 @@ func (ptr *QWidget) GraphicsEffect() *QGraphicsEffect {
 }
 
 func (ptr *QWidget) GraphicsProxyWidget() *QGraphicsProxyWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::graphicsProxyWidget")
-		}
-	}()
+	defer qt.Recovering("QWidget::graphicsProxyWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQGraphicsProxyWidgetFromPointer(C.QWidget_GraphicsProxyWidget(ptr.Pointer()))
@@ -1281,11 +1459,7 @@ func (ptr *QWidget) GraphicsProxyWidget() *QGraphicsProxyWidget {
 }
 
 func (ptr *QWidget) HasHeightForWidth() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::hasHeightForWidth")
-		}
-	}()
+	defer qt.Recovering("QWidget::hasHeightForWidth")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_HasHeightForWidth(ptr.Pointer()) != 0
@@ -1294,11 +1468,7 @@ func (ptr *QWidget) HasHeightForWidth() bool {
 }
 
 func (ptr *QWidget) HasMouseTracking() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::hasMouseTracking")
-		}
-	}()
+	defer qt.Recovering("QWidget::hasMouseTracking")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_HasMouseTracking(ptr.Pointer()) != 0
@@ -1307,11 +1477,7 @@ func (ptr *QWidget) HasMouseTracking() bool {
 }
 
 func (ptr *QWidget) Height() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::height")
-		}
-	}()
+	defer qt.Recovering("QWidget::height")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidget_Height(ptr.Pointer()))
@@ -1320,11 +1486,7 @@ func (ptr *QWidget) Height() int {
 }
 
 func (ptr *QWidget) HeightForWidth(w int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::heightForWidth")
-		}
-	}()
+	defer qt.Recovering("QWidget::heightForWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidget_HeightForWidth(ptr.Pointer(), C.int(w)))
@@ -1333,23 +1495,77 @@ func (ptr *QWidget) HeightForWidth(w int) int {
 }
 
 func (ptr *QWidget) Hide() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::hide")
-		}
-	}()
+	defer qt.Recovering("QWidget::hide")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Hide(ptr.Pointer())
 	}
 }
 
+func (ptr *QWidget) ConnectInitPainter(f func(painter *gui.QPainter)) {
+	defer qt.Recovering("connect QWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "initPainter", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectInitPainter() {
+	defer qt.Recovering("disconnect QWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "initPainter")
+	}
+}
+
+//export callbackQWidgetInitPainter
+func callbackQWidgetInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::initPainter")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "initPainter")
+	if signal != nil {
+		defer signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
+	defer qt.Recovering("connect QWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectInputMethodEvent() {
+	defer qt.Recovering("disconnect QWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+	}
+}
+
+//export callbackQWidgetInputMethodEvent
+func callbackQWidgetInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::inputMethodEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "inputMethodEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::inputMethodQuery")
-		}
-	}()
+	defer qt.Recovering("QWidget::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QWidget_InputMethodQuery(ptr.Pointer(), C.int(query)))
@@ -1358,11 +1574,7 @@ func (ptr *QWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVar
 }
 
 func (ptr *QWidget) InsertAction(before QAction_ITF, action QAction_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::insertAction")
-		}
-	}()
+	defer qt.Recovering("QWidget::insertAction")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_InsertAction(ptr.Pointer(), PointerFromQAction(before), PointerFromQAction(action))
@@ -1370,11 +1582,7 @@ func (ptr *QWidget) InsertAction(before QAction_ITF, action QAction_ITF) {
 }
 
 func (ptr *QWidget) IsAncestorOf(child QWidget_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isAncestorOf")
-		}
-	}()
+	defer qt.Recovering("QWidget::isAncestorOf")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsAncestorOf(ptr.Pointer(), PointerFromQWidget(child)) != 0
@@ -1383,11 +1591,7 @@ func (ptr *QWidget) IsAncestorOf(child QWidget_ITF) bool {
 }
 
 func (ptr *QWidget) IsEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isEnabled")
-		}
-	}()
+	defer qt.Recovering("QWidget::isEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsEnabled(ptr.Pointer()) != 0
@@ -1396,11 +1600,7 @@ func (ptr *QWidget) IsEnabled() bool {
 }
 
 func (ptr *QWidget) IsEnabledTo(ancestor QWidget_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isEnabledTo")
-		}
-	}()
+	defer qt.Recovering("QWidget::isEnabledTo")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsEnabledTo(ptr.Pointer(), PointerFromQWidget(ancestor)) != 0
@@ -1409,11 +1609,7 @@ func (ptr *QWidget) IsEnabledTo(ancestor QWidget_ITF) bool {
 }
 
 func (ptr *QWidget) IsHidden() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isHidden")
-		}
-	}()
+	defer qt.Recovering("QWidget::isHidden")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsHidden(ptr.Pointer()) != 0
@@ -1422,11 +1618,7 @@ func (ptr *QWidget) IsHidden() bool {
 }
 
 func (ptr *QWidget) IsModal() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isModal")
-		}
-	}()
+	defer qt.Recovering("QWidget::isModal")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsModal(ptr.Pointer()) != 0
@@ -1435,11 +1627,7 @@ func (ptr *QWidget) IsModal() bool {
 }
 
 func (ptr *QWidget) IsVisible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isVisible")
-		}
-	}()
+	defer qt.Recovering("QWidget::isVisible")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsVisible(ptr.Pointer()) != 0
@@ -1448,11 +1636,7 @@ func (ptr *QWidget) IsVisible() bool {
 }
 
 func (ptr *QWidget) IsVisibleTo(ancestor QWidget_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isVisibleTo")
-		}
-	}()
+	defer qt.Recovering("QWidget::isVisibleTo")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsVisibleTo(ptr.Pointer(), PointerFromQWidget(ancestor)) != 0
@@ -1461,11 +1645,7 @@ func (ptr *QWidget) IsVisibleTo(ancestor QWidget_ITF) bool {
 }
 
 func (ptr *QWidget) IsWindow() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::isWindow")
-		}
-	}()
+	defer qt.Recovering("QWidget::isWindow")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_IsWindow(ptr.Pointer()) != 0
@@ -1473,12 +1653,70 @@ func (ptr *QWidget) IsWindow() bool {
 	return false
 }
 
+func (ptr *QWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQWidgetKeyPressEvent
+func callbackQWidgetKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::keyPressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectKeyReleaseEvent() {
+	defer qt.Recovering("disconnect QWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+	}
+}
+
+//export callbackQWidgetKeyReleaseEvent
+func callbackQWidgetKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::keyReleaseEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) Layout() *QLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::layout")
-		}
-	}()
+	defer qt.Recovering("QWidget::layout")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutFromPointer(C.QWidget_Layout(ptr.Pointer()))
@@ -1487,23 +1725,51 @@ func (ptr *QWidget) Layout() *QLayout {
 }
 
 func (ptr *QWidget) Lower() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::lower")
-		}
-	}()
+	defer qt.Recovering("QWidget::lower")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Lower(ptr.Pointer())
 	}
 }
 
+func (ptr *QWidget) MapFrom(parent QWidget_ITF, pos core.QPoint_ITF) *core.QPoint {
+	defer qt.Recovering("QWidget::mapFrom")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QWidget_MapFrom(ptr.Pointer(), PointerFromQWidget(parent), core.PointerFromQPoint(pos)))
+	}
+	return nil
+}
+
+func (ptr *QWidget) MapFromParent(pos core.QPoint_ITF) *core.QPoint {
+	defer qt.Recovering("QWidget::mapFromParent")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QWidget_MapFromParent(ptr.Pointer(), core.PointerFromQPoint(pos)))
+	}
+	return nil
+}
+
+func (ptr *QWidget) MapTo(parent QWidget_ITF, pos core.QPoint_ITF) *core.QPoint {
+	defer qt.Recovering("QWidget::mapTo")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QWidget_MapTo(ptr.Pointer(), PointerFromQWidget(parent), core.PointerFromQPoint(pos)))
+	}
+	return nil
+}
+
+func (ptr *QWidget) MapToParent(pos core.QPoint_ITF) *core.QPoint {
+	defer qt.Recovering("QWidget::mapToParent")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QWidget_MapToParent(ptr.Pointer(), core.PointerFromQPoint(pos)))
+	}
+	return nil
+}
+
 func (ptr *QWidget) Mask() *gui.QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::mask")
-		}
-	}()
+	defer qt.Recovering("QWidget::mask")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQRegionFromPointer(C.QWidget_Mask(ptr.Pointer()))
@@ -1512,11 +1778,7 @@ func (ptr *QWidget) Mask() *gui.QRegion {
 }
 
 func (ptr *QWidget) MaximumHeight() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::maximumHeight")
-		}
-	}()
+	defer qt.Recovering("QWidget::maximumHeight")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidget_MaximumHeight(ptr.Pointer()))
@@ -1525,11 +1787,7 @@ func (ptr *QWidget) MaximumHeight() int {
 }
 
 func (ptr *QWidget) MaximumWidth() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::maximumWidth")
-		}
-	}()
+	defer qt.Recovering("QWidget::maximumWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidget_MaximumWidth(ptr.Pointer()))
@@ -1538,11 +1796,7 @@ func (ptr *QWidget) MaximumWidth() int {
 }
 
 func (ptr *QWidget) MinimumHeight() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::minimumHeight")
-		}
-	}()
+	defer qt.Recovering("QWidget::minimumHeight")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidget_MinimumHeight(ptr.Pointer()))
@@ -1551,11 +1805,7 @@ func (ptr *QWidget) MinimumHeight() int {
 }
 
 func (ptr *QWidget) MinimumWidth() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::minimumWidth")
-		}
-	}()
+	defer qt.Recovering("QWidget::minimumWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidget_MinimumWidth(ptr.Pointer()))
@@ -1563,12 +1813,132 @@ func (ptr *QWidget) MinimumWidth() int {
 	return 0
 }
 
+func (ptr *QWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectMouseDoubleClickEvent() {
+	defer qt.Recovering("disconnect QWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+	}
+}
+
+//export callbackQWidgetMouseDoubleClickEvent
+func callbackQWidgetMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::mouseDoubleClickEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectMouseMoveEvent() {
+	defer qt.Recovering("disconnect QWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+	}
+}
+
+//export callbackQWidgetMouseMoveEvent
+func callbackQWidgetMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::mouseMoveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQWidgetMousePressEvent
+func callbackQWidgetMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::mousePressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectMouseReleaseEvent() {
+	defer qt.Recovering("disconnect QWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+	}
+}
+
+//export callbackQWidgetMouseReleaseEvent
+func callbackQWidgetMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::mouseReleaseEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) Move2(x int, y int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::move")
-		}
-	}()
+	defer qt.Recovering("QWidget::move")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Move2(ptr.Pointer(), C.int(x), C.int(y))
@@ -1576,11 +1946,7 @@ func (ptr *QWidget) Move2(x int, y int) {
 }
 
 func (ptr *QWidget) NativeParentWidget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::nativeParentWidget")
-		}
-	}()
+	defer qt.Recovering("QWidget::nativeParentWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidget_NativeParentWidget(ptr.Pointer()))
@@ -1589,11 +1955,7 @@ func (ptr *QWidget) NativeParentWidget() *QWidget {
 }
 
 func (ptr *QWidget) NextInFocusChain() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::nextInFocusChain")
-		}
-	}()
+	defer qt.Recovering("QWidget::nextInFocusChain")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidget_NextInFocusChain(ptr.Pointer()))
@@ -1602,11 +1964,7 @@ func (ptr *QWidget) NextInFocusChain() *QWidget {
 }
 
 func (ptr *QWidget) OverrideWindowFlags(flags core.Qt__WindowType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::overrideWindowFlags")
-		}
-	}()
+	defer qt.Recovering("QWidget::overrideWindowFlags")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_OverrideWindowFlags(ptr.Pointer(), C.int(flags))
@@ -1614,11 +1972,7 @@ func (ptr *QWidget) OverrideWindowFlags(flags core.Qt__WindowType) {
 }
 
 func (ptr *QWidget) ParentWidget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::parentWidget")
-		}
-	}()
+	defer qt.Recovering("QWidget::parentWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidget_ParentWidget(ptr.Pointer()))
@@ -1627,11 +1981,7 @@ func (ptr *QWidget) ParentWidget() *QWidget {
 }
 
 func (ptr *QWidget) PreviousInFocusChain() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::previousInFocusChain")
-		}
-	}()
+	defer qt.Recovering("QWidget::previousInFocusChain")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidget_PreviousInFocusChain(ptr.Pointer()))
@@ -1640,11 +1990,7 @@ func (ptr *QWidget) PreviousInFocusChain() *QWidget {
 }
 
 func (ptr *QWidget) Raise() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::raise")
-		}
-	}()
+	defer qt.Recovering("QWidget::raise")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Raise(ptr.Pointer())
@@ -1652,11 +1998,7 @@ func (ptr *QWidget) Raise() {
 }
 
 func (ptr *QWidget) ReleaseShortcut(id int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::releaseShortcut")
-		}
-	}()
+	defer qt.Recovering("QWidget::releaseShortcut")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ReleaseShortcut(ptr.Pointer(), C.int(id))
@@ -1664,11 +2006,7 @@ func (ptr *QWidget) ReleaseShortcut(id int) {
 }
 
 func (ptr *QWidget) RemoveAction(action QAction_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::removeAction")
-		}
-	}()
+	defer qt.Recovering("QWidget::removeAction")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_RemoveAction(ptr.Pointer(), PointerFromQAction(action))
@@ -1676,11 +2014,7 @@ func (ptr *QWidget) RemoveAction(action QAction_ITF) {
 }
 
 func (ptr *QWidget) Render(target gui.QPaintDevice_ITF, targetOffset core.QPoint_ITF, sourceRegion gui.QRegion_ITF, renderFlags QWidget__RenderFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::render")
-		}
-	}()
+	defer qt.Recovering("QWidget::render")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Render(ptr.Pointer(), gui.PointerFromQPaintDevice(target), core.PointerFromQPoint(targetOffset), gui.PointerFromQRegion(sourceRegion), C.int(renderFlags))
@@ -1688,11 +2022,7 @@ func (ptr *QWidget) Render(target gui.QPaintDevice_ITF, targetOffset core.QPoint
 }
 
 func (ptr *QWidget) Render2(painter gui.QPainter_ITF, targetOffset core.QPoint_ITF, sourceRegion gui.QRegion_ITF, renderFlags QWidget__RenderFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::render")
-		}
-	}()
+	defer qt.Recovering("QWidget::render")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Render2(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQPoint(targetOffset), gui.PointerFromQRegion(sourceRegion), C.int(renderFlags))
@@ -1700,11 +2030,7 @@ func (ptr *QWidget) Render2(painter gui.QPainter_ITF, targetOffset core.QPoint_I
 }
 
 func (ptr *QWidget) Repaint() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::repaint")
-		}
-	}()
+	defer qt.Recovering("QWidget::repaint")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Repaint(ptr.Pointer())
@@ -1712,11 +2038,7 @@ func (ptr *QWidget) Repaint() {
 }
 
 func (ptr *QWidget) Repaint3(rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::repaint")
-		}
-	}()
+	defer qt.Recovering("QWidget::repaint")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Repaint3(ptr.Pointer(), core.PointerFromQRect(rect))
@@ -1724,11 +2046,7 @@ func (ptr *QWidget) Repaint3(rect core.QRect_ITF) {
 }
 
 func (ptr *QWidget) Repaint4(rgn gui.QRegion_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::repaint")
-		}
-	}()
+	defer qt.Recovering("QWidget::repaint")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Repaint4(ptr.Pointer(), gui.PointerFromQRegion(rgn))
@@ -1736,11 +2054,7 @@ func (ptr *QWidget) Repaint4(rgn gui.QRegion_ITF) {
 }
 
 func (ptr *QWidget) Repaint2(x int, y int, w int, h int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::repaint")
-		}
-	}()
+	defer qt.Recovering("QWidget::repaint")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Repaint2(ptr.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h))
@@ -1748,23 +2062,46 @@ func (ptr *QWidget) Repaint2(x int, y int, w int, h int) {
 }
 
 func (ptr *QWidget) Resize2(w int, h int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::resize")
-		}
-	}()
+	defer qt.Recovering("QWidget::resize")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Resize2(ptr.Pointer(), C.int(w), C.int(h))
 	}
 }
 
+func (ptr *QWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
+	defer qt.Recovering("connect QWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectResizeEvent() {
+	defer qt.Recovering("disconnect QWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+	}
+}
+
+//export callbackQWidgetResizeEvent
+func callbackQWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::resizeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) RestoreGeometry(geometry core.QByteArray_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::restoreGeometry")
-		}
-	}()
+	defer qt.Recovering("QWidget::restoreGeometry")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_RestoreGeometry(ptr.Pointer(), core.PointerFromQByteArray(geometry)) != 0
@@ -1773,11 +2110,7 @@ func (ptr *QWidget) RestoreGeometry(geometry core.QByteArray_ITF) bool {
 }
 
 func (ptr *QWidget) SaveGeometry() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::saveGeometry")
-		}
-	}()
+	defer qt.Recovering("QWidget::saveGeometry")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QWidget_SaveGeometry(ptr.Pointer()))
@@ -1786,11 +2119,7 @@ func (ptr *QWidget) SaveGeometry() *core.QByteArray {
 }
 
 func (ptr *QWidget) Scroll(dx int, dy int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::scroll")
-		}
-	}()
+	defer qt.Recovering("QWidget::scroll")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Scroll(ptr.Pointer(), C.int(dx), C.int(dy))
@@ -1798,11 +2127,7 @@ func (ptr *QWidget) Scroll(dx int, dy int) {
 }
 
 func (ptr *QWidget) Scroll2(dx int, dy int, r core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::scroll")
-		}
-	}()
+	defer qt.Recovering("QWidget::scroll")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Scroll2(ptr.Pointer(), C.int(dx), C.int(dy), core.PointerFromQRect(r))
@@ -1810,11 +2135,7 @@ func (ptr *QWidget) Scroll2(dx int, dy int, r core.QRect_ITF) {
 }
 
 func (ptr *QWidget) SetAttribute(attribute core.Qt__WidgetAttribute, on bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setAttribute")
-		}
-	}()
+	defer qt.Recovering("QWidget::setAttribute")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetAttribute(ptr.Pointer(), C.int(attribute), C.int(qt.GoBoolToInt(on)))
@@ -1822,11 +2143,7 @@ func (ptr *QWidget) SetAttribute(attribute core.Qt__WidgetAttribute, on bool) {
 }
 
 func (ptr *QWidget) SetBackgroundRole(role gui.QPalette__ColorRole) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setBackgroundRole")
-		}
-	}()
+	defer qt.Recovering("QWidget::setBackgroundRole")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetBackgroundRole(ptr.Pointer(), C.int(role))
@@ -1834,11 +2151,7 @@ func (ptr *QWidget) SetBackgroundRole(role gui.QPalette__ColorRole) {
 }
 
 func (ptr *QWidget) SetBaseSize(v core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setBaseSize")
-		}
-	}()
+	defer qt.Recovering("QWidget::setBaseSize")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetBaseSize(ptr.Pointer(), core.PointerFromQSize(v))
@@ -1846,11 +2159,7 @@ func (ptr *QWidget) SetBaseSize(v core.QSize_ITF) {
 }
 
 func (ptr *QWidget) SetBaseSize2(basew int, baseh int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setBaseSize")
-		}
-	}()
+	defer qt.Recovering("QWidget::setBaseSize")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetBaseSize2(ptr.Pointer(), C.int(basew), C.int(baseh))
@@ -1858,11 +2167,7 @@ func (ptr *QWidget) SetBaseSize2(basew int, baseh int) {
 }
 
 func (ptr *QWidget) SetContentsMargins2(margins core.QMargins_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setContentsMargins")
-		}
-	}()
+	defer qt.Recovering("QWidget::setContentsMargins")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetContentsMargins2(ptr.Pointer(), core.PointerFromQMargins(margins))
@@ -1870,11 +2175,7 @@ func (ptr *QWidget) SetContentsMargins2(margins core.QMargins_ITF) {
 }
 
 func (ptr *QWidget) SetContentsMargins(left int, top int, right int, bottom int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setContentsMargins")
-		}
-	}()
+	defer qt.Recovering("QWidget::setContentsMargins")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetContentsMargins(ptr.Pointer(), C.int(left), C.int(top), C.int(right), C.int(bottom))
@@ -1882,11 +2183,7 @@ func (ptr *QWidget) SetContentsMargins(left int, top int, right int, bottom int)
 }
 
 func (ptr *QWidget) SetDisabled(disable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setDisabled")
-		}
-	}()
+	defer qt.Recovering("QWidget::setDisabled")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetDisabled(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
@@ -1894,11 +2191,7 @@ func (ptr *QWidget) SetDisabled(disable bool) {
 }
 
 func (ptr *QWidget) SetFixedHeight(h int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setFixedHeight")
-		}
-	}()
+	defer qt.Recovering("QWidget::setFixedHeight")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetFixedHeight(ptr.Pointer(), C.int(h))
@@ -1906,11 +2199,7 @@ func (ptr *QWidget) SetFixedHeight(h int) {
 }
 
 func (ptr *QWidget) SetFixedSize(s core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setFixedSize")
-		}
-	}()
+	defer qt.Recovering("QWidget::setFixedSize")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetFixedSize(ptr.Pointer(), core.PointerFromQSize(s))
@@ -1918,11 +2207,7 @@ func (ptr *QWidget) SetFixedSize(s core.QSize_ITF) {
 }
 
 func (ptr *QWidget) SetFixedWidth(w int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setFixedWidth")
-		}
-	}()
+	defer qt.Recovering("QWidget::setFixedWidth")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetFixedWidth(ptr.Pointer(), C.int(w))
@@ -1930,11 +2215,7 @@ func (ptr *QWidget) SetFixedWidth(w int) {
 }
 
 func (ptr *QWidget) SetFocus2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setFocus")
-		}
-	}()
+	defer qt.Recovering("QWidget::setFocus")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetFocus2(ptr.Pointer())
@@ -1942,11 +2223,7 @@ func (ptr *QWidget) SetFocus2() {
 }
 
 func (ptr *QWidget) SetFocus(reason core.Qt__FocusReason) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setFocus")
-		}
-	}()
+	defer qt.Recovering("QWidget::setFocus")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetFocus(ptr.Pointer(), C.int(reason))
@@ -1954,11 +2231,7 @@ func (ptr *QWidget) SetFocus(reason core.Qt__FocusReason) {
 }
 
 func (ptr *QWidget) SetFocusProxy(w QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setFocusProxy")
-		}
-	}()
+	defer qt.Recovering("QWidget::setFocusProxy")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetFocusProxy(ptr.Pointer(), PointerFromQWidget(w))
@@ -1966,11 +2239,7 @@ func (ptr *QWidget) SetFocusProxy(w QWidget_ITF) {
 }
 
 func (ptr *QWidget) SetForegroundRole(role gui.QPalette__ColorRole) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setForegroundRole")
-		}
-	}()
+	defer qt.Recovering("QWidget::setForegroundRole")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetForegroundRole(ptr.Pointer(), C.int(role))
@@ -1978,11 +2247,7 @@ func (ptr *QWidget) SetForegroundRole(role gui.QPalette__ColorRole) {
 }
 
 func (ptr *QWidget) SetGeometry2(x int, y int, w int, h int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setGeometry")
-		}
-	}()
+	defer qt.Recovering("QWidget::setGeometry")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetGeometry2(ptr.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h))
@@ -1990,11 +2255,7 @@ func (ptr *QWidget) SetGeometry2(x int, y int, w int, h int) {
 }
 
 func (ptr *QWidget) SetGraphicsEffect(effect QGraphicsEffect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setGraphicsEffect")
-		}
-	}()
+	defer qt.Recovering("QWidget::setGraphicsEffect")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetGraphicsEffect(ptr.Pointer(), PointerFromQGraphicsEffect(effect))
@@ -2002,11 +2263,7 @@ func (ptr *QWidget) SetGraphicsEffect(effect QGraphicsEffect_ITF) {
 }
 
 func (ptr *QWidget) SetHidden(hidden bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setHidden")
-		}
-	}()
+	defer qt.Recovering("QWidget::setHidden")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetHidden(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
@@ -2014,11 +2271,7 @@ func (ptr *QWidget) SetHidden(hidden bool) {
 }
 
 func (ptr *QWidget) SetMaximumSize(v core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setMaximumSize")
-		}
-	}()
+	defer qt.Recovering("QWidget::setMaximumSize")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetMaximumSize(ptr.Pointer(), core.PointerFromQSize(v))
@@ -2026,11 +2279,7 @@ func (ptr *QWidget) SetMaximumSize(v core.QSize_ITF) {
 }
 
 func (ptr *QWidget) SetMaximumSize2(maxw int, maxh int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setMaximumSize")
-		}
-	}()
+	defer qt.Recovering("QWidget::setMaximumSize")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetMaximumSize2(ptr.Pointer(), C.int(maxw), C.int(maxh))
@@ -2038,11 +2287,7 @@ func (ptr *QWidget) SetMaximumSize2(maxw int, maxh int) {
 }
 
 func (ptr *QWidget) SetMinimumSize(v core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setMinimumSize")
-		}
-	}()
+	defer qt.Recovering("QWidget::setMinimumSize")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetMinimumSize(ptr.Pointer(), core.PointerFromQSize(v))
@@ -2050,11 +2295,7 @@ func (ptr *QWidget) SetMinimumSize(v core.QSize_ITF) {
 }
 
 func (ptr *QWidget) SetMinimumSize2(minw int, minh int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setMinimumSize")
-		}
-	}()
+	defer qt.Recovering("QWidget::setMinimumSize")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetMinimumSize2(ptr.Pointer(), C.int(minw), C.int(minh))
@@ -2062,11 +2303,7 @@ func (ptr *QWidget) SetMinimumSize2(minw int, minh int) {
 }
 
 func (ptr *QWidget) SetMouseTracking(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setMouseTracking")
-		}
-	}()
+	defer qt.Recovering("QWidget::setMouseTracking")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetMouseTracking(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -2074,11 +2311,7 @@ func (ptr *QWidget) SetMouseTracking(enable bool) {
 }
 
 func (ptr *QWidget) SetParent(parent QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setParent")
-		}
-	}()
+	defer qt.Recovering("QWidget::setParent")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetParent(ptr.Pointer(), PointerFromQWidget(parent))
@@ -2086,11 +2319,7 @@ func (ptr *QWidget) SetParent(parent QWidget_ITF) {
 }
 
 func (ptr *QWidget) SetParent2(parent QWidget_ITF, f core.Qt__WindowType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setParent")
-		}
-	}()
+	defer qt.Recovering("QWidget::setParent")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetParent2(ptr.Pointer(), PointerFromQWidget(parent), C.int(f))
@@ -2098,11 +2327,7 @@ func (ptr *QWidget) SetParent2(parent QWidget_ITF, f core.Qt__WindowType) {
 }
 
 func (ptr *QWidget) SetShortcutAutoRepeat(id int, enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setShortcutAutoRepeat")
-		}
-	}()
+	defer qt.Recovering("QWidget::setShortcutAutoRepeat")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetShortcutAutoRepeat(ptr.Pointer(), C.int(id), C.int(qt.GoBoolToInt(enable)))
@@ -2110,11 +2335,7 @@ func (ptr *QWidget) SetShortcutAutoRepeat(id int, enable bool) {
 }
 
 func (ptr *QWidget) SetShortcutEnabled(id int, enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setShortcutEnabled")
-		}
-	}()
+	defer qt.Recovering("QWidget::setShortcutEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetShortcutEnabled(ptr.Pointer(), C.int(id), C.int(qt.GoBoolToInt(enable)))
@@ -2122,11 +2343,7 @@ func (ptr *QWidget) SetShortcutEnabled(id int, enable bool) {
 }
 
 func (ptr *QWidget) SetSizeIncrement(v core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setSizeIncrement")
-		}
-	}()
+	defer qt.Recovering("QWidget::setSizeIncrement")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetSizeIncrement(ptr.Pointer(), core.PointerFromQSize(v))
@@ -2134,11 +2351,7 @@ func (ptr *QWidget) SetSizeIncrement(v core.QSize_ITF) {
 }
 
 func (ptr *QWidget) SetSizeIncrement2(w int, h int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setSizeIncrement")
-		}
-	}()
+	defer qt.Recovering("QWidget::setSizeIncrement")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetSizeIncrement2(ptr.Pointer(), C.int(w), C.int(h))
@@ -2146,11 +2359,7 @@ func (ptr *QWidget) SetSizeIncrement2(w int, h int) {
 }
 
 func (ptr *QWidget) SetSizePolicy2(horizontal QSizePolicy__Policy, vertical QSizePolicy__Policy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setSizePolicy")
-		}
-	}()
+	defer qt.Recovering("QWidget::setSizePolicy")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetSizePolicy2(ptr.Pointer(), C.int(horizontal), C.int(vertical))
@@ -2158,11 +2367,7 @@ func (ptr *QWidget) SetSizePolicy2(horizontal QSizePolicy__Policy, vertical QSiz
 }
 
 func (ptr *QWidget) SetStyle(style QStyle_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setStyle")
-		}
-	}()
+	defer qt.Recovering("QWidget::setStyle")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetStyle(ptr.Pointer(), PointerFromQStyle(style))
@@ -2170,21 +2375,13 @@ func (ptr *QWidget) SetStyle(style QStyle_ITF) {
 }
 
 func QWidget_SetTabOrder(first QWidget_ITF, second QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setTabOrder")
-		}
-	}()
+	defer qt.Recovering("QWidget::setTabOrder")
 
 	C.QWidget_QWidget_SetTabOrder(PointerFromQWidget(first), PointerFromQWidget(second))
 }
 
 func (ptr *QWidget) SetWindowRole(role string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::setWindowRole")
-		}
-	}()
+	defer qt.Recovering("QWidget::setWindowRole")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_SetWindowRole(ptr.Pointer(), C.CString(role))
@@ -2192,11 +2389,7 @@ func (ptr *QWidget) SetWindowRole(role string) {
 }
 
 func (ptr *QWidget) Show() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::show")
-		}
-	}()
+	defer qt.Recovering("QWidget::show")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Show(ptr.Pointer())
@@ -2204,11 +2397,7 @@ func (ptr *QWidget) Show() {
 }
 
 func (ptr *QWidget) ShowFullScreen() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::showFullScreen")
-		}
-	}()
+	defer qt.Recovering("QWidget::showFullScreen")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ShowFullScreen(ptr.Pointer())
@@ -2216,11 +2405,7 @@ func (ptr *QWidget) ShowFullScreen() {
 }
 
 func (ptr *QWidget) ShowMaximized() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::showMaximized")
-		}
-	}()
+	defer qt.Recovering("QWidget::showMaximized")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ShowMaximized(ptr.Pointer())
@@ -2228,11 +2413,7 @@ func (ptr *QWidget) ShowMaximized() {
 }
 
 func (ptr *QWidget) ShowMinimized() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::showMinimized")
-		}
-	}()
+	defer qt.Recovering("QWidget::showMinimized")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ShowMinimized(ptr.Pointer())
@@ -2240,11 +2421,7 @@ func (ptr *QWidget) ShowMinimized() {
 }
 
 func (ptr *QWidget) ShowNormal() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::showNormal")
-		}
-	}()
+	defer qt.Recovering("QWidget::showNormal")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ShowNormal(ptr.Pointer())
@@ -2252,11 +2429,7 @@ func (ptr *QWidget) ShowNormal() {
 }
 
 func (ptr *QWidget) StackUnder(w QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::stackUnder")
-		}
-	}()
+	defer qt.Recovering("QWidget::stackUnder")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_StackUnder(ptr.Pointer(), PointerFromQWidget(w))
@@ -2264,11 +2437,7 @@ func (ptr *QWidget) StackUnder(w QWidget_ITF) {
 }
 
 func (ptr *QWidget) Style() *QStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::style")
-		}
-	}()
+	defer qt.Recovering("QWidget::style")
 
 	if ptr.Pointer() != nil {
 		return NewQStyleFromPointer(C.QWidget_Style(ptr.Pointer()))
@@ -2276,12 +2445,39 @@ func (ptr *QWidget) Style() *QStyle {
 	return nil
 }
 
+func (ptr *QWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
+	defer qt.Recovering("connect QWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "tabletEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectTabletEvent() {
+	defer qt.Recovering("disconnect QWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "tabletEvent")
+	}
+}
+
+//export callbackQWidgetTabletEvent
+func callbackQWidgetTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::tabletEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "tabletEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) TestAttribute(attribute core.Qt__WidgetAttribute) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::testAttribute")
-		}
-	}()
+	defer qt.Recovering("QWidget::testAttribute")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_TestAttribute(ptr.Pointer(), C.int(attribute)) != 0
@@ -2290,11 +2486,7 @@ func (ptr *QWidget) TestAttribute(attribute core.Qt__WidgetAttribute) bool {
 }
 
 func (ptr *QWidget) UnderMouse() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::underMouse")
-		}
-	}()
+	defer qt.Recovering("QWidget::underMouse")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_UnderMouse(ptr.Pointer()) != 0
@@ -2303,11 +2495,7 @@ func (ptr *QWidget) UnderMouse() bool {
 }
 
 func (ptr *QWidget) UngrabGesture(gesture core.Qt__GestureType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::ungrabGesture")
-		}
-	}()
+	defer qt.Recovering("QWidget::ungrabGesture")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_UngrabGesture(ptr.Pointer(), C.int(gesture))
@@ -2315,11 +2503,7 @@ func (ptr *QWidget) UngrabGesture(gesture core.Qt__GestureType) {
 }
 
 func (ptr *QWidget) Update() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::update")
-		}
-	}()
+	defer qt.Recovering("QWidget::update")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Update(ptr.Pointer())
@@ -2327,11 +2511,7 @@ func (ptr *QWidget) Update() {
 }
 
 func (ptr *QWidget) Update3(rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::update")
-		}
-	}()
+	defer qt.Recovering("QWidget::update")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Update3(ptr.Pointer(), core.PointerFromQRect(rect))
@@ -2339,11 +2519,7 @@ func (ptr *QWidget) Update3(rect core.QRect_ITF) {
 }
 
 func (ptr *QWidget) Update4(rgn gui.QRegion_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::update")
-		}
-	}()
+	defer qt.Recovering("QWidget::update")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Update4(ptr.Pointer(), gui.PointerFromQRegion(rgn))
@@ -2351,11 +2527,7 @@ func (ptr *QWidget) Update4(rgn gui.QRegion_ITF) {
 }
 
 func (ptr *QWidget) Update2(x int, y int, w int, h int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::update")
-		}
-	}()
+	defer qt.Recovering("QWidget::update")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_Update2(ptr.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h))
@@ -2363,11 +2535,7 @@ func (ptr *QWidget) Update2(x int, y int, w int, h int) {
 }
 
 func (ptr *QWidget) UpdateGeometry() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::updateGeometry")
-		}
-	}()
+	defer qt.Recovering("QWidget::updateGeometry")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_UpdateGeometry(ptr.Pointer())
@@ -2375,11 +2543,7 @@ func (ptr *QWidget) UpdateGeometry() {
 }
 
 func (ptr *QWidget) UpdatesEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::updatesEnabled")
-		}
-	}()
+	defer qt.Recovering("QWidget::updatesEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QWidget_UpdatesEnabled(ptr.Pointer()) != 0
@@ -2388,11 +2552,7 @@ func (ptr *QWidget) UpdatesEnabled() bool {
 }
 
 func (ptr *QWidget) VisibleRegion() *gui.QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::visibleRegion")
-		}
-	}()
+	defer qt.Recovering("QWidget::visibleRegion")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQRegionFromPointer(C.QWidget_VisibleRegion(ptr.Pointer()))
@@ -2400,12 +2560,39 @@ func (ptr *QWidget) VisibleRegion() *gui.QRegion {
 	return nil
 }
 
+func (ptr *QWidget) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
+	defer qt.Recovering("connect QWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQWidgetWheelEvent
+func callbackQWidgetWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::wheelEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidget) Width() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::width")
-		}
-	}()
+	defer qt.Recovering("QWidget::width")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidget_Width(ptr.Pointer()))
@@ -2414,11 +2601,7 @@ func (ptr *QWidget) Width() int {
 }
 
 func (ptr *QWidget) Window() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::window")
-		}
-	}()
+	defer qt.Recovering("QWidget::window")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidget_Window(ptr.Pointer()))
@@ -2427,11 +2610,7 @@ func (ptr *QWidget) Window() *QWidget {
 }
 
 func (ptr *QWidget) WindowFlags() core.Qt__WindowType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowFlags")
-		}
-	}()
+	defer qt.Recovering("QWidget::windowFlags")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__WindowType(C.QWidget_WindowFlags(ptr.Pointer()))
@@ -2440,11 +2619,7 @@ func (ptr *QWidget) WindowFlags() core.Qt__WindowType {
 }
 
 func (ptr *QWidget) WindowHandle() *gui.QWindow {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowHandle")
-		}
-	}()
+	defer qt.Recovering("QWidget::windowHandle")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQWindowFromPointer(C.QWidget_WindowHandle(ptr.Pointer()))
@@ -2453,11 +2628,7 @@ func (ptr *QWidget) WindowHandle() *gui.QWindow {
 }
 
 func (ptr *QWidget) ConnectWindowIconTextChanged(f func(iconText string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowIconTextChanged")
-		}
-	}()
+	defer qt.Recovering("connect QWidget::windowIconTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ConnectWindowIconTextChanged(ptr.Pointer())
@@ -2466,11 +2637,7 @@ func (ptr *QWidget) ConnectWindowIconTextChanged(f func(iconText string)) {
 }
 
 func (ptr *QWidget) DisconnectWindowIconTextChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowIconTextChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QWidget::windowIconTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_DisconnectWindowIconTextChanged(ptr.Pointer())
@@ -2480,21 +2647,17 @@ func (ptr *QWidget) DisconnectWindowIconTextChanged() {
 
 //export callbackQWidgetWindowIconTextChanged
 func callbackQWidgetWindowIconTextChanged(ptrName *C.char, iconText *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowIconTextChanged")
-		}
-	}()
+	defer qt.Recovering("callback QWidget::windowIconTextChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "windowIconTextChanged").(func(string))(C.GoString(iconText))
+	var signal = qt.GetSignal(C.GoString(ptrName), "windowIconTextChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(iconText))
+	}
+
 }
 
 func (ptr *QWidget) WindowRole() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowRole")
-		}
-	}()
+	defer qt.Recovering("QWidget::windowRole")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWidget_WindowRole(ptr.Pointer()))
@@ -2503,11 +2666,7 @@ func (ptr *QWidget) WindowRole() string {
 }
 
 func (ptr *QWidget) WindowState() core.Qt__WindowState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowState")
-		}
-	}()
+	defer qt.Recovering("QWidget::windowState")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__WindowState(C.QWidget_WindowState(ptr.Pointer()))
@@ -2516,11 +2675,7 @@ func (ptr *QWidget) WindowState() core.Qt__WindowState {
 }
 
 func (ptr *QWidget) ConnectWindowTitleChanged(f func(title string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowTitleChanged")
-		}
-	}()
+	defer qt.Recovering("connect QWidget::windowTitleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_ConnectWindowTitleChanged(ptr.Pointer())
@@ -2529,11 +2684,7 @@ func (ptr *QWidget) ConnectWindowTitleChanged(f func(title string)) {
 }
 
 func (ptr *QWidget) DisconnectWindowTitleChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowTitleChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QWidget::windowTitleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_DisconnectWindowTitleChanged(ptr.Pointer())
@@ -2543,21 +2694,17 @@ func (ptr *QWidget) DisconnectWindowTitleChanged() {
 
 //export callbackQWidgetWindowTitleChanged
 func callbackQWidgetWindowTitleChanged(ptrName *C.char, title *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowTitleChanged")
-		}
-	}()
+	defer qt.Recovering("callback QWidget::windowTitleChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "windowTitleChanged").(func(string))(C.GoString(title))
+	var signal = qt.GetSignal(C.GoString(ptrName), "windowTitleChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(title))
+	}
+
 }
 
 func (ptr *QWidget) WindowType() core.Qt__WindowType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::windowType")
-		}
-	}()
+	defer qt.Recovering("QWidget::windowType")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__WindowType(C.QWidget_WindowType(ptr.Pointer()))
@@ -2566,11 +2713,7 @@ func (ptr *QWidget) WindowType() core.Qt__WindowType {
 }
 
 func (ptr *QWidget) DestroyQWidget() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::~QWidget")
-		}
-	}()
+	defer qt.Recovering("QWidget::~QWidget")
 
 	if ptr.Pointer() != nil {
 		C.QWidget_DestroyQWidget(ptr.Pointer())
@@ -2579,11 +2722,7 @@ func (ptr *QWidget) DestroyQWidget() {
 }
 
 func QWidget_CreateWindowContainer(window gui.QWindow_ITF, parent QWidget_ITF, flags core.Qt__WindowType) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidget::createWindowContainer")
-		}
-	}()
+	defer qt.Recovering("QWidget::createWindowContainer")
 
 	return NewQWidgetFromPointer(C.QWidget_QWidget_CreateWindowContainer(gui.PointerFromQWindow(window), PointerFromQWidget(parent), C.int(flags)))
 }

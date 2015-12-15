@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -48,21 +48,13 @@ var (
 )
 
 func NewQStyleOptionSpinBox() *QStyleOptionSpinBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionSpinBox::QStyleOptionSpinBox")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionSpinBox::QStyleOptionSpinBox")
 
 	return NewQStyleOptionSpinBoxFromPointer(C.QStyleOptionSpinBox_NewQStyleOptionSpinBox())
 }
 
 func NewQStyleOptionSpinBox2(other QStyleOptionSpinBox_ITF) *QStyleOptionSpinBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionSpinBox::QStyleOptionSpinBox")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionSpinBox::QStyleOptionSpinBox")
 
 	return NewQStyleOptionSpinBoxFromPointer(C.QStyleOptionSpinBox_NewQStyleOptionSpinBox2(PointerFromQStyleOptionSpinBox(other)))
 }

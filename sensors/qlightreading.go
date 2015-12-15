@@ -4,7 +4,6 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQLightReadingFromPointer(ptr unsafe.Pointer) *QLightReading {
 	var n = new(QLightReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QLightReading_") {
-		n.SetObjectName("QLightReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QLightReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QLightReading) QLightReading_PTR() *QLightReading {
 }
 
 func (ptr *QLightReading) Lux() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLightReading::lux")
-		}
-	}()
+	defer qt.Recovering("QLightReading::lux")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QLightReading_Lux(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QLightReading) Lux() float64 {
 }
 
 func (ptr *QLightReading) SetLux(lux float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLightReading::setLux")
-		}
-	}()
+	defer qt.Recovering("QLightReading::setLux")
 
 	if ptr.Pointer() != nil {
 		C.QLightReading_SetLux(ptr.Pointer(), C.double(lux))

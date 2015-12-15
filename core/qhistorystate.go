@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQHistoryStateFromPointer(ptr unsafe.Pointer) *QHistoryState {
 	var n = new(QHistoryState)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QHistoryState_") {
-		n.SetObjectName("QHistoryState_" + qt.RandomIdentifier())
+		n.SetObjectName("QHistoryState_" + qt.Identifier())
 	}
 	return n
 }
@@ -46,31 +45,19 @@ const (
 )
 
 func NewQHistoryState2(ty QHistoryState__HistoryType, parent QState_ITF) *QHistoryState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::QHistoryState")
-		}
-	}()
+	defer qt.Recovering("QHistoryState::QHistoryState")
 
 	return NewQHistoryStateFromPointer(C.QHistoryState_NewQHistoryState2(C.int(ty), PointerFromQState(parent)))
 }
 
 func NewQHistoryState(parent QState_ITF) *QHistoryState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::QHistoryState")
-		}
-	}()
+	defer qt.Recovering("QHistoryState::QHistoryState")
 
 	return NewQHistoryStateFromPointer(C.QHistoryState_NewQHistoryState(PointerFromQState(parent)))
 }
 
 func (ptr *QHistoryState) DefaultState() *QAbstractState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::defaultState")
-		}
-	}()
+	defer qt.Recovering("QHistoryState::defaultState")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractStateFromPointer(C.QHistoryState_DefaultState(ptr.Pointer()))
@@ -79,11 +66,7 @@ func (ptr *QHistoryState) DefaultState() *QAbstractState {
 }
 
 func (ptr *QHistoryState) ConnectDefaultStateChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::defaultStateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QHistoryState::defaultStateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QHistoryState_ConnectDefaultStateChanged(ptr.Pointer())
@@ -92,11 +75,7 @@ func (ptr *QHistoryState) ConnectDefaultStateChanged(f func()) {
 }
 
 func (ptr *QHistoryState) DisconnectDefaultStateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::defaultStateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QHistoryState::defaultStateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QHistoryState_DisconnectDefaultStateChanged(ptr.Pointer())
@@ -106,21 +85,17 @@ func (ptr *QHistoryState) DisconnectDefaultStateChanged() {
 
 //export callbackQHistoryStateDefaultStateChanged
 func callbackQHistoryStateDefaultStateChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::defaultStateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QHistoryState::defaultStateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "defaultStateChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "defaultStateChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QHistoryState) HistoryType() QHistoryState__HistoryType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::historyType")
-		}
-	}()
+	defer qt.Recovering("QHistoryState::historyType")
 
 	if ptr.Pointer() != nil {
 		return QHistoryState__HistoryType(C.QHistoryState_HistoryType(ptr.Pointer()))
@@ -129,11 +104,7 @@ func (ptr *QHistoryState) HistoryType() QHistoryState__HistoryType {
 }
 
 func (ptr *QHistoryState) ConnectHistoryTypeChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::historyTypeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QHistoryState::historyTypeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QHistoryState_ConnectHistoryTypeChanged(ptr.Pointer())
@@ -142,11 +113,7 @@ func (ptr *QHistoryState) ConnectHistoryTypeChanged(f func()) {
 }
 
 func (ptr *QHistoryState) DisconnectHistoryTypeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::historyTypeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QHistoryState::historyTypeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QHistoryState_DisconnectHistoryTypeChanged(ptr.Pointer())
@@ -156,21 +123,79 @@ func (ptr *QHistoryState) DisconnectHistoryTypeChanged() {
 
 //export callbackQHistoryStateHistoryTypeChanged
 func callbackQHistoryStateHistoryTypeChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::historyTypeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QHistoryState::historyTypeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "historyTypeChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "historyTypeChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QHistoryState) ConnectOnEntry(f func(event *QEvent)) {
+	defer qt.Recovering("connect QHistoryState::onEntry")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "onEntry", f)
+	}
+}
+
+func (ptr *QHistoryState) DisconnectOnEntry() {
+	defer qt.Recovering("disconnect QHistoryState::onEntry")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "onEntry")
+	}
+}
+
+//export callbackQHistoryStateOnEntry
+func callbackQHistoryStateOnEntry(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHistoryState::onEntry")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "onEntry")
+	if signal != nil {
+		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHistoryState) ConnectOnExit(f func(event *QEvent)) {
+	defer qt.Recovering("connect QHistoryState::onExit")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "onExit", f)
+	}
+}
+
+func (ptr *QHistoryState) DisconnectOnExit() {
+	defer qt.Recovering("disconnect QHistoryState::onExit")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "onExit")
+	}
+}
+
+//export callbackQHistoryStateOnExit
+func callbackQHistoryStateOnExit(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHistoryState::onExit")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "onExit")
+	if signal != nil {
+		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QHistoryState) SetDefaultState(state QAbstractState_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::setDefaultState")
-		}
-	}()
+	defer qt.Recovering("QHistoryState::setDefaultState")
 
 	if ptr.Pointer() != nil {
 		C.QHistoryState_SetDefaultState(ptr.Pointer(), PointerFromQAbstractState(state))
@@ -178,11 +203,7 @@ func (ptr *QHistoryState) SetDefaultState(state QAbstractState_ITF) {
 }
 
 func (ptr *QHistoryState) SetHistoryType(ty QHistoryState__HistoryType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::setHistoryType")
-		}
-	}()
+	defer qt.Recovering("QHistoryState::setHistoryType")
 
 	if ptr.Pointer() != nil {
 		C.QHistoryState_SetHistoryType(ptr.Pointer(), C.int(ty))
@@ -190,11 +211,7 @@ func (ptr *QHistoryState) SetHistoryType(ty QHistoryState__HistoryType) {
 }
 
 func (ptr *QHistoryState) DestroyQHistoryState() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHistoryState::~QHistoryState")
-		}
-	}()
+	defer qt.Recovering("QHistoryState::~QHistoryState")
 
 	if ptr.Pointer() != nil {
 		C.QHistoryState_DestroyQHistoryState(ptr.Pointer())

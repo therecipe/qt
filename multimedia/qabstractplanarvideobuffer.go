@@ -3,7 +3,7 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -26,6 +26,9 @@ func PointerFromQAbstractPlanarVideoBuffer(ptr QAbstractPlanarVideoBuffer_ITF) u
 func NewQAbstractPlanarVideoBufferFromPointer(ptr unsafe.Pointer) *QAbstractPlanarVideoBuffer {
 	var n = new(QAbstractPlanarVideoBuffer)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QAbstractPlanarVideoBuffer_") {
+		n.SetObjectNameAbs("QAbstractPlanarVideoBuffer_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -34,13 +37,26 @@ func (ptr *QAbstractPlanarVideoBuffer) QAbstractPlanarVideoBuffer_PTR() *QAbstra
 }
 
 func (ptr *QAbstractPlanarVideoBuffer) DestroyQAbstractPlanarVideoBuffer() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer")
-		}
-	}()
+	defer qt.Recovering("QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) ObjectNameAbs() string {
+	defer qt.Recovering("QAbstractPlanarVideoBuffer::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAbstractPlanarVideoBuffer_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QAbstractPlanarVideoBuffer::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractPlanarVideoBuffer_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

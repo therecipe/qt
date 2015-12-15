@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -52,11 +51,7 @@ const (
 )
 
 func (ptr *QByteArray) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::clear")
-		}
-	}()
+	defer qt.Recovering("QByteArray::clear")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Clear(ptr.Pointer())
@@ -64,11 +59,7 @@ func (ptr *QByteArray) Clear() {
 }
 
 func (ptr *QByteArray) IndexOf3(str string, from int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::indexOf")
-		}
-	}()
+	defer qt.Recovering("QByteArray::indexOf")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_IndexOf3(ptr.Pointer(), C.CString(str), C.int(from)))
@@ -77,11 +68,7 @@ func (ptr *QByteArray) IndexOf3(str string, from int) int {
 }
 
 func (ptr *QByteArray) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::isNull")
-		}
-	}()
+	defer qt.Recovering("QByteArray::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QByteArray_IsNull(ptr.Pointer()) != 0
@@ -90,11 +77,7 @@ func (ptr *QByteArray) IsNull() bool {
 }
 
 func (ptr *QByteArray) LastIndexOf(ba QByteArray_ITF, from int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::lastIndexOf")
-		}
-	}()
+	defer qt.Recovering("QByteArray::lastIndexOf")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_LastIndexOf(ptr.Pointer(), PointerFromQByteArray(ba), C.int(from)))
@@ -103,11 +86,7 @@ func (ptr *QByteArray) LastIndexOf(ba QByteArray_ITF, from int) int {
 }
 
 func (ptr *QByteArray) LastIndexOf3(str string, from int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::lastIndexOf")
-		}
-	}()
+	defer qt.Recovering("QByteArray::lastIndexOf")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_LastIndexOf3(ptr.Pointer(), C.CString(str), C.int(from)))
@@ -116,61 +95,37 @@ func (ptr *QByteArray) LastIndexOf3(str string, from int) int {
 }
 
 func NewQByteArray() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::QByteArray")
-		}
-	}()
+	defer qt.Recovering("QByteArray::QByteArray")
 
 	return NewQByteArrayFromPointer(C.QByteArray_NewQByteArray())
 }
 
 func NewQByteArray6(other QByteArray_ITF) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::QByteArray")
-		}
-	}()
+	defer qt.Recovering("QByteArray::QByteArray")
 
 	return NewQByteArrayFromPointer(C.QByteArray_NewQByteArray6(PointerFromQByteArray(other)))
 }
 
 func NewQByteArray5(other QByteArray_ITF) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::QByteArray")
-		}
-	}()
+	defer qt.Recovering("QByteArray::QByteArray")
 
 	return NewQByteArrayFromPointer(C.QByteArray_NewQByteArray5(PointerFromQByteArray(other)))
 }
 
 func NewQByteArray2(data string, size int) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::QByteArray")
-		}
-	}()
+	defer qt.Recovering("QByteArray::QByteArray")
 
 	return NewQByteArrayFromPointer(C.QByteArray_NewQByteArray2(C.CString(data), C.int(size)))
 }
 
 func NewQByteArray3(size int, ch string) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::QByteArray")
-		}
-	}()
+	defer qt.Recovering("QByteArray::QByteArray")
 
 	return NewQByteArrayFromPointer(C.QByteArray_NewQByteArray3(C.int(size), C.CString(ch)))
 }
 
 func (ptr *QByteArray) Append5(ch string) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::append")
-		}
-	}()
+	defer qt.Recovering("QByteArray::append")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Append5(ptr.Pointer(), C.CString(ch)))
@@ -179,11 +134,7 @@ func (ptr *QByteArray) Append5(ch string) *QByteArray {
 }
 
 func (ptr *QByteArray) Append(ba QByteArray_ITF) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::append")
-		}
-	}()
+	defer qt.Recovering("QByteArray::append")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Append(ptr.Pointer(), PointerFromQByteArray(ba)))
@@ -192,11 +143,7 @@ func (ptr *QByteArray) Append(ba QByteArray_ITF) *QByteArray {
 }
 
 func (ptr *QByteArray) Append2(str string) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::append")
-		}
-	}()
+	defer qt.Recovering("QByteArray::append")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Append2(ptr.Pointer(), C.CString(str)))
@@ -205,11 +152,7 @@ func (ptr *QByteArray) Append2(str string) *QByteArray {
 }
 
 func (ptr *QByteArray) Append3(str string) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::append")
-		}
-	}()
+	defer qt.Recovering("QByteArray::append")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Append3(ptr.Pointer(), C.CString(str)))
@@ -218,11 +161,7 @@ func (ptr *QByteArray) Append3(str string) *QByteArray {
 }
 
 func (ptr *QByteArray) Append4(str string, len int) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::append")
-		}
-	}()
+	defer qt.Recovering("QByteArray::append")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Append4(ptr.Pointer(), C.CString(str), C.int(len)))
@@ -231,11 +170,7 @@ func (ptr *QByteArray) Append4(str string, len int) *QByteArray {
 }
 
 func (ptr *QByteArray) Capacity() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::capacity")
-		}
-	}()
+	defer qt.Recovering("QByteArray::capacity")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_Capacity(ptr.Pointer()))
@@ -244,11 +179,7 @@ func (ptr *QByteArray) Capacity() int {
 }
 
 func (ptr *QByteArray) Chop(n int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::chop")
-		}
-	}()
+	defer qt.Recovering("QByteArray::chop")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Chop(ptr.Pointer(), C.int(n))
@@ -256,11 +187,7 @@ func (ptr *QByteArray) Chop(n int) {
 }
 
 func (ptr *QByteArray) Contains3(ch string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::contains")
-		}
-	}()
+	defer qt.Recovering("QByteArray::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QByteArray_Contains3(ptr.Pointer(), C.CString(ch)) != 0
@@ -269,11 +196,7 @@ func (ptr *QByteArray) Contains3(ch string) bool {
 }
 
 func (ptr *QByteArray) Contains(ba QByteArray_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::contains")
-		}
-	}()
+	defer qt.Recovering("QByteArray::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QByteArray_Contains(ptr.Pointer(), PointerFromQByteArray(ba)) != 0
@@ -282,11 +205,7 @@ func (ptr *QByteArray) Contains(ba QByteArray_ITF) bool {
 }
 
 func (ptr *QByteArray) Contains2(str string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::contains")
-		}
-	}()
+	defer qt.Recovering("QByteArray::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QByteArray_Contains2(ptr.Pointer(), C.CString(str)) != 0
@@ -295,11 +214,7 @@ func (ptr *QByteArray) Contains2(str string) bool {
 }
 
 func (ptr *QByteArray) Count4() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::count")
-		}
-	}()
+	defer qt.Recovering("QByteArray::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_Count4(ptr.Pointer()))
@@ -308,11 +223,7 @@ func (ptr *QByteArray) Count4() int {
 }
 
 func (ptr *QByteArray) Count3(ch string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::count")
-		}
-	}()
+	defer qt.Recovering("QByteArray::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_Count3(ptr.Pointer(), C.CString(ch)))
@@ -321,11 +232,7 @@ func (ptr *QByteArray) Count3(ch string) int {
 }
 
 func (ptr *QByteArray) Count(ba QByteArray_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::count")
-		}
-	}()
+	defer qt.Recovering("QByteArray::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_Count(ptr.Pointer(), PointerFromQByteArray(ba)))
@@ -334,11 +241,7 @@ func (ptr *QByteArray) Count(ba QByteArray_ITF) int {
 }
 
 func (ptr *QByteArray) Count2(str string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::count")
-		}
-	}()
+	defer qt.Recovering("QByteArray::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_Count2(ptr.Pointer(), C.CString(str)))
@@ -347,11 +250,7 @@ func (ptr *QByteArray) Count2(str string) int {
 }
 
 func (ptr *QByteArray) EndsWith3(ch string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::endsWith")
-		}
-	}()
+	defer qt.Recovering("QByteArray::endsWith")
 
 	if ptr.Pointer() != nil {
 		return C.QByteArray_EndsWith3(ptr.Pointer(), C.CString(ch)) != 0
@@ -360,11 +259,7 @@ func (ptr *QByteArray) EndsWith3(ch string) bool {
 }
 
 func (ptr *QByteArray) EndsWith(ba QByteArray_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::endsWith")
-		}
-	}()
+	defer qt.Recovering("QByteArray::endsWith")
 
 	if ptr.Pointer() != nil {
 		return C.QByteArray_EndsWith(ptr.Pointer(), PointerFromQByteArray(ba)) != 0
@@ -373,11 +268,7 @@ func (ptr *QByteArray) EndsWith(ba QByteArray_ITF) bool {
 }
 
 func (ptr *QByteArray) EndsWith2(str string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::endsWith")
-		}
-	}()
+	defer qt.Recovering("QByteArray::endsWith")
 
 	if ptr.Pointer() != nil {
 		return C.QByteArray_EndsWith2(ptr.Pointer(), C.CString(str)) != 0
@@ -386,11 +277,7 @@ func (ptr *QByteArray) EndsWith2(str string) bool {
 }
 
 func (ptr *QByteArray) Fill(ch string, size int) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::fill")
-		}
-	}()
+	defer qt.Recovering("QByteArray::fill")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Fill(ptr.Pointer(), C.CString(ch), C.int(size)))
@@ -399,61 +286,37 @@ func (ptr *QByteArray) Fill(ch string, size int) *QByteArray {
 }
 
 func QByteArray_FromBase64(base64 QByteArray_ITF) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::fromBase64")
-		}
-	}()
+	defer qt.Recovering("QByteArray::fromBase64")
 
 	return NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromBase64(PointerFromQByteArray(base64)))
 }
 
 func QByteArray_FromBase642(base64 QByteArray_ITF, options QByteArray__Base64Option) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::fromBase64")
-		}
-	}()
+	defer qt.Recovering("QByteArray::fromBase64")
 
 	return NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromBase642(PointerFromQByteArray(base64), C.int(options)))
 }
 
 func QByteArray_FromHex(hexEncoded QByteArray_ITF) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::fromHex")
-		}
-	}()
+	defer qt.Recovering("QByteArray::fromHex")
 
 	return NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromHex(PointerFromQByteArray(hexEncoded)))
 }
 
 func QByteArray_FromPercentEncoding(input QByteArray_ITF, percent string) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::fromPercentEncoding")
-		}
-	}()
+	defer qt.Recovering("QByteArray::fromPercentEncoding")
 
 	return NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromPercentEncoding(PointerFromQByteArray(input), C.CString(percent)))
 }
 
 func QByteArray_FromRawData(data string, size int) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::fromRawData")
-		}
-	}()
+	defer qt.Recovering("QByteArray::fromRawData")
 
 	return NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromRawData(C.CString(data), C.int(size)))
 }
 
 func (ptr *QByteArray) IndexOf4(ch string, from int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::indexOf")
-		}
-	}()
+	defer qt.Recovering("QByteArray::indexOf")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_IndexOf4(ptr.Pointer(), C.CString(ch), C.int(from)))
@@ -462,11 +325,7 @@ func (ptr *QByteArray) IndexOf4(ch string, from int) int {
 }
 
 func (ptr *QByteArray) IndexOf(ba QByteArray_ITF, from int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::indexOf")
-		}
-	}()
+	defer qt.Recovering("QByteArray::indexOf")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_IndexOf(ptr.Pointer(), PointerFromQByteArray(ba), C.int(from)))
@@ -475,11 +334,7 @@ func (ptr *QByteArray) IndexOf(ba QByteArray_ITF, from int) int {
 }
 
 func (ptr *QByteArray) IndexOf2(str string, from int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::indexOf")
-		}
-	}()
+	defer qt.Recovering("QByteArray::indexOf")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_IndexOf2(ptr.Pointer(), C.CString(str), C.int(from)))
@@ -488,11 +343,7 @@ func (ptr *QByteArray) IndexOf2(str string, from int) int {
 }
 
 func (ptr *QByteArray) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QByteArray::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QByteArray_IsEmpty(ptr.Pointer()) != 0
@@ -501,11 +352,7 @@ func (ptr *QByteArray) IsEmpty() bool {
 }
 
 func (ptr *QByteArray) LastIndexOf4(ch string, from int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::lastIndexOf")
-		}
-	}()
+	defer qt.Recovering("QByteArray::lastIndexOf")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_LastIndexOf4(ptr.Pointer(), C.CString(ch), C.int(from)))
@@ -514,11 +361,7 @@ func (ptr *QByteArray) LastIndexOf4(ch string, from int) int {
 }
 
 func (ptr *QByteArray) LastIndexOf2(str string, from int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::lastIndexOf")
-		}
-	}()
+	defer qt.Recovering("QByteArray::lastIndexOf")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_LastIndexOf2(ptr.Pointer(), C.CString(str), C.int(from)))
@@ -527,11 +370,7 @@ func (ptr *QByteArray) LastIndexOf2(str string, from int) int {
 }
 
 func (ptr *QByteArray) Left(len int) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::left")
-		}
-	}()
+	defer qt.Recovering("QByteArray::left")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Left(ptr.Pointer(), C.int(len)))
@@ -540,11 +379,7 @@ func (ptr *QByteArray) Left(len int) *QByteArray {
 }
 
 func (ptr *QByteArray) LeftJustified(width int, fill string, truncate bool) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::leftJustified")
-		}
-	}()
+	defer qt.Recovering("QByteArray::leftJustified")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_LeftJustified(ptr.Pointer(), C.int(width), C.CString(fill), C.int(qt.GoBoolToInt(truncate))))
@@ -553,11 +388,7 @@ func (ptr *QByteArray) LeftJustified(width int, fill string, truncate bool) *QBy
 }
 
 func (ptr *QByteArray) Length() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::length")
-		}
-	}()
+	defer qt.Recovering("QByteArray::length")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_Length(ptr.Pointer()))
@@ -566,11 +397,7 @@ func (ptr *QByteArray) Length() int {
 }
 
 func (ptr *QByteArray) Mid(pos int, len int) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::mid")
-		}
-	}()
+	defer qt.Recovering("QByteArray::mid")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Mid(ptr.Pointer(), C.int(pos), C.int(len)))
@@ -579,21 +406,13 @@ func (ptr *QByteArray) Mid(pos int, len int) *QByteArray {
 }
 
 func QByteArray_Number(n int, base int) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::number")
-		}
-	}()
+	defer qt.Recovering("QByteArray::number")
 
 	return NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number(C.int(n), C.int(base)))
 }
 
 func (ptr *QByteArray) Prepend4(ch string) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::prepend")
-		}
-	}()
+	defer qt.Recovering("QByteArray::prepend")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Prepend4(ptr.Pointer(), C.CString(ch)))
@@ -602,11 +421,7 @@ func (ptr *QByteArray) Prepend4(ch string) *QByteArray {
 }
 
 func (ptr *QByteArray) Prepend(ba QByteArray_ITF) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::prepend")
-		}
-	}()
+	defer qt.Recovering("QByteArray::prepend")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Prepend(ptr.Pointer(), PointerFromQByteArray(ba)))
@@ -615,11 +430,7 @@ func (ptr *QByteArray) Prepend(ba QByteArray_ITF) *QByteArray {
 }
 
 func (ptr *QByteArray) Prepend2(str string) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::prepend")
-		}
-	}()
+	defer qt.Recovering("QByteArray::prepend")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Prepend2(ptr.Pointer(), C.CString(str)))
@@ -628,11 +439,7 @@ func (ptr *QByteArray) Prepend2(str string) *QByteArray {
 }
 
 func (ptr *QByteArray) Prepend3(str string, len int) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::prepend")
-		}
-	}()
+	defer qt.Recovering("QByteArray::prepend")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Prepend3(ptr.Pointer(), C.CString(str), C.int(len)))
@@ -641,11 +448,7 @@ func (ptr *QByteArray) Prepend3(str string, len int) *QByteArray {
 }
 
 func (ptr *QByteArray) Push_back3(ch string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::push_back")
-		}
-	}()
+	defer qt.Recovering("QByteArray::push_back")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Push_back3(ptr.Pointer(), C.CString(ch))
@@ -653,11 +456,7 @@ func (ptr *QByteArray) Push_back3(ch string) {
 }
 
 func (ptr *QByteArray) Push_back(other QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::push_back")
-		}
-	}()
+	defer qt.Recovering("QByteArray::push_back")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Push_back(ptr.Pointer(), PointerFromQByteArray(other))
@@ -665,11 +464,7 @@ func (ptr *QByteArray) Push_back(other QByteArray_ITF) {
 }
 
 func (ptr *QByteArray) Push_back2(str string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::push_back")
-		}
-	}()
+	defer qt.Recovering("QByteArray::push_back")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Push_back2(ptr.Pointer(), C.CString(str))
@@ -677,11 +472,7 @@ func (ptr *QByteArray) Push_back2(str string) {
 }
 
 func (ptr *QByteArray) Push_front3(ch string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::push_front")
-		}
-	}()
+	defer qt.Recovering("QByteArray::push_front")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Push_front3(ptr.Pointer(), C.CString(ch))
@@ -689,11 +480,7 @@ func (ptr *QByteArray) Push_front3(ch string) {
 }
 
 func (ptr *QByteArray) Push_front(other QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::push_front")
-		}
-	}()
+	defer qt.Recovering("QByteArray::push_front")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Push_front(ptr.Pointer(), PointerFromQByteArray(other))
@@ -701,11 +488,7 @@ func (ptr *QByteArray) Push_front(other QByteArray_ITF) {
 }
 
 func (ptr *QByteArray) Push_front2(str string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::push_front")
-		}
-	}()
+	defer qt.Recovering("QByteArray::push_front")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Push_front2(ptr.Pointer(), C.CString(str))
@@ -713,11 +496,7 @@ func (ptr *QByteArray) Push_front2(str string) {
 }
 
 func (ptr *QByteArray) Repeated(times int) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::repeated")
-		}
-	}()
+	defer qt.Recovering("QByteArray::repeated")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Repeated(ptr.Pointer(), C.int(times)))
@@ -726,11 +505,7 @@ func (ptr *QByteArray) Repeated(times int) *QByteArray {
 }
 
 func (ptr *QByteArray) Reserve(size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::reserve")
-		}
-	}()
+	defer qt.Recovering("QByteArray::reserve")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Reserve(ptr.Pointer(), C.int(size))
@@ -738,11 +513,7 @@ func (ptr *QByteArray) Reserve(size int) {
 }
 
 func (ptr *QByteArray) Resize(size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::resize")
-		}
-	}()
+	defer qt.Recovering("QByteArray::resize")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Resize(ptr.Pointer(), C.int(size))
@@ -750,11 +521,7 @@ func (ptr *QByteArray) Resize(size int) {
 }
 
 func (ptr *QByteArray) Right(len int) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::right")
-		}
-	}()
+	defer qt.Recovering("QByteArray::right")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Right(ptr.Pointer(), C.int(len)))
@@ -763,11 +530,7 @@ func (ptr *QByteArray) Right(len int) *QByteArray {
 }
 
 func (ptr *QByteArray) RightJustified(width int, fill string, truncate bool) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::rightJustified")
-		}
-	}()
+	defer qt.Recovering("QByteArray::rightJustified")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_RightJustified(ptr.Pointer(), C.int(width), C.CString(fill), C.int(qt.GoBoolToInt(truncate))))
@@ -776,11 +539,7 @@ func (ptr *QByteArray) RightJustified(width int, fill string, truncate bool) *QB
 }
 
 func (ptr *QByteArray) SetNum(n int, base int) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::setNum")
-		}
-	}()
+	defer qt.Recovering("QByteArray::setNum")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_SetNum(ptr.Pointer(), C.int(n), C.int(base)))
@@ -789,11 +548,7 @@ func (ptr *QByteArray) SetNum(n int, base int) *QByteArray {
 }
 
 func (ptr *QByteArray) Size() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::size")
-		}
-	}()
+	defer qt.Recovering("QByteArray::size")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_Size(ptr.Pointer()))
@@ -802,11 +557,7 @@ func (ptr *QByteArray) Size() int {
 }
 
 func (ptr *QByteArray) Squeeze() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::squeeze")
-		}
-	}()
+	defer qt.Recovering("QByteArray::squeeze")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Squeeze(ptr.Pointer())
@@ -814,11 +565,7 @@ func (ptr *QByteArray) Squeeze() {
 }
 
 func (ptr *QByteArray) StartsWith3(ch string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::startsWith")
-		}
-	}()
+	defer qt.Recovering("QByteArray::startsWith")
 
 	if ptr.Pointer() != nil {
 		return C.QByteArray_StartsWith3(ptr.Pointer(), C.CString(ch)) != 0
@@ -827,11 +574,7 @@ func (ptr *QByteArray) StartsWith3(ch string) bool {
 }
 
 func (ptr *QByteArray) StartsWith(ba QByteArray_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::startsWith")
-		}
-	}()
+	defer qt.Recovering("QByteArray::startsWith")
 
 	if ptr.Pointer() != nil {
 		return C.QByteArray_StartsWith(ptr.Pointer(), PointerFromQByteArray(ba)) != 0
@@ -840,11 +583,7 @@ func (ptr *QByteArray) StartsWith(ba QByteArray_ITF) bool {
 }
 
 func (ptr *QByteArray) StartsWith2(str string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::startsWith")
-		}
-	}()
+	defer qt.Recovering("QByteArray::startsWith")
 
 	if ptr.Pointer() != nil {
 		return C.QByteArray_StartsWith2(ptr.Pointer(), C.CString(str)) != 0
@@ -853,11 +592,7 @@ func (ptr *QByteArray) StartsWith2(str string) bool {
 }
 
 func (ptr *QByteArray) Swap(other QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::swap")
-		}
-	}()
+	defer qt.Recovering("QByteArray::swap")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Swap(ptr.Pointer(), PointerFromQByteArray(other))
@@ -865,11 +600,7 @@ func (ptr *QByteArray) Swap(other QByteArray_ITF) {
 }
 
 func (ptr *QByteArray) ToBase64() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::toBase64")
-		}
-	}()
+	defer qt.Recovering("QByteArray::toBase64")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_ToBase64(ptr.Pointer()))
@@ -878,11 +609,7 @@ func (ptr *QByteArray) ToBase64() *QByteArray {
 }
 
 func (ptr *QByteArray) ToBase642(options QByteArray__Base64Option) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::toBase64")
-		}
-	}()
+	defer qt.Recovering("QByteArray::toBase64")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_ToBase642(ptr.Pointer(), C.int(options)))
@@ -891,11 +618,7 @@ func (ptr *QByteArray) ToBase642(options QByteArray__Base64Option) *QByteArray {
 }
 
 func (ptr *QByteArray) ToHex() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::toHex")
-		}
-	}()
+	defer qt.Recovering("QByteArray::toHex")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_ToHex(ptr.Pointer()))
@@ -904,11 +627,7 @@ func (ptr *QByteArray) ToHex() *QByteArray {
 }
 
 func (ptr *QByteArray) ToInt(ok bool, base int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::toInt")
-		}
-	}()
+	defer qt.Recovering("QByteArray::toInt")
 
 	if ptr.Pointer() != nil {
 		return int(C.QByteArray_ToInt(ptr.Pointer(), C.int(qt.GoBoolToInt(ok)), C.int(base)))
@@ -917,11 +636,7 @@ func (ptr *QByteArray) ToInt(ok bool, base int) int {
 }
 
 func (ptr *QByteArray) ToPercentEncoding(exclude QByteArray_ITF, include QByteArray_ITF, percent string) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::toPercentEncoding")
-		}
-	}()
+	defer qt.Recovering("QByteArray::toPercentEncoding")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_ToPercentEncoding(ptr.Pointer(), PointerFromQByteArray(exclude), PointerFromQByteArray(include), C.CString(percent)))
@@ -930,11 +645,7 @@ func (ptr *QByteArray) ToPercentEncoding(exclude QByteArray_ITF, include QByteAr
 }
 
 func (ptr *QByteArray) Truncate(pos int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::truncate")
-		}
-	}()
+	defer qt.Recovering("QByteArray::truncate")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_Truncate(ptr.Pointer(), C.int(pos))
@@ -942,11 +653,7 @@ func (ptr *QByteArray) Truncate(pos int) {
 }
 
 func (ptr *QByteArray) DestroyQByteArray() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::~QByteArray")
-		}
-	}()
+	defer qt.Recovering("QByteArray::~QByteArray")
 
 	if ptr.Pointer() != nil {
 		C.QByteArray_DestroyQByteArray(ptr.Pointer())
@@ -954,11 +661,7 @@ func (ptr *QByteArray) DestroyQByteArray() {
 }
 
 func (ptr *QByteArray) Simplified() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::simplified")
-		}
-	}()
+	defer qt.Recovering("QByteArray::simplified")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Simplified(ptr.Pointer()))
@@ -967,11 +670,7 @@ func (ptr *QByteArray) Simplified() *QByteArray {
 }
 
 func (ptr *QByteArray) ToLower() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::toLower")
-		}
-	}()
+	defer qt.Recovering("QByteArray::toLower")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_ToLower(ptr.Pointer()))
@@ -980,11 +679,7 @@ func (ptr *QByteArray) ToLower() *QByteArray {
 }
 
 func (ptr *QByteArray) ToUpper() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::toUpper")
-		}
-	}()
+	defer qt.Recovering("QByteArray::toUpper")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_ToUpper(ptr.Pointer()))
@@ -993,11 +688,7 @@ func (ptr *QByteArray) ToUpper() *QByteArray {
 }
 
 func (ptr *QByteArray) Trimmed() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QByteArray::trimmed")
-		}
-	}()
+	defer qt.Recovering("QByteArray::trimmed")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArray_Trimmed(ptr.Pointer()))

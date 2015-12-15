@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -29,7 +28,7 @@ func NewQFileSelectorFromPointer(ptr unsafe.Pointer) *QFileSelector {
 	var n = new(QFileSelector)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QFileSelector_") {
-		n.SetObjectName("QFileSelector_" + qt.RandomIdentifier())
+		n.SetObjectName("QFileSelector_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QFileSelector) QFileSelector_PTR() *QFileSelector {
 }
 
 func NewQFileSelector(parent QObject_ITF) *QFileSelector {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSelector::QFileSelector")
-		}
-	}()
+	defer qt.Recovering("QFileSelector::QFileSelector")
 
 	return NewQFileSelectorFromPointer(C.QFileSelector_NewQFileSelector(PointerFromQObject(parent)))
 }
 
 func (ptr *QFileSelector) AllSelectors() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSelector::allSelectors")
-		}
-	}()
+	defer qt.Recovering("QFileSelector::allSelectors")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QFileSelector_AllSelectors(ptr.Pointer())), ",,,")
@@ -62,11 +53,7 @@ func (ptr *QFileSelector) AllSelectors() []string {
 }
 
 func (ptr *QFileSelector) ExtraSelectors() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSelector::extraSelectors")
-		}
-	}()
+	defer qt.Recovering("QFileSelector::extraSelectors")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QFileSelector_ExtraSelectors(ptr.Pointer())), ",,,")
@@ -75,11 +62,7 @@ func (ptr *QFileSelector) ExtraSelectors() []string {
 }
 
 func (ptr *QFileSelector) Select(filePath string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSelector::select")
-		}
-	}()
+	defer qt.Recovering("QFileSelector::select")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileSelector_Select(ptr.Pointer(), C.CString(filePath)))
@@ -88,11 +71,7 @@ func (ptr *QFileSelector) Select(filePath string) string {
 }
 
 func (ptr *QFileSelector) SetExtraSelectors(list []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSelector::setExtraSelectors")
-		}
-	}()
+	defer qt.Recovering("QFileSelector::setExtraSelectors")
 
 	if ptr.Pointer() != nil {
 		C.QFileSelector_SetExtraSelectors(ptr.Pointer(), C.CString(strings.Join(list, ",,,")))
@@ -100,11 +79,7 @@ func (ptr *QFileSelector) SetExtraSelectors(list []string) {
 }
 
 func (ptr *QFileSelector) DestroyQFileSelector() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSelector::~QFileSelector")
-		}
-	}()
+	defer qt.Recovering("QFileSelector::~QFileSelector")
 
 	if ptr.Pointer() != nil {
 		C.QFileSelector_DestroyQFileSelector(ptr.Pointer())

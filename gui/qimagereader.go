@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -55,41 +54,25 @@ const (
 )
 
 func NewQImageReader() *QImageReader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::QImageReader")
-		}
-	}()
+	defer qt.Recovering("QImageReader::QImageReader")
 
 	return NewQImageReaderFromPointer(C.QImageReader_NewQImageReader())
 }
 
 func NewQImageReader2(device core.QIODevice_ITF, format core.QByteArray_ITF) *QImageReader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::QImageReader")
-		}
-	}()
+	defer qt.Recovering("QImageReader::QImageReader")
 
 	return NewQImageReaderFromPointer(C.QImageReader_NewQImageReader2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 }
 
 func NewQImageReader3(fileName string, format core.QByteArray_ITF) *QImageReader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::QImageReader")
-		}
-	}()
+	defer qt.Recovering("QImageReader::QImageReader")
 
 	return NewQImageReaderFromPointer(C.QImageReader_NewQImageReader3(C.CString(fileName), core.PointerFromQByteArray(format)))
 }
 
 func (ptr *QImageReader) AutoDetectImageFormat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::autoDetectImageFormat")
-		}
-	}()
+	defer qt.Recovering("QImageReader::autoDetectImageFormat")
 
 	if ptr.Pointer() != nil {
 		return C.QImageReader_AutoDetectImageFormat(ptr.Pointer()) != 0
@@ -98,11 +81,7 @@ func (ptr *QImageReader) AutoDetectImageFormat() bool {
 }
 
 func (ptr *QImageReader) AutoTransform() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::autoTransform")
-		}
-	}()
+	defer qt.Recovering("QImageReader::autoTransform")
 
 	if ptr.Pointer() != nil {
 		return C.QImageReader_AutoTransform(ptr.Pointer()) != 0
@@ -111,11 +90,7 @@ func (ptr *QImageReader) AutoTransform() bool {
 }
 
 func (ptr *QImageReader) BackgroundColor() *QColor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::backgroundColor")
-		}
-	}()
+	defer qt.Recovering("QImageReader::backgroundColor")
 
 	if ptr.Pointer() != nil {
 		return NewQColorFromPointer(C.QImageReader_BackgroundColor(ptr.Pointer()))
@@ -124,11 +99,7 @@ func (ptr *QImageReader) BackgroundColor() *QColor {
 }
 
 func (ptr *QImageReader) CanRead() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::canRead")
-		}
-	}()
+	defer qt.Recovering("QImageReader::canRead")
 
 	if ptr.Pointer() != nil {
 		return C.QImageReader_CanRead(ptr.Pointer()) != 0
@@ -137,11 +108,7 @@ func (ptr *QImageReader) CanRead() bool {
 }
 
 func (ptr *QImageReader) CurrentImageNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::currentImageNumber")
-		}
-	}()
+	defer qt.Recovering("QImageReader::currentImageNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImageReader_CurrentImageNumber(ptr.Pointer()))
@@ -150,11 +117,7 @@ func (ptr *QImageReader) CurrentImageNumber() int {
 }
 
 func (ptr *QImageReader) DecideFormatFromContent() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::decideFormatFromContent")
-		}
-	}()
+	defer qt.Recovering("QImageReader::decideFormatFromContent")
 
 	if ptr.Pointer() != nil {
 		return C.QImageReader_DecideFormatFromContent(ptr.Pointer()) != 0
@@ -163,11 +126,7 @@ func (ptr *QImageReader) DecideFormatFromContent() bool {
 }
 
 func (ptr *QImageReader) Device() *core.QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::device")
-		}
-	}()
+	defer qt.Recovering("QImageReader::device")
 
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QImageReader_Device(ptr.Pointer()))
@@ -176,11 +135,7 @@ func (ptr *QImageReader) Device() *core.QIODevice {
 }
 
 func (ptr *QImageReader) Error() QImageReader__ImageReaderError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::error")
-		}
-	}()
+	defer qt.Recovering("QImageReader::error")
 
 	if ptr.Pointer() != nil {
 		return QImageReader__ImageReaderError(C.QImageReader_Error(ptr.Pointer()))
@@ -189,11 +144,7 @@ func (ptr *QImageReader) Error() QImageReader__ImageReaderError {
 }
 
 func (ptr *QImageReader) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::errorString")
-		}
-	}()
+	defer qt.Recovering("QImageReader::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QImageReader_ErrorString(ptr.Pointer()))
@@ -202,11 +153,7 @@ func (ptr *QImageReader) ErrorString() string {
 }
 
 func (ptr *QImageReader) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::fileName")
-		}
-	}()
+	defer qt.Recovering("QImageReader::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QImageReader_FileName(ptr.Pointer()))
@@ -215,11 +162,7 @@ func (ptr *QImageReader) FileName() string {
 }
 
 func (ptr *QImageReader) Format() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::format")
-		}
-	}()
+	defer qt.Recovering("QImageReader::format")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QImageReader_Format(ptr.Pointer()))
@@ -228,11 +171,7 @@ func (ptr *QImageReader) Format() *core.QByteArray {
 }
 
 func (ptr *QImageReader) ImageCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::imageCount")
-		}
-	}()
+	defer qt.Recovering("QImageReader::imageCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImageReader_ImageCount(ptr.Pointer()))
@@ -241,31 +180,19 @@ func (ptr *QImageReader) ImageCount() int {
 }
 
 func QImageReader_ImageFormat3(device core.QIODevice_ITF) *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::imageFormat")
-		}
-	}()
+	defer qt.Recovering("QImageReader::imageFormat")
 
 	return core.NewQByteArrayFromPointer(C.QImageReader_QImageReader_ImageFormat3(core.PointerFromQIODevice(device)))
 }
 
 func QImageReader_ImageFormat2(fileName string) *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::imageFormat")
-		}
-	}()
+	defer qt.Recovering("QImageReader::imageFormat")
 
 	return core.NewQByteArrayFromPointer(C.QImageReader_QImageReader_ImageFormat2(C.CString(fileName)))
 }
 
 func (ptr *QImageReader) ImageFormat() QImage__Format {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::imageFormat")
-		}
-	}()
+	defer qt.Recovering("QImageReader::imageFormat")
 
 	if ptr.Pointer() != nil {
 		return QImage__Format(C.QImageReader_ImageFormat(ptr.Pointer()))
@@ -274,11 +201,7 @@ func (ptr *QImageReader) ImageFormat() QImage__Format {
 }
 
 func (ptr *QImageReader) JumpToImage(imageNumber int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::jumpToImage")
-		}
-	}()
+	defer qt.Recovering("QImageReader::jumpToImage")
 
 	if ptr.Pointer() != nil {
 		return C.QImageReader_JumpToImage(ptr.Pointer(), C.int(imageNumber)) != 0
@@ -287,11 +210,7 @@ func (ptr *QImageReader) JumpToImage(imageNumber int) bool {
 }
 
 func (ptr *QImageReader) JumpToNextImage() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::jumpToNextImage")
-		}
-	}()
+	defer qt.Recovering("QImageReader::jumpToNextImage")
 
 	if ptr.Pointer() != nil {
 		return C.QImageReader_JumpToNextImage(ptr.Pointer()) != 0
@@ -300,11 +219,7 @@ func (ptr *QImageReader) JumpToNextImage() bool {
 }
 
 func (ptr *QImageReader) LoopCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::loopCount")
-		}
-	}()
+	defer qt.Recovering("QImageReader::loopCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImageReader_LoopCount(ptr.Pointer()))
@@ -313,11 +228,7 @@ func (ptr *QImageReader) LoopCount() int {
 }
 
 func (ptr *QImageReader) NextImageDelay() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::nextImageDelay")
-		}
-	}()
+	defer qt.Recovering("QImageReader::nextImageDelay")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImageReader_NextImageDelay(ptr.Pointer()))
@@ -326,11 +237,7 @@ func (ptr *QImageReader) NextImageDelay() int {
 }
 
 func (ptr *QImageReader) Quality() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::quality")
-		}
-	}()
+	defer qt.Recovering("QImageReader::quality")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImageReader_Quality(ptr.Pointer()))
@@ -339,11 +246,7 @@ func (ptr *QImageReader) Quality() int {
 }
 
 func (ptr *QImageReader) Read2(image QImage_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::read")
-		}
-	}()
+	defer qt.Recovering("QImageReader::read")
 
 	if ptr.Pointer() != nil {
 		return C.QImageReader_Read2(ptr.Pointer(), PointerFromQImage(image)) != 0
@@ -352,11 +255,7 @@ func (ptr *QImageReader) Read2(image QImage_ITF) bool {
 }
 
 func (ptr *QImageReader) SetAutoDetectImageFormat(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::setAutoDetectImageFormat")
-		}
-	}()
+	defer qt.Recovering("QImageReader::setAutoDetectImageFormat")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetAutoDetectImageFormat(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -364,11 +263,7 @@ func (ptr *QImageReader) SetAutoDetectImageFormat(enabled bool) {
 }
 
 func (ptr *QImageReader) SetAutoTransform(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::setAutoTransform")
-		}
-	}()
+	defer qt.Recovering("QImageReader::setAutoTransform")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetAutoTransform(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -376,11 +271,7 @@ func (ptr *QImageReader) SetAutoTransform(enabled bool) {
 }
 
 func (ptr *QImageReader) SetBackgroundColor(color QColor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::setBackgroundColor")
-		}
-	}()
+	defer qt.Recovering("QImageReader::setBackgroundColor")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetBackgroundColor(ptr.Pointer(), PointerFromQColor(color))
@@ -388,11 +279,7 @@ func (ptr *QImageReader) SetBackgroundColor(color QColor_ITF) {
 }
 
 func (ptr *QImageReader) SetClipRect(rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::setClipRect")
-		}
-	}()
+	defer qt.Recovering("QImageReader::setClipRect")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetClipRect(ptr.Pointer(), core.PointerFromQRect(rect))
@@ -400,11 +287,7 @@ func (ptr *QImageReader) SetClipRect(rect core.QRect_ITF) {
 }
 
 func (ptr *QImageReader) SetDecideFormatFromContent(ignored bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::setDecideFormatFromContent")
-		}
-	}()
+	defer qt.Recovering("QImageReader::setDecideFormatFromContent")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetDecideFormatFromContent(ptr.Pointer(), C.int(qt.GoBoolToInt(ignored)))
@@ -412,11 +295,7 @@ func (ptr *QImageReader) SetDecideFormatFromContent(ignored bool) {
 }
 
 func (ptr *QImageReader) SetDevice(device core.QIODevice_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::setDevice")
-		}
-	}()
+	defer qt.Recovering("QImageReader::setDevice")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
@@ -424,11 +303,7 @@ func (ptr *QImageReader) SetDevice(device core.QIODevice_ITF) {
 }
 
 func (ptr *QImageReader) SetFileName(fileName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::setFileName")
-		}
-	}()
+	defer qt.Recovering("QImageReader::setFileName")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetFileName(ptr.Pointer(), C.CString(fileName))
@@ -436,11 +311,7 @@ func (ptr *QImageReader) SetFileName(fileName string) {
 }
 
 func (ptr *QImageReader) SetFormat(format core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::setFormat")
-		}
-	}()
+	defer qt.Recovering("QImageReader::setFormat")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetFormat(ptr.Pointer(), core.PointerFromQByteArray(format))
@@ -448,11 +319,7 @@ func (ptr *QImageReader) SetFormat(format core.QByteArray_ITF) {
 }
 
 func (ptr *QImageReader) SetQuality(quality int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::setQuality")
-		}
-	}()
+	defer qt.Recovering("QImageReader::setQuality")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetQuality(ptr.Pointer(), C.int(quality))
@@ -460,11 +327,7 @@ func (ptr *QImageReader) SetQuality(quality int) {
 }
 
 func (ptr *QImageReader) SetScaledClipRect(rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::setScaledClipRect")
-		}
-	}()
+	defer qt.Recovering("QImageReader::setScaledClipRect")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetScaledClipRect(ptr.Pointer(), core.PointerFromQRect(rect))
@@ -472,11 +335,7 @@ func (ptr *QImageReader) SetScaledClipRect(rect core.QRect_ITF) {
 }
 
 func (ptr *QImageReader) SetScaledSize(size core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::setScaledSize")
-		}
-	}()
+	defer qt.Recovering("QImageReader::setScaledSize")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetScaledSize(ptr.Pointer(), core.PointerFromQSize(size))
@@ -484,11 +343,7 @@ func (ptr *QImageReader) SetScaledSize(size core.QSize_ITF) {
 }
 
 func (ptr *QImageReader) SubType() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::subType")
-		}
-	}()
+	defer qt.Recovering("QImageReader::subType")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QImageReader_SubType(ptr.Pointer()))
@@ -497,11 +352,7 @@ func (ptr *QImageReader) SubType() *core.QByteArray {
 }
 
 func (ptr *QImageReader) SupportsAnimation() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::supportsAnimation")
-		}
-	}()
+	defer qt.Recovering("QImageReader::supportsAnimation")
 
 	if ptr.Pointer() != nil {
 		return C.QImageReader_SupportsAnimation(ptr.Pointer()) != 0
@@ -510,11 +361,7 @@ func (ptr *QImageReader) SupportsAnimation() bool {
 }
 
 func (ptr *QImageReader) SupportsOption(option QImageIOHandler__ImageOption) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::supportsOption")
-		}
-	}()
+	defer qt.Recovering("QImageReader::supportsOption")
 
 	if ptr.Pointer() != nil {
 		return C.QImageReader_SupportsOption(ptr.Pointer(), C.int(option)) != 0
@@ -523,11 +370,7 @@ func (ptr *QImageReader) SupportsOption(option QImageIOHandler__ImageOption) boo
 }
 
 func (ptr *QImageReader) Text(key string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::text")
-		}
-	}()
+	defer qt.Recovering("QImageReader::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QImageReader_Text(ptr.Pointer(), C.CString(key)))
@@ -536,11 +379,7 @@ func (ptr *QImageReader) Text(key string) string {
 }
 
 func (ptr *QImageReader) TextKeys() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::textKeys")
-		}
-	}()
+	defer qt.Recovering("QImageReader::textKeys")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QImageReader_TextKeys(ptr.Pointer())), ",,,")
@@ -549,11 +388,7 @@ func (ptr *QImageReader) TextKeys() []string {
 }
 
 func (ptr *QImageReader) Transformation() QImageIOHandler__Transformation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::transformation")
-		}
-	}()
+	defer qt.Recovering("QImageReader::transformation")
 
 	if ptr.Pointer() != nil {
 		return QImageIOHandler__Transformation(C.QImageReader_Transformation(ptr.Pointer()))
@@ -562,11 +397,7 @@ func (ptr *QImageReader) Transformation() QImageIOHandler__Transformation {
 }
 
 func (ptr *QImageReader) DestroyQImageReader() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageReader::~QImageReader")
-		}
-	}()
+	defer qt.Recovering("QImageReader::~QImageReader")
 
 	if ptr.Pointer() != nil {
 		C.QImageReader_DestroyQImageReader(ptr.Pointer())

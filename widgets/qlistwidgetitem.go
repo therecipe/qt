@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -36,6 +35,9 @@ func PointerFromQListWidgetItem(ptr QListWidgetItem_ITF) unsafe.Pointer {
 func NewQListWidgetItemFromPointer(ptr unsafe.Pointer) *QListWidgetItem {
 	var n = new(QListWidgetItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QListWidgetItem_") {
+		n.SetObjectNameAbs("QListWidgetItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -52,41 +54,25 @@ const (
 )
 
 func NewQListWidgetItem(parent QListWidget_ITF, ty int) *QListWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::QListWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::QListWidgetItem")
 
 	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem(PointerFromQListWidget(parent), C.int(ty)))
 }
 
 func NewQListWidgetItem3(icon gui.QIcon_ITF, text string, parent QListWidget_ITF, ty int) *QListWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::QListWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::QListWidgetItem")
 
 	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem3(gui.PointerFromQIcon(icon), C.CString(text), PointerFromQListWidget(parent), C.int(ty)))
 }
 
 func NewQListWidgetItem2(text string, parent QListWidget_ITF, ty int) *QListWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::QListWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::QListWidgetItem")
 
 	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem2(C.CString(text), PointerFromQListWidget(parent), C.int(ty)))
 }
 
 func (ptr *QListWidgetItem) SetFlags(flags core.Qt__ItemFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setFlags")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setFlags")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetFlags(ptr.Pointer(), C.int(flags))
@@ -94,21 +80,13 @@ func (ptr *QListWidgetItem) SetFlags(flags core.Qt__ItemFlag) {
 }
 
 func NewQListWidgetItem4(other QListWidgetItem_ITF) *QListWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::QListWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::QListWidgetItem")
 
 	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem4(PointerFromQListWidgetItem(other)))
 }
 
 func (ptr *QListWidgetItem) Background() *gui.QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::background")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::background")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQBrushFromPointer(C.QListWidgetItem_Background(ptr.Pointer()))
@@ -117,11 +95,7 @@ func (ptr *QListWidgetItem) Background() *gui.QBrush {
 }
 
 func (ptr *QListWidgetItem) CheckState() core.Qt__CheckState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::checkState")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::checkState")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__CheckState(C.QListWidgetItem_CheckState(ptr.Pointer()))
@@ -130,11 +104,7 @@ func (ptr *QListWidgetItem) CheckState() core.Qt__CheckState {
 }
 
 func (ptr *QListWidgetItem) Clone() *QListWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::clone")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::clone")
 
 	if ptr.Pointer() != nil {
 		return NewQListWidgetItemFromPointer(C.QListWidgetItem_Clone(ptr.Pointer()))
@@ -143,11 +113,7 @@ func (ptr *QListWidgetItem) Clone() *QListWidgetItem {
 }
 
 func (ptr *QListWidgetItem) Data(role int) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::data")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::data")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QListWidgetItem_Data(ptr.Pointer(), C.int(role)))
@@ -156,11 +122,7 @@ func (ptr *QListWidgetItem) Data(role int) *core.QVariant {
 }
 
 func (ptr *QListWidgetItem) Flags() core.Qt__ItemFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::flags")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::flags")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ItemFlag(C.QListWidgetItem_Flags(ptr.Pointer()))
@@ -169,11 +131,7 @@ func (ptr *QListWidgetItem) Flags() core.Qt__ItemFlag {
 }
 
 func (ptr *QListWidgetItem) Foreground() *gui.QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::foreground")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::foreground")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQBrushFromPointer(C.QListWidgetItem_Foreground(ptr.Pointer()))
@@ -182,11 +140,7 @@ func (ptr *QListWidgetItem) Foreground() *gui.QBrush {
 }
 
 func (ptr *QListWidgetItem) IsHidden() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::isHidden")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::isHidden")
 
 	if ptr.Pointer() != nil {
 		return C.QListWidgetItem_IsHidden(ptr.Pointer()) != 0
@@ -195,11 +149,7 @@ func (ptr *QListWidgetItem) IsHidden() bool {
 }
 
 func (ptr *QListWidgetItem) IsSelected() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::isSelected")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::isSelected")
 
 	if ptr.Pointer() != nil {
 		return C.QListWidgetItem_IsSelected(ptr.Pointer()) != 0
@@ -208,11 +158,7 @@ func (ptr *QListWidgetItem) IsSelected() bool {
 }
 
 func (ptr *QListWidgetItem) ListWidget() *QListWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::listWidget")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::listWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQListWidgetFromPointer(C.QListWidgetItem_ListWidget(ptr.Pointer()))
@@ -220,24 +166,8 @@ func (ptr *QListWidgetItem) ListWidget() *QListWidget {
 	return nil
 }
 
-func (ptr *QListWidgetItem) Read(in core.QDataStream_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::read")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QListWidgetItem_Read(ptr.Pointer(), core.PointerFromQDataStream(in))
-	}
-}
-
 func (ptr *QListWidgetItem) SetBackground(brush gui.QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setBackground")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setBackground")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetBackground(ptr.Pointer(), gui.PointerFromQBrush(brush))
@@ -245,35 +175,46 @@ func (ptr *QListWidgetItem) SetBackground(brush gui.QBrush_ITF) {
 }
 
 func (ptr *QListWidgetItem) SetCheckState(state core.Qt__CheckState) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setCheckState")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setCheckState")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetCheckState(ptr.Pointer(), C.int(state))
 	}
 }
 
-func (ptr *QListWidgetItem) SetData(role int, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setData")
-		}
-	}()
+func (ptr *QListWidgetItem) ConnectSetData(f func(role int, value *core.QVariant)) {
+	defer qt.Recovering("connect QListWidgetItem::setData")
 
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetData(ptr.Pointer(), C.int(role), core.PointerFromQVariant(value))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setData", f)
 	}
 }
 
+func (ptr *QListWidgetItem) DisconnectSetData() {
+	defer qt.Recovering("disconnect QListWidgetItem::setData")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setData")
+	}
+}
+
+//export callbackQListWidgetItemSetData
+func callbackQListWidgetItemSetData(ptrName *C.char, role C.int, value unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListWidgetItem::setData")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setData")
+	if signal != nil {
+		defer signal.(func(int, *core.QVariant))(int(role), core.NewQVariantFromPointer(value))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QListWidgetItem) SetFont(font gui.QFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setFont")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setFont")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetFont(ptr.Pointer(), gui.PointerFromQFont(font))
@@ -281,11 +222,7 @@ func (ptr *QListWidgetItem) SetFont(font gui.QFont_ITF) {
 }
 
 func (ptr *QListWidgetItem) SetForeground(brush gui.QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setForeground")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setForeground")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetForeground(ptr.Pointer(), gui.PointerFromQBrush(brush))
@@ -293,11 +230,7 @@ func (ptr *QListWidgetItem) SetForeground(brush gui.QBrush_ITF) {
 }
 
 func (ptr *QListWidgetItem) SetHidden(hide bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setHidden")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setHidden")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetHidden(ptr.Pointer(), C.int(qt.GoBoolToInt(hide)))
@@ -305,11 +238,7 @@ func (ptr *QListWidgetItem) SetHidden(hide bool) {
 }
 
 func (ptr *QListWidgetItem) SetIcon(icon gui.QIcon_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setIcon")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setIcon")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
@@ -317,11 +246,7 @@ func (ptr *QListWidgetItem) SetIcon(icon gui.QIcon_ITF) {
 }
 
 func (ptr *QListWidgetItem) SetSelected(sele bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setSelected")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setSelected")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetSelected(ptr.Pointer(), C.int(qt.GoBoolToInt(sele)))
@@ -329,11 +254,7 @@ func (ptr *QListWidgetItem) SetSelected(sele bool) {
 }
 
 func (ptr *QListWidgetItem) SetSizeHint(size core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setSizeHint")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setSizeHint")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetSizeHint(ptr.Pointer(), core.PointerFromQSize(size))
@@ -341,11 +262,7 @@ func (ptr *QListWidgetItem) SetSizeHint(size core.QSize_ITF) {
 }
 
 func (ptr *QListWidgetItem) SetStatusTip(statusTip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setStatusTip")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setStatusTip")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetStatusTip(ptr.Pointer(), C.CString(statusTip))
@@ -353,11 +270,7 @@ func (ptr *QListWidgetItem) SetStatusTip(statusTip string) {
 }
 
 func (ptr *QListWidgetItem) SetText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setText")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setText")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetText(ptr.Pointer(), C.CString(text))
@@ -365,11 +278,7 @@ func (ptr *QListWidgetItem) SetText(text string) {
 }
 
 func (ptr *QListWidgetItem) SetTextAlignment(alignment int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setTextAlignment")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setTextAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetTextAlignment(ptr.Pointer(), C.int(alignment))
@@ -377,11 +286,7 @@ func (ptr *QListWidgetItem) SetTextAlignment(alignment int) {
 }
 
 func (ptr *QListWidgetItem) SetToolTip(toolTip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setToolTip")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setToolTip")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetToolTip(ptr.Pointer(), C.CString(toolTip))
@@ -389,11 +294,7 @@ func (ptr *QListWidgetItem) SetToolTip(toolTip string) {
 }
 
 func (ptr *QListWidgetItem) SetWhatsThis(whatsThis string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::setWhatsThis")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::setWhatsThis")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetWhatsThis(ptr.Pointer(), C.CString(whatsThis))
@@ -401,11 +302,7 @@ func (ptr *QListWidgetItem) SetWhatsThis(whatsThis string) {
 }
 
 func (ptr *QListWidgetItem) StatusTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::statusTip")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::statusTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QListWidgetItem_StatusTip(ptr.Pointer()))
@@ -414,11 +311,7 @@ func (ptr *QListWidgetItem) StatusTip() string {
 }
 
 func (ptr *QListWidgetItem) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::text")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QListWidgetItem_Text(ptr.Pointer()))
@@ -427,11 +320,7 @@ func (ptr *QListWidgetItem) Text() string {
 }
 
 func (ptr *QListWidgetItem) TextAlignment() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::textAlignment")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::textAlignment")
 
 	if ptr.Pointer() != nil {
 		return int(C.QListWidgetItem_TextAlignment(ptr.Pointer()))
@@ -440,11 +329,7 @@ func (ptr *QListWidgetItem) TextAlignment() int {
 }
 
 func (ptr *QListWidgetItem) ToolTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::toolTip")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::toolTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QListWidgetItem_ToolTip(ptr.Pointer()))
@@ -453,11 +338,7 @@ func (ptr *QListWidgetItem) ToolTip() string {
 }
 
 func (ptr *QListWidgetItem) Type() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::type")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::type")
 
 	if ptr.Pointer() != nil {
 		return int(C.QListWidgetItem_Type(ptr.Pointer()))
@@ -466,11 +347,7 @@ func (ptr *QListWidgetItem) Type() int {
 }
 
 func (ptr *QListWidgetItem) WhatsThis() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::whatsThis")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::whatsThis")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QListWidgetItem_WhatsThis(ptr.Pointer()))
@@ -478,26 +355,27 @@ func (ptr *QListWidgetItem) WhatsThis() string {
 	return ""
 }
 
-func (ptr *QListWidgetItem) Write(out core.QDataStream_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::write")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QListWidgetItem_Write(ptr.Pointer(), core.PointerFromQDataStream(out))
-	}
-}
-
 func (ptr *QListWidgetItem) DestroyQListWidgetItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QListWidgetItem::~QListWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QListWidgetItem::~QListWidgetItem")
 
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_DestroyQListWidgetItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QListWidgetItem) ObjectNameAbs() string {
+	defer qt.Recovering("QListWidgetItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QListWidgetItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QListWidgetItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QListWidgetItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QListWidgetItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

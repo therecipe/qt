@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQHelpEngineFromPointer(ptr unsafe.Pointer) *QHelpEngine {
 	var n = new(QHelpEngine)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpEngine_") {
-		n.SetObjectName("QHelpEngine_" + qt.RandomIdentifier())
+		n.SetObjectName("QHelpEngine_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QHelpEngine) QHelpEngine_PTR() *QHelpEngine {
 }
 
 func NewQHelpEngine(collectionFile string, parent core.QObject_ITF) *QHelpEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngine::QHelpEngine")
-		}
-	}()
+	defer qt.Recovering("QHelpEngine::QHelpEngine")
 
 	return NewQHelpEngineFromPointer(C.QHelpEngine_NewQHelpEngine(C.CString(collectionFile), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHelpEngine) ContentModel() *QHelpContentModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngine::contentModel")
-		}
-	}()
+	defer qt.Recovering("QHelpEngine::contentModel")
 
 	if ptr.Pointer() != nil {
 		return NewQHelpContentModelFromPointer(C.QHelpEngine_ContentModel(ptr.Pointer()))
@@ -62,11 +53,7 @@ func (ptr *QHelpEngine) ContentModel() *QHelpContentModel {
 }
 
 func (ptr *QHelpEngine) ContentWidget() *QHelpContentWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngine::contentWidget")
-		}
-	}()
+	defer qt.Recovering("QHelpEngine::contentWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQHelpContentWidgetFromPointer(C.QHelpEngine_ContentWidget(ptr.Pointer()))
@@ -75,11 +62,7 @@ func (ptr *QHelpEngine) ContentWidget() *QHelpContentWidget {
 }
 
 func (ptr *QHelpEngine) IndexModel() *QHelpIndexModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngine::indexModel")
-		}
-	}()
+	defer qt.Recovering("QHelpEngine::indexModel")
 
 	if ptr.Pointer() != nil {
 		return NewQHelpIndexModelFromPointer(C.QHelpEngine_IndexModel(ptr.Pointer()))
@@ -88,11 +71,7 @@ func (ptr *QHelpEngine) IndexModel() *QHelpIndexModel {
 }
 
 func (ptr *QHelpEngine) IndexWidget() *QHelpIndexWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngine::indexWidget")
-		}
-	}()
+	defer qt.Recovering("QHelpEngine::indexWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQHelpIndexWidgetFromPointer(C.QHelpEngine_IndexWidget(ptr.Pointer()))
@@ -101,11 +80,7 @@ func (ptr *QHelpEngine) IndexWidget() *QHelpIndexWidget {
 }
 
 func (ptr *QHelpEngine) SearchEngine() *QHelpSearchEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngine::searchEngine")
-		}
-	}()
+	defer qt.Recovering("QHelpEngine::searchEngine")
 
 	if ptr.Pointer() != nil {
 		return NewQHelpSearchEngineFromPointer(C.QHelpEngine_SearchEngine(ptr.Pointer()))
@@ -114,11 +89,7 @@ func (ptr *QHelpEngine) SearchEngine() *QHelpSearchEngine {
 }
 
 func (ptr *QHelpEngine) DestroyQHelpEngine() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngine::~QHelpEngine")
-		}
-	}()
+	defer qt.Recovering("QHelpEngine::~QHelpEngine")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DestroyQHelpEngine(ptr.Pointer())

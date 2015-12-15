@@ -3,8 +3,8 @@ package bluetooth
 //#include "bluetooth.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -57,31 +57,19 @@ const (
 )
 
 func NewQLowEnergyCharacteristic() *QLowEnergyCharacteristic {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyCharacteristic::QLowEnergyCharacteristic")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyCharacteristic::QLowEnergyCharacteristic")
 
 	return NewQLowEnergyCharacteristicFromPointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic())
 }
 
 func NewQLowEnergyCharacteristic2(other QLowEnergyCharacteristic_ITF) *QLowEnergyCharacteristic {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyCharacteristic::QLowEnergyCharacteristic")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyCharacteristic::QLowEnergyCharacteristic")
 
 	return NewQLowEnergyCharacteristicFromPointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic2(PointerFromQLowEnergyCharacteristic(other)))
 }
 
 func (ptr *QLowEnergyCharacteristic) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyCharacteristic::isValid")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyCharacteristic::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QLowEnergyCharacteristic_IsValid(ptr.Pointer()) != 0
@@ -90,11 +78,7 @@ func (ptr *QLowEnergyCharacteristic) IsValid() bool {
 }
 
 func (ptr *QLowEnergyCharacteristic) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyCharacteristic::name")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyCharacteristic::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QLowEnergyCharacteristic_Name(ptr.Pointer()))
@@ -103,11 +87,7 @@ func (ptr *QLowEnergyCharacteristic) Name() string {
 }
 
 func (ptr *QLowEnergyCharacteristic) Properties() QLowEnergyCharacteristic__PropertyType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyCharacteristic::properties")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyCharacteristic::properties")
 
 	if ptr.Pointer() != nil {
 		return QLowEnergyCharacteristic__PropertyType(C.QLowEnergyCharacteristic_Properties(ptr.Pointer()))
@@ -116,11 +96,7 @@ func (ptr *QLowEnergyCharacteristic) Properties() QLowEnergyCharacteristic__Prop
 }
 
 func (ptr *QLowEnergyCharacteristic) Value() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyCharacteristic::value")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyCharacteristic::value")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QLowEnergyCharacteristic_Value(ptr.Pointer()))
@@ -129,11 +105,7 @@ func (ptr *QLowEnergyCharacteristic) Value() *core.QByteArray {
 }
 
 func (ptr *QLowEnergyCharacteristic) DestroyQLowEnergyCharacteristic() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyCharacteristic::~QLowEnergyCharacteristic")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyCharacteristic::~QLowEnergyCharacteristic")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(ptr.Pointer())

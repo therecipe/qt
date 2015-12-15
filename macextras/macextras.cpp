@@ -12,6 +12,10 @@
 
 class MyQMacPasteboardMime: public QMacPasteboardMime {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 char* QMacPasteboardMime_ConvertorName(void* ptr){
@@ -34,9 +38,13 @@ void QMacPasteboardMime_DestroyQMacPasteboardMime(void* ptr){
 	static_cast<QMacPasteboardMime*>(ptr)->~QMacPasteboardMime();
 }
 
-class MyQMacToolBar: public QMacToolBar {
-public:
-};
+char* QMacPasteboardMime_ObjectNameAbs(void* ptr){
+	return static_cast<MyQMacPasteboardMime*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QMacPasteboardMime_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQMacPasteboardMime*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 void* QMacToolBar_NewQMacToolBar(void* parent){
 	return new QMacToolBar(static_cast<QObject*>(parent));
@@ -72,11 +80,13 @@ void QMacToolBar_DestroyQMacToolBar(void* ptr){
 
 class MyQMacToolBarItem: public QMacToolBarItem {
 public:
-void Signal_Activated(){callbackQMacToolBarItemActivated(this->objectName().toUtf8().data());};
+	MyQMacToolBarItem(QObject *parent) : QMacToolBarItem(parent) {};
+	void Signal_Activated() { callbackQMacToolBarItemActivated(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QMacToolBarItem_NewQMacToolBarItem(void* parent){
-	return new QMacToolBarItem(static_cast<QObject*>(parent));
+	return new MyQMacToolBarItem(static_cast<QObject*>(parent));
 }
 
 void QMacToolBarItem_ConnectActivated(void* ptr){

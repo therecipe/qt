@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,31 +34,19 @@ func (ptr *QDomEntityReference) QDomEntityReference_PTR() *QDomEntityReference {
 }
 
 func NewQDomEntityReference() *QDomEntityReference {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomEntityReference::QDomEntityReference")
-		}
-	}()
+	defer qt.Recovering("QDomEntityReference::QDomEntityReference")
 
 	return NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference())
 }
 
 func NewQDomEntityReference2(x QDomEntityReference_ITF) *QDomEntityReference {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomEntityReference::QDomEntityReference")
-		}
-	}()
+	defer qt.Recovering("QDomEntityReference::QDomEntityReference")
 
 	return NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference2(PointerFromQDomEntityReference(x)))
 }
 
 func (ptr *QDomEntityReference) NodeType() QDomNode__NodeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomEntityReference::nodeType")
-		}
-	}()
+	defer qt.Recovering("QDomEntityReference::nodeType")
 
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomEntityReference_NodeType(ptr.Pointer()))

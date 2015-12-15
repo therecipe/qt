@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,11 +42,7 @@ func (ptr *QPaintEngineState) QPaintEngineState_PTR() *QPaintEngineState {
 }
 
 func (ptr *QPaintEngineState) BackgroundBrush() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::backgroundBrush")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::backgroundBrush")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPaintEngineState_BackgroundBrush(ptr.Pointer()))
@@ -55,11 +51,7 @@ func (ptr *QPaintEngineState) BackgroundBrush() *QBrush {
 }
 
 func (ptr *QPaintEngineState) BackgroundMode() core.Qt__BGMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::backgroundMode")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::backgroundMode")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__BGMode(C.QPaintEngineState_BackgroundMode(ptr.Pointer()))
@@ -68,11 +60,7 @@ func (ptr *QPaintEngineState) BackgroundMode() core.Qt__BGMode {
 }
 
 func (ptr *QPaintEngineState) Brush() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::brush")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::brush")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPaintEngineState_Brush(ptr.Pointer()))
@@ -81,11 +69,7 @@ func (ptr *QPaintEngineState) Brush() *QBrush {
 }
 
 func (ptr *QPaintEngineState) BrushNeedsResolving() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::brushNeedsResolving")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::brushNeedsResolving")
 
 	if ptr.Pointer() != nil {
 		return C.QPaintEngineState_BrushNeedsResolving(ptr.Pointer()) != 0
@@ -94,11 +78,7 @@ func (ptr *QPaintEngineState) BrushNeedsResolving() bool {
 }
 
 func (ptr *QPaintEngineState) ClipOperation() core.Qt__ClipOperation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::clipOperation")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::clipOperation")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ClipOperation(C.QPaintEngineState_ClipOperation(ptr.Pointer()))
@@ -107,11 +87,7 @@ func (ptr *QPaintEngineState) ClipOperation() core.Qt__ClipOperation {
 }
 
 func (ptr *QPaintEngineState) ClipRegion() *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::clipRegion")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::clipRegion")
 
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QPaintEngineState_ClipRegion(ptr.Pointer()))
@@ -120,11 +96,7 @@ func (ptr *QPaintEngineState) ClipRegion() *QRegion {
 }
 
 func (ptr *QPaintEngineState) CompositionMode() QPainter__CompositionMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::compositionMode")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::compositionMode")
 
 	if ptr.Pointer() != nil {
 		return QPainter__CompositionMode(C.QPaintEngineState_CompositionMode(ptr.Pointer()))
@@ -133,11 +105,7 @@ func (ptr *QPaintEngineState) CompositionMode() QPainter__CompositionMode {
 }
 
 func (ptr *QPaintEngineState) IsClipEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::isClipEnabled")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::isClipEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QPaintEngineState_IsClipEnabled(ptr.Pointer()) != 0
@@ -146,11 +114,7 @@ func (ptr *QPaintEngineState) IsClipEnabled() bool {
 }
 
 func (ptr *QPaintEngineState) Opacity() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::opacity")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::opacity")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPaintEngineState_Opacity(ptr.Pointer()))
@@ -159,11 +123,7 @@ func (ptr *QPaintEngineState) Opacity() float64 {
 }
 
 func (ptr *QPaintEngineState) Painter() *QPainter {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::painter")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::painter")
 
 	if ptr.Pointer() != nil {
 		return NewQPainterFromPointer(C.QPaintEngineState_Painter(ptr.Pointer()))
@@ -172,11 +132,7 @@ func (ptr *QPaintEngineState) Painter() *QPainter {
 }
 
 func (ptr *QPaintEngineState) PenNeedsResolving() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::penNeedsResolving")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::penNeedsResolving")
 
 	if ptr.Pointer() != nil {
 		return C.QPaintEngineState_PenNeedsResolving(ptr.Pointer()) != 0
@@ -185,11 +141,7 @@ func (ptr *QPaintEngineState) PenNeedsResolving() bool {
 }
 
 func (ptr *QPaintEngineState) RenderHints() QPainter__RenderHint {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngineState::renderHints")
-		}
-	}()
+	defer qt.Recovering("QPaintEngineState::renderHints")
 
 	if ptr.Pointer() != nil {
 		return QPainter__RenderHint(C.QPaintEngineState_RenderHints(ptr.Pointer()))

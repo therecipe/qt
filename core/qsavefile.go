@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQSaveFileFromPointer(ptr unsafe.Pointer) *QSaveFile {
 	var n = new(QSaveFile)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSaveFile_") {
-		n.SetObjectName("QSaveFile_" + qt.RandomIdentifier())
+		n.SetObjectName("QSaveFile_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,41 +37,25 @@ func (ptr *QSaveFile) QSaveFile_PTR() *QSaveFile {
 }
 
 func NewQSaveFile2(parent QObject_ITF) *QSaveFile {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSaveFile::QSaveFile")
-		}
-	}()
+	defer qt.Recovering("QSaveFile::QSaveFile")
 
 	return NewQSaveFileFromPointer(C.QSaveFile_NewQSaveFile2(PointerFromQObject(parent)))
 }
 
 func NewQSaveFile(name string) *QSaveFile {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSaveFile::QSaveFile")
-		}
-	}()
+	defer qt.Recovering("QSaveFile::QSaveFile")
 
 	return NewQSaveFileFromPointer(C.QSaveFile_NewQSaveFile(C.CString(name)))
 }
 
 func NewQSaveFile3(name string, parent QObject_ITF) *QSaveFile {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSaveFile::QSaveFile")
-		}
-	}()
+	defer qt.Recovering("QSaveFile::QSaveFile")
 
 	return NewQSaveFileFromPointer(C.QSaveFile_NewQSaveFile3(C.CString(name), PointerFromQObject(parent)))
 }
 
 func (ptr *QSaveFile) CancelWriting() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSaveFile::cancelWriting")
-		}
-	}()
+	defer qt.Recovering("QSaveFile::cancelWriting")
 
 	if ptr.Pointer() != nil {
 		C.QSaveFile_CancelWriting(ptr.Pointer())
@@ -80,11 +63,7 @@ func (ptr *QSaveFile) CancelWriting() {
 }
 
 func (ptr *QSaveFile) Commit() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSaveFile::commit")
-		}
-	}()
+	defer qt.Recovering("QSaveFile::commit")
 
 	if ptr.Pointer() != nil {
 		return C.QSaveFile_Commit(ptr.Pointer()) != 0
@@ -93,11 +72,7 @@ func (ptr *QSaveFile) Commit() bool {
 }
 
 func (ptr *QSaveFile) DirectWriteFallback() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSaveFile::directWriteFallback")
-		}
-	}()
+	defer qt.Recovering("QSaveFile::directWriteFallback")
 
 	if ptr.Pointer() != nil {
 		return C.QSaveFile_DirectWriteFallback(ptr.Pointer()) != 0
@@ -106,11 +81,7 @@ func (ptr *QSaveFile) DirectWriteFallback() bool {
 }
 
 func (ptr *QSaveFile) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSaveFile::fileName")
-		}
-	}()
+	defer qt.Recovering("QSaveFile::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSaveFile_FileName(ptr.Pointer()))
@@ -119,11 +90,7 @@ func (ptr *QSaveFile) FileName() string {
 }
 
 func (ptr *QSaveFile) Open(mode QIODevice__OpenModeFlag) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSaveFile::open")
-		}
-	}()
+	defer qt.Recovering("QSaveFile::open")
 
 	if ptr.Pointer() != nil {
 		return C.QSaveFile_Open(ptr.Pointer(), C.int(mode)) != 0
@@ -132,11 +99,7 @@ func (ptr *QSaveFile) Open(mode QIODevice__OpenModeFlag) bool {
 }
 
 func (ptr *QSaveFile) SetDirectWriteFallback(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSaveFile::setDirectWriteFallback")
-		}
-	}()
+	defer qt.Recovering("QSaveFile::setDirectWriteFallback")
 
 	if ptr.Pointer() != nil {
 		C.QSaveFile_SetDirectWriteFallback(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -144,11 +107,7 @@ func (ptr *QSaveFile) SetDirectWriteFallback(enabled bool) {
 }
 
 func (ptr *QSaveFile) SetFileName(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSaveFile::setFileName")
-		}
-	}()
+	defer qt.Recovering("QSaveFile::setFileName")
 
 	if ptr.Pointer() != nil {
 		C.QSaveFile_SetFileName(ptr.Pointer(), C.CString(name))
@@ -156,11 +115,7 @@ func (ptr *QSaveFile) SetFileName(name string) {
 }
 
 func (ptr *QSaveFile) DestroyQSaveFile() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSaveFile::~QSaveFile")
-		}
-	}()
+	defer qt.Recovering("QSaveFile::~QSaveFile")
 
 	if ptr.Pointer() != nil {
 		C.QSaveFile_DestroyQSaveFile(ptr.Pointer())

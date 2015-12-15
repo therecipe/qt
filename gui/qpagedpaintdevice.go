@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -27,6 +27,9 @@ func PointerFromQPagedPaintDevice(ptr QPagedPaintDevice_ITF) unsafe.Pointer {
 func NewQPagedPaintDeviceFromPointer(ptr unsafe.Pointer) *QPagedPaintDevice {
 	var n = new(QPagedPaintDevice)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QPagedPaintDevice_") {
+		n.SetObjectNameAbs("QPagedPaintDevice_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -168,11 +171,7 @@ const (
 )
 
 func (ptr *QPagedPaintDevice) NewPage() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPagedPaintDevice::newPage")
-		}
-	}()
+	defer qt.Recovering("QPagedPaintDevice::newPage")
 
 	if ptr.Pointer() != nil {
 		return C.QPagedPaintDevice_NewPage(ptr.Pointer()) != 0
@@ -181,11 +180,7 @@ func (ptr *QPagedPaintDevice) NewPage() bool {
 }
 
 func (ptr *QPagedPaintDevice) PageSize() QPagedPaintDevice__PageSize {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPagedPaintDevice::pageSize")
-		}
-	}()
+	defer qt.Recovering("QPagedPaintDevice::pageSize")
 
 	if ptr.Pointer() != nil {
 		return QPagedPaintDevice__PageSize(C.QPagedPaintDevice_PageSize(ptr.Pointer()))
@@ -194,11 +189,7 @@ func (ptr *QPagedPaintDevice) PageSize() QPagedPaintDevice__PageSize {
 }
 
 func (ptr *QPagedPaintDevice) SetPageLayout(newPageLayout QPageLayout_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPagedPaintDevice::setPageLayout")
-		}
-	}()
+	defer qt.Recovering("QPagedPaintDevice::setPageLayout")
 
 	if ptr.Pointer() != nil {
 		return C.QPagedPaintDevice_SetPageLayout(ptr.Pointer(), PointerFromQPageLayout(newPageLayout)) != 0
@@ -207,11 +198,7 @@ func (ptr *QPagedPaintDevice) SetPageLayout(newPageLayout QPageLayout_ITF) bool 
 }
 
 func (ptr *QPagedPaintDevice) SetPageMargins(margins core.QMarginsF_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPagedPaintDevice::setPageMargins")
-		}
-	}()
+	defer qt.Recovering("QPagedPaintDevice::setPageMargins")
 
 	if ptr.Pointer() != nil {
 		return C.QPagedPaintDevice_SetPageMargins(ptr.Pointer(), core.PointerFromQMarginsF(margins)) != 0
@@ -220,11 +207,7 @@ func (ptr *QPagedPaintDevice) SetPageMargins(margins core.QMarginsF_ITF) bool {
 }
 
 func (ptr *QPagedPaintDevice) SetPageMargins2(margins core.QMarginsF_ITF, units QPageLayout__Unit) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPagedPaintDevice::setPageMargins")
-		}
-	}()
+	defer qt.Recovering("QPagedPaintDevice::setPageMargins")
 
 	if ptr.Pointer() != nil {
 		return C.QPagedPaintDevice_SetPageMargins2(ptr.Pointer(), core.PointerFromQMarginsF(margins), C.int(units)) != 0
@@ -233,11 +216,7 @@ func (ptr *QPagedPaintDevice) SetPageMargins2(margins core.QMarginsF_ITF, units 
 }
 
 func (ptr *QPagedPaintDevice) SetPageOrientation(orientation QPageLayout__Orientation) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPagedPaintDevice::setPageOrientation")
-		}
-	}()
+	defer qt.Recovering("QPagedPaintDevice::setPageOrientation")
 
 	if ptr.Pointer() != nil {
 		return C.QPagedPaintDevice_SetPageOrientation(ptr.Pointer(), C.int(orientation)) != 0
@@ -246,11 +225,7 @@ func (ptr *QPagedPaintDevice) SetPageOrientation(orientation QPageLayout__Orient
 }
 
 func (ptr *QPagedPaintDevice) SetPageSize(pageSize QPageSize_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPagedPaintDevice::setPageSize")
-		}
-	}()
+	defer qt.Recovering("QPagedPaintDevice::setPageSize")
 
 	if ptr.Pointer() != nil {
 		return C.QPagedPaintDevice_SetPageSize(ptr.Pointer(), PointerFromQPageSize(pageSize)) != 0
@@ -258,38 +233,27 @@ func (ptr *QPagedPaintDevice) SetPageSize(pageSize QPageSize_ITF) bool {
 	return false
 }
 
-func (ptr *QPagedPaintDevice) SetPageSize2(size QPagedPaintDevice__PageSize) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPagedPaintDevice::setPageSize")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QPagedPaintDevice_SetPageSize2(ptr.Pointer(), C.int(size))
-	}
-}
-
-func (ptr *QPagedPaintDevice) SetPageSizeMM(size core.QSizeF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPagedPaintDevice::setPageSizeMM")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QPagedPaintDevice_SetPageSizeMM(ptr.Pointer(), core.PointerFromQSizeF(size))
-	}
-}
-
 func (ptr *QPagedPaintDevice) DestroyQPagedPaintDevice() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPagedPaintDevice::~QPagedPaintDevice")
-		}
-	}()
+	defer qt.Recovering("QPagedPaintDevice::~QPagedPaintDevice")
 
 	if ptr.Pointer() != nil {
 		C.QPagedPaintDevice_DestroyQPagedPaintDevice(ptr.Pointer())
+	}
+}
+
+func (ptr *QPagedPaintDevice) ObjectNameAbs() string {
+	defer qt.Recovering("QPagedPaintDevice::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QPagedPaintDevice_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPagedPaintDevice) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QPagedPaintDevice::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QPagedPaintDevice_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

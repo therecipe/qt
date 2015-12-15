@@ -4,7 +4,6 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQMacNativeWidgetFromPointer(ptr unsafe.Pointer) *QMacNativeWidget {
 	var n = new(QMacNativeWidget)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMacNativeWidget_") {
-		n.SetObjectName("QMacNativeWidget_" + qt.RandomIdentifier())
+		n.SetObjectName("QMacNativeWidget_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QMacNativeWidget) QMacNativeWidget_PTR() *QMacNativeWidget {
 }
 
 func (ptr *QMacNativeWidget) DestroyQMacNativeWidget() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacNativeWidget::~QMacNativeWidget")
-		}
-	}()
+	defer qt.Recovering("QMacNativeWidget::~QMacNativeWidget")
 
 	if ptr.Pointer() != nil {
 		C.QMacNativeWidget_DestroyQMacNativeWidget(ptr.Pointer())

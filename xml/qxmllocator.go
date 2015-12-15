@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQXmlLocator(ptr QXmlLocator_ITF) unsafe.Pointer {
 func NewQXmlLocatorFromPointer(ptr unsafe.Pointer) *QXmlLocator {
 	var n = new(QXmlLocator)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QXmlLocator_") {
+		n.SetObjectNameAbs("QXmlLocator_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QXmlLocator) QXmlLocator_PTR() *QXmlLocator {
 }
 
 func (ptr *QXmlLocator) ColumnNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlLocator::columnNumber")
-		}
-	}()
+	defer qt.Recovering("QXmlLocator::columnNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QXmlLocator_ColumnNumber(ptr.Pointer()))
@@ -54,11 +53,7 @@ func (ptr *QXmlLocator) ColumnNumber() int {
 }
 
 func (ptr *QXmlLocator) LineNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlLocator::lineNumber")
-		}
-	}()
+	defer qt.Recovering("QXmlLocator::lineNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QXmlLocator_LineNumber(ptr.Pointer()))
@@ -67,13 +62,26 @@ func (ptr *QXmlLocator) LineNumber() int {
 }
 
 func (ptr *QXmlLocator) DestroyQXmlLocator() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlLocator::~QXmlLocator")
-		}
-	}()
+	defer qt.Recovering("QXmlLocator::~QXmlLocator")
 
 	if ptr.Pointer() != nil {
 		C.QXmlLocator_DestroyQXmlLocator(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlLocator) ObjectNameAbs() string {
+	defer qt.Recovering("QXmlLocator::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlLocator_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QXmlLocator) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QXmlLocator::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QXmlLocator_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

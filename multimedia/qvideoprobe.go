@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQVideoProbeFromPointer(ptr unsafe.Pointer) *QVideoProbe {
 	var n = new(QVideoProbe)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoProbe_") {
-		n.SetObjectName("QVideoProbe_" + qt.RandomIdentifier())
+		n.SetObjectName("QVideoProbe_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QVideoProbe) QVideoProbe_PTR() *QVideoProbe {
 }
 
 func NewQVideoProbe(parent core.QObject_ITF) *QVideoProbe {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoProbe::QVideoProbe")
-		}
-	}()
+	defer qt.Recovering("QVideoProbe::QVideoProbe")
 
 	return NewQVideoProbeFromPointer(C.QVideoProbe_NewQVideoProbe(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QVideoProbe) ConnectFlush(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoProbe::flush")
-		}
-	}()
+	defer qt.Recovering("connect QVideoProbe::flush")
 
 	if ptr.Pointer() != nil {
 		C.QVideoProbe_ConnectFlush(ptr.Pointer())
@@ -62,11 +53,7 @@ func (ptr *QVideoProbe) ConnectFlush(f func()) {
 }
 
 func (ptr *QVideoProbe) DisconnectFlush() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoProbe::flush")
-		}
-	}()
+	defer qt.Recovering("disconnect QVideoProbe::flush")
 
 	if ptr.Pointer() != nil {
 		C.QVideoProbe_DisconnectFlush(ptr.Pointer())
@@ -76,21 +63,17 @@ func (ptr *QVideoProbe) DisconnectFlush() {
 
 //export callbackQVideoProbeFlush
 func callbackQVideoProbeFlush(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoProbe::flush")
-		}
-	}()
+	defer qt.Recovering("callback QVideoProbe::flush")
 
-	qt.GetSignal(C.GoString(ptrName), "flush").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "flush")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QVideoProbe) IsActive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoProbe::isActive")
-		}
-	}()
+	defer qt.Recovering("QVideoProbe::isActive")
 
 	if ptr.Pointer() != nil {
 		return C.QVideoProbe_IsActive(ptr.Pointer()) != 0
@@ -99,11 +82,7 @@ func (ptr *QVideoProbe) IsActive() bool {
 }
 
 func (ptr *QVideoProbe) SetSource(source QMediaObject_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoProbe::setSource")
-		}
-	}()
+	defer qt.Recovering("QVideoProbe::setSource")
 
 	if ptr.Pointer() != nil {
 		return C.QVideoProbe_SetSource(ptr.Pointer(), PointerFromQMediaObject(source)) != 0
@@ -112,11 +91,7 @@ func (ptr *QVideoProbe) SetSource(source QMediaObject_ITF) bool {
 }
 
 func (ptr *QVideoProbe) SetSource2(mediaRecorder QMediaRecorder_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoProbe::setSource")
-		}
-	}()
+	defer qt.Recovering("QVideoProbe::setSource")
 
 	if ptr.Pointer() != nil {
 		return C.QVideoProbe_SetSource2(ptr.Pointer(), PointerFromQMediaRecorder(mediaRecorder)) != 0
@@ -125,11 +100,7 @@ func (ptr *QVideoProbe) SetSource2(mediaRecorder QMediaRecorder_ITF) bool {
 }
 
 func (ptr *QVideoProbe) DestroyQVideoProbe() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoProbe::~QVideoProbe")
-		}
-	}()
+	defer qt.Recovering("QVideoProbe::~QVideoProbe")
 
 	if ptr.Pointer() != nil {
 		C.QVideoProbe_DestroyQVideoProbe(ptr.Pointer())

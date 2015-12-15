@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQWebChannelAbstractTransportFromPointer(ptr unsafe.Pointer) *QWebChannel
 	var n = new(QWebChannelAbstractTransport)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QWebChannelAbstractTransport_") {
-		n.SetObjectName("QWebChannelAbstractTransport_" + qt.RandomIdentifier())
+		n.SetObjectName("QWebChannelAbstractTransport_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QWebChannelAbstractTransport) QWebChannelAbstractTransport_PTR() *QWe
 }
 
 func (ptr *QWebChannelAbstractTransport) ConnectMessageReceived(f func(message *core.QJsonObject, transport *QWebChannelAbstractTransport)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannelAbstractTransport::messageReceived")
-		}
-	}()
+	defer qt.Recovering("connect QWebChannelAbstractTransport::messageReceived")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_ConnectMessageReceived(ptr.Pointer())
@@ -52,11 +47,7 @@ func (ptr *QWebChannelAbstractTransport) ConnectMessageReceived(f func(message *
 }
 
 func (ptr *QWebChannelAbstractTransport) DisconnectMessageReceived() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannelAbstractTransport::messageReceived")
-		}
-	}()
+	defer qt.Recovering("disconnect QWebChannelAbstractTransport::messageReceived")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_DisconnectMessageReceived(ptr.Pointer())
@@ -66,21 +57,17 @@ func (ptr *QWebChannelAbstractTransport) DisconnectMessageReceived() {
 
 //export callbackQWebChannelAbstractTransportMessageReceived
 func callbackQWebChannelAbstractTransportMessageReceived(ptrName *C.char, message unsafe.Pointer, transport unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannelAbstractTransport::messageReceived")
-		}
-	}()
+	defer qt.Recovering("callback QWebChannelAbstractTransport::messageReceived")
 
-	qt.GetSignal(C.GoString(ptrName), "messageReceived").(func(*core.QJsonObject, *QWebChannelAbstractTransport))(core.NewQJsonObjectFromPointer(message), NewQWebChannelAbstractTransportFromPointer(transport))
+	var signal = qt.GetSignal(C.GoString(ptrName), "messageReceived")
+	if signal != nil {
+		signal.(func(*core.QJsonObject, *QWebChannelAbstractTransport))(core.NewQJsonObjectFromPointer(message), NewQWebChannelAbstractTransportFromPointer(transport))
+	}
+
 }
 
 func (ptr *QWebChannelAbstractTransport) SendMessage(message core.QJsonObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannelAbstractTransport::sendMessage")
-		}
-	}()
+	defer qt.Recovering("QWebChannelAbstractTransport::sendMessage")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_SendMessage(ptr.Pointer(), core.PointerFromQJsonObject(message))
@@ -88,11 +75,7 @@ func (ptr *QWebChannelAbstractTransport) SendMessage(message core.QJsonObject_IT
 }
 
 func (ptr *QWebChannelAbstractTransport) DestroyQWebChannelAbstractTransport() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannelAbstractTransport::~QWebChannelAbstractTransport")
-		}
-	}()
+	defer qt.Recovering("QWebChannelAbstractTransport::~QWebChannelAbstractTransport")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(ptr.Pointer())

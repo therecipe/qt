@@ -3,8 +3,8 @@ package network
 //#include "network.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +42,19 @@ func (ptr *QAuthenticator) QAuthenticator_PTR() *QAuthenticator {
 }
 
 func NewQAuthenticator() *QAuthenticator {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAuthenticator::QAuthenticator")
-		}
-	}()
+	defer qt.Recovering("QAuthenticator::QAuthenticator")
 
 	return NewQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator())
 }
 
 func NewQAuthenticator2(other QAuthenticator_ITF) *QAuthenticator {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAuthenticator::QAuthenticator")
-		}
-	}()
+	defer qt.Recovering("QAuthenticator::QAuthenticator")
 
 	return NewQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator2(PointerFromQAuthenticator(other)))
 }
 
 func (ptr *QAuthenticator) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAuthenticator::isNull")
-		}
-	}()
+	defer qt.Recovering("QAuthenticator::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QAuthenticator_IsNull(ptr.Pointer()) != 0
@@ -75,11 +63,7 @@ func (ptr *QAuthenticator) IsNull() bool {
 }
 
 func (ptr *QAuthenticator) Option(opt string) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAuthenticator::option")
-		}
-	}()
+	defer qt.Recovering("QAuthenticator::option")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QAuthenticator_Option(ptr.Pointer(), C.CString(opt)))
@@ -88,11 +72,7 @@ func (ptr *QAuthenticator) Option(opt string) *core.QVariant {
 }
 
 func (ptr *QAuthenticator) Password() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAuthenticator::password")
-		}
-	}()
+	defer qt.Recovering("QAuthenticator::password")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAuthenticator_Password(ptr.Pointer()))
@@ -101,11 +81,7 @@ func (ptr *QAuthenticator) Password() string {
 }
 
 func (ptr *QAuthenticator) Realm() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAuthenticator::realm")
-		}
-	}()
+	defer qt.Recovering("QAuthenticator::realm")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAuthenticator_Realm(ptr.Pointer()))
@@ -114,11 +90,7 @@ func (ptr *QAuthenticator) Realm() string {
 }
 
 func (ptr *QAuthenticator) SetOption(opt string, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAuthenticator::setOption")
-		}
-	}()
+	defer qt.Recovering("QAuthenticator::setOption")
 
 	if ptr.Pointer() != nil {
 		C.QAuthenticator_SetOption(ptr.Pointer(), C.CString(opt), core.PointerFromQVariant(value))
@@ -126,11 +98,7 @@ func (ptr *QAuthenticator) SetOption(opt string, value core.QVariant_ITF) {
 }
 
 func (ptr *QAuthenticator) SetPassword(password string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAuthenticator::setPassword")
-		}
-	}()
+	defer qt.Recovering("QAuthenticator::setPassword")
 
 	if ptr.Pointer() != nil {
 		C.QAuthenticator_SetPassword(ptr.Pointer(), C.CString(password))
@@ -138,11 +106,7 @@ func (ptr *QAuthenticator) SetPassword(password string) {
 }
 
 func (ptr *QAuthenticator) SetUser(user string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAuthenticator::setUser")
-		}
-	}()
+	defer qt.Recovering("QAuthenticator::setUser")
 
 	if ptr.Pointer() != nil {
 		C.QAuthenticator_SetUser(ptr.Pointer(), C.CString(user))
@@ -150,11 +114,7 @@ func (ptr *QAuthenticator) SetUser(user string) {
 }
 
 func (ptr *QAuthenticator) User() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAuthenticator::user")
-		}
-	}()
+	defer qt.Recovering("QAuthenticator::user")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAuthenticator_User(ptr.Pointer()))
@@ -163,11 +123,7 @@ func (ptr *QAuthenticator) User() string {
 }
 
 func (ptr *QAuthenticator) DestroyQAuthenticator() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAuthenticator::~QAuthenticator")
-		}
-	}()
+	defer qt.Recovering("QAuthenticator::~QAuthenticator")
 
 	if ptr.Pointer() != nil {
 		C.QAuthenticator_DestroyQAuthenticator(ptr.Pointer())

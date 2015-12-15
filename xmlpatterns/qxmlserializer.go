@@ -3,8 +3,8 @@ package xmlpatterns
 //#include "xmlpatterns.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -27,6 +27,9 @@ func PointerFromQXmlSerializer(ptr QXmlSerializer_ITF) unsafe.Pointer {
 func NewQXmlSerializerFromPointer(ptr unsafe.Pointer) *QXmlSerializer {
 	var n = new(QXmlSerializer)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QXmlSerializer_") {
+		n.SetObjectNameAbs("QXmlSerializer_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -35,81 +38,137 @@ func (ptr *QXmlSerializer) QXmlSerializer_PTR() *QXmlSerializer {
 }
 
 func NewQXmlSerializer(query QXmlQuery_ITF, outputDevice core.QIODevice_ITF) *QXmlSerializer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::QXmlSerializer")
-		}
-	}()
+	defer qt.Recovering("QXmlSerializer::QXmlSerializer")
 
 	return NewQXmlSerializerFromPointer(C.QXmlSerializer_NewQXmlSerializer(PointerFromQXmlQuery(query), core.PointerFromQIODevice(outputDevice)))
 }
 
-func (ptr *QXmlSerializer) Attribute(name QXmlName_ITF, value core.QStringRef_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::attribute")
-		}
-	}()
+func (ptr *QXmlSerializer) ConnectCharacters(f func(value *core.QStringRef)) {
+	defer qt.Recovering("connect QXmlSerializer::characters")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSerializer_Attribute(ptr.Pointer(), PointerFromQXmlName(name), core.PointerFromQStringRef(value))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "characters", f)
 	}
 }
 
-func (ptr *QXmlSerializer) Characters(value core.QStringRef_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::characters")
-		}
-	}()
+func (ptr *QXmlSerializer) DisconnectCharacters() {
+	defer qt.Recovering("disconnect QXmlSerializer::characters")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSerializer_Characters(ptr.Pointer(), core.PointerFromQStringRef(value))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "characters")
 	}
 }
 
-func (ptr *QXmlSerializer) Comment(value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::comment")
-		}
-	}()
+//export callbackQXmlSerializerCharacters
+func callbackQXmlSerializerCharacters(ptrName *C.char, value unsafe.Pointer) bool {
+	defer qt.Recovering("callback QXmlSerializer::characters")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "characters")
+	if signal != nil {
+		defer signal.(func(*core.QStringRef))(core.NewQStringRefFromPointer(value))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlSerializer) ConnectComment(f func(value string)) {
+	defer qt.Recovering("connect QXmlSerializer::comment")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSerializer_Comment(ptr.Pointer(), C.CString(value))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "comment", f)
 	}
 }
 
-func (ptr *QXmlSerializer) EndDocument() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::endDocument")
-		}
-	}()
+func (ptr *QXmlSerializer) DisconnectComment() {
+	defer qt.Recovering("disconnect QXmlSerializer::comment")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSerializer_EndDocument(ptr.Pointer())
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "comment")
 	}
 }
 
-func (ptr *QXmlSerializer) EndElement() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::endElement")
-		}
-	}()
+//export callbackQXmlSerializerComment
+func callbackQXmlSerializerComment(ptrName *C.char, value *C.char) bool {
+	defer qt.Recovering("callback QXmlSerializer::comment")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "comment")
+	if signal != nil {
+		defer signal.(func(string))(C.GoString(value))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlSerializer) ConnectEndDocument(f func()) {
+	defer qt.Recovering("connect QXmlSerializer::endDocument")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSerializer_EndElement(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "endDocument", f)
 	}
+}
+
+func (ptr *QXmlSerializer) DisconnectEndDocument() {
+	defer qt.Recovering("disconnect QXmlSerializer::endDocument")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "endDocument")
+	}
+}
+
+//export callbackQXmlSerializerEndDocument
+func callbackQXmlSerializerEndDocument(ptrName *C.char) bool {
+	defer qt.Recovering("callback QXmlSerializer::endDocument")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "endDocument")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlSerializer) ConnectEndElement(f func()) {
+	defer qt.Recovering("connect QXmlSerializer::endElement")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "endElement", f)
+	}
+}
+
+func (ptr *QXmlSerializer) DisconnectEndElement() {
+	defer qt.Recovering("disconnect QXmlSerializer::endElement")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "endElement")
+	}
+}
+
+//export callbackQXmlSerializerEndElement
+func callbackQXmlSerializerEndElement(ptrName *C.char) bool {
+	defer qt.Recovering("callback QXmlSerializer::endElement")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "endElement")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QXmlSerializer) Codec() *core.QTextCodec {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::codec")
-		}
-	}()
+	defer qt.Recovering("QXmlSerializer::codec")
 
 	if ptr.Pointer() != nil {
 		return core.NewQTextCodecFromPointer(C.QXmlSerializer_Codec(ptr.Pointer()))
@@ -117,36 +176,39 @@ func (ptr *QXmlSerializer) Codec() *core.QTextCodec {
 	return nil
 }
 
-func (ptr *QXmlSerializer) EndOfSequence() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::endOfSequence")
-		}
-	}()
+func (ptr *QXmlSerializer) ConnectEndOfSequence(f func()) {
+	defer qt.Recovering("connect QXmlSerializer::endOfSequence")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSerializer_EndOfSequence(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "endOfSequence", f)
 	}
 }
 
-func (ptr *QXmlSerializer) NamespaceBinding(nb QXmlName_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::namespaceBinding")
-		}
-	}()
+func (ptr *QXmlSerializer) DisconnectEndOfSequence() {
+	defer qt.Recovering("disconnect QXmlSerializer::endOfSequence")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSerializer_NamespaceBinding(ptr.Pointer(), PointerFromQXmlName(nb))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "endOfSequence")
 	}
+}
+
+//export callbackQXmlSerializerEndOfSequence
+func callbackQXmlSerializerEndOfSequence(ptrName *C.char) bool {
+	defer qt.Recovering("callback QXmlSerializer::endOfSequence")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "endOfSequence")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QXmlSerializer) OutputDevice() *core.QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::outputDevice")
-		}
-	}()
+	defer qt.Recovering("QXmlSerializer::outputDevice")
 
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QXmlSerializer_OutputDevice(ptr.Pointer()))
@@ -154,62 +216,89 @@ func (ptr *QXmlSerializer) OutputDevice() *core.QIODevice {
 	return nil
 }
 
-func (ptr *QXmlSerializer) ProcessingInstruction(name QXmlName_ITF, value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::processingInstruction")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QXmlSerializer_ProcessingInstruction(ptr.Pointer(), PointerFromQXmlName(name), C.CString(value))
-	}
-}
-
 func (ptr *QXmlSerializer) SetCodec(outputCodec core.QTextCodec_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::setCodec")
-		}
-	}()
+	defer qt.Recovering("QXmlSerializer::setCodec")
 
 	if ptr.Pointer() != nil {
 		C.QXmlSerializer_SetCodec(ptr.Pointer(), core.PointerFromQTextCodec(outputCodec))
 	}
 }
 
-func (ptr *QXmlSerializer) StartDocument() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::startDocument")
-		}
-	}()
+func (ptr *QXmlSerializer) ConnectStartDocument(f func()) {
+	defer qt.Recovering("connect QXmlSerializer::startDocument")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSerializer_StartDocument(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "startDocument", f)
 	}
 }
 
-func (ptr *QXmlSerializer) StartElement(name QXmlName_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::startElement")
-		}
-	}()
+func (ptr *QXmlSerializer) DisconnectStartDocument() {
+	defer qt.Recovering("disconnect QXmlSerializer::startDocument")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSerializer_StartElement(ptr.Pointer(), PointerFromQXmlName(name))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "startDocument")
 	}
 }
 
-func (ptr *QXmlSerializer) StartOfSequence() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSerializer::startOfSequence")
-		}
-	}()
+//export callbackQXmlSerializerStartDocument
+func callbackQXmlSerializerStartDocument(ptrName *C.char) bool {
+	defer qt.Recovering("callback QXmlSerializer::startDocument")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "startDocument")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlSerializer) ConnectStartOfSequence(f func()) {
+	defer qt.Recovering("connect QXmlSerializer::startOfSequence")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSerializer_StartOfSequence(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "startOfSequence", f)
+	}
+}
+
+func (ptr *QXmlSerializer) DisconnectStartOfSequence() {
+	defer qt.Recovering("disconnect QXmlSerializer::startOfSequence")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "startOfSequence")
+	}
+}
+
+//export callbackQXmlSerializerStartOfSequence
+func callbackQXmlSerializerStartOfSequence(ptrName *C.char) bool {
+	defer qt.Recovering("callback QXmlSerializer::startOfSequence")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "startOfSequence")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlSerializer) ObjectNameAbs() string {
+	defer qt.Recovering("QXmlSerializer::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlSerializer_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QXmlSerializer) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QXmlSerializer::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QXmlSerializer_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

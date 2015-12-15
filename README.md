@@ -45,7 +45,7 @@
 			`C:\Qt\Qt5.5.1\Tools\mingw492_32\bin`
 
 	* Mac OS X
-		* Install Xcode >= 7.1.1
+		* Install Xcode >= 7.2
 
 	* Linux
 		* Install g++
@@ -116,7 +116,7 @@
 1. Create a folder `[GOPATH]/src/qtExample`
 
 2. Create a file `[GOPATH]/src/qtExample/main.go`
-```go
+	```go
 package main
 
 import (

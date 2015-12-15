@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQTiltSensorFromPointer(ptr unsafe.Pointer) *QTiltSensor {
 	var n = new(QTiltSensor)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QTiltSensor_") {
-		n.SetObjectName("QTiltSensor_" + qt.RandomIdentifier())
+		n.SetObjectName("QTiltSensor_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QTiltSensor) QTiltSensor_PTR() *QTiltSensor {
 }
 
 func NewQTiltSensor(parent core.QObject_ITF) *QTiltSensor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTiltSensor::QTiltSensor")
-		}
-	}()
+	defer qt.Recovering("QTiltSensor::QTiltSensor")
 
 	return NewQTiltSensorFromPointer(C.QTiltSensor_NewQTiltSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QTiltSensor) Reading() *QTiltReading {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTiltSensor::reading")
-		}
-	}()
+	defer qt.Recovering("QTiltSensor::reading")
 
 	if ptr.Pointer() != nil {
 		return NewQTiltReadingFromPointer(C.QTiltSensor_Reading(ptr.Pointer()))
@@ -62,11 +53,7 @@ func (ptr *QTiltSensor) Reading() *QTiltReading {
 }
 
 func (ptr *QTiltSensor) DestroyQTiltSensor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTiltSensor::~QTiltSensor")
-		}
-	}()
+	defer qt.Recovering("QTiltSensor::~QTiltSensor")
 
 	if ptr.Pointer() != nil {
 		C.QTiltSensor_DestroyQTiltSensor(ptr.Pointer())
@@ -75,11 +62,7 @@ func (ptr *QTiltSensor) DestroyQTiltSensor() {
 }
 
 func (ptr *QTiltSensor) Calibrate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTiltSensor::calibrate")
-		}
-	}()
+	defer qt.Recovering("QTiltSensor::calibrate")
 
 	if ptr.Pointer() != nil {
 		C.QTiltSensor_Calibrate(ptr.Pointer())

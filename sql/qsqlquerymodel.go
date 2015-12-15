@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQSqlQueryModelFromPointer(ptr unsafe.Pointer) *QSqlQueryModel {
 	var n = new(QSqlQueryModel)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSqlQueryModel_") {
-		n.SetObjectName("QSqlQueryModel_" + qt.RandomIdentifier())
+		n.SetObjectName("QSqlQueryModel_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QSqlQueryModel) QSqlQueryModel_PTR() *QSqlQueryModel {
 }
 
 func (ptr *QSqlQueryModel) RowCount(parent core.QModelIndex_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::rowCount")
-		}
-	}()
+	defer qt.Recovering("QSqlQueryModel::rowCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSqlQueryModel_RowCount(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
@@ -52,11 +47,7 @@ func (ptr *QSqlQueryModel) RowCount(parent core.QModelIndex_ITF) int {
 }
 
 func (ptr *QSqlQueryModel) Data(item core.QModelIndex_ITF, role int) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::data")
-		}
-	}()
+	defer qt.Recovering("QSqlQueryModel::data")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSqlQueryModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(item), C.int(role)))
@@ -65,11 +56,7 @@ func (ptr *QSqlQueryModel) Data(item core.QModelIndex_ITF, role int) *core.QVari
 }
 
 func (ptr *QSqlQueryModel) CanFetchMore(parent core.QModelIndex_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::canFetchMore")
-		}
-	}()
+	defer qt.Recovering("QSqlQueryModel::canFetchMore")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlQueryModel_CanFetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
@@ -77,24 +64,39 @@ func (ptr *QSqlQueryModel) CanFetchMore(parent core.QModelIndex_ITF) bool {
 	return false
 }
 
-func (ptr *QSqlQueryModel) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::clear")
-		}
-	}()
+func (ptr *QSqlQueryModel) ConnectClear(f func()) {
+	defer qt.Recovering("connect QSqlQueryModel::clear")
 
 	if ptr.Pointer() != nil {
-		C.QSqlQueryModel_Clear(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "clear", f)
 	}
 }
 
+func (ptr *QSqlQueryModel) DisconnectClear() {
+	defer qt.Recovering("disconnect QSqlQueryModel::clear")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "clear")
+	}
+}
+
+//export callbackQSqlQueryModelClear
+func callbackQSqlQueryModelClear(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSqlQueryModel::clear")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "clear")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSqlQueryModel) ColumnCount(index core.QModelIndex_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::columnCount")
-		}
-	}()
+	defer qt.Recovering("QSqlQueryModel::columnCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSqlQueryModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(index)))
@@ -102,24 +104,39 @@ func (ptr *QSqlQueryModel) ColumnCount(index core.QModelIndex_ITF) int {
 	return 0
 }
 
-func (ptr *QSqlQueryModel) FetchMore(parent core.QModelIndex_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::fetchMore")
-		}
-	}()
+func (ptr *QSqlQueryModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
+	defer qt.Recovering("connect QSqlQueryModel::fetchMore")
 
 	if ptr.Pointer() != nil {
-		C.QSqlQueryModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+
+		qt.ConnectSignal(ptr.ObjectName(), "fetchMore", f)
 	}
 }
 
+func (ptr *QSqlQueryModel) DisconnectFetchMore() {
+	defer qt.Recovering("disconnect QSqlQueryModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "fetchMore")
+	}
+}
+
+//export callbackQSqlQueryModelFetchMore
+func callbackQSqlQueryModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlQueryModel::fetchMore")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "fetchMore")
+	if signal != nil {
+		defer signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSqlQueryModel) HeaderData(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::headerData")
-		}
-	}()
+	defer qt.Recovering("QSqlQueryModel::headerData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSqlQueryModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
@@ -128,11 +145,7 @@ func (ptr *QSqlQueryModel) HeaderData(section int, orientation core.Qt__Orientat
 }
 
 func (ptr *QSqlQueryModel) InsertColumns(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::insertColumns")
-		}
-	}()
+	defer qt.Recovering("QSqlQueryModel::insertColumns")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlQueryModel_InsertColumns(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
@@ -140,12 +153,39 @@ func (ptr *QSqlQueryModel) InsertColumns(column int, count int, parent core.QMod
 	return false
 }
 
+func (ptr *QSqlQueryModel) ConnectQueryChange(f func()) {
+	defer qt.Recovering("connect QSqlQueryModel::queryChange")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "queryChange", f)
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectQueryChange() {
+	defer qt.Recovering("disconnect QSqlQueryModel::queryChange")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "queryChange")
+	}
+}
+
+//export callbackQSqlQueryModelQueryChange
+func callbackQSqlQueryModelQueryChange(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSqlQueryModel::queryChange")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "queryChange")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSqlQueryModel) RemoveColumns(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::removeColumns")
-		}
-	}()
+	defer qt.Recovering("QSqlQueryModel::removeColumns")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlQueryModel_RemoveColumns(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
@@ -154,11 +194,7 @@ func (ptr *QSqlQueryModel) RemoveColumns(column int, count int, parent core.QMod
 }
 
 func (ptr *QSqlQueryModel) SetHeaderData(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::setHeaderData")
-		}
-	}()
+	defer qt.Recovering("QSqlQueryModel::setHeaderData")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlQueryModel_SetHeaderData(ptr.Pointer(), C.int(section), C.int(orientation), core.PointerFromQVariant(value), C.int(role)) != 0
@@ -167,11 +203,7 @@ func (ptr *QSqlQueryModel) SetHeaderData(section int, orientation core.Qt__Orien
 }
 
 func (ptr *QSqlQueryModel) SetQuery(query QSqlQuery_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::setQuery")
-		}
-	}()
+	defer qt.Recovering("QSqlQueryModel::setQuery")
 
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_SetQuery(ptr.Pointer(), PointerFromQSqlQuery(query))
@@ -179,11 +211,7 @@ func (ptr *QSqlQueryModel) SetQuery(query QSqlQuery_ITF) {
 }
 
 func (ptr *QSqlQueryModel) SetQuery2(query string, db QSqlDatabase_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::setQuery")
-		}
-	}()
+	defer qt.Recovering("QSqlQueryModel::setQuery")
 
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_SetQuery2(ptr.Pointer(), C.CString(query), PointerFromQSqlDatabase(db))
@@ -191,11 +219,7 @@ func (ptr *QSqlQueryModel) SetQuery2(query string, db QSqlDatabase_ITF) {
 }
 
 func (ptr *QSqlQueryModel) DestroyQSqlQueryModel() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlQueryModel::~QSqlQueryModel")
-		}
-	}()
+	defer qt.Recovering("QSqlQueryModel::~QSqlQueryModel")
 
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_DestroyQSqlQueryModel(ptr.Pointer())

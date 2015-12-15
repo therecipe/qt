@@ -28,7 +28,7 @@ func NewQImageIOPluginFromPointer(ptr unsafe.Pointer) *QImageIOPlugin {
 	var n = new(QImageIOPlugin)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QImageIOPlugin_") {
-		n.SetObjectName("QImageIOPlugin_" + qt.RandomIdentifier())
+		n.SetObjectName("QImageIOPlugin_" + qt.Identifier())
 	}
 	return n
 }

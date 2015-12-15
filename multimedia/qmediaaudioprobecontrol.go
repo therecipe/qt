@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQMediaAudioProbeControlFromPointer(ptr unsafe.Pointer) *QMediaAudioProbe
 	var n = new(QMediaAudioProbeControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaAudioProbeControl_") {
-		n.SetObjectName("QMediaAudioProbeControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QMediaAudioProbeControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QMediaAudioProbeControl) QMediaAudioProbeControl_PTR() *QMediaAudioPr
 }
 
 func (ptr *QMediaAudioProbeControl) ConnectFlush(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaAudioProbeControl::flush")
-		}
-	}()
+	defer qt.Recovering("connect QMediaAudioProbeControl::flush")
 
 	if ptr.Pointer() != nil {
 		C.QMediaAudioProbeControl_ConnectFlush(ptr.Pointer())
@@ -51,11 +46,7 @@ func (ptr *QMediaAudioProbeControl) ConnectFlush(f func()) {
 }
 
 func (ptr *QMediaAudioProbeControl) DisconnectFlush() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaAudioProbeControl::flush")
-		}
-	}()
+	defer qt.Recovering("disconnect QMediaAudioProbeControl::flush")
 
 	if ptr.Pointer() != nil {
 		C.QMediaAudioProbeControl_DisconnectFlush(ptr.Pointer())
@@ -65,21 +56,17 @@ func (ptr *QMediaAudioProbeControl) DisconnectFlush() {
 
 //export callbackQMediaAudioProbeControlFlush
 func callbackQMediaAudioProbeControlFlush(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaAudioProbeControl::flush")
-		}
-	}()
+	defer qt.Recovering("callback QMediaAudioProbeControl::flush")
 
-	qt.GetSignal(C.GoString(ptrName), "flush").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "flush")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QMediaAudioProbeControl) DestroyQMediaAudioProbeControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaAudioProbeControl::~QMediaAudioProbeControl")
-		}
-	}()
+	defer qt.Recovering("QMediaAudioProbeControl::~QMediaAudioProbeControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaAudioProbeControl_DestroyQMediaAudioProbeControl(ptr.Pointer())

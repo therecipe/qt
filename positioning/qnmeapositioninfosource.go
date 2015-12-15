@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQNmeaPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QNmeaPositionInf
 	var n = new(QNmeaPositionInfoSource)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QNmeaPositionInfoSource_") {
-		n.SetObjectName("QNmeaPositionInfoSource_" + qt.RandomIdentifier())
+		n.SetObjectName("QNmeaPositionInfoSource_" + qt.Identifier())
 	}
 	return n
 }
@@ -47,21 +46,13 @@ const (
 )
 
 func NewQNmeaPositionInfoSource(updateMode QNmeaPositionInfoSource__UpdateMode, parent core.QObject_ITF) *QNmeaPositionInfoSource {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::QNmeaPositionInfoSource")
-		}
-	}()
+	defer qt.Recovering("QNmeaPositionInfoSource::QNmeaPositionInfoSource")
 
 	return NewQNmeaPositionInfoSourceFromPointer(C.QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(C.int(updateMode), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNmeaPositionInfoSource) Device() *core.QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::device")
-		}
-	}()
+	defer qt.Recovering("QNmeaPositionInfoSource::device")
 
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QNmeaPositionInfoSource_Device(ptr.Pointer()))
@@ -70,11 +61,7 @@ func (ptr *QNmeaPositionInfoSource) Device() *core.QIODevice {
 }
 
 func (ptr *QNmeaPositionInfoSource) Error() QGeoPositionInfoSource__Error {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::error")
-		}
-	}()
+	defer qt.Recovering("QNmeaPositionInfoSource::error")
 
 	if ptr.Pointer() != nil {
 		return QGeoPositionInfoSource__Error(C.QNmeaPositionInfoSource_Error(ptr.Pointer()))
@@ -83,11 +70,7 @@ func (ptr *QNmeaPositionInfoSource) Error() QGeoPositionInfoSource__Error {
 }
 
 func (ptr *QNmeaPositionInfoSource) MinimumUpdateInterval() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::minimumUpdateInterval")
-		}
-	}()
+	defer qt.Recovering("QNmeaPositionInfoSource::minimumUpdateInterval")
 
 	if ptr.Pointer() != nil {
 		return int(C.QNmeaPositionInfoSource_MinimumUpdateInterval(ptr.Pointer()))
@@ -95,72 +78,140 @@ func (ptr *QNmeaPositionInfoSource) MinimumUpdateInterval() int {
 	return 0
 }
 
-func (ptr *QNmeaPositionInfoSource) RequestUpdate(msec int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::requestUpdate")
-		}
-	}()
+func (ptr *QNmeaPositionInfoSource) ConnectRequestUpdate(f func(msec int)) {
+	defer qt.Recovering("connect QNmeaPositionInfoSource::requestUpdate")
 
 	if ptr.Pointer() != nil {
-		C.QNmeaPositionInfoSource_RequestUpdate(ptr.Pointer(), C.int(msec))
+
+		qt.ConnectSignal(ptr.ObjectName(), "requestUpdate", f)
 	}
 }
 
+func (ptr *QNmeaPositionInfoSource) DisconnectRequestUpdate() {
+	defer qt.Recovering("disconnect QNmeaPositionInfoSource::requestUpdate")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "requestUpdate")
+	}
+}
+
+//export callbackQNmeaPositionInfoSourceRequestUpdate
+func callbackQNmeaPositionInfoSourceRequestUpdate(ptrName *C.char, msec C.int) bool {
+	defer qt.Recovering("callback QNmeaPositionInfoSource::requestUpdate")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "requestUpdate")
+	if signal != nil {
+		defer signal.(func(int))(int(msec))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QNmeaPositionInfoSource) SetDevice(device core.QIODevice_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::setDevice")
-		}
-	}()
+	defer qt.Recovering("QNmeaPositionInfoSource::setDevice")
 
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_SetDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
 	}
 }
 
-func (ptr *QNmeaPositionInfoSource) SetUpdateInterval(msec int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::setUpdateInterval")
-		}
-	}()
+func (ptr *QNmeaPositionInfoSource) ConnectSetUpdateInterval(f func(msec int)) {
+	defer qt.Recovering("connect QNmeaPositionInfoSource::setUpdateInterval")
 
 	if ptr.Pointer() != nil {
-		C.QNmeaPositionInfoSource_SetUpdateInterval(ptr.Pointer(), C.int(msec))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setUpdateInterval", f)
 	}
 }
 
-func (ptr *QNmeaPositionInfoSource) StartUpdates() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::startUpdates")
-		}
-	}()
+func (ptr *QNmeaPositionInfoSource) DisconnectSetUpdateInterval() {
+	defer qt.Recovering("disconnect QNmeaPositionInfoSource::setUpdateInterval")
 
 	if ptr.Pointer() != nil {
-		C.QNmeaPositionInfoSource_StartUpdates(ptr.Pointer())
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setUpdateInterval")
 	}
 }
 
-func (ptr *QNmeaPositionInfoSource) StopUpdates() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::stopUpdates")
-		}
-	}()
+//export callbackQNmeaPositionInfoSourceSetUpdateInterval
+func callbackQNmeaPositionInfoSourceSetUpdateInterval(ptrName *C.char, msec C.int) bool {
+	defer qt.Recovering("callback QNmeaPositionInfoSource::setUpdateInterval")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setUpdateInterval")
+	if signal != nil {
+		defer signal.(func(int))(int(msec))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QNmeaPositionInfoSource) ConnectStartUpdates(f func()) {
+	defer qt.Recovering("connect QNmeaPositionInfoSource::startUpdates")
 
 	if ptr.Pointer() != nil {
-		C.QNmeaPositionInfoSource_StopUpdates(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "startUpdates", f)
 	}
+}
+
+func (ptr *QNmeaPositionInfoSource) DisconnectStartUpdates() {
+	defer qt.Recovering("disconnect QNmeaPositionInfoSource::startUpdates")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "startUpdates")
+	}
+}
+
+//export callbackQNmeaPositionInfoSourceStartUpdates
+func callbackQNmeaPositionInfoSourceStartUpdates(ptrName *C.char) bool {
+	defer qt.Recovering("callback QNmeaPositionInfoSource::startUpdates")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "startUpdates")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QNmeaPositionInfoSource) ConnectStopUpdates(f func()) {
+	defer qt.Recovering("connect QNmeaPositionInfoSource::stopUpdates")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "stopUpdates", f)
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) DisconnectStopUpdates() {
+	defer qt.Recovering("disconnect QNmeaPositionInfoSource::stopUpdates")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "stopUpdates")
+	}
+}
+
+//export callbackQNmeaPositionInfoSourceStopUpdates
+func callbackQNmeaPositionInfoSourceStopUpdates(ptrName *C.char) bool {
+	defer qt.Recovering("callback QNmeaPositionInfoSource::stopUpdates")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "stopUpdates")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QNmeaPositionInfoSource) SupportedPositioningMethods() QGeoPositionInfoSource__PositioningMethod {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::supportedPositioningMethods")
-		}
-	}()
+	defer qt.Recovering("QNmeaPositionInfoSource::supportedPositioningMethods")
 
 	if ptr.Pointer() != nil {
 		return QGeoPositionInfoSource__PositioningMethod(C.QNmeaPositionInfoSource_SupportedPositioningMethods(ptr.Pointer()))
@@ -169,11 +220,7 @@ func (ptr *QNmeaPositionInfoSource) SupportedPositioningMethods() QGeoPositionIn
 }
 
 func (ptr *QNmeaPositionInfoSource) UpdateMode() QNmeaPositionInfoSource__UpdateMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::updateMode")
-		}
-	}()
+	defer qt.Recovering("QNmeaPositionInfoSource::updateMode")
 
 	if ptr.Pointer() != nil {
 		return QNmeaPositionInfoSource__UpdateMode(C.QNmeaPositionInfoSource_UpdateMode(ptr.Pointer()))
@@ -182,11 +229,7 @@ func (ptr *QNmeaPositionInfoSource) UpdateMode() QNmeaPositionInfoSource__Update
 }
 
 func (ptr *QNmeaPositionInfoSource) DestroyQNmeaPositionInfoSource() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNmeaPositionInfoSource::~QNmeaPositionInfoSource")
-		}
-	}()
+	defer qt.Recovering("QNmeaPositionInfoSource::~QNmeaPositionInfoSource")
 
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(ptr.Pointer())

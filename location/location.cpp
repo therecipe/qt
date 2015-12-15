@@ -16,10 +16,6 @@
 #include <QObject>
 #include <QString>
 
-class MyQGeoManeuver: public QGeoManeuver {
-public:
-};
-
 void* QGeoManeuver_NewQGeoManeuver(){
 	return new QGeoManeuver();
 }
@@ -75,10 +71,6 @@ int QGeoManeuver_TimeToNextInstruction(void* ptr){
 void QGeoManeuver_DestroyQGeoManeuver(void* ptr){
 	static_cast<QGeoManeuver*>(ptr)->~QGeoManeuver();
 }
-
-class MyQGeoRoute: public QGeoRoute {
-public:
-};
 
 void* QGeoRoute_NewQGeoRoute(){
 	return new QGeoRoute();
@@ -138,11 +130,14 @@ void QGeoRoute_DestroyQGeoRoute(void* ptr){
 
 class MyQGeoRouteReply: public QGeoRouteReply {
 public:
-void Signal_Finished(){callbackQGeoRouteReplyFinished(this->objectName().toUtf8().data());};
+	MyQGeoRouteReply(Error error, const QString &errorString, QObject *parent) : QGeoRouteReply(error, errorString, parent) {};
+	void abort() { if (!callbackQGeoRouteReplyAbort(this->objectName().toUtf8().data())) { QGeoRouteReply::abort(); }; };
+	void Signal_Finished() { callbackQGeoRouteReplyFinished(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QGeoRouteReply_NewQGeoRouteReply(int error, char* errorString, void* parent){
-	return new QGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QObject*>(parent));
+	return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QObject*>(parent));
 }
 
 void QGeoRouteReply_Abort(void* ptr){
@@ -172,10 +167,6 @@ int QGeoRouteReply_IsFinished(void* ptr){
 void QGeoRouteReply_DestroyQGeoRouteReply(void* ptr){
 	static_cast<QGeoRouteReply*>(ptr)->~QGeoRouteReply();
 }
-
-class MyQGeoRouteRequest: public QGeoRouteRequest {
-public:
-};
 
 void* QGeoRouteRequest_NewQGeoRouteRequest2(void* origin, void* destination){
 	return new QGeoRouteRequest(*static_cast<QGeoCoordinate*>(origin), *static_cast<QGeoCoordinate*>(destination));
@@ -237,10 +228,6 @@ void QGeoRouteRequest_DestroyQGeoRouteRequest(void* ptr){
 	static_cast<QGeoRouteRequest*>(ptr)->~QGeoRouteRequest();
 }
 
-class MyQGeoRouteSegment: public QGeoRouteSegment {
-public:
-};
-
 void* QGeoRouteSegment_NewQGeoRouteSegment(){
 	return new QGeoRouteSegment();
 }
@@ -283,8 +270,9 @@ void QGeoRouteSegment_DestroyQGeoRouteSegment(void* ptr){
 
 class MyQGeoRoutingManager: public QGeoRoutingManager {
 public:
-void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString){callbackQGeoRoutingManagerError(this->objectName().toUtf8().data(), reply, error, errorString.toUtf8().data());};
-void Signal_Finished(QGeoRouteReply * reply){callbackQGeoRoutingManagerFinished(this->objectName().toUtf8().data(), reply);};
+	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { callbackQGeoRoutingManagerError(this->objectName().toUtf8().data(), reply, error, errorString.toUtf8().data()); };
+	void Signal_Finished(QGeoRouteReply * reply) { callbackQGeoRoutingManagerFinished(this->objectName().toUtf8().data(), reply); };
+protected:
 };
 
 void* QGeoRoutingManager_CalculateRoute(void* ptr, void* request){
@@ -361,8 +349,9 @@ void QGeoRoutingManager_DestroyQGeoRoutingManager(void* ptr){
 
 class MyQGeoRoutingManagerEngine: public QGeoRoutingManagerEngine {
 public:
-void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString){callbackQGeoRoutingManagerEngineError(this->objectName().toUtf8().data(), reply, error, errorString.toUtf8().data());};
-void Signal_Finished(QGeoRouteReply * reply){callbackQGeoRoutingManagerEngineFinished(this->objectName().toUtf8().data(), reply);};
+	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { callbackQGeoRoutingManagerEngineError(this->objectName().toUtf8().data(), reply, error, errorString.toUtf8().data()); };
+	void Signal_Finished(QGeoRouteReply * reply) { callbackQGeoRoutingManagerEngineFinished(this->objectName().toUtf8().data(), reply); };
+protected:
 };
 
 void* QGeoRoutingManagerEngine_CalculateRoute(void* ptr, void* request){
@@ -436,10 +425,6 @@ void* QGeoRoutingManagerEngine_UpdateRoute(void* ptr, void* route, void* positio
 void QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(void* ptr){
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->~QGeoRoutingManagerEngine();
 }
-
-class MyQGeoServiceProvider: public QGeoServiceProvider {
-public:
-};
 
 int QGeoServiceProvider_OnlineGeocodingFeature_Type(){
 	return QGeoServiceProvider::OnlineGeocodingFeature;
@@ -607,9 +592,21 @@ void QGeoServiceProvider_DestroyQGeoServiceProvider(void* ptr){
 
 class MyQGeoServiceProviderFactory: public QGeoServiceProviderFactory {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr){
 	static_cast<QGeoServiceProviderFactory*>(ptr)->~QGeoServiceProviderFactory();
+}
+
+char* QGeoServiceProviderFactory_ObjectNameAbs(void* ptr){
+	return static_cast<MyQGeoServiceProviderFactory*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QGeoServiceProviderFactory_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQGeoServiceProviderFactory*>(ptr)->setObjectNameAbs(QString(name));
 }
 

@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQAccessibleEditableTextInterface(ptr QAccessibleEditableTextInte
 func NewQAccessibleEditableTextInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleEditableTextInterface {
 	var n = new(QAccessibleEditableTextInterface)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QAccessibleEditableTextInterface_") {
+		n.SetObjectNameAbs("QAccessibleEditableTextInterface_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QAccessibleEditableTextInterface) QAccessibleEditableTextInterface_PT
 }
 
 func (ptr *QAccessibleEditableTextInterface) DeleteText(startOffset int, endOffset int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleEditableTextInterface::deleteText")
-		}
-	}()
+	defer qt.Recovering("QAccessibleEditableTextInterface::deleteText")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleEditableTextInterface_DeleteText(ptr.Pointer(), C.int(startOffset), C.int(endOffset))
@@ -53,11 +52,7 @@ func (ptr *QAccessibleEditableTextInterface) DeleteText(startOffset int, endOffs
 }
 
 func (ptr *QAccessibleEditableTextInterface) InsertText(offset int, text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleEditableTextInterface::insertText")
-		}
-	}()
+	defer qt.Recovering("QAccessibleEditableTextInterface::insertText")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleEditableTextInterface_InsertText(ptr.Pointer(), C.int(offset), C.CString(text))
@@ -65,11 +60,7 @@ func (ptr *QAccessibleEditableTextInterface) InsertText(offset int, text string)
 }
 
 func (ptr *QAccessibleEditableTextInterface) ReplaceText(startOffset int, endOffset int, text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleEditableTextInterface::replaceText")
-		}
-	}()
+	defer qt.Recovering("QAccessibleEditableTextInterface::replaceText")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleEditableTextInterface_ReplaceText(ptr.Pointer(), C.int(startOffset), C.int(endOffset), C.CString(text))
@@ -77,13 +68,26 @@ func (ptr *QAccessibleEditableTextInterface) ReplaceText(startOffset int, endOff
 }
 
 func (ptr *QAccessibleEditableTextInterface) DestroyQAccessibleEditableTextInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface")
-		}
-	}()
+	defer qt.Recovering("QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleEditableTextInterface_DestroyQAccessibleEditableTextInterface(ptr.Pointer())
+	}
+}
+
+func (ptr *QAccessibleEditableTextInterface) ObjectNameAbs() string {
+	defer qt.Recovering("QAccessibleEditableTextInterface::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAccessibleEditableTextInterface_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAccessibleEditableTextInterface) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QAccessibleEditableTextInterface::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleEditableTextInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

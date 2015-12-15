@@ -4,7 +4,6 @@ package quick
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +33,9 @@ func PointerFromQSGMaterial(ptr QSGMaterial_ITF) unsafe.Pointer {
 func NewQSGMaterialFromPointer(ptr unsafe.Pointer) *QSGMaterial {
 	var n = new(QSGMaterial)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QSGMaterial_") {
+		n.SetObjectNameAbs("QSGMaterial_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -53,11 +55,7 @@ const (
 )
 
 func (ptr *QSGMaterial) Compare(other QSGMaterial_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGMaterial::compare")
-		}
-	}()
+	defer qt.Recovering("QSGMaterial::compare")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSGMaterial_Compare(ptr.Pointer(), PointerFromQSGMaterial(other)))
@@ -66,11 +64,7 @@ func (ptr *QSGMaterial) Compare(other QSGMaterial_ITF) int {
 }
 
 func (ptr *QSGMaterial) CreateShader() *QSGMaterialShader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGMaterial::createShader")
-		}
-	}()
+	defer qt.Recovering("QSGMaterial::createShader")
 
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialShaderFromPointer(C.QSGMaterial_CreateShader(ptr.Pointer()))
@@ -79,11 +73,7 @@ func (ptr *QSGMaterial) CreateShader() *QSGMaterialShader {
 }
 
 func (ptr *QSGMaterial) Flags() QSGMaterial__Flag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGMaterial::flags")
-		}
-	}()
+	defer qt.Recovering("QSGMaterial::flags")
 
 	if ptr.Pointer() != nil {
 		return QSGMaterial__Flag(C.QSGMaterial_Flags(ptr.Pointer()))
@@ -92,11 +82,7 @@ func (ptr *QSGMaterial) Flags() QSGMaterial__Flag {
 }
 
 func (ptr *QSGMaterial) SetFlag(flags QSGMaterial__Flag, on bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGMaterial::setFlag")
-		}
-	}()
+	defer qt.Recovering("QSGMaterial::setFlag")
 
 	if ptr.Pointer() != nil {
 		C.QSGMaterial_SetFlag(ptr.Pointer(), C.int(flags), C.int(qt.GoBoolToInt(on)))
@@ -104,14 +90,27 @@ func (ptr *QSGMaterial) SetFlag(flags QSGMaterial__Flag, on bool) {
 }
 
 func (ptr *QSGMaterial) Type() *QSGMaterialType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGMaterial::type")
-		}
-	}()
+	defer qt.Recovering("QSGMaterial::type")
 
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialTypeFromPointer(C.QSGMaterial_Type(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QSGMaterial) ObjectNameAbs() string {
+	defer qt.Recovering("QSGMaterial::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QSGMaterial_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSGMaterial) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QSGMaterial::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QSGMaterial_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+	}
 }

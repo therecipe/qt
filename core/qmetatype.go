@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -139,21 +139,13 @@ const (
 )
 
 func NewQMetaType(typeId int) *QMetaType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::QMetaType")
-		}
-	}()
+	defer qt.Recovering("QMetaType::QMetaType")
 
 	return NewQMetaTypeFromPointer(C.QMetaType_NewQMetaType(C.int(typeId)))
 }
 
 func (ptr *QMetaType) Flags() QMetaType__TypeFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::flags")
-		}
-	}()
+	defer qt.Recovering("QMetaType::flags")
 
 	if ptr.Pointer() != nil {
 		return QMetaType__TypeFlag(C.QMetaType_Flags(ptr.Pointer()))
@@ -162,21 +154,13 @@ func (ptr *QMetaType) Flags() QMetaType__TypeFlag {
 }
 
 func QMetaType_IsRegistered(ty int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::isRegistered")
-		}
-	}()
+	defer qt.Recovering("QMetaType::isRegistered")
 
 	return C.QMetaType_QMetaType_IsRegistered(C.int(ty)) != 0
 }
 
 func (ptr *QMetaType) IsRegistered2() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::isRegistered")
-		}
-	}()
+	defer qt.Recovering("QMetaType::isRegistered")
 
 	if ptr.Pointer() != nil {
 		return C.QMetaType_IsRegistered2(ptr.Pointer()) != 0
@@ -185,11 +169,7 @@ func (ptr *QMetaType) IsRegistered2() bool {
 }
 
 func (ptr *QMetaType) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::isValid")
-		}
-	}()
+	defer qt.Recovering("QMetaType::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QMetaType_IsValid(ptr.Pointer()) != 0
@@ -198,11 +178,7 @@ func (ptr *QMetaType) IsValid() bool {
 }
 
 func (ptr *QMetaType) MetaObject() *QMetaObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::metaObject")
-		}
-	}()
+	defer qt.Recovering("QMetaType::metaObject")
 
 	if ptr.Pointer() != nil {
 		return NewQMetaObjectFromPointer(C.QMetaType_MetaObject(ptr.Pointer()))
@@ -211,31 +187,19 @@ func (ptr *QMetaType) MetaObject() *QMetaObject {
 }
 
 func QMetaType_MetaObjectForType(ty int) *QMetaObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::metaObjectForType")
-		}
-	}()
+	defer qt.Recovering("QMetaType::metaObjectForType")
 
 	return NewQMetaObjectFromPointer(C.QMetaType_QMetaType_MetaObjectForType(C.int(ty)))
 }
 
 func QMetaType_SizeOf(ty int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::sizeOf")
-		}
-	}()
+	defer qt.Recovering("QMetaType::sizeOf")
 
 	return int(C.QMetaType_QMetaType_SizeOf(C.int(ty)))
 }
 
 func (ptr *QMetaType) SizeOf2() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::sizeOf")
-		}
-	}()
+	defer qt.Recovering("QMetaType::sizeOf")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMetaType_SizeOf2(ptr.Pointer()))
@@ -244,41 +208,25 @@ func (ptr *QMetaType) SizeOf2() int {
 }
 
 func QMetaType_Type2(typeName QByteArray_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::type")
-		}
-	}()
+	defer qt.Recovering("QMetaType::type")
 
 	return int(C.QMetaType_QMetaType_Type2(PointerFromQByteArray(typeName)))
 }
 
 func QMetaType_Type(typeName string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::type")
-		}
-	}()
+	defer qt.Recovering("QMetaType::type")
 
 	return int(C.QMetaType_QMetaType_Type(C.CString(typeName)))
 }
 
 func QMetaType_TypeFlags(ty int) QMetaType__TypeFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::typeFlags")
-		}
-	}()
+	defer qt.Recovering("QMetaType::typeFlags")
 
 	return QMetaType__TypeFlag(C.QMetaType_QMetaType_TypeFlags(C.int(ty)))
 }
 
 func (ptr *QMetaType) DestroyQMetaType() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaType::~QMetaType")
-		}
-	}()
+	defer qt.Recovering("QMetaType::~QMetaType")
 
 	if ptr.Pointer() != nil {
 		C.QMetaType_DestroyQMetaType(ptr.Pointer())

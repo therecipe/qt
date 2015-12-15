@@ -28,7 +28,7 @@ func NewQGeoCodingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoCodingManage
 	var n = new(QGeoCodingManagerEngine)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoCodingManagerEngine_") {
-		n.SetObjectName("QGeoCodingManagerEngine_" + qt.RandomIdentifier())
+		n.SetObjectName("QGeoCodingManagerEngine_" + qt.Identifier())
 	}
 	return n
 }

@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQXmlStreamEntityResolver(ptr QXmlStreamEntityResolver_ITF) unsaf
 func NewQXmlStreamEntityResolverFromPointer(ptr unsafe.Pointer) *QXmlStreamEntityResolver {
 	var n = new(QXmlStreamEntityResolver)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QXmlStreamEntityResolver_") {
+		n.SetObjectNameAbs("QXmlStreamEntityResolver_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QXmlStreamEntityResolver) QXmlStreamEntityResolver_PTR() *QXmlStreamE
 }
 
 func (ptr *QXmlStreamEntityResolver) ResolveUndeclaredEntity(name string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamEntityResolver::resolveUndeclaredEntity")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamEntityResolver::resolveUndeclaredEntity")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlStreamEntityResolver_ResolveUndeclaredEntity(ptr.Pointer(), C.CString(name)))
@@ -54,13 +53,26 @@ func (ptr *QXmlStreamEntityResolver) ResolveUndeclaredEntity(name string) string
 }
 
 func (ptr *QXmlStreamEntityResolver) DestroyQXmlStreamEntityResolver() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamEntityResolver::~QXmlStreamEntityResolver")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamEntityResolver::~QXmlStreamEntityResolver")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlStreamEntityResolver) ObjectNameAbs() string {
+	defer qt.Recovering("QXmlStreamEntityResolver::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlStreamEntityResolver_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QXmlStreamEntityResolver) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QXmlStreamEntityResolver::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QXmlStreamEntityResolver_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

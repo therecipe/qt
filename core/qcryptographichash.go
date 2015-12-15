@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -58,21 +58,13 @@ const (
 )
 
 func NewQCryptographicHash(method QCryptographicHash__Algorithm) *QCryptographicHash {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCryptographicHash::QCryptographicHash")
-		}
-	}()
+	defer qt.Recovering("QCryptographicHash::QCryptographicHash")
 
 	return NewQCryptographicHashFromPointer(C.QCryptographicHash_NewQCryptographicHash(C.int(method)))
 }
 
 func (ptr *QCryptographicHash) AddData2(device QIODevice_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCryptographicHash::addData")
-		}
-	}()
+	defer qt.Recovering("QCryptographicHash::addData")
 
 	if ptr.Pointer() != nil {
 		return C.QCryptographicHash_AddData2(ptr.Pointer(), PointerFromQIODevice(device)) != 0
@@ -81,11 +73,7 @@ func (ptr *QCryptographicHash) AddData2(device QIODevice_ITF) bool {
 }
 
 func (ptr *QCryptographicHash) AddData3(data QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCryptographicHash::addData")
-		}
-	}()
+	defer qt.Recovering("QCryptographicHash::addData")
 
 	if ptr.Pointer() != nil {
 		C.QCryptographicHash_AddData3(ptr.Pointer(), PointerFromQByteArray(data))
@@ -93,11 +81,7 @@ func (ptr *QCryptographicHash) AddData3(data QByteArray_ITF) {
 }
 
 func (ptr *QCryptographicHash) AddData(data string, length int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCryptographicHash::addData")
-		}
-	}()
+	defer qt.Recovering("QCryptographicHash::addData")
 
 	if ptr.Pointer() != nil {
 		C.QCryptographicHash_AddData(ptr.Pointer(), C.CString(data), C.int(length))
@@ -105,21 +89,13 @@ func (ptr *QCryptographicHash) AddData(data string, length int) {
 }
 
 func QCryptographicHash_Hash(data QByteArray_ITF, method QCryptographicHash__Algorithm) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCryptographicHash::hash")
-		}
-	}()
+	defer qt.Recovering("QCryptographicHash::hash")
 
 	return NewQByteArrayFromPointer(C.QCryptographicHash_QCryptographicHash_Hash(PointerFromQByteArray(data), C.int(method)))
 }
 
 func (ptr *QCryptographicHash) Reset() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCryptographicHash::reset")
-		}
-	}()
+	defer qt.Recovering("QCryptographicHash::reset")
 
 	if ptr.Pointer() != nil {
 		C.QCryptographicHash_Reset(ptr.Pointer())
@@ -127,11 +103,7 @@ func (ptr *QCryptographicHash) Reset() {
 }
 
 func (ptr *QCryptographicHash) Result() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCryptographicHash::result")
-		}
-	}()
+	defer qt.Recovering("QCryptographicHash::result")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QCryptographicHash_Result(ptr.Pointer()))
@@ -140,11 +112,7 @@ func (ptr *QCryptographicHash) Result() *QByteArray {
 }
 
 func (ptr *QCryptographicHash) DestroyQCryptographicHash() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCryptographicHash::~QCryptographicHash")
-		}
-	}()
+	defer qt.Recovering("QCryptographicHash::~QCryptographicHash")
 
 	if ptr.Pointer() != nil {
 		C.QCryptographicHash_DestroyQCryptographicHash(ptr.Pointer())

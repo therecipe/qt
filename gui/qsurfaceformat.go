@@ -4,7 +4,6 @@ package gui
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -81,41 +80,25 @@ const (
 )
 
 func NewQSurfaceFormat() *QSurfaceFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::QSurfaceFormat")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::QSurfaceFormat")
 
 	return NewQSurfaceFormatFromPointer(C.QSurfaceFormat_NewQSurfaceFormat())
 }
 
 func NewQSurfaceFormat2(options QSurfaceFormat__FormatOption) *QSurfaceFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::QSurfaceFormat")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::QSurfaceFormat")
 
 	return NewQSurfaceFormatFromPointer(C.QSurfaceFormat_NewQSurfaceFormat2(C.int(options)))
 }
 
 func NewQSurfaceFormat3(other QSurfaceFormat_ITF) *QSurfaceFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::QSurfaceFormat")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::QSurfaceFormat")
 
 	return NewQSurfaceFormatFromPointer(C.QSurfaceFormat_NewQSurfaceFormat3(PointerFromQSurfaceFormat(other)))
 }
 
 func (ptr *QSurfaceFormat) AlphaBufferSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::alphaBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::alphaBufferSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSurfaceFormat_AlphaBufferSize(ptr.Pointer()))
@@ -124,11 +107,7 @@ func (ptr *QSurfaceFormat) AlphaBufferSize() int {
 }
 
 func (ptr *QSurfaceFormat) BlueBufferSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::blueBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::blueBufferSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSurfaceFormat_BlueBufferSize(ptr.Pointer()))
@@ -137,11 +116,7 @@ func (ptr *QSurfaceFormat) BlueBufferSize() int {
 }
 
 func (ptr *QSurfaceFormat) DepthBufferSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::depthBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::depthBufferSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSurfaceFormat_DepthBufferSize(ptr.Pointer()))
@@ -150,11 +125,7 @@ func (ptr *QSurfaceFormat) DepthBufferSize() int {
 }
 
 func (ptr *QSurfaceFormat) GreenBufferSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::greenBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::greenBufferSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSurfaceFormat_GreenBufferSize(ptr.Pointer()))
@@ -163,11 +134,7 @@ func (ptr *QSurfaceFormat) GreenBufferSize() int {
 }
 
 func (ptr *QSurfaceFormat) HasAlpha() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::hasAlpha")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::hasAlpha")
 
 	if ptr.Pointer() != nil {
 		return C.QSurfaceFormat_HasAlpha(ptr.Pointer()) != 0
@@ -176,11 +143,7 @@ func (ptr *QSurfaceFormat) HasAlpha() bool {
 }
 
 func (ptr *QSurfaceFormat) MajorVersion() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::majorVersion")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::majorVersion")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSurfaceFormat_MajorVersion(ptr.Pointer()))
@@ -189,11 +152,7 @@ func (ptr *QSurfaceFormat) MajorVersion() int {
 }
 
 func (ptr *QSurfaceFormat) MinorVersion() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::minorVersion")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::minorVersion")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSurfaceFormat_MinorVersion(ptr.Pointer()))
@@ -202,11 +161,7 @@ func (ptr *QSurfaceFormat) MinorVersion() int {
 }
 
 func (ptr *QSurfaceFormat) Options() QSurfaceFormat__FormatOption {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::options")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::options")
 
 	if ptr.Pointer() != nil {
 		return QSurfaceFormat__FormatOption(C.QSurfaceFormat_Options(ptr.Pointer()))
@@ -215,11 +170,7 @@ func (ptr *QSurfaceFormat) Options() QSurfaceFormat__FormatOption {
 }
 
 func (ptr *QSurfaceFormat) Profile() QSurfaceFormat__OpenGLContextProfile {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::profile")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::profile")
 
 	if ptr.Pointer() != nil {
 		return QSurfaceFormat__OpenGLContextProfile(C.QSurfaceFormat_Profile(ptr.Pointer()))
@@ -228,11 +179,7 @@ func (ptr *QSurfaceFormat) Profile() QSurfaceFormat__OpenGLContextProfile {
 }
 
 func (ptr *QSurfaceFormat) RedBufferSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::redBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::redBufferSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSurfaceFormat_RedBufferSize(ptr.Pointer()))
@@ -241,11 +188,7 @@ func (ptr *QSurfaceFormat) RedBufferSize() int {
 }
 
 func (ptr *QSurfaceFormat) RenderableType() QSurfaceFormat__RenderableType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::renderableType")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::renderableType")
 
 	if ptr.Pointer() != nil {
 		return QSurfaceFormat__RenderableType(C.QSurfaceFormat_RenderableType(ptr.Pointer()))
@@ -254,11 +197,7 @@ func (ptr *QSurfaceFormat) RenderableType() QSurfaceFormat__RenderableType {
 }
 
 func (ptr *QSurfaceFormat) Samples() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::samples")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::samples")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSurfaceFormat_Samples(ptr.Pointer()))
@@ -267,11 +206,7 @@ func (ptr *QSurfaceFormat) Samples() int {
 }
 
 func (ptr *QSurfaceFormat) SetAlphaBufferSize(size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setAlphaBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setAlphaBufferSize")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetAlphaBufferSize(ptr.Pointer(), C.int(size))
@@ -279,11 +214,7 @@ func (ptr *QSurfaceFormat) SetAlphaBufferSize(size int) {
 }
 
 func (ptr *QSurfaceFormat) SetBlueBufferSize(size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setBlueBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setBlueBufferSize")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetBlueBufferSize(ptr.Pointer(), C.int(size))
@@ -291,21 +222,13 @@ func (ptr *QSurfaceFormat) SetBlueBufferSize(size int) {
 }
 
 func QSurfaceFormat_SetDefaultFormat(format QSurfaceFormat_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setDefaultFormat")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setDefaultFormat")
 
 	C.QSurfaceFormat_QSurfaceFormat_SetDefaultFormat(PointerFromQSurfaceFormat(format))
 }
 
 func (ptr *QSurfaceFormat) SetDepthBufferSize(size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setDepthBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setDepthBufferSize")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetDepthBufferSize(ptr.Pointer(), C.int(size))
@@ -313,11 +236,7 @@ func (ptr *QSurfaceFormat) SetDepthBufferSize(size int) {
 }
 
 func (ptr *QSurfaceFormat) SetGreenBufferSize(size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setGreenBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setGreenBufferSize")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetGreenBufferSize(ptr.Pointer(), C.int(size))
@@ -325,11 +244,7 @@ func (ptr *QSurfaceFormat) SetGreenBufferSize(size int) {
 }
 
 func (ptr *QSurfaceFormat) SetMajorVersion(major int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setMajorVersion")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setMajorVersion")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetMajorVersion(ptr.Pointer(), C.int(major))
@@ -337,11 +252,7 @@ func (ptr *QSurfaceFormat) SetMajorVersion(major int) {
 }
 
 func (ptr *QSurfaceFormat) SetMinorVersion(minor int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setMinorVersion")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setMinorVersion")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetMinorVersion(ptr.Pointer(), C.int(minor))
@@ -349,11 +260,7 @@ func (ptr *QSurfaceFormat) SetMinorVersion(minor int) {
 }
 
 func (ptr *QSurfaceFormat) SetOption(option QSurfaceFormat__FormatOption, on bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setOption")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setOption")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetOption(ptr.Pointer(), C.int(option), C.int(qt.GoBoolToInt(on)))
@@ -361,11 +268,7 @@ func (ptr *QSurfaceFormat) SetOption(option QSurfaceFormat__FormatOption, on boo
 }
 
 func (ptr *QSurfaceFormat) SetOptions(options QSurfaceFormat__FormatOption) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setOptions")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setOptions")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetOptions(ptr.Pointer(), C.int(options))
@@ -373,11 +276,7 @@ func (ptr *QSurfaceFormat) SetOptions(options QSurfaceFormat__FormatOption) {
 }
 
 func (ptr *QSurfaceFormat) SetProfile(profile QSurfaceFormat__OpenGLContextProfile) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setProfile")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setProfile")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetProfile(ptr.Pointer(), C.int(profile))
@@ -385,11 +284,7 @@ func (ptr *QSurfaceFormat) SetProfile(profile QSurfaceFormat__OpenGLContextProfi
 }
 
 func (ptr *QSurfaceFormat) SetRedBufferSize(size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setRedBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setRedBufferSize")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetRedBufferSize(ptr.Pointer(), C.int(size))
@@ -397,11 +292,7 @@ func (ptr *QSurfaceFormat) SetRedBufferSize(size int) {
 }
 
 func (ptr *QSurfaceFormat) SetRenderableType(ty QSurfaceFormat__RenderableType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setRenderableType")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setRenderableType")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetRenderableType(ptr.Pointer(), C.int(ty))
@@ -409,11 +300,7 @@ func (ptr *QSurfaceFormat) SetRenderableType(ty QSurfaceFormat__RenderableType) 
 }
 
 func (ptr *QSurfaceFormat) SetSamples(numSamples int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setSamples")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setSamples")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetSamples(ptr.Pointer(), C.int(numSamples))
@@ -421,11 +308,7 @@ func (ptr *QSurfaceFormat) SetSamples(numSamples int) {
 }
 
 func (ptr *QSurfaceFormat) SetStencilBufferSize(size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setStencilBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setStencilBufferSize")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetStencilBufferSize(ptr.Pointer(), C.int(size))
@@ -433,11 +316,7 @@ func (ptr *QSurfaceFormat) SetStencilBufferSize(size int) {
 }
 
 func (ptr *QSurfaceFormat) SetStereo(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setStereo")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setStereo")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetStereo(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -445,11 +324,7 @@ func (ptr *QSurfaceFormat) SetStereo(enable bool) {
 }
 
 func (ptr *QSurfaceFormat) SetSwapBehavior(behavior QSurfaceFormat__SwapBehavior) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setSwapBehavior")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setSwapBehavior")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetSwapBehavior(ptr.Pointer(), C.int(behavior))
@@ -457,11 +332,7 @@ func (ptr *QSurfaceFormat) SetSwapBehavior(behavior QSurfaceFormat__SwapBehavior
 }
 
 func (ptr *QSurfaceFormat) SetSwapInterval(interval int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setSwapInterval")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setSwapInterval")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetSwapInterval(ptr.Pointer(), C.int(interval))
@@ -469,11 +340,7 @@ func (ptr *QSurfaceFormat) SetSwapInterval(interval int) {
 }
 
 func (ptr *QSurfaceFormat) SetVersion(major int, minor int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::setVersion")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::setVersion")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_SetVersion(ptr.Pointer(), C.int(major), C.int(minor))
@@ -481,11 +348,7 @@ func (ptr *QSurfaceFormat) SetVersion(major int, minor int) {
 }
 
 func (ptr *QSurfaceFormat) StencilBufferSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::stencilBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::stencilBufferSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSurfaceFormat_StencilBufferSize(ptr.Pointer()))
@@ -494,11 +357,7 @@ func (ptr *QSurfaceFormat) StencilBufferSize() int {
 }
 
 func (ptr *QSurfaceFormat) Stereo() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::stereo")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::stereo")
 
 	if ptr.Pointer() != nil {
 		return C.QSurfaceFormat_Stereo(ptr.Pointer()) != 0
@@ -507,11 +366,7 @@ func (ptr *QSurfaceFormat) Stereo() bool {
 }
 
 func (ptr *QSurfaceFormat) SwapBehavior() QSurfaceFormat__SwapBehavior {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::swapBehavior")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::swapBehavior")
 
 	if ptr.Pointer() != nil {
 		return QSurfaceFormat__SwapBehavior(C.QSurfaceFormat_SwapBehavior(ptr.Pointer()))
@@ -520,11 +375,7 @@ func (ptr *QSurfaceFormat) SwapBehavior() QSurfaceFormat__SwapBehavior {
 }
 
 func (ptr *QSurfaceFormat) SwapInterval() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::swapInterval")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::swapInterval")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSurfaceFormat_SwapInterval(ptr.Pointer()))
@@ -533,11 +384,7 @@ func (ptr *QSurfaceFormat) SwapInterval() int {
 }
 
 func (ptr *QSurfaceFormat) TestOption(option QSurfaceFormat__FormatOption) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::testOption")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::testOption")
 
 	if ptr.Pointer() != nil {
 		return C.QSurfaceFormat_TestOption(ptr.Pointer(), C.int(option)) != 0
@@ -546,11 +393,7 @@ func (ptr *QSurfaceFormat) TestOption(option QSurfaceFormat__FormatOption) bool 
 }
 
 func (ptr *QSurfaceFormat) DestroyQSurfaceFormat() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurfaceFormat::~QSurfaceFormat")
-		}
-	}()
+	defer qt.Recovering("QSurfaceFormat::~QSurfaceFormat")
 
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_DestroyQSurfaceFormat(ptr.Pointer())

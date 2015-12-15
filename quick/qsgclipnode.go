@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -36,21 +35,13 @@ func (ptr *QSGClipNode) QSGClipNode_PTR() *QSGClipNode {
 }
 
 func NewQSGClipNode() *QSGClipNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGClipNode::QSGClipNode")
-		}
-	}()
+	defer qt.Recovering("QSGClipNode::QSGClipNode")
 
 	return NewQSGClipNodeFromPointer(C.QSGClipNode_NewQSGClipNode())
 }
 
 func (ptr *QSGClipNode) IsRectangular() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGClipNode::isRectangular")
-		}
-	}()
+	defer qt.Recovering("QSGClipNode::isRectangular")
 
 	if ptr.Pointer() != nil {
 		return C.QSGClipNode_IsRectangular(ptr.Pointer()) != 0
@@ -59,11 +50,7 @@ func (ptr *QSGClipNode) IsRectangular() bool {
 }
 
 func (ptr *QSGClipNode) SetClipRect(rect core.QRectF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGClipNode::setClipRect")
-		}
-	}()
+	defer qt.Recovering("QSGClipNode::setClipRect")
 
 	if ptr.Pointer() != nil {
 		C.QSGClipNode_SetClipRect(ptr.Pointer(), core.PointerFromQRectF(rect))
@@ -71,11 +58,7 @@ func (ptr *QSGClipNode) SetClipRect(rect core.QRectF_ITF) {
 }
 
 func (ptr *QSGClipNode) SetIsRectangular(rectHint bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGClipNode::setIsRectangular")
-		}
-	}()
+	defer qt.Recovering("QSGClipNode::setIsRectangular")
 
 	if ptr.Pointer() != nil {
 		C.QSGClipNode_SetIsRectangular(ptr.Pointer(), C.int(qt.GoBoolToInt(rectHint)))
@@ -83,11 +66,7 @@ func (ptr *QSGClipNode) SetIsRectangular(rectHint bool) {
 }
 
 func (ptr *QSGClipNode) DestroyQSGClipNode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGClipNode::~QSGClipNode")
-		}
-	}()
+	defer qt.Recovering("QSGClipNode::~QSGClipNode")
 
 	if ptr.Pointer() != nil {
 		C.QSGClipNode_DestroyQSGClipNode(ptr.Pointer())

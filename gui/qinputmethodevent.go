@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -46,31 +46,19 @@ const (
 )
 
 func NewQInputMethodEvent() *QInputMethodEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputMethodEvent::QInputMethodEvent")
-		}
-	}()
+	defer qt.Recovering("QInputMethodEvent::QInputMethodEvent")
 
 	return NewQInputMethodEventFromPointer(C.QInputMethodEvent_NewQInputMethodEvent())
 }
 
 func NewQInputMethodEvent3(other QInputMethodEvent_ITF) *QInputMethodEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputMethodEvent::QInputMethodEvent")
-		}
-	}()
+	defer qt.Recovering("QInputMethodEvent::QInputMethodEvent")
 
 	return NewQInputMethodEventFromPointer(C.QInputMethodEvent_NewQInputMethodEvent3(PointerFromQInputMethodEvent(other)))
 }
 
 func (ptr *QInputMethodEvent) CommitString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputMethodEvent::commitString")
-		}
-	}()
+	defer qt.Recovering("QInputMethodEvent::commitString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QInputMethodEvent_CommitString(ptr.Pointer()))
@@ -79,11 +67,7 @@ func (ptr *QInputMethodEvent) CommitString() string {
 }
 
 func (ptr *QInputMethodEvent) PreeditString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputMethodEvent::preeditString")
-		}
-	}()
+	defer qt.Recovering("QInputMethodEvent::preeditString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QInputMethodEvent_PreeditString(ptr.Pointer()))
@@ -92,11 +76,7 @@ func (ptr *QInputMethodEvent) PreeditString() string {
 }
 
 func (ptr *QInputMethodEvent) ReplacementLength() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputMethodEvent::replacementLength")
-		}
-	}()
+	defer qt.Recovering("QInputMethodEvent::replacementLength")
 
 	if ptr.Pointer() != nil {
 		return int(C.QInputMethodEvent_ReplacementLength(ptr.Pointer()))
@@ -105,11 +85,7 @@ func (ptr *QInputMethodEvent) ReplacementLength() int {
 }
 
 func (ptr *QInputMethodEvent) ReplacementStart() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputMethodEvent::replacementStart")
-		}
-	}()
+	defer qt.Recovering("QInputMethodEvent::replacementStart")
 
 	if ptr.Pointer() != nil {
 		return int(C.QInputMethodEvent_ReplacementStart(ptr.Pointer()))
@@ -118,11 +94,7 @@ func (ptr *QInputMethodEvent) ReplacementStart() int {
 }
 
 func (ptr *QInputMethodEvent) SetCommitString(commitString string, replaceFrom int, replaceLength int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputMethodEvent::setCommitString")
-		}
-	}()
+	defer qt.Recovering("QInputMethodEvent::setCommitString")
 
 	if ptr.Pointer() != nil {
 		C.QInputMethodEvent_SetCommitString(ptr.Pointer(), C.CString(commitString), C.int(replaceFrom), C.int(replaceLength))

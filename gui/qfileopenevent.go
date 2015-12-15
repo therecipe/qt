@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,11 +35,7 @@ func (ptr *QFileOpenEvent) QFileOpenEvent_PTR() *QFileOpenEvent {
 }
 
 func (ptr *QFileOpenEvent) OpenFile(file core.QFile_ITF, flags core.QIODevice__OpenModeFlag) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileOpenEvent::openFile")
-		}
-	}()
+	defer qt.Recovering("QFileOpenEvent::openFile")
 
 	if ptr.Pointer() != nil {
 		return C.QFileOpenEvent_OpenFile(ptr.Pointer(), core.PointerFromQFile(file), C.int(flags)) != 0
@@ -48,11 +44,7 @@ func (ptr *QFileOpenEvent) OpenFile(file core.QFile_ITF, flags core.QIODevice__O
 }
 
 func (ptr *QFileOpenEvent) File() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileOpenEvent::file")
-		}
-	}()
+	defer qt.Recovering("QFileOpenEvent::file")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileOpenEvent_File(ptr.Pointer()))

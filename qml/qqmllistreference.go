@@ -3,8 +3,8 @@ package qml
 //#include "qml.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +42,19 @@ func (ptr *QQmlListReference) QQmlListReference_PTR() *QQmlListReference {
 }
 
 func NewQQmlListReference() *QQmlListReference {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::QQmlListReference")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::QQmlListReference")
 
 	return NewQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference())
 }
 
 func NewQQmlListReference2(object core.QObject_ITF, property string, engine QQmlEngine_ITF) *QQmlListReference {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::QQmlListReference")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::QQmlListReference")
 
 	return NewQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference2(core.PointerFromQObject(object), C.CString(property), PointerFromQQmlEngine(engine)))
 }
 
 func (ptr *QQmlListReference) Append(object core.QObject_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::append")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::append")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_Append(ptr.Pointer(), core.PointerFromQObject(object)) != 0
@@ -75,11 +63,7 @@ func (ptr *QQmlListReference) Append(object core.QObject_ITF) bool {
 }
 
 func (ptr *QQmlListReference) At(index int) *core.QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::at")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::at")
 
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QQmlListReference_At(ptr.Pointer(), C.int(index)))
@@ -88,11 +72,7 @@ func (ptr *QQmlListReference) At(index int) *core.QObject {
 }
 
 func (ptr *QQmlListReference) CanAppend() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::canAppend")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::canAppend")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_CanAppend(ptr.Pointer()) != 0
@@ -101,11 +81,7 @@ func (ptr *QQmlListReference) CanAppend() bool {
 }
 
 func (ptr *QQmlListReference) CanAt() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::canAt")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::canAt")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_CanAt(ptr.Pointer()) != 0
@@ -114,11 +90,7 @@ func (ptr *QQmlListReference) CanAt() bool {
 }
 
 func (ptr *QQmlListReference) CanClear() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::canClear")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::canClear")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_CanClear(ptr.Pointer()) != 0
@@ -127,11 +99,7 @@ func (ptr *QQmlListReference) CanClear() bool {
 }
 
 func (ptr *QQmlListReference) CanCount() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::canCount")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::canCount")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_CanCount(ptr.Pointer()) != 0
@@ -140,11 +108,7 @@ func (ptr *QQmlListReference) CanCount() bool {
 }
 
 func (ptr *QQmlListReference) Clear() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::clear")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::clear")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_Clear(ptr.Pointer()) != 0
@@ -153,11 +117,7 @@ func (ptr *QQmlListReference) Clear() bool {
 }
 
 func (ptr *QQmlListReference) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::count")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QQmlListReference_Count(ptr.Pointer()))
@@ -166,11 +126,7 @@ func (ptr *QQmlListReference) Count() int {
 }
 
 func (ptr *QQmlListReference) IsManipulable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::isManipulable")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::isManipulable")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_IsManipulable(ptr.Pointer()) != 0
@@ -179,11 +135,7 @@ func (ptr *QQmlListReference) IsManipulable() bool {
 }
 
 func (ptr *QQmlListReference) IsReadable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::isReadable")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::isReadable")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_IsReadable(ptr.Pointer()) != 0
@@ -192,11 +144,7 @@ func (ptr *QQmlListReference) IsReadable() bool {
 }
 
 func (ptr *QQmlListReference) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::isValid")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_IsValid(ptr.Pointer()) != 0
@@ -205,11 +153,7 @@ func (ptr *QQmlListReference) IsValid() bool {
 }
 
 func (ptr *QQmlListReference) ListElementType() *core.QMetaObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::listElementType")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::listElementType")
 
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlListReference_ListElementType(ptr.Pointer()))
@@ -218,11 +162,7 @@ func (ptr *QQmlListReference) ListElementType() *core.QMetaObject {
 }
 
 func (ptr *QQmlListReference) Object() *core.QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlListReference::object")
-		}
-	}()
+	defer qt.Recovering("QQmlListReference::object")
 
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QQmlListReference_Object(ptr.Pointer()))

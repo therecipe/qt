@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQInputDialogFromPointer(ptr unsafe.Pointer) *QInputDialog {
 	var n = new(QInputDialog)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QInputDialog_") {
-		n.SetObjectName("QInputDialog_" + qt.RandomIdentifier())
+		n.SetObjectName("QInputDialog_" + qt.Identifier())
 	}
 	return n
 }
@@ -58,11 +57,7 @@ const (
 )
 
 func (ptr *QInputDialog) CancelButtonText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::cancelButtonText")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::cancelButtonText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QInputDialog_CancelButtonText(ptr.Pointer()))
@@ -71,11 +66,7 @@ func (ptr *QInputDialog) CancelButtonText() string {
 }
 
 func (ptr *QInputDialog) ComboBoxItems() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::comboBoxItems")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::comboBoxItems")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QInputDialog_ComboBoxItems(ptr.Pointer())), ",,,")
@@ -84,11 +75,7 @@ func (ptr *QInputDialog) ComboBoxItems() []string {
 }
 
 func (ptr *QInputDialog) DoubleDecimals() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::doubleDecimals")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::doubleDecimals")
 
 	if ptr.Pointer() != nil {
 		return int(C.QInputDialog_DoubleDecimals(ptr.Pointer()))
@@ -97,11 +84,7 @@ func (ptr *QInputDialog) DoubleDecimals() int {
 }
 
 func (ptr *QInputDialog) InputMode() QInputDialog__InputMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::inputMode")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::inputMode")
 
 	if ptr.Pointer() != nil {
 		return QInputDialog__InputMode(C.QInputDialog_InputMode(ptr.Pointer()))
@@ -110,11 +93,7 @@ func (ptr *QInputDialog) InputMode() QInputDialog__InputMode {
 }
 
 func (ptr *QInputDialog) IntMaximum() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::intMaximum")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::intMaximum")
 
 	if ptr.Pointer() != nil {
 		return int(C.QInputDialog_IntMaximum(ptr.Pointer()))
@@ -123,11 +102,7 @@ func (ptr *QInputDialog) IntMaximum() int {
 }
 
 func (ptr *QInputDialog) IntMinimum() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::intMinimum")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::intMinimum")
 
 	if ptr.Pointer() != nil {
 		return int(C.QInputDialog_IntMinimum(ptr.Pointer()))
@@ -136,11 +111,7 @@ func (ptr *QInputDialog) IntMinimum() int {
 }
 
 func (ptr *QInputDialog) IntStep() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::intStep")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::intStep")
 
 	if ptr.Pointer() != nil {
 		return int(C.QInputDialog_IntStep(ptr.Pointer()))
@@ -149,11 +120,7 @@ func (ptr *QInputDialog) IntStep() int {
 }
 
 func (ptr *QInputDialog) IntValue() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::intValue")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::intValue")
 
 	if ptr.Pointer() != nil {
 		return int(C.QInputDialog_IntValue(ptr.Pointer()))
@@ -162,11 +129,7 @@ func (ptr *QInputDialog) IntValue() int {
 }
 
 func (ptr *QInputDialog) IsComboBoxEditable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::isComboBoxEditable")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::isComboBoxEditable")
 
 	if ptr.Pointer() != nil {
 		return C.QInputDialog_IsComboBoxEditable(ptr.Pointer()) != 0
@@ -175,11 +138,7 @@ func (ptr *QInputDialog) IsComboBoxEditable() bool {
 }
 
 func (ptr *QInputDialog) LabelText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::labelText")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::labelText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QInputDialog_LabelText(ptr.Pointer()))
@@ -188,11 +147,7 @@ func (ptr *QInputDialog) LabelText() string {
 }
 
 func (ptr *QInputDialog) OkButtonText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::okButtonText")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::okButtonText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QInputDialog_OkButtonText(ptr.Pointer()))
@@ -201,11 +156,7 @@ func (ptr *QInputDialog) OkButtonText() string {
 }
 
 func (ptr *QInputDialog) Options() QInputDialog__InputDialogOption {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::options")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::options")
 
 	if ptr.Pointer() != nil {
 		return QInputDialog__InputDialogOption(C.QInputDialog_Options(ptr.Pointer()))
@@ -214,11 +165,7 @@ func (ptr *QInputDialog) Options() QInputDialog__InputDialogOption {
 }
 
 func (ptr *QInputDialog) SetCancelButtonText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setCancelButtonText")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setCancelButtonText")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetCancelButtonText(ptr.Pointer(), C.CString(text))
@@ -226,11 +173,7 @@ func (ptr *QInputDialog) SetCancelButtonText(text string) {
 }
 
 func (ptr *QInputDialog) SetComboBoxEditable(editable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setComboBoxEditable")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setComboBoxEditable")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetComboBoxEditable(ptr.Pointer(), C.int(qt.GoBoolToInt(editable)))
@@ -238,11 +181,7 @@ func (ptr *QInputDialog) SetComboBoxEditable(editable bool) {
 }
 
 func (ptr *QInputDialog) SetComboBoxItems(items []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setComboBoxItems")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setComboBoxItems")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetComboBoxItems(ptr.Pointer(), C.CString(strings.Join(items, ",,,")))
@@ -250,11 +189,7 @@ func (ptr *QInputDialog) SetComboBoxItems(items []string) {
 }
 
 func (ptr *QInputDialog) SetDoubleDecimals(decimals int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setDoubleDecimals")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setDoubleDecimals")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetDoubleDecimals(ptr.Pointer(), C.int(decimals))
@@ -262,11 +197,7 @@ func (ptr *QInputDialog) SetDoubleDecimals(decimals int) {
 }
 
 func (ptr *QInputDialog) SetInputMode(mode QInputDialog__InputMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setInputMode")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setInputMode")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetInputMode(ptr.Pointer(), C.int(mode))
@@ -274,11 +205,7 @@ func (ptr *QInputDialog) SetInputMode(mode QInputDialog__InputMode) {
 }
 
 func (ptr *QInputDialog) SetIntMaximum(max int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setIntMaximum")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setIntMaximum")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetIntMaximum(ptr.Pointer(), C.int(max))
@@ -286,11 +213,7 @@ func (ptr *QInputDialog) SetIntMaximum(max int) {
 }
 
 func (ptr *QInputDialog) SetIntMinimum(min int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setIntMinimum")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setIntMinimum")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetIntMinimum(ptr.Pointer(), C.int(min))
@@ -298,11 +221,7 @@ func (ptr *QInputDialog) SetIntMinimum(min int) {
 }
 
 func (ptr *QInputDialog) SetIntStep(step int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setIntStep")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setIntStep")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetIntStep(ptr.Pointer(), C.int(step))
@@ -310,11 +229,7 @@ func (ptr *QInputDialog) SetIntStep(step int) {
 }
 
 func (ptr *QInputDialog) SetIntValue(value int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setIntValue")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setIntValue")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetIntValue(ptr.Pointer(), C.int(value))
@@ -322,11 +237,7 @@ func (ptr *QInputDialog) SetIntValue(value int) {
 }
 
 func (ptr *QInputDialog) SetLabelText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setLabelText")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setLabelText")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetLabelText(ptr.Pointer(), C.CString(text))
@@ -334,11 +245,7 @@ func (ptr *QInputDialog) SetLabelText(text string) {
 }
 
 func (ptr *QInputDialog) SetOkButtonText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setOkButtonText")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setOkButtonText")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetOkButtonText(ptr.Pointer(), C.CString(text))
@@ -346,11 +253,7 @@ func (ptr *QInputDialog) SetOkButtonText(text string) {
 }
 
 func (ptr *QInputDialog) SetOptions(options QInputDialog__InputDialogOption) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setOptions")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setOptions")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetOptions(ptr.Pointer(), C.int(options))
@@ -358,11 +261,7 @@ func (ptr *QInputDialog) SetOptions(options QInputDialog__InputDialogOption) {
 }
 
 func (ptr *QInputDialog) SetTextEchoMode(mode QLineEdit__EchoMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setTextEchoMode")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setTextEchoMode")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetTextEchoMode(ptr.Pointer(), C.int(mode))
@@ -370,11 +269,7 @@ func (ptr *QInputDialog) SetTextEchoMode(mode QLineEdit__EchoMode) {
 }
 
 func (ptr *QInputDialog) SetTextValue(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setTextValue")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setTextValue")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetTextValue(ptr.Pointer(), C.CString(text))
@@ -382,11 +277,7 @@ func (ptr *QInputDialog) SetTextValue(text string) {
 }
 
 func (ptr *QInputDialog) TextEchoMode() QLineEdit__EchoMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::textEchoMode")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::textEchoMode")
 
 	if ptr.Pointer() != nil {
 		return QLineEdit__EchoMode(C.QInputDialog_TextEchoMode(ptr.Pointer()))
@@ -395,11 +286,7 @@ func (ptr *QInputDialog) TextEchoMode() QLineEdit__EchoMode {
 }
 
 func (ptr *QInputDialog) TextValue() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::textValue")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::textValue")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QInputDialog_TextValue(ptr.Pointer()))
@@ -408,73 +295,68 @@ func (ptr *QInputDialog) TextValue() string {
 }
 
 func NewQInputDialog(parent QWidget_ITF, flags core.Qt__WindowType) *QInputDialog {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::QInputDialog")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::QInputDialog")
 
 	return NewQInputDialogFromPointer(C.QInputDialog_NewQInputDialog(PointerFromQWidget(parent), C.int(flags)))
 }
 
-func (ptr *QInputDialog) Done(result int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::done")
-		}
-	}()
+func (ptr *QInputDialog) ConnectDone(f func(result int)) {
+	defer qt.Recovering("connect QInputDialog::done")
 
 	if ptr.Pointer() != nil {
-		C.QInputDialog_Done(ptr.Pointer(), C.int(result))
+
+		qt.ConnectSignal(ptr.ObjectName(), "done", f)
 	}
 }
 
+func (ptr *QInputDialog) DisconnectDone() {
+	defer qt.Recovering("disconnect QInputDialog::done")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "done")
+	}
+}
+
+//export callbackQInputDialogDone
+func callbackQInputDialogDone(ptrName *C.char, result C.int) bool {
+	defer qt.Recovering("callback QInputDialog::done")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "done")
+	if signal != nil {
+		defer signal.(func(int))(int(result))
+		return true
+	}
+	return false
+
+}
+
 func QInputDialog_GetInt(parent QWidget_ITF, title string, label string, value int, min int, max int, step int, ok bool, flags core.Qt__WindowType) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::getInt")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::getInt")
 
 	return int(C.QInputDialog_QInputDialog_GetInt(PointerFromQWidget(parent), C.CString(title), C.CString(label), C.int(value), C.int(min), C.int(max), C.int(step), C.int(qt.GoBoolToInt(ok)), C.int(flags)))
 }
 
 func QInputDialog_GetItem(parent QWidget_ITF, title string, label string, items []string, current int, editable bool, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::getItem")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::getItem")
 
 	return C.GoString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.CString(title), C.CString(label), C.CString(strings.Join(items, ",,,")), C.int(current), C.int(qt.GoBoolToInt(editable)), C.int(qt.GoBoolToInt(ok)), C.int(flags), C.int(inputMethodHints)))
 }
 
 func QInputDialog_GetMultiLineText(parent QWidget_ITF, title string, label string, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::getMultiLineText")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::getMultiLineText")
 
 	return C.GoString(C.QInputDialog_QInputDialog_GetMultiLineText(PointerFromQWidget(parent), C.CString(title), C.CString(label), C.CString(text), C.int(qt.GoBoolToInt(ok)), C.int(flags), C.int(inputMethodHints)))
 }
 
 func QInputDialog_GetText(parent QWidget_ITF, title string, label string, mode QLineEdit__EchoMode, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::getText")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::getText")
 
 	return C.GoString(C.QInputDialog_QInputDialog_GetText(PointerFromQWidget(parent), C.CString(title), C.CString(label), C.int(mode), C.CString(text), C.int(qt.GoBoolToInt(ok)), C.int(flags), C.int(inputMethodHints)))
 }
 
 func (ptr *QInputDialog) ConnectIntValueChanged(f func(value int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::intValueChanged")
-		}
-	}()
+	defer qt.Recovering("connect QInputDialog::intValueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_ConnectIntValueChanged(ptr.Pointer())
@@ -483,11 +365,7 @@ func (ptr *QInputDialog) ConnectIntValueChanged(f func(value int)) {
 }
 
 func (ptr *QInputDialog) DisconnectIntValueChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::intValueChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QInputDialog::intValueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_DisconnectIntValueChanged(ptr.Pointer())
@@ -497,21 +375,17 @@ func (ptr *QInputDialog) DisconnectIntValueChanged() {
 
 //export callbackQInputDialogIntValueChanged
 func callbackQInputDialogIntValueChanged(ptrName *C.char, value C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::intValueChanged")
-		}
-	}()
+	defer qt.Recovering("callback QInputDialog::intValueChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "intValueChanged").(func(int))(int(value))
+	var signal = qt.GetSignal(C.GoString(ptrName), "intValueChanged")
+	if signal != nil {
+		signal.(func(int))(int(value))
+	}
+
 }
 
 func (ptr *QInputDialog) ConnectIntValueSelected(f func(value int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::intValueSelected")
-		}
-	}()
+	defer qt.Recovering("connect QInputDialog::intValueSelected")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_ConnectIntValueSelected(ptr.Pointer())
@@ -520,11 +394,7 @@ func (ptr *QInputDialog) ConnectIntValueSelected(f func(value int)) {
 }
 
 func (ptr *QInputDialog) DisconnectIntValueSelected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::intValueSelected")
-		}
-	}()
+	defer qt.Recovering("disconnect QInputDialog::intValueSelected")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_DisconnectIntValueSelected(ptr.Pointer())
@@ -534,21 +404,17 @@ func (ptr *QInputDialog) DisconnectIntValueSelected() {
 
 //export callbackQInputDialogIntValueSelected
 func callbackQInputDialogIntValueSelected(ptrName *C.char, value C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::intValueSelected")
-		}
-	}()
+	defer qt.Recovering("callback QInputDialog::intValueSelected")
 
-	qt.GetSignal(C.GoString(ptrName), "intValueSelected").(func(int))(int(value))
+	var signal = qt.GetSignal(C.GoString(ptrName), "intValueSelected")
+	if signal != nil {
+		signal.(func(int))(int(value))
+	}
+
 }
 
 func (ptr *QInputDialog) Open(receiver core.QObject_ITF, member string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::open")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::open")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_Open(ptr.Pointer(), core.PointerFromQObject(receiver), C.CString(member))
@@ -556,11 +422,7 @@ func (ptr *QInputDialog) Open(receiver core.QObject_ITF, member string) {
 }
 
 func (ptr *QInputDialog) SetIntRange(min int, max int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setIntRange")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setIntRange")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetIntRange(ptr.Pointer(), C.int(min), C.int(max))
@@ -568,35 +430,46 @@ func (ptr *QInputDialog) SetIntRange(min int, max int) {
 }
 
 func (ptr *QInputDialog) SetOption(option QInputDialog__InputDialogOption, on bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setOption")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::setOption")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetOption(ptr.Pointer(), C.int(option), C.int(qt.GoBoolToInt(on)))
 	}
 }
 
-func (ptr *QInputDialog) SetVisible(visible bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::setVisible")
-		}
-	}()
+func (ptr *QInputDialog) ConnectSetVisible(f func(visible bool)) {
+	defer qt.Recovering("connect QInputDialog::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QInputDialog_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
 	}
 }
 
+func (ptr *QInputDialog) DisconnectSetVisible() {
+	defer qt.Recovering("disconnect QInputDialog::setVisible")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+	}
+}
+
+//export callbackQInputDialogSetVisible
+func callbackQInputDialogSetVisible(ptrName *C.char, visible C.int) bool {
+	defer qt.Recovering("callback QInputDialog::setVisible")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
+	if signal != nil {
+		defer signal.(func(bool))(int(visible) != 0)
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QInputDialog) TestOption(option QInputDialog__InputDialogOption) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::testOption")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::testOption")
 
 	if ptr.Pointer() != nil {
 		return C.QInputDialog_TestOption(ptr.Pointer(), C.int(option)) != 0
@@ -605,11 +478,7 @@ func (ptr *QInputDialog) TestOption(option QInputDialog__InputDialogOption) bool
 }
 
 func (ptr *QInputDialog) ConnectTextValueChanged(f func(text string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::textValueChanged")
-		}
-	}()
+	defer qt.Recovering("connect QInputDialog::textValueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_ConnectTextValueChanged(ptr.Pointer())
@@ -618,11 +487,7 @@ func (ptr *QInputDialog) ConnectTextValueChanged(f func(text string)) {
 }
 
 func (ptr *QInputDialog) DisconnectTextValueChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::textValueChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QInputDialog::textValueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_DisconnectTextValueChanged(ptr.Pointer())
@@ -632,21 +497,17 @@ func (ptr *QInputDialog) DisconnectTextValueChanged() {
 
 //export callbackQInputDialogTextValueChanged
 func callbackQInputDialogTextValueChanged(ptrName *C.char, text *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::textValueChanged")
-		}
-	}()
+	defer qt.Recovering("callback QInputDialog::textValueChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "textValueChanged").(func(string))(C.GoString(text))
+	var signal = qt.GetSignal(C.GoString(ptrName), "textValueChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(text))
+	}
+
 }
 
 func (ptr *QInputDialog) ConnectTextValueSelected(f func(text string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::textValueSelected")
-		}
-	}()
+	defer qt.Recovering("connect QInputDialog::textValueSelected")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_ConnectTextValueSelected(ptr.Pointer())
@@ -655,11 +516,7 @@ func (ptr *QInputDialog) ConnectTextValueSelected(f func(text string)) {
 }
 
 func (ptr *QInputDialog) DisconnectTextValueSelected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::textValueSelected")
-		}
-	}()
+	defer qt.Recovering("disconnect QInputDialog::textValueSelected")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_DisconnectTextValueSelected(ptr.Pointer())
@@ -669,21 +526,17 @@ func (ptr *QInputDialog) DisconnectTextValueSelected() {
 
 //export callbackQInputDialogTextValueSelected
 func callbackQInputDialogTextValueSelected(ptrName *C.char, text *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::textValueSelected")
-		}
-	}()
+	defer qt.Recovering("callback QInputDialog::textValueSelected")
 
-	qt.GetSignal(C.GoString(ptrName), "textValueSelected").(func(string))(C.GoString(text))
+	var signal = qt.GetSignal(C.GoString(ptrName), "textValueSelected")
+	if signal != nil {
+		signal.(func(string))(C.GoString(text))
+	}
+
 }
 
 func (ptr *QInputDialog) DestroyQInputDialog() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputDialog::~QInputDialog")
-		}
-	}()
+	defer qt.Recovering("QInputDialog::~QInputDialog")
 
 	if ptr.Pointer() != nil {
 		C.QInputDialog_DestroyQInputDialog(ptr.Pointer())

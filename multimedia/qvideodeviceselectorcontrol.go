@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQVideoDeviceSelectorControlFromPointer(ptr unsafe.Pointer) *QVideoDevice
 	var n = new(QVideoDeviceSelectorControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoDeviceSelectorControl_") {
-		n.SetObjectName("QVideoDeviceSelectorControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QVideoDeviceSelectorControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QVideoDeviceSelectorControl) QVideoDeviceSelectorControl_PTR() *QVide
 }
 
 func (ptr *QVideoDeviceSelectorControl) DefaultDevice() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::defaultDevice")
-		}
-	}()
+	defer qt.Recovering("QVideoDeviceSelectorControl::defaultDevice")
 
 	if ptr.Pointer() != nil {
 		return int(C.QVideoDeviceSelectorControl_DefaultDevice(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QVideoDeviceSelectorControl) DefaultDevice() int {
 }
 
 func (ptr *QVideoDeviceSelectorControl) DeviceCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::deviceCount")
-		}
-	}()
+	defer qt.Recovering("QVideoDeviceSelectorControl::deviceCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QVideoDeviceSelectorControl_DeviceCount(ptr.Pointer()))
@@ -64,11 +55,7 @@ func (ptr *QVideoDeviceSelectorControl) DeviceCount() int {
 }
 
 func (ptr *QVideoDeviceSelectorControl) DeviceDescription(index int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::deviceDescription")
-		}
-	}()
+	defer qt.Recovering("QVideoDeviceSelectorControl::deviceDescription")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QVideoDeviceSelectorControl_DeviceDescription(ptr.Pointer(), C.int(index)))
@@ -77,11 +64,7 @@ func (ptr *QVideoDeviceSelectorControl) DeviceDescription(index int) string {
 }
 
 func (ptr *QVideoDeviceSelectorControl) DeviceName(index int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::deviceName")
-		}
-	}()
+	defer qt.Recovering("QVideoDeviceSelectorControl::deviceName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QVideoDeviceSelectorControl_DeviceName(ptr.Pointer(), C.int(index)))
@@ -90,11 +73,7 @@ func (ptr *QVideoDeviceSelectorControl) DeviceName(index int) string {
 }
 
 func (ptr *QVideoDeviceSelectorControl) ConnectDevicesChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::devicesChanged")
-		}
-	}()
+	defer qt.Recovering("connect QVideoDeviceSelectorControl::devicesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoDeviceSelectorControl_ConnectDevicesChanged(ptr.Pointer())
@@ -103,11 +82,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectDevicesChanged(f func()) {
 }
 
 func (ptr *QVideoDeviceSelectorControl) DisconnectDevicesChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::devicesChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QVideoDeviceSelectorControl::devicesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoDeviceSelectorControl_DisconnectDevicesChanged(ptr.Pointer())
@@ -117,21 +92,17 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectDevicesChanged() {
 
 //export callbackQVideoDeviceSelectorControlDevicesChanged
 func callbackQVideoDeviceSelectorControlDevicesChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::devicesChanged")
-		}
-	}()
+	defer qt.Recovering("callback QVideoDeviceSelectorControl::devicesChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "devicesChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "devicesChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QVideoDeviceSelectorControl) SelectedDevice() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::selectedDevice")
-		}
-	}()
+	defer qt.Recovering("QVideoDeviceSelectorControl::selectedDevice")
 
 	if ptr.Pointer() != nil {
 		return int(C.QVideoDeviceSelectorControl_SelectedDevice(ptr.Pointer()))
@@ -140,11 +111,7 @@ func (ptr *QVideoDeviceSelectorControl) SelectedDevice() int {
 }
 
 func (ptr *QVideoDeviceSelectorControl) ConnectSelectedDeviceChanged(f func(index int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::selectedDeviceChanged")
-		}
-	}()
+	defer qt.Recovering("connect QVideoDeviceSelectorControl::selectedDeviceChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoDeviceSelectorControl_ConnectSelectedDeviceChanged(ptr.Pointer())
@@ -153,11 +120,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectSelectedDeviceChanged(f func(inde
 }
 
 func (ptr *QVideoDeviceSelectorControl) DisconnectSelectedDeviceChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::selectedDeviceChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QVideoDeviceSelectorControl::selectedDeviceChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVideoDeviceSelectorControl_DisconnectSelectedDeviceChanged(ptr.Pointer())
@@ -167,21 +130,17 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectSelectedDeviceChanged() {
 
 //export callbackQVideoDeviceSelectorControlSelectedDeviceChanged
 func callbackQVideoDeviceSelectorControlSelectedDeviceChanged(ptrName *C.char, index C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::selectedDeviceChanged")
-		}
-	}()
+	defer qt.Recovering("callback QVideoDeviceSelectorControl::selectedDeviceChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "selectedDeviceChanged").(func(int))(int(index))
+	var signal = qt.GetSignal(C.GoString(ptrName), "selectedDeviceChanged")
+	if signal != nil {
+		signal.(func(int))(int(index))
+	}
+
 }
 
 func (ptr *QVideoDeviceSelectorControl) SetSelectedDevice(index int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::setSelectedDevice")
-		}
-	}()
+	defer qt.Recovering("QVideoDeviceSelectorControl::setSelectedDevice")
 
 	if ptr.Pointer() != nil {
 		C.QVideoDeviceSelectorControl_SetSelectedDevice(ptr.Pointer(), C.int(index))
@@ -189,11 +148,7 @@ func (ptr *QVideoDeviceSelectorControl) SetSelectedDevice(index int) {
 }
 
 func (ptr *QVideoDeviceSelectorControl) DestroyQVideoDeviceSelectorControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl")
-		}
-	}()
+	defer qt.Recovering("QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl")
 
 	if ptr.Pointer() != nil {
 		C.QVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl(ptr.Pointer())

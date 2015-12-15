@@ -3,7 +3,6 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
 	"unsafe"
 )
 
@@ -38,29 +37,4 @@ func NewQExceptionFromPointer(ptr unsafe.Pointer) *QException {
 
 func (ptr *QException) QException_PTR() *QException {
 	return ptr
-}
-
-func (ptr *QException) Clone() *QException {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QException::clone")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		return NewQExceptionFromPointer(C.QException_Clone(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QException) Raise() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QException::raise")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QException_Raise(ptr.Pointer())
-	}
 }

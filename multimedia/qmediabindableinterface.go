@@ -3,7 +3,7 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQMediaBindableInterface(ptr QMediaBindableInterface_ITF) unsafe.
 func NewQMediaBindableInterfaceFromPointer(ptr unsafe.Pointer) *QMediaBindableInterface {
 	var n = new(QMediaBindableInterface)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QMediaBindableInterface_") {
+		n.SetObjectNameAbs("QMediaBindableInterface_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QMediaBindableInterface) QMediaBindableInterface_PTR() *QMediaBindabl
 }
 
 func (ptr *QMediaBindableInterface) MediaObject() *QMediaObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaBindableInterface::mediaObject")
-		}
-	}()
+	defer qt.Recovering("QMediaBindableInterface::mediaObject")
 
 	if ptr.Pointer() != nil {
 		return NewQMediaObjectFromPointer(C.QMediaBindableInterface_MediaObject(ptr.Pointer()))
@@ -54,13 +53,26 @@ func (ptr *QMediaBindableInterface) MediaObject() *QMediaObject {
 }
 
 func (ptr *QMediaBindableInterface) DestroyQMediaBindableInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaBindableInterface::~QMediaBindableInterface")
-		}
-	}()
+	defer qt.Recovering("QMediaBindableInterface::~QMediaBindableInterface")
 
 	if ptr.Pointer() != nil {
 		C.QMediaBindableInterface_DestroyQMediaBindableInterface(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaBindableInterface) ObjectNameAbs() string {
+	defer qt.Recovering("QMediaBindableInterface::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QMediaBindableInterface_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QMediaBindableInterface) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QMediaBindableInterface::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QMediaBindableInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

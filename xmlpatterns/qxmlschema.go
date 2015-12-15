@@ -3,9 +3,9 @@ package xmlpatterns
 //#include "xmlpatterns.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
-	"log"
 	"unsafe"
 )
 
@@ -43,31 +43,19 @@ func (ptr *QXmlSchema) QXmlSchema_PTR() *QXmlSchema {
 }
 
 func NewQXmlSchema() *QXmlSchema {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::QXmlSchema")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::QXmlSchema")
 
 	return NewQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema())
 }
 
 func NewQXmlSchema2(other QXmlSchema_ITF) *QXmlSchema {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::QXmlSchema")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::QXmlSchema")
 
 	return NewQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema2(PointerFromQXmlSchema(other)))
 }
 
 func (ptr *QXmlSchema) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::isValid")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSchema_IsValid(ptr.Pointer()) != 0
@@ -76,11 +64,7 @@ func (ptr *QXmlSchema) IsValid() bool {
 }
 
 func (ptr *QXmlSchema) Load2(source core.QIODevice_ITF, documentUri core.QUrl_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::load")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::load")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSchema_Load2(ptr.Pointer(), core.PointerFromQIODevice(source), core.PointerFromQUrl(documentUri)) != 0
@@ -89,11 +73,7 @@ func (ptr *QXmlSchema) Load2(source core.QIODevice_ITF, documentUri core.QUrl_IT
 }
 
 func (ptr *QXmlSchema) Load3(data core.QByteArray_ITF, documentUri core.QUrl_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::load")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::load")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSchema_Load3(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(documentUri)) != 0
@@ -102,11 +82,7 @@ func (ptr *QXmlSchema) Load3(data core.QByteArray_ITF, documentUri core.QUrl_ITF
 }
 
 func (ptr *QXmlSchema) Load(source core.QUrl_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::load")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::load")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSchema_Load(ptr.Pointer(), core.PointerFromQUrl(source)) != 0
@@ -115,11 +91,7 @@ func (ptr *QXmlSchema) Load(source core.QUrl_ITF) bool {
 }
 
 func (ptr *QXmlSchema) MessageHandler() *QAbstractMessageHandler {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::messageHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::messageHandler")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractMessageHandlerFromPointer(C.QXmlSchema_MessageHandler(ptr.Pointer()))
@@ -128,11 +100,7 @@ func (ptr *QXmlSchema) MessageHandler() *QAbstractMessageHandler {
 }
 
 func (ptr *QXmlSchema) NetworkAccessManager() *network.QNetworkAccessManager {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::networkAccessManager")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::networkAccessManager")
 
 	if ptr.Pointer() != nil {
 		return network.NewQNetworkAccessManagerFromPointer(C.QXmlSchema_NetworkAccessManager(ptr.Pointer()))
@@ -141,11 +109,7 @@ func (ptr *QXmlSchema) NetworkAccessManager() *network.QNetworkAccessManager {
 }
 
 func (ptr *QXmlSchema) SetMessageHandler(handler QAbstractMessageHandler_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::setMessageHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::setMessageHandler")
 
 	if ptr.Pointer() != nil {
 		C.QXmlSchema_SetMessageHandler(ptr.Pointer(), PointerFromQAbstractMessageHandler(handler))
@@ -153,11 +117,7 @@ func (ptr *QXmlSchema) SetMessageHandler(handler QAbstractMessageHandler_ITF) {
 }
 
 func (ptr *QXmlSchema) SetNetworkAccessManager(manager network.QNetworkAccessManager_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::setNetworkAccessManager")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::setNetworkAccessManager")
 
 	if ptr.Pointer() != nil {
 		C.QXmlSchema_SetNetworkAccessManager(ptr.Pointer(), network.PointerFromQNetworkAccessManager(manager))
@@ -165,11 +125,7 @@ func (ptr *QXmlSchema) SetNetworkAccessManager(manager network.QNetworkAccessMan
 }
 
 func (ptr *QXmlSchema) SetUriResolver(resolver QAbstractUriResolver_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::setUriResolver")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::setUriResolver")
 
 	if ptr.Pointer() != nil {
 		C.QXmlSchema_SetUriResolver(ptr.Pointer(), PointerFromQAbstractUriResolver(resolver))
@@ -177,11 +133,7 @@ func (ptr *QXmlSchema) SetUriResolver(resolver QAbstractUriResolver_ITF) {
 }
 
 func (ptr *QXmlSchema) UriResolver() *QAbstractUriResolver {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::uriResolver")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::uriResolver")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractUriResolverFromPointer(C.QXmlSchema_UriResolver(ptr.Pointer()))
@@ -190,11 +142,7 @@ func (ptr *QXmlSchema) UriResolver() *QAbstractUriResolver {
 }
 
 func (ptr *QXmlSchema) DestroyQXmlSchema() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchema::~QXmlSchema")
-		}
-	}()
+	defer qt.Recovering("QXmlSchema::~QXmlSchema")
 
 	if ptr.Pointer() != nil {
 		C.QXmlSchema_DestroyQXmlSchema(ptr.Pointer())

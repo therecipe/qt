@@ -28,7 +28,7 @@ func NewQPlaceManagerEngineFromPointer(ptr unsafe.Pointer) *QPlaceManagerEngine 
 	var n = new(QPlaceManagerEngine)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceManagerEngine_") {
-		n.SetObjectName("QPlaceManagerEngine_" + qt.RandomIdentifier())
+		n.SetObjectName("QPlaceManagerEngine_" + qt.Identifier())
 	}
 	return n
 }

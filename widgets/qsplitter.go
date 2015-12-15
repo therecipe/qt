@@ -5,7 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
 
@@ -29,7 +29,7 @@ func NewQSplitterFromPointer(ptr unsafe.Pointer) *QSplitter {
 	var n = new(QSplitter)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSplitter_") {
-		n.SetObjectName("QSplitter_" + qt.RandomIdentifier())
+		n.SetObjectName("QSplitter_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +39,7 @@ func (ptr *QSplitter) QSplitter_PTR() *QSplitter {
 }
 
 func (ptr *QSplitter) ChildrenCollapsible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::childrenCollapsible")
-		}
-	}()
+	defer qt.Recovering("QSplitter::childrenCollapsible")
 
 	if ptr.Pointer() != nil {
 		return C.QSplitter_ChildrenCollapsible(ptr.Pointer()) != 0
@@ -52,11 +48,7 @@ func (ptr *QSplitter) ChildrenCollapsible() bool {
 }
 
 func (ptr *QSplitter) HandleWidth() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::handleWidth")
-		}
-	}()
+	defer qt.Recovering("QSplitter::handleWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSplitter_HandleWidth(ptr.Pointer()))
@@ -65,11 +57,7 @@ func (ptr *QSplitter) HandleWidth() int {
 }
 
 func (ptr *QSplitter) IndexOf(widget QWidget_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::indexOf")
-		}
-	}()
+	defer qt.Recovering("QSplitter::indexOf")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSplitter_IndexOf(ptr.Pointer(), PointerFromQWidget(widget)))
@@ -78,11 +66,7 @@ func (ptr *QSplitter) IndexOf(widget QWidget_ITF) int {
 }
 
 func (ptr *QSplitter) OpaqueResize() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::opaqueResize")
-		}
-	}()
+	defer qt.Recovering("QSplitter::opaqueResize")
 
 	if ptr.Pointer() != nil {
 		return C.QSplitter_OpaqueResize(ptr.Pointer()) != 0
@@ -91,11 +75,7 @@ func (ptr *QSplitter) OpaqueResize() bool {
 }
 
 func (ptr *QSplitter) Orientation() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::orientation")
-		}
-	}()
+	defer qt.Recovering("QSplitter::orientation")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QSplitter_Orientation(ptr.Pointer()))
@@ -104,11 +84,7 @@ func (ptr *QSplitter) Orientation() core.Qt__Orientation {
 }
 
 func (ptr *QSplitter) SetChildrenCollapsible(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::setChildrenCollapsible")
-		}
-	}()
+	defer qt.Recovering("QSplitter::setChildrenCollapsible")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_SetChildrenCollapsible(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -116,11 +92,7 @@ func (ptr *QSplitter) SetChildrenCollapsible(v bool) {
 }
 
 func (ptr *QSplitter) SetHandleWidth(v int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::setHandleWidth")
-		}
-	}()
+	defer qt.Recovering("QSplitter::setHandleWidth")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_SetHandleWidth(ptr.Pointer(), C.int(v))
@@ -128,11 +100,7 @@ func (ptr *QSplitter) SetHandleWidth(v int) {
 }
 
 func (ptr *QSplitter) SetOpaqueResize(opaque bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::setOpaqueResize")
-		}
-	}()
+	defer qt.Recovering("QSplitter::setOpaqueResize")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_SetOpaqueResize(ptr.Pointer(), C.int(qt.GoBoolToInt(opaque)))
@@ -140,11 +108,7 @@ func (ptr *QSplitter) SetOpaqueResize(opaque bool) {
 }
 
 func (ptr *QSplitter) SetOrientation(v core.Qt__Orientation) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::setOrientation")
-		}
-	}()
+	defer qt.Recovering("QSplitter::setOrientation")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_SetOrientation(ptr.Pointer(), C.int(v))
@@ -152,43 +116,89 @@ func (ptr *QSplitter) SetOrientation(v core.Qt__Orientation) {
 }
 
 func NewQSplitter(parent QWidget_ITF) *QSplitter {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::QSplitter")
-		}
-	}()
+	defer qt.Recovering("QSplitter::QSplitter")
 
 	return NewQSplitterFromPointer(C.QSplitter_NewQSplitter(PointerFromQWidget(parent)))
 }
 
 func NewQSplitter2(orientation core.Qt__Orientation, parent QWidget_ITF) *QSplitter {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::QSplitter")
-		}
-	}()
+	defer qt.Recovering("QSplitter::QSplitter")
 
 	return NewQSplitterFromPointer(C.QSplitter_NewQSplitter2(C.int(orientation), PointerFromQWidget(parent)))
 }
 
 func (ptr *QSplitter) AddWidget(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::addWidget")
-		}
-	}()
+	defer qt.Recovering("QSplitter::addWidget")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_AddWidget(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
+func (ptr *QSplitter) ConnectChangeEvent(f func(ev *core.QEvent)) {
+	defer qt.Recovering("connect QSplitter::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QSplitter) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QSplitter::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQSplitterChangeEvent
+func callbackQSplitterChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSplitter::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSplitter) ConnectChildEvent(f func(c *core.QChildEvent)) {
+	defer qt.Recovering("connect QSplitter::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QSplitter) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QSplitter::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQSplitterChildEvent
+func callbackQSplitterChildEvent(ptrName *C.char, c unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSplitter::childEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "childEvent")
+	if signal != nil {
+		defer signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(c))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSplitter) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::count")
-		}
-	}()
+	defer qt.Recovering("QSplitter::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSplitter_Count(ptr.Pointer()))
@@ -197,11 +207,7 @@ func (ptr *QSplitter) Count() int {
 }
 
 func (ptr *QSplitter) GetRange(index int, min int, max int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::getRange")
-		}
-	}()
+	defer qt.Recovering("QSplitter::getRange")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_GetRange(ptr.Pointer(), C.int(index), C.int(min), C.int(max))
@@ -209,11 +215,7 @@ func (ptr *QSplitter) GetRange(index int, min int, max int) {
 }
 
 func (ptr *QSplitter) Handle(index int) *QSplitterHandle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::handle")
-		}
-	}()
+	defer qt.Recovering("QSplitter::handle")
 
 	if ptr.Pointer() != nil {
 		return NewQSplitterHandleFromPointer(C.QSplitter_Handle(ptr.Pointer(), C.int(index)))
@@ -222,11 +224,7 @@ func (ptr *QSplitter) Handle(index int) *QSplitterHandle {
 }
 
 func (ptr *QSplitter) InsertWidget(index int, widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::insertWidget")
-		}
-	}()
+	defer qt.Recovering("QSplitter::insertWidget")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_InsertWidget(ptr.Pointer(), C.int(index), PointerFromQWidget(widget))
@@ -234,11 +232,7 @@ func (ptr *QSplitter) InsertWidget(index int, widget QWidget_ITF) {
 }
 
 func (ptr *QSplitter) IsCollapsible(index int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::isCollapsible")
-		}
-	}()
+	defer qt.Recovering("QSplitter::isCollapsible")
 
 	if ptr.Pointer() != nil {
 		return C.QSplitter_IsCollapsible(ptr.Pointer(), C.int(index)) != 0
@@ -247,23 +241,46 @@ func (ptr *QSplitter) IsCollapsible(index int) bool {
 }
 
 func (ptr *QSplitter) Refresh() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::refresh")
-		}
-	}()
+	defer qt.Recovering("QSplitter::refresh")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_Refresh(ptr.Pointer())
 	}
 }
 
+func (ptr *QSplitter) ConnectResizeEvent(f func(v *gui.QResizeEvent)) {
+	defer qt.Recovering("connect QSplitter::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+	}
+}
+
+func (ptr *QSplitter) DisconnectResizeEvent() {
+	defer qt.Recovering("disconnect QSplitter::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+	}
+}
+
+//export callbackQSplitterResizeEvent
+func callbackQSplitterResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSplitter::resizeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSplitter) RestoreState(state core.QByteArray_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::restoreState")
-		}
-	}()
+	defer qt.Recovering("QSplitter::restoreState")
 
 	if ptr.Pointer() != nil {
 		return C.QSplitter_RestoreState(ptr.Pointer(), core.PointerFromQByteArray(state)) != 0
@@ -272,11 +289,7 @@ func (ptr *QSplitter) RestoreState(state core.QByteArray_ITF) bool {
 }
 
 func (ptr *QSplitter) SaveState() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::saveState")
-		}
-	}()
+	defer qt.Recovering("QSplitter::saveState")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QSplitter_SaveState(ptr.Pointer()))
@@ -285,11 +298,7 @@ func (ptr *QSplitter) SaveState() *core.QByteArray {
 }
 
 func (ptr *QSplitter) SetCollapsible(index int, collapse bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::setCollapsible")
-		}
-	}()
+	defer qt.Recovering("QSplitter::setCollapsible")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_SetCollapsible(ptr.Pointer(), C.int(index), C.int(qt.GoBoolToInt(collapse)))
@@ -297,11 +306,7 @@ func (ptr *QSplitter) SetCollapsible(index int, collapse bool) {
 }
 
 func (ptr *QSplitter) SetStretchFactor(index int, stretch int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::setStretchFactor")
-		}
-	}()
+	defer qt.Recovering("QSplitter::setStretchFactor")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_SetStretchFactor(ptr.Pointer(), C.int(index), C.int(stretch))
@@ -309,11 +314,7 @@ func (ptr *QSplitter) SetStretchFactor(index int, stretch int) {
 }
 
 func (ptr *QSplitter) ConnectSplitterMoved(f func(pos int, index int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::splitterMoved")
-		}
-	}()
+	defer qt.Recovering("connect QSplitter::splitterMoved")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_ConnectSplitterMoved(ptr.Pointer())
@@ -322,11 +323,7 @@ func (ptr *QSplitter) ConnectSplitterMoved(f func(pos int, index int)) {
 }
 
 func (ptr *QSplitter) DisconnectSplitterMoved() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::splitterMoved")
-		}
-	}()
+	defer qt.Recovering("disconnect QSplitter::splitterMoved")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_DisconnectSplitterMoved(ptr.Pointer())
@@ -336,21 +333,17 @@ func (ptr *QSplitter) DisconnectSplitterMoved() {
 
 //export callbackQSplitterSplitterMoved
 func callbackQSplitterSplitterMoved(ptrName *C.char, pos C.int, index C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::splitterMoved")
-		}
-	}()
+	defer qt.Recovering("callback QSplitter::splitterMoved")
 
-	qt.GetSignal(C.GoString(ptrName), "splitterMoved").(func(int, int))(int(pos), int(index))
+	var signal = qt.GetSignal(C.GoString(ptrName), "splitterMoved")
+	if signal != nil {
+		signal.(func(int, int))(int(pos), int(index))
+	}
+
 }
 
 func (ptr *QSplitter) Widget(index int) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::widget")
-		}
-	}()
+	defer qt.Recovering("QSplitter::widget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QSplitter_Widget(ptr.Pointer(), C.int(index)))
@@ -359,11 +352,7 @@ func (ptr *QSplitter) Widget(index int) *QWidget {
 }
 
 func (ptr *QSplitter) DestroyQSplitter() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSplitter::~QSplitter")
-		}
-	}()
+	defer qt.Recovering("QSplitter::~QSplitter")
 
 	if ptr.Pointer() != nil {
 		C.QSplitter_DestroyQSplitter(ptr.Pointer())

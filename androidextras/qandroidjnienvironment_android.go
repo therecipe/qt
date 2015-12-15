@@ -3,7 +3,7 @@ package androidextras
 //#include "androidextras_android.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QAndroidJniEnvironment) QAndroidJniEnvironment_PTR() *QAndroidJniEnvi
 }
 
 func NewQAndroidJniEnvironment() *QAndroidJniEnvironment {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAndroidJniEnvironment::QAndroidJniEnvironment")
-		}
-	}()
+	defer qt.Recovering("QAndroidJniEnvironment::QAndroidJniEnvironment")
 
 	return NewQAndroidJniEnvironmentFromPointer(C.QAndroidJniEnvironment_NewQAndroidJniEnvironment())
 }
 
 func QAndroidJniEnvironment_JavaVM() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAndroidJniEnvironment::javaVM")
-		}
-	}()
+	defer qt.Recovering("QAndroidJniEnvironment::javaVM")
 
 	return unsafe.Pointer(C.QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM())
 }
 
 func (ptr *QAndroidJniEnvironment) DestroyQAndroidJniEnvironment() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAndroidJniEnvironment::~QAndroidJniEnvironment")
-		}
-	}()
+	defer qt.Recovering("QAndroidJniEnvironment::~QAndroidJniEnvironment")
 
 	if ptr.Pointer() != nil {
 		C.QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(ptr.Pointer())

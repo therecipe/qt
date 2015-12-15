@@ -3,8 +3,8 @@ package xmlpatterns
 //#include "xmlpatterns.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,51 +42,31 @@ func (ptr *QXmlItem) QXmlItem_PTR() *QXmlItem {
 }
 
 func NewQXmlItem() *QXmlItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlItem::QXmlItem")
-		}
-	}()
+	defer qt.Recovering("QXmlItem::QXmlItem")
 
 	return NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem())
 }
 
 func NewQXmlItem4(atomicValue core.QVariant_ITF) *QXmlItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlItem::QXmlItem")
-		}
-	}()
+	defer qt.Recovering("QXmlItem::QXmlItem")
 
 	return NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem4(core.PointerFromQVariant(atomicValue)))
 }
 
 func NewQXmlItem2(other QXmlItem_ITF) *QXmlItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlItem::QXmlItem")
-		}
-	}()
+	defer qt.Recovering("QXmlItem::QXmlItem")
 
 	return NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem2(PointerFromQXmlItem(other)))
 }
 
 func NewQXmlItem3(node QXmlNodeModelIndex_ITF) *QXmlItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlItem::QXmlItem")
-		}
-	}()
+	defer qt.Recovering("QXmlItem::QXmlItem")
 
 	return NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem3(PointerFromQXmlNodeModelIndex(node)))
 }
 
 func (ptr *QXmlItem) IsNode() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlItem::isNode")
-		}
-	}()
+	defer qt.Recovering("QXmlItem::isNode")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlItem_IsNode(ptr.Pointer()) != 0
@@ -95,11 +75,7 @@ func (ptr *QXmlItem) IsNode() bool {
 }
 
 func (ptr *QXmlItem) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlItem::isNull")
-		}
-	}()
+	defer qt.Recovering("QXmlItem::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlItem_IsNull(ptr.Pointer()) != 0
@@ -108,11 +84,7 @@ func (ptr *QXmlItem) IsNull() bool {
 }
 
 func (ptr *QXmlItem) DestroyQXmlItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlItem::~QXmlItem")
-		}
-	}()
+	defer qt.Recovering("QXmlItem::~QXmlItem")
 
 	if ptr.Pointer() != nil {
 		C.QXmlItem_DestroyQXmlItem(ptr.Pointer())

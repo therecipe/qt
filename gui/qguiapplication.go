@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQGuiApplicationFromPointer(ptr unsafe.Pointer) *QGuiApplication {
 	var n = new(QGuiApplication)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGuiApplication_") {
-		n.SetObjectName("QGuiApplication_" + qt.RandomIdentifier())
+		n.SetObjectName("QGuiApplication_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,31 +39,19 @@ func (ptr *QGuiApplication) QGuiApplication_PTR() *QGuiApplication {
 }
 
 func QGuiApplication_ApplicationDisplayName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::applicationDisplayName")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::applicationDisplayName")
 
 	return C.GoString(C.QGuiApplication_QGuiApplication_ApplicationDisplayName())
 }
 
 func QGuiApplication_ApplicationState() core.Qt__ApplicationState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::applicationState")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::applicationState")
 
 	return core.Qt__ApplicationState(C.QGuiApplication_QGuiApplication_ApplicationState())
 }
 
 func (ptr *QGuiApplication) IsSavingSession() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::isSavingSession")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::isSavingSession")
 
 	if ptr.Pointer() != nil {
 		return C.QGuiApplication_IsSavingSession(ptr.Pointer()) != 0
@@ -73,11 +60,7 @@ func (ptr *QGuiApplication) IsSavingSession() bool {
 }
 
 func (ptr *QGuiApplication) IsSessionRestored() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::isSessionRestored")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::isSessionRestored")
 
 	if ptr.Pointer() != nil {
 		return C.QGuiApplication_IsSessionRestored(ptr.Pointer()) != 0
@@ -86,71 +69,43 @@ func (ptr *QGuiApplication) IsSessionRestored() bool {
 }
 
 func QGuiApplication_LayoutDirection() core.Qt__LayoutDirection {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::layoutDirection")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::layoutDirection")
 
 	return core.Qt__LayoutDirection(C.QGuiApplication_QGuiApplication_LayoutDirection())
 }
 
 func QGuiApplication_OverrideCursor() *QCursor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::overrideCursor")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::overrideCursor")
 
 	return NewQCursorFromPointer(C.QGuiApplication_QGuiApplication_OverrideCursor())
 }
 
 func QGuiApplication_PlatformName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::platformName")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::platformName")
 
 	return C.GoString(C.QGuiApplication_QGuiApplication_PlatformName())
 }
 
 func QGuiApplication_QueryKeyboardModifiers() core.Qt__KeyboardModifier {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::queryKeyboardModifiers")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::queryKeyboardModifiers")
 
 	return core.Qt__KeyboardModifier(C.QGuiApplication_QGuiApplication_QueryKeyboardModifiers())
 }
 
 func QGuiApplication_QuitOnLastWindowClosed() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::quitOnLastWindowClosed")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::quitOnLastWindowClosed")
 
 	return C.QGuiApplication_QGuiApplication_QuitOnLastWindowClosed() != 0
 }
 
 func QGuiApplication_RestoreOverrideCursor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::restoreOverrideCursor")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::restoreOverrideCursor")
 
 	C.QGuiApplication_QGuiApplication_RestoreOverrideCursor()
 }
 
 func (ptr *QGuiApplication) SessionId() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::sessionId")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::sessionId")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGuiApplication_SessionId(ptr.Pointer()))
@@ -159,11 +114,7 @@ func (ptr *QGuiApplication) SessionId() string {
 }
 
 func (ptr *QGuiApplication) SessionKey() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::sessionKey")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::sessionKey")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGuiApplication_SessionKey(ptr.Pointer()))
@@ -172,71 +123,43 @@ func (ptr *QGuiApplication) SessionKey() string {
 }
 
 func QGuiApplication_SetApplicationDisplayName(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::setApplicationDisplayName")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::setApplicationDisplayName")
 
 	C.QGuiApplication_QGuiApplication_SetApplicationDisplayName(C.CString(name))
 }
 
 func QGuiApplication_SetLayoutDirection(direction core.Qt__LayoutDirection) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::setLayoutDirection")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::setLayoutDirection")
 
 	C.QGuiApplication_QGuiApplication_SetLayoutDirection(C.int(direction))
 }
 
 func QGuiApplication_SetOverrideCursor(cursor QCursor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::setOverrideCursor")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::setOverrideCursor")
 
 	C.QGuiApplication_QGuiApplication_SetOverrideCursor(PointerFromQCursor(cursor))
 }
 
 func QGuiApplication_SetQuitOnLastWindowClosed(quit bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::setQuitOnLastWindowClosed")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::setQuitOnLastWindowClosed")
 
 	C.QGuiApplication_QGuiApplication_SetQuitOnLastWindowClosed(C.int(qt.GoBoolToInt(quit)))
 }
 
 func QGuiApplication_SetWindowIcon(icon QIcon_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::setWindowIcon")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::setWindowIcon")
 
 	C.QGuiApplication_QGuiApplication_SetWindowIcon(PointerFromQIcon(icon))
 }
 
 func NewQGuiApplication(argc int, argv []string) *QGuiApplication {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::QGuiApplication")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::QGuiApplication")
 
 	return NewQGuiApplicationFromPointer(C.QGuiApplication_NewQGuiApplication(C.int(argc), C.CString(strings.Join(argv, ",,,"))))
 }
 
 func (ptr *QGuiApplication) ConnectApplicationStateChanged(f func(state core.Qt__ApplicationState)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::applicationStateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGuiApplication::applicationStateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_ConnectApplicationStateChanged(ptr.Pointer())
@@ -245,11 +168,7 @@ func (ptr *QGuiApplication) ConnectApplicationStateChanged(f func(state core.Qt_
 }
 
 func (ptr *QGuiApplication) DisconnectApplicationStateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::applicationStateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGuiApplication::applicationStateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_DisconnectApplicationStateChanged(ptr.Pointer())
@@ -259,51 +178,35 @@ func (ptr *QGuiApplication) DisconnectApplicationStateChanged() {
 
 //export callbackQGuiApplicationApplicationStateChanged
 func callbackQGuiApplicationApplicationStateChanged(ptrName *C.char, state C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::applicationStateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGuiApplication::applicationStateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "applicationStateChanged").(func(core.Qt__ApplicationState))(core.Qt__ApplicationState(state))
+	var signal = qt.GetSignal(C.GoString(ptrName), "applicationStateChanged")
+	if signal != nil {
+		signal.(func(core.Qt__ApplicationState))(core.Qt__ApplicationState(state))
+	}
+
 }
 
 func QGuiApplication_ChangeOverrideCursor(cursor QCursor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::changeOverrideCursor")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::changeOverrideCursor")
 
 	C.QGuiApplication_QGuiApplication_ChangeOverrideCursor(PointerFromQCursor(cursor))
 }
 
 func QGuiApplication_Clipboard() *QClipboard {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::clipboard")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::clipboard")
 
 	return NewQClipboardFromPointer(C.QGuiApplication_QGuiApplication_Clipboard())
 }
 
 func QGuiApplication_DesktopSettingsAware() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::desktopSettingsAware")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::desktopSettingsAware")
 
 	return C.QGuiApplication_QGuiApplication_DesktopSettingsAware() != 0
 }
 
 func (ptr *QGuiApplication) DevicePixelRatio() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::devicePixelRatio")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::devicePixelRatio")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGuiApplication_DevicePixelRatio(ptr.Pointer()))
@@ -312,31 +215,19 @@ func (ptr *QGuiApplication) DevicePixelRatio() float64 {
 }
 
 func QGuiApplication_Exec() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::exec")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::exec")
 
 	return int(C.QGuiApplication_QGuiApplication_Exec())
 }
 
 func QGuiApplication_FocusObject() *core.QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::focusObject")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::focusObject")
 
 	return core.NewQObjectFromPointer(C.QGuiApplication_QGuiApplication_FocusObject())
 }
 
 func (ptr *QGuiApplication) ConnectFocusObjectChanged(f func(focusObject *core.QObject)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::focusObjectChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGuiApplication::focusObjectChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_ConnectFocusObjectChanged(ptr.Pointer())
@@ -345,11 +236,7 @@ func (ptr *QGuiApplication) ConnectFocusObjectChanged(f func(focusObject *core.Q
 }
 
 func (ptr *QGuiApplication) DisconnectFocusObjectChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::focusObjectChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGuiApplication::focusObjectChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_DisconnectFocusObjectChanged(ptr.Pointer())
@@ -359,31 +246,23 @@ func (ptr *QGuiApplication) DisconnectFocusObjectChanged() {
 
 //export callbackQGuiApplicationFocusObjectChanged
 func callbackQGuiApplicationFocusObjectChanged(ptrName *C.char, focusObject unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::focusObjectChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGuiApplication::focusObjectChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "focusObjectChanged").(func(*core.QObject))(core.NewQObjectFromPointer(focusObject))
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusObjectChanged")
+	if signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(focusObject))
+	}
+
 }
 
 func QGuiApplication_FocusWindow() *QWindow {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::focusWindow")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::focusWindow")
 
 	return NewQWindowFromPointer(C.QGuiApplication_QGuiApplication_FocusWindow())
 }
 
 func (ptr *QGuiApplication) ConnectFocusWindowChanged(f func(focusWindow *QWindow)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::focusWindowChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGuiApplication::focusWindowChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_ConnectFocusWindowChanged(ptr.Pointer())
@@ -392,11 +271,7 @@ func (ptr *QGuiApplication) ConnectFocusWindowChanged(f func(focusWindow *QWindo
 }
 
 func (ptr *QGuiApplication) DisconnectFocusWindowChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::focusWindowChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGuiApplication::focusWindowChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_DisconnectFocusWindowChanged(ptr.Pointer())
@@ -406,21 +281,17 @@ func (ptr *QGuiApplication) DisconnectFocusWindowChanged() {
 
 //export callbackQGuiApplicationFocusWindowChanged
 func callbackQGuiApplicationFocusWindowChanged(ptrName *C.char, focusWindow unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::focusWindowChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGuiApplication::focusWindowChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "focusWindowChanged").(func(*QWindow))(NewQWindowFromPointer(focusWindow))
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusWindowChanged")
+	if signal != nil {
+		signal.(func(*QWindow))(NewQWindowFromPointer(focusWindow))
+	}
+
 }
 
 func (ptr *QGuiApplication) ConnectFontDatabaseChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::fontDatabaseChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGuiApplication::fontDatabaseChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_ConnectFontDatabaseChanged(ptr.Pointer())
@@ -429,11 +300,7 @@ func (ptr *QGuiApplication) ConnectFontDatabaseChanged(f func()) {
 }
 
 func (ptr *QGuiApplication) DisconnectFontDatabaseChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::fontDatabaseChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGuiApplication::fontDatabaseChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_DisconnectFontDatabaseChanged(ptr.Pointer())
@@ -443,61 +310,41 @@ func (ptr *QGuiApplication) DisconnectFontDatabaseChanged() {
 
 //export callbackQGuiApplicationFontDatabaseChanged
 func callbackQGuiApplicationFontDatabaseChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::fontDatabaseChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGuiApplication::fontDatabaseChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "fontDatabaseChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "fontDatabaseChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func QGuiApplication_InputMethod() *QInputMethod {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::inputMethod")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::inputMethod")
 
 	return NewQInputMethodFromPointer(C.QGuiApplication_QGuiApplication_InputMethod())
 }
 
 func QGuiApplication_IsLeftToRight() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::isLeftToRight")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::isLeftToRight")
 
 	return C.QGuiApplication_QGuiApplication_IsLeftToRight() != 0
 }
 
 func QGuiApplication_IsRightToLeft() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::isRightToLeft")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::isRightToLeft")
 
 	return C.QGuiApplication_QGuiApplication_IsRightToLeft() != 0
 }
 
 func QGuiApplication_KeyboardModifiers() core.Qt__KeyboardModifier {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::keyboardModifiers")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::keyboardModifiers")
 
 	return core.Qt__KeyboardModifier(C.QGuiApplication_QGuiApplication_KeyboardModifiers())
 }
 
 func (ptr *QGuiApplication) ConnectLastWindowClosed(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::lastWindowClosed")
-		}
-	}()
+	defer qt.Recovering("connect QGuiApplication::lastWindowClosed")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_ConnectLastWindowClosed(ptr.Pointer())
@@ -506,11 +353,7 @@ func (ptr *QGuiApplication) ConnectLastWindowClosed(f func()) {
 }
 
 func (ptr *QGuiApplication) DisconnectLastWindowClosed() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::lastWindowClosed")
-		}
-	}()
+	defer qt.Recovering("disconnect QGuiApplication::lastWindowClosed")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_DisconnectLastWindowClosed(ptr.Pointer())
@@ -520,21 +363,17 @@ func (ptr *QGuiApplication) DisconnectLastWindowClosed() {
 
 //export callbackQGuiApplicationLastWindowClosed
 func callbackQGuiApplicationLastWindowClosed(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::lastWindowClosed")
-		}
-	}()
+	defer qt.Recovering("callback QGuiApplication::lastWindowClosed")
 
-	qt.GetSignal(C.GoString(ptrName), "lastWindowClosed").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "lastWindowClosed")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGuiApplication) ConnectLayoutDirectionChanged(f func(direction core.Qt__LayoutDirection)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::layoutDirectionChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGuiApplication::layoutDirectionChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_ConnectLayoutDirectionChanged(ptr.Pointer())
@@ -543,11 +382,7 @@ func (ptr *QGuiApplication) ConnectLayoutDirectionChanged(f func(direction core.
 }
 
 func (ptr *QGuiApplication) DisconnectLayoutDirectionChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::layoutDirectionChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGuiApplication::layoutDirectionChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_DisconnectLayoutDirectionChanged(ptr.Pointer())
@@ -557,41 +392,29 @@ func (ptr *QGuiApplication) DisconnectLayoutDirectionChanged() {
 
 //export callbackQGuiApplicationLayoutDirectionChanged
 func callbackQGuiApplicationLayoutDirectionChanged(ptrName *C.char, direction C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::layoutDirectionChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGuiApplication::layoutDirectionChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "layoutDirectionChanged").(func(core.Qt__LayoutDirection))(core.Qt__LayoutDirection(direction))
+	var signal = qt.GetSignal(C.GoString(ptrName), "layoutDirectionChanged")
+	if signal != nil {
+		signal.(func(core.Qt__LayoutDirection))(core.Qt__LayoutDirection(direction))
+	}
+
 }
 
 func QGuiApplication_ModalWindow() *QWindow {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::modalWindow")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::modalWindow")
 
 	return NewQWindowFromPointer(C.QGuiApplication_QGuiApplication_ModalWindow())
 }
 
 func QGuiApplication_MouseButtons() core.Qt__MouseButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::mouseButtons")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::mouseButtons")
 
 	return core.Qt__MouseButton(C.QGuiApplication_QGuiApplication_MouseButtons())
 }
 
 func (ptr *QGuiApplication) Notify(object core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::notify")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::notify")
 
 	if ptr.Pointer() != nil {
 		return C.QGuiApplication_Notify(ptr.Pointer(), core.PointerFromQObject(object), core.PointerFromQEvent(event)) != 0
@@ -600,21 +423,13 @@ func (ptr *QGuiApplication) Notify(object core.QObject_ITF, event core.QEvent_IT
 }
 
 func QGuiApplication_PrimaryScreen() *QScreen {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::primaryScreen")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::primaryScreen")
 
 	return NewQScreenFromPointer(C.QGuiApplication_QGuiApplication_PrimaryScreen())
 }
 
 func (ptr *QGuiApplication) ConnectScreenAdded(f func(screen *QScreen)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::screenAdded")
-		}
-	}()
+	defer qt.Recovering("connect QGuiApplication::screenAdded")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_ConnectScreenAdded(ptr.Pointer())
@@ -623,11 +438,7 @@ func (ptr *QGuiApplication) ConnectScreenAdded(f func(screen *QScreen)) {
 }
 
 func (ptr *QGuiApplication) DisconnectScreenAdded() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::screenAdded")
-		}
-	}()
+	defer qt.Recovering("disconnect QGuiApplication::screenAdded")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_DisconnectScreenAdded(ptr.Pointer())
@@ -637,21 +448,17 @@ func (ptr *QGuiApplication) DisconnectScreenAdded() {
 
 //export callbackQGuiApplicationScreenAdded
 func callbackQGuiApplicationScreenAdded(ptrName *C.char, screen unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::screenAdded")
-		}
-	}()
+	defer qt.Recovering("callback QGuiApplication::screenAdded")
 
-	qt.GetSignal(C.GoString(ptrName), "screenAdded").(func(*QScreen))(NewQScreenFromPointer(screen))
+	var signal = qt.GetSignal(C.GoString(ptrName), "screenAdded")
+	if signal != nil {
+		signal.(func(*QScreen))(NewQScreenFromPointer(screen))
+	}
+
 }
 
 func (ptr *QGuiApplication) ConnectScreenRemoved(f func(screen *QScreen)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::screenRemoved")
-		}
-	}()
+	defer qt.Recovering("connect QGuiApplication::screenRemoved")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_ConnectScreenRemoved(ptr.Pointer())
@@ -660,11 +467,7 @@ func (ptr *QGuiApplication) ConnectScreenRemoved(f func(screen *QScreen)) {
 }
 
 func (ptr *QGuiApplication) DisconnectScreenRemoved() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::screenRemoved")
-		}
-	}()
+	defer qt.Recovering("disconnect QGuiApplication::screenRemoved")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_DisconnectScreenRemoved(ptr.Pointer())
@@ -674,81 +477,53 @@ func (ptr *QGuiApplication) DisconnectScreenRemoved() {
 
 //export callbackQGuiApplicationScreenRemoved
 func callbackQGuiApplicationScreenRemoved(ptrName *C.char, screen unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::screenRemoved")
-		}
-	}()
+	defer qt.Recovering("callback QGuiApplication::screenRemoved")
 
-	qt.GetSignal(C.GoString(ptrName), "screenRemoved").(func(*QScreen))(NewQScreenFromPointer(screen))
+	var signal = qt.GetSignal(C.GoString(ptrName), "screenRemoved")
+	if signal != nil {
+		signal.(func(*QScreen))(NewQScreenFromPointer(screen))
+	}
+
 }
 
 func QGuiApplication_SetDesktopSettingsAware(on bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::setDesktopSettingsAware")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::setDesktopSettingsAware")
 
 	C.QGuiApplication_QGuiApplication_SetDesktopSettingsAware(C.int(qt.GoBoolToInt(on)))
 }
 
 func QGuiApplication_SetFont(font QFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::setFont")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::setFont")
 
 	C.QGuiApplication_QGuiApplication_SetFont(PointerFromQFont(font))
 }
 
 func QGuiApplication_SetPalette(pal QPalette_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::setPalette")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::setPalette")
 
 	C.QGuiApplication_QGuiApplication_SetPalette(PointerFromQPalette(pal))
 }
 
 func QGuiApplication_StyleHints() *QStyleHints {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::styleHints")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::styleHints")
 
 	return NewQStyleHintsFromPointer(C.QGuiApplication_QGuiApplication_StyleHints())
 }
 
 func QGuiApplication_Sync() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::sync")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::sync")
 
 	C.QGuiApplication_QGuiApplication_Sync()
 }
 
 func QGuiApplication_TopLevelAt(pos core.QPoint_ITF) *QWindow {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::topLevelAt")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::topLevelAt")
 
 	return NewQWindowFromPointer(C.QGuiApplication_QGuiApplication_TopLevelAt(core.PointerFromQPoint(pos)))
 }
 
 func (ptr *QGuiApplication) DestroyQGuiApplication() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGuiApplication::~QGuiApplication")
-		}
-	}()
+	defer qt.Recovering("QGuiApplication::~QGuiApplication")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_DestroyQGuiApplication(ptr.Pointer())

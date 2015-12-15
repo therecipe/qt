@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQXmlEntityResolver(ptr QXmlEntityResolver_ITF) unsafe.Pointer {
 func NewQXmlEntityResolverFromPointer(ptr unsafe.Pointer) *QXmlEntityResolver {
 	var n = new(QXmlEntityResolver)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QXmlEntityResolver_") {
+		n.SetObjectNameAbs("QXmlEntityResolver_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QXmlEntityResolver) QXmlEntityResolver_PTR() *QXmlEntityResolver {
 }
 
 func (ptr *QXmlEntityResolver) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlEntityResolver::errorString")
-		}
-	}()
+	defer qt.Recovering("QXmlEntityResolver::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlEntityResolver_ErrorString(ptr.Pointer()))
@@ -54,13 +53,26 @@ func (ptr *QXmlEntityResolver) ErrorString() string {
 }
 
 func (ptr *QXmlEntityResolver) DestroyQXmlEntityResolver() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlEntityResolver::~QXmlEntityResolver")
-		}
-	}()
+	defer qt.Recovering("QXmlEntityResolver::~QXmlEntityResolver")
 
 	if ptr.Pointer() != nil {
 		C.QXmlEntityResolver_DestroyQXmlEntityResolver(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlEntityResolver) ObjectNameAbs() string {
+	defer qt.Recovering("QXmlEntityResolver::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlEntityResolver_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QXmlEntityResolver) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QXmlEntityResolver::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QXmlEntityResolver_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

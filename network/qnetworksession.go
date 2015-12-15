@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQNetworkSessionFromPointer(ptr unsafe.Pointer) *QNetworkSession {
 	var n = new(QNetworkSession)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QNetworkSession_") {
-		n.SetObjectName("QNetworkSession_" + qt.RandomIdentifier())
+		n.SetObjectName("QNetworkSession_" + qt.Identifier())
 	}
 	return n
 }
@@ -71,21 +70,13 @@ const (
 )
 
 func NewQNetworkSession(connectionConfig QNetworkConfiguration_ITF, parent core.QObject_ITF) *QNetworkSession {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::QNetworkSession")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::QNetworkSession")
 
 	return NewQNetworkSessionFromPointer(C.QNetworkSession_NewQNetworkSession(PointerFromQNetworkConfiguration(connectionConfig), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNetworkSession) Accept() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::accept")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::accept")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_Accept(ptr.Pointer())
@@ -93,11 +84,7 @@ func (ptr *QNetworkSession) Accept() {
 }
 
 func (ptr *QNetworkSession) Close() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::close")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::close")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_Close(ptr.Pointer())
@@ -105,11 +92,7 @@ func (ptr *QNetworkSession) Close() {
 }
 
 func (ptr *QNetworkSession) ConnectClosed(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::closed")
-		}
-	}()
+	defer qt.Recovering("connect QNetworkSession::closed")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectClosed(ptr.Pointer())
@@ -118,11 +101,7 @@ func (ptr *QNetworkSession) ConnectClosed(f func()) {
 }
 
 func (ptr *QNetworkSession) DisconnectClosed() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::closed")
-		}
-	}()
+	defer qt.Recovering("disconnect QNetworkSession::closed")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectClosed(ptr.Pointer())
@@ -132,21 +111,17 @@ func (ptr *QNetworkSession) DisconnectClosed() {
 
 //export callbackQNetworkSessionClosed
 func callbackQNetworkSessionClosed(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::closed")
-		}
-	}()
+	defer qt.Recovering("callback QNetworkSession::closed")
 
-	qt.GetSignal(C.GoString(ptrName), "closed").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "closed")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QNetworkSession) Error() QNetworkSession__SessionError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::error")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::error")
 
 	if ptr.Pointer() != nil {
 		return QNetworkSession__SessionError(C.QNetworkSession_Error(ptr.Pointer()))
@@ -155,11 +130,7 @@ func (ptr *QNetworkSession) Error() QNetworkSession__SessionError {
 }
 
 func (ptr *QNetworkSession) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::errorString")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkSession_ErrorString(ptr.Pointer()))
@@ -168,11 +139,7 @@ func (ptr *QNetworkSession) ErrorString() string {
 }
 
 func (ptr *QNetworkSession) Ignore() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::ignore")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::ignore")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_Ignore(ptr.Pointer())
@@ -180,11 +147,7 @@ func (ptr *QNetworkSession) Ignore() {
 }
 
 func (ptr *QNetworkSession) IsOpen() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::isOpen")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::isOpen")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkSession_IsOpen(ptr.Pointer()) != 0
@@ -193,11 +156,7 @@ func (ptr *QNetworkSession) IsOpen() bool {
 }
 
 func (ptr *QNetworkSession) Migrate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::migrate")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::migrate")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_Migrate(ptr.Pointer())
@@ -205,11 +164,7 @@ func (ptr *QNetworkSession) Migrate() {
 }
 
 func (ptr *QNetworkSession) ConnectNewConfigurationActivated(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::newConfigurationActivated")
-		}
-	}()
+	defer qt.Recovering("connect QNetworkSession::newConfigurationActivated")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectNewConfigurationActivated(ptr.Pointer())
@@ -218,11 +173,7 @@ func (ptr *QNetworkSession) ConnectNewConfigurationActivated(f func()) {
 }
 
 func (ptr *QNetworkSession) DisconnectNewConfigurationActivated() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::newConfigurationActivated")
-		}
-	}()
+	defer qt.Recovering("disconnect QNetworkSession::newConfigurationActivated")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectNewConfigurationActivated(ptr.Pointer())
@@ -232,21 +183,17 @@ func (ptr *QNetworkSession) DisconnectNewConfigurationActivated() {
 
 //export callbackQNetworkSessionNewConfigurationActivated
 func callbackQNetworkSessionNewConfigurationActivated(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::newConfigurationActivated")
-		}
-	}()
+	defer qt.Recovering("callback QNetworkSession::newConfigurationActivated")
 
-	qt.GetSignal(C.GoString(ptrName), "newConfigurationActivated").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "newConfigurationActivated")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QNetworkSession) Open() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::open")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::open")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_Open(ptr.Pointer())
@@ -254,11 +201,7 @@ func (ptr *QNetworkSession) Open() {
 }
 
 func (ptr *QNetworkSession) ConnectOpened(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::opened")
-		}
-	}()
+	defer qt.Recovering("connect QNetworkSession::opened")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectOpened(ptr.Pointer())
@@ -267,11 +210,7 @@ func (ptr *QNetworkSession) ConnectOpened(f func()) {
 }
 
 func (ptr *QNetworkSession) DisconnectOpened() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::opened")
-		}
-	}()
+	defer qt.Recovering("disconnect QNetworkSession::opened")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectOpened(ptr.Pointer())
@@ -281,21 +220,17 @@ func (ptr *QNetworkSession) DisconnectOpened() {
 
 //export callbackQNetworkSessionOpened
 func callbackQNetworkSessionOpened(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::opened")
-		}
-	}()
+	defer qt.Recovering("callback QNetworkSession::opened")
 
-	qt.GetSignal(C.GoString(ptrName), "opened").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "opened")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QNetworkSession) Reject() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::reject")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::reject")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_Reject(ptr.Pointer())
@@ -303,11 +238,7 @@ func (ptr *QNetworkSession) Reject() {
 }
 
 func (ptr *QNetworkSession) SessionProperty(key string) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::sessionProperty")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::sessionProperty")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QNetworkSession_SessionProperty(ptr.Pointer(), C.CString(key)))
@@ -316,11 +247,7 @@ func (ptr *QNetworkSession) SessionProperty(key string) *core.QVariant {
 }
 
 func (ptr *QNetworkSession) SetSessionProperty(key string, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::setSessionProperty")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::setSessionProperty")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_SetSessionProperty(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(value))
@@ -328,11 +255,7 @@ func (ptr *QNetworkSession) SetSessionProperty(key string, value core.QVariant_I
 }
 
 func (ptr *QNetworkSession) ConnectStateChanged(f func(state QNetworkSession__State)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::stateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QNetworkSession::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectStateChanged(ptr.Pointer())
@@ -341,11 +264,7 @@ func (ptr *QNetworkSession) ConnectStateChanged(f func(state QNetworkSession__St
 }
 
 func (ptr *QNetworkSession) DisconnectStateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::stateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QNetworkSession::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectStateChanged(ptr.Pointer())
@@ -355,21 +274,17 @@ func (ptr *QNetworkSession) DisconnectStateChanged() {
 
 //export callbackQNetworkSessionStateChanged
 func callbackQNetworkSessionStateChanged(ptrName *C.char, state C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::stateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QNetworkSession::stateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "stateChanged").(func(QNetworkSession__State))(QNetworkSession__State(state))
+	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
+	if signal != nil {
+		signal.(func(QNetworkSession__State))(QNetworkSession__State(state))
+	}
+
 }
 
 func (ptr *QNetworkSession) Stop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::stop")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::stop")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_Stop(ptr.Pointer())
@@ -377,11 +292,7 @@ func (ptr *QNetworkSession) Stop() {
 }
 
 func (ptr *QNetworkSession) UsagePolicies() QNetworkSession__UsagePolicy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::usagePolicies")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::usagePolicies")
 
 	if ptr.Pointer() != nil {
 		return QNetworkSession__UsagePolicy(C.QNetworkSession_UsagePolicies(ptr.Pointer()))
@@ -390,11 +301,7 @@ func (ptr *QNetworkSession) UsagePolicies() QNetworkSession__UsagePolicy {
 }
 
 func (ptr *QNetworkSession) ConnectUsagePoliciesChanged(f func(usagePolicies QNetworkSession__UsagePolicy)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::usagePoliciesChanged")
-		}
-	}()
+	defer qt.Recovering("connect QNetworkSession::usagePoliciesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectUsagePoliciesChanged(ptr.Pointer())
@@ -403,11 +310,7 @@ func (ptr *QNetworkSession) ConnectUsagePoliciesChanged(f func(usagePolicies QNe
 }
 
 func (ptr *QNetworkSession) DisconnectUsagePoliciesChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::usagePoliciesChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QNetworkSession::usagePoliciesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectUsagePoliciesChanged(ptr.Pointer())
@@ -417,21 +320,17 @@ func (ptr *QNetworkSession) DisconnectUsagePoliciesChanged() {
 
 //export callbackQNetworkSessionUsagePoliciesChanged
 func callbackQNetworkSessionUsagePoliciesChanged(ptrName *C.char, usagePolicies C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::usagePoliciesChanged")
-		}
-	}()
+	defer qt.Recovering("callback QNetworkSession::usagePoliciesChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "usagePoliciesChanged").(func(QNetworkSession__UsagePolicy))(QNetworkSession__UsagePolicy(usagePolicies))
+	var signal = qt.GetSignal(C.GoString(ptrName), "usagePoliciesChanged")
+	if signal != nil {
+		signal.(func(QNetworkSession__UsagePolicy))(QNetworkSession__UsagePolicy(usagePolicies))
+	}
+
 }
 
 func (ptr *QNetworkSession) WaitForOpened(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::waitForOpened")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::waitForOpened")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkSession_WaitForOpened(ptr.Pointer(), C.int(msecs)) != 0
@@ -440,11 +339,7 @@ func (ptr *QNetworkSession) WaitForOpened(msecs int) bool {
 }
 
 func (ptr *QNetworkSession) DestroyQNetworkSession() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkSession::~QNetworkSession")
-		}
-	}()
+	defer qt.Recovering("QNetworkSession::~QNetworkSession")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DestroyQNetworkSession(ptr.Pointer())

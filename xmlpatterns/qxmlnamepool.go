@@ -3,7 +3,7 @@ package xmlpatterns
 //#include "xmlpatterns.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QXmlNamePool) QXmlNamePool_PTR() *QXmlNamePool {
 }
 
 func NewQXmlNamePool() *QXmlNamePool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamePool::QXmlNamePool")
-		}
-	}()
+	defer qt.Recovering("QXmlNamePool::QXmlNamePool")
 
 	return NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool())
 }
 
 func NewQXmlNamePool2(other QXmlNamePool_ITF) *QXmlNamePool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamePool::QXmlNamePool")
-		}
-	}()
+	defer qt.Recovering("QXmlNamePool::QXmlNamePool")
 
 	return NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool2(PointerFromQXmlNamePool(other)))
 }
 
 func (ptr *QXmlNamePool) DestroyQXmlNamePool() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamePool::~QXmlNamePool")
-		}
-	}()
+	defer qt.Recovering("QXmlNamePool::~QXmlNamePool")
 
 	if ptr.Pointer() != nil {
 		C.QXmlNamePool_DestroyQXmlNamePool(ptr.Pointer())

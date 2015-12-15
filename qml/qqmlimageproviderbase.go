@@ -3,7 +3,7 @@ package qml
 //#include "qml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -58,11 +58,7 @@ const (
 )
 
 func (ptr *QQmlImageProviderBase) Flags() QQmlImageProviderBase__Flag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlImageProviderBase::flags")
-		}
-	}()
+	defer qt.Recovering("QQmlImageProviderBase::flags")
 
 	if ptr.Pointer() != nil {
 		return QQmlImageProviderBase__Flag(C.QQmlImageProviderBase_Flags(ptr.Pointer()))
@@ -71,11 +67,7 @@ func (ptr *QQmlImageProviderBase) Flags() QQmlImageProviderBase__Flag {
 }
 
 func (ptr *QQmlImageProviderBase) ImageType() QQmlImageProviderBase__ImageType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlImageProviderBase::imageType")
-		}
-	}()
+	defer qt.Recovering("QQmlImageProviderBase::imageType")
 
 	if ptr.Pointer() != nil {
 		return QQmlImageProviderBase__ImageType(C.QQmlImageProviderBase_ImageType(ptr.Pointer()))

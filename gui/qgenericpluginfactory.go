@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -43,21 +43,13 @@ func (ptr *QGenericPluginFactory) QGenericPluginFactory_PTR() *QGenericPluginFac
 }
 
 func QGenericPluginFactory_Create(key string, specification string) *core.QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGenericPluginFactory::create")
-		}
-	}()
+	defer qt.Recovering("QGenericPluginFactory::create")
 
 	return core.NewQObjectFromPointer(C.QGenericPluginFactory_QGenericPluginFactory_Create(C.CString(key), C.CString(specification)))
 }
 
 func QGenericPluginFactory_Keys() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGenericPluginFactory::keys")
-		}
-	}()
+	defer qt.Recovering("QGenericPluginFactory::keys")
 
 	return strings.Split(C.GoString(C.QGenericPluginFactory_QGenericPluginFactory_Keys()), ",,,")
 }

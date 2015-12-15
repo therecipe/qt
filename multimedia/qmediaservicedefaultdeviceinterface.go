@@ -3,8 +3,8 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQMediaServiceDefaultDeviceInterface(ptr QMediaServiceDefaultDevi
 func NewQMediaServiceDefaultDeviceInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceDefaultDeviceInterface {
 	var n = new(QMediaServiceDefaultDeviceInterface)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QMediaServiceDefaultDeviceInterface_") {
+		n.SetObjectNameAbs("QMediaServiceDefaultDeviceInterface_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,11 +45,7 @@ func (ptr *QMediaServiceDefaultDeviceInterface) QMediaServiceDefaultDeviceInterf
 }
 
 func (ptr *QMediaServiceDefaultDeviceInterface) DefaultDevice(service core.QByteArray_ITF) *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaServiceDefaultDeviceInterface::defaultDevice")
-		}
-	}()
+	defer qt.Recovering("QMediaServiceDefaultDeviceInterface::defaultDevice")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QMediaServiceDefaultDeviceInterface_DefaultDevice(ptr.Pointer(), core.PointerFromQByteArray(service)))
@@ -55,13 +54,26 @@ func (ptr *QMediaServiceDefaultDeviceInterface) DefaultDevice(service core.QByte
 }
 
 func (ptr *QMediaServiceDefaultDeviceInterface) DestroyQMediaServiceDefaultDeviceInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface")
-		}
-	}()
+	defer qt.Recovering("QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface")
 
 	if ptr.Pointer() != nil {
 		C.QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) ObjectNameAbs() string {
+	defer qt.Recovering("QMediaServiceDefaultDeviceInterface::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QMediaServiceDefaultDeviceInterface_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QMediaServiceDefaultDeviceInterface::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceDefaultDeviceInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

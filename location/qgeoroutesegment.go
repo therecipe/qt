@@ -3,7 +3,7 @@ package location
 //#include "location.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QGeoRouteSegment) QGeoRouteSegment_PTR() *QGeoRouteSegment {
 }
 
 func NewQGeoRouteSegment() *QGeoRouteSegment {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteSegment::QGeoRouteSegment")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteSegment::QGeoRouteSegment")
 
 	return NewQGeoRouteSegmentFromPointer(C.QGeoRouteSegment_NewQGeoRouteSegment())
 }
 
 func NewQGeoRouteSegment2(other QGeoRouteSegment_ITF) *QGeoRouteSegment {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteSegment::QGeoRouteSegment")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteSegment::QGeoRouteSegment")
 
 	return NewQGeoRouteSegmentFromPointer(C.QGeoRouteSegment_NewQGeoRouteSegment2(PointerFromQGeoRouteSegment(other)))
 }
 
 func (ptr *QGeoRouteSegment) Distance() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteSegment::distance")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteSegment::distance")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGeoRouteSegment_Distance(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QGeoRouteSegment) Distance() float64 {
 }
 
 func (ptr *QGeoRouteSegment) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteSegment::isValid")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteSegment::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QGeoRouteSegment_IsValid(ptr.Pointer()) != 0
@@ -87,11 +71,7 @@ func (ptr *QGeoRouteSegment) IsValid() bool {
 }
 
 func (ptr *QGeoRouteSegment) SetDistance(distance float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteSegment::setDistance")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteSegment::setDistance")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteSegment_SetDistance(ptr.Pointer(), C.double(distance))
@@ -99,11 +79,7 @@ func (ptr *QGeoRouteSegment) SetDistance(distance float64) {
 }
 
 func (ptr *QGeoRouteSegment) SetManeuver(maneuver QGeoManeuver_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteSegment::setManeuver")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteSegment::setManeuver")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteSegment_SetManeuver(ptr.Pointer(), PointerFromQGeoManeuver(maneuver))
@@ -111,11 +87,7 @@ func (ptr *QGeoRouteSegment) SetManeuver(maneuver QGeoManeuver_ITF) {
 }
 
 func (ptr *QGeoRouteSegment) SetNextRouteSegment(routeSegment QGeoRouteSegment_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteSegment::setNextRouteSegment")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteSegment::setNextRouteSegment")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteSegment_SetNextRouteSegment(ptr.Pointer(), PointerFromQGeoRouteSegment(routeSegment))
@@ -123,11 +95,7 @@ func (ptr *QGeoRouteSegment) SetNextRouteSegment(routeSegment QGeoRouteSegment_I
 }
 
 func (ptr *QGeoRouteSegment) SetTravelTime(secs int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteSegment::setTravelTime")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteSegment::setTravelTime")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteSegment_SetTravelTime(ptr.Pointer(), C.int(secs))
@@ -135,11 +103,7 @@ func (ptr *QGeoRouteSegment) SetTravelTime(secs int) {
 }
 
 func (ptr *QGeoRouteSegment) TravelTime() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteSegment::travelTime")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteSegment::travelTime")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGeoRouteSegment_TravelTime(ptr.Pointer()))
@@ -148,11 +112,7 @@ func (ptr *QGeoRouteSegment) TravelTime() int {
 }
 
 func (ptr *QGeoRouteSegment) DestroyQGeoRouteSegment() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteSegment::~QGeoRouteSegment")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteSegment::~QGeoRouteSegment")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteSegment_DestroyQGeoRouteSegment(ptr.Pointer())

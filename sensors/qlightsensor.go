@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQLightSensorFromPointer(ptr unsafe.Pointer) *QLightSensor {
 	var n = new(QLightSensor)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QLightSensor_") {
-		n.SetObjectName("QLightSensor_" + qt.RandomIdentifier())
+		n.SetObjectName("QLightSensor_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QLightSensor) QLightSensor_PTR() *QLightSensor {
 }
 
 func (ptr *QLightSensor) FieldOfView() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLightSensor::fieldOfView")
-		}
-	}()
+	defer qt.Recovering("QLightSensor::fieldOfView")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QLightSensor_FieldOfView(ptr.Pointer()))
@@ -52,11 +47,7 @@ func (ptr *QLightSensor) FieldOfView() float64 {
 }
 
 func (ptr *QLightSensor) Reading() *QLightReading {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLightSensor::reading")
-		}
-	}()
+	defer qt.Recovering("QLightSensor::reading")
 
 	if ptr.Pointer() != nil {
 		return NewQLightReadingFromPointer(C.QLightSensor_Reading(ptr.Pointer()))
@@ -65,21 +56,13 @@ func (ptr *QLightSensor) Reading() *QLightReading {
 }
 
 func NewQLightSensor(parent core.QObject_ITF) *QLightSensor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLightSensor::QLightSensor")
-		}
-	}()
+	defer qt.Recovering("QLightSensor::QLightSensor")
 
 	return NewQLightSensorFromPointer(C.QLightSensor_NewQLightSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QLightSensor) SetFieldOfView(fieldOfView float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLightSensor::setFieldOfView")
-		}
-	}()
+	defer qt.Recovering("QLightSensor::setFieldOfView")
 
 	if ptr.Pointer() != nil {
 		C.QLightSensor_SetFieldOfView(ptr.Pointer(), C.double(fieldOfView))
@@ -87,11 +70,7 @@ func (ptr *QLightSensor) SetFieldOfView(fieldOfView float64) {
 }
 
 func (ptr *QLightSensor) DestroyQLightSensor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLightSensor::~QLightSensor")
-		}
-	}()
+	defer qt.Recovering("QLightSensor::~QLightSensor")
 
 	if ptr.Pointer() != nil {
 		C.QLightSensor_DestroyQLightSensor(ptr.Pointer())

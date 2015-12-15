@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQItemSelectionModelFromPointer(ptr unsafe.Pointer) *QItemSelectionModel 
 	var n = new(QItemSelectionModel)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QItemSelectionModel_") {
-		n.SetObjectName("QItemSelectionModel_" + qt.RandomIdentifier())
+		n.SetObjectName("QItemSelectionModel_" + qt.Identifier())
 	}
 	return n
 }
@@ -55,55 +54,81 @@ const (
 )
 
 func NewQItemSelectionModel(model QAbstractItemModel_ITF) *QItemSelectionModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::QItemSelectionModel")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::QItemSelectionModel")
 
 	return NewQItemSelectionModelFromPointer(C.QItemSelectionModel_NewQItemSelectionModel(PointerFromQAbstractItemModel(model)))
 }
 
 func NewQItemSelectionModel2(model QAbstractItemModel_ITF, parent QObject_ITF) *QItemSelectionModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::QItemSelectionModel")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::QItemSelectionModel")
 
 	return NewQItemSelectionModelFromPointer(C.QItemSelectionModel_NewQItemSelectionModel2(PointerFromQAbstractItemModel(model), PointerFromQObject(parent)))
 }
 
-func (ptr *QItemSelectionModel) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::clear")
-		}
-	}()
+func (ptr *QItemSelectionModel) ConnectClear(f func()) {
+	defer qt.Recovering("connect QItemSelectionModel::clear")
 
 	if ptr.Pointer() != nil {
-		C.QItemSelectionModel_Clear(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "clear", f)
 	}
 }
 
-func (ptr *QItemSelectionModel) ClearCurrentIndex() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::clearCurrentIndex")
-		}
-	}()
+func (ptr *QItemSelectionModel) DisconnectClear() {
+	defer qt.Recovering("disconnect QItemSelectionModel::clear")
 
 	if ptr.Pointer() != nil {
-		C.QItemSelectionModel_ClearCurrentIndex(ptr.Pointer())
+
+		qt.DisconnectSignal(ptr.ObjectName(), "clear")
 	}
+}
+
+//export callbackQItemSelectionModelClear
+func callbackQItemSelectionModelClear(ptrName *C.char) bool {
+	defer qt.Recovering("callback QItemSelectionModel::clear")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "clear")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QItemSelectionModel) ConnectClearCurrentIndex(f func()) {
+	defer qt.Recovering("connect QItemSelectionModel::clearCurrentIndex")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "clearCurrentIndex", f)
+	}
+}
+
+func (ptr *QItemSelectionModel) DisconnectClearCurrentIndex() {
+	defer qt.Recovering("disconnect QItemSelectionModel::clearCurrentIndex")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "clearCurrentIndex")
+	}
+}
+
+//export callbackQItemSelectionModelClearCurrentIndex
+func callbackQItemSelectionModelClearCurrentIndex(ptrName *C.char) bool {
+	defer qt.Recovering("callback QItemSelectionModel::clearCurrentIndex")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "clearCurrentIndex")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QItemSelectionModel) ClearSelection() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::clearSelection")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::clearSelection")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_ClearSelection(ptr.Pointer())
@@ -111,11 +136,7 @@ func (ptr *QItemSelectionModel) ClearSelection() {
 }
 
 func (ptr *QItemSelectionModel) ColumnIntersectsSelection(column int, parent QModelIndex_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::columnIntersectsSelection")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::columnIntersectsSelection")
 
 	if ptr.Pointer() != nil {
 		return C.QItemSelectionModel_ColumnIntersectsSelection(ptr.Pointer(), C.int(column), PointerFromQModelIndex(parent)) != 0
@@ -124,11 +145,7 @@ func (ptr *QItemSelectionModel) ColumnIntersectsSelection(column int, parent QMo
 }
 
 func (ptr *QItemSelectionModel) ConnectCurrentChanged(f func(current *QModelIndex, previous *QModelIndex)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::currentChanged")
-		}
-	}()
+	defer qt.Recovering("connect QItemSelectionModel::currentChanged")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_ConnectCurrentChanged(ptr.Pointer())
@@ -137,11 +154,7 @@ func (ptr *QItemSelectionModel) ConnectCurrentChanged(f func(current *QModelInde
 }
 
 func (ptr *QItemSelectionModel) DisconnectCurrentChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::currentChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QItemSelectionModel::currentChanged")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DisconnectCurrentChanged(ptr.Pointer())
@@ -151,21 +164,17 @@ func (ptr *QItemSelectionModel) DisconnectCurrentChanged() {
 
 //export callbackQItemSelectionModelCurrentChanged
 func callbackQItemSelectionModelCurrentChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::currentChanged")
-		}
-	}()
+	defer qt.Recovering("callback QItemSelectionModel::currentChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentChanged").(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
+	if signal != nil {
+		signal.(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
+	}
+
 }
 
 func (ptr *QItemSelectionModel) ConnectCurrentColumnChanged(f func(current *QModelIndex, previous *QModelIndex)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::currentColumnChanged")
-		}
-	}()
+	defer qt.Recovering("connect QItemSelectionModel::currentColumnChanged")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_ConnectCurrentColumnChanged(ptr.Pointer())
@@ -174,11 +183,7 @@ func (ptr *QItemSelectionModel) ConnectCurrentColumnChanged(f func(current *QMod
 }
 
 func (ptr *QItemSelectionModel) DisconnectCurrentColumnChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::currentColumnChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QItemSelectionModel::currentColumnChanged")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DisconnectCurrentColumnChanged(ptr.Pointer())
@@ -188,21 +193,17 @@ func (ptr *QItemSelectionModel) DisconnectCurrentColumnChanged() {
 
 //export callbackQItemSelectionModelCurrentColumnChanged
 func callbackQItemSelectionModelCurrentColumnChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::currentColumnChanged")
-		}
-	}()
+	defer qt.Recovering("callback QItemSelectionModel::currentColumnChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentColumnChanged").(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentColumnChanged")
+	if signal != nil {
+		signal.(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
+	}
+
 }
 
 func (ptr *QItemSelectionModel) CurrentIndex() *QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::currentIndex")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::currentIndex")
 
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QItemSelectionModel_CurrentIndex(ptr.Pointer()))
@@ -211,11 +212,7 @@ func (ptr *QItemSelectionModel) CurrentIndex() *QModelIndex {
 }
 
 func (ptr *QItemSelectionModel) ConnectCurrentRowChanged(f func(current *QModelIndex, previous *QModelIndex)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::currentRowChanged")
-		}
-	}()
+	defer qt.Recovering("connect QItemSelectionModel::currentRowChanged")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_ConnectCurrentRowChanged(ptr.Pointer())
@@ -224,11 +221,7 @@ func (ptr *QItemSelectionModel) ConnectCurrentRowChanged(f func(current *QModelI
 }
 
 func (ptr *QItemSelectionModel) DisconnectCurrentRowChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::currentRowChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QItemSelectionModel::currentRowChanged")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DisconnectCurrentRowChanged(ptr.Pointer())
@@ -238,21 +231,17 @@ func (ptr *QItemSelectionModel) DisconnectCurrentRowChanged() {
 
 //export callbackQItemSelectionModelCurrentRowChanged
 func callbackQItemSelectionModelCurrentRowChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::currentRowChanged")
-		}
-	}()
+	defer qt.Recovering("callback QItemSelectionModel::currentRowChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentRowChanged").(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentRowChanged")
+	if signal != nil {
+		signal.(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
+	}
+
 }
 
 func (ptr *QItemSelectionModel) HasSelection() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::hasSelection")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::hasSelection")
 
 	if ptr.Pointer() != nil {
 		return C.QItemSelectionModel_HasSelection(ptr.Pointer()) != 0
@@ -261,11 +250,7 @@ func (ptr *QItemSelectionModel) HasSelection() bool {
 }
 
 func (ptr *QItemSelectionModel) IsColumnSelected(column int, parent QModelIndex_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::isColumnSelected")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::isColumnSelected")
 
 	if ptr.Pointer() != nil {
 		return C.QItemSelectionModel_IsColumnSelected(ptr.Pointer(), C.int(column), PointerFromQModelIndex(parent)) != 0
@@ -274,11 +259,7 @@ func (ptr *QItemSelectionModel) IsColumnSelected(column int, parent QModelIndex_
 }
 
 func (ptr *QItemSelectionModel) IsRowSelected(row int, parent QModelIndex_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::isRowSelected")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::isRowSelected")
 
 	if ptr.Pointer() != nil {
 		return C.QItemSelectionModel_IsRowSelected(ptr.Pointer(), C.int(row), PointerFromQModelIndex(parent)) != 0
@@ -287,11 +268,7 @@ func (ptr *QItemSelectionModel) IsRowSelected(row int, parent QModelIndex_ITF) b
 }
 
 func (ptr *QItemSelectionModel) IsSelected(index QModelIndex_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::isSelected")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::isSelected")
 
 	if ptr.Pointer() != nil {
 		return C.QItemSelectionModel_IsSelected(ptr.Pointer(), PointerFromQModelIndex(index)) != 0
@@ -300,11 +277,7 @@ func (ptr *QItemSelectionModel) IsSelected(index QModelIndex_ITF) bool {
 }
 
 func (ptr *QItemSelectionModel) Model2() *QAbstractItemModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::model")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::model")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractItemModelFromPointer(C.QItemSelectionModel_Model2(ptr.Pointer()))
@@ -313,11 +286,7 @@ func (ptr *QItemSelectionModel) Model2() *QAbstractItemModel {
 }
 
 func (ptr *QItemSelectionModel) Model() *QAbstractItemModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::model")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::model")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractItemModelFromPointer(C.QItemSelectionModel_Model(ptr.Pointer()))
@@ -326,11 +295,7 @@ func (ptr *QItemSelectionModel) Model() *QAbstractItemModel {
 }
 
 func (ptr *QItemSelectionModel) ConnectModelChanged(f func(model *QAbstractItemModel)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::modelChanged")
-		}
-	}()
+	defer qt.Recovering("connect QItemSelectionModel::modelChanged")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_ConnectModelChanged(ptr.Pointer())
@@ -339,11 +304,7 @@ func (ptr *QItemSelectionModel) ConnectModelChanged(f func(model *QAbstractItemM
 }
 
 func (ptr *QItemSelectionModel) DisconnectModelChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::modelChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QItemSelectionModel::modelChanged")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DisconnectModelChanged(ptr.Pointer())
@@ -353,33 +314,48 @@ func (ptr *QItemSelectionModel) DisconnectModelChanged() {
 
 //export callbackQItemSelectionModelModelChanged
 func callbackQItemSelectionModelModelChanged(ptrName *C.char, model unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::modelChanged")
-		}
-	}()
+	defer qt.Recovering("callback QItemSelectionModel::modelChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "modelChanged").(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(model))
+	var signal = qt.GetSignal(C.GoString(ptrName), "modelChanged")
+	if signal != nil {
+		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(model))
+	}
+
 }
 
-func (ptr *QItemSelectionModel) Reset() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::reset")
-		}
-	}()
+func (ptr *QItemSelectionModel) ConnectReset(f func()) {
+	defer qt.Recovering("connect QItemSelectionModel::reset")
 
 	if ptr.Pointer() != nil {
-		C.QItemSelectionModel_Reset(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "reset", f)
 	}
 }
 
+func (ptr *QItemSelectionModel) DisconnectReset() {
+	defer qt.Recovering("disconnect QItemSelectionModel::reset")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "reset")
+	}
+}
+
+//export callbackQItemSelectionModelReset
+func callbackQItemSelectionModelReset(ptrName *C.char) bool {
+	defer qt.Recovering("callback QItemSelectionModel::reset")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "reset")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QItemSelectionModel) RowIntersectsSelection(row int, parent QModelIndex_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::rowIntersectsSelection")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::rowIntersectsSelection")
 
 	if ptr.Pointer() != nil {
 		return C.QItemSelectionModel_RowIntersectsSelection(ptr.Pointer(), C.int(row), PointerFromQModelIndex(parent)) != 0
@@ -387,48 +363,70 @@ func (ptr *QItemSelectionModel) RowIntersectsSelection(row int, parent QModelInd
 	return false
 }
 
-func (ptr *QItemSelectionModel) Select2(selection QItemSelection_ITF, command QItemSelectionModel__SelectionFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::select")
-		}
-	}()
+func (ptr *QItemSelectionModel) ConnectSelect(f func(index *QModelIndex, command QItemSelectionModel__SelectionFlag)) {
+	defer qt.Recovering("connect QItemSelectionModel::select")
 
 	if ptr.Pointer() != nil {
-		C.QItemSelectionModel_Select2(ptr.Pointer(), PointerFromQItemSelection(selection), C.int(command))
+
+		qt.ConnectSignal(ptr.ObjectName(), "select", f)
 	}
 }
 
-func (ptr *QItemSelectionModel) Select(index QModelIndex_ITF, command QItemSelectionModel__SelectionFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::select")
-		}
-	}()
+func (ptr *QItemSelectionModel) DisconnectSelect() {
+	defer qt.Recovering("disconnect QItemSelectionModel::select")
 
 	if ptr.Pointer() != nil {
-		C.QItemSelectionModel_Select(ptr.Pointer(), PointerFromQModelIndex(index), C.int(command))
+
+		qt.DisconnectSignal(ptr.ObjectName(), "select")
 	}
 }
 
-func (ptr *QItemSelectionModel) SetCurrentIndex(index QModelIndex_ITF, command QItemSelectionModel__SelectionFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::setCurrentIndex")
-		}
-	}()
+//export callbackQItemSelectionModelSelect
+func callbackQItemSelectionModelSelect(ptrName *C.char, index unsafe.Pointer, command C.int) bool {
+	defer qt.Recovering("callback QItemSelectionModel::select")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "select")
+	if signal != nil {
+		defer signal.(func(*QModelIndex, QItemSelectionModel__SelectionFlag))(NewQModelIndexFromPointer(index), QItemSelectionModel__SelectionFlag(command))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QItemSelectionModel) ConnectSetCurrentIndex(f func(index *QModelIndex, command QItemSelectionModel__SelectionFlag)) {
+	defer qt.Recovering("connect QItemSelectionModel::setCurrentIndex")
 
 	if ptr.Pointer() != nil {
-		C.QItemSelectionModel_SetCurrentIndex(ptr.Pointer(), PointerFromQModelIndex(index), C.int(command))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setCurrentIndex", f)
 	}
+}
+
+func (ptr *QItemSelectionModel) DisconnectSetCurrentIndex() {
+	defer qt.Recovering("disconnect QItemSelectionModel::setCurrentIndex")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setCurrentIndex")
+	}
+}
+
+//export callbackQItemSelectionModelSetCurrentIndex
+func callbackQItemSelectionModelSetCurrentIndex(ptrName *C.char, index unsafe.Pointer, command C.int) bool {
+	defer qt.Recovering("callback QItemSelectionModel::setCurrentIndex")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setCurrentIndex")
+	if signal != nil {
+		defer signal.(func(*QModelIndex, QItemSelectionModel__SelectionFlag))(NewQModelIndexFromPointer(index), QItemSelectionModel__SelectionFlag(command))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QItemSelectionModel) SetModel(model QAbstractItemModel_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::setModel")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::setModel")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_SetModel(ptr.Pointer(), PointerFromQAbstractItemModel(model))
@@ -436,11 +434,7 @@ func (ptr *QItemSelectionModel) SetModel(model QAbstractItemModel_ITF) {
 }
 
 func (ptr *QItemSelectionModel) DestroyQItemSelectionModel() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelectionModel::~QItemSelectionModel")
-		}
-	}()
+	defer qt.Recovering("QItemSelectionModel::~QItemSelectionModel")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DestroyQItemSelectionModel(ptr.Pointer())

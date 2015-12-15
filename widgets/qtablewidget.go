@@ -5,7 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +30,7 @@ func NewQTableWidgetFromPointer(ptr unsafe.Pointer) *QTableWidget {
 	var n = new(QTableWidget)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QTableWidget_") {
-		n.SetObjectName("QTableWidget_" + qt.RandomIdentifier())
+		n.SetObjectName("QTableWidget_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +40,7 @@ func (ptr *QTableWidget) QTableWidget_PTR() *QTableWidget {
 }
 
 func (ptr *QTableWidget) ItemAt(point core.QPoint_ITF) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemAt")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidget_ItemAt(ptr.Pointer(), core.PointerFromQPoint(point)))
@@ -53,11 +49,7 @@ func (ptr *QTableWidget) ItemAt(point core.QPoint_ITF) *QTableWidgetItem {
 }
 
 func (ptr *QTableWidget) ConnectCellActivated(f func(row int, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellActivated")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::cellActivated")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectCellActivated(ptr.Pointer())
@@ -66,11 +58,7 @@ func (ptr *QTableWidget) ConnectCellActivated(f func(row int, column int)) {
 }
 
 func (ptr *QTableWidget) DisconnectCellActivated() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellActivated")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::cellActivated")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectCellActivated(ptr.Pointer())
@@ -80,21 +68,17 @@ func (ptr *QTableWidget) DisconnectCellActivated() {
 
 //export callbackQTableWidgetCellActivated
 func callbackQTableWidgetCellActivated(ptrName *C.char, row C.int, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellActivated")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::cellActivated")
 
-	qt.GetSignal(C.GoString(ptrName), "cellActivated").(func(int, int))(int(row), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "cellActivated")
+	if signal != nil {
+		signal.(func(int, int))(int(row), int(column))
+	}
+
 }
 
 func (ptr *QTableWidget) ConnectCellChanged(f func(row int, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::cellChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectCellChanged(ptr.Pointer())
@@ -103,11 +87,7 @@ func (ptr *QTableWidget) ConnectCellChanged(f func(row int, column int)) {
 }
 
 func (ptr *QTableWidget) DisconnectCellChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::cellChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectCellChanged(ptr.Pointer())
@@ -117,21 +97,17 @@ func (ptr *QTableWidget) DisconnectCellChanged() {
 
 //export callbackQTableWidgetCellChanged
 func callbackQTableWidgetCellChanged(ptrName *C.char, row C.int, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::cellChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "cellChanged").(func(int, int))(int(row), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "cellChanged")
+	if signal != nil {
+		signal.(func(int, int))(int(row), int(column))
+	}
+
 }
 
 func (ptr *QTableWidget) ConnectCellClicked(f func(row int, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellClicked")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::cellClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectCellClicked(ptr.Pointer())
@@ -140,11 +116,7 @@ func (ptr *QTableWidget) ConnectCellClicked(f func(row int, column int)) {
 }
 
 func (ptr *QTableWidget) DisconnectCellClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellClicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::cellClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectCellClicked(ptr.Pointer())
@@ -154,21 +126,17 @@ func (ptr *QTableWidget) DisconnectCellClicked() {
 
 //export callbackQTableWidgetCellClicked
 func callbackQTableWidgetCellClicked(ptrName *C.char, row C.int, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellClicked")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::cellClicked")
 
-	qt.GetSignal(C.GoString(ptrName), "cellClicked").(func(int, int))(int(row), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "cellClicked")
+	if signal != nil {
+		signal.(func(int, int))(int(row), int(column))
+	}
+
 }
 
 func (ptr *QTableWidget) ConnectCellDoubleClicked(f func(row int, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::cellDoubleClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectCellDoubleClicked(ptr.Pointer())
@@ -177,11 +145,7 @@ func (ptr *QTableWidget) ConnectCellDoubleClicked(f func(row int, column int)) {
 }
 
 func (ptr *QTableWidget) DisconnectCellDoubleClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::cellDoubleClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectCellDoubleClicked(ptr.Pointer())
@@ -191,21 +155,17 @@ func (ptr *QTableWidget) DisconnectCellDoubleClicked() {
 
 //export callbackQTableWidgetCellDoubleClicked
 func callbackQTableWidgetCellDoubleClicked(ptrName *C.char, row C.int, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::cellDoubleClicked")
 
-	qt.GetSignal(C.GoString(ptrName), "cellDoubleClicked").(func(int, int))(int(row), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "cellDoubleClicked")
+	if signal != nil {
+		signal.(func(int, int))(int(row), int(column))
+	}
+
 }
 
 func (ptr *QTableWidget) ConnectCellEntered(f func(row int, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellEntered")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::cellEntered")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectCellEntered(ptr.Pointer())
@@ -214,11 +174,7 @@ func (ptr *QTableWidget) ConnectCellEntered(f func(row int, column int)) {
 }
 
 func (ptr *QTableWidget) DisconnectCellEntered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellEntered")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::cellEntered")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectCellEntered(ptr.Pointer())
@@ -228,21 +184,17 @@ func (ptr *QTableWidget) DisconnectCellEntered() {
 
 //export callbackQTableWidgetCellEntered
 func callbackQTableWidgetCellEntered(ptrName *C.char, row C.int, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellEntered")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::cellEntered")
 
-	qt.GetSignal(C.GoString(ptrName), "cellEntered").(func(int, int))(int(row), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "cellEntered")
+	if signal != nil {
+		signal.(func(int, int))(int(row), int(column))
+	}
+
 }
 
 func (ptr *QTableWidget) ConnectCellPressed(f func(row int, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellPressed")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::cellPressed")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectCellPressed(ptr.Pointer())
@@ -251,11 +203,7 @@ func (ptr *QTableWidget) ConnectCellPressed(f func(row int, column int)) {
 }
 
 func (ptr *QTableWidget) DisconnectCellPressed() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellPressed")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::cellPressed")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectCellPressed(ptr.Pointer())
@@ -265,21 +213,17 @@ func (ptr *QTableWidget) DisconnectCellPressed() {
 
 //export callbackQTableWidgetCellPressed
 func callbackQTableWidgetCellPressed(ptrName *C.char, row C.int, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellPressed")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::cellPressed")
 
-	qt.GetSignal(C.GoString(ptrName), "cellPressed").(func(int, int))(int(row), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "cellPressed")
+	if signal != nil {
+		signal.(func(int, int))(int(row), int(column))
+	}
+
 }
 
 func (ptr *QTableWidget) CellWidget(row int, column int) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::cellWidget")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::cellWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QTableWidget_CellWidget(ptr.Pointer(), C.int(row), C.int(column)))
@@ -288,11 +232,7 @@ func (ptr *QTableWidget) CellWidget(row int, column int) *QWidget {
 }
 
 func (ptr *QTableWidget) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::clear")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::clear")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_Clear(ptr.Pointer())
@@ -300,11 +240,7 @@ func (ptr *QTableWidget) Clear() {
 }
 
 func (ptr *QTableWidget) ClearContents() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::clearContents")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::clearContents")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ClearContents(ptr.Pointer())
@@ -312,11 +248,7 @@ func (ptr *QTableWidget) ClearContents() {
 }
 
 func (ptr *QTableWidget) ClosePersistentEditor(item QTableWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::closePersistentEditor")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::closePersistentEditor")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ClosePersistentEditor(ptr.Pointer(), PointerFromQTableWidgetItem(item))
@@ -324,11 +256,7 @@ func (ptr *QTableWidget) ClosePersistentEditor(item QTableWidgetItem_ITF) {
 }
 
 func (ptr *QTableWidget) Column(item QTableWidgetItem_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::column")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::column")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidget_Column(ptr.Pointer(), PointerFromQTableWidgetItem(item)))
@@ -337,11 +265,7 @@ func (ptr *QTableWidget) Column(item QTableWidgetItem_ITF) int {
 }
 
 func (ptr *QTableWidget) ColumnCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::columnCount")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::columnCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidget_ColumnCount(ptr.Pointer()))
@@ -350,11 +274,7 @@ func (ptr *QTableWidget) ColumnCount() int {
 }
 
 func (ptr *QTableWidget) ConnectCurrentCellChanged(f func(currentRow int, currentColumn int, previousRow int, previousColumn int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::currentCellChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::currentCellChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectCurrentCellChanged(ptr.Pointer())
@@ -363,11 +283,7 @@ func (ptr *QTableWidget) ConnectCurrentCellChanged(f func(currentRow int, curren
 }
 
 func (ptr *QTableWidget) DisconnectCurrentCellChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::currentCellChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::currentCellChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectCurrentCellChanged(ptr.Pointer())
@@ -377,21 +293,17 @@ func (ptr *QTableWidget) DisconnectCurrentCellChanged() {
 
 //export callbackQTableWidgetCurrentCellChanged
 func callbackQTableWidgetCurrentCellChanged(ptrName *C.char, currentRow C.int, currentColumn C.int, previousRow C.int, previousColumn C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::currentCellChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::currentCellChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentCellChanged").(func(int, int, int, int))(int(currentRow), int(currentColumn), int(previousRow), int(previousColumn))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentCellChanged")
+	if signal != nil {
+		signal.(func(int, int, int, int))(int(currentRow), int(currentColumn), int(previousRow), int(previousColumn))
+	}
+
 }
 
 func (ptr *QTableWidget) CurrentColumn() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::currentColumn")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::currentColumn")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidget_CurrentColumn(ptr.Pointer()))
@@ -400,11 +312,7 @@ func (ptr *QTableWidget) CurrentColumn() int {
 }
 
 func (ptr *QTableWidget) CurrentItem() *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::currentItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::currentItem")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidget_CurrentItem(ptr.Pointer()))
@@ -413,11 +321,7 @@ func (ptr *QTableWidget) CurrentItem() *QTableWidgetItem {
 }
 
 func (ptr *QTableWidget) ConnectCurrentItemChanged(f func(current *QTableWidgetItem, previous *QTableWidgetItem)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::currentItemChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::currentItemChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectCurrentItemChanged(ptr.Pointer())
@@ -426,11 +330,7 @@ func (ptr *QTableWidget) ConnectCurrentItemChanged(f func(current *QTableWidgetI
 }
 
 func (ptr *QTableWidget) DisconnectCurrentItemChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::currentItemChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::currentItemChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectCurrentItemChanged(ptr.Pointer())
@@ -440,21 +340,17 @@ func (ptr *QTableWidget) DisconnectCurrentItemChanged() {
 
 //export callbackQTableWidgetCurrentItemChanged
 func callbackQTableWidgetCurrentItemChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::currentItemChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::currentItemChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentItemChanged").(func(*QTableWidgetItem, *QTableWidgetItem))(NewQTableWidgetItemFromPointer(current), NewQTableWidgetItemFromPointer(previous))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentItemChanged")
+	if signal != nil {
+		signal.(func(*QTableWidgetItem, *QTableWidgetItem))(NewQTableWidgetItemFromPointer(current), NewQTableWidgetItemFromPointer(previous))
+	}
+
 }
 
 func (ptr *QTableWidget) CurrentRow() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::currentRow")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::currentRow")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidget_CurrentRow(ptr.Pointer()))
@@ -462,12 +358,39 @@ func (ptr *QTableWidget) CurrentRow() int {
 	return 0
 }
 
+func (ptr *QTableWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
+	defer qt.Recovering("connect QTableWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+	}
+}
+
+func (ptr *QTableWidget) DisconnectDropEvent() {
+	defer qt.Recovering("disconnect QTableWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+	}
+}
+
+//export callbackQTableWidgetDropEvent
+func callbackQTableWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTableWidget::dropEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTableWidget) EditItem(item QTableWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::editItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::editItem")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_EditItem(ptr.Pointer(), PointerFromQTableWidgetItem(item))
@@ -475,11 +398,7 @@ func (ptr *QTableWidget) EditItem(item QTableWidgetItem_ITF) {
 }
 
 func (ptr *QTableWidget) HorizontalHeaderItem(column int) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::horizontalHeaderItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::horizontalHeaderItem")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidget_HorizontalHeaderItem(ptr.Pointer(), C.int(column)))
@@ -488,11 +407,7 @@ func (ptr *QTableWidget) HorizontalHeaderItem(column int) *QTableWidgetItem {
 }
 
 func (ptr *QTableWidget) InsertColumn(column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::insertColumn")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::insertColumn")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_InsertColumn(ptr.Pointer(), C.int(column))
@@ -500,11 +415,7 @@ func (ptr *QTableWidget) InsertColumn(column int) {
 }
 
 func (ptr *QTableWidget) InsertRow(row int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::insertRow")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::insertRow")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_InsertRow(ptr.Pointer(), C.int(row))
@@ -512,11 +423,7 @@ func (ptr *QTableWidget) InsertRow(row int) {
 }
 
 func (ptr *QTableWidget) Item(row int, column int) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::item")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::item")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidget_Item(ptr.Pointer(), C.int(row), C.int(column)))
@@ -525,11 +432,7 @@ func (ptr *QTableWidget) Item(row int, column int) *QTableWidgetItem {
 }
 
 func (ptr *QTableWidget) ConnectItemActivated(f func(item *QTableWidgetItem)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemActivated")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::itemActivated")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectItemActivated(ptr.Pointer())
@@ -538,11 +441,7 @@ func (ptr *QTableWidget) ConnectItemActivated(f func(item *QTableWidgetItem)) {
 }
 
 func (ptr *QTableWidget) DisconnectItemActivated() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemActivated")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::itemActivated")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectItemActivated(ptr.Pointer())
@@ -552,21 +451,17 @@ func (ptr *QTableWidget) DisconnectItemActivated() {
 
 //export callbackQTableWidgetItemActivated
 func callbackQTableWidgetItemActivated(ptrName *C.char, item unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemActivated")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::itemActivated")
 
-	qt.GetSignal(C.GoString(ptrName), "itemActivated").(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemActivated")
+	if signal != nil {
+		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	}
+
 }
 
 func (ptr *QTableWidget) ItemAt2(ax int, ay int) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemAt")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidget_ItemAt2(ptr.Pointer(), C.int(ax), C.int(ay)))
@@ -575,11 +470,7 @@ func (ptr *QTableWidget) ItemAt2(ax int, ay int) *QTableWidgetItem {
 }
 
 func (ptr *QTableWidget) ConnectItemChanged(f func(item *QTableWidgetItem)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::itemChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectItemChanged(ptr.Pointer())
@@ -588,11 +479,7 @@ func (ptr *QTableWidget) ConnectItemChanged(f func(item *QTableWidgetItem)) {
 }
 
 func (ptr *QTableWidget) DisconnectItemChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::itemChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectItemChanged(ptr.Pointer())
@@ -602,21 +489,17 @@ func (ptr *QTableWidget) DisconnectItemChanged() {
 
 //export callbackQTableWidgetItemChanged
 func callbackQTableWidgetItemChanged(ptrName *C.char, item unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::itemChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "itemChanged").(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemChanged")
+	if signal != nil {
+		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	}
+
 }
 
 func (ptr *QTableWidget) ConnectItemClicked(f func(item *QTableWidgetItem)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemClicked")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::itemClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectItemClicked(ptr.Pointer())
@@ -625,11 +508,7 @@ func (ptr *QTableWidget) ConnectItemClicked(f func(item *QTableWidgetItem)) {
 }
 
 func (ptr *QTableWidget) DisconnectItemClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemClicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::itemClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectItemClicked(ptr.Pointer())
@@ -639,21 +518,17 @@ func (ptr *QTableWidget) DisconnectItemClicked() {
 
 //export callbackQTableWidgetItemClicked
 func callbackQTableWidgetItemClicked(ptrName *C.char, item unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemClicked")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::itemClicked")
 
-	qt.GetSignal(C.GoString(ptrName), "itemClicked").(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemClicked")
+	if signal != nil {
+		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	}
+
 }
 
 func (ptr *QTableWidget) ConnectItemDoubleClicked(f func(item *QTableWidgetItem)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::itemDoubleClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectItemDoubleClicked(ptr.Pointer())
@@ -662,11 +537,7 @@ func (ptr *QTableWidget) ConnectItemDoubleClicked(f func(item *QTableWidgetItem)
 }
 
 func (ptr *QTableWidget) DisconnectItemDoubleClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::itemDoubleClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectItemDoubleClicked(ptr.Pointer())
@@ -676,21 +547,17 @@ func (ptr *QTableWidget) DisconnectItemDoubleClicked() {
 
 //export callbackQTableWidgetItemDoubleClicked
 func callbackQTableWidgetItemDoubleClicked(ptrName *C.char, item unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::itemDoubleClicked")
 
-	qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked").(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked")
+	if signal != nil {
+		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	}
+
 }
 
 func (ptr *QTableWidget) ConnectItemEntered(f func(item *QTableWidgetItem)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemEntered")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::itemEntered")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectItemEntered(ptr.Pointer())
@@ -699,11 +566,7 @@ func (ptr *QTableWidget) ConnectItemEntered(f func(item *QTableWidgetItem)) {
 }
 
 func (ptr *QTableWidget) DisconnectItemEntered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemEntered")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::itemEntered")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectItemEntered(ptr.Pointer())
@@ -713,21 +576,17 @@ func (ptr *QTableWidget) DisconnectItemEntered() {
 
 //export callbackQTableWidgetItemEntered
 func callbackQTableWidgetItemEntered(ptrName *C.char, item unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemEntered")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::itemEntered")
 
-	qt.GetSignal(C.GoString(ptrName), "itemEntered").(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemEntered")
+	if signal != nil {
+		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	}
+
 }
 
 func (ptr *QTableWidget) ConnectItemPressed(f func(item *QTableWidgetItem)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemPressed")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::itemPressed")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectItemPressed(ptr.Pointer())
@@ -736,11 +595,7 @@ func (ptr *QTableWidget) ConnectItemPressed(f func(item *QTableWidgetItem)) {
 }
 
 func (ptr *QTableWidget) DisconnectItemPressed() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemPressed")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::itemPressed")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectItemPressed(ptr.Pointer())
@@ -750,21 +605,17 @@ func (ptr *QTableWidget) DisconnectItemPressed() {
 
 //export callbackQTableWidgetItemPressed
 func callbackQTableWidgetItemPressed(ptrName *C.char, item unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemPressed")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::itemPressed")
 
-	qt.GetSignal(C.GoString(ptrName), "itemPressed").(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemPressed")
+	if signal != nil {
+		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
+	}
+
 }
 
 func (ptr *QTableWidget) ItemPrototype() *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemPrototype")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::itemPrototype")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidget_ItemPrototype(ptr.Pointer()))
@@ -773,11 +624,7 @@ func (ptr *QTableWidget) ItemPrototype() *QTableWidgetItem {
 }
 
 func (ptr *QTableWidget) ConnectItemSelectionChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemSelectionChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTableWidget::itemSelectionChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ConnectItemSelectionChanged(ptr.Pointer())
@@ -786,11 +633,7 @@ func (ptr *QTableWidget) ConnectItemSelectionChanged(f func()) {
 }
 
 func (ptr *QTableWidget) DisconnectItemSelectionChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemSelectionChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTableWidget::itemSelectionChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DisconnectItemSelectionChanged(ptr.Pointer())
@@ -800,21 +643,17 @@ func (ptr *QTableWidget) DisconnectItemSelectionChanged() {
 
 //export callbackQTableWidgetItemSelectionChanged
 func callbackQTableWidgetItemSelectionChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::itemSelectionChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTableWidget::itemSelectionChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QTableWidget) OpenPersistentEditor(item QTableWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::openPersistentEditor")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::openPersistentEditor")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_OpenPersistentEditor(ptr.Pointer(), PointerFromQTableWidgetItem(item))
@@ -822,11 +661,7 @@ func (ptr *QTableWidget) OpenPersistentEditor(item QTableWidgetItem_ITF) {
 }
 
 func (ptr *QTableWidget) RemoveCellWidget(row int, column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::removeCellWidget")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::removeCellWidget")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_RemoveCellWidget(ptr.Pointer(), C.int(row), C.int(column))
@@ -834,11 +669,7 @@ func (ptr *QTableWidget) RemoveCellWidget(row int, column int) {
 }
 
 func (ptr *QTableWidget) RemoveColumn(column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::removeColumn")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::removeColumn")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_RemoveColumn(ptr.Pointer(), C.int(column))
@@ -846,11 +677,7 @@ func (ptr *QTableWidget) RemoveColumn(column int) {
 }
 
 func (ptr *QTableWidget) RemoveRow(row int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::removeRow")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::removeRow")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_RemoveRow(ptr.Pointer(), C.int(row))
@@ -858,11 +685,7 @@ func (ptr *QTableWidget) RemoveRow(row int) {
 }
 
 func (ptr *QTableWidget) Row(item QTableWidgetItem_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::row")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::row")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidget_Row(ptr.Pointer(), PointerFromQTableWidgetItem(item)))
@@ -871,11 +694,7 @@ func (ptr *QTableWidget) Row(item QTableWidgetItem_ITF) int {
 }
 
 func (ptr *QTableWidget) RowCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::rowCount")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::rowCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidget_RowCount(ptr.Pointer()))
@@ -884,11 +703,7 @@ func (ptr *QTableWidget) RowCount() int {
 }
 
 func (ptr *QTableWidget) ScrollToItem(item QTableWidgetItem_ITF, hint QAbstractItemView__ScrollHint) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::scrollToItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::scrollToItem")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_ScrollToItem(ptr.Pointer(), PointerFromQTableWidgetItem(item), C.int(hint))
@@ -896,11 +711,7 @@ func (ptr *QTableWidget) ScrollToItem(item QTableWidgetItem_ITF, hint QAbstractI
 }
 
 func (ptr *QTableWidget) SetCellWidget(row int, column int, widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setCellWidget")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setCellWidget")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetCellWidget(ptr.Pointer(), C.int(row), C.int(column), PointerFromQWidget(widget))
@@ -908,11 +719,7 @@ func (ptr *QTableWidget) SetCellWidget(row int, column int, widget QWidget_ITF) 
 }
 
 func (ptr *QTableWidget) SetColumnCount(columns int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setColumnCount")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setColumnCount")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetColumnCount(ptr.Pointer(), C.int(columns))
@@ -920,11 +727,7 @@ func (ptr *QTableWidget) SetColumnCount(columns int) {
 }
 
 func (ptr *QTableWidget) SetCurrentCell(row int, column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setCurrentCell")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setCurrentCell")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetCurrentCell(ptr.Pointer(), C.int(row), C.int(column))
@@ -932,11 +735,7 @@ func (ptr *QTableWidget) SetCurrentCell(row int, column int) {
 }
 
 func (ptr *QTableWidget) SetCurrentCell2(row int, column int, command core.QItemSelectionModel__SelectionFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setCurrentCell")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setCurrentCell")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetCurrentCell2(ptr.Pointer(), C.int(row), C.int(column), C.int(command))
@@ -944,11 +743,7 @@ func (ptr *QTableWidget) SetCurrentCell2(row int, column int, command core.QItem
 }
 
 func (ptr *QTableWidget) SetCurrentItem(item QTableWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setCurrentItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setCurrentItem")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetCurrentItem(ptr.Pointer(), PointerFromQTableWidgetItem(item))
@@ -956,11 +751,7 @@ func (ptr *QTableWidget) SetCurrentItem(item QTableWidgetItem_ITF) {
 }
 
 func (ptr *QTableWidget) SetCurrentItem2(item QTableWidgetItem_ITF, command core.QItemSelectionModel__SelectionFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setCurrentItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setCurrentItem")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetCurrentItem2(ptr.Pointer(), PointerFromQTableWidgetItem(item), C.int(command))
@@ -968,11 +759,7 @@ func (ptr *QTableWidget) SetCurrentItem2(item QTableWidgetItem_ITF, command core
 }
 
 func (ptr *QTableWidget) SetHorizontalHeaderItem(column int, item QTableWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setHorizontalHeaderItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setHorizontalHeaderItem")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetHorizontalHeaderItem(ptr.Pointer(), C.int(column), PointerFromQTableWidgetItem(item))
@@ -980,11 +767,7 @@ func (ptr *QTableWidget) SetHorizontalHeaderItem(column int, item QTableWidgetIt
 }
 
 func (ptr *QTableWidget) SetHorizontalHeaderLabels(labels []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setHorizontalHeaderLabels")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setHorizontalHeaderLabels")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetHorizontalHeaderLabels(ptr.Pointer(), C.CString(strings.Join(labels, ",,,")))
@@ -992,11 +775,7 @@ func (ptr *QTableWidget) SetHorizontalHeaderLabels(labels []string) {
 }
 
 func (ptr *QTableWidget) SetItem(row int, column int, item QTableWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setItem")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetItem(ptr.Pointer(), C.int(row), C.int(column), PointerFromQTableWidgetItem(item))
@@ -1004,11 +783,7 @@ func (ptr *QTableWidget) SetItem(row int, column int, item QTableWidgetItem_ITF)
 }
 
 func (ptr *QTableWidget) SetItemPrototype(item QTableWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setItemPrototype")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setItemPrototype")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetItemPrototype(ptr.Pointer(), PointerFromQTableWidgetItem(item))
@@ -1016,11 +791,7 @@ func (ptr *QTableWidget) SetItemPrototype(item QTableWidgetItem_ITF) {
 }
 
 func (ptr *QTableWidget) SetRangeSelected(ran QTableWidgetSelectionRange_ITF, sele bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setRangeSelected")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setRangeSelected")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetRangeSelected(ptr.Pointer(), PointerFromQTableWidgetSelectionRange(ran), C.int(qt.GoBoolToInt(sele)))
@@ -1028,11 +799,7 @@ func (ptr *QTableWidget) SetRangeSelected(ran QTableWidgetSelectionRange_ITF, se
 }
 
 func (ptr *QTableWidget) SetRowCount(rows int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setRowCount")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setRowCount")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetRowCount(ptr.Pointer(), C.int(rows))
@@ -1040,11 +807,7 @@ func (ptr *QTableWidget) SetRowCount(rows int) {
 }
 
 func (ptr *QTableWidget) SetVerticalHeaderItem(row int, item QTableWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setVerticalHeaderItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setVerticalHeaderItem")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetVerticalHeaderItem(ptr.Pointer(), C.int(row), PointerFromQTableWidgetItem(item))
@@ -1052,11 +815,7 @@ func (ptr *QTableWidget) SetVerticalHeaderItem(row int, item QTableWidgetItem_IT
 }
 
 func (ptr *QTableWidget) SetVerticalHeaderLabels(labels []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::setVerticalHeaderLabels")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::setVerticalHeaderLabels")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SetVerticalHeaderLabels(ptr.Pointer(), C.CString(strings.Join(labels, ",,,")))
@@ -1064,11 +823,7 @@ func (ptr *QTableWidget) SetVerticalHeaderLabels(labels []string) {
 }
 
 func (ptr *QTableWidget) SortItems(column int, order core.Qt__SortOrder) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::sortItems")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::sortItems")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_SortItems(ptr.Pointer(), C.int(column), C.int(order))
@@ -1076,11 +831,7 @@ func (ptr *QTableWidget) SortItems(column int, order core.Qt__SortOrder) {
 }
 
 func (ptr *QTableWidget) TakeHorizontalHeaderItem(column int) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::takeHorizontalHeaderItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::takeHorizontalHeaderItem")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidget_TakeHorizontalHeaderItem(ptr.Pointer(), C.int(column)))
@@ -1089,11 +840,7 @@ func (ptr *QTableWidget) TakeHorizontalHeaderItem(column int) *QTableWidgetItem 
 }
 
 func (ptr *QTableWidget) TakeItem(row int, column int) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::takeItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::takeItem")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidget_TakeItem(ptr.Pointer(), C.int(row), C.int(column)))
@@ -1102,11 +849,7 @@ func (ptr *QTableWidget) TakeItem(row int, column int) *QTableWidgetItem {
 }
 
 func (ptr *QTableWidget) TakeVerticalHeaderItem(row int) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::takeVerticalHeaderItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::takeVerticalHeaderItem")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidget_TakeVerticalHeaderItem(ptr.Pointer(), C.int(row)))
@@ -1115,11 +858,7 @@ func (ptr *QTableWidget) TakeVerticalHeaderItem(row int) *QTableWidgetItem {
 }
 
 func (ptr *QTableWidget) VerticalHeaderItem(row int) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::verticalHeaderItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::verticalHeaderItem")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidget_VerticalHeaderItem(ptr.Pointer(), C.int(row)))
@@ -1128,11 +867,7 @@ func (ptr *QTableWidget) VerticalHeaderItem(row int) *QTableWidgetItem {
 }
 
 func (ptr *QTableWidget) VisualColumn(logicalColumn int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::visualColumn")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::visualColumn")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidget_VisualColumn(ptr.Pointer(), C.int(logicalColumn)))
@@ -1141,11 +876,7 @@ func (ptr *QTableWidget) VisualColumn(logicalColumn int) int {
 }
 
 func (ptr *QTableWidget) VisualRow(logicalRow int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::visualRow")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::visualRow")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidget_VisualRow(ptr.Pointer(), C.int(logicalRow)))
@@ -1154,11 +885,7 @@ func (ptr *QTableWidget) VisualRow(logicalRow int) int {
 }
 
 func (ptr *QTableWidget) DestroyQTableWidget() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidget::~QTableWidget")
-		}
-	}()
+	defer qt.Recovering("QTableWidget::~QTableWidget")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DestroyQTableWidget(ptr.Pointer())

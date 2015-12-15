@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQHelpSearchEngineFromPointer(ptr unsafe.Pointer) *QHelpSearchEngine {
 	var n = new(QHelpSearchEngine)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpSearchEngine_") {
-		n.SetObjectName("QHelpSearchEngine_" + qt.RandomIdentifier())
+		n.SetObjectName("QHelpSearchEngine_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QHelpSearchEngine) QHelpSearchEngine_PTR() *QHelpSearchEngine {
 }
 
 func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_ITF) *QHelpSearchEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::QHelpSearchEngine")
-		}
-	}()
+	defer qt.Recovering("QHelpSearchEngine::QHelpSearchEngine")
 
 	return NewQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHelpSearchEngine) CancelIndexing() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::cancelIndexing")
-		}
-	}()
+	defer qt.Recovering("QHelpSearchEngine::cancelIndexing")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_CancelIndexing(ptr.Pointer())
@@ -61,11 +52,7 @@ func (ptr *QHelpSearchEngine) CancelIndexing() {
 }
 
 func (ptr *QHelpSearchEngine) CancelSearching() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::cancelSearching")
-		}
-	}()
+	defer qt.Recovering("QHelpSearchEngine::cancelSearching")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_CancelSearching(ptr.Pointer())
@@ -73,11 +60,7 @@ func (ptr *QHelpSearchEngine) CancelSearching() {
 }
 
 func (ptr *QHelpSearchEngine) HitCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::hitCount")
-		}
-	}()
+	defer qt.Recovering("QHelpSearchEngine::hitCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QHelpSearchEngine_HitCount(ptr.Pointer()))
@@ -86,11 +69,7 @@ func (ptr *QHelpSearchEngine) HitCount() int {
 }
 
 func (ptr *QHelpSearchEngine) ConnectIndexingFinished(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::indexingFinished")
-		}
-	}()
+	defer qt.Recovering("connect QHelpSearchEngine::indexingFinished")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ConnectIndexingFinished(ptr.Pointer())
@@ -99,11 +78,7 @@ func (ptr *QHelpSearchEngine) ConnectIndexingFinished(f func()) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectIndexingFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::indexingFinished")
-		}
-	}()
+	defer qt.Recovering("disconnect QHelpSearchEngine::indexingFinished")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DisconnectIndexingFinished(ptr.Pointer())
@@ -113,21 +88,17 @@ func (ptr *QHelpSearchEngine) DisconnectIndexingFinished() {
 
 //export callbackQHelpSearchEngineIndexingFinished
 func callbackQHelpSearchEngineIndexingFinished(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::indexingFinished")
-		}
-	}()
+	defer qt.Recovering("callback QHelpSearchEngine::indexingFinished")
 
-	qt.GetSignal(C.GoString(ptrName), "indexingFinished").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "indexingFinished")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QHelpSearchEngine) ConnectIndexingStarted(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::indexingStarted")
-		}
-	}()
+	defer qt.Recovering("connect QHelpSearchEngine::indexingStarted")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ConnectIndexingStarted(ptr.Pointer())
@@ -136,11 +107,7 @@ func (ptr *QHelpSearchEngine) ConnectIndexingStarted(f func()) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectIndexingStarted() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::indexingStarted")
-		}
-	}()
+	defer qt.Recovering("disconnect QHelpSearchEngine::indexingStarted")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DisconnectIndexingStarted(ptr.Pointer())
@@ -150,21 +117,17 @@ func (ptr *QHelpSearchEngine) DisconnectIndexingStarted() {
 
 //export callbackQHelpSearchEngineIndexingStarted
 func callbackQHelpSearchEngineIndexingStarted(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::indexingStarted")
-		}
-	}()
+	defer qt.Recovering("callback QHelpSearchEngine::indexingStarted")
 
-	qt.GetSignal(C.GoString(ptrName), "indexingStarted").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "indexingStarted")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::queryWidget")
-		}
-	}()
+	defer qt.Recovering("QHelpSearchEngine::queryWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchEngine_QueryWidget(ptr.Pointer()))
@@ -173,11 +136,7 @@ func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
 }
 
 func (ptr *QHelpSearchEngine) ReindexDocumentation() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::reindexDocumentation")
-		}
-	}()
+	defer qt.Recovering("QHelpSearchEngine::reindexDocumentation")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ReindexDocumentation(ptr.Pointer())
@@ -185,11 +144,7 @@ func (ptr *QHelpSearchEngine) ReindexDocumentation() {
 }
 
 func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::resultWidget")
-		}
-	}()
+	defer qt.Recovering("QHelpSearchEngine::resultWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQHelpSearchResultWidgetFromPointer(C.QHelpSearchEngine_ResultWidget(ptr.Pointer()))
@@ -198,11 +153,7 @@ func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
 }
 
 func (ptr *QHelpSearchEngine) ConnectSearchingFinished(f func(hits int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::searchingFinished")
-		}
-	}()
+	defer qt.Recovering("connect QHelpSearchEngine::searchingFinished")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ConnectSearchingFinished(ptr.Pointer())
@@ -211,11 +162,7 @@ func (ptr *QHelpSearchEngine) ConnectSearchingFinished(f func(hits int)) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectSearchingFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::searchingFinished")
-		}
-	}()
+	defer qt.Recovering("disconnect QHelpSearchEngine::searchingFinished")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DisconnectSearchingFinished(ptr.Pointer())
@@ -225,21 +172,17 @@ func (ptr *QHelpSearchEngine) DisconnectSearchingFinished() {
 
 //export callbackQHelpSearchEngineSearchingFinished
 func callbackQHelpSearchEngineSearchingFinished(ptrName *C.char, hits C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::searchingFinished")
-		}
-	}()
+	defer qt.Recovering("callback QHelpSearchEngine::searchingFinished")
 
-	qt.GetSignal(C.GoString(ptrName), "searchingFinished").(func(int))(int(hits))
+	var signal = qt.GetSignal(C.GoString(ptrName), "searchingFinished")
+	if signal != nil {
+		signal.(func(int))(int(hits))
+	}
+
 }
 
 func (ptr *QHelpSearchEngine) ConnectSearchingStarted(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::searchingStarted")
-		}
-	}()
+	defer qt.Recovering("connect QHelpSearchEngine::searchingStarted")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ConnectSearchingStarted(ptr.Pointer())
@@ -248,11 +191,7 @@ func (ptr *QHelpSearchEngine) ConnectSearchingStarted(f func()) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectSearchingStarted() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::searchingStarted")
-		}
-	}()
+	defer qt.Recovering("disconnect QHelpSearchEngine::searchingStarted")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DisconnectSearchingStarted(ptr.Pointer())
@@ -262,21 +201,17 @@ func (ptr *QHelpSearchEngine) DisconnectSearchingStarted() {
 
 //export callbackQHelpSearchEngineSearchingStarted
 func callbackQHelpSearchEngineSearchingStarted(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::searchingStarted")
-		}
-	}()
+	defer qt.Recovering("callback QHelpSearchEngine::searchingStarted")
 
-	qt.GetSignal(C.GoString(ptrName), "searchingStarted").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "searchingStarted")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchEngine::~QHelpSearchEngine")
-		}
-	}()
+	defer qt.Recovering("QHelpSearchEngine::~QHelpSearchEngine")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DestroyQHelpSearchEngine(ptr.Pointer())

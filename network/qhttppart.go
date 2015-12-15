@@ -3,8 +3,8 @@ package network
 //#include "network.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +42,19 @@ func (ptr *QHttpPart) QHttpPart_PTR() *QHttpPart {
 }
 
 func NewQHttpPart() *QHttpPart {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHttpPart::QHttpPart")
-		}
-	}()
+	defer qt.Recovering("QHttpPart::QHttpPart")
 
 	return NewQHttpPartFromPointer(C.QHttpPart_NewQHttpPart())
 }
 
 func NewQHttpPart2(other QHttpPart_ITF) *QHttpPart {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHttpPart::QHttpPart")
-		}
-	}()
+	defer qt.Recovering("QHttpPart::QHttpPart")
 
 	return NewQHttpPartFromPointer(C.QHttpPart_NewQHttpPart2(PointerFromQHttpPart(other)))
 }
 
 func (ptr *QHttpPart) SetBody(body core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHttpPart::setBody")
-		}
-	}()
+	defer qt.Recovering("QHttpPart::setBody")
 
 	if ptr.Pointer() != nil {
 		C.QHttpPart_SetBody(ptr.Pointer(), core.PointerFromQByteArray(body))
@@ -74,11 +62,7 @@ func (ptr *QHttpPart) SetBody(body core.QByteArray_ITF) {
 }
 
 func (ptr *QHttpPart) SetBodyDevice(device core.QIODevice_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHttpPart::setBodyDevice")
-		}
-	}()
+	defer qt.Recovering("QHttpPart::setBodyDevice")
 
 	if ptr.Pointer() != nil {
 		C.QHttpPart_SetBodyDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
@@ -86,11 +70,7 @@ func (ptr *QHttpPart) SetBodyDevice(device core.QIODevice_ITF) {
 }
 
 func (ptr *QHttpPart) SetHeader(header QNetworkRequest__KnownHeaders, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHttpPart::setHeader")
-		}
-	}()
+	defer qt.Recovering("QHttpPart::setHeader")
 
 	if ptr.Pointer() != nil {
 		C.QHttpPart_SetHeader(ptr.Pointer(), C.int(header), core.PointerFromQVariant(value))
@@ -98,11 +78,7 @@ func (ptr *QHttpPart) SetHeader(header QNetworkRequest__KnownHeaders, value core
 }
 
 func (ptr *QHttpPart) SetRawHeader(headerName core.QByteArray_ITF, headerValue core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHttpPart::setRawHeader")
-		}
-	}()
+	defer qt.Recovering("QHttpPart::setRawHeader")
 
 	if ptr.Pointer() != nil {
 		C.QHttpPart_SetRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName), core.PointerFromQByteArray(headerValue))
@@ -110,11 +86,7 @@ func (ptr *QHttpPart) SetRawHeader(headerName core.QByteArray_ITF, headerValue c
 }
 
 func (ptr *QHttpPart) Swap(other QHttpPart_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHttpPart::swap")
-		}
-	}()
+	defer qt.Recovering("QHttpPart::swap")
 
 	if ptr.Pointer() != nil {
 		C.QHttpPart_Swap(ptr.Pointer(), PointerFromQHttpPart(other))
@@ -122,11 +94,7 @@ func (ptr *QHttpPart) Swap(other QHttpPart_ITF) {
 }
 
 func (ptr *QHttpPart) DestroyQHttpPart() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHttpPart::~QHttpPart")
-		}
-	}()
+	defer qt.Recovering("QHttpPart::~QHttpPart")
 
 	if ptr.Pointer() != nil {
 		C.QHttpPart_DestroyQHttpPart(ptr.Pointer())

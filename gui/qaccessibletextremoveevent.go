@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,31 +35,19 @@ func (ptr *QAccessibleTextRemoveEvent) QAccessibleTextRemoveEvent_PTR() *QAccess
 }
 
 func NewQAccessibleTextRemoveEvent2(iface QAccessibleInterface_ITF, position int, text string) *QAccessibleTextRemoveEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextRemoveEvent::QAccessibleTextRemoveEvent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextRemoveEvent::QAccessibleTextRemoveEvent")
 
 	return NewQAccessibleTextRemoveEventFromPointer(C.QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent2(PointerFromQAccessibleInterface(iface), C.int(position), C.CString(text)))
 }
 
 func NewQAccessibleTextRemoveEvent(object core.QObject_ITF, position int, text string) *QAccessibleTextRemoveEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextRemoveEvent::QAccessibleTextRemoveEvent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextRemoveEvent::QAccessibleTextRemoveEvent")
 
 	return NewQAccessibleTextRemoveEventFromPointer(C.QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent(core.PointerFromQObject(object), C.int(position), C.CString(text)))
 }
 
 func (ptr *QAccessibleTextRemoveEvent) ChangePosition() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextRemoveEvent::changePosition")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextRemoveEvent::changePosition")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTextRemoveEvent_ChangePosition(ptr.Pointer()))
@@ -68,11 +56,7 @@ func (ptr *QAccessibleTextRemoveEvent) ChangePosition() int {
 }
 
 func (ptr *QAccessibleTextRemoveEvent) TextRemoved() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextRemoveEvent::textRemoved")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextRemoveEvent::textRemoved")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAccessibleTextRemoveEvent_TextRemoved(ptr.Pointer()))

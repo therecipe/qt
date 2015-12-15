@@ -3,9 +3,9 @@ package qml
 //#include "qml.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
-	"log"
 	"unsafe"
 )
 
@@ -35,6 +35,9 @@ func PointerFromQQmlNetworkAccessManagerFactory(ptr QQmlNetworkAccessManagerFact
 func NewQQmlNetworkAccessManagerFactoryFromPointer(ptr unsafe.Pointer) *QQmlNetworkAccessManagerFactory {
 	var n = new(QQmlNetworkAccessManagerFactory)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QQmlNetworkAccessManagerFactory_") {
+		n.SetObjectNameAbs("QQmlNetworkAccessManagerFactory_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -43,11 +46,7 @@ func (ptr *QQmlNetworkAccessManagerFactory) QQmlNetworkAccessManagerFactory_PTR(
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) Create(parent core.QObject_ITF) *network.QNetworkAccessManager {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNetworkAccessManagerFactory::create")
-		}
-	}()
+	defer qt.Recovering("QQmlNetworkAccessManagerFactory::create")
 
 	if ptr.Pointer() != nil {
 		return network.NewQNetworkAccessManagerFromPointer(C.QQmlNetworkAccessManagerFactory_Create(ptr.Pointer(), core.PointerFromQObject(parent)))
@@ -56,13 +55,26 @@ func (ptr *QQmlNetworkAccessManagerFactory) Create(parent core.QObject_ITF) *net
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) DestroyQQmlNetworkAccessManagerFactory() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
-		}
-	}()
+	defer qt.Recovering("QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
 
 	if ptr.Pointer() != nil {
 		C.QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(ptr.Pointer())
+	}
+}
+
+func (ptr *QQmlNetworkAccessManagerFactory) ObjectNameAbs() string {
+	defer qt.Recovering("QQmlNetworkAccessManagerFactory::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QQmlNetworkAccessManagerFactory_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QQmlNetworkAccessManagerFactory) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QQmlNetworkAccessManagerFactory::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QQmlNetworkAccessManagerFactory_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

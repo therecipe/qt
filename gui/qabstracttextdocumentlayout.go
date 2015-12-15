@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQAbstractTextDocumentLayoutFromPointer(ptr unsafe.Pointer) *QAbstractTex
 	var n = new(QAbstractTextDocumentLayout)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractTextDocumentLayout_") {
-		n.SetObjectName("QAbstractTextDocumentLayout_" + qt.RandomIdentifier())
+		n.SetObjectName("QAbstractTextDocumentLayout_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QAbstractTextDocumentLayout) QAbstractTextDocumentLayout_PTR() *QAbst
 }
 
 func (ptr *QAbstractTextDocumentLayout) AnchorAt(position core.QPointF_ITF) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTextDocumentLayout::anchorAt")
-		}
-	}()
+	defer qt.Recovering("QAbstractTextDocumentLayout::anchorAt")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAbstractTextDocumentLayout_AnchorAt(ptr.Pointer(), core.PointerFromQPointF(position)))
@@ -52,11 +47,7 @@ func (ptr *QAbstractTextDocumentLayout) AnchorAt(position core.QPointF_ITF) stri
 }
 
 func (ptr *QAbstractTextDocumentLayout) Document() *QTextDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTextDocumentLayout::document")
-		}
-	}()
+	defer qt.Recovering("QAbstractTextDocumentLayout::document")
 
 	if ptr.Pointer() != nil {
 		return NewQTextDocumentFromPointer(C.QAbstractTextDocumentLayout_Document(ptr.Pointer()))
@@ -65,11 +56,7 @@ func (ptr *QAbstractTextDocumentLayout) Document() *QTextDocument {
 }
 
 func (ptr *QAbstractTextDocumentLayout) HandlerForObject(objectType int) *QTextObjectInterface {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTextDocumentLayout::handlerForObject")
-		}
-	}()
+	defer qt.Recovering("QAbstractTextDocumentLayout::handlerForObject")
 
 	if ptr.Pointer() != nil {
 		return NewQTextObjectInterfaceFromPointer(C.QAbstractTextDocumentLayout_HandlerForObject(ptr.Pointer(), C.int(objectType)))
@@ -78,11 +65,7 @@ func (ptr *QAbstractTextDocumentLayout) HandlerForObject(objectType int) *QTextO
 }
 
 func (ptr *QAbstractTextDocumentLayout) PageCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTextDocumentLayout::pageCount")
-		}
-	}()
+	defer qt.Recovering("QAbstractTextDocumentLayout::pageCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAbstractTextDocumentLayout_PageCount(ptr.Pointer()))
@@ -91,11 +74,7 @@ func (ptr *QAbstractTextDocumentLayout) PageCount() int {
 }
 
 func (ptr *QAbstractTextDocumentLayout) ConnectPageCountChanged(f func(newPages int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTextDocumentLayout::pageCountChanged")
-		}
-	}()
+	defer qt.Recovering("connect QAbstractTextDocumentLayout::pageCountChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTextDocumentLayout_ConnectPageCountChanged(ptr.Pointer())
@@ -104,11 +83,7 @@ func (ptr *QAbstractTextDocumentLayout) ConnectPageCountChanged(f func(newPages 
 }
 
 func (ptr *QAbstractTextDocumentLayout) DisconnectPageCountChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTextDocumentLayout::pageCountChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QAbstractTextDocumentLayout::pageCountChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTextDocumentLayout_DisconnectPageCountChanged(ptr.Pointer())
@@ -118,21 +93,17 @@ func (ptr *QAbstractTextDocumentLayout) DisconnectPageCountChanged() {
 
 //export callbackQAbstractTextDocumentLayoutPageCountChanged
 func callbackQAbstractTextDocumentLayoutPageCountChanged(ptrName *C.char, newPages C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTextDocumentLayout::pageCountChanged")
-		}
-	}()
+	defer qt.Recovering("callback QAbstractTextDocumentLayout::pageCountChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "pageCountChanged").(func(int))(int(newPages))
+	var signal = qt.GetSignal(C.GoString(ptrName), "pageCountChanged")
+	if signal != nil {
+		signal.(func(int))(int(newPages))
+	}
+
 }
 
 func (ptr *QAbstractTextDocumentLayout) PaintDevice() *QPaintDevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTextDocumentLayout::paintDevice")
-		}
-	}()
+	defer qt.Recovering("QAbstractTextDocumentLayout::paintDevice")
 
 	if ptr.Pointer() != nil {
 		return NewQPaintDeviceFromPointer(C.QAbstractTextDocumentLayout_PaintDevice(ptr.Pointer()))
@@ -141,11 +112,7 @@ func (ptr *QAbstractTextDocumentLayout) PaintDevice() *QPaintDevice {
 }
 
 func (ptr *QAbstractTextDocumentLayout) RegisterHandler(objectType int, component core.QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTextDocumentLayout::registerHandler")
-		}
-	}()
+	defer qt.Recovering("QAbstractTextDocumentLayout::registerHandler")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTextDocumentLayout_RegisterHandler(ptr.Pointer(), C.int(objectType), core.PointerFromQObject(component))
@@ -153,11 +120,7 @@ func (ptr *QAbstractTextDocumentLayout) RegisterHandler(objectType int, componen
 }
 
 func (ptr *QAbstractTextDocumentLayout) SetPaintDevice(device QPaintDevice_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTextDocumentLayout::setPaintDevice")
-		}
-	}()
+	defer qt.Recovering("QAbstractTextDocumentLayout::setPaintDevice")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTextDocumentLayout_SetPaintDevice(ptr.Pointer(), PointerFromQPaintDevice(device))
@@ -165,11 +128,7 @@ func (ptr *QAbstractTextDocumentLayout) SetPaintDevice(device QPaintDevice_ITF) 
 }
 
 func (ptr *QAbstractTextDocumentLayout) UnregisterHandler(objectType int, component core.QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTextDocumentLayout::unregisterHandler")
-		}
-	}()
+	defer qt.Recovering("QAbstractTextDocumentLayout::unregisterHandler")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTextDocumentLayout_UnregisterHandler(ptr.Pointer(), C.int(objectType), core.PointerFromQObject(component))

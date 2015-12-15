@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQLayoutItem(ptr QLayoutItem_ITF) unsafe.Pointer {
 func NewQLayoutItemFromPointer(ptr unsafe.Pointer) *QLayoutItem {
 	var n = new(QLayoutItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QLayoutItem_") {
+		n.SetObjectNameAbs("QLayoutItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,11 +45,7 @@ func (ptr *QLayoutItem) QLayoutItem_PTR() *QLayoutItem {
 }
 
 func (ptr *QLayoutItem) Alignment() core.Qt__AlignmentFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::alignment")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::alignment")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__AlignmentFlag(C.QLayoutItem_Alignment(ptr.Pointer()))
@@ -55,11 +54,7 @@ func (ptr *QLayoutItem) Alignment() core.Qt__AlignmentFlag {
 }
 
 func (ptr *QLayoutItem) ControlTypes() QSizePolicy__ControlType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::controlTypes")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::controlTypes")
 
 	if ptr.Pointer() != nil {
 		return QSizePolicy__ControlType(C.QLayoutItem_ControlTypes(ptr.Pointer()))
@@ -68,11 +63,7 @@ func (ptr *QLayoutItem) ControlTypes() QSizePolicy__ControlType {
 }
 
 func (ptr *QLayoutItem) ExpandingDirections() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::expandingDirections")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::expandingDirections")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QLayoutItem_ExpandingDirections(ptr.Pointer()))
@@ -81,11 +72,7 @@ func (ptr *QLayoutItem) ExpandingDirections() core.Qt__Orientation {
 }
 
 func (ptr *QLayoutItem) HasHeightForWidth() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::hasHeightForWidth")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::hasHeightForWidth")
 
 	if ptr.Pointer() != nil {
 		return C.QLayoutItem_HasHeightForWidth(ptr.Pointer()) != 0
@@ -94,11 +81,7 @@ func (ptr *QLayoutItem) HasHeightForWidth() bool {
 }
 
 func (ptr *QLayoutItem) HeightForWidth(w int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::heightForWidth")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::heightForWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QLayoutItem_HeightForWidth(ptr.Pointer(), C.int(w)))
@@ -106,24 +89,39 @@ func (ptr *QLayoutItem) HeightForWidth(w int) int {
 	return 0
 }
 
-func (ptr *QLayoutItem) Invalidate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::invalidate")
-		}
-	}()
+func (ptr *QLayoutItem) ConnectInvalidate(f func()) {
+	defer qt.Recovering("connect QLayoutItem::invalidate")
 
 	if ptr.Pointer() != nil {
-		C.QLayoutItem_Invalidate(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "invalidate", f)
 	}
 }
 
+func (ptr *QLayoutItem) DisconnectInvalidate() {
+	defer qt.Recovering("disconnect QLayoutItem::invalidate")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "invalidate")
+	}
+}
+
+//export callbackQLayoutItemInvalidate
+func callbackQLayoutItemInvalidate(ptrName *C.char) bool {
+	defer qt.Recovering("callback QLayoutItem::invalidate")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "invalidate")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QLayoutItem) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QLayoutItem_IsEmpty(ptr.Pointer()) != 0
@@ -132,11 +130,7 @@ func (ptr *QLayoutItem) IsEmpty() bool {
 }
 
 func (ptr *QLayoutItem) Layout() *QLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::layout")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::layout")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutFromPointer(C.QLayoutItem_Layout(ptr.Pointer()))
@@ -145,11 +139,7 @@ func (ptr *QLayoutItem) Layout() *QLayout {
 }
 
 func (ptr *QLayoutItem) MinimumHeightForWidth(w int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::minimumHeightForWidth")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::minimumHeightForWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QLayoutItem_MinimumHeightForWidth(ptr.Pointer(), C.int(w)))
@@ -158,11 +148,7 @@ func (ptr *QLayoutItem) MinimumHeightForWidth(w int) int {
 }
 
 func (ptr *QLayoutItem) SetAlignment(alignment core.Qt__AlignmentFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::setAlignment")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::setAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QLayoutItem_SetAlignment(ptr.Pointer(), C.int(alignment))
@@ -170,11 +156,7 @@ func (ptr *QLayoutItem) SetAlignment(alignment core.Qt__AlignmentFlag) {
 }
 
 func (ptr *QLayoutItem) SetGeometry(r core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::setGeometry")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::setGeometry")
 
 	if ptr.Pointer() != nil {
 		C.QLayoutItem_SetGeometry(ptr.Pointer(), core.PointerFromQRect(r))
@@ -182,11 +164,7 @@ func (ptr *QLayoutItem) SetGeometry(r core.QRect_ITF) {
 }
 
 func (ptr *QLayoutItem) SpacerItem() *QSpacerItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::spacerItem")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::spacerItem")
 
 	if ptr.Pointer() != nil {
 		return NewQSpacerItemFromPointer(C.QLayoutItem_SpacerItem(ptr.Pointer()))
@@ -195,11 +173,7 @@ func (ptr *QLayoutItem) SpacerItem() *QSpacerItem {
 }
 
 func (ptr *QLayoutItem) Widget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::widget")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::widget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QLayoutItem_Widget(ptr.Pointer()))
@@ -208,13 +182,26 @@ func (ptr *QLayoutItem) Widget() *QWidget {
 }
 
 func (ptr *QLayoutItem) DestroyQLayoutItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayoutItem::~QLayoutItem")
-		}
-	}()
+	defer qt.Recovering("QLayoutItem::~QLayoutItem")
 
 	if ptr.Pointer() != nil {
 		C.QLayoutItem_DestroyQLayoutItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QLayoutItem) ObjectNameAbs() string {
+	defer qt.Recovering("QLayoutItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QLayoutItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QLayoutItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QLayoutItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QLayoutItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

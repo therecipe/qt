@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -52,21 +51,13 @@ const (
 )
 
 func NewQSqlField2(other QSqlField_ITF) *QSqlField {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::QSqlField")
-		}
-	}()
+	defer qt.Recovering("QSqlField::QSqlField")
 
 	return NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField2(PointerFromQSqlField(other)))
 }
 
 func (ptr *QSqlField) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::clear")
-		}
-	}()
+	defer qt.Recovering("QSqlField::clear")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_Clear(ptr.Pointer())
@@ -74,11 +65,7 @@ func (ptr *QSqlField) Clear() {
 }
 
 func (ptr *QSqlField) DefaultValue() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::defaultValue")
-		}
-	}()
+	defer qt.Recovering("QSqlField::defaultValue")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSqlField_DefaultValue(ptr.Pointer()))
@@ -87,11 +74,7 @@ func (ptr *QSqlField) DefaultValue() *core.QVariant {
 }
 
 func (ptr *QSqlField) IsAutoValue() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::isAutoValue")
-		}
-	}()
+	defer qt.Recovering("QSqlField::isAutoValue")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlField_IsAutoValue(ptr.Pointer()) != 0
@@ -100,11 +83,7 @@ func (ptr *QSqlField) IsAutoValue() bool {
 }
 
 func (ptr *QSqlField) IsGenerated() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::isGenerated")
-		}
-	}()
+	defer qt.Recovering("QSqlField::isGenerated")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlField_IsGenerated(ptr.Pointer()) != 0
@@ -113,11 +92,7 @@ func (ptr *QSqlField) IsGenerated() bool {
 }
 
 func (ptr *QSqlField) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::isNull")
-		}
-	}()
+	defer qt.Recovering("QSqlField::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlField_IsNull(ptr.Pointer()) != 0
@@ -126,11 +101,7 @@ func (ptr *QSqlField) IsNull() bool {
 }
 
 func (ptr *QSqlField) IsReadOnly() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::isReadOnly")
-		}
-	}()
+	defer qt.Recovering("QSqlField::isReadOnly")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlField_IsReadOnly(ptr.Pointer()) != 0
@@ -139,11 +110,7 @@ func (ptr *QSqlField) IsReadOnly() bool {
 }
 
 func (ptr *QSqlField) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::isValid")
-		}
-	}()
+	defer qt.Recovering("QSqlField::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlField_IsValid(ptr.Pointer()) != 0
@@ -152,11 +119,7 @@ func (ptr *QSqlField) IsValid() bool {
 }
 
 func (ptr *QSqlField) Length() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::length")
-		}
-	}()
+	defer qt.Recovering("QSqlField::length")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSqlField_Length(ptr.Pointer()))
@@ -165,11 +128,7 @@ func (ptr *QSqlField) Length() int {
 }
 
 func (ptr *QSqlField) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::name")
-		}
-	}()
+	defer qt.Recovering("QSqlField::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSqlField_Name(ptr.Pointer()))
@@ -178,11 +137,7 @@ func (ptr *QSqlField) Name() string {
 }
 
 func (ptr *QSqlField) Precision() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::precision")
-		}
-	}()
+	defer qt.Recovering("QSqlField::precision")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSqlField_Precision(ptr.Pointer()))
@@ -191,11 +146,7 @@ func (ptr *QSqlField) Precision() int {
 }
 
 func (ptr *QSqlField) RequiredStatus() QSqlField__RequiredStatus {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::requiredStatus")
-		}
-	}()
+	defer qt.Recovering("QSqlField::requiredStatus")
 
 	if ptr.Pointer() != nil {
 		return QSqlField__RequiredStatus(C.QSqlField_RequiredStatus(ptr.Pointer()))
@@ -204,11 +155,7 @@ func (ptr *QSqlField) RequiredStatus() QSqlField__RequiredStatus {
 }
 
 func (ptr *QSqlField) SetAutoValue(autoVal bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::setAutoValue")
-		}
-	}()
+	defer qt.Recovering("QSqlField::setAutoValue")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetAutoValue(ptr.Pointer(), C.int(qt.GoBoolToInt(autoVal)))
@@ -216,11 +163,7 @@ func (ptr *QSqlField) SetAutoValue(autoVal bool) {
 }
 
 func (ptr *QSqlField) SetDefaultValue(value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::setDefaultValue")
-		}
-	}()
+	defer qt.Recovering("QSqlField::setDefaultValue")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetDefaultValue(ptr.Pointer(), core.PointerFromQVariant(value))
@@ -228,11 +171,7 @@ func (ptr *QSqlField) SetDefaultValue(value core.QVariant_ITF) {
 }
 
 func (ptr *QSqlField) SetGenerated(gen bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::setGenerated")
-		}
-	}()
+	defer qt.Recovering("QSqlField::setGenerated")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetGenerated(ptr.Pointer(), C.int(qt.GoBoolToInt(gen)))
@@ -240,11 +179,7 @@ func (ptr *QSqlField) SetGenerated(gen bool) {
 }
 
 func (ptr *QSqlField) SetLength(fieldLength int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::setLength")
-		}
-	}()
+	defer qt.Recovering("QSqlField::setLength")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetLength(ptr.Pointer(), C.int(fieldLength))
@@ -252,11 +187,7 @@ func (ptr *QSqlField) SetLength(fieldLength int) {
 }
 
 func (ptr *QSqlField) SetName(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::setName")
-		}
-	}()
+	defer qt.Recovering("QSqlField::setName")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetName(ptr.Pointer(), C.CString(name))
@@ -264,11 +195,7 @@ func (ptr *QSqlField) SetName(name string) {
 }
 
 func (ptr *QSqlField) SetPrecision(precision int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::setPrecision")
-		}
-	}()
+	defer qt.Recovering("QSqlField::setPrecision")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetPrecision(ptr.Pointer(), C.int(precision))
@@ -276,11 +203,7 @@ func (ptr *QSqlField) SetPrecision(precision int) {
 }
 
 func (ptr *QSqlField) SetReadOnly(readOnly bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::setReadOnly")
-		}
-	}()
+	defer qt.Recovering("QSqlField::setReadOnly")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetReadOnly(ptr.Pointer(), C.int(qt.GoBoolToInt(readOnly)))
@@ -288,11 +211,7 @@ func (ptr *QSqlField) SetReadOnly(readOnly bool) {
 }
 
 func (ptr *QSqlField) SetRequired(required bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::setRequired")
-		}
-	}()
+	defer qt.Recovering("QSqlField::setRequired")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetRequired(ptr.Pointer(), C.int(qt.GoBoolToInt(required)))
@@ -300,11 +219,7 @@ func (ptr *QSqlField) SetRequired(required bool) {
 }
 
 func (ptr *QSqlField) SetRequiredStatus(required QSqlField__RequiredStatus) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::setRequiredStatus")
-		}
-	}()
+	defer qt.Recovering("QSqlField::setRequiredStatus")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetRequiredStatus(ptr.Pointer(), C.int(required))
@@ -312,11 +227,7 @@ func (ptr *QSqlField) SetRequiredStatus(required QSqlField__RequiredStatus) {
 }
 
 func (ptr *QSqlField) SetValue(value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::setValue")
-		}
-	}()
+	defer qt.Recovering("QSqlField::setValue")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetValue(ptr.Pointer(), core.PointerFromQVariant(value))
@@ -324,11 +235,7 @@ func (ptr *QSqlField) SetValue(value core.QVariant_ITF) {
 }
 
 func (ptr *QSqlField) Value() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::value")
-		}
-	}()
+	defer qt.Recovering("QSqlField::value")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSqlField_Value(ptr.Pointer()))
@@ -337,11 +244,7 @@ func (ptr *QSqlField) Value() *core.QVariant {
 }
 
 func (ptr *QSqlField) DestroyQSqlField() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlField::~QSqlField")
-		}
-	}()
+	defer qt.Recovering("QSqlField::~QSqlField")
 
 	if ptr.Pointer() != nil {
 		C.QSqlField_DestroyQSqlField(ptr.Pointer())

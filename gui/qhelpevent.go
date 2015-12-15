@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,21 +35,22 @@ func (ptr *QHelpEvent) QHelpEvent_PTR() *QHelpEvent {
 }
 
 func NewQHelpEvent(ty core.QEvent__Type, pos core.QPoint_ITF, globalPos core.QPoint_ITF) *QHelpEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEvent::QHelpEvent")
-		}
-	}()
+	defer qt.Recovering("QHelpEvent::QHelpEvent")
 
 	return NewQHelpEventFromPointer(C.QHelpEvent_NewQHelpEvent(C.int(ty), core.PointerFromQPoint(pos), core.PointerFromQPoint(globalPos)))
 }
 
+func (ptr *QHelpEvent) GlobalPos() *core.QPoint {
+	defer qt.Recovering("QHelpEvent::globalPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QHelpEvent_GlobalPos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QHelpEvent) GlobalX() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEvent::globalX")
-		}
-	}()
+	defer qt.Recovering("QHelpEvent::globalX")
 
 	if ptr.Pointer() != nil {
 		return int(C.QHelpEvent_GlobalX(ptr.Pointer()))
@@ -58,11 +59,7 @@ func (ptr *QHelpEvent) GlobalX() int {
 }
 
 func (ptr *QHelpEvent) GlobalY() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEvent::globalY")
-		}
-	}()
+	defer qt.Recovering("QHelpEvent::globalY")
 
 	if ptr.Pointer() != nil {
 		return int(C.QHelpEvent_GlobalY(ptr.Pointer()))
@@ -70,12 +67,17 @@ func (ptr *QHelpEvent) GlobalY() int {
 	return 0
 }
 
+func (ptr *QHelpEvent) Pos() *core.QPoint {
+	defer qt.Recovering("QHelpEvent::pos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QHelpEvent_Pos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QHelpEvent) X() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEvent::x")
-		}
-	}()
+	defer qt.Recovering("QHelpEvent::x")
 
 	if ptr.Pointer() != nil {
 		return int(C.QHelpEvent_X(ptr.Pointer()))
@@ -84,11 +86,7 @@ func (ptr *QHelpEvent) X() int {
 }
 
 func (ptr *QHelpEvent) Y() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEvent::y")
-		}
-	}()
+	defer qt.Recovering("QHelpEvent::y")
 
 	if ptr.Pointer() != nil {
 		return int(C.QHelpEvent_Y(ptr.Pointer()))

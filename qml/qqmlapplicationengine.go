@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQQmlApplicationEngineFromPointer(ptr unsafe.Pointer) *QQmlApplicationEng
 	var n = new(QQmlApplicationEngine)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlApplicationEngine_") {
-		n.SetObjectName("QQmlApplicationEngine_" + qt.RandomIdentifier())
+		n.SetObjectName("QQmlApplicationEngine_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,41 +38,25 @@ func (ptr *QQmlApplicationEngine) QQmlApplicationEngine_PTR() *QQmlApplicationEn
 }
 
 func NewQQmlApplicationEngine(parent core.QObject_ITF) *QQmlApplicationEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlApplicationEngine::QQmlApplicationEngine")
-		}
-	}()
+	defer qt.Recovering("QQmlApplicationEngine::QQmlApplicationEngine")
 
 	return NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine(core.PointerFromQObject(parent)))
 }
 
 func NewQQmlApplicationEngine3(filePath string, parent core.QObject_ITF) *QQmlApplicationEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlApplicationEngine::QQmlApplicationEngine")
-		}
-	}()
+	defer qt.Recovering("QQmlApplicationEngine::QQmlApplicationEngine")
 
 	return NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine3(C.CString(filePath), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlApplicationEngine2(url core.QUrl_ITF, parent core.QObject_ITF) *QQmlApplicationEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlApplicationEngine::QQmlApplicationEngine")
-		}
-	}()
+	defer qt.Recovering("QQmlApplicationEngine::QQmlApplicationEngine")
 
 	return NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine2(core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlApplicationEngine) Load2(filePath string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlApplicationEngine::load")
-		}
-	}()
+	defer qt.Recovering("QQmlApplicationEngine::load")
 
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_Load2(ptr.Pointer(), C.CString(filePath))
@@ -81,11 +64,7 @@ func (ptr *QQmlApplicationEngine) Load2(filePath string) {
 }
 
 func (ptr *QQmlApplicationEngine) Load(url core.QUrl_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlApplicationEngine::load")
-		}
-	}()
+	defer qt.Recovering("QQmlApplicationEngine::load")
 
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_Load(ptr.Pointer(), core.PointerFromQUrl(url))
@@ -93,11 +72,7 @@ func (ptr *QQmlApplicationEngine) Load(url core.QUrl_ITF) {
 }
 
 func (ptr *QQmlApplicationEngine) LoadData(data core.QByteArray_ITF, url core.QUrl_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlApplicationEngine::loadData")
-		}
-	}()
+	defer qt.Recovering("QQmlApplicationEngine::loadData")
 
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_LoadData(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(url))
@@ -105,11 +80,7 @@ func (ptr *QQmlApplicationEngine) LoadData(data core.QByteArray_ITF, url core.QU
 }
 
 func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlApplicationEngine::~QQmlApplicationEngine")
-		}
-	}()
+	defer qt.Recovering("QQmlApplicationEngine::~QQmlApplicationEngine")
 
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_DestroyQQmlApplicationEngine(ptr.Pointer())

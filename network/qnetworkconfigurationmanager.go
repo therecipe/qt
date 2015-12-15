@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQNetworkConfigurationManagerFromPointer(ptr unsafe.Pointer) *QNetworkCon
 	var n = new(QNetworkConfigurationManager)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QNetworkConfigurationManager_") {
-		n.SetObjectName("QNetworkConfigurationManager_" + qt.RandomIdentifier())
+		n.SetObjectName("QNetworkConfigurationManager_" + qt.Identifier())
 	}
 	return n
 }
@@ -52,21 +51,13 @@ const (
 )
 
 func NewQNetworkConfigurationManager(parent core.QObject_ITF) *QNetworkConfigurationManager {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfigurationManager::QNetworkConfigurationManager")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfigurationManager::QNetworkConfigurationManager")
 
 	return NewQNetworkConfigurationManagerFromPointer(C.QNetworkConfigurationManager_NewQNetworkConfigurationManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNetworkConfigurationManager) Capabilities() QNetworkConfigurationManager__Capability {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfigurationManager::capabilities")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfigurationManager::capabilities")
 
 	if ptr.Pointer() != nil {
 		return QNetworkConfigurationManager__Capability(C.QNetworkConfigurationManager_Capabilities(ptr.Pointer()))
@@ -75,11 +66,7 @@ func (ptr *QNetworkConfigurationManager) Capabilities() QNetworkConfigurationMan
 }
 
 func (ptr *QNetworkConfigurationManager) IsOnline() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfigurationManager::isOnline")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfigurationManager::isOnline")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkConfigurationManager_IsOnline(ptr.Pointer()) != 0
@@ -88,11 +75,7 @@ func (ptr *QNetworkConfigurationManager) IsOnline() bool {
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectOnlineStateChanged(f func(isOnline bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfigurationManager::onlineStateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QNetworkConfigurationManager::onlineStateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_ConnectOnlineStateChanged(ptr.Pointer())
@@ -101,11 +84,7 @@ func (ptr *QNetworkConfigurationManager) ConnectOnlineStateChanged(f func(isOnli
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectOnlineStateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfigurationManager::onlineStateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QNetworkConfigurationManager::onlineStateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DisconnectOnlineStateChanged(ptr.Pointer())
@@ -115,21 +94,17 @@ func (ptr *QNetworkConfigurationManager) DisconnectOnlineStateChanged() {
 
 //export callbackQNetworkConfigurationManagerOnlineStateChanged
 func callbackQNetworkConfigurationManagerOnlineStateChanged(ptrName *C.char, isOnline C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfigurationManager::onlineStateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QNetworkConfigurationManager::onlineStateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "onlineStateChanged").(func(bool))(int(isOnline) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "onlineStateChanged")
+	if signal != nil {
+		signal.(func(bool))(int(isOnline) != 0)
+	}
+
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectUpdateCompleted(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfigurationManager::updateCompleted")
-		}
-	}()
+	defer qt.Recovering("connect QNetworkConfigurationManager::updateCompleted")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_ConnectUpdateCompleted(ptr.Pointer())
@@ -138,11 +113,7 @@ func (ptr *QNetworkConfigurationManager) ConnectUpdateCompleted(f func()) {
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectUpdateCompleted() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfigurationManager::updateCompleted")
-		}
-	}()
+	defer qt.Recovering("disconnect QNetworkConfigurationManager::updateCompleted")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DisconnectUpdateCompleted(ptr.Pointer())
@@ -152,21 +123,17 @@ func (ptr *QNetworkConfigurationManager) DisconnectUpdateCompleted() {
 
 //export callbackQNetworkConfigurationManagerUpdateCompleted
 func callbackQNetworkConfigurationManagerUpdateCompleted(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfigurationManager::updateCompleted")
-		}
-	}()
+	defer qt.Recovering("callback QNetworkConfigurationManager::updateCompleted")
 
-	qt.GetSignal(C.GoString(ptrName), "updateCompleted").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "updateCompleted")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QNetworkConfigurationManager) UpdateConfigurations() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfigurationManager::updateConfigurations")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfigurationManager::updateConfigurations")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_UpdateConfigurations(ptr.Pointer())
@@ -174,11 +141,7 @@ func (ptr *QNetworkConfigurationManager) UpdateConfigurations() {
 }
 
 func (ptr *QNetworkConfigurationManager) DestroyQNetworkConfigurationManager() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfigurationManager::~QNetworkConfigurationManager")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfigurationManager::~QNetworkConfigurationManager")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(ptr.Pointer())

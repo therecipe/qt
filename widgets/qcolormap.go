@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -50,21 +50,13 @@ const (
 )
 
 func NewQColormap(colormap QColormap_ITF) *QColormap {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QColormap::QColormap")
-		}
-	}()
+	defer qt.Recovering("QColormap::QColormap")
 
 	return NewQColormapFromPointer(C.QColormap_NewQColormap(PointerFromQColormap(colormap)))
 }
 
 func (ptr *QColormap) Depth() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QColormap::depth")
-		}
-	}()
+	defer qt.Recovering("QColormap::depth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QColormap_Depth(ptr.Pointer()))
@@ -73,11 +65,7 @@ func (ptr *QColormap) Depth() int {
 }
 
 func (ptr *QColormap) Mode() QColormap__Mode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QColormap::mode")
-		}
-	}()
+	defer qt.Recovering("QColormap::mode")
 
 	if ptr.Pointer() != nil {
 		return QColormap__Mode(C.QColormap_Mode(ptr.Pointer()))
@@ -86,11 +74,7 @@ func (ptr *QColormap) Mode() QColormap__Mode {
 }
 
 func (ptr *QColormap) Size() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QColormap::size")
-		}
-	}()
+	defer qt.Recovering("QColormap::size")
 
 	if ptr.Pointer() != nil {
 		return int(C.QColormap_Size(ptr.Pointer()))
@@ -99,11 +83,7 @@ func (ptr *QColormap) Size() int {
 }
 
 func (ptr *QColormap) DestroyQColormap() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QColormap::~QColormap")
-		}
-	}()
+	defer qt.Recovering("QColormap::~QColormap")
 
 	if ptr.Pointer() != nil {
 		C.QColormap_DestroyQColormap(ptr.Pointer())

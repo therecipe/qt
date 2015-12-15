@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,31 +34,19 @@ func (ptr *QDomElement) QDomElement_PTR() *QDomElement {
 }
 
 func NewQDomElement() *QDomElement {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::QDomElement")
-		}
-	}()
+	defer qt.Recovering("QDomElement::QDomElement")
 
 	return NewQDomElementFromPointer(C.QDomElement_NewQDomElement())
 }
 
 func NewQDomElement2(x QDomElement_ITF) *QDomElement {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::QDomElement")
-		}
-	}()
+	defer qt.Recovering("QDomElement::QDomElement")
 
 	return NewQDomElementFromPointer(C.QDomElement_NewQDomElement2(PointerFromQDomElement(x)))
 }
 
 func (ptr *QDomElement) Attribute(name string, defValue string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::attribute")
-		}
-	}()
+	defer qt.Recovering("QDomElement::attribute")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomElement_Attribute(ptr.Pointer(), C.CString(name), C.CString(defValue)))
@@ -67,11 +55,7 @@ func (ptr *QDomElement) Attribute(name string, defValue string) string {
 }
 
 func (ptr *QDomElement) AttributeNS(nsURI string, localName string, defValue string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::attributeNS")
-		}
-	}()
+	defer qt.Recovering("QDomElement::attributeNS")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomElement_AttributeNS(ptr.Pointer(), C.CString(nsURI), C.CString(localName), C.CString(defValue)))
@@ -80,11 +64,7 @@ func (ptr *QDomElement) AttributeNS(nsURI string, localName string, defValue str
 }
 
 func (ptr *QDomElement) HasAttribute(name string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::hasAttribute")
-		}
-	}()
+	defer qt.Recovering("QDomElement::hasAttribute")
 
 	if ptr.Pointer() != nil {
 		return C.QDomElement_HasAttribute(ptr.Pointer(), C.CString(name)) != 0
@@ -93,11 +73,7 @@ func (ptr *QDomElement) HasAttribute(name string) bool {
 }
 
 func (ptr *QDomElement) HasAttributeNS(nsURI string, localName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::hasAttributeNS")
-		}
-	}()
+	defer qt.Recovering("QDomElement::hasAttributeNS")
 
 	if ptr.Pointer() != nil {
 		return C.QDomElement_HasAttributeNS(ptr.Pointer(), C.CString(nsURI), C.CString(localName)) != 0
@@ -106,11 +82,7 @@ func (ptr *QDomElement) HasAttributeNS(nsURI string, localName string) bool {
 }
 
 func (ptr *QDomElement) NodeType() QDomNode__NodeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::nodeType")
-		}
-	}()
+	defer qt.Recovering("QDomElement::nodeType")
 
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomElement_NodeType(ptr.Pointer()))
@@ -119,11 +91,7 @@ func (ptr *QDomElement) NodeType() QDomNode__NodeType {
 }
 
 func (ptr *QDomElement) RemoveAttribute(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::removeAttribute")
-		}
-	}()
+	defer qt.Recovering("QDomElement::removeAttribute")
 
 	if ptr.Pointer() != nil {
 		C.QDomElement_RemoveAttribute(ptr.Pointer(), C.CString(name))
@@ -131,11 +99,7 @@ func (ptr *QDomElement) RemoveAttribute(name string) {
 }
 
 func (ptr *QDomElement) RemoveAttributeNS(nsURI string, localName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::removeAttributeNS")
-		}
-	}()
+	defer qt.Recovering("QDomElement::removeAttributeNS")
 
 	if ptr.Pointer() != nil {
 		C.QDomElement_RemoveAttributeNS(ptr.Pointer(), C.CString(nsURI), C.CString(localName))
@@ -143,11 +107,7 @@ func (ptr *QDomElement) RemoveAttributeNS(nsURI string, localName string) {
 }
 
 func (ptr *QDomElement) SetAttribute(name string, value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::setAttribute")
-		}
-	}()
+	defer qt.Recovering("QDomElement::setAttribute")
 
 	if ptr.Pointer() != nil {
 		C.QDomElement_SetAttribute(ptr.Pointer(), C.CString(name), C.CString(value))
@@ -155,11 +115,7 @@ func (ptr *QDomElement) SetAttribute(name string, value string) {
 }
 
 func (ptr *QDomElement) SetAttribute2(name string, value int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::setAttribute")
-		}
-	}()
+	defer qt.Recovering("QDomElement::setAttribute")
 
 	if ptr.Pointer() != nil {
 		C.QDomElement_SetAttribute2(ptr.Pointer(), C.CString(name), C.int(value))
@@ -167,11 +123,7 @@ func (ptr *QDomElement) SetAttribute2(name string, value int) {
 }
 
 func (ptr *QDomElement) SetAttributeNS(nsURI string, qName string, value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::setAttributeNS")
-		}
-	}()
+	defer qt.Recovering("QDomElement::setAttributeNS")
 
 	if ptr.Pointer() != nil {
 		C.QDomElement_SetAttributeNS(ptr.Pointer(), C.CString(nsURI), C.CString(qName), C.CString(value))
@@ -179,11 +131,7 @@ func (ptr *QDomElement) SetAttributeNS(nsURI string, qName string, value string)
 }
 
 func (ptr *QDomElement) SetAttributeNS2(nsURI string, qName string, value int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::setAttributeNS")
-		}
-	}()
+	defer qt.Recovering("QDomElement::setAttributeNS")
 
 	if ptr.Pointer() != nil {
 		C.QDomElement_SetAttributeNS2(ptr.Pointer(), C.CString(nsURI), C.CString(qName), C.int(value))
@@ -191,11 +139,7 @@ func (ptr *QDomElement) SetAttributeNS2(nsURI string, qName string, value int) {
 }
 
 func (ptr *QDomElement) SetTagName(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::setTagName")
-		}
-	}()
+	defer qt.Recovering("QDomElement::setTagName")
 
 	if ptr.Pointer() != nil {
 		C.QDomElement_SetTagName(ptr.Pointer(), C.CString(name))
@@ -203,11 +147,7 @@ func (ptr *QDomElement) SetTagName(name string) {
 }
 
 func (ptr *QDomElement) TagName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::tagName")
-		}
-	}()
+	defer qt.Recovering("QDomElement::tagName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomElement_TagName(ptr.Pointer()))
@@ -216,11 +156,7 @@ func (ptr *QDomElement) TagName() string {
 }
 
 func (ptr *QDomElement) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomElement::text")
-		}
-	}()
+	defer qt.Recovering("QDomElement::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomElement_Text(ptr.Pointer()))

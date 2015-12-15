@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,41 +42,25 @@ func (ptr *QTextDocumentWriter) QTextDocumentWriter_PTR() *QTextDocumentWriter {
 }
 
 func NewQTextDocumentWriter() *QTextDocumentWriter {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::QTextDocumentWriter")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::QTextDocumentWriter")
 
 	return NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter())
 }
 
 func NewQTextDocumentWriter2(device core.QIODevice_ITF, format core.QByteArray_ITF) *QTextDocumentWriter {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::QTextDocumentWriter")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::QTextDocumentWriter")
 
 	return NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 }
 
 func NewQTextDocumentWriter3(fileName string, format core.QByteArray_ITF) *QTextDocumentWriter {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::QTextDocumentWriter")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::QTextDocumentWriter")
 
 	return NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter3(C.CString(fileName), core.PointerFromQByteArray(format)))
 }
 
 func (ptr *QTextDocumentWriter) Codec() *core.QTextCodec {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::codec")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::codec")
 
 	if ptr.Pointer() != nil {
 		return core.NewQTextCodecFromPointer(C.QTextDocumentWriter_Codec(ptr.Pointer()))
@@ -85,11 +69,7 @@ func (ptr *QTextDocumentWriter) Codec() *core.QTextCodec {
 }
 
 func (ptr *QTextDocumentWriter) Device() *core.QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::device")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::device")
 
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QTextDocumentWriter_Device(ptr.Pointer()))
@@ -98,11 +78,7 @@ func (ptr *QTextDocumentWriter) Device() *core.QIODevice {
 }
 
 func (ptr *QTextDocumentWriter) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::fileName")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextDocumentWriter_FileName(ptr.Pointer()))
@@ -111,11 +87,7 @@ func (ptr *QTextDocumentWriter) FileName() string {
 }
 
 func (ptr *QTextDocumentWriter) Format() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::format")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::format")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QTextDocumentWriter_Format(ptr.Pointer()))
@@ -124,11 +96,7 @@ func (ptr *QTextDocumentWriter) Format() *core.QByteArray {
 }
 
 func (ptr *QTextDocumentWriter) SetCodec(codec core.QTextCodec_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::setCodec")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::setCodec")
 
 	if ptr.Pointer() != nil {
 		C.QTextDocumentWriter_SetCodec(ptr.Pointer(), core.PointerFromQTextCodec(codec))
@@ -136,11 +104,7 @@ func (ptr *QTextDocumentWriter) SetCodec(codec core.QTextCodec_ITF) {
 }
 
 func (ptr *QTextDocumentWriter) SetDevice(device core.QIODevice_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::setDevice")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::setDevice")
 
 	if ptr.Pointer() != nil {
 		C.QTextDocumentWriter_SetDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
@@ -148,11 +112,7 @@ func (ptr *QTextDocumentWriter) SetDevice(device core.QIODevice_ITF) {
 }
 
 func (ptr *QTextDocumentWriter) SetFileName(fileName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::setFileName")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::setFileName")
 
 	if ptr.Pointer() != nil {
 		C.QTextDocumentWriter_SetFileName(ptr.Pointer(), C.CString(fileName))
@@ -160,11 +120,7 @@ func (ptr *QTextDocumentWriter) SetFileName(fileName string) {
 }
 
 func (ptr *QTextDocumentWriter) SetFormat(format core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::setFormat")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::setFormat")
 
 	if ptr.Pointer() != nil {
 		C.QTextDocumentWriter_SetFormat(ptr.Pointer(), core.PointerFromQByteArray(format))
@@ -172,11 +128,7 @@ func (ptr *QTextDocumentWriter) SetFormat(format core.QByteArray_ITF) {
 }
 
 func (ptr *QTextDocumentWriter) Write(document QTextDocument_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::write")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::write")
 
 	if ptr.Pointer() != nil {
 		return C.QTextDocumentWriter_Write(ptr.Pointer(), PointerFromQTextDocument(document)) != 0
@@ -185,11 +137,7 @@ func (ptr *QTextDocumentWriter) Write(document QTextDocument_ITF) bool {
 }
 
 func (ptr *QTextDocumentWriter) Write2(fragment QTextDocumentFragment_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::write")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::write")
 
 	if ptr.Pointer() != nil {
 		return C.QTextDocumentWriter_Write2(ptr.Pointer(), PointerFromQTextDocumentFragment(fragment)) != 0
@@ -198,11 +146,7 @@ func (ptr *QTextDocumentWriter) Write2(fragment QTextDocumentFragment_ITF) bool 
 }
 
 func (ptr *QTextDocumentWriter) DestroyQTextDocumentWriter() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDocumentWriter::~QTextDocumentWriter")
-		}
-	}()
+	defer qt.Recovering("QTextDocumentWriter::~QTextDocumentWriter")
 
 	if ptr.Pointer() != nil {
 		C.QTextDocumentWriter_DestroyQTextDocumentWriter(ptr.Pointer())

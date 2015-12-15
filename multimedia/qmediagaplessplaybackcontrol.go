@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQMediaGaplessPlaybackControlFromPointer(ptr unsafe.Pointer) *QMediaGaple
 	var n = new(QMediaGaplessPlaybackControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaGaplessPlaybackControl_") {
-		n.SetObjectName("QMediaGaplessPlaybackControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QMediaGaplessPlaybackControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QMediaGaplessPlaybackControl) QMediaGaplessPlaybackControl_PTR() *QMe
 }
 
 func (ptr *QMediaGaplessPlaybackControl) ConnectAdvancedToNextMedia(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaGaplessPlaybackControl::advancedToNextMedia")
-		}
-	}()
+	defer qt.Recovering("connect QMediaGaplessPlaybackControl::advancedToNextMedia")
 
 	if ptr.Pointer() != nil {
 		C.QMediaGaplessPlaybackControl_ConnectAdvancedToNextMedia(ptr.Pointer())
@@ -51,11 +46,7 @@ func (ptr *QMediaGaplessPlaybackControl) ConnectAdvancedToNextMedia(f func()) {
 }
 
 func (ptr *QMediaGaplessPlaybackControl) DisconnectAdvancedToNextMedia() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaGaplessPlaybackControl::advancedToNextMedia")
-		}
-	}()
+	defer qt.Recovering("disconnect QMediaGaplessPlaybackControl::advancedToNextMedia")
 
 	if ptr.Pointer() != nil {
 		C.QMediaGaplessPlaybackControl_DisconnectAdvancedToNextMedia(ptr.Pointer())
@@ -65,21 +56,17 @@ func (ptr *QMediaGaplessPlaybackControl) DisconnectAdvancedToNextMedia() {
 
 //export callbackQMediaGaplessPlaybackControlAdvancedToNextMedia
 func callbackQMediaGaplessPlaybackControlAdvancedToNextMedia(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaGaplessPlaybackControl::advancedToNextMedia")
-		}
-	}()
+	defer qt.Recovering("callback QMediaGaplessPlaybackControl::advancedToNextMedia")
 
-	qt.GetSignal(C.GoString(ptrName), "advancedToNextMedia").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "advancedToNextMedia")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QMediaGaplessPlaybackControl) CrossfadeTime() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaGaplessPlaybackControl::crossfadeTime")
-		}
-	}()
+	defer qt.Recovering("QMediaGaplessPlaybackControl::crossfadeTime")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QMediaGaplessPlaybackControl_CrossfadeTime(ptr.Pointer()))
@@ -88,11 +75,7 @@ func (ptr *QMediaGaplessPlaybackControl) CrossfadeTime() float64 {
 }
 
 func (ptr *QMediaGaplessPlaybackControl) IsCrossfadeSupported() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaGaplessPlaybackControl::isCrossfadeSupported")
-		}
-	}()
+	defer qt.Recovering("QMediaGaplessPlaybackControl::isCrossfadeSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QMediaGaplessPlaybackControl_IsCrossfadeSupported(ptr.Pointer()) != 0
@@ -101,11 +84,7 @@ func (ptr *QMediaGaplessPlaybackControl) IsCrossfadeSupported() bool {
 }
 
 func (ptr *QMediaGaplessPlaybackControl) SetCrossfadeTime(crossfadeTime float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaGaplessPlaybackControl::setCrossfadeTime")
-		}
-	}()
+	defer qt.Recovering("QMediaGaplessPlaybackControl::setCrossfadeTime")
 
 	if ptr.Pointer() != nil {
 		C.QMediaGaplessPlaybackControl_SetCrossfadeTime(ptr.Pointer(), C.double(crossfadeTime))
@@ -113,11 +92,7 @@ func (ptr *QMediaGaplessPlaybackControl) SetCrossfadeTime(crossfadeTime float64)
 }
 
 func (ptr *QMediaGaplessPlaybackControl) SetNextMedia(media QMediaContent_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaGaplessPlaybackControl::setNextMedia")
-		}
-	}()
+	defer qt.Recovering("QMediaGaplessPlaybackControl::setNextMedia")
 
 	if ptr.Pointer() != nil {
 		C.QMediaGaplessPlaybackControl_SetNextMedia(ptr.Pointer(), PointerFromQMediaContent(media))
@@ -125,11 +100,7 @@ func (ptr *QMediaGaplessPlaybackControl) SetNextMedia(media QMediaContent_ITF) {
 }
 
 func (ptr *QMediaGaplessPlaybackControl) DestroyQMediaGaplessPlaybackControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl")
-		}
-	}()
+	defer qt.Recovering("QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(ptr.Pointer())

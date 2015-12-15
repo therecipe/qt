@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -40,7 +39,7 @@ func NewQGraphicsObjectFromPointer(ptr unsafe.Pointer) *QGraphicsObject {
 	var n = new(QGraphicsObject)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGraphicsObject_") {
-		n.SetObjectName("QGraphicsObject_" + qt.RandomIdentifier())
+		n.SetObjectName("QGraphicsObject_" + qt.Identifier())
 	}
 	return n
 }
@@ -50,11 +49,7 @@ func (ptr *QGraphicsObject) QGraphicsObject_PTR() *QGraphicsObject {
 }
 
 func (ptr *QGraphicsObject) ConnectEnabledChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::enabledChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsObject::enabledChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_ConnectEnabledChanged(ptr.Pointer())
@@ -63,11 +58,7 @@ func (ptr *QGraphicsObject) ConnectEnabledChanged(f func()) {
 }
 
 func (ptr *QGraphicsObject) DisconnectEnabledChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::enabledChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsObject::enabledChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DisconnectEnabledChanged(ptr.Pointer())
@@ -77,21 +68,17 @@ func (ptr *QGraphicsObject) DisconnectEnabledChanged() {
 
 //export callbackQGraphicsObjectEnabledChanged
 func callbackQGraphicsObjectEnabledChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::enabledChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsObject::enabledChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "enabledChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "enabledChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsObject) GrabGesture(gesture core.Qt__GestureType, flags core.Qt__GestureFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::grabGesture")
-		}
-	}()
+	defer qt.Recovering("QGraphicsObject::grabGesture")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_GrabGesture(ptr.Pointer(), C.int(gesture), C.int(flags))
@@ -99,11 +86,7 @@ func (ptr *QGraphicsObject) GrabGesture(gesture core.Qt__GestureType, flags core
 }
 
 func (ptr *QGraphicsObject) ConnectOpacityChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::opacityChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsObject::opacityChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_ConnectOpacityChanged(ptr.Pointer())
@@ -112,11 +95,7 @@ func (ptr *QGraphicsObject) ConnectOpacityChanged(f func()) {
 }
 
 func (ptr *QGraphicsObject) DisconnectOpacityChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::opacityChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsObject::opacityChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DisconnectOpacityChanged(ptr.Pointer())
@@ -126,21 +105,17 @@ func (ptr *QGraphicsObject) DisconnectOpacityChanged() {
 
 //export callbackQGraphicsObjectOpacityChanged
 func callbackQGraphicsObjectOpacityChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::opacityChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsObject::opacityChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "opacityChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "opacityChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsObject) ConnectParentChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::parentChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsObject::parentChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_ConnectParentChanged(ptr.Pointer())
@@ -149,11 +124,7 @@ func (ptr *QGraphicsObject) ConnectParentChanged(f func()) {
 }
 
 func (ptr *QGraphicsObject) DisconnectParentChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::parentChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsObject::parentChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DisconnectParentChanged(ptr.Pointer())
@@ -163,21 +134,17 @@ func (ptr *QGraphicsObject) DisconnectParentChanged() {
 
 //export callbackQGraphicsObjectParentChanged
 func callbackQGraphicsObjectParentChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::parentChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsObject::parentChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "parentChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "parentChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsObject) ConnectRotationChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::rotationChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsObject::rotationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_ConnectRotationChanged(ptr.Pointer())
@@ -186,11 +153,7 @@ func (ptr *QGraphicsObject) ConnectRotationChanged(f func()) {
 }
 
 func (ptr *QGraphicsObject) DisconnectRotationChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::rotationChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsObject::rotationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DisconnectRotationChanged(ptr.Pointer())
@@ -200,21 +163,17 @@ func (ptr *QGraphicsObject) DisconnectRotationChanged() {
 
 //export callbackQGraphicsObjectRotationChanged
 func callbackQGraphicsObjectRotationChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::rotationChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsObject::rotationChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "rotationChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "rotationChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsObject) ConnectScaleChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::scaleChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsObject::scaleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_ConnectScaleChanged(ptr.Pointer())
@@ -223,11 +182,7 @@ func (ptr *QGraphicsObject) ConnectScaleChanged(f func()) {
 }
 
 func (ptr *QGraphicsObject) DisconnectScaleChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::scaleChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsObject::scaleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DisconnectScaleChanged(ptr.Pointer())
@@ -237,21 +192,17 @@ func (ptr *QGraphicsObject) DisconnectScaleChanged() {
 
 //export callbackQGraphicsObjectScaleChanged
 func callbackQGraphicsObjectScaleChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::scaleChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsObject::scaleChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "scaleChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "scaleChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsObject) UngrabGesture(gesture core.Qt__GestureType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::ungrabGesture")
-		}
-	}()
+	defer qt.Recovering("QGraphicsObject::ungrabGesture")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_UngrabGesture(ptr.Pointer(), C.int(gesture))
@@ -259,11 +210,7 @@ func (ptr *QGraphicsObject) UngrabGesture(gesture core.Qt__GestureType) {
 }
 
 func (ptr *QGraphicsObject) ConnectVisibleChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::visibleChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsObject::visibleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_ConnectVisibleChanged(ptr.Pointer())
@@ -272,11 +219,7 @@ func (ptr *QGraphicsObject) ConnectVisibleChanged(f func()) {
 }
 
 func (ptr *QGraphicsObject) DisconnectVisibleChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::visibleChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsObject::visibleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DisconnectVisibleChanged(ptr.Pointer())
@@ -286,21 +229,17 @@ func (ptr *QGraphicsObject) DisconnectVisibleChanged() {
 
 //export callbackQGraphicsObjectVisibleChanged
 func callbackQGraphicsObjectVisibleChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::visibleChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsObject::visibleChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "visibleChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "visibleChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsObject) ConnectXChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::xChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsObject::xChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_ConnectXChanged(ptr.Pointer())
@@ -309,11 +248,7 @@ func (ptr *QGraphicsObject) ConnectXChanged(f func()) {
 }
 
 func (ptr *QGraphicsObject) DisconnectXChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::xChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsObject::xChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DisconnectXChanged(ptr.Pointer())
@@ -323,21 +258,17 @@ func (ptr *QGraphicsObject) DisconnectXChanged() {
 
 //export callbackQGraphicsObjectXChanged
 func callbackQGraphicsObjectXChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::xChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsObject::xChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "xChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "xChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsObject) ConnectYChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::yChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsObject::yChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_ConnectYChanged(ptr.Pointer())
@@ -346,11 +277,7 @@ func (ptr *QGraphicsObject) ConnectYChanged(f func()) {
 }
 
 func (ptr *QGraphicsObject) DisconnectYChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::yChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsObject::yChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DisconnectYChanged(ptr.Pointer())
@@ -360,21 +287,17 @@ func (ptr *QGraphicsObject) DisconnectYChanged() {
 
 //export callbackQGraphicsObjectYChanged
 func callbackQGraphicsObjectYChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::yChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsObject::yChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "yChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "yChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsObject) ConnectZChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::zChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsObject::zChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_ConnectZChanged(ptr.Pointer())
@@ -383,11 +306,7 @@ func (ptr *QGraphicsObject) ConnectZChanged(f func()) {
 }
 
 func (ptr *QGraphicsObject) DisconnectZChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::zChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsObject::zChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DisconnectZChanged(ptr.Pointer())
@@ -397,21 +316,17 @@ func (ptr *QGraphicsObject) DisconnectZChanged() {
 
 //export callbackQGraphicsObjectZChanged
 func callbackQGraphicsObjectZChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::zChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsObject::zChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "zChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "zChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsObject) DestroyQGraphicsObject() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsObject::~QGraphicsObject")
-		}
-	}()
+	defer qt.Recovering("QGraphicsObject::~QGraphicsObject")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DestroyQGraphicsObject(ptr.Pointer())

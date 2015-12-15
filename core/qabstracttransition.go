@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQAbstractTransitionFromPointer(ptr unsafe.Pointer) *QAbstractTransition 
 	var n = new(QAbstractTransition)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractTransition_") {
-		n.SetObjectName("QAbstractTransition_" + qt.RandomIdentifier())
+		n.SetObjectName("QAbstractTransition_" + qt.Identifier())
 	}
 	return n
 }
@@ -46,11 +45,7 @@ const (
 )
 
 func (ptr *QAbstractTransition) AddAnimation(animation QAbstractAnimation_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::addAnimation")
-		}
-	}()
+	defer qt.Recovering("QAbstractTransition::addAnimation")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_AddAnimation(ptr.Pointer(), PointerFromQAbstractAnimation(animation))
@@ -58,11 +53,7 @@ func (ptr *QAbstractTransition) AddAnimation(animation QAbstractAnimation_ITF) {
 }
 
 func (ptr *QAbstractTransition) Machine() *QStateMachine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::machine")
-		}
-	}()
+	defer qt.Recovering("QAbstractTransition::machine")
 
 	if ptr.Pointer() != nil {
 		return NewQStateMachineFromPointer(C.QAbstractTransition_Machine(ptr.Pointer()))
@@ -71,11 +62,7 @@ func (ptr *QAbstractTransition) Machine() *QStateMachine {
 }
 
 func (ptr *QAbstractTransition) RemoveAnimation(animation QAbstractAnimation_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::removeAnimation")
-		}
-	}()
+	defer qt.Recovering("QAbstractTransition::removeAnimation")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_RemoveAnimation(ptr.Pointer(), PointerFromQAbstractAnimation(animation))
@@ -83,11 +70,7 @@ func (ptr *QAbstractTransition) RemoveAnimation(animation QAbstractAnimation_ITF
 }
 
 func (ptr *QAbstractTransition) SetTargetState(target QAbstractState_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::setTargetState")
-		}
-	}()
+	defer qt.Recovering("QAbstractTransition::setTargetState")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_SetTargetState(ptr.Pointer(), PointerFromQAbstractState(target))
@@ -95,11 +78,7 @@ func (ptr *QAbstractTransition) SetTargetState(target QAbstractState_ITF) {
 }
 
 func (ptr *QAbstractTransition) SetTransitionType(ty QAbstractTransition__TransitionType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::setTransitionType")
-		}
-	}()
+	defer qt.Recovering("QAbstractTransition::setTransitionType")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_SetTransitionType(ptr.Pointer(), C.int(ty))
@@ -107,11 +86,7 @@ func (ptr *QAbstractTransition) SetTransitionType(ty QAbstractTransition__Transi
 }
 
 func (ptr *QAbstractTransition) SourceState() *QState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::sourceState")
-		}
-	}()
+	defer qt.Recovering("QAbstractTransition::sourceState")
 
 	if ptr.Pointer() != nil {
 		return NewQStateFromPointer(C.QAbstractTransition_SourceState(ptr.Pointer()))
@@ -120,11 +95,7 @@ func (ptr *QAbstractTransition) SourceState() *QState {
 }
 
 func (ptr *QAbstractTransition) TargetState() *QAbstractState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::targetState")
-		}
-	}()
+	defer qt.Recovering("QAbstractTransition::targetState")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractStateFromPointer(C.QAbstractTransition_TargetState(ptr.Pointer()))
@@ -133,11 +104,7 @@ func (ptr *QAbstractTransition) TargetState() *QAbstractState {
 }
 
 func (ptr *QAbstractTransition) ConnectTargetStateChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::targetStateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QAbstractTransition::targetStateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_ConnectTargetStateChanged(ptr.Pointer())
@@ -146,11 +113,7 @@ func (ptr *QAbstractTransition) ConnectTargetStateChanged(f func()) {
 }
 
 func (ptr *QAbstractTransition) DisconnectTargetStateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::targetStateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QAbstractTransition::targetStateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_DisconnectTargetStateChanged(ptr.Pointer())
@@ -160,21 +123,17 @@ func (ptr *QAbstractTransition) DisconnectTargetStateChanged() {
 
 //export callbackQAbstractTransitionTargetStateChanged
 func callbackQAbstractTransitionTargetStateChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::targetStateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QAbstractTransition::targetStateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "targetStateChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "targetStateChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QAbstractTransition) ConnectTargetStatesChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::targetStatesChanged")
-		}
-	}()
+	defer qt.Recovering("connect QAbstractTransition::targetStatesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_ConnectTargetStatesChanged(ptr.Pointer())
@@ -183,11 +142,7 @@ func (ptr *QAbstractTransition) ConnectTargetStatesChanged(f func()) {
 }
 
 func (ptr *QAbstractTransition) DisconnectTargetStatesChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::targetStatesChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QAbstractTransition::targetStatesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_DisconnectTargetStatesChanged(ptr.Pointer())
@@ -197,21 +152,17 @@ func (ptr *QAbstractTransition) DisconnectTargetStatesChanged() {
 
 //export callbackQAbstractTransitionTargetStatesChanged
 func callbackQAbstractTransitionTargetStatesChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::targetStatesChanged")
-		}
-	}()
+	defer qt.Recovering("callback QAbstractTransition::targetStatesChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "targetStatesChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "targetStatesChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QAbstractTransition) TransitionType() QAbstractTransition__TransitionType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::transitionType")
-		}
-	}()
+	defer qt.Recovering("QAbstractTransition::transitionType")
 
 	if ptr.Pointer() != nil {
 		return QAbstractTransition__TransitionType(C.QAbstractTransition_TransitionType(ptr.Pointer()))
@@ -220,11 +171,7 @@ func (ptr *QAbstractTransition) TransitionType() QAbstractTransition__Transition
 }
 
 func (ptr *QAbstractTransition) ConnectTriggered(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::triggered")
-		}
-	}()
+	defer qt.Recovering("connect QAbstractTransition::triggered")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_ConnectTriggered(ptr.Pointer())
@@ -233,11 +180,7 @@ func (ptr *QAbstractTransition) ConnectTriggered(f func()) {
 }
 
 func (ptr *QAbstractTransition) DisconnectTriggered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::triggered")
-		}
-	}()
+	defer qt.Recovering("disconnect QAbstractTransition::triggered")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_DisconnectTriggered(ptr.Pointer())
@@ -247,21 +190,17 @@ func (ptr *QAbstractTransition) DisconnectTriggered() {
 
 //export callbackQAbstractTransitionTriggered
 func callbackQAbstractTransitionTriggered(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::triggered")
-		}
-	}()
+	defer qt.Recovering("callback QAbstractTransition::triggered")
 
-	qt.GetSignal(C.GoString(ptrName), "triggered").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "triggered")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QAbstractTransition) DestroyQAbstractTransition() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractTransition::~QAbstractTransition")
-		}
-	}()
+	defer qt.Recovering("QAbstractTransition::~QAbstractTransition")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_DestroyQAbstractTransition(ptr.Pointer())

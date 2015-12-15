@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQPinchGestureFromPointer(ptr unsafe.Pointer) *QPinchGesture {
 	var n = new(QPinchGesture)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QPinchGesture_") {
-		n.SetObjectName("QPinchGesture_" + qt.RandomIdentifier())
+		n.SetObjectName("QPinchGesture_" + qt.Identifier())
 	}
 	return n
 }
@@ -48,11 +47,7 @@ const (
 )
 
 func (ptr *QPinchGesture) ChangeFlags() QPinchGesture__ChangeFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::changeFlags")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::changeFlags")
 
 	if ptr.Pointer() != nil {
 		return QPinchGesture__ChangeFlag(C.QPinchGesture_ChangeFlags(ptr.Pointer()))
@@ -61,11 +56,7 @@ func (ptr *QPinchGesture) ChangeFlags() QPinchGesture__ChangeFlag {
 }
 
 func (ptr *QPinchGesture) LastRotationAngle() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::lastRotationAngle")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::lastRotationAngle")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPinchGesture_LastRotationAngle(ptr.Pointer()))
@@ -74,11 +65,7 @@ func (ptr *QPinchGesture) LastRotationAngle() float64 {
 }
 
 func (ptr *QPinchGesture) LastScaleFactor() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::lastScaleFactor")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::lastScaleFactor")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPinchGesture_LastScaleFactor(ptr.Pointer()))
@@ -87,11 +74,7 @@ func (ptr *QPinchGesture) LastScaleFactor() float64 {
 }
 
 func (ptr *QPinchGesture) RotationAngle() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::rotationAngle")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::rotationAngle")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPinchGesture_RotationAngle(ptr.Pointer()))
@@ -100,11 +83,7 @@ func (ptr *QPinchGesture) RotationAngle() float64 {
 }
 
 func (ptr *QPinchGesture) ScaleFactor() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::scaleFactor")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::scaleFactor")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPinchGesture_ScaleFactor(ptr.Pointer()))
@@ -113,11 +92,7 @@ func (ptr *QPinchGesture) ScaleFactor() float64 {
 }
 
 func (ptr *QPinchGesture) SetCenterPoint(value core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::setCenterPoint")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::setCenterPoint")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_SetCenterPoint(ptr.Pointer(), core.PointerFromQPointF(value))
@@ -125,11 +100,7 @@ func (ptr *QPinchGesture) SetCenterPoint(value core.QPointF_ITF) {
 }
 
 func (ptr *QPinchGesture) SetChangeFlags(value QPinchGesture__ChangeFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::setChangeFlags")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::setChangeFlags")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_SetChangeFlags(ptr.Pointer(), C.int(value))
@@ -137,11 +108,7 @@ func (ptr *QPinchGesture) SetChangeFlags(value QPinchGesture__ChangeFlag) {
 }
 
 func (ptr *QPinchGesture) SetLastCenterPoint(value core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::setLastCenterPoint")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::setLastCenterPoint")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_SetLastCenterPoint(ptr.Pointer(), core.PointerFromQPointF(value))
@@ -149,11 +116,7 @@ func (ptr *QPinchGesture) SetLastCenterPoint(value core.QPointF_ITF) {
 }
 
 func (ptr *QPinchGesture) SetLastRotationAngle(value float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::setLastRotationAngle")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::setLastRotationAngle")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_SetLastRotationAngle(ptr.Pointer(), C.double(value))
@@ -161,11 +124,7 @@ func (ptr *QPinchGesture) SetLastRotationAngle(value float64) {
 }
 
 func (ptr *QPinchGesture) SetLastScaleFactor(value float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::setLastScaleFactor")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::setLastScaleFactor")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_SetLastScaleFactor(ptr.Pointer(), C.double(value))
@@ -173,11 +132,7 @@ func (ptr *QPinchGesture) SetLastScaleFactor(value float64) {
 }
 
 func (ptr *QPinchGesture) SetRotationAngle(value float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::setRotationAngle")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::setRotationAngle")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_SetRotationAngle(ptr.Pointer(), C.double(value))
@@ -185,11 +140,7 @@ func (ptr *QPinchGesture) SetRotationAngle(value float64) {
 }
 
 func (ptr *QPinchGesture) SetScaleFactor(value float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::setScaleFactor")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::setScaleFactor")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_SetScaleFactor(ptr.Pointer(), C.double(value))
@@ -197,11 +148,7 @@ func (ptr *QPinchGesture) SetScaleFactor(value float64) {
 }
 
 func (ptr *QPinchGesture) SetStartCenterPoint(value core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::setStartCenterPoint")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::setStartCenterPoint")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_SetStartCenterPoint(ptr.Pointer(), core.PointerFromQPointF(value))
@@ -209,11 +156,7 @@ func (ptr *QPinchGesture) SetStartCenterPoint(value core.QPointF_ITF) {
 }
 
 func (ptr *QPinchGesture) SetTotalChangeFlags(value QPinchGesture__ChangeFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::setTotalChangeFlags")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::setTotalChangeFlags")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_SetTotalChangeFlags(ptr.Pointer(), C.int(value))
@@ -221,11 +164,7 @@ func (ptr *QPinchGesture) SetTotalChangeFlags(value QPinchGesture__ChangeFlag) {
 }
 
 func (ptr *QPinchGesture) SetTotalRotationAngle(value float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::setTotalRotationAngle")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::setTotalRotationAngle")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_SetTotalRotationAngle(ptr.Pointer(), C.double(value))
@@ -233,11 +172,7 @@ func (ptr *QPinchGesture) SetTotalRotationAngle(value float64) {
 }
 
 func (ptr *QPinchGesture) SetTotalScaleFactor(value float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::setTotalScaleFactor")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::setTotalScaleFactor")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_SetTotalScaleFactor(ptr.Pointer(), C.double(value))
@@ -245,11 +180,7 @@ func (ptr *QPinchGesture) SetTotalScaleFactor(value float64) {
 }
 
 func (ptr *QPinchGesture) TotalChangeFlags() QPinchGesture__ChangeFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::totalChangeFlags")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::totalChangeFlags")
 
 	if ptr.Pointer() != nil {
 		return QPinchGesture__ChangeFlag(C.QPinchGesture_TotalChangeFlags(ptr.Pointer()))
@@ -258,11 +189,7 @@ func (ptr *QPinchGesture) TotalChangeFlags() QPinchGesture__ChangeFlag {
 }
 
 func (ptr *QPinchGesture) TotalRotationAngle() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::totalRotationAngle")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::totalRotationAngle")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPinchGesture_TotalRotationAngle(ptr.Pointer()))
@@ -271,11 +198,7 @@ func (ptr *QPinchGesture) TotalRotationAngle() float64 {
 }
 
 func (ptr *QPinchGesture) TotalScaleFactor() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::totalScaleFactor")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::totalScaleFactor")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPinchGesture_TotalScaleFactor(ptr.Pointer()))
@@ -284,11 +207,7 @@ func (ptr *QPinchGesture) TotalScaleFactor() float64 {
 }
 
 func (ptr *QPinchGesture) DestroyQPinchGesture() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPinchGesture::~QPinchGesture")
-		}
-	}()
+	defer qt.Recovering("QPinchGesture::~QPinchGesture")
 
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_DestroyQPinchGesture(ptr.Pointer())

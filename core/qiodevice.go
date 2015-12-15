@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQIODeviceFromPointer(ptr unsafe.Pointer) *QIODevice {
 	var n = new(QIODevice)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QIODevice_") {
-		n.SetObjectName("QIODevice_" + qt.RandomIdentifier())
+		n.SetObjectName("QIODevice_" + qt.Identifier())
 	}
 	return n
 }
@@ -52,11 +51,7 @@ const (
 )
 
 func (ptr *QIODevice) GetChar(c string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::getChar")
-		}
-	}()
+	defer qt.Recovering("QIODevice::getChar")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_GetChar(ptr.Pointer(), C.CString(c)) != 0
@@ -65,11 +60,7 @@ func (ptr *QIODevice) GetChar(c string) bool {
 }
 
 func (ptr *QIODevice) PutChar(c string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::putChar")
-		}
-	}()
+	defer qt.Recovering("QIODevice::putChar")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_PutChar(ptr.Pointer(), C.CString(c)) != 0
@@ -78,11 +69,7 @@ func (ptr *QIODevice) PutChar(c string) bool {
 }
 
 func (ptr *QIODevice) ConnectAboutToClose(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::aboutToClose")
-		}
-	}()
+	defer qt.Recovering("connect QIODevice::aboutToClose")
 
 	if ptr.Pointer() != nil {
 		C.QIODevice_ConnectAboutToClose(ptr.Pointer())
@@ -91,11 +78,7 @@ func (ptr *QIODevice) ConnectAboutToClose(f func()) {
 }
 
 func (ptr *QIODevice) DisconnectAboutToClose() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::aboutToClose")
-		}
-	}()
+	defer qt.Recovering("disconnect QIODevice::aboutToClose")
 
 	if ptr.Pointer() != nil {
 		C.QIODevice_DisconnectAboutToClose(ptr.Pointer())
@@ -105,21 +88,17 @@ func (ptr *QIODevice) DisconnectAboutToClose() {
 
 //export callbackQIODeviceAboutToClose
 func callbackQIODeviceAboutToClose(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::aboutToClose")
-		}
-	}()
+	defer qt.Recovering("callback QIODevice::aboutToClose")
 
-	qt.GetSignal(C.GoString(ptrName), "aboutToClose").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "aboutToClose")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QIODevice) AtEnd() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::atEnd")
-		}
-	}()
+	defer qt.Recovering("QIODevice::atEnd")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_AtEnd(ptr.Pointer()) != 0
@@ -128,11 +107,7 @@ func (ptr *QIODevice) AtEnd() bool {
 }
 
 func (ptr *QIODevice) CanReadLine() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::canReadLine")
-		}
-	}()
+	defer qt.Recovering("QIODevice::canReadLine")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_CanReadLine(ptr.Pointer()) != 0
@@ -140,24 +115,39 @@ func (ptr *QIODevice) CanReadLine() bool {
 	return false
 }
 
-func (ptr *QIODevice) Close() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::close")
-		}
-	}()
+func (ptr *QIODevice) ConnectClose(f func()) {
+	defer qt.Recovering("connect QIODevice::close")
 
 	if ptr.Pointer() != nil {
-		C.QIODevice_Close(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "close", f)
 	}
 }
 
+func (ptr *QIODevice) DisconnectClose() {
+	defer qt.Recovering("disconnect QIODevice::close")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "close")
+	}
+}
+
+//export callbackQIODeviceClose
+func callbackQIODeviceClose(ptrName *C.char) bool {
+	defer qt.Recovering("callback QIODevice::close")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "close")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QIODevice) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::errorString")
-		}
-	}()
+	defer qt.Recovering("QIODevice::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QIODevice_ErrorString(ptr.Pointer()))
@@ -166,11 +156,7 @@ func (ptr *QIODevice) ErrorString() string {
 }
 
 func (ptr *QIODevice) IsOpen() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::isOpen")
-		}
-	}()
+	defer qt.Recovering("QIODevice::isOpen")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_IsOpen(ptr.Pointer()) != 0
@@ -179,11 +165,7 @@ func (ptr *QIODevice) IsOpen() bool {
 }
 
 func (ptr *QIODevice) IsReadable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::isReadable")
-		}
-	}()
+	defer qt.Recovering("QIODevice::isReadable")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_IsReadable(ptr.Pointer()) != 0
@@ -192,11 +174,7 @@ func (ptr *QIODevice) IsReadable() bool {
 }
 
 func (ptr *QIODevice) IsSequential() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::isSequential")
-		}
-	}()
+	defer qt.Recovering("QIODevice::isSequential")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_IsSequential(ptr.Pointer()) != 0
@@ -205,11 +183,7 @@ func (ptr *QIODevice) IsSequential() bool {
 }
 
 func (ptr *QIODevice) IsTextModeEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::isTextModeEnabled")
-		}
-	}()
+	defer qt.Recovering("QIODevice::isTextModeEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_IsTextModeEnabled(ptr.Pointer()) != 0
@@ -218,11 +192,7 @@ func (ptr *QIODevice) IsTextModeEnabled() bool {
 }
 
 func (ptr *QIODevice) IsWritable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::isWritable")
-		}
-	}()
+	defer qt.Recovering("QIODevice::isWritable")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_IsWritable(ptr.Pointer()) != 0
@@ -231,11 +201,7 @@ func (ptr *QIODevice) IsWritable() bool {
 }
 
 func (ptr *QIODevice) Open(mode QIODevice__OpenModeFlag) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::open")
-		}
-	}()
+	defer qt.Recovering("QIODevice::open")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_Open(ptr.Pointer(), C.int(mode)) != 0
@@ -244,11 +210,7 @@ func (ptr *QIODevice) Open(mode QIODevice__OpenModeFlag) bool {
 }
 
 func (ptr *QIODevice) OpenMode() QIODevice__OpenModeFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::openMode")
-		}
-	}()
+	defer qt.Recovering("QIODevice::openMode")
 
 	if ptr.Pointer() != nil {
 		return QIODevice__OpenModeFlag(C.QIODevice_OpenMode(ptr.Pointer()))
@@ -257,11 +219,7 @@ func (ptr *QIODevice) OpenMode() QIODevice__OpenModeFlag {
 }
 
 func (ptr *QIODevice) ReadAll() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::readAll")
-		}
-	}()
+	defer qt.Recovering("QIODevice::readAll")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QIODevice_ReadAll(ptr.Pointer()))
@@ -270,11 +228,7 @@ func (ptr *QIODevice) ReadAll() *QByteArray {
 }
 
 func (ptr *QIODevice) ConnectReadChannelFinished(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::readChannelFinished")
-		}
-	}()
+	defer qt.Recovering("connect QIODevice::readChannelFinished")
 
 	if ptr.Pointer() != nil {
 		C.QIODevice_ConnectReadChannelFinished(ptr.Pointer())
@@ -283,11 +237,7 @@ func (ptr *QIODevice) ConnectReadChannelFinished(f func()) {
 }
 
 func (ptr *QIODevice) DisconnectReadChannelFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::readChannelFinished")
-		}
-	}()
+	defer qt.Recovering("disconnect QIODevice::readChannelFinished")
 
 	if ptr.Pointer() != nil {
 		C.QIODevice_DisconnectReadChannelFinished(ptr.Pointer())
@@ -297,21 +247,17 @@ func (ptr *QIODevice) DisconnectReadChannelFinished() {
 
 //export callbackQIODeviceReadChannelFinished
 func callbackQIODeviceReadChannelFinished(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::readChannelFinished")
-		}
-	}()
+	defer qt.Recovering("callback QIODevice::readChannelFinished")
 
-	qt.GetSignal(C.GoString(ptrName), "readChannelFinished").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "readChannelFinished")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QIODevice) ConnectReadyRead(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::readyRead")
-		}
-	}()
+	defer qt.Recovering("connect QIODevice::readyRead")
 
 	if ptr.Pointer() != nil {
 		C.QIODevice_ConnectReadyRead(ptr.Pointer())
@@ -320,11 +266,7 @@ func (ptr *QIODevice) ConnectReadyRead(f func()) {
 }
 
 func (ptr *QIODevice) DisconnectReadyRead() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::readyRead")
-		}
-	}()
+	defer qt.Recovering("disconnect QIODevice::readyRead")
 
 	if ptr.Pointer() != nil {
 		C.QIODevice_DisconnectReadyRead(ptr.Pointer())
@@ -334,21 +276,17 @@ func (ptr *QIODevice) DisconnectReadyRead() {
 
 //export callbackQIODeviceReadyRead
 func callbackQIODeviceReadyRead(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::readyRead")
-		}
-	}()
+	defer qt.Recovering("callback QIODevice::readyRead")
 
-	qt.GetSignal(C.GoString(ptrName), "readyRead").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "readyRead")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QIODevice) Reset() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::reset")
-		}
-	}()
+	defer qt.Recovering("QIODevice::reset")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_Reset(ptr.Pointer()) != 0
@@ -357,11 +295,7 @@ func (ptr *QIODevice) Reset() bool {
 }
 
 func (ptr *QIODevice) SetTextModeEnabled(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::setTextModeEnabled")
-		}
-	}()
+	defer qt.Recovering("QIODevice::setTextModeEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QIODevice_SetTextModeEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -369,11 +303,7 @@ func (ptr *QIODevice) SetTextModeEnabled(enabled bool) {
 }
 
 func (ptr *QIODevice) UngetChar(c string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::ungetChar")
-		}
-	}()
+	defer qt.Recovering("QIODevice::ungetChar")
 
 	if ptr.Pointer() != nil {
 		C.QIODevice_UngetChar(ptr.Pointer(), C.CString(c))
@@ -381,11 +311,7 @@ func (ptr *QIODevice) UngetChar(c string) {
 }
 
 func (ptr *QIODevice) WaitForBytesWritten(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::waitForBytesWritten")
-		}
-	}()
+	defer qt.Recovering("QIODevice::waitForBytesWritten")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_WaitForBytesWritten(ptr.Pointer(), C.int(msecs)) != 0
@@ -394,11 +320,7 @@ func (ptr *QIODevice) WaitForBytesWritten(msecs int) bool {
 }
 
 func (ptr *QIODevice) WaitForReadyRead(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::waitForReadyRead")
-		}
-	}()
+	defer qt.Recovering("QIODevice::waitForReadyRead")
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_WaitForReadyRead(ptr.Pointer(), C.int(msecs)) != 0
@@ -407,11 +329,7 @@ func (ptr *QIODevice) WaitForReadyRead(msecs int) bool {
 }
 
 func (ptr *QIODevice) DestroyQIODevice() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIODevice::~QIODevice")
-		}
-	}()
+	defer qt.Recovering("QIODevice::~QIODevice")
 
 	if ptr.Pointer() != nil {
 		C.QIODevice_DestroyQIODevice(ptr.Pointer())

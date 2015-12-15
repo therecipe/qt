@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -36,6 +35,9 @@ func PointerFromQTableWidgetItem(ptr QTableWidgetItem_ITF) unsafe.Pointer {
 func NewQTableWidgetItemFromPointer(ptr unsafe.Pointer) *QTableWidgetItem {
 	var n = new(QTableWidgetItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QTableWidgetItem_") {
+		n.SetObjectNameAbs("QTableWidgetItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -52,11 +54,7 @@ const (
 )
 
 func (ptr *QTableWidgetItem) SetFlags(flags core.Qt__ItemFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setFlags")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setFlags")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetFlags(ptr.Pointer(), C.int(flags))
@@ -64,51 +62,31 @@ func (ptr *QTableWidgetItem) SetFlags(flags core.Qt__ItemFlag) {
 }
 
 func NewQTableWidgetItem3(icon gui.QIcon_ITF, text string, ty int) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::QTableWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::QTableWidgetItem")
 
 	return NewQTableWidgetItemFromPointer(C.QTableWidgetItem_NewQTableWidgetItem3(gui.PointerFromQIcon(icon), C.CString(text), C.int(ty)))
 }
 
 func NewQTableWidgetItem2(text string, ty int) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::QTableWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::QTableWidgetItem")
 
 	return NewQTableWidgetItemFromPointer(C.QTableWidgetItem_NewQTableWidgetItem2(C.CString(text), C.int(ty)))
 }
 
 func NewQTableWidgetItem4(other QTableWidgetItem_ITF) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::QTableWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::QTableWidgetItem")
 
 	return NewQTableWidgetItemFromPointer(C.QTableWidgetItem_NewQTableWidgetItem4(PointerFromQTableWidgetItem(other)))
 }
 
 func NewQTableWidgetItem(ty int) *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::QTableWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::QTableWidgetItem")
 
 	return NewQTableWidgetItemFromPointer(C.QTableWidgetItem_NewQTableWidgetItem(C.int(ty)))
 }
 
 func (ptr *QTableWidgetItem) Background() *gui.QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::background")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::background")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQBrushFromPointer(C.QTableWidgetItem_Background(ptr.Pointer()))
@@ -117,11 +95,7 @@ func (ptr *QTableWidgetItem) Background() *gui.QBrush {
 }
 
 func (ptr *QTableWidgetItem) CheckState() core.Qt__CheckState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::checkState")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::checkState")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__CheckState(C.QTableWidgetItem_CheckState(ptr.Pointer()))
@@ -130,11 +104,7 @@ func (ptr *QTableWidgetItem) CheckState() core.Qt__CheckState {
 }
 
 func (ptr *QTableWidgetItem) Clone() *QTableWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::clone")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::clone")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidgetItem_Clone(ptr.Pointer()))
@@ -143,11 +113,7 @@ func (ptr *QTableWidgetItem) Clone() *QTableWidgetItem {
 }
 
 func (ptr *QTableWidgetItem) Column() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::column")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::column")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidgetItem_Column(ptr.Pointer()))
@@ -156,11 +122,7 @@ func (ptr *QTableWidgetItem) Column() int {
 }
 
 func (ptr *QTableWidgetItem) Data(role int) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::data")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::data")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QTableWidgetItem_Data(ptr.Pointer(), C.int(role)))
@@ -169,11 +131,7 @@ func (ptr *QTableWidgetItem) Data(role int) *core.QVariant {
 }
 
 func (ptr *QTableWidgetItem) Flags() core.Qt__ItemFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::flags")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::flags")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ItemFlag(C.QTableWidgetItem_Flags(ptr.Pointer()))
@@ -182,11 +140,7 @@ func (ptr *QTableWidgetItem) Flags() core.Qt__ItemFlag {
 }
 
 func (ptr *QTableWidgetItem) Foreground() *gui.QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::foreground")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::foreground")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQBrushFromPointer(C.QTableWidgetItem_Foreground(ptr.Pointer()))
@@ -195,11 +149,7 @@ func (ptr *QTableWidgetItem) Foreground() *gui.QBrush {
 }
 
 func (ptr *QTableWidgetItem) IsSelected() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::isSelected")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::isSelected")
 
 	if ptr.Pointer() != nil {
 		return C.QTableWidgetItem_IsSelected(ptr.Pointer()) != 0
@@ -207,24 +157,8 @@ func (ptr *QTableWidgetItem) IsSelected() bool {
 	return false
 }
 
-func (ptr *QTableWidgetItem) Read(in core.QDataStream_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::read")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QTableWidgetItem_Read(ptr.Pointer(), core.PointerFromQDataStream(in))
-	}
-}
-
 func (ptr *QTableWidgetItem) Row() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::row")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::row")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidgetItem_Row(ptr.Pointer()))
@@ -233,11 +167,7 @@ func (ptr *QTableWidgetItem) Row() int {
 }
 
 func (ptr *QTableWidgetItem) SetBackground(brush gui.QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setBackground")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setBackground")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetBackground(ptr.Pointer(), gui.PointerFromQBrush(brush))
@@ -245,35 +175,46 @@ func (ptr *QTableWidgetItem) SetBackground(brush gui.QBrush_ITF) {
 }
 
 func (ptr *QTableWidgetItem) SetCheckState(state core.Qt__CheckState) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setCheckState")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setCheckState")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetCheckState(ptr.Pointer(), C.int(state))
 	}
 }
 
-func (ptr *QTableWidgetItem) SetData(role int, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setData")
-		}
-	}()
+func (ptr *QTableWidgetItem) ConnectSetData(f func(role int, value *core.QVariant)) {
+	defer qt.Recovering("connect QTableWidgetItem::setData")
 
 	if ptr.Pointer() != nil {
-		C.QTableWidgetItem_SetData(ptr.Pointer(), C.int(role), core.PointerFromQVariant(value))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setData", f)
 	}
 }
 
+func (ptr *QTableWidgetItem) DisconnectSetData() {
+	defer qt.Recovering("disconnect QTableWidgetItem::setData")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setData")
+	}
+}
+
+//export callbackQTableWidgetItemSetData
+func callbackQTableWidgetItemSetData(ptrName *C.char, role C.int, value unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTableWidgetItem::setData")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setData")
+	if signal != nil {
+		defer signal.(func(int, *core.QVariant))(int(role), core.NewQVariantFromPointer(value))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTableWidgetItem) SetFont(font gui.QFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setFont")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setFont")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetFont(ptr.Pointer(), gui.PointerFromQFont(font))
@@ -281,11 +222,7 @@ func (ptr *QTableWidgetItem) SetFont(font gui.QFont_ITF) {
 }
 
 func (ptr *QTableWidgetItem) SetForeground(brush gui.QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setForeground")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setForeground")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetForeground(ptr.Pointer(), gui.PointerFromQBrush(brush))
@@ -293,11 +230,7 @@ func (ptr *QTableWidgetItem) SetForeground(brush gui.QBrush_ITF) {
 }
 
 func (ptr *QTableWidgetItem) SetIcon(icon gui.QIcon_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setIcon")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setIcon")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
@@ -305,11 +238,7 @@ func (ptr *QTableWidgetItem) SetIcon(icon gui.QIcon_ITF) {
 }
 
 func (ptr *QTableWidgetItem) SetSelected(sele bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setSelected")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setSelected")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetSelected(ptr.Pointer(), C.int(qt.GoBoolToInt(sele)))
@@ -317,11 +246,7 @@ func (ptr *QTableWidgetItem) SetSelected(sele bool) {
 }
 
 func (ptr *QTableWidgetItem) SetSizeHint(size core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setSizeHint")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setSizeHint")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetSizeHint(ptr.Pointer(), core.PointerFromQSize(size))
@@ -329,11 +254,7 @@ func (ptr *QTableWidgetItem) SetSizeHint(size core.QSize_ITF) {
 }
 
 func (ptr *QTableWidgetItem) SetStatusTip(statusTip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setStatusTip")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setStatusTip")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetStatusTip(ptr.Pointer(), C.CString(statusTip))
@@ -341,11 +262,7 @@ func (ptr *QTableWidgetItem) SetStatusTip(statusTip string) {
 }
 
 func (ptr *QTableWidgetItem) SetText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setText")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setText")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetText(ptr.Pointer(), C.CString(text))
@@ -353,11 +270,7 @@ func (ptr *QTableWidgetItem) SetText(text string) {
 }
 
 func (ptr *QTableWidgetItem) SetTextAlignment(alignment int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setTextAlignment")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setTextAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetTextAlignment(ptr.Pointer(), C.int(alignment))
@@ -365,11 +278,7 @@ func (ptr *QTableWidgetItem) SetTextAlignment(alignment int) {
 }
 
 func (ptr *QTableWidgetItem) SetToolTip(toolTip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setToolTip")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setToolTip")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetToolTip(ptr.Pointer(), C.CString(toolTip))
@@ -377,11 +286,7 @@ func (ptr *QTableWidgetItem) SetToolTip(toolTip string) {
 }
 
 func (ptr *QTableWidgetItem) SetWhatsThis(whatsThis string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::setWhatsThis")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::setWhatsThis")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetWhatsThis(ptr.Pointer(), C.CString(whatsThis))
@@ -389,11 +294,7 @@ func (ptr *QTableWidgetItem) SetWhatsThis(whatsThis string) {
 }
 
 func (ptr *QTableWidgetItem) StatusTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::statusTip")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::statusTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTableWidgetItem_StatusTip(ptr.Pointer()))
@@ -402,11 +303,7 @@ func (ptr *QTableWidgetItem) StatusTip() string {
 }
 
 func (ptr *QTableWidgetItem) TableWidget() *QTableWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::tableWidget")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::tableWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetFromPointer(C.QTableWidgetItem_TableWidget(ptr.Pointer()))
@@ -415,11 +312,7 @@ func (ptr *QTableWidgetItem) TableWidget() *QTableWidget {
 }
 
 func (ptr *QTableWidgetItem) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::text")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTableWidgetItem_Text(ptr.Pointer()))
@@ -428,11 +321,7 @@ func (ptr *QTableWidgetItem) Text() string {
 }
 
 func (ptr *QTableWidgetItem) TextAlignment() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::textAlignment")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::textAlignment")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidgetItem_TextAlignment(ptr.Pointer()))
@@ -441,11 +330,7 @@ func (ptr *QTableWidgetItem) TextAlignment() int {
 }
 
 func (ptr *QTableWidgetItem) ToolTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::toolTip")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::toolTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTableWidgetItem_ToolTip(ptr.Pointer()))
@@ -454,11 +339,7 @@ func (ptr *QTableWidgetItem) ToolTip() string {
 }
 
 func (ptr *QTableWidgetItem) Type() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::type")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::type")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidgetItem_Type(ptr.Pointer()))
@@ -467,11 +348,7 @@ func (ptr *QTableWidgetItem) Type() int {
 }
 
 func (ptr *QTableWidgetItem) WhatsThis() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::whatsThis")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::whatsThis")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTableWidgetItem_WhatsThis(ptr.Pointer()))
@@ -479,26 +356,27 @@ func (ptr *QTableWidgetItem) WhatsThis() string {
 	return ""
 }
 
-func (ptr *QTableWidgetItem) Write(out core.QDataStream_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::write")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QTableWidgetItem_Write(ptr.Pointer(), core.PointerFromQDataStream(out))
-	}
-}
-
 func (ptr *QTableWidgetItem) DestroyQTableWidgetItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableWidgetItem::~QTableWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QTableWidgetItem::~QTableWidgetItem")
 
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_DestroyQTableWidgetItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QTableWidgetItem) ObjectNameAbs() string {
+	defer qt.Recovering("QTableWidgetItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QTableWidgetItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QTableWidgetItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QTableWidgetItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QTableWidgetItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

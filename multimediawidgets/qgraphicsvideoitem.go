@@ -8,7 +8,6 @@ import (
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/multimedia"
 	"github.com/therecipe/qt/widgets"
-	"log"
 	"unsafe"
 )
 
@@ -43,7 +42,7 @@ func NewQGraphicsVideoItemFromPointer(ptr unsafe.Pointer) *QGraphicsVideoItem {
 	var n = new(QGraphicsVideoItem)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGraphicsVideoItem_") {
-		n.SetObjectName("QGraphicsVideoItem_" + qt.RandomIdentifier())
+		n.SetObjectName("QGraphicsVideoItem_" + qt.Identifier())
 	}
 	return n
 }
@@ -53,21 +52,13 @@ func (ptr *QGraphicsVideoItem) QGraphicsVideoItem_PTR() *QGraphicsVideoItem {
 }
 
 func NewQGraphicsVideoItem(parent widgets.QGraphicsItem_ITF) *QGraphicsVideoItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsVideoItem::QGraphicsVideoItem")
-		}
-	}()
+	defer qt.Recovering("QGraphicsVideoItem::QGraphicsVideoItem")
 
 	return NewQGraphicsVideoItemFromPointer(C.QGraphicsVideoItem_NewQGraphicsVideoItem(widgets.PointerFromQGraphicsItem(parent)))
 }
 
 func (ptr *QGraphicsVideoItem) AspectRatioMode() core.Qt__AspectRatioMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsVideoItem::aspectRatioMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsVideoItem::aspectRatioMode")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__AspectRatioMode(C.QGraphicsVideoItem_AspectRatioMode(ptr.Pointer()))
@@ -76,11 +67,7 @@ func (ptr *QGraphicsVideoItem) AspectRatioMode() core.Qt__AspectRatioMode {
 }
 
 func (ptr *QGraphicsVideoItem) MediaObject() *multimedia.QMediaObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsVideoItem::mediaObject")
-		}
-	}()
+	defer qt.Recovering("QGraphicsVideoItem::mediaObject")
 
 	if ptr.Pointer() != nil {
 		return multimedia.NewQMediaObjectFromPointer(C.QGraphicsVideoItem_MediaObject(ptr.Pointer()))
@@ -88,24 +75,39 @@ func (ptr *QGraphicsVideoItem) MediaObject() *multimedia.QMediaObject {
 	return nil
 }
 
-func (ptr *QGraphicsVideoItem) Paint(painter gui.QPainter_ITF, option widgets.QStyleOptionGraphicsItem_ITF, widget widgets.QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsVideoItem::paint")
-		}
-	}()
+func (ptr *QGraphicsVideoItem) ConnectPaint(f func(painter *gui.QPainter, option *widgets.QStyleOptionGraphicsItem, widget *widgets.QWidget)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::paint")
 
 	if ptr.Pointer() != nil {
-		C.QGraphicsVideoItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionGraphicsItem(option), widgets.PointerFromQWidget(widget))
+
+		qt.ConnectSignal(ptr.ObjectName(), "paint", f)
 	}
 }
 
+func (ptr *QGraphicsVideoItem) DisconnectPaint() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::paint")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paint")
+	}
+}
+
+//export callbackQGraphicsVideoItemPaint
+func callbackQGraphicsVideoItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsVideoItem::paint")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paint")
+	if signal != nil {
+		defer signal.(func(*gui.QPainter, *widgets.QStyleOptionGraphicsItem, *widgets.QWidget))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionGraphicsItemFromPointer(option), widgets.NewQWidgetFromPointer(widget))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsVideoItem) SetAspectRatioMode(mode core.Qt__AspectRatioMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsVideoItem::setAspectRatioMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsVideoItem::setAspectRatioMode")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsVideoItem_SetAspectRatioMode(ptr.Pointer(), C.int(mode))
@@ -113,11 +115,7 @@ func (ptr *QGraphicsVideoItem) SetAspectRatioMode(mode core.Qt__AspectRatioMode)
 }
 
 func (ptr *QGraphicsVideoItem) SetOffset(offset core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsVideoItem::setOffset")
-		}
-	}()
+	defer qt.Recovering("QGraphicsVideoItem::setOffset")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsVideoItem_SetOffset(ptr.Pointer(), core.PointerFromQPointF(offset))
@@ -125,11 +123,7 @@ func (ptr *QGraphicsVideoItem) SetOffset(offset core.QPointF_ITF) {
 }
 
 func (ptr *QGraphicsVideoItem) SetSize(size core.QSizeF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsVideoItem::setSize")
-		}
-	}()
+	defer qt.Recovering("QGraphicsVideoItem::setSize")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsVideoItem_SetSize(ptr.Pointer(), core.PointerFromQSizeF(size))
@@ -137,11 +131,7 @@ func (ptr *QGraphicsVideoItem) SetSize(size core.QSizeF_ITF) {
 }
 
 func (ptr *QGraphicsVideoItem) DestroyQGraphicsVideoItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsVideoItem::~QGraphicsVideoItem")
-		}
-	}()
+	defer qt.Recovering("QGraphicsVideoItem::~QGraphicsVideoItem")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsVideoItem_DestroyQGraphicsVideoItem(ptr.Pointer())

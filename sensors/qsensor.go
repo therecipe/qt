@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQSensorFromPointer(ptr unsafe.Pointer) *QSensor {
 	var n = new(QSensor)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSensor_") {
-		n.SetObjectName("QSensor_" + qt.RandomIdentifier())
+		n.SetObjectName("QSensor_" + qt.Identifier())
 	}
 	return n
 }
@@ -63,11 +62,7 @@ const (
 )
 
 func (ptr *QSensor) AxesOrientationMode() QSensor__AxesOrientationMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::axesOrientationMode")
-		}
-	}()
+	defer qt.Recovering("QSensor::axesOrientationMode")
 
 	if ptr.Pointer() != nil {
 		return QSensor__AxesOrientationMode(C.QSensor_AxesOrientationMode(ptr.Pointer()))
@@ -76,11 +71,7 @@ func (ptr *QSensor) AxesOrientationMode() QSensor__AxesOrientationMode {
 }
 
 func (ptr *QSensor) BufferSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::bufferSize")
-		}
-	}()
+	defer qt.Recovering("QSensor::bufferSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSensor_BufferSize(ptr.Pointer()))
@@ -89,11 +80,7 @@ func (ptr *QSensor) BufferSize() int {
 }
 
 func (ptr *QSensor) CurrentOrientation() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::currentOrientation")
-		}
-	}()
+	defer qt.Recovering("QSensor::currentOrientation")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSensor_CurrentOrientation(ptr.Pointer()))
@@ -102,11 +89,7 @@ func (ptr *QSensor) CurrentOrientation() int {
 }
 
 func (ptr *QSensor) DataRate() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::dataRate")
-		}
-	}()
+	defer qt.Recovering("QSensor::dataRate")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSensor_DataRate(ptr.Pointer()))
@@ -115,11 +98,7 @@ func (ptr *QSensor) DataRate() int {
 }
 
 func (ptr *QSensor) Description() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::description")
-		}
-	}()
+	defer qt.Recovering("QSensor::description")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSensor_Description(ptr.Pointer()))
@@ -128,11 +107,7 @@ func (ptr *QSensor) Description() string {
 }
 
 func (ptr *QSensor) EfficientBufferSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::efficientBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSensor::efficientBufferSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSensor_EfficientBufferSize(ptr.Pointer()))
@@ -141,11 +116,7 @@ func (ptr *QSensor) EfficientBufferSize() int {
 }
 
 func (ptr *QSensor) Error() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::error")
-		}
-	}()
+	defer qt.Recovering("QSensor::error")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSensor_Error(ptr.Pointer()))
@@ -154,11 +125,7 @@ func (ptr *QSensor) Error() int {
 }
 
 func (ptr *QSensor) Identifier() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::identifier")
-		}
-	}()
+	defer qt.Recovering("QSensor::identifier")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QSensor_Identifier(ptr.Pointer()))
@@ -167,11 +134,7 @@ func (ptr *QSensor) Identifier() *core.QByteArray {
 }
 
 func (ptr *QSensor) IsActive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::isActive")
-		}
-	}()
+	defer qt.Recovering("QSensor::isActive")
 
 	if ptr.Pointer() != nil {
 		return C.QSensor_IsActive(ptr.Pointer()) != 0
@@ -180,11 +143,7 @@ func (ptr *QSensor) IsActive() bool {
 }
 
 func (ptr *QSensor) IsAlwaysOn() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::isAlwaysOn")
-		}
-	}()
+	defer qt.Recovering("QSensor::isAlwaysOn")
 
 	if ptr.Pointer() != nil {
 		return C.QSensor_IsAlwaysOn(ptr.Pointer()) != 0
@@ -193,11 +152,7 @@ func (ptr *QSensor) IsAlwaysOn() bool {
 }
 
 func (ptr *QSensor) IsBusy() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::isBusy")
-		}
-	}()
+	defer qt.Recovering("QSensor::isBusy")
 
 	if ptr.Pointer() != nil {
 		return C.QSensor_IsBusy(ptr.Pointer()) != 0
@@ -206,11 +161,7 @@ func (ptr *QSensor) IsBusy() bool {
 }
 
 func (ptr *QSensor) IsConnectedToBackend() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::isConnectedToBackend")
-		}
-	}()
+	defer qt.Recovering("QSensor::isConnectedToBackend")
 
 	if ptr.Pointer() != nil {
 		return C.QSensor_IsConnectedToBackend(ptr.Pointer()) != 0
@@ -219,11 +170,7 @@ func (ptr *QSensor) IsConnectedToBackend() bool {
 }
 
 func (ptr *QSensor) MaxBufferSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::maxBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSensor::maxBufferSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSensor_MaxBufferSize(ptr.Pointer()))
@@ -232,11 +179,7 @@ func (ptr *QSensor) MaxBufferSize() int {
 }
 
 func (ptr *QSensor) OutputRange() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::outputRange")
-		}
-	}()
+	defer qt.Recovering("QSensor::outputRange")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSensor_OutputRange(ptr.Pointer()))
@@ -245,11 +188,7 @@ func (ptr *QSensor) OutputRange() int {
 }
 
 func (ptr *QSensor) Reading() *QSensorReading {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::reading")
-		}
-	}()
+	defer qt.Recovering("QSensor::reading")
 
 	if ptr.Pointer() != nil {
 		return NewQSensorReadingFromPointer(C.QSensor_Reading(ptr.Pointer()))
@@ -258,11 +197,7 @@ func (ptr *QSensor) Reading() *QSensorReading {
 }
 
 func (ptr *QSensor) SetActive(active bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setActive")
-		}
-	}()
+	defer qt.Recovering("QSensor::setActive")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetActive(ptr.Pointer(), C.int(qt.GoBoolToInt(active)))
@@ -270,11 +205,7 @@ func (ptr *QSensor) SetActive(active bool) {
 }
 
 func (ptr *QSensor) SetAlwaysOn(alwaysOn bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setAlwaysOn")
-		}
-	}()
+	defer qt.Recovering("QSensor::setAlwaysOn")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetAlwaysOn(ptr.Pointer(), C.int(qt.GoBoolToInt(alwaysOn)))
@@ -282,11 +213,7 @@ func (ptr *QSensor) SetAlwaysOn(alwaysOn bool) {
 }
 
 func (ptr *QSensor) SetAxesOrientationMode(axesOrientationMode QSensor__AxesOrientationMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setAxesOrientationMode")
-		}
-	}()
+	defer qt.Recovering("QSensor::setAxesOrientationMode")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetAxesOrientationMode(ptr.Pointer(), C.int(axesOrientationMode))
@@ -294,11 +221,7 @@ func (ptr *QSensor) SetAxesOrientationMode(axesOrientationMode QSensor__AxesOrie
 }
 
 func (ptr *QSensor) SetBufferSize(bufferSize int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSensor::setBufferSize")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetBufferSize(ptr.Pointer(), C.int(bufferSize))
@@ -306,11 +229,7 @@ func (ptr *QSensor) SetBufferSize(bufferSize int) {
 }
 
 func (ptr *QSensor) SetDataRate(rate int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setDataRate")
-		}
-	}()
+	defer qt.Recovering("QSensor::setDataRate")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetDataRate(ptr.Pointer(), C.int(rate))
@@ -318,11 +237,7 @@ func (ptr *QSensor) SetDataRate(rate int) {
 }
 
 func (ptr *QSensor) SetIdentifier(identifier core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setIdentifier")
-		}
-	}()
+	defer qt.Recovering("QSensor::setIdentifier")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetIdentifier(ptr.Pointer(), core.PointerFromQByteArray(identifier))
@@ -330,11 +245,7 @@ func (ptr *QSensor) SetIdentifier(identifier core.QByteArray_ITF) {
 }
 
 func (ptr *QSensor) SetOutputRange(index int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setOutputRange")
-		}
-	}()
+	defer qt.Recovering("QSensor::setOutputRange")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetOutputRange(ptr.Pointer(), C.int(index))
@@ -342,11 +253,7 @@ func (ptr *QSensor) SetOutputRange(index int) {
 }
 
 func (ptr *QSensor) SetUserOrientation(userOrientation int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setUserOrientation")
-		}
-	}()
+	defer qt.Recovering("QSensor::setUserOrientation")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetUserOrientation(ptr.Pointer(), C.int(userOrientation))
@@ -354,11 +261,7 @@ func (ptr *QSensor) SetUserOrientation(userOrientation int) {
 }
 
 func (ptr *QSensor) SkipDuplicates() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::skipDuplicates")
-		}
-	}()
+	defer qt.Recovering("QSensor::skipDuplicates")
 
 	if ptr.Pointer() != nil {
 		return C.QSensor_SkipDuplicates(ptr.Pointer()) != 0
@@ -367,11 +270,7 @@ func (ptr *QSensor) SkipDuplicates() bool {
 }
 
 func (ptr *QSensor) Type() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::type")
-		}
-	}()
+	defer qt.Recovering("QSensor::type")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QSensor_Type(ptr.Pointer()))
@@ -380,11 +279,7 @@ func (ptr *QSensor) Type() *core.QByteArray {
 }
 
 func (ptr *QSensor) UserOrientation() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::userOrientation")
-		}
-	}()
+	defer qt.Recovering("QSensor::userOrientation")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSensor_UserOrientation(ptr.Pointer()))
@@ -393,21 +288,13 @@ func (ptr *QSensor) UserOrientation() int {
 }
 
 func NewQSensor(ty core.QByteArray_ITF, parent core.QObject_ITF) *QSensor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::QSensor")
-		}
-	}()
+	defer qt.Recovering("QSensor::QSensor")
 
 	return NewQSensorFromPointer(C.QSensor_NewQSensor(core.PointerFromQByteArray(ty), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSensor) ConnectActiveChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::activeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::activeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectActiveChanged(ptr.Pointer())
@@ -416,11 +303,7 @@ func (ptr *QSensor) ConnectActiveChanged(f func()) {
 }
 
 func (ptr *QSensor) DisconnectActiveChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::activeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::activeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectActiveChanged(ptr.Pointer())
@@ -430,21 +313,17 @@ func (ptr *QSensor) DisconnectActiveChanged() {
 
 //export callbackQSensorActiveChanged
 func callbackQSensorActiveChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::activeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::activeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "activeChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "activeChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QSensor) AddFilter(filter QSensorFilter_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::addFilter")
-		}
-	}()
+	defer qt.Recovering("QSensor::addFilter")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_AddFilter(ptr.Pointer(), PointerFromQSensorFilter(filter))
@@ -452,11 +331,7 @@ func (ptr *QSensor) AddFilter(filter QSensorFilter_ITF) {
 }
 
 func (ptr *QSensor) ConnectAlwaysOnChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::alwaysOnChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::alwaysOnChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectAlwaysOnChanged(ptr.Pointer())
@@ -465,11 +340,7 @@ func (ptr *QSensor) ConnectAlwaysOnChanged(f func()) {
 }
 
 func (ptr *QSensor) DisconnectAlwaysOnChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::alwaysOnChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::alwaysOnChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectAlwaysOnChanged(ptr.Pointer())
@@ -479,21 +350,17 @@ func (ptr *QSensor) DisconnectAlwaysOnChanged() {
 
 //export callbackQSensorAlwaysOnChanged
 func callbackQSensorAlwaysOnChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::alwaysOnChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::alwaysOnChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "alwaysOnChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "alwaysOnChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QSensor) ConnectAvailableSensorsChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::availableSensorsChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::availableSensorsChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectAvailableSensorsChanged(ptr.Pointer())
@@ -502,11 +369,7 @@ func (ptr *QSensor) ConnectAvailableSensorsChanged(f func()) {
 }
 
 func (ptr *QSensor) DisconnectAvailableSensorsChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::availableSensorsChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::availableSensorsChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectAvailableSensorsChanged(ptr.Pointer())
@@ -516,21 +379,17 @@ func (ptr *QSensor) DisconnectAvailableSensorsChanged() {
 
 //export callbackQSensorAvailableSensorsChanged
 func callbackQSensorAvailableSensorsChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::availableSensorsChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::availableSensorsChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "availableSensorsChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "availableSensorsChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QSensor) ConnectAxesOrientationModeChanged(f func(axesOrientationMode QSensor__AxesOrientationMode)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::axesOrientationModeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::axesOrientationModeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectAxesOrientationModeChanged(ptr.Pointer())
@@ -539,11 +398,7 @@ func (ptr *QSensor) ConnectAxesOrientationModeChanged(f func(axesOrientationMode
 }
 
 func (ptr *QSensor) DisconnectAxesOrientationModeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::axesOrientationModeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::axesOrientationModeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectAxesOrientationModeChanged(ptr.Pointer())
@@ -553,21 +408,17 @@ func (ptr *QSensor) DisconnectAxesOrientationModeChanged() {
 
 //export callbackQSensorAxesOrientationModeChanged
 func callbackQSensorAxesOrientationModeChanged(ptrName *C.char, axesOrientationMode C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::axesOrientationModeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::axesOrientationModeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "axesOrientationModeChanged").(func(QSensor__AxesOrientationMode))(QSensor__AxesOrientationMode(axesOrientationMode))
+	var signal = qt.GetSignal(C.GoString(ptrName), "axesOrientationModeChanged")
+	if signal != nil {
+		signal.(func(QSensor__AxesOrientationMode))(QSensor__AxesOrientationMode(axesOrientationMode))
+	}
+
 }
 
 func (ptr *QSensor) ConnectBufferSizeChanged(f func(bufferSize int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::bufferSizeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::bufferSizeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectBufferSizeChanged(ptr.Pointer())
@@ -576,11 +427,7 @@ func (ptr *QSensor) ConnectBufferSizeChanged(f func(bufferSize int)) {
 }
 
 func (ptr *QSensor) DisconnectBufferSizeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::bufferSizeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::bufferSizeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectBufferSizeChanged(ptr.Pointer())
@@ -590,21 +437,17 @@ func (ptr *QSensor) DisconnectBufferSizeChanged() {
 
 //export callbackQSensorBufferSizeChanged
 func callbackQSensorBufferSizeChanged(ptrName *C.char, bufferSize C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::bufferSizeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::bufferSizeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "bufferSizeChanged").(func(int))(int(bufferSize))
+	var signal = qt.GetSignal(C.GoString(ptrName), "bufferSizeChanged")
+	if signal != nil {
+		signal.(func(int))(int(bufferSize))
+	}
+
 }
 
 func (ptr *QSensor) ConnectBusyChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::busyChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::busyChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectBusyChanged(ptr.Pointer())
@@ -613,11 +456,7 @@ func (ptr *QSensor) ConnectBusyChanged(f func()) {
 }
 
 func (ptr *QSensor) DisconnectBusyChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::busyChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::busyChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectBusyChanged(ptr.Pointer())
@@ -627,21 +466,17 @@ func (ptr *QSensor) DisconnectBusyChanged() {
 
 //export callbackQSensorBusyChanged
 func callbackQSensorBusyChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::busyChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::busyChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "busyChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "busyChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QSensor) ConnectToBackend() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::connectToBackend")
-		}
-	}()
+	defer qt.Recovering("QSensor::connectToBackend")
 
 	if ptr.Pointer() != nil {
 		return C.QSensor_ConnectToBackend(ptr.Pointer()) != 0
@@ -650,11 +485,7 @@ func (ptr *QSensor) ConnectToBackend() bool {
 }
 
 func (ptr *QSensor) ConnectCurrentOrientationChanged(f func(currentOrientation int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::currentOrientationChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::currentOrientationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectCurrentOrientationChanged(ptr.Pointer())
@@ -663,11 +494,7 @@ func (ptr *QSensor) ConnectCurrentOrientationChanged(f func(currentOrientation i
 }
 
 func (ptr *QSensor) DisconnectCurrentOrientationChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::currentOrientationChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::currentOrientationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectCurrentOrientationChanged(ptr.Pointer())
@@ -677,21 +504,17 @@ func (ptr *QSensor) DisconnectCurrentOrientationChanged() {
 
 //export callbackQSensorCurrentOrientationChanged
 func callbackQSensorCurrentOrientationChanged(ptrName *C.char, currentOrientation C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::currentOrientationChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::currentOrientationChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentOrientationChanged").(func(int))(int(currentOrientation))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentOrientationChanged")
+	if signal != nil {
+		signal.(func(int))(int(currentOrientation))
+	}
+
 }
 
 func (ptr *QSensor) ConnectDataRateChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::dataRateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::dataRateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectDataRateChanged(ptr.Pointer())
@@ -700,11 +523,7 @@ func (ptr *QSensor) ConnectDataRateChanged(f func()) {
 }
 
 func (ptr *QSensor) DisconnectDataRateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::dataRateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::dataRateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectDataRateChanged(ptr.Pointer())
@@ -714,31 +533,23 @@ func (ptr *QSensor) DisconnectDataRateChanged() {
 
 //export callbackQSensorDataRateChanged
 func callbackQSensorDataRateChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::dataRateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::dataRateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "dataRateChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "dataRateChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func QSensor_DefaultSensorForType(ty core.QByteArray_ITF) *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::defaultSensorForType")
-		}
-	}()
+	defer qt.Recovering("QSensor::defaultSensorForType")
 
 	return core.NewQByteArrayFromPointer(C.QSensor_QSensor_DefaultSensorForType(core.PointerFromQByteArray(ty)))
 }
 
 func (ptr *QSensor) ConnectEfficientBufferSizeChanged(f func(efficientBufferSize int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::efficientBufferSizeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::efficientBufferSizeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectEfficientBufferSizeChanged(ptr.Pointer())
@@ -747,11 +558,7 @@ func (ptr *QSensor) ConnectEfficientBufferSizeChanged(f func(efficientBufferSize
 }
 
 func (ptr *QSensor) DisconnectEfficientBufferSizeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::efficientBufferSizeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::efficientBufferSizeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectEfficientBufferSizeChanged(ptr.Pointer())
@@ -761,21 +568,17 @@ func (ptr *QSensor) DisconnectEfficientBufferSizeChanged() {
 
 //export callbackQSensorEfficientBufferSizeChanged
 func callbackQSensorEfficientBufferSizeChanged(ptrName *C.char, efficientBufferSize C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::efficientBufferSizeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::efficientBufferSizeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "efficientBufferSizeChanged").(func(int))(int(efficientBufferSize))
+	var signal = qt.GetSignal(C.GoString(ptrName), "efficientBufferSizeChanged")
+	if signal != nil {
+		signal.(func(int))(int(efficientBufferSize))
+	}
+
 }
 
 func (ptr *QSensor) IsFeatureSupported(feature QSensor__Feature) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::isFeatureSupported")
-		}
-	}()
+	defer qt.Recovering("QSensor::isFeatureSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QSensor_IsFeatureSupported(ptr.Pointer(), C.int(feature)) != 0
@@ -784,11 +587,7 @@ func (ptr *QSensor) IsFeatureSupported(feature QSensor__Feature) bool {
 }
 
 func (ptr *QSensor) ConnectMaxBufferSizeChanged(f func(maxBufferSize int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::maxBufferSizeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::maxBufferSizeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectMaxBufferSizeChanged(ptr.Pointer())
@@ -797,11 +596,7 @@ func (ptr *QSensor) ConnectMaxBufferSizeChanged(f func(maxBufferSize int)) {
 }
 
 func (ptr *QSensor) DisconnectMaxBufferSizeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::maxBufferSizeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::maxBufferSizeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectMaxBufferSizeChanged(ptr.Pointer())
@@ -811,21 +606,17 @@ func (ptr *QSensor) DisconnectMaxBufferSizeChanged() {
 
 //export callbackQSensorMaxBufferSizeChanged
 func callbackQSensorMaxBufferSizeChanged(ptrName *C.char, maxBufferSize C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::maxBufferSizeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::maxBufferSizeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "maxBufferSizeChanged").(func(int))(int(maxBufferSize))
+	var signal = qt.GetSignal(C.GoString(ptrName), "maxBufferSizeChanged")
+	if signal != nil {
+		signal.(func(int))(int(maxBufferSize))
+	}
+
 }
 
 func (ptr *QSensor) ConnectReadingChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::readingChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::readingChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectReadingChanged(ptr.Pointer())
@@ -834,11 +625,7 @@ func (ptr *QSensor) ConnectReadingChanged(f func()) {
 }
 
 func (ptr *QSensor) DisconnectReadingChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::readingChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::readingChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectReadingChanged(ptr.Pointer())
@@ -848,21 +635,17 @@ func (ptr *QSensor) DisconnectReadingChanged() {
 
 //export callbackQSensorReadingChanged
 func callbackQSensorReadingChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::readingChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::readingChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "readingChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "readingChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QSensor) RemoveFilter(filter QSensorFilter_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::removeFilter")
-		}
-	}()
+	defer qt.Recovering("QSensor::removeFilter")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_RemoveFilter(ptr.Pointer(), PointerFromQSensorFilter(filter))
@@ -870,11 +653,7 @@ func (ptr *QSensor) RemoveFilter(filter QSensorFilter_ITF) {
 }
 
 func (ptr *QSensor) ConnectSensorError(f func(error int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::sensorError")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::sensorError")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectSensorError(ptr.Pointer())
@@ -883,11 +662,7 @@ func (ptr *QSensor) ConnectSensorError(f func(error int)) {
 }
 
 func (ptr *QSensor) DisconnectSensorError() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::sensorError")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::sensorError")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectSensorError(ptr.Pointer())
@@ -897,21 +672,17 @@ func (ptr *QSensor) DisconnectSensorError() {
 
 //export callbackQSensorSensorError
 func callbackQSensorSensorError(ptrName *C.char, error C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::sensorError")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::sensorError")
 
-	qt.GetSignal(C.GoString(ptrName), "sensorError").(func(int))(int(error))
+	var signal = qt.GetSignal(C.GoString(ptrName), "sensorError")
+	if signal != nil {
+		signal.(func(int))(int(error))
+	}
+
 }
 
 func (ptr *QSensor) SetCurrentOrientation(currentOrientation int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setCurrentOrientation")
-		}
-	}()
+	defer qt.Recovering("QSensor::setCurrentOrientation")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetCurrentOrientation(ptr.Pointer(), C.int(currentOrientation))
@@ -919,11 +690,7 @@ func (ptr *QSensor) SetCurrentOrientation(currentOrientation int) {
 }
 
 func (ptr *QSensor) SetEfficientBufferSize(efficientBufferSize int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setEfficientBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSensor::setEfficientBufferSize")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetEfficientBufferSize(ptr.Pointer(), C.int(efficientBufferSize))
@@ -931,11 +698,7 @@ func (ptr *QSensor) SetEfficientBufferSize(efficientBufferSize int) {
 }
 
 func (ptr *QSensor) SetMaxBufferSize(maxBufferSize int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setMaxBufferSize")
-		}
-	}()
+	defer qt.Recovering("QSensor::setMaxBufferSize")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetMaxBufferSize(ptr.Pointer(), C.int(maxBufferSize))
@@ -943,11 +706,7 @@ func (ptr *QSensor) SetMaxBufferSize(maxBufferSize int) {
 }
 
 func (ptr *QSensor) SetSkipDuplicates(skipDuplicates bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::setSkipDuplicates")
-		}
-	}()
+	defer qt.Recovering("QSensor::setSkipDuplicates")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_SetSkipDuplicates(ptr.Pointer(), C.int(qt.GoBoolToInt(skipDuplicates)))
@@ -955,11 +714,7 @@ func (ptr *QSensor) SetSkipDuplicates(skipDuplicates bool) {
 }
 
 func (ptr *QSensor) ConnectSkipDuplicatesChanged(f func(skipDuplicates bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::skipDuplicatesChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::skipDuplicatesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectSkipDuplicatesChanged(ptr.Pointer())
@@ -968,11 +723,7 @@ func (ptr *QSensor) ConnectSkipDuplicatesChanged(f func(skipDuplicates bool)) {
 }
 
 func (ptr *QSensor) DisconnectSkipDuplicatesChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::skipDuplicatesChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::skipDuplicatesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectSkipDuplicatesChanged(ptr.Pointer())
@@ -982,21 +733,17 @@ func (ptr *QSensor) DisconnectSkipDuplicatesChanged() {
 
 //export callbackQSensorSkipDuplicatesChanged
 func callbackQSensorSkipDuplicatesChanged(ptrName *C.char, skipDuplicates C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::skipDuplicatesChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::skipDuplicatesChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "skipDuplicatesChanged").(func(bool))(int(skipDuplicates) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "skipDuplicatesChanged")
+	if signal != nil {
+		signal.(func(bool))(int(skipDuplicates) != 0)
+	}
+
 }
 
 func (ptr *QSensor) Start() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::start")
-		}
-	}()
+	defer qt.Recovering("QSensor::start")
 
 	if ptr.Pointer() != nil {
 		return C.QSensor_Start(ptr.Pointer()) != 0
@@ -1005,11 +752,7 @@ func (ptr *QSensor) Start() bool {
 }
 
 func (ptr *QSensor) Stop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::stop")
-		}
-	}()
+	defer qt.Recovering("QSensor::stop")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_Stop(ptr.Pointer())
@@ -1017,11 +760,7 @@ func (ptr *QSensor) Stop() {
 }
 
 func (ptr *QSensor) ConnectUserOrientationChanged(f func(userOrientation int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::userOrientationChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSensor::userOrientationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_ConnectUserOrientationChanged(ptr.Pointer())
@@ -1030,11 +769,7 @@ func (ptr *QSensor) ConnectUserOrientationChanged(f func(userOrientation int)) {
 }
 
 func (ptr *QSensor) DisconnectUserOrientationChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::userOrientationChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensor::userOrientationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DisconnectUserOrientationChanged(ptr.Pointer())
@@ -1044,21 +779,17 @@ func (ptr *QSensor) DisconnectUserOrientationChanged() {
 
 //export callbackQSensorUserOrientationChanged
 func callbackQSensorUserOrientationChanged(ptrName *C.char, userOrientation C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::userOrientationChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSensor::userOrientationChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "userOrientationChanged").(func(int))(int(userOrientation))
+	var signal = qt.GetSignal(C.GoString(ptrName), "userOrientationChanged")
+	if signal != nil {
+		signal.(func(int))(int(userOrientation))
+	}
+
 }
 
 func (ptr *QSensor) DestroyQSensor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensor::~QSensor")
-		}
-	}()
+	defer qt.Recovering("QSensor::~QSensor")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DestroyQSensor(ptr.Pointer())

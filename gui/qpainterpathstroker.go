@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +42,19 @@ func (ptr *QPainterPathStroker) QPainterPathStroker_PTR() *QPainterPathStroker {
 }
 
 func NewQPainterPathStroker() *QPainterPathStroker {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::QPainterPathStroker")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::QPainterPathStroker")
 
 	return NewQPainterPathStrokerFromPointer(C.QPainterPathStroker_NewQPainterPathStroker())
 }
 
 func NewQPainterPathStroker2(pen QPen_ITF) *QPainterPathStroker {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::QPainterPathStroker")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::QPainterPathStroker")
 
 	return NewQPainterPathStrokerFromPointer(C.QPainterPathStroker_NewQPainterPathStroker2(PointerFromQPen(pen)))
 }
 
 func (ptr *QPainterPathStroker) CapStyle() core.Qt__PenCapStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::capStyle")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::capStyle")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__PenCapStyle(C.QPainterPathStroker_CapStyle(ptr.Pointer()))
@@ -75,11 +63,7 @@ func (ptr *QPainterPathStroker) CapStyle() core.Qt__PenCapStyle {
 }
 
 func (ptr *QPainterPathStroker) CurveThreshold() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::curveThreshold")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::curveThreshold")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPainterPathStroker_CurveThreshold(ptr.Pointer()))
@@ -88,11 +72,7 @@ func (ptr *QPainterPathStroker) CurveThreshold() float64 {
 }
 
 func (ptr *QPainterPathStroker) DashOffset() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::dashOffset")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::dashOffset")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPainterPathStroker_DashOffset(ptr.Pointer()))
@@ -101,11 +81,7 @@ func (ptr *QPainterPathStroker) DashOffset() float64 {
 }
 
 func (ptr *QPainterPathStroker) JoinStyle() core.Qt__PenJoinStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::joinStyle")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::joinStyle")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__PenJoinStyle(C.QPainterPathStroker_JoinStyle(ptr.Pointer()))
@@ -114,11 +90,7 @@ func (ptr *QPainterPathStroker) JoinStyle() core.Qt__PenJoinStyle {
 }
 
 func (ptr *QPainterPathStroker) MiterLimit() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::miterLimit")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::miterLimit")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPainterPathStroker_MiterLimit(ptr.Pointer()))
@@ -127,11 +99,7 @@ func (ptr *QPainterPathStroker) MiterLimit() float64 {
 }
 
 func (ptr *QPainterPathStroker) SetCapStyle(style core.Qt__PenCapStyle) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::setCapStyle")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::setCapStyle")
 
 	if ptr.Pointer() != nil {
 		C.QPainterPathStroker_SetCapStyle(ptr.Pointer(), C.int(style))
@@ -139,11 +107,7 @@ func (ptr *QPainterPathStroker) SetCapStyle(style core.Qt__PenCapStyle) {
 }
 
 func (ptr *QPainterPathStroker) SetCurveThreshold(threshold float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::setCurveThreshold")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::setCurveThreshold")
 
 	if ptr.Pointer() != nil {
 		C.QPainterPathStroker_SetCurveThreshold(ptr.Pointer(), C.double(threshold))
@@ -151,11 +115,7 @@ func (ptr *QPainterPathStroker) SetCurveThreshold(threshold float64) {
 }
 
 func (ptr *QPainterPathStroker) SetDashOffset(offset float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::setDashOffset")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::setDashOffset")
 
 	if ptr.Pointer() != nil {
 		C.QPainterPathStroker_SetDashOffset(ptr.Pointer(), C.double(offset))
@@ -163,11 +123,7 @@ func (ptr *QPainterPathStroker) SetDashOffset(offset float64) {
 }
 
 func (ptr *QPainterPathStroker) SetDashPattern(style core.Qt__PenStyle) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::setDashPattern")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::setDashPattern")
 
 	if ptr.Pointer() != nil {
 		C.QPainterPathStroker_SetDashPattern(ptr.Pointer(), C.int(style))
@@ -175,11 +131,7 @@ func (ptr *QPainterPathStroker) SetDashPattern(style core.Qt__PenStyle) {
 }
 
 func (ptr *QPainterPathStroker) SetJoinStyle(style core.Qt__PenJoinStyle) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::setJoinStyle")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::setJoinStyle")
 
 	if ptr.Pointer() != nil {
 		C.QPainterPathStroker_SetJoinStyle(ptr.Pointer(), C.int(style))
@@ -187,11 +139,7 @@ func (ptr *QPainterPathStroker) SetJoinStyle(style core.Qt__PenJoinStyle) {
 }
 
 func (ptr *QPainterPathStroker) SetMiterLimit(limit float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::setMiterLimit")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::setMiterLimit")
 
 	if ptr.Pointer() != nil {
 		C.QPainterPathStroker_SetMiterLimit(ptr.Pointer(), C.double(limit))
@@ -199,11 +147,7 @@ func (ptr *QPainterPathStroker) SetMiterLimit(limit float64) {
 }
 
 func (ptr *QPainterPathStroker) SetWidth(width float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::setWidth")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::setWidth")
 
 	if ptr.Pointer() != nil {
 		C.QPainterPathStroker_SetWidth(ptr.Pointer(), C.double(width))
@@ -211,11 +155,7 @@ func (ptr *QPainterPathStroker) SetWidth(width float64) {
 }
 
 func (ptr *QPainterPathStroker) Width() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::width")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::width")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPainterPathStroker_Width(ptr.Pointer()))
@@ -224,11 +164,7 @@ func (ptr *QPainterPathStroker) Width() float64 {
 }
 
 func (ptr *QPainterPathStroker) DestroyQPainterPathStroker() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPainterPathStroker::~QPainterPathStroker")
-		}
-	}()
+	defer qt.Recovering("QPainterPathStroker::~QPainterPathStroker")
 
 	if ptr.Pointer() != nil {
 		C.QPainterPathStroker_DestroyQPainterPathStroker(ptr.Pointer())

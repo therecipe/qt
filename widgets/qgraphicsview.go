@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQGraphicsViewFromPointer(ptr unsafe.Pointer) *QGraphicsView {
 	var n = new(QGraphicsView)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGraphicsView_") {
-		n.SetObjectName("QGraphicsView_" + qt.RandomIdentifier())
+		n.SetObjectName("QGraphicsView_" + qt.Identifier())
 	}
 	return n
 }
@@ -87,11 +86,7 @@ const (
 )
 
 func (ptr *QGraphicsView) Alignment() core.Qt__AlignmentFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::alignment")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::alignment")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__AlignmentFlag(C.QGraphicsView_Alignment(ptr.Pointer()))
@@ -100,11 +95,7 @@ func (ptr *QGraphicsView) Alignment() core.Qt__AlignmentFlag {
 }
 
 func (ptr *QGraphicsView) BackgroundBrush() *gui.QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::backgroundBrush")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::backgroundBrush")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQBrushFromPointer(C.QGraphicsView_BackgroundBrush(ptr.Pointer()))
@@ -113,11 +104,7 @@ func (ptr *QGraphicsView) BackgroundBrush() *gui.QBrush {
 }
 
 func (ptr *QGraphicsView) CacheMode() QGraphicsView__CacheModeFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::cacheMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::cacheMode")
 
 	if ptr.Pointer() != nil {
 		return QGraphicsView__CacheModeFlag(C.QGraphicsView_CacheMode(ptr.Pointer()))
@@ -126,11 +113,7 @@ func (ptr *QGraphicsView) CacheMode() QGraphicsView__CacheModeFlag {
 }
 
 func (ptr *QGraphicsView) DragMode() QGraphicsView__DragMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::dragMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::dragMode")
 
 	if ptr.Pointer() != nil {
 		return QGraphicsView__DragMode(C.QGraphicsView_DragMode(ptr.Pointer()))
@@ -139,11 +122,7 @@ func (ptr *QGraphicsView) DragMode() QGraphicsView__DragMode {
 }
 
 func (ptr *QGraphicsView) ForegroundBrush() *gui.QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::foregroundBrush")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::foregroundBrush")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQBrushFromPointer(C.QGraphicsView_ForegroundBrush(ptr.Pointer()))
@@ -152,11 +131,7 @@ func (ptr *QGraphicsView) ForegroundBrush() *gui.QBrush {
 }
 
 func (ptr *QGraphicsView) IsInteractive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::isInteractive")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::isInteractive")
 
 	if ptr.Pointer() != nil {
 		return C.QGraphicsView_IsInteractive(ptr.Pointer()) != 0
@@ -165,11 +140,7 @@ func (ptr *QGraphicsView) IsInteractive() bool {
 }
 
 func (ptr *QGraphicsView) OptimizationFlags() QGraphicsView__OptimizationFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::optimizationFlags")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::optimizationFlags")
 
 	if ptr.Pointer() != nil {
 		return QGraphicsView__OptimizationFlag(C.QGraphicsView_OptimizationFlags(ptr.Pointer()))
@@ -178,11 +149,7 @@ func (ptr *QGraphicsView) OptimizationFlags() QGraphicsView__OptimizationFlag {
 }
 
 func (ptr *QGraphicsView) RenderHints() gui.QPainter__RenderHint {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::renderHints")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::renderHints")
 
 	if ptr.Pointer() != nil {
 		return gui.QPainter__RenderHint(C.QGraphicsView_RenderHints(ptr.Pointer()))
@@ -191,11 +158,7 @@ func (ptr *QGraphicsView) RenderHints() gui.QPainter__RenderHint {
 }
 
 func (ptr *QGraphicsView) ResizeAnchor() QGraphicsView__ViewportAnchor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::resizeAnchor")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::resizeAnchor")
 
 	if ptr.Pointer() != nil {
 		return QGraphicsView__ViewportAnchor(C.QGraphicsView_ResizeAnchor(ptr.Pointer()))
@@ -204,11 +167,7 @@ func (ptr *QGraphicsView) ResizeAnchor() QGraphicsView__ViewportAnchor {
 }
 
 func (ptr *QGraphicsView) RubberBandSelectionMode() core.Qt__ItemSelectionMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::rubberBandSelectionMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::rubberBandSelectionMode")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ItemSelectionMode(C.QGraphicsView_RubberBandSelectionMode(ptr.Pointer()))
@@ -217,11 +176,7 @@ func (ptr *QGraphicsView) RubberBandSelectionMode() core.Qt__ItemSelectionMode {
 }
 
 func (ptr *QGraphicsView) SetAlignment(alignment core.Qt__AlignmentFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setAlignment")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetAlignment(ptr.Pointer(), C.int(alignment))
@@ -229,11 +184,7 @@ func (ptr *QGraphicsView) SetAlignment(alignment core.Qt__AlignmentFlag) {
 }
 
 func (ptr *QGraphicsView) SetBackgroundBrush(brush gui.QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setBackgroundBrush")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setBackgroundBrush")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetBackgroundBrush(ptr.Pointer(), gui.PointerFromQBrush(brush))
@@ -241,11 +192,7 @@ func (ptr *QGraphicsView) SetBackgroundBrush(brush gui.QBrush_ITF) {
 }
 
 func (ptr *QGraphicsView) SetCacheMode(mode QGraphicsView__CacheModeFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setCacheMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setCacheMode")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetCacheMode(ptr.Pointer(), C.int(mode))
@@ -253,11 +200,7 @@ func (ptr *QGraphicsView) SetCacheMode(mode QGraphicsView__CacheModeFlag) {
 }
 
 func (ptr *QGraphicsView) SetDragMode(mode QGraphicsView__DragMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setDragMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setDragMode")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetDragMode(ptr.Pointer(), C.int(mode))
@@ -265,11 +208,7 @@ func (ptr *QGraphicsView) SetDragMode(mode QGraphicsView__DragMode) {
 }
 
 func (ptr *QGraphicsView) SetForegroundBrush(brush gui.QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setForegroundBrush")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setForegroundBrush")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetForegroundBrush(ptr.Pointer(), gui.PointerFromQBrush(brush))
@@ -277,11 +216,7 @@ func (ptr *QGraphicsView) SetForegroundBrush(brush gui.QBrush_ITF) {
 }
 
 func (ptr *QGraphicsView) SetInteractive(allowed bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setInteractive")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setInteractive")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetInteractive(ptr.Pointer(), C.int(qt.GoBoolToInt(allowed)))
@@ -289,11 +224,7 @@ func (ptr *QGraphicsView) SetInteractive(allowed bool) {
 }
 
 func (ptr *QGraphicsView) SetOptimizationFlags(flags QGraphicsView__OptimizationFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setOptimizationFlags")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setOptimizationFlags")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetOptimizationFlags(ptr.Pointer(), C.int(flags))
@@ -301,11 +232,7 @@ func (ptr *QGraphicsView) SetOptimizationFlags(flags QGraphicsView__Optimization
 }
 
 func (ptr *QGraphicsView) SetRenderHints(hints gui.QPainter__RenderHint) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setRenderHints")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setRenderHints")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetRenderHints(ptr.Pointer(), C.int(hints))
@@ -313,11 +240,7 @@ func (ptr *QGraphicsView) SetRenderHints(hints gui.QPainter__RenderHint) {
 }
 
 func (ptr *QGraphicsView) SetResizeAnchor(anchor QGraphicsView__ViewportAnchor) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setResizeAnchor")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setResizeAnchor")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetResizeAnchor(ptr.Pointer(), C.int(anchor))
@@ -325,11 +248,7 @@ func (ptr *QGraphicsView) SetResizeAnchor(anchor QGraphicsView__ViewportAnchor) 
 }
 
 func (ptr *QGraphicsView) SetRubberBandSelectionMode(mode core.Qt__ItemSelectionMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setRubberBandSelectionMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setRubberBandSelectionMode")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetRubberBandSelectionMode(ptr.Pointer(), C.int(mode))
@@ -337,11 +256,7 @@ func (ptr *QGraphicsView) SetRubberBandSelectionMode(mode core.Qt__ItemSelection
 }
 
 func (ptr *QGraphicsView) SetSceneRect(rect core.QRectF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setSceneRect")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setSceneRect")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetSceneRect(ptr.Pointer(), core.PointerFromQRectF(rect))
@@ -349,11 +264,7 @@ func (ptr *QGraphicsView) SetSceneRect(rect core.QRectF_ITF) {
 }
 
 func (ptr *QGraphicsView) SetTransformationAnchor(anchor QGraphicsView__ViewportAnchor) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setTransformationAnchor")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setTransformationAnchor")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetTransformationAnchor(ptr.Pointer(), C.int(anchor))
@@ -361,11 +272,7 @@ func (ptr *QGraphicsView) SetTransformationAnchor(anchor QGraphicsView__Viewport
 }
 
 func (ptr *QGraphicsView) SetViewportUpdateMode(mode QGraphicsView__ViewportUpdateMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setViewportUpdateMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setViewportUpdateMode")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetViewportUpdateMode(ptr.Pointer(), C.int(mode))
@@ -373,11 +280,7 @@ func (ptr *QGraphicsView) SetViewportUpdateMode(mode QGraphicsView__ViewportUpda
 }
 
 func (ptr *QGraphicsView) TransformationAnchor() QGraphicsView__ViewportAnchor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::transformationAnchor")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::transformationAnchor")
 
 	if ptr.Pointer() != nil {
 		return QGraphicsView__ViewportAnchor(C.QGraphicsView_TransformationAnchor(ptr.Pointer()))
@@ -386,11 +289,7 @@ func (ptr *QGraphicsView) TransformationAnchor() QGraphicsView__ViewportAnchor {
 }
 
 func (ptr *QGraphicsView) ViewportUpdateMode() QGraphicsView__ViewportUpdateMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::viewportUpdateMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::viewportUpdateMode")
 
 	if ptr.Pointer() != nil {
 		return QGraphicsView__ViewportUpdateMode(C.QGraphicsView_ViewportUpdateMode(ptr.Pointer()))
@@ -399,31 +298,19 @@ func (ptr *QGraphicsView) ViewportUpdateMode() QGraphicsView__ViewportUpdateMode
 }
 
 func NewQGraphicsView2(scene QGraphicsScene_ITF, parent QWidget_ITF) *QGraphicsView {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::QGraphicsView")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::QGraphicsView")
 
 	return NewQGraphicsViewFromPointer(C.QGraphicsView_NewQGraphicsView2(PointerFromQGraphicsScene(scene), PointerFromQWidget(parent)))
 }
 
 func NewQGraphicsView(parent QWidget_ITF) *QGraphicsView {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::QGraphicsView")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::QGraphicsView")
 
 	return NewQGraphicsViewFromPointer(C.QGraphicsView_NewQGraphicsView(PointerFromQWidget(parent)))
 }
 
 func (ptr *QGraphicsView) CenterOn3(item QGraphicsItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::centerOn")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::centerOn")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_CenterOn3(ptr.Pointer(), PointerFromQGraphicsItem(item))
@@ -431,11 +318,7 @@ func (ptr *QGraphicsView) CenterOn3(item QGraphicsItem_ITF) {
 }
 
 func (ptr *QGraphicsView) CenterOn(pos core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::centerOn")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::centerOn")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_CenterOn(ptr.Pointer(), core.PointerFromQPointF(pos))
@@ -443,23 +326,170 @@ func (ptr *QGraphicsView) CenterOn(pos core.QPointF_ITF) {
 }
 
 func (ptr *QGraphicsView) CenterOn2(x float64, y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::centerOn")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::centerOn")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_CenterOn2(ptr.Pointer(), C.double(x), C.double(y))
 	}
 }
 
+func (ptr *QGraphicsView) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
+	defer qt.Recovering("connect QGraphicsView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectContextMenuEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+	}
+}
+
+//export callbackQGraphicsViewContextMenuEvent
+func callbackQGraphicsViewContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::contextMenuEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "contextMenuEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
+	defer qt.Recovering("connect QGraphicsView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectDragEnterEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+	}
+}
+
+//export callbackQGraphicsViewDragEnterEvent
+func callbackQGraphicsViewDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::dragEnterEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dragEnterEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
+	defer qt.Recovering("connect QGraphicsView::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectDragLeaveEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+	}
+}
+
+//export callbackQGraphicsViewDragLeaveEvent
+func callbackQGraphicsViewDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::dragLeaveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
+	defer qt.Recovering("connect QGraphicsView::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectDragMoveEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+	}
+}
+
+//export callbackQGraphicsViewDragMoveEvent
+func callbackQGraphicsViewDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::dragMoveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dragMoveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) ConnectDropEvent(f func(event *gui.QDropEvent)) {
+	defer qt.Recovering("connect QGraphicsView::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectDropEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+	}
+}
+
+//export callbackQGraphicsViewDropEvent
+func callbackQGraphicsViewDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::dropEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsView) EnsureVisible3(item QGraphicsItem_ITF, xmargin int, ymargin int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::ensureVisible")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::ensureVisible")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_EnsureVisible3(ptr.Pointer(), PointerFromQGraphicsItem(item), C.int(xmargin), C.int(ymargin))
@@ -467,11 +497,7 @@ func (ptr *QGraphicsView) EnsureVisible3(item QGraphicsItem_ITF, xmargin int, ym
 }
 
 func (ptr *QGraphicsView) EnsureVisible(rect core.QRectF_ITF, xmargin int, ymargin int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::ensureVisible")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::ensureVisible")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_EnsureVisible(ptr.Pointer(), core.PointerFromQRectF(rect), C.int(xmargin), C.int(ymargin))
@@ -479,11 +505,7 @@ func (ptr *QGraphicsView) EnsureVisible(rect core.QRectF_ITF, xmargin int, ymarg
 }
 
 func (ptr *QGraphicsView) EnsureVisible2(x float64, y float64, w float64, h float64, xmargin int, ymargin int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::ensureVisible")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::ensureVisible")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_EnsureVisible2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h), C.int(xmargin), C.int(ymargin))
@@ -491,11 +513,7 @@ func (ptr *QGraphicsView) EnsureVisible2(x float64, y float64, w float64, h floa
 }
 
 func (ptr *QGraphicsView) FitInView3(item QGraphicsItem_ITF, aspectRatioMode core.Qt__AspectRatioMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::fitInView")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::fitInView")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_FitInView3(ptr.Pointer(), PointerFromQGraphicsItem(item), C.int(aspectRatioMode))
@@ -503,11 +521,7 @@ func (ptr *QGraphicsView) FitInView3(item QGraphicsItem_ITF, aspectRatioMode cor
 }
 
 func (ptr *QGraphicsView) FitInView(rect core.QRectF_ITF, aspectRatioMode core.Qt__AspectRatioMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::fitInView")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::fitInView")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_FitInView(ptr.Pointer(), core.PointerFromQRectF(rect), C.int(aspectRatioMode))
@@ -515,23 +529,108 @@ func (ptr *QGraphicsView) FitInView(rect core.QRectF_ITF, aspectRatioMode core.Q
 }
 
 func (ptr *QGraphicsView) FitInView2(x float64, y float64, w float64, h float64, aspectRatioMode core.Qt__AspectRatioMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::fitInView")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::fitInView")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_FitInView2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h), C.int(aspectRatioMode))
 	}
 }
 
+func (ptr *QGraphicsView) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QGraphicsView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQGraphicsViewFocusInEvent
+func callbackQGraphicsViewFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::focusInEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QGraphicsView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+//export callbackQGraphicsViewFocusOutEvent
+func callbackQGraphicsViewFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::focusOutEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
+	defer qt.Recovering("connect QGraphicsView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectInputMethodEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+	}
+}
+
+//export callbackQGraphicsViewInputMethodEvent
+func callbackQGraphicsViewInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::inputMethodEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "inputMethodEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsView) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::inputMethodQuery")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QGraphicsView_InputMethodQuery(ptr.Pointer(), C.int(query)))
@@ -540,11 +639,7 @@ func (ptr *QGraphicsView) InputMethodQuery(query core.Qt__InputMethodQuery) *cor
 }
 
 func (ptr *QGraphicsView) InvalidateScene(rect core.QRectF_ITF, layers QGraphicsScene__SceneLayer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::invalidateScene")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::invalidateScene")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_InvalidateScene(ptr.Pointer(), core.PointerFromQRectF(rect), C.int(layers))
@@ -552,11 +647,7 @@ func (ptr *QGraphicsView) InvalidateScene(rect core.QRectF_ITF, layers QGraphics
 }
 
 func (ptr *QGraphicsView) IsTransformed() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::isTransformed")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::isTransformed")
 
 	if ptr.Pointer() != nil {
 		return C.QGraphicsView_IsTransformed(ptr.Pointer()) != 0
@@ -565,11 +656,7 @@ func (ptr *QGraphicsView) IsTransformed() bool {
 }
 
 func (ptr *QGraphicsView) ItemAt(pos core.QPoint_ITF) *QGraphicsItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::itemAt")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQGraphicsItemFromPointer(C.QGraphicsView_ItemAt(ptr.Pointer(), core.PointerFromQPoint(pos)))
@@ -578,11 +665,7 @@ func (ptr *QGraphicsView) ItemAt(pos core.QPoint_ITF) *QGraphicsItem {
 }
 
 func (ptr *QGraphicsView) ItemAt2(x int, y int) *QGraphicsItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::itemAt")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQGraphicsItemFromPointer(C.QGraphicsView_ItemAt2(ptr.Pointer(), C.int(x), C.int(y)))
@@ -590,12 +673,243 @@ func (ptr *QGraphicsView) ItemAt2(x int, y int) *QGraphicsItem {
 	return nil
 }
 
+func (ptr *QGraphicsView) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QGraphicsView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQGraphicsViewKeyPressEvent
+func callbackQGraphicsViewKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::keyPressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QGraphicsView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectKeyReleaseEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+	}
+}
+
+//export callbackQGraphicsViewKeyReleaseEvent
+func callbackQGraphicsViewKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::keyReleaseEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) MapFromScene(point core.QPointF_ITF) *core.QPoint {
+	defer qt.Recovering("QGraphicsView::mapFromScene")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QGraphicsView_MapFromScene(ptr.Pointer(), core.PointerFromQPointF(point)))
+	}
+	return nil
+}
+
+func (ptr *QGraphicsView) MapFromScene5(x float64, y float64) *core.QPoint {
+	defer qt.Recovering("QGraphicsView::mapFromScene")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QGraphicsView_MapFromScene5(ptr.Pointer(), C.double(x), C.double(y)))
+	}
+	return nil
+}
+
+func (ptr *QGraphicsView) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectMouseDoubleClickEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+	}
+}
+
+//export callbackQGraphicsViewMouseDoubleClickEvent
+func callbackQGraphicsViewMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::mouseDoubleClickEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsView::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectMouseMoveEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+	}
+}
+
+//export callbackQGraphicsViewMouseMoveEvent
+func callbackQGraphicsViewMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::mouseMoveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsView::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQGraphicsViewMousePressEvent
+func callbackQGraphicsViewMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::mousePressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsView::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectMouseReleaseEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+	}
+}
+
+//export callbackQGraphicsViewMouseReleaseEvent
+func callbackQGraphicsViewMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::mouseReleaseEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsView) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QGraphicsView::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQGraphicsViewPaintEvent
+func callbackQGraphicsViewPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsView) Render(painter gui.QPainter_ITF, target core.QRectF_ITF, source core.QRect_ITF, aspectRatioMode core.Qt__AspectRatioMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::render")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::render")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_Render(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRectF(target), core.PointerFromQRect(source), C.int(aspectRatioMode))
@@ -603,11 +917,7 @@ func (ptr *QGraphicsView) Render(painter gui.QPainter_ITF, target core.QRectF_IT
 }
 
 func (ptr *QGraphicsView) ResetCachedContent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::resetCachedContent")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::resetCachedContent")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_ResetCachedContent(ptr.Pointer())
@@ -615,11 +925,7 @@ func (ptr *QGraphicsView) ResetCachedContent() {
 }
 
 func (ptr *QGraphicsView) ResetMatrix() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::resetMatrix")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::resetMatrix")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_ResetMatrix(ptr.Pointer())
@@ -627,23 +933,46 @@ func (ptr *QGraphicsView) ResetMatrix() {
 }
 
 func (ptr *QGraphicsView) ResetTransform() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::resetTransform")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::resetTransform")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_ResetTransform(ptr.Pointer())
 	}
 }
 
+func (ptr *QGraphicsView) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
+	defer qt.Recovering("connect QGraphicsView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectResizeEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+	}
+}
+
+//export callbackQGraphicsViewResizeEvent
+func callbackQGraphicsViewResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::resizeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsView) Rotate(angle float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::rotate")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::rotate")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_Rotate(ptr.Pointer(), C.double(angle))
@@ -651,11 +980,7 @@ func (ptr *QGraphicsView) Rotate(angle float64) {
 }
 
 func (ptr *QGraphicsView) Scale(sx float64, sy float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::scale")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::scale")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_Scale(ptr.Pointer(), C.double(sx), C.double(sy))
@@ -663,11 +988,7 @@ func (ptr *QGraphicsView) Scale(sx float64, sy float64) {
 }
 
 func (ptr *QGraphicsView) Scene() *QGraphicsScene {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::scene")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::scene")
 
 	if ptr.Pointer() != nil {
 		return NewQGraphicsSceneFromPointer(C.QGraphicsView_Scene(ptr.Pointer()))
@@ -675,12 +996,39 @@ func (ptr *QGraphicsView) Scene() *QGraphicsScene {
 	return nil
 }
 
+func (ptr *QGraphicsView) ConnectScrollContentsBy(f func(dx int, dy int)) {
+	defer qt.Recovering("connect QGraphicsView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "scrollContentsBy", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectScrollContentsBy() {
+	defer qt.Recovering("disconnect QGraphicsView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "scrollContentsBy")
+	}
+}
+
+//export callbackQGraphicsViewScrollContentsBy
+func callbackQGraphicsViewScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
+	defer qt.Recovering("callback QGraphicsView::scrollContentsBy")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "scrollContentsBy")
+	if signal != nil {
+		defer signal.(func(int, int))(int(dx), int(dy))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsView) SetOptimizationFlag(flag QGraphicsView__OptimizationFlag, enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setOptimizationFlag")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setOptimizationFlag")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetOptimizationFlag(ptr.Pointer(), C.int(flag), C.int(qt.GoBoolToInt(enabled)))
@@ -688,11 +1036,7 @@ func (ptr *QGraphicsView) SetOptimizationFlag(flag QGraphicsView__OptimizationFl
 }
 
 func (ptr *QGraphicsView) SetRenderHint(hint gui.QPainter__RenderHint, enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setRenderHint")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setRenderHint")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetRenderHint(ptr.Pointer(), C.int(hint), C.int(qt.GoBoolToInt(enabled)))
@@ -700,11 +1044,7 @@ func (ptr *QGraphicsView) SetRenderHint(hint gui.QPainter__RenderHint, enabled b
 }
 
 func (ptr *QGraphicsView) SetScene(scene QGraphicsScene_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setScene")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setScene")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetScene(ptr.Pointer(), PointerFromQGraphicsScene(scene))
@@ -712,11 +1052,7 @@ func (ptr *QGraphicsView) SetScene(scene QGraphicsScene_ITF) {
 }
 
 func (ptr *QGraphicsView) SetSceneRect2(x float64, y float64, w float64, h float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setSceneRect")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setSceneRect")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetSceneRect2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h))
@@ -724,35 +1060,85 @@ func (ptr *QGraphicsView) SetSceneRect2(x float64, y float64, w float64, h float
 }
 
 func (ptr *QGraphicsView) SetTransform(matrix gui.QTransform_ITF, combine bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::setTransform")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::setTransform")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetTransform(ptr.Pointer(), gui.PointerFromQTransform(matrix), C.int(qt.GoBoolToInt(combine)))
 	}
 }
 
+func (ptr *QGraphicsView) ConnectSetupViewport(f func(widget *QWidget)) {
+	defer qt.Recovering("connect QGraphicsView::setupViewport")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setupViewport", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectSetupViewport() {
+	defer qt.Recovering("disconnect QGraphicsView::setupViewport")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setupViewport")
+	}
+}
+
+//export callbackQGraphicsViewSetupViewport
+func callbackQGraphicsViewSetupViewport(ptrName *C.char, widget unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::setupViewport")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setupViewport")
+	if signal != nil {
+		defer signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsView) Shear(sh float64, sv float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::shear")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::shear")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_Shear(ptr.Pointer(), C.double(sh), C.double(sv))
 	}
 }
 
+func (ptr *QGraphicsView) ConnectShowEvent(f func(event *gui.QShowEvent)) {
+	defer qt.Recovering("connect QGraphicsView::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectShowEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+	}
+}
+
+//export callbackQGraphicsViewShowEvent
+func callbackQGraphicsViewShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::showEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsView) Translate(dx float64, dy float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::translate")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::translate")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_Translate(ptr.Pointer(), C.double(dx), C.double(dy))
@@ -760,23 +1146,46 @@ func (ptr *QGraphicsView) Translate(dx float64, dy float64) {
 }
 
 func (ptr *QGraphicsView) UpdateSceneRect(rect core.QRectF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::updateSceneRect")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::updateSceneRect")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_UpdateSceneRect(ptr.Pointer(), core.PointerFromQRectF(rect))
 	}
 }
 
+func (ptr *QGraphicsView) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
+	defer qt.Recovering("connect QGraphicsView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QGraphicsView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQGraphicsViewWheelEvent
+func callbackQGraphicsViewWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsView::wheelEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsView) DestroyQGraphicsView() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsView::~QGraphicsView")
-		}
-	}()
+	defer qt.Recovering("QGraphicsView::~QGraphicsView")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_DestroyQGraphicsView(ptr.Pointer())

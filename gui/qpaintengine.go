@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,6 +34,9 @@ func PointerFromQPaintEngine(ptr QPaintEngine_ITF) unsafe.Pointer {
 func NewQPaintEngineFromPointer(ptr unsafe.Pointer) *QPaintEngine {
 	var n = new(QPaintEngine)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QPaintEngine_") {
+		n.SetObjectNameAbs("QPaintEngine_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -124,48 +126,39 @@ const (
 	QPaintEngine__MaxUser       = QPaintEngine__Type(100)
 )
 
-func (ptr *QPaintEngine) DrawEllipse(rect core.QRectF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawEllipse")
-		}
-	}()
+func (ptr *QPaintEngine) ConnectDrawPolygon(f func(points *core.QPointF, pointCount int, mode QPaintEngine__PolygonDrawMode)) {
+	defer qt.Recovering("connect QPaintEngine::drawPolygon")
 
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawEllipse(ptr.Pointer(), core.PointerFromQRectF(rect))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "drawPolygon", f)
 	}
 }
 
-func (ptr *QPaintEngine) DrawImage(rectangle core.QRectF_ITF, image QImage_ITF, sr core.QRectF_ITF, flags core.Qt__ImageConversionFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawImage")
-		}
-	}()
+func (ptr *QPaintEngine) DisconnectDrawPolygon() {
+	defer qt.Recovering("disconnect QPaintEngine::drawPolygon")
 
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawImage(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQImage(image), core.PointerFromQRectF(sr), C.int(flags))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "drawPolygon")
 	}
 }
 
-func (ptr *QPaintEngine) DrawPolygon(points core.QPointF_ITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawPolygon")
-		}
-	}()
+//export callbackQPaintEngineDrawPolygon
+func callbackQPaintEngineDrawPolygon(ptrName *C.char, points unsafe.Pointer, pointCount C.int, mode C.int) bool {
+	defer qt.Recovering("callback QPaintEngine::drawPolygon")
 
-	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawPolygon(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount), C.int(mode))
+	var signal = qt.GetSignal(C.GoString(ptrName), "drawPolygon")
+	if signal != nil {
+		defer signal.(func(*core.QPointF, int, QPaintEngine__PolygonDrawMode))(core.NewQPointFFromPointer(points), int(pointCount), QPaintEngine__PolygonDrawMode(mode))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QPaintEngine) Begin(pdev QPaintDevice_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::begin")
-		}
-	}()
+	defer qt.Recovering("QPaintEngine::begin")
 
 	if ptr.Pointer() != nil {
 		return C.QPaintEngine_Begin(ptr.Pointer(), PointerFromQPaintDevice(pdev)) != 0
@@ -173,156 +166,109 @@ func (ptr *QPaintEngine) Begin(pdev QPaintDevice_ITF) bool {
 	return false
 }
 
-func (ptr *QPaintEngine) DrawEllipse2(rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawEllipse")
-		}
-	}()
+func (ptr *QPaintEngine) ConnectDrawLines(f func(lines *core.QLineF, lineCount int)) {
+	defer qt.Recovering("connect QPaintEngine::drawLines")
 
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawEllipse2(ptr.Pointer(), core.PointerFromQRect(rect))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "drawLines", f)
 	}
 }
 
-func (ptr *QPaintEngine) DrawLines2(lines core.QLine_ITF, lineCount int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawLines")
-		}
-	}()
+func (ptr *QPaintEngine) DisconnectDrawLines() {
+	defer qt.Recovering("disconnect QPaintEngine::drawLines")
 
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawLines2(ptr.Pointer(), core.PointerFromQLine(lines), C.int(lineCount))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "drawLines")
 	}
 }
 
-func (ptr *QPaintEngine) DrawLines(lines core.QLineF_ITF, lineCount int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawLines")
-		}
-	}()
+//export callbackQPaintEngineDrawLines
+func callbackQPaintEngineDrawLines(ptrName *C.char, lines unsafe.Pointer, lineCount C.int) bool {
+	defer qt.Recovering("callback QPaintEngine::drawLines")
 
-	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawLines(ptr.Pointer(), core.PointerFromQLineF(lines), C.int(lineCount))
+	var signal = qt.GetSignal(C.GoString(ptrName), "drawLines")
+	if signal != nil {
+		defer signal.(func(*core.QLineF, int))(core.NewQLineFFromPointer(lines), int(lineCount))
+		return true
 	}
-}
+	return false
 
-func (ptr *QPaintEngine) DrawPath(path QPainterPath_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawPath")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawPath(ptr.Pointer(), PointerFromQPainterPath(path))
-	}
 }
 
 func (ptr *QPaintEngine) DrawPixmap(r core.QRectF_ITF, pm QPixmap_ITF, sr core.QRectF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawPixmap")
-		}
-	}()
+	defer qt.Recovering("QPaintEngine::drawPixmap")
 
 	if ptr.Pointer() != nil {
 		C.QPaintEngine_DrawPixmap(ptr.Pointer(), core.PointerFromQRectF(r), PointerFromQPixmap(pm), core.PointerFromQRectF(sr))
 	}
 }
 
-func (ptr *QPaintEngine) DrawPoints2(points core.QPoint_ITF, pointCount int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawPoints")
-		}
-	}()
+func (ptr *QPaintEngine) ConnectDrawPoints(f func(points *core.QPointF, pointCount int)) {
+	defer qt.Recovering("connect QPaintEngine::drawPoints")
 
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawPoints2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "drawPoints", f)
 	}
 }
 
-func (ptr *QPaintEngine) DrawPoints(points core.QPointF_ITF, pointCount int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawPoints")
-		}
-	}()
+func (ptr *QPaintEngine) DisconnectDrawPoints() {
+	defer qt.Recovering("disconnect QPaintEngine::drawPoints")
 
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawPoints(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "drawPoints")
 	}
 }
 
-func (ptr *QPaintEngine) DrawPolygon2(points core.QPoint_ITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawPolygon")
-		}
-	}()
+//export callbackQPaintEngineDrawPoints
+func callbackQPaintEngineDrawPoints(ptrName *C.char, points unsafe.Pointer, pointCount C.int) bool {
+	defer qt.Recovering("callback QPaintEngine::drawPoints")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "drawPoints")
+	if signal != nil {
+		defer signal.(func(*core.QPointF, int))(core.NewQPointFFromPointer(points), int(pointCount))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QPaintEngine) ConnectDrawRects(f func(rects *core.QRectF, rectCount int)) {
+	defer qt.Recovering("connect QPaintEngine::drawRects")
 
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawPolygon2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount), C.int(mode))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "drawRects", f)
 	}
 }
 
-func (ptr *QPaintEngine) DrawRects2(rects core.QRect_ITF, rectCount int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawRects")
-		}
-	}()
+func (ptr *QPaintEngine) DisconnectDrawRects() {
+	defer qt.Recovering("disconnect QPaintEngine::drawRects")
 
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawRects2(ptr.Pointer(), core.PointerFromQRect(rects), C.int(rectCount))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "drawRects")
 	}
 }
 
-func (ptr *QPaintEngine) DrawRects(rects core.QRectF_ITF, rectCount int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawRects")
-		}
-	}()
+//export callbackQPaintEngineDrawRects
+func callbackQPaintEngineDrawRects(ptrName *C.char, rects unsafe.Pointer, rectCount C.int) bool {
+	defer qt.Recovering("callback QPaintEngine::drawRects")
 
-	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawRects(ptr.Pointer(), core.PointerFromQRectF(rects), C.int(rectCount))
+	var signal = qt.GetSignal(C.GoString(ptrName), "drawRects")
+	if signal != nil {
+		defer signal.(func(*core.QRectF, int))(core.NewQRectFFromPointer(rects), int(rectCount))
+		return true
 	}
-}
+	return false
 
-func (ptr *QPaintEngine) DrawTextItem(p core.QPointF_ITF, textItem QTextItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawTextItem")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawTextItem(ptr.Pointer(), core.PointerFromQPointF(p), PointerFromQTextItem(textItem))
-	}
-}
-
-func (ptr *QPaintEngine) DrawTiledPixmap(rect core.QRectF_ITF, pixmap QPixmap_ITF, p core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::drawTiledPixmap")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawTiledPixmap(ptr.Pointer(), core.PointerFromQRectF(rect), PointerFromQPixmap(pixmap), core.PointerFromQPointF(p))
-	}
 }
 
 func (ptr *QPaintEngine) End() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::end")
-		}
-	}()
+	defer qt.Recovering("QPaintEngine::end")
 
 	if ptr.Pointer() != nil {
 		return C.QPaintEngine_End(ptr.Pointer()) != 0
@@ -331,11 +277,7 @@ func (ptr *QPaintEngine) End() bool {
 }
 
 func (ptr *QPaintEngine) HasFeature(feature QPaintEngine__PaintEngineFeature) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::hasFeature")
-		}
-	}()
+	defer qt.Recovering("QPaintEngine::hasFeature")
 
 	if ptr.Pointer() != nil {
 		return C.QPaintEngine_HasFeature(ptr.Pointer(), C.int(feature)) != 0
@@ -344,11 +286,7 @@ func (ptr *QPaintEngine) HasFeature(feature QPaintEngine__PaintEngineFeature) bo
 }
 
 func (ptr *QPaintEngine) IsActive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::isActive")
-		}
-	}()
+	defer qt.Recovering("QPaintEngine::isActive")
 
 	if ptr.Pointer() != nil {
 		return C.QPaintEngine_IsActive(ptr.Pointer()) != 0
@@ -357,11 +295,7 @@ func (ptr *QPaintEngine) IsActive() bool {
 }
 
 func (ptr *QPaintEngine) PaintDevice() *QPaintDevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::paintDevice")
-		}
-	}()
+	defer qt.Recovering("QPaintEngine::paintDevice")
 
 	if ptr.Pointer() != nil {
 		return NewQPaintDeviceFromPointer(C.QPaintEngine_PaintDevice(ptr.Pointer()))
@@ -370,11 +304,7 @@ func (ptr *QPaintEngine) PaintDevice() *QPaintDevice {
 }
 
 func (ptr *QPaintEngine) Painter() *QPainter {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::painter")
-		}
-	}()
+	defer qt.Recovering("QPaintEngine::painter")
 
 	if ptr.Pointer() != nil {
 		return NewQPainterFromPointer(C.QPaintEngine_Painter(ptr.Pointer()))
@@ -383,11 +313,7 @@ func (ptr *QPaintEngine) Painter() *QPainter {
 }
 
 func (ptr *QPaintEngine) SetActive(state bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::setActive")
-		}
-	}()
+	defer qt.Recovering("QPaintEngine::setActive")
 
 	if ptr.Pointer() != nil {
 		C.QPaintEngine_SetActive(ptr.Pointer(), C.int(qt.GoBoolToInt(state)))
@@ -395,11 +321,7 @@ func (ptr *QPaintEngine) SetActive(state bool) {
 }
 
 func (ptr *QPaintEngine) Type() QPaintEngine__Type {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::type")
-		}
-	}()
+	defer qt.Recovering("QPaintEngine::type")
 
 	if ptr.Pointer() != nil {
 		return QPaintEngine__Type(C.QPaintEngine_Type(ptr.Pointer()))
@@ -408,11 +330,7 @@ func (ptr *QPaintEngine) Type() QPaintEngine__Type {
 }
 
 func (ptr *QPaintEngine) UpdateState(state QPaintEngineState_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::updateState")
-		}
-	}()
+	defer qt.Recovering("QPaintEngine::updateState")
 
 	if ptr.Pointer() != nil {
 		C.QPaintEngine_UpdateState(ptr.Pointer(), PointerFromQPaintEngineState(state))
@@ -420,13 +338,26 @@ func (ptr *QPaintEngine) UpdateState(state QPaintEngineState_ITF) {
 }
 
 func (ptr *QPaintEngine) DestroyQPaintEngine() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEngine::~QPaintEngine")
-		}
-	}()
+	defer qt.Recovering("QPaintEngine::~QPaintEngine")
 
 	if ptr.Pointer() != nil {
 		C.QPaintEngine_DestroyQPaintEngine(ptr.Pointer())
+	}
+}
+
+func (ptr *QPaintEngine) ObjectNameAbs() string {
+	defer qt.Recovering("QPaintEngine::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QPaintEngine_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPaintEngine) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QPaintEngine::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

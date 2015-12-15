@@ -3,9 +3,9 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -28,6 +28,9 @@ func PointerFromQGraphicsPixmapItem(ptr QGraphicsPixmapItem_ITF) unsafe.Pointer 
 func NewQGraphicsPixmapItemFromPointer(ptr unsafe.Pointer) *QGraphicsPixmapItem {
 	var n = new(QGraphicsPixmapItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QGraphicsPixmapItem_") {
+		n.SetObjectNameAbs("QGraphicsPixmapItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -45,31 +48,19 @@ const (
 )
 
 func NewQGraphicsPixmapItem(parent QGraphicsItem_ITF) *QGraphicsPixmapItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::QGraphicsPixmapItem")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::QGraphicsPixmapItem")
 
 	return NewQGraphicsPixmapItemFromPointer(C.QGraphicsPixmapItem_NewQGraphicsPixmapItem(PointerFromQGraphicsItem(parent)))
 }
 
 func NewQGraphicsPixmapItem2(pixmap gui.QPixmap_ITF, parent QGraphicsItem_ITF) *QGraphicsPixmapItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::QGraphicsPixmapItem")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::QGraphicsPixmapItem")
 
 	return NewQGraphicsPixmapItemFromPointer(C.QGraphicsPixmapItem_NewQGraphicsPixmapItem2(gui.PointerFromQPixmap(pixmap), PointerFromQGraphicsItem(parent)))
 }
 
 func (ptr *QGraphicsPixmapItem) Contains(point core.QPointF_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::contains")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QGraphicsPixmapItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
@@ -78,11 +69,7 @@ func (ptr *QGraphicsPixmapItem) Contains(point core.QPointF_ITF) bool {
 }
 
 func (ptr *QGraphicsPixmapItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::isObscuredBy")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::isObscuredBy")
 
 	if ptr.Pointer() != nil {
 		return C.QGraphicsPixmapItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
@@ -90,24 +77,39 @@ func (ptr *QGraphicsPixmapItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
 	return false
 }
 
-func (ptr *QGraphicsPixmapItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::paint")
-		}
-	}()
+func (ptr *QGraphicsPixmapItem) ConnectPaint(f func(painter *gui.QPainter, option *QStyleOptionGraphicsItem, widget *QWidget)) {
+	defer qt.Recovering("connect QGraphicsPixmapItem::paint")
 
 	if ptr.Pointer() != nil {
-		C.QGraphicsPixmapItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "paint", f)
 	}
 }
 
+func (ptr *QGraphicsPixmapItem) DisconnectPaint() {
+	defer qt.Recovering("disconnect QGraphicsPixmapItem::paint")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "paint")
+	}
+}
+
+//export callbackQGraphicsPixmapItemPaint
+func callbackQGraphicsPixmapItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsPixmapItem::paint")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paint")
+	if signal != nil {
+		defer signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsPixmapItem) SetOffset(offset core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::setOffset")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::setOffset")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsPixmapItem_SetOffset(ptr.Pointer(), core.PointerFromQPointF(offset))
@@ -115,11 +117,7 @@ func (ptr *QGraphicsPixmapItem) SetOffset(offset core.QPointF_ITF) {
 }
 
 func (ptr *QGraphicsPixmapItem) SetOffset2(x float64, y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::setOffset")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::setOffset")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsPixmapItem_SetOffset2(ptr.Pointer(), C.double(x), C.double(y))
@@ -127,11 +125,7 @@ func (ptr *QGraphicsPixmapItem) SetOffset2(x float64, y float64) {
 }
 
 func (ptr *QGraphicsPixmapItem) SetPixmap(pixmap gui.QPixmap_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::setPixmap")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::setPixmap")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsPixmapItem_SetPixmap(ptr.Pointer(), gui.PointerFromQPixmap(pixmap))
@@ -139,11 +133,7 @@ func (ptr *QGraphicsPixmapItem) SetPixmap(pixmap gui.QPixmap_ITF) {
 }
 
 func (ptr *QGraphicsPixmapItem) SetShapeMode(mode QGraphicsPixmapItem__ShapeMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::setShapeMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::setShapeMode")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsPixmapItem_SetShapeMode(ptr.Pointer(), C.int(mode))
@@ -151,11 +141,7 @@ func (ptr *QGraphicsPixmapItem) SetShapeMode(mode QGraphicsPixmapItem__ShapeMode
 }
 
 func (ptr *QGraphicsPixmapItem) SetTransformationMode(mode core.Qt__TransformationMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::setTransformationMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::setTransformationMode")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsPixmapItem_SetTransformationMode(ptr.Pointer(), C.int(mode))
@@ -163,11 +149,7 @@ func (ptr *QGraphicsPixmapItem) SetTransformationMode(mode core.Qt__Transformati
 }
 
 func (ptr *QGraphicsPixmapItem) ShapeMode() QGraphicsPixmapItem__ShapeMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::shapeMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::shapeMode")
 
 	if ptr.Pointer() != nil {
 		return QGraphicsPixmapItem__ShapeMode(C.QGraphicsPixmapItem_ShapeMode(ptr.Pointer()))
@@ -176,11 +158,7 @@ func (ptr *QGraphicsPixmapItem) ShapeMode() QGraphicsPixmapItem__ShapeMode {
 }
 
 func (ptr *QGraphicsPixmapItem) TransformationMode() core.Qt__TransformationMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::transformationMode")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::transformationMode")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__TransformationMode(C.QGraphicsPixmapItem_TransformationMode(ptr.Pointer()))
@@ -189,11 +167,7 @@ func (ptr *QGraphicsPixmapItem) TransformationMode() core.Qt__TransformationMode
 }
 
 func (ptr *QGraphicsPixmapItem) Type() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::type")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::type")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGraphicsPixmapItem_Type(ptr.Pointer()))
@@ -202,13 +176,26 @@ func (ptr *QGraphicsPixmapItem) Type() int {
 }
 
 func (ptr *QGraphicsPixmapItem) DestroyQGraphicsPixmapItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPixmapItem::~QGraphicsPixmapItem")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPixmapItem::~QGraphicsPixmapItem")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsPixmapItem_DestroyQGraphicsPixmapItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsPixmapItem) ObjectNameAbs() string {
+	defer qt.Recovering("QGraphicsPixmapItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QGraphicsPixmapItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QGraphicsPixmapItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QGraphicsPixmapItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsPixmapItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

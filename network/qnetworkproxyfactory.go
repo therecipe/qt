@@ -4,7 +4,6 @@ package network
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +33,9 @@ func PointerFromQNetworkProxyFactory(ptr QNetworkProxyFactory_ITF) unsafe.Pointe
 func NewQNetworkProxyFactoryFromPointer(ptr unsafe.Pointer) *QNetworkProxyFactory {
 	var n = new(QNetworkProxyFactory)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QNetworkProxyFactory_") {
+		n.SetObjectNameAbs("QNetworkProxyFactory_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,33 +44,38 @@ func (ptr *QNetworkProxyFactory) QNetworkProxyFactory_PTR() *QNetworkProxyFactor
 }
 
 func QNetworkProxyFactory_SetApplicationProxyFactory(factory QNetworkProxyFactory_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxyFactory::setApplicationProxyFactory")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxyFactory::setApplicationProxyFactory")
 
 	C.QNetworkProxyFactory_QNetworkProxyFactory_SetApplicationProxyFactory(PointerFromQNetworkProxyFactory(factory))
 }
 
 func QNetworkProxyFactory_SetUseSystemConfiguration(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxyFactory::setUseSystemConfiguration")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxyFactory::setUseSystemConfiguration")
 
 	C.QNetworkProxyFactory_QNetworkProxyFactory_SetUseSystemConfiguration(C.int(qt.GoBoolToInt(enable)))
 }
 
 func (ptr *QNetworkProxyFactory) DestroyQNetworkProxyFactory() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxyFactory::~QNetworkProxyFactory")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxyFactory::~QNetworkProxyFactory")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkProxyFactory_DestroyQNetworkProxyFactory(ptr.Pointer())
+	}
+}
+
+func (ptr *QNetworkProxyFactory) ObjectNameAbs() string {
+	defer qt.Recovering("QNetworkProxyFactory::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QNetworkProxyFactory_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QNetworkProxyFactory) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QNetworkProxyFactory::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkProxyFactory_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

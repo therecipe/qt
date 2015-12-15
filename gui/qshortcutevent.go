@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -36,21 +35,13 @@ func (ptr *QShortcutEvent) QShortcutEvent_PTR() *QShortcutEvent {
 }
 
 func NewQShortcutEvent(key QKeySequence_ITF, id int, ambiguous bool) *QShortcutEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcutEvent::QShortcutEvent")
-		}
-	}()
+	defer qt.Recovering("QShortcutEvent::QShortcutEvent")
 
 	return NewQShortcutEventFromPointer(C.QShortcutEvent_NewQShortcutEvent(PointerFromQKeySequence(key), C.int(id), C.int(qt.GoBoolToInt(ambiguous))))
 }
 
 func (ptr *QShortcutEvent) IsAmbiguous() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcutEvent::isAmbiguous")
-		}
-	}()
+	defer qt.Recovering("QShortcutEvent::isAmbiguous")
 
 	if ptr.Pointer() != nil {
 		return C.QShortcutEvent_IsAmbiguous(ptr.Pointer()) != 0
@@ -59,11 +50,7 @@ func (ptr *QShortcutEvent) IsAmbiguous() bool {
 }
 
 func (ptr *QShortcutEvent) ShortcutId() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcutEvent::shortcutId")
-		}
-	}()
+	defer qt.Recovering("QShortcutEvent::shortcutId")
 
 	if ptr.Pointer() != nil {
 		return int(C.QShortcutEvent_ShortcutId(ptr.Pointer()))
@@ -72,11 +59,7 @@ func (ptr *QShortcutEvent) ShortcutId() int {
 }
 
 func (ptr *QShortcutEvent) DestroyQShortcutEvent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcutEvent::~QShortcutEvent")
-		}
-	}()
+	defer qt.Recovering("QShortcutEvent::~QShortcutEvent")
 
 	if ptr.Pointer() != nil {
 		C.QShortcutEvent_DestroyQShortcutEvent(ptr.Pointer())

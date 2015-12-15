@@ -38,10 +38,6 @@
 #include <QXmlReader>
 #include <QXmlSimpleReader>
 
-class MyQDomAttr: public QDomAttr {
-public:
-};
-
 void* QDomAttr_NewQDomAttr(){
 	return new QDomAttr();
 }
@@ -70,10 +66,6 @@ char* QDomAttr_Value(void* ptr){
 	return static_cast<QDomAttr*>(ptr)->value().toUtf8().data();
 }
 
-class MyQDomCDATASection: public QDomCDATASection {
-public:
-};
-
 void* QDomCDATASection_NewQDomCDATASection(){
 	return new QDomCDATASection();
 }
@@ -85,10 +77,6 @@ void* QDomCDATASection_NewQDomCDATASection2(void* x){
 int QDomCDATASection_NodeType(void* ptr){
 	return static_cast<QDomCDATASection*>(ptr)->nodeType();
 }
-
-class MyQDomCharacterData: public QDomCharacterData {
-public:
-};
 
 void* QDomCharacterData_NewQDomCharacterData(){
 	return new QDomCharacterData();
@@ -118,10 +106,6 @@ void QDomCharacterData_SetData(void* ptr, char* v){
 	static_cast<QDomCharacterData*>(ptr)->setData(QString(v));
 }
 
-class MyQDomComment: public QDomComment {
-public:
-};
-
 void* QDomComment_NewQDomComment(){
 	return new QDomComment();
 }
@@ -133,10 +117,6 @@ void* QDomComment_NewQDomComment2(void* x){
 int QDomComment_NodeType(void* ptr){
 	return static_cast<QDomComment*>(ptr)->nodeType();
 }
-
-class MyQDomDocument: public QDomDocument {
-public:
-};
 
 void* QDomDocument_NewQDomDocument(){
 	return new QDomDocument();
@@ -202,10 +182,6 @@ void QDomDocument_DestroyQDomDocument(void* ptr){
 	static_cast<QDomDocument*>(ptr)->~QDomDocument();
 }
 
-class MyQDomDocumentFragment: public QDomDocumentFragment {
-public:
-};
-
 void* QDomDocumentFragment_NewQDomDocumentFragment(){
 	return new QDomDocumentFragment();
 }
@@ -217,10 +193,6 @@ void* QDomDocumentFragment_NewQDomDocumentFragment2(void* x){
 int QDomDocumentFragment_NodeType(void* ptr){
 	return static_cast<QDomDocumentFragment*>(ptr)->nodeType();
 }
-
-class MyQDomDocumentType: public QDomDocumentType {
-public:
-};
 
 void* QDomDocumentType_NewQDomDocumentType(){
 	return new QDomDocumentType();
@@ -249,10 +221,6 @@ char* QDomDocumentType_PublicId(void* ptr){
 char* QDomDocumentType_SystemId(void* ptr){
 	return static_cast<QDomDocumentType*>(ptr)->systemId().toUtf8().data();
 }
-
-class MyQDomElement: public QDomElement {
-public:
-};
 
 void* QDomElement_NewQDomElement(){
 	return new QDomElement();
@@ -318,10 +286,6 @@ char* QDomElement_Text(void* ptr){
 	return static_cast<QDomElement*>(ptr)->text().toUtf8().data();
 }
 
-class MyQDomEntity: public QDomEntity {
-public:
-};
-
 void* QDomEntity_NewQDomEntity(){
 	return new QDomEntity();
 }
@@ -346,10 +310,6 @@ char* QDomEntity_SystemId(void* ptr){
 	return static_cast<QDomEntity*>(ptr)->systemId().toUtf8().data();
 }
 
-class MyQDomEntityReference: public QDomEntityReference {
-public:
-};
-
 void* QDomEntityReference_NewQDomEntityReference(){
 	return new QDomEntityReference();
 }
@@ -361,10 +321,6 @@ void* QDomEntityReference_NewQDomEntityReference2(void* x){
 int QDomEntityReference_NodeType(void* ptr){
 	return static_cast<QDomEntityReference*>(ptr)->nodeType();
 }
-
-class MyQDomImplementation: public QDomImplementation {
-public:
-};
 
 void* QDomImplementation_NewQDomImplementation(){
 	return new QDomImplementation();
@@ -393,10 +349,6 @@ void QDomImplementation_QDomImplementation_SetInvalidDataPolicy(int policy){
 void QDomImplementation_DestroyQDomImplementation(void* ptr){
 	static_cast<QDomImplementation*>(ptr)->~QDomImplementation();
 }
-
-class MyQDomNamedNodeMap: public QDomNamedNodeMap {
-public:
-};
 
 void* QDomNamedNodeMap_NewQDomNamedNodeMap(){
 	return new QDomNamedNodeMap();
@@ -429,10 +381,6 @@ int QDomNamedNodeMap_Size(void* ptr){
 void QDomNamedNodeMap_DestroyQDomNamedNodeMap(void* ptr){
 	static_cast<QDomNamedNodeMap*>(ptr)->~QDomNamedNodeMap();
 }
-
-class MyQDomNode: public QDomNode {
-public:
-};
 
 void* QDomNode_NewQDomNode(){
 	return new QDomNode();
@@ -566,10 +514,6 @@ void QDomNode_DestroyQDomNode(void* ptr){
 	static_cast<QDomNode*>(ptr)->~QDomNode();
 }
 
-class MyQDomNodeList: public QDomNodeList {
-public:
-};
-
 void* QDomNodeList_NewQDomNodeList(){
 	return new QDomNodeList();
 }
@@ -598,10 +542,6 @@ void QDomNodeList_DestroyQDomNodeList(void* ptr){
 	static_cast<QDomNodeList*>(ptr)->~QDomNodeList();
 }
 
-class MyQDomNotation: public QDomNotation {
-public:
-};
-
 void* QDomNotation_NewQDomNotation(){
 	return new QDomNotation();
 }
@@ -621,10 +561,6 @@ char* QDomNotation_PublicId(void* ptr){
 char* QDomNotation_SystemId(void* ptr){
 	return static_cast<QDomNotation*>(ptr)->systemId().toUtf8().data();
 }
-
-class MyQDomProcessingInstruction: public QDomProcessingInstruction {
-public:
-};
 
 void* QDomProcessingInstruction_NewQDomProcessingInstruction(){
 	return new QDomProcessingInstruction();
@@ -650,10 +586,6 @@ char* QDomProcessingInstruction_Target(void* ptr){
 	return static_cast<QDomProcessingInstruction*>(ptr)->target().toUtf8().data();
 }
 
-class MyQDomText: public QDomText {
-public:
-};
-
 void* QDomText_NewQDomText(){
 	return new QDomText();
 }
@@ -668,10 +600,15 @@ int QDomText_NodeType(void* ptr){
 
 class MyQXmlAttributes: public QXmlAttributes {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQXmlAttributes() : QXmlAttributes() {};
+protected:
 };
 
 void* QXmlAttributes_NewQXmlAttributes(){
-	return new QXmlAttributes();
+	return new MyQXmlAttributes();
 }
 
 void QXmlAttributes_DestroyQXmlAttributes(void* ptr){
@@ -746,8 +683,20 @@ char* QXmlAttributes_Value(void* ptr, int index){
 	return static_cast<QXmlAttributes*>(ptr)->value(index).toUtf8().data();
 }
 
+char* QXmlAttributes_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlAttributes*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlAttributes_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlAttributes*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQXmlContentHandler: public QXmlContentHandler {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 int QXmlContentHandler_Characters(void* ptr, char* ch){
@@ -802,8 +751,20 @@ void QXmlContentHandler_DestroyQXmlContentHandler(void* ptr){
 	static_cast<QXmlContentHandler*>(ptr)->~QXmlContentHandler();
 }
 
+char* QXmlContentHandler_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlContentHandler*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlContentHandler_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlContentHandler*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQXmlDTDHandler: public QXmlDTDHandler {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 char* QXmlDTDHandler_ErrorString(void* ptr){
@@ -822,8 +783,20 @@ void QXmlDTDHandler_DestroyQXmlDTDHandler(void* ptr){
 	static_cast<QXmlDTDHandler*>(ptr)->~QXmlDTDHandler();
 }
 
+char* QXmlDTDHandler_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlDTDHandler*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlDTDHandler_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlDTDHandler*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQXmlDeclHandler: public QXmlDeclHandler {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 int QXmlDeclHandler_AttributeDecl(void* ptr, char* eName, char* aName, char* ty, char* valueDefault, char* value){
@@ -846,12 +819,26 @@ void QXmlDeclHandler_DestroyQXmlDeclHandler(void* ptr){
 	static_cast<QXmlDeclHandler*>(ptr)->~QXmlDeclHandler();
 }
 
+char* QXmlDeclHandler_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlDeclHandler*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlDeclHandler_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlDeclHandler*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQXmlDefaultHandler: public QXmlDefaultHandler {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQXmlDefaultHandler() : QXmlDefaultHandler() {};
+	void setDocumentLocator(QXmlLocator * locator) { if (!callbackQXmlDefaultHandlerSetDocumentLocator(this->objectNameAbs().toUtf8().data(), locator)) { QXmlDefaultHandler::setDocumentLocator(locator); }; };
+protected:
 };
 
 void* QXmlDefaultHandler_NewQXmlDefaultHandler(){
-	return new QXmlDefaultHandler();
+	return new MyQXmlDefaultHandler();
 }
 
 void QXmlDefaultHandler_DestroyQXmlDefaultHandler(void* ptr){
@@ -966,8 +953,20 @@ int QXmlDefaultHandler_Warning(void* ptr, void* exception){
 	return static_cast<QXmlDefaultHandler*>(ptr)->warning(*static_cast<QXmlParseException*>(exception));
 }
 
+char* QXmlDefaultHandler_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlDefaultHandler*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlDefaultHandler_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlDefaultHandler*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQXmlEntityResolver: public QXmlEntityResolver {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 char* QXmlEntityResolver_ErrorString(void* ptr){
@@ -978,8 +977,20 @@ void QXmlEntityResolver_DestroyQXmlEntityResolver(void* ptr){
 	static_cast<QXmlEntityResolver*>(ptr)->~QXmlEntityResolver();
 }
 
+char* QXmlEntityResolver_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlEntityResolver*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlEntityResolver_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlEntityResolver*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQXmlErrorHandler: public QXmlErrorHandler {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 int QXmlErrorHandler_Error(void* ptr, void* exception){
@@ -1002,16 +1013,33 @@ void QXmlErrorHandler_DestroyQXmlErrorHandler(void* ptr){
 	static_cast<QXmlErrorHandler*>(ptr)->~QXmlErrorHandler();
 }
 
+char* QXmlErrorHandler_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlErrorHandler*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlErrorHandler_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlErrorHandler*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQXmlInputSource: public QXmlInputSource {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQXmlInputSource() : QXmlInputSource() {};
+	MyQXmlInputSource(QIODevice *dev) : QXmlInputSource(dev) {};
+	void fetchData() { if (!callbackQXmlInputSourceFetchData(this->objectNameAbs().toUtf8().data())) { QXmlInputSource::fetchData(); }; };
+	void reset() { if (!callbackQXmlInputSourceReset(this->objectNameAbs().toUtf8().data())) { QXmlInputSource::reset(); }; };
+	void setData(const QString & dat) { if (!callbackQXmlInputSourceSetData(this->objectNameAbs().toUtf8().data(), dat.toUtf8().data())) { QXmlInputSource::setData(dat); }; };
+protected:
 };
 
 void* QXmlInputSource_NewQXmlInputSource(){
-	return new QXmlInputSource();
+	return new MyQXmlInputSource();
 }
 
 void* QXmlInputSource_NewQXmlInputSource2(void* dev){
-	return new QXmlInputSource(static_cast<QIODevice*>(dev));
+	return new MyQXmlInputSource(static_cast<QIODevice*>(dev));
 }
 
 char* QXmlInputSource_Data(void* ptr){
@@ -1026,10 +1054,6 @@ void QXmlInputSource_Reset(void* ptr){
 	static_cast<QXmlInputSource*>(ptr)->reset();
 }
 
-void QXmlInputSource_SetData2(void* ptr, void* dat){
-	static_cast<QXmlInputSource*>(ptr)->setData(*static_cast<QByteArray*>(dat));
-}
-
 void QXmlInputSource_SetData(void* ptr, char* dat){
 	static_cast<QXmlInputSource*>(ptr)->setData(QString(dat));
 }
@@ -1038,8 +1062,20 @@ void QXmlInputSource_DestroyQXmlInputSource(void* ptr){
 	static_cast<QXmlInputSource*>(ptr)->~QXmlInputSource();
 }
 
+char* QXmlInputSource_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlInputSource*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlInputSource_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlInputSource*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQXmlLexicalHandler: public QXmlLexicalHandler {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 int QXmlLexicalHandler_Comment(void* ptr, char* ch){
@@ -1078,8 +1114,20 @@ void QXmlLexicalHandler_DestroyQXmlLexicalHandler(void* ptr){
 	static_cast<QXmlLexicalHandler*>(ptr)->~QXmlLexicalHandler();
 }
 
+char* QXmlLexicalHandler_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlLexicalHandler*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlLexicalHandler_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlLexicalHandler*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQXmlLocator: public QXmlLocator {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 int QXmlLocator_ColumnNumber(void* ptr){
@@ -1094,9 +1142,13 @@ void QXmlLocator_DestroyQXmlLocator(void* ptr){
 	static_cast<QXmlLocator*>(ptr)->~QXmlLocator();
 }
 
-class MyQXmlNamespaceSupport: public QXmlNamespaceSupport {
-public:
-};
+char* QXmlLocator_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlLocator*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlLocator_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlLocator*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 void* QXmlNamespaceSupport_NewQXmlNamespaceSupport(){
 	return new QXmlNamespaceSupport();
@@ -1138,10 +1190,6 @@ void QXmlNamespaceSupport_DestroyQXmlNamespaceSupport(void* ptr){
 	static_cast<QXmlNamespaceSupport*>(ptr)->~QXmlNamespaceSupport();
 }
 
-class MyQXmlParseException: public QXmlParseException {
-public:
-};
-
 void* QXmlParseException_NewQXmlParseException(char* name, int c, int l, char* p, char* s){
 	return new QXmlParseException(QString(name), c, l, QString(p), QString(s));
 }
@@ -1176,6 +1224,10 @@ void QXmlParseException_DestroyQXmlParseException(void* ptr){
 
 class MyQXmlReader: public QXmlReader {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 void* QXmlReader_DTDHandler(void* ptr){
@@ -1254,8 +1306,28 @@ void QXmlReader_DestroyQXmlReader(void* ptr){
 	static_cast<QXmlReader*>(ptr)->~QXmlReader();
 }
 
+char* QXmlReader_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlReader*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlReader_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlReader*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQXmlSimpleReader: public QXmlSimpleReader {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQXmlSimpleReader() : QXmlSimpleReader() {};
+	void setContentHandler(QXmlContentHandler * handler) { if (!callbackQXmlSimpleReaderSetContentHandler(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setContentHandler(handler); }; };
+	void setDTDHandler(QXmlDTDHandler * handler) { if (!callbackQXmlSimpleReaderSetDTDHandler(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setDTDHandler(handler); }; };
+	void setDeclHandler(QXmlDeclHandler * handler) { if (!callbackQXmlSimpleReaderSetDeclHandler(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setDeclHandler(handler); }; };
+	void setEntityResolver(QXmlEntityResolver * handler) { if (!callbackQXmlSimpleReaderSetEntityResolver(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setEntityResolver(handler); }; };
+	void setErrorHandler(QXmlErrorHandler * handler) { if (!callbackQXmlSimpleReaderSetErrorHandler(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setErrorHandler(handler); }; };
+	void setFeature(const QString & name, bool enable) { if (!callbackQXmlSimpleReaderSetFeature(this->objectNameAbs().toUtf8().data(), name.toUtf8().data(), enable)) { QXmlSimpleReader::setFeature(name, enable); }; };
+	void setLexicalHandler(QXmlLexicalHandler * handler) { if (!callbackQXmlSimpleReaderSetLexicalHandler(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setLexicalHandler(handler); }; };
+protected:
 };
 
 void* QXmlSimpleReader_DTDHandler(void* ptr){
@@ -1263,7 +1335,7 @@ void* QXmlSimpleReader_DTDHandler(void* ptr){
 }
 
 void* QXmlSimpleReader_NewQXmlSimpleReader(){
-	return new QXmlSimpleReader();
+	return new MyQXmlSimpleReader();
 }
 
 void* QXmlSimpleReader_ContentHandler(void* ptr){
@@ -1348,5 +1420,13 @@ void QXmlSimpleReader_SetLexicalHandler(void* ptr, void* handler){
 
 void QXmlSimpleReader_DestroyQXmlSimpleReader(void* ptr){
 	static_cast<QXmlSimpleReader*>(ptr)->~QXmlSimpleReader();
+}
+
+char* QXmlSimpleReader_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlSimpleReader*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlSimpleReader_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlSimpleReader*>(ptr)->setObjectNameAbs(QString(name));
 }
 

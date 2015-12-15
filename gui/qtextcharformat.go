@@ -4,7 +4,6 @@ package gui
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -71,21 +70,13 @@ const (
 )
 
 func NewQTextCharFormat() *QTextCharFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::QTextCharFormat")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::QTextCharFormat")
 
 	return NewQTextCharFormatFromPointer(C.QTextCharFormat_NewQTextCharFormat())
 }
 
 func (ptr *QTextCharFormat) AnchorNames() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::anchorNames")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::anchorNames")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QTextCharFormat_AnchorNames(ptr.Pointer())), ",,,")
@@ -94,11 +85,7 @@ func (ptr *QTextCharFormat) AnchorNames() []string {
 }
 
 func (ptr *QTextCharFormat) FontUnderline() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontUnderline")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontUnderline")
 
 	if ptr.Pointer() != nil {
 		return C.QTextCharFormat_FontUnderline(ptr.Pointer()) != 0
@@ -107,11 +94,7 @@ func (ptr *QTextCharFormat) FontUnderline() bool {
 }
 
 func (ptr *QTextCharFormat) SetUnderlineStyle(style QTextCharFormat__UnderlineStyle) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setUnderlineStyle")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setUnderlineStyle")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetUnderlineStyle(ptr.Pointer(), C.int(style))
@@ -119,11 +102,7 @@ func (ptr *QTextCharFormat) SetUnderlineStyle(style QTextCharFormat__UnderlineSt
 }
 
 func (ptr *QTextCharFormat) AnchorHref() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::anchorHref")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::anchorHref")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextCharFormat_AnchorHref(ptr.Pointer()))
@@ -132,11 +111,7 @@ func (ptr *QTextCharFormat) AnchorHref() string {
 }
 
 func (ptr *QTextCharFormat) FontCapitalization() QFont__Capitalization {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontCapitalization")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontCapitalization")
 
 	if ptr.Pointer() != nil {
 		return QFont__Capitalization(C.QTextCharFormat_FontCapitalization(ptr.Pointer()))
@@ -145,11 +120,7 @@ func (ptr *QTextCharFormat) FontCapitalization() QFont__Capitalization {
 }
 
 func (ptr *QTextCharFormat) FontFamily() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontFamily")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontFamily")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextCharFormat_FontFamily(ptr.Pointer()))
@@ -158,11 +129,7 @@ func (ptr *QTextCharFormat) FontFamily() string {
 }
 
 func (ptr *QTextCharFormat) FontFixedPitch() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontFixedPitch")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontFixedPitch")
 
 	if ptr.Pointer() != nil {
 		return C.QTextCharFormat_FontFixedPitch(ptr.Pointer()) != 0
@@ -171,11 +138,7 @@ func (ptr *QTextCharFormat) FontFixedPitch() bool {
 }
 
 func (ptr *QTextCharFormat) FontHintingPreference() QFont__HintingPreference {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontHintingPreference")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontHintingPreference")
 
 	if ptr.Pointer() != nil {
 		return QFont__HintingPreference(C.QTextCharFormat_FontHintingPreference(ptr.Pointer()))
@@ -184,11 +147,7 @@ func (ptr *QTextCharFormat) FontHintingPreference() QFont__HintingPreference {
 }
 
 func (ptr *QTextCharFormat) FontItalic() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontItalic")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontItalic")
 
 	if ptr.Pointer() != nil {
 		return C.QTextCharFormat_FontItalic(ptr.Pointer()) != 0
@@ -197,11 +156,7 @@ func (ptr *QTextCharFormat) FontItalic() bool {
 }
 
 func (ptr *QTextCharFormat) FontKerning() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontKerning")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontKerning")
 
 	if ptr.Pointer() != nil {
 		return C.QTextCharFormat_FontKerning(ptr.Pointer()) != 0
@@ -210,11 +165,7 @@ func (ptr *QTextCharFormat) FontKerning() bool {
 }
 
 func (ptr *QTextCharFormat) FontLetterSpacing() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontLetterSpacing")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontLetterSpacing")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextCharFormat_FontLetterSpacing(ptr.Pointer()))
@@ -223,11 +174,7 @@ func (ptr *QTextCharFormat) FontLetterSpacing() float64 {
 }
 
 func (ptr *QTextCharFormat) FontLetterSpacingType() QFont__SpacingType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontLetterSpacingType")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontLetterSpacingType")
 
 	if ptr.Pointer() != nil {
 		return QFont__SpacingType(C.QTextCharFormat_FontLetterSpacingType(ptr.Pointer()))
@@ -236,11 +183,7 @@ func (ptr *QTextCharFormat) FontLetterSpacingType() QFont__SpacingType {
 }
 
 func (ptr *QTextCharFormat) FontOverline() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontOverline")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontOverline")
 
 	if ptr.Pointer() != nil {
 		return C.QTextCharFormat_FontOverline(ptr.Pointer()) != 0
@@ -249,11 +192,7 @@ func (ptr *QTextCharFormat) FontOverline() bool {
 }
 
 func (ptr *QTextCharFormat) FontPointSize() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontPointSize")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontPointSize")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextCharFormat_FontPointSize(ptr.Pointer()))
@@ -262,11 +201,7 @@ func (ptr *QTextCharFormat) FontPointSize() float64 {
 }
 
 func (ptr *QTextCharFormat) FontStretch() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontStretch")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontStretch")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextCharFormat_FontStretch(ptr.Pointer()))
@@ -275,11 +210,7 @@ func (ptr *QTextCharFormat) FontStretch() int {
 }
 
 func (ptr *QTextCharFormat) FontStrikeOut() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontStrikeOut")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontStrikeOut")
 
 	if ptr.Pointer() != nil {
 		return C.QTextCharFormat_FontStrikeOut(ptr.Pointer()) != 0
@@ -288,11 +219,7 @@ func (ptr *QTextCharFormat) FontStrikeOut() bool {
 }
 
 func (ptr *QTextCharFormat) FontStyleHint() QFont__StyleHint {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontStyleHint")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontStyleHint")
 
 	if ptr.Pointer() != nil {
 		return QFont__StyleHint(C.QTextCharFormat_FontStyleHint(ptr.Pointer()))
@@ -301,11 +228,7 @@ func (ptr *QTextCharFormat) FontStyleHint() QFont__StyleHint {
 }
 
 func (ptr *QTextCharFormat) FontStyleStrategy() QFont__StyleStrategy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontStyleStrategy")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontStyleStrategy")
 
 	if ptr.Pointer() != nil {
 		return QFont__StyleStrategy(C.QTextCharFormat_FontStyleStrategy(ptr.Pointer()))
@@ -314,11 +237,7 @@ func (ptr *QTextCharFormat) FontStyleStrategy() QFont__StyleStrategy {
 }
 
 func (ptr *QTextCharFormat) FontWeight() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontWeight")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontWeight")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextCharFormat_FontWeight(ptr.Pointer()))
@@ -327,11 +246,7 @@ func (ptr *QTextCharFormat) FontWeight() int {
 }
 
 func (ptr *QTextCharFormat) FontWordSpacing() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::fontWordSpacing")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::fontWordSpacing")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextCharFormat_FontWordSpacing(ptr.Pointer()))
@@ -340,11 +255,7 @@ func (ptr *QTextCharFormat) FontWordSpacing() float64 {
 }
 
 func (ptr *QTextCharFormat) IsAnchor() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::isAnchor")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::isAnchor")
 
 	if ptr.Pointer() != nil {
 		return C.QTextCharFormat_IsAnchor(ptr.Pointer()) != 0
@@ -353,11 +264,7 @@ func (ptr *QTextCharFormat) IsAnchor() bool {
 }
 
 func (ptr *QTextCharFormat) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::isValid")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QTextCharFormat_IsValid(ptr.Pointer()) != 0
@@ -366,11 +273,7 @@ func (ptr *QTextCharFormat) IsValid() bool {
 }
 
 func (ptr *QTextCharFormat) SetAnchor(anchor bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setAnchor")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setAnchor")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetAnchor(ptr.Pointer(), C.int(qt.GoBoolToInt(anchor)))
@@ -378,11 +281,7 @@ func (ptr *QTextCharFormat) SetAnchor(anchor bool) {
 }
 
 func (ptr *QTextCharFormat) SetAnchorHref(value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setAnchorHref")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setAnchorHref")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetAnchorHref(ptr.Pointer(), C.CString(value))
@@ -390,11 +289,7 @@ func (ptr *QTextCharFormat) SetAnchorHref(value string) {
 }
 
 func (ptr *QTextCharFormat) SetAnchorNames(names []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setAnchorNames")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setAnchorNames")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetAnchorNames(ptr.Pointer(), C.CString(strings.Join(names, ",,,")))
@@ -402,11 +297,7 @@ func (ptr *QTextCharFormat) SetAnchorNames(names []string) {
 }
 
 func (ptr *QTextCharFormat) SetFont2(font QFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFont")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFont")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFont2(ptr.Pointer(), PointerFromQFont(font))
@@ -414,11 +305,7 @@ func (ptr *QTextCharFormat) SetFont2(font QFont_ITF) {
 }
 
 func (ptr *QTextCharFormat) SetFont(font QFont_ITF, behavior QTextCharFormat__FontPropertiesInheritanceBehavior) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFont")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFont")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFont(ptr.Pointer(), PointerFromQFont(font), C.int(behavior))
@@ -426,11 +313,7 @@ func (ptr *QTextCharFormat) SetFont(font QFont_ITF, behavior QTextCharFormat__Fo
 }
 
 func (ptr *QTextCharFormat) SetFontCapitalization(capitalization QFont__Capitalization) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontCapitalization")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontCapitalization")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontCapitalization(ptr.Pointer(), C.int(capitalization))
@@ -438,11 +321,7 @@ func (ptr *QTextCharFormat) SetFontCapitalization(capitalization QFont__Capitali
 }
 
 func (ptr *QTextCharFormat) SetFontFamily(family string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontFamily")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontFamily")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontFamily(ptr.Pointer(), C.CString(family))
@@ -450,11 +329,7 @@ func (ptr *QTextCharFormat) SetFontFamily(family string) {
 }
 
 func (ptr *QTextCharFormat) SetFontFixedPitch(fixedPitch bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontFixedPitch")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontFixedPitch")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontFixedPitch(ptr.Pointer(), C.int(qt.GoBoolToInt(fixedPitch)))
@@ -462,11 +337,7 @@ func (ptr *QTextCharFormat) SetFontFixedPitch(fixedPitch bool) {
 }
 
 func (ptr *QTextCharFormat) SetFontHintingPreference(hintingPreference QFont__HintingPreference) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontHintingPreference")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontHintingPreference")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontHintingPreference(ptr.Pointer(), C.int(hintingPreference))
@@ -474,11 +345,7 @@ func (ptr *QTextCharFormat) SetFontHintingPreference(hintingPreference QFont__Hi
 }
 
 func (ptr *QTextCharFormat) SetFontItalic(italic bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontItalic")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontItalic")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontItalic(ptr.Pointer(), C.int(qt.GoBoolToInt(italic)))
@@ -486,11 +353,7 @@ func (ptr *QTextCharFormat) SetFontItalic(italic bool) {
 }
 
 func (ptr *QTextCharFormat) SetFontKerning(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontKerning")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontKerning")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontKerning(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -498,11 +361,7 @@ func (ptr *QTextCharFormat) SetFontKerning(enable bool) {
 }
 
 func (ptr *QTextCharFormat) SetFontLetterSpacing(spacing float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontLetterSpacing")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontLetterSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontLetterSpacing(ptr.Pointer(), C.double(spacing))
@@ -510,11 +369,7 @@ func (ptr *QTextCharFormat) SetFontLetterSpacing(spacing float64) {
 }
 
 func (ptr *QTextCharFormat) SetFontLetterSpacingType(letterSpacingType QFont__SpacingType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontLetterSpacingType")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontLetterSpacingType")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontLetterSpacingType(ptr.Pointer(), C.int(letterSpacingType))
@@ -522,11 +377,7 @@ func (ptr *QTextCharFormat) SetFontLetterSpacingType(letterSpacingType QFont__Sp
 }
 
 func (ptr *QTextCharFormat) SetFontOverline(overline bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontOverline")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontOverline")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontOverline(ptr.Pointer(), C.int(qt.GoBoolToInt(overline)))
@@ -534,11 +385,7 @@ func (ptr *QTextCharFormat) SetFontOverline(overline bool) {
 }
 
 func (ptr *QTextCharFormat) SetFontPointSize(size float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontPointSize")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontPointSize")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontPointSize(ptr.Pointer(), C.double(size))
@@ -546,11 +393,7 @@ func (ptr *QTextCharFormat) SetFontPointSize(size float64) {
 }
 
 func (ptr *QTextCharFormat) SetFontStretch(factor int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontStretch")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontStretch")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontStretch(ptr.Pointer(), C.int(factor))
@@ -558,11 +401,7 @@ func (ptr *QTextCharFormat) SetFontStretch(factor int) {
 }
 
 func (ptr *QTextCharFormat) SetFontStrikeOut(strikeOut bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontStrikeOut")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontStrikeOut")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontStrikeOut(ptr.Pointer(), C.int(qt.GoBoolToInt(strikeOut)))
@@ -570,11 +409,7 @@ func (ptr *QTextCharFormat) SetFontStrikeOut(strikeOut bool) {
 }
 
 func (ptr *QTextCharFormat) SetFontStyleHint(hint QFont__StyleHint, strategy QFont__StyleStrategy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontStyleHint")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontStyleHint")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontStyleHint(ptr.Pointer(), C.int(hint), C.int(strategy))
@@ -582,11 +417,7 @@ func (ptr *QTextCharFormat) SetFontStyleHint(hint QFont__StyleHint, strategy QFo
 }
 
 func (ptr *QTextCharFormat) SetFontStyleStrategy(strategy QFont__StyleStrategy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontStyleStrategy")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontStyleStrategy")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontStyleStrategy(ptr.Pointer(), C.int(strategy))
@@ -594,11 +425,7 @@ func (ptr *QTextCharFormat) SetFontStyleStrategy(strategy QFont__StyleStrategy) 
 }
 
 func (ptr *QTextCharFormat) SetFontUnderline(underline bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontUnderline")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontUnderline")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontUnderline(ptr.Pointer(), C.int(qt.GoBoolToInt(underline)))
@@ -606,11 +433,7 @@ func (ptr *QTextCharFormat) SetFontUnderline(underline bool) {
 }
 
 func (ptr *QTextCharFormat) SetFontWeight(weight int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontWeight")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontWeight")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontWeight(ptr.Pointer(), C.int(weight))
@@ -618,11 +441,7 @@ func (ptr *QTextCharFormat) SetFontWeight(weight int) {
 }
 
 func (ptr *QTextCharFormat) SetFontWordSpacing(spacing float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setFontWordSpacing")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setFontWordSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetFontWordSpacing(ptr.Pointer(), C.double(spacing))
@@ -630,11 +449,7 @@ func (ptr *QTextCharFormat) SetFontWordSpacing(spacing float64) {
 }
 
 func (ptr *QTextCharFormat) SetTextOutline(pen QPen_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setTextOutline")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setTextOutline")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetTextOutline(ptr.Pointer(), PointerFromQPen(pen))
@@ -642,11 +457,7 @@ func (ptr *QTextCharFormat) SetTextOutline(pen QPen_ITF) {
 }
 
 func (ptr *QTextCharFormat) SetToolTip(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setToolTip")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setToolTip")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetToolTip(ptr.Pointer(), C.CString(text))
@@ -654,11 +465,7 @@ func (ptr *QTextCharFormat) SetToolTip(text string) {
 }
 
 func (ptr *QTextCharFormat) SetUnderlineColor(color QColor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setUnderlineColor")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setUnderlineColor")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetUnderlineColor(ptr.Pointer(), PointerFromQColor(color))
@@ -666,11 +473,7 @@ func (ptr *QTextCharFormat) SetUnderlineColor(color QColor_ITF) {
 }
 
 func (ptr *QTextCharFormat) SetVerticalAlignment(alignment QTextCharFormat__VerticalAlignment) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::setVerticalAlignment")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::setVerticalAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QTextCharFormat_SetVerticalAlignment(ptr.Pointer(), C.int(alignment))
@@ -678,11 +481,7 @@ func (ptr *QTextCharFormat) SetVerticalAlignment(alignment QTextCharFormat__Vert
 }
 
 func (ptr *QTextCharFormat) ToolTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::toolTip")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::toolTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextCharFormat_ToolTip(ptr.Pointer()))
@@ -691,11 +490,7 @@ func (ptr *QTextCharFormat) ToolTip() string {
 }
 
 func (ptr *QTextCharFormat) UnderlineColor() *QColor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::underlineColor")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::underlineColor")
 
 	if ptr.Pointer() != nil {
 		return NewQColorFromPointer(C.QTextCharFormat_UnderlineColor(ptr.Pointer()))
@@ -704,11 +499,7 @@ func (ptr *QTextCharFormat) UnderlineColor() *QColor {
 }
 
 func (ptr *QTextCharFormat) UnderlineStyle() QTextCharFormat__UnderlineStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::underlineStyle")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::underlineStyle")
 
 	if ptr.Pointer() != nil {
 		return QTextCharFormat__UnderlineStyle(C.QTextCharFormat_UnderlineStyle(ptr.Pointer()))
@@ -717,11 +508,7 @@ func (ptr *QTextCharFormat) UnderlineStyle() QTextCharFormat__UnderlineStyle {
 }
 
 func (ptr *QTextCharFormat) VerticalAlignment() QTextCharFormat__VerticalAlignment {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextCharFormat::verticalAlignment")
-		}
-	}()
+	defer qt.Recovering("QTextCharFormat::verticalAlignment")
 
 	if ptr.Pointer() != nil {
 		return QTextCharFormat__VerticalAlignment(C.QTextCharFormat_VerticalAlignment(ptr.Pointer()))

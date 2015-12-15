@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -84,11 +84,7 @@ var (
 )
 
 func (ptr *QPalette) Brush(group QPalette__ColorGroup, role QPalette__ColorRole) *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::brush")
-		}
-	}()
+	defer qt.Recovering("QPalette::brush")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Brush(ptr.Pointer(), C.int(group), C.int(role)))
@@ -97,11 +93,7 @@ func (ptr *QPalette) Brush(group QPalette__ColorGroup, role QPalette__ColorRole)
 }
 
 func (ptr *QPalette) IsEqual(cg1 QPalette__ColorGroup, cg2 QPalette__ColorGroup) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::isEqual")
-		}
-	}()
+	defer qt.Recovering("QPalette::isEqual")
 
 	if ptr.Pointer() != nil {
 		return C.QPalette_IsEqual(ptr.Pointer(), C.int(cg1), C.int(cg2)) != 0
@@ -110,11 +102,7 @@ func (ptr *QPalette) IsEqual(cg1 QPalette__ColorGroup, cg2 QPalette__ColorGroup)
 }
 
 func (ptr *QPalette) SetBrush2(group QPalette__ColorGroup, role QPalette__ColorRole, brush QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::setBrush")
-		}
-	}()
+	defer qt.Recovering("QPalette::setBrush")
 
 	if ptr.Pointer() != nil {
 		C.QPalette_SetBrush2(ptr.Pointer(), C.int(group), C.int(role), PointerFromQBrush(brush))
@@ -122,81 +110,49 @@ func (ptr *QPalette) SetBrush2(group QPalette__ColorGroup, role QPalette__ColorR
 }
 
 func NewQPalette() *QPalette {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::QPalette")
-		}
-	}()
+	defer qt.Recovering("QPalette::QPalette")
 
 	return NewQPaletteFromPointer(C.QPalette_NewQPalette())
 }
 
 func NewQPalette8(other QPalette_ITF) *QPalette {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::QPalette")
-		}
-	}()
+	defer qt.Recovering("QPalette::QPalette")
 
 	return NewQPaletteFromPointer(C.QPalette_NewQPalette8(PointerFromQPalette(other)))
 }
 
 func NewQPalette3(button core.Qt__GlobalColor) *QPalette {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::QPalette")
-		}
-	}()
+	defer qt.Recovering("QPalette::QPalette")
 
 	return NewQPaletteFromPointer(C.QPalette_NewQPalette3(C.int(button)))
 }
 
 func NewQPalette5(windowText QBrush_ITF, button QBrush_ITF, light QBrush_ITF, dark QBrush_ITF, mid QBrush_ITF, text QBrush_ITF, bright_text QBrush_ITF, base QBrush_ITF, window QBrush_ITF) *QPalette {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::QPalette")
-		}
-	}()
+	defer qt.Recovering("QPalette::QPalette")
 
 	return NewQPaletteFromPointer(C.QPalette_NewQPalette5(PointerFromQBrush(windowText), PointerFromQBrush(button), PointerFromQBrush(light), PointerFromQBrush(dark), PointerFromQBrush(mid), PointerFromQBrush(text), PointerFromQBrush(bright_text), PointerFromQBrush(base), PointerFromQBrush(window)))
 }
 
 func NewQPalette2(button QColor_ITF) *QPalette {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::QPalette")
-		}
-	}()
+	defer qt.Recovering("QPalette::QPalette")
 
 	return NewQPaletteFromPointer(C.QPalette_NewQPalette2(PointerFromQColor(button)))
 }
 
 func NewQPalette4(button QColor_ITF, window QColor_ITF) *QPalette {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::QPalette")
-		}
-	}()
+	defer qt.Recovering("QPalette::QPalette")
 
 	return NewQPaletteFromPointer(C.QPalette_NewQPalette4(PointerFromQColor(button), PointerFromQColor(window)))
 }
 
 func NewQPalette7(p QPalette_ITF) *QPalette {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::QPalette")
-		}
-	}()
+	defer qt.Recovering("QPalette::QPalette")
 
 	return NewQPaletteFromPointer(C.QPalette_NewQPalette7(PointerFromQPalette(p)))
 }
 
 func (ptr *QPalette) AlternateBase() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::alternateBase")
-		}
-	}()
+	defer qt.Recovering("QPalette::alternateBase")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_AlternateBase(ptr.Pointer()))
@@ -205,11 +161,7 @@ func (ptr *QPalette) AlternateBase() *QBrush {
 }
 
 func (ptr *QPalette) Base() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::base")
-		}
-	}()
+	defer qt.Recovering("QPalette::base")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Base(ptr.Pointer()))
@@ -218,11 +170,7 @@ func (ptr *QPalette) Base() *QBrush {
 }
 
 func (ptr *QPalette) BrightText() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::brightText")
-		}
-	}()
+	defer qt.Recovering("QPalette::brightText")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_BrightText(ptr.Pointer()))
@@ -231,11 +179,7 @@ func (ptr *QPalette) BrightText() *QBrush {
 }
 
 func (ptr *QPalette) Brush2(role QPalette__ColorRole) *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::brush")
-		}
-	}()
+	defer qt.Recovering("QPalette::brush")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Brush2(ptr.Pointer(), C.int(role)))
@@ -244,11 +188,7 @@ func (ptr *QPalette) Brush2(role QPalette__ColorRole) *QBrush {
 }
 
 func (ptr *QPalette) Button() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::button")
-		}
-	}()
+	defer qt.Recovering("QPalette::button")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Button(ptr.Pointer()))
@@ -257,11 +197,7 @@ func (ptr *QPalette) Button() *QBrush {
 }
 
 func (ptr *QPalette) ButtonText() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::buttonText")
-		}
-	}()
+	defer qt.Recovering("QPalette::buttonText")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_ButtonText(ptr.Pointer()))
@@ -270,11 +206,7 @@ func (ptr *QPalette) ButtonText() *QBrush {
 }
 
 func (ptr *QPalette) Color(group QPalette__ColorGroup, role QPalette__ColorRole) *QColor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::color")
-		}
-	}()
+	defer qt.Recovering("QPalette::color")
 
 	if ptr.Pointer() != nil {
 		return NewQColorFromPointer(C.QPalette_Color(ptr.Pointer(), C.int(group), C.int(role)))
@@ -283,11 +215,7 @@ func (ptr *QPalette) Color(group QPalette__ColorGroup, role QPalette__ColorRole)
 }
 
 func (ptr *QPalette) Color2(role QPalette__ColorRole) *QColor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::color")
-		}
-	}()
+	defer qt.Recovering("QPalette::color")
 
 	if ptr.Pointer() != nil {
 		return NewQColorFromPointer(C.QPalette_Color2(ptr.Pointer(), C.int(role)))
@@ -296,11 +224,7 @@ func (ptr *QPalette) Color2(role QPalette__ColorRole) *QColor {
 }
 
 func (ptr *QPalette) CurrentColorGroup() QPalette__ColorGroup {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::currentColorGroup")
-		}
-	}()
+	defer qt.Recovering("QPalette::currentColorGroup")
 
 	if ptr.Pointer() != nil {
 		return QPalette__ColorGroup(C.QPalette_CurrentColorGroup(ptr.Pointer()))
@@ -309,11 +233,7 @@ func (ptr *QPalette) CurrentColorGroup() QPalette__ColorGroup {
 }
 
 func (ptr *QPalette) Dark() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::dark")
-		}
-	}()
+	defer qt.Recovering("QPalette::dark")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Dark(ptr.Pointer()))
@@ -322,11 +242,7 @@ func (ptr *QPalette) Dark() *QBrush {
 }
 
 func (ptr *QPalette) Highlight() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::highlight")
-		}
-	}()
+	defer qt.Recovering("QPalette::highlight")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Highlight(ptr.Pointer()))
@@ -335,11 +251,7 @@ func (ptr *QPalette) Highlight() *QBrush {
 }
 
 func (ptr *QPalette) HighlightedText() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::highlightedText")
-		}
-	}()
+	defer qt.Recovering("QPalette::highlightedText")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_HighlightedText(ptr.Pointer()))
@@ -348,11 +260,7 @@ func (ptr *QPalette) HighlightedText() *QBrush {
 }
 
 func (ptr *QPalette) IsBrushSet(cg QPalette__ColorGroup, cr QPalette__ColorRole) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::isBrushSet")
-		}
-	}()
+	defer qt.Recovering("QPalette::isBrushSet")
 
 	if ptr.Pointer() != nil {
 		return C.QPalette_IsBrushSet(ptr.Pointer(), C.int(cg), C.int(cr)) != 0
@@ -361,11 +269,7 @@ func (ptr *QPalette) IsBrushSet(cg QPalette__ColorGroup, cr QPalette__ColorRole)
 }
 
 func (ptr *QPalette) IsCopyOf(p QPalette_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::isCopyOf")
-		}
-	}()
+	defer qt.Recovering("QPalette::isCopyOf")
 
 	if ptr.Pointer() != nil {
 		return C.QPalette_IsCopyOf(ptr.Pointer(), PointerFromQPalette(p)) != 0
@@ -374,11 +278,7 @@ func (ptr *QPalette) IsCopyOf(p QPalette_ITF) bool {
 }
 
 func (ptr *QPalette) Light() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::light")
-		}
-	}()
+	defer qt.Recovering("QPalette::light")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Light(ptr.Pointer()))
@@ -387,11 +287,7 @@ func (ptr *QPalette) Light() *QBrush {
 }
 
 func (ptr *QPalette) Link() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::link")
-		}
-	}()
+	defer qt.Recovering("QPalette::link")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Link(ptr.Pointer()))
@@ -400,11 +296,7 @@ func (ptr *QPalette) Link() *QBrush {
 }
 
 func (ptr *QPalette) LinkVisited() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::linkVisited")
-		}
-	}()
+	defer qt.Recovering("QPalette::linkVisited")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_LinkVisited(ptr.Pointer()))
@@ -413,11 +305,7 @@ func (ptr *QPalette) LinkVisited() *QBrush {
 }
 
 func (ptr *QPalette) Mid() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::mid")
-		}
-	}()
+	defer qt.Recovering("QPalette::mid")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Mid(ptr.Pointer()))
@@ -426,11 +314,7 @@ func (ptr *QPalette) Mid() *QBrush {
 }
 
 func (ptr *QPalette) Midlight() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::midlight")
-		}
-	}()
+	defer qt.Recovering("QPalette::midlight")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Midlight(ptr.Pointer()))
@@ -439,11 +323,7 @@ func (ptr *QPalette) Midlight() *QBrush {
 }
 
 func (ptr *QPalette) SetBrush(role QPalette__ColorRole, brush QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::setBrush")
-		}
-	}()
+	defer qt.Recovering("QPalette::setBrush")
 
 	if ptr.Pointer() != nil {
 		C.QPalette_SetBrush(ptr.Pointer(), C.int(role), PointerFromQBrush(brush))
@@ -451,11 +331,7 @@ func (ptr *QPalette) SetBrush(role QPalette__ColorRole, brush QBrush_ITF) {
 }
 
 func (ptr *QPalette) SetColor(group QPalette__ColorGroup, role QPalette__ColorRole, color QColor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::setColor")
-		}
-	}()
+	defer qt.Recovering("QPalette::setColor")
 
 	if ptr.Pointer() != nil {
 		C.QPalette_SetColor(ptr.Pointer(), C.int(group), C.int(role), PointerFromQColor(color))
@@ -463,11 +339,7 @@ func (ptr *QPalette) SetColor(group QPalette__ColorGroup, role QPalette__ColorRo
 }
 
 func (ptr *QPalette) SetColor2(role QPalette__ColorRole, color QColor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::setColor")
-		}
-	}()
+	defer qt.Recovering("QPalette::setColor")
 
 	if ptr.Pointer() != nil {
 		C.QPalette_SetColor2(ptr.Pointer(), C.int(role), PointerFromQColor(color))
@@ -475,11 +347,7 @@ func (ptr *QPalette) SetColor2(role QPalette__ColorRole, color QColor_ITF) {
 }
 
 func (ptr *QPalette) SetColorGroup(cg QPalette__ColorGroup, windowText QBrush_ITF, button QBrush_ITF, light QBrush_ITF, dark QBrush_ITF, mid QBrush_ITF, text QBrush_ITF, bright_text QBrush_ITF, base QBrush_ITF, window QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::setColorGroup")
-		}
-	}()
+	defer qt.Recovering("QPalette::setColorGroup")
 
 	if ptr.Pointer() != nil {
 		C.QPalette_SetColorGroup(ptr.Pointer(), C.int(cg), PointerFromQBrush(windowText), PointerFromQBrush(button), PointerFromQBrush(light), PointerFromQBrush(dark), PointerFromQBrush(mid), PointerFromQBrush(text), PointerFromQBrush(bright_text), PointerFromQBrush(base), PointerFromQBrush(window))
@@ -487,11 +355,7 @@ func (ptr *QPalette) SetColorGroup(cg QPalette__ColorGroup, windowText QBrush_IT
 }
 
 func (ptr *QPalette) SetCurrentColorGroup(cg QPalette__ColorGroup) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::setCurrentColorGroup")
-		}
-	}()
+	defer qt.Recovering("QPalette::setCurrentColorGroup")
 
 	if ptr.Pointer() != nil {
 		C.QPalette_SetCurrentColorGroup(ptr.Pointer(), C.int(cg))
@@ -499,11 +363,7 @@ func (ptr *QPalette) SetCurrentColorGroup(cg QPalette__ColorGroup) {
 }
 
 func (ptr *QPalette) Shadow() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::shadow")
-		}
-	}()
+	defer qt.Recovering("QPalette::shadow")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Shadow(ptr.Pointer()))
@@ -512,11 +372,7 @@ func (ptr *QPalette) Shadow() *QBrush {
 }
 
 func (ptr *QPalette) Swap(other QPalette_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::swap")
-		}
-	}()
+	defer qt.Recovering("QPalette::swap")
 
 	if ptr.Pointer() != nil {
 		C.QPalette_Swap(ptr.Pointer(), PointerFromQPalette(other))
@@ -524,11 +380,7 @@ func (ptr *QPalette) Swap(other QPalette_ITF) {
 }
 
 func (ptr *QPalette) Text() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::text")
-		}
-	}()
+	defer qt.Recovering("QPalette::text")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Text(ptr.Pointer()))
@@ -537,11 +389,7 @@ func (ptr *QPalette) Text() *QBrush {
 }
 
 func (ptr *QPalette) ToolTipBase() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::toolTipBase")
-		}
-	}()
+	defer qt.Recovering("QPalette::toolTipBase")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_ToolTipBase(ptr.Pointer()))
@@ -550,11 +398,7 @@ func (ptr *QPalette) ToolTipBase() *QBrush {
 }
 
 func (ptr *QPalette) ToolTipText() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::toolTipText")
-		}
-	}()
+	defer qt.Recovering("QPalette::toolTipText")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_ToolTipText(ptr.Pointer()))
@@ -563,11 +407,7 @@ func (ptr *QPalette) ToolTipText() *QBrush {
 }
 
 func (ptr *QPalette) Window() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::window")
-		}
-	}()
+	defer qt.Recovering("QPalette::window")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Window(ptr.Pointer()))
@@ -576,11 +416,7 @@ func (ptr *QPalette) Window() *QBrush {
 }
 
 func (ptr *QPalette) WindowText() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::windowText")
-		}
-	}()
+	defer qt.Recovering("QPalette::windowText")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_WindowText(ptr.Pointer()))
@@ -589,11 +425,7 @@ func (ptr *QPalette) WindowText() *QBrush {
 }
 
 func (ptr *QPalette) DestroyQPalette() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPalette::~QPalette")
-		}
-	}()
+	defer qt.Recovering("QPalette::~QPalette")
 
 	if ptr.Pointer() != nil {
 		C.QPalette_DestroyQPalette(ptr.Pointer())

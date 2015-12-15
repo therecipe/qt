@@ -10,7 +10,7 @@ import (
 func GoHeaderName(f *parser.Function) (o string) {
 
 	if f.SignalMode == "callback" {
-		return fmt.Sprintf("callback%v%v", f.Class(), strings.Title(f.Name))
+		return fmt.Sprintf("callback%v%v", f.Class(), strings.Replace(strings.Title(f.Name), "~", "Destroy", -1))
 	}
 
 	if f.Static {
@@ -85,18 +85,21 @@ func GoHeaderInput(f *parser.Function) (o string) {
 		return strings.TrimSuffix(o, ", ")
 	}
 
-	if f.Meta == "signal" && f.SignalMode == "Connect" {
+	if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.SignalMode == "Connect" {
 		o += "f func ("
 	}
 
-	if f.Meta == "signal" && f.SignalMode != "Connect" {
-		return
+	if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.SignalMode != "Connect" {
+		if strings.Contains(f.Virtual, "impure") && f.SignalMode == "" {
+		} else {
+			return
+		}
 	}
 
 	for _, p := range f.Parameters {
 		if v := goType(f, p.Value); v != "" {
 			if isClass(v) {
-				if f.Meta == "signal" && f.SignalMode == "Connect" {
+				if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.SignalMode == "Connect" {
 					o += fmt.Sprintf("%v *%v, ", cleanName(p.Name), v)
 				} else {
 					o += fmt.Sprintf("%v %v_ITF, ", cleanName(p.Name), v)
@@ -112,7 +115,7 @@ func GoHeaderInput(f *parser.Function) (o string) {
 
 	o = strings.TrimSuffix(o, ", ")
 
-	if f.Meta == "signal" && f.SignalMode == "Connect" {
+	if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.SignalMode == "Connect" {
 		o += ")"
 	}
 

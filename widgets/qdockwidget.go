@@ -5,7 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
 
@@ -29,7 +29,7 @@ func NewQDockWidgetFromPointer(ptr unsafe.Pointer) *QDockWidget {
 	var n = new(QDockWidget)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDockWidget_") {
-		n.SetObjectName("QDockWidget_" + qt.RandomIdentifier())
+		n.SetObjectName("QDockWidget_" + qt.Identifier())
 	}
 	return n
 }
@@ -53,11 +53,7 @@ const (
 )
 
 func (ptr *QDockWidget) AllowedAreas() core.Qt__DockWidgetArea {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::allowedAreas")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::allowedAreas")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__DockWidgetArea(C.QDockWidget_AllowedAreas(ptr.Pointer()))
@@ -66,11 +62,7 @@ func (ptr *QDockWidget) AllowedAreas() core.Qt__DockWidgetArea {
 }
 
 func (ptr *QDockWidget) Features() QDockWidget__DockWidgetFeature {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::features")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::features")
 
 	if ptr.Pointer() != nil {
 		return QDockWidget__DockWidgetFeature(C.QDockWidget_Features(ptr.Pointer()))
@@ -79,11 +71,7 @@ func (ptr *QDockWidget) Features() QDockWidget__DockWidgetFeature {
 }
 
 func (ptr *QDockWidget) SetAllowedAreas(areas core.Qt__DockWidgetArea) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::setAllowedAreas")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::setAllowedAreas")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_SetAllowedAreas(ptr.Pointer(), C.int(areas))
@@ -91,11 +79,7 @@ func (ptr *QDockWidget) SetAllowedAreas(areas core.Qt__DockWidgetArea) {
 }
 
 func (ptr *QDockWidget) SetFeatures(features QDockWidget__DockWidgetFeature) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::setFeatures")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::setFeatures")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_SetFeatures(ptr.Pointer(), C.int(features))
@@ -103,11 +87,7 @@ func (ptr *QDockWidget) SetFeatures(features QDockWidget__DockWidgetFeature) {
 }
 
 func (ptr *QDockWidget) SetFloating(floating bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::setFloating")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::setFloating")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_SetFloating(ptr.Pointer(), C.int(qt.GoBoolToInt(floating)))
@@ -115,31 +95,19 @@ func (ptr *QDockWidget) SetFloating(floating bool) {
 }
 
 func NewQDockWidget2(parent QWidget_ITF, flags core.Qt__WindowType) *QDockWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::QDockWidget")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::QDockWidget")
 
 	return NewQDockWidgetFromPointer(C.QDockWidget_NewQDockWidget2(PointerFromQWidget(parent), C.int(flags)))
 }
 
 func NewQDockWidget(title string, parent QWidget_ITF, flags core.Qt__WindowType) *QDockWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::QDockWidget")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::QDockWidget")
 
 	return NewQDockWidgetFromPointer(C.QDockWidget_NewQDockWidget(C.CString(title), PointerFromQWidget(parent), C.int(flags)))
 }
 
 func (ptr *QDockWidget) ConnectAllowedAreasChanged(f func(allowedAreas core.Qt__DockWidgetArea)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::allowedAreasChanged")
-		}
-	}()
+	defer qt.Recovering("connect QDockWidget::allowedAreasChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_ConnectAllowedAreasChanged(ptr.Pointer())
@@ -148,11 +116,7 @@ func (ptr *QDockWidget) ConnectAllowedAreasChanged(f func(allowedAreas core.Qt__
 }
 
 func (ptr *QDockWidget) DisconnectAllowedAreasChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::allowedAreasChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QDockWidget::allowedAreasChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_DisconnectAllowedAreasChanged(ptr.Pointer())
@@ -162,21 +126,79 @@ func (ptr *QDockWidget) DisconnectAllowedAreasChanged() {
 
 //export callbackQDockWidgetAllowedAreasChanged
 func callbackQDockWidgetAllowedAreasChanged(ptrName *C.char, allowedAreas C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::allowedAreasChanged")
-		}
-	}()
+	defer qt.Recovering("callback QDockWidget::allowedAreasChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "allowedAreasChanged").(func(core.Qt__DockWidgetArea))(core.Qt__DockWidgetArea(allowedAreas))
+	var signal = qt.GetSignal(C.GoString(ptrName), "allowedAreasChanged")
+	if signal != nil {
+		signal.(func(core.Qt__DockWidgetArea))(core.Qt__DockWidgetArea(allowedAreas))
+	}
+
+}
+
+func (ptr *QDockWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QDockWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QDockWidget) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QDockWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQDockWidgetChangeEvent
+func callbackQDockWidgetChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDockWidget::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QDockWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
+	defer qt.Recovering("connect QDockWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+	}
+}
+
+func (ptr *QDockWidget) DisconnectCloseEvent() {
+	defer qt.Recovering("disconnect QDockWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+	}
+}
+
+//export callbackQDockWidgetCloseEvent
+func callbackQDockWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDockWidget::closeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "closeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QDockWidget) ConnectDockLocationChanged(f func(area core.Qt__DockWidgetArea)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::dockLocationChanged")
-		}
-	}()
+	defer qt.Recovering("connect QDockWidget::dockLocationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_ConnectDockLocationChanged(ptr.Pointer())
@@ -185,11 +207,7 @@ func (ptr *QDockWidget) ConnectDockLocationChanged(f func(area core.Qt__DockWidg
 }
 
 func (ptr *QDockWidget) DisconnectDockLocationChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::dockLocationChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QDockWidget::dockLocationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_DisconnectDockLocationChanged(ptr.Pointer())
@@ -199,21 +217,17 @@ func (ptr *QDockWidget) DisconnectDockLocationChanged() {
 
 //export callbackQDockWidgetDockLocationChanged
 func callbackQDockWidgetDockLocationChanged(ptrName *C.char, area C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::dockLocationChanged")
-		}
-	}()
+	defer qt.Recovering("callback QDockWidget::dockLocationChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "dockLocationChanged").(func(core.Qt__DockWidgetArea))(core.Qt__DockWidgetArea(area))
+	var signal = qt.GetSignal(C.GoString(ptrName), "dockLocationChanged")
+	if signal != nil {
+		signal.(func(core.Qt__DockWidgetArea))(core.Qt__DockWidgetArea(area))
+	}
+
 }
 
 func (ptr *QDockWidget) ConnectFeaturesChanged(f func(features QDockWidget__DockWidgetFeature)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::featuresChanged")
-		}
-	}()
+	defer qt.Recovering("connect QDockWidget::featuresChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_ConnectFeaturesChanged(ptr.Pointer())
@@ -222,11 +236,7 @@ func (ptr *QDockWidget) ConnectFeaturesChanged(f func(features QDockWidget__Dock
 }
 
 func (ptr *QDockWidget) DisconnectFeaturesChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::featuresChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QDockWidget::featuresChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_DisconnectFeaturesChanged(ptr.Pointer())
@@ -236,21 +246,17 @@ func (ptr *QDockWidget) DisconnectFeaturesChanged() {
 
 //export callbackQDockWidgetFeaturesChanged
 func callbackQDockWidgetFeaturesChanged(ptrName *C.char, features C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::featuresChanged")
-		}
-	}()
+	defer qt.Recovering("callback QDockWidget::featuresChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "featuresChanged").(func(QDockWidget__DockWidgetFeature))(QDockWidget__DockWidgetFeature(features))
+	var signal = qt.GetSignal(C.GoString(ptrName), "featuresChanged")
+	if signal != nil {
+		signal.(func(QDockWidget__DockWidgetFeature))(QDockWidget__DockWidgetFeature(features))
+	}
+
 }
 
 func (ptr *QDockWidget) IsAreaAllowed(area core.Qt__DockWidgetArea) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::isAreaAllowed")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::isAreaAllowed")
 
 	if ptr.Pointer() != nil {
 		return C.QDockWidget_IsAreaAllowed(ptr.Pointer(), C.int(area)) != 0
@@ -259,11 +265,7 @@ func (ptr *QDockWidget) IsAreaAllowed(area core.Qt__DockWidgetArea) bool {
 }
 
 func (ptr *QDockWidget) IsFloating() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::isFloating")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::isFloating")
 
 	if ptr.Pointer() != nil {
 		return C.QDockWidget_IsFloating(ptr.Pointer()) != 0
@@ -271,12 +273,39 @@ func (ptr *QDockWidget) IsFloating() bool {
 	return false
 }
 
+func (ptr *QDockWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QDockWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QDockWidget) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QDockWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQDockWidgetPaintEvent
+func callbackQDockWidgetPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDockWidget::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QDockWidget) SetTitleBarWidget(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::setTitleBarWidget")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::setTitleBarWidget")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_SetTitleBarWidget(ptr.Pointer(), PointerFromQWidget(widget))
@@ -284,11 +313,7 @@ func (ptr *QDockWidget) SetTitleBarWidget(widget QWidget_ITF) {
 }
 
 func (ptr *QDockWidget) SetWidget(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::setWidget")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::setWidget")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_SetWidget(ptr.Pointer(), PointerFromQWidget(widget))
@@ -296,11 +321,7 @@ func (ptr *QDockWidget) SetWidget(widget QWidget_ITF) {
 }
 
 func (ptr *QDockWidget) TitleBarWidget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::titleBarWidget")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::titleBarWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QDockWidget_TitleBarWidget(ptr.Pointer()))
@@ -309,11 +330,7 @@ func (ptr *QDockWidget) TitleBarWidget() *QWidget {
 }
 
 func (ptr *QDockWidget) ToggleViewAction() *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::toggleViewAction")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::toggleViewAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QDockWidget_ToggleViewAction(ptr.Pointer()))
@@ -322,11 +339,7 @@ func (ptr *QDockWidget) ToggleViewAction() *QAction {
 }
 
 func (ptr *QDockWidget) ConnectTopLevelChanged(f func(topLevel bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::topLevelChanged")
-		}
-	}()
+	defer qt.Recovering("connect QDockWidget::topLevelChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_ConnectTopLevelChanged(ptr.Pointer())
@@ -335,11 +348,7 @@ func (ptr *QDockWidget) ConnectTopLevelChanged(f func(topLevel bool)) {
 }
 
 func (ptr *QDockWidget) DisconnectTopLevelChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::topLevelChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QDockWidget::topLevelChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_DisconnectTopLevelChanged(ptr.Pointer())
@@ -349,21 +358,17 @@ func (ptr *QDockWidget) DisconnectTopLevelChanged() {
 
 //export callbackQDockWidgetTopLevelChanged
 func callbackQDockWidgetTopLevelChanged(ptrName *C.char, topLevel C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::topLevelChanged")
-		}
-	}()
+	defer qt.Recovering("callback QDockWidget::topLevelChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "topLevelChanged").(func(bool))(int(topLevel) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "topLevelChanged")
+	if signal != nil {
+		signal.(func(bool))(int(topLevel) != 0)
+	}
+
 }
 
 func (ptr *QDockWidget) ConnectVisibilityChanged(f func(visible bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::visibilityChanged")
-		}
-	}()
+	defer qt.Recovering("connect QDockWidget::visibilityChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_ConnectVisibilityChanged(ptr.Pointer())
@@ -372,11 +377,7 @@ func (ptr *QDockWidget) ConnectVisibilityChanged(f func(visible bool)) {
 }
 
 func (ptr *QDockWidget) DisconnectVisibilityChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::visibilityChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QDockWidget::visibilityChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_DisconnectVisibilityChanged(ptr.Pointer())
@@ -386,21 +387,17 @@ func (ptr *QDockWidget) DisconnectVisibilityChanged() {
 
 //export callbackQDockWidgetVisibilityChanged
 func callbackQDockWidgetVisibilityChanged(ptrName *C.char, visible C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::visibilityChanged")
-		}
-	}()
+	defer qt.Recovering("callback QDockWidget::visibilityChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "visibilityChanged").(func(bool))(int(visible) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "visibilityChanged")
+	if signal != nil {
+		signal.(func(bool))(int(visible) != 0)
+	}
+
 }
 
 func (ptr *QDockWidget) Widget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::widget")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::widget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QDockWidget_Widget(ptr.Pointer()))
@@ -409,11 +406,7 @@ func (ptr *QDockWidget) Widget() *QWidget {
 }
 
 func (ptr *QDockWidget) DestroyQDockWidget() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDockWidget::~QDockWidget")
-		}
-	}()
+	defer qt.Recovering("QDockWidget::~QDockWidget")
 
 	if ptr.Pointer() != nil {
 		C.QDockWidget_DestroyQDockWidget(ptr.Pointer())

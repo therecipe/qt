@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -70,41 +70,25 @@ const (
 )
 
 func NewQPageLayout() *QPageLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::QPageLayout")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::QPageLayout")
 
 	return NewQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout())
 }
 
 func NewQPageLayout3(other QPageLayout_ITF) *QPageLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::QPageLayout")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::QPageLayout")
 
 	return NewQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout3(PointerFromQPageLayout(other)))
 }
 
 func NewQPageLayout2(pageSize QPageSize_ITF, orientation QPageLayout__Orientation, margins core.QMarginsF_ITF, units QPageLayout__Unit, minMargins core.QMarginsF_ITF) *QPageLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::QPageLayout")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::QPageLayout")
 
 	return NewQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout2(PointerFromQPageSize(pageSize), C.int(orientation), core.PointerFromQMarginsF(margins), C.int(units), core.PointerFromQMarginsF(minMargins)))
 }
 
 func (ptr *QPageLayout) IsEquivalentTo(other QPageLayout_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::isEquivalentTo")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::isEquivalentTo")
 
 	if ptr.Pointer() != nil {
 		return C.QPageLayout_IsEquivalentTo(ptr.Pointer(), PointerFromQPageLayout(other)) != 0
@@ -113,11 +97,7 @@ func (ptr *QPageLayout) IsEquivalentTo(other QPageLayout_ITF) bool {
 }
 
 func (ptr *QPageLayout) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::isValid")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QPageLayout_IsValid(ptr.Pointer()) != 0
@@ -126,11 +106,7 @@ func (ptr *QPageLayout) IsValid() bool {
 }
 
 func (ptr *QPageLayout) Mode() QPageLayout__Mode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::mode")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::mode")
 
 	if ptr.Pointer() != nil {
 		return QPageLayout__Mode(C.QPageLayout_Mode(ptr.Pointer()))
@@ -139,11 +115,7 @@ func (ptr *QPageLayout) Mode() QPageLayout__Mode {
 }
 
 func (ptr *QPageLayout) Orientation() QPageLayout__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::orientation")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::orientation")
 
 	if ptr.Pointer() != nil {
 		return QPageLayout__Orientation(C.QPageLayout_Orientation(ptr.Pointer()))
@@ -152,11 +124,7 @@ func (ptr *QPageLayout) Orientation() QPageLayout__Orientation {
 }
 
 func (ptr *QPageLayout) SetBottomMargin(bottomMargin float64) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::setBottomMargin")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::setBottomMargin")
 
 	if ptr.Pointer() != nil {
 		return C.QPageLayout_SetBottomMargin(ptr.Pointer(), C.double(bottomMargin)) != 0
@@ -165,11 +133,7 @@ func (ptr *QPageLayout) SetBottomMargin(bottomMargin float64) bool {
 }
 
 func (ptr *QPageLayout) SetLeftMargin(leftMargin float64) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::setLeftMargin")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::setLeftMargin")
 
 	if ptr.Pointer() != nil {
 		return C.QPageLayout_SetLeftMargin(ptr.Pointer(), C.double(leftMargin)) != 0
@@ -178,11 +142,7 @@ func (ptr *QPageLayout) SetLeftMargin(leftMargin float64) bool {
 }
 
 func (ptr *QPageLayout) SetMargins(margins core.QMarginsF_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::setMargins")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::setMargins")
 
 	if ptr.Pointer() != nil {
 		return C.QPageLayout_SetMargins(ptr.Pointer(), core.PointerFromQMarginsF(margins)) != 0
@@ -191,11 +151,7 @@ func (ptr *QPageLayout) SetMargins(margins core.QMarginsF_ITF) bool {
 }
 
 func (ptr *QPageLayout) SetMinimumMargins(minMargins core.QMarginsF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::setMinimumMargins")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::setMinimumMargins")
 
 	if ptr.Pointer() != nil {
 		C.QPageLayout_SetMinimumMargins(ptr.Pointer(), core.PointerFromQMarginsF(minMargins))
@@ -203,11 +159,7 @@ func (ptr *QPageLayout) SetMinimumMargins(minMargins core.QMarginsF_ITF) {
 }
 
 func (ptr *QPageLayout) SetMode(mode QPageLayout__Mode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::setMode")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::setMode")
 
 	if ptr.Pointer() != nil {
 		C.QPageLayout_SetMode(ptr.Pointer(), C.int(mode))
@@ -215,11 +167,7 @@ func (ptr *QPageLayout) SetMode(mode QPageLayout__Mode) {
 }
 
 func (ptr *QPageLayout) SetOrientation(orientation QPageLayout__Orientation) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::setOrientation")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::setOrientation")
 
 	if ptr.Pointer() != nil {
 		C.QPageLayout_SetOrientation(ptr.Pointer(), C.int(orientation))
@@ -227,11 +175,7 @@ func (ptr *QPageLayout) SetOrientation(orientation QPageLayout__Orientation) {
 }
 
 func (ptr *QPageLayout) SetPageSize(pageSize QPageSize_ITF, minMargins core.QMarginsF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::setPageSize")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::setPageSize")
 
 	if ptr.Pointer() != nil {
 		C.QPageLayout_SetPageSize(ptr.Pointer(), PointerFromQPageSize(pageSize), core.PointerFromQMarginsF(minMargins))
@@ -239,11 +183,7 @@ func (ptr *QPageLayout) SetPageSize(pageSize QPageSize_ITF, minMargins core.QMar
 }
 
 func (ptr *QPageLayout) SetRightMargin(rightMargin float64) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::setRightMargin")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::setRightMargin")
 
 	if ptr.Pointer() != nil {
 		return C.QPageLayout_SetRightMargin(ptr.Pointer(), C.double(rightMargin)) != 0
@@ -252,11 +192,7 @@ func (ptr *QPageLayout) SetRightMargin(rightMargin float64) bool {
 }
 
 func (ptr *QPageLayout) SetTopMargin(topMargin float64) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::setTopMargin")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::setTopMargin")
 
 	if ptr.Pointer() != nil {
 		return C.QPageLayout_SetTopMargin(ptr.Pointer(), C.double(topMargin)) != 0
@@ -265,11 +201,7 @@ func (ptr *QPageLayout) SetTopMargin(topMargin float64) bool {
 }
 
 func (ptr *QPageLayout) SetUnits(units QPageLayout__Unit) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::setUnits")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::setUnits")
 
 	if ptr.Pointer() != nil {
 		C.QPageLayout_SetUnits(ptr.Pointer(), C.int(units))
@@ -277,11 +209,7 @@ func (ptr *QPageLayout) SetUnits(units QPageLayout__Unit) {
 }
 
 func (ptr *QPageLayout) Swap(other QPageLayout_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::swap")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::swap")
 
 	if ptr.Pointer() != nil {
 		C.QPageLayout_Swap(ptr.Pointer(), PointerFromQPageLayout(other))
@@ -289,11 +217,7 @@ func (ptr *QPageLayout) Swap(other QPageLayout_ITF) {
 }
 
 func (ptr *QPageLayout) Units() QPageLayout__Unit {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::units")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::units")
 
 	if ptr.Pointer() != nil {
 		return QPageLayout__Unit(C.QPageLayout_Units(ptr.Pointer()))
@@ -302,11 +226,7 @@ func (ptr *QPageLayout) Units() QPageLayout__Unit {
 }
 
 func (ptr *QPageLayout) DestroyQPageLayout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageLayout::~QPageLayout")
-		}
-	}()
+	defer qt.Recovering("QPageLayout::~QPageLayout")
 
 	if ptr.Pointer() != nil {
 		C.QPageLayout_DestroyQPageLayout(ptr.Pointer())

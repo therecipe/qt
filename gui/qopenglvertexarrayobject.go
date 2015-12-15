@@ -28,7 +28,7 @@ func NewQOpenGLVertexArrayObjectFromPointer(ptr unsafe.Pointer) *QOpenGLVertexAr
 	var n = new(QOpenGLVertexArrayObject)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLVertexArrayObject_") {
-		n.SetObjectName("QOpenGLVertexArrayObject_" + qt.RandomIdentifier())
+		n.SetObjectName("QOpenGLVertexArrayObject_" + qt.Identifier())
 	}
 	return n
 }

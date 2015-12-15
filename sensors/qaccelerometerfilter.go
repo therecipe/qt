@@ -3,7 +3,7 @@ package sensors
 //#include "sensors.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,11 +34,7 @@ func (ptr *QAccelerometerFilter) QAccelerometerFilter_PTR() *QAccelerometerFilte
 }
 
 func (ptr *QAccelerometerFilter) Filter(reading QAccelerometerReading_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccelerometerFilter::filter")
-		}
-	}()
+	defer qt.Recovering("QAccelerometerFilter::filter")
 
 	if ptr.Pointer() != nil {
 		return C.QAccelerometerFilter_Filter(ptr.Pointer(), PointerFromQAccelerometerReading(reading)) != 0

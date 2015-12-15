@@ -5,7 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +30,7 @@ func NewQTreeWidgetFromPointer(ptr unsafe.Pointer) *QTreeWidget {
 	var n = new(QTreeWidget)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QTreeWidget_") {
-		n.SetObjectName("QTreeWidget_" + qt.RandomIdentifier())
+		n.SetObjectName("QTreeWidget_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +40,7 @@ func (ptr *QTreeWidget) QTreeWidget_PTR() *QTreeWidget {
 }
 
 func (ptr *QTreeWidget) ColumnCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::columnCount")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::columnCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTreeWidget_ColumnCount(ptr.Pointer()))
@@ -53,11 +49,7 @@ func (ptr *QTreeWidget) ColumnCount() int {
 }
 
 func (ptr *QTreeWidget) SetColumnCount(columns int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::setColumnCount")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::setColumnCount")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_SetColumnCount(ptr.Pointer(), C.int(columns))
@@ -65,11 +57,7 @@ func (ptr *QTreeWidget) SetColumnCount(columns int) {
 }
 
 func (ptr *QTreeWidget) TopLevelItemCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::topLevelItemCount")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::topLevelItemCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTreeWidget_TopLevelItemCount(ptr.Pointer()))
@@ -78,21 +66,13 @@ func (ptr *QTreeWidget) TopLevelItemCount() int {
 }
 
 func NewQTreeWidget(parent QWidget_ITF) *QTreeWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::QTreeWidget")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::QTreeWidget")
 
 	return NewQTreeWidgetFromPointer(C.QTreeWidget_NewQTreeWidget(PointerFromQWidget(parent)))
 }
 
 func (ptr *QTreeWidget) AddTopLevelItem(item QTreeWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::addTopLevelItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::addTopLevelItem")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_AddTopLevelItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
@@ -100,11 +80,7 @@ func (ptr *QTreeWidget) AddTopLevelItem(item QTreeWidgetItem_ITF) {
 }
 
 func (ptr *QTreeWidget) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::clear")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::clear")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_Clear(ptr.Pointer())
@@ -112,11 +88,7 @@ func (ptr *QTreeWidget) Clear() {
 }
 
 func (ptr *QTreeWidget) ClosePersistentEditor(item QTreeWidgetItem_ITF, column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::closePersistentEditor")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::closePersistentEditor")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ClosePersistentEditor(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
@@ -124,11 +96,7 @@ func (ptr *QTreeWidget) ClosePersistentEditor(item QTreeWidgetItem_ITF, column i
 }
 
 func (ptr *QTreeWidget) CollapseItem(item QTreeWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::collapseItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::collapseItem")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_CollapseItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
@@ -136,11 +104,7 @@ func (ptr *QTreeWidget) CollapseItem(item QTreeWidgetItem_ITF) {
 }
 
 func (ptr *QTreeWidget) CurrentColumn() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::currentColumn")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::currentColumn")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTreeWidget_CurrentColumn(ptr.Pointer()))
@@ -149,11 +113,7 @@ func (ptr *QTreeWidget) CurrentColumn() int {
 }
 
 func (ptr *QTreeWidget) CurrentItem() *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::currentItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::currentItem")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_CurrentItem(ptr.Pointer()))
@@ -162,11 +122,7 @@ func (ptr *QTreeWidget) CurrentItem() *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidget) ConnectCurrentItemChanged(f func(current *QTreeWidgetItem, previous *QTreeWidgetItem)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::currentItemChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTreeWidget::currentItemChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ConnectCurrentItemChanged(ptr.Pointer())
@@ -175,11 +131,7 @@ func (ptr *QTreeWidget) ConnectCurrentItemChanged(f func(current *QTreeWidgetIte
 }
 
 func (ptr *QTreeWidget) DisconnectCurrentItemChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::currentItemChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTreeWidget::currentItemChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DisconnectCurrentItemChanged(ptr.Pointer())
@@ -189,21 +141,48 @@ func (ptr *QTreeWidget) DisconnectCurrentItemChanged() {
 
 //export callbackQTreeWidgetCurrentItemChanged
 func callbackQTreeWidgetCurrentItemChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::currentItemChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTreeWidget::currentItemChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentItemChanged").(func(*QTreeWidgetItem, *QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(current), NewQTreeWidgetItemFromPointer(previous))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentItemChanged")
+	if signal != nil {
+		signal.(func(*QTreeWidgetItem, *QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(current), NewQTreeWidgetItemFromPointer(previous))
+	}
+
+}
+
+func (ptr *QTreeWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
+	defer qt.Recovering("connect QTreeWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+	}
+}
+
+func (ptr *QTreeWidget) DisconnectDropEvent() {
+	defer qt.Recovering("disconnect QTreeWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+	}
+}
+
+//export callbackQTreeWidgetDropEvent
+func callbackQTreeWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTreeWidget::dropEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QTreeWidget) EditItem(item QTreeWidgetItem_ITF, column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::editItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::editItem")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_EditItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
@@ -211,11 +190,7 @@ func (ptr *QTreeWidget) EditItem(item QTreeWidgetItem_ITF, column int) {
 }
 
 func (ptr *QTreeWidget) ExpandItem(item QTreeWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::expandItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::expandItem")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ExpandItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
@@ -223,11 +198,7 @@ func (ptr *QTreeWidget) ExpandItem(item QTreeWidgetItem_ITF) {
 }
 
 func (ptr *QTreeWidget) HeaderItem() *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::headerItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::headerItem")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_HeaderItem(ptr.Pointer()))
@@ -236,11 +207,7 @@ func (ptr *QTreeWidget) HeaderItem() *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidget) IndexOfTopLevelItem(item QTreeWidgetItem_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::indexOfTopLevelItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::indexOfTopLevelItem")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTreeWidget_IndexOfTopLevelItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item)))
@@ -249,11 +216,7 @@ func (ptr *QTreeWidget) IndexOfTopLevelItem(item QTreeWidgetItem_ITF) int {
 }
 
 func (ptr *QTreeWidget) InsertTopLevelItem(index int, item QTreeWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::insertTopLevelItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::insertTopLevelItem")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_InsertTopLevelItem(ptr.Pointer(), C.int(index), PointerFromQTreeWidgetItem(item))
@@ -261,11 +224,7 @@ func (ptr *QTreeWidget) InsertTopLevelItem(index int, item QTreeWidgetItem_ITF) 
 }
 
 func (ptr *QTreeWidget) InvisibleRootItem() *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::invisibleRootItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::invisibleRootItem")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_InvisibleRootItem(ptr.Pointer()))
@@ -274,11 +233,7 @@ func (ptr *QTreeWidget) InvisibleRootItem() *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidget) IsFirstItemColumnSpanned(item QTreeWidgetItem_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::isFirstItemColumnSpanned")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::isFirstItemColumnSpanned")
 
 	if ptr.Pointer() != nil {
 		return C.QTreeWidget_IsFirstItemColumnSpanned(ptr.Pointer(), PointerFromQTreeWidgetItem(item)) != 0
@@ -287,11 +242,7 @@ func (ptr *QTreeWidget) IsFirstItemColumnSpanned(item QTreeWidgetItem_ITF) bool 
 }
 
 func (ptr *QTreeWidget) ItemAbove(item QTreeWidgetItem_ITF) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemAbove")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::itemAbove")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_ItemAbove(ptr.Pointer(), PointerFromQTreeWidgetItem(item)))
@@ -300,11 +251,7 @@ func (ptr *QTreeWidget) ItemAbove(item QTreeWidgetItem_ITF) *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidget) ConnectItemActivated(f func(item *QTreeWidgetItem, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemActivated")
-		}
-	}()
+	defer qt.Recovering("connect QTreeWidget::itemActivated")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ConnectItemActivated(ptr.Pointer())
@@ -313,11 +260,7 @@ func (ptr *QTreeWidget) ConnectItemActivated(f func(item *QTreeWidgetItem, colum
 }
 
 func (ptr *QTreeWidget) DisconnectItemActivated() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemActivated")
-		}
-	}()
+	defer qt.Recovering("disconnect QTreeWidget::itemActivated")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DisconnectItemActivated(ptr.Pointer())
@@ -327,21 +270,17 @@ func (ptr *QTreeWidget) DisconnectItemActivated() {
 
 //export callbackQTreeWidgetItemActivated
 func callbackQTreeWidgetItemActivated(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemActivated")
-		}
-	}()
+	defer qt.Recovering("callback QTreeWidget::itemActivated")
 
-	qt.GetSignal(C.GoString(ptrName), "itemActivated").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemActivated")
+	if signal != nil {
+		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	}
+
 }
 
 func (ptr *QTreeWidget) ItemAt(p core.QPoint_ITF) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemAt")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_ItemAt(ptr.Pointer(), core.PointerFromQPoint(p)))
@@ -350,11 +289,7 @@ func (ptr *QTreeWidget) ItemAt(p core.QPoint_ITF) *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidget) ItemAt2(x int, y int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemAt")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_ItemAt2(ptr.Pointer(), C.int(x), C.int(y)))
@@ -363,11 +298,7 @@ func (ptr *QTreeWidget) ItemAt2(x int, y int) *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidget) ItemBelow(item QTreeWidgetItem_ITF) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemBelow")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::itemBelow")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_ItemBelow(ptr.Pointer(), PointerFromQTreeWidgetItem(item)))
@@ -376,11 +307,7 @@ func (ptr *QTreeWidget) ItemBelow(item QTreeWidgetItem_ITF) *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidget) ConnectItemChanged(f func(item *QTreeWidgetItem, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTreeWidget::itemChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ConnectItemChanged(ptr.Pointer())
@@ -389,11 +316,7 @@ func (ptr *QTreeWidget) ConnectItemChanged(f func(item *QTreeWidgetItem, column 
 }
 
 func (ptr *QTreeWidget) DisconnectItemChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTreeWidget::itemChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DisconnectItemChanged(ptr.Pointer())
@@ -403,21 +326,17 @@ func (ptr *QTreeWidget) DisconnectItemChanged() {
 
 //export callbackQTreeWidgetItemChanged
 func callbackQTreeWidgetItemChanged(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTreeWidget::itemChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "itemChanged").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemChanged")
+	if signal != nil {
+		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	}
+
 }
 
 func (ptr *QTreeWidget) ConnectItemClicked(f func(item *QTreeWidgetItem, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemClicked")
-		}
-	}()
+	defer qt.Recovering("connect QTreeWidget::itemClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ConnectItemClicked(ptr.Pointer())
@@ -426,11 +345,7 @@ func (ptr *QTreeWidget) ConnectItemClicked(f func(item *QTreeWidgetItem, column 
 }
 
 func (ptr *QTreeWidget) DisconnectItemClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemClicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QTreeWidget::itemClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DisconnectItemClicked(ptr.Pointer())
@@ -440,21 +355,17 @@ func (ptr *QTreeWidget) DisconnectItemClicked() {
 
 //export callbackQTreeWidgetItemClicked
 func callbackQTreeWidgetItemClicked(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemClicked")
-		}
-	}()
+	defer qt.Recovering("callback QTreeWidget::itemClicked")
 
-	qt.GetSignal(C.GoString(ptrName), "itemClicked").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemClicked")
+	if signal != nil {
+		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	}
+
 }
 
 func (ptr *QTreeWidget) ConnectItemCollapsed(f func(item *QTreeWidgetItem)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemCollapsed")
-		}
-	}()
+	defer qt.Recovering("connect QTreeWidget::itemCollapsed")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ConnectItemCollapsed(ptr.Pointer())
@@ -463,11 +374,7 @@ func (ptr *QTreeWidget) ConnectItemCollapsed(f func(item *QTreeWidgetItem)) {
 }
 
 func (ptr *QTreeWidget) DisconnectItemCollapsed() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemCollapsed")
-		}
-	}()
+	defer qt.Recovering("disconnect QTreeWidget::itemCollapsed")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DisconnectItemCollapsed(ptr.Pointer())
@@ -477,21 +384,17 @@ func (ptr *QTreeWidget) DisconnectItemCollapsed() {
 
 //export callbackQTreeWidgetItemCollapsed
 func callbackQTreeWidgetItemCollapsed(ptrName *C.char, item unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemCollapsed")
-		}
-	}()
+	defer qt.Recovering("callback QTreeWidget::itemCollapsed")
 
-	qt.GetSignal(C.GoString(ptrName), "itemCollapsed").(func(*QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(item))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemCollapsed")
+	if signal != nil {
+		signal.(func(*QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(item))
+	}
+
 }
 
 func (ptr *QTreeWidget) ConnectItemDoubleClicked(f func(item *QTreeWidgetItem, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("connect QTreeWidget::itemDoubleClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ConnectItemDoubleClicked(ptr.Pointer())
@@ -500,11 +403,7 @@ func (ptr *QTreeWidget) ConnectItemDoubleClicked(f func(item *QTreeWidgetItem, c
 }
 
 func (ptr *QTreeWidget) DisconnectItemDoubleClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QTreeWidget::itemDoubleClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DisconnectItemDoubleClicked(ptr.Pointer())
@@ -514,21 +413,17 @@ func (ptr *QTreeWidget) DisconnectItemDoubleClicked() {
 
 //export callbackQTreeWidgetItemDoubleClicked
 func callbackQTreeWidgetItemDoubleClicked(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("callback QTreeWidget::itemDoubleClicked")
 
-	qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked")
+	if signal != nil {
+		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	}
+
 }
 
 func (ptr *QTreeWidget) ConnectItemEntered(f func(item *QTreeWidgetItem, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemEntered")
-		}
-	}()
+	defer qt.Recovering("connect QTreeWidget::itemEntered")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ConnectItemEntered(ptr.Pointer())
@@ -537,11 +432,7 @@ func (ptr *QTreeWidget) ConnectItemEntered(f func(item *QTreeWidgetItem, column 
 }
 
 func (ptr *QTreeWidget) DisconnectItemEntered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemEntered")
-		}
-	}()
+	defer qt.Recovering("disconnect QTreeWidget::itemEntered")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DisconnectItemEntered(ptr.Pointer())
@@ -551,21 +442,17 @@ func (ptr *QTreeWidget) DisconnectItemEntered() {
 
 //export callbackQTreeWidgetItemEntered
 func callbackQTreeWidgetItemEntered(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemEntered")
-		}
-	}()
+	defer qt.Recovering("callback QTreeWidget::itemEntered")
 
-	qt.GetSignal(C.GoString(ptrName), "itemEntered").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemEntered")
+	if signal != nil {
+		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	}
+
 }
 
 func (ptr *QTreeWidget) ConnectItemExpanded(f func(item *QTreeWidgetItem)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemExpanded")
-		}
-	}()
+	defer qt.Recovering("connect QTreeWidget::itemExpanded")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ConnectItemExpanded(ptr.Pointer())
@@ -574,11 +461,7 @@ func (ptr *QTreeWidget) ConnectItemExpanded(f func(item *QTreeWidgetItem)) {
 }
 
 func (ptr *QTreeWidget) DisconnectItemExpanded() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemExpanded")
-		}
-	}()
+	defer qt.Recovering("disconnect QTreeWidget::itemExpanded")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DisconnectItemExpanded(ptr.Pointer())
@@ -588,21 +471,17 @@ func (ptr *QTreeWidget) DisconnectItemExpanded() {
 
 //export callbackQTreeWidgetItemExpanded
 func callbackQTreeWidgetItemExpanded(ptrName *C.char, item unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemExpanded")
-		}
-	}()
+	defer qt.Recovering("callback QTreeWidget::itemExpanded")
 
-	qt.GetSignal(C.GoString(ptrName), "itemExpanded").(func(*QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(item))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemExpanded")
+	if signal != nil {
+		signal.(func(*QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(item))
+	}
+
 }
 
 func (ptr *QTreeWidget) ConnectItemPressed(f func(item *QTreeWidgetItem, column int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemPressed")
-		}
-	}()
+	defer qt.Recovering("connect QTreeWidget::itemPressed")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ConnectItemPressed(ptr.Pointer())
@@ -611,11 +490,7 @@ func (ptr *QTreeWidget) ConnectItemPressed(f func(item *QTreeWidgetItem, column 
 }
 
 func (ptr *QTreeWidget) DisconnectItemPressed() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemPressed")
-		}
-	}()
+	defer qt.Recovering("disconnect QTreeWidget::itemPressed")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DisconnectItemPressed(ptr.Pointer())
@@ -625,21 +500,17 @@ func (ptr *QTreeWidget) DisconnectItemPressed() {
 
 //export callbackQTreeWidgetItemPressed
 func callbackQTreeWidgetItemPressed(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemPressed")
-		}
-	}()
+	defer qt.Recovering("callback QTreeWidget::itemPressed")
 
-	qt.GetSignal(C.GoString(ptrName), "itemPressed").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemPressed")
+	if signal != nil {
+		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
+	}
+
 }
 
 func (ptr *QTreeWidget) ConnectItemSelectionChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemSelectionChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTreeWidget::itemSelectionChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ConnectItemSelectionChanged(ptr.Pointer())
@@ -648,11 +519,7 @@ func (ptr *QTreeWidget) ConnectItemSelectionChanged(f func()) {
 }
 
 func (ptr *QTreeWidget) DisconnectItemSelectionChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemSelectionChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTreeWidget::itemSelectionChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DisconnectItemSelectionChanged(ptr.Pointer())
@@ -662,21 +529,17 @@ func (ptr *QTreeWidget) DisconnectItemSelectionChanged() {
 
 //export callbackQTreeWidgetItemSelectionChanged
 func callbackQTreeWidgetItemSelectionChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemSelectionChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTreeWidget::itemSelectionChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QTreeWidget) ItemWidget(item QTreeWidgetItem_ITF, column int) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::itemWidget")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::itemWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QTreeWidget_ItemWidget(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column)))
@@ -685,11 +548,7 @@ func (ptr *QTreeWidget) ItemWidget(item QTreeWidgetItem_ITF, column int) *QWidge
 }
 
 func (ptr *QTreeWidget) OpenPersistentEditor(item QTreeWidgetItem_ITF, column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::openPersistentEditor")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::openPersistentEditor")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_OpenPersistentEditor(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
@@ -697,11 +556,7 @@ func (ptr *QTreeWidget) OpenPersistentEditor(item QTreeWidgetItem_ITF, column in
 }
 
 func (ptr *QTreeWidget) RemoveItemWidget(item QTreeWidgetItem_ITF, column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::removeItemWidget")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::removeItemWidget")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_RemoveItemWidget(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
@@ -709,11 +564,7 @@ func (ptr *QTreeWidget) RemoveItemWidget(item QTreeWidgetItem_ITF, column int) {
 }
 
 func (ptr *QTreeWidget) ScrollToItem(item QTreeWidgetItem_ITF, hint QAbstractItemView__ScrollHint) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::scrollToItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::scrollToItem")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_ScrollToItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(hint))
@@ -721,11 +572,7 @@ func (ptr *QTreeWidget) ScrollToItem(item QTreeWidgetItem_ITF, hint QAbstractIte
 }
 
 func (ptr *QTreeWidget) SetCurrentItem(item QTreeWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::setCurrentItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::setCurrentItem")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_SetCurrentItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
@@ -733,11 +580,7 @@ func (ptr *QTreeWidget) SetCurrentItem(item QTreeWidgetItem_ITF) {
 }
 
 func (ptr *QTreeWidget) SetCurrentItem2(item QTreeWidgetItem_ITF, column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::setCurrentItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::setCurrentItem")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_SetCurrentItem2(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
@@ -745,11 +588,7 @@ func (ptr *QTreeWidget) SetCurrentItem2(item QTreeWidgetItem_ITF, column int) {
 }
 
 func (ptr *QTreeWidget) SetCurrentItem3(item QTreeWidgetItem_ITF, column int, command core.QItemSelectionModel__SelectionFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::setCurrentItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::setCurrentItem")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_SetCurrentItem3(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column), C.int(command))
@@ -757,11 +596,7 @@ func (ptr *QTreeWidget) SetCurrentItem3(item QTreeWidgetItem_ITF, column int, co
 }
 
 func (ptr *QTreeWidget) SetFirstItemColumnSpanned(item QTreeWidgetItem_ITF, span bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::setFirstItemColumnSpanned")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::setFirstItemColumnSpanned")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_SetFirstItemColumnSpanned(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(qt.GoBoolToInt(span)))
@@ -769,11 +604,7 @@ func (ptr *QTreeWidget) SetFirstItemColumnSpanned(item QTreeWidgetItem_ITF, span
 }
 
 func (ptr *QTreeWidget) SetHeaderItem(item QTreeWidgetItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::setHeaderItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::setHeaderItem")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_SetHeaderItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
@@ -781,11 +612,7 @@ func (ptr *QTreeWidget) SetHeaderItem(item QTreeWidgetItem_ITF) {
 }
 
 func (ptr *QTreeWidget) SetHeaderLabel(label string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::setHeaderLabel")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::setHeaderLabel")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_SetHeaderLabel(ptr.Pointer(), C.CString(label))
@@ -793,11 +620,7 @@ func (ptr *QTreeWidget) SetHeaderLabel(label string) {
 }
 
 func (ptr *QTreeWidget) SetHeaderLabels(labels []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::setHeaderLabels")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::setHeaderLabels")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_SetHeaderLabels(ptr.Pointer(), C.CString(strings.Join(labels, ",,,")))
@@ -805,35 +628,46 @@ func (ptr *QTreeWidget) SetHeaderLabels(labels []string) {
 }
 
 func (ptr *QTreeWidget) SetItemWidget(item QTreeWidgetItem_ITF, column int, widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::setItemWidget")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::setItemWidget")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_SetItemWidget(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column), PointerFromQWidget(widget))
 	}
 }
 
-func (ptr *QTreeWidget) SetSelectionModel(selectionModel core.QItemSelectionModel_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::setSelectionModel")
-		}
-	}()
+func (ptr *QTreeWidget) ConnectSetSelectionModel(f func(selectionModel *core.QItemSelectionModel)) {
+	defer qt.Recovering("connect QTreeWidget::setSelectionModel")
 
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SetSelectionModel(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSelectionModel", f)
 	}
 }
 
+func (ptr *QTreeWidget) DisconnectSetSelectionModel() {
+	defer qt.Recovering("disconnect QTreeWidget::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSelectionModel")
+	}
+}
+
+//export callbackQTreeWidgetSetSelectionModel
+func callbackQTreeWidgetSetSelectionModel(ptrName *C.char, selectionModel unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTreeWidget::setSelectionModel")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setSelectionModel")
+	if signal != nil {
+		defer signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTreeWidget) SortColumn() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::sortColumn")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::sortColumn")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTreeWidget_SortColumn(ptr.Pointer()))
@@ -842,11 +676,7 @@ func (ptr *QTreeWidget) SortColumn() int {
 }
 
 func (ptr *QTreeWidget) SortItems(column int, order core.Qt__SortOrder) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::sortItems")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::sortItems")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_SortItems(ptr.Pointer(), C.int(column), C.int(order))
@@ -854,11 +684,7 @@ func (ptr *QTreeWidget) SortItems(column int, order core.Qt__SortOrder) {
 }
 
 func (ptr *QTreeWidget) TakeTopLevelItem(index int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::takeTopLevelItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::takeTopLevelItem")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_TakeTopLevelItem(ptr.Pointer(), C.int(index)))
@@ -867,11 +693,7 @@ func (ptr *QTreeWidget) TakeTopLevelItem(index int) *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidget) TopLevelItem(index int) *QTreeWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::topLevelItem")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::topLevelItem")
 
 	if ptr.Pointer() != nil {
 		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_TopLevelItem(ptr.Pointer(), C.int(index)))
@@ -880,11 +702,7 @@ func (ptr *QTreeWidget) TopLevelItem(index int) *QTreeWidgetItem {
 }
 
 func (ptr *QTreeWidget) DestroyQTreeWidget() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTreeWidget::~QTreeWidget")
-		}
-	}()
+	defer qt.Recovering("QTreeWidget::~QTreeWidget")
 
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DestroyQTreeWidget(ptr.Pointer())

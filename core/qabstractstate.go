@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQAbstractStateFromPointer(ptr unsafe.Pointer) *QAbstractState {
 	var n = new(QAbstractState)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractState_") {
-		n.SetObjectName("QAbstractState_" + qt.RandomIdentifier())
+		n.SetObjectName("QAbstractState_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QAbstractState) QAbstractState_PTR() *QAbstractState {
 }
 
 func (ptr *QAbstractState) Active() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::active")
-		}
-	}()
+	defer qt.Recovering("QAbstractState::active")
 
 	if ptr.Pointer() != nil {
 		return C.QAbstractState_Active(ptr.Pointer()) != 0
@@ -51,11 +46,7 @@ func (ptr *QAbstractState) Active() bool {
 }
 
 func (ptr *QAbstractState) ConnectActiveChanged(f func(active bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::activeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QAbstractState::activeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractState_ConnectActiveChanged(ptr.Pointer())
@@ -64,11 +55,7 @@ func (ptr *QAbstractState) ConnectActiveChanged(f func(active bool)) {
 }
 
 func (ptr *QAbstractState) DisconnectActiveChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::activeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QAbstractState::activeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractState_DisconnectActiveChanged(ptr.Pointer())
@@ -78,21 +65,17 @@ func (ptr *QAbstractState) DisconnectActiveChanged() {
 
 //export callbackQAbstractStateActiveChanged
 func callbackQAbstractStateActiveChanged(ptrName *C.char, active C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::activeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QAbstractState::activeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "activeChanged").(func(bool))(int(active) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "activeChanged")
+	if signal != nil {
+		signal.(func(bool))(int(active) != 0)
+	}
+
 }
 
 func (ptr *QAbstractState) ConnectEntered(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::entered")
-		}
-	}()
+	defer qt.Recovering("connect QAbstractState::entered")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractState_ConnectEntered(ptr.Pointer())
@@ -101,11 +84,7 @@ func (ptr *QAbstractState) ConnectEntered(f func()) {
 }
 
 func (ptr *QAbstractState) DisconnectEntered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::entered")
-		}
-	}()
+	defer qt.Recovering("disconnect QAbstractState::entered")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractState_DisconnectEntered(ptr.Pointer())
@@ -115,21 +94,17 @@ func (ptr *QAbstractState) DisconnectEntered() {
 
 //export callbackQAbstractStateEntered
 func callbackQAbstractStateEntered(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::entered")
-		}
-	}()
+	defer qt.Recovering("callback QAbstractState::entered")
 
-	qt.GetSignal(C.GoString(ptrName), "entered").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "entered")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QAbstractState) ConnectExited(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::exited")
-		}
-	}()
+	defer qt.Recovering("connect QAbstractState::exited")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractState_ConnectExited(ptr.Pointer())
@@ -138,11 +113,7 @@ func (ptr *QAbstractState) ConnectExited(f func()) {
 }
 
 func (ptr *QAbstractState) DisconnectExited() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::exited")
-		}
-	}()
+	defer qt.Recovering("disconnect QAbstractState::exited")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractState_DisconnectExited(ptr.Pointer())
@@ -152,21 +123,17 @@ func (ptr *QAbstractState) DisconnectExited() {
 
 //export callbackQAbstractStateExited
 func callbackQAbstractStateExited(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::exited")
-		}
-	}()
+	defer qt.Recovering("callback QAbstractState::exited")
 
-	qt.GetSignal(C.GoString(ptrName), "exited").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "exited")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QAbstractState) Machine() *QStateMachine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::machine")
-		}
-	}()
+	defer qt.Recovering("QAbstractState::machine")
 
 	if ptr.Pointer() != nil {
 		return NewQStateMachineFromPointer(C.QAbstractState_Machine(ptr.Pointer()))
@@ -175,11 +142,7 @@ func (ptr *QAbstractState) Machine() *QStateMachine {
 }
 
 func (ptr *QAbstractState) ParentState() *QState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::parentState")
-		}
-	}()
+	defer qt.Recovering("QAbstractState::parentState")
 
 	if ptr.Pointer() != nil {
 		return NewQStateFromPointer(C.QAbstractState_ParentState(ptr.Pointer()))
@@ -188,11 +151,7 @@ func (ptr *QAbstractState) ParentState() *QState {
 }
 
 func (ptr *QAbstractState) DestroyQAbstractState() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractState::~QAbstractState")
-		}
-	}()
+	defer qt.Recovering("QAbstractState::~QAbstractState")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractState_DestroyQAbstractState(ptr.Pointer())

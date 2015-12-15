@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -29,7 +28,7 @@ func NewQFileSystemWatcherFromPointer(ptr unsafe.Pointer) *QFileSystemWatcher {
 	var n = new(QFileSystemWatcher)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QFileSystemWatcher_") {
-		n.SetObjectName("QFileSystemWatcher_" + qt.RandomIdentifier())
+		n.SetObjectName("QFileSystemWatcher_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QFileSystemWatcher) QFileSystemWatcher_PTR() *QFileSystemWatcher {
 }
 
 func (ptr *QFileSystemWatcher) Directories() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::directories")
-		}
-	}()
+	defer qt.Recovering("QFileSystemWatcher::directories")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QFileSystemWatcher_Directories(ptr.Pointer())), ",,,")
@@ -52,11 +47,7 @@ func (ptr *QFileSystemWatcher) Directories() []string {
 }
 
 func (ptr *QFileSystemWatcher) Files() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::files")
-		}
-	}()
+	defer qt.Recovering("QFileSystemWatcher::files")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QFileSystemWatcher_Files(ptr.Pointer())), ",,,")
@@ -65,31 +56,19 @@ func (ptr *QFileSystemWatcher) Files() []string {
 }
 
 func NewQFileSystemWatcher(parent QObject_ITF) *QFileSystemWatcher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::QFileSystemWatcher")
-		}
-	}()
+	defer qt.Recovering("QFileSystemWatcher::QFileSystemWatcher")
 
 	return NewQFileSystemWatcherFromPointer(C.QFileSystemWatcher_NewQFileSystemWatcher(PointerFromQObject(parent)))
 }
 
 func NewQFileSystemWatcher2(paths []string, parent QObject_ITF) *QFileSystemWatcher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::QFileSystemWatcher")
-		}
-	}()
+	defer qt.Recovering("QFileSystemWatcher::QFileSystemWatcher")
 
 	return NewQFileSystemWatcherFromPointer(C.QFileSystemWatcher_NewQFileSystemWatcher2(C.CString(strings.Join(paths, ",,,")), PointerFromQObject(parent)))
 }
 
 func (ptr *QFileSystemWatcher) AddPath(path string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::addPath")
-		}
-	}()
+	defer qt.Recovering("QFileSystemWatcher::addPath")
 
 	if ptr.Pointer() != nil {
 		return C.QFileSystemWatcher_AddPath(ptr.Pointer(), C.CString(path)) != 0
@@ -98,11 +77,7 @@ func (ptr *QFileSystemWatcher) AddPath(path string) bool {
 }
 
 func (ptr *QFileSystemWatcher) AddPaths(paths []string) []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::addPaths")
-		}
-	}()
+	defer qt.Recovering("QFileSystemWatcher::addPaths")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QFileSystemWatcher_AddPaths(ptr.Pointer(), C.CString(strings.Join(paths, ",,,")))), ",,,")
@@ -111,11 +86,7 @@ func (ptr *QFileSystemWatcher) AddPaths(paths []string) []string {
 }
 
 func (ptr *QFileSystemWatcher) ConnectDirectoryChanged(f func(path string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::directoryChanged")
-		}
-	}()
+	defer qt.Recovering("connect QFileSystemWatcher::directoryChanged")
 
 	if ptr.Pointer() != nil {
 		C.QFileSystemWatcher_ConnectDirectoryChanged(ptr.Pointer())
@@ -124,11 +95,7 @@ func (ptr *QFileSystemWatcher) ConnectDirectoryChanged(f func(path string)) {
 }
 
 func (ptr *QFileSystemWatcher) DisconnectDirectoryChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::directoryChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QFileSystemWatcher::directoryChanged")
 
 	if ptr.Pointer() != nil {
 		C.QFileSystemWatcher_DisconnectDirectoryChanged(ptr.Pointer())
@@ -138,21 +105,17 @@ func (ptr *QFileSystemWatcher) DisconnectDirectoryChanged() {
 
 //export callbackQFileSystemWatcherDirectoryChanged
 func callbackQFileSystemWatcherDirectoryChanged(ptrName *C.char, path *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::directoryChanged")
-		}
-	}()
+	defer qt.Recovering("callback QFileSystemWatcher::directoryChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "directoryChanged").(func(string))(C.GoString(path))
+	var signal = qt.GetSignal(C.GoString(ptrName), "directoryChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(path))
+	}
+
 }
 
 func (ptr *QFileSystemWatcher) ConnectFileChanged(f func(path string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::fileChanged")
-		}
-	}()
+	defer qt.Recovering("connect QFileSystemWatcher::fileChanged")
 
 	if ptr.Pointer() != nil {
 		C.QFileSystemWatcher_ConnectFileChanged(ptr.Pointer())
@@ -161,11 +124,7 @@ func (ptr *QFileSystemWatcher) ConnectFileChanged(f func(path string)) {
 }
 
 func (ptr *QFileSystemWatcher) DisconnectFileChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::fileChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QFileSystemWatcher::fileChanged")
 
 	if ptr.Pointer() != nil {
 		C.QFileSystemWatcher_DisconnectFileChanged(ptr.Pointer())
@@ -175,21 +134,17 @@ func (ptr *QFileSystemWatcher) DisconnectFileChanged() {
 
 //export callbackQFileSystemWatcherFileChanged
 func callbackQFileSystemWatcherFileChanged(ptrName *C.char, path *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::fileChanged")
-		}
-	}()
+	defer qt.Recovering("callback QFileSystemWatcher::fileChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "fileChanged").(func(string))(C.GoString(path))
+	var signal = qt.GetSignal(C.GoString(ptrName), "fileChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(path))
+	}
+
 }
 
 func (ptr *QFileSystemWatcher) RemovePath(path string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::removePath")
-		}
-	}()
+	defer qt.Recovering("QFileSystemWatcher::removePath")
 
 	if ptr.Pointer() != nil {
 		return C.QFileSystemWatcher_RemovePath(ptr.Pointer(), C.CString(path)) != 0
@@ -198,11 +153,7 @@ func (ptr *QFileSystemWatcher) RemovePath(path string) bool {
 }
 
 func (ptr *QFileSystemWatcher) RemovePaths(paths []string) []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::removePaths")
-		}
-	}()
+	defer qt.Recovering("QFileSystemWatcher::removePaths")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QFileSystemWatcher_RemovePaths(ptr.Pointer(), C.CString(strings.Join(paths, ",,,")))), ",,,")
@@ -211,11 +162,7 @@ func (ptr *QFileSystemWatcher) RemovePaths(paths []string) []string {
 }
 
 func (ptr *QFileSystemWatcher) DestroyQFileSystemWatcher() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileSystemWatcher::~QFileSystemWatcher")
-		}
-	}()
+	defer qt.Recovering("QFileSystemWatcher::~QFileSystemWatcher")
 
 	if ptr.Pointer() != nil {
 		C.QFileSystemWatcher_DestroyQFileSystemWatcher(ptr.Pointer())

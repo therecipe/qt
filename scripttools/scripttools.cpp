@@ -8,8 +8,9 @@
 
 class MyQScriptEngineDebugger: public QScriptEngineDebugger {
 public:
-void Signal_EvaluationResumed(){callbackQScriptEngineDebuggerEvaluationResumed(this->objectName().toUtf8().data());};
-void Signal_EvaluationSuspended(){callbackQScriptEngineDebuggerEvaluationSuspended(this->objectName().toUtf8().data());};
+	void Signal_EvaluationResumed() { callbackQScriptEngineDebuggerEvaluationResumed(this->objectName().toUtf8().data()); };
+	void Signal_EvaluationSuspended() { callbackQScriptEngineDebuggerEvaluationSuspended(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent){

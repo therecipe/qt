@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQSequentialAnimationGroupFromPointer(ptr unsafe.Pointer) *QSequentialAni
 	var n = new(QSequentialAnimationGroup)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSequentialAnimationGroup_") {
-		n.SetObjectName("QSequentialAnimationGroup_" + qt.RandomIdentifier())
+		n.SetObjectName("QSequentialAnimationGroup_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QSequentialAnimationGroup) QSequentialAnimationGroup_PTR() *QSequenti
 }
 
 func (ptr *QSequentialAnimationGroup) CurrentAnimation() *QAbstractAnimation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSequentialAnimationGroup::currentAnimation")
-		}
-	}()
+	defer qt.Recovering("QSequentialAnimationGroup::currentAnimation")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractAnimationFromPointer(C.QSequentialAnimationGroup_CurrentAnimation(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QSequentialAnimationGroup) CurrentAnimation() *QAbstractAnimation {
 }
 
 func (ptr *QSequentialAnimationGroup) AddPause(msecs int) *QPauseAnimation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSequentialAnimationGroup::addPause")
-		}
-	}()
+	defer qt.Recovering("QSequentialAnimationGroup::addPause")
 
 	if ptr.Pointer() != nil {
 		return NewQPauseAnimationFromPointer(C.QSequentialAnimationGroup_AddPause(ptr.Pointer(), C.int(msecs)))
@@ -64,11 +55,7 @@ func (ptr *QSequentialAnimationGroup) AddPause(msecs int) *QPauseAnimation {
 }
 
 func (ptr *QSequentialAnimationGroup) ConnectCurrentAnimationChanged(f func(current *QAbstractAnimation)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSequentialAnimationGroup::currentAnimationChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSequentialAnimationGroup::currentAnimationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSequentialAnimationGroup_ConnectCurrentAnimationChanged(ptr.Pointer())
@@ -77,11 +64,7 @@ func (ptr *QSequentialAnimationGroup) ConnectCurrentAnimationChanged(f func(curr
 }
 
 func (ptr *QSequentialAnimationGroup) DisconnectCurrentAnimationChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSequentialAnimationGroup::currentAnimationChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSequentialAnimationGroup::currentAnimationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSequentialAnimationGroup_DisconnectCurrentAnimationChanged(ptr.Pointer())
@@ -91,21 +74,17 @@ func (ptr *QSequentialAnimationGroup) DisconnectCurrentAnimationChanged() {
 
 //export callbackQSequentialAnimationGroupCurrentAnimationChanged
 func callbackQSequentialAnimationGroupCurrentAnimationChanged(ptrName *C.char, current unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSequentialAnimationGroup::currentAnimationChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSequentialAnimationGroup::currentAnimationChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentAnimationChanged").(func(*QAbstractAnimation))(NewQAbstractAnimationFromPointer(current))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentAnimationChanged")
+	if signal != nil {
+		signal.(func(*QAbstractAnimation))(NewQAbstractAnimationFromPointer(current))
+	}
+
 }
 
 func (ptr *QSequentialAnimationGroup) Duration() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSequentialAnimationGroup::duration")
-		}
-	}()
+	defer qt.Recovering("QSequentialAnimationGroup::duration")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSequentialAnimationGroup_Duration(ptr.Pointer()))
@@ -114,11 +93,7 @@ func (ptr *QSequentialAnimationGroup) Duration() int {
 }
 
 func (ptr *QSequentialAnimationGroup) InsertPause(index int, msecs int) *QPauseAnimation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSequentialAnimationGroup::insertPause")
-		}
-	}()
+	defer qt.Recovering("QSequentialAnimationGroup::insertPause")
 
 	if ptr.Pointer() != nil {
 		return NewQPauseAnimationFromPointer(C.QSequentialAnimationGroup_InsertPause(ptr.Pointer(), C.int(index), C.int(msecs)))
@@ -126,12 +101,101 @@ func (ptr *QSequentialAnimationGroup) InsertPause(index int, msecs int) *QPauseA
 	return nil
 }
 
+func (ptr *QSequentialAnimationGroup) ConnectUpdateCurrentTime(f func(currentTime int)) {
+	defer qt.Recovering("connect QSequentialAnimationGroup::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateCurrentTime", f)
+	}
+}
+
+func (ptr *QSequentialAnimationGroup) DisconnectUpdateCurrentTime() {
+	defer qt.Recovering("disconnect QSequentialAnimationGroup::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateCurrentTime")
+	}
+}
+
+//export callbackQSequentialAnimationGroupUpdateCurrentTime
+func callbackQSequentialAnimationGroupUpdateCurrentTime(ptrName *C.char, currentTime C.int) bool {
+	defer qt.Recovering("callback QSequentialAnimationGroup::updateCurrentTime")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "updateCurrentTime")
+	if signal != nil {
+		defer signal.(func(int))(int(currentTime))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSequentialAnimationGroup) ConnectUpdateDirection(f func(direction QAbstractAnimation__Direction)) {
+	defer qt.Recovering("connect QSequentialAnimationGroup::updateDirection")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateDirection", f)
+	}
+}
+
+func (ptr *QSequentialAnimationGroup) DisconnectUpdateDirection() {
+	defer qt.Recovering("disconnect QSequentialAnimationGroup::updateDirection")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateDirection")
+	}
+}
+
+//export callbackQSequentialAnimationGroupUpdateDirection
+func callbackQSequentialAnimationGroupUpdateDirection(ptrName *C.char, direction C.int) bool {
+	defer qt.Recovering("callback QSequentialAnimationGroup::updateDirection")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "updateDirection")
+	if signal != nil {
+		defer signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSequentialAnimationGroup) ConnectUpdateState(f func(newState QAbstractAnimation__State, oldState QAbstractAnimation__State)) {
+	defer qt.Recovering("connect QSequentialAnimationGroup::updateState")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateState", f)
+	}
+}
+
+func (ptr *QSequentialAnimationGroup) DisconnectUpdateState() {
+	defer qt.Recovering("disconnect QSequentialAnimationGroup::updateState")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateState")
+	}
+}
+
+//export callbackQSequentialAnimationGroupUpdateState
+func callbackQSequentialAnimationGroupUpdateState(ptrName *C.char, newState C.int, oldState C.int) bool {
+	defer qt.Recovering("callback QSequentialAnimationGroup::updateState")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "updateState")
+	if signal != nil {
+		defer signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSequentialAnimationGroup) DestroyQSequentialAnimationGroup() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSequentialAnimationGroup::~QSequentialAnimationGroup")
-		}
-	}()
+	defer qt.Recovering("QSequentialAnimationGroup::~QSequentialAnimationGroup")
 
 	if ptr.Pointer() != nil {
 		C.QSequentialAnimationGroup_DestroyQSequentialAnimationGroup(ptr.Pointer())

@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQShortcutFromPointer(ptr unsafe.Pointer) *QShortcut {
 	var n = new(QShortcut)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QShortcut_") {
-		n.SetObjectName("QShortcut_" + qt.RandomIdentifier())
+		n.SetObjectName("QShortcut_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QShortcut) QShortcut_PTR() *QShortcut {
 }
 
 func (ptr *QShortcut) AutoRepeat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::autoRepeat")
-		}
-	}()
+	defer qt.Recovering("QShortcut::autoRepeat")
 
 	if ptr.Pointer() != nil {
 		return C.QShortcut_AutoRepeat(ptr.Pointer()) != 0
@@ -53,11 +48,7 @@ func (ptr *QShortcut) AutoRepeat() bool {
 }
 
 func (ptr *QShortcut) Context() core.Qt__ShortcutContext {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::context")
-		}
-	}()
+	defer qt.Recovering("QShortcut::context")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ShortcutContext(C.QShortcut_Context(ptr.Pointer()))
@@ -66,11 +57,7 @@ func (ptr *QShortcut) Context() core.Qt__ShortcutContext {
 }
 
 func (ptr *QShortcut) IsEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::isEnabled")
-		}
-	}()
+	defer qt.Recovering("QShortcut::isEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QShortcut_IsEnabled(ptr.Pointer()) != 0
@@ -79,11 +66,7 @@ func (ptr *QShortcut) IsEnabled() bool {
 }
 
 func (ptr *QShortcut) SetAutoRepeat(on bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::setAutoRepeat")
-		}
-	}()
+	defer qt.Recovering("QShortcut::setAutoRepeat")
 
 	if ptr.Pointer() != nil {
 		C.QShortcut_SetAutoRepeat(ptr.Pointer(), C.int(qt.GoBoolToInt(on)))
@@ -91,11 +74,7 @@ func (ptr *QShortcut) SetAutoRepeat(on bool) {
 }
 
 func (ptr *QShortcut) SetContext(context core.Qt__ShortcutContext) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::setContext")
-		}
-	}()
+	defer qt.Recovering("QShortcut::setContext")
 
 	if ptr.Pointer() != nil {
 		C.QShortcut_SetContext(ptr.Pointer(), C.int(context))
@@ -103,11 +82,7 @@ func (ptr *QShortcut) SetContext(context core.Qt__ShortcutContext) {
 }
 
 func (ptr *QShortcut) SetEnabled(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::setEnabled")
-		}
-	}()
+	defer qt.Recovering("QShortcut::setEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QShortcut_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -115,11 +90,7 @@ func (ptr *QShortcut) SetEnabled(enable bool) {
 }
 
 func (ptr *QShortcut) SetKey(key gui.QKeySequence_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::setKey")
-		}
-	}()
+	defer qt.Recovering("QShortcut::setKey")
 
 	if ptr.Pointer() != nil {
 		C.QShortcut_SetKey(ptr.Pointer(), gui.PointerFromQKeySequence(key))
@@ -127,11 +98,7 @@ func (ptr *QShortcut) SetKey(key gui.QKeySequence_ITF) {
 }
 
 func (ptr *QShortcut) SetWhatsThis(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::setWhatsThis")
-		}
-	}()
+	defer qt.Recovering("QShortcut::setWhatsThis")
 
 	if ptr.Pointer() != nil {
 		C.QShortcut_SetWhatsThis(ptr.Pointer(), C.CString(text))
@@ -139,11 +106,7 @@ func (ptr *QShortcut) SetWhatsThis(text string) {
 }
 
 func (ptr *QShortcut) WhatsThis() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::whatsThis")
-		}
-	}()
+	defer qt.Recovering("QShortcut::whatsThis")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QShortcut_WhatsThis(ptr.Pointer()))
@@ -152,31 +115,19 @@ func (ptr *QShortcut) WhatsThis() string {
 }
 
 func NewQShortcut(parent QWidget_ITF) *QShortcut {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::QShortcut")
-		}
-	}()
+	defer qt.Recovering("QShortcut::QShortcut")
 
 	return NewQShortcutFromPointer(C.QShortcut_NewQShortcut(PointerFromQWidget(parent)))
 }
 
 func NewQShortcut2(key gui.QKeySequence_ITF, parent QWidget_ITF, member string, ambiguousMember string, context core.Qt__ShortcutContext) *QShortcut {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::QShortcut")
-		}
-	}()
+	defer qt.Recovering("QShortcut::QShortcut")
 
 	return NewQShortcutFromPointer(C.QShortcut_NewQShortcut2(gui.PointerFromQKeySequence(key), PointerFromQWidget(parent), C.CString(member), C.CString(ambiguousMember), C.int(context)))
 }
 
 func (ptr *QShortcut) ConnectActivated(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::activated")
-		}
-	}()
+	defer qt.Recovering("connect QShortcut::activated")
 
 	if ptr.Pointer() != nil {
 		C.QShortcut_ConnectActivated(ptr.Pointer())
@@ -185,11 +136,7 @@ func (ptr *QShortcut) ConnectActivated(f func()) {
 }
 
 func (ptr *QShortcut) DisconnectActivated() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::activated")
-		}
-	}()
+	defer qt.Recovering("disconnect QShortcut::activated")
 
 	if ptr.Pointer() != nil {
 		C.QShortcut_DisconnectActivated(ptr.Pointer())
@@ -199,21 +146,17 @@ func (ptr *QShortcut) DisconnectActivated() {
 
 //export callbackQShortcutActivated
 func callbackQShortcutActivated(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::activated")
-		}
-	}()
+	defer qt.Recovering("callback QShortcut::activated")
 
-	qt.GetSignal(C.GoString(ptrName), "activated").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QShortcut) ConnectActivatedAmbiguously(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::activatedAmbiguously")
-		}
-	}()
+	defer qt.Recovering("connect QShortcut::activatedAmbiguously")
 
 	if ptr.Pointer() != nil {
 		C.QShortcut_ConnectActivatedAmbiguously(ptr.Pointer())
@@ -222,11 +165,7 @@ func (ptr *QShortcut) ConnectActivatedAmbiguously(f func()) {
 }
 
 func (ptr *QShortcut) DisconnectActivatedAmbiguously() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::activatedAmbiguously")
-		}
-	}()
+	defer qt.Recovering("disconnect QShortcut::activatedAmbiguously")
 
 	if ptr.Pointer() != nil {
 		C.QShortcut_DisconnectActivatedAmbiguously(ptr.Pointer())
@@ -236,21 +175,17 @@ func (ptr *QShortcut) DisconnectActivatedAmbiguously() {
 
 //export callbackQShortcutActivatedAmbiguously
 func callbackQShortcutActivatedAmbiguously(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::activatedAmbiguously")
-		}
-	}()
+	defer qt.Recovering("callback QShortcut::activatedAmbiguously")
 
-	qt.GetSignal(C.GoString(ptrName), "activatedAmbiguously").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "activatedAmbiguously")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QShortcut) Id() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::id")
-		}
-	}()
+	defer qt.Recovering("QShortcut::id")
 
 	if ptr.Pointer() != nil {
 		return int(C.QShortcut_Id(ptr.Pointer()))
@@ -259,11 +194,7 @@ func (ptr *QShortcut) Id() int {
 }
 
 func (ptr *QShortcut) ParentWidget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::parentWidget")
-		}
-	}()
+	defer qt.Recovering("QShortcut::parentWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QShortcut_ParentWidget(ptr.Pointer()))
@@ -272,11 +203,7 @@ func (ptr *QShortcut) ParentWidget() *QWidget {
 }
 
 func (ptr *QShortcut) DestroyQShortcut() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QShortcut::~QShortcut")
-		}
-	}()
+	defer qt.Recovering("QShortcut::~QShortcut")
 
 	if ptr.Pointer() != nil {
 		C.QShortcut_DestroyQShortcut(ptr.Pointer())

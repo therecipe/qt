@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,21 +41,13 @@ func (ptr *QDebugStateSaver) QDebugStateSaver_PTR() *QDebugStateSaver {
 }
 
 func NewQDebugStateSaver(dbg QDebug_ITF) *QDebugStateSaver {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDebugStateSaver::QDebugStateSaver")
-		}
-	}()
+	defer qt.Recovering("QDebugStateSaver::QDebugStateSaver")
 
 	return NewQDebugStateSaverFromPointer(C.QDebugStateSaver_NewQDebugStateSaver(PointerFromQDebug(dbg)))
 }
 
 func (ptr *QDebugStateSaver) DestroyQDebugStateSaver() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDebugStateSaver::~QDebugStateSaver")
-		}
-	}()
+	defer qt.Recovering("QDebugStateSaver::~QDebugStateSaver")
 
 	if ptr.Pointer() != nil {
 		C.QDebugStateSaver_DestroyQDebugStateSaver(ptr.Pointer())

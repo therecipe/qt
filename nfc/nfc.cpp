@@ -17,10 +17,6 @@
 #include <QString>
 #include <QUrl>
 
-class MyQNdefFilter: public QNdefFilter {
-public:
-};
-
 void* QNdefFilter_NewQNdefFilter(){
 	return new QNdefFilter();
 }
@@ -49,10 +45,6 @@ void QNdefFilter_DestroyQNdefFilter(void* ptr){
 	static_cast<QNdefFilter*>(ptr)->~QNdefFilter();
 }
 
-class MyQNdefMessage: public QNdefMessage {
-public:
-};
-
 void* QNdefMessage_NewQNdefMessage(){
 	return new QNdefMessage();
 }
@@ -68,10 +60,6 @@ void* QNdefMessage_NewQNdefMessage2(void* record){
 void* QNdefMessage_ToByteArray(void* ptr){
 	return new QByteArray(static_cast<QNdefMessage*>(ptr)->toByteArray());
 }
-
-class MyQNdefNfcSmartPosterRecord: public QNdefNfcSmartPosterRecord {
-public:
-};
 
 void* QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord(){
 	return new QNdefNfcSmartPosterRecord();
@@ -173,10 +161,6 @@ void QNdefNfcSmartPosterRecord_DestroyQNdefNfcSmartPosterRecord(void* ptr){
 	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->~QNdefNfcSmartPosterRecord();
 }
 
-class MyQNdefNfcTextRecord: public QNdefNfcTextRecord {
-public:
-};
-
 void* QNdefNfcTextRecord_NewQNdefNfcTextRecord(){
 	return new QNdefNfcTextRecord();
 }
@@ -209,10 +193,6 @@ char* QNdefNfcTextRecord_Text(void* ptr){
 	return static_cast<QNdefNfcTextRecord*>(ptr)->text().toUtf8().data();
 }
 
-class MyQNdefNfcUriRecord: public QNdefNfcUriRecord {
-public:
-};
-
 void* QNdefNfcUriRecord_NewQNdefNfcUriRecord(){
 	return new QNdefNfcUriRecord();
 }
@@ -224,10 +204,6 @@ void* QNdefNfcUriRecord_NewQNdefNfcUriRecord2(void* other){
 void QNdefNfcUriRecord_SetUri(void* ptr, void* uri){
 	static_cast<QNdefNfcUriRecord*>(ptr)->setUri(*static_cast<QUrl*>(uri));
 }
-
-class MyQNdefRecord: public QNdefRecord {
-public:
-};
 
 void* QNdefRecord_NewQNdefRecord(){
 	return new QNdefRecord();
@@ -279,8 +255,9 @@ void QNdefRecord_DestroyQNdefRecord(void* ptr){
 
 class MyQNearFieldManager: public QNearFieldManager {
 public:
-void Signal_TargetDetected(QNearFieldTarget * target){callbackQNearFieldManagerTargetDetected(this->objectName().toUtf8().data(), target);};
-void Signal_TargetLost(QNearFieldTarget * target){callbackQNearFieldManagerTargetLost(this->objectName().toUtf8().data(), target);};
+	void Signal_TargetDetected(QNearFieldTarget * target) { callbackQNearFieldManagerTargetDetected(this->objectName().toUtf8().data(), target); };
+	void Signal_TargetLost(QNearFieldTarget * target) { callbackQNearFieldManagerTargetLost(this->objectName().toUtf8().data(), target); };
+protected:
 };
 
 int QNearFieldManager_RegisterNdefMessageHandler(void* ptr, void* object, char* method){
@@ -345,9 +322,10 @@ void QNearFieldManager_DestroyQNearFieldManager(void* ptr){
 
 class MyQNearFieldShareManager: public QNearFieldShareManager {
 public:
-void Signal_Error(QNearFieldShareManager::ShareError error){callbackQNearFieldShareManagerError(this->objectName().toUtf8().data(), error);};
-void Signal_ShareModesChanged(QNearFieldShareManager::ShareModes modes){callbackQNearFieldShareManagerShareModesChanged(this->objectName().toUtf8().data(), modes);};
-void Signal_TargetDetected(QNearFieldShareTarget * shareTarget){callbackQNearFieldShareManagerTargetDetected(this->objectName().toUtf8().data(), shareTarget);};
+	void Signal_Error(QNearFieldShareManager::ShareError error) { callbackQNearFieldShareManagerError(this->objectName().toUtf8().data(), error); };
+	void Signal_ShareModesChanged(QNearFieldShareManager::ShareModes modes) { callbackQNearFieldShareManagerShareModesChanged(this->objectName().toUtf8().data(), modes); };
+	void Signal_TargetDetected(QNearFieldShareTarget * shareTarget) { callbackQNearFieldShareManagerTargetDetected(this->objectName().toUtf8().data(), shareTarget); };
+protected:
 };
 
 void* QNearFieldShareManager_NewQNearFieldShareManager(void* parent){
@@ -400,8 +378,9 @@ void QNearFieldShareManager_DestroyQNearFieldShareManager(void* ptr){
 
 class MyQNearFieldShareTarget: public QNearFieldShareTarget {
 public:
-void Signal_Error(QNearFieldShareManager::ShareError error){callbackQNearFieldShareTargetError(this->objectName().toUtf8().data(), error);};
-void Signal_ShareFinished(){callbackQNearFieldShareTargetShareFinished(this->objectName().toUtf8().data());};
+	void Signal_Error(QNearFieldShareManager::ShareError error) { callbackQNearFieldShareTargetError(this->objectName().toUtf8().data(), error); };
+	void Signal_ShareFinished() { callbackQNearFieldShareTargetShareFinished(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QNearFieldShareTarget_Cancel(void* ptr){
@@ -446,8 +425,9 @@ void QNearFieldShareTarget_DestroyQNearFieldShareTarget(void* ptr){
 
 class MyQNearFieldTarget: public QNearFieldTarget {
 public:
-void Signal_Disconnected(){callbackQNearFieldTargetDisconnected(this->objectName().toUtf8().data());};
-void Signal_NdefMessagesWritten(){callbackQNearFieldTargetNdefMessagesWritten(this->objectName().toUtf8().data());};
+	void Signal_Disconnected() { callbackQNearFieldTargetDisconnected(this->objectName().toUtf8().data()); };
+	void Signal_NdefMessagesWritten() { callbackQNearFieldTargetNdefMessagesWritten(this->objectName().toUtf8().data()); };
+protected:
 };
 
 int QNearFieldTarget_AccessMethods(void* ptr){
@@ -492,9 +472,10 @@ void QNearFieldTarget_DestroyQNearFieldTarget(void* ptr){
 
 class MyQQmlNdefRecord: public QQmlNdefRecord {
 public:
-void Signal_RecordChanged(){callbackQQmlNdefRecordRecordChanged(this->objectName().toUtf8().data());};
-void Signal_TypeChanged(){callbackQQmlNdefRecordTypeChanged(this->objectName().toUtf8().data());};
-void Signal_TypeNameFormatChanged(){callbackQQmlNdefRecordTypeNameFormatChanged(this->objectName().toUtf8().data());};
+	void Signal_RecordChanged() { callbackQQmlNdefRecordRecordChanged(this->objectName().toUtf8().data()); };
+	void Signal_TypeChanged() { callbackQQmlNdefRecordTypeChanged(this->objectName().toUtf8().data()); };
+	void Signal_TypeNameFormatChanged() { callbackQQmlNdefRecordTypeNameFormatChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 int QQmlNdefRecord_TypeNameFormat(void* ptr){

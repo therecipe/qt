@@ -3,7 +3,7 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QAudioBuffer) QAudioBuffer_PTR() *QAudioBuffer {
 }
 
 func NewQAudioBuffer() *QAudioBuffer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioBuffer::QAudioBuffer")
-		}
-	}()
+	defer qt.Recovering("QAudioBuffer::QAudioBuffer")
 
 	return NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer())
 }
 
 func NewQAudioBuffer3(other QAudioBuffer_ITF) *QAudioBuffer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioBuffer::QAudioBuffer")
-		}
-	}()
+	defer qt.Recovering("QAudioBuffer::QAudioBuffer")
 
 	return NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer3(PointerFromQAudioBuffer(other)))
 }
 
 func (ptr *QAudioBuffer) ByteCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioBuffer::byteCount")
-		}
-	}()
+	defer qt.Recovering("QAudioBuffer::byteCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioBuffer_ByteCount(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QAudioBuffer) ByteCount() int {
 }
 
 func (ptr *QAudioBuffer) ConstData() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioBuffer::constData")
-		}
-	}()
+	defer qt.Recovering("QAudioBuffer::constData")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QAudioBuffer_ConstData(ptr.Pointer()))
@@ -87,11 +71,7 @@ func (ptr *QAudioBuffer) ConstData() unsafe.Pointer {
 }
 
 func (ptr *QAudioBuffer) Data2() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioBuffer::data")
-		}
-	}()
+	defer qt.Recovering("QAudioBuffer::data")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QAudioBuffer_Data2(ptr.Pointer()))
@@ -100,11 +80,7 @@ func (ptr *QAudioBuffer) Data2() unsafe.Pointer {
 }
 
 func (ptr *QAudioBuffer) Data() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioBuffer::data")
-		}
-	}()
+	defer qt.Recovering("QAudioBuffer::data")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QAudioBuffer_Data(ptr.Pointer()))
@@ -113,11 +89,7 @@ func (ptr *QAudioBuffer) Data() unsafe.Pointer {
 }
 
 func (ptr *QAudioBuffer) FrameCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioBuffer::frameCount")
-		}
-	}()
+	defer qt.Recovering("QAudioBuffer::frameCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioBuffer_FrameCount(ptr.Pointer()))
@@ -126,11 +98,7 @@ func (ptr *QAudioBuffer) FrameCount() int {
 }
 
 func (ptr *QAudioBuffer) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioBuffer::isValid")
-		}
-	}()
+	defer qt.Recovering("QAudioBuffer::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QAudioBuffer_IsValid(ptr.Pointer()) != 0
@@ -139,11 +107,7 @@ func (ptr *QAudioBuffer) IsValid() bool {
 }
 
 func (ptr *QAudioBuffer) SampleCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioBuffer::sampleCount")
-		}
-	}()
+	defer qt.Recovering("QAudioBuffer::sampleCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioBuffer_SampleCount(ptr.Pointer()))
@@ -152,11 +116,7 @@ func (ptr *QAudioBuffer) SampleCount() int {
 }
 
 func (ptr *QAudioBuffer) DestroyQAudioBuffer() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioBuffer::~QAudioBuffer")
-		}
-	}()
+	defer qt.Recovering("QAudioBuffer::~QAudioBuffer")
 
 	if ptr.Pointer() != nil {
 		C.QAudioBuffer_DestroyQAudioBuffer(ptr.Pointer())

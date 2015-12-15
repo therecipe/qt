@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QTime) QTime_PTR() *QTime {
 }
 
 func NewQTime() *QTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::QTime")
-		}
-	}()
+	defer qt.Recovering("QTime::QTime")
 
 	return NewQTimeFromPointer(C.QTime_NewQTime())
 }
 
 func NewQTime3(h int, m int, s int, ms int) *QTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::QTime")
-		}
-	}()
+	defer qt.Recovering("QTime::QTime")
 
 	return NewQTimeFromPointer(C.QTime_NewQTime3(C.int(h), C.int(m), C.int(s), C.int(ms)))
 }
 
 func (ptr *QTime) Elapsed() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::elapsed")
-		}
-	}()
+	defer qt.Recovering("QTime::elapsed")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTime_Elapsed(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QTime) Elapsed() int {
 }
 
 func (ptr *QTime) Hour() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::hour")
-		}
-	}()
+	defer qt.Recovering("QTime::hour")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTime_Hour(ptr.Pointer()))
@@ -87,11 +71,7 @@ func (ptr *QTime) Hour() int {
 }
 
 func (ptr *QTime) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::isNull")
-		}
-	}()
+	defer qt.Recovering("QTime::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QTime_IsNull(ptr.Pointer()) != 0
@@ -100,21 +80,13 @@ func (ptr *QTime) IsNull() bool {
 }
 
 func QTime_IsValid2(h int, m int, s int, ms int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::isValid")
-		}
-	}()
+	defer qt.Recovering("QTime::isValid")
 
 	return C.QTime_QTime_IsValid2(C.int(h), C.int(m), C.int(s), C.int(ms)) != 0
 }
 
 func (ptr *QTime) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::isValid")
-		}
-	}()
+	defer qt.Recovering("QTime::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QTime_IsValid(ptr.Pointer()) != 0
@@ -123,11 +95,7 @@ func (ptr *QTime) IsValid() bool {
 }
 
 func (ptr *QTime) Minute() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::minute")
-		}
-	}()
+	defer qt.Recovering("QTime::minute")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTime_Minute(ptr.Pointer()))
@@ -136,11 +104,7 @@ func (ptr *QTime) Minute() int {
 }
 
 func (ptr *QTime) Msec() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::msec")
-		}
-	}()
+	defer qt.Recovering("QTime::msec")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTime_Msec(ptr.Pointer()))
@@ -149,11 +113,7 @@ func (ptr *QTime) Msec() int {
 }
 
 func (ptr *QTime) MsecsSinceStartOfDay() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::msecsSinceStartOfDay")
-		}
-	}()
+	defer qt.Recovering("QTime::msecsSinceStartOfDay")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTime_MsecsSinceStartOfDay(ptr.Pointer()))
@@ -162,11 +122,7 @@ func (ptr *QTime) MsecsSinceStartOfDay() int {
 }
 
 func (ptr *QTime) MsecsTo(t QTime_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::msecsTo")
-		}
-	}()
+	defer qt.Recovering("QTime::msecsTo")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTime_MsecsTo(ptr.Pointer(), PointerFromQTime(t)))
@@ -175,11 +131,7 @@ func (ptr *QTime) MsecsTo(t QTime_ITF) int {
 }
 
 func (ptr *QTime) Restart() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::restart")
-		}
-	}()
+	defer qt.Recovering("QTime::restart")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTime_Restart(ptr.Pointer()))
@@ -188,11 +140,7 @@ func (ptr *QTime) Restart() int {
 }
 
 func (ptr *QTime) Second() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::second")
-		}
-	}()
+	defer qt.Recovering("QTime::second")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTime_Second(ptr.Pointer()))
@@ -201,11 +149,7 @@ func (ptr *QTime) Second() int {
 }
 
 func (ptr *QTime) SecsTo(t QTime_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::secsTo")
-		}
-	}()
+	defer qt.Recovering("QTime::secsTo")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTime_SecsTo(ptr.Pointer(), PointerFromQTime(t)))
@@ -214,11 +158,7 @@ func (ptr *QTime) SecsTo(t QTime_ITF) int {
 }
 
 func (ptr *QTime) SetHMS(h int, m int, s int, ms int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::setHMS")
-		}
-	}()
+	defer qt.Recovering("QTime::setHMS")
 
 	if ptr.Pointer() != nil {
 		return C.QTime_SetHMS(ptr.Pointer(), C.int(h), C.int(m), C.int(s), C.int(ms)) != 0
@@ -227,11 +167,7 @@ func (ptr *QTime) SetHMS(h int, m int, s int, ms int) bool {
 }
 
 func (ptr *QTime) Start() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::start")
-		}
-	}()
+	defer qt.Recovering("QTime::start")
 
 	if ptr.Pointer() != nil {
 		C.QTime_Start(ptr.Pointer())
@@ -239,11 +175,7 @@ func (ptr *QTime) Start() {
 }
 
 func (ptr *QTime) ToString2(format Qt__DateFormat) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::toString")
-		}
-	}()
+	defer qt.Recovering("QTime::toString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTime_ToString2(ptr.Pointer(), C.int(format)))
@@ -252,11 +184,7 @@ func (ptr *QTime) ToString2(format Qt__DateFormat) string {
 }
 
 func (ptr *QTime) ToString(format string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTime::toString")
-		}
-	}()
+	defer qt.Recovering("QTime::toString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTime_ToString(ptr.Pointer(), C.CString(format)))

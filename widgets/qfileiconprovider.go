@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQFileIconProvider(ptr QFileIconProvider_ITF) unsafe.Pointer {
 func NewQFileIconProviderFromPointer(ptr unsafe.Pointer) *QFileIconProvider {
 	var n = new(QFileIconProvider)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QFileIconProvider_") {
+		n.SetObjectNameAbs("QFileIconProvider_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -62,21 +65,13 @@ const (
 )
 
 func NewQFileIconProvider() *QFileIconProvider {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileIconProvider::QFileIconProvider")
-		}
-	}()
+	defer qt.Recovering("QFileIconProvider::QFileIconProvider")
 
 	return NewQFileIconProviderFromPointer(C.QFileIconProvider_NewQFileIconProvider())
 }
 
 func (ptr *QFileIconProvider) Options() QFileIconProvider__Option {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileIconProvider::options")
-		}
-	}()
+	defer qt.Recovering("QFileIconProvider::options")
 
 	if ptr.Pointer() != nil {
 		return QFileIconProvider__Option(C.QFileIconProvider_Options(ptr.Pointer()))
@@ -85,11 +80,7 @@ func (ptr *QFileIconProvider) Options() QFileIconProvider__Option {
 }
 
 func (ptr *QFileIconProvider) SetOptions(options QFileIconProvider__Option) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileIconProvider::setOptions")
-		}
-	}()
+	defer qt.Recovering("QFileIconProvider::setOptions")
 
 	if ptr.Pointer() != nil {
 		C.QFileIconProvider_SetOptions(ptr.Pointer(), C.int(options))
@@ -97,11 +88,7 @@ func (ptr *QFileIconProvider) SetOptions(options QFileIconProvider__Option) {
 }
 
 func (ptr *QFileIconProvider) Type(info core.QFileInfo_ITF) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileIconProvider::type")
-		}
-	}()
+	defer qt.Recovering("QFileIconProvider::type")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileIconProvider_Type(ptr.Pointer(), core.PointerFromQFileInfo(info)))
@@ -110,13 +97,26 @@ func (ptr *QFileIconProvider) Type(info core.QFileInfo_ITF) string {
 }
 
 func (ptr *QFileIconProvider) DestroyQFileIconProvider() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileIconProvider::~QFileIconProvider")
-		}
-	}()
+	defer qt.Recovering("QFileIconProvider::~QFileIconProvider")
 
 	if ptr.Pointer() != nil {
 		C.QFileIconProvider_DestroyQFileIconProvider(ptr.Pointer())
+	}
+}
+
+func (ptr *QFileIconProvider) ObjectNameAbs() string {
+	defer qt.Recovering("QFileIconProvider::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QFileIconProvider_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QFileIconProvider) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QFileIconProvider::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QFileIconProvider_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

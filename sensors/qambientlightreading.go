@@ -4,7 +4,6 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQAmbientLightReadingFromPointer(ptr unsafe.Pointer) *QAmbientLightReadin
 	var n = new(QAmbientLightReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAmbientLightReading_") {
-		n.SetObjectName("QAmbientLightReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QAmbientLightReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -50,11 +49,7 @@ const (
 )
 
 func (ptr *QAmbientLightReading) LightLevel() QAmbientLightReading__LightLevel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAmbientLightReading::lightLevel")
-		}
-	}()
+	defer qt.Recovering("QAmbientLightReading::lightLevel")
 
 	if ptr.Pointer() != nil {
 		return QAmbientLightReading__LightLevel(C.QAmbientLightReading_LightLevel(ptr.Pointer()))
@@ -63,11 +58,7 @@ func (ptr *QAmbientLightReading) LightLevel() QAmbientLightReading__LightLevel {
 }
 
 func (ptr *QAmbientLightReading) SetLightLevel(lightLevel QAmbientLightReading__LightLevel) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAmbientLightReading::setLightLevel")
-		}
-	}()
+	defer qt.Recovering("QAmbientLightReading::setLightLevel")
 
 	if ptr.Pointer() != nil {
 		C.QAmbientLightReading_SetLightLevel(ptr.Pointer(), C.int(lightLevel))

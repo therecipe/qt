@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,21 +35,13 @@ func (ptr *QExposeEvent) QExposeEvent_PTR() *QExposeEvent {
 }
 
 func NewQExposeEvent(exposeRegion QRegion_ITF) *QExposeEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QExposeEvent::QExposeEvent")
-		}
-	}()
+	defer qt.Recovering("QExposeEvent::QExposeEvent")
 
 	return NewQExposeEventFromPointer(C.QExposeEvent_NewQExposeEvent(PointerFromQRegion(exposeRegion)))
 }
 
 func (ptr *QExposeEvent) Region() *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QExposeEvent::region")
-		}
-	}()
+	defer qt.Recovering("QExposeEvent::region")
 
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QExposeEvent_Region(ptr.Pointer()))

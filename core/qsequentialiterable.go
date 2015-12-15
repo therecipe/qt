@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,11 +41,7 @@ func (ptr *QSequentialIterable) QSequentialIterable_PTR() *QSequentialIterable {
 }
 
 func (ptr *QSequentialIterable) At(idx int) *QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSequentialIterable::at")
-		}
-	}()
+	defer qt.Recovering("QSequentialIterable::at")
 
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QSequentialIterable_At(ptr.Pointer(), C.int(idx)))
@@ -54,11 +50,7 @@ func (ptr *QSequentialIterable) At(idx int) *QVariant {
 }
 
 func (ptr *QSequentialIterable) CanReverseIterate() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSequentialIterable::canReverseIterate")
-		}
-	}()
+	defer qt.Recovering("QSequentialIterable::canReverseIterate")
 
 	if ptr.Pointer() != nil {
 		return C.QSequentialIterable_CanReverseIterate(ptr.Pointer()) != 0
@@ -67,11 +59,7 @@ func (ptr *QSequentialIterable) CanReverseIterate() bool {
 }
 
 func (ptr *QSequentialIterable) Size() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSequentialIterable::size")
-		}
-	}()
+	defer qt.Recovering("QSequentialIterable::size")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSequentialIterable_Size(ptr.Pointer()))

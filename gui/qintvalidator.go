@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQIntValidatorFromPointer(ptr unsafe.Pointer) *QIntValidator {
 	var n = new(QIntValidator)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QIntValidator_") {
-		n.SetObjectName("QIntValidator_" + qt.RandomIdentifier())
+		n.SetObjectName("QIntValidator_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QIntValidator) QIntValidator_PTR() *QIntValidator {
 }
 
 func (ptr *QIntValidator) SetBottom(v int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIntValidator::setBottom")
-		}
-	}()
+	defer qt.Recovering("QIntValidator::setBottom")
 
 	if ptr.Pointer() != nil {
 		C.QIntValidator_SetBottom(ptr.Pointer(), C.int(v))
@@ -51,11 +46,7 @@ func (ptr *QIntValidator) SetBottom(v int) {
 }
 
 func (ptr *QIntValidator) SetTop(v int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIntValidator::setTop")
-		}
-	}()
+	defer qt.Recovering("QIntValidator::setTop")
 
 	if ptr.Pointer() != nil {
 		C.QIntValidator_SetTop(ptr.Pointer(), C.int(v))
@@ -63,31 +54,19 @@ func (ptr *QIntValidator) SetTop(v int) {
 }
 
 func NewQIntValidator(parent core.QObject_ITF) *QIntValidator {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIntValidator::QIntValidator")
-		}
-	}()
+	defer qt.Recovering("QIntValidator::QIntValidator")
 
 	return NewQIntValidatorFromPointer(C.QIntValidator_NewQIntValidator(core.PointerFromQObject(parent)))
 }
 
 func NewQIntValidator2(minimum int, maximum int, parent core.QObject_ITF) *QIntValidator {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIntValidator::QIntValidator")
-		}
-	}()
+	defer qt.Recovering("QIntValidator::QIntValidator")
 
 	return NewQIntValidatorFromPointer(C.QIntValidator_NewQIntValidator2(C.int(minimum), C.int(maximum), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QIntValidator) Bottom() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIntValidator::bottom")
-		}
-	}()
+	defer qt.Recovering("QIntValidator::bottom")
 
 	if ptr.Pointer() != nil {
 		return int(C.QIntValidator_Bottom(ptr.Pointer()))
@@ -95,24 +74,39 @@ func (ptr *QIntValidator) Bottom() int {
 	return 0
 }
 
-func (ptr *QIntValidator) SetRange(bottom int, top int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIntValidator::setRange")
-		}
-	}()
+func (ptr *QIntValidator) ConnectSetRange(f func(bottom int, top int)) {
+	defer qt.Recovering("connect QIntValidator::setRange")
 
 	if ptr.Pointer() != nil {
-		C.QIntValidator_SetRange(ptr.Pointer(), C.int(bottom), C.int(top))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setRange", f)
 	}
 }
 
+func (ptr *QIntValidator) DisconnectSetRange() {
+	defer qt.Recovering("disconnect QIntValidator::setRange")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setRange")
+	}
+}
+
+//export callbackQIntValidatorSetRange
+func callbackQIntValidatorSetRange(ptrName *C.char, bottom C.int, top C.int) bool {
+	defer qt.Recovering("callback QIntValidator::setRange")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setRange")
+	if signal != nil {
+		defer signal.(func(int, int))(int(bottom), int(top))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QIntValidator) Top() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIntValidator::top")
-		}
-	}()
+	defer qt.Recovering("QIntValidator::top")
 
 	if ptr.Pointer() != nil {
 		return int(C.QIntValidator_Top(ptr.Pointer()))
@@ -121,11 +115,7 @@ func (ptr *QIntValidator) Top() int {
 }
 
 func (ptr *QIntValidator) DestroyQIntValidator() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIntValidator::~QIntValidator")
-		}
-	}()
+	defer qt.Recovering("QIntValidator::~QIntValidator")
 
 	if ptr.Pointer() != nil {
 		C.QIntValidator_DestroyQIntValidator(ptr.Pointer())

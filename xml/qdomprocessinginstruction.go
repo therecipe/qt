@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,31 +34,19 @@ func (ptr *QDomProcessingInstruction) QDomProcessingInstruction_PTR() *QDomProce
 }
 
 func NewQDomProcessingInstruction() *QDomProcessingInstruction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomProcessingInstruction::QDomProcessingInstruction")
-		}
-	}()
+	defer qt.Recovering("QDomProcessingInstruction::QDomProcessingInstruction")
 
 	return NewQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction())
 }
 
 func NewQDomProcessingInstruction2(x QDomProcessingInstruction_ITF) *QDomProcessingInstruction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomProcessingInstruction::QDomProcessingInstruction")
-		}
-	}()
+	defer qt.Recovering("QDomProcessingInstruction::QDomProcessingInstruction")
 
 	return NewQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction2(PointerFromQDomProcessingInstruction(x)))
 }
 
 func (ptr *QDomProcessingInstruction) Data() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomProcessingInstruction::data")
-		}
-	}()
+	defer qt.Recovering("QDomProcessingInstruction::data")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomProcessingInstruction_Data(ptr.Pointer()))
@@ -67,11 +55,7 @@ func (ptr *QDomProcessingInstruction) Data() string {
 }
 
 func (ptr *QDomProcessingInstruction) NodeType() QDomNode__NodeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomProcessingInstruction::nodeType")
-		}
-	}()
+	defer qt.Recovering("QDomProcessingInstruction::nodeType")
 
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomProcessingInstruction_NodeType(ptr.Pointer()))
@@ -80,11 +64,7 @@ func (ptr *QDomProcessingInstruction) NodeType() QDomNode__NodeType {
 }
 
 func (ptr *QDomProcessingInstruction) SetData(d string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomProcessingInstruction::setData")
-		}
-	}()
+	defer qt.Recovering("QDomProcessingInstruction::setData")
 
 	if ptr.Pointer() != nil {
 		C.QDomProcessingInstruction_SetData(ptr.Pointer(), C.CString(d))
@@ -92,11 +72,7 @@ func (ptr *QDomProcessingInstruction) SetData(d string) {
 }
 
 func (ptr *QDomProcessingInstruction) Target() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomProcessingInstruction::target")
-		}
-	}()
+	defer qt.Recovering("QDomProcessingInstruction::target")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomProcessingInstruction_Target(ptr.Pointer()))

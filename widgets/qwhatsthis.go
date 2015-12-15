@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,61 +42,37 @@ func (ptr *QWhatsThis) QWhatsThis_PTR() *QWhatsThis {
 }
 
 func QWhatsThis_CreateAction(parent core.QObject_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWhatsThis::createAction")
-		}
-	}()
+	defer qt.Recovering("QWhatsThis::createAction")
 
 	return NewQActionFromPointer(C.QWhatsThis_QWhatsThis_CreateAction(core.PointerFromQObject(parent)))
 }
 
 func QWhatsThis_EnterWhatsThisMode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWhatsThis::enterWhatsThisMode")
-		}
-	}()
+	defer qt.Recovering("QWhatsThis::enterWhatsThisMode")
 
 	C.QWhatsThis_QWhatsThis_EnterWhatsThisMode()
 }
 
 func QWhatsThis_HideText() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWhatsThis::hideText")
-		}
-	}()
+	defer qt.Recovering("QWhatsThis::hideText")
 
 	C.QWhatsThis_QWhatsThis_HideText()
 }
 
 func QWhatsThis_InWhatsThisMode() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWhatsThis::inWhatsThisMode")
-		}
-	}()
+	defer qt.Recovering("QWhatsThis::inWhatsThisMode")
 
 	return C.QWhatsThis_QWhatsThis_InWhatsThisMode() != 0
 }
 
 func QWhatsThis_LeaveWhatsThisMode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWhatsThis::leaveWhatsThisMode")
-		}
-	}()
+	defer qt.Recovering("QWhatsThis::leaveWhatsThisMode")
 
 	C.QWhatsThis_QWhatsThis_LeaveWhatsThisMode()
 }
 
 func QWhatsThis_ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWhatsThis::showText")
-		}
-	}()
+	defer qt.Recovering("QWhatsThis::showText")
 
 	C.QWhatsThis_QWhatsThis_ShowText(core.PointerFromQPoint(pos), C.CString(text), PointerFromQWidget(w))
 }

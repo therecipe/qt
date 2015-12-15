@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -29,7 +28,7 @@ func NewQVideoEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QVideoEncod
 	var n = new(QVideoEncoderSettingsControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoEncoderSettingsControl_") {
-		n.SetObjectName("QVideoEncoderSettingsControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QVideoEncoderSettingsControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QVideoEncoderSettingsControl) QVideoEncoderSettingsControl_PTR() *QVi
 }
 
 func (ptr *QVideoEncoderSettingsControl) SetVideoSettings(settings QVideoEncoderSettings_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoEncoderSettingsControl::setVideoSettings")
-		}
-	}()
+	defer qt.Recovering("QVideoEncoderSettingsControl::setVideoSettings")
 
 	if ptr.Pointer() != nil {
 		C.QVideoEncoderSettingsControl_SetVideoSettings(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings))
@@ -51,11 +46,7 @@ func (ptr *QVideoEncoderSettingsControl) SetVideoSettings(settings QVideoEncoder
 }
 
 func (ptr *QVideoEncoderSettingsControl) SupportedVideoCodecs() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoEncoderSettingsControl::supportedVideoCodecs")
-		}
-	}()
+	defer qt.Recovering("QVideoEncoderSettingsControl::supportedVideoCodecs")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QVideoEncoderSettingsControl_SupportedVideoCodecs(ptr.Pointer())), ",,,")
@@ -64,11 +55,7 @@ func (ptr *QVideoEncoderSettingsControl) SupportedVideoCodecs() []string {
 }
 
 func (ptr *QVideoEncoderSettingsControl) VideoCodecDescription(codec string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoEncoderSettingsControl::videoCodecDescription")
-		}
-	}()
+	defer qt.Recovering("QVideoEncoderSettingsControl::videoCodecDescription")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QVideoEncoderSettingsControl_VideoCodecDescription(ptr.Pointer(), C.CString(codec)))
@@ -77,11 +64,7 @@ func (ptr *QVideoEncoderSettingsControl) VideoCodecDescription(codec string) str
 }
 
 func (ptr *QVideoEncoderSettingsControl) DestroyQVideoEncoderSettingsControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl")
-		}
-	}()
+	defer qt.Recovering("QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl")
 
 	if ptr.Pointer() != nil {
 		C.QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(ptr.Pointer())

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQMetaDataReaderControlFromPointer(ptr unsafe.Pointer) *QMetaDataReaderCo
 	var n = new(QMetaDataReaderControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMetaDataReaderControl_") {
-		n.SetObjectName("QMetaDataReaderControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QMetaDataReaderControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QMetaDataReaderControl) QMetaDataReaderControl_PTR() *QMetaDataReader
 }
 
 func (ptr *QMetaDataReaderControl) AvailableMetaData() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataReaderControl::availableMetaData")
-		}
-	}()
+	defer qt.Recovering("QMetaDataReaderControl::availableMetaData")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QMetaDataReaderControl_AvailableMetaData(ptr.Pointer())), ",,,")
@@ -53,11 +48,7 @@ func (ptr *QMetaDataReaderControl) AvailableMetaData() []string {
 }
 
 func (ptr *QMetaDataReaderControl) IsMetaDataAvailable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataReaderControl::isMetaDataAvailable")
-		}
-	}()
+	defer qt.Recovering("QMetaDataReaderControl::isMetaDataAvailable")
 
 	if ptr.Pointer() != nil {
 		return C.QMetaDataReaderControl_IsMetaDataAvailable(ptr.Pointer()) != 0
@@ -66,11 +57,7 @@ func (ptr *QMetaDataReaderControl) IsMetaDataAvailable() bool {
 }
 
 func (ptr *QMetaDataReaderControl) MetaData(key string) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataReaderControl::metaData")
-		}
-	}()
+	defer qt.Recovering("QMetaDataReaderControl::metaData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QMetaDataReaderControl_MetaData(ptr.Pointer(), C.CString(key)))
@@ -79,11 +66,7 @@ func (ptr *QMetaDataReaderControl) MetaData(key string) *core.QVariant {
 }
 
 func (ptr *QMetaDataReaderControl) ConnectMetaDataAvailableChanged(f func(available bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataReaderControl::metaDataAvailableChanged")
-		}
-	}()
+	defer qt.Recovering("connect QMetaDataReaderControl::metaDataAvailableChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataReaderControl_ConnectMetaDataAvailableChanged(ptr.Pointer())
@@ -92,11 +75,7 @@ func (ptr *QMetaDataReaderControl) ConnectMetaDataAvailableChanged(f func(availa
 }
 
 func (ptr *QMetaDataReaderControl) DisconnectMetaDataAvailableChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataReaderControl::metaDataAvailableChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QMetaDataReaderControl::metaDataAvailableChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataReaderControl_DisconnectMetaDataAvailableChanged(ptr.Pointer())
@@ -106,21 +85,17 @@ func (ptr *QMetaDataReaderControl) DisconnectMetaDataAvailableChanged() {
 
 //export callbackQMetaDataReaderControlMetaDataAvailableChanged
 func callbackQMetaDataReaderControlMetaDataAvailableChanged(ptrName *C.char, available C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataReaderControl::metaDataAvailableChanged")
-		}
-	}()
+	defer qt.Recovering("callback QMetaDataReaderControl::metaDataAvailableChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "metaDataAvailableChanged").(func(bool))(int(available) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataAvailableChanged")
+	if signal != nil {
+		signal.(func(bool))(int(available) != 0)
+	}
+
 }
 
 func (ptr *QMetaDataReaderControl) ConnectMetaDataChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataReaderControl::metaDataChanged")
-		}
-	}()
+	defer qt.Recovering("connect QMetaDataReaderControl::metaDataChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataReaderControl_ConnectMetaDataChanged(ptr.Pointer())
@@ -129,11 +104,7 @@ func (ptr *QMetaDataReaderControl) ConnectMetaDataChanged(f func()) {
 }
 
 func (ptr *QMetaDataReaderControl) DisconnectMetaDataChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataReaderControl::metaDataChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QMetaDataReaderControl::metaDataChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataReaderControl_DisconnectMetaDataChanged(ptr.Pointer())
@@ -143,21 +114,17 @@ func (ptr *QMetaDataReaderControl) DisconnectMetaDataChanged() {
 
 //export callbackQMetaDataReaderControlMetaDataChanged
 func callbackQMetaDataReaderControlMetaDataChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataReaderControl::metaDataChanged")
-		}
-	}()
+	defer qt.Recovering("callback QMetaDataReaderControl::metaDataChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "metaDataChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QMetaDataReaderControl) DestroyQMetaDataReaderControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataReaderControl::~QMetaDataReaderControl")
-		}
-	}()
+	defer qt.Recovering("QMetaDataReaderControl::~QMetaDataReaderControl")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataReaderControl_DestroyQMetaDataReaderControl(ptr.Pointer())

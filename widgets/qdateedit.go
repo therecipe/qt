@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQDateEditFromPointer(ptr unsafe.Pointer) *QDateEdit {
 	var n = new(QDateEdit)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDateEdit_") {
-		n.SetObjectName("QDateEdit_" + qt.RandomIdentifier())
+		n.SetObjectName("QDateEdit_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,31 +38,19 @@ func (ptr *QDateEdit) QDateEdit_PTR() *QDateEdit {
 }
 
 func NewQDateEdit(parent QWidget_ITF) *QDateEdit {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateEdit::QDateEdit")
-		}
-	}()
+	defer qt.Recovering("QDateEdit::QDateEdit")
 
 	return NewQDateEditFromPointer(C.QDateEdit_NewQDateEdit(PointerFromQWidget(parent)))
 }
 
 func NewQDateEdit2(date core.QDate_ITF, parent QWidget_ITF) *QDateEdit {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateEdit::QDateEdit")
-		}
-	}()
+	defer qt.Recovering("QDateEdit::QDateEdit")
 
 	return NewQDateEditFromPointer(C.QDateEdit_NewQDateEdit2(core.PointerFromQDate(date), PointerFromQWidget(parent)))
 }
 
 func (ptr *QDateEdit) DestroyQDateEdit() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateEdit::~QDateEdit")
-		}
-	}()
+	defer qt.Recovering("QDateEdit::~QDateEdit")
 
 	if ptr.Pointer() != nil {
 		C.QDateEdit_DestroyQDateEdit(ptr.Pointer())

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQDnsLookupFromPointer(ptr unsafe.Pointer) *QDnsLookup {
 	var n = new(QDnsLookup)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDnsLookup_") {
-		n.SetObjectName("QDnsLookup_" + qt.RandomIdentifier())
+		n.SetObjectName("QDnsLookup_" + qt.Identifier())
 	}
 	return n
 }
@@ -68,21 +67,13 @@ const (
 )
 
 func NewQDnsLookup3(ty QDnsLookup__Type, name string, nameserver QHostAddress_ITF, parent core.QObject_ITF) *QDnsLookup {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::QDnsLookup")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::QDnsLookup")
 
 	return NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup3(C.int(ty), C.CString(name), PointerFromQHostAddress(nameserver), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDnsLookup) Error() QDnsLookup__Error {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::error")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::error")
 
 	if ptr.Pointer() != nil {
 		return QDnsLookup__Error(C.QDnsLookup_Error(ptr.Pointer()))
@@ -91,11 +82,7 @@ func (ptr *QDnsLookup) Error() QDnsLookup__Error {
 }
 
 func (ptr *QDnsLookup) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::errorString")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDnsLookup_ErrorString(ptr.Pointer()))
@@ -104,11 +91,7 @@ func (ptr *QDnsLookup) ErrorString() string {
 }
 
 func (ptr *QDnsLookup) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::name")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDnsLookup_Name(ptr.Pointer()))
@@ -117,11 +100,7 @@ func (ptr *QDnsLookup) Name() string {
 }
 
 func (ptr *QDnsLookup) SetName(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::setName")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::setName")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_SetName(ptr.Pointer(), C.CString(name))
@@ -129,11 +108,7 @@ func (ptr *QDnsLookup) SetName(name string) {
 }
 
 func (ptr *QDnsLookup) SetNameserver(nameserver QHostAddress_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::setNameserver")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::setNameserver")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_SetNameserver(ptr.Pointer(), PointerFromQHostAddress(nameserver))
@@ -141,11 +116,7 @@ func (ptr *QDnsLookup) SetNameserver(nameserver QHostAddress_ITF) {
 }
 
 func (ptr *QDnsLookup) SetType(v QDnsLookup__Type) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::setType")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::setType")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_SetType(ptr.Pointer(), C.int(v))
@@ -153,11 +124,7 @@ func (ptr *QDnsLookup) SetType(v QDnsLookup__Type) {
 }
 
 func (ptr *QDnsLookup) Type() QDnsLookup__Type {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::type")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::type")
 
 	if ptr.Pointer() != nil {
 		return QDnsLookup__Type(C.QDnsLookup_Type(ptr.Pointer()))
@@ -166,31 +133,19 @@ func (ptr *QDnsLookup) Type() QDnsLookup__Type {
 }
 
 func NewQDnsLookup(parent core.QObject_ITF) *QDnsLookup {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::QDnsLookup")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::QDnsLookup")
 
 	return NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup(core.PointerFromQObject(parent)))
 }
 
 func NewQDnsLookup2(ty QDnsLookup__Type, name string, parent core.QObject_ITF) *QDnsLookup {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::QDnsLookup")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::QDnsLookup")
 
 	return NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup2(C.int(ty), C.CString(name), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDnsLookup) Abort() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::abort")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::abort")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_Abort(ptr.Pointer())
@@ -198,11 +153,7 @@ func (ptr *QDnsLookup) Abort() {
 }
 
 func (ptr *QDnsLookup) ConnectFinished(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::finished")
-		}
-	}()
+	defer qt.Recovering("connect QDnsLookup::finished")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_ConnectFinished(ptr.Pointer())
@@ -211,11 +162,7 @@ func (ptr *QDnsLookup) ConnectFinished(f func()) {
 }
 
 func (ptr *QDnsLookup) DisconnectFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::finished")
-		}
-	}()
+	defer qt.Recovering("disconnect QDnsLookup::finished")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_DisconnectFinished(ptr.Pointer())
@@ -225,21 +172,17 @@ func (ptr *QDnsLookup) DisconnectFinished() {
 
 //export callbackQDnsLookupFinished
 func callbackQDnsLookupFinished(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::finished")
-		}
-	}()
+	defer qt.Recovering("callback QDnsLookup::finished")
 
-	qt.GetSignal(C.GoString(ptrName), "finished").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QDnsLookup) IsFinished() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::isFinished")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::isFinished")
 
 	if ptr.Pointer() != nil {
 		return C.QDnsLookup_IsFinished(ptr.Pointer()) != 0
@@ -248,11 +191,7 @@ func (ptr *QDnsLookup) IsFinished() bool {
 }
 
 func (ptr *QDnsLookup) Lookup() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::lookup")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::lookup")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_Lookup(ptr.Pointer())
@@ -260,11 +199,7 @@ func (ptr *QDnsLookup) Lookup() {
 }
 
 func (ptr *QDnsLookup) ConnectNameChanged(f func(name string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::nameChanged")
-		}
-	}()
+	defer qt.Recovering("connect QDnsLookup::nameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_ConnectNameChanged(ptr.Pointer())
@@ -273,11 +208,7 @@ func (ptr *QDnsLookup) ConnectNameChanged(f func(name string)) {
 }
 
 func (ptr *QDnsLookup) DisconnectNameChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::nameChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QDnsLookup::nameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_DisconnectNameChanged(ptr.Pointer())
@@ -287,21 +218,17 @@ func (ptr *QDnsLookup) DisconnectNameChanged() {
 
 //export callbackQDnsLookupNameChanged
 func callbackQDnsLookupNameChanged(ptrName *C.char, name *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::nameChanged")
-		}
-	}()
+	defer qt.Recovering("callback QDnsLookup::nameChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "nameChanged").(func(string))(C.GoString(name))
+	var signal = qt.GetSignal(C.GoString(ptrName), "nameChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(name))
+	}
+
 }
 
 func (ptr *QDnsLookup) ConnectTypeChanged(f func(ty QDnsLookup__Type)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::typeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QDnsLookup::typeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_ConnectTypeChanged(ptr.Pointer())
@@ -310,11 +237,7 @@ func (ptr *QDnsLookup) ConnectTypeChanged(f func(ty QDnsLookup__Type)) {
 }
 
 func (ptr *QDnsLookup) DisconnectTypeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::typeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QDnsLookup::typeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_DisconnectTypeChanged(ptr.Pointer())
@@ -324,21 +247,17 @@ func (ptr *QDnsLookup) DisconnectTypeChanged() {
 
 //export callbackQDnsLookupTypeChanged
 func callbackQDnsLookupTypeChanged(ptrName *C.char, ty C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::typeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QDnsLookup::typeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "typeChanged").(func(QDnsLookup__Type))(QDnsLookup__Type(ty))
+	var signal = qt.GetSignal(C.GoString(ptrName), "typeChanged")
+	if signal != nil {
+		signal.(func(QDnsLookup__Type))(QDnsLookup__Type(ty))
+	}
+
 }
 
 func (ptr *QDnsLookup) DestroyQDnsLookup() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsLookup::~QDnsLookup")
-		}
-	}()
+	defer qt.Recovering("QDnsLookup::~QDnsLookup")
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_DestroyQDnsLookup(ptr.Pointer())

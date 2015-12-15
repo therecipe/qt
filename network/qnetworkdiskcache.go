@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQNetworkDiskCacheFromPointer(ptr unsafe.Pointer) *QNetworkDiskCache {
 	var n = new(QNetworkDiskCache)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QNetworkDiskCache_") {
-		n.SetObjectName("QNetworkDiskCache_" + qt.RandomIdentifier())
+		n.SetObjectName("QNetworkDiskCache_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QNetworkDiskCache) QNetworkDiskCache_PTR() *QNetworkDiskCache {
 }
 
 func NewQNetworkDiskCache(parent core.QObject_ITF) *QNetworkDiskCache {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkDiskCache::QNetworkDiskCache")
-		}
-	}()
+	defer qt.Recovering("QNetworkDiskCache::QNetworkDiskCache")
 
 	return NewQNetworkDiskCacheFromPointer(C.QNetworkDiskCache_NewQNetworkDiskCache(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNetworkDiskCache) CacheDirectory() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkDiskCache::cacheDirectory")
-		}
-	}()
+	defer qt.Recovering("QNetworkDiskCache::cacheDirectory")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkDiskCache_CacheDirectory(ptr.Pointer()))
@@ -61,24 +52,39 @@ func (ptr *QNetworkDiskCache) CacheDirectory() string {
 	return ""
 }
 
-func (ptr *QNetworkDiskCache) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkDiskCache::clear")
-		}
-	}()
+func (ptr *QNetworkDiskCache) ConnectClear(f func()) {
+	defer qt.Recovering("connect QNetworkDiskCache::clear")
 
 	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_Clear(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "clear", f)
 	}
 }
 
+func (ptr *QNetworkDiskCache) DisconnectClear() {
+	defer qt.Recovering("disconnect QNetworkDiskCache::clear")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "clear")
+	}
+}
+
+//export callbackQNetworkDiskCacheClear
+func callbackQNetworkDiskCacheClear(ptrName *C.char) bool {
+	defer qt.Recovering("callback QNetworkDiskCache::clear")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "clear")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QNetworkDiskCache) Data(url core.QUrl_ITF) *core.QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkDiskCache::data")
-		}
-	}()
+	defer qt.Recovering("QNetworkDiskCache::data")
 
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QNetworkDiskCache_Data(ptr.Pointer(), core.PointerFromQUrl(url)))
@@ -87,11 +93,7 @@ func (ptr *QNetworkDiskCache) Data(url core.QUrl_ITF) *core.QIODevice {
 }
 
 func (ptr *QNetworkDiskCache) Prepare(metaData QNetworkCacheMetaData_ITF) *core.QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkDiskCache::prepare")
-		}
-	}()
+	defer qt.Recovering("QNetworkDiskCache::prepare")
 
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QNetworkDiskCache_Prepare(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
@@ -100,35 +102,15 @@ func (ptr *QNetworkDiskCache) Prepare(metaData QNetworkCacheMetaData_ITF) *core.
 }
 
 func (ptr *QNetworkDiskCache) SetCacheDirectory(cacheDir string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkDiskCache::setCacheDirectory")
-		}
-	}()
+	defer qt.Recovering("QNetworkDiskCache::setCacheDirectory")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkDiskCache_SetCacheDirectory(ptr.Pointer(), C.CString(cacheDir))
 	}
 }
 
-func (ptr *QNetworkDiskCache) UpdateMetaData(metaData QNetworkCacheMetaData_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkDiskCache::updateMetaData")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_UpdateMetaData(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData))
-	}
-}
-
 func (ptr *QNetworkDiskCache) DestroyQNetworkDiskCache() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkDiskCache::~QNetworkDiskCache")
-		}
-	}()
+	defer qt.Recovering("QNetworkDiskCache::~QNetworkDiskCache")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkDiskCache_DestroyQNetworkDiskCache(ptr.Pointer())

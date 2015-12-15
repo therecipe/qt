@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/positioning"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQGeoRoutingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoRoutingMana
 	var n = new(QGeoRoutingManagerEngine)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoRoutingManagerEngine_") {
-		n.SetObjectName("QGeoRoutingManagerEngine_" + qt.RandomIdentifier())
+		n.SetObjectName("QGeoRoutingManagerEngine_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QGeoRoutingManagerEngine) QGeoRoutingManagerEngine_PTR() *QGeoRouting
 }
 
 func (ptr *QGeoRoutingManagerEngine) CalculateRoute(request QGeoRouteRequest_ITF) *QGeoRouteReply {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::calculateRoute")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::calculateRoute")
 
 	if ptr.Pointer() != nil {
 		return NewQGeoRouteReplyFromPointer(C.QGeoRoutingManagerEngine_CalculateRoute(ptr.Pointer(), PointerFromQGeoRouteRequest(request)))
@@ -53,11 +48,7 @@ func (ptr *QGeoRoutingManagerEngine) CalculateRoute(request QGeoRouteRequest_ITF
 }
 
 func (ptr *QGeoRoutingManagerEngine) ConnectError(f func(reply *QGeoRouteReply, error QGeoRouteReply__Error, errorString string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::error")
-		}
-	}()
+	defer qt.Recovering("connect QGeoRoutingManagerEngine::error")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_ConnectError(ptr.Pointer())
@@ -66,11 +57,7 @@ func (ptr *QGeoRoutingManagerEngine) ConnectError(f func(reply *QGeoRouteReply, 
 }
 
 func (ptr *QGeoRoutingManagerEngine) DisconnectError() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::error")
-		}
-	}()
+	defer qt.Recovering("disconnect QGeoRoutingManagerEngine::error")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_DisconnectError(ptr.Pointer())
@@ -80,21 +67,17 @@ func (ptr *QGeoRoutingManagerEngine) DisconnectError() {
 
 //export callbackQGeoRoutingManagerEngineError
 func callbackQGeoRoutingManagerEngineError(ptrName *C.char, reply unsafe.Pointer, error C.int, errorString *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::error")
-		}
-	}()
+	defer qt.Recovering("callback QGeoRoutingManagerEngine::error")
 
-	qt.GetSignal(C.GoString(ptrName), "error").(func(*QGeoRouteReply, QGeoRouteReply__Error, string))(NewQGeoRouteReplyFromPointer(reply), QGeoRouteReply__Error(error), C.GoString(errorString))
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(*QGeoRouteReply, QGeoRouteReply__Error, string))(NewQGeoRouteReplyFromPointer(reply), QGeoRouteReply__Error(error), C.GoString(errorString))
+	}
+
 }
 
 func (ptr *QGeoRoutingManagerEngine) ConnectFinished(f func(reply *QGeoRouteReply)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::finished")
-		}
-	}()
+	defer qt.Recovering("connect QGeoRoutingManagerEngine::finished")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_ConnectFinished(ptr.Pointer())
@@ -103,11 +86,7 @@ func (ptr *QGeoRoutingManagerEngine) ConnectFinished(f func(reply *QGeoRouteRepl
 }
 
 func (ptr *QGeoRoutingManagerEngine) DisconnectFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::finished")
-		}
-	}()
+	defer qt.Recovering("disconnect QGeoRoutingManagerEngine::finished")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_DisconnectFinished(ptr.Pointer())
@@ -117,21 +96,17 @@ func (ptr *QGeoRoutingManagerEngine) DisconnectFinished() {
 
 //export callbackQGeoRoutingManagerEngineFinished
 func callbackQGeoRoutingManagerEngineFinished(ptrName *C.char, reply unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::finished")
-		}
-	}()
+	defer qt.Recovering("callback QGeoRoutingManagerEngine::finished")
 
-	qt.GetSignal(C.GoString(ptrName), "finished").(func(*QGeoRouteReply))(NewQGeoRouteReplyFromPointer(reply))
+	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
+	if signal != nil {
+		signal.(func(*QGeoRouteReply))(NewQGeoRouteReplyFromPointer(reply))
+	}
+
 }
 
 func (ptr *QGeoRoutingManagerEngine) ManagerName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::managerName")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::managerName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGeoRoutingManagerEngine_ManagerName(ptr.Pointer()))
@@ -140,11 +115,7 @@ func (ptr *QGeoRoutingManagerEngine) ManagerName() string {
 }
 
 func (ptr *QGeoRoutingManagerEngine) ManagerVersion() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::managerVersion")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::managerVersion")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGeoRoutingManagerEngine_ManagerVersion(ptr.Pointer()))
@@ -153,11 +124,7 @@ func (ptr *QGeoRoutingManagerEngine) ManagerVersion() int {
 }
 
 func (ptr *QGeoRoutingManagerEngine) MeasurementSystem() core.QLocale__MeasurementSystem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::measurementSystem")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::measurementSystem")
 
 	if ptr.Pointer() != nil {
 		return core.QLocale__MeasurementSystem(C.QGeoRoutingManagerEngine_MeasurementSystem(ptr.Pointer()))
@@ -166,11 +133,7 @@ func (ptr *QGeoRoutingManagerEngine) MeasurementSystem() core.QLocale__Measureme
 }
 
 func (ptr *QGeoRoutingManagerEngine) SetLocale(locale core.QLocale_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::setLocale")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::setLocale")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_SetLocale(ptr.Pointer(), core.PointerFromQLocale(locale))
@@ -178,11 +141,7 @@ func (ptr *QGeoRoutingManagerEngine) SetLocale(locale core.QLocale_ITF) {
 }
 
 func (ptr *QGeoRoutingManagerEngine) SetMeasurementSystem(system core.QLocale__MeasurementSystem) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::setMeasurementSystem")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::setMeasurementSystem")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_SetMeasurementSystem(ptr.Pointer(), C.int(system))
@@ -190,11 +149,7 @@ func (ptr *QGeoRoutingManagerEngine) SetMeasurementSystem(system core.QLocale__M
 }
 
 func (ptr *QGeoRoutingManagerEngine) SupportedFeatureTypes() QGeoRouteRequest__FeatureType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::supportedFeatureTypes")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::supportedFeatureTypes")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__FeatureType(C.QGeoRoutingManagerEngine_SupportedFeatureTypes(ptr.Pointer()))
@@ -203,11 +158,7 @@ func (ptr *QGeoRoutingManagerEngine) SupportedFeatureTypes() QGeoRouteRequest__F
 }
 
 func (ptr *QGeoRoutingManagerEngine) SupportedFeatureWeights() QGeoRouteRequest__FeatureWeight {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::supportedFeatureWeights")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::supportedFeatureWeights")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__FeatureWeight(C.QGeoRoutingManagerEngine_SupportedFeatureWeights(ptr.Pointer()))
@@ -216,11 +167,7 @@ func (ptr *QGeoRoutingManagerEngine) SupportedFeatureWeights() QGeoRouteRequest_
 }
 
 func (ptr *QGeoRoutingManagerEngine) SupportedManeuverDetails() QGeoRouteRequest__ManeuverDetail {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::supportedManeuverDetails")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::supportedManeuverDetails")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__ManeuverDetail(C.QGeoRoutingManagerEngine_SupportedManeuverDetails(ptr.Pointer()))
@@ -229,11 +176,7 @@ func (ptr *QGeoRoutingManagerEngine) SupportedManeuverDetails() QGeoRouteRequest
 }
 
 func (ptr *QGeoRoutingManagerEngine) SupportedRouteOptimizations() QGeoRouteRequest__RouteOptimization {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::supportedRouteOptimizations")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::supportedRouteOptimizations")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__RouteOptimization(C.QGeoRoutingManagerEngine_SupportedRouteOptimizations(ptr.Pointer()))
@@ -242,11 +185,7 @@ func (ptr *QGeoRoutingManagerEngine) SupportedRouteOptimizations() QGeoRouteRequ
 }
 
 func (ptr *QGeoRoutingManagerEngine) SupportedSegmentDetails() QGeoRouteRequest__SegmentDetail {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::supportedSegmentDetails")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::supportedSegmentDetails")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__SegmentDetail(C.QGeoRoutingManagerEngine_SupportedSegmentDetails(ptr.Pointer()))
@@ -255,11 +194,7 @@ func (ptr *QGeoRoutingManagerEngine) SupportedSegmentDetails() QGeoRouteRequest_
 }
 
 func (ptr *QGeoRoutingManagerEngine) SupportedTravelModes() QGeoRouteRequest__TravelMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::supportedTravelModes")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::supportedTravelModes")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__TravelMode(C.QGeoRoutingManagerEngine_SupportedTravelModes(ptr.Pointer()))
@@ -268,11 +203,7 @@ func (ptr *QGeoRoutingManagerEngine) SupportedTravelModes() QGeoRouteRequest__Tr
 }
 
 func (ptr *QGeoRoutingManagerEngine) UpdateRoute(route QGeoRoute_ITF, position positioning.QGeoCoordinate_ITF) *QGeoRouteReply {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::updateRoute")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::updateRoute")
 
 	if ptr.Pointer() != nil {
 		return NewQGeoRouteReplyFromPointer(C.QGeoRoutingManagerEngine_UpdateRoute(ptr.Pointer(), PointerFromQGeoRoute(route), positioning.PointerFromQGeoCoordinate(position)))
@@ -281,11 +212,7 @@ func (ptr *QGeoRoutingManagerEngine) UpdateRoute(route QGeoRoute_ITF, position p
 }
 
 func (ptr *QGeoRoutingManagerEngine) DestroyQGeoRoutingManagerEngine() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRoutingManagerEngine::~QGeoRoutingManagerEngine")
-		}
-	}()
+	defer qt.Recovering("QGeoRoutingManagerEngine::~QGeoRoutingManagerEngine")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(ptr.Pointer())

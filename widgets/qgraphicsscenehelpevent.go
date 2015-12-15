@@ -3,7 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -33,12 +34,17 @@ func (ptr *QGraphicsSceneHelpEvent) QGraphicsSceneHelpEvent_PTR() *QGraphicsScen
 	return ptr
 }
 
+func (ptr *QGraphicsSceneHelpEvent) ScreenPos() *core.QPoint {
+	defer qt.Recovering("QGraphicsSceneHelpEvent::screenPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QGraphicsSceneHelpEvent_ScreenPos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsSceneHelpEvent) DestroyQGraphicsSceneHelpEvent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneHelpEvent::~QGraphicsSceneHelpEvent")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneHelpEvent::~QGraphicsSceneHelpEvent")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneHelpEvent_DestroyQGraphicsSceneHelpEvent(ptr.Pointer())

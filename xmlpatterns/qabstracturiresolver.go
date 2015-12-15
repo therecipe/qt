@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQAbstractUriResolverFromPointer(ptr unsafe.Pointer) *QAbstractUriResolve
 	var n = new(QAbstractUriResolver)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractUriResolver_") {
-		n.SetObjectName("QAbstractUriResolver_" + qt.RandomIdentifier())
+		n.SetObjectName("QAbstractUriResolver_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QAbstractUriResolver) QAbstractUriResolver_PTR() *QAbstractUriResolve
 }
 
 func (ptr *QAbstractUriResolver) DestroyQAbstractUriResolver() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractUriResolver::~QAbstractUriResolver")
-		}
-	}()
+	defer qt.Recovering("QAbstractUriResolver::~QAbstractUriResolver")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractUriResolver_DestroyQAbstractUriResolver(ptr.Pointer())

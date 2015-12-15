@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,21 +41,13 @@ func (ptr *QMutexLocker) QMutexLocker_PTR() *QMutexLocker {
 }
 
 func NewQMutexLocker(mutex QMutex_ITF) *QMutexLocker {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMutexLocker::QMutexLocker")
-		}
-	}()
+	defer qt.Recovering("QMutexLocker::QMutexLocker")
 
 	return NewQMutexLockerFromPointer(C.QMutexLocker_NewQMutexLocker(PointerFromQMutex(mutex)))
 }
 
 func (ptr *QMutexLocker) Mutex() *QMutex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMutexLocker::mutex")
-		}
-	}()
+	defer qt.Recovering("QMutexLocker::mutex")
 
 	if ptr.Pointer() != nil {
 		return NewQMutexFromPointer(C.QMutexLocker_Mutex(ptr.Pointer()))
@@ -64,11 +56,7 @@ func (ptr *QMutexLocker) Mutex() *QMutex {
 }
 
 func (ptr *QMutexLocker) Relock() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMutexLocker::relock")
-		}
-	}()
+	defer qt.Recovering("QMutexLocker::relock")
 
 	if ptr.Pointer() != nil {
 		C.QMutexLocker_Relock(ptr.Pointer())
@@ -76,11 +64,7 @@ func (ptr *QMutexLocker) Relock() {
 }
 
 func (ptr *QMutexLocker) Unlock() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMutexLocker::unlock")
-		}
-	}()
+	defer qt.Recovering("QMutexLocker::unlock")
 
 	if ptr.Pointer() != nil {
 		C.QMutexLocker_Unlock(ptr.Pointer())
@@ -88,11 +72,7 @@ func (ptr *QMutexLocker) Unlock() {
 }
 
 func (ptr *QMutexLocker) DestroyQMutexLocker() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMutexLocker::~QMutexLocker")
-		}
-	}()
+	defer qt.Recovering("QMutexLocker::~QMutexLocker")
 
 	if ptr.Pointer() != nil {
 		C.QMutexLocker_DestroyQMutexLocker(ptr.Pointer())

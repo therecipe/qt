@@ -3,8 +3,8 @@ package network
 //#include "network.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +42,19 @@ func (ptr *QSslCertificateExtension) QSslCertificateExtension_PTR() *QSslCertifi
 }
 
 func NewQSslCertificateExtension() *QSslCertificateExtension {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCertificateExtension::QSslCertificateExtension")
-		}
-	}()
+	defer qt.Recovering("QSslCertificateExtension::QSslCertificateExtension")
 
 	return NewQSslCertificateExtensionFromPointer(C.QSslCertificateExtension_NewQSslCertificateExtension())
 }
 
 func NewQSslCertificateExtension2(other QSslCertificateExtension_ITF) *QSslCertificateExtension {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCertificateExtension::QSslCertificateExtension")
-		}
-	}()
+	defer qt.Recovering("QSslCertificateExtension::QSslCertificateExtension")
 
 	return NewQSslCertificateExtensionFromPointer(C.QSslCertificateExtension_NewQSslCertificateExtension2(PointerFromQSslCertificateExtension(other)))
 }
 
 func (ptr *QSslCertificateExtension) IsCritical() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCertificateExtension::isCritical")
-		}
-	}()
+	defer qt.Recovering("QSslCertificateExtension::isCritical")
 
 	if ptr.Pointer() != nil {
 		return C.QSslCertificateExtension_IsCritical(ptr.Pointer()) != 0
@@ -75,11 +63,7 @@ func (ptr *QSslCertificateExtension) IsCritical() bool {
 }
 
 func (ptr *QSslCertificateExtension) IsSupported() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCertificateExtension::isSupported")
-		}
-	}()
+	defer qt.Recovering("QSslCertificateExtension::isSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QSslCertificateExtension_IsSupported(ptr.Pointer()) != 0
@@ -88,11 +72,7 @@ func (ptr *QSslCertificateExtension) IsSupported() bool {
 }
 
 func (ptr *QSslCertificateExtension) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCertificateExtension::name")
-		}
-	}()
+	defer qt.Recovering("QSslCertificateExtension::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslCertificateExtension_Name(ptr.Pointer()))
@@ -101,11 +81,7 @@ func (ptr *QSslCertificateExtension) Name() string {
 }
 
 func (ptr *QSslCertificateExtension) Oid() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCertificateExtension::oid")
-		}
-	}()
+	defer qt.Recovering("QSslCertificateExtension::oid")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslCertificateExtension_Oid(ptr.Pointer()))
@@ -114,11 +90,7 @@ func (ptr *QSslCertificateExtension) Oid() string {
 }
 
 func (ptr *QSslCertificateExtension) Swap(other QSslCertificateExtension_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCertificateExtension::swap")
-		}
-	}()
+	defer qt.Recovering("QSslCertificateExtension::swap")
 
 	if ptr.Pointer() != nil {
 		C.QSslCertificateExtension_Swap(ptr.Pointer(), PointerFromQSslCertificateExtension(other))
@@ -126,11 +98,7 @@ func (ptr *QSslCertificateExtension) Swap(other QSslCertificateExtension_ITF) {
 }
 
 func (ptr *QSslCertificateExtension) Value() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCertificateExtension::value")
-		}
-	}()
+	defer qt.Recovering("QSslCertificateExtension::value")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSslCertificateExtension_Value(ptr.Pointer()))
@@ -139,11 +107,7 @@ func (ptr *QSslCertificateExtension) Value() *core.QVariant {
 }
 
 func (ptr *QSslCertificateExtension) DestroyQSslCertificateExtension() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCertificateExtension::~QSslCertificateExtension")
-		}
-	}()
+	defer qt.Recovering("QSslCertificateExtension::~QSslCertificateExtension")
 
 	if ptr.Pointer() != nil {
 		C.QSslCertificateExtension_DestroyQSslCertificateExtension(ptr.Pointer())

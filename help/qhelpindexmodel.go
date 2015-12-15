@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQHelpIndexModelFromPointer(ptr unsafe.Pointer) *QHelpIndexModel {
 	var n = new(QHelpIndexModel)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpIndexModel_") {
-		n.SetObjectName("QHelpIndexModel_" + qt.RandomIdentifier())
+		n.SetObjectName("QHelpIndexModel_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QHelpIndexModel) QHelpIndexModel_PTR() *QHelpIndexModel {
 }
 
 func (ptr *QHelpIndexModel) CreateIndex(customFilterName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpIndexModel::createIndex")
-		}
-	}()
+	defer qt.Recovering("QHelpIndexModel::createIndex")
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_CreateIndex(ptr.Pointer(), C.CString(customFilterName))
@@ -51,11 +46,7 @@ func (ptr *QHelpIndexModel) CreateIndex(customFilterName string) {
 }
 
 func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpIndexModel::filter")
-		}
-	}()
+	defer qt.Recovering("QHelpIndexModel::filter")
 
 	if ptr.Pointer() != nil {
 		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_Filter(ptr.Pointer(), C.CString(filter), C.CString(wildcard)))
@@ -64,11 +55,7 @@ func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelI
 }
 
 func (ptr *QHelpIndexModel) ConnectIndexCreated(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpIndexModel::indexCreated")
-		}
-	}()
+	defer qt.Recovering("connect QHelpIndexModel::indexCreated")
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_ConnectIndexCreated(ptr.Pointer())
@@ -77,11 +64,7 @@ func (ptr *QHelpIndexModel) ConnectIndexCreated(f func()) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectIndexCreated() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpIndexModel::indexCreated")
-		}
-	}()
+	defer qt.Recovering("disconnect QHelpIndexModel::indexCreated")
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_DisconnectIndexCreated(ptr.Pointer())
@@ -91,21 +74,17 @@ func (ptr *QHelpIndexModel) DisconnectIndexCreated() {
 
 //export callbackQHelpIndexModelIndexCreated
 func callbackQHelpIndexModelIndexCreated(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpIndexModel::indexCreated")
-		}
-	}()
+	defer qt.Recovering("callback QHelpIndexModel::indexCreated")
 
-	qt.GetSignal(C.GoString(ptrName), "indexCreated").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "indexCreated")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QHelpIndexModel) ConnectIndexCreationStarted(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpIndexModel::indexCreationStarted")
-		}
-	}()
+	defer qt.Recovering("connect QHelpIndexModel::indexCreationStarted")
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_ConnectIndexCreationStarted(ptr.Pointer())
@@ -114,11 +93,7 @@ func (ptr *QHelpIndexModel) ConnectIndexCreationStarted(f func()) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectIndexCreationStarted() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpIndexModel::indexCreationStarted")
-		}
-	}()
+	defer qt.Recovering("disconnect QHelpIndexModel::indexCreationStarted")
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_DisconnectIndexCreationStarted(ptr.Pointer())
@@ -128,21 +103,17 @@ func (ptr *QHelpIndexModel) DisconnectIndexCreationStarted() {
 
 //export callbackQHelpIndexModelIndexCreationStarted
 func callbackQHelpIndexModelIndexCreationStarted(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpIndexModel::indexCreationStarted")
-		}
-	}()
+	defer qt.Recovering("callback QHelpIndexModel::indexCreationStarted")
 
-	qt.GetSignal(C.GoString(ptrName), "indexCreationStarted").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "indexCreationStarted")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QHelpIndexModel) IsCreatingIndex() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpIndexModel::isCreatingIndex")
-		}
-	}()
+	defer qt.Recovering("QHelpIndexModel::isCreatingIndex")
 
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_IsCreatingIndex(ptr.Pointer()) != 0

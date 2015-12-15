@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQLocalServerFromPointer(ptr unsafe.Pointer) *QLocalServer {
 	var n = new(QLocalServer)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QLocalServer_") {
-		n.SetObjectName("QLocalServer_" + qt.RandomIdentifier())
+		n.SetObjectName("QLocalServer_" + qt.Identifier())
 	}
 	return n
 }
@@ -50,11 +49,7 @@ const (
 )
 
 func (ptr *QLocalServer) SetSocketOptions(options QLocalServer__SocketOption) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::setSocketOptions")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::setSocketOptions")
 
 	if ptr.Pointer() != nil {
 		C.QLocalServer_SetSocketOptions(ptr.Pointer(), C.int(options))
@@ -62,21 +57,13 @@ func (ptr *QLocalServer) SetSocketOptions(options QLocalServer__SocketOption) {
 }
 
 func NewQLocalServer(parent core.QObject_ITF) *QLocalServer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::QLocalServer")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::QLocalServer")
 
 	return NewQLocalServerFromPointer(C.QLocalServer_NewQLocalServer(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QLocalServer) Close() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::close")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::close")
 
 	if ptr.Pointer() != nil {
 		C.QLocalServer_Close(ptr.Pointer())
@@ -84,11 +71,7 @@ func (ptr *QLocalServer) Close() {
 }
 
 func (ptr *QLocalServer) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::errorString")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QLocalServer_ErrorString(ptr.Pointer()))
@@ -97,11 +80,7 @@ func (ptr *QLocalServer) ErrorString() string {
 }
 
 func (ptr *QLocalServer) FullServerName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::fullServerName")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::fullServerName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QLocalServer_FullServerName(ptr.Pointer()))
@@ -110,11 +89,7 @@ func (ptr *QLocalServer) FullServerName() string {
 }
 
 func (ptr *QLocalServer) HasPendingConnections() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::hasPendingConnections")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::hasPendingConnections")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalServer_HasPendingConnections(ptr.Pointer()) != 0
@@ -123,11 +98,7 @@ func (ptr *QLocalServer) HasPendingConnections() bool {
 }
 
 func (ptr *QLocalServer) IsListening() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::isListening")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::isListening")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalServer_IsListening(ptr.Pointer()) != 0
@@ -136,11 +107,7 @@ func (ptr *QLocalServer) IsListening() bool {
 }
 
 func (ptr *QLocalServer) Listen(name string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::listen")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::listen")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalServer_Listen(ptr.Pointer(), C.CString(name)) != 0
@@ -149,11 +116,7 @@ func (ptr *QLocalServer) Listen(name string) bool {
 }
 
 func (ptr *QLocalServer) MaxPendingConnections() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::maxPendingConnections")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::maxPendingConnections")
 
 	if ptr.Pointer() != nil {
 		return int(C.QLocalServer_MaxPendingConnections(ptr.Pointer()))
@@ -162,11 +125,7 @@ func (ptr *QLocalServer) MaxPendingConnections() int {
 }
 
 func (ptr *QLocalServer) ConnectNewConnection(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::newConnection")
-		}
-	}()
+	defer qt.Recovering("connect QLocalServer::newConnection")
 
 	if ptr.Pointer() != nil {
 		C.QLocalServer_ConnectNewConnection(ptr.Pointer())
@@ -175,11 +134,7 @@ func (ptr *QLocalServer) ConnectNewConnection(f func()) {
 }
 
 func (ptr *QLocalServer) DisconnectNewConnection() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::newConnection")
-		}
-	}()
+	defer qt.Recovering("disconnect QLocalServer::newConnection")
 
 	if ptr.Pointer() != nil {
 		C.QLocalServer_DisconnectNewConnection(ptr.Pointer())
@@ -189,21 +144,17 @@ func (ptr *QLocalServer) DisconnectNewConnection() {
 
 //export callbackQLocalServerNewConnection
 func callbackQLocalServerNewConnection(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::newConnection")
-		}
-	}()
+	defer qt.Recovering("callback QLocalServer::newConnection")
 
-	qt.GetSignal(C.GoString(ptrName), "newConnection").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "newConnection")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QLocalServer) NextPendingConnection() *QLocalSocket {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::nextPendingConnection")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::nextPendingConnection")
 
 	if ptr.Pointer() != nil {
 		return NewQLocalSocketFromPointer(C.QLocalServer_NextPendingConnection(ptr.Pointer()))
@@ -212,21 +163,13 @@ func (ptr *QLocalServer) NextPendingConnection() *QLocalSocket {
 }
 
 func QLocalServer_RemoveServer(name string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::removeServer")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::removeServer")
 
 	return C.QLocalServer_QLocalServer_RemoveServer(C.CString(name)) != 0
 }
 
 func (ptr *QLocalServer) ServerError() QAbstractSocket__SocketError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::serverError")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::serverError")
 
 	if ptr.Pointer() != nil {
 		return QAbstractSocket__SocketError(C.QLocalServer_ServerError(ptr.Pointer()))
@@ -235,11 +178,7 @@ func (ptr *QLocalServer) ServerError() QAbstractSocket__SocketError {
 }
 
 func (ptr *QLocalServer) ServerName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::serverName")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::serverName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QLocalServer_ServerName(ptr.Pointer()))
@@ -248,11 +187,7 @@ func (ptr *QLocalServer) ServerName() string {
 }
 
 func (ptr *QLocalServer) SetMaxPendingConnections(numConnections int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::setMaxPendingConnections")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::setMaxPendingConnections")
 
 	if ptr.Pointer() != nil {
 		C.QLocalServer_SetMaxPendingConnections(ptr.Pointer(), C.int(numConnections))
@@ -260,11 +195,7 @@ func (ptr *QLocalServer) SetMaxPendingConnections(numConnections int) {
 }
 
 func (ptr *QLocalServer) SocketOptions() QLocalServer__SocketOption {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::socketOptions")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::socketOptions")
 
 	if ptr.Pointer() != nil {
 		return QLocalServer__SocketOption(C.QLocalServer_SocketOptions(ptr.Pointer()))
@@ -273,11 +204,7 @@ func (ptr *QLocalServer) SocketOptions() QLocalServer__SocketOption {
 }
 
 func (ptr *QLocalServer) WaitForNewConnection(msec int, timedOut bool) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::waitForNewConnection")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::waitForNewConnection")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalServer_WaitForNewConnection(ptr.Pointer(), C.int(msec), C.int(qt.GoBoolToInt(timedOut))) != 0
@@ -286,11 +213,7 @@ func (ptr *QLocalServer) WaitForNewConnection(msec int, timedOut bool) bool {
 }
 
 func (ptr *QLocalServer) DestroyQLocalServer() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalServer::~QLocalServer")
-		}
-	}()
+	defer qt.Recovering("QLocalServer::~QLocalServer")
 
 	if ptr.Pointer() != nil {
 		C.QLocalServer_DestroyQLocalServer(ptr.Pointer())

@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQActionFromPointer(ptr unsafe.Pointer) *QAction {
 	var n = new(QAction)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAction_") {
-		n.SetObjectName("QAction_" + qt.RandomIdentifier())
+		n.SetObjectName("QAction_" + qt.Identifier())
 	}
 	return n
 }
@@ -70,11 +69,7 @@ const (
 )
 
 func (ptr *QAction) AutoRepeat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::autoRepeat")
-		}
-	}()
+	defer qt.Recovering("QAction::autoRepeat")
 
 	if ptr.Pointer() != nil {
 		return C.QAction_AutoRepeat(ptr.Pointer()) != 0
@@ -83,11 +78,7 @@ func (ptr *QAction) AutoRepeat() bool {
 }
 
 func (ptr *QAction) IconText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::iconText")
-		}
-	}()
+	defer qt.Recovering("QAction::iconText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAction_IconText(ptr.Pointer()))
@@ -96,11 +87,7 @@ func (ptr *QAction) IconText() string {
 }
 
 func (ptr *QAction) IsCheckable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::isCheckable")
-		}
-	}()
+	defer qt.Recovering("QAction::isCheckable")
 
 	if ptr.Pointer() != nil {
 		return C.QAction_IsCheckable(ptr.Pointer()) != 0
@@ -109,11 +96,7 @@ func (ptr *QAction) IsCheckable() bool {
 }
 
 func (ptr *QAction) IsChecked() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::isChecked")
-		}
-	}()
+	defer qt.Recovering("QAction::isChecked")
 
 	if ptr.Pointer() != nil {
 		return C.QAction_IsChecked(ptr.Pointer()) != 0
@@ -122,11 +105,7 @@ func (ptr *QAction) IsChecked() bool {
 }
 
 func (ptr *QAction) IsEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::isEnabled")
-		}
-	}()
+	defer qt.Recovering("QAction::isEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QAction_IsEnabled(ptr.Pointer()) != 0
@@ -135,11 +114,7 @@ func (ptr *QAction) IsEnabled() bool {
 }
 
 func (ptr *QAction) IsIconVisibleInMenu() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::isIconVisibleInMenu")
-		}
-	}()
+	defer qt.Recovering("QAction::isIconVisibleInMenu")
 
 	if ptr.Pointer() != nil {
 		return C.QAction_IsIconVisibleInMenu(ptr.Pointer()) != 0
@@ -148,11 +123,7 @@ func (ptr *QAction) IsIconVisibleInMenu() bool {
 }
 
 func (ptr *QAction) IsVisible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::isVisible")
-		}
-	}()
+	defer qt.Recovering("QAction::isVisible")
 
 	if ptr.Pointer() != nil {
 		return C.QAction_IsVisible(ptr.Pointer()) != 0
@@ -161,11 +132,7 @@ func (ptr *QAction) IsVisible() bool {
 }
 
 func (ptr *QAction) MenuRole() QAction__MenuRole {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::menuRole")
-		}
-	}()
+	defer qt.Recovering("QAction::menuRole")
 
 	if ptr.Pointer() != nil {
 		return QAction__MenuRole(C.QAction_MenuRole(ptr.Pointer()))
@@ -174,11 +141,7 @@ func (ptr *QAction) MenuRole() QAction__MenuRole {
 }
 
 func (ptr *QAction) Priority() QAction__Priority {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::priority")
-		}
-	}()
+	defer qt.Recovering("QAction::priority")
 
 	if ptr.Pointer() != nil {
 		return QAction__Priority(C.QAction_Priority(ptr.Pointer()))
@@ -187,11 +150,7 @@ func (ptr *QAction) Priority() QAction__Priority {
 }
 
 func (ptr *QAction) SetAutoRepeat(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setAutoRepeat")
-		}
-	}()
+	defer qt.Recovering("QAction::setAutoRepeat")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetAutoRepeat(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -199,11 +158,7 @@ func (ptr *QAction) SetAutoRepeat(v bool) {
 }
 
 func (ptr *QAction) SetCheckable(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setCheckable")
-		}
-	}()
+	defer qt.Recovering("QAction::setCheckable")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetCheckable(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -211,11 +166,7 @@ func (ptr *QAction) SetCheckable(v bool) {
 }
 
 func (ptr *QAction) SetChecked(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setChecked")
-		}
-	}()
+	defer qt.Recovering("QAction::setChecked")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetChecked(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -223,11 +174,7 @@ func (ptr *QAction) SetChecked(v bool) {
 }
 
 func (ptr *QAction) SetData(userData core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setData")
-		}
-	}()
+	defer qt.Recovering("QAction::setData")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetData(ptr.Pointer(), core.PointerFromQVariant(userData))
@@ -235,11 +182,7 @@ func (ptr *QAction) SetData(userData core.QVariant_ITF) {
 }
 
 func (ptr *QAction) SetEnabled(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setEnabled")
-		}
-	}()
+	defer qt.Recovering("QAction::setEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -247,11 +190,7 @@ func (ptr *QAction) SetEnabled(v bool) {
 }
 
 func (ptr *QAction) SetFont(font gui.QFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setFont")
-		}
-	}()
+	defer qt.Recovering("QAction::setFont")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetFont(ptr.Pointer(), gui.PointerFromQFont(font))
@@ -259,11 +198,7 @@ func (ptr *QAction) SetFont(font gui.QFont_ITF) {
 }
 
 func (ptr *QAction) SetIcon(icon gui.QIcon_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setIcon")
-		}
-	}()
+	defer qt.Recovering("QAction::setIcon")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
@@ -271,11 +206,7 @@ func (ptr *QAction) SetIcon(icon gui.QIcon_ITF) {
 }
 
 func (ptr *QAction) SetIconText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setIconText")
-		}
-	}()
+	defer qt.Recovering("QAction::setIconText")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetIconText(ptr.Pointer(), C.CString(text))
@@ -283,11 +214,7 @@ func (ptr *QAction) SetIconText(text string) {
 }
 
 func (ptr *QAction) SetIconVisibleInMenu(visible bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setIconVisibleInMenu")
-		}
-	}()
+	defer qt.Recovering("QAction::setIconVisibleInMenu")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetIconVisibleInMenu(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
@@ -295,11 +222,7 @@ func (ptr *QAction) SetIconVisibleInMenu(visible bool) {
 }
 
 func (ptr *QAction) SetMenuRole(menuRole QAction__MenuRole) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setMenuRole")
-		}
-	}()
+	defer qt.Recovering("QAction::setMenuRole")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetMenuRole(ptr.Pointer(), C.int(menuRole))
@@ -307,11 +230,7 @@ func (ptr *QAction) SetMenuRole(menuRole QAction__MenuRole) {
 }
 
 func (ptr *QAction) SetPriority(priority QAction__Priority) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setPriority")
-		}
-	}()
+	defer qt.Recovering("QAction::setPriority")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetPriority(ptr.Pointer(), C.int(priority))
@@ -319,11 +238,7 @@ func (ptr *QAction) SetPriority(priority QAction__Priority) {
 }
 
 func (ptr *QAction) SetShortcut(shortcut gui.QKeySequence_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setShortcut")
-		}
-	}()
+	defer qt.Recovering("QAction::setShortcut")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetShortcut(ptr.Pointer(), gui.PointerFromQKeySequence(shortcut))
@@ -331,11 +246,7 @@ func (ptr *QAction) SetShortcut(shortcut gui.QKeySequence_ITF) {
 }
 
 func (ptr *QAction) SetShortcutContext(context core.Qt__ShortcutContext) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setShortcutContext")
-		}
-	}()
+	defer qt.Recovering("QAction::setShortcutContext")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetShortcutContext(ptr.Pointer(), C.int(context))
@@ -343,11 +254,7 @@ func (ptr *QAction) SetShortcutContext(context core.Qt__ShortcutContext) {
 }
 
 func (ptr *QAction) SetStatusTip(statusTip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setStatusTip")
-		}
-	}()
+	defer qt.Recovering("QAction::setStatusTip")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetStatusTip(ptr.Pointer(), C.CString(statusTip))
@@ -355,11 +262,7 @@ func (ptr *QAction) SetStatusTip(statusTip string) {
 }
 
 func (ptr *QAction) SetText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setText")
-		}
-	}()
+	defer qt.Recovering("QAction::setText")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetText(ptr.Pointer(), C.CString(text))
@@ -367,11 +270,7 @@ func (ptr *QAction) SetText(text string) {
 }
 
 func (ptr *QAction) SetToolTip(tip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setToolTip")
-		}
-	}()
+	defer qt.Recovering("QAction::setToolTip")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetToolTip(ptr.Pointer(), C.CString(tip))
@@ -379,11 +278,7 @@ func (ptr *QAction) SetToolTip(tip string) {
 }
 
 func (ptr *QAction) SetVisible(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setVisible")
-		}
-	}()
+	defer qt.Recovering("QAction::setVisible")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -391,11 +286,7 @@ func (ptr *QAction) SetVisible(v bool) {
 }
 
 func (ptr *QAction) SetWhatsThis(what string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setWhatsThis")
-		}
-	}()
+	defer qt.Recovering("QAction::setWhatsThis")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetWhatsThis(ptr.Pointer(), C.CString(what))
@@ -403,11 +294,7 @@ func (ptr *QAction) SetWhatsThis(what string) {
 }
 
 func (ptr *QAction) ShortcutContext() core.Qt__ShortcutContext {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::shortcutContext")
-		}
-	}()
+	defer qt.Recovering("QAction::shortcutContext")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ShortcutContext(C.QAction_ShortcutContext(ptr.Pointer()))
@@ -416,11 +303,7 @@ func (ptr *QAction) ShortcutContext() core.Qt__ShortcutContext {
 }
 
 func (ptr *QAction) StatusTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::statusTip")
-		}
-	}()
+	defer qt.Recovering("QAction::statusTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAction_StatusTip(ptr.Pointer()))
@@ -429,11 +312,7 @@ func (ptr *QAction) StatusTip() string {
 }
 
 func (ptr *QAction) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::text")
-		}
-	}()
+	defer qt.Recovering("QAction::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAction_Text(ptr.Pointer()))
@@ -442,11 +321,7 @@ func (ptr *QAction) Text() string {
 }
 
 func (ptr *QAction) Toggle() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::toggle")
-		}
-	}()
+	defer qt.Recovering("QAction::toggle")
 
 	if ptr.Pointer() != nil {
 		C.QAction_Toggle(ptr.Pointer())
@@ -454,11 +329,7 @@ func (ptr *QAction) Toggle() {
 }
 
 func (ptr *QAction) ToolTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::toolTip")
-		}
-	}()
+	defer qt.Recovering("QAction::toolTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAction_ToolTip(ptr.Pointer()))
@@ -467,11 +338,7 @@ func (ptr *QAction) ToolTip() string {
 }
 
 func (ptr *QAction) WhatsThis() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::whatsThis")
-		}
-	}()
+	defer qt.Recovering("QAction::whatsThis")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAction_WhatsThis(ptr.Pointer()))
@@ -480,41 +347,25 @@ func (ptr *QAction) WhatsThis() string {
 }
 
 func NewQAction(parent core.QObject_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::QAction")
-		}
-	}()
+	defer qt.Recovering("QAction::QAction")
 
 	return NewQActionFromPointer(C.QAction_NewQAction(core.PointerFromQObject(parent)))
 }
 
 func NewQAction3(icon gui.QIcon_ITF, text string, parent core.QObject_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::QAction")
-		}
-	}()
+	defer qt.Recovering("QAction::QAction")
 
 	return NewQActionFromPointer(C.QAction_NewQAction3(gui.PointerFromQIcon(icon), C.CString(text), core.PointerFromQObject(parent)))
 }
 
 func NewQAction2(text string, parent core.QObject_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::QAction")
-		}
-	}()
+	defer qt.Recovering("QAction::QAction")
 
 	return NewQActionFromPointer(C.QAction_NewQAction2(C.CString(text), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAction) ActionGroup() *QActionGroup {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::actionGroup")
-		}
-	}()
+	defer qt.Recovering("QAction::actionGroup")
 
 	if ptr.Pointer() != nil {
 		return NewQActionGroupFromPointer(C.QAction_ActionGroup(ptr.Pointer()))
@@ -523,11 +374,7 @@ func (ptr *QAction) ActionGroup() *QActionGroup {
 }
 
 func (ptr *QAction) Activate(event QAction__ActionEvent) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::activate")
-		}
-	}()
+	defer qt.Recovering("QAction::activate")
 
 	if ptr.Pointer() != nil {
 		C.QAction_Activate(ptr.Pointer(), C.int(event))
@@ -535,11 +382,7 @@ func (ptr *QAction) Activate(event QAction__ActionEvent) {
 }
 
 func (ptr *QAction) ConnectChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::changed")
-		}
-	}()
+	defer qt.Recovering("connect QAction::changed")
 
 	if ptr.Pointer() != nil {
 		C.QAction_ConnectChanged(ptr.Pointer())
@@ -548,11 +391,7 @@ func (ptr *QAction) ConnectChanged(f func()) {
 }
 
 func (ptr *QAction) DisconnectChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::changed")
-		}
-	}()
+	defer qt.Recovering("disconnect QAction::changed")
 
 	if ptr.Pointer() != nil {
 		C.QAction_DisconnectChanged(ptr.Pointer())
@@ -562,21 +401,17 @@ func (ptr *QAction) DisconnectChanged() {
 
 //export callbackQActionChanged
 func callbackQActionChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::changed")
-		}
-	}()
+	defer qt.Recovering("callback QAction::changed")
 
-	qt.GetSignal(C.GoString(ptrName), "changed").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "changed")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QAction) Data() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::data")
-		}
-	}()
+	defer qt.Recovering("QAction::data")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QAction_Data(ptr.Pointer()))
@@ -585,11 +420,7 @@ func (ptr *QAction) Data() *core.QVariant {
 }
 
 func (ptr *QAction) Hover() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::hover")
-		}
-	}()
+	defer qt.Recovering("QAction::hover")
 
 	if ptr.Pointer() != nil {
 		C.QAction_Hover(ptr.Pointer())
@@ -597,11 +428,7 @@ func (ptr *QAction) Hover() {
 }
 
 func (ptr *QAction) ConnectHovered(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::hovered")
-		}
-	}()
+	defer qt.Recovering("connect QAction::hovered")
 
 	if ptr.Pointer() != nil {
 		C.QAction_ConnectHovered(ptr.Pointer())
@@ -610,11 +437,7 @@ func (ptr *QAction) ConnectHovered(f func()) {
 }
 
 func (ptr *QAction) DisconnectHovered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::hovered")
-		}
-	}()
+	defer qt.Recovering("disconnect QAction::hovered")
 
 	if ptr.Pointer() != nil {
 		C.QAction_DisconnectHovered(ptr.Pointer())
@@ -624,21 +447,17 @@ func (ptr *QAction) DisconnectHovered() {
 
 //export callbackQActionHovered
 func callbackQActionHovered(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::hovered")
-		}
-	}()
+	defer qt.Recovering("callback QAction::hovered")
 
-	qt.GetSignal(C.GoString(ptrName), "hovered").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "hovered")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QAction) IsSeparator() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::isSeparator")
-		}
-	}()
+	defer qt.Recovering("QAction::isSeparator")
 
 	if ptr.Pointer() != nil {
 		return C.QAction_IsSeparator(ptr.Pointer()) != 0
@@ -647,11 +466,7 @@ func (ptr *QAction) IsSeparator() bool {
 }
 
 func (ptr *QAction) Menu() *QMenu {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::menu")
-		}
-	}()
+	defer qt.Recovering("QAction::menu")
 
 	if ptr.Pointer() != nil {
 		return NewQMenuFromPointer(C.QAction_Menu(ptr.Pointer()))
@@ -660,11 +475,7 @@ func (ptr *QAction) Menu() *QMenu {
 }
 
 func (ptr *QAction) ParentWidget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::parentWidget")
-		}
-	}()
+	defer qt.Recovering("QAction::parentWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QAction_ParentWidget(ptr.Pointer()))
@@ -673,11 +484,7 @@ func (ptr *QAction) ParentWidget() *QWidget {
 }
 
 func (ptr *QAction) SetActionGroup(group QActionGroup_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setActionGroup")
-		}
-	}()
+	defer qt.Recovering("QAction::setActionGroup")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetActionGroup(ptr.Pointer(), PointerFromQActionGroup(group))
@@ -685,11 +492,7 @@ func (ptr *QAction) SetActionGroup(group QActionGroup_ITF) {
 }
 
 func (ptr *QAction) SetDisabled(b bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setDisabled")
-		}
-	}()
+	defer qt.Recovering("QAction::setDisabled")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetDisabled(ptr.Pointer(), C.int(qt.GoBoolToInt(b)))
@@ -697,11 +500,7 @@ func (ptr *QAction) SetDisabled(b bool) {
 }
 
 func (ptr *QAction) SetMenu(menu QMenu_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setMenu")
-		}
-	}()
+	defer qt.Recovering("QAction::setMenu")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetMenu(ptr.Pointer(), PointerFromQMenu(menu))
@@ -709,11 +508,7 @@ func (ptr *QAction) SetMenu(menu QMenu_ITF) {
 }
 
 func (ptr *QAction) SetSeparator(b bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setSeparator")
-		}
-	}()
+	defer qt.Recovering("QAction::setSeparator")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetSeparator(ptr.Pointer(), C.int(qt.GoBoolToInt(b)))
@@ -721,11 +516,7 @@ func (ptr *QAction) SetSeparator(b bool) {
 }
 
 func (ptr *QAction) SetShortcuts2(key gui.QKeySequence__StandardKey) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::setShortcuts")
-		}
-	}()
+	defer qt.Recovering("QAction::setShortcuts")
 
 	if ptr.Pointer() != nil {
 		C.QAction_SetShortcuts2(ptr.Pointer(), C.int(key))
@@ -733,11 +524,7 @@ func (ptr *QAction) SetShortcuts2(key gui.QKeySequence__StandardKey) {
 }
 
 func (ptr *QAction) ShowStatusText(widget QWidget_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::showStatusText")
-		}
-	}()
+	defer qt.Recovering("QAction::showStatusText")
 
 	if ptr.Pointer() != nil {
 		return C.QAction_ShowStatusText(ptr.Pointer(), PointerFromQWidget(widget)) != 0
@@ -746,11 +533,7 @@ func (ptr *QAction) ShowStatusText(widget QWidget_ITF) bool {
 }
 
 func (ptr *QAction) ConnectToggled(f func(checked bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::toggled")
-		}
-	}()
+	defer qt.Recovering("connect QAction::toggled")
 
 	if ptr.Pointer() != nil {
 		C.QAction_ConnectToggled(ptr.Pointer())
@@ -759,11 +542,7 @@ func (ptr *QAction) ConnectToggled(f func(checked bool)) {
 }
 
 func (ptr *QAction) DisconnectToggled() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::toggled")
-		}
-	}()
+	defer qt.Recovering("disconnect QAction::toggled")
 
 	if ptr.Pointer() != nil {
 		C.QAction_DisconnectToggled(ptr.Pointer())
@@ -773,21 +552,17 @@ func (ptr *QAction) DisconnectToggled() {
 
 //export callbackQActionToggled
 func callbackQActionToggled(ptrName *C.char, checked C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::toggled")
-		}
-	}()
+	defer qt.Recovering("callback QAction::toggled")
 
-	qt.GetSignal(C.GoString(ptrName), "toggled").(func(bool))(int(checked) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "toggled")
+	if signal != nil {
+		signal.(func(bool))(int(checked) != 0)
+	}
+
 }
 
 func (ptr *QAction) Trigger() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::trigger")
-		}
-	}()
+	defer qt.Recovering("QAction::trigger")
 
 	if ptr.Pointer() != nil {
 		C.QAction_Trigger(ptr.Pointer())
@@ -795,11 +570,7 @@ func (ptr *QAction) Trigger() {
 }
 
 func (ptr *QAction) ConnectTriggered(f func(checked bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::triggered")
-		}
-	}()
+	defer qt.Recovering("connect QAction::triggered")
 
 	if ptr.Pointer() != nil {
 		C.QAction_ConnectTriggered(ptr.Pointer())
@@ -808,11 +579,7 @@ func (ptr *QAction) ConnectTriggered(f func(checked bool)) {
 }
 
 func (ptr *QAction) DisconnectTriggered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::triggered")
-		}
-	}()
+	defer qt.Recovering("disconnect QAction::triggered")
 
 	if ptr.Pointer() != nil {
 		C.QAction_DisconnectTriggered(ptr.Pointer())
@@ -822,21 +589,17 @@ func (ptr *QAction) DisconnectTriggered() {
 
 //export callbackQActionTriggered
 func callbackQActionTriggered(ptrName *C.char, checked C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::triggered")
-		}
-	}()
+	defer qt.Recovering("callback QAction::triggered")
 
-	qt.GetSignal(C.GoString(ptrName), "triggered").(func(bool))(int(checked) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "triggered")
+	if signal != nil {
+		signal.(func(bool))(int(checked) != 0)
+	}
+
 }
 
 func (ptr *QAction) DestroyQAction() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAction::~QAction")
-		}
-	}()
+	defer qt.Recovering("QAction::~QAction")
 
 	if ptr.Pointer() != nil {
 		C.QAction_DestroyQAction(ptr.Pointer())

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQDBusAbstractInterfaceFromPointer(ptr unsafe.Pointer) *QDBusAbstractInte
 	var n = new(QDBusAbstractInterface)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusAbstractInterface_") {
-		n.SetObjectName("QDBusAbstractInterface_" + qt.RandomIdentifier())
+		n.SetObjectName("QDBusAbstractInterface_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QDBusAbstractInterface) QDBusAbstractInterface_PTR() *QDBusAbstractIn
 }
 
 func (ptr *QDBusAbstractInterface) Interface() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusAbstractInterface::interface")
-		}
-	}()
+	defer qt.Recovering("QDBusAbstractInterface::interface")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusAbstractInterface_Interface(ptr.Pointer()))
@@ -52,11 +47,7 @@ func (ptr *QDBusAbstractInterface) Interface() string {
 }
 
 func (ptr *QDBusAbstractInterface) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusAbstractInterface::isValid")
-		}
-	}()
+	defer qt.Recovering("QDBusAbstractInterface::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QDBusAbstractInterface_IsValid(ptr.Pointer()) != 0
@@ -65,11 +56,7 @@ func (ptr *QDBusAbstractInterface) IsValid() bool {
 }
 
 func (ptr *QDBusAbstractInterface) Path() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusAbstractInterface::path")
-		}
-	}()
+	defer qt.Recovering("QDBusAbstractInterface::path")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusAbstractInterface_Path(ptr.Pointer()))
@@ -78,11 +65,7 @@ func (ptr *QDBusAbstractInterface) Path() string {
 }
 
 func (ptr *QDBusAbstractInterface) Service() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusAbstractInterface::service")
-		}
-	}()
+	defer qt.Recovering("QDBusAbstractInterface::service")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusAbstractInterface_Service(ptr.Pointer()))
@@ -91,11 +74,7 @@ func (ptr *QDBusAbstractInterface) Service() string {
 }
 
 func (ptr *QDBusAbstractInterface) SetTimeout(timeout int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusAbstractInterface::setTimeout")
-		}
-	}()
+	defer qt.Recovering("QDBusAbstractInterface::setTimeout")
 
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractInterface_SetTimeout(ptr.Pointer(), C.int(timeout))
@@ -103,11 +82,7 @@ func (ptr *QDBusAbstractInterface) SetTimeout(timeout int) {
 }
 
 func (ptr *QDBusAbstractInterface) Timeout() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusAbstractInterface::timeout")
-		}
-	}()
+	defer qt.Recovering("QDBusAbstractInterface::timeout")
 
 	if ptr.Pointer() != nil {
 		return int(C.QDBusAbstractInterface_Timeout(ptr.Pointer()))
@@ -116,11 +91,7 @@ func (ptr *QDBusAbstractInterface) Timeout() int {
 }
 
 func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusAbstractInterface::~QDBusAbstractInterface")
-		}
-	}()
+	defer qt.Recovering("QDBusAbstractInterface::~QDBusAbstractInterface")
 
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractInterface_DestroyQDBusAbstractInterface(ptr.Pointer())

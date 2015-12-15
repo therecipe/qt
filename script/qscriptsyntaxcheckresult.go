@@ -3,7 +3,7 @@ package script
 //#include "script.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -50,21 +50,13 @@ const (
 )
 
 func NewQScriptSyntaxCheckResult(other QScriptSyntaxCheckResult_ITF) *QScriptSyntaxCheckResult {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptSyntaxCheckResult::QScriptSyntaxCheckResult")
-		}
-	}()
+	defer qt.Recovering("QScriptSyntaxCheckResult::QScriptSyntaxCheckResult")
 
 	return NewQScriptSyntaxCheckResultFromPointer(C.QScriptSyntaxCheckResult_NewQScriptSyntaxCheckResult(PointerFromQScriptSyntaxCheckResult(other)))
 }
 
 func (ptr *QScriptSyntaxCheckResult) ErrorColumnNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptSyntaxCheckResult::errorColumnNumber")
-		}
-	}()
+	defer qt.Recovering("QScriptSyntaxCheckResult::errorColumnNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QScriptSyntaxCheckResult_ErrorColumnNumber(ptr.Pointer()))
@@ -73,11 +65,7 @@ func (ptr *QScriptSyntaxCheckResult) ErrorColumnNumber() int {
 }
 
 func (ptr *QScriptSyntaxCheckResult) ErrorLineNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptSyntaxCheckResult::errorLineNumber")
-		}
-	}()
+	defer qt.Recovering("QScriptSyntaxCheckResult::errorLineNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QScriptSyntaxCheckResult_ErrorLineNumber(ptr.Pointer()))
@@ -86,11 +74,7 @@ func (ptr *QScriptSyntaxCheckResult) ErrorLineNumber() int {
 }
 
 func (ptr *QScriptSyntaxCheckResult) ErrorMessage() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptSyntaxCheckResult::errorMessage")
-		}
-	}()
+	defer qt.Recovering("QScriptSyntaxCheckResult::errorMessage")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScriptSyntaxCheckResult_ErrorMessage(ptr.Pointer()))
@@ -99,11 +83,7 @@ func (ptr *QScriptSyntaxCheckResult) ErrorMessage() string {
 }
 
 func (ptr *QScriptSyntaxCheckResult) DestroyQScriptSyntaxCheckResult() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptSyntaxCheckResult::~QScriptSyntaxCheckResult")
-		}
-	}()
+	defer qt.Recovering("QScriptSyntaxCheckResult::~QScriptSyntaxCheckResult")
 
 	if ptr.Pointer() != nil {
 		C.QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(ptr.Pointer())

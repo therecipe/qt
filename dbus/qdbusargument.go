@@ -3,8 +3,8 @@ package dbus
 //#include "dbus.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -55,31 +55,19 @@ const (
 )
 
 func NewQDBusArgument() *QDBusArgument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::QDBusArgument")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::QDBusArgument")
 
 	return NewQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument())
 }
 
 func NewQDBusArgument2(other QDBusArgument_ITF) *QDBusArgument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::QDBusArgument")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::QDBusArgument")
 
 	return NewQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument2(PointerFromQDBusArgument(other)))
 }
 
 func (ptr *QDBusArgument) AsVariant() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::asVariant")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::asVariant")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QDBusArgument_AsVariant(ptr.Pointer()))
@@ -88,11 +76,7 @@ func (ptr *QDBusArgument) AsVariant() *core.QVariant {
 }
 
 func (ptr *QDBusArgument) AtEnd() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::atEnd")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::atEnd")
 
 	if ptr.Pointer() != nil {
 		return C.QDBusArgument_AtEnd(ptr.Pointer()) != 0
@@ -101,11 +85,7 @@ func (ptr *QDBusArgument) AtEnd() bool {
 }
 
 func (ptr *QDBusArgument) BeginArray(id int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::beginArray")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::beginArray")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_BeginArray(ptr.Pointer(), C.int(id))
@@ -113,11 +93,7 @@ func (ptr *QDBusArgument) BeginArray(id int) {
 }
 
 func (ptr *QDBusArgument) BeginArray2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::beginArray")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::beginArray")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_BeginArray2(ptr.Pointer())
@@ -125,11 +101,7 @@ func (ptr *QDBusArgument) BeginArray2() {
 }
 
 func (ptr *QDBusArgument) BeginMap(kid int, vid int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::beginMap")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::beginMap")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_BeginMap(ptr.Pointer(), C.int(kid), C.int(vid))
@@ -137,11 +109,7 @@ func (ptr *QDBusArgument) BeginMap(kid int, vid int) {
 }
 
 func (ptr *QDBusArgument) BeginMap2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::beginMap")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::beginMap")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_BeginMap2(ptr.Pointer())
@@ -149,11 +117,7 @@ func (ptr *QDBusArgument) BeginMap2() {
 }
 
 func (ptr *QDBusArgument) BeginMapEntry() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::beginMapEntry")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::beginMapEntry")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_BeginMapEntry(ptr.Pointer())
@@ -161,11 +125,7 @@ func (ptr *QDBusArgument) BeginMapEntry() {
 }
 
 func (ptr *QDBusArgument) BeginMapEntry2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::beginMapEntry")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::beginMapEntry")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_BeginMapEntry2(ptr.Pointer())
@@ -173,11 +133,7 @@ func (ptr *QDBusArgument) BeginMapEntry2() {
 }
 
 func (ptr *QDBusArgument) BeginStructure() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::beginStructure")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::beginStructure")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_BeginStructure(ptr.Pointer())
@@ -185,11 +141,7 @@ func (ptr *QDBusArgument) BeginStructure() {
 }
 
 func (ptr *QDBusArgument) BeginStructure2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::beginStructure")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::beginStructure")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_BeginStructure2(ptr.Pointer())
@@ -197,11 +149,7 @@ func (ptr *QDBusArgument) BeginStructure2() {
 }
 
 func (ptr *QDBusArgument) CurrentType() QDBusArgument__ElementType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::currentType")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::currentType")
 
 	if ptr.Pointer() != nil {
 		return QDBusArgument__ElementType(C.QDBusArgument_CurrentType(ptr.Pointer()))
@@ -210,11 +158,7 @@ func (ptr *QDBusArgument) CurrentType() QDBusArgument__ElementType {
 }
 
 func (ptr *QDBusArgument) EndArray() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::endArray")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::endArray")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_EndArray(ptr.Pointer())
@@ -222,11 +166,7 @@ func (ptr *QDBusArgument) EndArray() {
 }
 
 func (ptr *QDBusArgument) EndArray2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::endArray")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::endArray")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_EndArray2(ptr.Pointer())
@@ -234,11 +174,7 @@ func (ptr *QDBusArgument) EndArray2() {
 }
 
 func (ptr *QDBusArgument) EndMap() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::endMap")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::endMap")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_EndMap(ptr.Pointer())
@@ -246,11 +182,7 @@ func (ptr *QDBusArgument) EndMap() {
 }
 
 func (ptr *QDBusArgument) EndMap2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::endMap")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::endMap")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_EndMap2(ptr.Pointer())
@@ -258,11 +190,7 @@ func (ptr *QDBusArgument) EndMap2() {
 }
 
 func (ptr *QDBusArgument) EndMapEntry() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::endMapEntry")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::endMapEntry")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_EndMapEntry(ptr.Pointer())
@@ -270,11 +198,7 @@ func (ptr *QDBusArgument) EndMapEntry() {
 }
 
 func (ptr *QDBusArgument) EndMapEntry2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::endMapEntry")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::endMapEntry")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_EndMapEntry2(ptr.Pointer())
@@ -282,11 +206,7 @@ func (ptr *QDBusArgument) EndMapEntry2() {
 }
 
 func (ptr *QDBusArgument) EndStructure() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::endStructure")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::endStructure")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_EndStructure(ptr.Pointer())
@@ -294,11 +214,7 @@ func (ptr *QDBusArgument) EndStructure() {
 }
 
 func (ptr *QDBusArgument) EndStructure2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::endStructure")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::endStructure")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_EndStructure2(ptr.Pointer())
@@ -306,11 +222,7 @@ func (ptr *QDBusArgument) EndStructure2() {
 }
 
 func (ptr *QDBusArgument) DestroyQDBusArgument() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusArgument::~QDBusArgument")
-		}
-	}()
+	defer qt.Recovering("QDBusArgument::~QDBusArgument")
 
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_DestroyQDBusArgument(ptr.Pointer())

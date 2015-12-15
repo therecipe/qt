@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQXmlContentHandler(ptr QXmlContentHandler_ITF) unsafe.Pointer {
 func NewQXmlContentHandlerFromPointer(ptr unsafe.Pointer) *QXmlContentHandler {
 	var n = new(QXmlContentHandler)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QXmlContentHandler_") {
+		n.SetObjectNameAbs("QXmlContentHandler_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QXmlContentHandler) QXmlContentHandler_PTR() *QXmlContentHandler {
 }
 
 func (ptr *QXmlContentHandler) Characters(ch string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::characters")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::characters")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlContentHandler_Characters(ptr.Pointer(), C.CString(ch)) != 0
@@ -54,11 +53,7 @@ func (ptr *QXmlContentHandler) Characters(ch string) bool {
 }
 
 func (ptr *QXmlContentHandler) EndDocument() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::endDocument")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::endDocument")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlContentHandler_EndDocument(ptr.Pointer()) != 0
@@ -67,11 +62,7 @@ func (ptr *QXmlContentHandler) EndDocument() bool {
 }
 
 func (ptr *QXmlContentHandler) EndElement(namespaceURI string, localName string, qName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::endElement")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::endElement")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlContentHandler_EndElement(ptr.Pointer(), C.CString(namespaceURI), C.CString(localName), C.CString(qName)) != 0
@@ -80,11 +71,7 @@ func (ptr *QXmlContentHandler) EndElement(namespaceURI string, localName string,
 }
 
 func (ptr *QXmlContentHandler) EndPrefixMapping(prefix string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::endPrefixMapping")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::endPrefixMapping")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlContentHandler_EndPrefixMapping(ptr.Pointer(), C.CString(prefix)) != 0
@@ -93,11 +80,7 @@ func (ptr *QXmlContentHandler) EndPrefixMapping(prefix string) bool {
 }
 
 func (ptr *QXmlContentHandler) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::errorString")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlContentHandler_ErrorString(ptr.Pointer()))
@@ -106,11 +89,7 @@ func (ptr *QXmlContentHandler) ErrorString() string {
 }
 
 func (ptr *QXmlContentHandler) IgnorableWhitespace(ch string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::ignorableWhitespace")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::ignorableWhitespace")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlContentHandler_IgnorableWhitespace(ptr.Pointer(), C.CString(ch)) != 0
@@ -119,11 +98,7 @@ func (ptr *QXmlContentHandler) IgnorableWhitespace(ch string) bool {
 }
 
 func (ptr *QXmlContentHandler) ProcessingInstruction(target string, data string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::processingInstruction")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::processingInstruction")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlContentHandler_ProcessingInstruction(ptr.Pointer(), C.CString(target), C.CString(data)) != 0
@@ -132,11 +107,7 @@ func (ptr *QXmlContentHandler) ProcessingInstruction(target string, data string)
 }
 
 func (ptr *QXmlContentHandler) SetDocumentLocator(locator QXmlLocator_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::setDocumentLocator")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::setDocumentLocator")
 
 	if ptr.Pointer() != nil {
 		C.QXmlContentHandler_SetDocumentLocator(ptr.Pointer(), PointerFromQXmlLocator(locator))
@@ -144,11 +115,7 @@ func (ptr *QXmlContentHandler) SetDocumentLocator(locator QXmlLocator_ITF) {
 }
 
 func (ptr *QXmlContentHandler) SkippedEntity(name string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::skippedEntity")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::skippedEntity")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlContentHandler_SkippedEntity(ptr.Pointer(), C.CString(name)) != 0
@@ -157,11 +124,7 @@ func (ptr *QXmlContentHandler) SkippedEntity(name string) bool {
 }
 
 func (ptr *QXmlContentHandler) StartDocument() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::startDocument")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::startDocument")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlContentHandler_StartDocument(ptr.Pointer()) != 0
@@ -170,11 +133,7 @@ func (ptr *QXmlContentHandler) StartDocument() bool {
 }
 
 func (ptr *QXmlContentHandler) StartElement(namespaceURI string, localName string, qName string, atts QXmlAttributes_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::startElement")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::startElement")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlContentHandler_StartElement(ptr.Pointer(), C.CString(namespaceURI), C.CString(localName), C.CString(qName), PointerFromQXmlAttributes(atts)) != 0
@@ -183,11 +142,7 @@ func (ptr *QXmlContentHandler) StartElement(namespaceURI string, localName strin
 }
 
 func (ptr *QXmlContentHandler) StartPrefixMapping(prefix string, uri string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::startPrefixMapping")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::startPrefixMapping")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlContentHandler_StartPrefixMapping(ptr.Pointer(), C.CString(prefix), C.CString(uri)) != 0
@@ -196,13 +151,26 @@ func (ptr *QXmlContentHandler) StartPrefixMapping(prefix string, uri string) boo
 }
 
 func (ptr *QXmlContentHandler) DestroyQXmlContentHandler() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlContentHandler::~QXmlContentHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlContentHandler::~QXmlContentHandler")
 
 	if ptr.Pointer() != nil {
 		C.QXmlContentHandler_DestroyQXmlContentHandler(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlContentHandler) ObjectNameAbs() string {
+	defer qt.Recovering("QXmlContentHandler::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlContentHandler_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QXmlContentHandler) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QXmlContentHandler::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QXmlContentHandler_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

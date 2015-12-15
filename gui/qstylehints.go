@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQStyleHintsFromPointer(ptr unsafe.Pointer) *QStyleHints {
 	var n = new(QStyleHints)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QStyleHints_") {
-		n.SetObjectName("QStyleHints_" + qt.RandomIdentifier())
+		n.SetObjectName("QStyleHints_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QStyleHints) QStyleHints_PTR() *QStyleHints {
 }
 
 func (ptr *QStyleHints) CursorFlashTime() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::cursorFlashTime")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::cursorFlashTime")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStyleHints_CursorFlashTime(ptr.Pointer()))
@@ -52,11 +47,7 @@ func (ptr *QStyleHints) CursorFlashTime() int {
 }
 
 func (ptr *QStyleHints) FontSmoothingGamma() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::fontSmoothingGamma")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::fontSmoothingGamma")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QStyleHints_FontSmoothingGamma(ptr.Pointer()))
@@ -65,11 +56,7 @@ func (ptr *QStyleHints) FontSmoothingGamma() float64 {
 }
 
 func (ptr *QStyleHints) KeyboardAutoRepeatRate() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::keyboardAutoRepeatRate")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::keyboardAutoRepeatRate")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStyleHints_KeyboardAutoRepeatRate(ptr.Pointer()))
@@ -78,11 +65,7 @@ func (ptr *QStyleHints) KeyboardAutoRepeatRate() int {
 }
 
 func (ptr *QStyleHints) KeyboardInputInterval() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::keyboardInputInterval")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::keyboardInputInterval")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStyleHints_KeyboardInputInterval(ptr.Pointer()))
@@ -91,11 +74,7 @@ func (ptr *QStyleHints) KeyboardInputInterval() int {
 }
 
 func (ptr *QStyleHints) MouseDoubleClickInterval() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::mouseDoubleClickInterval")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::mouseDoubleClickInterval")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStyleHints_MouseDoubleClickInterval(ptr.Pointer()))
@@ -104,11 +83,7 @@ func (ptr *QStyleHints) MouseDoubleClickInterval() int {
 }
 
 func (ptr *QStyleHints) MousePressAndHoldInterval() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::mousePressAndHoldInterval")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::mousePressAndHoldInterval")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStyleHints_MousePressAndHoldInterval(ptr.Pointer()))
@@ -117,11 +92,7 @@ func (ptr *QStyleHints) MousePressAndHoldInterval() int {
 }
 
 func (ptr *QStyleHints) PasswordMaskDelay() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::passwordMaskDelay")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::passwordMaskDelay")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStyleHints_PasswordMaskDelay(ptr.Pointer()))
@@ -130,11 +101,7 @@ func (ptr *QStyleHints) PasswordMaskDelay() int {
 }
 
 func (ptr *QStyleHints) SetFocusOnTouchRelease() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::setFocusOnTouchRelease")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::setFocusOnTouchRelease")
 
 	if ptr.Pointer() != nil {
 		return C.QStyleHints_SetFocusOnTouchRelease(ptr.Pointer()) != 0
@@ -143,11 +110,7 @@ func (ptr *QStyleHints) SetFocusOnTouchRelease() bool {
 }
 
 func (ptr *QStyleHints) ShowIsFullScreen() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::showIsFullScreen")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::showIsFullScreen")
 
 	if ptr.Pointer() != nil {
 		return C.QStyleHints_ShowIsFullScreen(ptr.Pointer()) != 0
@@ -156,11 +119,7 @@ func (ptr *QStyleHints) ShowIsFullScreen() bool {
 }
 
 func (ptr *QStyleHints) SingleClickActivation() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::singleClickActivation")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::singleClickActivation")
 
 	if ptr.Pointer() != nil {
 		return C.QStyleHints_SingleClickActivation(ptr.Pointer()) != 0
@@ -169,11 +128,7 @@ func (ptr *QStyleHints) SingleClickActivation() bool {
 }
 
 func (ptr *QStyleHints) StartDragDistance() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::startDragDistance")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::startDragDistance")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStyleHints_StartDragDistance(ptr.Pointer()))
@@ -182,11 +137,7 @@ func (ptr *QStyleHints) StartDragDistance() int {
 }
 
 func (ptr *QStyleHints) StartDragTime() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::startDragTime")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::startDragTime")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStyleHints_StartDragTime(ptr.Pointer()))
@@ -195,11 +146,7 @@ func (ptr *QStyleHints) StartDragTime() int {
 }
 
 func (ptr *QStyleHints) StartDragVelocity() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::startDragVelocity")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::startDragVelocity")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStyleHints_StartDragVelocity(ptr.Pointer()))
@@ -208,11 +155,7 @@ func (ptr *QStyleHints) StartDragVelocity() int {
 }
 
 func (ptr *QStyleHints) TabFocusBehavior() core.Qt__TabFocusBehavior {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::tabFocusBehavior")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::tabFocusBehavior")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__TabFocusBehavior(C.QStyleHints_TabFocusBehavior(ptr.Pointer()))
@@ -221,11 +164,7 @@ func (ptr *QStyleHints) TabFocusBehavior() core.Qt__TabFocusBehavior {
 }
 
 func (ptr *QStyleHints) UseRtlExtensions() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::useRtlExtensions")
-		}
-	}()
+	defer qt.Recovering("QStyleHints::useRtlExtensions")
 
 	if ptr.Pointer() != nil {
 		return C.QStyleHints_UseRtlExtensions(ptr.Pointer()) != 0
@@ -234,11 +173,7 @@ func (ptr *QStyleHints) UseRtlExtensions() bool {
 }
 
 func (ptr *QStyleHints) ConnectCursorFlashTimeChanged(f func(cursorFlashTime int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::cursorFlashTimeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QStyleHints::cursorFlashTimeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStyleHints_ConnectCursorFlashTimeChanged(ptr.Pointer())
@@ -247,11 +182,7 @@ func (ptr *QStyleHints) ConnectCursorFlashTimeChanged(f func(cursorFlashTime int
 }
 
 func (ptr *QStyleHints) DisconnectCursorFlashTimeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::cursorFlashTimeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QStyleHints::cursorFlashTimeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStyleHints_DisconnectCursorFlashTimeChanged(ptr.Pointer())
@@ -261,21 +192,17 @@ func (ptr *QStyleHints) DisconnectCursorFlashTimeChanged() {
 
 //export callbackQStyleHintsCursorFlashTimeChanged
 func callbackQStyleHintsCursorFlashTimeChanged(ptrName *C.char, cursorFlashTime C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::cursorFlashTimeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QStyleHints::cursorFlashTimeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "cursorFlashTimeChanged").(func(int))(int(cursorFlashTime))
+	var signal = qt.GetSignal(C.GoString(ptrName), "cursorFlashTimeChanged")
+	if signal != nil {
+		signal.(func(int))(int(cursorFlashTime))
+	}
+
 }
 
 func (ptr *QStyleHints) ConnectKeyboardInputIntervalChanged(f func(keyboardInputInterval int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::keyboardInputIntervalChanged")
-		}
-	}()
+	defer qt.Recovering("connect QStyleHints::keyboardInputIntervalChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStyleHints_ConnectKeyboardInputIntervalChanged(ptr.Pointer())
@@ -284,11 +211,7 @@ func (ptr *QStyleHints) ConnectKeyboardInputIntervalChanged(f func(keyboardInput
 }
 
 func (ptr *QStyleHints) DisconnectKeyboardInputIntervalChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::keyboardInputIntervalChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QStyleHints::keyboardInputIntervalChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStyleHints_DisconnectKeyboardInputIntervalChanged(ptr.Pointer())
@@ -298,21 +221,17 @@ func (ptr *QStyleHints) DisconnectKeyboardInputIntervalChanged() {
 
 //export callbackQStyleHintsKeyboardInputIntervalChanged
 func callbackQStyleHintsKeyboardInputIntervalChanged(ptrName *C.char, keyboardInputInterval C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::keyboardInputIntervalChanged")
-		}
-	}()
+	defer qt.Recovering("callback QStyleHints::keyboardInputIntervalChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "keyboardInputIntervalChanged").(func(int))(int(keyboardInputInterval))
+	var signal = qt.GetSignal(C.GoString(ptrName), "keyboardInputIntervalChanged")
+	if signal != nil {
+		signal.(func(int))(int(keyboardInputInterval))
+	}
+
 }
 
 func (ptr *QStyleHints) ConnectMouseDoubleClickIntervalChanged(f func(mouseDoubleClickInterval int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::mouseDoubleClickIntervalChanged")
-		}
-	}()
+	defer qt.Recovering("connect QStyleHints::mouseDoubleClickIntervalChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStyleHints_ConnectMouseDoubleClickIntervalChanged(ptr.Pointer())
@@ -321,11 +240,7 @@ func (ptr *QStyleHints) ConnectMouseDoubleClickIntervalChanged(f func(mouseDoubl
 }
 
 func (ptr *QStyleHints) DisconnectMouseDoubleClickIntervalChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::mouseDoubleClickIntervalChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QStyleHints::mouseDoubleClickIntervalChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStyleHints_DisconnectMouseDoubleClickIntervalChanged(ptr.Pointer())
@@ -335,21 +250,17 @@ func (ptr *QStyleHints) DisconnectMouseDoubleClickIntervalChanged() {
 
 //export callbackQStyleHintsMouseDoubleClickIntervalChanged
 func callbackQStyleHintsMouseDoubleClickIntervalChanged(ptrName *C.char, mouseDoubleClickInterval C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::mouseDoubleClickIntervalChanged")
-		}
-	}()
+	defer qt.Recovering("callback QStyleHints::mouseDoubleClickIntervalChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickIntervalChanged").(func(int))(int(mouseDoubleClickInterval))
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickIntervalChanged")
+	if signal != nil {
+		signal.(func(int))(int(mouseDoubleClickInterval))
+	}
+
 }
 
 func (ptr *QStyleHints) ConnectStartDragDistanceChanged(f func(startDragDistance int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::startDragDistanceChanged")
-		}
-	}()
+	defer qt.Recovering("connect QStyleHints::startDragDistanceChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStyleHints_ConnectStartDragDistanceChanged(ptr.Pointer())
@@ -358,11 +269,7 @@ func (ptr *QStyleHints) ConnectStartDragDistanceChanged(f func(startDragDistance
 }
 
 func (ptr *QStyleHints) DisconnectStartDragDistanceChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::startDragDistanceChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QStyleHints::startDragDistanceChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStyleHints_DisconnectStartDragDistanceChanged(ptr.Pointer())
@@ -372,21 +279,17 @@ func (ptr *QStyleHints) DisconnectStartDragDistanceChanged() {
 
 //export callbackQStyleHintsStartDragDistanceChanged
 func callbackQStyleHintsStartDragDistanceChanged(ptrName *C.char, startDragDistance C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::startDragDistanceChanged")
-		}
-	}()
+	defer qt.Recovering("callback QStyleHints::startDragDistanceChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "startDragDistanceChanged").(func(int))(int(startDragDistance))
+	var signal = qt.GetSignal(C.GoString(ptrName), "startDragDistanceChanged")
+	if signal != nil {
+		signal.(func(int))(int(startDragDistance))
+	}
+
 }
 
 func (ptr *QStyleHints) ConnectStartDragTimeChanged(f func(startDragTime int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::startDragTimeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QStyleHints::startDragTimeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStyleHints_ConnectStartDragTimeChanged(ptr.Pointer())
@@ -395,11 +298,7 @@ func (ptr *QStyleHints) ConnectStartDragTimeChanged(f func(startDragTime int)) {
 }
 
 func (ptr *QStyleHints) DisconnectStartDragTimeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::startDragTimeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QStyleHints::startDragTimeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStyleHints_DisconnectStartDragTimeChanged(ptr.Pointer())
@@ -409,11 +308,11 @@ func (ptr *QStyleHints) DisconnectStartDragTimeChanged() {
 
 //export callbackQStyleHintsStartDragTimeChanged
 func callbackQStyleHintsStartDragTimeChanged(ptrName *C.char, startDragTime C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleHints::startDragTimeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QStyleHints::startDragTimeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "startDragTimeChanged").(func(int))(int(startDragTime))
+	var signal = qt.GetSignal(C.GoString(ptrName), "startDragTimeChanged")
+	if signal != nil {
+		signal.(func(int))(int(startDragTime))
+	}
+
 }

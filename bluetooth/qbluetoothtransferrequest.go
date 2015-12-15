@@ -3,8 +3,8 @@ package bluetooth
 //#include "bluetooth.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -53,31 +53,19 @@ const (
 )
 
 func NewQBluetoothTransferRequest(address QBluetoothAddress_ITF) *QBluetoothTransferRequest {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothTransferRequest::QBluetoothTransferRequest")
-		}
-	}()
+	defer qt.Recovering("QBluetoothTransferRequest::QBluetoothTransferRequest")
 
 	return NewQBluetoothTransferRequestFromPointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest(PointerFromQBluetoothAddress(address)))
 }
 
 func NewQBluetoothTransferRequest2(other QBluetoothTransferRequest_ITF) *QBluetoothTransferRequest {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothTransferRequest::QBluetoothTransferRequest")
-		}
-	}()
+	defer qt.Recovering("QBluetoothTransferRequest::QBluetoothTransferRequest")
 
 	return NewQBluetoothTransferRequestFromPointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest2(PointerFromQBluetoothTransferRequest(other)))
 }
 
 func (ptr *QBluetoothTransferRequest) Attribute(code QBluetoothTransferRequest__Attribute, defaultValue core.QVariant_ITF) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothTransferRequest::attribute")
-		}
-	}()
+	defer qt.Recovering("QBluetoothTransferRequest::attribute")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QBluetoothTransferRequest_Attribute(ptr.Pointer(), C.int(code), core.PointerFromQVariant(defaultValue)))
@@ -86,11 +74,7 @@ func (ptr *QBluetoothTransferRequest) Attribute(code QBluetoothTransferRequest__
 }
 
 func (ptr *QBluetoothTransferRequest) SetAttribute(code QBluetoothTransferRequest__Attribute, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothTransferRequest::setAttribute")
-		}
-	}()
+	defer qt.Recovering("QBluetoothTransferRequest::setAttribute")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferRequest_SetAttribute(ptr.Pointer(), C.int(code), core.PointerFromQVariant(value))
@@ -98,11 +82,7 @@ func (ptr *QBluetoothTransferRequest) SetAttribute(code QBluetoothTransferReques
 }
 
 func (ptr *QBluetoothTransferRequest) DestroyQBluetoothTransferRequest() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothTransferRequest::~QBluetoothTransferRequest")
-		}
-	}()
+	defer qt.Recovering("QBluetoothTransferRequest::~QBluetoothTransferRequest")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(ptr.Pointer())

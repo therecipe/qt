@@ -4,7 +4,6 @@ package dbus
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQDBusConnectionInterfaceFromPointer(ptr unsafe.Pointer) *QDBusConnection
 	var n = new(QDBusConnectionInterface)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusConnectionInterface_") {
-		n.SetObjectName("QDBusConnectionInterface_" + qt.RandomIdentifier())
+		n.SetObjectName("QDBusConnectionInterface_" + qt.Identifier())
 	}
 	return n
 }
@@ -64,11 +63,7 @@ const (
 )
 
 func (ptr *QDBusConnectionInterface) ConnectServiceRegistered(f func(serviceName string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusConnectionInterface::serviceRegistered")
-		}
-	}()
+	defer qt.Recovering("connect QDBusConnectionInterface::serviceRegistered")
 
 	if ptr.Pointer() != nil {
 		C.QDBusConnectionInterface_ConnectServiceRegistered(ptr.Pointer())
@@ -77,11 +72,7 @@ func (ptr *QDBusConnectionInterface) ConnectServiceRegistered(f func(serviceName
 }
 
 func (ptr *QDBusConnectionInterface) DisconnectServiceRegistered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusConnectionInterface::serviceRegistered")
-		}
-	}()
+	defer qt.Recovering("disconnect QDBusConnectionInterface::serviceRegistered")
 
 	if ptr.Pointer() != nil {
 		C.QDBusConnectionInterface_DisconnectServiceRegistered(ptr.Pointer())
@@ -91,21 +82,17 @@ func (ptr *QDBusConnectionInterface) DisconnectServiceRegistered() {
 
 //export callbackQDBusConnectionInterfaceServiceRegistered
 func callbackQDBusConnectionInterfaceServiceRegistered(ptrName *C.char, serviceName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusConnectionInterface::serviceRegistered")
-		}
-	}()
+	defer qt.Recovering("callback QDBusConnectionInterface::serviceRegistered")
 
-	qt.GetSignal(C.GoString(ptrName), "serviceRegistered").(func(string))(C.GoString(serviceName))
+	var signal = qt.GetSignal(C.GoString(ptrName), "serviceRegistered")
+	if signal != nil {
+		signal.(func(string))(C.GoString(serviceName))
+	}
+
 }
 
 func (ptr *QDBusConnectionInterface) ConnectServiceUnregistered(f func(serviceName string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusConnectionInterface::serviceUnregistered")
-		}
-	}()
+	defer qt.Recovering("connect QDBusConnectionInterface::serviceUnregistered")
 
 	if ptr.Pointer() != nil {
 		C.QDBusConnectionInterface_ConnectServiceUnregistered(ptr.Pointer())
@@ -114,11 +101,7 @@ func (ptr *QDBusConnectionInterface) ConnectServiceUnregistered(f func(serviceNa
 }
 
 func (ptr *QDBusConnectionInterface) DisconnectServiceUnregistered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusConnectionInterface::serviceUnregistered")
-		}
-	}()
+	defer qt.Recovering("disconnect QDBusConnectionInterface::serviceUnregistered")
 
 	if ptr.Pointer() != nil {
 		C.QDBusConnectionInterface_DisconnectServiceUnregistered(ptr.Pointer())
@@ -128,11 +111,11 @@ func (ptr *QDBusConnectionInterface) DisconnectServiceUnregistered() {
 
 //export callbackQDBusConnectionInterfaceServiceUnregistered
 func callbackQDBusConnectionInterfaceServiceUnregistered(ptrName *C.char, serviceName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusConnectionInterface::serviceUnregistered")
-		}
-	}()
+	defer qt.Recovering("callback QDBusConnectionInterface::serviceUnregistered")
 
-	qt.GetSignal(C.GoString(ptrName), "serviceUnregistered").(func(string))(C.GoString(serviceName))
+	var signal = qt.GetSignal(C.GoString(ptrName), "serviceUnregistered")
+	if signal != nil {
+		signal.(func(string))(C.GoString(serviceName))
+	}
+
 }

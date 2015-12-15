@@ -3,10 +3,23 @@
 
 #include <QColor>
 #include <QCursor>
+#include <QDrag>
+#include <QDragEnterEvent>
+#include <QDragLeaveEvent>
+#include <QDragMoveEvent>
+#include <QDropEvent>
 #include <QEvent>
+#include <QExposeEvent>
+#include <QFocusEvent>
+#include <QHideEvent>
+#include <QHoverEvent>
 #include <QImage>
+#include <QInputMethod>
+#include <QInputMethodEvent>
+#include <QKeyEvent>
 #include <QMatrix4x4>
 #include <QMetaObject>
+#include <QMouseEvent>
 #include <QObject>
 #include <QOpenGLContext>
 #include <QOpenGLFramebufferObject>
@@ -28,6 +41,7 @@
 #include <QQuickWindow>
 #include <QRect>
 #include <QRectF>
+#include <QResizeEvent>
 #include <QRunnable>
 #include <QSGAbstractRenderer>
 #include <QSGBasicGeometryNode>
@@ -39,30 +53,32 @@
 #include <QSGGeometryNode>
 #include <QSGMaterial>
 #include <QSGMaterialShader>
-#include <QSGMaterialType>
 #include <QSGNode>
 #include <QSGOpacityNode>
 #include <QSGOpaqueTextureMaterial>
 #include <QSGSimpleRectNode>
 #include <QSGSimpleTextureNode>
 #include <QSGTexture>
-#include <QSGTextureMaterial>
 #include <QSGTextureProvider>
 #include <QSGTransformNode>
-#include <QSGVertexColorMaterial>
+#include <QShowEvent>
 #include <QSize>
 #include <QString>
 #include <QSurface>
 #include <QSurfaceFormat>
 #include <QThread>
+#include <QTouchEvent>
 #include <QUrl>
 #include <QVariant>
+#include <QWheelEvent>
 #include <QWidget>
 #include <QWindow>
 
 class MyQQuickFramebufferObject: public QQuickFramebufferObject {
 public:
-void Signal_TextureFollowsItemSizeChanged(bool v){callbackQQuickFramebufferObjectTextureFollowsItemSizeChanged(this->objectName().toUtf8().data(), v);};
+	void releaseResources() { if (!callbackQQuickFramebufferObjectReleaseResources(this->objectName().toUtf8().data())) { QQuickFramebufferObject::releaseResources(); }; };
+	void Signal_TextureFollowsItemSizeChanged(bool v) { callbackQQuickFramebufferObjectTextureFollowsItemSizeChanged(this->objectName().toUtf8().data(), v); };
+protected:
 };
 
 void QQuickFramebufferObject_SetTextureFollowsItemSize(void* ptr, int follows){
@@ -95,10 +111,15 @@ void* QQuickFramebufferObject_TextureProvider(void* ptr){
 
 class MyQQuickImageProvider: public QQuickImageProvider {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQQuickImageProvider(ImageType type, Flags flags) : QQuickImageProvider(type, flags) {};
+protected:
 };
 
 void* QQuickImageProvider_NewQQuickImageProvider(int ty, int flags){
-	return new QQuickImageProvider(static_cast<QQmlImageProviderBase::ImageType>(ty), static_cast<QQmlImageProviderBase::Flag>(flags));
+	return new MyQQuickImageProvider(static_cast<QQmlImageProviderBase::ImageType>(ty), static_cast<QQmlImageProviderBase::Flag>(flags));
 }
 
 int QQuickImageProvider_Flags(void* ptr){
@@ -113,13 +134,47 @@ void QQuickImageProvider_DestroyQQuickImageProvider(void* ptr){
 	static_cast<QQuickImageProvider*>(ptr)->~QQuickImageProvider();
 }
 
+char* QQuickImageProvider_ObjectNameAbs(void* ptr){
+	return static_cast<MyQQuickImageProvider*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QQuickImageProvider_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQQuickImageProvider*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQQuickItem: public QQuickItem {
 public:
-void Signal_WindowChanged(QQuickWindow * window){callbackQQuickItemWindowChanged(this->objectName().toUtf8().data(), window);};
+	MyQQuickItem(QQuickItem *parent) : QQuickItem(parent) {};
+	void Signal_WindowChanged(QQuickWindow * window) { callbackQQuickItemWindowChanged(this->objectName().toUtf8().data(), window); };
+protected:
+	void classBegin() { if (!callbackQQuickItemClassBegin(this->objectName().toUtf8().data())) { QQuickItem::classBegin(); }; };
+	void componentComplete() { if (!callbackQQuickItemComponentComplete(this->objectName().toUtf8().data())) { QQuickItem::componentComplete(); }; };
+	void dragEnterEvent(QDragEnterEvent * event) { if (!callbackQQuickItemDragEnterEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::dragEnterEvent(event); }; };
+	void dragLeaveEvent(QDragLeaveEvent * event) { if (!callbackQQuickItemDragLeaveEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::dragLeaveEvent(event); }; };
+	void dragMoveEvent(QDragMoveEvent * event) { if (!callbackQQuickItemDragMoveEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::dragMoveEvent(event); }; };
+	void dropEvent(QDropEvent * event) { if (!callbackQQuickItemDropEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::dropEvent(event); }; };
+	void focusInEvent(QFocusEvent * event) { if (!callbackQQuickItemFocusInEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::focusInEvent(event); }; };
+	void focusOutEvent(QFocusEvent * event) { if (!callbackQQuickItemFocusOutEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::focusOutEvent(event); }; };
+	void hoverEnterEvent(QHoverEvent * event) { if (!callbackQQuickItemHoverEnterEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::hoverEnterEvent(event); }; };
+	void hoverLeaveEvent(QHoverEvent * event) { if (!callbackQQuickItemHoverLeaveEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::hoverLeaveEvent(event); }; };
+	void hoverMoveEvent(QHoverEvent * event) { if (!callbackQQuickItemHoverMoveEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::hoverMoveEvent(event); }; };
+	void inputMethodEvent(QInputMethodEvent * event) { if (!callbackQQuickItemInputMethodEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::inputMethodEvent(event); }; };
+	void keyPressEvent(QKeyEvent * event) { if (!callbackQQuickItemKeyPressEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::keyPressEvent(event); }; };
+	void keyReleaseEvent(QKeyEvent * event) { if (!callbackQQuickItemKeyReleaseEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::keyReleaseEvent(event); }; };
+	void mouseDoubleClickEvent(QMouseEvent * event) { if (!callbackQQuickItemMouseDoubleClickEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::mouseDoubleClickEvent(event); }; };
+	void mouseMoveEvent(QMouseEvent * event) { if (!callbackQQuickItemMouseMoveEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::mouseMoveEvent(event); }; };
+	void mousePressEvent(QMouseEvent * event) { if (!callbackQQuickItemMousePressEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::mousePressEvent(event); }; };
+	void mouseReleaseEvent(QMouseEvent * event) { if (!callbackQQuickItemMouseReleaseEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::mouseReleaseEvent(event); }; };
+	void mouseUngrabEvent() { if (!callbackQQuickItemMouseUngrabEvent(this->objectName().toUtf8().data())) { QQuickItem::mouseUngrabEvent(); }; };
+	void releaseResources() { if (!callbackQQuickItemReleaseResources(this->objectName().toUtf8().data())) { QQuickItem::releaseResources(); }; };
+	void touchEvent(QTouchEvent * event) { if (!callbackQQuickItemTouchEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::touchEvent(event); }; };
+	void touchUngrabEvent() { if (!callbackQQuickItemTouchUngrabEvent(this->objectName().toUtf8().data())) { QQuickItem::touchUngrabEvent(); }; };
+	void updatePolish() { if (!callbackQQuickItemUpdatePolish(this->objectName().toUtf8().data())) { QQuickItem::updatePolish(); }; };
+	void wheelEvent(QWheelEvent * event) { if (!callbackQQuickItemWheelEvent(this->objectName().toUtf8().data(), event)) { QQuickItem::wheelEvent(event); }; };
 };
 
 void* QQuickItem_NewQQuickItem(void* parent){
-	return new QQuickItem(static_cast<QQuickItem*>(parent));
+	return new MyQQuickItem(static_cast<QQuickItem*>(parent));
 }
 
 int QQuickItem_ActiveFocusOnTab(void* ptr){
@@ -452,7 +507,8 @@ void QQuickItem_DestroyQQuickItem(void* ptr){
 
 class MyQQuickItemGrabResult: public QQuickItemGrabResult {
 public:
-void Signal_Ready(){callbackQQuickItemGrabResultReady(this->objectName().toUtf8().data());};
+	void Signal_Ready() { callbackQQuickItemGrabResultReady(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QQuickItemGrabResult_ConnectReady(void* ptr){
@@ -469,10 +525,12 @@ int QQuickItemGrabResult_SaveToFile(void* ptr, char* fileName){
 
 class MyQQuickPaintedItem: public QQuickPaintedItem {
 public:
-void Signal_ContentsScaleChanged(){callbackQQuickPaintedItemContentsScaleChanged(this->objectName().toUtf8().data());};
-void Signal_ContentsSizeChanged(){callbackQQuickPaintedItemContentsSizeChanged(this->objectName().toUtf8().data());};
-void Signal_FillColorChanged(){callbackQQuickPaintedItemFillColorChanged(this->objectName().toUtf8().data());};
-void Signal_RenderTargetChanged(){callbackQQuickPaintedItemRenderTargetChanged(this->objectName().toUtf8().data());};
+	void Signal_ContentsScaleChanged() { callbackQQuickPaintedItemContentsScaleChanged(this->objectName().toUtf8().data()); };
+	void Signal_ContentsSizeChanged() { callbackQQuickPaintedItemContentsSizeChanged(this->objectName().toUtf8().data()); };
+	void Signal_FillColorChanged() { callbackQQuickPaintedItemFillColorChanged(this->objectName().toUtf8().data()); };
+	void Signal_RenderTargetChanged() { callbackQQuickPaintedItemRenderTargetChanged(this->objectName().toUtf8().data()); };
+protected:
+	void releaseResources() { if (!callbackQQuickPaintedItemReleaseResources(this->objectName().toUtf8().data())) { QQuickPaintedItem::releaseResources(); }; };
 };
 
 double QQuickPaintedItem_ContentsScale(void* ptr){
@@ -597,12 +655,14 @@ void QQuickPaintedItem_DestroyQQuickPaintedItem(void* ptr){
 
 class MyQQuickRenderControl: public QQuickRenderControl {
 public:
-void Signal_RenderRequested(){callbackQQuickRenderControlRenderRequested(this->objectName().toUtf8().data());};
-void Signal_SceneChanged(){callbackQQuickRenderControlSceneChanged(this->objectName().toUtf8().data());};
+	MyQQuickRenderControl(QObject *parent) : QQuickRenderControl(parent) {};
+	void Signal_RenderRequested() { callbackQQuickRenderControlRenderRequested(this->objectName().toUtf8().data()); };
+	void Signal_SceneChanged() { callbackQQuickRenderControlSceneChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QQuickRenderControl_NewQQuickRenderControl(void* parent){
-	return new QQuickRenderControl(static_cast<QObject*>(parent));
+	return new MyQQuickRenderControl(static_cast<QObject*>(parent));
 }
 
 void QQuickRenderControl_Initialize(void* ptr, void* gl){
@@ -657,10 +717,6 @@ void QQuickRenderControl_DestroyQQuickRenderControl(void* ptr){
 	static_cast<QQuickRenderControl*>(ptr)->~QQuickRenderControl();
 }
 
-class MyQQuickTextDocument: public QQuickTextDocument {
-public:
-};
-
 void* QQuickTextDocument_NewQQuickTextDocument(void* parent){
 	return new QQuickTextDocument(static_cast<QQuickItem*>(parent));
 }
@@ -671,6 +727,7 @@ void* QQuickTextDocument_TextDocument(void* ptr){
 
 class MyQQuickTextureFactory: public QQuickTextureFactory {
 public:
+protected:
 };
 
 void* QQuickTextureFactory_CreateTexture(void* ptr, void* window){
@@ -687,7 +744,16 @@ void QQuickTextureFactory_DestroyQQuickTextureFactory(void* ptr){
 
 class MyQQuickView: public QQuickView {
 public:
-void Signal_StatusChanged(QQuickView::Status status){callbackQQuickViewStatusChanged(this->objectName().toUtf8().data(), status);};
+	MyQQuickView(QQmlEngine *engine, QWindow *parent) : QQuickView(engine, parent) {};
+	MyQQuickView(QWindow *parent) : QQuickView(parent) {};
+	MyQQuickView(const QUrl &source, QWindow *parent) : QQuickView(source, parent) {};
+	void Signal_StatusChanged(QQuickView::Status status) { callbackQQuickViewStatusChanged(this->objectName().toUtf8().data(), status); };
+protected:
+	void keyPressEvent(QKeyEvent * e) { if (!callbackQQuickViewKeyPressEvent(this->objectName().toUtf8().data(), e)) { QQuickView::keyPressEvent(e); }; };
+	void keyReleaseEvent(QKeyEvent * e) { if (!callbackQQuickViewKeyReleaseEvent(this->objectName().toUtf8().data(), e)) { QQuickView::keyReleaseEvent(e); }; };
+	void mouseMoveEvent(QMouseEvent * e) { if (!callbackQQuickViewMouseMoveEvent(this->objectName().toUtf8().data(), e)) { QQuickView::mouseMoveEvent(e); }; };
+	void mousePressEvent(QMouseEvent * e) { if (!callbackQQuickViewMousePressEvent(this->objectName().toUtf8().data(), e)) { QQuickView::mousePressEvent(e); }; };
+	void mouseReleaseEvent(QMouseEvent * e) { if (!callbackQQuickViewMouseReleaseEvent(this->objectName().toUtf8().data(), e)) { QQuickView::mouseReleaseEvent(e); }; };
 };
 
 int QQuickView_ResizeMode(void* ptr){
@@ -703,15 +769,15 @@ int QQuickView_Status(void* ptr){
 }
 
 void* QQuickView_NewQQuickView2(void* engine, void* parent){
-	return new QQuickView(static_cast<QQmlEngine*>(engine), static_cast<QWindow*>(parent));
+	return new MyQQuickView(static_cast<QQmlEngine*>(engine), static_cast<QWindow*>(parent));
 }
 
 void* QQuickView_NewQQuickView(void* parent){
-	return new QQuickView(static_cast<QWindow*>(parent));
+	return new MyQQuickView(static_cast<QWindow*>(parent));
 }
 
 void* QQuickView_NewQQuickView3(void* source, void* parent){
-	return new QQuickView(*static_cast<QUrl*>(source), static_cast<QWindow*>(parent));
+	return new MyQQuickView(*static_cast<QUrl*>(source), static_cast<QWindow*>(parent));
 }
 
 void* QQuickView_Engine(void* ptr){
@@ -744,8 +810,27 @@ void QQuickView_DestroyQQuickView(void* ptr){
 
 class MyQQuickWidget: public QQuickWidget {
 public:
-void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message){callbackQQuickWidgetSceneGraphError(this->objectName().toUtf8().data(), error, message.toUtf8().data());};
-void Signal_StatusChanged(QQuickWidget::Status status){callbackQQuickWidgetStatusChanged(this->objectName().toUtf8().data(), status);};
+	MyQQuickWidget(QQmlEngine *engine, QWidget *parent) : QQuickWidget(engine, parent) {};
+	MyQQuickWidget(QWidget *parent) : QQuickWidget(parent) {};
+	MyQQuickWidget(const QUrl &source, QWidget *parent) : QQuickWidget(source, parent) {};
+	void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message) { callbackQQuickWidgetSceneGraphError(this->objectName().toUtf8().data(), error, message.toUtf8().data()); };
+	void Signal_StatusChanged(QQuickWidget::Status status) { callbackQQuickWidgetStatusChanged(this->objectName().toUtf8().data(), status); };
+protected:
+	void focusInEvent(QFocusEvent * event) { if (!callbackQQuickWidgetFocusInEvent(this->objectName().toUtf8().data(), event)) { QQuickWidget::focusInEvent(event); }; };
+	void focusOutEvent(QFocusEvent * event) { if (!callbackQQuickWidgetFocusOutEvent(this->objectName().toUtf8().data(), event)) { QQuickWidget::focusOutEvent(event); }; };
+	void dragEnterEvent(QDragEnterEvent * e) { if (!callbackQQuickWidgetDragEnterEvent(this->objectName().toUtf8().data(), e)) { QQuickWidget::dragEnterEvent(e); }; };
+	void dragLeaveEvent(QDragLeaveEvent * e) { if (!callbackQQuickWidgetDragLeaveEvent(this->objectName().toUtf8().data(), e)) { QQuickWidget::dragLeaveEvent(e); }; };
+	void dragMoveEvent(QDragMoveEvent * e) { if (!callbackQQuickWidgetDragMoveEvent(this->objectName().toUtf8().data(), e)) { QQuickWidget::dragMoveEvent(e); }; };
+	void dropEvent(QDropEvent * e) { if (!callbackQQuickWidgetDropEvent(this->objectName().toUtf8().data(), e)) { QQuickWidget::dropEvent(e); }; };
+	void hideEvent(QHideEvent * v) { if (!callbackQQuickWidgetHideEvent(this->objectName().toUtf8().data(), v)) { QQuickWidget::hideEvent(v); }; };
+	void keyPressEvent(QKeyEvent * e) { if (!callbackQQuickWidgetKeyPressEvent(this->objectName().toUtf8().data(), e)) { QQuickWidget::keyPressEvent(e); }; };
+	void keyReleaseEvent(QKeyEvent * e) { if (!callbackQQuickWidgetKeyReleaseEvent(this->objectName().toUtf8().data(), e)) { QQuickWidget::keyReleaseEvent(e); }; };
+	void mouseDoubleClickEvent(QMouseEvent * e) { if (!callbackQQuickWidgetMouseDoubleClickEvent(this->objectName().toUtf8().data(), e)) { QQuickWidget::mouseDoubleClickEvent(e); }; };
+	void mouseMoveEvent(QMouseEvent * e) { if (!callbackQQuickWidgetMouseMoveEvent(this->objectName().toUtf8().data(), e)) { QQuickWidget::mouseMoveEvent(e); }; };
+	void mousePressEvent(QMouseEvent * e) { if (!callbackQQuickWidgetMousePressEvent(this->objectName().toUtf8().data(), e)) { QQuickWidget::mousePressEvent(e); }; };
+	void mouseReleaseEvent(QMouseEvent * e) { if (!callbackQQuickWidgetMouseReleaseEvent(this->objectName().toUtf8().data(), e)) { QQuickWidget::mouseReleaseEvent(e); }; };
+	void showEvent(QShowEvent * v) { if (!callbackQQuickWidgetShowEvent(this->objectName().toUtf8().data(), v)) { QQuickWidget::showEvent(v); }; };
+	void wheelEvent(QWheelEvent * e) { if (!callbackQQuickWidgetWheelEvent(this->objectName().toUtf8().data(), e)) { QQuickWidget::wheelEvent(e); }; };
 };
 
 int QQuickWidget_ResizeMode(void* ptr){
@@ -761,15 +846,15 @@ int QQuickWidget_Status(void* ptr){
 }
 
 void* QQuickWidget_NewQQuickWidget2(void* engine, void* parent){
-	return new QQuickWidget(static_cast<QQmlEngine*>(engine), static_cast<QWidget*>(parent));
+	return new MyQQuickWidget(static_cast<QQmlEngine*>(engine), static_cast<QWidget*>(parent));
 }
 
 void* QQuickWidget_NewQQuickWidget(void* parent){
-	return new QQuickWidget(static_cast<QWidget*>(parent));
+	return new MyQQuickWidget(static_cast<QWidget*>(parent));
 }
 
 void* QQuickWidget_NewQQuickWidget3(void* source, void* parent){
-	return new QQuickWidget(*static_cast<QUrl*>(source), static_cast<QWidget*>(parent));
+	return new MyQQuickWidget(*static_cast<QUrl*>(source), static_cast<QWidget*>(parent));
 }
 
 void* QQuickWidget_Engine(void* ptr){
@@ -822,19 +907,34 @@ void QQuickWidget_DestroyQQuickWidget(void* ptr){
 
 class MyQQuickWindow: public QQuickWindow {
 public:
-void Signal_ActiveFocusItemChanged(){callbackQQuickWindowActiveFocusItemChanged(this->objectName().toUtf8().data());};
-void Signal_AfterAnimating(){callbackQQuickWindowAfterAnimating(this->objectName().toUtf8().data());};
-void Signal_AfterRendering(){callbackQQuickWindowAfterRendering(this->objectName().toUtf8().data());};
-void Signal_AfterSynchronizing(){callbackQQuickWindowAfterSynchronizing(this->objectName().toUtf8().data());};
-void Signal_BeforeRendering(){callbackQQuickWindowBeforeRendering(this->objectName().toUtf8().data());};
-void Signal_BeforeSynchronizing(){callbackQQuickWindowBeforeSynchronizing(this->objectName().toUtf8().data());};
-void Signal_ColorChanged(const QColor & v){callbackQQuickWindowColorChanged(this->objectName().toUtf8().data(), new QColor(v));};
-void Signal_FrameSwapped(){callbackQQuickWindowFrameSwapped(this->objectName().toUtf8().data());};
-void Signal_OpenglContextCreated(QOpenGLContext * context){callbackQQuickWindowOpenglContextCreated(this->objectName().toUtf8().data(), context);};
-void Signal_SceneGraphAboutToStop(){callbackQQuickWindowSceneGraphAboutToStop(this->objectName().toUtf8().data());};
-void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message){callbackQQuickWindowSceneGraphError(this->objectName().toUtf8().data(), error, message.toUtf8().data());};
-void Signal_SceneGraphInitialized(){callbackQQuickWindowSceneGraphInitialized(this->objectName().toUtf8().data());};
-void Signal_SceneGraphInvalidated(){callbackQQuickWindowSceneGraphInvalidated(this->objectName().toUtf8().data());};
+	MyQQuickWindow(QWindow *parent) : QQuickWindow(parent) {};
+	void Signal_ActiveFocusItemChanged() { callbackQQuickWindowActiveFocusItemChanged(this->objectName().toUtf8().data()); };
+	void Signal_AfterAnimating() { callbackQQuickWindowAfterAnimating(this->objectName().toUtf8().data()); };
+	void Signal_AfterRendering() { callbackQQuickWindowAfterRendering(this->objectName().toUtf8().data()); };
+	void Signal_AfterSynchronizing() { callbackQQuickWindowAfterSynchronizing(this->objectName().toUtf8().data()); };
+	void Signal_BeforeRendering() { callbackQQuickWindowBeforeRendering(this->objectName().toUtf8().data()); };
+	void Signal_BeforeSynchronizing() { callbackQQuickWindowBeforeSynchronizing(this->objectName().toUtf8().data()); };
+	void Signal_ColorChanged(const QColor & v) { callbackQQuickWindowColorChanged(this->objectName().toUtf8().data(), new QColor(v)); };
+	void Signal_FrameSwapped() { callbackQQuickWindowFrameSwapped(this->objectName().toUtf8().data()); };
+	void Signal_OpenglContextCreated(QOpenGLContext * context) { callbackQQuickWindowOpenglContextCreated(this->objectName().toUtf8().data(), context); };
+	void Signal_SceneGraphAboutToStop() { callbackQQuickWindowSceneGraphAboutToStop(this->objectName().toUtf8().data()); };
+	void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message) { callbackQQuickWindowSceneGraphError(this->objectName().toUtf8().data(), error, message.toUtf8().data()); };
+	void Signal_SceneGraphInitialized() { callbackQQuickWindowSceneGraphInitialized(this->objectName().toUtf8().data()); };
+	void Signal_SceneGraphInvalidated() { callbackQQuickWindowSceneGraphInvalidated(this->objectName().toUtf8().data()); };
+protected:
+	void exposeEvent(QExposeEvent * v) { if (!callbackQQuickWindowExposeEvent(this->objectName().toUtf8().data(), v)) { QQuickWindow::exposeEvent(v); }; };
+	void focusInEvent(QFocusEvent * ev) { if (!callbackQQuickWindowFocusInEvent(this->objectName().toUtf8().data(), ev)) { QQuickWindow::focusInEvent(ev); }; };
+	void focusOutEvent(QFocusEvent * ev) { if (!callbackQQuickWindowFocusOutEvent(this->objectName().toUtf8().data(), ev)) { QQuickWindow::focusOutEvent(ev); }; };
+	void hideEvent(QHideEvent * v) { if (!callbackQQuickWindowHideEvent(this->objectName().toUtf8().data(), v)) { QQuickWindow::hideEvent(v); }; };
+	void keyPressEvent(QKeyEvent * e) { if (!callbackQQuickWindowKeyPressEvent(this->objectName().toUtf8().data(), e)) { QQuickWindow::keyPressEvent(e); }; };
+	void keyReleaseEvent(QKeyEvent * e) { if (!callbackQQuickWindowKeyReleaseEvent(this->objectName().toUtf8().data(), e)) { QQuickWindow::keyReleaseEvent(e); }; };
+	void mouseDoubleClickEvent(QMouseEvent * event) { if (!callbackQQuickWindowMouseDoubleClickEvent(this->objectName().toUtf8().data(), event)) { QQuickWindow::mouseDoubleClickEvent(event); }; };
+	void mouseMoveEvent(QMouseEvent * event) { if (!callbackQQuickWindowMouseMoveEvent(this->objectName().toUtf8().data(), event)) { QQuickWindow::mouseMoveEvent(event); }; };
+	void mousePressEvent(QMouseEvent * event) { if (!callbackQQuickWindowMousePressEvent(this->objectName().toUtf8().data(), event)) { QQuickWindow::mousePressEvent(event); }; };
+	void mouseReleaseEvent(QMouseEvent * event) { if (!callbackQQuickWindowMouseReleaseEvent(this->objectName().toUtf8().data(), event)) { QQuickWindow::mouseReleaseEvent(event); }; };
+	void resizeEvent(QResizeEvent * ev) { if (!callbackQQuickWindowResizeEvent(this->objectName().toUtf8().data(), ev)) { QQuickWindow::resizeEvent(ev); }; };
+	void showEvent(QShowEvent * v) { if (!callbackQQuickWindowShowEvent(this->objectName().toUtf8().data(), v)) { QQuickWindow::showEvent(v); }; };
+	void wheelEvent(QWheelEvent * event) { if (!callbackQQuickWindowWheelEvent(this->objectName().toUtf8().data(), event)) { QQuickWindow::wheelEvent(event); }; };
 };
 
 void* QQuickWindow_ActiveFocusItem(void* ptr){
@@ -854,7 +954,7 @@ void QQuickWindow_SetColor(void* ptr, void* color){
 }
 
 void* QQuickWindow_NewQQuickWindow(void* parent){
-	return new QQuickWindow(static_cast<QWindow*>(parent));
+	return new MyQQuickWindow(static_cast<QWindow*>(parent));
 }
 
 void* QQuickWindow_AccessibleRoot(void* ptr){
@@ -1059,7 +1159,8 @@ void QQuickWindow_DestroyQQuickWindow(void* ptr){
 
 class MyQSGAbstractRenderer: public QSGAbstractRenderer {
 public:
-void Signal_SceneGraphChanged(){callbackQSGAbstractRendererSceneGraphChanged(this->objectName().toUtf8().data());};
+	void Signal_SceneGraphChanged() { callbackQSGAbstractRendererSceneGraphChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QSGAbstractRenderer_ClearColor(void* ptr){
@@ -1110,10 +1211,6 @@ void QSGAbstractRenderer_SetViewportRect2(void* ptr, void* size){
 	static_cast<QSGAbstractRenderer*>(ptr)->setViewportRect(*static_cast<QSize*>(size));
 }
 
-class MyQSGBasicGeometryNode: public QSGBasicGeometryNode {
-public:
-};
-
 void* QSGBasicGeometryNode_Geometry2(void* ptr){
 	return static_cast<QSGBasicGeometryNode*>(ptr)->geometry();
 }
@@ -1129,10 +1226,6 @@ void QSGBasicGeometryNode_SetGeometry(void* ptr, void* geometry){
 void QSGBasicGeometryNode_DestroyQSGBasicGeometryNode(void* ptr){
 	static_cast<QSGBasicGeometryNode*>(ptr)->~QSGBasicGeometryNode();
 }
-
-class MyQSGClipNode: public QSGClipNode {
-public:
-};
 
 void* QSGClipNode_NewQSGClipNode(){
 	return new QSGClipNode();
@@ -1154,17 +1247,9 @@ void QSGClipNode_DestroyQSGClipNode(void* ptr){
 	static_cast<QSGClipNode*>(ptr)->~QSGClipNode();
 }
 
-class MyQSGDynamicTexture: public QSGDynamicTexture {
-public:
-};
-
 int QSGDynamicTexture_UpdateTexture(void* ptr){
 	return static_cast<QSGDynamicTexture*>(ptr)->updateTexture();
 }
-
-class MyQSGEngine: public QSGEngine {
-public:
-};
 
 void* QSGEngine_NewQSGEngine(void* parent){
 	return new QSGEngine(static_cast<QObject*>(parent));
@@ -1190,10 +1275,6 @@ void QSGEngine_DestroyQSGEngine(void* ptr){
 	static_cast<QSGEngine*>(ptr)->~QSGEngine();
 }
 
-class MyQSGFlatColorMaterial: public QSGFlatColorMaterial {
-public:
-};
-
 void* QSGFlatColorMaterial_Color(void* ptr){
 	return new QColor(static_cast<QSGFlatColorMaterial*>(ptr)->color());
 }
@@ -1204,6 +1285,10 @@ void QSGFlatColorMaterial_SetColor(void* ptr, void* color){
 
 class MyQSGGeometry: public QSGGeometry {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 void QSGGeometry_Allocate(void* ptr, int vertexCount, int indexCount){
@@ -1286,9 +1371,13 @@ void QSGGeometry_DestroyQSGGeometry(void* ptr){
 	static_cast<QSGGeometry*>(ptr)->~QSGGeometry();
 }
 
-class MyQSGGeometryNode: public QSGGeometryNode {
-public:
-};
+char* QSGGeometry_ObjectNameAbs(void* ptr){
+	return static_cast<MyQSGGeometry*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QSGGeometry_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQSGGeometry*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 void* QSGGeometryNode_NewQSGGeometryNode(){
 	return new QSGGeometryNode();
@@ -1316,6 +1405,10 @@ void QSGGeometryNode_DestroyQSGGeometryNode(void* ptr){
 
 class MyQSGMaterial: public QSGMaterial {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 int QSGMaterial_Compare(void* ptr, void* other){
@@ -1338,8 +1431,24 @@ void* QSGMaterial_Type(void* ptr){
 	return static_cast<QSGMaterial*>(ptr)->type();
 }
 
+char* QSGMaterial_ObjectNameAbs(void* ptr){
+	return static_cast<MyQSGMaterial*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QSGMaterial_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQSGMaterial*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQSGMaterialShader: public QSGMaterialShader {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	void activate() { if (!callbackQSGMaterialShaderActivate(this->objectNameAbs().toUtf8().data())) { QSGMaterialShader::activate(); }; };
+	void deactivate() { if (!callbackQSGMaterialShaderDeactivate(this->objectNameAbs().toUtf8().data())) { QSGMaterialShader::deactivate(); }; };
+protected:
+	void compile() { if (!callbackQSGMaterialShaderCompile(this->objectNameAbs().toUtf8().data())) { QSGMaterialShader::compile(); }; };
+	void initialize() { if (!callbackQSGMaterialShaderInitialize(this->objectNameAbs().toUtf8().data())) { QSGMaterialShader::initialize(); }; };
 };
 
 void QSGMaterialShader_Activate(void* ptr){
@@ -1354,12 +1463,22 @@ void* QSGMaterialShader_Program(void* ptr){
 	return static_cast<QSGMaterialShader*>(ptr)->program();
 }
 
-class MyQSGMaterialType: public QSGMaterialType {
-public:
-};
+char* QSGMaterialShader_ObjectNameAbs(void* ptr){
+	return static_cast<MyQSGMaterialShader*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QSGMaterialShader_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQSGMaterialShader*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 class MyQSGNode: public QSGNode {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQSGNode() : QSGNode() {};
+	void preprocess() { if (!callbackQSGNodePreprocess(this->objectNameAbs().toUtf8().data())) { QSGNode::preprocess(); }; };
+protected:
 };
 
 void* QSGNode_ChildAtIndex(void* ptr, int i){
@@ -1371,7 +1490,7 @@ int QSGNode_ChildCount(void* ptr){
 }
 
 void* QSGNode_NewQSGNode(){
-	return new QSGNode();
+	return new MyQSGNode();
 }
 
 void QSGNode_AppendChildNode(void* ptr, void* node){
@@ -1450,9 +1569,13 @@ void QSGNode_DestroyQSGNode(void* ptr){
 	static_cast<QSGNode*>(ptr)->~QSGNode();
 }
 
-class MyQSGOpacityNode: public QSGOpacityNode {
-public:
-};
+char* QSGNode_ObjectNameAbs(void* ptr){
+	return static_cast<MyQSGNode*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QSGNode_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQSGNode*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 void* QSGOpacityNode_NewQSGOpacityNode(){
 	return new QSGOpacityNode();
@@ -1469,10 +1592,6 @@ void QSGOpacityNode_SetOpacity(void* ptr, double opacity){
 void QSGOpacityNode_DestroyQSGOpacityNode(void* ptr){
 	static_cast<QSGOpacityNode*>(ptr)->~QSGOpacityNode();
 }
-
-class MyQSGOpaqueTextureMaterial: public QSGOpaqueTextureMaterial {
-public:
-};
 
 int QSGOpaqueTextureMaterial_Filtering(void* ptr){
 	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->filtering();
@@ -1514,10 +1633,6 @@ int QSGOpaqueTextureMaterial_VerticalWrapMode(void* ptr){
 	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->verticalWrapMode();
 }
 
-class MyQSGSimpleRectNode: public QSGSimpleRectNode {
-public:
-};
-
 void* QSGSimpleRectNode_NewQSGSimpleRectNode2(){
 	return new QSGSimpleRectNode();
 }
@@ -1541,10 +1656,6 @@ void QSGSimpleRectNode_SetRect(void* ptr, void* rect){
 void QSGSimpleRectNode_SetRect2(void* ptr, double x, double y, double w, double h){
 	static_cast<QSGSimpleRectNode*>(ptr)->setRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
 }
-
-class MyQSGSimpleTextureNode: public QSGSimpleTextureNode {
-public:
-};
 
 void* QSGSimpleTextureNode_NewQSGSimpleTextureNode(){
 	return new QSGSimpleTextureNode();
@@ -1604,6 +1715,7 @@ void QSGSimpleTextureNode_DestroyQSGSimpleTextureNode(void* ptr){
 
 class MyQSGTexture: public QSGTexture {
 public:
+protected:
 };
 
 void QSGTexture_Bind(void* ptr){
@@ -1670,13 +1782,10 @@ void QSGTexture_DestroyQSGTexture(void* ptr){
 	static_cast<QSGTexture*>(ptr)->~QSGTexture();
 }
 
-class MyQSGTextureMaterial: public QSGTextureMaterial {
-public:
-};
-
 class MyQSGTextureProvider: public QSGTextureProvider {
 public:
-void Signal_TextureChanged(){callbackQSGTextureProviderTextureChanged(this->objectName().toUtf8().data());};
+	void Signal_TextureChanged() { callbackQSGTextureProviderTextureChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QSGTextureProvider_Texture(void* ptr){
@@ -1691,10 +1800,6 @@ void QSGTextureProvider_DisconnectTextureChanged(void* ptr){
 	QObject::disconnect(static_cast<QSGTextureProvider*>(ptr), static_cast<void (QSGTextureProvider::*)()>(&QSGTextureProvider::textureChanged), static_cast<MyQSGTextureProvider*>(ptr), static_cast<void (MyQSGTextureProvider::*)()>(&MyQSGTextureProvider::Signal_TextureChanged));;
 }
 
-class MyQSGTransformNode: public QSGTransformNode {
-public:
-};
-
 void* QSGTransformNode_NewQSGTransformNode(){
 	return new QSGTransformNode();
 }
@@ -1706,8 +1811,4 @@ void QSGTransformNode_SetMatrix(void* ptr, void* matrix){
 void QSGTransformNode_DestroyQSGTransformNode(void* ptr){
 	static_cast<QSGTransformNode*>(ptr)->~QSGTransformNode();
 }
-
-class MyQSGVertexColorMaterial: public QSGVertexColorMaterial {
-public:
-};
 

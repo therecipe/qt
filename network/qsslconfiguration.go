@@ -3,8 +3,8 @@ package network
 //#include "network.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -51,31 +51,19 @@ const (
 )
 
 func NewQSslConfiguration() *QSslConfiguration {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::QSslConfiguration")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::QSslConfiguration")
 
 	return NewQSslConfigurationFromPointer(C.QSslConfiguration_NewQSslConfiguration())
 }
 
 func NewQSslConfiguration2(other QSslConfiguration_ITF) *QSslConfiguration {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::QSslConfiguration")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::QSslConfiguration")
 
 	return NewQSslConfigurationFromPointer(C.QSslConfiguration_NewQSslConfiguration2(PointerFromQSslConfiguration(other)))
 }
 
 func (ptr *QSslConfiguration) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::isNull")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QSslConfiguration_IsNull(ptr.Pointer()) != 0
@@ -84,11 +72,7 @@ func (ptr *QSslConfiguration) IsNull() bool {
 }
 
 func (ptr *QSslConfiguration) NextNegotiatedProtocol() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::nextNegotiatedProtocol")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::nextNegotiatedProtocol")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QSslConfiguration_NextNegotiatedProtocol(ptr.Pointer()))
@@ -97,11 +81,7 @@ func (ptr *QSslConfiguration) NextNegotiatedProtocol() *core.QByteArray {
 }
 
 func (ptr *QSslConfiguration) NextProtocolNegotiationStatus() QSslConfiguration__NextProtocolNegotiationStatus {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::nextProtocolNegotiationStatus")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::nextProtocolNegotiationStatus")
 
 	if ptr.Pointer() != nil {
 		return QSslConfiguration__NextProtocolNegotiationStatus(C.QSslConfiguration_NextProtocolNegotiationStatus(ptr.Pointer()))
@@ -110,11 +90,7 @@ func (ptr *QSslConfiguration) NextProtocolNegotiationStatus() QSslConfiguration_
 }
 
 func (ptr *QSslConfiguration) PeerVerifyDepth() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::peerVerifyDepth")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::peerVerifyDepth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSslConfiguration_PeerVerifyDepth(ptr.Pointer()))
@@ -123,11 +99,7 @@ func (ptr *QSslConfiguration) PeerVerifyDepth() int {
 }
 
 func (ptr *QSslConfiguration) PeerVerifyMode() QSslSocket__PeerVerifyMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::peerVerifyMode")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::peerVerifyMode")
 
 	if ptr.Pointer() != nil {
 		return QSslSocket__PeerVerifyMode(C.QSslConfiguration_PeerVerifyMode(ptr.Pointer()))
@@ -136,11 +108,7 @@ func (ptr *QSslConfiguration) PeerVerifyMode() QSslSocket__PeerVerifyMode {
 }
 
 func (ptr *QSslConfiguration) SessionTicket() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::sessionTicket")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::sessionTicket")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QSslConfiguration_SessionTicket(ptr.Pointer()))
@@ -149,11 +117,7 @@ func (ptr *QSslConfiguration) SessionTicket() *core.QByteArray {
 }
 
 func (ptr *QSslConfiguration) SessionTicketLifeTimeHint() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::sessionTicketLifeTimeHint")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::sessionTicketLifeTimeHint")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSslConfiguration_SessionTicketLifeTimeHint(ptr.Pointer()))
@@ -162,21 +126,13 @@ func (ptr *QSslConfiguration) SessionTicketLifeTimeHint() int {
 }
 
 func QSslConfiguration_SetDefaultConfiguration(configuration QSslConfiguration_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::setDefaultConfiguration")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::setDefaultConfiguration")
 
 	C.QSslConfiguration_QSslConfiguration_SetDefaultConfiguration(PointerFromQSslConfiguration(configuration))
 }
 
 func (ptr *QSslConfiguration) SetLocalCertificate(certificate QSslCertificate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::setLocalCertificate")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::setLocalCertificate")
 
 	if ptr.Pointer() != nil {
 		C.QSslConfiguration_SetLocalCertificate(ptr.Pointer(), PointerFromQSslCertificate(certificate))
@@ -184,11 +140,7 @@ func (ptr *QSslConfiguration) SetLocalCertificate(certificate QSslCertificate_IT
 }
 
 func (ptr *QSslConfiguration) SetPeerVerifyDepth(depth int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::setPeerVerifyDepth")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::setPeerVerifyDepth")
 
 	if ptr.Pointer() != nil {
 		C.QSslConfiguration_SetPeerVerifyDepth(ptr.Pointer(), C.int(depth))
@@ -196,11 +148,7 @@ func (ptr *QSslConfiguration) SetPeerVerifyDepth(depth int) {
 }
 
 func (ptr *QSslConfiguration) SetPeerVerifyMode(mode QSslSocket__PeerVerifyMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::setPeerVerifyMode")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::setPeerVerifyMode")
 
 	if ptr.Pointer() != nil {
 		C.QSslConfiguration_SetPeerVerifyMode(ptr.Pointer(), C.int(mode))
@@ -208,11 +156,7 @@ func (ptr *QSslConfiguration) SetPeerVerifyMode(mode QSslSocket__PeerVerifyMode)
 }
 
 func (ptr *QSslConfiguration) SetPrivateKey(key QSslKey_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::setPrivateKey")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::setPrivateKey")
 
 	if ptr.Pointer() != nil {
 		C.QSslConfiguration_SetPrivateKey(ptr.Pointer(), PointerFromQSslKey(key))
@@ -220,11 +164,7 @@ func (ptr *QSslConfiguration) SetPrivateKey(key QSslKey_ITF) {
 }
 
 func (ptr *QSslConfiguration) SetSessionTicket(sessionTicket core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::setSessionTicket")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::setSessionTicket")
 
 	if ptr.Pointer() != nil {
 		C.QSslConfiguration_SetSessionTicket(ptr.Pointer(), core.PointerFromQByteArray(sessionTicket))
@@ -232,11 +172,7 @@ func (ptr *QSslConfiguration) SetSessionTicket(sessionTicket core.QByteArray_ITF
 }
 
 func (ptr *QSslConfiguration) Swap(other QSslConfiguration_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::swap")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::swap")
 
 	if ptr.Pointer() != nil {
 		C.QSslConfiguration_Swap(ptr.Pointer(), PointerFromQSslConfiguration(other))
@@ -244,11 +180,7 @@ func (ptr *QSslConfiguration) Swap(other QSslConfiguration_ITF) {
 }
 
 func (ptr *QSslConfiguration) DestroyQSslConfiguration() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslConfiguration::~QSslConfiguration")
-		}
-	}()
+	defer qt.Recovering("QSslConfiguration::~QSslConfiguration")
 
 	if ptr.Pointer() != nil {
 		C.QSslConfiguration_DestroyQSslConfiguration(ptr.Pointer())

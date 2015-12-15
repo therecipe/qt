@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -44,21 +44,13 @@ const (
 )
 
 func NewQScrollEvent(contentPos core.QPointF_ITF, overshootDistance core.QPointF_ITF, scrollState QScrollEvent__ScrollState) *QScrollEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScrollEvent::QScrollEvent")
-		}
-	}()
+	defer qt.Recovering("QScrollEvent::QScrollEvent")
 
 	return NewQScrollEventFromPointer(C.QScrollEvent_NewQScrollEvent(core.PointerFromQPointF(contentPos), core.PointerFromQPointF(overshootDistance), C.int(scrollState)))
 }
 
 func (ptr *QScrollEvent) ScrollState() QScrollEvent__ScrollState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScrollEvent::scrollState")
-		}
-	}()
+	defer qt.Recovering("QScrollEvent::scrollState")
 
 	if ptr.Pointer() != nil {
 		return QScrollEvent__ScrollState(C.QScrollEvent_ScrollState(ptr.Pointer()))
@@ -67,11 +59,7 @@ func (ptr *QScrollEvent) ScrollState() QScrollEvent__ScrollState {
 }
 
 func (ptr *QScrollEvent) DestroyQScrollEvent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScrollEvent::~QScrollEvent")
-		}
-	}()
+	defer qt.Recovering("QScrollEvent::~QScrollEvent")
 
 	if ptr.Pointer() != nil {
 		C.QScrollEvent_DestroyQScrollEvent(ptr.Pointer())

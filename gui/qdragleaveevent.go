@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,11 +35,7 @@ func (ptr *QDragLeaveEvent) QDragLeaveEvent_PTR() *QDragLeaveEvent {
 }
 
 func NewQDragLeaveEvent() *QDragLeaveEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDragLeaveEvent::QDragLeaveEvent")
-		}
-	}()
+	defer qt.Recovering("QDragLeaveEvent::QDragLeaveEvent")
 
 	return NewQDragLeaveEventFromPointer(C.QDragLeaveEvent_NewQDragLeaveEvent())
 }

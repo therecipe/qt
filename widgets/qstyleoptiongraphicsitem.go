@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -49,31 +49,19 @@ var (
 )
 
 func NewQStyleOptionGraphicsItem() *QStyleOptionGraphicsItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionGraphicsItem::QStyleOptionGraphicsItem")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionGraphicsItem::QStyleOptionGraphicsItem")
 
 	return NewQStyleOptionGraphicsItemFromPointer(C.QStyleOptionGraphicsItem_NewQStyleOptionGraphicsItem())
 }
 
 func NewQStyleOptionGraphicsItem2(other QStyleOptionGraphicsItem_ITF) *QStyleOptionGraphicsItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionGraphicsItem::QStyleOptionGraphicsItem")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionGraphicsItem::QStyleOptionGraphicsItem")
 
 	return NewQStyleOptionGraphicsItemFromPointer(C.QStyleOptionGraphicsItem_NewQStyleOptionGraphicsItem2(PointerFromQStyleOptionGraphicsItem(other)))
 }
 
 func QStyleOptionGraphicsItem_LevelOfDetailFromTransform(worldTransform gui.QTransform_ITF) float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionGraphicsItem::levelOfDetailFromTransform")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionGraphicsItem::levelOfDetailFromTransform")
 
 	return float64(C.QStyleOptionGraphicsItem_QStyleOptionGraphicsItem_LevelOfDetailFromTransform(gui.PointerFromQTransform(worldTransform)))
 }

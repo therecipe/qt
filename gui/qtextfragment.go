@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QTextFragment) QTextFragment_PTR() *QTextFragment {
 }
 
 func NewQTextFragment() *QTextFragment {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFragment::QTextFragment")
-		}
-	}()
+	defer qt.Recovering("QTextFragment::QTextFragment")
 
 	return NewQTextFragmentFromPointer(C.QTextFragment_NewQTextFragment())
 }
 
 func NewQTextFragment3(other QTextFragment_ITF) *QTextFragment {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFragment::QTextFragment")
-		}
-	}()
+	defer qt.Recovering("QTextFragment::QTextFragment")
 
 	return NewQTextFragmentFromPointer(C.QTextFragment_NewQTextFragment3(PointerFromQTextFragment(other)))
 }
 
 func (ptr *QTextFragment) CharFormatIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFragment::charFormatIndex")
-		}
-	}()
+	defer qt.Recovering("QTextFragment::charFormatIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextFragment_CharFormatIndex(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QTextFragment) CharFormatIndex() int {
 }
 
 func (ptr *QTextFragment) Contains(position int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFragment::contains")
-		}
-	}()
+	defer qt.Recovering("QTextFragment::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFragment_Contains(ptr.Pointer(), C.int(position)) != 0
@@ -87,11 +71,7 @@ func (ptr *QTextFragment) Contains(position int) bool {
 }
 
 func (ptr *QTextFragment) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFragment::isValid")
-		}
-	}()
+	defer qt.Recovering("QTextFragment::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFragment_IsValid(ptr.Pointer()) != 0
@@ -100,11 +80,7 @@ func (ptr *QTextFragment) IsValid() bool {
 }
 
 func (ptr *QTextFragment) Length() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFragment::length")
-		}
-	}()
+	defer qt.Recovering("QTextFragment::length")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextFragment_Length(ptr.Pointer()))
@@ -113,11 +89,7 @@ func (ptr *QTextFragment) Length() int {
 }
 
 func (ptr *QTextFragment) Position() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFragment::position")
-		}
-	}()
+	defer qt.Recovering("QTextFragment::position")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextFragment_Position(ptr.Pointer()))
@@ -126,11 +98,7 @@ func (ptr *QTextFragment) Position() int {
 }
 
 func (ptr *QTextFragment) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFragment::text")
-		}
-	}()
+	defer qt.Recovering("QTextFragment::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextFragment_Text(ptr.Pointer()))

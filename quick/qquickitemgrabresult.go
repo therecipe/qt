@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQQuickItemGrabResultFromPointer(ptr unsafe.Pointer) *QQuickItemGrabResul
 	var n = new(QQuickItemGrabResult)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickItemGrabResult_") {
-		n.SetObjectName("QQuickItemGrabResult_" + qt.RandomIdentifier())
+		n.SetObjectName("QQuickItemGrabResult_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QQuickItemGrabResult) QQuickItemGrabResult_PTR() *QQuickItemGrabResul
 }
 
 func (ptr *QQuickItemGrabResult) ConnectReady(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItemGrabResult::ready")
-		}
-	}()
+	defer qt.Recovering("connect QQuickItemGrabResult::ready")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItemGrabResult_ConnectReady(ptr.Pointer())
@@ -52,11 +47,7 @@ func (ptr *QQuickItemGrabResult) ConnectReady(f func()) {
 }
 
 func (ptr *QQuickItemGrabResult) DisconnectReady() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItemGrabResult::ready")
-		}
-	}()
+	defer qt.Recovering("disconnect QQuickItemGrabResult::ready")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItemGrabResult_DisconnectReady(ptr.Pointer())
@@ -66,21 +57,17 @@ func (ptr *QQuickItemGrabResult) DisconnectReady() {
 
 //export callbackQQuickItemGrabResultReady
 func callbackQQuickItemGrabResultReady(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItemGrabResult::ready")
-		}
-	}()
+	defer qt.Recovering("callback QQuickItemGrabResult::ready")
 
-	qt.GetSignal(C.GoString(ptrName), "ready").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "ready")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QQuickItemGrabResult) SaveToFile(fileName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItemGrabResult::saveToFile")
-		}
-	}()
+	defer qt.Recovering("QQuickItemGrabResult::saveToFile")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItemGrabResult_SaveToFile(ptr.Pointer(), C.CString(fileName)) != 0

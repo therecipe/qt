@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -77,21 +77,13 @@ var (
 )
 
 func NewQStyleOptionHeader() *QStyleOptionHeader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionHeader::QStyleOptionHeader")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionHeader::QStyleOptionHeader")
 
 	return NewQStyleOptionHeaderFromPointer(C.QStyleOptionHeader_NewQStyleOptionHeader())
 }
 
 func NewQStyleOptionHeader2(other QStyleOptionHeader_ITF) *QStyleOptionHeader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionHeader::QStyleOptionHeader")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionHeader::QStyleOptionHeader")
 
 	return NewQStyleOptionHeaderFromPointer(C.QStyleOptionHeader_NewQStyleOptionHeader2(PointerFromQStyleOptionHeader(other)))
 }

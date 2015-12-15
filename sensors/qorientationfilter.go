@@ -3,7 +3,7 @@ package sensors
 //#include "sensors.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,11 +34,7 @@ func (ptr *QOrientationFilter) QOrientationFilter_PTR() *QOrientationFilter {
 }
 
 func (ptr *QOrientationFilter) Filter(reading QOrientationReading_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QOrientationFilter::filter")
-		}
-	}()
+	defer qt.Recovering("QOrientationFilter::filter")
 
 	if ptr.Pointer() != nil {
 		return C.QOrientationFilter_Filter(ptr.Pointer(), PointerFromQOrientationReading(reading)) != 0

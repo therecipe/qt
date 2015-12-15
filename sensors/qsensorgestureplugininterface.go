@@ -3,7 +3,7 @@ package sensors
 //#include "sensors.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"strings"
 	"unsafe"
 )
@@ -34,6 +34,9 @@ func PointerFromQSensorGesturePluginInterface(ptr QSensorGesturePluginInterface_
 func NewQSensorGesturePluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorGesturePluginInterface {
 	var n = new(QSensorGesturePluginInterface)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QSensorGesturePluginInterface_") {
+		n.SetObjectNameAbs("QSensorGesturePluginInterface_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,11 +45,7 @@ func (ptr *QSensorGesturePluginInterface) QSensorGesturePluginInterface_PTR() *Q
 }
 
 func (ptr *QSensorGesturePluginInterface) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGesturePluginInterface::name")
-		}
-	}()
+	defer qt.Recovering("QSensorGesturePluginInterface::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSensorGesturePluginInterface_Name(ptr.Pointer()))
@@ -55,11 +54,7 @@ func (ptr *QSensorGesturePluginInterface) Name() string {
 }
 
 func (ptr *QSensorGesturePluginInterface) SupportedIds() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGesturePluginInterface::supportedIds")
-		}
-	}()
+	defer qt.Recovering("QSensorGesturePluginInterface::supportedIds")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSensorGesturePluginInterface_SupportedIds(ptr.Pointer())), ",,,")
@@ -68,13 +63,26 @@ func (ptr *QSensorGesturePluginInterface) SupportedIds() []string {
 }
 
 func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
-		}
-	}()
+	defer qt.Recovering("QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(ptr.Pointer())
+	}
+}
+
+func (ptr *QSensorGesturePluginInterface) ObjectNameAbs() string {
+	defer qt.Recovering("QSensorGesturePluginInterface::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QSensorGesturePluginInterface_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSensorGesturePluginInterface) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QSensorGesturePluginInterface::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGesturePluginInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

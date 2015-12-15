@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQFormLayoutFromPointer(ptr unsafe.Pointer) *QFormLayout {
 	var n = new(QFormLayout)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QFormLayout_") {
-		n.SetObjectName("QFormLayout_" + qt.RandomIdentifier())
+		n.SetObjectName("QFormLayout_" + qt.Identifier())
 	}
 	return n
 }
@@ -66,11 +65,7 @@ const (
 )
 
 func (ptr *QFormLayout) FieldGrowthPolicy() QFormLayout__FieldGrowthPolicy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::fieldGrowthPolicy")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::fieldGrowthPolicy")
 
 	if ptr.Pointer() != nil {
 		return QFormLayout__FieldGrowthPolicy(C.QFormLayout_FieldGrowthPolicy(ptr.Pointer()))
@@ -79,11 +74,7 @@ func (ptr *QFormLayout) FieldGrowthPolicy() QFormLayout__FieldGrowthPolicy {
 }
 
 func (ptr *QFormLayout) FormAlignment() core.Qt__AlignmentFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::formAlignment")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::formAlignment")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__AlignmentFlag(C.QFormLayout_FormAlignment(ptr.Pointer()))
@@ -92,11 +83,7 @@ func (ptr *QFormLayout) FormAlignment() core.Qt__AlignmentFlag {
 }
 
 func (ptr *QFormLayout) HorizontalSpacing() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::horizontalSpacing")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::horizontalSpacing")
 
 	if ptr.Pointer() != nil {
 		return int(C.QFormLayout_HorizontalSpacing(ptr.Pointer()))
@@ -105,11 +92,7 @@ func (ptr *QFormLayout) HorizontalSpacing() int {
 }
 
 func (ptr *QFormLayout) LabelAlignment() core.Qt__AlignmentFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::labelAlignment")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::labelAlignment")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__AlignmentFlag(C.QFormLayout_LabelAlignment(ptr.Pointer()))
@@ -118,11 +101,7 @@ func (ptr *QFormLayout) LabelAlignment() core.Qt__AlignmentFlag {
 }
 
 func (ptr *QFormLayout) RowWrapPolicy() QFormLayout__RowWrapPolicy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::rowWrapPolicy")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::rowWrapPolicy")
 
 	if ptr.Pointer() != nil {
 		return QFormLayout__RowWrapPolicy(C.QFormLayout_RowWrapPolicy(ptr.Pointer()))
@@ -131,11 +110,7 @@ func (ptr *QFormLayout) RowWrapPolicy() QFormLayout__RowWrapPolicy {
 }
 
 func (ptr *QFormLayout) SetFieldGrowthPolicy(policy QFormLayout__FieldGrowthPolicy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::setFieldGrowthPolicy")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::setFieldGrowthPolicy")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_SetFieldGrowthPolicy(ptr.Pointer(), C.int(policy))
@@ -143,11 +118,7 @@ func (ptr *QFormLayout) SetFieldGrowthPolicy(policy QFormLayout__FieldGrowthPoli
 }
 
 func (ptr *QFormLayout) SetFormAlignment(alignment core.Qt__AlignmentFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::setFormAlignment")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::setFormAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_SetFormAlignment(ptr.Pointer(), C.int(alignment))
@@ -155,11 +126,7 @@ func (ptr *QFormLayout) SetFormAlignment(alignment core.Qt__AlignmentFlag) {
 }
 
 func (ptr *QFormLayout) SetHorizontalSpacing(spacing int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::setHorizontalSpacing")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::setHorizontalSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_SetHorizontalSpacing(ptr.Pointer(), C.int(spacing))
@@ -167,11 +134,7 @@ func (ptr *QFormLayout) SetHorizontalSpacing(spacing int) {
 }
 
 func (ptr *QFormLayout) SetLabelAlignment(alignment core.Qt__AlignmentFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::setLabelAlignment")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::setLabelAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_SetLabelAlignment(ptr.Pointer(), C.int(alignment))
@@ -179,11 +142,7 @@ func (ptr *QFormLayout) SetLabelAlignment(alignment core.Qt__AlignmentFlag) {
 }
 
 func (ptr *QFormLayout) SetRowWrapPolicy(policy QFormLayout__RowWrapPolicy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::setRowWrapPolicy")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::setRowWrapPolicy")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_SetRowWrapPolicy(ptr.Pointer(), C.int(policy))
@@ -191,11 +150,7 @@ func (ptr *QFormLayout) SetRowWrapPolicy(policy QFormLayout__RowWrapPolicy) {
 }
 
 func (ptr *QFormLayout) SetVerticalSpacing(spacing int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::setVerticalSpacing")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::setVerticalSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_SetVerticalSpacing(ptr.Pointer(), C.int(spacing))
@@ -203,11 +158,7 @@ func (ptr *QFormLayout) SetVerticalSpacing(spacing int) {
 }
 
 func (ptr *QFormLayout) VerticalSpacing() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::verticalSpacing")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::verticalSpacing")
 
 	if ptr.Pointer() != nil {
 		return int(C.QFormLayout_VerticalSpacing(ptr.Pointer()))
@@ -216,33 +167,44 @@ func (ptr *QFormLayout) VerticalSpacing() int {
 }
 
 func NewQFormLayout(parent QWidget_ITF) *QFormLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::QFormLayout")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::QFormLayout")
 
 	return NewQFormLayoutFromPointer(C.QFormLayout_NewQFormLayout(PointerFromQWidget(parent)))
 }
 
-func (ptr *QFormLayout) AddItem(item QLayoutItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::addItem")
-		}
-	}()
+func (ptr *QFormLayout) ConnectAddItem(f func(item *QLayoutItem)) {
+	defer qt.Recovering("connect QFormLayout::addItem")
 
 	if ptr.Pointer() != nil {
-		C.QFormLayout_AddItem(ptr.Pointer(), PointerFromQLayoutItem(item))
+
+		qt.ConnectSignal(ptr.ObjectName(), "addItem", f)
 	}
 }
 
+func (ptr *QFormLayout) DisconnectAddItem() {
+	defer qt.Recovering("disconnect QFormLayout::addItem")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "addItem")
+	}
+}
+
+//export callbackQFormLayoutAddItem
+func callbackQFormLayoutAddItem(ptrName *C.char, item unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFormLayout::addItem")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "addItem")
+	if signal != nil {
+		defer signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QFormLayout) AddRow6(layout QLayout_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::addRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::addRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_AddRow6(ptr.Pointer(), PointerFromQLayout(layout))
@@ -250,11 +212,7 @@ func (ptr *QFormLayout) AddRow6(layout QLayout_ITF) {
 }
 
 func (ptr *QFormLayout) AddRow2(label QWidget_ITF, field QLayout_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::addRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::addRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_AddRow2(ptr.Pointer(), PointerFromQWidget(label), PointerFromQLayout(field))
@@ -262,11 +220,7 @@ func (ptr *QFormLayout) AddRow2(label QWidget_ITF, field QLayout_ITF) {
 }
 
 func (ptr *QFormLayout) AddRow(label QWidget_ITF, field QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::addRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::addRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_AddRow(ptr.Pointer(), PointerFromQWidget(label), PointerFromQWidget(field))
@@ -274,11 +228,7 @@ func (ptr *QFormLayout) AddRow(label QWidget_ITF, field QWidget_ITF) {
 }
 
 func (ptr *QFormLayout) AddRow5(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::addRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::addRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_AddRow5(ptr.Pointer(), PointerFromQWidget(widget))
@@ -286,11 +236,7 @@ func (ptr *QFormLayout) AddRow5(widget QWidget_ITF) {
 }
 
 func (ptr *QFormLayout) AddRow4(labelText string, field QLayout_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::addRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::addRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_AddRow4(ptr.Pointer(), C.CString(labelText), PointerFromQLayout(field))
@@ -298,11 +244,7 @@ func (ptr *QFormLayout) AddRow4(labelText string, field QLayout_ITF) {
 }
 
 func (ptr *QFormLayout) AddRow3(labelText string, field QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::addRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::addRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_AddRow3(ptr.Pointer(), C.CString(labelText), PointerFromQWidget(field))
@@ -310,11 +252,7 @@ func (ptr *QFormLayout) AddRow3(labelText string, field QWidget_ITF) {
 }
 
 func (ptr *QFormLayout) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::count")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QFormLayout_Count(ptr.Pointer()))
@@ -323,11 +261,7 @@ func (ptr *QFormLayout) Count() int {
 }
 
 func (ptr *QFormLayout) ExpandingDirections() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::expandingDirections")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::expandingDirections")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QFormLayout_ExpandingDirections(ptr.Pointer()))
@@ -336,11 +270,7 @@ func (ptr *QFormLayout) ExpandingDirections() core.Qt__Orientation {
 }
 
 func (ptr *QFormLayout) HasHeightForWidth() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::hasHeightForWidth")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::hasHeightForWidth")
 
 	if ptr.Pointer() != nil {
 		return C.QFormLayout_HasHeightForWidth(ptr.Pointer()) != 0
@@ -349,11 +279,7 @@ func (ptr *QFormLayout) HasHeightForWidth() bool {
 }
 
 func (ptr *QFormLayout) HeightForWidth(width int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::heightForWidth")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::heightForWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QFormLayout_HeightForWidth(ptr.Pointer(), C.int(width)))
@@ -362,11 +288,7 @@ func (ptr *QFormLayout) HeightForWidth(width int) int {
 }
 
 func (ptr *QFormLayout) InsertRow6(row int, layout QLayout_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::insertRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::insertRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_InsertRow6(ptr.Pointer(), C.int(row), PointerFromQLayout(layout))
@@ -374,11 +296,7 @@ func (ptr *QFormLayout) InsertRow6(row int, layout QLayout_ITF) {
 }
 
 func (ptr *QFormLayout) InsertRow2(row int, label QWidget_ITF, field QLayout_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::insertRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::insertRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_InsertRow2(ptr.Pointer(), C.int(row), PointerFromQWidget(label), PointerFromQLayout(field))
@@ -386,11 +304,7 @@ func (ptr *QFormLayout) InsertRow2(row int, label QWidget_ITF, field QLayout_ITF
 }
 
 func (ptr *QFormLayout) InsertRow(row int, label QWidget_ITF, field QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::insertRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::insertRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_InsertRow(ptr.Pointer(), C.int(row), PointerFromQWidget(label), PointerFromQWidget(field))
@@ -398,11 +312,7 @@ func (ptr *QFormLayout) InsertRow(row int, label QWidget_ITF, field QWidget_ITF)
 }
 
 func (ptr *QFormLayout) InsertRow5(row int, widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::insertRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::insertRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_InsertRow5(ptr.Pointer(), C.int(row), PointerFromQWidget(widget))
@@ -410,11 +320,7 @@ func (ptr *QFormLayout) InsertRow5(row int, widget QWidget_ITF) {
 }
 
 func (ptr *QFormLayout) InsertRow4(row int, labelText string, field QLayout_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::insertRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::insertRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_InsertRow4(ptr.Pointer(), C.int(row), C.CString(labelText), PointerFromQLayout(field))
@@ -422,35 +328,46 @@ func (ptr *QFormLayout) InsertRow4(row int, labelText string, field QLayout_ITF)
 }
 
 func (ptr *QFormLayout) InsertRow3(row int, labelText string, field QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::insertRow")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::insertRow")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_InsertRow3(ptr.Pointer(), C.int(row), C.CString(labelText), PointerFromQWidget(field))
 	}
 }
 
-func (ptr *QFormLayout) Invalidate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::invalidate")
-		}
-	}()
+func (ptr *QFormLayout) ConnectInvalidate(f func()) {
+	defer qt.Recovering("connect QFormLayout::invalidate")
 
 	if ptr.Pointer() != nil {
-		C.QFormLayout_Invalidate(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "invalidate", f)
 	}
 }
 
+func (ptr *QFormLayout) DisconnectInvalidate() {
+	defer qt.Recovering("disconnect QFormLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "invalidate")
+	}
+}
+
+//export callbackQFormLayoutInvalidate
+func callbackQFormLayoutInvalidate(ptrName *C.char) bool {
+	defer qt.Recovering("callback QFormLayout::invalidate")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "invalidate")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QFormLayout) ItemAt2(index int) *QLayoutItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::itemAt")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutItemFromPointer(C.QFormLayout_ItemAt2(ptr.Pointer(), C.int(index)))
@@ -459,11 +376,7 @@ func (ptr *QFormLayout) ItemAt2(index int) *QLayoutItem {
 }
 
 func (ptr *QFormLayout) ItemAt(row int, role QFormLayout__ItemRole) *QLayoutItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::itemAt")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutItemFromPointer(C.QFormLayout_ItemAt(ptr.Pointer(), C.int(row), C.int(role)))
@@ -472,11 +385,7 @@ func (ptr *QFormLayout) ItemAt(row int, role QFormLayout__ItemRole) *QLayoutItem
 }
 
 func (ptr *QFormLayout) LabelForField2(field QLayout_ITF) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::labelForField")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::labelForField")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QFormLayout_LabelForField2(ptr.Pointer(), PointerFromQLayout(field)))
@@ -485,11 +394,7 @@ func (ptr *QFormLayout) LabelForField2(field QLayout_ITF) *QWidget {
 }
 
 func (ptr *QFormLayout) LabelForField(field QWidget_ITF) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::labelForField")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::labelForField")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QFormLayout_LabelForField(ptr.Pointer(), PointerFromQWidget(field)))
@@ -498,11 +403,7 @@ func (ptr *QFormLayout) LabelForField(field QWidget_ITF) *QWidget {
 }
 
 func (ptr *QFormLayout) RowCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::rowCount")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::rowCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QFormLayout_RowCount(ptr.Pointer()))
@@ -510,24 +411,8 @@ func (ptr *QFormLayout) RowCount() int {
 	return 0
 }
 
-func (ptr *QFormLayout) SetGeometry(rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::setGeometry")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QFormLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRect(rect))
-	}
-}
-
 func (ptr *QFormLayout) SetItem(row int, role QFormLayout__ItemRole, item QLayoutItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::setItem")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::setItem")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_SetItem(ptr.Pointer(), C.int(row), C.int(role), PointerFromQLayoutItem(item))
@@ -535,11 +420,7 @@ func (ptr *QFormLayout) SetItem(row int, role QFormLayout__ItemRole, item QLayou
 }
 
 func (ptr *QFormLayout) SetLayout(row int, role QFormLayout__ItemRole, layout QLayout_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::setLayout")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::setLayout")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_SetLayout(ptr.Pointer(), C.int(row), C.int(role), PointerFromQLayout(layout))
@@ -547,11 +428,7 @@ func (ptr *QFormLayout) SetLayout(row int, role QFormLayout__ItemRole, layout QL
 }
 
 func (ptr *QFormLayout) SetSpacing(spacing int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::setSpacing")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::setSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_SetSpacing(ptr.Pointer(), C.int(spacing))
@@ -559,11 +436,7 @@ func (ptr *QFormLayout) SetSpacing(spacing int) {
 }
 
 func (ptr *QFormLayout) SetWidget(row int, role QFormLayout__ItemRole, widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::setWidget")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::setWidget")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_SetWidget(ptr.Pointer(), C.int(row), C.int(role), PointerFromQWidget(widget))
@@ -571,11 +444,7 @@ func (ptr *QFormLayout) SetWidget(row int, role QFormLayout__ItemRole, widget QW
 }
 
 func (ptr *QFormLayout) Spacing() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::spacing")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::spacing")
 
 	if ptr.Pointer() != nil {
 		return int(C.QFormLayout_Spacing(ptr.Pointer()))
@@ -584,11 +453,7 @@ func (ptr *QFormLayout) Spacing() int {
 }
 
 func (ptr *QFormLayout) TakeAt(index int) *QLayoutItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::takeAt")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::takeAt")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutItemFromPointer(C.QFormLayout_TakeAt(ptr.Pointer(), C.int(index)))
@@ -597,11 +462,7 @@ func (ptr *QFormLayout) TakeAt(index int) *QLayoutItem {
 }
 
 func (ptr *QFormLayout) DestroyQFormLayout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFormLayout::~QFormLayout")
-		}
-	}()
+	defer qt.Recovering("QFormLayout::~QFormLayout")
 
 	if ptr.Pointer() != nil {
 		C.QFormLayout_DestroyQFormLayout(ptr.Pointer())

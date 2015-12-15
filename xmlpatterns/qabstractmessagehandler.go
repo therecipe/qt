@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQAbstractMessageHandlerFromPointer(ptr unsafe.Pointer) *QAbstractMessage
 	var n = new(QAbstractMessageHandler)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractMessageHandler_") {
-		n.SetObjectName("QAbstractMessageHandler_" + qt.RandomIdentifier())
+		n.SetObjectName("QAbstractMessageHandler_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QAbstractMessageHandler) QAbstractMessageHandler_PTR() *QAbstractMess
 }
 
 func (ptr *QAbstractMessageHandler) DestroyQAbstractMessageHandler() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractMessageHandler::~QAbstractMessageHandler")
-		}
-	}()
+	defer qt.Recovering("QAbstractMessageHandler::~QAbstractMessageHandler")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractMessageHandler_DestroyQAbstractMessageHandler(ptr.Pointer())

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQHolsterSensorFromPointer(ptr unsafe.Pointer) *QHolsterSensor {
 	var n = new(QHolsterSensor)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QHolsterSensor_") {
-		n.SetObjectName("QHolsterSensor_" + qt.RandomIdentifier())
+		n.SetObjectName("QHolsterSensor_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QHolsterSensor) QHolsterSensor_PTR() *QHolsterSensor {
 }
 
 func (ptr *QHolsterSensor) Reading() *QHolsterReading {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHolsterSensor::reading")
-		}
-	}()
+	defer qt.Recovering("QHolsterSensor::reading")
 
 	if ptr.Pointer() != nil {
 		return NewQHolsterReadingFromPointer(C.QHolsterSensor_Reading(ptr.Pointer()))
@@ -52,21 +47,13 @@ func (ptr *QHolsterSensor) Reading() *QHolsterReading {
 }
 
 func NewQHolsterSensor(parent core.QObject_ITF) *QHolsterSensor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHolsterSensor::QHolsterSensor")
-		}
-	}()
+	defer qt.Recovering("QHolsterSensor::QHolsterSensor")
 
 	return NewQHolsterSensorFromPointer(C.QHolsterSensor_NewQHolsterSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHolsterSensor) DestroyQHolsterSensor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHolsterSensor::~QHolsterSensor")
-		}
-	}()
+	defer qt.Recovering("QHolsterSensor::~QHolsterSensor")
 
 	if ptr.Pointer() != nil {
 		C.QHolsterSensor_DestroyQHolsterSensor(ptr.Pointer())

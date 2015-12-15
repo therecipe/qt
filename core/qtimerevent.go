@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,21 +34,13 @@ func (ptr *QTimerEvent) QTimerEvent_PTR() *QTimerEvent {
 }
 
 func NewQTimerEvent(timerId int) *QTimerEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimerEvent::QTimerEvent")
-		}
-	}()
+	defer qt.Recovering("QTimerEvent::QTimerEvent")
 
 	return NewQTimerEventFromPointer(C.QTimerEvent_NewQTimerEvent(C.int(timerId)))
 }
 
 func (ptr *QTimerEvent) TimerId() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimerEvent::timerId")
-		}
-	}()
+	defer qt.Recovering("QTimerEvent::timerId")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimerEvent_TimerId(ptr.Pointer()))

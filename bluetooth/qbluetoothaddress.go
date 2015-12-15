@@ -3,7 +3,7 @@ package bluetooth
 //#include "bluetooth.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,41 +41,25 @@ func (ptr *QBluetoothAddress) QBluetoothAddress_PTR() *QBluetoothAddress {
 }
 
 func NewQBluetoothAddress() *QBluetoothAddress {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothAddress::QBluetoothAddress")
-		}
-	}()
+	defer qt.Recovering("QBluetoothAddress::QBluetoothAddress")
 
 	return NewQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress())
 }
 
 func NewQBluetoothAddress4(other QBluetoothAddress_ITF) *QBluetoothAddress {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothAddress::QBluetoothAddress")
-		}
-	}()
+	defer qt.Recovering("QBluetoothAddress::QBluetoothAddress")
 
 	return NewQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress4(PointerFromQBluetoothAddress(other)))
 }
 
 func NewQBluetoothAddress3(address string) *QBluetoothAddress {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothAddress::QBluetoothAddress")
-		}
-	}()
+	defer qt.Recovering("QBluetoothAddress::QBluetoothAddress")
 
 	return NewQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress3(C.CString(address)))
 }
 
 func (ptr *QBluetoothAddress) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothAddress::clear")
-		}
-	}()
+	defer qt.Recovering("QBluetoothAddress::clear")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothAddress_Clear(ptr.Pointer())
@@ -83,11 +67,7 @@ func (ptr *QBluetoothAddress) Clear() {
 }
 
 func (ptr *QBluetoothAddress) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothAddress::isNull")
-		}
-	}()
+	defer qt.Recovering("QBluetoothAddress::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QBluetoothAddress_IsNull(ptr.Pointer()) != 0
@@ -96,11 +76,7 @@ func (ptr *QBluetoothAddress) IsNull() bool {
 }
 
 func (ptr *QBluetoothAddress) ToString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothAddress::toString")
-		}
-	}()
+	defer qt.Recovering("QBluetoothAddress::toString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothAddress_ToString(ptr.Pointer()))
@@ -109,11 +85,7 @@ func (ptr *QBluetoothAddress) ToString() string {
 }
 
 func (ptr *QBluetoothAddress) DestroyQBluetoothAddress() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothAddress::~QBluetoothAddress")
-		}
-	}()
+	defer qt.Recovering("QBluetoothAddress::~QBluetoothAddress")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothAddress_DestroyQBluetoothAddress(ptr.Pointer())

@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,21 +34,13 @@ func (ptr *QChildEvent) QChildEvent_PTR() *QChildEvent {
 }
 
 func NewQChildEvent(ty QEvent__Type, child QObject_ITF) *QChildEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QChildEvent::QChildEvent")
-		}
-	}()
+	defer qt.Recovering("QChildEvent::QChildEvent")
 
 	return NewQChildEventFromPointer(C.QChildEvent_NewQChildEvent(C.int(ty), PointerFromQObject(child)))
 }
 
 func (ptr *QChildEvent) Added() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QChildEvent::added")
-		}
-	}()
+	defer qt.Recovering("QChildEvent::added")
 
 	if ptr.Pointer() != nil {
 		return C.QChildEvent_Added(ptr.Pointer()) != 0
@@ -57,11 +49,7 @@ func (ptr *QChildEvent) Added() bool {
 }
 
 func (ptr *QChildEvent) Child() *QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QChildEvent::child")
-		}
-	}()
+	defer qt.Recovering("QChildEvent::child")
 
 	if ptr.Pointer() != nil {
 		return NewQObjectFromPointer(C.QChildEvent_Child(ptr.Pointer()))
@@ -70,11 +58,7 @@ func (ptr *QChildEvent) Child() *QObject {
 }
 
 func (ptr *QChildEvent) Polished() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QChildEvent::polished")
-		}
-	}()
+	defer qt.Recovering("QChildEvent::polished")
 
 	if ptr.Pointer() != nil {
 		return C.QChildEvent_Polished(ptr.Pointer()) != 0
@@ -83,11 +67,7 @@ func (ptr *QChildEvent) Polished() bool {
 }
 
 func (ptr *QChildEvent) Removed() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QChildEvent::removed")
-		}
-	}()
+	defer qt.Recovering("QChildEvent::removed")
 
 	if ptr.Pointer() != nil {
 		return C.QChildEvent_Removed(ptr.Pointer()) != 0

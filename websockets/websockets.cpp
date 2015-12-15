@@ -16,6 +16,7 @@
 
 class MyQMaskGenerator: public QMaskGenerator {
 public:
+protected:
 };
 
 int QMaskGenerator_Seed(void* ptr){
@@ -28,15 +29,16 @@ void QMaskGenerator_DestroyQMaskGenerator(void* ptr){
 
 class MyQWebSocket: public QWebSocket {
 public:
-void Signal_AboutToClose(){callbackQWebSocketAboutToClose(this->objectName().toUtf8().data());};
-void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame){callbackQWebSocketBinaryFrameReceived(this->objectName().toUtf8().data(), new QByteArray(frame), isLastFrame);};
-void Signal_BinaryMessageReceived(const QByteArray & message){callbackQWebSocketBinaryMessageReceived(this->objectName().toUtf8().data(), new QByteArray(message));};
-void Signal_Connected(){callbackQWebSocketConnected(this->objectName().toUtf8().data());};
-void Signal_Disconnected(){callbackQWebSocketDisconnected(this->objectName().toUtf8().data());};
-void Signal_ReadChannelFinished(){callbackQWebSocketReadChannelFinished(this->objectName().toUtf8().data());};
-void Signal_StateChanged(QAbstractSocket::SocketState state){callbackQWebSocketStateChanged(this->objectName().toUtf8().data(), state);};
-void Signal_TextFrameReceived(const QString & frame, bool isLastFrame){callbackQWebSocketTextFrameReceived(this->objectName().toUtf8().data(), frame.toUtf8().data(), isLastFrame);};
-void Signal_TextMessageReceived(const QString & message){callbackQWebSocketTextMessageReceived(this->objectName().toUtf8().data(), message.toUtf8().data());};
+	void Signal_AboutToClose() { callbackQWebSocketAboutToClose(this->objectName().toUtf8().data()); };
+	void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame) { callbackQWebSocketBinaryFrameReceived(this->objectName().toUtf8().data(), new QByteArray(frame), isLastFrame); };
+	void Signal_BinaryMessageReceived(const QByteArray & message) { callbackQWebSocketBinaryMessageReceived(this->objectName().toUtf8().data(), new QByteArray(message)); };
+	void Signal_Connected() { callbackQWebSocketConnected(this->objectName().toUtf8().data()); };
+	void Signal_Disconnected() { callbackQWebSocketDisconnected(this->objectName().toUtf8().data()); };
+	void Signal_ReadChannelFinished() { callbackQWebSocketReadChannelFinished(this->objectName().toUtf8().data()); };
+	void Signal_StateChanged(QAbstractSocket::SocketState state) { callbackQWebSocketStateChanged(this->objectName().toUtf8().data(), state); };
+	void Signal_TextFrameReceived(const QString & frame, bool isLastFrame) { callbackQWebSocketTextFrameReceived(this->objectName().toUtf8().data(), frame.toUtf8().data(), isLastFrame); };
+	void Signal_TextMessageReceived(const QString & message) { callbackQWebSocketTextMessageReceived(this->objectName().toUtf8().data(), message.toUtf8().data()); };
+protected:
 };
 
 void QWebSocket_Abort(void* ptr){
@@ -191,10 +193,6 @@ void QWebSocket_DestroyQWebSocket(void* ptr){
 	static_cast<QWebSocket*>(ptr)->~QWebSocket();
 }
 
-class MyQWebSocketCorsAuthenticator: public QWebSocketCorsAuthenticator {
-public:
-};
-
 void* QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator3(void* other){
 	return new QWebSocketCorsAuthenticator(*static_cast<QWebSocketCorsAuthenticator*>(other));
 }
@@ -229,14 +227,16 @@ void QWebSocketCorsAuthenticator_DestroyQWebSocketCorsAuthenticator(void* ptr){
 
 class MyQWebSocketServer: public QWebSocketServer {
 public:
-void Signal_AcceptError(QAbstractSocket::SocketError socketError){callbackQWebSocketServerAcceptError(this->objectName().toUtf8().data(), socketError);};
-void Signal_Closed(){callbackQWebSocketServerClosed(this->objectName().toUtf8().data());};
-void Signal_NewConnection(){callbackQWebSocketServerNewConnection(this->objectName().toUtf8().data());};
-void Signal_OriginAuthenticationRequired(QWebSocketCorsAuthenticator * authenticator){callbackQWebSocketServerOriginAuthenticationRequired(this->objectName().toUtf8().data(), authenticator);};
+	MyQWebSocketServer(const QString &serverName, SslMode secureMode, QObject *parent) : QWebSocketServer(serverName, secureMode, parent) {};
+	void Signal_AcceptError(QAbstractSocket::SocketError socketError) { callbackQWebSocketServerAcceptError(this->objectName().toUtf8().data(), socketError); };
+	void Signal_Closed() { callbackQWebSocketServerClosed(this->objectName().toUtf8().data()); };
+	void Signal_NewConnection() { callbackQWebSocketServerNewConnection(this->objectName().toUtf8().data()); };
+	void Signal_OriginAuthenticationRequired(QWebSocketCorsAuthenticator * authenticator) { callbackQWebSocketServerOriginAuthenticationRequired(this->objectName().toUtf8().data(), authenticator); };
+protected:
 };
 
 void* QWebSocketServer_NewQWebSocketServer(char* serverName, int secureMode, void* parent){
-	return new QWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QObject*>(parent));
+	return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QObject*>(parent));
 }
 
 void QWebSocketServer_ConnectAcceptError(void* ptr){

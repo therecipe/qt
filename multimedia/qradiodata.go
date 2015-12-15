@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -40,7 +39,7 @@ func NewQRadioDataFromPointer(ptr unsafe.Pointer) *QRadioData {
 	var n = new(QRadioData)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QRadioData_") {
-		n.SetObjectName("QRadioData_" + qt.RandomIdentifier())
+		n.SetObjectName("QRadioData_" + qt.Identifier())
 	}
 	return n
 }
@@ -114,11 +113,7 @@ const (
 )
 
 func (ptr *QRadioData) IsAlternativeFrequenciesEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::isAlternativeFrequenciesEnabled")
-		}
-	}()
+	defer qt.Recovering("QRadioData::isAlternativeFrequenciesEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QRadioData_IsAlternativeFrequenciesEnabled(ptr.Pointer()) != 0
@@ -127,11 +122,7 @@ func (ptr *QRadioData) IsAlternativeFrequenciesEnabled() bool {
 }
 
 func (ptr *QRadioData) ProgramType() QRadioData__ProgramType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::programType")
-		}
-	}()
+	defer qt.Recovering("QRadioData::programType")
 
 	if ptr.Pointer() != nil {
 		return QRadioData__ProgramType(C.QRadioData_ProgramType(ptr.Pointer()))
@@ -140,11 +131,7 @@ func (ptr *QRadioData) ProgramType() QRadioData__ProgramType {
 }
 
 func (ptr *QRadioData) ProgramTypeName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::programTypeName")
-		}
-	}()
+	defer qt.Recovering("QRadioData::programTypeName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRadioData_ProgramTypeName(ptr.Pointer()))
@@ -153,11 +140,7 @@ func (ptr *QRadioData) ProgramTypeName() string {
 }
 
 func (ptr *QRadioData) RadioText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::radioText")
-		}
-	}()
+	defer qt.Recovering("QRadioData::radioText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRadioData_RadioText(ptr.Pointer()))
@@ -166,11 +149,7 @@ func (ptr *QRadioData) RadioText() string {
 }
 
 func (ptr *QRadioData) SetAlternativeFrequenciesEnabled(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::setAlternativeFrequenciesEnabled")
-		}
-	}()
+	defer qt.Recovering("QRadioData::setAlternativeFrequenciesEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_SetAlternativeFrequenciesEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -178,11 +157,7 @@ func (ptr *QRadioData) SetAlternativeFrequenciesEnabled(enabled bool) {
 }
 
 func (ptr *QRadioData) StationId() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::stationId")
-		}
-	}()
+	defer qt.Recovering("QRadioData::stationId")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRadioData_StationId(ptr.Pointer()))
@@ -191,11 +166,7 @@ func (ptr *QRadioData) StationId() string {
 }
 
 func (ptr *QRadioData) StationName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::stationName")
-		}
-	}()
+	defer qt.Recovering("QRadioData::stationName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRadioData_StationName(ptr.Pointer()))
@@ -204,21 +175,13 @@ func (ptr *QRadioData) StationName() string {
 }
 
 func NewQRadioData(mediaObject QMediaObject_ITF, parent core.QObject_ITF) *QRadioData {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::QRadioData")
-		}
-	}()
+	defer qt.Recovering("QRadioData::QRadioData")
 
 	return NewQRadioDataFromPointer(C.QRadioData_NewQRadioData(PointerFromQMediaObject(mediaObject), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QRadioData) ConnectAlternativeFrequenciesEnabledChanged(f func(enabled bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::alternativeFrequenciesEnabledChanged")
-		}
-	}()
+	defer qt.Recovering("connect QRadioData::alternativeFrequenciesEnabledChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_ConnectAlternativeFrequenciesEnabledChanged(ptr.Pointer())
@@ -227,11 +190,7 @@ func (ptr *QRadioData) ConnectAlternativeFrequenciesEnabledChanged(f func(enable
 }
 
 func (ptr *QRadioData) DisconnectAlternativeFrequenciesEnabledChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::alternativeFrequenciesEnabledChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QRadioData::alternativeFrequenciesEnabledChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_DisconnectAlternativeFrequenciesEnabledChanged(ptr.Pointer())
@@ -241,21 +200,17 @@ func (ptr *QRadioData) DisconnectAlternativeFrequenciesEnabledChanged() {
 
 //export callbackQRadioDataAlternativeFrequenciesEnabledChanged
 func callbackQRadioDataAlternativeFrequenciesEnabledChanged(ptrName *C.char, enabled C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::alternativeFrequenciesEnabledChanged")
-		}
-	}()
+	defer qt.Recovering("callback QRadioData::alternativeFrequenciesEnabledChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "alternativeFrequenciesEnabledChanged").(func(bool))(int(enabled) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "alternativeFrequenciesEnabledChanged")
+	if signal != nil {
+		signal.(func(bool))(int(enabled) != 0)
+	}
+
 }
 
 func (ptr *QRadioData) Error() QRadioData__Error {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::error")
-		}
-	}()
+	defer qt.Recovering("QRadioData::error")
 
 	if ptr.Pointer() != nil {
 		return QRadioData__Error(C.QRadioData_Error(ptr.Pointer()))
@@ -264,11 +219,7 @@ func (ptr *QRadioData) Error() QRadioData__Error {
 }
 
 func (ptr *QRadioData) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::errorString")
-		}
-	}()
+	defer qt.Recovering("QRadioData::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRadioData_ErrorString(ptr.Pointer()))
@@ -277,11 +228,7 @@ func (ptr *QRadioData) ErrorString() string {
 }
 
 func (ptr *QRadioData) MediaObject() *QMediaObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::mediaObject")
-		}
-	}()
+	defer qt.Recovering("QRadioData::mediaObject")
 
 	if ptr.Pointer() != nil {
 		return NewQMediaObjectFromPointer(C.QRadioData_MediaObject(ptr.Pointer()))
@@ -290,11 +237,7 @@ func (ptr *QRadioData) MediaObject() *QMediaObject {
 }
 
 func (ptr *QRadioData) ConnectProgramTypeChanged(f func(programType QRadioData__ProgramType)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::programTypeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QRadioData::programTypeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_ConnectProgramTypeChanged(ptr.Pointer())
@@ -303,11 +246,7 @@ func (ptr *QRadioData) ConnectProgramTypeChanged(f func(programType QRadioData__
 }
 
 func (ptr *QRadioData) DisconnectProgramTypeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::programTypeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QRadioData::programTypeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_DisconnectProgramTypeChanged(ptr.Pointer())
@@ -317,21 +256,17 @@ func (ptr *QRadioData) DisconnectProgramTypeChanged() {
 
 //export callbackQRadioDataProgramTypeChanged
 func callbackQRadioDataProgramTypeChanged(ptrName *C.char, programType C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::programTypeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QRadioData::programTypeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "programTypeChanged").(func(QRadioData__ProgramType))(QRadioData__ProgramType(programType))
+	var signal = qt.GetSignal(C.GoString(ptrName), "programTypeChanged")
+	if signal != nil {
+		signal.(func(QRadioData__ProgramType))(QRadioData__ProgramType(programType))
+	}
+
 }
 
 func (ptr *QRadioData) ConnectProgramTypeNameChanged(f func(programTypeName string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::programTypeNameChanged")
-		}
-	}()
+	defer qt.Recovering("connect QRadioData::programTypeNameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_ConnectProgramTypeNameChanged(ptr.Pointer())
@@ -340,11 +275,7 @@ func (ptr *QRadioData) ConnectProgramTypeNameChanged(f func(programTypeName stri
 }
 
 func (ptr *QRadioData) DisconnectProgramTypeNameChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::programTypeNameChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QRadioData::programTypeNameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_DisconnectProgramTypeNameChanged(ptr.Pointer())
@@ -354,21 +285,17 @@ func (ptr *QRadioData) DisconnectProgramTypeNameChanged() {
 
 //export callbackQRadioDataProgramTypeNameChanged
 func callbackQRadioDataProgramTypeNameChanged(ptrName *C.char, programTypeName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::programTypeNameChanged")
-		}
-	}()
+	defer qt.Recovering("callback QRadioData::programTypeNameChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "programTypeNameChanged").(func(string))(C.GoString(programTypeName))
+	var signal = qt.GetSignal(C.GoString(ptrName), "programTypeNameChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(programTypeName))
+	}
+
 }
 
 func (ptr *QRadioData) ConnectRadioTextChanged(f func(radioText string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::radioTextChanged")
-		}
-	}()
+	defer qt.Recovering("connect QRadioData::radioTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_ConnectRadioTextChanged(ptr.Pointer())
@@ -377,11 +304,7 @@ func (ptr *QRadioData) ConnectRadioTextChanged(f func(radioText string)) {
 }
 
 func (ptr *QRadioData) DisconnectRadioTextChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::radioTextChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QRadioData::radioTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_DisconnectRadioTextChanged(ptr.Pointer())
@@ -391,21 +314,17 @@ func (ptr *QRadioData) DisconnectRadioTextChanged() {
 
 //export callbackQRadioDataRadioTextChanged
 func callbackQRadioDataRadioTextChanged(ptrName *C.char, radioText *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::radioTextChanged")
-		}
-	}()
+	defer qt.Recovering("callback QRadioData::radioTextChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "radioTextChanged").(func(string))(C.GoString(radioText))
+	var signal = qt.GetSignal(C.GoString(ptrName), "radioTextChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(radioText))
+	}
+
 }
 
 func (ptr *QRadioData) ConnectStationIdChanged(f func(stationId string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::stationIdChanged")
-		}
-	}()
+	defer qt.Recovering("connect QRadioData::stationIdChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_ConnectStationIdChanged(ptr.Pointer())
@@ -414,11 +333,7 @@ func (ptr *QRadioData) ConnectStationIdChanged(f func(stationId string)) {
 }
 
 func (ptr *QRadioData) DisconnectStationIdChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::stationIdChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QRadioData::stationIdChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_DisconnectStationIdChanged(ptr.Pointer())
@@ -428,21 +343,17 @@ func (ptr *QRadioData) DisconnectStationIdChanged() {
 
 //export callbackQRadioDataStationIdChanged
 func callbackQRadioDataStationIdChanged(ptrName *C.char, stationId *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::stationIdChanged")
-		}
-	}()
+	defer qt.Recovering("callback QRadioData::stationIdChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "stationIdChanged").(func(string))(C.GoString(stationId))
+	var signal = qt.GetSignal(C.GoString(ptrName), "stationIdChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(stationId))
+	}
+
 }
 
 func (ptr *QRadioData) ConnectStationNameChanged(f func(stationName string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::stationNameChanged")
-		}
-	}()
+	defer qt.Recovering("connect QRadioData::stationNameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_ConnectStationNameChanged(ptr.Pointer())
@@ -451,11 +362,7 @@ func (ptr *QRadioData) ConnectStationNameChanged(f func(stationName string)) {
 }
 
 func (ptr *QRadioData) DisconnectStationNameChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::stationNameChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QRadioData::stationNameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_DisconnectStationNameChanged(ptr.Pointer())
@@ -465,21 +372,17 @@ func (ptr *QRadioData) DisconnectStationNameChanged() {
 
 //export callbackQRadioDataStationNameChanged
 func callbackQRadioDataStationNameChanged(ptrName *C.char, stationName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::stationNameChanged")
-		}
-	}()
+	defer qt.Recovering("callback QRadioData::stationNameChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "stationNameChanged").(func(string))(C.GoString(stationName))
+	var signal = qt.GetSignal(C.GoString(ptrName), "stationNameChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(stationName))
+	}
+
 }
 
 func (ptr *QRadioData) DestroyQRadioData() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRadioData::~QRadioData")
-		}
-	}()
+	defer qt.Recovering("QRadioData::~QRadioData")
 
 	if ptr.Pointer() != nil {
 		C.QRadioData_DestroyQRadioData(ptr.Pointer())

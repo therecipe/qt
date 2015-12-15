@@ -28,7 +28,7 @@ func NewQOpenGLDebugLoggerFromPointer(ptr unsafe.Pointer) *QOpenGLDebugLogger {
 	var n = new(QOpenGLDebugLogger)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLDebugLogger_") {
-		n.SetObjectName("QOpenGLDebugLogger_" + qt.RandomIdentifier())
+		n.SetObjectName("QOpenGLDebugLogger_" + qt.Identifier())
 	}
 	return n
 }

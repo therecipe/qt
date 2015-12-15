@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQTabBarFromPointer(ptr unsafe.Pointer) *QTabBar {
 	var n = new(QTabBar)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QTabBar_") {
-		n.SetObjectName("QTabBar_" + qt.RandomIdentifier())
+		n.SetObjectName("QTabBar_" + qt.Identifier())
 	}
 	return n
 }
@@ -71,11 +70,7 @@ const (
 )
 
 func (ptr *QTabBar) AutoHide() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::autoHide")
-		}
-	}()
+	defer qt.Recovering("QTabBar::autoHide")
 
 	if ptr.Pointer() != nil {
 		return C.QTabBar_AutoHide(ptr.Pointer()) != 0
@@ -84,11 +79,7 @@ func (ptr *QTabBar) AutoHide() bool {
 }
 
 func (ptr *QTabBar) ChangeCurrentOnDrag() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::changeCurrentOnDrag")
-		}
-	}()
+	defer qt.Recovering("QTabBar::changeCurrentOnDrag")
 
 	if ptr.Pointer() != nil {
 		return C.QTabBar_ChangeCurrentOnDrag(ptr.Pointer()) != 0
@@ -97,11 +88,7 @@ func (ptr *QTabBar) ChangeCurrentOnDrag() bool {
 }
 
 func (ptr *QTabBar) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::count")
-		}
-	}()
+	defer qt.Recovering("QTabBar::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabBar_Count(ptr.Pointer()))
@@ -110,11 +97,7 @@ func (ptr *QTabBar) Count() int {
 }
 
 func (ptr *QTabBar) CurrentIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::currentIndex")
-		}
-	}()
+	defer qt.Recovering("QTabBar::currentIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabBar_CurrentIndex(ptr.Pointer()))
@@ -123,11 +106,7 @@ func (ptr *QTabBar) CurrentIndex() int {
 }
 
 func (ptr *QTabBar) DocumentMode() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::documentMode")
-		}
-	}()
+	defer qt.Recovering("QTabBar::documentMode")
 
 	if ptr.Pointer() != nil {
 		return C.QTabBar_DocumentMode(ptr.Pointer()) != 0
@@ -136,11 +115,7 @@ func (ptr *QTabBar) DocumentMode() bool {
 }
 
 func (ptr *QTabBar) DrawBase() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::drawBase")
-		}
-	}()
+	defer qt.Recovering("QTabBar::drawBase")
 
 	if ptr.Pointer() != nil {
 		return C.QTabBar_DrawBase(ptr.Pointer()) != 0
@@ -149,11 +124,7 @@ func (ptr *QTabBar) DrawBase() bool {
 }
 
 func (ptr *QTabBar) ElideMode() core.Qt__TextElideMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::elideMode")
-		}
-	}()
+	defer qt.Recovering("QTabBar::elideMode")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__TextElideMode(C.QTabBar_ElideMode(ptr.Pointer()))
@@ -162,11 +133,7 @@ func (ptr *QTabBar) ElideMode() core.Qt__TextElideMode {
 }
 
 func (ptr *QTabBar) Expanding() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::expanding")
-		}
-	}()
+	defer qt.Recovering("QTabBar::expanding")
 
 	if ptr.Pointer() != nil {
 		return C.QTabBar_Expanding(ptr.Pointer()) != 0
@@ -175,11 +142,7 @@ func (ptr *QTabBar) Expanding() bool {
 }
 
 func (ptr *QTabBar) IsMovable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::isMovable")
-		}
-	}()
+	defer qt.Recovering("QTabBar::isMovable")
 
 	if ptr.Pointer() != nil {
 		return C.QTabBar_IsMovable(ptr.Pointer()) != 0
@@ -188,11 +151,7 @@ func (ptr *QTabBar) IsMovable() bool {
 }
 
 func (ptr *QTabBar) SelectionBehaviorOnRemove() QTabBar__SelectionBehavior {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::selectionBehaviorOnRemove")
-		}
-	}()
+	defer qt.Recovering("QTabBar::selectionBehaviorOnRemove")
 
 	if ptr.Pointer() != nil {
 		return QTabBar__SelectionBehavior(C.QTabBar_SelectionBehaviorOnRemove(ptr.Pointer()))
@@ -201,11 +160,7 @@ func (ptr *QTabBar) SelectionBehaviorOnRemove() QTabBar__SelectionBehavior {
 }
 
 func (ptr *QTabBar) SetAutoHide(hide bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setAutoHide")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setAutoHide")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetAutoHide(ptr.Pointer(), C.int(qt.GoBoolToInt(hide)))
@@ -213,11 +168,7 @@ func (ptr *QTabBar) SetAutoHide(hide bool) {
 }
 
 func (ptr *QTabBar) SetChangeCurrentOnDrag(change bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setChangeCurrentOnDrag")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setChangeCurrentOnDrag")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetChangeCurrentOnDrag(ptr.Pointer(), C.int(qt.GoBoolToInt(change)))
@@ -225,11 +176,7 @@ func (ptr *QTabBar) SetChangeCurrentOnDrag(change bool) {
 }
 
 func (ptr *QTabBar) SetCurrentIndex(index int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setCurrentIndex")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setCurrentIndex")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetCurrentIndex(ptr.Pointer(), C.int(index))
@@ -237,11 +184,7 @@ func (ptr *QTabBar) SetCurrentIndex(index int) {
 }
 
 func (ptr *QTabBar) SetDocumentMode(set bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setDocumentMode")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setDocumentMode")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetDocumentMode(ptr.Pointer(), C.int(qt.GoBoolToInt(set)))
@@ -249,11 +192,7 @@ func (ptr *QTabBar) SetDocumentMode(set bool) {
 }
 
 func (ptr *QTabBar) SetDrawBase(drawTheBase bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setDrawBase")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setDrawBase")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetDrawBase(ptr.Pointer(), C.int(qt.GoBoolToInt(drawTheBase)))
@@ -261,11 +200,7 @@ func (ptr *QTabBar) SetDrawBase(drawTheBase bool) {
 }
 
 func (ptr *QTabBar) SetElideMode(v core.Qt__TextElideMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setElideMode")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setElideMode")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetElideMode(ptr.Pointer(), C.int(v))
@@ -273,11 +208,7 @@ func (ptr *QTabBar) SetElideMode(v core.Qt__TextElideMode) {
 }
 
 func (ptr *QTabBar) SetExpanding(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setExpanding")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setExpanding")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetExpanding(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -285,11 +216,7 @@ func (ptr *QTabBar) SetExpanding(enabled bool) {
 }
 
 func (ptr *QTabBar) SetIconSize(size core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setIconSize")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setIconSize")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetIconSize(ptr.Pointer(), core.PointerFromQSize(size))
@@ -297,11 +224,7 @@ func (ptr *QTabBar) SetIconSize(size core.QSize_ITF) {
 }
 
 func (ptr *QTabBar) SetMovable(movable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setMovable")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setMovable")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetMovable(ptr.Pointer(), C.int(qt.GoBoolToInt(movable)))
@@ -309,11 +232,7 @@ func (ptr *QTabBar) SetMovable(movable bool) {
 }
 
 func (ptr *QTabBar) SetSelectionBehaviorOnRemove(behavior QTabBar__SelectionBehavior) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setSelectionBehaviorOnRemove")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setSelectionBehaviorOnRemove")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetSelectionBehaviorOnRemove(ptr.Pointer(), C.int(behavior))
@@ -321,11 +240,7 @@ func (ptr *QTabBar) SetSelectionBehaviorOnRemove(behavior QTabBar__SelectionBeha
 }
 
 func (ptr *QTabBar) SetShape(shape QTabBar__Shape) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setShape")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setShape")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetShape(ptr.Pointer(), C.int(shape))
@@ -333,11 +248,7 @@ func (ptr *QTabBar) SetShape(shape QTabBar__Shape) {
 }
 
 func (ptr *QTabBar) SetTabsClosable(closable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setTabsClosable")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setTabsClosable")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetTabsClosable(ptr.Pointer(), C.int(qt.GoBoolToInt(closable)))
@@ -345,11 +256,7 @@ func (ptr *QTabBar) SetTabsClosable(closable bool) {
 }
 
 func (ptr *QTabBar) SetUsesScrollButtons(useButtons bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setUsesScrollButtons")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setUsesScrollButtons")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetUsesScrollButtons(ptr.Pointer(), C.int(qt.GoBoolToInt(useButtons)))
@@ -357,11 +264,7 @@ func (ptr *QTabBar) SetUsesScrollButtons(useButtons bool) {
 }
 
 func (ptr *QTabBar) Shape() QTabBar__Shape {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::shape")
-		}
-	}()
+	defer qt.Recovering("QTabBar::shape")
 
 	if ptr.Pointer() != nil {
 		return QTabBar__Shape(C.QTabBar_Shape(ptr.Pointer()))
@@ -370,11 +273,7 @@ func (ptr *QTabBar) Shape() QTabBar__Shape {
 }
 
 func (ptr *QTabBar) TabsClosable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabsClosable")
-		}
-	}()
+	defer qt.Recovering("QTabBar::tabsClosable")
 
 	if ptr.Pointer() != nil {
 		return C.QTabBar_TabsClosable(ptr.Pointer()) != 0
@@ -383,11 +282,7 @@ func (ptr *QTabBar) TabsClosable() bool {
 }
 
 func (ptr *QTabBar) UsesScrollButtons() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::usesScrollButtons")
-		}
-	}()
+	defer qt.Recovering("QTabBar::usesScrollButtons")
 
 	if ptr.Pointer() != nil {
 		return C.QTabBar_UsesScrollButtons(ptr.Pointer()) != 0
@@ -396,21 +291,13 @@ func (ptr *QTabBar) UsesScrollButtons() bool {
 }
 
 func NewQTabBar(parent QWidget_ITF) *QTabBar {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::QTabBar")
-		}
-	}()
+	defer qt.Recovering("QTabBar::QTabBar")
 
 	return NewQTabBarFromPointer(C.QTabBar_NewQTabBar(PointerFromQWidget(parent)))
 }
 
 func (ptr *QTabBar) AddTab2(icon gui.QIcon_ITF, text string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::addTab")
-		}
-	}()
+	defer qt.Recovering("QTabBar::addTab")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabBar_AddTab2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text)))
@@ -419,11 +306,7 @@ func (ptr *QTabBar) AddTab2(icon gui.QIcon_ITF, text string) int {
 }
 
 func (ptr *QTabBar) AddTab(text string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::addTab")
-		}
-	}()
+	defer qt.Recovering("QTabBar::addTab")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabBar_AddTab(ptr.Pointer(), C.CString(text)))
@@ -431,12 +314,39 @@ func (ptr *QTabBar) AddTab(text string) int {
 	return 0
 }
 
+func (ptr *QTabBar) ConnectChangeEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QTabBar::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QTabBar::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQTabBarChangeEvent
+func callbackQTabBarChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTabBar::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTabBar) ConnectCurrentChanged(f func(index int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::currentChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTabBar::currentChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_ConnectCurrentChanged(ptr.Pointer())
@@ -445,11 +355,7 @@ func (ptr *QTabBar) ConnectCurrentChanged(f func(index int)) {
 }
 
 func (ptr *QTabBar) DisconnectCurrentChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::currentChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTabBar::currentChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_DisconnectCurrentChanged(ptr.Pointer())
@@ -459,21 +365,48 @@ func (ptr *QTabBar) DisconnectCurrentChanged() {
 
 //export callbackQTabBarCurrentChanged
 func callbackQTabBarCurrentChanged(ptrName *C.char, index C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::currentChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTabBar::currentChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentChanged").(func(int))(int(index))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
+	if signal != nil {
+		signal.(func(int))(int(index))
+	}
+
+}
+
+func (ptr *QTabBar) ConnectHideEvent(f func(v *gui.QHideEvent)) {
+	defer qt.Recovering("connect QTabBar::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectHideEvent() {
+	defer qt.Recovering("disconnect QTabBar::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+	}
+}
+
+//export callbackQTabBarHideEvent
+func callbackQTabBarHideEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTabBar::hideEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "hideEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(v))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QTabBar) InsertTab2(index int, icon gui.QIcon_ITF, text string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::insertTab")
-		}
-	}()
+	defer qt.Recovering("QTabBar::insertTab")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabBar_InsertTab2(ptr.Pointer(), C.int(index), gui.PointerFromQIcon(icon), C.CString(text)))
@@ -482,11 +415,7 @@ func (ptr *QTabBar) InsertTab2(index int, icon gui.QIcon_ITF, text string) int {
 }
 
 func (ptr *QTabBar) InsertTab(index int, text string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::insertTab")
-		}
-	}()
+	defer qt.Recovering("QTabBar::insertTab")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabBar_InsertTab(ptr.Pointer(), C.int(index), C.CString(text)))
@@ -495,11 +424,7 @@ func (ptr *QTabBar) InsertTab(index int, text string) int {
 }
 
 func (ptr *QTabBar) IsTabEnabled(index int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::isTabEnabled")
-		}
-	}()
+	defer qt.Recovering("QTabBar::isTabEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QTabBar_IsTabEnabled(ptr.Pointer(), C.int(index)) != 0
@@ -507,36 +432,210 @@ func (ptr *QTabBar) IsTabEnabled(index int) bool {
 	return false
 }
 
+func (ptr *QTabBar) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QTabBar::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QTabBar::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQTabBarKeyPressEvent
+func callbackQTabBarKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTabBar::keyPressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTabBar) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QTabBar::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectMouseMoveEvent() {
+	defer qt.Recovering("disconnect QTabBar::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+	}
+}
+
+//export callbackQTabBarMouseMoveEvent
+func callbackQTabBarMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTabBar::mouseMoveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTabBar) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QTabBar::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QTabBar::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQTabBarMousePressEvent
+func callbackQTabBarMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTabBar::mousePressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTabBar) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QTabBar::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectMouseReleaseEvent() {
+	defer qt.Recovering("disconnect QTabBar::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+	}
+}
+
+//export callbackQTabBarMouseReleaseEvent
+func callbackQTabBarMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTabBar::mouseReleaseEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTabBar) MoveTab(from int, to int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::moveTab")
-		}
-	}()
+	defer qt.Recovering("QTabBar::moveTab")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_MoveTab(ptr.Pointer(), C.int(from), C.int(to))
 	}
 }
 
+func (ptr *QTabBar) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QTabBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QTabBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQTabBarPaintEvent
+func callbackQTabBarPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTabBar::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTabBar) RemoveTab(index int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::removeTab")
-		}
-	}()
+	defer qt.Recovering("QTabBar::removeTab")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_RemoveTab(ptr.Pointer(), C.int(index))
 	}
 }
 
+func (ptr *QTabBar) ConnectResizeEvent(f func(v *gui.QResizeEvent)) {
+	defer qt.Recovering("connect QTabBar::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectResizeEvent() {
+	defer qt.Recovering("disconnect QTabBar::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+	}
+}
+
+//export callbackQTabBarResizeEvent
+func callbackQTabBarResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTabBar::resizeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTabBar) SetTabButton(index int, position QTabBar__ButtonPosition, widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setTabButton")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setTabButton")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetTabButton(ptr.Pointer(), C.int(index), C.int(position), PointerFromQWidget(widget))
@@ -544,11 +643,7 @@ func (ptr *QTabBar) SetTabButton(index int, position QTabBar__ButtonPosition, wi
 }
 
 func (ptr *QTabBar) SetTabData(index int, data core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setTabData")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setTabData")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetTabData(ptr.Pointer(), C.int(index), core.PointerFromQVariant(data))
@@ -556,11 +651,7 @@ func (ptr *QTabBar) SetTabData(index int, data core.QVariant_ITF) {
 }
 
 func (ptr *QTabBar) SetTabEnabled(index int, enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setTabEnabled")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setTabEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetTabEnabled(ptr.Pointer(), C.int(index), C.int(qt.GoBoolToInt(enabled)))
@@ -568,11 +659,7 @@ func (ptr *QTabBar) SetTabEnabled(index int, enabled bool) {
 }
 
 func (ptr *QTabBar) SetTabIcon(index int, icon gui.QIcon_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setTabIcon")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setTabIcon")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetTabIcon(ptr.Pointer(), C.int(index), gui.PointerFromQIcon(icon))
@@ -580,11 +667,7 @@ func (ptr *QTabBar) SetTabIcon(index int, icon gui.QIcon_ITF) {
 }
 
 func (ptr *QTabBar) SetTabText(index int, text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setTabText")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setTabText")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetTabText(ptr.Pointer(), C.int(index), C.CString(text))
@@ -592,11 +675,7 @@ func (ptr *QTabBar) SetTabText(index int, text string) {
 }
 
 func (ptr *QTabBar) SetTabTextColor(index int, color gui.QColor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setTabTextColor")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setTabTextColor")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetTabTextColor(ptr.Pointer(), C.int(index), gui.PointerFromQColor(color))
@@ -604,11 +683,7 @@ func (ptr *QTabBar) SetTabTextColor(index int, color gui.QColor_ITF) {
 }
 
 func (ptr *QTabBar) SetTabToolTip(index int, tip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setTabToolTip")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setTabToolTip")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetTabToolTip(ptr.Pointer(), C.int(index), C.CString(tip))
@@ -616,23 +691,46 @@ func (ptr *QTabBar) SetTabToolTip(index int, tip string) {
 }
 
 func (ptr *QTabBar) SetTabWhatsThis(index int, text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::setTabWhatsThis")
-		}
-	}()
+	defer qt.Recovering("QTabBar::setTabWhatsThis")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetTabWhatsThis(ptr.Pointer(), C.int(index), C.CString(text))
 	}
 }
 
+func (ptr *QTabBar) ConnectShowEvent(f func(v *gui.QShowEvent)) {
+	defer qt.Recovering("connect QTabBar::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectShowEvent() {
+	defer qt.Recovering("disconnect QTabBar::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+	}
+}
+
+//export callbackQTabBarShowEvent
+func callbackQTabBarShowEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTabBar::showEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTabBar) TabAt(position core.QPoint_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabAt")
-		}
-	}()
+	defer qt.Recovering("QTabBar::tabAt")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabBar_TabAt(ptr.Pointer(), core.PointerFromQPoint(position)))
@@ -641,11 +739,7 @@ func (ptr *QTabBar) TabAt(position core.QPoint_ITF) int {
 }
 
 func (ptr *QTabBar) ConnectTabBarClicked(f func(index int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabBarClicked")
-		}
-	}()
+	defer qt.Recovering("connect QTabBar::tabBarClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_ConnectTabBarClicked(ptr.Pointer())
@@ -654,11 +748,7 @@ func (ptr *QTabBar) ConnectTabBarClicked(f func(index int)) {
 }
 
 func (ptr *QTabBar) DisconnectTabBarClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabBarClicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QTabBar::tabBarClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_DisconnectTabBarClicked(ptr.Pointer())
@@ -668,21 +758,17 @@ func (ptr *QTabBar) DisconnectTabBarClicked() {
 
 //export callbackQTabBarTabBarClicked
 func callbackQTabBarTabBarClicked(ptrName *C.char, index C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabBarClicked")
-		}
-	}()
+	defer qt.Recovering("callback QTabBar::tabBarClicked")
 
-	qt.GetSignal(C.GoString(ptrName), "tabBarClicked").(func(int))(int(index))
+	var signal = qt.GetSignal(C.GoString(ptrName), "tabBarClicked")
+	if signal != nil {
+		signal.(func(int))(int(index))
+	}
+
 }
 
 func (ptr *QTabBar) ConnectTabBarDoubleClicked(f func(index int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabBarDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("connect QTabBar::tabBarDoubleClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_ConnectTabBarDoubleClicked(ptr.Pointer())
@@ -691,11 +777,7 @@ func (ptr *QTabBar) ConnectTabBarDoubleClicked(f func(index int)) {
 }
 
 func (ptr *QTabBar) DisconnectTabBarDoubleClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabBarDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QTabBar::tabBarDoubleClicked")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_DisconnectTabBarDoubleClicked(ptr.Pointer())
@@ -705,21 +787,17 @@ func (ptr *QTabBar) DisconnectTabBarDoubleClicked() {
 
 //export callbackQTabBarTabBarDoubleClicked
 func callbackQTabBarTabBarDoubleClicked(ptrName *C.char, index C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabBarDoubleClicked")
-		}
-	}()
+	defer qt.Recovering("callback QTabBar::tabBarDoubleClicked")
 
-	qt.GetSignal(C.GoString(ptrName), "tabBarDoubleClicked").(func(int))(int(index))
+	var signal = qt.GetSignal(C.GoString(ptrName), "tabBarDoubleClicked")
+	if signal != nil {
+		signal.(func(int))(int(index))
+	}
+
 }
 
 func (ptr *QTabBar) TabButton(index int, position QTabBar__ButtonPosition) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabButton")
-		}
-	}()
+	defer qt.Recovering("QTabBar::tabButton")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QTabBar_TabButton(ptr.Pointer(), C.int(index), C.int(position)))
@@ -728,11 +806,7 @@ func (ptr *QTabBar) TabButton(index int, position QTabBar__ButtonPosition) *QWid
 }
 
 func (ptr *QTabBar) ConnectTabCloseRequested(f func(index int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabCloseRequested")
-		}
-	}()
+	defer qt.Recovering("connect QTabBar::tabCloseRequested")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_ConnectTabCloseRequested(ptr.Pointer())
@@ -741,11 +815,7 @@ func (ptr *QTabBar) ConnectTabCloseRequested(f func(index int)) {
 }
 
 func (ptr *QTabBar) DisconnectTabCloseRequested() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabCloseRequested")
-		}
-	}()
+	defer qt.Recovering("disconnect QTabBar::tabCloseRequested")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_DisconnectTabCloseRequested(ptr.Pointer())
@@ -755,21 +825,17 @@ func (ptr *QTabBar) DisconnectTabCloseRequested() {
 
 //export callbackQTabBarTabCloseRequested
 func callbackQTabBarTabCloseRequested(ptrName *C.char, index C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabCloseRequested")
-		}
-	}()
+	defer qt.Recovering("callback QTabBar::tabCloseRequested")
 
-	qt.GetSignal(C.GoString(ptrName), "tabCloseRequested").(func(int))(int(index))
+	var signal = qt.GetSignal(C.GoString(ptrName), "tabCloseRequested")
+	if signal != nil {
+		signal.(func(int))(int(index))
+	}
+
 }
 
 func (ptr *QTabBar) TabData(index int) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabData")
-		}
-	}()
+	defer qt.Recovering("QTabBar::tabData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QTabBar_TabData(ptr.Pointer(), C.int(index)))
@@ -777,12 +843,70 @@ func (ptr *QTabBar) TabData(index int) *core.QVariant {
 	return nil
 }
 
+func (ptr *QTabBar) ConnectTabInserted(f func(index int)) {
+	defer qt.Recovering("connect QTabBar::tabInserted")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "tabInserted", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectTabInserted() {
+	defer qt.Recovering("disconnect QTabBar::tabInserted")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "tabInserted")
+	}
+}
+
+//export callbackQTabBarTabInserted
+func callbackQTabBarTabInserted(ptrName *C.char, index C.int) bool {
+	defer qt.Recovering("callback QTabBar::tabInserted")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "tabInserted")
+	if signal != nil {
+		defer signal.(func(int))(int(index))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTabBar) ConnectTabLayoutChange(f func()) {
+	defer qt.Recovering("connect QTabBar::tabLayoutChange")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "tabLayoutChange", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectTabLayoutChange() {
+	defer qt.Recovering("disconnect QTabBar::tabLayoutChange")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "tabLayoutChange")
+	}
+}
+
+//export callbackQTabBarTabLayoutChange
+func callbackQTabBarTabLayoutChange(ptrName *C.char) bool {
+	defer qt.Recovering("callback QTabBar::tabLayoutChange")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "tabLayoutChange")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTabBar) ConnectTabMoved(f func(from int, to int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabMoved")
-		}
-	}()
+	defer qt.Recovering("connect QTabBar::tabMoved")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_ConnectTabMoved(ptr.Pointer())
@@ -791,11 +915,7 @@ func (ptr *QTabBar) ConnectTabMoved(f func(from int, to int)) {
 }
 
 func (ptr *QTabBar) DisconnectTabMoved() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabMoved")
-		}
-	}()
+	defer qt.Recovering("disconnect QTabBar::tabMoved")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_DisconnectTabMoved(ptr.Pointer())
@@ -805,21 +925,48 @@ func (ptr *QTabBar) DisconnectTabMoved() {
 
 //export callbackQTabBarTabMoved
 func callbackQTabBarTabMoved(ptrName *C.char, from C.int, to C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabMoved")
-		}
-	}()
+	defer qt.Recovering("callback QTabBar::tabMoved")
 
-	qt.GetSignal(C.GoString(ptrName), "tabMoved").(func(int, int))(int(from), int(to))
+	var signal = qt.GetSignal(C.GoString(ptrName), "tabMoved")
+	if signal != nil {
+		signal.(func(int, int))(int(from), int(to))
+	}
+
+}
+
+func (ptr *QTabBar) ConnectTabRemoved(f func(index int)) {
+	defer qt.Recovering("connect QTabBar::tabRemoved")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "tabRemoved", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectTabRemoved() {
+	defer qt.Recovering("disconnect QTabBar::tabRemoved")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "tabRemoved")
+	}
+}
+
+//export callbackQTabBarTabRemoved
+func callbackQTabBarTabRemoved(ptrName *C.char, index C.int) bool {
+	defer qt.Recovering("callback QTabBar::tabRemoved")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "tabRemoved")
+	if signal != nil {
+		defer signal.(func(int))(int(index))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QTabBar) TabText(index int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabText")
-		}
-	}()
+	defer qt.Recovering("QTabBar::tabText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTabBar_TabText(ptr.Pointer(), C.int(index)))
@@ -828,11 +975,7 @@ func (ptr *QTabBar) TabText(index int) string {
 }
 
 func (ptr *QTabBar) TabTextColor(index int) *gui.QColor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabTextColor")
-		}
-	}()
+	defer qt.Recovering("QTabBar::tabTextColor")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQColorFromPointer(C.QTabBar_TabTextColor(ptr.Pointer(), C.int(index)))
@@ -841,11 +984,7 @@ func (ptr *QTabBar) TabTextColor(index int) *gui.QColor {
 }
 
 func (ptr *QTabBar) TabToolTip(index int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabToolTip")
-		}
-	}()
+	defer qt.Recovering("QTabBar::tabToolTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTabBar_TabToolTip(ptr.Pointer(), C.int(index)))
@@ -854,11 +993,7 @@ func (ptr *QTabBar) TabToolTip(index int) string {
 }
 
 func (ptr *QTabBar) TabWhatsThis(index int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::tabWhatsThis")
-		}
-	}()
+	defer qt.Recovering("QTabBar::tabWhatsThis")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTabBar_TabWhatsThis(ptr.Pointer(), C.int(index)))
@@ -866,12 +1001,70 @@ func (ptr *QTabBar) TabWhatsThis(index int) string {
 	return ""
 }
 
+func (ptr *QTabBar) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QTabBar::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QTabBar::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQTabBarTimerEvent
+func callbackQTabBarTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTabBar::timerEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
+	if signal != nil {
+		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTabBar) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
+	defer qt.Recovering("connect QTabBar::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QTabBar) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QTabBar::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQTabBarWheelEvent
+func callbackQTabBarWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTabBar::wheelEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTabBar) DestroyQTabBar() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabBar::~QTabBar")
-		}
-	}()
+	defer qt.Recovering("QTabBar::~QTabBar")
 
 	if ptr.Pointer() != nil {
 		C.QTabBar_DestroyQTabBar(ptr.Pointer())

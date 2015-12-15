@@ -3,7 +3,7 @@ package sql
 //#include "sql.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQSqlDriverCreatorBase(ptr QSqlDriverCreatorBase_ITF) unsafe.Poin
 func NewQSqlDriverCreatorBaseFromPointer(ptr unsafe.Pointer) *QSqlDriverCreatorBase {
 	var n = new(QSqlDriverCreatorBase)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QSqlDriverCreatorBase_") {
+		n.SetObjectNameAbs("QSqlDriverCreatorBase_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QSqlDriverCreatorBase) QSqlDriverCreatorBase_PTR() *QSqlDriverCreator
 }
 
 func (ptr *QSqlDriverCreatorBase) CreateObject() *QSqlDriver {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlDriverCreatorBase::createObject")
-		}
-	}()
+	defer qt.Recovering("QSqlDriverCreatorBase::createObject")
 
 	if ptr.Pointer() != nil {
 		return NewQSqlDriverFromPointer(C.QSqlDriverCreatorBase_CreateObject(ptr.Pointer()))
@@ -54,13 +53,26 @@ func (ptr *QSqlDriverCreatorBase) CreateObject() *QSqlDriver {
 }
 
 func (ptr *QSqlDriverCreatorBase) DestroyQSqlDriverCreatorBase() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlDriverCreatorBase::~QSqlDriverCreatorBase")
-		}
-	}()
+	defer qt.Recovering("QSqlDriverCreatorBase::~QSqlDriverCreatorBase")
 
 	if ptr.Pointer() != nil {
 		C.QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlDriverCreatorBase) ObjectNameAbs() string {
+	defer qt.Recovering("QSqlDriverCreatorBase::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QSqlDriverCreatorBase_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlDriverCreatorBase) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QSqlDriverCreatorBase::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriverCreatorBase_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

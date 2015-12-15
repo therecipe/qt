@@ -8,7 +8,7 @@ import (
 )
 
 func isSupportedFunction(c *parser.Class, f *parser.Function) bool {
-	return f.Access == "public" && f.Status != "obsolete" && isNotAbstractConstructor(c, f) && isNotAtomic(f) && !isBlocked(f) && !(f.Meta == "signal" && f.Overload)
+	return (f.Access == "public" || (f.Access == "protected" && strings.Contains(f.Virtual, "impure"))) && f.Status != "obsolete" && isNotAbstractConstructor(c, f) && isNotAtomic(f) && !isBlocked(f) && !((f.Meta == "signal" || strings.Contains(f.Virtual, "impure") && f.Output == "void") && f.Overload)
 }
 
 func isNotAbstractConstructor(c *parser.Class, f *parser.Function) bool {
@@ -60,7 +60,7 @@ func classHasRealFunction(c string, n string) bool {
 }
 
 func isBlocked(f *parser.Function) bool {
-	for _, n := range []string{"scriptValueFromQMetaObject", "fromScriptValue", "QPlaceProposedSearchResult", "evaluateTo", "detected", "isRecordType", "replace", "insert", "remove", "find", "changedStates", "state", "requestTexture", "draw", "setTabPositions", "setExtraSelections", "disconnect", "QJsonObject", "QJsonArray", "QAccessibleStateChangeEvent", "hitTest", "setupUi", "setEditFocus", "toUnicode", "registerConverter", "registerEqualsComparator", "registerComparators", "hasRegisteredConverterFunction", "hasRegisteredComparators", "setNavigationMode", "navigationMode", "setNativeArguments", "setAlphaChannel", "setDefaultAction", "unregisterEventNotifier", "QXmlStreamWriter", "hasEditFocus", "QTextStream", "QStringRef", "QSignalBlocker", "defaultAction", "canConvert", "queryItemValue", "hasQueryItem", "hasEncodedQueryItem", "hasLocalData", "registerEventNotifier", "registerTimer", "setYMD", "nativeArguments"} {
+	for _, n := range []string{"relations", "scriptValueFromQMetaObject", "fromScriptValue", "QPlaceProposedSearchResult", "evaluateTo", "detected", "isRecordType", "replace", "insert", "remove", "find", "changedStates", "state", "requestTexture", "draw", "setTabPositions", "setExtraSelections", "disconnect", "QJsonObject", "QJsonArray", "QAccessibleStateChangeEvent", "hitTest", "setupUi", "setEditFocus", "toUnicode", "registerConverter", "registerEqualsComparator", "registerComparators", "hasRegisteredConverterFunction", "hasRegisteredComparators", "setNavigationMode", "navigationMode", "setNativeArguments", "setAlphaChannel", "setDefaultAction", "unregisterEventNotifier", "QXmlStreamWriter", "hasEditFocus", "QTextStream", "QStringRef", "QSignalBlocker", "defaultAction", "canConvert", "queryItemValue", "hasQueryItem", "hasEncodedQueryItem", "hasLocalData", "registerEventNotifier", "registerTimer", "setYMD", "nativeArguments"} {
 		if f.Name == n {
 			f.Access = "unsupported_isBlocked"
 			return true
@@ -68,7 +68,7 @@ func isBlocked(f *parser.Function) bool {
 	}
 
 	//Android Only
-	for _, blockedAndroid := range []string{"setAsDockMenu"} {
+	for _, blockedAndroid := range []string{"setAsDockMenu", "setSelect"} {
 		if f.Name == blockedAndroid {
 			f.Access = "unsupported_isBlocked_Android"
 			return true
@@ -112,7 +112,7 @@ func isSupportedClass(c *parser.Class) bool {
 }
 
 func isBlockedClass(c *parser.Class) bool {
-	for _, n := range []string{"QPlaceContentRequest", "QPlaceContentReply", "QPlaceContent", "QPlaceContactDetail", "QPlaceCategory", "QPlaceAttribute", "QPlace", "QGeoCodingManagerEngine", "QGeoCodingManager", "QHash", "QGenericMatrix", "QContiguousCache", "QStringList", "QCache", "QString", "QItemEditorCreator", "QImageIOPlugin", "QImageIOHandler", "QIconEnginePlugin", "QGraphicsTransform", "QGraphicsLayoutItem", "QGraphicsLayout", "QGraphicsItem", "QGraphicsEffect", "QGestureRecognizer", "QGenericPlugin", "QDebug", "QAnimationGroup", "QAccessiblePlugin", "QOpenGLFunctions_ES2", "Qt", "QSharedDataPointer", "QScopedValueRollback", "QScopedArrayPointer", "QQueue", "QMultiMap", "QWinEventNotifier", "QWeakPointer", "QVarLengthArray", "QThreadStorage", "QSharedPointer", "QScopedPointer", "QMutableHashIterator", "QMultiHash", "QMapIterator", "QListIterator", "QLinkedListIterator", "QHashIterator", "QGlobalStatic", "QFutureWatcher", "QFutureSynchronizer", "QFutureIterator", "QFuture", "QEnableSharedFromThis", "QExplicitlySharedDataPointer", "QFlags"} {
+	for _, n := range []string{"QException", "QPlaceContentRequest", "QPlaceContentReply", "QPlaceContent", "QPlaceContactDetail", "QPlaceCategory", "QPlaceAttribute", "QPlace", "QGeoCodingManagerEngine", "QGeoCodingManager", "QHash", "QGenericMatrix", "QContiguousCache", "QStringList", "QCache", "QString", "QItemEditorCreator", "QImageIOPlugin", "QImageIOHandler", "QIconEnginePlugin", "QGraphicsTransform", "QGraphicsLayoutItem", "QGraphicsLayout", "QGraphicsItem", "QGraphicsEffect", "QGestureRecognizer", "QGenericPlugin", "QDebug", "QAnimationGroup", "QAccessiblePlugin", "QOpenGLFunctions_ES2", "Qt", "QSharedDataPointer", "QScopedValueRollback", "QScopedArrayPointer", "QQueue", "QMultiMap", "QWinEventNotifier", "QWeakPointer", "QVarLengthArray", "QThreadStorage", "QSharedPointer", "QScopedPointer", "QMutableHashIterator", "QMultiHash", "QMapIterator", "QListIterator", "QLinkedListIterator", "QHashIterator", "QGlobalStatic", "QFutureWatcher", "QFutureSynchronizer", "QFutureIterator", "QFuture", "QEnableSharedFromThis", "QExplicitlySharedDataPointer", "QFlags"} {
 		if c.Name == n || strings.Contains(c.Name, "Iterator") {
 			return true
 		}
@@ -131,7 +131,7 @@ func isBlockedClass(c *parser.Class) bool {
 }
 
 func isSupportedEnum(e *parser.Enum) bool {
-	return e.Access == "public" && e.Status != "obsolete"
+	return (e.Access == "public" || e.Access == "protected") && e.Status != "obsolete"
 }
 
 func needsCppValueGlue(v *parser.Value) bool {
@@ -181,8 +181,8 @@ func ShouldBuild(module string) bool {
 }
 
 var Build = map[string]bool{
-	"Core":              false,
-	"AndroidExtras":     true,
+	"Core":              true,
+	"AndroidExtras":     false,
 	"Gui":               false,
 	"Network":           false,
 	"Sql":               false,
@@ -318,4 +318,26 @@ func jniGenericModes(f *parser.Function) []string {
 		return make([]string, 0)
 	}
 
+}
+
+func hasVirtualFunction(c *parser.Class) bool {
+
+	for _, f := range c.Functions {
+		if f.Virtual == "impure" {
+			return true
+		}
+	}
+
+	return false
+}
+
+func hasSignalFunction(c *parser.Class) bool {
+
+	for _, f := range c.Functions {
+		if f.Meta == "signal" {
+			return true
+		}
+	}
+
+	return false
 }

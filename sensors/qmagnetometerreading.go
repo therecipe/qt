@@ -4,7 +4,6 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQMagnetometerReadingFromPointer(ptr unsafe.Pointer) *QMagnetometerReadin
 	var n = new(QMagnetometerReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMagnetometerReading_") {
-		n.SetObjectName("QMagnetometerReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QMagnetometerReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QMagnetometerReading) QMagnetometerReading_PTR() *QMagnetometerReadin
 }
 
 func (ptr *QMagnetometerReading) CalibrationLevel() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMagnetometerReading::calibrationLevel")
-		}
-	}()
+	defer qt.Recovering("QMagnetometerReading::calibrationLevel")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QMagnetometerReading_CalibrationLevel(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QMagnetometerReading) CalibrationLevel() float64 {
 }
 
 func (ptr *QMagnetometerReading) X() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMagnetometerReading::x")
-		}
-	}()
+	defer qt.Recovering("QMagnetometerReading::x")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QMagnetometerReading_X(ptr.Pointer()))
@@ -64,11 +55,7 @@ func (ptr *QMagnetometerReading) X() float64 {
 }
 
 func (ptr *QMagnetometerReading) Y() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMagnetometerReading::y")
-		}
-	}()
+	defer qt.Recovering("QMagnetometerReading::y")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QMagnetometerReading_Y(ptr.Pointer()))
@@ -77,11 +64,7 @@ func (ptr *QMagnetometerReading) Y() float64 {
 }
 
 func (ptr *QMagnetometerReading) Z() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMagnetometerReading::z")
-		}
-	}()
+	defer qt.Recovering("QMagnetometerReading::z")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QMagnetometerReading_Z(ptr.Pointer()))
@@ -90,11 +73,7 @@ func (ptr *QMagnetometerReading) Z() float64 {
 }
 
 func (ptr *QMagnetometerReading) SetCalibrationLevel(calibrationLevel float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMagnetometerReading::setCalibrationLevel")
-		}
-	}()
+	defer qt.Recovering("QMagnetometerReading::setCalibrationLevel")
 
 	if ptr.Pointer() != nil {
 		C.QMagnetometerReading_SetCalibrationLevel(ptr.Pointer(), C.double(calibrationLevel))
@@ -102,11 +81,7 @@ func (ptr *QMagnetometerReading) SetCalibrationLevel(calibrationLevel float64) {
 }
 
 func (ptr *QMagnetometerReading) SetX(x float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMagnetometerReading::setX")
-		}
-	}()
+	defer qt.Recovering("QMagnetometerReading::setX")
 
 	if ptr.Pointer() != nil {
 		C.QMagnetometerReading_SetX(ptr.Pointer(), C.double(x))
@@ -114,11 +89,7 @@ func (ptr *QMagnetometerReading) SetX(x float64) {
 }
 
 func (ptr *QMagnetometerReading) SetY(y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMagnetometerReading::setY")
-		}
-	}()
+	defer qt.Recovering("QMagnetometerReading::setY")
 
 	if ptr.Pointer() != nil {
 		C.QMagnetometerReading_SetY(ptr.Pointer(), C.double(y))
@@ -126,11 +97,7 @@ func (ptr *QMagnetometerReading) SetY(y float64) {
 }
 
 func (ptr *QMagnetometerReading) SetZ(z float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMagnetometerReading::setZ")
-		}
-	}()
+	defer qt.Recovering("QMagnetometerReading::setZ")
 
 	if ptr.Pointer() != nil {
 		C.QMagnetometerReading_SetZ(ptr.Pointer(), C.double(z))

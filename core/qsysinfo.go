@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -139,101 +139,61 @@ const (
 )
 
 func QSysInfo_MacVersion() QSysInfo__MacVersion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSysInfo::macVersion")
-		}
-	}()
+	defer qt.Recovering("QSysInfo::macVersion")
 
 	return QSysInfo__MacVersion(C.QSysInfo_QSysInfo_MacVersion())
 }
 
 func QSysInfo_BuildAbi() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSysInfo::buildAbi")
-		}
-	}()
+	defer qt.Recovering("QSysInfo::buildAbi")
 
 	return C.GoString(C.QSysInfo_QSysInfo_BuildAbi())
 }
 
 func QSysInfo_BuildCpuArchitecture() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSysInfo::buildCpuArchitecture")
-		}
-	}()
+	defer qt.Recovering("QSysInfo::buildCpuArchitecture")
 
 	return C.GoString(C.QSysInfo_QSysInfo_BuildCpuArchitecture())
 }
 
 func QSysInfo_CurrentCpuArchitecture() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSysInfo::currentCpuArchitecture")
-		}
-	}()
+	defer qt.Recovering("QSysInfo::currentCpuArchitecture")
 
 	return C.GoString(C.QSysInfo_QSysInfo_CurrentCpuArchitecture())
 }
 
 func QSysInfo_KernelType() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSysInfo::kernelType")
-		}
-	}()
+	defer qt.Recovering("QSysInfo::kernelType")
 
 	return C.GoString(C.QSysInfo_QSysInfo_KernelType())
 }
 
 func QSysInfo_KernelVersion() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSysInfo::kernelVersion")
-		}
-	}()
+	defer qt.Recovering("QSysInfo::kernelVersion")
 
 	return C.GoString(C.QSysInfo_QSysInfo_KernelVersion())
 }
 
 func QSysInfo_PrettyProductName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSysInfo::prettyProductName")
-		}
-	}()
+	defer qt.Recovering("QSysInfo::prettyProductName")
 
 	return C.GoString(C.QSysInfo_QSysInfo_PrettyProductName())
 }
 
 func QSysInfo_ProductType() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSysInfo::productType")
-		}
-	}()
+	defer qt.Recovering("QSysInfo::productType")
 
 	return C.GoString(C.QSysInfo_QSysInfo_ProductType())
 }
 
 func QSysInfo_ProductVersion() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSysInfo::productVersion")
-		}
-	}()
+	defer qt.Recovering("QSysInfo::productVersion")
 
 	return C.GoString(C.QSysInfo_QSysInfo_ProductVersion())
 }
 
 func QSysInfo_WindowsVersion() QSysInfo__WinVersion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSysInfo::windowsVersion")
-		}
-	}()
+	defer qt.Recovering("QSysInfo::windowsVersion")
 
 	return QSysInfo__WinVersion(C.QSysInfo_QSysInfo_WindowsVersion())
 }

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQPressureSensorFromPointer(ptr unsafe.Pointer) *QPressureSensor {
 	var n = new(QPressureSensor)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QPressureSensor_") {
-		n.SetObjectName("QPressureSensor_" + qt.RandomIdentifier())
+		n.SetObjectName("QPressureSensor_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QPressureSensor) QPressureSensor_PTR() *QPressureSensor {
 }
 
 func (ptr *QPressureSensor) Reading() *QPressureReading {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPressureSensor::reading")
-		}
-	}()
+	defer qt.Recovering("QPressureSensor::reading")
 
 	if ptr.Pointer() != nil {
 		return NewQPressureReadingFromPointer(C.QPressureSensor_Reading(ptr.Pointer()))
@@ -52,21 +47,13 @@ func (ptr *QPressureSensor) Reading() *QPressureReading {
 }
 
 func NewQPressureSensor(parent core.QObject_ITF) *QPressureSensor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPressureSensor::QPressureSensor")
-		}
-	}()
+	defer qt.Recovering("QPressureSensor::QPressureSensor")
 
 	return NewQPressureSensorFromPointer(C.QPressureSensor_NewQPressureSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QPressureSensor) DestroyQPressureSensor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPressureSensor::~QPressureSensor")
-		}
-	}()
+	defer qt.Recovering("QPressureSensor::~QPressureSensor")
 
 	if ptr.Pointer() != nil {
 		C.QPressureSensor_DestroyQPressureSensor(ptr.Pointer())

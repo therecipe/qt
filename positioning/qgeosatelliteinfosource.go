@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQGeoSatelliteInfoSourceFromPointer(ptr unsafe.Pointer) *QGeoSatelliteInf
 	var n = new(QGeoSatelliteInfoSource)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoSatelliteInfoSource_") {
-		n.SetObjectName("QGeoSatelliteInfoSource_" + qt.RandomIdentifier())
+		n.SetObjectName("QGeoSatelliteInfoSource_" + qt.Identifier())
 	}
 	return n
 }
@@ -49,24 +48,39 @@ const (
 	QGeoSatelliteInfoSource__UnknownSourceError = QGeoSatelliteInfoSource__Error(-1)
 )
 
-func (ptr *QGeoSatelliteInfoSource) SetUpdateInterval(msec int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::setUpdateInterval")
-		}
-	}()
+func (ptr *QGeoSatelliteInfoSource) ConnectSetUpdateInterval(f func(msec int)) {
+	defer qt.Recovering("connect QGeoSatelliteInfoSource::setUpdateInterval")
 
 	if ptr.Pointer() != nil {
-		C.QGeoSatelliteInfoSource_SetUpdateInterval(ptr.Pointer(), C.int(msec))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setUpdateInterval", f)
 	}
 }
 
+func (ptr *QGeoSatelliteInfoSource) DisconnectSetUpdateInterval() {
+	defer qt.Recovering("disconnect QGeoSatelliteInfoSource::setUpdateInterval")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setUpdateInterval")
+	}
+}
+
+//export callbackQGeoSatelliteInfoSourceSetUpdateInterval
+func callbackQGeoSatelliteInfoSourceSetUpdateInterval(ptrName *C.char, msec C.int) bool {
+	defer qt.Recovering("callback QGeoSatelliteInfoSource::setUpdateInterval")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setUpdateInterval")
+	if signal != nil {
+		defer signal.(func(int))(int(msec))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGeoSatelliteInfoSource) UpdateInterval() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::updateInterval")
-		}
-	}()
+	defer qt.Recovering("QGeoSatelliteInfoSource::updateInterval")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGeoSatelliteInfoSource_UpdateInterval(ptr.Pointer()))
@@ -75,41 +89,25 @@ func (ptr *QGeoSatelliteInfoSource) UpdateInterval() int {
 }
 
 func QGeoSatelliteInfoSource_AvailableSources() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::availableSources")
-		}
-	}()
+	defer qt.Recovering("QGeoSatelliteInfoSource::availableSources")
 
 	return strings.Split(C.GoString(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources()), ",,,")
 }
 
 func QGeoSatelliteInfoSource_CreateDefaultSource(parent core.QObject_ITF) *QGeoSatelliteInfoSource {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::createDefaultSource")
-		}
-	}()
+	defer qt.Recovering("QGeoSatelliteInfoSource::createDefaultSource")
 
 	return NewQGeoSatelliteInfoSourceFromPointer(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateDefaultSource(core.PointerFromQObject(parent)))
 }
 
 func QGeoSatelliteInfoSource_CreateSource(sourceName string, parent core.QObject_ITF) *QGeoSatelliteInfoSource {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::createSource")
-		}
-	}()
+	defer qt.Recovering("QGeoSatelliteInfoSource::createSource")
 
 	return NewQGeoSatelliteInfoSourceFromPointer(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(C.CString(sourceName), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGeoSatelliteInfoSource) Error() QGeoSatelliteInfoSource__Error {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::error")
-		}
-	}()
+	defer qt.Recovering("QGeoSatelliteInfoSource::error")
 
 	if ptr.Pointer() != nil {
 		return QGeoSatelliteInfoSource__Error(C.QGeoSatelliteInfoSource_Error(ptr.Pointer()))
@@ -118,11 +116,7 @@ func (ptr *QGeoSatelliteInfoSource) Error() QGeoSatelliteInfoSource__Error {
 }
 
 func (ptr *QGeoSatelliteInfoSource) MinimumUpdateInterval() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::minimumUpdateInterval")
-		}
-	}()
+	defer qt.Recovering("QGeoSatelliteInfoSource::minimumUpdateInterval")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGeoSatelliteInfoSource_MinimumUpdateInterval(ptr.Pointer()))
@@ -131,11 +125,7 @@ func (ptr *QGeoSatelliteInfoSource) MinimumUpdateInterval() int {
 }
 
 func (ptr *QGeoSatelliteInfoSource) ConnectRequestTimeout(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::requestTimeout")
-		}
-	}()
+	defer qt.Recovering("connect QGeoSatelliteInfoSource::requestTimeout")
 
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_ConnectRequestTimeout(ptr.Pointer())
@@ -144,11 +134,7 @@ func (ptr *QGeoSatelliteInfoSource) ConnectRequestTimeout(f func()) {
 }
 
 func (ptr *QGeoSatelliteInfoSource) DisconnectRequestTimeout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::requestTimeout")
-		}
-	}()
+	defer qt.Recovering("disconnect QGeoSatelliteInfoSource::requestTimeout")
 
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_DisconnectRequestTimeout(ptr.Pointer())
@@ -158,21 +144,17 @@ func (ptr *QGeoSatelliteInfoSource) DisconnectRequestTimeout() {
 
 //export callbackQGeoSatelliteInfoSourceRequestTimeout
 func callbackQGeoSatelliteInfoSourceRequestTimeout(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::requestTimeout")
-		}
-	}()
+	defer qt.Recovering("callback QGeoSatelliteInfoSource::requestTimeout")
 
-	qt.GetSignal(C.GoString(ptrName), "requestTimeout").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "requestTimeout")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGeoSatelliteInfoSource) RequestUpdate(timeout int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::requestUpdate")
-		}
-	}()
+	defer qt.Recovering("QGeoSatelliteInfoSource::requestUpdate")
 
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_RequestUpdate(ptr.Pointer(), C.int(timeout))
@@ -180,11 +162,7 @@ func (ptr *QGeoSatelliteInfoSource) RequestUpdate(timeout int) {
 }
 
 func (ptr *QGeoSatelliteInfoSource) SourceName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::sourceName")
-		}
-	}()
+	defer qt.Recovering("QGeoSatelliteInfoSource::sourceName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGeoSatelliteInfoSource_SourceName(ptr.Pointer()))
@@ -193,11 +171,7 @@ func (ptr *QGeoSatelliteInfoSource) SourceName() string {
 }
 
 func (ptr *QGeoSatelliteInfoSource) StartUpdates() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::startUpdates")
-		}
-	}()
+	defer qt.Recovering("QGeoSatelliteInfoSource::startUpdates")
 
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_StartUpdates(ptr.Pointer())
@@ -205,11 +179,7 @@ func (ptr *QGeoSatelliteInfoSource) StartUpdates() {
 }
 
 func (ptr *QGeoSatelliteInfoSource) StopUpdates() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::stopUpdates")
-		}
-	}()
+	defer qt.Recovering("QGeoSatelliteInfoSource::stopUpdates")
 
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_StopUpdates(ptr.Pointer())
@@ -217,11 +187,7 @@ func (ptr *QGeoSatelliteInfoSource) StopUpdates() {
 }
 
 func (ptr *QGeoSatelliteInfoSource) DestroyQGeoSatelliteInfoSource() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoSatelliteInfoSource::~QGeoSatelliteInfoSource")
-		}
-	}()
+	defer qt.Recovering("QGeoSatelliteInfoSource::~QGeoSatelliteInfoSource")
 
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(ptr.Pointer())

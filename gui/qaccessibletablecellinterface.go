@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQAccessibleTableCellInterface(ptr QAccessibleTableCellInterface_
 func NewQAccessibleTableCellInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleTableCellInterface {
 	var n = new(QAccessibleTableCellInterface)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QAccessibleTableCellInterface_") {
+		n.SetObjectNameAbs("QAccessibleTableCellInterface_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QAccessibleTableCellInterface) QAccessibleTableCellInterface_PTR() *Q
 }
 
 func (ptr *QAccessibleTableCellInterface) ColumnExtent() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableCellInterface::columnExtent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableCellInterface::columnExtent")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableCellInterface_ColumnExtent(ptr.Pointer()))
@@ -54,11 +53,7 @@ func (ptr *QAccessibleTableCellInterface) ColumnExtent() int {
 }
 
 func (ptr *QAccessibleTableCellInterface) ColumnIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableCellInterface::columnIndex")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableCellInterface::columnIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableCellInterface_ColumnIndex(ptr.Pointer()))
@@ -67,11 +62,7 @@ func (ptr *QAccessibleTableCellInterface) ColumnIndex() int {
 }
 
 func (ptr *QAccessibleTableCellInterface) IsSelected() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableCellInterface::isSelected")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableCellInterface::isSelected")
 
 	if ptr.Pointer() != nil {
 		return C.QAccessibleTableCellInterface_IsSelected(ptr.Pointer()) != 0
@@ -80,11 +71,7 @@ func (ptr *QAccessibleTableCellInterface) IsSelected() bool {
 }
 
 func (ptr *QAccessibleTableCellInterface) RowExtent() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableCellInterface::rowExtent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableCellInterface::rowExtent")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableCellInterface_RowExtent(ptr.Pointer()))
@@ -93,11 +80,7 @@ func (ptr *QAccessibleTableCellInterface) RowExtent() int {
 }
 
 func (ptr *QAccessibleTableCellInterface) RowIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableCellInterface::rowIndex")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableCellInterface::rowIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableCellInterface_RowIndex(ptr.Pointer()))
@@ -106,11 +89,7 @@ func (ptr *QAccessibleTableCellInterface) RowIndex() int {
 }
 
 func (ptr *QAccessibleTableCellInterface) Table() *QAccessibleInterface {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableCellInterface::table")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableCellInterface::table")
 
 	if ptr.Pointer() != nil {
 		return NewQAccessibleInterfaceFromPointer(C.QAccessibleTableCellInterface_Table(ptr.Pointer()))
@@ -119,13 +98,26 @@ func (ptr *QAccessibleTableCellInterface) Table() *QAccessibleInterface {
 }
 
 func (ptr *QAccessibleTableCellInterface) DestroyQAccessibleTableCellInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableCellInterface::~QAccessibleTableCellInterface")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableCellInterface::~QAccessibleTableCellInterface")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(ptr.Pointer())
+	}
+}
+
+func (ptr *QAccessibleTableCellInterface) ObjectNameAbs() string {
+	defer qt.Recovering("QAccessibleTableCellInterface::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAccessibleTableCellInterface_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAccessibleTableCellInterface) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QAccessibleTableCellInterface::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTableCellInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

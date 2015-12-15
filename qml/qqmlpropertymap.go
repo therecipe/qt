@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQQmlPropertyMapFromPointer(ptr unsafe.Pointer) *QQmlPropertyMap {
 	var n = new(QQmlPropertyMap)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlPropertyMap_") {
-		n.SetObjectName("QQmlPropertyMap_" + qt.RandomIdentifier())
+		n.SetObjectName("QQmlPropertyMap_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,21 +39,13 @@ func (ptr *QQmlPropertyMap) QQmlPropertyMap_PTR() *QQmlPropertyMap {
 }
 
 func NewQQmlPropertyMap(parent core.QObject_ITF) *QQmlPropertyMap {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::QQmlPropertyMap")
-		}
-	}()
+	defer qt.Recovering("QQmlPropertyMap::QQmlPropertyMap")
 
 	return NewQQmlPropertyMapFromPointer(C.QQmlPropertyMap_NewQQmlPropertyMap(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlPropertyMap) Clear(key string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::clear")
-		}
-	}()
+	defer qt.Recovering("QQmlPropertyMap::clear")
 
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_Clear(ptr.Pointer(), C.CString(key))
@@ -62,11 +53,7 @@ func (ptr *QQmlPropertyMap) Clear(key string) {
 }
 
 func (ptr *QQmlPropertyMap) Contains(key string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::contains")
-		}
-	}()
+	defer qt.Recovering("QQmlPropertyMap::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlPropertyMap_Contains(ptr.Pointer(), C.CString(key)) != 0
@@ -75,11 +62,7 @@ func (ptr *QQmlPropertyMap) Contains(key string) bool {
 }
 
 func (ptr *QQmlPropertyMap) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::count")
-		}
-	}()
+	defer qt.Recovering("QQmlPropertyMap::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QQmlPropertyMap_Count(ptr.Pointer()))
@@ -88,11 +71,7 @@ func (ptr *QQmlPropertyMap) Count() int {
 }
 
 func (ptr *QQmlPropertyMap) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QQmlPropertyMap::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlPropertyMap_IsEmpty(ptr.Pointer()) != 0
@@ -101,11 +80,7 @@ func (ptr *QQmlPropertyMap) IsEmpty() bool {
 }
 
 func (ptr *QQmlPropertyMap) Keys() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::keys")
-		}
-	}()
+	defer qt.Recovering("QQmlPropertyMap::keys")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QQmlPropertyMap_Keys(ptr.Pointer())), ",,,")
@@ -114,11 +89,7 @@ func (ptr *QQmlPropertyMap) Keys() []string {
 }
 
 func (ptr *QQmlPropertyMap) Size() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::size")
-		}
-	}()
+	defer qt.Recovering("QQmlPropertyMap::size")
 
 	if ptr.Pointer() != nil {
 		return int(C.QQmlPropertyMap_Size(ptr.Pointer()))
@@ -127,11 +98,7 @@ func (ptr *QQmlPropertyMap) Size() int {
 }
 
 func (ptr *QQmlPropertyMap) Value(key string) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::value")
-		}
-	}()
+	defer qt.Recovering("QQmlPropertyMap::value")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QQmlPropertyMap_Value(ptr.Pointer(), C.CString(key)))
@@ -140,11 +107,7 @@ func (ptr *QQmlPropertyMap) Value(key string) *core.QVariant {
 }
 
 func (ptr *QQmlPropertyMap) ConnectValueChanged(f func(key string, value *core.QVariant)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::valueChanged")
-		}
-	}()
+	defer qt.Recovering("connect QQmlPropertyMap::valueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_ConnectValueChanged(ptr.Pointer())
@@ -153,11 +116,7 @@ func (ptr *QQmlPropertyMap) ConnectValueChanged(f func(key string, value *core.Q
 }
 
 func (ptr *QQmlPropertyMap) DisconnectValueChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::valueChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QQmlPropertyMap::valueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DisconnectValueChanged(ptr.Pointer())
@@ -167,21 +126,17 @@ func (ptr *QQmlPropertyMap) DisconnectValueChanged() {
 
 //export callbackQQmlPropertyMapValueChanged
 func callbackQQmlPropertyMapValueChanged(ptrName *C.char, key *C.char, value unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::valueChanged")
-		}
-	}()
+	defer qt.Recovering("callback QQmlPropertyMap::valueChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "valueChanged").(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
+	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
+	if signal != nil {
+		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
+	}
+
 }
 
 func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMap() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyMap::~QQmlPropertyMap")
-		}
-	}()
+	defer qt.Recovering("QQmlPropertyMap::~QQmlPropertyMap")
 
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DestroyQQmlPropertyMap(ptr.Pointer())

@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +33,9 @@ func PointerFromQTextStream(ptr QTextStream_ITF) unsafe.Pointer {
 func NewQTextStreamFromPointer(ptr unsafe.Pointer) *QTextStream {
 	var n = new(QTextStream)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QTextStream_") {
+		n.SetObjectNameAbs("QTextStream_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -82,11 +84,7 @@ const (
 )
 
 func (ptr *QTextStream) AtEnd() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::atEnd")
-		}
-	}()
+	defer qt.Recovering("QTextStream::atEnd")
 
 	if ptr.Pointer() != nil {
 		return C.QTextStream_AtEnd(ptr.Pointer()) != 0
@@ -95,11 +93,7 @@ func (ptr *QTextStream) AtEnd() bool {
 }
 
 func (ptr *QTextStream) AutoDetectUnicode() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::autoDetectUnicode")
-		}
-	}()
+	defer qt.Recovering("QTextStream::autoDetectUnicode")
 
 	if ptr.Pointer() != nil {
 		return C.QTextStream_AutoDetectUnicode(ptr.Pointer()) != 0
@@ -108,11 +102,7 @@ func (ptr *QTextStream) AutoDetectUnicode() bool {
 }
 
 func (ptr *QTextStream) Codec() *QTextCodec {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::codec")
-		}
-	}()
+	defer qt.Recovering("QTextStream::codec")
 
 	if ptr.Pointer() != nil {
 		return NewQTextCodecFromPointer(C.QTextStream_Codec(ptr.Pointer()))
@@ -121,11 +111,7 @@ func (ptr *QTextStream) Codec() *QTextCodec {
 }
 
 func (ptr *QTextStream) Device() *QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::device")
-		}
-	}()
+	defer qt.Recovering("QTextStream::device")
 
 	if ptr.Pointer() != nil {
 		return NewQIODeviceFromPointer(C.QTextStream_Device(ptr.Pointer()))
@@ -134,11 +120,7 @@ func (ptr *QTextStream) Device() *QIODevice {
 }
 
 func (ptr *QTextStream) FieldAlignment() QTextStream__FieldAlignment {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::fieldAlignment")
-		}
-	}()
+	defer qt.Recovering("QTextStream::fieldAlignment")
 
 	if ptr.Pointer() != nil {
 		return QTextStream__FieldAlignment(C.QTextStream_FieldAlignment(ptr.Pointer()))
@@ -147,11 +129,7 @@ func (ptr *QTextStream) FieldAlignment() QTextStream__FieldAlignment {
 }
 
 func (ptr *QTextStream) FieldWidth() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::fieldWidth")
-		}
-	}()
+	defer qt.Recovering("QTextStream::fieldWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextStream_FieldWidth(ptr.Pointer()))
@@ -160,11 +138,7 @@ func (ptr *QTextStream) FieldWidth() int {
 }
 
 func (ptr *QTextStream) Flush() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::flush")
-		}
-	}()
+	defer qt.Recovering("QTextStream::flush")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_Flush(ptr.Pointer())
@@ -172,11 +146,7 @@ func (ptr *QTextStream) Flush() {
 }
 
 func (ptr *QTextStream) GenerateByteOrderMark() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::generateByteOrderMark")
-		}
-	}()
+	defer qt.Recovering("QTextStream::generateByteOrderMark")
 
 	if ptr.Pointer() != nil {
 		return C.QTextStream_GenerateByteOrderMark(ptr.Pointer()) != 0
@@ -185,11 +155,7 @@ func (ptr *QTextStream) GenerateByteOrderMark() bool {
 }
 
 func (ptr *QTextStream) IntegerBase() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::integerBase")
-		}
-	}()
+	defer qt.Recovering("QTextStream::integerBase")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextStream_IntegerBase(ptr.Pointer()))
@@ -198,11 +164,7 @@ func (ptr *QTextStream) IntegerBase() int {
 }
 
 func (ptr *QTextStream) NumberFlags() QTextStream__NumberFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::numberFlags")
-		}
-	}()
+	defer qt.Recovering("QTextStream::numberFlags")
 
 	if ptr.Pointer() != nil {
 		return QTextStream__NumberFlag(C.QTextStream_NumberFlags(ptr.Pointer()))
@@ -211,11 +173,7 @@ func (ptr *QTextStream) NumberFlags() QTextStream__NumberFlag {
 }
 
 func (ptr *QTextStream) ReadAll() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::readAll")
-		}
-	}()
+	defer qt.Recovering("QTextStream::readAll")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextStream_ReadAll(ptr.Pointer()))
@@ -224,11 +182,7 @@ func (ptr *QTextStream) ReadAll() string {
 }
 
 func (ptr *QTextStream) RealNumberNotation() QTextStream__RealNumberNotation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::realNumberNotation")
-		}
-	}()
+	defer qt.Recovering("QTextStream::realNumberNotation")
 
 	if ptr.Pointer() != nil {
 		return QTextStream__RealNumberNotation(C.QTextStream_RealNumberNotation(ptr.Pointer()))
@@ -237,11 +191,7 @@ func (ptr *QTextStream) RealNumberNotation() QTextStream__RealNumberNotation {
 }
 
 func (ptr *QTextStream) RealNumberPrecision() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::realNumberPrecision")
-		}
-	}()
+	defer qt.Recovering("QTextStream::realNumberPrecision")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextStream_RealNumberPrecision(ptr.Pointer()))
@@ -250,11 +200,7 @@ func (ptr *QTextStream) RealNumberPrecision() int {
 }
 
 func (ptr *QTextStream) Reset() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::reset")
-		}
-	}()
+	defer qt.Recovering("QTextStream::reset")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_Reset(ptr.Pointer())
@@ -262,11 +208,7 @@ func (ptr *QTextStream) Reset() {
 }
 
 func (ptr *QTextStream) ResetStatus() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::resetStatus")
-		}
-	}()
+	defer qt.Recovering("QTextStream::resetStatus")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_ResetStatus(ptr.Pointer())
@@ -274,11 +216,7 @@ func (ptr *QTextStream) ResetStatus() {
 }
 
 func (ptr *QTextStream) SetAutoDetectUnicode(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setAutoDetectUnicode")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setAutoDetectUnicode")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetAutoDetectUnicode(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -286,11 +224,7 @@ func (ptr *QTextStream) SetAutoDetectUnicode(enabled bool) {
 }
 
 func (ptr *QTextStream) SetCodec(codec QTextCodec_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setCodec")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setCodec")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetCodec(ptr.Pointer(), PointerFromQTextCodec(codec))
@@ -298,11 +232,7 @@ func (ptr *QTextStream) SetCodec(codec QTextCodec_ITF) {
 }
 
 func (ptr *QTextStream) SetCodec2(codecName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setCodec")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setCodec")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetCodec2(ptr.Pointer(), C.CString(codecName))
@@ -310,11 +240,7 @@ func (ptr *QTextStream) SetCodec2(codecName string) {
 }
 
 func (ptr *QTextStream) SetDevice(device QIODevice_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setDevice")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setDevice")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetDevice(ptr.Pointer(), PointerFromQIODevice(device))
@@ -322,11 +248,7 @@ func (ptr *QTextStream) SetDevice(device QIODevice_ITF) {
 }
 
 func (ptr *QTextStream) SetFieldAlignment(mode QTextStream__FieldAlignment) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setFieldAlignment")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setFieldAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetFieldAlignment(ptr.Pointer(), C.int(mode))
@@ -334,11 +256,7 @@ func (ptr *QTextStream) SetFieldAlignment(mode QTextStream__FieldAlignment) {
 }
 
 func (ptr *QTextStream) SetFieldWidth(width int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setFieldWidth")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setFieldWidth")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetFieldWidth(ptr.Pointer(), C.int(width))
@@ -346,11 +264,7 @@ func (ptr *QTextStream) SetFieldWidth(width int) {
 }
 
 func (ptr *QTextStream) SetGenerateByteOrderMark(generate bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setGenerateByteOrderMark")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setGenerateByteOrderMark")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetGenerateByteOrderMark(ptr.Pointer(), C.int(qt.GoBoolToInt(generate)))
@@ -358,11 +272,7 @@ func (ptr *QTextStream) SetGenerateByteOrderMark(generate bool) {
 }
 
 func (ptr *QTextStream) SetIntegerBase(base int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setIntegerBase")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setIntegerBase")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetIntegerBase(ptr.Pointer(), C.int(base))
@@ -370,11 +280,7 @@ func (ptr *QTextStream) SetIntegerBase(base int) {
 }
 
 func (ptr *QTextStream) SetLocale(locale QLocale_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setLocale")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setLocale")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetLocale(ptr.Pointer(), PointerFromQLocale(locale))
@@ -382,11 +288,7 @@ func (ptr *QTextStream) SetLocale(locale QLocale_ITF) {
 }
 
 func (ptr *QTextStream) SetNumberFlags(flags QTextStream__NumberFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setNumberFlags")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setNumberFlags")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetNumberFlags(ptr.Pointer(), C.int(flags))
@@ -394,11 +296,7 @@ func (ptr *QTextStream) SetNumberFlags(flags QTextStream__NumberFlag) {
 }
 
 func (ptr *QTextStream) SetPadChar(ch QChar_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setPadChar")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setPadChar")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetPadChar(ptr.Pointer(), PointerFromQChar(ch))
@@ -406,11 +304,7 @@ func (ptr *QTextStream) SetPadChar(ch QChar_ITF) {
 }
 
 func (ptr *QTextStream) SetRealNumberNotation(notation QTextStream__RealNumberNotation) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setRealNumberNotation")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setRealNumberNotation")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetRealNumberNotation(ptr.Pointer(), C.int(notation))
@@ -418,11 +312,7 @@ func (ptr *QTextStream) SetRealNumberNotation(notation QTextStream__RealNumberNo
 }
 
 func (ptr *QTextStream) SetRealNumberPrecision(precision int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setRealNumberPrecision")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setRealNumberPrecision")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetRealNumberPrecision(ptr.Pointer(), C.int(precision))
@@ -430,11 +320,7 @@ func (ptr *QTextStream) SetRealNumberPrecision(precision int) {
 }
 
 func (ptr *QTextStream) SetStatus(status QTextStream__Status) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setStatus")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setStatus")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetStatus(ptr.Pointer(), C.int(status))
@@ -442,11 +328,7 @@ func (ptr *QTextStream) SetStatus(status QTextStream__Status) {
 }
 
 func (ptr *QTextStream) SetString(stri string, openMode QIODevice__OpenModeFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::setString")
-		}
-	}()
+	defer qt.Recovering("QTextStream::setString")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SetString(ptr.Pointer(), C.CString(stri), C.int(openMode))
@@ -454,11 +336,7 @@ func (ptr *QTextStream) SetString(stri string, openMode QIODevice__OpenModeFlag)
 }
 
 func (ptr *QTextStream) SkipWhiteSpace() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::skipWhiteSpace")
-		}
-	}()
+	defer qt.Recovering("QTextStream::skipWhiteSpace")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_SkipWhiteSpace(ptr.Pointer())
@@ -466,11 +344,7 @@ func (ptr *QTextStream) SkipWhiteSpace() {
 }
 
 func (ptr *QTextStream) Status() QTextStream__Status {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::status")
-		}
-	}()
+	defer qt.Recovering("QTextStream::status")
 
 	if ptr.Pointer() != nil {
 		return QTextStream__Status(C.QTextStream_Status(ptr.Pointer()))
@@ -479,11 +353,7 @@ func (ptr *QTextStream) Status() QTextStream__Status {
 }
 
 func (ptr *QTextStream) String() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::string")
-		}
-	}()
+	defer qt.Recovering("QTextStream::string")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextStream_String(ptr.Pointer()))
@@ -492,13 +362,26 @@ func (ptr *QTextStream) String() string {
 }
 
 func (ptr *QTextStream) DestroyQTextStream() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextStream::~QTextStream")
-		}
-	}()
+	defer qt.Recovering("QTextStream::~QTextStream")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_DestroyQTextStream(ptr.Pointer())
+	}
+}
+
+func (ptr *QTextStream) ObjectNameAbs() string {
+	defer qt.Recovering("QTextStream::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QTextStream_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QTextStream) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QTextStream::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QTextStream_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

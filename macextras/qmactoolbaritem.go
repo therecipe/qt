@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQMacToolBarItemFromPointer(ptr unsafe.Pointer) *QMacToolBarItem {
 	var n = new(QMacToolBarItem)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMacToolBarItem_") {
-		n.SetObjectName("QMacToolBarItem_" + qt.RandomIdentifier())
+		n.SetObjectName("QMacToolBarItem_" + qt.Identifier())
 	}
 	return n
 }
@@ -49,21 +48,13 @@ const (
 )
 
 func NewQMacToolBarItem(parent core.QObject_ITF) *QMacToolBarItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::QMacToolBarItem")
-		}
-	}()
+	defer qt.Recovering("QMacToolBarItem::QMacToolBarItem")
 
 	return NewQMacToolBarItemFromPointer(C.QMacToolBarItem_NewQMacToolBarItem(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QMacToolBarItem) ConnectActivated(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::activated")
-		}
-	}()
+	defer qt.Recovering("connect QMacToolBarItem::activated")
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_ConnectActivated(ptr.Pointer())
@@ -72,11 +63,7 @@ func (ptr *QMacToolBarItem) ConnectActivated(f func()) {
 }
 
 func (ptr *QMacToolBarItem) DisconnectActivated() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::activated")
-		}
-	}()
+	defer qt.Recovering("disconnect QMacToolBarItem::activated")
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_DisconnectActivated(ptr.Pointer())
@@ -86,21 +73,17 @@ func (ptr *QMacToolBarItem) DisconnectActivated() {
 
 //export callbackQMacToolBarItemActivated
 func callbackQMacToolBarItemActivated(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::activated")
-		}
-	}()
+	defer qt.Recovering("callback QMacToolBarItem::activated")
 
-	qt.GetSignal(C.GoString(ptrName), "activated").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QMacToolBarItem) DestroyQMacToolBarItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::~QMacToolBarItem")
-		}
-	}()
+	defer qt.Recovering("QMacToolBarItem::~QMacToolBarItem")
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_DestroyQMacToolBarItem(ptr.Pointer())
@@ -109,11 +92,7 @@ func (ptr *QMacToolBarItem) DestroyQMacToolBarItem() {
 }
 
 func (ptr *QMacToolBarItem) Selectable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::selectable")
-		}
-	}()
+	defer qt.Recovering("QMacToolBarItem::selectable")
 
 	if ptr.Pointer() != nil {
 		return C.QMacToolBarItem_Selectable(ptr.Pointer()) != 0
@@ -122,11 +101,7 @@ func (ptr *QMacToolBarItem) Selectable() bool {
 }
 
 func (ptr *QMacToolBarItem) SetIcon(icon gui.QIcon_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::setIcon")
-		}
-	}()
+	defer qt.Recovering("QMacToolBarItem::setIcon")
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
@@ -134,11 +109,7 @@ func (ptr *QMacToolBarItem) SetIcon(icon gui.QIcon_ITF) {
 }
 
 func (ptr *QMacToolBarItem) SetSelectable(selectable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::setSelectable")
-		}
-	}()
+	defer qt.Recovering("QMacToolBarItem::setSelectable")
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_SetSelectable(ptr.Pointer(), C.int(qt.GoBoolToInt(selectable)))
@@ -146,11 +117,7 @@ func (ptr *QMacToolBarItem) SetSelectable(selectable bool) {
 }
 
 func (ptr *QMacToolBarItem) SetStandardItem(standardItem QMacToolBarItem__StandardItem) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::setStandardItem")
-		}
-	}()
+	defer qt.Recovering("QMacToolBarItem::setStandardItem")
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_SetStandardItem(ptr.Pointer(), C.int(standardItem))
@@ -158,11 +125,7 @@ func (ptr *QMacToolBarItem) SetStandardItem(standardItem QMacToolBarItem__Standa
 }
 
 func (ptr *QMacToolBarItem) SetText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::setText")
-		}
-	}()
+	defer qt.Recovering("QMacToolBarItem::setText")
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_SetText(ptr.Pointer(), C.CString(text))
@@ -170,11 +133,7 @@ func (ptr *QMacToolBarItem) SetText(text string) {
 }
 
 func (ptr *QMacToolBarItem) StandardItem() QMacToolBarItem__StandardItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::standardItem")
-		}
-	}()
+	defer qt.Recovering("QMacToolBarItem::standardItem")
 
 	if ptr.Pointer() != nil {
 		return QMacToolBarItem__StandardItem(C.QMacToolBarItem_StandardItem(ptr.Pointer()))
@@ -183,11 +142,7 @@ func (ptr *QMacToolBarItem) StandardItem() QMacToolBarItem__StandardItem {
 }
 
 func (ptr *QMacToolBarItem) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacToolBarItem::text")
-		}
-	}()
+	defer qt.Recovering("QMacToolBarItem::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMacToolBarItem_Text(ptr.Pointer()))

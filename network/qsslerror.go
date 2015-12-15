@@ -3,7 +3,7 @@ package network
 //#include "network.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -73,51 +73,31 @@ const (
 )
 
 func NewQSslError() *QSslError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslError::QSslError")
-		}
-	}()
+	defer qt.Recovering("QSslError::QSslError")
 
 	return NewQSslErrorFromPointer(C.QSslError_NewQSslError())
 }
 
 func NewQSslError2(error QSslError__SslError) *QSslError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslError::QSslError")
-		}
-	}()
+	defer qt.Recovering("QSslError::QSslError")
 
 	return NewQSslErrorFromPointer(C.QSslError_NewQSslError2(C.int(error)))
 }
 
 func NewQSslError3(error QSslError__SslError, certificate QSslCertificate_ITF) *QSslError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslError::QSslError")
-		}
-	}()
+	defer qt.Recovering("QSslError::QSslError")
 
 	return NewQSslErrorFromPointer(C.QSslError_NewQSslError3(C.int(error), PointerFromQSslCertificate(certificate)))
 }
 
 func NewQSslError4(other QSslError_ITF) *QSslError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslError::QSslError")
-		}
-	}()
+	defer qt.Recovering("QSslError::QSslError")
 
 	return NewQSslErrorFromPointer(C.QSslError_NewQSslError4(PointerFromQSslError(other)))
 }
 
 func (ptr *QSslError) Error() QSslError__SslError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslError::error")
-		}
-	}()
+	defer qt.Recovering("QSslError::error")
 
 	if ptr.Pointer() != nil {
 		return QSslError__SslError(C.QSslError_Error(ptr.Pointer()))
@@ -126,11 +106,7 @@ func (ptr *QSslError) Error() QSslError__SslError {
 }
 
 func (ptr *QSslError) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslError::errorString")
-		}
-	}()
+	defer qt.Recovering("QSslError::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslError_ErrorString(ptr.Pointer()))
@@ -139,11 +115,7 @@ func (ptr *QSslError) ErrorString() string {
 }
 
 func (ptr *QSslError) Swap(other QSslError_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslError::swap")
-		}
-	}()
+	defer qt.Recovering("QSslError::swap")
 
 	if ptr.Pointer() != nil {
 		C.QSslError_Swap(ptr.Pointer(), PointerFromQSslError(other))
@@ -151,11 +123,7 @@ func (ptr *QSslError) Swap(other QSslError_ITF) {
 }
 
 func (ptr *QSslError) DestroyQSslError() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslError::~QSslError")
-		}
-	}()
+	defer qt.Recovering("QSslError::~QSslError")
 
 	if ptr.Pointer() != nil {
 		C.QSslError_DestroyQSslError(ptr.Pointer())

@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -48,21 +48,13 @@ var (
 )
 
 func NewQStyleOptionComboBox() *QStyleOptionComboBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionComboBox::QStyleOptionComboBox")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionComboBox::QStyleOptionComboBox")
 
 	return NewQStyleOptionComboBoxFromPointer(C.QStyleOptionComboBox_NewQStyleOptionComboBox())
 }
 
 func NewQStyleOptionComboBox2(other QStyleOptionComboBox_ITF) *QStyleOptionComboBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionComboBox::QStyleOptionComboBox")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionComboBox::QStyleOptionComboBox")
 
 	return NewQStyleOptionComboBoxFromPointer(C.QStyleOptionComboBox_NewQStyleOptionComboBox2(PointerFromQStyleOptionComboBox(other)))
 }

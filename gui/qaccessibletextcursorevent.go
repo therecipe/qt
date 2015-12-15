@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,31 +35,19 @@ func (ptr *QAccessibleTextCursorEvent) QAccessibleTextCursorEvent_PTR() *QAccess
 }
 
 func NewQAccessibleTextCursorEvent2(iface QAccessibleInterface_ITF, cursorPos int) *QAccessibleTextCursorEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextCursorEvent::QAccessibleTextCursorEvent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextCursorEvent::QAccessibleTextCursorEvent")
 
 	return NewQAccessibleTextCursorEventFromPointer(C.QAccessibleTextCursorEvent_NewQAccessibleTextCursorEvent2(PointerFromQAccessibleInterface(iface), C.int(cursorPos)))
 }
 
 func NewQAccessibleTextCursorEvent(object core.QObject_ITF, cursorPos int) *QAccessibleTextCursorEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextCursorEvent::QAccessibleTextCursorEvent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextCursorEvent::QAccessibleTextCursorEvent")
 
 	return NewQAccessibleTextCursorEventFromPointer(C.QAccessibleTextCursorEvent_NewQAccessibleTextCursorEvent(core.PointerFromQObject(object), C.int(cursorPos)))
 }
 
 func (ptr *QAccessibleTextCursorEvent) CursorPosition() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextCursorEvent::cursorPosition")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextCursorEvent::cursorPosition")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTextCursorEvent_CursorPosition(ptr.Pointer()))
@@ -68,11 +56,7 @@ func (ptr *QAccessibleTextCursorEvent) CursorPosition() int {
 }
 
 func (ptr *QAccessibleTextCursorEvent) SetCursorPosition(position int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextCursorEvent::setCursorPosition")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextCursorEvent::setCursorPosition")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTextCursorEvent_SetCursorPosition(ptr.Pointer(), C.int(position))

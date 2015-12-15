@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQMediaAvailabilityControlFromPointer(ptr unsafe.Pointer) *QMediaAvailabi
 	var n = new(QMediaAvailabilityControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaAvailabilityControl_") {
-		n.SetObjectName("QMediaAvailabilityControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QMediaAvailabilityControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QMediaAvailabilityControl) QMediaAvailabilityControl_PTR() *QMediaAva
 }
 
 func (ptr *QMediaAvailabilityControl) DestroyQMediaAvailabilityControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaAvailabilityControl::~QMediaAvailabilityControl")
-		}
-	}()
+	defer qt.Recovering("QMediaAvailabilityControl::~QMediaAvailabilityControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaAvailabilityControl_DestroyQMediaAvailabilityControl(ptr.Pointer())

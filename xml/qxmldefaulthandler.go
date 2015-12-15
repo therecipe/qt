@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -49,6 +49,9 @@ func PointerFromQXmlDefaultHandler(ptr QXmlDefaultHandler_ITF) unsafe.Pointer {
 func NewQXmlDefaultHandlerFromPointer(ptr unsafe.Pointer) *QXmlDefaultHandler {
 	var n = new(QXmlDefaultHandler)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QXmlDefaultHandler_") {
+		n.SetObjectNameAbs("QXmlDefaultHandler_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -57,21 +60,13 @@ func (ptr *QXmlDefaultHandler) QXmlDefaultHandler_PTR() *QXmlDefaultHandler {
 }
 
 func NewQXmlDefaultHandler() *QXmlDefaultHandler {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::QXmlDefaultHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::QXmlDefaultHandler")
 
 	return NewQXmlDefaultHandlerFromPointer(C.QXmlDefaultHandler_NewQXmlDefaultHandler())
 }
 
 func (ptr *QXmlDefaultHandler) DestroyQXmlDefaultHandler() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::~QXmlDefaultHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::~QXmlDefaultHandler")
 
 	if ptr.Pointer() != nil {
 		C.QXmlDefaultHandler_DestroyQXmlDefaultHandler(ptr.Pointer())
@@ -79,11 +74,7 @@ func (ptr *QXmlDefaultHandler) DestroyQXmlDefaultHandler() {
 }
 
 func (ptr *QXmlDefaultHandler) AttributeDecl(eName string, aName string, ty string, valueDefault string, value string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::attributeDecl")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::attributeDecl")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_AttributeDecl(ptr.Pointer(), C.CString(eName), C.CString(aName), C.CString(ty), C.CString(valueDefault), C.CString(value)) != 0
@@ -92,11 +83,7 @@ func (ptr *QXmlDefaultHandler) AttributeDecl(eName string, aName string, ty stri
 }
 
 func (ptr *QXmlDefaultHandler) Characters(ch string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::characters")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::characters")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_Characters(ptr.Pointer(), C.CString(ch)) != 0
@@ -105,11 +92,7 @@ func (ptr *QXmlDefaultHandler) Characters(ch string) bool {
 }
 
 func (ptr *QXmlDefaultHandler) Comment(ch string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::comment")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::comment")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_Comment(ptr.Pointer(), C.CString(ch)) != 0
@@ -118,11 +101,7 @@ func (ptr *QXmlDefaultHandler) Comment(ch string) bool {
 }
 
 func (ptr *QXmlDefaultHandler) EndCDATA() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::endCDATA")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::endCDATA")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_EndCDATA(ptr.Pointer()) != 0
@@ -131,11 +110,7 @@ func (ptr *QXmlDefaultHandler) EndCDATA() bool {
 }
 
 func (ptr *QXmlDefaultHandler) EndDTD() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::endDTD")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::endDTD")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_EndDTD(ptr.Pointer()) != 0
@@ -144,11 +119,7 @@ func (ptr *QXmlDefaultHandler) EndDTD() bool {
 }
 
 func (ptr *QXmlDefaultHandler) EndDocument() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::endDocument")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::endDocument")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_EndDocument(ptr.Pointer()) != 0
@@ -157,11 +128,7 @@ func (ptr *QXmlDefaultHandler) EndDocument() bool {
 }
 
 func (ptr *QXmlDefaultHandler) EndElement(namespaceURI string, localName string, qName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::endElement")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::endElement")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_EndElement(ptr.Pointer(), C.CString(namespaceURI), C.CString(localName), C.CString(qName)) != 0
@@ -170,11 +137,7 @@ func (ptr *QXmlDefaultHandler) EndElement(namespaceURI string, localName string,
 }
 
 func (ptr *QXmlDefaultHandler) EndEntity(name string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::endEntity")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::endEntity")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_EndEntity(ptr.Pointer(), C.CString(name)) != 0
@@ -183,11 +146,7 @@ func (ptr *QXmlDefaultHandler) EndEntity(name string) bool {
 }
 
 func (ptr *QXmlDefaultHandler) EndPrefixMapping(prefix string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::endPrefixMapping")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::endPrefixMapping")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_EndPrefixMapping(ptr.Pointer(), C.CString(prefix)) != 0
@@ -196,11 +155,7 @@ func (ptr *QXmlDefaultHandler) EndPrefixMapping(prefix string) bool {
 }
 
 func (ptr *QXmlDefaultHandler) Error(exception QXmlParseException_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::error")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::error")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_Error(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
@@ -209,11 +164,7 @@ func (ptr *QXmlDefaultHandler) Error(exception QXmlParseException_ITF) bool {
 }
 
 func (ptr *QXmlDefaultHandler) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::errorString")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlDefaultHandler_ErrorString(ptr.Pointer()))
@@ -222,11 +173,7 @@ func (ptr *QXmlDefaultHandler) ErrorString() string {
 }
 
 func (ptr *QXmlDefaultHandler) ExternalEntityDecl(name string, publicId string, systemId string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::externalEntityDecl")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::externalEntityDecl")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_ExternalEntityDecl(ptr.Pointer(), C.CString(name), C.CString(publicId), C.CString(systemId)) != 0
@@ -235,11 +182,7 @@ func (ptr *QXmlDefaultHandler) ExternalEntityDecl(name string, publicId string, 
 }
 
 func (ptr *QXmlDefaultHandler) FatalError(exception QXmlParseException_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::fatalError")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::fatalError")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_FatalError(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
@@ -248,11 +191,7 @@ func (ptr *QXmlDefaultHandler) FatalError(exception QXmlParseException_ITF) bool
 }
 
 func (ptr *QXmlDefaultHandler) IgnorableWhitespace(ch string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::ignorableWhitespace")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::ignorableWhitespace")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_IgnorableWhitespace(ptr.Pointer(), C.CString(ch)) != 0
@@ -261,11 +200,7 @@ func (ptr *QXmlDefaultHandler) IgnorableWhitespace(ch string) bool {
 }
 
 func (ptr *QXmlDefaultHandler) InternalEntityDecl(name string, value string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::internalEntityDecl")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::internalEntityDecl")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_InternalEntityDecl(ptr.Pointer(), C.CString(name), C.CString(value)) != 0
@@ -274,11 +209,7 @@ func (ptr *QXmlDefaultHandler) InternalEntityDecl(name string, value string) boo
 }
 
 func (ptr *QXmlDefaultHandler) NotationDecl(name string, publicId string, systemId string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::notationDecl")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::notationDecl")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_NotationDecl(ptr.Pointer(), C.CString(name), C.CString(publicId), C.CString(systemId)) != 0
@@ -287,11 +218,7 @@ func (ptr *QXmlDefaultHandler) NotationDecl(name string, publicId string, system
 }
 
 func (ptr *QXmlDefaultHandler) ProcessingInstruction(target string, data string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::processingInstruction")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::processingInstruction")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_ProcessingInstruction(ptr.Pointer(), C.CString(target), C.CString(data)) != 0
@@ -299,24 +226,39 @@ func (ptr *QXmlDefaultHandler) ProcessingInstruction(target string, data string)
 	return false
 }
 
-func (ptr *QXmlDefaultHandler) SetDocumentLocator(locator QXmlLocator_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::setDocumentLocator")
-		}
-	}()
+func (ptr *QXmlDefaultHandler) ConnectSetDocumentLocator(f func(locator *QXmlLocator)) {
+	defer qt.Recovering("connect QXmlDefaultHandler::setDocumentLocator")
 
 	if ptr.Pointer() != nil {
-		C.QXmlDefaultHandler_SetDocumentLocator(ptr.Pointer(), PointerFromQXmlLocator(locator))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setDocumentLocator", f)
 	}
 }
 
+func (ptr *QXmlDefaultHandler) DisconnectSetDocumentLocator() {
+	defer qt.Recovering("disconnect QXmlDefaultHandler::setDocumentLocator")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setDocumentLocator")
+	}
+}
+
+//export callbackQXmlDefaultHandlerSetDocumentLocator
+func callbackQXmlDefaultHandlerSetDocumentLocator(ptrName *C.char, locator unsafe.Pointer) bool {
+	defer qt.Recovering("callback QXmlDefaultHandler::setDocumentLocator")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setDocumentLocator")
+	if signal != nil {
+		defer signal.(func(*QXmlLocator))(NewQXmlLocatorFromPointer(locator))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QXmlDefaultHandler) SkippedEntity(name string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::skippedEntity")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::skippedEntity")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_SkippedEntity(ptr.Pointer(), C.CString(name)) != 0
@@ -325,11 +267,7 @@ func (ptr *QXmlDefaultHandler) SkippedEntity(name string) bool {
 }
 
 func (ptr *QXmlDefaultHandler) StartCDATA() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::startCDATA")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::startCDATA")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_StartCDATA(ptr.Pointer()) != 0
@@ -338,11 +276,7 @@ func (ptr *QXmlDefaultHandler) StartCDATA() bool {
 }
 
 func (ptr *QXmlDefaultHandler) StartDTD(name string, publicId string, systemId string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::startDTD")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::startDTD")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_StartDTD(ptr.Pointer(), C.CString(name), C.CString(publicId), C.CString(systemId)) != 0
@@ -351,11 +285,7 @@ func (ptr *QXmlDefaultHandler) StartDTD(name string, publicId string, systemId s
 }
 
 func (ptr *QXmlDefaultHandler) StartDocument() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::startDocument")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::startDocument")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_StartDocument(ptr.Pointer()) != 0
@@ -364,11 +294,7 @@ func (ptr *QXmlDefaultHandler) StartDocument() bool {
 }
 
 func (ptr *QXmlDefaultHandler) StartElement(namespaceURI string, localName string, qName string, atts QXmlAttributes_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::startElement")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::startElement")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_StartElement(ptr.Pointer(), C.CString(namespaceURI), C.CString(localName), C.CString(qName), PointerFromQXmlAttributes(atts)) != 0
@@ -377,11 +303,7 @@ func (ptr *QXmlDefaultHandler) StartElement(namespaceURI string, localName strin
 }
 
 func (ptr *QXmlDefaultHandler) StartEntity(name string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::startEntity")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::startEntity")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_StartEntity(ptr.Pointer(), C.CString(name)) != 0
@@ -390,11 +312,7 @@ func (ptr *QXmlDefaultHandler) StartEntity(name string) bool {
 }
 
 func (ptr *QXmlDefaultHandler) StartPrefixMapping(prefix string, uri string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::startPrefixMapping")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::startPrefixMapping")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_StartPrefixMapping(ptr.Pointer(), C.CString(prefix), C.CString(uri)) != 0
@@ -403,11 +321,7 @@ func (ptr *QXmlDefaultHandler) StartPrefixMapping(prefix string, uri string) boo
 }
 
 func (ptr *QXmlDefaultHandler) UnparsedEntityDecl(name string, publicId string, systemId string, notationName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::unparsedEntityDecl")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::unparsedEntityDecl")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_UnparsedEntityDecl(ptr.Pointer(), C.CString(name), C.CString(publicId), C.CString(systemId), C.CString(notationName)) != 0
@@ -416,14 +330,27 @@ func (ptr *QXmlDefaultHandler) UnparsedEntityDecl(name string, publicId string, 
 }
 
 func (ptr *QXmlDefaultHandler) Warning(exception QXmlParseException_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlDefaultHandler::warning")
-		}
-	}()
+	defer qt.Recovering("QXmlDefaultHandler::warning")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlDefaultHandler_Warning(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
 	}
 	return false
+}
+
+func (ptr *QXmlDefaultHandler) ObjectNameAbs() string {
+	defer qt.Recovering("QXmlDefaultHandler::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlDefaultHandler_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QXmlDefaultHandler) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QXmlDefaultHandler::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QXmlDefaultHandler_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+	}
 }

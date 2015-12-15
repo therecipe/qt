@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQMessageBoxFromPointer(ptr unsafe.Pointer) *QMessageBox {
 	var n = new(QMessageBox)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMessageBox_") {
-		n.SetObjectName("QMessageBox_" + qt.RandomIdentifier())
+		n.SetObjectName("QMessageBox_" + qt.Identifier())
 	}
 	return n
 }
@@ -101,11 +100,7 @@ var (
 )
 
 func (ptr *QMessageBox) DetailedText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::detailedText")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::detailedText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMessageBox_DetailedText(ptr.Pointer()))
@@ -114,11 +109,7 @@ func (ptr *QMessageBox) DetailedText() string {
 }
 
 func (ptr *QMessageBox) Icon() QMessageBox__Icon {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::icon")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::icon")
 
 	if ptr.Pointer() != nil {
 		return QMessageBox__Icon(C.QMessageBox_Icon(ptr.Pointer()))
@@ -127,11 +118,7 @@ func (ptr *QMessageBox) Icon() QMessageBox__Icon {
 }
 
 func (ptr *QMessageBox) InformativeText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::informativeText")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::informativeText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMessageBox_InformativeText(ptr.Pointer()))
@@ -140,11 +127,7 @@ func (ptr *QMessageBox) InformativeText() string {
 }
 
 func (ptr *QMessageBox) SetDetailedText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setDetailedText")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setDetailedText")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetDetailedText(ptr.Pointer(), C.CString(text))
@@ -152,11 +135,7 @@ func (ptr *QMessageBox) SetDetailedText(text string) {
 }
 
 func (ptr *QMessageBox) SetIcon(v QMessageBox__Icon) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setIcon")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setIcon")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetIcon(ptr.Pointer(), C.int(v))
@@ -164,11 +143,7 @@ func (ptr *QMessageBox) SetIcon(v QMessageBox__Icon) {
 }
 
 func (ptr *QMessageBox) SetIconPixmap(pixmap gui.QPixmap_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setIconPixmap")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setIconPixmap")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetIconPixmap(ptr.Pointer(), gui.PointerFromQPixmap(pixmap))
@@ -176,11 +151,7 @@ func (ptr *QMessageBox) SetIconPixmap(pixmap gui.QPixmap_ITF) {
 }
 
 func (ptr *QMessageBox) SetInformativeText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setInformativeText")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setInformativeText")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetInformativeText(ptr.Pointer(), C.CString(text))
@@ -188,11 +159,7 @@ func (ptr *QMessageBox) SetInformativeText(text string) {
 }
 
 func (ptr *QMessageBox) SetStandardButtons(buttons QMessageBox__StandardButton) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setStandardButtons")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setStandardButtons")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetStandardButtons(ptr.Pointer(), C.int(buttons))
@@ -200,11 +167,7 @@ func (ptr *QMessageBox) SetStandardButtons(buttons QMessageBox__StandardButton) 
 }
 
 func (ptr *QMessageBox) SetText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setText")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setText")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetText(ptr.Pointer(), C.CString(text))
@@ -212,11 +175,7 @@ func (ptr *QMessageBox) SetText(text string) {
 }
 
 func (ptr *QMessageBox) SetTextFormat(format core.Qt__TextFormat) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setTextFormat")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setTextFormat")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetTextFormat(ptr.Pointer(), C.int(format))
@@ -224,11 +183,7 @@ func (ptr *QMessageBox) SetTextFormat(format core.Qt__TextFormat) {
 }
 
 func (ptr *QMessageBox) SetTextInteractionFlags(flags core.Qt__TextInteractionFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setTextInteractionFlags")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setTextInteractionFlags")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetTextInteractionFlags(ptr.Pointer(), C.int(flags))
@@ -236,11 +191,7 @@ func (ptr *QMessageBox) SetTextInteractionFlags(flags core.Qt__TextInteractionFl
 }
 
 func (ptr *QMessageBox) StandardButtons() QMessageBox__StandardButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::standardButtons")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::standardButtons")
 
 	if ptr.Pointer() != nil {
 		return QMessageBox__StandardButton(C.QMessageBox_StandardButtons(ptr.Pointer()))
@@ -249,11 +200,7 @@ func (ptr *QMessageBox) StandardButtons() QMessageBox__StandardButton {
 }
 
 func (ptr *QMessageBox) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::text")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMessageBox_Text(ptr.Pointer()))
@@ -262,11 +209,7 @@ func (ptr *QMessageBox) Text() string {
 }
 
 func (ptr *QMessageBox) TextFormat() core.Qt__TextFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::textFormat")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::textFormat")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__TextFormat(C.QMessageBox_TextFormat(ptr.Pointer()))
@@ -275,11 +218,7 @@ func (ptr *QMessageBox) TextFormat() core.Qt__TextFormat {
 }
 
 func (ptr *QMessageBox) TextInteractionFlags() core.Qt__TextInteractionFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::textInteractionFlags")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::textInteractionFlags")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__TextInteractionFlag(C.QMessageBox_TextInteractionFlags(ptr.Pointer()))
@@ -288,51 +227,31 @@ func (ptr *QMessageBox) TextInteractionFlags() core.Qt__TextInteractionFlag {
 }
 
 func NewQMessageBox2(icon QMessageBox__Icon, title string, text string, buttons QMessageBox__StandardButton, parent QWidget_ITF, f core.Qt__WindowType) *QMessageBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::QMessageBox")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::QMessageBox")
 
 	return NewQMessageBoxFromPointer(C.QMessageBox_NewQMessageBox2(C.int(icon), C.CString(title), C.CString(text), C.int(buttons), PointerFromQWidget(parent), C.int(f)))
 }
 
 func NewQMessageBox(parent QWidget_ITF) *QMessageBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::QMessageBox")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::QMessageBox")
 
 	return NewQMessageBoxFromPointer(C.QMessageBox_NewQMessageBox(PointerFromQWidget(parent)))
 }
 
 func QMessageBox_About(parent QWidget_ITF, title string, text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::about")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::about")
 
 	C.QMessageBox_QMessageBox_About(PointerFromQWidget(parent), C.CString(title), C.CString(text))
 }
 
 func QMessageBox_AboutQt(parent QWidget_ITF, title string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::aboutQt")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::aboutQt")
 
 	C.QMessageBox_QMessageBox_AboutQt(PointerFromQWidget(parent), C.CString(title))
 }
 
 func (ptr *QMessageBox) AddButton3(button QMessageBox__StandardButton) *QPushButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::addButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::addButton")
 
 	if ptr.Pointer() != nil {
 		return NewQPushButtonFromPointer(C.QMessageBox_AddButton3(ptr.Pointer(), C.int(button)))
@@ -341,11 +260,7 @@ func (ptr *QMessageBox) AddButton3(button QMessageBox__StandardButton) *QPushBut
 }
 
 func (ptr *QMessageBox) AddButton2(text string, role QMessageBox__ButtonRole) *QPushButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::addButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::addButton")
 
 	if ptr.Pointer() != nil {
 		return NewQPushButtonFromPointer(C.QMessageBox_AddButton2(ptr.Pointer(), C.CString(text), C.int(role)))
@@ -354,11 +269,7 @@ func (ptr *QMessageBox) AddButton2(text string, role QMessageBox__ButtonRole) *Q
 }
 
 func (ptr *QMessageBox) AddButton(button QAbstractButton_ITF, role QMessageBox__ButtonRole) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::addButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::addButton")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_AddButton(ptr.Pointer(), PointerFromQAbstractButton(button), C.int(role))
@@ -366,11 +277,7 @@ func (ptr *QMessageBox) AddButton(button QAbstractButton_ITF, role QMessageBox__
 }
 
 func (ptr *QMessageBox) Button(which QMessageBox__StandardButton) *QAbstractButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::button")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::button")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractButtonFromPointer(C.QMessageBox_Button(ptr.Pointer(), C.int(which)))
@@ -379,11 +286,7 @@ func (ptr *QMessageBox) Button(which QMessageBox__StandardButton) *QAbstractButt
 }
 
 func (ptr *QMessageBox) ConnectButtonClicked(f func(button *QAbstractButton)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::buttonClicked")
-		}
-	}()
+	defer qt.Recovering("connect QMessageBox::buttonClicked")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_ConnectButtonClicked(ptr.Pointer())
@@ -392,11 +295,7 @@ func (ptr *QMessageBox) ConnectButtonClicked(f func(button *QAbstractButton)) {
 }
 
 func (ptr *QMessageBox) DisconnectButtonClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::buttonClicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QMessageBox::buttonClicked")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_DisconnectButtonClicked(ptr.Pointer())
@@ -406,21 +305,17 @@ func (ptr *QMessageBox) DisconnectButtonClicked() {
 
 //export callbackQMessageBoxButtonClicked
 func callbackQMessageBoxButtonClicked(ptrName *C.char, button unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::buttonClicked")
-		}
-	}()
+	defer qt.Recovering("callback QMessageBox::buttonClicked")
 
-	qt.GetSignal(C.GoString(ptrName), "buttonClicked").(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
+	var signal = qt.GetSignal(C.GoString(ptrName), "buttonClicked")
+	if signal != nil {
+		signal.(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
+	}
+
 }
 
 func (ptr *QMessageBox) ButtonRole(button QAbstractButton_ITF) QMessageBox__ButtonRole {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::buttonRole")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::buttonRole")
 
 	if ptr.Pointer() != nil {
 		return QMessageBox__ButtonRole(C.QMessageBox_ButtonRole(ptr.Pointer(), PointerFromQAbstractButton(button)))
@@ -428,12 +323,39 @@ func (ptr *QMessageBox) ButtonRole(button QAbstractButton_ITF) QMessageBox__Butt
 	return 0
 }
 
+func (ptr *QMessageBox) ConnectChangeEvent(f func(ev *core.QEvent)) {
+	defer qt.Recovering("connect QMessageBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QMessageBox) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QMessageBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQMessageBoxChangeEvent
+func callbackQMessageBoxChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMessageBox::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMessageBox) CheckBox() *QCheckBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::checkBox")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::checkBox")
 
 	if ptr.Pointer() != nil {
 		return NewQCheckBoxFromPointer(C.QMessageBox_CheckBox(ptr.Pointer()))
@@ -442,11 +364,7 @@ func (ptr *QMessageBox) CheckBox() *QCheckBox {
 }
 
 func (ptr *QMessageBox) ClickedButton() *QAbstractButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::clickedButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::clickedButton")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractButtonFromPointer(C.QMessageBox_ClickedButton(ptr.Pointer()))
@@ -454,22 +372,45 @@ func (ptr *QMessageBox) ClickedButton() *QAbstractButton {
 	return nil
 }
 
+func (ptr *QMessageBox) ConnectCloseEvent(f func(e *gui.QCloseEvent)) {
+	defer qt.Recovering("connect QMessageBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+	}
+}
+
+func (ptr *QMessageBox) DisconnectCloseEvent() {
+	defer qt.Recovering("disconnect QMessageBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+	}
+}
+
+//export callbackQMessageBoxCloseEvent
+func callbackQMessageBoxCloseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMessageBox::closeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "closeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func QMessageBox_Critical(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::critical")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::critical")
 
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Critical(PointerFromQWidget(parent), C.CString(title), C.CString(text), C.int(buttons), C.int(defaultButton)))
 }
 
 func (ptr *QMessageBox) DefaultButton() *QPushButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::defaultButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::defaultButton")
 
 	if ptr.Pointer() != nil {
 		return NewQPushButtonFromPointer(C.QMessageBox_DefaultButton(ptr.Pointer()))
@@ -478,11 +419,7 @@ func (ptr *QMessageBox) DefaultButton() *QPushButton {
 }
 
 func (ptr *QMessageBox) EscapeButton() *QAbstractButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::escapeButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::escapeButton")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractButtonFromPointer(C.QMessageBox_EscapeButton(ptr.Pointer()))
@@ -491,11 +428,7 @@ func (ptr *QMessageBox) EscapeButton() *QAbstractButton {
 }
 
 func (ptr *QMessageBox) Exec() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::exec")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::exec")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMessageBox_Exec(ptr.Pointer()))
@@ -504,21 +437,44 @@ func (ptr *QMessageBox) Exec() int {
 }
 
 func QMessageBox_Information(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::information")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::information")
 
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Information(PointerFromQWidget(parent), C.CString(title), C.CString(text), C.int(buttons), C.int(defaultButton)))
 }
 
+func (ptr *QMessageBox) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QMessageBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QMessageBox) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QMessageBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQMessageBoxKeyPressEvent
+func callbackQMessageBoxKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMessageBox::keyPressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMessageBox) Open(receiver core.QObject_ITF, member string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::open")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::open")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_Open(ptr.Pointer(), core.PointerFromQObject(receiver), C.CString(member))
@@ -526,33 +482,52 @@ func (ptr *QMessageBox) Open(receiver core.QObject_ITF, member string) {
 }
 
 func QMessageBox_Question(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::question")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::question")
 
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Question(PointerFromQWidget(parent), C.CString(title), C.CString(text), C.int(buttons), C.int(defaultButton)))
 }
 
 func (ptr *QMessageBox) RemoveButton(button QAbstractButton_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::removeButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::removeButton")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_RemoveButton(ptr.Pointer(), PointerFromQAbstractButton(button))
 	}
 }
 
+func (ptr *QMessageBox) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
+	defer qt.Recovering("connect QMessageBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+	}
+}
+
+func (ptr *QMessageBox) DisconnectResizeEvent() {
+	defer qt.Recovering("disconnect QMessageBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+	}
+}
+
+//export callbackQMessageBoxResizeEvent
+func callbackQMessageBoxResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMessageBox::resizeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMessageBox) SetCheckBox(cb QCheckBox_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setCheckBox")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setCheckBox")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetCheckBox(ptr.Pointer(), PointerFromQCheckBox(cb))
@@ -560,11 +535,7 @@ func (ptr *QMessageBox) SetCheckBox(cb QCheckBox_ITF) {
 }
 
 func (ptr *QMessageBox) SetDefaultButton(button QPushButton_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setDefaultButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setDefaultButton")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetDefaultButton(ptr.Pointer(), PointerFromQPushButton(button))
@@ -572,11 +543,7 @@ func (ptr *QMessageBox) SetDefaultButton(button QPushButton_ITF) {
 }
 
 func (ptr *QMessageBox) SetDefaultButton2(button QMessageBox__StandardButton) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setDefaultButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setDefaultButton")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetDefaultButton2(ptr.Pointer(), C.int(button))
@@ -584,11 +551,7 @@ func (ptr *QMessageBox) SetDefaultButton2(button QMessageBox__StandardButton) {
 }
 
 func (ptr *QMessageBox) SetEscapeButton(button QAbstractButton_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setEscapeButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setEscapeButton")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetEscapeButton(ptr.Pointer(), PointerFromQAbstractButton(button))
@@ -596,35 +559,46 @@ func (ptr *QMessageBox) SetEscapeButton(button QAbstractButton_ITF) {
 }
 
 func (ptr *QMessageBox) SetEscapeButton2(button QMessageBox__StandardButton) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setEscapeButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setEscapeButton")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetEscapeButton2(ptr.Pointer(), C.int(button))
 	}
 }
 
-func (ptr *QMessageBox) SetVisible(visible bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setVisible")
-		}
-	}()
+func (ptr *QMessageBox) ConnectSetVisible(f func(visible bool)) {
+	defer qt.Recovering("connect QMessageBox::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QMessageBox_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
 	}
 }
 
+func (ptr *QMessageBox) DisconnectSetVisible() {
+	defer qt.Recovering("disconnect QMessageBox::setVisible")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+	}
+}
+
+//export callbackQMessageBoxSetVisible
+func callbackQMessageBoxSetVisible(ptrName *C.char, visible C.int) bool {
+	defer qt.Recovering("callback QMessageBox::setVisible")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
+	if signal != nil {
+		defer signal.(func(bool))(int(visible) != 0)
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMessageBox) SetWindowModality(windowModality core.Qt__WindowModality) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setWindowModality")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setWindowModality")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetWindowModality(ptr.Pointer(), C.int(windowModality))
@@ -632,23 +606,46 @@ func (ptr *QMessageBox) SetWindowModality(windowModality core.Qt__WindowModality
 }
 
 func (ptr *QMessageBox) SetWindowTitle(title string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::setWindowTitle")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::setWindowTitle")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_SetWindowTitle(ptr.Pointer(), C.CString(title))
 	}
 }
 
+func (ptr *QMessageBox) ConnectShowEvent(f func(e *gui.QShowEvent)) {
+	defer qt.Recovering("connect QMessageBox::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+	}
+}
+
+func (ptr *QMessageBox) DisconnectShowEvent() {
+	defer qt.Recovering("disconnect QMessageBox::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+	}
+}
+
+//export callbackQMessageBoxShowEvent
+func callbackQMessageBoxShowEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMessageBox::showEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMessageBox) StandardButton(button QAbstractButton_ITF) QMessageBox__StandardButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::standardButton")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::standardButton")
 
 	if ptr.Pointer() != nil {
 		return QMessageBox__StandardButton(C.QMessageBox_StandardButton(ptr.Pointer(), PointerFromQAbstractButton(button)))
@@ -657,21 +654,13 @@ func (ptr *QMessageBox) StandardButton(button QAbstractButton_ITF) QMessageBox__
 }
 
 func QMessageBox_Warning(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::warning")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::warning")
 
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Warning(PointerFromQWidget(parent), C.CString(title), C.CString(text), C.int(buttons), C.int(defaultButton)))
 }
 
 func (ptr *QMessageBox) DestroyQMessageBox() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageBox::~QMessageBox")
-		}
-	}()
+	defer qt.Recovering("QMessageBox::~QMessageBox")
 
 	if ptr.Pointer() != nil {
 		C.QMessageBox_DestroyQMessageBox(ptr.Pointer())

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQQmlFileSelectorFromPointer(ptr unsafe.Pointer) *QQmlFileSelector {
 	var n = new(QQmlFileSelector)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlFileSelector_") {
-		n.SetObjectName("QQmlFileSelector_" + qt.RandomIdentifier())
+		n.SetObjectName("QQmlFileSelector_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,31 +39,19 @@ func (ptr *QQmlFileSelector) QQmlFileSelector_PTR() *QQmlFileSelector {
 }
 
 func NewQQmlFileSelector(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlFileSelector {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlFileSelector::QQmlFileSelector")
-		}
-	}()
+	defer qt.Recovering("QQmlFileSelector::QQmlFileSelector")
 
 	return NewQQmlFileSelectorFromPointer(C.QQmlFileSelector_NewQQmlFileSelector(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 }
 
 func QQmlFileSelector_Get(engine QQmlEngine_ITF) *QQmlFileSelector {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlFileSelector::get")
-		}
-	}()
+	defer qt.Recovering("QQmlFileSelector::get")
 
 	return NewQQmlFileSelectorFromPointer(C.QQmlFileSelector_QQmlFileSelector_Get(PointerFromQQmlEngine(engine)))
 }
 
 func (ptr *QQmlFileSelector) SetExtraSelectors(strin []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlFileSelector::setExtraSelectors")
-		}
-	}()
+	defer qt.Recovering("QQmlFileSelector::setExtraSelectors")
 
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_SetExtraSelectors(ptr.Pointer(), C.CString(strings.Join(strin, ",,,")))
@@ -72,11 +59,7 @@ func (ptr *QQmlFileSelector) SetExtraSelectors(strin []string) {
 }
 
 func (ptr *QQmlFileSelector) SetExtraSelectors2(strin []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlFileSelector::setExtraSelectors")
-		}
-	}()
+	defer qt.Recovering("QQmlFileSelector::setExtraSelectors")
 
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_SetExtraSelectors2(ptr.Pointer(), C.CString(strings.Join(strin, ",,,")))
@@ -84,11 +67,7 @@ func (ptr *QQmlFileSelector) SetExtraSelectors2(strin []string) {
 }
 
 func (ptr *QQmlFileSelector) SetSelector(selector core.QFileSelector_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlFileSelector::setSelector")
-		}
-	}()
+	defer qt.Recovering("QQmlFileSelector::setSelector")
 
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_SetSelector(ptr.Pointer(), core.PointerFromQFileSelector(selector))
@@ -96,11 +75,7 @@ func (ptr *QQmlFileSelector) SetSelector(selector core.QFileSelector_ITF) {
 }
 
 func (ptr *QQmlFileSelector) DestroyQQmlFileSelector() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlFileSelector::~QQmlFileSelector")
-		}
-	}()
+	defer qt.Recovering("QQmlFileSelector::~QQmlFileSelector")
 
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DestroyQQmlFileSelector(ptr.Pointer())

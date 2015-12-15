@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQActionGroupFromPointer(ptr unsafe.Pointer) *QActionGroup {
 	var n = new(QActionGroup)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QActionGroup_") {
-		n.SetObjectName("QActionGroup_" + qt.RandomIdentifier())
+		n.SetObjectName("QActionGroup_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QActionGroup) QActionGroup_PTR() *QActionGroup {
 }
 
 func (ptr *QActionGroup) AddAction(action QAction_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::addAction")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::addAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QActionGroup_AddAction(ptr.Pointer(), PointerFromQAction(action)))
@@ -53,11 +48,7 @@ func (ptr *QActionGroup) AddAction(action QAction_ITF) *QAction {
 }
 
 func (ptr *QActionGroup) IsEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::isEnabled")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::isEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QActionGroup_IsEnabled(ptr.Pointer()) != 0
@@ -66,11 +57,7 @@ func (ptr *QActionGroup) IsEnabled() bool {
 }
 
 func (ptr *QActionGroup) IsExclusive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::isExclusive")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::isExclusive")
 
 	if ptr.Pointer() != nil {
 		return C.QActionGroup_IsExclusive(ptr.Pointer()) != 0
@@ -79,11 +66,7 @@ func (ptr *QActionGroup) IsExclusive() bool {
 }
 
 func (ptr *QActionGroup) IsVisible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::isVisible")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::isVisible")
 
 	if ptr.Pointer() != nil {
 		return C.QActionGroup_IsVisible(ptr.Pointer()) != 0
@@ -92,11 +75,7 @@ func (ptr *QActionGroup) IsVisible() bool {
 }
 
 func (ptr *QActionGroup) SetEnabled(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::setEnabled")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::setEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QActionGroup_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -104,11 +83,7 @@ func (ptr *QActionGroup) SetEnabled(v bool) {
 }
 
 func (ptr *QActionGroup) SetExclusive(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::setExclusive")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::setExclusive")
 
 	if ptr.Pointer() != nil {
 		C.QActionGroup_SetExclusive(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -116,11 +91,7 @@ func (ptr *QActionGroup) SetExclusive(v bool) {
 }
 
 func (ptr *QActionGroup) SetVisible(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::setVisible")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::setVisible")
 
 	if ptr.Pointer() != nil {
 		C.QActionGroup_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -128,21 +99,13 @@ func (ptr *QActionGroup) SetVisible(v bool) {
 }
 
 func NewQActionGroup(parent core.QObject_ITF) *QActionGroup {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::QActionGroup")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::QActionGroup")
 
 	return NewQActionGroupFromPointer(C.QActionGroup_NewQActionGroup(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QActionGroup) AddAction3(icon gui.QIcon_ITF, text string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::addAction")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::addAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QActionGroup_AddAction3(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text)))
@@ -151,11 +114,7 @@ func (ptr *QActionGroup) AddAction3(icon gui.QIcon_ITF, text string) *QAction {
 }
 
 func (ptr *QActionGroup) AddAction2(text string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::addAction")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::addAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QActionGroup_AddAction2(ptr.Pointer(), C.CString(text)))
@@ -164,11 +123,7 @@ func (ptr *QActionGroup) AddAction2(text string) *QAction {
 }
 
 func (ptr *QActionGroup) CheckedAction() *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::checkedAction")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::checkedAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QActionGroup_CheckedAction(ptr.Pointer()))
@@ -177,11 +132,7 @@ func (ptr *QActionGroup) CheckedAction() *QAction {
 }
 
 func (ptr *QActionGroup) ConnectHovered(f func(action *QAction)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::hovered")
-		}
-	}()
+	defer qt.Recovering("connect QActionGroup::hovered")
 
 	if ptr.Pointer() != nil {
 		C.QActionGroup_ConnectHovered(ptr.Pointer())
@@ -190,11 +141,7 @@ func (ptr *QActionGroup) ConnectHovered(f func(action *QAction)) {
 }
 
 func (ptr *QActionGroup) DisconnectHovered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::hovered")
-		}
-	}()
+	defer qt.Recovering("disconnect QActionGroup::hovered")
 
 	if ptr.Pointer() != nil {
 		C.QActionGroup_DisconnectHovered(ptr.Pointer())
@@ -204,21 +151,17 @@ func (ptr *QActionGroup) DisconnectHovered() {
 
 //export callbackQActionGroupHovered
 func callbackQActionGroupHovered(ptrName *C.char, action unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::hovered")
-		}
-	}()
+	defer qt.Recovering("callback QActionGroup::hovered")
 
-	qt.GetSignal(C.GoString(ptrName), "hovered").(func(*QAction))(NewQActionFromPointer(action))
+	var signal = qt.GetSignal(C.GoString(ptrName), "hovered")
+	if signal != nil {
+		signal.(func(*QAction))(NewQActionFromPointer(action))
+	}
+
 }
 
 func (ptr *QActionGroup) RemoveAction(action QAction_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::removeAction")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::removeAction")
 
 	if ptr.Pointer() != nil {
 		C.QActionGroup_RemoveAction(ptr.Pointer(), PointerFromQAction(action))
@@ -226,11 +169,7 @@ func (ptr *QActionGroup) RemoveAction(action QAction_ITF) {
 }
 
 func (ptr *QActionGroup) SetDisabled(b bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::setDisabled")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::setDisabled")
 
 	if ptr.Pointer() != nil {
 		C.QActionGroup_SetDisabled(ptr.Pointer(), C.int(qt.GoBoolToInt(b)))
@@ -238,11 +177,7 @@ func (ptr *QActionGroup) SetDisabled(b bool) {
 }
 
 func (ptr *QActionGroup) ConnectTriggered(f func(action *QAction)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::triggered")
-		}
-	}()
+	defer qt.Recovering("connect QActionGroup::triggered")
 
 	if ptr.Pointer() != nil {
 		C.QActionGroup_ConnectTriggered(ptr.Pointer())
@@ -251,11 +186,7 @@ func (ptr *QActionGroup) ConnectTriggered(f func(action *QAction)) {
 }
 
 func (ptr *QActionGroup) DisconnectTriggered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::triggered")
-		}
-	}()
+	defer qt.Recovering("disconnect QActionGroup::triggered")
 
 	if ptr.Pointer() != nil {
 		C.QActionGroup_DisconnectTriggered(ptr.Pointer())
@@ -265,21 +196,17 @@ func (ptr *QActionGroup) DisconnectTriggered() {
 
 //export callbackQActionGroupTriggered
 func callbackQActionGroupTriggered(ptrName *C.char, action unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::triggered")
-		}
-	}()
+	defer qt.Recovering("callback QActionGroup::triggered")
 
-	qt.GetSignal(C.GoString(ptrName), "triggered").(func(*QAction))(NewQActionFromPointer(action))
+	var signal = qt.GetSignal(C.GoString(ptrName), "triggered")
+	if signal != nil {
+		signal.(func(*QAction))(NewQActionFromPointer(action))
+	}
+
 }
 
 func (ptr *QActionGroup) DestroyQActionGroup() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QActionGroup::~QActionGroup")
-		}
-	}()
+	defer qt.Recovering("QActionGroup::~QActionGroup")
 
 	if ptr.Pointer() != nil {
 		C.QActionGroup_DestroyQActionGroup(ptr.Pointer())

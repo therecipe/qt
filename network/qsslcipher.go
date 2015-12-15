@@ -3,7 +3,7 @@ package network
 //#include "network.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,41 +41,25 @@ func (ptr *QSslCipher) QSslCipher_PTR() *QSslCipher {
 }
 
 func NewQSslCipher() *QSslCipher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::QSslCipher")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::QSslCipher")
 
 	return NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher())
 }
 
 func NewQSslCipher4(other QSslCipher_ITF) *QSslCipher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::QSslCipher")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::QSslCipher")
 
 	return NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher4(PointerFromQSslCipher(other)))
 }
 
 func NewQSslCipher2(name string) *QSslCipher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::QSslCipher")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::QSslCipher")
 
 	return NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher2(C.CString(name)))
 }
 
 func (ptr *QSslCipher) AuthenticationMethod() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::authenticationMethod")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::authenticationMethod")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslCipher_AuthenticationMethod(ptr.Pointer()))
@@ -84,11 +68,7 @@ func (ptr *QSslCipher) AuthenticationMethod() string {
 }
 
 func (ptr *QSslCipher) EncryptionMethod() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::encryptionMethod")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::encryptionMethod")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslCipher_EncryptionMethod(ptr.Pointer()))
@@ -97,11 +77,7 @@ func (ptr *QSslCipher) EncryptionMethod() string {
 }
 
 func (ptr *QSslCipher) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::isNull")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QSslCipher_IsNull(ptr.Pointer()) != 0
@@ -110,11 +86,7 @@ func (ptr *QSslCipher) IsNull() bool {
 }
 
 func (ptr *QSslCipher) KeyExchangeMethod() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::keyExchangeMethod")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::keyExchangeMethod")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslCipher_KeyExchangeMethod(ptr.Pointer()))
@@ -123,11 +95,7 @@ func (ptr *QSslCipher) KeyExchangeMethod() string {
 }
 
 func (ptr *QSslCipher) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::name")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslCipher_Name(ptr.Pointer()))
@@ -136,11 +104,7 @@ func (ptr *QSslCipher) Name() string {
 }
 
 func (ptr *QSslCipher) ProtocolString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::protocolString")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::protocolString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslCipher_ProtocolString(ptr.Pointer()))
@@ -149,11 +113,7 @@ func (ptr *QSslCipher) ProtocolString() string {
 }
 
 func (ptr *QSslCipher) SupportedBits() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::supportedBits")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::supportedBits")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSslCipher_SupportedBits(ptr.Pointer()))
@@ -162,11 +122,7 @@ func (ptr *QSslCipher) SupportedBits() int {
 }
 
 func (ptr *QSslCipher) Swap(other QSslCipher_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::swap")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::swap")
 
 	if ptr.Pointer() != nil {
 		C.QSslCipher_Swap(ptr.Pointer(), PointerFromQSslCipher(other))
@@ -174,11 +130,7 @@ func (ptr *QSslCipher) Swap(other QSslCipher_ITF) {
 }
 
 func (ptr *QSslCipher) UsedBits() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::usedBits")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::usedBits")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSslCipher_UsedBits(ptr.Pointer()))
@@ -187,11 +139,7 @@ func (ptr *QSslCipher) UsedBits() int {
 }
 
 func (ptr *QSslCipher) DestroyQSslCipher() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslCipher::~QSslCipher")
-		}
-	}()
+	defer qt.Recovering("QSslCipher::~QSslCipher")
 
 	if ptr.Pointer() != nil {
 		C.QSslCipher_DestroyQSslCipher(ptr.Pointer())

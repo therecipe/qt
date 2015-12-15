@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQIconEngine(ptr QIconEngine_ITF) unsafe.Pointer {
 func NewQIconEngineFromPointer(ptr unsafe.Pointer) *QIconEngine {
 	var n = new(QIconEngine)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QIconEngine_") {
+		n.SetObjectNameAbs("QIconEngine_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -49,36 +52,8 @@ const (
 	QIconEngine__IconNameHook       = QIconEngine__IconEngineHook(2)
 )
 
-func (ptr *QIconEngine) AddFile(fileName string, size core.QSize_ITF, mode QIcon__Mode, state QIcon__State) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIconEngine::addFile")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QIconEngine_AddFile(ptr.Pointer(), C.CString(fileName), core.PointerFromQSize(size), C.int(mode), C.int(state))
-	}
-}
-
-func (ptr *QIconEngine) AddPixmap(pixmap QPixmap_ITF, mode QIcon__Mode, state QIcon__State) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIconEngine::addPixmap")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QIconEngine_AddPixmap(ptr.Pointer(), PointerFromQPixmap(pixmap), C.int(mode), C.int(state))
-	}
-}
-
 func (ptr *QIconEngine) Clone() *QIconEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIconEngine::clone")
-		}
-	}()
+	defer qt.Recovering("QIconEngine::clone")
 
 	if ptr.Pointer() != nil {
 		return NewQIconEngineFromPointer(C.QIconEngine_Clone(ptr.Pointer()))
@@ -87,11 +62,7 @@ func (ptr *QIconEngine) Clone() *QIconEngine {
 }
 
 func (ptr *QIconEngine) IconName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIconEngine::iconName")
-		}
-	}()
+	defer qt.Recovering("QIconEngine::iconName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QIconEngine_IconName(ptr.Pointer()))
@@ -100,11 +71,7 @@ func (ptr *QIconEngine) IconName() string {
 }
 
 func (ptr *QIconEngine) Key() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIconEngine::key")
-		}
-	}()
+	defer qt.Recovering("QIconEngine::key")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QIconEngine_Key(ptr.Pointer()))
@@ -113,11 +80,7 @@ func (ptr *QIconEngine) Key() string {
 }
 
 func (ptr *QIconEngine) Paint(painter QPainter_ITF, rect core.QRect_ITF, mode QIcon__Mode, state QIcon__State) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIconEngine::paint")
-		}
-	}()
+	defer qt.Recovering("QIconEngine::paint")
 
 	if ptr.Pointer() != nil {
 		C.QIconEngine_Paint(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQRect(rect), C.int(mode), C.int(state))
@@ -125,11 +88,7 @@ func (ptr *QIconEngine) Paint(painter QPainter_ITF, rect core.QRect_ITF, mode QI
 }
 
 func (ptr *QIconEngine) Read(in core.QDataStream_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIconEngine::read")
-		}
-	}()
+	defer qt.Recovering("QIconEngine::read")
 
 	if ptr.Pointer() != nil {
 		return C.QIconEngine_Read(ptr.Pointer(), core.PointerFromQDataStream(in)) != 0
@@ -138,11 +97,7 @@ func (ptr *QIconEngine) Read(in core.QDataStream_ITF) bool {
 }
 
 func (ptr *QIconEngine) Write(out core.QDataStream_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIconEngine::write")
-		}
-	}()
+	defer qt.Recovering("QIconEngine::write")
 
 	if ptr.Pointer() != nil {
 		return C.QIconEngine_Write(ptr.Pointer(), core.PointerFromQDataStream(out)) != 0
@@ -151,13 +106,26 @@ func (ptr *QIconEngine) Write(out core.QDataStream_ITF) bool {
 }
 
 func (ptr *QIconEngine) DestroyQIconEngine() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIconEngine::~QIconEngine")
-		}
-	}()
+	defer qt.Recovering("QIconEngine::~QIconEngine")
 
 	if ptr.Pointer() != nil {
 		C.QIconEngine_DestroyQIconEngine(ptr.Pointer())
+	}
+}
+
+func (ptr *QIconEngine) ObjectNameAbs() string {
+	defer qt.Recovering("QIconEngine::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QIconEngine_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QIconEngine) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QIconEngine::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QIconEngine_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

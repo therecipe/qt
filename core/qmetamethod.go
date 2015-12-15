@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -60,11 +60,7 @@ const (
 )
 
 func (ptr *QMetaMethod) Access() QMetaMethod__Access {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::access")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::access")
 
 	if ptr.Pointer() != nil {
 		return QMetaMethod__Access(C.QMetaMethod_Access(ptr.Pointer()))
@@ -73,11 +69,7 @@ func (ptr *QMetaMethod) Access() QMetaMethod__Access {
 }
 
 func (ptr *QMetaMethod) Invoke4(object QObject_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::invoke")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::invoke")
 
 	if ptr.Pointer() != nil {
 		return C.QMetaMethod_Invoke4(ptr.Pointer(), PointerFromQObject(object), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
@@ -86,11 +78,7 @@ func (ptr *QMetaMethod) Invoke4(object QObject_ITF, val0 QGenericArgument_ITF, v
 }
 
 func (ptr *QMetaMethod) Invoke2(object QObject_ITF, returnValue QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::invoke")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::invoke")
 
 	if ptr.Pointer() != nil {
 		return C.QMetaMethod_Invoke2(ptr.Pointer(), PointerFromQObject(object), PointerFromQGenericReturnArgument(returnValue), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
@@ -99,11 +87,7 @@ func (ptr *QMetaMethod) Invoke2(object QObject_ITF, returnValue QGenericReturnAr
 }
 
 func (ptr *QMetaMethod) Invoke3(object QObject_ITF, connectionType Qt__ConnectionType, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::invoke")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::invoke")
 
 	if ptr.Pointer() != nil {
 		return C.QMetaMethod_Invoke3(ptr.Pointer(), PointerFromQObject(object), C.int(connectionType), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
@@ -112,11 +96,7 @@ func (ptr *QMetaMethod) Invoke3(object QObject_ITF, connectionType Qt__Connectio
 }
 
 func (ptr *QMetaMethod) Invoke(object QObject_ITF, connectionType Qt__ConnectionType, returnValue QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::invoke")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::invoke")
 
 	if ptr.Pointer() != nil {
 		return C.QMetaMethod_Invoke(ptr.Pointer(), PointerFromQObject(object), C.int(connectionType), PointerFromQGenericReturnArgument(returnValue), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
@@ -125,11 +105,7 @@ func (ptr *QMetaMethod) Invoke(object QObject_ITF, connectionType Qt__Connection
 }
 
 func (ptr *QMetaMethod) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::isValid")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QMetaMethod_IsValid(ptr.Pointer()) != 0
@@ -138,11 +114,7 @@ func (ptr *QMetaMethod) IsValid() bool {
 }
 
 func (ptr *QMetaMethod) MethodIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::methodIndex")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::methodIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMetaMethod_MethodIndex(ptr.Pointer()))
@@ -151,11 +123,7 @@ func (ptr *QMetaMethod) MethodIndex() int {
 }
 
 func (ptr *QMetaMethod) MethodSignature() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::methodSignature")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::methodSignature")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QMetaMethod_MethodSignature(ptr.Pointer()))
@@ -164,11 +132,7 @@ func (ptr *QMetaMethod) MethodSignature() *QByteArray {
 }
 
 func (ptr *QMetaMethod) MethodType() QMetaMethod__MethodType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::methodType")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::methodType")
 
 	if ptr.Pointer() != nil {
 		return QMetaMethod__MethodType(C.QMetaMethod_MethodType(ptr.Pointer()))
@@ -177,11 +141,7 @@ func (ptr *QMetaMethod) MethodType() QMetaMethod__MethodType {
 }
 
 func (ptr *QMetaMethod) Name() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::name")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::name")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QMetaMethod_Name(ptr.Pointer()))
@@ -190,11 +150,7 @@ func (ptr *QMetaMethod) Name() *QByteArray {
 }
 
 func (ptr *QMetaMethod) ParameterCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::parameterCount")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::parameterCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMetaMethod_ParameterCount(ptr.Pointer()))
@@ -203,11 +159,7 @@ func (ptr *QMetaMethod) ParameterCount() int {
 }
 
 func (ptr *QMetaMethod) ParameterType(index int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::parameterType")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::parameterType")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMetaMethod_ParameterType(ptr.Pointer(), C.int(index)))
@@ -216,11 +168,7 @@ func (ptr *QMetaMethod) ParameterType(index int) int {
 }
 
 func (ptr *QMetaMethod) ReturnType() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::returnType")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::returnType")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMetaMethod_ReturnType(ptr.Pointer()))
@@ -229,11 +177,7 @@ func (ptr *QMetaMethod) ReturnType() int {
 }
 
 func (ptr *QMetaMethod) Revision() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaMethod::revision")
-		}
-	}()
+	defer qt.Recovering("QMetaMethod::revision")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMetaMethod_Revision(ptr.Pointer()))

@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,31 +34,19 @@ func (ptr *QItemSelection) QItemSelection_PTR() *QItemSelection {
 }
 
 func NewQItemSelection() *QItemSelection {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelection::QItemSelection")
-		}
-	}()
+	defer qt.Recovering("QItemSelection::QItemSelection")
 
 	return NewQItemSelectionFromPointer(C.QItemSelection_NewQItemSelection())
 }
 
 func NewQItemSelection2(topLeft QModelIndex_ITF, bottomRight QModelIndex_ITF) *QItemSelection {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelection::QItemSelection")
-		}
-	}()
+	defer qt.Recovering("QItemSelection::QItemSelection")
 
 	return NewQItemSelectionFromPointer(C.QItemSelection_NewQItemSelection2(PointerFromQModelIndex(topLeft), PointerFromQModelIndex(bottomRight)))
 }
 
 func (ptr *QItemSelection) Contains(index QModelIndex_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelection::contains")
-		}
-	}()
+	defer qt.Recovering("QItemSelection::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QItemSelection_Contains(ptr.Pointer(), PointerFromQModelIndex(index)) != 0
@@ -67,11 +55,7 @@ func (ptr *QItemSelection) Contains(index QModelIndex_ITF) bool {
 }
 
 func (ptr *QItemSelection) Merge(other QItemSelection_ITF, command QItemSelectionModel__SelectionFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelection::merge")
-		}
-	}()
+	defer qt.Recovering("QItemSelection::merge")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelection_Merge(ptr.Pointer(), PointerFromQItemSelection(other), C.int(command))
@@ -79,11 +63,7 @@ func (ptr *QItemSelection) Merge(other QItemSelection_ITF, command QItemSelectio
 }
 
 func (ptr *QItemSelection) Select(topLeft QModelIndex_ITF, bottomRight QModelIndex_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelection::select")
-		}
-	}()
+	defer qt.Recovering("QItemSelection::select")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelection_Select(ptr.Pointer(), PointerFromQModelIndex(topLeft), PointerFromQModelIndex(bottomRight))
@@ -91,11 +71,7 @@ func (ptr *QItemSelection) Select(topLeft QModelIndex_ITF, bottomRight QModelInd
 }
 
 func QItemSelection_Split(ran QItemSelectionRange_ITF, other QItemSelectionRange_ITF, result QItemSelection_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemSelection::split")
-		}
-	}()
+	defer qt.Recovering("QItemSelection::split")
 
 	C.QItemSelection_QItemSelection_Split(PointerFromQItemSelectionRange(ran), PointerFromQItemSelectionRange(other), PointerFromQItemSelection(result))
 }

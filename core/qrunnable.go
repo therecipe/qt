@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +33,9 @@ func PointerFromQRunnable(ptr QRunnable_ITF) unsafe.Pointer {
 func NewQRunnableFromPointer(ptr unsafe.Pointer) *QRunnable {
 	var n = new(QRunnable)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QRunnable_") {
+		n.SetObjectNameAbs("QRunnable_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,11 +44,7 @@ func (ptr *QRunnable) QRunnable_PTR() *QRunnable {
 }
 
 func (ptr *QRunnable) AutoDelete() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRunnable::autoDelete")
-		}
-	}()
+	defer qt.Recovering("QRunnable::autoDelete")
 
 	if ptr.Pointer() != nil {
 		return C.QRunnable_AutoDelete(ptr.Pointer()) != 0
@@ -55,11 +53,7 @@ func (ptr *QRunnable) AutoDelete() bool {
 }
 
 func (ptr *QRunnable) Run() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRunnable::run")
-		}
-	}()
+	defer qt.Recovering("QRunnable::run")
 
 	if ptr.Pointer() != nil {
 		C.QRunnable_Run(ptr.Pointer())
@@ -67,11 +61,7 @@ func (ptr *QRunnable) Run() {
 }
 
 func (ptr *QRunnable) SetAutoDelete(autoDelete bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRunnable::setAutoDelete")
-		}
-	}()
+	defer qt.Recovering("QRunnable::setAutoDelete")
 
 	if ptr.Pointer() != nil {
 		C.QRunnable_SetAutoDelete(ptr.Pointer(), C.int(qt.GoBoolToInt(autoDelete)))
@@ -79,13 +69,26 @@ func (ptr *QRunnable) SetAutoDelete(autoDelete bool) {
 }
 
 func (ptr *QRunnable) DestroyQRunnable() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRunnable::~QRunnable")
-		}
-	}()
+	defer qt.Recovering("QRunnable::~QRunnable")
 
 	if ptr.Pointer() != nil {
 		C.QRunnable_DestroyQRunnable(ptr.Pointer())
+	}
+}
+
+func (ptr *QRunnable) ObjectNameAbs() string {
+	defer qt.Recovering("QRunnable::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QRunnable_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QRunnable) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QRunnable::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QRunnable_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

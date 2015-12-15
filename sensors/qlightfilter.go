@@ -3,7 +3,7 @@ package sensors
 //#include "sensors.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,11 +34,7 @@ func (ptr *QLightFilter) QLightFilter_PTR() *QLightFilter {
 }
 
 func (ptr *QLightFilter) Filter(reading QLightReading_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLightFilter::filter")
-		}
-	}()
+	defer qt.Recovering("QLightFilter::filter")
 
 	if ptr.Pointer() != nil {
 		return C.QLightFilter_Filter(ptr.Pointer(), PointerFromQLightReading(reading)) != 0

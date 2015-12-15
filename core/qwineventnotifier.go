@@ -27,7 +27,7 @@ func NewQWinEventNotifierFromPointer(ptr unsafe.Pointer) *QWinEventNotifier {
 	var n = new(QWinEventNotifier)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QWinEventNotifier_") {
-		n.SetObjectName("QWinEventNotifier_" + qt.RandomIdentifier())
+		n.SetObjectName("QWinEventNotifier_" + qt.Identifier())
 	}
 	return n
 }

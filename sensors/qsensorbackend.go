@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQSensorBackendFromPointer(ptr unsafe.Pointer) *QSensorBackend {
 	var n = new(QSensorBackend)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSensorBackend_") {
-		n.SetObjectName("QSensorBackend_" + qt.RandomIdentifier())
+		n.SetObjectName("QSensorBackend_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QSensorBackend) QSensorBackend_PTR() *QSensorBackend {
 }
 
 func (ptr *QSensorBackend) AddDataRate(min float64, max float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::addDataRate")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::addDataRate")
 
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_AddDataRate(ptr.Pointer(), C.double(min), C.double(max))
@@ -51,11 +46,7 @@ func (ptr *QSensorBackend) AddDataRate(min float64, max float64) {
 }
 
 func (ptr *QSensorBackend) IsFeatureSupported(feature QSensor__Feature) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::isFeatureSupported")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::isFeatureSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QSensorBackend_IsFeatureSupported(ptr.Pointer(), C.int(feature)) != 0
@@ -64,11 +55,7 @@ func (ptr *QSensorBackend) IsFeatureSupported(feature QSensor__Feature) bool {
 }
 
 func (ptr *QSensorBackend) SensorBusy() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::sensorBusy")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::sensorBusy")
 
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_SensorBusy(ptr.Pointer())
@@ -76,11 +63,7 @@ func (ptr *QSensorBackend) SensorBusy() {
 }
 
 func (ptr *QSensorBackend) SensorError(error int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::sensorError")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::sensorError")
 
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_SensorError(ptr.Pointer(), C.int(error))
@@ -88,11 +71,7 @@ func (ptr *QSensorBackend) SensorError(error int) {
 }
 
 func (ptr *QSensorBackend) AddOutputRange(min float64, max float64, accuracy float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::addOutputRange")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::addOutputRange")
 
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_AddOutputRange(ptr.Pointer(), C.double(min), C.double(max), C.double(accuracy))
@@ -100,11 +79,7 @@ func (ptr *QSensorBackend) AddOutputRange(min float64, max float64, accuracy flo
 }
 
 func (ptr *QSensorBackend) NewReadingAvailable() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::newReadingAvailable")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::newReadingAvailable")
 
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_NewReadingAvailable(ptr.Pointer())
@@ -112,11 +87,7 @@ func (ptr *QSensorBackend) NewReadingAvailable() {
 }
 
 func (ptr *QSensorBackend) Reading() *QSensorReading {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::reading")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::reading")
 
 	if ptr.Pointer() != nil {
 		return NewQSensorReadingFromPointer(C.QSensorBackend_Reading(ptr.Pointer()))
@@ -125,11 +96,7 @@ func (ptr *QSensorBackend) Reading() *QSensorReading {
 }
 
 func (ptr *QSensorBackend) Sensor() *QSensor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::sensor")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::sensor")
 
 	if ptr.Pointer() != nil {
 		return NewQSensorFromPointer(C.QSensorBackend_Sensor(ptr.Pointer()))
@@ -138,11 +105,7 @@ func (ptr *QSensorBackend) Sensor() *QSensor {
 }
 
 func (ptr *QSensorBackend) SensorStopped() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::sensorStopped")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::sensorStopped")
 
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_SensorStopped(ptr.Pointer())
@@ -150,11 +113,7 @@ func (ptr *QSensorBackend) SensorStopped() {
 }
 
 func (ptr *QSensorBackend) SetDataRates(otherSensor QSensor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::setDataRates")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::setDataRates")
 
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_SetDataRates(ptr.Pointer(), PointerFromQSensor(otherSensor))
@@ -162,11 +121,7 @@ func (ptr *QSensorBackend) SetDataRates(otherSensor QSensor_ITF) {
 }
 
 func (ptr *QSensorBackend) SetDescription(description string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::setDescription")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::setDescription")
 
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_SetDescription(ptr.Pointer(), C.CString(description))
@@ -174,11 +129,7 @@ func (ptr *QSensorBackend) SetDescription(description string) {
 }
 
 func (ptr *QSensorBackend) Start() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::start")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::start")
 
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_Start(ptr.Pointer())
@@ -186,11 +137,7 @@ func (ptr *QSensorBackend) Start() {
 }
 
 func (ptr *QSensorBackend) Stop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackend::stop")
-		}
-	}()
+	defer qt.Recovering("QSensorBackend::stop")
 
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_Stop(ptr.Pointer())

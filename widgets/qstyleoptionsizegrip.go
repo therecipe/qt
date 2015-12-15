@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -48,21 +48,13 @@ var (
 )
 
 func NewQStyleOptionSizeGrip() *QStyleOptionSizeGrip {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionSizeGrip::QStyleOptionSizeGrip")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionSizeGrip::QStyleOptionSizeGrip")
 
 	return NewQStyleOptionSizeGripFromPointer(C.QStyleOptionSizeGrip_NewQStyleOptionSizeGrip())
 }
 
 func NewQStyleOptionSizeGrip2(other QStyleOptionSizeGrip_ITF) *QStyleOptionSizeGrip {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionSizeGrip::QStyleOptionSizeGrip")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionSizeGrip::QStyleOptionSizeGrip")
 
 	return NewQStyleOptionSizeGripFromPointer(C.QStyleOptionSizeGrip_NewQStyleOptionSizeGrip2(PointerFromQStyleOptionSizeGrip(other)))
 }

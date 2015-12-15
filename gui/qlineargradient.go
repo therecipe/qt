@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,41 +35,25 @@ func (ptr *QLinearGradient) QLinearGradient_PTR() *QLinearGradient {
 }
 
 func NewQLinearGradient3(x1 float64, y1 float64, x2 float64, y2 float64) *QLinearGradient {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLinearGradient::QLinearGradient")
-		}
-	}()
+	defer qt.Recovering("QLinearGradient::QLinearGradient")
 
 	return NewQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient3(C.double(x1), C.double(y1), C.double(x2), C.double(y2)))
 }
 
 func NewQLinearGradient() *QLinearGradient {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLinearGradient::QLinearGradient")
-		}
-	}()
+	defer qt.Recovering("QLinearGradient::QLinearGradient")
 
 	return NewQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient())
 }
 
 func NewQLinearGradient2(start core.QPointF_ITF, finalStop core.QPointF_ITF) *QLinearGradient {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLinearGradient::QLinearGradient")
-		}
-	}()
+	defer qt.Recovering("QLinearGradient::QLinearGradient")
 
 	return NewQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient2(core.PointerFromQPointF(start), core.PointerFromQPointF(finalStop)))
 }
 
 func (ptr *QLinearGradient) SetFinalStop(stop core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLinearGradient::setFinalStop")
-		}
-	}()
+	defer qt.Recovering("QLinearGradient::setFinalStop")
 
 	if ptr.Pointer() != nil {
 		C.QLinearGradient_SetFinalStop(ptr.Pointer(), core.PointerFromQPointF(stop))
@@ -77,11 +61,7 @@ func (ptr *QLinearGradient) SetFinalStop(stop core.QPointF_ITF) {
 }
 
 func (ptr *QLinearGradient) SetFinalStop2(x float64, y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLinearGradient::setFinalStop")
-		}
-	}()
+	defer qt.Recovering("QLinearGradient::setFinalStop")
 
 	if ptr.Pointer() != nil {
 		C.QLinearGradient_SetFinalStop2(ptr.Pointer(), C.double(x), C.double(y))
@@ -89,11 +69,7 @@ func (ptr *QLinearGradient) SetFinalStop2(x float64, y float64) {
 }
 
 func (ptr *QLinearGradient) SetStart(start core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLinearGradient::setStart")
-		}
-	}()
+	defer qt.Recovering("QLinearGradient::setStart")
 
 	if ptr.Pointer() != nil {
 		C.QLinearGradient_SetStart(ptr.Pointer(), core.PointerFromQPointF(start))
@@ -101,11 +77,7 @@ func (ptr *QLinearGradient) SetStart(start core.QPointF_ITF) {
 }
 
 func (ptr *QLinearGradient) SetStart2(x float64, y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLinearGradient::setStart")
-		}
-	}()
+	defer qt.Recovering("QLinearGradient::setStart")
 
 	if ptr.Pointer() != nil {
 		C.QLinearGradient_SetStart2(ptr.Pointer(), C.double(x), C.double(y))

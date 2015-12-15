@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQWebChannelFromPointer(ptr unsafe.Pointer) *QWebChannel {
 	var n = new(QWebChannel)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QWebChannel_") {
-		n.SetObjectName("QWebChannel_" + qt.RandomIdentifier())
+		n.SetObjectName("QWebChannel_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QWebChannel) QWebChannel_PTR() *QWebChannel {
 }
 
 func (ptr *QWebChannel) BlockUpdates() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannel::blockUpdates")
-		}
-	}()
+	defer qt.Recovering("QWebChannel::blockUpdates")
 
 	if ptr.Pointer() != nil {
 		return C.QWebChannel_BlockUpdates(ptr.Pointer()) != 0
@@ -52,11 +47,7 @@ func (ptr *QWebChannel) BlockUpdates() bool {
 }
 
 func (ptr *QWebChannel) SetBlockUpdates(block bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannel::setBlockUpdates")
-		}
-	}()
+	defer qt.Recovering("QWebChannel::setBlockUpdates")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannel_SetBlockUpdates(ptr.Pointer(), C.int(qt.GoBoolToInt(block)))
@@ -64,21 +55,13 @@ func (ptr *QWebChannel) SetBlockUpdates(block bool) {
 }
 
 func NewQWebChannel(parent core.QObject_ITF) *QWebChannel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannel::QWebChannel")
-		}
-	}()
+	defer qt.Recovering("QWebChannel::QWebChannel")
 
 	return NewQWebChannelFromPointer(C.QWebChannel_NewQWebChannel(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QWebChannel) ConnectBlockUpdatesChanged(f func(block bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannel::blockUpdatesChanged")
-		}
-	}()
+	defer qt.Recovering("connect QWebChannel::blockUpdatesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannel_ConnectBlockUpdatesChanged(ptr.Pointer())
@@ -87,11 +70,7 @@ func (ptr *QWebChannel) ConnectBlockUpdatesChanged(f func(block bool)) {
 }
 
 func (ptr *QWebChannel) DisconnectBlockUpdatesChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannel::blockUpdatesChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QWebChannel::blockUpdatesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannel_DisconnectBlockUpdatesChanged(ptr.Pointer())
@@ -101,21 +80,17 @@ func (ptr *QWebChannel) DisconnectBlockUpdatesChanged() {
 
 //export callbackQWebChannelBlockUpdatesChanged
 func callbackQWebChannelBlockUpdatesChanged(ptrName *C.char, block C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannel::blockUpdatesChanged")
-		}
-	}()
+	defer qt.Recovering("callback QWebChannel::blockUpdatesChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "blockUpdatesChanged").(func(bool))(int(block) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "blockUpdatesChanged")
+	if signal != nil {
+		signal.(func(bool))(int(block) != 0)
+	}
+
 }
 
 func (ptr *QWebChannel) ConnectTo(transport QWebChannelAbstractTransport_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannel::connectTo")
-		}
-	}()
+	defer qt.Recovering("QWebChannel::connectTo")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannel_ConnectTo(ptr.Pointer(), PointerFromQWebChannelAbstractTransport(transport))
@@ -123,11 +98,7 @@ func (ptr *QWebChannel) ConnectTo(transport QWebChannelAbstractTransport_ITF) {
 }
 
 func (ptr *QWebChannel) DeregisterObject(object core.QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannel::deregisterObject")
-		}
-	}()
+	defer qt.Recovering("QWebChannel::deregisterObject")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannel_DeregisterObject(ptr.Pointer(), core.PointerFromQObject(object))
@@ -135,11 +106,7 @@ func (ptr *QWebChannel) DeregisterObject(object core.QObject_ITF) {
 }
 
 func (ptr *QWebChannel) DisconnectFrom(transport QWebChannelAbstractTransport_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannel::disconnectFrom")
-		}
-	}()
+	defer qt.Recovering("QWebChannel::disconnectFrom")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannel_DisconnectFrom(ptr.Pointer(), PointerFromQWebChannelAbstractTransport(transport))
@@ -147,11 +114,7 @@ func (ptr *QWebChannel) DisconnectFrom(transport QWebChannelAbstractTransport_IT
 }
 
 func (ptr *QWebChannel) RegisterObject(id string, object core.QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannel::registerObject")
-		}
-	}()
+	defer qt.Recovering("QWebChannel::registerObject")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannel_RegisterObject(ptr.Pointer(), C.CString(id), core.PointerFromQObject(object))
@@ -159,11 +122,7 @@ func (ptr *QWebChannel) RegisterObject(id string, object core.QObject_ITF) {
 }
 
 func (ptr *QWebChannel) DestroyQWebChannel() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWebChannel::~QWebChannel")
-		}
-	}()
+	defer qt.Recovering("QWebChannel::~QWebChannel")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannel_DestroyQWebChannel(ptr.Pointer())

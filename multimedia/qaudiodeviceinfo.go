@@ -3,7 +3,7 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"strings"
 	"unsafe"
 )
@@ -42,31 +42,19 @@ func (ptr *QAudioDeviceInfo) QAudioDeviceInfo_PTR() *QAudioDeviceInfo {
 }
 
 func NewQAudioDeviceInfo() *QAudioDeviceInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioDeviceInfo::QAudioDeviceInfo")
-		}
-	}()
+	defer qt.Recovering("QAudioDeviceInfo::QAudioDeviceInfo")
 
 	return NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_NewQAudioDeviceInfo())
 }
 
 func NewQAudioDeviceInfo2(other QAudioDeviceInfo_ITF) *QAudioDeviceInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioDeviceInfo::QAudioDeviceInfo")
-		}
-	}()
+	defer qt.Recovering("QAudioDeviceInfo::QAudioDeviceInfo")
 
 	return NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_NewQAudioDeviceInfo2(PointerFromQAudioDeviceInfo(other)))
 }
 
 func (ptr *QAudioDeviceInfo) DeviceName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioDeviceInfo::deviceName")
-		}
-	}()
+	defer qt.Recovering("QAudioDeviceInfo::deviceName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAudioDeviceInfo_DeviceName(ptr.Pointer()))
@@ -75,11 +63,7 @@ func (ptr *QAudioDeviceInfo) DeviceName() string {
 }
 
 func (ptr *QAudioDeviceInfo) IsFormatSupported(settings QAudioFormat_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioDeviceInfo::isFormatSupported")
-		}
-	}()
+	defer qt.Recovering("QAudioDeviceInfo::isFormatSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QAudioDeviceInfo_IsFormatSupported(ptr.Pointer(), PointerFromQAudioFormat(settings)) != 0
@@ -88,11 +72,7 @@ func (ptr *QAudioDeviceInfo) IsFormatSupported(settings QAudioFormat_ITF) bool {
 }
 
 func (ptr *QAudioDeviceInfo) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioDeviceInfo::isNull")
-		}
-	}()
+	defer qt.Recovering("QAudioDeviceInfo::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QAudioDeviceInfo_IsNull(ptr.Pointer()) != 0
@@ -101,11 +81,7 @@ func (ptr *QAudioDeviceInfo) IsNull() bool {
 }
 
 func (ptr *QAudioDeviceInfo) SupportedCodecs() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioDeviceInfo::supportedCodecs")
-		}
-	}()
+	defer qt.Recovering("QAudioDeviceInfo::supportedCodecs")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QAudioDeviceInfo_SupportedCodecs(ptr.Pointer())), ",,,")
@@ -114,11 +90,7 @@ func (ptr *QAudioDeviceInfo) SupportedCodecs() []string {
 }
 
 func (ptr *QAudioDeviceInfo) DestroyQAudioDeviceInfo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioDeviceInfo::~QAudioDeviceInfo")
-		}
-	}()
+	defer qt.Recovering("QAudioDeviceInfo::~QAudioDeviceInfo")
 
 	if ptr.Pointer() != nil {
 		C.QAudioDeviceInfo_DestroyQAudioDeviceInfo(ptr.Pointer())

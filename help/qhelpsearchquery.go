@@ -3,7 +3,7 @@ package help
 //#include "help.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"strings"
 	"unsafe"
 )
@@ -54,21 +54,13 @@ const (
 )
 
 func NewQHelpSearchQuery() *QHelpSearchQuery {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchQuery::QHelpSearchQuery")
-		}
-	}()
+	defer qt.Recovering("QHelpSearchQuery::QHelpSearchQuery")
 
 	return NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery())
 }
 
 func NewQHelpSearchQuery2(field QHelpSearchQuery__FieldName, wordList []string) *QHelpSearchQuery {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchQuery::QHelpSearchQuery")
-		}
-	}()
+	defer qt.Recovering("QHelpSearchQuery::QHelpSearchQuery")
 
 	return NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.int(field), C.CString(strings.Join(wordList, ",,,"))))
 }

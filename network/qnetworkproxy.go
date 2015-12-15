@@ -3,8 +3,8 @@ package network
 //#include "network.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -65,31 +65,19 @@ const (
 )
 
 func NewQNetworkProxy() *QNetworkProxy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::QNetworkProxy")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::QNetworkProxy")
 
 	return NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy())
 }
 
 func NewQNetworkProxy3(other QNetworkProxy_ITF) *QNetworkProxy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::QNetworkProxy")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::QNetworkProxy")
 
 	return NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy3(PointerFromQNetworkProxy(other)))
 }
 
 func (ptr *QNetworkProxy) Capabilities() QNetworkProxy__Capability {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::capabilities")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::capabilities")
 
 	if ptr.Pointer() != nil {
 		return QNetworkProxy__Capability(C.QNetworkProxy_Capabilities(ptr.Pointer()))
@@ -98,11 +86,7 @@ func (ptr *QNetworkProxy) Capabilities() QNetworkProxy__Capability {
 }
 
 func (ptr *QNetworkProxy) HasRawHeader(headerName core.QByteArray_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::hasRawHeader")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::hasRawHeader")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkProxy_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)) != 0
@@ -111,11 +95,7 @@ func (ptr *QNetworkProxy) HasRawHeader(headerName core.QByteArray_ITF) bool {
 }
 
 func (ptr *QNetworkProxy) Header(header QNetworkRequest__KnownHeaders) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::header")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::header")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QNetworkProxy_Header(ptr.Pointer(), C.int(header)))
@@ -124,11 +104,7 @@ func (ptr *QNetworkProxy) Header(header QNetworkRequest__KnownHeaders) *core.QVa
 }
 
 func (ptr *QNetworkProxy) HostName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::hostName")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::hostName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkProxy_HostName(ptr.Pointer()))
@@ -137,11 +113,7 @@ func (ptr *QNetworkProxy) HostName() string {
 }
 
 func (ptr *QNetworkProxy) IsCachingProxy() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::isCachingProxy")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::isCachingProxy")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkProxy_IsCachingProxy(ptr.Pointer()) != 0
@@ -150,11 +122,7 @@ func (ptr *QNetworkProxy) IsCachingProxy() bool {
 }
 
 func (ptr *QNetworkProxy) IsTransparentProxy() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::isTransparentProxy")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::isTransparentProxy")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkProxy_IsTransparentProxy(ptr.Pointer()) != 0
@@ -163,11 +131,7 @@ func (ptr *QNetworkProxy) IsTransparentProxy() bool {
 }
 
 func (ptr *QNetworkProxy) Password() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::password")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::password")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkProxy_Password(ptr.Pointer()))
@@ -176,11 +140,7 @@ func (ptr *QNetworkProxy) Password() string {
 }
 
 func (ptr *QNetworkProxy) RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::rawHeader")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::rawHeader")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QNetworkProxy_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
@@ -189,21 +149,13 @@ func (ptr *QNetworkProxy) RawHeader(headerName core.QByteArray_ITF) *core.QByteA
 }
 
 func QNetworkProxy_SetApplicationProxy(networkProxy QNetworkProxy_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::setApplicationProxy")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::setApplicationProxy")
 
 	C.QNetworkProxy_QNetworkProxy_SetApplicationProxy(PointerFromQNetworkProxy(networkProxy))
 }
 
 func (ptr *QNetworkProxy) SetCapabilities(capabilities QNetworkProxy__Capability) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::setCapabilities")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::setCapabilities")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkProxy_SetCapabilities(ptr.Pointer(), C.int(capabilities))
@@ -211,11 +163,7 @@ func (ptr *QNetworkProxy) SetCapabilities(capabilities QNetworkProxy__Capability
 }
 
 func (ptr *QNetworkProxy) SetHeader(header QNetworkRequest__KnownHeaders, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::setHeader")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::setHeader")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkProxy_SetHeader(ptr.Pointer(), C.int(header), core.PointerFromQVariant(value))
@@ -223,11 +171,7 @@ func (ptr *QNetworkProxy) SetHeader(header QNetworkRequest__KnownHeaders, value 
 }
 
 func (ptr *QNetworkProxy) SetHostName(hostName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::setHostName")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::setHostName")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkProxy_SetHostName(ptr.Pointer(), C.CString(hostName))
@@ -235,11 +179,7 @@ func (ptr *QNetworkProxy) SetHostName(hostName string) {
 }
 
 func (ptr *QNetworkProxy) SetPassword(password string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::setPassword")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::setPassword")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkProxy_SetPassword(ptr.Pointer(), C.CString(password))
@@ -247,11 +187,7 @@ func (ptr *QNetworkProxy) SetPassword(password string) {
 }
 
 func (ptr *QNetworkProxy) SetRawHeader(headerName core.QByteArray_ITF, headerValue core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::setRawHeader")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::setRawHeader")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkProxy_SetRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName), core.PointerFromQByteArray(headerValue))
@@ -259,11 +195,7 @@ func (ptr *QNetworkProxy) SetRawHeader(headerName core.QByteArray_ITF, headerVal
 }
 
 func (ptr *QNetworkProxy) SetType(ty QNetworkProxy__ProxyType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::setType")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::setType")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkProxy_SetType(ptr.Pointer(), C.int(ty))
@@ -271,11 +203,7 @@ func (ptr *QNetworkProxy) SetType(ty QNetworkProxy__ProxyType) {
 }
 
 func (ptr *QNetworkProxy) SetUser(user string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::setUser")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::setUser")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkProxy_SetUser(ptr.Pointer(), C.CString(user))
@@ -283,11 +211,7 @@ func (ptr *QNetworkProxy) SetUser(user string) {
 }
 
 func (ptr *QNetworkProxy) Swap(other QNetworkProxy_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::swap")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::swap")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkProxy_Swap(ptr.Pointer(), PointerFromQNetworkProxy(other))
@@ -295,11 +219,7 @@ func (ptr *QNetworkProxy) Swap(other QNetworkProxy_ITF) {
 }
 
 func (ptr *QNetworkProxy) Type() QNetworkProxy__ProxyType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::type")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::type")
 
 	if ptr.Pointer() != nil {
 		return QNetworkProxy__ProxyType(C.QNetworkProxy_Type(ptr.Pointer()))
@@ -308,11 +228,7 @@ func (ptr *QNetworkProxy) Type() QNetworkProxy__ProxyType {
 }
 
 func (ptr *QNetworkProxy) User() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::user")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::user")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkProxy_User(ptr.Pointer()))
@@ -321,11 +237,7 @@ func (ptr *QNetworkProxy) User() string {
 }
 
 func (ptr *QNetworkProxy) DestroyQNetworkProxy() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkProxy::~QNetworkProxy")
-		}
-	}()
+	defer qt.Recovering("QNetworkProxy::~QNetworkProxy")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkProxy_DestroyQNetworkProxy(ptr.Pointer())

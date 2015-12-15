@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQAudioRecorderFromPointer(ptr unsafe.Pointer) *QAudioRecorder {
 	var n = new(QAudioRecorder)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioRecorder_") {
-		n.SetObjectName("QAudioRecorder_" + qt.RandomIdentifier())
+		n.SetObjectName("QAudioRecorder_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,21 +39,13 @@ func (ptr *QAudioRecorder) QAudioRecorder_PTR() *QAudioRecorder {
 }
 
 func NewQAudioRecorder(parent core.QObject_ITF) *QAudioRecorder {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::QAudioRecorder")
-		}
-	}()
+	defer qt.Recovering("QAudioRecorder::QAudioRecorder")
 
 	return NewQAudioRecorderFromPointer(C.QAudioRecorder_NewQAudioRecorder(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAudioRecorder) AudioInput() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::audioInput")
-		}
-	}()
+	defer qt.Recovering("QAudioRecorder::audioInput")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAudioRecorder_AudioInput(ptr.Pointer()))
@@ -63,11 +54,7 @@ func (ptr *QAudioRecorder) AudioInput() string {
 }
 
 func (ptr *QAudioRecorder) ConnectAudioInputChanged(f func(name string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::audioInputChanged")
-		}
-	}()
+	defer qt.Recovering("connect QAudioRecorder::audioInputChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAudioRecorder_ConnectAudioInputChanged(ptr.Pointer())
@@ -76,11 +63,7 @@ func (ptr *QAudioRecorder) ConnectAudioInputChanged(f func(name string)) {
 }
 
 func (ptr *QAudioRecorder) DisconnectAudioInputChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::audioInputChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QAudioRecorder::audioInputChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAudioRecorder_DisconnectAudioInputChanged(ptr.Pointer())
@@ -90,21 +73,17 @@ func (ptr *QAudioRecorder) DisconnectAudioInputChanged() {
 
 //export callbackQAudioRecorderAudioInputChanged
 func callbackQAudioRecorderAudioInputChanged(ptrName *C.char, name *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::audioInputChanged")
-		}
-	}()
+	defer qt.Recovering("callback QAudioRecorder::audioInputChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "audioInputChanged").(func(string))(C.GoString(name))
+	var signal = qt.GetSignal(C.GoString(ptrName), "audioInputChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(name))
+	}
+
 }
 
 func (ptr *QAudioRecorder) AudioInputDescription(name string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::audioInputDescription")
-		}
-	}()
+	defer qt.Recovering("QAudioRecorder::audioInputDescription")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAudioRecorder_AudioInputDescription(ptr.Pointer(), C.CString(name)))
@@ -113,11 +92,7 @@ func (ptr *QAudioRecorder) AudioInputDescription(name string) string {
 }
 
 func (ptr *QAudioRecorder) AudioInputs() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::audioInputs")
-		}
-	}()
+	defer qt.Recovering("QAudioRecorder::audioInputs")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QAudioRecorder_AudioInputs(ptr.Pointer())), ",,,")
@@ -126,11 +101,7 @@ func (ptr *QAudioRecorder) AudioInputs() []string {
 }
 
 func (ptr *QAudioRecorder) ConnectAvailableAudioInputsChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::availableAudioInputsChanged")
-		}
-	}()
+	defer qt.Recovering("connect QAudioRecorder::availableAudioInputsChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAudioRecorder_ConnectAvailableAudioInputsChanged(ptr.Pointer())
@@ -139,11 +110,7 @@ func (ptr *QAudioRecorder) ConnectAvailableAudioInputsChanged(f func()) {
 }
 
 func (ptr *QAudioRecorder) DisconnectAvailableAudioInputsChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::availableAudioInputsChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QAudioRecorder::availableAudioInputsChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAudioRecorder_DisconnectAvailableAudioInputsChanged(ptr.Pointer())
@@ -153,21 +120,17 @@ func (ptr *QAudioRecorder) DisconnectAvailableAudioInputsChanged() {
 
 //export callbackQAudioRecorderAvailableAudioInputsChanged
 func callbackQAudioRecorderAvailableAudioInputsChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::availableAudioInputsChanged")
-		}
-	}()
+	defer qt.Recovering("callback QAudioRecorder::availableAudioInputsChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "availableAudioInputsChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "availableAudioInputsChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QAudioRecorder) DefaultAudioInput() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::defaultAudioInput")
-		}
-	}()
+	defer qt.Recovering("QAudioRecorder::defaultAudioInput")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAudioRecorder_DefaultAudioInput(ptr.Pointer()))
@@ -176,11 +139,7 @@ func (ptr *QAudioRecorder) DefaultAudioInput() string {
 }
 
 func (ptr *QAudioRecorder) SetAudioInput(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::setAudioInput")
-		}
-	}()
+	defer qt.Recovering("QAudioRecorder::setAudioInput")
 
 	if ptr.Pointer() != nil {
 		C.QAudioRecorder_SetAudioInput(ptr.Pointer(), C.CString(name))
@@ -188,11 +147,7 @@ func (ptr *QAudioRecorder) SetAudioInput(name string) {
 }
 
 func (ptr *QAudioRecorder) DestroyQAudioRecorder() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioRecorder::~QAudioRecorder")
-		}
-	}()
+	defer qt.Recovering("QAudioRecorder::~QAudioRecorder")
 
 	if ptr.Pointer() != nil {
 		C.QAudioRecorder_DestroyQAudioRecorder(ptr.Pointer())

@@ -3,9 +3,9 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -28,6 +28,9 @@ func PointerFromQGraphicsSimpleTextItem(ptr QGraphicsSimpleTextItem_ITF) unsafe.
 func NewQGraphicsSimpleTextItemFromPointer(ptr unsafe.Pointer) *QGraphicsSimpleTextItem {
 	var n = new(QGraphicsSimpleTextItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QGraphicsSimpleTextItem_") {
+		n.SetObjectNameAbs("QGraphicsSimpleTextItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -36,11 +39,7 @@ func (ptr *QGraphicsSimpleTextItem) QGraphicsSimpleTextItem_PTR() *QGraphicsSimp
 }
 
 func (ptr *QGraphicsSimpleTextItem) Contains(point core.QPointF_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSimpleTextItem::contains")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSimpleTextItem::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QGraphicsSimpleTextItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
@@ -49,11 +48,7 @@ func (ptr *QGraphicsSimpleTextItem) Contains(point core.QPointF_ITF) bool {
 }
 
 func (ptr *QGraphicsSimpleTextItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSimpleTextItem::isObscuredBy")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSimpleTextItem::isObscuredBy")
 
 	if ptr.Pointer() != nil {
 		return C.QGraphicsSimpleTextItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
@@ -61,24 +56,39 @@ func (ptr *QGraphicsSimpleTextItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
 	return false
 }
 
-func (ptr *QGraphicsSimpleTextItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSimpleTextItem::paint")
-		}
-	}()
+func (ptr *QGraphicsSimpleTextItem) ConnectPaint(f func(painter *gui.QPainter, option *QStyleOptionGraphicsItem, widget *QWidget)) {
+	defer qt.Recovering("connect QGraphicsSimpleTextItem::paint")
 
 	if ptr.Pointer() != nil {
-		C.QGraphicsSimpleTextItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "paint", f)
 	}
 }
 
+func (ptr *QGraphicsSimpleTextItem) DisconnectPaint() {
+	defer qt.Recovering("disconnect QGraphicsSimpleTextItem::paint")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "paint")
+	}
+}
+
+//export callbackQGraphicsSimpleTextItemPaint
+func callbackQGraphicsSimpleTextItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsSimpleTextItem::paint")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paint")
+	if signal != nil {
+		defer signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsSimpleTextItem) SetFont(font gui.QFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSimpleTextItem::setFont")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSimpleTextItem::setFont")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSimpleTextItem_SetFont(ptr.Pointer(), gui.PointerFromQFont(font))
@@ -86,11 +96,7 @@ func (ptr *QGraphicsSimpleTextItem) SetFont(font gui.QFont_ITF) {
 }
 
 func (ptr *QGraphicsSimpleTextItem) SetText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSimpleTextItem::setText")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSimpleTextItem::setText")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSimpleTextItem_SetText(ptr.Pointer(), C.CString(text))
@@ -98,11 +104,7 @@ func (ptr *QGraphicsSimpleTextItem) SetText(text string) {
 }
 
 func (ptr *QGraphicsSimpleTextItem) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSimpleTextItem::text")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSimpleTextItem::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGraphicsSimpleTextItem_Text(ptr.Pointer()))
@@ -111,11 +113,7 @@ func (ptr *QGraphicsSimpleTextItem) Text() string {
 }
 
 func (ptr *QGraphicsSimpleTextItem) Type() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSimpleTextItem::type")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSimpleTextItem::type")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGraphicsSimpleTextItem_Type(ptr.Pointer()))
@@ -124,13 +122,26 @@ func (ptr *QGraphicsSimpleTextItem) Type() int {
 }
 
 func (ptr *QGraphicsSimpleTextItem) DestroyQGraphicsSimpleTextItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSimpleTextItem::~QGraphicsSimpleTextItem")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSimpleTextItem::~QGraphicsSimpleTextItem")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSimpleTextItem_DestroyQGraphicsSimpleTextItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsSimpleTextItem) ObjectNameAbs() string {
+	defer qt.Recovering("QGraphicsSimpleTextItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QGraphicsSimpleTextItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QGraphicsSimpleTextItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QGraphicsSimpleTextItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSimpleTextItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

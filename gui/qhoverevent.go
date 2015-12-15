@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,11 +35,25 @@ func (ptr *QHoverEvent) QHoverEvent_PTR() *QHoverEvent {
 }
 
 func NewQHoverEvent(ty core.QEvent__Type, pos core.QPointF_ITF, oldPos core.QPointF_ITF, modifiers core.Qt__KeyboardModifier) *QHoverEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHoverEvent::QHoverEvent")
-		}
-	}()
+	defer qt.Recovering("QHoverEvent::QHoverEvent")
 
 	return NewQHoverEventFromPointer(C.QHoverEvent_NewQHoverEvent(C.int(ty), core.PointerFromQPointF(pos), core.PointerFromQPointF(oldPos), C.int(modifiers)))
+}
+
+func (ptr *QHoverEvent) OldPos() *core.QPoint {
+	defer qt.Recovering("QHoverEvent::oldPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QHoverEvent_OldPos(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QHoverEvent) Pos() *core.QPoint {
+	defer qt.Recovering("QHoverEvent::pos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QHoverEvent_Pos(ptr.Pointer()))
+	}
+	return nil
 }

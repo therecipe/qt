@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -87,31 +87,19 @@ var (
 )
 
 func NewQStyleOption2(other QStyleOption_ITF) *QStyleOption {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOption::QStyleOption")
-		}
-	}()
+	defer qt.Recovering("QStyleOption::QStyleOption")
 
 	return NewQStyleOptionFromPointer(C.QStyleOption_NewQStyleOption2(PointerFromQStyleOption(other)))
 }
 
 func NewQStyleOption(version int, ty int) *QStyleOption {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOption::QStyleOption")
-		}
-	}()
+	defer qt.Recovering("QStyleOption::QStyleOption")
 
 	return NewQStyleOptionFromPointer(C.QStyleOption_NewQStyleOption(C.int(version), C.int(ty)))
 }
 
 func (ptr *QStyleOption) InitFrom(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOption::initFrom")
-		}
-	}()
+	defer qt.Recovering("QStyleOption::initFrom")
 
 	if ptr.Pointer() != nil {
 		C.QStyleOption_InitFrom(ptr.Pointer(), PointerFromQWidget(widget))
@@ -119,11 +107,7 @@ func (ptr *QStyleOption) InitFrom(widget QWidget_ITF) {
 }
 
 func (ptr *QStyleOption) DestroyQStyleOption() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOption::~QStyleOption")
-		}
-	}()
+	defer qt.Recovering("QStyleOption::~QStyleOption")
 
 	if ptr.Pointer() != nil {
 		C.QStyleOption_DestroyQStyleOption(ptr.Pointer())

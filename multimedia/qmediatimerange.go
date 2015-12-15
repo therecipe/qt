@@ -3,7 +3,7 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,41 +41,25 @@ func (ptr *QMediaTimeRange) QMediaTimeRange_PTR() *QMediaTimeRange {
 }
 
 func NewQMediaTimeRange() *QMediaTimeRange {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaTimeRange::QMediaTimeRange")
-		}
-	}()
+	defer qt.Recovering("QMediaTimeRange::QMediaTimeRange")
 
 	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange())
 }
 
 func NewQMediaTimeRange3(interval QMediaTimeInterval_ITF) *QMediaTimeRange {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaTimeRange::QMediaTimeRange")
-		}
-	}()
+	defer qt.Recovering("QMediaTimeRange::QMediaTimeRange")
 
 	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange3(PointerFromQMediaTimeInterval(interval)))
 }
 
 func NewQMediaTimeRange4(ran QMediaTimeRange_ITF) *QMediaTimeRange {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaTimeRange::QMediaTimeRange")
-		}
-	}()
+	defer qt.Recovering("QMediaTimeRange::QMediaTimeRange")
 
 	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange4(PointerFromQMediaTimeRange(ran)))
 }
 
 func (ptr *QMediaTimeRange) AddInterval(interval QMediaTimeInterval_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaTimeRange::addInterval")
-		}
-	}()
+	defer qt.Recovering("QMediaTimeRange::addInterval")
 
 	if ptr.Pointer() != nil {
 		C.QMediaTimeRange_AddInterval(ptr.Pointer(), PointerFromQMediaTimeInterval(interval))
@@ -83,11 +67,7 @@ func (ptr *QMediaTimeRange) AddInterval(interval QMediaTimeInterval_ITF) {
 }
 
 func (ptr *QMediaTimeRange) AddTimeRange(ran QMediaTimeRange_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaTimeRange::addTimeRange")
-		}
-	}()
+	defer qt.Recovering("QMediaTimeRange::addTimeRange")
 
 	if ptr.Pointer() != nil {
 		C.QMediaTimeRange_AddTimeRange(ptr.Pointer(), PointerFromQMediaTimeRange(ran))
@@ -95,11 +75,7 @@ func (ptr *QMediaTimeRange) AddTimeRange(ran QMediaTimeRange_ITF) {
 }
 
 func (ptr *QMediaTimeRange) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaTimeRange::clear")
-		}
-	}()
+	defer qt.Recovering("QMediaTimeRange::clear")
 
 	if ptr.Pointer() != nil {
 		C.QMediaTimeRange_Clear(ptr.Pointer())
@@ -107,11 +83,7 @@ func (ptr *QMediaTimeRange) Clear() {
 }
 
 func (ptr *QMediaTimeRange) IsContinuous() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaTimeRange::isContinuous")
-		}
-	}()
+	defer qt.Recovering("QMediaTimeRange::isContinuous")
 
 	if ptr.Pointer() != nil {
 		return C.QMediaTimeRange_IsContinuous(ptr.Pointer()) != 0
@@ -120,11 +92,7 @@ func (ptr *QMediaTimeRange) IsContinuous() bool {
 }
 
 func (ptr *QMediaTimeRange) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaTimeRange::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QMediaTimeRange::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QMediaTimeRange_IsEmpty(ptr.Pointer()) != 0
@@ -133,11 +101,7 @@ func (ptr *QMediaTimeRange) IsEmpty() bool {
 }
 
 func (ptr *QMediaTimeRange) RemoveInterval(interval QMediaTimeInterval_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaTimeRange::removeInterval")
-		}
-	}()
+	defer qt.Recovering("QMediaTimeRange::removeInterval")
 
 	if ptr.Pointer() != nil {
 		C.QMediaTimeRange_RemoveInterval(ptr.Pointer(), PointerFromQMediaTimeInterval(interval))
@@ -145,11 +109,7 @@ func (ptr *QMediaTimeRange) RemoveInterval(interval QMediaTimeInterval_ITF) {
 }
 
 func (ptr *QMediaTimeRange) RemoveTimeRange(ran QMediaTimeRange_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaTimeRange::removeTimeRange")
-		}
-	}()
+	defer qt.Recovering("QMediaTimeRange::removeTimeRange")
 
 	if ptr.Pointer() != nil {
 		C.QMediaTimeRange_RemoveTimeRange(ptr.Pointer(), PointerFromQMediaTimeRange(ran))
@@ -157,11 +117,7 @@ func (ptr *QMediaTimeRange) RemoveTimeRange(ran QMediaTimeRange_ITF) {
 }
 
 func (ptr *QMediaTimeRange) DestroyQMediaTimeRange() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaTimeRange::~QMediaTimeRange")
-		}
-	}()
+	defer qt.Recovering("QMediaTimeRange::~QMediaTimeRange")
 
 	if ptr.Pointer() != nil {
 		C.QMediaTimeRange_DestroyQMediaTimeRange(ptr.Pointer())

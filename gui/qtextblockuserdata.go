@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQTextBlockUserData(ptr QTextBlockUserData_ITF) unsafe.Pointer {
 func NewQTextBlockUserDataFromPointer(ptr unsafe.Pointer) *QTextBlockUserData {
 	var n = new(QTextBlockUserData)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QTextBlockUserData_") {
+		n.SetObjectNameAbs("QTextBlockUserData_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,13 +44,26 @@ func (ptr *QTextBlockUserData) QTextBlockUserData_PTR() *QTextBlockUserData {
 }
 
 func (ptr *QTextBlockUserData) DestroyQTextBlockUserData() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlockUserData::~QTextBlockUserData")
-		}
-	}()
+	defer qt.Recovering("QTextBlockUserData::~QTextBlockUserData")
 
 	if ptr.Pointer() != nil {
 		C.QTextBlockUserData_DestroyQTextBlockUserData(ptr.Pointer())
+	}
+}
+
+func (ptr *QTextBlockUserData) ObjectNameAbs() string {
+	defer qt.Recovering("QTextBlockUserData::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QTextBlockUserData_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QTextBlockUserData) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QTextBlockUserData::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QTextBlockUserData_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

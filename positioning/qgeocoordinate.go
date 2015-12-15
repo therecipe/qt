@@ -3,7 +3,7 @@ package positioning
 //#include "positioning.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -62,31 +62,19 @@ const (
 )
 
 func NewQGeoCoordinate() *QGeoCoordinate {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoCoordinate::QGeoCoordinate")
-		}
-	}()
+	defer qt.Recovering("QGeoCoordinate::QGeoCoordinate")
 
 	return NewQGeoCoordinateFromPointer(C.QGeoCoordinate_NewQGeoCoordinate())
 }
 
 func NewQGeoCoordinate4(other QGeoCoordinate_ITF) *QGeoCoordinate {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoCoordinate::QGeoCoordinate")
-		}
-	}()
+	defer qt.Recovering("QGeoCoordinate::QGeoCoordinate")
 
 	return NewQGeoCoordinateFromPointer(C.QGeoCoordinate_NewQGeoCoordinate4(PointerFromQGeoCoordinate(other)))
 }
 
 func (ptr *QGeoCoordinate) AzimuthTo(other QGeoCoordinate_ITF) float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoCoordinate::azimuthTo")
-		}
-	}()
+	defer qt.Recovering("QGeoCoordinate::azimuthTo")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGeoCoordinate_AzimuthTo(ptr.Pointer(), PointerFromQGeoCoordinate(other)))
@@ -95,11 +83,7 @@ func (ptr *QGeoCoordinate) AzimuthTo(other QGeoCoordinate_ITF) float64 {
 }
 
 func (ptr *QGeoCoordinate) DistanceTo(other QGeoCoordinate_ITF) float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoCoordinate::distanceTo")
-		}
-	}()
+	defer qt.Recovering("QGeoCoordinate::distanceTo")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGeoCoordinate_DistanceTo(ptr.Pointer(), PointerFromQGeoCoordinate(other)))
@@ -108,11 +92,7 @@ func (ptr *QGeoCoordinate) DistanceTo(other QGeoCoordinate_ITF) float64 {
 }
 
 func (ptr *QGeoCoordinate) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoCoordinate::isValid")
-		}
-	}()
+	defer qt.Recovering("QGeoCoordinate::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QGeoCoordinate_IsValid(ptr.Pointer()) != 0
@@ -121,11 +101,7 @@ func (ptr *QGeoCoordinate) IsValid() bool {
 }
 
 func (ptr *QGeoCoordinate) ToString(format QGeoCoordinate__CoordinateFormat) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoCoordinate::toString")
-		}
-	}()
+	defer qt.Recovering("QGeoCoordinate::toString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGeoCoordinate_ToString(ptr.Pointer(), C.int(format)))
@@ -134,11 +110,7 @@ func (ptr *QGeoCoordinate) ToString(format QGeoCoordinate__CoordinateFormat) str
 }
 
 func (ptr *QGeoCoordinate) Type() QGeoCoordinate__CoordinateType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoCoordinate::type")
-		}
-	}()
+	defer qt.Recovering("QGeoCoordinate::type")
 
 	if ptr.Pointer() != nil {
 		return QGeoCoordinate__CoordinateType(C.QGeoCoordinate_Type(ptr.Pointer()))
@@ -147,11 +119,7 @@ func (ptr *QGeoCoordinate) Type() QGeoCoordinate__CoordinateType {
 }
 
 func (ptr *QGeoCoordinate) DestroyQGeoCoordinate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoCoordinate::~QGeoCoordinate")
-		}
-	}()
+	defer qt.Recovering("QGeoCoordinate::~QGeoCoordinate")
 
 	if ptr.Pointer() != nil {
 		C.QGeoCoordinate_DestroyQGeoCoordinate(ptr.Pointer())

@@ -3,7 +3,7 @@ package network
 //#include "network.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -54,51 +54,31 @@ const (
 )
 
 func NewQHostAddress() *QHostAddress {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::QHostAddress")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::QHostAddress")
 
 	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress())
 }
 
 func NewQHostAddress9(address QHostAddress__SpecialAddress) *QHostAddress {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::QHostAddress")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::QHostAddress")
 
 	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress9(C.int(address)))
 }
 
 func NewQHostAddress8(address QHostAddress_ITF) *QHostAddress {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::QHostAddress")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::QHostAddress")
 
 	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress8(PointerFromQHostAddress(address)))
 }
 
 func NewQHostAddress7(address string) *QHostAddress {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::QHostAddress")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::QHostAddress")
 
 	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress7(C.CString(address)))
 }
 
 func (ptr *QHostAddress) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::clear")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::clear")
 
 	if ptr.Pointer() != nil {
 		C.QHostAddress_Clear(ptr.Pointer())
@@ -106,11 +86,7 @@ func (ptr *QHostAddress) Clear() {
 }
 
 func (ptr *QHostAddress) IsInSubnet(subnet QHostAddress_ITF, netmask int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::isInSubnet")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::isInSubnet")
 
 	if ptr.Pointer() != nil {
 		return C.QHostAddress_IsInSubnet(ptr.Pointer(), PointerFromQHostAddress(subnet), C.int(netmask)) != 0
@@ -119,11 +95,7 @@ func (ptr *QHostAddress) IsInSubnet(subnet QHostAddress_ITF, netmask int) bool {
 }
 
 func (ptr *QHostAddress) IsLoopback() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::isLoopback")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::isLoopback")
 
 	if ptr.Pointer() != nil {
 		return C.QHostAddress_IsLoopback(ptr.Pointer()) != 0
@@ -132,11 +104,7 @@ func (ptr *QHostAddress) IsLoopback() bool {
 }
 
 func (ptr *QHostAddress) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::isNull")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QHostAddress_IsNull(ptr.Pointer()) != 0
@@ -145,11 +113,7 @@ func (ptr *QHostAddress) IsNull() bool {
 }
 
 func (ptr *QHostAddress) Protocol() QAbstractSocket__NetworkLayerProtocol {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::protocol")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::protocol")
 
 	if ptr.Pointer() != nil {
 		return QAbstractSocket__NetworkLayerProtocol(C.QHostAddress_Protocol(ptr.Pointer()))
@@ -158,11 +122,7 @@ func (ptr *QHostAddress) Protocol() QAbstractSocket__NetworkLayerProtocol {
 }
 
 func (ptr *QHostAddress) ScopeId() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::scopeId")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::scopeId")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QHostAddress_ScopeId(ptr.Pointer()))
@@ -171,11 +131,7 @@ func (ptr *QHostAddress) ScopeId() string {
 }
 
 func (ptr *QHostAddress) SetAddress5(address string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::setAddress")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::setAddress")
 
 	if ptr.Pointer() != nil {
 		return C.QHostAddress_SetAddress5(ptr.Pointer(), C.CString(address)) != 0
@@ -184,11 +140,7 @@ func (ptr *QHostAddress) SetAddress5(address string) bool {
 }
 
 func (ptr *QHostAddress) SetScopeId(id string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::setScopeId")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::setScopeId")
 
 	if ptr.Pointer() != nil {
 		C.QHostAddress_SetScopeId(ptr.Pointer(), C.CString(id))
@@ -196,11 +148,7 @@ func (ptr *QHostAddress) SetScopeId(id string) {
 }
 
 func (ptr *QHostAddress) ToString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::toString")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::toString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QHostAddress_ToString(ptr.Pointer()))
@@ -209,11 +157,7 @@ func (ptr *QHostAddress) ToString() string {
 }
 
 func (ptr *QHostAddress) DestroyQHostAddress() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHostAddress::~QHostAddress")
-		}
-	}()
+	defer qt.Recovering("QHostAddress::~QHostAddress")
 
 	if ptr.Pointer() != nil {
 		C.QHostAddress_DestroyQHostAddress(ptr.Pointer())

@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQAccessibleValueInterface(ptr QAccessibleValueInterface_ITF) uns
 func NewQAccessibleValueInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleValueInterface {
 	var n = new(QAccessibleValueInterface)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QAccessibleValueInterface_") {
+		n.SetObjectNameAbs("QAccessibleValueInterface_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,11 +45,7 @@ func (ptr *QAccessibleValueInterface) QAccessibleValueInterface_PTR() *QAccessib
 }
 
 func (ptr *QAccessibleValueInterface) CurrentValue() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleValueInterface::currentValue")
-		}
-	}()
+	defer qt.Recovering("QAccessibleValueInterface::currentValue")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QAccessibleValueInterface_CurrentValue(ptr.Pointer()))
@@ -55,11 +54,7 @@ func (ptr *QAccessibleValueInterface) CurrentValue() *core.QVariant {
 }
 
 func (ptr *QAccessibleValueInterface) MaximumValue() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleValueInterface::maximumValue")
-		}
-	}()
+	defer qt.Recovering("QAccessibleValueInterface::maximumValue")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QAccessibleValueInterface_MaximumValue(ptr.Pointer()))
@@ -68,11 +63,7 @@ func (ptr *QAccessibleValueInterface) MaximumValue() *core.QVariant {
 }
 
 func (ptr *QAccessibleValueInterface) MinimumStepSize() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleValueInterface::minimumStepSize")
-		}
-	}()
+	defer qt.Recovering("QAccessibleValueInterface::minimumStepSize")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QAccessibleValueInterface_MinimumStepSize(ptr.Pointer()))
@@ -81,11 +72,7 @@ func (ptr *QAccessibleValueInterface) MinimumStepSize() *core.QVariant {
 }
 
 func (ptr *QAccessibleValueInterface) MinimumValue() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleValueInterface::minimumValue")
-		}
-	}()
+	defer qt.Recovering("QAccessibleValueInterface::minimumValue")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QAccessibleValueInterface_MinimumValue(ptr.Pointer()))
@@ -94,11 +81,7 @@ func (ptr *QAccessibleValueInterface) MinimumValue() *core.QVariant {
 }
 
 func (ptr *QAccessibleValueInterface) SetCurrentValue(value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleValueInterface::setCurrentValue")
-		}
-	}()
+	defer qt.Recovering("QAccessibleValueInterface::setCurrentValue")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleValueInterface_SetCurrentValue(ptr.Pointer(), core.PointerFromQVariant(value))
@@ -106,13 +89,26 @@ func (ptr *QAccessibleValueInterface) SetCurrentValue(value core.QVariant_ITF) {
 }
 
 func (ptr *QAccessibleValueInterface) DestroyQAccessibleValueInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleValueInterface::~QAccessibleValueInterface")
-		}
-	}()
+	defer qt.Recovering("QAccessibleValueInterface::~QAccessibleValueInterface")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleValueInterface_DestroyQAccessibleValueInterface(ptr.Pointer())
+	}
+}
+
+func (ptr *QAccessibleValueInterface) ObjectNameAbs() string {
+	defer qt.Recovering("QAccessibleValueInterface::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAccessibleValueInterface_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAccessibleValueInterface) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QAccessibleValueInterface::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleValueInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

@@ -3,9 +3,9 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -43,81 +43,49 @@ func (ptr *QToolTip) QToolTip_PTR() *QToolTip {
 }
 
 func QToolTip_HideText() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolTip::hideText")
-		}
-	}()
+	defer qt.Recovering("QToolTip::hideText")
 
 	C.QToolTip_QToolTip_HideText()
 }
 
 func QToolTip_IsVisible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolTip::isVisible")
-		}
-	}()
+	defer qt.Recovering("QToolTip::isVisible")
 
 	return C.QToolTip_QToolTip_IsVisible() != 0
 }
 
 func QToolTip_SetFont(font gui.QFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolTip::setFont")
-		}
-	}()
+	defer qt.Recovering("QToolTip::setFont")
 
 	C.QToolTip_QToolTip_SetFont(gui.PointerFromQFont(font))
 }
 
 func QToolTip_SetPalette(palette gui.QPalette_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolTip::setPalette")
-		}
-	}()
+	defer qt.Recovering("QToolTip::setPalette")
 
 	C.QToolTip_QToolTip_SetPalette(gui.PointerFromQPalette(palette))
 }
 
 func QToolTip_ShowText3(pos core.QPoint_ITF, text string, w QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolTip::showText")
-		}
-	}()
+	defer qt.Recovering("QToolTip::showText")
 
 	C.QToolTip_QToolTip_ShowText3(core.PointerFromQPoint(pos), C.CString(text), PointerFromQWidget(w))
 }
 
 func QToolTip_ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolTip::showText")
-		}
-	}()
+	defer qt.Recovering("QToolTip::showText")
 
 	C.QToolTip_QToolTip_ShowText(core.PointerFromQPoint(pos), C.CString(text), PointerFromQWidget(w), core.PointerFromQRect(rect))
 }
 
 func QToolTip_ShowText2(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF, msecDisplayTime int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolTip::showText")
-		}
-	}()
+	defer qt.Recovering("QToolTip::showText")
 
 	C.QToolTip_QToolTip_ShowText2(core.PointerFromQPoint(pos), C.CString(text), PointerFromQWidget(w), core.PointerFromQRect(rect), C.int(msecDisplayTime))
 }
 
 func QToolTip_Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolTip::text")
-		}
-	}()
+	defer qt.Recovering("QToolTip::text")
 
 	return C.GoString(C.QToolTip_QToolTip_Text())
 }

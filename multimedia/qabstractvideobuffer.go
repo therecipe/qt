@@ -3,8 +3,8 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQAbstractVideoBuffer(ptr QAbstractVideoBuffer_ITF) unsafe.Pointe
 func NewQAbstractVideoBufferFromPointer(ptr unsafe.Pointer) *QAbstractVideoBuffer {
 	var n = new(QAbstractVideoBuffer)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QAbstractVideoBuffer_") {
+		n.SetObjectNameAbs("QAbstractVideoBuffer_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -65,11 +68,7 @@ const (
 )
 
 func (ptr *QAbstractVideoBuffer) Handle() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractVideoBuffer::handle")
-		}
-	}()
+	defer qt.Recovering("QAbstractVideoBuffer::handle")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QAbstractVideoBuffer_Handle(ptr.Pointer()))
@@ -78,11 +77,7 @@ func (ptr *QAbstractVideoBuffer) Handle() *core.QVariant {
 }
 
 func (ptr *QAbstractVideoBuffer) HandleType() QAbstractVideoBuffer__HandleType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractVideoBuffer::handleType")
-		}
-	}()
+	defer qt.Recovering("QAbstractVideoBuffer::handleType")
 
 	if ptr.Pointer() != nil {
 		return QAbstractVideoBuffer__HandleType(C.QAbstractVideoBuffer_HandleType(ptr.Pointer()))
@@ -91,11 +86,7 @@ func (ptr *QAbstractVideoBuffer) HandleType() QAbstractVideoBuffer__HandleType {
 }
 
 func (ptr *QAbstractVideoBuffer) MapMode() QAbstractVideoBuffer__MapMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractVideoBuffer::mapMode")
-		}
-	}()
+	defer qt.Recovering("QAbstractVideoBuffer::mapMode")
 
 	if ptr.Pointer() != nil {
 		return QAbstractVideoBuffer__MapMode(C.QAbstractVideoBuffer_MapMode(ptr.Pointer()))
@@ -103,24 +94,39 @@ func (ptr *QAbstractVideoBuffer) MapMode() QAbstractVideoBuffer__MapMode {
 	return 0
 }
 
-func (ptr *QAbstractVideoBuffer) Release() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractVideoBuffer::release")
-		}
-	}()
+func (ptr *QAbstractVideoBuffer) ConnectRelease(f func()) {
+	defer qt.Recovering("connect QAbstractVideoBuffer::release")
 
 	if ptr.Pointer() != nil {
-		C.QAbstractVideoBuffer_Release(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "release", f)
 	}
 }
 
+func (ptr *QAbstractVideoBuffer) DisconnectRelease() {
+	defer qt.Recovering("disconnect QAbstractVideoBuffer::release")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "release")
+	}
+}
+
+//export callbackQAbstractVideoBufferRelease
+func callbackQAbstractVideoBufferRelease(ptrName *C.char) bool {
+	defer qt.Recovering("callback QAbstractVideoBuffer::release")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "release")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QAbstractVideoBuffer) Unmap() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractVideoBuffer::unmap")
-		}
-	}()
+	defer qt.Recovering("QAbstractVideoBuffer::unmap")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoBuffer_Unmap(ptr.Pointer())
@@ -128,13 +134,26 @@ func (ptr *QAbstractVideoBuffer) Unmap() {
 }
 
 func (ptr *QAbstractVideoBuffer) DestroyQAbstractVideoBuffer() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractVideoBuffer::~QAbstractVideoBuffer")
-		}
-	}()
+	defer qt.Recovering("QAbstractVideoBuffer::~QAbstractVideoBuffer")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractVideoBuffer) ObjectNameAbs() string {
+	defer qt.Recovering("QAbstractVideoBuffer::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAbstractVideoBuffer_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAbstractVideoBuffer) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QAbstractVideoBuffer::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoBuffer_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

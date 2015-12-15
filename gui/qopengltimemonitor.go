@@ -28,7 +28,7 @@ func NewQOpenGLTimeMonitorFromPointer(ptr unsafe.Pointer) *QOpenGLTimeMonitor {
 	var n = new(QOpenGLTimeMonitor)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLTimeMonitor_") {
-		n.SetObjectName("QOpenGLTimeMonitor_" + qt.RandomIdentifier())
+		n.SetObjectName("QOpenGLTimeMonitor_" + qt.Identifier())
 	}
 	return n
 }

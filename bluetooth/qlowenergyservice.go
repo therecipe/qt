@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQLowEnergyServiceFromPointer(ptr unsafe.Pointer) *QLowEnergyService {
 	var n = new(QLowEnergyService)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QLowEnergyService_") {
-		n.SetObjectName("QLowEnergyService_" + qt.RandomIdentifier())
+		n.SetObjectName("QLowEnergyService_" + qt.Identifier())
 	}
 	return n
 }
@@ -78,11 +77,7 @@ const (
 )
 
 func (ptr *QLowEnergyService) ConnectStateChanged(f func(newState QLowEnergyService__ServiceState)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::stateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QLowEnergyService::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_ConnectStateChanged(ptr.Pointer())
@@ -91,11 +86,7 @@ func (ptr *QLowEnergyService) ConnectStateChanged(f func(newState QLowEnergyServ
 }
 
 func (ptr *QLowEnergyService) DisconnectStateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::stateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QLowEnergyService::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_DisconnectStateChanged(ptr.Pointer())
@@ -105,21 +96,17 @@ func (ptr *QLowEnergyService) DisconnectStateChanged() {
 
 //export callbackQLowEnergyServiceStateChanged
 func callbackQLowEnergyServiceStateChanged(ptrName *C.char, newState C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::stateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QLowEnergyService::stateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "stateChanged").(func(QLowEnergyService__ServiceState))(QLowEnergyService__ServiceState(newState))
+	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
+	if signal != nil {
+		signal.(func(QLowEnergyService__ServiceState))(QLowEnergyService__ServiceState(newState))
+	}
+
 }
 
 func (ptr *QLowEnergyService) Contains(characteristic QLowEnergyCharacteristic_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::contains")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyService::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QLowEnergyService_Contains(ptr.Pointer(), PointerFromQLowEnergyCharacteristic(characteristic)) != 0
@@ -128,11 +115,7 @@ func (ptr *QLowEnergyService) Contains(characteristic QLowEnergyCharacteristic_I
 }
 
 func (ptr *QLowEnergyService) Contains2(descriptor QLowEnergyDescriptor_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::contains")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyService::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QLowEnergyService_Contains2(ptr.Pointer(), PointerFromQLowEnergyDescriptor(descriptor)) != 0
@@ -141,11 +124,7 @@ func (ptr *QLowEnergyService) Contains2(descriptor QLowEnergyDescriptor_ITF) boo
 }
 
 func (ptr *QLowEnergyService) DiscoverDetails() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::discoverDetails")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyService::discoverDetails")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_DiscoverDetails(ptr.Pointer())
@@ -153,11 +132,7 @@ func (ptr *QLowEnergyService) DiscoverDetails() {
 }
 
 func (ptr *QLowEnergyService) Error() QLowEnergyService__ServiceError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::error")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyService::error")
 
 	if ptr.Pointer() != nil {
 		return QLowEnergyService__ServiceError(C.QLowEnergyService_Error(ptr.Pointer()))
@@ -166,11 +141,7 @@ func (ptr *QLowEnergyService) Error() QLowEnergyService__ServiceError {
 }
 
 func (ptr *QLowEnergyService) ReadCharacteristic(characteristic QLowEnergyCharacteristic_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::readCharacteristic")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyService::readCharacteristic")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_ReadCharacteristic(ptr.Pointer(), PointerFromQLowEnergyCharacteristic(characteristic))
@@ -178,11 +149,7 @@ func (ptr *QLowEnergyService) ReadCharacteristic(characteristic QLowEnergyCharac
 }
 
 func (ptr *QLowEnergyService) ReadDescriptor(descriptor QLowEnergyDescriptor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::readDescriptor")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyService::readDescriptor")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_ReadDescriptor(ptr.Pointer(), PointerFromQLowEnergyDescriptor(descriptor))
@@ -190,11 +157,7 @@ func (ptr *QLowEnergyService) ReadDescriptor(descriptor QLowEnergyDescriptor_ITF
 }
 
 func (ptr *QLowEnergyService) ServiceName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::serviceName")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyService::serviceName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QLowEnergyService_ServiceName(ptr.Pointer()))
@@ -203,11 +166,7 @@ func (ptr *QLowEnergyService) ServiceName() string {
 }
 
 func (ptr *QLowEnergyService) Type() QLowEnergyService__ServiceType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::type")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyService::type")
 
 	if ptr.Pointer() != nil {
 		return QLowEnergyService__ServiceType(C.QLowEnergyService_Type(ptr.Pointer()))
@@ -216,11 +175,7 @@ func (ptr *QLowEnergyService) Type() QLowEnergyService__ServiceType {
 }
 
 func (ptr *QLowEnergyService) WriteCharacteristic(characteristic QLowEnergyCharacteristic_ITF, newValue core.QByteArray_ITF, mode QLowEnergyService__WriteMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::writeCharacteristic")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyService::writeCharacteristic")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_WriteCharacteristic(ptr.Pointer(), PointerFromQLowEnergyCharacteristic(characteristic), core.PointerFromQByteArray(newValue), C.int(mode))
@@ -228,11 +183,7 @@ func (ptr *QLowEnergyService) WriteCharacteristic(characteristic QLowEnergyChara
 }
 
 func (ptr *QLowEnergyService) WriteDescriptor(descriptor QLowEnergyDescriptor_ITF, newValue core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::writeDescriptor")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyService::writeDescriptor")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_WriteDescriptor(ptr.Pointer(), PointerFromQLowEnergyDescriptor(descriptor), core.PointerFromQByteArray(newValue))
@@ -240,11 +191,7 @@ func (ptr *QLowEnergyService) WriteDescriptor(descriptor QLowEnergyDescriptor_IT
 }
 
 func (ptr *QLowEnergyService) DestroyQLowEnergyService() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyService::~QLowEnergyService")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyService::~QLowEnergyService")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_DestroyQLowEnergyService(ptr.Pointer())

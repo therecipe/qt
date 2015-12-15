@@ -9,17 +9,21 @@ import (
 )
 
 func goFunction(f *parser.Function) string {
-	if f.Meta == "signal" && !f.Overload {
+	if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure") && f.Output == "void") && !f.Overload {
 		var tmp string
 		for _, signalMode := range []string{"Connect", "Disconnect", "callback"} {
 			f.SignalMode = signalMode
 			if signalMode == "callback" {
-				tmp += fmt.Sprintf("//export callback%v%v\n", f.Class(), strings.Title(f.Name))
+				tmp += fmt.Sprintf("//export callback%v%v\n", f.Class(), strings.Replace(strings.Title(f.Name), "~", "Destroy", -1))
 			}
 			tmp += fmt.Sprintf("%v{\n%v\n}\n\n", goFunctionHeader(f), goFunctionBody(f))
 		}
 		f.SignalMode = ""
 		return tmp
+	}
+
+	if strings.Contains(f.Virtual, "impure") && f.Access == "protected" {
+		return ""
 	}
 
 	if isGeneric(f) {
@@ -43,6 +47,9 @@ func goFunctionHeader(f *parser.Function) string {
 }
 
 func goInterface(f *parser.Function) string {
+	if f.Virtual == "impure" && f.SignalMode == "callback" {
+		return fmt.Sprintf("%v(%v)%v", converter.GoHeaderName(f), converter.GoHeaderInput(f), "bool")
+	}
 	return fmt.Sprintf("%v(%v)%v", converter.GoHeaderName(f), converter.GoHeaderInput(f), converter.GoHeaderOutput(f))
 }
 
@@ -55,11 +62,11 @@ func goFunctionBody(f *parser.Function) (o string) {
 		return ""
 	}
 
-	o += "defer func() {\n"
-	o += "if recover() != nil {\n"
-	o += fmt.Sprintf("log.Println(\"recovered in %v\")\n", f.Fullname)
-	o += "}\n"
-	o += "}()\n\n"
+	if f.SignalMode != "" {
+		o += fmt.Sprintf("defer qt.Recovering(\"%v %v\")\n\n", strings.ToLower(f.SignalMode), f.Fullname)
+	} else {
+		o += fmt.Sprintf("defer qt.Recovering(\"%v\")\n\n", f.Fullname)
+	}
 
 	if !f.Static && f.Meta != "constructor" && f.SignalMode != "callback" {
 		o += fmt.Sprintf("if ptr.Pointer() != nil {\n")
@@ -76,17 +83,41 @@ func goFunctionBody(f *parser.Function) (o string) {
 	*/
 
 	if f.SignalMode == "callback" {
-		o += fmt.Sprintf("qt.GetSignal(C.GoString(ptrName), \"%v\").(%v)(%v)", f.Name, converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
+		o += fmt.Sprintf("var signal = qt.GetSignal(C.GoString(ptrName), \"%v\")\n", f.Name)
+		o += "if signal != nil {\n"
+		if f.Virtual == "impure" {
+			o += fmt.Sprintf("\t defer signal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
+			o += fmt.Sprintf("\t return true\n")
+		} else {
+			o += fmt.Sprintf("\tsignal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
+		}
+		o += "}\n"
+
+		if f.Virtual == "impure" {
+			o += fmt.Sprintf("return false\n")
+		}
+
 	} else {
-		o += converter.GoBodyOutput(f, fmt.Sprintf("C.%v(%v)", converter.CppHeaderName(f), converter.GoBodyInput(f)))
+		if strings.Contains(f.Virtual, "impure") && f.SignalMode != "" {
+		} else {
+			o += converter.GoBodyOutput(f, fmt.Sprintf("C.%v(%v)", converter.CppHeaderName(f), converter.GoBodyInput(f)))
+		}
 	}
 
 	if f.SignalMode == "Connect" {
-		o += fmt.Sprintf("\nqt.ConnectSignal(ptr.ObjectName(), \"%v\", f)", f.Name)
+		if parser.ClassMap[f.Class()].IsQObjectSubClass() {
+			o += fmt.Sprintf("\nqt.ConnectSignal(ptr.ObjectName(), \"%v\", f)", f.Name)
+		} else {
+			o += fmt.Sprintf("\nqt.ConnectSignal(ptr.ObjectNameAbs(), \"%v\", f)", f.Name)
+		}
 	}
 
 	if f.SignalMode == "Disconnect" {
-		o += fmt.Sprintf("\nqt.DisconnectSignal(ptr.ObjectName(), \"%v\")", f.Name)
+		if parser.ClassMap[f.Class()].IsQObjectSubClass() {
+			o += fmt.Sprintf("\nqt.DisconnectSignal(ptr.ObjectName(), \"%v\")", f.Name)
+		} else {
+			o += fmt.Sprintf("\nqt.DisconnectSignal(ptr.ObjectNameAbs(), \"%v\")", f.Name)
+		}
 	}
 
 	if (f.Meta == "destructor" && isObjectSubClass(f.Class())) || (f.Meta == "slot" && strings.Contains(f.Name, "deleteLater")) {

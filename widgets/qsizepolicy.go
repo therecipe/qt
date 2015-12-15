@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -87,31 +86,19 @@ const (
 )
 
 func NewQSizePolicy() *QSizePolicy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::QSizePolicy")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::QSizePolicy")
 
 	return NewQSizePolicyFromPointer(C.QSizePolicy_NewQSizePolicy())
 }
 
 func NewQSizePolicy2(horizontal QSizePolicy__Policy, vertical QSizePolicy__Policy, ty QSizePolicy__ControlType) *QSizePolicy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::QSizePolicy")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::QSizePolicy")
 
 	return NewQSizePolicyFromPointer(C.QSizePolicy_NewQSizePolicy2(C.int(horizontal), C.int(vertical), C.int(ty)))
 }
 
 func (ptr *QSizePolicy) ControlType() QSizePolicy__ControlType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::controlType")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::controlType")
 
 	if ptr.Pointer() != nil {
 		return QSizePolicy__ControlType(C.QSizePolicy_ControlType(ptr.Pointer()))
@@ -120,11 +107,7 @@ func (ptr *QSizePolicy) ControlType() QSizePolicy__ControlType {
 }
 
 func (ptr *QSizePolicy) ExpandingDirections() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::expandingDirections")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::expandingDirections")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QSizePolicy_ExpandingDirections(ptr.Pointer()))
@@ -133,11 +116,7 @@ func (ptr *QSizePolicy) ExpandingDirections() core.Qt__Orientation {
 }
 
 func (ptr *QSizePolicy) HasHeightForWidth() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::hasHeightForWidth")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::hasHeightForWidth")
 
 	if ptr.Pointer() != nil {
 		return C.QSizePolicy_HasHeightForWidth(ptr.Pointer()) != 0
@@ -146,11 +125,7 @@ func (ptr *QSizePolicy) HasHeightForWidth() bool {
 }
 
 func (ptr *QSizePolicy) HasWidthForHeight() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::hasWidthForHeight")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::hasWidthForHeight")
 
 	if ptr.Pointer() != nil {
 		return C.QSizePolicy_HasWidthForHeight(ptr.Pointer()) != 0
@@ -159,11 +134,7 @@ func (ptr *QSizePolicy) HasWidthForHeight() bool {
 }
 
 func (ptr *QSizePolicy) HorizontalPolicy() QSizePolicy__Policy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::horizontalPolicy")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::horizontalPolicy")
 
 	if ptr.Pointer() != nil {
 		return QSizePolicy__Policy(C.QSizePolicy_HorizontalPolicy(ptr.Pointer()))
@@ -172,11 +143,7 @@ func (ptr *QSizePolicy) HorizontalPolicy() QSizePolicy__Policy {
 }
 
 func (ptr *QSizePolicy) HorizontalStretch() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::horizontalStretch")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::horizontalStretch")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSizePolicy_HorizontalStretch(ptr.Pointer()))
@@ -185,11 +152,7 @@ func (ptr *QSizePolicy) HorizontalStretch() int {
 }
 
 func (ptr *QSizePolicy) RetainSizeWhenHidden() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::retainSizeWhenHidden")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::retainSizeWhenHidden")
 
 	if ptr.Pointer() != nil {
 		return C.QSizePolicy_RetainSizeWhenHidden(ptr.Pointer()) != 0
@@ -198,11 +161,7 @@ func (ptr *QSizePolicy) RetainSizeWhenHidden() bool {
 }
 
 func (ptr *QSizePolicy) SetControlType(ty QSizePolicy__ControlType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::setControlType")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::setControlType")
 
 	if ptr.Pointer() != nil {
 		C.QSizePolicy_SetControlType(ptr.Pointer(), C.int(ty))
@@ -210,11 +169,7 @@ func (ptr *QSizePolicy) SetControlType(ty QSizePolicy__ControlType) {
 }
 
 func (ptr *QSizePolicy) SetHeightForWidth(dependent bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::setHeightForWidth")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::setHeightForWidth")
 
 	if ptr.Pointer() != nil {
 		C.QSizePolicy_SetHeightForWidth(ptr.Pointer(), C.int(qt.GoBoolToInt(dependent)))
@@ -222,11 +177,7 @@ func (ptr *QSizePolicy) SetHeightForWidth(dependent bool) {
 }
 
 func (ptr *QSizePolicy) SetHorizontalPolicy(policy QSizePolicy__Policy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::setHorizontalPolicy")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::setHorizontalPolicy")
 
 	if ptr.Pointer() != nil {
 		C.QSizePolicy_SetHorizontalPolicy(ptr.Pointer(), C.int(policy))
@@ -234,11 +185,7 @@ func (ptr *QSizePolicy) SetHorizontalPolicy(policy QSizePolicy__Policy) {
 }
 
 func (ptr *QSizePolicy) SetHorizontalStretch(stretchFactor int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::setHorizontalStretch")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::setHorizontalStretch")
 
 	if ptr.Pointer() != nil {
 		C.QSizePolicy_SetHorizontalStretch(ptr.Pointer(), C.int(stretchFactor))
@@ -246,11 +193,7 @@ func (ptr *QSizePolicy) SetHorizontalStretch(stretchFactor int) {
 }
 
 func (ptr *QSizePolicy) SetRetainSizeWhenHidden(retainSize bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::setRetainSizeWhenHidden")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::setRetainSizeWhenHidden")
 
 	if ptr.Pointer() != nil {
 		C.QSizePolicy_SetRetainSizeWhenHidden(ptr.Pointer(), C.int(qt.GoBoolToInt(retainSize)))
@@ -258,11 +201,7 @@ func (ptr *QSizePolicy) SetRetainSizeWhenHidden(retainSize bool) {
 }
 
 func (ptr *QSizePolicy) SetVerticalPolicy(policy QSizePolicy__Policy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::setVerticalPolicy")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::setVerticalPolicy")
 
 	if ptr.Pointer() != nil {
 		C.QSizePolicy_SetVerticalPolicy(ptr.Pointer(), C.int(policy))
@@ -270,11 +209,7 @@ func (ptr *QSizePolicy) SetVerticalPolicy(policy QSizePolicy__Policy) {
 }
 
 func (ptr *QSizePolicy) SetVerticalStretch(stretchFactor int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::setVerticalStretch")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::setVerticalStretch")
 
 	if ptr.Pointer() != nil {
 		C.QSizePolicy_SetVerticalStretch(ptr.Pointer(), C.int(stretchFactor))
@@ -282,11 +217,7 @@ func (ptr *QSizePolicy) SetVerticalStretch(stretchFactor int) {
 }
 
 func (ptr *QSizePolicy) SetWidthForHeight(dependent bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::setWidthForHeight")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::setWidthForHeight")
 
 	if ptr.Pointer() != nil {
 		C.QSizePolicy_SetWidthForHeight(ptr.Pointer(), C.int(qt.GoBoolToInt(dependent)))
@@ -294,11 +225,7 @@ func (ptr *QSizePolicy) SetWidthForHeight(dependent bool) {
 }
 
 func (ptr *QSizePolicy) Transpose() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::transpose")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::transpose")
 
 	if ptr.Pointer() != nil {
 		C.QSizePolicy_Transpose(ptr.Pointer())
@@ -306,11 +233,7 @@ func (ptr *QSizePolicy) Transpose() {
 }
 
 func (ptr *QSizePolicy) VerticalPolicy() QSizePolicy__Policy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::verticalPolicy")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::verticalPolicy")
 
 	if ptr.Pointer() != nil {
 		return QSizePolicy__Policy(C.QSizePolicy_VerticalPolicy(ptr.Pointer()))
@@ -319,11 +242,7 @@ func (ptr *QSizePolicy) VerticalPolicy() QSizePolicy__Policy {
 }
 
 func (ptr *QSizePolicy) VerticalStretch() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSizePolicy::verticalStretch")
-		}
-	}()
+	defer qt.Recovering("QSizePolicy::verticalStretch")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSizePolicy_VerticalStretch(ptr.Pointer()))

@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQXmlErrorHandler(ptr QXmlErrorHandler_ITF) unsafe.Pointer {
 func NewQXmlErrorHandlerFromPointer(ptr unsafe.Pointer) *QXmlErrorHandler {
 	var n = new(QXmlErrorHandler)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QXmlErrorHandler_") {
+		n.SetObjectNameAbs("QXmlErrorHandler_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QXmlErrorHandler) QXmlErrorHandler_PTR() *QXmlErrorHandler {
 }
 
 func (ptr *QXmlErrorHandler) Error(exception QXmlParseException_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlErrorHandler::error")
-		}
-	}()
+	defer qt.Recovering("QXmlErrorHandler::error")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlErrorHandler_Error(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
@@ -54,11 +53,7 @@ func (ptr *QXmlErrorHandler) Error(exception QXmlParseException_ITF) bool {
 }
 
 func (ptr *QXmlErrorHandler) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlErrorHandler::errorString")
-		}
-	}()
+	defer qt.Recovering("QXmlErrorHandler::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlErrorHandler_ErrorString(ptr.Pointer()))
@@ -67,11 +62,7 @@ func (ptr *QXmlErrorHandler) ErrorString() string {
 }
 
 func (ptr *QXmlErrorHandler) FatalError(exception QXmlParseException_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlErrorHandler::fatalError")
-		}
-	}()
+	defer qt.Recovering("QXmlErrorHandler::fatalError")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlErrorHandler_FatalError(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
@@ -80,11 +71,7 @@ func (ptr *QXmlErrorHandler) FatalError(exception QXmlParseException_ITF) bool {
 }
 
 func (ptr *QXmlErrorHandler) Warning(exception QXmlParseException_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlErrorHandler::warning")
-		}
-	}()
+	defer qt.Recovering("QXmlErrorHandler::warning")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlErrorHandler_Warning(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
@@ -93,13 +80,26 @@ func (ptr *QXmlErrorHandler) Warning(exception QXmlParseException_ITF) bool {
 }
 
 func (ptr *QXmlErrorHandler) DestroyQXmlErrorHandler() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlErrorHandler::~QXmlErrorHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlErrorHandler::~QXmlErrorHandler")
 
 	if ptr.Pointer() != nil {
 		C.QXmlErrorHandler_DestroyQXmlErrorHandler(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlErrorHandler) ObjectNameAbs() string {
+	defer qt.Recovering("QXmlErrorHandler::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlErrorHandler_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QXmlErrorHandler) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QXmlErrorHandler::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QXmlErrorHandler_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

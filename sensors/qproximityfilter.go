@@ -3,7 +3,7 @@ package sensors
 //#include "sensors.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,11 +34,7 @@ func (ptr *QProximityFilter) QProximityFilter_PTR() *QProximityFilter {
 }
 
 func (ptr *QProximityFilter) Filter(reading QProximityReading_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProximityFilter::filter")
-		}
-	}()
+	defer qt.Recovering("QProximityFilter::filter")
 
 	if ptr.Pointer() != nil {
 		return C.QProximityFilter_Filter(ptr.Pointer(), PointerFromQProximityReading(reading)) != 0

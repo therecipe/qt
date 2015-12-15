@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,11 +41,7 @@ func (ptr *QGenericArgument) QGenericArgument_PTR() *QGenericArgument {
 }
 
 func (ptr *QGenericArgument) Data() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGenericArgument::data")
-		}
-	}()
+	defer qt.Recovering("QGenericArgument::data")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QGenericArgument_Data(ptr.Pointer()))

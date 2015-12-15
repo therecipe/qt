@@ -27,7 +27,7 @@ func NewQAnimationGroupFromPointer(ptr unsafe.Pointer) *QAnimationGroup {
 	var n = new(QAnimationGroup)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAnimationGroup_") {
-		n.SetObjectName("QAnimationGroup_" + qt.RandomIdentifier())
+		n.SetObjectName("QAnimationGroup_" + qt.Identifier())
 	}
 	return n
 }

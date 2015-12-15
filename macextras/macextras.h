@@ -7,6 +7,8 @@ int QMacPasteboardMime_Count(void* ptr, void* mimeData);
 char* QMacPasteboardMime_FlavorFor(void* ptr, char* mime);
 char* QMacPasteboardMime_MimeFor(void* ptr, char* flav);
 void QMacPasteboardMime_DestroyQMacPasteboardMime(void* ptr);
+char* QMacPasteboardMime_ObjectNameAbs(void* ptr);
+void QMacPasteboardMime_SetObjectNameAbs(void* ptr, char* name);
 void* QMacToolBar_NewQMacToolBar(void* parent);
 void* QMacToolBar_NewQMacToolBar2(char* identifier, void* parent);
 void* QMacToolBar_AddAllowedItem(void* ptr, void* icon, char* text);

@@ -3,7 +3,7 @@ package qml
 //#include "qml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQQmlAbstractUrlInterceptor(ptr QQmlAbstractUrlInterceptor_ITF) u
 func NewQQmlAbstractUrlInterceptorFromPointer(ptr unsafe.Pointer) *QQmlAbstractUrlInterceptor {
 	var n = new(QQmlAbstractUrlInterceptor)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QQmlAbstractUrlInterceptor_") {
+		n.SetObjectNameAbs("QQmlAbstractUrlInterceptor_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -51,13 +54,26 @@ const (
 )
 
 func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
-		}
-	}()
+	defer qt.Recovering("QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
 
 	if ptr.Pointer() != nil {
 		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr.Pointer())
+	}
+}
+
+func (ptr *QQmlAbstractUrlInterceptor) ObjectNameAbs() string {
+	defer qt.Recovering("QQmlAbstractUrlInterceptor::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QQmlAbstractUrlInterceptor_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QQmlAbstractUrlInterceptor) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QQmlAbstractUrlInterceptor::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QQmlAbstractUrlInterceptor_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

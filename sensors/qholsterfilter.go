@@ -3,7 +3,7 @@ package sensors
 //#include "sensors.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,11 +34,7 @@ func (ptr *QHolsterFilter) QHolsterFilter_PTR() *QHolsterFilter {
 }
 
 func (ptr *QHolsterFilter) Filter(reading QHolsterReading_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHolsterFilter::filter")
-		}
-	}()
+	defer qt.Recovering("QHolsterFilter::filter")
 
 	if ptr.Pointer() != nil {
 		return C.QHolsterFilter_Filter(ptr.Pointer(), PointerFromQHolsterReading(reading)) != 0

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -43,11 +42,7 @@ func (ptr *QTextBlock) QTextBlock_PTR() *QTextBlock {
 }
 
 func (ptr *QTextBlock) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::isValid")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QTextBlock_IsValid(ptr.Pointer()) != 0
@@ -56,21 +51,13 @@ func (ptr *QTextBlock) IsValid() bool {
 }
 
 func NewQTextBlock(other QTextBlock_ITF) *QTextBlock {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::QTextBlock")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::QTextBlock")
 
 	return NewQTextBlockFromPointer(C.QTextBlock_NewQTextBlock(PointerFromQTextBlock(other)))
 }
 
 func (ptr *QTextBlock) BlockFormatIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::blockFormatIndex")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::blockFormatIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextBlock_BlockFormatIndex(ptr.Pointer()))
@@ -79,11 +66,7 @@ func (ptr *QTextBlock) BlockFormatIndex() int {
 }
 
 func (ptr *QTextBlock) CharFormatIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::charFormatIndex")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::charFormatIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextBlock_CharFormatIndex(ptr.Pointer()))
@@ -92,11 +75,7 @@ func (ptr *QTextBlock) CharFormatIndex() int {
 }
 
 func (ptr *QTextBlock) ClearLayout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::clearLayout")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::clearLayout")
 
 	if ptr.Pointer() != nil {
 		C.QTextBlock_ClearLayout(ptr.Pointer())
@@ -104,11 +83,7 @@ func (ptr *QTextBlock) ClearLayout() {
 }
 
 func (ptr *QTextBlock) Contains(position int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::contains")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QTextBlock_Contains(ptr.Pointer(), C.int(position)) != 0
@@ -117,11 +92,7 @@ func (ptr *QTextBlock) Contains(position int) bool {
 }
 
 func (ptr *QTextBlock) BlockNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::blockNumber")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::blockNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextBlock_BlockNumber(ptr.Pointer()))
@@ -130,11 +101,7 @@ func (ptr *QTextBlock) BlockNumber() int {
 }
 
 func (ptr *QTextBlock) Document() *QTextDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::document")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::document")
 
 	if ptr.Pointer() != nil {
 		return NewQTextDocumentFromPointer(C.QTextBlock_Document(ptr.Pointer()))
@@ -143,11 +110,7 @@ func (ptr *QTextBlock) Document() *QTextDocument {
 }
 
 func (ptr *QTextBlock) FirstLineNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::firstLineNumber")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::firstLineNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextBlock_FirstLineNumber(ptr.Pointer()))
@@ -156,11 +119,7 @@ func (ptr *QTextBlock) FirstLineNumber() int {
 }
 
 func (ptr *QTextBlock) IsVisible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::isVisible")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::isVisible")
 
 	if ptr.Pointer() != nil {
 		return C.QTextBlock_IsVisible(ptr.Pointer()) != 0
@@ -169,11 +128,7 @@ func (ptr *QTextBlock) IsVisible() bool {
 }
 
 func (ptr *QTextBlock) Layout() *QTextLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::layout")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::layout")
 
 	if ptr.Pointer() != nil {
 		return NewQTextLayoutFromPointer(C.QTextBlock_Layout(ptr.Pointer()))
@@ -182,11 +137,7 @@ func (ptr *QTextBlock) Layout() *QTextLayout {
 }
 
 func (ptr *QTextBlock) Length() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::length")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::length")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextBlock_Length(ptr.Pointer()))
@@ -195,11 +146,7 @@ func (ptr *QTextBlock) Length() int {
 }
 
 func (ptr *QTextBlock) LineCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::lineCount")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::lineCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextBlock_LineCount(ptr.Pointer()))
@@ -208,11 +155,7 @@ func (ptr *QTextBlock) LineCount() int {
 }
 
 func (ptr *QTextBlock) Position() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::position")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::position")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextBlock_Position(ptr.Pointer()))
@@ -221,11 +164,7 @@ func (ptr *QTextBlock) Position() int {
 }
 
 func (ptr *QTextBlock) Revision() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::revision")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::revision")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextBlock_Revision(ptr.Pointer()))
@@ -234,11 +173,7 @@ func (ptr *QTextBlock) Revision() int {
 }
 
 func (ptr *QTextBlock) SetLineCount(count int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::setLineCount")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::setLineCount")
 
 	if ptr.Pointer() != nil {
 		C.QTextBlock_SetLineCount(ptr.Pointer(), C.int(count))
@@ -246,11 +181,7 @@ func (ptr *QTextBlock) SetLineCount(count int) {
 }
 
 func (ptr *QTextBlock) SetRevision(rev int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::setRevision")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::setRevision")
 
 	if ptr.Pointer() != nil {
 		C.QTextBlock_SetRevision(ptr.Pointer(), C.int(rev))
@@ -258,11 +189,7 @@ func (ptr *QTextBlock) SetRevision(rev int) {
 }
 
 func (ptr *QTextBlock) SetUserData(data QTextBlockUserData_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::setUserData")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::setUserData")
 
 	if ptr.Pointer() != nil {
 		C.QTextBlock_SetUserData(ptr.Pointer(), PointerFromQTextBlockUserData(data))
@@ -270,11 +197,7 @@ func (ptr *QTextBlock) SetUserData(data QTextBlockUserData_ITF) {
 }
 
 func (ptr *QTextBlock) SetUserState(state int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::setUserState")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::setUserState")
 
 	if ptr.Pointer() != nil {
 		C.QTextBlock_SetUserState(ptr.Pointer(), C.int(state))
@@ -282,11 +205,7 @@ func (ptr *QTextBlock) SetUserState(state int) {
 }
 
 func (ptr *QTextBlock) SetVisible(visible bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::setVisible")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::setVisible")
 
 	if ptr.Pointer() != nil {
 		C.QTextBlock_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
@@ -294,11 +213,7 @@ func (ptr *QTextBlock) SetVisible(visible bool) {
 }
 
 func (ptr *QTextBlock) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::text")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextBlock_Text(ptr.Pointer()))
@@ -307,11 +222,7 @@ func (ptr *QTextBlock) Text() string {
 }
 
 func (ptr *QTextBlock) TextDirection() core.Qt__LayoutDirection {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::textDirection")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::textDirection")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__LayoutDirection(C.QTextBlock_TextDirection(ptr.Pointer()))
@@ -320,11 +231,7 @@ func (ptr *QTextBlock) TextDirection() core.Qt__LayoutDirection {
 }
 
 func (ptr *QTextBlock) TextList() *QTextList {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::textList")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::textList")
 
 	if ptr.Pointer() != nil {
 		return NewQTextListFromPointer(C.QTextBlock_TextList(ptr.Pointer()))
@@ -333,11 +240,7 @@ func (ptr *QTextBlock) TextList() *QTextList {
 }
 
 func (ptr *QTextBlock) UserData() *QTextBlockUserData {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::userData")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::userData")
 
 	if ptr.Pointer() != nil {
 		return NewQTextBlockUserDataFromPointer(C.QTextBlock_UserData(ptr.Pointer()))
@@ -346,11 +249,7 @@ func (ptr *QTextBlock) UserData() *QTextBlockUserData {
 }
 
 func (ptr *QTextBlock) UserState() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBlock::userState")
-		}
-	}()
+	defer qt.Recovering("QTextBlock::userState")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextBlock_UserState(ptr.Pointer()))

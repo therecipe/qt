@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQSystemTrayIconFromPointer(ptr unsafe.Pointer) *QSystemTrayIcon {
 	var n = new(QSystemTrayIcon)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSystemTrayIcon_") {
-		n.SetObjectName("QSystemTrayIcon_" + qt.RandomIdentifier())
+		n.SetObjectName("QSystemTrayIcon_" + qt.Identifier())
 	}
 	return n
 }
@@ -61,11 +60,7 @@ const (
 )
 
 func (ptr *QSystemTrayIcon) IsVisible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::isVisible")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::isVisible")
 
 	if ptr.Pointer() != nil {
 		return C.QSystemTrayIcon_IsVisible(ptr.Pointer()) != 0
@@ -74,11 +69,7 @@ func (ptr *QSystemTrayIcon) IsVisible() bool {
 }
 
 func (ptr *QSystemTrayIcon) SetIcon(icon gui.QIcon_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::setIcon")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::setIcon")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
@@ -86,11 +77,7 @@ func (ptr *QSystemTrayIcon) SetIcon(icon gui.QIcon_ITF) {
 }
 
 func (ptr *QSystemTrayIcon) SetToolTip(tip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::setToolTip")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::setToolTip")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_SetToolTip(ptr.Pointer(), C.CString(tip))
@@ -98,11 +85,7 @@ func (ptr *QSystemTrayIcon) SetToolTip(tip string) {
 }
 
 func (ptr *QSystemTrayIcon) SetVisible(visible bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::setVisible")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::setVisible")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
@@ -110,11 +93,7 @@ func (ptr *QSystemTrayIcon) SetVisible(visible bool) {
 }
 
 func (ptr *QSystemTrayIcon) ShowMessage(title string, message string, icon QSystemTrayIcon__MessageIcon, millisecondsTimeoutHint int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::showMessage")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::showMessage")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_ShowMessage(ptr.Pointer(), C.CString(title), C.CString(message), C.int(icon), C.int(millisecondsTimeoutHint))
@@ -122,11 +101,7 @@ func (ptr *QSystemTrayIcon) ShowMessage(title string, message string, icon QSyst
 }
 
 func (ptr *QSystemTrayIcon) ToolTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::toolTip")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::toolTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSystemTrayIcon_ToolTip(ptr.Pointer()))
@@ -135,31 +110,19 @@ func (ptr *QSystemTrayIcon) ToolTip() string {
 }
 
 func NewQSystemTrayIcon(parent core.QObject_ITF) *QSystemTrayIcon {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::QSystemTrayIcon")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::QSystemTrayIcon")
 
 	return NewQSystemTrayIconFromPointer(C.QSystemTrayIcon_NewQSystemTrayIcon(core.PointerFromQObject(parent)))
 }
 
 func NewQSystemTrayIcon2(icon gui.QIcon_ITF, parent core.QObject_ITF) *QSystemTrayIcon {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::QSystemTrayIcon")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::QSystemTrayIcon")
 
 	return NewQSystemTrayIconFromPointer(C.QSystemTrayIcon_NewQSystemTrayIcon2(gui.PointerFromQIcon(icon), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSystemTrayIcon) ConnectActivated(f func(reason QSystemTrayIcon__ActivationReason)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::activated")
-		}
-	}()
+	defer qt.Recovering("connect QSystemTrayIcon::activated")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_ConnectActivated(ptr.Pointer())
@@ -168,11 +131,7 @@ func (ptr *QSystemTrayIcon) ConnectActivated(f func(reason QSystemTrayIcon__Acti
 }
 
 func (ptr *QSystemTrayIcon) DisconnectActivated() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::activated")
-		}
-	}()
+	defer qt.Recovering("disconnect QSystemTrayIcon::activated")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_DisconnectActivated(ptr.Pointer())
@@ -182,21 +141,17 @@ func (ptr *QSystemTrayIcon) DisconnectActivated() {
 
 //export callbackQSystemTrayIconActivated
 func callbackQSystemTrayIconActivated(ptrName *C.char, reason C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::activated")
-		}
-	}()
+	defer qt.Recovering("callback QSystemTrayIcon::activated")
 
-	qt.GetSignal(C.GoString(ptrName), "activated").(func(QSystemTrayIcon__ActivationReason))(QSystemTrayIcon__ActivationReason(reason))
+	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
+	if signal != nil {
+		signal.(func(QSystemTrayIcon__ActivationReason))(QSystemTrayIcon__ActivationReason(reason))
+	}
+
 }
 
 func (ptr *QSystemTrayIcon) ContextMenu() *QMenu {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::contextMenu")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::contextMenu")
 
 	if ptr.Pointer() != nil {
 		return NewQMenuFromPointer(C.QSystemTrayIcon_ContextMenu(ptr.Pointer()))
@@ -205,11 +160,7 @@ func (ptr *QSystemTrayIcon) ContextMenu() *QMenu {
 }
 
 func (ptr *QSystemTrayIcon) Hide() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::hide")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::hide")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_Hide(ptr.Pointer())
@@ -217,21 +168,13 @@ func (ptr *QSystemTrayIcon) Hide() {
 }
 
 func QSystemTrayIcon_IsSystemTrayAvailable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::isSystemTrayAvailable")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::isSystemTrayAvailable")
 
 	return C.QSystemTrayIcon_QSystemTrayIcon_IsSystemTrayAvailable() != 0
 }
 
 func (ptr *QSystemTrayIcon) ConnectMessageClicked(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::messageClicked")
-		}
-	}()
+	defer qt.Recovering("connect QSystemTrayIcon::messageClicked")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_ConnectMessageClicked(ptr.Pointer())
@@ -240,11 +183,7 @@ func (ptr *QSystemTrayIcon) ConnectMessageClicked(f func()) {
 }
 
 func (ptr *QSystemTrayIcon) DisconnectMessageClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::messageClicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QSystemTrayIcon::messageClicked")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_DisconnectMessageClicked(ptr.Pointer())
@@ -254,21 +193,17 @@ func (ptr *QSystemTrayIcon) DisconnectMessageClicked() {
 
 //export callbackQSystemTrayIconMessageClicked
 func callbackQSystemTrayIconMessageClicked(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::messageClicked")
-		}
-	}()
+	defer qt.Recovering("callback QSystemTrayIcon::messageClicked")
 
-	qt.GetSignal(C.GoString(ptrName), "messageClicked").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "messageClicked")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QSystemTrayIcon) SetContextMenu(menu QMenu_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::setContextMenu")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::setContextMenu")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_SetContextMenu(ptr.Pointer(), PointerFromQMenu(menu))
@@ -276,11 +211,7 @@ func (ptr *QSystemTrayIcon) SetContextMenu(menu QMenu_ITF) {
 }
 
 func (ptr *QSystemTrayIcon) Show() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::show")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::show")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_Show(ptr.Pointer())
@@ -288,21 +219,13 @@ func (ptr *QSystemTrayIcon) Show() {
 }
 
 func QSystemTrayIcon_SupportsMessages() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::supportsMessages")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::supportsMessages")
 
 	return C.QSystemTrayIcon_QSystemTrayIcon_SupportsMessages() != 0
 }
 
 func (ptr *QSystemTrayIcon) DestroyQSystemTrayIcon() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemTrayIcon::~QSystemTrayIcon")
-		}
-	}()
+	defer qt.Recovering("QSystemTrayIcon::~QSystemTrayIcon")
 
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_DestroyQSystemTrayIcon(ptr.Pointer())

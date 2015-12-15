@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQSensorGestureFromPointer(ptr unsafe.Pointer) *QSensorGesture {
 	var n = new(QSensorGesture)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSensorGesture_") {
-		n.SetObjectName("QSensorGesture_" + qt.RandomIdentifier())
+		n.SetObjectName("QSensorGesture_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,21 +39,13 @@ func (ptr *QSensorGesture) QSensorGesture_PTR() *QSensorGesture {
 }
 
 func NewQSensorGesture(ids []string, parent core.QObject_ITF) *QSensorGesture {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGesture::QSensorGesture")
-		}
-	}()
+	defer qt.Recovering("QSensorGesture::QSensorGesture")
 
 	return NewQSensorGestureFromPointer(C.QSensorGesture_NewQSensorGesture(C.CString(strings.Join(ids, ",,,")), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSensorGesture) GestureSignals() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGesture::gestureSignals")
-		}
-	}()
+	defer qt.Recovering("QSensorGesture::gestureSignals")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSensorGesture_GestureSignals(ptr.Pointer())), ",,,")
@@ -63,11 +54,7 @@ func (ptr *QSensorGesture) GestureSignals() []string {
 }
 
 func (ptr *QSensorGesture) InvalidIds() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGesture::invalidIds")
-		}
-	}()
+	defer qt.Recovering("QSensorGesture::invalidIds")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSensorGesture_InvalidIds(ptr.Pointer())), ",,,")
@@ -76,11 +63,7 @@ func (ptr *QSensorGesture) InvalidIds() []string {
 }
 
 func (ptr *QSensorGesture) IsActive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGesture::isActive")
-		}
-	}()
+	defer qt.Recovering("QSensorGesture::isActive")
 
 	if ptr.Pointer() != nil {
 		return C.QSensorGesture_IsActive(ptr.Pointer()) != 0
@@ -89,11 +72,7 @@ func (ptr *QSensorGesture) IsActive() bool {
 }
 
 func (ptr *QSensorGesture) StartDetection() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGesture::startDetection")
-		}
-	}()
+	defer qt.Recovering("QSensorGesture::startDetection")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGesture_StartDetection(ptr.Pointer())
@@ -101,11 +80,7 @@ func (ptr *QSensorGesture) StartDetection() {
 }
 
 func (ptr *QSensorGesture) StopDetection() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGesture::stopDetection")
-		}
-	}()
+	defer qt.Recovering("QSensorGesture::stopDetection")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGesture_StopDetection(ptr.Pointer())
@@ -113,11 +88,7 @@ func (ptr *QSensorGesture) StopDetection() {
 }
 
 func (ptr *QSensorGesture) ValidIds() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGesture::validIds")
-		}
-	}()
+	defer qt.Recovering("QSensorGesture::validIds")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSensorGesture_ValidIds(ptr.Pointer())), ",,,")
@@ -126,11 +97,7 @@ func (ptr *QSensorGesture) ValidIds() []string {
 }
 
 func (ptr *QSensorGesture) DestroyQSensorGesture() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGesture::~QSensorGesture")
-		}
-	}()
+	defer qt.Recovering("QSensorGesture::~QSensorGesture")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGesture_DestroyQSensorGesture(ptr.Pointer())

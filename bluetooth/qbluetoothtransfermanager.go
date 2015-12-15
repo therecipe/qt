@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQBluetoothTransferManagerFromPointer(ptr unsafe.Pointer) *QBluetoothTran
 	var n = new(QBluetoothTransferManager)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QBluetoothTransferManager_") {
-		n.SetObjectName("QBluetoothTransferManager_" + qt.RandomIdentifier())
+		n.SetObjectName("QBluetoothTransferManager_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QBluetoothTransferManager) QBluetoothTransferManager_PTR() *QBluetoot
 }
 
 func (ptr *QBluetoothTransferManager) Put(request QBluetoothTransferRequest_ITF, data core.QIODevice_ITF) *QBluetoothTransferReply {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothTransferManager::put")
-		}
-	}()
+	defer qt.Recovering("QBluetoothTransferManager::put")
 
 	if ptr.Pointer() != nil {
 		return NewQBluetoothTransferReplyFromPointer(C.QBluetoothTransferManager_Put(ptr.Pointer(), PointerFromQBluetoothTransferRequest(request), core.PointerFromQIODevice(data)))
@@ -52,21 +47,13 @@ func (ptr *QBluetoothTransferManager) Put(request QBluetoothTransferRequest_ITF,
 }
 
 func NewQBluetoothTransferManager(parent core.QObject_ITF) *QBluetoothTransferManager {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothTransferManager::QBluetoothTransferManager")
-		}
-	}()
+	defer qt.Recovering("QBluetoothTransferManager::QBluetoothTransferManager")
 
 	return NewQBluetoothTransferManagerFromPointer(C.QBluetoothTransferManager_NewQBluetoothTransferManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBluetoothTransferManager) ConnectFinished(f func(reply *QBluetoothTransferReply)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothTransferManager::finished")
-		}
-	}()
+	defer qt.Recovering("connect QBluetoothTransferManager::finished")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferManager_ConnectFinished(ptr.Pointer())
@@ -75,11 +62,7 @@ func (ptr *QBluetoothTransferManager) ConnectFinished(f func(reply *QBluetoothTr
 }
 
 func (ptr *QBluetoothTransferManager) DisconnectFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothTransferManager::finished")
-		}
-	}()
+	defer qt.Recovering("disconnect QBluetoothTransferManager::finished")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferManager_DisconnectFinished(ptr.Pointer())
@@ -89,21 +72,17 @@ func (ptr *QBluetoothTransferManager) DisconnectFinished() {
 
 //export callbackQBluetoothTransferManagerFinished
 func callbackQBluetoothTransferManagerFinished(ptrName *C.char, reply unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothTransferManager::finished")
-		}
-	}()
+	defer qt.Recovering("callback QBluetoothTransferManager::finished")
 
-	qt.GetSignal(C.GoString(ptrName), "finished").(func(*QBluetoothTransferReply))(NewQBluetoothTransferReplyFromPointer(reply))
+	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
+	if signal != nil {
+		signal.(func(*QBluetoothTransferReply))(NewQBluetoothTransferReplyFromPointer(reply))
+	}
+
 }
 
 func (ptr *QBluetoothTransferManager) DestroyQBluetoothTransferManager() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothTransferManager::~QBluetoothTransferManager")
-		}
-	}()
+	defer qt.Recovering("QBluetoothTransferManager::~QBluetoothTransferManager")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferManager_DestroyQBluetoothTransferManager(ptr.Pointer())

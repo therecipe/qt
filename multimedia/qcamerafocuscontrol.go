@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQCameraFocusControlFromPointer(ptr unsafe.Pointer) *QCameraFocusControl 
 	var n = new(QCameraFocusControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraFocusControl_") {
-		n.SetObjectName("QCameraFocusControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QCameraFocusControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QCameraFocusControl) QCameraFocusControl_PTR() *QCameraFocusControl {
 }
 
 func (ptr *QCameraFocusControl) FocusMode() QCameraFocus__FocusMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::focusMode")
-		}
-	}()
+	defer qt.Recovering("QCameraFocusControl::focusMode")
 
 	if ptr.Pointer() != nil {
 		return QCameraFocus__FocusMode(C.QCameraFocusControl_FocusMode(ptr.Pointer()))
@@ -52,11 +47,7 @@ func (ptr *QCameraFocusControl) FocusMode() QCameraFocus__FocusMode {
 }
 
 func (ptr *QCameraFocusControl) ConnectFocusModeChanged(f func(mode QCameraFocus__FocusMode)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::focusModeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QCameraFocusControl::focusModeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_ConnectFocusModeChanged(ptr.Pointer())
@@ -65,11 +56,7 @@ func (ptr *QCameraFocusControl) ConnectFocusModeChanged(f func(mode QCameraFocus
 }
 
 func (ptr *QCameraFocusControl) DisconnectFocusModeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::focusModeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QCameraFocusControl::focusModeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_DisconnectFocusModeChanged(ptr.Pointer())
@@ -79,21 +66,17 @@ func (ptr *QCameraFocusControl) DisconnectFocusModeChanged() {
 
 //export callbackQCameraFocusControlFocusModeChanged
 func callbackQCameraFocusControlFocusModeChanged(ptrName *C.char, mode C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::focusModeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QCameraFocusControl::focusModeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "focusModeChanged").(func(QCameraFocus__FocusMode))(QCameraFocus__FocusMode(mode))
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusModeChanged")
+	if signal != nil {
+		signal.(func(QCameraFocus__FocusMode))(QCameraFocus__FocusMode(mode))
+	}
+
 }
 
 func (ptr *QCameraFocusControl) FocusPointMode() QCameraFocus__FocusPointMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::focusPointMode")
-		}
-	}()
+	defer qt.Recovering("QCameraFocusControl::focusPointMode")
 
 	if ptr.Pointer() != nil {
 		return QCameraFocus__FocusPointMode(C.QCameraFocusControl_FocusPointMode(ptr.Pointer()))
@@ -102,11 +85,7 @@ func (ptr *QCameraFocusControl) FocusPointMode() QCameraFocus__FocusPointMode {
 }
 
 func (ptr *QCameraFocusControl) ConnectFocusPointModeChanged(f func(mode QCameraFocus__FocusPointMode)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::focusPointModeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QCameraFocusControl::focusPointModeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_ConnectFocusPointModeChanged(ptr.Pointer())
@@ -115,11 +94,7 @@ func (ptr *QCameraFocusControl) ConnectFocusPointModeChanged(f func(mode QCamera
 }
 
 func (ptr *QCameraFocusControl) DisconnectFocusPointModeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::focusPointModeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QCameraFocusControl::focusPointModeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_DisconnectFocusPointModeChanged(ptr.Pointer())
@@ -129,21 +104,17 @@ func (ptr *QCameraFocusControl) DisconnectFocusPointModeChanged() {
 
 //export callbackQCameraFocusControlFocusPointModeChanged
 func callbackQCameraFocusControlFocusPointModeChanged(ptrName *C.char, mode C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::focusPointModeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QCameraFocusControl::focusPointModeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "focusPointModeChanged").(func(QCameraFocus__FocusPointMode))(QCameraFocus__FocusPointMode(mode))
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusPointModeChanged")
+	if signal != nil {
+		signal.(func(QCameraFocus__FocusPointMode))(QCameraFocus__FocusPointMode(mode))
+	}
+
 }
 
 func (ptr *QCameraFocusControl) ConnectFocusZonesChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::focusZonesChanged")
-		}
-	}()
+	defer qt.Recovering("connect QCameraFocusControl::focusZonesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_ConnectFocusZonesChanged(ptr.Pointer())
@@ -152,11 +123,7 @@ func (ptr *QCameraFocusControl) ConnectFocusZonesChanged(f func()) {
 }
 
 func (ptr *QCameraFocusControl) DisconnectFocusZonesChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::focusZonesChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QCameraFocusControl::focusZonesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_DisconnectFocusZonesChanged(ptr.Pointer())
@@ -166,21 +133,17 @@ func (ptr *QCameraFocusControl) DisconnectFocusZonesChanged() {
 
 //export callbackQCameraFocusControlFocusZonesChanged
 func callbackQCameraFocusControlFocusZonesChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::focusZonesChanged")
-		}
-	}()
+	defer qt.Recovering("callback QCameraFocusControl::focusZonesChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "focusZonesChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusZonesChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QCameraFocusControl) IsFocusModeSupported(mode QCameraFocus__FocusMode) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::isFocusModeSupported")
-		}
-	}()
+	defer qt.Recovering("QCameraFocusControl::isFocusModeSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraFocusControl_IsFocusModeSupported(ptr.Pointer(), C.int(mode)) != 0
@@ -189,11 +152,7 @@ func (ptr *QCameraFocusControl) IsFocusModeSupported(mode QCameraFocus__FocusMod
 }
 
 func (ptr *QCameraFocusControl) IsFocusPointModeSupported(mode QCameraFocus__FocusPointMode) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::isFocusPointModeSupported")
-		}
-	}()
+	defer qt.Recovering("QCameraFocusControl::isFocusPointModeSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraFocusControl_IsFocusPointModeSupported(ptr.Pointer(), C.int(mode)) != 0
@@ -202,11 +161,7 @@ func (ptr *QCameraFocusControl) IsFocusPointModeSupported(mode QCameraFocus__Foc
 }
 
 func (ptr *QCameraFocusControl) SetCustomFocusPoint(point core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::setCustomFocusPoint")
-		}
-	}()
+	defer qt.Recovering("QCameraFocusControl::setCustomFocusPoint")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_SetCustomFocusPoint(ptr.Pointer(), core.PointerFromQPointF(point))
@@ -214,11 +169,7 @@ func (ptr *QCameraFocusControl) SetCustomFocusPoint(point core.QPointF_ITF) {
 }
 
 func (ptr *QCameraFocusControl) SetFocusMode(mode QCameraFocus__FocusMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::setFocusMode")
-		}
-	}()
+	defer qt.Recovering("QCameraFocusControl::setFocusMode")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_SetFocusMode(ptr.Pointer(), C.int(mode))
@@ -226,11 +177,7 @@ func (ptr *QCameraFocusControl) SetFocusMode(mode QCameraFocus__FocusMode) {
 }
 
 func (ptr *QCameraFocusControl) SetFocusPointMode(mode QCameraFocus__FocusPointMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::setFocusPointMode")
-		}
-	}()
+	defer qt.Recovering("QCameraFocusControl::setFocusPointMode")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_SetFocusPointMode(ptr.Pointer(), C.int(mode))
@@ -238,11 +185,7 @@ func (ptr *QCameraFocusControl) SetFocusPointMode(mode QCameraFocus__FocusPointM
 }
 
 func (ptr *QCameraFocusControl) DestroyQCameraFocusControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocusControl::~QCameraFocusControl")
-		}
-	}()
+	defer qt.Recovering("QCameraFocusControl::~QCameraFocusControl")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_DestroyQCameraFocusControl(ptr.Pointer())

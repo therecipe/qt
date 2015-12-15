@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -50,61 +50,37 @@ const (
 )
 
 func NewQRegion() *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::QRegion")
-		}
-	}()
+	defer qt.Recovering("QRegion::QRegion")
 
 	return NewQRegionFromPointer(C.QRegion_NewQRegion())
 }
 
 func NewQRegion5(bm QBitmap_ITF) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::QRegion")
-		}
-	}()
+	defer qt.Recovering("QRegion::QRegion")
 
 	return NewQRegionFromPointer(C.QRegion_NewQRegion5(PointerFromQBitmap(bm)))
 }
 
 func NewQRegion3(a QPolygon_ITF, fillRule core.Qt__FillRule) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::QRegion")
-		}
-	}()
+	defer qt.Recovering("QRegion::QRegion")
 
 	return NewQRegionFromPointer(C.QRegion_NewQRegion3(PointerFromQPolygon(a), C.int(fillRule)))
 }
 
 func NewQRegion6(r core.QRect_ITF, t QRegion__RegionType) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::QRegion")
-		}
-	}()
+	defer qt.Recovering("QRegion::QRegion")
 
 	return NewQRegionFromPointer(C.QRegion_NewQRegion6(core.PointerFromQRect(r), C.int(t)))
 }
 
 func NewQRegion4(r QRegion_ITF) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::QRegion")
-		}
-	}()
+	defer qt.Recovering("QRegion::QRegion")
 
 	return NewQRegionFromPointer(C.QRegion_NewQRegion4(PointerFromQRegion(r)))
 }
 
 func (ptr *QRegion) Contains(p core.QPoint_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::contains")
-		}
-	}()
+	defer qt.Recovering("QRegion::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QRegion_Contains(ptr.Pointer(), core.PointerFromQPoint(p)) != 0
@@ -113,11 +89,7 @@ func (ptr *QRegion) Contains(p core.QPoint_ITF) bool {
 }
 
 func (ptr *QRegion) Contains2(r core.QRect_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::contains")
-		}
-	}()
+	defer qt.Recovering("QRegion::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QRegion_Contains2(ptr.Pointer(), core.PointerFromQRect(r)) != 0
@@ -126,11 +98,7 @@ func (ptr *QRegion) Contains2(r core.QRect_ITF) bool {
 }
 
 func (ptr *QRegion) Intersected2(rect core.QRect_ITF) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::intersected")
-		}
-	}()
+	defer qt.Recovering("QRegion::intersected")
 
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QRegion_Intersected2(ptr.Pointer(), core.PointerFromQRect(rect)))
@@ -139,11 +107,7 @@ func (ptr *QRegion) Intersected2(rect core.QRect_ITF) *QRegion {
 }
 
 func (ptr *QRegion) Intersected(r QRegion_ITF) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::intersected")
-		}
-	}()
+	defer qt.Recovering("QRegion::intersected")
 
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QRegion_Intersected(ptr.Pointer(), PointerFromQRegion(r)))
@@ -152,11 +116,7 @@ func (ptr *QRegion) Intersected(r QRegion_ITF) *QRegion {
 }
 
 func (ptr *QRegion) Intersects2(rect core.QRect_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::intersects")
-		}
-	}()
+	defer qt.Recovering("QRegion::intersects")
 
 	if ptr.Pointer() != nil {
 		return C.QRegion_Intersects2(ptr.Pointer(), core.PointerFromQRect(rect)) != 0
@@ -165,11 +125,7 @@ func (ptr *QRegion) Intersects2(rect core.QRect_ITF) bool {
 }
 
 func (ptr *QRegion) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QRegion::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QRegion_IsEmpty(ptr.Pointer()) != 0
@@ -178,11 +134,7 @@ func (ptr *QRegion) IsEmpty() bool {
 }
 
 func (ptr *QRegion) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::isNull")
-		}
-	}()
+	defer qt.Recovering("QRegion::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QRegion_IsNull(ptr.Pointer()) != 0
@@ -191,11 +143,7 @@ func (ptr *QRegion) IsNull() bool {
 }
 
 func (ptr *QRegion) RectCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::rectCount")
-		}
-	}()
+	defer qt.Recovering("QRegion::rectCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QRegion_RectCount(ptr.Pointer()))
@@ -204,11 +152,7 @@ func (ptr *QRegion) RectCount() int {
 }
 
 func (ptr *QRegion) SetRects(rects core.QRect_ITF, number int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::setRects")
-		}
-	}()
+	defer qt.Recovering("QRegion::setRects")
 
 	if ptr.Pointer() != nil {
 		C.QRegion_SetRects(ptr.Pointer(), core.PointerFromQRect(rects), C.int(number))
@@ -216,11 +160,7 @@ func (ptr *QRegion) SetRects(rects core.QRect_ITF, number int) {
 }
 
 func (ptr *QRegion) Subtracted(r QRegion_ITF) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::subtracted")
-		}
-	}()
+	defer qt.Recovering("QRegion::subtracted")
 
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QRegion_Subtracted(ptr.Pointer(), PointerFromQRegion(r)))
@@ -229,11 +169,7 @@ func (ptr *QRegion) Subtracted(r QRegion_ITF) *QRegion {
 }
 
 func (ptr *QRegion) Translate(dx int, dy int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::translate")
-		}
-	}()
+	defer qt.Recovering("QRegion::translate")
 
 	if ptr.Pointer() != nil {
 		C.QRegion_Translate(ptr.Pointer(), C.int(dx), C.int(dy))
@@ -241,11 +177,7 @@ func (ptr *QRegion) Translate(dx int, dy int) {
 }
 
 func (ptr *QRegion) United2(rect core.QRect_ITF) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::united")
-		}
-	}()
+	defer qt.Recovering("QRegion::united")
 
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QRegion_United2(ptr.Pointer(), core.PointerFromQRect(rect)))
@@ -254,11 +186,7 @@ func (ptr *QRegion) United2(rect core.QRect_ITF) *QRegion {
 }
 
 func (ptr *QRegion) United(r QRegion_ITF) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::united")
-		}
-	}()
+	defer qt.Recovering("QRegion::united")
 
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QRegion_United(ptr.Pointer(), PointerFromQRegion(r)))
@@ -267,11 +195,7 @@ func (ptr *QRegion) United(r QRegion_ITF) *QRegion {
 }
 
 func (ptr *QRegion) Xored(r QRegion_ITF) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::xored")
-		}
-	}()
+	defer qt.Recovering("QRegion::xored")
 
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QRegion_Xored(ptr.Pointer(), PointerFromQRegion(r)))
@@ -280,21 +204,13 @@ func (ptr *QRegion) Xored(r QRegion_ITF) *QRegion {
 }
 
 func NewQRegion2(x int, y int, w int, h int, t QRegion__RegionType) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::QRegion")
-		}
-	}()
+	defer qt.Recovering("QRegion::QRegion")
 
 	return NewQRegionFromPointer(C.QRegion_NewQRegion2(C.int(x), C.int(y), C.int(w), C.int(h), C.int(t)))
 }
 
 func (ptr *QRegion) Intersects(region QRegion_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::intersects")
-		}
-	}()
+	defer qt.Recovering("QRegion::intersects")
 
 	if ptr.Pointer() != nil {
 		return C.QRegion_Intersects(ptr.Pointer(), PointerFromQRegion(region)) != 0
@@ -303,11 +219,7 @@ func (ptr *QRegion) Intersects(region QRegion_ITF) bool {
 }
 
 func (ptr *QRegion) Swap(other QRegion_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::swap")
-		}
-	}()
+	defer qt.Recovering("QRegion::swap")
 
 	if ptr.Pointer() != nil {
 		C.QRegion_Swap(ptr.Pointer(), PointerFromQRegion(other))
@@ -315,11 +227,7 @@ func (ptr *QRegion) Swap(other QRegion_ITF) {
 }
 
 func (ptr *QRegion) Translate2(point core.QPoint_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::translate")
-		}
-	}()
+	defer qt.Recovering("QRegion::translate")
 
 	if ptr.Pointer() != nil {
 		C.QRegion_Translate2(ptr.Pointer(), core.PointerFromQPoint(point))
@@ -327,11 +235,7 @@ func (ptr *QRegion) Translate2(point core.QPoint_ITF) {
 }
 
 func (ptr *QRegion) Translated2(p core.QPoint_ITF) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::translated")
-		}
-	}()
+	defer qt.Recovering("QRegion::translated")
 
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QRegion_Translated2(ptr.Pointer(), core.PointerFromQPoint(p)))
@@ -340,11 +244,7 @@ func (ptr *QRegion) Translated2(p core.QPoint_ITF) *QRegion {
 }
 
 func (ptr *QRegion) Translated(dx int, dy int) *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegion::translated")
-		}
-	}()
+	defer qt.Recovering("QRegion::translated")
 
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QRegion_Translated(ptr.Pointer(), C.int(dx), C.int(dy)))

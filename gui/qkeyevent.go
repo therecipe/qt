@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,11 +35,7 @@ func (ptr *QKeyEvent) QKeyEvent_PTR() *QKeyEvent {
 }
 
 func (ptr *QKeyEvent) Matches(key QKeySequence__StandardKey) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QKeyEvent::matches")
-		}
-	}()
+	defer qt.Recovering("QKeyEvent::matches")
 
 	if ptr.Pointer() != nil {
 		return C.QKeyEvent_Matches(ptr.Pointer(), C.int(key)) != 0
@@ -48,11 +44,7 @@ func (ptr *QKeyEvent) Matches(key QKeySequence__StandardKey) bool {
 }
 
 func (ptr *QKeyEvent) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QKeyEvent::count")
-		}
-	}()
+	defer qt.Recovering("QKeyEvent::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QKeyEvent_Count(ptr.Pointer()))
@@ -61,11 +53,7 @@ func (ptr *QKeyEvent) Count() int {
 }
 
 func (ptr *QKeyEvent) IsAutoRepeat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QKeyEvent::isAutoRepeat")
-		}
-	}()
+	defer qt.Recovering("QKeyEvent::isAutoRepeat")
 
 	if ptr.Pointer() != nil {
 		return C.QKeyEvent_IsAutoRepeat(ptr.Pointer()) != 0
@@ -74,11 +62,7 @@ func (ptr *QKeyEvent) IsAutoRepeat() bool {
 }
 
 func (ptr *QKeyEvent) Key() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QKeyEvent::key")
-		}
-	}()
+	defer qt.Recovering("QKeyEvent::key")
 
 	if ptr.Pointer() != nil {
 		return int(C.QKeyEvent_Key(ptr.Pointer()))
@@ -87,11 +71,7 @@ func (ptr *QKeyEvent) Key() int {
 }
 
 func (ptr *QKeyEvent) Modifiers() core.Qt__KeyboardModifier {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QKeyEvent::modifiers")
-		}
-	}()
+	defer qt.Recovering("QKeyEvent::modifiers")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__KeyboardModifier(C.QKeyEvent_Modifiers(ptr.Pointer()))
@@ -100,11 +80,7 @@ func (ptr *QKeyEvent) Modifiers() core.Qt__KeyboardModifier {
 }
 
 func (ptr *QKeyEvent) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QKeyEvent::text")
-		}
-	}()
+	defer qt.Recovering("QKeyEvent::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QKeyEvent_Text(ptr.Pointer()))

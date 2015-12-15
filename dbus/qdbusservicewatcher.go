@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQDBusServiceWatcherFromPointer(ptr unsafe.Pointer) *QDBusServiceWatcher 
 	var n = new(QDBusServiceWatcher)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusServiceWatcher_") {
-		n.SetObjectName("QDBusServiceWatcher_" + qt.RandomIdentifier())
+		n.SetObjectName("QDBusServiceWatcher_" + qt.Identifier())
 	}
 	return n
 }
@@ -49,11 +48,7 @@ const (
 )
 
 func (ptr *QDBusServiceWatcher) SetWatchMode(mode QDBusServiceWatcher__WatchModeFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::setWatchMode")
-		}
-	}()
+	defer qt.Recovering("QDBusServiceWatcher::setWatchMode")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_SetWatchMode(ptr.Pointer(), C.int(mode))
@@ -61,11 +56,7 @@ func (ptr *QDBusServiceWatcher) SetWatchMode(mode QDBusServiceWatcher__WatchMode
 }
 
 func (ptr *QDBusServiceWatcher) WatchMode() QDBusServiceWatcher__WatchModeFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::watchMode")
-		}
-	}()
+	defer qt.Recovering("QDBusServiceWatcher::watchMode")
 
 	if ptr.Pointer() != nil {
 		return QDBusServiceWatcher__WatchModeFlag(C.QDBusServiceWatcher_WatchMode(ptr.Pointer()))
@@ -74,31 +65,19 @@ func (ptr *QDBusServiceWatcher) WatchMode() QDBusServiceWatcher__WatchModeFlag {
 }
 
 func NewQDBusServiceWatcher(parent core.QObject_ITF) *QDBusServiceWatcher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::QDBusServiceWatcher")
-		}
-	}()
+	defer qt.Recovering("QDBusServiceWatcher::QDBusServiceWatcher")
 
 	return NewQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher(core.PointerFromQObject(parent)))
 }
 
 func NewQDBusServiceWatcher2(service string, connection QDBusConnection_ITF, watchMode QDBusServiceWatcher__WatchModeFlag, parent core.QObject_ITF) *QDBusServiceWatcher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::QDBusServiceWatcher")
-		}
-	}()
+	defer qt.Recovering("QDBusServiceWatcher::QDBusServiceWatcher")
 
 	return NewQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher2(C.CString(service), PointerFromQDBusConnection(connection), C.int(watchMode), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDBusServiceWatcher) AddWatchedService(newService string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::addWatchedService")
-		}
-	}()
+	defer qt.Recovering("QDBusServiceWatcher::addWatchedService")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_AddWatchedService(ptr.Pointer(), C.CString(newService))
@@ -106,11 +85,7 @@ func (ptr *QDBusServiceWatcher) AddWatchedService(newService string) {
 }
 
 func (ptr *QDBusServiceWatcher) RemoveWatchedService(service string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::removeWatchedService")
-		}
-	}()
+	defer qt.Recovering("QDBusServiceWatcher::removeWatchedService")
 
 	if ptr.Pointer() != nil {
 		return C.QDBusServiceWatcher_RemoveWatchedService(ptr.Pointer(), C.CString(service)) != 0
@@ -119,11 +94,7 @@ func (ptr *QDBusServiceWatcher) RemoveWatchedService(service string) bool {
 }
 
 func (ptr *QDBusServiceWatcher) ConnectServiceOwnerChanged(f func(serviceName string, oldOwner string, newOwner string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::serviceOwnerChanged")
-		}
-	}()
+	defer qt.Recovering("connect QDBusServiceWatcher::serviceOwnerChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_ConnectServiceOwnerChanged(ptr.Pointer())
@@ -132,11 +103,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceOwnerChanged(f func(serviceName st
 }
 
 func (ptr *QDBusServiceWatcher) DisconnectServiceOwnerChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::serviceOwnerChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QDBusServiceWatcher::serviceOwnerChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DisconnectServiceOwnerChanged(ptr.Pointer())
@@ -146,21 +113,17 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceOwnerChanged() {
 
 //export callbackQDBusServiceWatcherServiceOwnerChanged
 func callbackQDBusServiceWatcherServiceOwnerChanged(ptrName *C.char, serviceName *C.char, oldOwner *C.char, newOwner *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::serviceOwnerChanged")
-		}
-	}()
+	defer qt.Recovering("callback QDBusServiceWatcher::serviceOwnerChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "serviceOwnerChanged").(func(string, string, string))(C.GoString(serviceName), C.GoString(oldOwner), C.GoString(newOwner))
+	var signal = qt.GetSignal(C.GoString(ptrName), "serviceOwnerChanged")
+	if signal != nil {
+		signal.(func(string, string, string))(C.GoString(serviceName), C.GoString(oldOwner), C.GoString(newOwner))
+	}
+
 }
 
 func (ptr *QDBusServiceWatcher) ConnectServiceRegistered(f func(serviceName string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::serviceRegistered")
-		}
-	}()
+	defer qt.Recovering("connect QDBusServiceWatcher::serviceRegistered")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_ConnectServiceRegistered(ptr.Pointer())
@@ -169,11 +132,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceRegistered(f func(serviceName stri
 }
 
 func (ptr *QDBusServiceWatcher) DisconnectServiceRegistered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::serviceRegistered")
-		}
-	}()
+	defer qt.Recovering("disconnect QDBusServiceWatcher::serviceRegistered")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DisconnectServiceRegistered(ptr.Pointer())
@@ -183,21 +142,17 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceRegistered() {
 
 //export callbackQDBusServiceWatcherServiceRegistered
 func callbackQDBusServiceWatcherServiceRegistered(ptrName *C.char, serviceName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::serviceRegistered")
-		}
-	}()
+	defer qt.Recovering("callback QDBusServiceWatcher::serviceRegistered")
 
-	qt.GetSignal(C.GoString(ptrName), "serviceRegistered").(func(string))(C.GoString(serviceName))
+	var signal = qt.GetSignal(C.GoString(ptrName), "serviceRegistered")
+	if signal != nil {
+		signal.(func(string))(C.GoString(serviceName))
+	}
+
 }
 
 func (ptr *QDBusServiceWatcher) ConnectServiceUnregistered(f func(serviceName string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::serviceUnregistered")
-		}
-	}()
+	defer qt.Recovering("connect QDBusServiceWatcher::serviceUnregistered")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_ConnectServiceUnregistered(ptr.Pointer())
@@ -206,11 +161,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceUnregistered(f func(serviceName st
 }
 
 func (ptr *QDBusServiceWatcher) DisconnectServiceUnregistered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::serviceUnregistered")
-		}
-	}()
+	defer qt.Recovering("disconnect QDBusServiceWatcher::serviceUnregistered")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DisconnectServiceUnregistered(ptr.Pointer())
@@ -220,21 +171,17 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceUnregistered() {
 
 //export callbackQDBusServiceWatcherServiceUnregistered
 func callbackQDBusServiceWatcherServiceUnregistered(ptrName *C.char, serviceName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::serviceUnregistered")
-		}
-	}()
+	defer qt.Recovering("callback QDBusServiceWatcher::serviceUnregistered")
 
-	qt.GetSignal(C.GoString(ptrName), "serviceUnregistered").(func(string))(C.GoString(serviceName))
+	var signal = qt.GetSignal(C.GoString(ptrName), "serviceUnregistered")
+	if signal != nil {
+		signal.(func(string))(C.GoString(serviceName))
+	}
+
 }
 
 func (ptr *QDBusServiceWatcher) SetConnection(connection QDBusConnection_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::setConnection")
-		}
-	}()
+	defer qt.Recovering("QDBusServiceWatcher::setConnection")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_SetConnection(ptr.Pointer(), PointerFromQDBusConnection(connection))
@@ -242,11 +189,7 @@ func (ptr *QDBusServiceWatcher) SetConnection(connection QDBusConnection_ITF) {
 }
 
 func (ptr *QDBusServiceWatcher) SetWatchedServices(services []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::setWatchedServices")
-		}
-	}()
+	defer qt.Recovering("QDBusServiceWatcher::setWatchedServices")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_SetWatchedServices(ptr.Pointer(), C.CString(strings.Join(services, ",,,")))
@@ -254,11 +197,7 @@ func (ptr *QDBusServiceWatcher) SetWatchedServices(services []string) {
 }
 
 func (ptr *QDBusServiceWatcher) WatchedServices() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::watchedServices")
-		}
-	}()
+	defer qt.Recovering("QDBusServiceWatcher::watchedServices")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QDBusServiceWatcher_WatchedServices(ptr.Pointer())), ",,,")
@@ -267,11 +206,7 @@ func (ptr *QDBusServiceWatcher) WatchedServices() []string {
 }
 
 func (ptr *QDBusServiceWatcher) DestroyQDBusServiceWatcher() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusServiceWatcher::~QDBusServiceWatcher")
-		}
-	}()
+	defer qt.Recovering("QDBusServiceWatcher::~QDBusServiceWatcher")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DestroyQDBusServiceWatcher(ptr.Pointer())

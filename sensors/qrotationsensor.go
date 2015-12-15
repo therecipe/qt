@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQRotationSensorFromPointer(ptr unsafe.Pointer) *QRotationSensor {
 	var n = new(QRotationSensor)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QRotationSensor_") {
-		n.SetObjectName("QRotationSensor_" + qt.RandomIdentifier())
+		n.SetObjectName("QRotationSensor_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QRotationSensor) QRotationSensor_PTR() *QRotationSensor {
 }
 
 func (ptr *QRotationSensor) HasZ() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRotationSensor::hasZ")
-		}
-	}()
+	defer qt.Recovering("QRotationSensor::hasZ")
 
 	if ptr.Pointer() != nil {
 		return C.QRotationSensor_HasZ(ptr.Pointer()) != 0
@@ -52,11 +47,7 @@ func (ptr *QRotationSensor) HasZ() bool {
 }
 
 func (ptr *QRotationSensor) Reading() *QRotationReading {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRotationSensor::reading")
-		}
-	}()
+	defer qt.Recovering("QRotationSensor::reading")
 
 	if ptr.Pointer() != nil {
 		return NewQRotationReadingFromPointer(C.QRotationSensor_Reading(ptr.Pointer()))
@@ -65,21 +56,13 @@ func (ptr *QRotationSensor) Reading() *QRotationReading {
 }
 
 func NewQRotationSensor(parent core.QObject_ITF) *QRotationSensor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRotationSensor::QRotationSensor")
-		}
-	}()
+	defer qt.Recovering("QRotationSensor::QRotationSensor")
 
 	return NewQRotationSensorFromPointer(C.QRotationSensor_NewQRotationSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QRotationSensor) ConnectHasZChanged(f func(hasZ bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRotationSensor::hasZChanged")
-		}
-	}()
+	defer qt.Recovering("connect QRotationSensor::hasZChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRotationSensor_ConnectHasZChanged(ptr.Pointer())
@@ -88,11 +71,7 @@ func (ptr *QRotationSensor) ConnectHasZChanged(f func(hasZ bool)) {
 }
 
 func (ptr *QRotationSensor) DisconnectHasZChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRotationSensor::hasZChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QRotationSensor::hasZChanged")
 
 	if ptr.Pointer() != nil {
 		C.QRotationSensor_DisconnectHasZChanged(ptr.Pointer())
@@ -102,21 +81,17 @@ func (ptr *QRotationSensor) DisconnectHasZChanged() {
 
 //export callbackQRotationSensorHasZChanged
 func callbackQRotationSensorHasZChanged(ptrName *C.char, hasZ C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRotationSensor::hasZChanged")
-		}
-	}()
+	defer qt.Recovering("callback QRotationSensor::hasZChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "hasZChanged").(func(bool))(int(hasZ) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "hasZChanged")
+	if signal != nil {
+		signal.(func(bool))(int(hasZ) != 0)
+	}
+
 }
 
 func (ptr *QRotationSensor) SetHasZ(hasZ bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRotationSensor::setHasZ")
-		}
-	}()
+	defer qt.Recovering("QRotationSensor::setHasZ")
 
 	if ptr.Pointer() != nil {
 		C.QRotationSensor_SetHasZ(ptr.Pointer(), C.int(qt.GoBoolToInt(hasZ)))
@@ -124,11 +99,7 @@ func (ptr *QRotationSensor) SetHasZ(hasZ bool) {
 }
 
 func (ptr *QRotationSensor) DestroyQRotationSensor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRotationSensor::~QRotationSensor")
-		}
-	}()
+	defer qt.Recovering("QRotationSensor::~QRotationSensor")
 
 	if ptr.Pointer() != nil {
 		C.QRotationSensor_DestroyQRotationSensor(ptr.Pointer())

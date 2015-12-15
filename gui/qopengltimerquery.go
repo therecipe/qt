@@ -28,7 +28,7 @@ func NewQOpenGLTimerQueryFromPointer(ptr unsafe.Pointer) *QOpenGLTimerQuery {
 	var n = new(QOpenGLTimerQuery)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLTimerQuery_") {
-		n.SetObjectName("QOpenGLTimerQuery_" + qt.RandomIdentifier())
+		n.SetObjectName("QOpenGLTimerQuery_" + qt.Identifier())
 	}
 	return n
 }

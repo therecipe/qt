@@ -3,7 +3,7 @@ package quick
 //#include "quick.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,11 +34,7 @@ func (ptr *QSGBasicGeometryNode) QSGBasicGeometryNode_PTR() *QSGBasicGeometryNod
 }
 
 func (ptr *QSGBasicGeometryNode) Geometry2() *QSGGeometry {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGBasicGeometryNode::geometry")
-		}
-	}()
+	defer qt.Recovering("QSGBasicGeometryNode::geometry")
 
 	if ptr.Pointer() != nil {
 		return NewQSGGeometryFromPointer(C.QSGBasicGeometryNode_Geometry2(ptr.Pointer()))
@@ -47,11 +43,7 @@ func (ptr *QSGBasicGeometryNode) Geometry2() *QSGGeometry {
 }
 
 func (ptr *QSGBasicGeometryNode) Geometry() *QSGGeometry {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGBasicGeometryNode::geometry")
-		}
-	}()
+	defer qt.Recovering("QSGBasicGeometryNode::geometry")
 
 	if ptr.Pointer() != nil {
 		return NewQSGGeometryFromPointer(C.QSGBasicGeometryNode_Geometry(ptr.Pointer()))
@@ -60,11 +52,7 @@ func (ptr *QSGBasicGeometryNode) Geometry() *QSGGeometry {
 }
 
 func (ptr *QSGBasicGeometryNode) SetGeometry(geometry QSGGeometry_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGBasicGeometryNode::setGeometry")
-		}
-	}()
+	defer qt.Recovering("QSGBasicGeometryNode::setGeometry")
 
 	if ptr.Pointer() != nil {
 		C.QSGBasicGeometryNode_SetGeometry(ptr.Pointer(), PointerFromQSGGeometry(geometry))
@@ -72,11 +60,7 @@ func (ptr *QSGBasicGeometryNode) SetGeometry(geometry QSGGeometry_ITF) {
 }
 
 func (ptr *QSGBasicGeometryNode) DestroyQSGBasicGeometryNode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGBasicGeometryNode::~QSGBasicGeometryNode")
-		}
-	}()
+	defer qt.Recovering("QSGBasicGeometryNode::~QSGBasicGeometryNode")
 
 	if ptr.Pointer() != nil {
 		C.QSGBasicGeometryNode_DestroyQSGBasicGeometryNode(ptr.Pointer())

@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQTimerFromPointer(ptr unsafe.Pointer) *QTimer {
 	var n = new(QTimer)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QTimer_") {
-		n.SetObjectName("QTimer_" + qt.RandomIdentifier())
+		n.SetObjectName("QTimer_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QTimer) QTimer_PTR() *QTimer {
 }
 
 func (ptr *QTimer) RemainingTime() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::remainingTime")
-		}
-	}()
+	defer qt.Recovering("QTimer::remainingTime")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimer_RemainingTime(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QTimer) RemainingTime() int {
 }
 
 func (ptr *QTimer) SetInterval(msec int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::setInterval")
-		}
-	}()
+	defer qt.Recovering("QTimer::setInterval")
 
 	if ptr.Pointer() != nil {
 		C.QTimer_SetInterval(ptr.Pointer(), C.int(msec))
@@ -63,21 +54,13 @@ func (ptr *QTimer) SetInterval(msec int) {
 }
 
 func NewQTimer(parent QObject_ITF) *QTimer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::QTimer")
-		}
-	}()
+	defer qt.Recovering("QTimer::QTimer")
 
 	return NewQTimerFromPointer(C.QTimer_NewQTimer(PointerFromQObject(parent)))
 }
 
 func (ptr *QTimer) Interval() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::interval")
-		}
-	}()
+	defer qt.Recovering("QTimer::interval")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimer_Interval(ptr.Pointer()))
@@ -86,11 +69,7 @@ func (ptr *QTimer) Interval() int {
 }
 
 func (ptr *QTimer) IsActive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::isActive")
-		}
-	}()
+	defer qt.Recovering("QTimer::isActive")
 
 	if ptr.Pointer() != nil {
 		return C.QTimer_IsActive(ptr.Pointer()) != 0
@@ -99,11 +78,7 @@ func (ptr *QTimer) IsActive() bool {
 }
 
 func (ptr *QTimer) IsSingleShot() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::isSingleShot")
-		}
-	}()
+	defer qt.Recovering("QTimer::isSingleShot")
 
 	if ptr.Pointer() != nil {
 		return C.QTimer_IsSingleShot(ptr.Pointer()) != 0
@@ -112,11 +87,7 @@ func (ptr *QTimer) IsSingleShot() bool {
 }
 
 func (ptr *QTimer) SetSingleShot(singleShot bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::setSingleShot")
-		}
-	}()
+	defer qt.Recovering("QTimer::setSingleShot")
 
 	if ptr.Pointer() != nil {
 		C.QTimer_SetSingleShot(ptr.Pointer(), C.int(qt.GoBoolToInt(singleShot)))
@@ -124,11 +95,7 @@ func (ptr *QTimer) SetSingleShot(singleShot bool) {
 }
 
 func (ptr *QTimer) SetTimerType(atype Qt__TimerType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::setTimerType")
-		}
-	}()
+	defer qt.Recovering("QTimer::setTimerType")
 
 	if ptr.Pointer() != nil {
 		C.QTimer_SetTimerType(ptr.Pointer(), C.int(atype))
@@ -136,31 +103,19 @@ func (ptr *QTimer) SetTimerType(atype Qt__TimerType) {
 }
 
 func QTimer_SingleShot2(msec int, timerType Qt__TimerType, receiver QObject_ITF, member string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::singleShot")
-		}
-	}()
+	defer qt.Recovering("QTimer::singleShot")
 
 	C.QTimer_QTimer_SingleShot2(C.int(msec), C.int(timerType), PointerFromQObject(receiver), C.CString(member))
 }
 
 func QTimer_SingleShot(msec int, receiver QObject_ITF, member string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::singleShot")
-		}
-	}()
+	defer qt.Recovering("QTimer::singleShot")
 
 	C.QTimer_QTimer_SingleShot(C.int(msec), PointerFromQObject(receiver), C.CString(member))
 }
 
 func (ptr *QTimer) Start2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::start")
-		}
-	}()
+	defer qt.Recovering("QTimer::start")
 
 	if ptr.Pointer() != nil {
 		C.QTimer_Start2(ptr.Pointer())
@@ -168,11 +123,7 @@ func (ptr *QTimer) Start2() {
 }
 
 func (ptr *QTimer) Start(msec int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::start")
-		}
-	}()
+	defer qt.Recovering("QTimer::start")
 
 	if ptr.Pointer() != nil {
 		C.QTimer_Start(ptr.Pointer(), C.int(msec))
@@ -180,11 +131,7 @@ func (ptr *QTimer) Start(msec int) {
 }
 
 func (ptr *QTimer) Stop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::stop")
-		}
-	}()
+	defer qt.Recovering("QTimer::stop")
 
 	if ptr.Pointer() != nil {
 		C.QTimer_Stop(ptr.Pointer())
@@ -192,11 +139,7 @@ func (ptr *QTimer) Stop() {
 }
 
 func (ptr *QTimer) ConnectTimeout(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::timeout")
-		}
-	}()
+	defer qt.Recovering("connect QTimer::timeout")
 
 	if ptr.Pointer() != nil {
 		C.QTimer_ConnectTimeout(ptr.Pointer())
@@ -205,11 +148,7 @@ func (ptr *QTimer) ConnectTimeout(f func()) {
 }
 
 func (ptr *QTimer) DisconnectTimeout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::timeout")
-		}
-	}()
+	defer qt.Recovering("disconnect QTimer::timeout")
 
 	if ptr.Pointer() != nil {
 		C.QTimer_DisconnectTimeout(ptr.Pointer())
@@ -219,21 +158,48 @@ func (ptr *QTimer) DisconnectTimeout() {
 
 //export callbackQTimerTimeout
 func callbackQTimerTimeout(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::timeout")
-		}
-	}()
+	defer qt.Recovering("callback QTimer::timeout")
 
-	qt.GetSignal(C.GoString(ptrName), "timeout").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "timeout")
+	if signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QTimer) ConnectTimerEvent(f func(e *QTimerEvent)) {
+	defer qt.Recovering("connect QTimer::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QTimer) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QTimer::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQTimerTimerEvent
+func callbackQTimerTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTimer::timerEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
+	if signal != nil {
+		defer signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(e))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QTimer) TimerId() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::timerId")
-		}
-	}()
+	defer qt.Recovering("QTimer::timerId")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimer_TimerId(ptr.Pointer()))
@@ -242,11 +208,7 @@ func (ptr *QTimer) TimerId() int {
 }
 
 func (ptr *QTimer) TimerType() Qt__TimerType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::timerType")
-		}
-	}()
+	defer qt.Recovering("QTimer::timerType")
 
 	if ptr.Pointer() != nil {
 		return Qt__TimerType(C.QTimer_TimerType(ptr.Pointer()))
@@ -255,11 +217,7 @@ func (ptr *QTimer) TimerType() Qt__TimerType {
 }
 
 func (ptr *QTimer) DestroyQTimer() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimer::~QTimer")
-		}
-	}()
+	defer qt.Recovering("QTimer::~QTimer")
 
 	if ptr.Pointer() != nil {
 		C.QTimer_DestroyQTimer(ptr.Pointer())

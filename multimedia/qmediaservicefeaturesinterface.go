@@ -3,7 +3,7 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQMediaServiceFeaturesInterface(ptr QMediaServiceFeaturesInterfac
 func NewQMediaServiceFeaturesInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceFeaturesInterface {
 	var n = new(QMediaServiceFeaturesInterface)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QMediaServiceFeaturesInterface_") {
+		n.SetObjectNameAbs("QMediaServiceFeaturesInterface_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,13 +44,26 @@ func (ptr *QMediaServiceFeaturesInterface) QMediaServiceFeaturesInterface_PTR() 
 }
 
 func (ptr *QMediaServiceFeaturesInterface) DestroyQMediaServiceFeaturesInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface")
-		}
-	}()
+	defer qt.Recovering("QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface")
 
 	if ptr.Pointer() != nil {
 		C.QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaServiceFeaturesInterface) ObjectNameAbs() string {
+	defer qt.Recovering("QMediaServiceFeaturesInterface::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QMediaServiceFeaturesInterface_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QMediaServiceFeaturesInterface) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QMediaServiceFeaturesInterface::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceFeaturesInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

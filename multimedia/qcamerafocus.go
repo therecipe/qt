@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQCameraFocusFromPointer(ptr unsafe.Pointer) *QCameraFocus {
 	var n = new(QCameraFocus)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraFocus_") {
-		n.SetObjectName("QCameraFocus_" + qt.RandomIdentifier())
+		n.SetObjectName("QCameraFocus_" + qt.Identifier())
 	}
 	return n
 }
@@ -61,11 +60,7 @@ const (
 )
 
 func (ptr *QCameraFocus) DigitalZoom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::digitalZoom")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::digitalZoom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraFocus_DigitalZoom(ptr.Pointer()))
@@ -74,11 +69,7 @@ func (ptr *QCameraFocus) DigitalZoom() float64 {
 }
 
 func (ptr *QCameraFocus) FocusMode() QCameraFocus__FocusMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::focusMode")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::focusMode")
 
 	if ptr.Pointer() != nil {
 		return QCameraFocus__FocusMode(C.QCameraFocus_FocusMode(ptr.Pointer()))
@@ -87,11 +78,7 @@ func (ptr *QCameraFocus) FocusMode() QCameraFocus__FocusMode {
 }
 
 func (ptr *QCameraFocus) FocusPointMode() QCameraFocus__FocusPointMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::focusPointMode")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::focusPointMode")
 
 	if ptr.Pointer() != nil {
 		return QCameraFocus__FocusPointMode(C.QCameraFocus_FocusPointMode(ptr.Pointer()))
@@ -100,11 +87,7 @@ func (ptr *QCameraFocus) FocusPointMode() QCameraFocus__FocusPointMode {
 }
 
 func (ptr *QCameraFocus) OpticalZoom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::opticalZoom")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::opticalZoom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraFocus_OpticalZoom(ptr.Pointer()))
@@ -113,11 +96,7 @@ func (ptr *QCameraFocus) OpticalZoom() float64 {
 }
 
 func (ptr *QCameraFocus) SetCustomFocusPoint(point core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::setCustomFocusPoint")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::setCustomFocusPoint")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocus_SetCustomFocusPoint(ptr.Pointer(), core.PointerFromQPointF(point))
@@ -125,11 +104,7 @@ func (ptr *QCameraFocus) SetCustomFocusPoint(point core.QPointF_ITF) {
 }
 
 func (ptr *QCameraFocus) SetFocusMode(mode QCameraFocus__FocusMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::setFocusMode")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::setFocusMode")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocus_SetFocusMode(ptr.Pointer(), C.int(mode))
@@ -137,11 +112,7 @@ func (ptr *QCameraFocus) SetFocusMode(mode QCameraFocus__FocusMode) {
 }
 
 func (ptr *QCameraFocus) SetFocusPointMode(mode QCameraFocus__FocusPointMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::setFocusPointMode")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::setFocusPointMode")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocus_SetFocusPointMode(ptr.Pointer(), C.int(mode))
@@ -149,11 +120,7 @@ func (ptr *QCameraFocus) SetFocusPointMode(mode QCameraFocus__FocusPointMode) {
 }
 
 func (ptr *QCameraFocus) ConnectFocusZonesChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::focusZonesChanged")
-		}
-	}()
+	defer qt.Recovering("connect QCameraFocus::focusZonesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocus_ConnectFocusZonesChanged(ptr.Pointer())
@@ -162,11 +129,7 @@ func (ptr *QCameraFocus) ConnectFocusZonesChanged(f func()) {
 }
 
 func (ptr *QCameraFocus) DisconnectFocusZonesChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::focusZonesChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QCameraFocus::focusZonesChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocus_DisconnectFocusZonesChanged(ptr.Pointer())
@@ -176,21 +139,17 @@ func (ptr *QCameraFocus) DisconnectFocusZonesChanged() {
 
 //export callbackQCameraFocusFocusZonesChanged
 func callbackQCameraFocusFocusZonesChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::focusZonesChanged")
-		}
-	}()
+	defer qt.Recovering("callback QCameraFocus::focusZonesChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "focusZonesChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusZonesChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QCameraFocus) IsAvailable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::isAvailable")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::isAvailable")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraFocus_IsAvailable(ptr.Pointer()) != 0
@@ -199,11 +158,7 @@ func (ptr *QCameraFocus) IsAvailable() bool {
 }
 
 func (ptr *QCameraFocus) IsFocusModeSupported(mode QCameraFocus__FocusMode) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::isFocusModeSupported")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::isFocusModeSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraFocus_IsFocusModeSupported(ptr.Pointer(), C.int(mode)) != 0
@@ -212,11 +167,7 @@ func (ptr *QCameraFocus) IsFocusModeSupported(mode QCameraFocus__FocusMode) bool
 }
 
 func (ptr *QCameraFocus) IsFocusPointModeSupported(mode QCameraFocus__FocusPointMode) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::isFocusPointModeSupported")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::isFocusPointModeSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraFocus_IsFocusPointModeSupported(ptr.Pointer(), C.int(mode)) != 0
@@ -225,11 +176,7 @@ func (ptr *QCameraFocus) IsFocusPointModeSupported(mode QCameraFocus__FocusPoint
 }
 
 func (ptr *QCameraFocus) MaximumDigitalZoom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::maximumDigitalZoom")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::maximumDigitalZoom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraFocus_MaximumDigitalZoom(ptr.Pointer()))
@@ -238,11 +185,7 @@ func (ptr *QCameraFocus) MaximumDigitalZoom() float64 {
 }
 
 func (ptr *QCameraFocus) MaximumOpticalZoom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::maximumOpticalZoom")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::maximumOpticalZoom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraFocus_MaximumOpticalZoom(ptr.Pointer()))
@@ -251,11 +194,7 @@ func (ptr *QCameraFocus) MaximumOpticalZoom() float64 {
 }
 
 func (ptr *QCameraFocus) ZoomTo(optical float64, digital float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFocus::zoomTo")
-		}
-	}()
+	defer qt.Recovering("QCameraFocus::zoomTo")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFocus_ZoomTo(ptr.Pointer(), C.double(optical), C.double(digital))

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQDialogButtonBoxFromPointer(ptr unsafe.Pointer) *QDialogButtonBox {
 	var n = new(QDialogButtonBox)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDialogButtonBox_") {
-		n.SetObjectName("QDialogButtonBox_" + qt.RandomIdentifier())
+		n.SetObjectName("QDialogButtonBox_" + qt.Identifier())
 	}
 	return n
 }
@@ -93,11 +92,7 @@ const (
 )
 
 func (ptr *QDialogButtonBox) CenterButtons() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::centerButtons")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::centerButtons")
 
 	if ptr.Pointer() != nil {
 		return C.QDialogButtonBox_CenterButtons(ptr.Pointer()) != 0
@@ -106,11 +101,7 @@ func (ptr *QDialogButtonBox) CenterButtons() bool {
 }
 
 func (ptr *QDialogButtonBox) Orientation() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::orientation")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::orientation")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QDialogButtonBox_Orientation(ptr.Pointer()))
@@ -119,11 +110,7 @@ func (ptr *QDialogButtonBox) Orientation() core.Qt__Orientation {
 }
 
 func (ptr *QDialogButtonBox) SetCenterButtons(center bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::setCenterButtons")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::setCenterButtons")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_SetCenterButtons(ptr.Pointer(), C.int(qt.GoBoolToInt(center)))
@@ -131,11 +118,7 @@ func (ptr *QDialogButtonBox) SetCenterButtons(center bool) {
 }
 
 func (ptr *QDialogButtonBox) SetOrientation(orientation core.Qt__Orientation) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::setOrientation")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::setOrientation")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_SetOrientation(ptr.Pointer(), C.int(orientation))
@@ -143,11 +126,7 @@ func (ptr *QDialogButtonBox) SetOrientation(orientation core.Qt__Orientation) {
 }
 
 func (ptr *QDialogButtonBox) SetStandardButtons(buttons QDialogButtonBox__StandardButton) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::setStandardButtons")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::setStandardButtons")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_SetStandardButtons(ptr.Pointer(), C.int(buttons))
@@ -155,11 +134,7 @@ func (ptr *QDialogButtonBox) SetStandardButtons(buttons QDialogButtonBox__Standa
 }
 
 func (ptr *QDialogButtonBox) StandardButtons() QDialogButtonBox__StandardButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::standardButtons")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::standardButtons")
 
 	if ptr.Pointer() != nil {
 		return QDialogButtonBox__StandardButton(C.QDialogButtonBox_StandardButtons(ptr.Pointer()))
@@ -168,51 +143,31 @@ func (ptr *QDialogButtonBox) StandardButtons() QDialogButtonBox__StandardButton 
 }
 
 func NewQDialogButtonBox(parent QWidget_ITF) *QDialogButtonBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::QDialogButtonBox")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::QDialogButtonBox")
 
 	return NewQDialogButtonBoxFromPointer(C.QDialogButtonBox_NewQDialogButtonBox(PointerFromQWidget(parent)))
 }
 
 func NewQDialogButtonBox2(orientation core.Qt__Orientation, parent QWidget_ITF) *QDialogButtonBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::QDialogButtonBox")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::QDialogButtonBox")
 
 	return NewQDialogButtonBoxFromPointer(C.QDialogButtonBox_NewQDialogButtonBox2(C.int(orientation), PointerFromQWidget(parent)))
 }
 
 func NewQDialogButtonBox3(buttons QDialogButtonBox__StandardButton, parent QWidget_ITF) *QDialogButtonBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::QDialogButtonBox")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::QDialogButtonBox")
 
 	return NewQDialogButtonBoxFromPointer(C.QDialogButtonBox_NewQDialogButtonBox3(C.int(buttons), PointerFromQWidget(parent)))
 }
 
 func NewQDialogButtonBox4(buttons QDialogButtonBox__StandardButton, orientation core.Qt__Orientation, parent QWidget_ITF) *QDialogButtonBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::QDialogButtonBox")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::QDialogButtonBox")
 
 	return NewQDialogButtonBoxFromPointer(C.QDialogButtonBox_NewQDialogButtonBox4(C.int(buttons), C.int(orientation), PointerFromQWidget(parent)))
 }
 
 func (ptr *QDialogButtonBox) ConnectAccepted(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::accepted")
-		}
-	}()
+	defer qt.Recovering("connect QDialogButtonBox::accepted")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_ConnectAccepted(ptr.Pointer())
@@ -221,11 +176,7 @@ func (ptr *QDialogButtonBox) ConnectAccepted(f func()) {
 }
 
 func (ptr *QDialogButtonBox) DisconnectAccepted() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::accepted")
-		}
-	}()
+	defer qt.Recovering("disconnect QDialogButtonBox::accepted")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_DisconnectAccepted(ptr.Pointer())
@@ -235,21 +186,17 @@ func (ptr *QDialogButtonBox) DisconnectAccepted() {
 
 //export callbackQDialogButtonBoxAccepted
 func callbackQDialogButtonBoxAccepted(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::accepted")
-		}
-	}()
+	defer qt.Recovering("callback QDialogButtonBox::accepted")
 
-	qt.GetSignal(C.GoString(ptrName), "accepted").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "accepted")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QDialogButtonBox) AddButton3(button QDialogButtonBox__StandardButton) *QPushButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::addButton")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::addButton")
 
 	if ptr.Pointer() != nil {
 		return NewQPushButtonFromPointer(C.QDialogButtonBox_AddButton3(ptr.Pointer(), C.int(button)))
@@ -258,11 +205,7 @@ func (ptr *QDialogButtonBox) AddButton3(button QDialogButtonBox__StandardButton)
 }
 
 func (ptr *QDialogButtonBox) AddButton2(text string, role QDialogButtonBox__ButtonRole) *QPushButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::addButton")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::addButton")
 
 	if ptr.Pointer() != nil {
 		return NewQPushButtonFromPointer(C.QDialogButtonBox_AddButton2(ptr.Pointer(), C.CString(text), C.int(role)))
@@ -271,11 +214,7 @@ func (ptr *QDialogButtonBox) AddButton2(text string, role QDialogButtonBox__Butt
 }
 
 func (ptr *QDialogButtonBox) AddButton(button QAbstractButton_ITF, role QDialogButtonBox__ButtonRole) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::addButton")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::addButton")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_AddButton(ptr.Pointer(), PointerFromQAbstractButton(button), C.int(role))
@@ -283,11 +222,7 @@ func (ptr *QDialogButtonBox) AddButton(button QAbstractButton_ITF, role QDialogB
 }
 
 func (ptr *QDialogButtonBox) Button(which QDialogButtonBox__StandardButton) *QPushButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::button")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::button")
 
 	if ptr.Pointer() != nil {
 		return NewQPushButtonFromPointer(C.QDialogButtonBox_Button(ptr.Pointer(), C.int(which)))
@@ -296,11 +231,7 @@ func (ptr *QDialogButtonBox) Button(which QDialogButtonBox__StandardButton) *QPu
 }
 
 func (ptr *QDialogButtonBox) ButtonRole(button QAbstractButton_ITF) QDialogButtonBox__ButtonRole {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::buttonRole")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::buttonRole")
 
 	if ptr.Pointer() != nil {
 		return QDialogButtonBox__ButtonRole(C.QDialogButtonBox_ButtonRole(ptr.Pointer(), PointerFromQAbstractButton(button)))
@@ -308,12 +239,39 @@ func (ptr *QDialogButtonBox) ButtonRole(button QAbstractButton_ITF) QDialogButto
 	return 0
 }
 
+func (ptr *QDialogButtonBox) ConnectChangeEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QDialogButtonBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QDialogButtonBox) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QDialogButtonBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQDialogButtonBoxChangeEvent
+func callbackQDialogButtonBoxChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDialogButtonBox::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QDialogButtonBox) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::clear")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::clear")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_Clear(ptr.Pointer())
@@ -321,11 +279,7 @@ func (ptr *QDialogButtonBox) Clear() {
 }
 
 func (ptr *QDialogButtonBox) ConnectClicked(f func(button *QAbstractButton)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::clicked")
-		}
-	}()
+	defer qt.Recovering("connect QDialogButtonBox::clicked")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_ConnectClicked(ptr.Pointer())
@@ -334,11 +288,7 @@ func (ptr *QDialogButtonBox) ConnectClicked(f func(button *QAbstractButton)) {
 }
 
 func (ptr *QDialogButtonBox) DisconnectClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::clicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QDialogButtonBox::clicked")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_DisconnectClicked(ptr.Pointer())
@@ -348,21 +298,17 @@ func (ptr *QDialogButtonBox) DisconnectClicked() {
 
 //export callbackQDialogButtonBoxClicked
 func callbackQDialogButtonBoxClicked(ptrName *C.char, button unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::clicked")
-		}
-	}()
+	defer qt.Recovering("callback QDialogButtonBox::clicked")
 
-	qt.GetSignal(C.GoString(ptrName), "clicked").(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
+	var signal = qt.GetSignal(C.GoString(ptrName), "clicked")
+	if signal != nil {
+		signal.(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
+	}
+
 }
 
 func (ptr *QDialogButtonBox) ConnectHelpRequested(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::helpRequested")
-		}
-	}()
+	defer qt.Recovering("connect QDialogButtonBox::helpRequested")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_ConnectHelpRequested(ptr.Pointer())
@@ -371,11 +317,7 @@ func (ptr *QDialogButtonBox) ConnectHelpRequested(f func()) {
 }
 
 func (ptr *QDialogButtonBox) DisconnectHelpRequested() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::helpRequested")
-		}
-	}()
+	defer qt.Recovering("disconnect QDialogButtonBox::helpRequested")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_DisconnectHelpRequested(ptr.Pointer())
@@ -385,21 +327,17 @@ func (ptr *QDialogButtonBox) DisconnectHelpRequested() {
 
 //export callbackQDialogButtonBoxHelpRequested
 func callbackQDialogButtonBoxHelpRequested(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::helpRequested")
-		}
-	}()
+	defer qt.Recovering("callback QDialogButtonBox::helpRequested")
 
-	qt.GetSignal(C.GoString(ptrName), "helpRequested").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "helpRequested")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QDialogButtonBox) ConnectRejected(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::rejected")
-		}
-	}()
+	defer qt.Recovering("connect QDialogButtonBox::rejected")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_ConnectRejected(ptr.Pointer())
@@ -408,11 +346,7 @@ func (ptr *QDialogButtonBox) ConnectRejected(f func()) {
 }
 
 func (ptr *QDialogButtonBox) DisconnectRejected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::rejected")
-		}
-	}()
+	defer qt.Recovering("disconnect QDialogButtonBox::rejected")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_DisconnectRejected(ptr.Pointer())
@@ -422,21 +356,17 @@ func (ptr *QDialogButtonBox) DisconnectRejected() {
 
 //export callbackQDialogButtonBoxRejected
 func callbackQDialogButtonBoxRejected(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::rejected")
-		}
-	}()
+	defer qt.Recovering("callback QDialogButtonBox::rejected")
 
-	qt.GetSignal(C.GoString(ptrName), "rejected").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "rejected")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QDialogButtonBox) RemoveButton(button QAbstractButton_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::removeButton")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::removeButton")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_RemoveButton(ptr.Pointer(), PointerFromQAbstractButton(button))
@@ -444,11 +374,7 @@ func (ptr *QDialogButtonBox) RemoveButton(button QAbstractButton_ITF) {
 }
 
 func (ptr *QDialogButtonBox) StandardButton(button QAbstractButton_ITF) QDialogButtonBox__StandardButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::standardButton")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::standardButton")
 
 	if ptr.Pointer() != nil {
 		return QDialogButtonBox__StandardButton(C.QDialogButtonBox_StandardButton(ptr.Pointer(), PointerFromQAbstractButton(button)))
@@ -457,11 +383,7 @@ func (ptr *QDialogButtonBox) StandardButton(button QAbstractButton_ITF) QDialogB
 }
 
 func (ptr *QDialogButtonBox) DestroyQDialogButtonBox() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDialogButtonBox::~QDialogButtonBox")
-		}
-	}()
+	defer qt.Recovering("QDialogButtonBox::~QDialogButtonBox")
 
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_DestroyQDialogButtonBox(ptr.Pointer())

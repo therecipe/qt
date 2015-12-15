@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQCameraExposureControlFromPointer(ptr unsafe.Pointer) *QCameraExposureCo
 	var n = new(QCameraExposureControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraExposureControl_") {
-		n.SetObjectName("QCameraExposureControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QCameraExposureControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -56,11 +55,7 @@ const (
 )
 
 func (ptr *QCameraExposureControl) ActualValue(parameter QCameraExposureControl__ExposureParameter) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::actualValue")
-		}
-	}()
+	defer qt.Recovering("QCameraExposureControl::actualValue")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QCameraExposureControl_ActualValue(ptr.Pointer(), C.int(parameter)))
@@ -69,11 +64,7 @@ func (ptr *QCameraExposureControl) ActualValue(parameter QCameraExposureControl_
 }
 
 func (ptr *QCameraExposureControl) ConnectActualValueChanged(f func(parameter int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::actualValueChanged")
-		}
-	}()
+	defer qt.Recovering("connect QCameraExposureControl::actualValueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraExposureControl_ConnectActualValueChanged(ptr.Pointer())
@@ -82,11 +73,7 @@ func (ptr *QCameraExposureControl) ConnectActualValueChanged(f func(parameter in
 }
 
 func (ptr *QCameraExposureControl) DisconnectActualValueChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::actualValueChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QCameraExposureControl::actualValueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraExposureControl_DisconnectActualValueChanged(ptr.Pointer())
@@ -96,21 +83,17 @@ func (ptr *QCameraExposureControl) DisconnectActualValueChanged() {
 
 //export callbackQCameraExposureControlActualValueChanged
 func callbackQCameraExposureControlActualValueChanged(ptrName *C.char, parameter C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::actualValueChanged")
-		}
-	}()
+	defer qt.Recovering("callback QCameraExposureControl::actualValueChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "actualValueChanged").(func(int))(int(parameter))
+	var signal = qt.GetSignal(C.GoString(ptrName), "actualValueChanged")
+	if signal != nil {
+		signal.(func(int))(int(parameter))
+	}
+
 }
 
 func (ptr *QCameraExposureControl) IsParameterSupported(parameter QCameraExposureControl__ExposureParameter) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::isParameterSupported")
-		}
-	}()
+	defer qt.Recovering("QCameraExposureControl::isParameterSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraExposureControl_IsParameterSupported(ptr.Pointer(), C.int(parameter)) != 0
@@ -119,11 +102,7 @@ func (ptr *QCameraExposureControl) IsParameterSupported(parameter QCameraExposur
 }
 
 func (ptr *QCameraExposureControl) ConnectParameterRangeChanged(f func(parameter int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::parameterRangeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QCameraExposureControl::parameterRangeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraExposureControl_ConnectParameterRangeChanged(ptr.Pointer())
@@ -132,11 +111,7 @@ func (ptr *QCameraExposureControl) ConnectParameterRangeChanged(f func(parameter
 }
 
 func (ptr *QCameraExposureControl) DisconnectParameterRangeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::parameterRangeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QCameraExposureControl::parameterRangeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraExposureControl_DisconnectParameterRangeChanged(ptr.Pointer())
@@ -146,21 +121,17 @@ func (ptr *QCameraExposureControl) DisconnectParameterRangeChanged() {
 
 //export callbackQCameraExposureControlParameterRangeChanged
 func callbackQCameraExposureControlParameterRangeChanged(ptrName *C.char, parameter C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::parameterRangeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QCameraExposureControl::parameterRangeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "parameterRangeChanged").(func(int))(int(parameter))
+	var signal = qt.GetSignal(C.GoString(ptrName), "parameterRangeChanged")
+	if signal != nil {
+		signal.(func(int))(int(parameter))
+	}
+
 }
 
 func (ptr *QCameraExposureControl) RequestedValue(parameter QCameraExposureControl__ExposureParameter) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::requestedValue")
-		}
-	}()
+	defer qt.Recovering("QCameraExposureControl::requestedValue")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QCameraExposureControl_RequestedValue(ptr.Pointer(), C.int(parameter)))
@@ -169,11 +140,7 @@ func (ptr *QCameraExposureControl) RequestedValue(parameter QCameraExposureContr
 }
 
 func (ptr *QCameraExposureControl) ConnectRequestedValueChanged(f func(parameter int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::requestedValueChanged")
-		}
-	}()
+	defer qt.Recovering("connect QCameraExposureControl::requestedValueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraExposureControl_ConnectRequestedValueChanged(ptr.Pointer())
@@ -182,11 +149,7 @@ func (ptr *QCameraExposureControl) ConnectRequestedValueChanged(f func(parameter
 }
 
 func (ptr *QCameraExposureControl) DisconnectRequestedValueChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::requestedValueChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QCameraExposureControl::requestedValueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraExposureControl_DisconnectRequestedValueChanged(ptr.Pointer())
@@ -196,21 +159,17 @@ func (ptr *QCameraExposureControl) DisconnectRequestedValueChanged() {
 
 //export callbackQCameraExposureControlRequestedValueChanged
 func callbackQCameraExposureControlRequestedValueChanged(ptrName *C.char, parameter C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::requestedValueChanged")
-		}
-	}()
+	defer qt.Recovering("callback QCameraExposureControl::requestedValueChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "requestedValueChanged").(func(int))(int(parameter))
+	var signal = qt.GetSignal(C.GoString(ptrName), "requestedValueChanged")
+	if signal != nil {
+		signal.(func(int))(int(parameter))
+	}
+
 }
 
 func (ptr *QCameraExposureControl) SetValue(parameter QCameraExposureControl__ExposureParameter, value core.QVariant_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::setValue")
-		}
-	}()
+	defer qt.Recovering("QCameraExposureControl::setValue")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraExposureControl_SetValue(ptr.Pointer(), C.int(parameter), core.PointerFromQVariant(value)) != 0
@@ -219,11 +178,7 @@ func (ptr *QCameraExposureControl) SetValue(parameter QCameraExposureControl__Ex
 }
 
 func (ptr *QCameraExposureControl) DestroyQCameraExposureControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraExposureControl::~QCameraExposureControl")
-		}
-	}()
+	defer qt.Recovering("QCameraExposureControl::~QCameraExposureControl")
 
 	if ptr.Pointer() != nil {
 		C.QCameraExposureControl_DestroyQCameraExposureControl(ptr.Pointer())

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,6 +34,9 @@ func PointerFromQStandardItem(ptr QStandardItem_ITF) unsafe.Pointer {
 func NewQStandardItemFromPointer(ptr unsafe.Pointer) *QStandardItem {
 	var n = new(QStandardItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QStandardItem_") {
+		n.SetObjectNameAbs("QStandardItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -51,51 +53,31 @@ const (
 )
 
 func NewQStandardItem() *QStandardItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::QStandardItem")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::QStandardItem")
 
 	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem())
 }
 
 func NewQStandardItem3(icon QIcon_ITF, text string) *QStandardItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::QStandardItem")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::QStandardItem")
 
 	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem3(PointerFromQIcon(icon), C.CString(text)))
 }
 
 func NewQStandardItem2(text string) *QStandardItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::QStandardItem")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::QStandardItem")
 
 	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem2(C.CString(text)))
 }
 
 func NewQStandardItem4(rows int, columns int) *QStandardItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::QStandardItem")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::QStandardItem")
 
 	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem4(C.int(rows), C.int(columns)))
 }
 
 func (ptr *QStandardItem) AccessibleDescription() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::accessibleDescription")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::accessibleDescription")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStandardItem_AccessibleDescription(ptr.Pointer()))
@@ -104,11 +86,7 @@ func (ptr *QStandardItem) AccessibleDescription() string {
 }
 
 func (ptr *QStandardItem) AccessibleText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::accessibleText")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::accessibleText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStandardItem_AccessibleText(ptr.Pointer()))
@@ -117,11 +95,7 @@ func (ptr *QStandardItem) AccessibleText() string {
 }
 
 func (ptr *QStandardItem) AppendRow2(item QStandardItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::appendRow")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::appendRow")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_AppendRow2(ptr.Pointer(), PointerFromQStandardItem(item))
@@ -129,11 +103,7 @@ func (ptr *QStandardItem) AppendRow2(item QStandardItem_ITF) {
 }
 
 func (ptr *QStandardItem) Background() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::background")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::background")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QStandardItem_Background(ptr.Pointer()))
@@ -142,11 +112,7 @@ func (ptr *QStandardItem) Background() *QBrush {
 }
 
 func (ptr *QStandardItem) CheckState() core.Qt__CheckState {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::checkState")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::checkState")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__CheckState(C.QStandardItem_CheckState(ptr.Pointer()))
@@ -155,11 +121,7 @@ func (ptr *QStandardItem) CheckState() core.Qt__CheckState {
 }
 
 func (ptr *QStandardItem) Child(row int, column int) *QStandardItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::child")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::child")
 
 	if ptr.Pointer() != nil {
 		return NewQStandardItemFromPointer(C.QStandardItem_Child(ptr.Pointer(), C.int(row), C.int(column)))
@@ -168,11 +130,7 @@ func (ptr *QStandardItem) Child(row int, column int) *QStandardItem {
 }
 
 func (ptr *QStandardItem) Clone() *QStandardItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::clone")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::clone")
 
 	if ptr.Pointer() != nil {
 		return NewQStandardItemFromPointer(C.QStandardItem_Clone(ptr.Pointer()))
@@ -181,11 +139,7 @@ func (ptr *QStandardItem) Clone() *QStandardItem {
 }
 
 func (ptr *QStandardItem) Column() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::column")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::column")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStandardItem_Column(ptr.Pointer()))
@@ -194,11 +148,7 @@ func (ptr *QStandardItem) Column() int {
 }
 
 func (ptr *QStandardItem) ColumnCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::columnCount")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::columnCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStandardItem_ColumnCount(ptr.Pointer()))
@@ -207,11 +157,7 @@ func (ptr *QStandardItem) ColumnCount() int {
 }
 
 func (ptr *QStandardItem) Data(role int) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::data")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::data")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QStandardItem_Data(ptr.Pointer(), C.int(role)))
@@ -220,11 +166,7 @@ func (ptr *QStandardItem) Data(role int) *core.QVariant {
 }
 
 func (ptr *QStandardItem) Flags() core.Qt__ItemFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::flags")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::flags")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ItemFlag(C.QStandardItem_Flags(ptr.Pointer()))
@@ -233,11 +175,7 @@ func (ptr *QStandardItem) Flags() core.Qt__ItemFlag {
 }
 
 func (ptr *QStandardItem) Foreground() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::foreground")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::foreground")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QStandardItem_Foreground(ptr.Pointer()))
@@ -246,11 +184,7 @@ func (ptr *QStandardItem) Foreground() *QBrush {
 }
 
 func (ptr *QStandardItem) HasChildren() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::hasChildren")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::hasChildren")
 
 	if ptr.Pointer() != nil {
 		return C.QStandardItem_HasChildren(ptr.Pointer()) != 0
@@ -259,11 +193,7 @@ func (ptr *QStandardItem) HasChildren() bool {
 }
 
 func (ptr *QStandardItem) Index() *core.QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::index")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::index")
 
 	if ptr.Pointer() != nil {
 		return core.NewQModelIndexFromPointer(C.QStandardItem_Index(ptr.Pointer()))
@@ -272,11 +202,7 @@ func (ptr *QStandardItem) Index() *core.QModelIndex {
 }
 
 func (ptr *QStandardItem) InsertColumns(column int, count int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::insertColumns")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::insertColumns")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_InsertColumns(ptr.Pointer(), C.int(column), C.int(count))
@@ -284,11 +210,7 @@ func (ptr *QStandardItem) InsertColumns(column int, count int) {
 }
 
 func (ptr *QStandardItem) InsertRow2(row int, item QStandardItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::insertRow")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::insertRow")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_InsertRow2(ptr.Pointer(), C.int(row), PointerFromQStandardItem(item))
@@ -296,11 +218,7 @@ func (ptr *QStandardItem) InsertRow2(row int, item QStandardItem_ITF) {
 }
 
 func (ptr *QStandardItem) InsertRows2(row int, count int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::insertRows")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::insertRows")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_InsertRows2(ptr.Pointer(), C.int(row), C.int(count))
@@ -308,11 +226,7 @@ func (ptr *QStandardItem) InsertRows2(row int, count int) {
 }
 
 func (ptr *QStandardItem) IsCheckable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::isCheckable")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::isCheckable")
 
 	if ptr.Pointer() != nil {
 		return C.QStandardItem_IsCheckable(ptr.Pointer()) != 0
@@ -321,11 +235,7 @@ func (ptr *QStandardItem) IsCheckable() bool {
 }
 
 func (ptr *QStandardItem) IsDragEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::isDragEnabled")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::isDragEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QStandardItem_IsDragEnabled(ptr.Pointer()) != 0
@@ -334,11 +244,7 @@ func (ptr *QStandardItem) IsDragEnabled() bool {
 }
 
 func (ptr *QStandardItem) IsDropEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::isDropEnabled")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::isDropEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QStandardItem_IsDropEnabled(ptr.Pointer()) != 0
@@ -347,11 +253,7 @@ func (ptr *QStandardItem) IsDropEnabled() bool {
 }
 
 func (ptr *QStandardItem) IsEditable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::isEditable")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::isEditable")
 
 	if ptr.Pointer() != nil {
 		return C.QStandardItem_IsEditable(ptr.Pointer()) != 0
@@ -360,11 +262,7 @@ func (ptr *QStandardItem) IsEditable() bool {
 }
 
 func (ptr *QStandardItem) IsEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::isEnabled")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::isEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QStandardItem_IsEnabled(ptr.Pointer()) != 0
@@ -373,11 +271,7 @@ func (ptr *QStandardItem) IsEnabled() bool {
 }
 
 func (ptr *QStandardItem) IsSelectable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::isSelectable")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::isSelectable")
 
 	if ptr.Pointer() != nil {
 		return C.QStandardItem_IsSelectable(ptr.Pointer()) != 0
@@ -386,11 +280,7 @@ func (ptr *QStandardItem) IsSelectable() bool {
 }
 
 func (ptr *QStandardItem) IsTristate() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::isTristate")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::isTristate")
 
 	if ptr.Pointer() != nil {
 		return C.QStandardItem_IsTristate(ptr.Pointer()) != 0
@@ -399,11 +289,7 @@ func (ptr *QStandardItem) IsTristate() bool {
 }
 
 func (ptr *QStandardItem) Model() *QStandardItemModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::model")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::model")
 
 	if ptr.Pointer() != nil {
 		return NewQStandardItemModelFromPointer(C.QStandardItem_Model(ptr.Pointer()))
@@ -412,11 +298,7 @@ func (ptr *QStandardItem) Model() *QStandardItemModel {
 }
 
 func (ptr *QStandardItem) Parent() *QStandardItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::parent")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::parent")
 
 	if ptr.Pointer() != nil {
 		return NewQStandardItemFromPointer(C.QStandardItem_Parent(ptr.Pointer()))
@@ -424,24 +306,8 @@ func (ptr *QStandardItem) Parent() *QStandardItem {
 	return nil
 }
 
-func (ptr *QStandardItem) Read(in core.QDataStream_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::read")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QStandardItem_Read(ptr.Pointer(), core.PointerFromQDataStream(in))
-	}
-}
-
 func (ptr *QStandardItem) RemoveColumn(column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::removeColumn")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::removeColumn")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_RemoveColumn(ptr.Pointer(), C.int(column))
@@ -449,11 +315,7 @@ func (ptr *QStandardItem) RemoveColumn(column int) {
 }
 
 func (ptr *QStandardItem) RemoveColumns(column int, count int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::removeColumns")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::removeColumns")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_RemoveColumns(ptr.Pointer(), C.int(column), C.int(count))
@@ -461,11 +323,7 @@ func (ptr *QStandardItem) RemoveColumns(column int, count int) {
 }
 
 func (ptr *QStandardItem) RemoveRow(row int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::removeRow")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::removeRow")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_RemoveRow(ptr.Pointer(), C.int(row))
@@ -473,11 +331,7 @@ func (ptr *QStandardItem) RemoveRow(row int) {
 }
 
 func (ptr *QStandardItem) RemoveRows(row int, count int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::removeRows")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::removeRows")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_RemoveRows(ptr.Pointer(), C.int(row), C.int(count))
@@ -485,11 +339,7 @@ func (ptr *QStandardItem) RemoveRows(row int, count int) {
 }
 
 func (ptr *QStandardItem) Row() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::row")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::row")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStandardItem_Row(ptr.Pointer()))
@@ -498,11 +348,7 @@ func (ptr *QStandardItem) Row() int {
 }
 
 func (ptr *QStandardItem) RowCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::rowCount")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::rowCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStandardItem_RowCount(ptr.Pointer()))
@@ -511,11 +357,7 @@ func (ptr *QStandardItem) RowCount() int {
 }
 
 func (ptr *QStandardItem) SetAccessibleDescription(accessibleDescription string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setAccessibleDescription")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setAccessibleDescription")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetAccessibleDescription(ptr.Pointer(), C.CString(accessibleDescription))
@@ -523,11 +365,7 @@ func (ptr *QStandardItem) SetAccessibleDescription(accessibleDescription string)
 }
 
 func (ptr *QStandardItem) SetAccessibleText(accessibleText string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setAccessibleText")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setAccessibleText")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetAccessibleText(ptr.Pointer(), C.CString(accessibleText))
@@ -535,11 +373,7 @@ func (ptr *QStandardItem) SetAccessibleText(accessibleText string) {
 }
 
 func (ptr *QStandardItem) SetBackground(brush QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setBackground")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setBackground")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetBackground(ptr.Pointer(), PointerFromQBrush(brush))
@@ -547,11 +381,7 @@ func (ptr *QStandardItem) SetBackground(brush QBrush_ITF) {
 }
 
 func (ptr *QStandardItem) SetCheckState(state core.Qt__CheckState) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setCheckState")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setCheckState")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetCheckState(ptr.Pointer(), C.int(state))
@@ -559,11 +389,7 @@ func (ptr *QStandardItem) SetCheckState(state core.Qt__CheckState) {
 }
 
 func (ptr *QStandardItem) SetCheckable(checkable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setCheckable")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setCheckable")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetCheckable(ptr.Pointer(), C.int(qt.GoBoolToInt(checkable)))
@@ -571,11 +397,7 @@ func (ptr *QStandardItem) SetCheckable(checkable bool) {
 }
 
 func (ptr *QStandardItem) SetChild2(row int, item QStandardItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setChild")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setChild")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetChild2(ptr.Pointer(), C.int(row), PointerFromQStandardItem(item))
@@ -583,11 +405,7 @@ func (ptr *QStandardItem) SetChild2(row int, item QStandardItem_ITF) {
 }
 
 func (ptr *QStandardItem) SetChild(row int, column int, item QStandardItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setChild")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setChild")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetChild(ptr.Pointer(), C.int(row), C.int(column), PointerFromQStandardItem(item))
@@ -595,35 +413,46 @@ func (ptr *QStandardItem) SetChild(row int, column int, item QStandardItem_ITF) 
 }
 
 func (ptr *QStandardItem) SetColumnCount(columns int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setColumnCount")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setColumnCount")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetColumnCount(ptr.Pointer(), C.int(columns))
 	}
 }
 
-func (ptr *QStandardItem) SetData(value core.QVariant_ITF, role int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setData")
-		}
-	}()
+func (ptr *QStandardItem) ConnectSetData(f func(value *core.QVariant, role int)) {
+	defer qt.Recovering("connect QStandardItem::setData")
 
 	if ptr.Pointer() != nil {
-		C.QStandardItem_SetData(ptr.Pointer(), core.PointerFromQVariant(value), C.int(role))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setData", f)
 	}
 }
 
+func (ptr *QStandardItem) DisconnectSetData() {
+	defer qt.Recovering("disconnect QStandardItem::setData")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setData")
+	}
+}
+
+//export callbackQStandardItemSetData
+func callbackQStandardItemSetData(ptrName *C.char, value unsafe.Pointer, role C.int) bool {
+	defer qt.Recovering("callback QStandardItem::setData")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setData")
+	if signal != nil {
+		defer signal.(func(*core.QVariant, int))(core.NewQVariantFromPointer(value), int(role))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QStandardItem) SetDragEnabled(dragEnabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setDragEnabled")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setDragEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetDragEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(dragEnabled)))
@@ -631,11 +460,7 @@ func (ptr *QStandardItem) SetDragEnabled(dragEnabled bool) {
 }
 
 func (ptr *QStandardItem) SetDropEnabled(dropEnabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setDropEnabled")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setDropEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetDropEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(dropEnabled)))
@@ -643,11 +468,7 @@ func (ptr *QStandardItem) SetDropEnabled(dropEnabled bool) {
 }
 
 func (ptr *QStandardItem) SetEditable(editable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setEditable")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setEditable")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetEditable(ptr.Pointer(), C.int(qt.GoBoolToInt(editable)))
@@ -655,11 +476,7 @@ func (ptr *QStandardItem) SetEditable(editable bool) {
 }
 
 func (ptr *QStandardItem) SetEnabled(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setEnabled")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -667,11 +484,7 @@ func (ptr *QStandardItem) SetEnabled(enabled bool) {
 }
 
 func (ptr *QStandardItem) SetFlags(flags core.Qt__ItemFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setFlags")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setFlags")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetFlags(ptr.Pointer(), C.int(flags))
@@ -679,11 +492,7 @@ func (ptr *QStandardItem) SetFlags(flags core.Qt__ItemFlag) {
 }
 
 func (ptr *QStandardItem) SetFont(font QFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setFont")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setFont")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetFont(ptr.Pointer(), PointerFromQFont(font))
@@ -691,11 +500,7 @@ func (ptr *QStandardItem) SetFont(font QFont_ITF) {
 }
 
 func (ptr *QStandardItem) SetForeground(brush QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setForeground")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setForeground")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetForeground(ptr.Pointer(), PointerFromQBrush(brush))
@@ -703,11 +508,7 @@ func (ptr *QStandardItem) SetForeground(brush QBrush_ITF) {
 }
 
 func (ptr *QStandardItem) SetIcon(icon QIcon_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setIcon")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setIcon")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetIcon(ptr.Pointer(), PointerFromQIcon(icon))
@@ -715,11 +516,7 @@ func (ptr *QStandardItem) SetIcon(icon QIcon_ITF) {
 }
 
 func (ptr *QStandardItem) SetRowCount(rows int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setRowCount")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setRowCount")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetRowCount(ptr.Pointer(), C.int(rows))
@@ -727,11 +524,7 @@ func (ptr *QStandardItem) SetRowCount(rows int) {
 }
 
 func (ptr *QStandardItem) SetSelectable(selectable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setSelectable")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setSelectable")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetSelectable(ptr.Pointer(), C.int(qt.GoBoolToInt(selectable)))
@@ -739,11 +532,7 @@ func (ptr *QStandardItem) SetSelectable(selectable bool) {
 }
 
 func (ptr *QStandardItem) SetSizeHint(size core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setSizeHint")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setSizeHint")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetSizeHint(ptr.Pointer(), core.PointerFromQSize(size))
@@ -751,11 +540,7 @@ func (ptr *QStandardItem) SetSizeHint(size core.QSize_ITF) {
 }
 
 func (ptr *QStandardItem) SetStatusTip(statusTip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setStatusTip")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setStatusTip")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetStatusTip(ptr.Pointer(), C.CString(statusTip))
@@ -763,11 +548,7 @@ func (ptr *QStandardItem) SetStatusTip(statusTip string) {
 }
 
 func (ptr *QStandardItem) SetText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setText")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setText")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetText(ptr.Pointer(), C.CString(text))
@@ -775,11 +556,7 @@ func (ptr *QStandardItem) SetText(text string) {
 }
 
 func (ptr *QStandardItem) SetTextAlignment(alignment core.Qt__AlignmentFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setTextAlignment")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setTextAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetTextAlignment(ptr.Pointer(), C.int(alignment))
@@ -787,11 +564,7 @@ func (ptr *QStandardItem) SetTextAlignment(alignment core.Qt__AlignmentFlag) {
 }
 
 func (ptr *QStandardItem) SetToolTip(toolTip string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setToolTip")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setToolTip")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetToolTip(ptr.Pointer(), C.CString(toolTip))
@@ -799,11 +572,7 @@ func (ptr *QStandardItem) SetToolTip(toolTip string) {
 }
 
 func (ptr *QStandardItem) SetTristate(tristate bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setTristate")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setTristate")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetTristate(ptr.Pointer(), C.int(qt.GoBoolToInt(tristate)))
@@ -811,11 +580,7 @@ func (ptr *QStandardItem) SetTristate(tristate bool) {
 }
 
 func (ptr *QStandardItem) SetWhatsThis(whatsThis string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::setWhatsThis")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::setWhatsThis")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetWhatsThis(ptr.Pointer(), C.CString(whatsThis))
@@ -823,11 +588,7 @@ func (ptr *QStandardItem) SetWhatsThis(whatsThis string) {
 }
 
 func (ptr *QStandardItem) SortChildren(column int, order core.Qt__SortOrder) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::sortChildren")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::sortChildren")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SortChildren(ptr.Pointer(), C.int(column), C.int(order))
@@ -835,11 +596,7 @@ func (ptr *QStandardItem) SortChildren(column int, order core.Qt__SortOrder) {
 }
 
 func (ptr *QStandardItem) StatusTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::statusTip")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::statusTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStandardItem_StatusTip(ptr.Pointer()))
@@ -848,11 +605,7 @@ func (ptr *QStandardItem) StatusTip() string {
 }
 
 func (ptr *QStandardItem) TakeChild(row int, column int) *QStandardItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::takeChild")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::takeChild")
 
 	if ptr.Pointer() != nil {
 		return NewQStandardItemFromPointer(C.QStandardItem_TakeChild(ptr.Pointer(), C.int(row), C.int(column)))
@@ -861,11 +614,7 @@ func (ptr *QStandardItem) TakeChild(row int, column int) *QStandardItem {
 }
 
 func (ptr *QStandardItem) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::text")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStandardItem_Text(ptr.Pointer()))
@@ -874,11 +623,7 @@ func (ptr *QStandardItem) Text() string {
 }
 
 func (ptr *QStandardItem) TextAlignment() core.Qt__AlignmentFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::textAlignment")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::textAlignment")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__AlignmentFlag(C.QStandardItem_TextAlignment(ptr.Pointer()))
@@ -887,11 +632,7 @@ func (ptr *QStandardItem) TextAlignment() core.Qt__AlignmentFlag {
 }
 
 func (ptr *QStandardItem) ToolTip() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::toolTip")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::toolTip")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStandardItem_ToolTip(ptr.Pointer()))
@@ -900,11 +641,7 @@ func (ptr *QStandardItem) ToolTip() string {
 }
 
 func (ptr *QStandardItem) Type() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::type")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::type")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStandardItem_Type(ptr.Pointer()))
@@ -913,11 +650,7 @@ func (ptr *QStandardItem) Type() int {
 }
 
 func (ptr *QStandardItem) WhatsThis() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::whatsThis")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::whatsThis")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStandardItem_WhatsThis(ptr.Pointer()))
@@ -925,26 +658,27 @@ func (ptr *QStandardItem) WhatsThis() string {
 	return ""
 }
 
-func (ptr *QStandardItem) Write(out core.QDataStream_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::write")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QStandardItem_Write(ptr.Pointer(), core.PointerFromQDataStream(out))
-	}
-}
-
 func (ptr *QStandardItem) DestroyQStandardItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardItem::~QStandardItem")
-		}
-	}()
+	defer qt.Recovering("QStandardItem::~QStandardItem")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_DestroyQStandardItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QStandardItem) ObjectNameAbs() string {
+	defer qt.Recovering("QStandardItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QStandardItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QStandardItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QStandardItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

@@ -3,8 +3,8 @@ package dbus
 //#include "dbus.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +42,19 @@ func (ptr *QDBusVariant) QDBusVariant_PTR() *QDBusVariant {
 }
 
 func NewQDBusVariant() *QDBusVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusVariant::QDBusVariant")
-		}
-	}()
+	defer qt.Recovering("QDBusVariant::QDBusVariant")
 
 	return NewQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant())
 }
 
 func NewQDBusVariant2(variant core.QVariant_ITF) *QDBusVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusVariant::QDBusVariant")
-		}
-	}()
+	defer qt.Recovering("QDBusVariant::QDBusVariant")
 
 	return NewQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant2(core.PointerFromQVariant(variant)))
 }
 
 func (ptr *QDBusVariant) SetVariant(variant core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusVariant::setVariant")
-		}
-	}()
+	defer qt.Recovering("QDBusVariant::setVariant")
 
 	if ptr.Pointer() != nil {
 		C.QDBusVariant_SetVariant(ptr.Pointer(), core.PointerFromQVariant(variant))
@@ -74,11 +62,7 @@ func (ptr *QDBusVariant) SetVariant(variant core.QVariant_ITF) {
 }
 
 func (ptr *QDBusVariant) Variant() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusVariant::variant")
-		}
-	}()
+	defer qt.Recovering("QDBusVariant::variant")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QDBusVariant_Variant(ptr.Pointer()))

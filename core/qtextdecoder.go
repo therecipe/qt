@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QTextDecoder) QTextDecoder_PTR() *QTextDecoder {
 }
 
 func NewQTextDecoder(codec QTextCodec_ITF) *QTextDecoder {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDecoder::QTextDecoder")
-		}
-	}()
+	defer qt.Recovering("QTextDecoder::QTextDecoder")
 
 	return NewQTextDecoderFromPointer(C.QTextDecoder_NewQTextDecoder(PointerFromQTextCodec(codec)))
 }
 
 func NewQTextDecoder2(codec QTextCodec_ITF, flags QTextCodec__ConversionFlag) *QTextDecoder {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDecoder::QTextDecoder")
-		}
-	}()
+	defer qt.Recovering("QTextDecoder::QTextDecoder")
 
 	return NewQTextDecoderFromPointer(C.QTextDecoder_NewQTextDecoder2(PointerFromQTextCodec(codec), C.int(flags)))
 }
 
 func (ptr *QTextDecoder) DestroyQTextDecoder() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextDecoder::~QTextDecoder")
-		}
-	}()
+	defer qt.Recovering("QTextDecoder::~QTextDecoder")
 
 	if ptr.Pointer() != nil {
 		C.QTextDecoder_DestroyQTextDecoder(ptr.Pointer())

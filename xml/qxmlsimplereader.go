@@ -4,7 +4,6 @@ package xml
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -27,6 +26,9 @@ func PointerFromQXmlSimpleReader(ptr QXmlSimpleReader_ITF) unsafe.Pointer {
 func NewQXmlSimpleReaderFromPointer(ptr unsafe.Pointer) *QXmlSimpleReader {
 	var n = new(QXmlSimpleReader)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QXmlSimpleReader_") {
+		n.SetObjectNameAbs("QXmlSimpleReader_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -35,11 +37,7 @@ func (ptr *QXmlSimpleReader) QXmlSimpleReader_PTR() *QXmlSimpleReader {
 }
 
 func (ptr *QXmlSimpleReader) DTDHandler() *QXmlDTDHandler {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::DTDHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::DTDHandler")
 
 	if ptr.Pointer() != nil {
 		return NewQXmlDTDHandlerFromPointer(C.QXmlSimpleReader_DTDHandler(ptr.Pointer()))
@@ -48,21 +46,13 @@ func (ptr *QXmlSimpleReader) DTDHandler() *QXmlDTDHandler {
 }
 
 func NewQXmlSimpleReader() *QXmlSimpleReader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::QXmlSimpleReader")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::QXmlSimpleReader")
 
 	return NewQXmlSimpleReaderFromPointer(C.QXmlSimpleReader_NewQXmlSimpleReader())
 }
 
 func (ptr *QXmlSimpleReader) ContentHandler() *QXmlContentHandler {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::contentHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::contentHandler")
 
 	if ptr.Pointer() != nil {
 		return NewQXmlContentHandlerFromPointer(C.QXmlSimpleReader_ContentHandler(ptr.Pointer()))
@@ -71,11 +61,7 @@ func (ptr *QXmlSimpleReader) ContentHandler() *QXmlContentHandler {
 }
 
 func (ptr *QXmlSimpleReader) DeclHandler() *QXmlDeclHandler {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::declHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::declHandler")
 
 	if ptr.Pointer() != nil {
 		return NewQXmlDeclHandlerFromPointer(C.QXmlSimpleReader_DeclHandler(ptr.Pointer()))
@@ -84,11 +70,7 @@ func (ptr *QXmlSimpleReader) DeclHandler() *QXmlDeclHandler {
 }
 
 func (ptr *QXmlSimpleReader) EntityResolver() *QXmlEntityResolver {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::entityResolver")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::entityResolver")
 
 	if ptr.Pointer() != nil {
 		return NewQXmlEntityResolverFromPointer(C.QXmlSimpleReader_EntityResolver(ptr.Pointer()))
@@ -97,11 +79,7 @@ func (ptr *QXmlSimpleReader) EntityResolver() *QXmlEntityResolver {
 }
 
 func (ptr *QXmlSimpleReader) ErrorHandler() *QXmlErrorHandler {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::errorHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::errorHandler")
 
 	if ptr.Pointer() != nil {
 		return NewQXmlErrorHandlerFromPointer(C.QXmlSimpleReader_ErrorHandler(ptr.Pointer()))
@@ -110,11 +88,7 @@ func (ptr *QXmlSimpleReader) ErrorHandler() *QXmlErrorHandler {
 }
 
 func (ptr *QXmlSimpleReader) Feature(name string, ok bool) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::feature")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::feature")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSimpleReader_Feature(ptr.Pointer(), C.CString(name), C.int(qt.GoBoolToInt(ok))) != 0
@@ -123,11 +97,7 @@ func (ptr *QXmlSimpleReader) Feature(name string, ok bool) bool {
 }
 
 func (ptr *QXmlSimpleReader) HasFeature(name string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::hasFeature")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::hasFeature")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSimpleReader_HasFeature(ptr.Pointer(), C.CString(name)) != 0
@@ -136,11 +106,7 @@ func (ptr *QXmlSimpleReader) HasFeature(name string) bool {
 }
 
 func (ptr *QXmlSimpleReader) HasProperty(name string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::hasProperty")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::hasProperty")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSimpleReader_HasProperty(ptr.Pointer(), C.CString(name)) != 0
@@ -149,11 +115,7 @@ func (ptr *QXmlSimpleReader) HasProperty(name string) bool {
 }
 
 func (ptr *QXmlSimpleReader) LexicalHandler() *QXmlLexicalHandler {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::lexicalHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::lexicalHandler")
 
 	if ptr.Pointer() != nil {
 		return NewQXmlLexicalHandlerFromPointer(C.QXmlSimpleReader_LexicalHandler(ptr.Pointer()))
@@ -162,11 +124,7 @@ func (ptr *QXmlSimpleReader) LexicalHandler() *QXmlLexicalHandler {
 }
 
 func (ptr *QXmlSimpleReader) Parse(input QXmlInputSource_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::parse")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::parse")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSimpleReader_Parse(ptr.Pointer(), PointerFromQXmlInputSource(input)) != 0
@@ -175,11 +133,7 @@ func (ptr *QXmlSimpleReader) Parse(input QXmlInputSource_ITF) bool {
 }
 
 func (ptr *QXmlSimpleReader) Parse2(input QXmlInputSource_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::parse")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::parse")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSimpleReader_Parse2(ptr.Pointer(), PointerFromQXmlInputSource(input)) != 0
@@ -188,11 +142,7 @@ func (ptr *QXmlSimpleReader) Parse2(input QXmlInputSource_ITF) bool {
 }
 
 func (ptr *QXmlSimpleReader) Parse3(input QXmlInputSource_ITF, incremental bool) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::parse")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::parse")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSimpleReader_Parse3(ptr.Pointer(), PointerFromQXmlInputSource(input), C.int(qt.GoBoolToInt(incremental))) != 0
@@ -201,11 +151,7 @@ func (ptr *QXmlSimpleReader) Parse3(input QXmlInputSource_ITF, incremental bool)
 }
 
 func (ptr *QXmlSimpleReader) ParseContinue() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::parseContinue")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::parseContinue")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSimpleReader_ParseContinue(ptr.Pointer()) != 0
@@ -214,11 +160,7 @@ func (ptr *QXmlSimpleReader) ParseContinue() bool {
 }
 
 func (ptr *QXmlSimpleReader) Property(name string, ok bool) unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::property")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::property")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QXmlSimpleReader_Property(ptr.Pointer(), C.CString(name), C.int(qt.GoBoolToInt(ok))))
@@ -226,98 +168,244 @@ func (ptr *QXmlSimpleReader) Property(name string, ok bool) unsafe.Pointer {
 	return nil
 }
 
-func (ptr *QXmlSimpleReader) SetContentHandler(handler QXmlContentHandler_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::setContentHandler")
-		}
-	}()
+func (ptr *QXmlSimpleReader) ConnectSetContentHandler(f func(handler *QXmlContentHandler)) {
+	defer qt.Recovering("connect QXmlSimpleReader::setContentHandler")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSimpleReader_SetContentHandler(ptr.Pointer(), PointerFromQXmlContentHandler(handler))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setContentHandler", f)
 	}
 }
 
-func (ptr *QXmlSimpleReader) SetDTDHandler(handler QXmlDTDHandler_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::setDTDHandler")
-		}
-	}()
+func (ptr *QXmlSimpleReader) DisconnectSetContentHandler() {
+	defer qt.Recovering("disconnect QXmlSimpleReader::setContentHandler")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSimpleReader_SetDTDHandler(ptr.Pointer(), PointerFromQXmlDTDHandler(handler))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setContentHandler")
 	}
 }
 
-func (ptr *QXmlSimpleReader) SetDeclHandler(handler QXmlDeclHandler_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::setDeclHandler")
-		}
-	}()
+//export callbackQXmlSimpleReaderSetContentHandler
+func callbackQXmlSimpleReaderSetContentHandler(ptrName *C.char, handler unsafe.Pointer) bool {
+	defer qt.Recovering("callback QXmlSimpleReader::setContentHandler")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setContentHandler")
+	if signal != nil {
+		defer signal.(func(*QXmlContentHandler))(NewQXmlContentHandlerFromPointer(handler))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlSimpleReader) ConnectSetDTDHandler(f func(handler *QXmlDTDHandler)) {
+	defer qt.Recovering("connect QXmlSimpleReader::setDTDHandler")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSimpleReader_SetDeclHandler(ptr.Pointer(), PointerFromQXmlDeclHandler(handler))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setDTDHandler", f)
 	}
 }
 
-func (ptr *QXmlSimpleReader) SetEntityResolver(handler QXmlEntityResolver_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::setEntityResolver")
-		}
-	}()
+func (ptr *QXmlSimpleReader) DisconnectSetDTDHandler() {
+	defer qt.Recovering("disconnect QXmlSimpleReader::setDTDHandler")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSimpleReader_SetEntityResolver(ptr.Pointer(), PointerFromQXmlEntityResolver(handler))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setDTDHandler")
 	}
 }
 
-func (ptr *QXmlSimpleReader) SetErrorHandler(handler QXmlErrorHandler_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::setErrorHandler")
-		}
-	}()
+//export callbackQXmlSimpleReaderSetDTDHandler
+func callbackQXmlSimpleReaderSetDTDHandler(ptrName *C.char, handler unsafe.Pointer) bool {
+	defer qt.Recovering("callback QXmlSimpleReader::setDTDHandler")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setDTDHandler")
+	if signal != nil {
+		defer signal.(func(*QXmlDTDHandler))(NewQXmlDTDHandlerFromPointer(handler))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlSimpleReader) ConnectSetDeclHandler(f func(handler *QXmlDeclHandler)) {
+	defer qt.Recovering("connect QXmlSimpleReader::setDeclHandler")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSimpleReader_SetErrorHandler(ptr.Pointer(), PointerFromQXmlErrorHandler(handler))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setDeclHandler", f)
 	}
 }
 
-func (ptr *QXmlSimpleReader) SetFeature(name string, enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::setFeature")
-		}
-	}()
+func (ptr *QXmlSimpleReader) DisconnectSetDeclHandler() {
+	defer qt.Recovering("disconnect QXmlSimpleReader::setDeclHandler")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSimpleReader_SetFeature(ptr.Pointer(), C.CString(name), C.int(qt.GoBoolToInt(enable)))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setDeclHandler")
 	}
 }
 
-func (ptr *QXmlSimpleReader) SetLexicalHandler(handler QXmlLexicalHandler_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::setLexicalHandler")
-		}
-	}()
+//export callbackQXmlSimpleReaderSetDeclHandler
+func callbackQXmlSimpleReaderSetDeclHandler(ptrName *C.char, handler unsafe.Pointer) bool {
+	defer qt.Recovering("callback QXmlSimpleReader::setDeclHandler")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setDeclHandler")
+	if signal != nil {
+		defer signal.(func(*QXmlDeclHandler))(NewQXmlDeclHandlerFromPointer(handler))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlSimpleReader) ConnectSetEntityResolver(f func(handler *QXmlEntityResolver)) {
+	defer qt.Recovering("connect QXmlSimpleReader::setEntityResolver")
 
 	if ptr.Pointer() != nil {
-		C.QXmlSimpleReader_SetLexicalHandler(ptr.Pointer(), PointerFromQXmlLexicalHandler(handler))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setEntityResolver", f)
 	}
+}
+
+func (ptr *QXmlSimpleReader) DisconnectSetEntityResolver() {
+	defer qt.Recovering("disconnect QXmlSimpleReader::setEntityResolver")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setEntityResolver")
+	}
+}
+
+//export callbackQXmlSimpleReaderSetEntityResolver
+func callbackQXmlSimpleReaderSetEntityResolver(ptrName *C.char, handler unsafe.Pointer) bool {
+	defer qt.Recovering("callback QXmlSimpleReader::setEntityResolver")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setEntityResolver")
+	if signal != nil {
+		defer signal.(func(*QXmlEntityResolver))(NewQXmlEntityResolverFromPointer(handler))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlSimpleReader) ConnectSetErrorHandler(f func(handler *QXmlErrorHandler)) {
+	defer qt.Recovering("connect QXmlSimpleReader::setErrorHandler")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setErrorHandler", f)
+	}
+}
+
+func (ptr *QXmlSimpleReader) DisconnectSetErrorHandler() {
+	defer qt.Recovering("disconnect QXmlSimpleReader::setErrorHandler")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setErrorHandler")
+	}
+}
+
+//export callbackQXmlSimpleReaderSetErrorHandler
+func callbackQXmlSimpleReaderSetErrorHandler(ptrName *C.char, handler unsafe.Pointer) bool {
+	defer qt.Recovering("callback QXmlSimpleReader::setErrorHandler")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setErrorHandler")
+	if signal != nil {
+		defer signal.(func(*QXmlErrorHandler))(NewQXmlErrorHandlerFromPointer(handler))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlSimpleReader) ConnectSetFeature(f func(name string, enable bool)) {
+	defer qt.Recovering("connect QXmlSimpleReader::setFeature")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setFeature", f)
+	}
+}
+
+func (ptr *QXmlSimpleReader) DisconnectSetFeature() {
+	defer qt.Recovering("disconnect QXmlSimpleReader::setFeature")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setFeature")
+	}
+}
+
+//export callbackQXmlSimpleReaderSetFeature
+func callbackQXmlSimpleReaderSetFeature(ptrName *C.char, name *C.char, enable C.int) bool {
+	defer qt.Recovering("callback QXmlSimpleReader::setFeature")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setFeature")
+	if signal != nil {
+		defer signal.(func(string, bool))(C.GoString(name), int(enable) != 0)
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlSimpleReader) ConnectSetLexicalHandler(f func(handler *QXmlLexicalHandler)) {
+	defer qt.Recovering("connect QXmlSimpleReader::setLexicalHandler")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setLexicalHandler", f)
+	}
+}
+
+func (ptr *QXmlSimpleReader) DisconnectSetLexicalHandler() {
+	defer qt.Recovering("disconnect QXmlSimpleReader::setLexicalHandler")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setLexicalHandler")
+	}
+}
+
+//export callbackQXmlSimpleReaderSetLexicalHandler
+func callbackQXmlSimpleReaderSetLexicalHandler(ptrName *C.char, handler unsafe.Pointer) bool {
+	defer qt.Recovering("callback QXmlSimpleReader::setLexicalHandler")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setLexicalHandler")
+	if signal != nil {
+		defer signal.(func(*QXmlLexicalHandler))(NewQXmlLexicalHandlerFromPointer(handler))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QXmlSimpleReader) DestroyQXmlSimpleReader() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSimpleReader::~QXmlSimpleReader")
-		}
-	}()
+	defer qt.Recovering("QXmlSimpleReader::~QXmlSimpleReader")
 
 	if ptr.Pointer() != nil {
 		C.QXmlSimpleReader_DestroyQXmlSimpleReader(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlSimpleReader) ObjectNameAbs() string {
+	defer qt.Recovering("QXmlSimpleReader::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlSimpleReader_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QXmlSimpleReader) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QXmlSimpleReader::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QXmlSimpleReader_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

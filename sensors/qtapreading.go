@@ -4,7 +4,6 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQTapReadingFromPointer(ptr unsafe.Pointer) *QTapReading {
 	var n = new(QTapReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QTapReading_") {
-		n.SetObjectName("QTapReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QTapReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -57,11 +56,7 @@ const (
 )
 
 func (ptr *QTapReading) IsDoubleTap() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapReading::isDoubleTap")
-		}
-	}()
+	defer qt.Recovering("QTapReading::isDoubleTap")
 
 	if ptr.Pointer() != nil {
 		return C.QTapReading_IsDoubleTap(ptr.Pointer()) != 0
@@ -70,11 +65,7 @@ func (ptr *QTapReading) IsDoubleTap() bool {
 }
 
 func (ptr *QTapReading) TapDirection() QTapReading__TapDirection {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapReading::tapDirection")
-		}
-	}()
+	defer qt.Recovering("QTapReading::tapDirection")
 
 	if ptr.Pointer() != nil {
 		return QTapReading__TapDirection(C.QTapReading_TapDirection(ptr.Pointer()))
@@ -83,11 +74,7 @@ func (ptr *QTapReading) TapDirection() QTapReading__TapDirection {
 }
 
 func (ptr *QTapReading) SetDoubleTap(doubleTap bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapReading::setDoubleTap")
-		}
-	}()
+	defer qt.Recovering("QTapReading::setDoubleTap")
 
 	if ptr.Pointer() != nil {
 		C.QTapReading_SetDoubleTap(ptr.Pointer(), C.int(qt.GoBoolToInt(doubleTap)))
@@ -95,11 +82,7 @@ func (ptr *QTapReading) SetDoubleTap(doubleTap bool) {
 }
 
 func (ptr *QTapReading) SetTapDirection(tapDirection QTapReading__TapDirection) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapReading::setTapDirection")
-		}
-	}()
+	defer qt.Recovering("QTapReading::setTapDirection")
 
 	if ptr.Pointer() != nil {
 		C.QTapReading_SetTapDirection(ptr.Pointer(), C.int(tapDirection))

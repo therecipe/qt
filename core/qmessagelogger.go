@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QMessageLogger) QMessageLogger_PTR() *QMessageLogger {
 }
 
 func NewQMessageLogger() *QMessageLogger {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageLogger::QMessageLogger")
-		}
-	}()
+	defer qt.Recovering("QMessageLogger::QMessageLogger")
 
 	return NewQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger())
 }
 
 func NewQMessageLogger2(file string, line int, function string) *QMessageLogger {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageLogger::QMessageLogger")
-		}
-	}()
+	defer qt.Recovering("QMessageLogger::QMessageLogger")
 
 	return NewQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger2(C.CString(file), C.int(line), C.CString(function)))
 }
 
 func NewQMessageLogger3(file string, line int, function string, category string) *QMessageLogger {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMessageLogger::QMessageLogger")
-		}
-	}()
+	defer qt.Recovering("QMessageLogger::QMessageLogger")
 
 	return NewQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger3(C.CString(file), C.int(line), C.CString(function), C.CString(category)))
 }

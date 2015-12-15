@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQGeoRouteReplyFromPointer(ptr unsafe.Pointer) *QGeoRouteReply {
 	var n = new(QGeoRouteReply)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoRouteReply_") {
-		n.SetObjectName("QGeoRouteReply_" + qt.RandomIdentifier())
+		n.SetObjectName("QGeoRouteReply_" + qt.Identifier())
 	}
 	return n
 }
@@ -51,33 +50,44 @@ const (
 )
 
 func NewQGeoRouteReply(error QGeoRouteReply__Error, errorString string, parent core.QObject_ITF) *QGeoRouteReply {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteReply::QGeoRouteReply")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteReply::QGeoRouteReply")
 
 	return NewQGeoRouteReplyFromPointer(C.QGeoRouteReply_NewQGeoRouteReply(C.int(error), C.CString(errorString), core.PointerFromQObject(parent)))
 }
 
-func (ptr *QGeoRouteReply) Abort() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteReply::abort")
-		}
-	}()
+func (ptr *QGeoRouteReply) ConnectAbort(f func()) {
+	defer qt.Recovering("connect QGeoRouteReply::abort")
 
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_Abort(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "abort", f)
 	}
 }
 
+func (ptr *QGeoRouteReply) DisconnectAbort() {
+	defer qt.Recovering("disconnect QGeoRouteReply::abort")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "abort")
+	}
+}
+
+//export callbackQGeoRouteReplyAbort
+func callbackQGeoRouteReplyAbort(ptrName *C.char) bool {
+	defer qt.Recovering("callback QGeoRouteReply::abort")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "abort")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGeoRouteReply) Error() QGeoRouteReply__Error {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteReply::error")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteReply::error")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteReply__Error(C.QGeoRouteReply_Error(ptr.Pointer()))
@@ -86,11 +96,7 @@ func (ptr *QGeoRouteReply) Error() QGeoRouteReply__Error {
 }
 
 func (ptr *QGeoRouteReply) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteReply::errorString")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteReply::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGeoRouteReply_ErrorString(ptr.Pointer()))
@@ -99,11 +105,7 @@ func (ptr *QGeoRouteReply) ErrorString() string {
 }
 
 func (ptr *QGeoRouteReply) ConnectFinished(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteReply::finished")
-		}
-	}()
+	defer qt.Recovering("connect QGeoRouteReply::finished")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteReply_ConnectFinished(ptr.Pointer())
@@ -112,11 +114,7 @@ func (ptr *QGeoRouteReply) ConnectFinished(f func()) {
 }
 
 func (ptr *QGeoRouteReply) DisconnectFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteReply::finished")
-		}
-	}()
+	defer qt.Recovering("disconnect QGeoRouteReply::finished")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteReply_DisconnectFinished(ptr.Pointer())
@@ -126,21 +124,17 @@ func (ptr *QGeoRouteReply) DisconnectFinished() {
 
 //export callbackQGeoRouteReplyFinished
 func callbackQGeoRouteReplyFinished(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteReply::finished")
-		}
-	}()
+	defer qt.Recovering("callback QGeoRouteReply::finished")
 
-	qt.GetSignal(C.GoString(ptrName), "finished").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGeoRouteReply) IsFinished() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteReply::isFinished")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteReply::isFinished")
 
 	if ptr.Pointer() != nil {
 		return C.QGeoRouteReply_IsFinished(ptr.Pointer()) != 0
@@ -149,11 +143,7 @@ func (ptr *QGeoRouteReply) IsFinished() bool {
 }
 
 func (ptr *QGeoRouteReply) DestroyQGeoRouteReply() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteReply::~QGeoRouteReply")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteReply::~QGeoRouteReply")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteReply_DestroyQGeoRouteReply(ptr.Pointer())

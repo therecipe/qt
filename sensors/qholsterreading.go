@@ -4,7 +4,6 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQHolsterReadingFromPointer(ptr unsafe.Pointer) *QHolsterReading {
 	var n = new(QHolsterReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QHolsterReading_") {
-		n.SetObjectName("QHolsterReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QHolsterReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QHolsterReading) QHolsterReading_PTR() *QHolsterReading {
 }
 
 func (ptr *QHolsterReading) Holstered() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHolsterReading::holstered")
-		}
-	}()
+	defer qt.Recovering("QHolsterReading::holstered")
 
 	if ptr.Pointer() != nil {
 		return C.QHolsterReading_Holstered(ptr.Pointer()) != 0
@@ -51,11 +46,7 @@ func (ptr *QHolsterReading) Holstered() bool {
 }
 
 func (ptr *QHolsterReading) SetHolstered(holstered bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHolsterReading::setHolstered")
-		}
-	}()
+	defer qt.Recovering("QHolsterReading::setHolstered")
 
 	if ptr.Pointer() != nil {
 		C.QHolsterReading_SetHolstered(ptr.Pointer(), C.int(qt.GoBoolToInt(holstered)))

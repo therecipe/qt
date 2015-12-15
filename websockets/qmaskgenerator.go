@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQMaskGeneratorFromPointer(ptr unsafe.Pointer) *QMaskGenerator {
 	var n = new(QMaskGenerator)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMaskGenerator_") {
-		n.SetObjectName("QMaskGenerator_" + qt.RandomIdentifier())
+		n.SetObjectName("QMaskGenerator_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QMaskGenerator) QMaskGenerator_PTR() *QMaskGenerator {
 }
 
 func (ptr *QMaskGenerator) Seed() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMaskGenerator::seed")
-		}
-	}()
+	defer qt.Recovering("QMaskGenerator::seed")
 
 	if ptr.Pointer() != nil {
 		return C.QMaskGenerator_Seed(ptr.Pointer()) != 0
@@ -52,11 +47,7 @@ func (ptr *QMaskGenerator) Seed() bool {
 }
 
 func (ptr *QMaskGenerator) DestroyQMaskGenerator() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMaskGenerator::~QMaskGenerator")
-		}
-	}()
+	defer qt.Recovering("QMaskGenerator::~QMaskGenerator")
 
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DestroyQMaskGenerator(ptr.Pointer())

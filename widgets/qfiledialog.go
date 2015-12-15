@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQFileDialogFromPointer(ptr unsafe.Pointer) *QFileDialog {
 	var n = new(QFileDialog)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QFileDialog_") {
-		n.SetObjectName("QFileDialog_" + qt.RandomIdentifier())
+		n.SetObjectName("QFileDialog_" + qt.Identifier())
 	}
 	return n
 }
@@ -92,21 +91,13 @@ const (
 )
 
 func NewQFileDialog(parent QWidget_ITF, flags core.Qt__WindowType) *QFileDialog {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::QFileDialog")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::QFileDialog")
 
 	return NewQFileDialogFromPointer(C.QFileDialog_NewQFileDialog(PointerFromQWidget(parent), C.int(flags)))
 }
 
 func (ptr *QFileDialog) AcceptMode() QFileDialog__AcceptMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::acceptMode")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::acceptMode")
 
 	if ptr.Pointer() != nil {
 		return QFileDialog__AcceptMode(C.QFileDialog_AcceptMode(ptr.Pointer()))
@@ -115,11 +106,7 @@ func (ptr *QFileDialog) AcceptMode() QFileDialog__AcceptMode {
 }
 
 func (ptr *QFileDialog) ConfirmOverwrite() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::confirmOverwrite")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::confirmOverwrite")
 
 	if ptr.Pointer() != nil {
 		return C.QFileDialog_ConfirmOverwrite(ptr.Pointer()) != 0
@@ -128,11 +115,7 @@ func (ptr *QFileDialog) ConfirmOverwrite() bool {
 }
 
 func (ptr *QFileDialog) DefaultSuffix() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::defaultSuffix")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::defaultSuffix")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileDialog_DefaultSuffix(ptr.Pointer()))
@@ -141,11 +124,7 @@ func (ptr *QFileDialog) DefaultSuffix() string {
 }
 
 func (ptr *QFileDialog) FileMode() QFileDialog__FileMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::fileMode")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::fileMode")
 
 	if ptr.Pointer() != nil {
 		return QFileDialog__FileMode(C.QFileDialog_FileMode(ptr.Pointer()))
@@ -154,11 +133,7 @@ func (ptr *QFileDialog) FileMode() QFileDialog__FileMode {
 }
 
 func (ptr *QFileDialog) IsNameFilterDetailsVisible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::isNameFilterDetailsVisible")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::isNameFilterDetailsVisible")
 
 	if ptr.Pointer() != nil {
 		return C.QFileDialog_IsNameFilterDetailsVisible(ptr.Pointer()) != 0
@@ -167,11 +142,7 @@ func (ptr *QFileDialog) IsNameFilterDetailsVisible() bool {
 }
 
 func (ptr *QFileDialog) IsReadOnly() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::isReadOnly")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::isReadOnly")
 
 	if ptr.Pointer() != nil {
 		return C.QFileDialog_IsReadOnly(ptr.Pointer()) != 0
@@ -180,11 +151,7 @@ func (ptr *QFileDialog) IsReadOnly() bool {
 }
 
 func (ptr *QFileDialog) Options() QFileDialog__Option {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::options")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::options")
 
 	if ptr.Pointer() != nil {
 		return QFileDialog__Option(C.QFileDialog_Options(ptr.Pointer()))
@@ -193,11 +160,7 @@ func (ptr *QFileDialog) Options() QFileDialog__Option {
 }
 
 func (ptr *QFileDialog) ResolveSymlinks() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::resolveSymlinks")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::resolveSymlinks")
 
 	if ptr.Pointer() != nil {
 		return C.QFileDialog_ResolveSymlinks(ptr.Pointer()) != 0
@@ -206,11 +169,7 @@ func (ptr *QFileDialog) ResolveSymlinks() bool {
 }
 
 func (ptr *QFileDialog) SetAcceptMode(mode QFileDialog__AcceptMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setAcceptMode")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setAcceptMode")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetAcceptMode(ptr.Pointer(), C.int(mode))
@@ -218,11 +177,7 @@ func (ptr *QFileDialog) SetAcceptMode(mode QFileDialog__AcceptMode) {
 }
 
 func (ptr *QFileDialog) SetConfirmOverwrite(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setConfirmOverwrite")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setConfirmOverwrite")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetConfirmOverwrite(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -230,11 +185,7 @@ func (ptr *QFileDialog) SetConfirmOverwrite(enabled bool) {
 }
 
 func (ptr *QFileDialog) SetDefaultSuffix(suffix string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setDefaultSuffix")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setDefaultSuffix")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetDefaultSuffix(ptr.Pointer(), C.CString(suffix))
@@ -242,11 +193,7 @@ func (ptr *QFileDialog) SetDefaultSuffix(suffix string) {
 }
 
 func (ptr *QFileDialog) SetFileMode(mode QFileDialog__FileMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setFileMode")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setFileMode")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetFileMode(ptr.Pointer(), C.int(mode))
@@ -254,11 +201,7 @@ func (ptr *QFileDialog) SetFileMode(mode QFileDialog__FileMode) {
 }
 
 func (ptr *QFileDialog) SetNameFilterDetailsVisible(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setNameFilterDetailsVisible")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setNameFilterDetailsVisible")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetNameFilterDetailsVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -266,11 +209,7 @@ func (ptr *QFileDialog) SetNameFilterDetailsVisible(enabled bool) {
 }
 
 func (ptr *QFileDialog) SetOptions(options QFileDialog__Option) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setOptions")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setOptions")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetOptions(ptr.Pointer(), C.int(options))
@@ -278,11 +217,7 @@ func (ptr *QFileDialog) SetOptions(options QFileDialog__Option) {
 }
 
 func (ptr *QFileDialog) SetReadOnly(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setReadOnly")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setReadOnly")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetReadOnly(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -290,11 +225,7 @@ func (ptr *QFileDialog) SetReadOnly(enabled bool) {
 }
 
 func (ptr *QFileDialog) SetResolveSymlinks(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setResolveSymlinks")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setResolveSymlinks")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetResolveSymlinks(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -302,11 +233,7 @@ func (ptr *QFileDialog) SetResolveSymlinks(enabled bool) {
 }
 
 func (ptr *QFileDialog) SetViewMode(mode QFileDialog__ViewMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setViewMode")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setViewMode")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetViewMode(ptr.Pointer(), C.int(mode))
@@ -314,11 +241,7 @@ func (ptr *QFileDialog) SetViewMode(mode QFileDialog__ViewMode) {
 }
 
 func (ptr *QFileDialog) ViewMode() QFileDialog__ViewMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::viewMode")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::viewMode")
 
 	if ptr.Pointer() != nil {
 		return QFileDialog__ViewMode(C.QFileDialog_ViewMode(ptr.Pointer()))
@@ -327,21 +250,75 @@ func (ptr *QFileDialog) ViewMode() QFileDialog__ViewMode {
 }
 
 func NewQFileDialog2(parent QWidget_ITF, caption string, directory string, filter string) *QFileDialog {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::QFileDialog")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::QFileDialog")
 
 	return NewQFileDialogFromPointer(C.QFileDialog_NewQFileDialog2(PointerFromQWidget(parent), C.CString(caption), C.CString(directory), C.CString(filter)))
 }
 
+func (ptr *QFileDialog) ConnectAccept(f func()) {
+	defer qt.Recovering("connect QFileDialog::accept")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "accept", f)
+	}
+}
+
+func (ptr *QFileDialog) DisconnectAccept() {
+	defer qt.Recovering("disconnect QFileDialog::accept")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "accept")
+	}
+}
+
+//export callbackQFileDialogAccept
+func callbackQFileDialogAccept(ptrName *C.char) bool {
+	defer qt.Recovering("callback QFileDialog::accept")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "accept")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QFileDialog) ConnectChangeEvent(f func(e *core.QEvent)) {
+	defer qt.Recovering("connect QFileDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QFileDialog) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QFileDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQFileDialogChangeEvent
+func callbackQFileDialogChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFileDialog::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QFileDialog) ConnectCurrentChanged(f func(path string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::currentChanged")
-		}
-	}()
+	defer qt.Recovering("connect QFileDialog::currentChanged")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_ConnectCurrentChanged(ptr.Pointer())
@@ -350,11 +327,7 @@ func (ptr *QFileDialog) ConnectCurrentChanged(f func(path string)) {
 }
 
 func (ptr *QFileDialog) DisconnectCurrentChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::currentChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QFileDialog::currentChanged")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_DisconnectCurrentChanged(ptr.Pointer())
@@ -364,21 +337,17 @@ func (ptr *QFileDialog) DisconnectCurrentChanged() {
 
 //export callbackQFileDialogCurrentChanged
 func callbackQFileDialogCurrentChanged(ptrName *C.char, path *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::currentChanged")
-		}
-	}()
+	defer qt.Recovering("callback QFileDialog::currentChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentChanged").(func(string))(C.GoString(path))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(path))
+	}
+
 }
 
 func (ptr *QFileDialog) Directory() *core.QDir {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::directory")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::directory")
 
 	if ptr.Pointer() != nil {
 		return core.NewQDirFromPointer(C.QFileDialog_Directory(ptr.Pointer()))
@@ -387,11 +356,7 @@ func (ptr *QFileDialog) Directory() *core.QDir {
 }
 
 func (ptr *QFileDialog) ConnectDirectoryEntered(f func(directory string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::directoryEntered")
-		}
-	}()
+	defer qt.Recovering("connect QFileDialog::directoryEntered")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_ConnectDirectoryEntered(ptr.Pointer())
@@ -400,11 +365,7 @@ func (ptr *QFileDialog) ConnectDirectoryEntered(f func(directory string)) {
 }
 
 func (ptr *QFileDialog) DisconnectDirectoryEntered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::directoryEntered")
-		}
-	}()
+	defer qt.Recovering("disconnect QFileDialog::directoryEntered")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_DisconnectDirectoryEntered(ptr.Pointer())
@@ -414,21 +375,48 @@ func (ptr *QFileDialog) DisconnectDirectoryEntered() {
 
 //export callbackQFileDialogDirectoryEntered
 func callbackQFileDialogDirectoryEntered(ptrName *C.char, directory *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::directoryEntered")
-		}
-	}()
+	defer qt.Recovering("callback QFileDialog::directoryEntered")
 
-	qt.GetSignal(C.GoString(ptrName), "directoryEntered").(func(string))(C.GoString(directory))
+	var signal = qt.GetSignal(C.GoString(ptrName), "directoryEntered")
+	if signal != nil {
+		signal.(func(string))(C.GoString(directory))
+	}
+
+}
+
+func (ptr *QFileDialog) ConnectDone(f func(result int)) {
+	defer qt.Recovering("connect QFileDialog::done")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "done", f)
+	}
+}
+
+func (ptr *QFileDialog) DisconnectDone() {
+	defer qt.Recovering("disconnect QFileDialog::done")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "done")
+	}
+}
+
+//export callbackQFileDialogDone
+func callbackQFileDialogDone(ptrName *C.char, result C.int) bool {
+	defer qt.Recovering("callback QFileDialog::done")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "done")
+	if signal != nil {
+		defer signal.(func(int))(int(result))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QFileDialog) ConnectFileSelected(f func(file string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::fileSelected")
-		}
-	}()
+	defer qt.Recovering("connect QFileDialog::fileSelected")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_ConnectFileSelected(ptr.Pointer())
@@ -437,11 +425,7 @@ func (ptr *QFileDialog) ConnectFileSelected(f func(file string)) {
 }
 
 func (ptr *QFileDialog) DisconnectFileSelected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::fileSelected")
-		}
-	}()
+	defer qt.Recovering("disconnect QFileDialog::fileSelected")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_DisconnectFileSelected(ptr.Pointer())
@@ -451,21 +435,17 @@ func (ptr *QFileDialog) DisconnectFileSelected() {
 
 //export callbackQFileDialogFileSelected
 func callbackQFileDialogFileSelected(ptrName *C.char, file *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::fileSelected")
-		}
-	}()
+	defer qt.Recovering("callback QFileDialog::fileSelected")
 
-	qt.GetSignal(C.GoString(ptrName), "fileSelected").(func(string))(C.GoString(file))
+	var signal = qt.GetSignal(C.GoString(ptrName), "fileSelected")
+	if signal != nil {
+		signal.(func(string))(C.GoString(file))
+	}
+
 }
 
 func (ptr *QFileDialog) ConnectFilesSelected(f func(selected []string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::filesSelected")
-		}
-	}()
+	defer qt.Recovering("connect QFileDialog::filesSelected")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_ConnectFilesSelected(ptr.Pointer())
@@ -474,11 +454,7 @@ func (ptr *QFileDialog) ConnectFilesSelected(f func(selected []string)) {
 }
 
 func (ptr *QFileDialog) DisconnectFilesSelected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::filesSelected")
-		}
-	}()
+	defer qt.Recovering("disconnect QFileDialog::filesSelected")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_DisconnectFilesSelected(ptr.Pointer())
@@ -488,21 +464,17 @@ func (ptr *QFileDialog) DisconnectFilesSelected() {
 
 //export callbackQFileDialogFilesSelected
 func callbackQFileDialogFilesSelected(ptrName *C.char, selected *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::filesSelected")
-		}
-	}()
+	defer qt.Recovering("callback QFileDialog::filesSelected")
 
-	qt.GetSignal(C.GoString(ptrName), "filesSelected").(func([]string))(strings.Split(C.GoString(selected), ",,,"))
+	var signal = qt.GetSignal(C.GoString(ptrName), "filesSelected")
+	if signal != nil {
+		signal.(func([]string))(strings.Split(C.GoString(selected), ",,,"))
+	}
+
 }
 
 func (ptr *QFileDialog) Filter() core.QDir__Filter {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::filter")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::filter")
 
 	if ptr.Pointer() != nil {
 		return core.QDir__Filter(C.QFileDialog_Filter(ptr.Pointer()))
@@ -511,11 +483,7 @@ func (ptr *QFileDialog) Filter() core.QDir__Filter {
 }
 
 func (ptr *QFileDialog) ConnectFilterSelected(f func(filter string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::filterSelected")
-		}
-	}()
+	defer qt.Recovering("connect QFileDialog::filterSelected")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_ConnectFilterSelected(ptr.Pointer())
@@ -524,11 +492,7 @@ func (ptr *QFileDialog) ConnectFilterSelected(f func(filter string)) {
 }
 
 func (ptr *QFileDialog) DisconnectFilterSelected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::filterSelected")
-		}
-	}()
+	defer qt.Recovering("disconnect QFileDialog::filterSelected")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_DisconnectFilterSelected(ptr.Pointer())
@@ -538,61 +502,41 @@ func (ptr *QFileDialog) DisconnectFilterSelected() {
 
 //export callbackQFileDialogFilterSelected
 func callbackQFileDialogFilterSelected(ptrName *C.char, filter *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::filterSelected")
-		}
-	}()
+	defer qt.Recovering("callback QFileDialog::filterSelected")
 
-	qt.GetSignal(C.GoString(ptrName), "filterSelected").(func(string))(C.GoString(filter))
+	var signal = qt.GetSignal(C.GoString(ptrName), "filterSelected")
+	if signal != nil {
+		signal.(func(string))(C.GoString(filter))
+	}
+
 }
 
 func QFileDialog_GetExistingDirectory(parent QWidget_ITF, caption string, dir string, options QFileDialog__Option) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::getExistingDirectory")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::getExistingDirectory")
 
 	return C.GoString(C.QFileDialog_QFileDialog_GetExistingDirectory(PointerFromQWidget(parent), C.CString(caption), C.CString(dir), C.int(options)))
 }
 
 func QFileDialog_GetOpenFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::getOpenFileName")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::getOpenFileName")
 
 	return C.GoString(C.QFileDialog_QFileDialog_GetOpenFileName(PointerFromQWidget(parent), C.CString(caption), C.CString(dir), C.CString(filter), C.CString(selectedFilter), C.int(options)))
 }
 
 func QFileDialog_GetOpenFileNames(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::getOpenFileNames")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::getOpenFileNames")
 
 	return strings.Split(C.GoString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), C.CString(caption), C.CString(dir), C.CString(filter), C.CString(selectedFilter), C.int(options))), ",,,")
 }
 
 func QFileDialog_GetSaveFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::getSaveFileName")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::getSaveFileName")
 
 	return C.GoString(C.QFileDialog_QFileDialog_GetSaveFileName(PointerFromQWidget(parent), C.CString(caption), C.CString(dir), C.CString(filter), C.CString(selectedFilter), C.int(options)))
 }
 
 func (ptr *QFileDialog) History() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::history")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::history")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QFileDialog_History(ptr.Pointer())), ",,,")
@@ -601,11 +545,7 @@ func (ptr *QFileDialog) History() []string {
 }
 
 func (ptr *QFileDialog) IconProvider() *QFileIconProvider {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::iconProvider")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::iconProvider")
 
 	if ptr.Pointer() != nil {
 		return NewQFileIconProviderFromPointer(C.QFileDialog_IconProvider(ptr.Pointer()))
@@ -614,11 +554,7 @@ func (ptr *QFileDialog) IconProvider() *QFileIconProvider {
 }
 
 func (ptr *QFileDialog) ItemDelegate() *QAbstractItemDelegate {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::itemDelegate")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::itemDelegate")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractItemDelegateFromPointer(C.QFileDialog_ItemDelegate(ptr.Pointer()))
@@ -627,11 +563,7 @@ func (ptr *QFileDialog) ItemDelegate() *QAbstractItemDelegate {
 }
 
 func (ptr *QFileDialog) LabelText(label QFileDialog__DialogLabel) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::labelText")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::labelText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileDialog_LabelText(ptr.Pointer(), C.int(label)))
@@ -640,11 +572,7 @@ func (ptr *QFileDialog) LabelText(label QFileDialog__DialogLabel) string {
 }
 
 func (ptr *QFileDialog) MimeTypeFilters() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::mimeTypeFilters")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::mimeTypeFilters")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QFileDialog_MimeTypeFilters(ptr.Pointer())), ",,,")
@@ -653,11 +581,7 @@ func (ptr *QFileDialog) MimeTypeFilters() []string {
 }
 
 func (ptr *QFileDialog) NameFilters() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::nameFilters")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::nameFilters")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QFileDialog_NameFilters(ptr.Pointer())), ",,,")
@@ -666,11 +590,7 @@ func (ptr *QFileDialog) NameFilters() []string {
 }
 
 func (ptr *QFileDialog) Open(receiver core.QObject_ITF, member string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::open")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::open")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_Open(ptr.Pointer(), core.PointerFromQObject(receiver), C.CString(member))
@@ -678,11 +598,7 @@ func (ptr *QFileDialog) Open(receiver core.QObject_ITF, member string) {
 }
 
 func (ptr *QFileDialog) ProxyModel() *core.QAbstractProxyModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::proxyModel")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::proxyModel")
 
 	if ptr.Pointer() != nil {
 		return core.NewQAbstractProxyModelFromPointer(C.QFileDialog_ProxyModel(ptr.Pointer()))
@@ -691,11 +607,7 @@ func (ptr *QFileDialog) ProxyModel() *core.QAbstractProxyModel {
 }
 
 func (ptr *QFileDialog) RestoreState(state core.QByteArray_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::restoreState")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::restoreState")
 
 	if ptr.Pointer() != nil {
 		return C.QFileDialog_RestoreState(ptr.Pointer(), core.PointerFromQByteArray(state)) != 0
@@ -704,11 +616,7 @@ func (ptr *QFileDialog) RestoreState(state core.QByteArray_ITF) bool {
 }
 
 func (ptr *QFileDialog) SaveState() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::saveState")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::saveState")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QFileDialog_SaveState(ptr.Pointer()))
@@ -717,11 +625,7 @@ func (ptr *QFileDialog) SaveState() *core.QByteArray {
 }
 
 func (ptr *QFileDialog) SelectFile(filename string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::selectFile")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::selectFile")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SelectFile(ptr.Pointer(), C.CString(filename))
@@ -729,11 +633,7 @@ func (ptr *QFileDialog) SelectFile(filename string) {
 }
 
 func (ptr *QFileDialog) SelectMimeTypeFilter(filter string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::selectMimeTypeFilter")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::selectMimeTypeFilter")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SelectMimeTypeFilter(ptr.Pointer(), C.CString(filter))
@@ -741,11 +641,7 @@ func (ptr *QFileDialog) SelectMimeTypeFilter(filter string) {
 }
 
 func (ptr *QFileDialog) SelectNameFilter(filter string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::selectNameFilter")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::selectNameFilter")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SelectNameFilter(ptr.Pointer(), C.CString(filter))
@@ -753,11 +649,7 @@ func (ptr *QFileDialog) SelectNameFilter(filter string) {
 }
 
 func (ptr *QFileDialog) SelectUrl(url core.QUrl_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::selectUrl")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::selectUrl")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SelectUrl(ptr.Pointer(), core.PointerFromQUrl(url))
@@ -765,11 +657,7 @@ func (ptr *QFileDialog) SelectUrl(url core.QUrl_ITF) {
 }
 
 func (ptr *QFileDialog) SelectedFiles() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::selectedFiles")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::selectedFiles")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QFileDialog_SelectedFiles(ptr.Pointer())), ",,,")
@@ -778,11 +666,7 @@ func (ptr *QFileDialog) SelectedFiles() []string {
 }
 
 func (ptr *QFileDialog) SelectedNameFilter() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::selectedNameFilter")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::selectedNameFilter")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileDialog_SelectedNameFilter(ptr.Pointer()))
@@ -791,11 +675,7 @@ func (ptr *QFileDialog) SelectedNameFilter() string {
 }
 
 func (ptr *QFileDialog) SetDirectory2(directory core.QDir_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setDirectory")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setDirectory")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetDirectory2(ptr.Pointer(), core.PointerFromQDir(directory))
@@ -803,11 +683,7 @@ func (ptr *QFileDialog) SetDirectory2(directory core.QDir_ITF) {
 }
 
 func (ptr *QFileDialog) SetDirectory(directory string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setDirectory")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setDirectory")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetDirectory(ptr.Pointer(), C.CString(directory))
@@ -815,11 +691,7 @@ func (ptr *QFileDialog) SetDirectory(directory string) {
 }
 
 func (ptr *QFileDialog) SetDirectoryUrl(directory core.QUrl_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setDirectoryUrl")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setDirectoryUrl")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetDirectoryUrl(ptr.Pointer(), core.PointerFromQUrl(directory))
@@ -827,11 +699,7 @@ func (ptr *QFileDialog) SetDirectoryUrl(directory core.QUrl_ITF) {
 }
 
 func (ptr *QFileDialog) SetFilter(filters core.QDir__Filter) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setFilter")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setFilter")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetFilter(ptr.Pointer(), C.int(filters))
@@ -839,11 +707,7 @@ func (ptr *QFileDialog) SetFilter(filters core.QDir__Filter) {
 }
 
 func (ptr *QFileDialog) SetHistory(paths []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setHistory")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setHistory")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetHistory(ptr.Pointer(), C.CString(strings.Join(paths, ",,,")))
@@ -851,11 +715,7 @@ func (ptr *QFileDialog) SetHistory(paths []string) {
 }
 
 func (ptr *QFileDialog) SetIconProvider(provider QFileIconProvider_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setIconProvider")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setIconProvider")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetIconProvider(ptr.Pointer(), PointerFromQFileIconProvider(provider))
@@ -863,11 +723,7 @@ func (ptr *QFileDialog) SetIconProvider(provider QFileIconProvider_ITF) {
 }
 
 func (ptr *QFileDialog) SetItemDelegate(delegate QAbstractItemDelegate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setItemDelegate")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setItemDelegate")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetItemDelegate(ptr.Pointer(), PointerFromQAbstractItemDelegate(delegate))
@@ -875,11 +731,7 @@ func (ptr *QFileDialog) SetItemDelegate(delegate QAbstractItemDelegate_ITF) {
 }
 
 func (ptr *QFileDialog) SetLabelText(label QFileDialog__DialogLabel, text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setLabelText")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setLabelText")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetLabelText(ptr.Pointer(), C.int(label), C.CString(text))
@@ -887,11 +739,7 @@ func (ptr *QFileDialog) SetLabelText(label QFileDialog__DialogLabel, text string
 }
 
 func (ptr *QFileDialog) SetMimeTypeFilters(filters []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setMimeTypeFilters")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setMimeTypeFilters")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetMimeTypeFilters(ptr.Pointer(), C.CString(strings.Join(filters, ",,,")))
@@ -899,11 +747,7 @@ func (ptr *QFileDialog) SetMimeTypeFilters(filters []string) {
 }
 
 func (ptr *QFileDialog) SetNameFilter(filter string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setNameFilter")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setNameFilter")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetNameFilter(ptr.Pointer(), C.CString(filter))
@@ -911,11 +755,7 @@ func (ptr *QFileDialog) SetNameFilter(filter string) {
 }
 
 func (ptr *QFileDialog) SetNameFilters(filters []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setNameFilters")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setNameFilters")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetNameFilters(ptr.Pointer(), C.CString(strings.Join(filters, ",,,")))
@@ -923,11 +763,7 @@ func (ptr *QFileDialog) SetNameFilters(filters []string) {
 }
 
 func (ptr *QFileDialog) SetOption(option QFileDialog__Option, on bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setOption")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setOption")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetOption(ptr.Pointer(), C.int(option), C.int(qt.GoBoolToInt(on)))
@@ -935,35 +771,46 @@ func (ptr *QFileDialog) SetOption(option QFileDialog__Option, on bool) {
 }
 
 func (ptr *QFileDialog) SetProxyModel(proxyModel core.QAbstractProxyModel_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setProxyModel")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::setProxyModel")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetProxyModel(ptr.Pointer(), core.PointerFromQAbstractProxyModel(proxyModel))
 	}
 }
 
-func (ptr *QFileDialog) SetVisible(visible bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::setVisible")
-		}
-	}()
+func (ptr *QFileDialog) ConnectSetVisible(f func(visible bool)) {
+	defer qt.Recovering("connect QFileDialog::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QFileDialog_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
 	}
 }
 
+func (ptr *QFileDialog) DisconnectSetVisible() {
+	defer qt.Recovering("disconnect QFileDialog::setVisible")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+	}
+}
+
+//export callbackQFileDialogSetVisible
+func callbackQFileDialogSetVisible(ptrName *C.char, visible C.int) bool {
+	defer qt.Recovering("callback QFileDialog::setVisible")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
+	if signal != nil {
+		defer signal.(func(bool))(int(visible) != 0)
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QFileDialog) TestOption(option QFileDialog__Option) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::testOption")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::testOption")
 
 	if ptr.Pointer() != nil {
 		return C.QFileDialog_TestOption(ptr.Pointer(), C.int(option)) != 0
@@ -972,11 +819,7 @@ func (ptr *QFileDialog) TestOption(option QFileDialog__Option) bool {
 }
 
 func (ptr *QFileDialog) DestroyQFileDialog() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDialog::~QFileDialog")
-		}
-	}()
+	defer qt.Recovering("QFileDialog::~QFileDialog")
 
 	if ptr.Pointer() != nil {
 		C.QFileDialog_DestroyQFileDialog(ptr.Pointer())

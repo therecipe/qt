@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,41 +41,25 @@ func (ptr *QMarginsF) QMarginsF_PTR() *QMarginsF {
 }
 
 func NewQMarginsF() *QMarginsF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::QMarginsF")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::QMarginsF")
 
 	return NewQMarginsFFromPointer(C.QMarginsF_NewQMarginsF())
 }
 
 func NewQMarginsF3(margins QMargins_ITF) *QMarginsF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::QMarginsF")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::QMarginsF")
 
 	return NewQMarginsFFromPointer(C.QMarginsF_NewQMarginsF3(PointerFromQMargins(margins)))
 }
 
 func NewQMarginsF2(left float64, top float64, right float64, bottom float64) *QMarginsF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::QMarginsF")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::QMarginsF")
 
 	return NewQMarginsFFromPointer(C.QMarginsF_NewQMarginsF2(C.double(left), C.double(top), C.double(right), C.double(bottom)))
 }
 
 func (ptr *QMarginsF) Bottom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::bottom")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::bottom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QMarginsF_Bottom(ptr.Pointer()))
@@ -84,11 +68,7 @@ func (ptr *QMarginsF) Bottom() float64 {
 }
 
 func (ptr *QMarginsF) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::isNull")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QMarginsF_IsNull(ptr.Pointer()) != 0
@@ -97,11 +77,7 @@ func (ptr *QMarginsF) IsNull() bool {
 }
 
 func (ptr *QMarginsF) Left() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::left")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::left")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QMarginsF_Left(ptr.Pointer()))
@@ -110,11 +86,7 @@ func (ptr *QMarginsF) Left() float64 {
 }
 
 func (ptr *QMarginsF) Right() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::right")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::right")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QMarginsF_Right(ptr.Pointer()))
@@ -123,11 +95,7 @@ func (ptr *QMarginsF) Right() float64 {
 }
 
 func (ptr *QMarginsF) SetBottom(bottom float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::setBottom")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::setBottom")
 
 	if ptr.Pointer() != nil {
 		C.QMarginsF_SetBottom(ptr.Pointer(), C.double(bottom))
@@ -135,11 +103,7 @@ func (ptr *QMarginsF) SetBottom(bottom float64) {
 }
 
 func (ptr *QMarginsF) SetLeft(left float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::setLeft")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::setLeft")
 
 	if ptr.Pointer() != nil {
 		C.QMarginsF_SetLeft(ptr.Pointer(), C.double(left))
@@ -147,11 +111,7 @@ func (ptr *QMarginsF) SetLeft(left float64) {
 }
 
 func (ptr *QMarginsF) SetRight(right float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::setRight")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::setRight")
 
 	if ptr.Pointer() != nil {
 		C.QMarginsF_SetRight(ptr.Pointer(), C.double(right))
@@ -159,11 +119,7 @@ func (ptr *QMarginsF) SetRight(right float64) {
 }
 
 func (ptr *QMarginsF) SetTop(Top float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::setTop")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::setTop")
 
 	if ptr.Pointer() != nil {
 		C.QMarginsF_SetTop(ptr.Pointer(), C.double(Top))
@@ -171,11 +127,7 @@ func (ptr *QMarginsF) SetTop(Top float64) {
 }
 
 func (ptr *QMarginsF) Top() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMarginsF::top")
-		}
-	}()
+	defer qt.Recovering("QMarginsF::top")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QMarginsF_Top(ptr.Pointer()))

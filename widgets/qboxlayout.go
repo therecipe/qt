@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQBoxLayoutFromPointer(ptr unsafe.Pointer) *QBoxLayout {
 	var n = new(QBoxLayout)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QBoxLayout_") {
-		n.SetObjectName("QBoxLayout_" + qt.RandomIdentifier())
+		n.SetObjectName("QBoxLayout_" + qt.Identifier())
 	}
 	return n
 }
@@ -51,11 +50,7 @@ const (
 )
 
 func (ptr *QBoxLayout) Direction() QBoxLayout__Direction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::direction")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::direction")
 
 	if ptr.Pointer() != nil {
 		return QBoxLayout__Direction(C.QBoxLayout_Direction(ptr.Pointer()))
@@ -64,33 +59,44 @@ func (ptr *QBoxLayout) Direction() QBoxLayout__Direction {
 }
 
 func NewQBoxLayout(dir QBoxLayout__Direction, parent QWidget_ITF) *QBoxLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::QBoxLayout")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::QBoxLayout")
 
 	return NewQBoxLayoutFromPointer(C.QBoxLayout_NewQBoxLayout(C.int(dir), PointerFromQWidget(parent)))
 }
 
-func (ptr *QBoxLayout) AddItem(item QLayoutItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::addItem")
-		}
-	}()
+func (ptr *QBoxLayout) ConnectAddItem(f func(item *QLayoutItem)) {
+	defer qt.Recovering("connect QBoxLayout::addItem")
 
 	if ptr.Pointer() != nil {
-		C.QBoxLayout_AddItem(ptr.Pointer(), PointerFromQLayoutItem(item))
+
+		qt.ConnectSignal(ptr.ObjectName(), "addItem", f)
 	}
 }
 
+func (ptr *QBoxLayout) DisconnectAddItem() {
+	defer qt.Recovering("disconnect QBoxLayout::addItem")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "addItem")
+	}
+}
+
+//export callbackQBoxLayoutAddItem
+func callbackQBoxLayoutAddItem(ptrName *C.char, item unsafe.Pointer) bool {
+	defer qt.Recovering("callback QBoxLayout::addItem")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "addItem")
+	if signal != nil {
+		defer signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QBoxLayout) AddLayout(layout QLayout_ITF, stretch int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::addLayout")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::addLayout")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_AddLayout(ptr.Pointer(), PointerFromQLayout(layout), C.int(stretch))
@@ -98,11 +104,7 @@ func (ptr *QBoxLayout) AddLayout(layout QLayout_ITF, stretch int) {
 }
 
 func (ptr *QBoxLayout) AddSpacerItem(spacerItem QSpacerItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::addSpacerItem")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::addSpacerItem")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_AddSpacerItem(ptr.Pointer(), PointerFromQSpacerItem(spacerItem))
@@ -110,11 +112,7 @@ func (ptr *QBoxLayout) AddSpacerItem(spacerItem QSpacerItem_ITF) {
 }
 
 func (ptr *QBoxLayout) AddSpacing(size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::addSpacing")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::addSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_AddSpacing(ptr.Pointer(), C.int(size))
@@ -122,11 +120,7 @@ func (ptr *QBoxLayout) AddSpacing(size int) {
 }
 
 func (ptr *QBoxLayout) AddStretch(stretch int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::addStretch")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::addStretch")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_AddStretch(ptr.Pointer(), C.int(stretch))
@@ -134,11 +128,7 @@ func (ptr *QBoxLayout) AddStretch(stretch int) {
 }
 
 func (ptr *QBoxLayout) AddStrut(size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::addStrut")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::addStrut")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_AddStrut(ptr.Pointer(), C.int(size))
@@ -146,11 +136,7 @@ func (ptr *QBoxLayout) AddStrut(size int) {
 }
 
 func (ptr *QBoxLayout) AddWidget(widget QWidget_ITF, stretch int, alignment core.Qt__AlignmentFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::addWidget")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::addWidget")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_AddWidget(ptr.Pointer(), PointerFromQWidget(widget), C.int(stretch), C.int(alignment))
@@ -158,11 +144,7 @@ func (ptr *QBoxLayout) AddWidget(widget QWidget_ITF, stretch int, alignment core
 }
 
 func (ptr *QBoxLayout) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::count")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QBoxLayout_Count(ptr.Pointer()))
@@ -171,11 +153,7 @@ func (ptr *QBoxLayout) Count() int {
 }
 
 func (ptr *QBoxLayout) ExpandingDirections() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::expandingDirections")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::expandingDirections")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QBoxLayout_ExpandingDirections(ptr.Pointer()))
@@ -184,11 +162,7 @@ func (ptr *QBoxLayout) ExpandingDirections() core.Qt__Orientation {
 }
 
 func (ptr *QBoxLayout) HasHeightForWidth() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::hasHeightForWidth")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::hasHeightForWidth")
 
 	if ptr.Pointer() != nil {
 		return C.QBoxLayout_HasHeightForWidth(ptr.Pointer()) != 0
@@ -197,11 +171,7 @@ func (ptr *QBoxLayout) HasHeightForWidth() bool {
 }
 
 func (ptr *QBoxLayout) HeightForWidth(w int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::heightForWidth")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::heightForWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QBoxLayout_HeightForWidth(ptr.Pointer(), C.int(w)))
@@ -210,11 +180,7 @@ func (ptr *QBoxLayout) HeightForWidth(w int) int {
 }
 
 func (ptr *QBoxLayout) InsertItem(index int, item QLayoutItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::insertItem")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::insertItem")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_InsertItem(ptr.Pointer(), C.int(index), PointerFromQLayoutItem(item))
@@ -222,11 +188,7 @@ func (ptr *QBoxLayout) InsertItem(index int, item QLayoutItem_ITF) {
 }
 
 func (ptr *QBoxLayout) InsertLayout(index int, layout QLayout_ITF, stretch int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::insertLayout")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::insertLayout")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_InsertLayout(ptr.Pointer(), C.int(index), PointerFromQLayout(layout), C.int(stretch))
@@ -234,11 +196,7 @@ func (ptr *QBoxLayout) InsertLayout(index int, layout QLayout_ITF, stretch int) 
 }
 
 func (ptr *QBoxLayout) InsertSpacerItem(index int, spacerItem QSpacerItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::insertSpacerItem")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::insertSpacerItem")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_InsertSpacerItem(ptr.Pointer(), C.int(index), PointerFromQSpacerItem(spacerItem))
@@ -246,11 +204,7 @@ func (ptr *QBoxLayout) InsertSpacerItem(index int, spacerItem QSpacerItem_ITF) {
 }
 
 func (ptr *QBoxLayout) InsertSpacing(index int, size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::insertSpacing")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::insertSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_InsertSpacing(ptr.Pointer(), C.int(index), C.int(size))
@@ -258,11 +212,7 @@ func (ptr *QBoxLayout) InsertSpacing(index int, size int) {
 }
 
 func (ptr *QBoxLayout) InsertStretch(index int, stretch int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::insertStretch")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::insertStretch")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_InsertStretch(ptr.Pointer(), C.int(index), C.int(stretch))
@@ -270,35 +220,46 @@ func (ptr *QBoxLayout) InsertStretch(index int, stretch int) {
 }
 
 func (ptr *QBoxLayout) InsertWidget(index int, widget QWidget_ITF, stretch int, alignment core.Qt__AlignmentFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::insertWidget")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::insertWidget")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_InsertWidget(ptr.Pointer(), C.int(index), PointerFromQWidget(widget), C.int(stretch), C.int(alignment))
 	}
 }
 
-func (ptr *QBoxLayout) Invalidate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::invalidate")
-		}
-	}()
+func (ptr *QBoxLayout) ConnectInvalidate(f func()) {
+	defer qt.Recovering("connect QBoxLayout::invalidate")
 
 	if ptr.Pointer() != nil {
-		C.QBoxLayout_Invalidate(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "invalidate", f)
 	}
 }
 
+func (ptr *QBoxLayout) DisconnectInvalidate() {
+	defer qt.Recovering("disconnect QBoxLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "invalidate")
+	}
+}
+
+//export callbackQBoxLayoutInvalidate
+func callbackQBoxLayoutInvalidate(ptrName *C.char) bool {
+	defer qt.Recovering("callback QBoxLayout::invalidate")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "invalidate")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QBoxLayout) ItemAt(index int) *QLayoutItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::itemAt")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutItemFromPointer(C.QBoxLayout_ItemAt(ptr.Pointer(), C.int(index)))
@@ -307,11 +268,7 @@ func (ptr *QBoxLayout) ItemAt(index int) *QLayoutItem {
 }
 
 func (ptr *QBoxLayout) MinimumHeightForWidth(w int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::minimumHeightForWidth")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::minimumHeightForWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QBoxLayout_MinimumHeightForWidth(ptr.Pointer(), C.int(w)))
@@ -320,35 +277,15 @@ func (ptr *QBoxLayout) MinimumHeightForWidth(w int) int {
 }
 
 func (ptr *QBoxLayout) SetDirection(direction QBoxLayout__Direction) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::setDirection")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::setDirection")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_SetDirection(ptr.Pointer(), C.int(direction))
 	}
 }
 
-func (ptr *QBoxLayout) SetGeometry(r core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::setGeometry")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QBoxLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRect(r))
-	}
-}
-
 func (ptr *QBoxLayout) SetSpacing(spacing int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::setSpacing")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::setSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_SetSpacing(ptr.Pointer(), C.int(spacing))
@@ -356,11 +293,7 @@ func (ptr *QBoxLayout) SetSpacing(spacing int) {
 }
 
 func (ptr *QBoxLayout) SetStretch(index int, stretch int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::setStretch")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::setStretch")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_SetStretch(ptr.Pointer(), C.int(index), C.int(stretch))
@@ -368,11 +301,7 @@ func (ptr *QBoxLayout) SetStretch(index int, stretch int) {
 }
 
 func (ptr *QBoxLayout) SetStretchFactor2(layout QLayout_ITF, stretch int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::setStretchFactor")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::setStretchFactor")
 
 	if ptr.Pointer() != nil {
 		return C.QBoxLayout_SetStretchFactor2(ptr.Pointer(), PointerFromQLayout(layout), C.int(stretch)) != 0
@@ -381,11 +310,7 @@ func (ptr *QBoxLayout) SetStretchFactor2(layout QLayout_ITF, stretch int) bool {
 }
 
 func (ptr *QBoxLayout) SetStretchFactor(widget QWidget_ITF, stretch int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::setStretchFactor")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::setStretchFactor")
 
 	if ptr.Pointer() != nil {
 		return C.QBoxLayout_SetStretchFactor(ptr.Pointer(), PointerFromQWidget(widget), C.int(stretch)) != 0
@@ -394,11 +319,7 @@ func (ptr *QBoxLayout) SetStretchFactor(widget QWidget_ITF, stretch int) bool {
 }
 
 func (ptr *QBoxLayout) Spacing() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::spacing")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::spacing")
 
 	if ptr.Pointer() != nil {
 		return int(C.QBoxLayout_Spacing(ptr.Pointer()))
@@ -407,11 +328,7 @@ func (ptr *QBoxLayout) Spacing() int {
 }
 
 func (ptr *QBoxLayout) Stretch(index int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::stretch")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::stretch")
 
 	if ptr.Pointer() != nil {
 		return int(C.QBoxLayout_Stretch(ptr.Pointer(), C.int(index)))
@@ -420,11 +337,7 @@ func (ptr *QBoxLayout) Stretch(index int) int {
 }
 
 func (ptr *QBoxLayout) TakeAt(index int) *QLayoutItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::takeAt")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::takeAt")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutItemFromPointer(C.QBoxLayout_TakeAt(ptr.Pointer(), C.int(index)))
@@ -433,11 +346,7 @@ func (ptr *QBoxLayout) TakeAt(index int) *QLayoutItem {
 }
 
 func (ptr *QBoxLayout) DestroyQBoxLayout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBoxLayout::~QBoxLayout")
-		}
-	}()
+	defer qt.Recovering("QBoxLayout::~QBoxLayout")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_DestroyQBoxLayout(ptr.Pointer())

@@ -3,7 +3,7 @@ package qml
 //#include "qml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQQmlPropertyValueSource(ptr QQmlPropertyValueSource_ITF) unsafe.
 func NewQQmlPropertyValueSourceFromPointer(ptr unsafe.Pointer) *QQmlPropertyValueSource {
 	var n = new(QQmlPropertyValueSource)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QQmlPropertyValueSource_") {
+		n.SetObjectNameAbs("QQmlPropertyValueSource_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QQmlPropertyValueSource) QQmlPropertyValueSource_PTR() *QQmlPropertyV
 }
 
 func (ptr *QQmlPropertyValueSource) SetTarget(property QQmlProperty_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyValueSource::setTarget")
-		}
-	}()
+	defer qt.Recovering("QQmlPropertyValueSource::setTarget")
 
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyValueSource_SetTarget(ptr.Pointer(), PointerFromQQmlProperty(property))
@@ -53,13 +52,26 @@ func (ptr *QQmlPropertyValueSource) SetTarget(property QQmlProperty_ITF) {
 }
 
 func (ptr *QQmlPropertyValueSource) DestroyQQmlPropertyValueSource() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlPropertyValueSource::~QQmlPropertyValueSource")
-		}
-	}()
+	defer qt.Recovering("QQmlPropertyValueSource::~QQmlPropertyValueSource")
 
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(ptr.Pointer())
+	}
+}
+
+func (ptr *QQmlPropertyValueSource) ObjectNameAbs() string {
+	defer qt.Recovering("QQmlPropertyValueSource::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QQmlPropertyValueSource_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QQmlPropertyValueSource) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QQmlPropertyValueSource::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QQmlPropertyValueSource_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

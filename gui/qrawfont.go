@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -59,51 +59,31 @@ const (
 )
 
 func NewQRawFont() *QRawFont {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::QRawFont")
-		}
-	}()
+	defer qt.Recovering("QRawFont::QRawFont")
 
 	return NewQRawFontFromPointer(C.QRawFont_NewQRawFont())
 }
 
 func NewQRawFont3(fontData core.QByteArray_ITF, pixelSize float64, hintingPreference QFont__HintingPreference) *QRawFont {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::QRawFont")
-		}
-	}()
+	defer qt.Recovering("QRawFont::QRawFont")
 
 	return NewQRawFontFromPointer(C.QRawFont_NewQRawFont3(core.PointerFromQByteArray(fontData), C.double(pixelSize), C.int(hintingPreference)))
 }
 
 func NewQRawFont4(other QRawFont_ITF) *QRawFont {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::QRawFont")
-		}
-	}()
+	defer qt.Recovering("QRawFont::QRawFont")
 
 	return NewQRawFontFromPointer(C.QRawFont_NewQRawFont4(PointerFromQRawFont(other)))
 }
 
 func NewQRawFont2(fileName string, pixelSize float64, hintingPreference QFont__HintingPreference) *QRawFont {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::QRawFont")
-		}
-	}()
+	defer qt.Recovering("QRawFont::QRawFont")
 
 	return NewQRawFontFromPointer(C.QRawFont_NewQRawFont2(C.CString(fileName), C.double(pixelSize), C.int(hintingPreference)))
 }
 
 func (ptr *QRawFont) Ascent() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::ascent")
-		}
-	}()
+	defer qt.Recovering("QRawFont::ascent")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRawFont_Ascent(ptr.Pointer()))
@@ -112,11 +92,7 @@ func (ptr *QRawFont) Ascent() float64 {
 }
 
 func (ptr *QRawFont) AverageCharWidth() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::averageCharWidth")
-		}
-	}()
+	defer qt.Recovering("QRawFont::averageCharWidth")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRawFont_AverageCharWidth(ptr.Pointer()))
@@ -125,11 +101,7 @@ func (ptr *QRawFont) AverageCharWidth() float64 {
 }
 
 func (ptr *QRawFont) Descent() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::descent")
-		}
-	}()
+	defer qt.Recovering("QRawFont::descent")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRawFont_Descent(ptr.Pointer()))
@@ -138,11 +110,7 @@ func (ptr *QRawFont) Descent() float64 {
 }
 
 func (ptr *QRawFont) FamilyName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::familyName")
-		}
-	}()
+	defer qt.Recovering("QRawFont::familyName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRawFont_FamilyName(ptr.Pointer()))
@@ -151,11 +119,7 @@ func (ptr *QRawFont) FamilyName() string {
 }
 
 func (ptr *QRawFont) FontTable(tagName string) *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::fontTable")
-		}
-	}()
+	defer qt.Recovering("QRawFont::fontTable")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QRawFont_FontTable(ptr.Pointer(), C.CString(tagName)))
@@ -164,11 +128,7 @@ func (ptr *QRawFont) FontTable(tagName string) *core.QByteArray {
 }
 
 func (ptr *QRawFont) HintingPreference() QFont__HintingPreference {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::hintingPreference")
-		}
-	}()
+	defer qt.Recovering("QRawFont::hintingPreference")
 
 	if ptr.Pointer() != nil {
 		return QFont__HintingPreference(C.QRawFont_HintingPreference(ptr.Pointer()))
@@ -177,11 +137,7 @@ func (ptr *QRawFont) HintingPreference() QFont__HintingPreference {
 }
 
 func (ptr *QRawFont) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::isValid")
-		}
-	}()
+	defer qt.Recovering("QRawFont::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QRawFont_IsValid(ptr.Pointer()) != 0
@@ -190,11 +146,7 @@ func (ptr *QRawFont) IsValid() bool {
 }
 
 func (ptr *QRawFont) Leading() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::leading")
-		}
-	}()
+	defer qt.Recovering("QRawFont::leading")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRawFont_Leading(ptr.Pointer()))
@@ -203,11 +155,7 @@ func (ptr *QRawFont) Leading() float64 {
 }
 
 func (ptr *QRawFont) LineThickness() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::lineThickness")
-		}
-	}()
+	defer qt.Recovering("QRawFont::lineThickness")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRawFont_LineThickness(ptr.Pointer()))
@@ -216,11 +164,7 @@ func (ptr *QRawFont) LineThickness() float64 {
 }
 
 func (ptr *QRawFont) LoadFromData(fontData core.QByteArray_ITF, pixelSize float64, hintingPreference QFont__HintingPreference) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::loadFromData")
-		}
-	}()
+	defer qt.Recovering("QRawFont::loadFromData")
 
 	if ptr.Pointer() != nil {
 		C.QRawFont_LoadFromData(ptr.Pointer(), core.PointerFromQByteArray(fontData), C.double(pixelSize), C.int(hintingPreference))
@@ -228,11 +172,7 @@ func (ptr *QRawFont) LoadFromData(fontData core.QByteArray_ITF, pixelSize float6
 }
 
 func (ptr *QRawFont) LoadFromFile(fileName string, pixelSize float64, hintingPreference QFont__HintingPreference) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::loadFromFile")
-		}
-	}()
+	defer qt.Recovering("QRawFont::loadFromFile")
 
 	if ptr.Pointer() != nil {
 		C.QRawFont_LoadFromFile(ptr.Pointer(), C.CString(fileName), C.double(pixelSize), C.int(hintingPreference))
@@ -240,11 +180,7 @@ func (ptr *QRawFont) LoadFromFile(fileName string, pixelSize float64, hintingPre
 }
 
 func (ptr *QRawFont) MaxCharWidth() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::maxCharWidth")
-		}
-	}()
+	defer qt.Recovering("QRawFont::maxCharWidth")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRawFont_MaxCharWidth(ptr.Pointer()))
@@ -253,11 +189,7 @@ func (ptr *QRawFont) MaxCharWidth() float64 {
 }
 
 func (ptr *QRawFont) PixelSize() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::pixelSize")
-		}
-	}()
+	defer qt.Recovering("QRawFont::pixelSize")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRawFont_PixelSize(ptr.Pointer()))
@@ -266,11 +198,7 @@ func (ptr *QRawFont) PixelSize() float64 {
 }
 
 func (ptr *QRawFont) SetPixelSize(pixelSize float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::setPixelSize")
-		}
-	}()
+	defer qt.Recovering("QRawFont::setPixelSize")
 
 	if ptr.Pointer() != nil {
 		C.QRawFont_SetPixelSize(ptr.Pointer(), C.double(pixelSize))
@@ -278,11 +206,7 @@ func (ptr *QRawFont) SetPixelSize(pixelSize float64) {
 }
 
 func (ptr *QRawFont) Style() QFont__Style {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::style")
-		}
-	}()
+	defer qt.Recovering("QRawFont::style")
 
 	if ptr.Pointer() != nil {
 		return QFont__Style(C.QRawFont_Style(ptr.Pointer()))
@@ -291,11 +215,7 @@ func (ptr *QRawFont) Style() QFont__Style {
 }
 
 func (ptr *QRawFont) StyleName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::styleName")
-		}
-	}()
+	defer qt.Recovering("QRawFont::styleName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRawFont_StyleName(ptr.Pointer()))
@@ -304,11 +224,7 @@ func (ptr *QRawFont) StyleName() string {
 }
 
 func (ptr *QRawFont) SupportsCharacter(character core.QChar_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::supportsCharacter")
-		}
-	}()
+	defer qt.Recovering("QRawFont::supportsCharacter")
 
 	if ptr.Pointer() != nil {
 		return C.QRawFont_SupportsCharacter(ptr.Pointer(), core.PointerFromQChar(character)) != 0
@@ -317,11 +233,7 @@ func (ptr *QRawFont) SupportsCharacter(character core.QChar_ITF) bool {
 }
 
 func (ptr *QRawFont) Swap(other QRawFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::swap")
-		}
-	}()
+	defer qt.Recovering("QRawFont::swap")
 
 	if ptr.Pointer() != nil {
 		C.QRawFont_Swap(ptr.Pointer(), PointerFromQRawFont(other))
@@ -329,11 +241,7 @@ func (ptr *QRawFont) Swap(other QRawFont_ITF) {
 }
 
 func (ptr *QRawFont) UnderlinePosition() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::underlinePosition")
-		}
-	}()
+	defer qt.Recovering("QRawFont::underlinePosition")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRawFont_UnderlinePosition(ptr.Pointer()))
@@ -342,11 +250,7 @@ func (ptr *QRawFont) UnderlinePosition() float64 {
 }
 
 func (ptr *QRawFont) UnitsPerEm() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::unitsPerEm")
-		}
-	}()
+	defer qt.Recovering("QRawFont::unitsPerEm")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRawFont_UnitsPerEm(ptr.Pointer()))
@@ -355,11 +259,7 @@ func (ptr *QRawFont) UnitsPerEm() float64 {
 }
 
 func (ptr *QRawFont) Weight() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::weight")
-		}
-	}()
+	defer qt.Recovering("QRawFont::weight")
 
 	if ptr.Pointer() != nil {
 		return int(C.QRawFont_Weight(ptr.Pointer()))
@@ -368,11 +268,7 @@ func (ptr *QRawFont) Weight() int {
 }
 
 func (ptr *QRawFont) XHeight() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::xHeight")
-		}
-	}()
+	defer qt.Recovering("QRawFont::xHeight")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRawFont_XHeight(ptr.Pointer()))
@@ -381,11 +277,7 @@ func (ptr *QRawFont) XHeight() float64 {
 }
 
 func (ptr *QRawFont) DestroyQRawFont() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRawFont::~QRawFont")
-		}
-	}()
+	defer qt.Recovering("QRawFont::~QRawFont")
 
 	if ptr.Pointer() != nil {
 		C.QRawFont_DestroyQRawFont(ptr.Pointer())

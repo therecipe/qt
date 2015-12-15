@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQMetaDataWriterControlFromPointer(ptr unsafe.Pointer) *QMetaDataWriterCo
 	var n = new(QMetaDataWriterControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMetaDataWriterControl_") {
-		n.SetObjectName("QMetaDataWriterControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QMetaDataWriterControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QMetaDataWriterControl) QMetaDataWriterControl_PTR() *QMetaDataWriter
 }
 
 func (ptr *QMetaDataWriterControl) AvailableMetaData() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::availableMetaData")
-		}
-	}()
+	defer qt.Recovering("QMetaDataWriterControl::availableMetaData")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QMetaDataWriterControl_AvailableMetaData(ptr.Pointer())), ",,,")
@@ -53,11 +48,7 @@ func (ptr *QMetaDataWriterControl) AvailableMetaData() []string {
 }
 
 func (ptr *QMetaDataWriterControl) IsMetaDataAvailable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::isMetaDataAvailable")
-		}
-	}()
+	defer qt.Recovering("QMetaDataWriterControl::isMetaDataAvailable")
 
 	if ptr.Pointer() != nil {
 		return C.QMetaDataWriterControl_IsMetaDataAvailable(ptr.Pointer()) != 0
@@ -66,11 +57,7 @@ func (ptr *QMetaDataWriterControl) IsMetaDataAvailable() bool {
 }
 
 func (ptr *QMetaDataWriterControl) IsWritable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::isWritable")
-		}
-	}()
+	defer qt.Recovering("QMetaDataWriterControl::isWritable")
 
 	if ptr.Pointer() != nil {
 		return C.QMetaDataWriterControl_IsWritable(ptr.Pointer()) != 0
@@ -79,11 +66,7 @@ func (ptr *QMetaDataWriterControl) IsWritable() bool {
 }
 
 func (ptr *QMetaDataWriterControl) MetaData(key string) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::metaData")
-		}
-	}()
+	defer qt.Recovering("QMetaDataWriterControl::metaData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QMetaDataWriterControl_MetaData(ptr.Pointer(), C.CString(key)))
@@ -92,11 +75,7 @@ func (ptr *QMetaDataWriterControl) MetaData(key string) *core.QVariant {
 }
 
 func (ptr *QMetaDataWriterControl) ConnectMetaDataAvailableChanged(f func(available bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::metaDataAvailableChanged")
-		}
-	}()
+	defer qt.Recovering("connect QMetaDataWriterControl::metaDataAvailableChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_ConnectMetaDataAvailableChanged(ptr.Pointer())
@@ -105,11 +84,7 @@ func (ptr *QMetaDataWriterControl) ConnectMetaDataAvailableChanged(f func(availa
 }
 
 func (ptr *QMetaDataWriterControl) DisconnectMetaDataAvailableChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::metaDataAvailableChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QMetaDataWriterControl::metaDataAvailableChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_DisconnectMetaDataAvailableChanged(ptr.Pointer())
@@ -119,21 +94,17 @@ func (ptr *QMetaDataWriterControl) DisconnectMetaDataAvailableChanged() {
 
 //export callbackQMetaDataWriterControlMetaDataAvailableChanged
 func callbackQMetaDataWriterControlMetaDataAvailableChanged(ptrName *C.char, available C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::metaDataAvailableChanged")
-		}
-	}()
+	defer qt.Recovering("callback QMetaDataWriterControl::metaDataAvailableChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "metaDataAvailableChanged").(func(bool))(int(available) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataAvailableChanged")
+	if signal != nil {
+		signal.(func(bool))(int(available) != 0)
+	}
+
 }
 
 func (ptr *QMetaDataWriterControl) ConnectMetaDataChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::metaDataChanged")
-		}
-	}()
+	defer qt.Recovering("connect QMetaDataWriterControl::metaDataChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_ConnectMetaDataChanged(ptr.Pointer())
@@ -142,11 +113,7 @@ func (ptr *QMetaDataWriterControl) ConnectMetaDataChanged(f func()) {
 }
 
 func (ptr *QMetaDataWriterControl) DisconnectMetaDataChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::metaDataChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QMetaDataWriterControl::metaDataChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_DisconnectMetaDataChanged(ptr.Pointer())
@@ -156,21 +123,17 @@ func (ptr *QMetaDataWriterControl) DisconnectMetaDataChanged() {
 
 //export callbackQMetaDataWriterControlMetaDataChanged
 func callbackQMetaDataWriterControlMetaDataChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::metaDataChanged")
-		}
-	}()
+	defer qt.Recovering("callback QMetaDataWriterControl::metaDataChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "metaDataChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QMetaDataWriterControl) SetMetaData(key string, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::setMetaData")
-		}
-	}()
+	defer qt.Recovering("QMetaDataWriterControl::setMetaData")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_SetMetaData(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(value))
@@ -178,11 +141,7 @@ func (ptr *QMetaDataWriterControl) SetMetaData(key string, value core.QVariant_I
 }
 
 func (ptr *QMetaDataWriterControl) ConnectWritableChanged(f func(writable bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::writableChanged")
-		}
-	}()
+	defer qt.Recovering("connect QMetaDataWriterControl::writableChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_ConnectWritableChanged(ptr.Pointer())
@@ -191,11 +150,7 @@ func (ptr *QMetaDataWriterControl) ConnectWritableChanged(f func(writable bool))
 }
 
 func (ptr *QMetaDataWriterControl) DisconnectWritableChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::writableChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QMetaDataWriterControl::writableChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_DisconnectWritableChanged(ptr.Pointer())
@@ -205,21 +160,17 @@ func (ptr *QMetaDataWriterControl) DisconnectWritableChanged() {
 
 //export callbackQMetaDataWriterControlWritableChanged
 func callbackQMetaDataWriterControlWritableChanged(ptrName *C.char, writable C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::writableChanged")
-		}
-	}()
+	defer qt.Recovering("callback QMetaDataWriterControl::writableChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "writableChanged").(func(bool))(int(writable) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "writableChanged")
+	if signal != nil {
+		signal.(func(bool))(int(writable) != 0)
+	}
+
 }
 
 func (ptr *QMetaDataWriterControl) DestroyQMetaDataWriterControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMetaDataWriterControl::~QMetaDataWriterControl")
-		}
-	}()
+	defer qt.Recovering("QMetaDataWriterControl::~QMetaDataWriterControl")
 
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_DestroyQMetaDataWriterControl(ptr.Pointer())

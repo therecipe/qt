@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -40,7 +39,7 @@ func NewQDBusPendingCallWatcherFromPointer(ptr unsafe.Pointer) *QDBusPendingCall
 	var n = new(QDBusPendingCallWatcher)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusPendingCallWatcher_") {
-		n.SetObjectName("QDBusPendingCallWatcher_" + qt.RandomIdentifier())
+		n.SetObjectName("QDBusPendingCallWatcher_" + qt.Identifier())
 	}
 	return n
 }
@@ -50,11 +49,7 @@ func (ptr *QDBusPendingCallWatcher) QDBusPendingCallWatcher_PTR() *QDBusPendingC
 }
 
 func (ptr *QDBusPendingCallWatcher) WaitForFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusPendingCallWatcher::waitForFinished")
-		}
-	}()
+	defer qt.Recovering("QDBusPendingCallWatcher::waitForFinished")
 
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_WaitForFinished(ptr.Pointer())
@@ -62,21 +57,13 @@ func (ptr *QDBusPendingCallWatcher) WaitForFinished() {
 }
 
 func NewQDBusPendingCallWatcher(call QDBusPendingCall_ITF, parent core.QObject_ITF) *QDBusPendingCallWatcher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusPendingCallWatcher::QDBusPendingCallWatcher")
-		}
-	}()
+	defer qt.Recovering("QDBusPendingCallWatcher::QDBusPendingCallWatcher")
 
 	return NewQDBusPendingCallWatcherFromPointer(C.QDBusPendingCallWatcher_NewQDBusPendingCallWatcher(PointerFromQDBusPendingCall(call), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDBusPendingCallWatcher) ConnectFinished(f func(self *QDBusPendingCallWatcher)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusPendingCallWatcher::finished")
-		}
-	}()
+	defer qt.Recovering("connect QDBusPendingCallWatcher::finished")
 
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_ConnectFinished(ptr.Pointer())
@@ -85,11 +72,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectFinished(f func(self *QDBusPendingCal
 }
 
 func (ptr *QDBusPendingCallWatcher) DisconnectFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusPendingCallWatcher::finished")
-		}
-	}()
+	defer qt.Recovering("disconnect QDBusPendingCallWatcher::finished")
 
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_DisconnectFinished(ptr.Pointer())
@@ -99,21 +82,17 @@ func (ptr *QDBusPendingCallWatcher) DisconnectFinished() {
 
 //export callbackQDBusPendingCallWatcherFinished
 func callbackQDBusPendingCallWatcherFinished(ptrName *C.char, self unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusPendingCallWatcher::finished")
-		}
-	}()
+	defer qt.Recovering("callback QDBusPendingCallWatcher::finished")
 
-	qt.GetSignal(C.GoString(ptrName), "finished").(func(*QDBusPendingCallWatcher))(NewQDBusPendingCallWatcherFromPointer(self))
+	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
+	if signal != nil {
+		signal.(func(*QDBusPendingCallWatcher))(NewQDBusPendingCallWatcherFromPointer(self))
+	}
+
 }
 
 func (ptr *QDBusPendingCallWatcher) IsFinished() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusPendingCallWatcher::isFinished")
-		}
-	}()
+	defer qt.Recovering("QDBusPendingCallWatcher::isFinished")
 
 	if ptr.Pointer() != nil {
 		return C.QDBusPendingCallWatcher_IsFinished(ptr.Pointer()) != 0
@@ -122,11 +101,7 @@ func (ptr *QDBusPendingCallWatcher) IsFinished() bool {
 }
 
 func (ptr *QDBusPendingCallWatcher) DestroyQDBusPendingCallWatcher() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusPendingCallWatcher::~QDBusPendingCallWatcher")
-		}
-	}()
+	defer qt.Recovering("QDBusPendingCallWatcher::~QDBusPendingCallWatcher")
 
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcher(ptr.Pointer())

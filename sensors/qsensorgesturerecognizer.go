@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQSensorGestureRecognizerFromPointer(ptr unsafe.Pointer) *QSensorGestureR
 	var n = new(QSensorGestureRecognizer)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSensorGestureRecognizer_") {
-		n.SetObjectName("QSensorGestureRecognizer_" + qt.RandomIdentifier())
+		n.SetObjectName("QSensorGestureRecognizer_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QSensorGestureRecognizer) QSensorGestureRecognizer_PTR() *QSensorGest
 }
 
 func (ptr *QSensorGestureRecognizer) CreateBackend() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureRecognizer::createBackend")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureRecognizer::createBackend")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGestureRecognizer_CreateBackend(ptr.Pointer())
@@ -52,11 +47,7 @@ func (ptr *QSensorGestureRecognizer) CreateBackend() {
 }
 
 func (ptr *QSensorGestureRecognizer) GestureSignals() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureRecognizer::gestureSignals")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureRecognizer::gestureSignals")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSensorGestureRecognizer_GestureSignals(ptr.Pointer())), ",,,")
@@ -65,11 +56,7 @@ func (ptr *QSensorGestureRecognizer) GestureSignals() []string {
 }
 
 func (ptr *QSensorGestureRecognizer) Id() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureRecognizer::id")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureRecognizer::id")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSensorGestureRecognizer_Id(ptr.Pointer()))
@@ -78,11 +65,7 @@ func (ptr *QSensorGestureRecognizer) Id() string {
 }
 
 func (ptr *QSensorGestureRecognizer) IsActive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureRecognizer::isActive")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureRecognizer::isActive")
 
 	if ptr.Pointer() != nil {
 		return C.QSensorGestureRecognizer_IsActive(ptr.Pointer()) != 0
@@ -91,11 +74,7 @@ func (ptr *QSensorGestureRecognizer) IsActive() bool {
 }
 
 func (ptr *QSensorGestureRecognizer) StartBackend() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureRecognizer::startBackend")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureRecognizer::startBackend")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGestureRecognizer_StartBackend(ptr.Pointer())
@@ -103,11 +82,7 @@ func (ptr *QSensorGestureRecognizer) StartBackend() {
 }
 
 func (ptr *QSensorGestureRecognizer) StopBackend() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureRecognizer::stopBackend")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureRecognizer::stopBackend")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGestureRecognizer_StopBackend(ptr.Pointer())
@@ -115,11 +90,7 @@ func (ptr *QSensorGestureRecognizer) StopBackend() {
 }
 
 func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizer() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureRecognizer::~QSensorGestureRecognizer")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureRecognizer::~QSensorGestureRecognizer")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(ptr.Pointer())

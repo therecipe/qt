@@ -4,7 +4,6 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQCompassReadingFromPointer(ptr unsafe.Pointer) *QCompassReading {
 	var n = new(QCompassReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QCompassReading_") {
-		n.SetObjectName("QCompassReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QCompassReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QCompassReading) QCompassReading_PTR() *QCompassReading {
 }
 
 func (ptr *QCompassReading) Azimuth() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCompassReading::azimuth")
-		}
-	}()
+	defer qt.Recovering("QCompassReading::azimuth")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCompassReading_Azimuth(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QCompassReading) Azimuth() float64 {
 }
 
 func (ptr *QCompassReading) CalibrationLevel() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCompassReading::calibrationLevel")
-		}
-	}()
+	defer qt.Recovering("QCompassReading::calibrationLevel")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCompassReading_CalibrationLevel(ptr.Pointer()))
@@ -64,11 +55,7 @@ func (ptr *QCompassReading) CalibrationLevel() float64 {
 }
 
 func (ptr *QCompassReading) SetAzimuth(azimuth float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCompassReading::setAzimuth")
-		}
-	}()
+	defer qt.Recovering("QCompassReading::setAzimuth")
 
 	if ptr.Pointer() != nil {
 		C.QCompassReading_SetAzimuth(ptr.Pointer(), C.double(azimuth))
@@ -76,11 +63,7 @@ func (ptr *QCompassReading) SetAzimuth(azimuth float64) {
 }
 
 func (ptr *QCompassReading) SetCalibrationLevel(calibrationLevel float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCompassReading::setCalibrationLevel")
-		}
-	}()
+	defer qt.Recovering("QCompassReading::setCalibrationLevel")
 
 	if ptr.Pointer() != nil {
 		C.QCompassReading_SetCalibrationLevel(ptr.Pointer(), C.double(calibrationLevel))

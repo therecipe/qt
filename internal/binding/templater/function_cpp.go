@@ -9,7 +9,27 @@ import (
 )
 
 func cppFunctionSignal(f *parser.Function) string {
-	return fmt.Sprintf("void Signal_%v(%v){callback%v%v(%v);}", strings.Title(f.Name), converter.CppBodyInputCallback(f), f.Class(), strings.Title(f.Name), converter.CppBodyOutputCallback(f))
+
+	//TODO: parse from docs
+	var constP string
+	if strings.Contains(strings.Split(f.Signature, ")")[1], "const") {
+		constP = " const"
+	}
+
+	var originalInput string
+	for _, p := range f.Parameters {
+		if p.Name == "" {
+			originalInput += "v, "
+		} else {
+			originalInput += fmt.Sprintf("%v, ", p.Name)
+		}
+	}
+	originalInput = strings.TrimSuffix(originalInput, ", ")
+
+	if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
+		return fmt.Sprintf("void %v(%v)%v { if (!callback%v%v(%v)) { %v::%v(%v); }; }", f.Name, converter.CppBodyInputCallback(f), constP, f.Class(), strings.Title(f.Name), converter.CppBodyOutputCallback(f), f.Class(), f.Name, originalInput)
+	}
+	return fmt.Sprintf("void Signal_%v(%v) { callback%v%v(%v); }", strings.Title(f.Name), converter.CppBodyInputCallback(f), f.Class(), strings.Title(f.Name), converter.CppBodyOutputCallback(f))
 }
 
 func cppFunction(f *parser.Function) string {
@@ -61,8 +81,11 @@ func cppFunctionBody(f *parser.Function) (o string) {
 
 	switch f.Meta {
 	case "constructor":
-		o += fmt.Sprintf("new %v(%v)", f.Class(), converter.CppBodyInput(f))
-
+		if hasVirtualFunction(parser.ClassMap[f.Class()]) {
+			o += fmt.Sprintf("new My%v(%v)", f.Class(), converter.CppBodyInput(f))
+		} else {
+			o += fmt.Sprintf("new %v(%v)", f.Class(), converter.CppBodyInput(f))
+		}
 	case "slot":
 		if f.Static {
 			o += fmt.Sprintf("QMetaObject::invokeMethod(%v::instance(), \"%v\"%v)", f.Class(), f.Name, converter.CppBodyInput(f))
@@ -79,7 +102,15 @@ func cppFunctionBody(f *parser.Function) (o string) {
 			} else if f.Output == "T" && f.Class() == "QMediaService" {
 				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v<QMediaControl*>(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
 			} else {
-				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
+				if parser.ClassMap[f.Class()].IsQObjectSubClass() {
+					o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
+				} else {
+					if f.Name == "objectNameAbs" || f.Name == "setObjectNameAbs" {
+						o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<My%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
+					} else {
+						o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
+					}
+				}
 			}
 		}
 

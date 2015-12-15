@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQSslSocketFromPointer(ptr unsafe.Pointer) *QSslSocket {
 	var n = new(QSslSocket)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSslSocket_") {
-		n.SetObjectName("QSslSocket_" + qt.RandomIdentifier())
+		n.SetObjectName("QSslSocket_" + qt.Identifier())
 	}
 	return n
 }
@@ -58,21 +57,13 @@ const (
 )
 
 func NewQSslSocket(parent core.QObject_ITF) *QSslSocket {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::QSslSocket")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::QSslSocket")
 
 	return NewQSslSocketFromPointer(C.QSslSocket_NewQSslSocket(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSslSocket) Abort() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::abort")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::abort")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_Abort(ptr.Pointer())
@@ -80,11 +71,7 @@ func (ptr *QSslSocket) Abort() {
 }
 
 func (ptr *QSslSocket) AddCaCertificate(certificate QSslCertificate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::addCaCertificate")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::addCaCertificate")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_AddCaCertificate(ptr.Pointer(), PointerFromQSslCertificate(certificate))
@@ -92,21 +79,13 @@ func (ptr *QSslSocket) AddCaCertificate(certificate QSslCertificate_ITF) {
 }
 
 func QSslSocket_AddDefaultCaCertificate(certificate QSslCertificate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::addDefaultCaCertificate")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::addDefaultCaCertificate")
 
 	C.QSslSocket_QSslSocket_AddDefaultCaCertificate(PointerFromQSslCertificate(certificate))
 }
 
 func (ptr *QSslSocket) AtEnd() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::atEnd")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::atEnd")
 
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_AtEnd(ptr.Pointer()) != 0
@@ -115,11 +94,7 @@ func (ptr *QSslSocket) AtEnd() bool {
 }
 
 func (ptr *QSslSocket) CanReadLine() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::canReadLine")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::canReadLine")
 
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_CanReadLine(ptr.Pointer()) != 0
@@ -127,24 +102,39 @@ func (ptr *QSslSocket) CanReadLine() bool {
 	return false
 }
 
-func (ptr *QSslSocket) Close() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::close")
-		}
-	}()
+func (ptr *QSslSocket) ConnectClose(f func()) {
+	defer qt.Recovering("connect QSslSocket::close")
 
 	if ptr.Pointer() != nil {
-		C.QSslSocket_Close(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "close", f)
 	}
 }
 
+func (ptr *QSslSocket) DisconnectClose() {
+	defer qt.Recovering("disconnect QSslSocket::close")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "close")
+	}
+}
+
+//export callbackQSslSocketClose
+func callbackQSslSocketClose(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSslSocket::close")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "close")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSslSocket) ConnectEncrypted(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::encrypted")
-		}
-	}()
+	defer qt.Recovering("connect QSslSocket::encrypted")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_ConnectEncrypted(ptr.Pointer())
@@ -153,11 +143,7 @@ func (ptr *QSslSocket) ConnectEncrypted(f func()) {
 }
 
 func (ptr *QSslSocket) DisconnectEncrypted() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::encrypted")
-		}
-	}()
+	defer qt.Recovering("disconnect QSslSocket::encrypted")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DisconnectEncrypted(ptr.Pointer())
@@ -167,21 +153,17 @@ func (ptr *QSslSocket) DisconnectEncrypted() {
 
 //export callbackQSslSocketEncrypted
 func callbackQSslSocketEncrypted(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::encrypted")
-		}
-	}()
+	defer qt.Recovering("callback QSslSocket::encrypted")
 
-	qt.GetSignal(C.GoString(ptrName), "encrypted").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "encrypted")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QSslSocket) Flush() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::flush")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::flush")
 
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_Flush(ptr.Pointer()) != 0
@@ -190,11 +172,7 @@ func (ptr *QSslSocket) Flush() bool {
 }
 
 func (ptr *QSslSocket) IgnoreSslErrors() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::ignoreSslErrors")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::ignoreSslErrors")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_IgnoreSslErrors(ptr.Pointer())
@@ -202,11 +180,7 @@ func (ptr *QSslSocket) IgnoreSslErrors() {
 }
 
 func (ptr *QSslSocket) IsEncrypted() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::isEncrypted")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::isEncrypted")
 
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_IsEncrypted(ptr.Pointer()) != 0
@@ -215,11 +189,7 @@ func (ptr *QSslSocket) IsEncrypted() bool {
 }
 
 func (ptr *QSslSocket) Mode() QSslSocket__SslMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::mode")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::mode")
 
 	if ptr.Pointer() != nil {
 		return QSslSocket__SslMode(C.QSslSocket_Mode(ptr.Pointer()))
@@ -228,11 +198,7 @@ func (ptr *QSslSocket) Mode() QSslSocket__SslMode {
 }
 
 func (ptr *QSslSocket) ConnectModeChanged(f func(mode QSslSocket__SslMode)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::modeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSslSocket::modeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_ConnectModeChanged(ptr.Pointer())
@@ -241,11 +207,7 @@ func (ptr *QSslSocket) ConnectModeChanged(f func(mode QSslSocket__SslMode)) {
 }
 
 func (ptr *QSslSocket) DisconnectModeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::modeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSslSocket::modeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DisconnectModeChanged(ptr.Pointer())
@@ -255,21 +217,17 @@ func (ptr *QSslSocket) DisconnectModeChanged() {
 
 //export callbackQSslSocketModeChanged
 func callbackQSslSocketModeChanged(ptrName *C.char, mode C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::modeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSslSocket::modeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "modeChanged").(func(QSslSocket__SslMode))(QSslSocket__SslMode(mode))
+	var signal = qt.GetSignal(C.GoString(ptrName), "modeChanged")
+	if signal != nil {
+		signal.(func(QSslSocket__SslMode))(QSslSocket__SslMode(mode))
+	}
+
 }
 
 func (ptr *QSslSocket) PeerVerifyDepth() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::peerVerifyDepth")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::peerVerifyDepth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSslSocket_PeerVerifyDepth(ptr.Pointer()))
@@ -278,11 +236,7 @@ func (ptr *QSslSocket) PeerVerifyDepth() int {
 }
 
 func (ptr *QSslSocket) PeerVerifyMode() QSslSocket__PeerVerifyMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::peerVerifyMode")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::peerVerifyMode")
 
 	if ptr.Pointer() != nil {
 		return QSslSocket__PeerVerifyMode(C.QSslSocket_PeerVerifyMode(ptr.Pointer()))
@@ -291,11 +245,7 @@ func (ptr *QSslSocket) PeerVerifyMode() QSslSocket__PeerVerifyMode {
 }
 
 func (ptr *QSslSocket) PeerVerifyName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::peerVerifyName")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::peerVerifyName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslSocket_PeerVerifyName(ptr.Pointer()))
@@ -304,11 +254,7 @@ func (ptr *QSslSocket) PeerVerifyName() string {
 }
 
 func (ptr *QSslSocket) ConnectPreSharedKeyAuthenticationRequired(f func(authenticator *QSslPreSharedKeyAuthenticator)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::preSharedKeyAuthenticationRequired")
-		}
-	}()
+	defer qt.Recovering("connect QSslSocket::preSharedKeyAuthenticationRequired")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
@@ -317,11 +263,7 @@ func (ptr *QSslSocket) ConnectPreSharedKeyAuthenticationRequired(f func(authenti
 }
 
 func (ptr *QSslSocket) DisconnectPreSharedKeyAuthenticationRequired() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::preSharedKeyAuthenticationRequired")
-		}
-	}()
+	defer qt.Recovering("disconnect QSslSocket::preSharedKeyAuthenticationRequired")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DisconnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
@@ -331,33 +273,48 @@ func (ptr *QSslSocket) DisconnectPreSharedKeyAuthenticationRequired() {
 
 //export callbackQSslSocketPreSharedKeyAuthenticationRequired
 func callbackQSslSocketPreSharedKeyAuthenticationRequired(ptrName *C.char, authenticator unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::preSharedKeyAuthenticationRequired")
-		}
-	}()
+	defer qt.Recovering("callback QSslSocket::preSharedKeyAuthenticationRequired")
 
-	qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired").(func(*QSslPreSharedKeyAuthenticator))(NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
+	var signal = qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired")
+	if signal != nil {
+		signal.(func(*QSslPreSharedKeyAuthenticator))(NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
+	}
+
 }
 
-func (ptr *QSslSocket) Resume() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::resume")
-		}
-	}()
+func (ptr *QSslSocket) ConnectResume(f func()) {
+	defer qt.Recovering("connect QSslSocket::resume")
 
 	if ptr.Pointer() != nil {
-		C.QSslSocket_Resume(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "resume", f)
 	}
 }
 
+func (ptr *QSslSocket) DisconnectResume() {
+	defer qt.Recovering("disconnect QSslSocket::resume")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resume")
+	}
+}
+
+//export callbackQSslSocketResume
+func callbackQSslSocketResume(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSslSocket::resume")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "resume")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSslSocket) SetLocalCertificate(certificate QSslCertificate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::setLocalCertificate")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::setLocalCertificate")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_SetLocalCertificate(ptr.Pointer(), PointerFromQSslCertificate(certificate))
@@ -365,11 +322,7 @@ func (ptr *QSslSocket) SetLocalCertificate(certificate QSslCertificate_ITF) {
 }
 
 func (ptr *QSslSocket) SetPeerVerifyDepth(depth int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::setPeerVerifyDepth")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::setPeerVerifyDepth")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_SetPeerVerifyDepth(ptr.Pointer(), C.int(depth))
@@ -377,11 +330,7 @@ func (ptr *QSslSocket) SetPeerVerifyDepth(depth int) {
 }
 
 func (ptr *QSslSocket) SetPeerVerifyMode(mode QSslSocket__PeerVerifyMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::setPeerVerifyMode")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::setPeerVerifyMode")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_SetPeerVerifyMode(ptr.Pointer(), C.int(mode))
@@ -389,11 +338,7 @@ func (ptr *QSslSocket) SetPeerVerifyMode(mode QSslSocket__PeerVerifyMode) {
 }
 
 func (ptr *QSslSocket) SetPeerVerifyName(hostName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::setPeerVerifyName")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::setPeerVerifyName")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_SetPeerVerifyName(ptr.Pointer(), C.CString(hostName))
@@ -401,35 +346,46 @@ func (ptr *QSslSocket) SetPeerVerifyName(hostName string) {
 }
 
 func (ptr *QSslSocket) SetPrivateKey(key QSslKey_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::setPrivateKey")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::setPrivateKey")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_SetPrivateKey(ptr.Pointer(), PointerFromQSslKey(key))
 	}
 }
 
-func (ptr *QSslSocket) SetSocketOption(option QAbstractSocket__SocketOption, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::setSocketOption")
-		}
-	}()
+func (ptr *QSslSocket) ConnectSetSocketOption(f func(option QAbstractSocket__SocketOption, value *core.QVariant)) {
+	defer qt.Recovering("connect QSslSocket::setSocketOption")
 
 	if ptr.Pointer() != nil {
-		C.QSslSocket_SetSocketOption(ptr.Pointer(), C.int(option), core.PointerFromQVariant(value))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSocketOption", f)
 	}
 }
 
+func (ptr *QSslSocket) DisconnectSetSocketOption() {
+	defer qt.Recovering("disconnect QSslSocket::setSocketOption")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSocketOption")
+	}
+}
+
+//export callbackQSslSocketSetSocketOption
+func callbackQSslSocketSetSocketOption(ptrName *C.char, option C.int, value unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSslSocket::setSocketOption")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setSocketOption")
+	if signal != nil {
+		defer signal.(func(QAbstractSocket__SocketOption, *core.QVariant))(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSslSocket) SetSslConfiguration(configuration QSslConfiguration_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::setSslConfiguration")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::setSslConfiguration")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_SetSslConfiguration(ptr.Pointer(), PointerFromQSslConfiguration(configuration))
@@ -437,11 +393,7 @@ func (ptr *QSslSocket) SetSslConfiguration(configuration QSslConfiguration_ITF) 
 }
 
 func (ptr *QSslSocket) SocketOption(option QAbstractSocket__SocketOption) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::socketOption")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::socketOption")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSslSocket_SocketOption(ptr.Pointer(), C.int(option)))
@@ -450,31 +402,19 @@ func (ptr *QSslSocket) SocketOption(option QAbstractSocket__SocketOption) *core.
 }
 
 func QSslSocket_SslLibraryBuildVersionString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::sslLibraryBuildVersionString")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::sslLibraryBuildVersionString")
 
 	return C.GoString(C.QSslSocket_QSslSocket_SslLibraryBuildVersionString())
 }
 
 func QSslSocket_SslLibraryVersionString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::sslLibraryVersionString")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::sslLibraryVersionString")
 
 	return C.GoString(C.QSslSocket_QSslSocket_SslLibraryVersionString())
 }
 
 func (ptr *QSslSocket) StartClientEncryption() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::startClientEncryption")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::startClientEncryption")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_StartClientEncryption(ptr.Pointer())
@@ -482,11 +422,7 @@ func (ptr *QSslSocket) StartClientEncryption() {
 }
 
 func (ptr *QSslSocket) StartServerEncryption() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::startServerEncryption")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::startServerEncryption")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_StartServerEncryption(ptr.Pointer())
@@ -494,21 +430,13 @@ func (ptr *QSslSocket) StartServerEncryption() {
 }
 
 func QSslSocket_SupportsSsl() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::supportsSsl")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::supportsSsl")
 
 	return C.QSslSocket_QSslSocket_SupportsSsl() != 0
 }
 
 func (ptr *QSslSocket) WaitForBytesWritten(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::waitForBytesWritten")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::waitForBytesWritten")
 
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_WaitForBytesWritten(ptr.Pointer(), C.int(msecs)) != 0
@@ -517,11 +445,7 @@ func (ptr *QSslSocket) WaitForBytesWritten(msecs int) bool {
 }
 
 func (ptr *QSslSocket) WaitForConnected(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::waitForConnected")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::waitForConnected")
 
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_WaitForConnected(ptr.Pointer(), C.int(msecs)) != 0
@@ -530,11 +454,7 @@ func (ptr *QSslSocket) WaitForConnected(msecs int) bool {
 }
 
 func (ptr *QSslSocket) WaitForDisconnected(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::waitForDisconnected")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::waitForDisconnected")
 
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_WaitForDisconnected(ptr.Pointer(), C.int(msecs)) != 0
@@ -543,11 +463,7 @@ func (ptr *QSslSocket) WaitForDisconnected(msecs int) bool {
 }
 
 func (ptr *QSslSocket) WaitForEncrypted(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::waitForEncrypted")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::waitForEncrypted")
 
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_WaitForEncrypted(ptr.Pointer(), C.int(msecs)) != 0
@@ -556,11 +472,7 @@ func (ptr *QSslSocket) WaitForEncrypted(msecs int) bool {
 }
 
 func (ptr *QSslSocket) WaitForReadyRead(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::waitForReadyRead")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::waitForReadyRead")
 
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_WaitForReadyRead(ptr.Pointer(), C.int(msecs)) != 0
@@ -569,11 +481,7 @@ func (ptr *QSslSocket) WaitForReadyRead(msecs int) bool {
 }
 
 func (ptr *QSslSocket) DestroyQSslSocket() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslSocket::~QSslSocket")
-		}
-	}()
+	defer qt.Recovering("QSslSocket::~QSslSocket")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DestroyQSslSocket(ptr.Pointer())

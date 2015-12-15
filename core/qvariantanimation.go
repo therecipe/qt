@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQVariantAnimationFromPointer(ptr unsafe.Pointer) *QVariantAnimation {
 	var n = new(QVariantAnimation)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QVariantAnimation_") {
-		n.SetObjectName("QVariantAnimation_" + qt.RandomIdentifier())
+		n.SetObjectName("QVariantAnimation_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QVariantAnimation) QVariantAnimation_PTR() *QVariantAnimation {
 }
 
 func (ptr *QVariantAnimation) CurrentValue() *QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::currentValue")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::currentValue")
 
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QVariantAnimation_CurrentValue(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QVariantAnimation) CurrentValue() *QVariant {
 }
 
 func (ptr *QVariantAnimation) Duration() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::duration")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::duration")
 
 	if ptr.Pointer() != nil {
 		return int(C.QVariantAnimation_Duration(ptr.Pointer()))
@@ -64,11 +55,7 @@ func (ptr *QVariantAnimation) Duration() int {
 }
 
 func (ptr *QVariantAnimation) EasingCurve() *QEasingCurve {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::easingCurve")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::easingCurve")
 
 	if ptr.Pointer() != nil {
 		return NewQEasingCurveFromPointer(C.QVariantAnimation_EasingCurve(ptr.Pointer()))
@@ -77,11 +64,7 @@ func (ptr *QVariantAnimation) EasingCurve() *QEasingCurve {
 }
 
 func (ptr *QVariantAnimation) EndValue() *QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::endValue")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::endValue")
 
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QVariantAnimation_EndValue(ptr.Pointer()))
@@ -90,11 +73,7 @@ func (ptr *QVariantAnimation) EndValue() *QVariant {
 }
 
 func (ptr *QVariantAnimation) SetDuration(msecs int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::setDuration")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::setDuration")
 
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_SetDuration(ptr.Pointer(), C.int(msecs))
@@ -102,11 +81,7 @@ func (ptr *QVariantAnimation) SetDuration(msecs int) {
 }
 
 func (ptr *QVariantAnimation) SetEasingCurve(easing QEasingCurve_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::setEasingCurve")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::setEasingCurve")
 
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_SetEasingCurve(ptr.Pointer(), PointerFromQEasingCurve(easing))
@@ -114,11 +89,7 @@ func (ptr *QVariantAnimation) SetEasingCurve(easing QEasingCurve_ITF) {
 }
 
 func (ptr *QVariantAnimation) SetEndValue(value QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::setEndValue")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::setEndValue")
 
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_SetEndValue(ptr.Pointer(), PointerFromQVariant(value))
@@ -126,11 +97,7 @@ func (ptr *QVariantAnimation) SetEndValue(value QVariant_ITF) {
 }
 
 func (ptr *QVariantAnimation) SetStartValue(value QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::setStartValue")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::setStartValue")
 
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_SetStartValue(ptr.Pointer(), PointerFromQVariant(value))
@@ -138,11 +105,7 @@ func (ptr *QVariantAnimation) SetStartValue(value QVariant_ITF) {
 }
 
 func (ptr *QVariantAnimation) StartValue() *QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::startValue")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::startValue")
 
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QVariantAnimation_StartValue(ptr.Pointer()))
@@ -151,21 +114,13 @@ func (ptr *QVariantAnimation) StartValue() *QVariant {
 }
 
 func NewQVariantAnimation(parent QObject_ITF) *QVariantAnimation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::QVariantAnimation")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::QVariantAnimation")
 
 	return NewQVariantAnimationFromPointer(C.QVariantAnimation_NewQVariantAnimation(PointerFromQObject(parent)))
 }
 
 func (ptr *QVariantAnimation) KeyValueAt(step float64) *QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::keyValueAt")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::keyValueAt")
 
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QVariantAnimation_KeyValueAt(ptr.Pointer(), C.double(step)))
@@ -174,23 +129,108 @@ func (ptr *QVariantAnimation) KeyValueAt(step float64) *QVariant {
 }
 
 func (ptr *QVariantAnimation) SetKeyValueAt(step float64, value QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::setKeyValueAt")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::setKeyValueAt")
 
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_SetKeyValueAt(ptr.Pointer(), C.double(step), PointerFromQVariant(value))
 	}
 }
 
+func (ptr *QVariantAnimation) ConnectUpdateCurrentTime(f func(v int)) {
+	defer qt.Recovering("connect QVariantAnimation::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateCurrentTime", f)
+	}
+}
+
+func (ptr *QVariantAnimation) DisconnectUpdateCurrentTime() {
+	defer qt.Recovering("disconnect QVariantAnimation::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateCurrentTime")
+	}
+}
+
+//export callbackQVariantAnimationUpdateCurrentTime
+func callbackQVariantAnimationUpdateCurrentTime(ptrName *C.char, v C.int) bool {
+	defer qt.Recovering("callback QVariantAnimation::updateCurrentTime")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "updateCurrentTime")
+	if signal != nil {
+		defer signal.(func(int))(int(v))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QVariantAnimation) ConnectUpdateCurrentValue(f func(value *QVariant)) {
+	defer qt.Recovering("connect QVariantAnimation::updateCurrentValue")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateCurrentValue", f)
+	}
+}
+
+func (ptr *QVariantAnimation) DisconnectUpdateCurrentValue() {
+	defer qt.Recovering("disconnect QVariantAnimation::updateCurrentValue")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateCurrentValue")
+	}
+}
+
+//export callbackQVariantAnimationUpdateCurrentValue
+func callbackQVariantAnimationUpdateCurrentValue(ptrName *C.char, value unsafe.Pointer) bool {
+	defer qt.Recovering("callback QVariantAnimation::updateCurrentValue")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "updateCurrentValue")
+	if signal != nil {
+		defer signal.(func(*QVariant))(NewQVariantFromPointer(value))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QVariantAnimation) ConnectUpdateState(f func(newState QAbstractAnimation__State, oldState QAbstractAnimation__State)) {
+	defer qt.Recovering("connect QVariantAnimation::updateState")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateState", f)
+	}
+}
+
+func (ptr *QVariantAnimation) DisconnectUpdateState() {
+	defer qt.Recovering("disconnect QVariantAnimation::updateState")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateState")
+	}
+}
+
+//export callbackQVariantAnimationUpdateState
+func callbackQVariantAnimationUpdateState(ptrName *C.char, newState C.int, oldState C.int) bool {
+	defer qt.Recovering("callback QVariantAnimation::updateState")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "updateState")
+	if signal != nil {
+		defer signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QVariantAnimation) ConnectValueChanged(f func(value *QVariant)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::valueChanged")
-		}
-	}()
+	defer qt.Recovering("connect QVariantAnimation::valueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_ConnectValueChanged(ptr.Pointer())
@@ -199,11 +239,7 @@ func (ptr *QVariantAnimation) ConnectValueChanged(f func(value *QVariant)) {
 }
 
 func (ptr *QVariantAnimation) DisconnectValueChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::valueChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QVariantAnimation::valueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_DisconnectValueChanged(ptr.Pointer())
@@ -213,21 +249,17 @@ func (ptr *QVariantAnimation) DisconnectValueChanged() {
 
 //export callbackQVariantAnimationValueChanged
 func callbackQVariantAnimationValueChanged(ptrName *C.char, value unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::valueChanged")
-		}
-	}()
+	defer qt.Recovering("callback QVariantAnimation::valueChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "valueChanged").(func(*QVariant))(NewQVariantFromPointer(value))
+	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
+	if signal != nil {
+		signal.(func(*QVariant))(NewQVariantFromPointer(value))
+	}
+
 }
 
 func (ptr *QVariantAnimation) DestroyQVariantAnimation() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVariantAnimation::~QVariantAnimation")
-		}
-	}()
+	defer qt.Recovering("QVariantAnimation::~QVariantAnimation")
 
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_DestroyQVariantAnimation(ptr.Pointer())

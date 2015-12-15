@@ -3,8 +3,8 @@ package network
 //#include "network.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +42,19 @@ func (ptr *QSslPreSharedKeyAuthenticator) QSslPreSharedKeyAuthenticator_PTR() *Q
 }
 
 func NewQSslPreSharedKeyAuthenticator() *QSslPreSharedKeyAuthenticator {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslPreSharedKeyAuthenticator::QSslPreSharedKeyAuthenticator")
-		}
-	}()
+	defer qt.Recovering("QSslPreSharedKeyAuthenticator::QSslPreSharedKeyAuthenticator")
 
 	return NewQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator())
 }
 
 func NewQSslPreSharedKeyAuthenticator2(authenticator QSslPreSharedKeyAuthenticator_ITF) *QSslPreSharedKeyAuthenticator {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslPreSharedKeyAuthenticator::QSslPreSharedKeyAuthenticator")
-		}
-	}()
+	defer qt.Recovering("QSslPreSharedKeyAuthenticator::QSslPreSharedKeyAuthenticator")
 
 	return NewQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator2(PointerFromQSslPreSharedKeyAuthenticator(authenticator)))
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) Identity() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslPreSharedKeyAuthenticator::identity")
-		}
-	}()
+	defer qt.Recovering("QSslPreSharedKeyAuthenticator::identity")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_Identity(ptr.Pointer()))
@@ -75,11 +63,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) Identity() *core.QByteArray {
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) IdentityHint() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslPreSharedKeyAuthenticator::identityHint")
-		}
-	}()
+	defer qt.Recovering("QSslPreSharedKeyAuthenticator::identityHint")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_IdentityHint(ptr.Pointer()))
@@ -88,11 +72,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) IdentityHint() *core.QByteArray {
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) MaximumIdentityLength() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslPreSharedKeyAuthenticator::maximumIdentityLength")
-		}
-	}()
+	defer qt.Recovering("QSslPreSharedKeyAuthenticator::maximumIdentityLength")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSslPreSharedKeyAuthenticator_MaximumIdentityLength(ptr.Pointer()))
@@ -101,11 +81,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) MaximumIdentityLength() int {
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) MaximumPreSharedKeyLength() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslPreSharedKeyAuthenticator::maximumPreSharedKeyLength")
-		}
-	}()
+	defer qt.Recovering("QSslPreSharedKeyAuthenticator::maximumPreSharedKeyLength")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSslPreSharedKeyAuthenticator_MaximumPreSharedKeyLength(ptr.Pointer()))
@@ -114,11 +90,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) MaximumPreSharedKeyLength() int {
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) PreSharedKey() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslPreSharedKeyAuthenticator::preSharedKey")
-		}
-	}()
+	defer qt.Recovering("QSslPreSharedKeyAuthenticator::preSharedKey")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_PreSharedKey(ptr.Pointer()))
@@ -127,11 +99,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) PreSharedKey() *core.QByteArray {
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) SetIdentity(identity core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslPreSharedKeyAuthenticator::setIdentity")
-		}
-	}()
+	defer qt.Recovering("QSslPreSharedKeyAuthenticator::setIdentity")
 
 	if ptr.Pointer() != nil {
 		C.QSslPreSharedKeyAuthenticator_SetIdentity(ptr.Pointer(), core.PointerFromQByteArray(identity))
@@ -139,11 +107,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) SetIdentity(identity core.QByteArray_I
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) SetPreSharedKey(preSharedKey core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslPreSharedKeyAuthenticator::setPreSharedKey")
-		}
-	}()
+	defer qt.Recovering("QSslPreSharedKeyAuthenticator::setPreSharedKey")
 
 	if ptr.Pointer() != nil {
 		C.QSslPreSharedKeyAuthenticator_SetPreSharedKey(ptr.Pointer(), core.PointerFromQByteArray(preSharedKey))
@@ -151,11 +115,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) SetPreSharedKey(preSharedKey core.QByt
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) Swap(authenticator QSslPreSharedKeyAuthenticator_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslPreSharedKeyAuthenticator::swap")
-		}
-	}()
+	defer qt.Recovering("QSslPreSharedKeyAuthenticator::swap")
 
 	if ptr.Pointer() != nil {
 		C.QSslPreSharedKeyAuthenticator_Swap(ptr.Pointer(), PointerFromQSslPreSharedKeyAuthenticator(authenticator))
@@ -163,11 +123,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) Swap(authenticator QSslPreSharedKeyAut
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) DestroyQSslPreSharedKeyAuthenticator() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslPreSharedKeyAuthenticator::~QSslPreSharedKeyAuthenticator")
-		}
-	}()
+	defer qt.Recovering("QSslPreSharedKeyAuthenticator::~QSslPreSharedKeyAuthenticator")
 
 	if ptr.Pointer() != nil {
 		C.QSslPreSharedKeyAuthenticator_DestroyQSslPreSharedKeyAuthenticator(ptr.Pointer())

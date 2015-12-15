@@ -27,7 +27,7 @@ func NewQPlaceDetailsReplyFromPointer(ptr unsafe.Pointer) *QPlaceDetailsReply {
 	var n = new(QPlaceDetailsReply)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceDetailsReply_") {
-		n.SetObjectName("QPlaceDetailsReply_" + qt.RandomIdentifier())
+		n.SetObjectName("QPlaceDetailsReply_" + qt.Identifier())
 	}
 	return n
 }

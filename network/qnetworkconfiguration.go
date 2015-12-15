@@ -3,7 +3,7 @@ package network
 //#include "network.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -90,31 +90,19 @@ const (
 )
 
 func NewQNetworkConfiguration() *QNetworkConfiguration {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::QNetworkConfiguration")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::QNetworkConfiguration")
 
 	return NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration())
 }
 
 func NewQNetworkConfiguration2(other QNetworkConfiguration_ITF) *QNetworkConfiguration {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::QNetworkConfiguration")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::QNetworkConfiguration")
 
 	return NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration2(PointerFromQNetworkConfiguration(other)))
 }
 
 func (ptr *QNetworkConfiguration) BearerType() QNetworkConfiguration__BearerType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::bearerType")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::bearerType")
 
 	if ptr.Pointer() != nil {
 		return QNetworkConfiguration__BearerType(C.QNetworkConfiguration_BearerType(ptr.Pointer()))
@@ -123,11 +111,7 @@ func (ptr *QNetworkConfiguration) BearerType() QNetworkConfiguration__BearerType
 }
 
 func (ptr *QNetworkConfiguration) BearerTypeFamily() QNetworkConfiguration__BearerType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::bearerTypeFamily")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::bearerTypeFamily")
 
 	if ptr.Pointer() != nil {
 		return QNetworkConfiguration__BearerType(C.QNetworkConfiguration_BearerTypeFamily(ptr.Pointer()))
@@ -136,11 +120,7 @@ func (ptr *QNetworkConfiguration) BearerTypeFamily() QNetworkConfiguration__Bear
 }
 
 func (ptr *QNetworkConfiguration) BearerTypeName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::bearerTypeName")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::bearerTypeName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkConfiguration_BearerTypeName(ptr.Pointer()))
@@ -149,11 +129,7 @@ func (ptr *QNetworkConfiguration) BearerTypeName() string {
 }
 
 func (ptr *QNetworkConfiguration) Identifier() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::identifier")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::identifier")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkConfiguration_Identifier(ptr.Pointer()))
@@ -162,11 +138,7 @@ func (ptr *QNetworkConfiguration) Identifier() string {
 }
 
 func (ptr *QNetworkConfiguration) IsRoamingAvailable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::isRoamingAvailable")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::isRoamingAvailable")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkConfiguration_IsRoamingAvailable(ptr.Pointer()) != 0
@@ -175,11 +147,7 @@ func (ptr *QNetworkConfiguration) IsRoamingAvailable() bool {
 }
 
 func (ptr *QNetworkConfiguration) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::isValid")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkConfiguration_IsValid(ptr.Pointer()) != 0
@@ -188,11 +156,7 @@ func (ptr *QNetworkConfiguration) IsValid() bool {
 }
 
 func (ptr *QNetworkConfiguration) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::name")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkConfiguration_Name(ptr.Pointer()))
@@ -201,11 +165,7 @@ func (ptr *QNetworkConfiguration) Name() string {
 }
 
 func (ptr *QNetworkConfiguration) Purpose() QNetworkConfiguration__Purpose {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::purpose")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::purpose")
 
 	if ptr.Pointer() != nil {
 		return QNetworkConfiguration__Purpose(C.QNetworkConfiguration_Purpose(ptr.Pointer()))
@@ -214,11 +174,7 @@ func (ptr *QNetworkConfiguration) Purpose() QNetworkConfiguration__Purpose {
 }
 
 func (ptr *QNetworkConfiguration) Swap(other QNetworkConfiguration_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::swap")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::swap")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfiguration_Swap(ptr.Pointer(), PointerFromQNetworkConfiguration(other))
@@ -226,11 +182,7 @@ func (ptr *QNetworkConfiguration) Swap(other QNetworkConfiguration_ITF) {
 }
 
 func (ptr *QNetworkConfiguration) Type() QNetworkConfiguration__Type {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::type")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::type")
 
 	if ptr.Pointer() != nil {
 		return QNetworkConfiguration__Type(C.QNetworkConfiguration_Type(ptr.Pointer()))
@@ -239,11 +191,7 @@ func (ptr *QNetworkConfiguration) Type() QNetworkConfiguration__Type {
 }
 
 func (ptr *QNetworkConfiguration) DestroyQNetworkConfiguration() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkConfiguration::~QNetworkConfiguration")
-		}
-	}()
+	defer qt.Recovering("QNetworkConfiguration::~QNetworkConfiguration")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfiguration_DestroyQNetworkConfiguration(ptr.Pointer())

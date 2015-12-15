@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQAudioProbeFromPointer(ptr unsafe.Pointer) *QAudioProbe {
 	var n = new(QAudioProbe)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioProbe_") {
-		n.SetObjectName("QAudioProbe_" + qt.RandomIdentifier())
+		n.SetObjectName("QAudioProbe_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QAudioProbe) QAudioProbe_PTR() *QAudioProbe {
 }
 
 func NewQAudioProbe(parent core.QObject_ITF) *QAudioProbe {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioProbe::QAudioProbe")
-		}
-	}()
+	defer qt.Recovering("QAudioProbe::QAudioProbe")
 
 	return NewQAudioProbeFromPointer(C.QAudioProbe_NewQAudioProbe(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAudioProbe) ConnectFlush(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioProbe::flush")
-		}
-	}()
+	defer qt.Recovering("connect QAudioProbe::flush")
 
 	if ptr.Pointer() != nil {
 		C.QAudioProbe_ConnectFlush(ptr.Pointer())
@@ -62,11 +53,7 @@ func (ptr *QAudioProbe) ConnectFlush(f func()) {
 }
 
 func (ptr *QAudioProbe) DisconnectFlush() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioProbe::flush")
-		}
-	}()
+	defer qt.Recovering("disconnect QAudioProbe::flush")
 
 	if ptr.Pointer() != nil {
 		C.QAudioProbe_DisconnectFlush(ptr.Pointer())
@@ -76,21 +63,17 @@ func (ptr *QAudioProbe) DisconnectFlush() {
 
 //export callbackQAudioProbeFlush
 func callbackQAudioProbeFlush(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioProbe::flush")
-		}
-	}()
+	defer qt.Recovering("callback QAudioProbe::flush")
 
-	qt.GetSignal(C.GoString(ptrName), "flush").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "flush")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QAudioProbe) IsActive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioProbe::isActive")
-		}
-	}()
+	defer qt.Recovering("QAudioProbe::isActive")
 
 	if ptr.Pointer() != nil {
 		return C.QAudioProbe_IsActive(ptr.Pointer()) != 0
@@ -99,11 +82,7 @@ func (ptr *QAudioProbe) IsActive() bool {
 }
 
 func (ptr *QAudioProbe) SetSource(source QMediaObject_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioProbe::setSource")
-		}
-	}()
+	defer qt.Recovering("QAudioProbe::setSource")
 
 	if ptr.Pointer() != nil {
 		return C.QAudioProbe_SetSource(ptr.Pointer(), PointerFromQMediaObject(source)) != 0
@@ -112,11 +91,7 @@ func (ptr *QAudioProbe) SetSource(source QMediaObject_ITF) bool {
 }
 
 func (ptr *QAudioProbe) SetSource2(mediaRecorder QMediaRecorder_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioProbe::setSource")
-		}
-	}()
+	defer qt.Recovering("QAudioProbe::setSource")
 
 	if ptr.Pointer() != nil {
 		return C.QAudioProbe_SetSource2(ptr.Pointer(), PointerFromQMediaRecorder(mediaRecorder)) != 0
@@ -125,11 +100,7 @@ func (ptr *QAudioProbe) SetSource2(mediaRecorder QMediaRecorder_ITF) bool {
 }
 
 func (ptr *QAudioProbe) DestroyQAudioProbe() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioProbe::~QAudioProbe")
-		}
-	}()
+	defer qt.Recovering("QAudioProbe::~QAudioProbe")
 
 	if ptr.Pointer() != nil {
 		C.QAudioProbe_DestroyQAudioProbe(ptr.Pointer())

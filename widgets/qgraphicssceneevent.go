@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,11 +35,7 @@ func (ptr *QGraphicsSceneEvent) QGraphicsSceneEvent_PTR() *QGraphicsSceneEvent {
 }
 
 func (ptr *QGraphicsSceneEvent) Widget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneEvent::widget")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneEvent::widget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QGraphicsSceneEvent_Widget(ptr.Pointer()))
@@ -48,11 +44,7 @@ func (ptr *QGraphicsSceneEvent) Widget() *QWidget {
 }
 
 func (ptr *QGraphicsSceneEvent) DestroyQGraphicsSceneEvent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneEvent::~QGraphicsSceneEvent")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneEvent::~QGraphicsSceneEvent")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneEvent_DestroyQGraphicsSceneEvent(ptr.Pointer())

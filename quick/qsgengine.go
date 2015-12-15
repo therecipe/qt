@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQSGEngineFromPointer(ptr unsafe.Pointer) *QSGEngine {
 	var n = new(QSGEngine)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSGEngine_") {
-		n.SetObjectName("QSGEngine_" + qt.RandomIdentifier())
+		n.SetObjectName("QSGEngine_" + qt.Identifier())
 	}
 	return n
 }
@@ -49,21 +48,13 @@ const (
 )
 
 func NewQSGEngine(parent core.QObject_ITF) *QSGEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGEngine::QSGEngine")
-		}
-	}()
+	defer qt.Recovering("QSGEngine::QSGEngine")
 
 	return NewQSGEngineFromPointer(C.QSGEngine_NewQSGEngine(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSGEngine) CreateRenderer() *QSGAbstractRenderer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGEngine::createRenderer")
-		}
-	}()
+	defer qt.Recovering("QSGEngine::createRenderer")
 
 	if ptr.Pointer() != nil {
 		return NewQSGAbstractRendererFromPointer(C.QSGEngine_CreateRenderer(ptr.Pointer()))
@@ -72,11 +63,7 @@ func (ptr *QSGEngine) CreateRenderer() *QSGAbstractRenderer {
 }
 
 func (ptr *QSGEngine) CreateTextureFromImage(image gui.QImage_ITF, options QSGEngine__CreateTextureOption) *QSGTexture {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGEngine::createTextureFromImage")
-		}
-	}()
+	defer qt.Recovering("QSGEngine::createTextureFromImage")
 
 	if ptr.Pointer() != nil {
 		return NewQSGTextureFromPointer(C.QSGEngine_CreateTextureFromImage(ptr.Pointer(), gui.PointerFromQImage(image), C.int(options)))
@@ -85,11 +72,7 @@ func (ptr *QSGEngine) CreateTextureFromImage(image gui.QImage_ITF, options QSGEn
 }
 
 func (ptr *QSGEngine) Initialize(context gui.QOpenGLContext_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGEngine::initialize")
-		}
-	}()
+	defer qt.Recovering("QSGEngine::initialize")
 
 	if ptr.Pointer() != nil {
 		C.QSGEngine_Initialize(ptr.Pointer(), gui.PointerFromQOpenGLContext(context))
@@ -97,11 +80,7 @@ func (ptr *QSGEngine) Initialize(context gui.QOpenGLContext_ITF) {
 }
 
 func (ptr *QSGEngine) Invalidate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGEngine::invalidate")
-		}
-	}()
+	defer qt.Recovering("QSGEngine::invalidate")
 
 	if ptr.Pointer() != nil {
 		C.QSGEngine_Invalidate(ptr.Pointer())
@@ -109,11 +88,7 @@ func (ptr *QSGEngine) Invalidate() {
 }
 
 func (ptr *QSGEngine) DestroyQSGEngine() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGEngine::~QSGEngine")
-		}
-	}()
+	defer qt.Recovering("QSGEngine::~QSGEngine")
 
 	if ptr.Pointer() != nil {
 		C.QSGEngine_DestroyQSGEngine(ptr.Pointer())

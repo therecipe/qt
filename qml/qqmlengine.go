@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -31,7 +30,7 @@ func NewQQmlEngineFromPointer(ptr unsafe.Pointer) *QQmlEngine {
 	var n = new(QQmlEngine)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlEngine_") {
-		n.SetObjectName("QQmlEngine_" + qt.RandomIdentifier())
+		n.SetObjectName("QQmlEngine_" + qt.Identifier())
 	}
 	return n
 }
@@ -49,11 +48,7 @@ const (
 )
 
 func (ptr *QQmlEngine) OfflineStoragePath() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::offlineStoragePath")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::offlineStoragePath")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlEngine_OfflineStoragePath(ptr.Pointer()))
@@ -62,11 +57,7 @@ func (ptr *QQmlEngine) OfflineStoragePath() string {
 }
 
 func (ptr *QQmlEngine) SetOfflineStoragePath(dir string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::setOfflineStoragePath")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::setOfflineStoragePath")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetOfflineStoragePath(ptr.Pointer(), C.CString(dir))
@@ -74,21 +65,13 @@ func (ptr *QQmlEngine) SetOfflineStoragePath(dir string) {
 }
 
 func NewQQmlEngine(parent core.QObject_ITF) *QQmlEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::QQmlEngine")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::QQmlEngine")
 
 	return NewQQmlEngineFromPointer(C.QQmlEngine_NewQQmlEngine(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlEngine) AddImageProvider(providerId string, provider QQmlImageProviderBase_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::addImageProvider")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::addImageProvider")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_AddImageProvider(ptr.Pointer(), C.CString(providerId), PointerFromQQmlImageProviderBase(provider))
@@ -96,11 +79,7 @@ func (ptr *QQmlEngine) AddImageProvider(providerId string, provider QQmlImagePro
 }
 
 func (ptr *QQmlEngine) AddImportPath(path string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::addImportPath")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::addImportPath")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_AddImportPath(ptr.Pointer(), C.CString(path))
@@ -108,11 +87,7 @@ func (ptr *QQmlEngine) AddImportPath(path string) {
 }
 
 func (ptr *QQmlEngine) AddPluginPath(path string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::addPluginPath")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::addPluginPath")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_AddPluginPath(ptr.Pointer(), C.CString(path))
@@ -120,11 +95,7 @@ func (ptr *QQmlEngine) AddPluginPath(path string) {
 }
 
 func (ptr *QQmlEngine) ClearComponentCache() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::clearComponentCache")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::clearComponentCache")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_ClearComponentCache(ptr.Pointer())
@@ -132,21 +103,13 @@ func (ptr *QQmlEngine) ClearComponentCache() {
 }
 
 func QQmlEngine_ContextForObject(object core.QObject_ITF) *QQmlContext {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::contextForObject")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::contextForObject")
 
 	return NewQQmlContextFromPointer(C.QQmlEngine_QQmlEngine_ContextForObject(core.PointerFromQObject(object)))
 }
 
 func (ptr *QQmlEngine) ImageProvider(providerId string) *QQmlImageProviderBase {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::imageProvider")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::imageProvider")
 
 	if ptr.Pointer() != nil {
 		return NewQQmlImageProviderBaseFromPointer(C.QQmlEngine_ImageProvider(ptr.Pointer(), C.CString(providerId)))
@@ -155,11 +118,7 @@ func (ptr *QQmlEngine) ImageProvider(providerId string) *QQmlImageProviderBase {
 }
 
 func (ptr *QQmlEngine) ImportPathList() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::importPathList")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::importPathList")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QQmlEngine_ImportPathList(ptr.Pointer())), ",,,")
@@ -168,11 +127,7 @@ func (ptr *QQmlEngine) ImportPathList() []string {
 }
 
 func (ptr *QQmlEngine) IncubationController() *QQmlIncubationController {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::incubationController")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::incubationController")
 
 	if ptr.Pointer() != nil {
 		return NewQQmlIncubationControllerFromPointer(C.QQmlEngine_IncubationController(ptr.Pointer()))
@@ -181,11 +136,7 @@ func (ptr *QQmlEngine) IncubationController() *QQmlIncubationController {
 }
 
 func (ptr *QQmlEngine) NetworkAccessManager() *network.QNetworkAccessManager {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::networkAccessManager")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::networkAccessManager")
 
 	if ptr.Pointer() != nil {
 		return network.NewQNetworkAccessManagerFromPointer(C.QQmlEngine_NetworkAccessManager(ptr.Pointer()))
@@ -194,11 +145,7 @@ func (ptr *QQmlEngine) NetworkAccessManager() *network.QNetworkAccessManager {
 }
 
 func (ptr *QQmlEngine) NetworkAccessManagerFactory() *QQmlNetworkAccessManagerFactory {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::networkAccessManagerFactory")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::networkAccessManagerFactory")
 
 	if ptr.Pointer() != nil {
 		return NewQQmlNetworkAccessManagerFactoryFromPointer(C.QQmlEngine_NetworkAccessManagerFactory(ptr.Pointer()))
@@ -207,21 +154,13 @@ func (ptr *QQmlEngine) NetworkAccessManagerFactory() *QQmlNetworkAccessManagerFa
 }
 
 func QQmlEngine_ObjectOwnership(object core.QObject_ITF) QQmlEngine__ObjectOwnership {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::objectOwnership")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::objectOwnership")
 
 	return QQmlEngine__ObjectOwnership(C.QQmlEngine_QQmlEngine_ObjectOwnership(core.PointerFromQObject(object)))
 }
 
 func (ptr *QQmlEngine) OutputWarningsToStandardError() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::outputWarningsToStandardError")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::outputWarningsToStandardError")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlEngine_OutputWarningsToStandardError(ptr.Pointer()) != 0
@@ -230,11 +169,7 @@ func (ptr *QQmlEngine) OutputWarningsToStandardError() bool {
 }
 
 func (ptr *QQmlEngine) PluginPathList() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::pluginPathList")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::pluginPathList")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QQmlEngine_PluginPathList(ptr.Pointer())), ",,,")
@@ -243,11 +178,7 @@ func (ptr *QQmlEngine) PluginPathList() []string {
 }
 
 func (ptr *QQmlEngine) ConnectQuit(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::quit")
-		}
-	}()
+	defer qt.Recovering("connect QQmlEngine::quit")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_ConnectQuit(ptr.Pointer())
@@ -256,11 +187,7 @@ func (ptr *QQmlEngine) ConnectQuit(f func()) {
 }
 
 func (ptr *QQmlEngine) DisconnectQuit() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::quit")
-		}
-	}()
+	defer qt.Recovering("disconnect QQmlEngine::quit")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DisconnectQuit(ptr.Pointer())
@@ -270,21 +197,17 @@ func (ptr *QQmlEngine) DisconnectQuit() {
 
 //export callbackQQmlEngineQuit
 func callbackQQmlEngineQuit(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::quit")
-		}
-	}()
+	defer qt.Recovering("callback QQmlEngine::quit")
 
-	qt.GetSignal(C.GoString(ptrName), "quit").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "quit")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QQmlEngine) RemoveImageProvider(providerId string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::removeImageProvider")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::removeImageProvider")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_RemoveImageProvider(ptr.Pointer(), C.CString(providerId))
@@ -292,11 +215,7 @@ func (ptr *QQmlEngine) RemoveImageProvider(providerId string) {
 }
 
 func (ptr *QQmlEngine) RootContext() *QQmlContext {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::rootContext")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::rootContext")
 
 	if ptr.Pointer() != nil {
 		return NewQQmlContextFromPointer(C.QQmlEngine_RootContext(ptr.Pointer()))
@@ -305,11 +224,7 @@ func (ptr *QQmlEngine) RootContext() *QQmlContext {
 }
 
 func (ptr *QQmlEngine) SetBaseUrl(url core.QUrl_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::setBaseUrl")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::setBaseUrl")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetBaseUrl(ptr.Pointer(), core.PointerFromQUrl(url))
@@ -317,21 +232,13 @@ func (ptr *QQmlEngine) SetBaseUrl(url core.QUrl_ITF) {
 }
 
 func QQmlEngine_SetContextForObject(object core.QObject_ITF, context QQmlContext_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::setContextForObject")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::setContextForObject")
 
 	C.QQmlEngine_QQmlEngine_SetContextForObject(core.PointerFromQObject(object), PointerFromQQmlContext(context))
 }
 
 func (ptr *QQmlEngine) SetImportPathList(paths []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::setImportPathList")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::setImportPathList")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetImportPathList(ptr.Pointer(), C.CString(strings.Join(paths, ",,,")))
@@ -339,11 +246,7 @@ func (ptr *QQmlEngine) SetImportPathList(paths []string) {
 }
 
 func (ptr *QQmlEngine) SetIncubationController(controller QQmlIncubationController_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::setIncubationController")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::setIncubationController")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetIncubationController(ptr.Pointer(), PointerFromQQmlIncubationController(controller))
@@ -351,11 +254,7 @@ func (ptr *QQmlEngine) SetIncubationController(controller QQmlIncubationControll
 }
 
 func (ptr *QQmlEngine) SetNetworkAccessManagerFactory(factory QQmlNetworkAccessManagerFactory_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::setNetworkAccessManagerFactory")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::setNetworkAccessManagerFactory")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetNetworkAccessManagerFactory(ptr.Pointer(), PointerFromQQmlNetworkAccessManagerFactory(factory))
@@ -363,21 +262,13 @@ func (ptr *QQmlEngine) SetNetworkAccessManagerFactory(factory QQmlNetworkAccessM
 }
 
 func QQmlEngine_SetObjectOwnership(object core.QObject_ITF, ownership QQmlEngine__ObjectOwnership) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::setObjectOwnership")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::setObjectOwnership")
 
 	C.QQmlEngine_QQmlEngine_SetObjectOwnership(core.PointerFromQObject(object), C.int(ownership))
 }
 
 func (ptr *QQmlEngine) SetOutputWarningsToStandardError(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::setOutputWarningsToStandardError")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::setOutputWarningsToStandardError")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetOutputWarningsToStandardError(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -385,11 +276,7 @@ func (ptr *QQmlEngine) SetOutputWarningsToStandardError(enabled bool) {
 }
 
 func (ptr *QQmlEngine) SetPluginPathList(paths []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::setPluginPathList")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::setPluginPathList")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetPluginPathList(ptr.Pointer(), C.CString(strings.Join(paths, ",,,")))
@@ -397,11 +284,7 @@ func (ptr *QQmlEngine) SetPluginPathList(paths []string) {
 }
 
 func (ptr *QQmlEngine) TrimComponentCache() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::trimComponentCache")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::trimComponentCache")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_TrimComponentCache(ptr.Pointer())
@@ -409,11 +292,7 @@ func (ptr *QQmlEngine) TrimComponentCache() {
 }
 
 func (ptr *QQmlEngine) DestroyQQmlEngine() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlEngine::~QQmlEngine")
-		}
-	}()
+	defer qt.Recovering("QQmlEngine::~QQmlEngine")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DestroyQQmlEngine(ptr.Pointer())

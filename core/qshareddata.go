@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,21 +41,13 @@ func (ptr *QSharedData) QSharedData_PTR() *QSharedData {
 }
 
 func NewQSharedData() *QSharedData {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedData::QSharedData")
-		}
-	}()
+	defer qt.Recovering("QSharedData::QSharedData")
 
 	return NewQSharedDataFromPointer(C.QSharedData_NewQSharedData())
 }
 
 func NewQSharedData2(other QSharedData_ITF) *QSharedData {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSharedData::QSharedData")
-		}
-	}()
+	defer qt.Recovering("QSharedData::QSharedData")
 
 	return NewQSharedDataFromPointer(C.QSharedData_NewQSharedData2(PointerFromQSharedData(other)))
 }

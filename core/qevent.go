@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +33,9 @@ func PointerFromQEvent(ptr QEvent_ITF) unsafe.Pointer {
 func NewQEventFromPointer(ptr unsafe.Pointer) *QEvent {
 	var n = new(QEvent)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QEvent_") {
+		n.SetObjectNameAbs("QEvent_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -220,21 +222,13 @@ const (
 )
 
 func NewQEvent(ty QEvent__Type) *QEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEvent::QEvent")
-		}
-	}()
+	defer qt.Recovering("QEvent::QEvent")
 
 	return NewQEventFromPointer(C.QEvent_NewQEvent(C.int(ty)))
 }
 
 func (ptr *QEvent) Accept() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEvent::accept")
-		}
-	}()
+	defer qt.Recovering("QEvent::accept")
 
 	if ptr.Pointer() != nil {
 		C.QEvent_Accept(ptr.Pointer())
@@ -242,11 +236,7 @@ func (ptr *QEvent) Accept() {
 }
 
 func (ptr *QEvent) Ignore() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEvent::ignore")
-		}
-	}()
+	defer qt.Recovering("QEvent::ignore")
 
 	if ptr.Pointer() != nil {
 		C.QEvent_Ignore(ptr.Pointer())
@@ -254,11 +244,7 @@ func (ptr *QEvent) Ignore() {
 }
 
 func (ptr *QEvent) IsAccepted() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEvent::isAccepted")
-		}
-	}()
+	defer qt.Recovering("QEvent::isAccepted")
 
 	if ptr.Pointer() != nil {
 		return C.QEvent_IsAccepted(ptr.Pointer()) != 0
@@ -267,21 +253,13 @@ func (ptr *QEvent) IsAccepted() bool {
 }
 
 func QEvent_RegisterEventType(hint int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEvent::registerEventType")
-		}
-	}()
+	defer qt.Recovering("QEvent::registerEventType")
 
 	return int(C.QEvent_QEvent_RegisterEventType(C.int(hint)))
 }
 
 func (ptr *QEvent) SetAccepted(accepted bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEvent::setAccepted")
-		}
-	}()
+	defer qt.Recovering("QEvent::setAccepted")
 
 	if ptr.Pointer() != nil {
 		C.QEvent_SetAccepted(ptr.Pointer(), C.int(qt.GoBoolToInt(accepted)))
@@ -289,11 +267,7 @@ func (ptr *QEvent) SetAccepted(accepted bool) {
 }
 
 func (ptr *QEvent) Spontaneous() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEvent::spontaneous")
-		}
-	}()
+	defer qt.Recovering("QEvent::spontaneous")
 
 	if ptr.Pointer() != nil {
 		return C.QEvent_Spontaneous(ptr.Pointer()) != 0
@@ -302,11 +276,7 @@ func (ptr *QEvent) Spontaneous() bool {
 }
 
 func (ptr *QEvent) Type() QEvent__Type {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEvent::type")
-		}
-	}()
+	defer qt.Recovering("QEvent::type")
 
 	if ptr.Pointer() != nil {
 		return QEvent__Type(C.QEvent_Type(ptr.Pointer()))
@@ -315,13 +285,26 @@ func (ptr *QEvent) Type() QEvent__Type {
 }
 
 func (ptr *QEvent) DestroyQEvent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QEvent::~QEvent")
-		}
-	}()
+	defer qt.Recovering("QEvent::~QEvent")
 
 	if ptr.Pointer() != nil {
 		C.QEvent_DestroyQEvent(ptr.Pointer())
+	}
+}
+
+func (ptr *QEvent) ObjectNameAbs() string {
+	defer qt.Recovering("QEvent::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QEvent_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QEvent) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QEvent::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QEvent_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

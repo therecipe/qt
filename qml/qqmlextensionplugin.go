@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQQmlExtensionPluginFromPointer(ptr unsafe.Pointer) *QQmlExtensionPlugin 
 	var n = new(QQmlExtensionPlugin)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlExtensionPlugin_") {
-		n.SetObjectName("QQmlExtensionPlugin_" + qt.RandomIdentifier())
+		n.SetObjectName("QQmlExtensionPlugin_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,24 +37,8 @@ func (ptr *QQmlExtensionPlugin) QQmlExtensionPlugin_PTR() *QQmlExtensionPlugin {
 	return ptr
 }
 
-func (ptr *QQmlExtensionPlugin) InitializeEngine(engine QQmlEngine_ITF, uri string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlExtensionPlugin::initializeEngine")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QQmlExtensionPlugin_InitializeEngine(ptr.Pointer(), PointerFromQQmlEngine(engine), C.CString(uri))
-	}
-}
-
 func (ptr *QQmlExtensionPlugin) RegisterTypes(uri string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlExtensionPlugin::registerTypes")
-		}
-	}()
+	defer qt.Recovering("QQmlExtensionPlugin::registerTypes")
 
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_RegisterTypes(ptr.Pointer(), C.CString(uri))

@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,11 +41,7 @@ func (ptr *QRectF) QRectF_PTR() *QRectF {
 }
 
 func (ptr *QRectF) Contains(point QPointF_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::contains")
-		}
-	}()
+	defer qt.Recovering("QRectF::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QRectF_Contains(ptr.Pointer(), PointerFromQPointF(point)) != 0
@@ -54,11 +50,7 @@ func (ptr *QRectF) Contains(point QPointF_ITF) bool {
 }
 
 func (ptr *QRectF) Contains3(rectangle QRectF_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::contains")
-		}
-	}()
+	defer qt.Recovering("QRectF::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QRectF_Contains3(ptr.Pointer(), PointerFromQRectF(rectangle)) != 0
@@ -67,11 +59,7 @@ func (ptr *QRectF) Contains3(rectangle QRectF_ITF) bool {
 }
 
 func (ptr *QRectF) Intersects(rectangle QRectF_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::intersects")
-		}
-	}()
+	defer qt.Recovering("QRectF::intersects")
 
 	if ptr.Pointer() != nil {
 		return C.QRectF_Intersects(ptr.Pointer(), PointerFromQRectF(rectangle)) != 0
@@ -80,61 +68,37 @@ func (ptr *QRectF) Intersects(rectangle QRectF_ITF) bool {
 }
 
 func NewQRectF() *QRectF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::QRectF")
-		}
-	}()
+	defer qt.Recovering("QRectF::QRectF")
 
 	return NewQRectFFromPointer(C.QRectF_NewQRectF())
 }
 
 func NewQRectF3(topLeft QPointF_ITF, bottomRight QPointF_ITF) *QRectF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::QRectF")
-		}
-	}()
+	defer qt.Recovering("QRectF::QRectF")
 
 	return NewQRectFFromPointer(C.QRectF_NewQRectF3(PointerFromQPointF(topLeft), PointerFromQPointF(bottomRight)))
 }
 
 func NewQRectF2(topLeft QPointF_ITF, size QSizeF_ITF) *QRectF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::QRectF")
-		}
-	}()
+	defer qt.Recovering("QRectF::QRectF")
 
 	return NewQRectFFromPointer(C.QRectF_NewQRectF2(PointerFromQPointF(topLeft), PointerFromQSizeF(size)))
 }
 
 func NewQRectF5(rectangle QRect_ITF) *QRectF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::QRectF")
-		}
-	}()
+	defer qt.Recovering("QRectF::QRectF")
 
 	return NewQRectFFromPointer(C.QRectF_NewQRectF5(PointerFromQRect(rectangle)))
 }
 
 func NewQRectF4(x float64, y float64, width float64, height float64) *QRectF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::QRectF")
-		}
-	}()
+	defer qt.Recovering("QRectF::QRectF")
 
 	return NewQRectFFromPointer(C.QRectF_NewQRectF4(C.double(x), C.double(y), C.double(width), C.double(height)))
 }
 
 func (ptr *QRectF) Adjust(dx1 float64, dy1 float64, dx2 float64, dy2 float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::adjust")
-		}
-	}()
+	defer qt.Recovering("QRectF::adjust")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_Adjust(ptr.Pointer(), C.double(dx1), C.double(dy1), C.double(dx2), C.double(dy2))
@@ -142,11 +106,7 @@ func (ptr *QRectF) Adjust(dx1 float64, dy1 float64, dx2 float64, dy2 float64) {
 }
 
 func (ptr *QRectF) Bottom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::bottom")
-		}
-	}()
+	defer qt.Recovering("QRectF::bottom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRectF_Bottom(ptr.Pointer()))
@@ -155,11 +115,7 @@ func (ptr *QRectF) Bottom() float64 {
 }
 
 func (ptr *QRectF) Contains2(x float64, y float64) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::contains")
-		}
-	}()
+	defer qt.Recovering("QRectF::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QRectF_Contains2(ptr.Pointer(), C.double(x), C.double(y)) != 0
@@ -168,11 +124,7 @@ func (ptr *QRectF) Contains2(x float64, y float64) bool {
 }
 
 func (ptr *QRectF) Height() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::height")
-		}
-	}()
+	defer qt.Recovering("QRectF::height")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRectF_Height(ptr.Pointer()))
@@ -181,11 +133,7 @@ func (ptr *QRectF) Height() float64 {
 }
 
 func (ptr *QRectF) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QRectF::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QRectF_IsEmpty(ptr.Pointer()) != 0
@@ -194,11 +142,7 @@ func (ptr *QRectF) IsEmpty() bool {
 }
 
 func (ptr *QRectF) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::isNull")
-		}
-	}()
+	defer qt.Recovering("QRectF::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QRectF_IsNull(ptr.Pointer()) != 0
@@ -207,11 +151,7 @@ func (ptr *QRectF) IsNull() bool {
 }
 
 func (ptr *QRectF) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::isValid")
-		}
-	}()
+	defer qt.Recovering("QRectF::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QRectF_IsValid(ptr.Pointer()) != 0
@@ -220,11 +160,7 @@ func (ptr *QRectF) IsValid() bool {
 }
 
 func (ptr *QRectF) Left() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::left")
-		}
-	}()
+	defer qt.Recovering("QRectF::left")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRectF_Left(ptr.Pointer()))
@@ -233,11 +169,7 @@ func (ptr *QRectF) Left() float64 {
 }
 
 func (ptr *QRectF) MoveBottom(y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::moveBottom")
-		}
-	}()
+	defer qt.Recovering("QRectF::moveBottom")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveBottom(ptr.Pointer(), C.double(y))
@@ -245,11 +177,7 @@ func (ptr *QRectF) MoveBottom(y float64) {
 }
 
 func (ptr *QRectF) MoveBottomLeft(position QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::moveBottomLeft")
-		}
-	}()
+	defer qt.Recovering("QRectF::moveBottomLeft")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveBottomLeft(ptr.Pointer(), PointerFromQPointF(position))
@@ -257,11 +185,7 @@ func (ptr *QRectF) MoveBottomLeft(position QPointF_ITF) {
 }
 
 func (ptr *QRectF) MoveBottomRight(position QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::moveBottomRight")
-		}
-	}()
+	defer qt.Recovering("QRectF::moveBottomRight")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveBottomRight(ptr.Pointer(), PointerFromQPointF(position))
@@ -269,11 +193,7 @@ func (ptr *QRectF) MoveBottomRight(position QPointF_ITF) {
 }
 
 func (ptr *QRectF) MoveCenter(position QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::moveCenter")
-		}
-	}()
+	defer qt.Recovering("QRectF::moveCenter")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveCenter(ptr.Pointer(), PointerFromQPointF(position))
@@ -281,11 +201,7 @@ func (ptr *QRectF) MoveCenter(position QPointF_ITF) {
 }
 
 func (ptr *QRectF) MoveLeft(x float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::moveLeft")
-		}
-	}()
+	defer qt.Recovering("QRectF::moveLeft")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveLeft(ptr.Pointer(), C.double(x))
@@ -293,11 +209,7 @@ func (ptr *QRectF) MoveLeft(x float64) {
 }
 
 func (ptr *QRectF) MoveRight(x float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::moveRight")
-		}
-	}()
+	defer qt.Recovering("QRectF::moveRight")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveRight(ptr.Pointer(), C.double(x))
@@ -305,11 +217,7 @@ func (ptr *QRectF) MoveRight(x float64) {
 }
 
 func (ptr *QRectF) MoveTo2(position QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::moveTo")
-		}
-	}()
+	defer qt.Recovering("QRectF::moveTo")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveTo2(ptr.Pointer(), PointerFromQPointF(position))
@@ -317,11 +225,7 @@ func (ptr *QRectF) MoveTo2(position QPointF_ITF) {
 }
 
 func (ptr *QRectF) MoveTo(x float64, y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::moveTo")
-		}
-	}()
+	defer qt.Recovering("QRectF::moveTo")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveTo(ptr.Pointer(), C.double(x), C.double(y))
@@ -329,11 +233,7 @@ func (ptr *QRectF) MoveTo(x float64, y float64) {
 }
 
 func (ptr *QRectF) MoveTop(y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::moveTop")
-		}
-	}()
+	defer qt.Recovering("QRectF::moveTop")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveTop(ptr.Pointer(), C.double(y))
@@ -341,11 +241,7 @@ func (ptr *QRectF) MoveTop(y float64) {
 }
 
 func (ptr *QRectF) MoveTopLeft(position QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::moveTopLeft")
-		}
-	}()
+	defer qt.Recovering("QRectF::moveTopLeft")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveTopLeft(ptr.Pointer(), PointerFromQPointF(position))
@@ -353,11 +249,7 @@ func (ptr *QRectF) MoveTopLeft(position QPointF_ITF) {
 }
 
 func (ptr *QRectF) MoveTopRight(position QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::moveTopRight")
-		}
-	}()
+	defer qt.Recovering("QRectF::moveTopRight")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveTopRight(ptr.Pointer(), PointerFromQPointF(position))
@@ -365,11 +257,7 @@ func (ptr *QRectF) MoveTopRight(position QPointF_ITF) {
 }
 
 func (ptr *QRectF) Right() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::right")
-		}
-	}()
+	defer qt.Recovering("QRectF::right")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRectF_Right(ptr.Pointer()))
@@ -378,11 +266,7 @@ func (ptr *QRectF) Right() float64 {
 }
 
 func (ptr *QRectF) SetBottom(y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setBottom")
-		}
-	}()
+	defer qt.Recovering("QRectF::setBottom")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetBottom(ptr.Pointer(), C.double(y))
@@ -390,11 +274,7 @@ func (ptr *QRectF) SetBottom(y float64) {
 }
 
 func (ptr *QRectF) SetBottomLeft(position QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setBottomLeft")
-		}
-	}()
+	defer qt.Recovering("QRectF::setBottomLeft")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetBottomLeft(ptr.Pointer(), PointerFromQPointF(position))
@@ -402,11 +282,7 @@ func (ptr *QRectF) SetBottomLeft(position QPointF_ITF) {
 }
 
 func (ptr *QRectF) SetBottomRight(position QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setBottomRight")
-		}
-	}()
+	defer qt.Recovering("QRectF::setBottomRight")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetBottomRight(ptr.Pointer(), PointerFromQPointF(position))
@@ -414,11 +290,7 @@ func (ptr *QRectF) SetBottomRight(position QPointF_ITF) {
 }
 
 func (ptr *QRectF) SetCoords(x1 float64, y1 float64, x2 float64, y2 float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setCoords")
-		}
-	}()
+	defer qt.Recovering("QRectF::setCoords")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetCoords(ptr.Pointer(), C.double(x1), C.double(y1), C.double(x2), C.double(y2))
@@ -426,11 +298,7 @@ func (ptr *QRectF) SetCoords(x1 float64, y1 float64, x2 float64, y2 float64) {
 }
 
 func (ptr *QRectF) SetHeight(height float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setHeight")
-		}
-	}()
+	defer qt.Recovering("QRectF::setHeight")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetHeight(ptr.Pointer(), C.double(height))
@@ -438,11 +306,7 @@ func (ptr *QRectF) SetHeight(height float64) {
 }
 
 func (ptr *QRectF) SetLeft(x float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setLeft")
-		}
-	}()
+	defer qt.Recovering("QRectF::setLeft")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetLeft(ptr.Pointer(), C.double(x))
@@ -450,11 +314,7 @@ func (ptr *QRectF) SetLeft(x float64) {
 }
 
 func (ptr *QRectF) SetRect(x float64, y float64, width float64, height float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setRect")
-		}
-	}()
+	defer qt.Recovering("QRectF::setRect")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetRect(ptr.Pointer(), C.double(x), C.double(y), C.double(width), C.double(height))
@@ -462,11 +322,7 @@ func (ptr *QRectF) SetRect(x float64, y float64, width float64, height float64) 
 }
 
 func (ptr *QRectF) SetRight(x float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setRight")
-		}
-	}()
+	defer qt.Recovering("QRectF::setRight")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetRight(ptr.Pointer(), C.double(x))
@@ -474,11 +330,7 @@ func (ptr *QRectF) SetRight(x float64) {
 }
 
 func (ptr *QRectF) SetSize(size QSizeF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setSize")
-		}
-	}()
+	defer qt.Recovering("QRectF::setSize")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetSize(ptr.Pointer(), PointerFromQSizeF(size))
@@ -486,11 +338,7 @@ func (ptr *QRectF) SetSize(size QSizeF_ITF) {
 }
 
 func (ptr *QRectF) SetTop(y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setTop")
-		}
-	}()
+	defer qt.Recovering("QRectF::setTop")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetTop(ptr.Pointer(), C.double(y))
@@ -498,11 +346,7 @@ func (ptr *QRectF) SetTop(y float64) {
 }
 
 func (ptr *QRectF) SetTopLeft(position QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setTopLeft")
-		}
-	}()
+	defer qt.Recovering("QRectF::setTopLeft")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetTopLeft(ptr.Pointer(), PointerFromQPointF(position))
@@ -510,11 +354,7 @@ func (ptr *QRectF) SetTopLeft(position QPointF_ITF) {
 }
 
 func (ptr *QRectF) SetTopRight(position QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setTopRight")
-		}
-	}()
+	defer qt.Recovering("QRectF::setTopRight")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetTopRight(ptr.Pointer(), PointerFromQPointF(position))
@@ -522,11 +362,7 @@ func (ptr *QRectF) SetTopRight(position QPointF_ITF) {
 }
 
 func (ptr *QRectF) SetWidth(width float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setWidth")
-		}
-	}()
+	defer qt.Recovering("QRectF::setWidth")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetWidth(ptr.Pointer(), C.double(width))
@@ -534,11 +370,7 @@ func (ptr *QRectF) SetWidth(width float64) {
 }
 
 func (ptr *QRectF) SetX(x float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setX")
-		}
-	}()
+	defer qt.Recovering("QRectF::setX")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetX(ptr.Pointer(), C.double(x))
@@ -546,11 +378,7 @@ func (ptr *QRectF) SetX(x float64) {
 }
 
 func (ptr *QRectF) SetY(y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::setY")
-		}
-	}()
+	defer qt.Recovering("QRectF::setY")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_SetY(ptr.Pointer(), C.double(y))
@@ -558,11 +386,7 @@ func (ptr *QRectF) SetY(y float64) {
 }
 
 func (ptr *QRectF) Top() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::top")
-		}
-	}()
+	defer qt.Recovering("QRectF::top")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRectF_Top(ptr.Pointer()))
@@ -571,11 +395,7 @@ func (ptr *QRectF) Top() float64 {
 }
 
 func (ptr *QRectF) Translate2(offset QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::translate")
-		}
-	}()
+	defer qt.Recovering("QRectF::translate")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_Translate2(ptr.Pointer(), PointerFromQPointF(offset))
@@ -583,11 +403,7 @@ func (ptr *QRectF) Translate2(offset QPointF_ITF) {
 }
 
 func (ptr *QRectF) Translate(dx float64, dy float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::translate")
-		}
-	}()
+	defer qt.Recovering("QRectF::translate")
 
 	if ptr.Pointer() != nil {
 		C.QRectF_Translate(ptr.Pointer(), C.double(dx), C.double(dy))
@@ -595,11 +411,7 @@ func (ptr *QRectF) Translate(dx float64, dy float64) {
 }
 
 func (ptr *QRectF) Width() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::width")
-		}
-	}()
+	defer qt.Recovering("QRectF::width")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRectF_Width(ptr.Pointer()))
@@ -608,11 +420,7 @@ func (ptr *QRectF) Width() float64 {
 }
 
 func (ptr *QRectF) X() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::x")
-		}
-	}()
+	defer qt.Recovering("QRectF::x")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRectF_X(ptr.Pointer()))
@@ -621,11 +429,7 @@ func (ptr *QRectF) X() float64 {
 }
 
 func (ptr *QRectF) Y() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRectF::y")
-		}
-	}()
+	defer qt.Recovering("QRectF::y")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QRectF_Y(ptr.Pointer()))

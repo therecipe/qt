@@ -6,17 +6,9 @@
 #include <QAndroidJniObject>
 #include <QString>
 
-class MyQAndroidActivityResultReceiver: public QAndroidActivityResultReceiver {
-public:
-};
-
 void QAndroidActivityResultReceiver_HandleActivityResult(void* ptr, int receiverRequestCode, int resultCode, void* data){
 	static_cast<QAndroidActivityResultReceiver*>(ptr)->handleActivityResult(receiverRequestCode, resultCode, *static_cast<QAndroidJniObject*>(data));
 }
-
-class MyQAndroidJniEnvironment: public QAndroidJniEnvironment {
-public:
-};
 
 void* QAndroidJniEnvironment_NewQAndroidJniEnvironment(){
 	return new QAndroidJniEnvironment();
@@ -29,10 +21,6 @@ void* QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM(){
 void QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(void* ptr){
 	static_cast<QAndroidJniEnvironment*>(ptr)->~QAndroidJniEnvironment();
 }
-
-class MyQAndroidJniObject: public QAndroidJniObject {
-public:
-};
 
 void* QAndroidJniObject_NewQAndroidJniObject(){
 	return new QAndroidJniObject();

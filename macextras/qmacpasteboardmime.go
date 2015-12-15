@@ -3,8 +3,8 @@ package macextras
 //#include "macextras.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQMacPasteboardMime(ptr QMacPasteboardMime_ITF) unsafe.Pointer {
 func NewQMacPasteboardMimeFromPointer(ptr unsafe.Pointer) *QMacPasteboardMime {
 	var n = new(QMacPasteboardMime)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QMacPasteboardMime_") {
+		n.SetObjectNameAbs("QMacPasteboardMime_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,11 +45,7 @@ func (ptr *QMacPasteboardMime) QMacPasteboardMime_PTR() *QMacPasteboardMime {
 }
 
 func (ptr *QMacPasteboardMime) ConvertorName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacPasteboardMime::convertorName")
-		}
-	}()
+	defer qt.Recovering("QMacPasteboardMime::convertorName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMacPasteboardMime_ConvertorName(ptr.Pointer()))
@@ -55,11 +54,7 @@ func (ptr *QMacPasteboardMime) ConvertorName() string {
 }
 
 func (ptr *QMacPasteboardMime) Count(mimeData core.QMimeData_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacPasteboardMime::count")
-		}
-	}()
+	defer qt.Recovering("QMacPasteboardMime::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMacPasteboardMime_Count(ptr.Pointer(), core.PointerFromQMimeData(mimeData)))
@@ -68,11 +63,7 @@ func (ptr *QMacPasteboardMime) Count(mimeData core.QMimeData_ITF) int {
 }
 
 func (ptr *QMacPasteboardMime) FlavorFor(mime string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacPasteboardMime::flavorFor")
-		}
-	}()
+	defer qt.Recovering("QMacPasteboardMime::flavorFor")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMacPasteboardMime_FlavorFor(ptr.Pointer(), C.CString(mime)))
@@ -81,11 +72,7 @@ func (ptr *QMacPasteboardMime) FlavorFor(mime string) string {
 }
 
 func (ptr *QMacPasteboardMime) MimeFor(flav string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacPasteboardMime::mimeFor")
-		}
-	}()
+	defer qt.Recovering("QMacPasteboardMime::mimeFor")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMacPasteboardMime_MimeFor(ptr.Pointer(), C.CString(flav)))
@@ -94,13 +81,26 @@ func (ptr *QMacPasteboardMime) MimeFor(flav string) string {
 }
 
 func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMime() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMacPasteboardMime::~QMacPasteboardMime")
-		}
-	}()
+	defer qt.Recovering("QMacPasteboardMime::~QMacPasteboardMime")
 
 	if ptr.Pointer() != nil {
 		C.QMacPasteboardMime_DestroyQMacPasteboardMime(ptr.Pointer())
+	}
+}
+
+func (ptr *QMacPasteboardMime) ObjectNameAbs() string {
+	defer qt.Recovering("QMacPasteboardMime::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QMacPasteboardMime_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QMacPasteboardMime) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QMacPasteboardMime::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QMacPasteboardMime_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

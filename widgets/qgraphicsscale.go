@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQGraphicsScaleFromPointer(ptr unsafe.Pointer) *QGraphicsScale {
 	var n = new(QGraphicsScale)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGraphicsScale_") {
-		n.SetObjectName("QGraphicsScale_" + qt.RandomIdentifier())
+		n.SetObjectName("QGraphicsScale_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QGraphicsScale) QGraphicsScale_PTR() *QGraphicsScale {
 }
 
 func (ptr *QGraphicsScale) SetOrigin(point gui.QVector3D_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::setOrigin")
-		}
-	}()
+	defer qt.Recovering("QGraphicsScale::setOrigin")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_SetOrigin(ptr.Pointer(), gui.PointerFromQVector3D(point))
@@ -52,11 +47,7 @@ func (ptr *QGraphicsScale) SetOrigin(point gui.QVector3D_ITF) {
 }
 
 func (ptr *QGraphicsScale) SetXScale(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::setXScale")
-		}
-	}()
+	defer qt.Recovering("QGraphicsScale::setXScale")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_SetXScale(ptr.Pointer(), C.double(v))
@@ -64,11 +55,7 @@ func (ptr *QGraphicsScale) SetXScale(v float64) {
 }
 
 func (ptr *QGraphicsScale) SetYScale(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::setYScale")
-		}
-	}()
+	defer qt.Recovering("QGraphicsScale::setYScale")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_SetYScale(ptr.Pointer(), C.double(v))
@@ -76,11 +63,7 @@ func (ptr *QGraphicsScale) SetYScale(v float64) {
 }
 
 func (ptr *QGraphicsScale) SetZScale(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::setZScale")
-		}
-	}()
+	defer qt.Recovering("QGraphicsScale::setZScale")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_SetZScale(ptr.Pointer(), C.double(v))
@@ -88,11 +71,7 @@ func (ptr *QGraphicsScale) SetZScale(v float64) {
 }
 
 func (ptr *QGraphicsScale) XScale() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::xScale")
-		}
-	}()
+	defer qt.Recovering("QGraphicsScale::xScale")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGraphicsScale_XScale(ptr.Pointer()))
@@ -101,11 +80,7 @@ func (ptr *QGraphicsScale) XScale() float64 {
 }
 
 func (ptr *QGraphicsScale) YScale() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::yScale")
-		}
-	}()
+	defer qt.Recovering("QGraphicsScale::yScale")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGraphicsScale_YScale(ptr.Pointer()))
@@ -114,11 +89,7 @@ func (ptr *QGraphicsScale) YScale() float64 {
 }
 
 func (ptr *QGraphicsScale) ZScale() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::zScale")
-		}
-	}()
+	defer qt.Recovering("QGraphicsScale::zScale")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGraphicsScale_ZScale(ptr.Pointer()))
@@ -127,33 +98,44 @@ func (ptr *QGraphicsScale) ZScale() float64 {
 }
 
 func NewQGraphicsScale(parent core.QObject_ITF) *QGraphicsScale {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::QGraphicsScale")
-		}
-	}()
+	defer qt.Recovering("QGraphicsScale::QGraphicsScale")
 
 	return NewQGraphicsScaleFromPointer(C.QGraphicsScale_NewQGraphicsScale(core.PointerFromQObject(parent)))
 }
 
-func (ptr *QGraphicsScale) ApplyTo(matrix gui.QMatrix4x4_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::applyTo")
-		}
-	}()
+func (ptr *QGraphicsScale) ConnectApplyTo(f func(matrix *gui.QMatrix4x4)) {
+	defer qt.Recovering("connect QGraphicsScale::applyTo")
 
 	if ptr.Pointer() != nil {
-		C.QGraphicsScale_ApplyTo(ptr.Pointer(), gui.PointerFromQMatrix4x4(matrix))
+
+		qt.ConnectSignal(ptr.ObjectName(), "applyTo", f)
 	}
 }
 
+func (ptr *QGraphicsScale) DisconnectApplyTo() {
+	defer qt.Recovering("disconnect QGraphicsScale::applyTo")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "applyTo")
+	}
+}
+
+//export callbackQGraphicsScaleApplyTo
+func callbackQGraphicsScaleApplyTo(ptrName *C.char, matrix unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsScale::applyTo")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "applyTo")
+	if signal != nil {
+		defer signal.(func(*gui.QMatrix4x4))(gui.NewQMatrix4x4FromPointer(matrix))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsScale) ConnectOriginChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::originChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsScale::originChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_ConnectOriginChanged(ptr.Pointer())
@@ -162,11 +144,7 @@ func (ptr *QGraphicsScale) ConnectOriginChanged(f func()) {
 }
 
 func (ptr *QGraphicsScale) DisconnectOriginChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::originChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsScale::originChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_DisconnectOriginChanged(ptr.Pointer())
@@ -176,21 +154,17 @@ func (ptr *QGraphicsScale) DisconnectOriginChanged() {
 
 //export callbackQGraphicsScaleOriginChanged
 func callbackQGraphicsScaleOriginChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::originChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsScale::originChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "originChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "originChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsScale) ConnectScaleChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::scaleChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsScale::scaleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_ConnectScaleChanged(ptr.Pointer())
@@ -199,11 +173,7 @@ func (ptr *QGraphicsScale) ConnectScaleChanged(f func()) {
 }
 
 func (ptr *QGraphicsScale) DisconnectScaleChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::scaleChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsScale::scaleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_DisconnectScaleChanged(ptr.Pointer())
@@ -213,21 +183,17 @@ func (ptr *QGraphicsScale) DisconnectScaleChanged() {
 
 //export callbackQGraphicsScaleScaleChanged
 func callbackQGraphicsScaleScaleChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::scaleChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsScale::scaleChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "scaleChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "scaleChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsScale) ConnectXScaleChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::xScaleChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsScale::xScaleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_ConnectXScaleChanged(ptr.Pointer())
@@ -236,11 +202,7 @@ func (ptr *QGraphicsScale) ConnectXScaleChanged(f func()) {
 }
 
 func (ptr *QGraphicsScale) DisconnectXScaleChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::xScaleChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsScale::xScaleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_DisconnectXScaleChanged(ptr.Pointer())
@@ -250,21 +212,17 @@ func (ptr *QGraphicsScale) DisconnectXScaleChanged() {
 
 //export callbackQGraphicsScaleXScaleChanged
 func callbackQGraphicsScaleXScaleChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::xScaleChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsScale::xScaleChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "xScaleChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "xScaleChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsScale) ConnectYScaleChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::yScaleChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsScale::yScaleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_ConnectYScaleChanged(ptr.Pointer())
@@ -273,11 +231,7 @@ func (ptr *QGraphicsScale) ConnectYScaleChanged(f func()) {
 }
 
 func (ptr *QGraphicsScale) DisconnectYScaleChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::yScaleChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsScale::yScaleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_DisconnectYScaleChanged(ptr.Pointer())
@@ -287,21 +241,17 @@ func (ptr *QGraphicsScale) DisconnectYScaleChanged() {
 
 //export callbackQGraphicsScaleYScaleChanged
 func callbackQGraphicsScaleYScaleChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::yScaleChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsScale::yScaleChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "yScaleChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "yScaleChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsScale) ConnectZScaleChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::zScaleChanged")
-		}
-	}()
+	defer qt.Recovering("connect QGraphicsScale::zScaleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_ConnectZScaleChanged(ptr.Pointer())
@@ -310,11 +260,7 @@ func (ptr *QGraphicsScale) ConnectZScaleChanged(f func()) {
 }
 
 func (ptr *QGraphicsScale) DisconnectZScaleChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::zScaleChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QGraphicsScale::zScaleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_DisconnectZScaleChanged(ptr.Pointer())
@@ -324,21 +270,17 @@ func (ptr *QGraphicsScale) DisconnectZScaleChanged() {
 
 //export callbackQGraphicsScaleZScaleChanged
 func callbackQGraphicsScaleZScaleChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::zScaleChanged")
-		}
-	}()
+	defer qt.Recovering("callback QGraphicsScale::zScaleChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "zScaleChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "zScaleChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QGraphicsScale) DestroyQGraphicsScale() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsScale::~QGraphicsScale")
-		}
-	}()
+	defer qt.Recovering("QGraphicsScale::~QGraphicsScale")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_DestroyQGraphicsScale(ptr.Pointer())

@@ -141,6 +141,8 @@ void QGeoServiceProvider_SetAllowExperimental(void* ptr, int allow);
 void QGeoServiceProvider_SetLocale(void* ptr, void* locale);
 void QGeoServiceProvider_DestroyQGeoServiceProvider(void* ptr);
 void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr);
+char* QGeoServiceProviderFactory_ObjectNameAbs(void* ptr);
+void QGeoServiceProviderFactory_SetObjectNameAbs(void* ptr, char* name);
 
 #ifdef __cplusplus
 }

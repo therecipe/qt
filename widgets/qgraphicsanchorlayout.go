@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -27,6 +27,9 @@ func PointerFromQGraphicsAnchorLayout(ptr QGraphicsAnchorLayout_ITF) unsafe.Poin
 func NewQGraphicsAnchorLayoutFromPointer(ptr unsafe.Pointer) *QGraphicsAnchorLayout {
 	var n = new(QGraphicsAnchorLayout)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QGraphicsAnchorLayout_") {
+		n.SetObjectNameAbs("QGraphicsAnchorLayout_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -35,21 +38,13 @@ func (ptr *QGraphicsAnchorLayout) QGraphicsAnchorLayout_PTR() *QGraphicsAnchorLa
 }
 
 func NewQGraphicsAnchorLayout(parent QGraphicsLayoutItem_ITF) *QGraphicsAnchorLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::QGraphicsAnchorLayout")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::QGraphicsAnchorLayout")
 
 	return NewQGraphicsAnchorLayoutFromPointer(C.QGraphicsAnchorLayout_NewQGraphicsAnchorLayout(PointerFromQGraphicsLayoutItem(parent)))
 }
 
 func (ptr *QGraphicsAnchorLayout) AddAnchor(firstItem QGraphicsLayoutItem_ITF, firstEdge core.Qt__AnchorPoint, secondItem QGraphicsLayoutItem_ITF, secondEdge core.Qt__AnchorPoint) *QGraphicsAnchor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::addAnchor")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::addAnchor")
 
 	if ptr.Pointer() != nil {
 		return NewQGraphicsAnchorFromPointer(C.QGraphicsAnchorLayout_AddAnchor(ptr.Pointer(), PointerFromQGraphicsLayoutItem(firstItem), C.int(firstEdge), PointerFromQGraphicsLayoutItem(secondItem), C.int(secondEdge)))
@@ -58,11 +53,7 @@ func (ptr *QGraphicsAnchorLayout) AddAnchor(firstItem QGraphicsLayoutItem_ITF, f
 }
 
 func (ptr *QGraphicsAnchorLayout) AddAnchors(firstItem QGraphicsLayoutItem_ITF, secondItem QGraphicsLayoutItem_ITF, orientations core.Qt__Orientation) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::addAnchors")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::addAnchors")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchorLayout_AddAnchors(ptr.Pointer(), PointerFromQGraphicsLayoutItem(firstItem), PointerFromQGraphicsLayoutItem(secondItem), C.int(orientations))
@@ -70,11 +61,7 @@ func (ptr *QGraphicsAnchorLayout) AddAnchors(firstItem QGraphicsLayoutItem_ITF, 
 }
 
 func (ptr *QGraphicsAnchorLayout) AddCornerAnchors(firstItem QGraphicsLayoutItem_ITF, firstCorner core.Qt__Corner, secondItem QGraphicsLayoutItem_ITF, secondCorner core.Qt__Corner) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::addCornerAnchors")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::addCornerAnchors")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchorLayout_AddCornerAnchors(ptr.Pointer(), PointerFromQGraphicsLayoutItem(firstItem), C.int(firstCorner), PointerFromQGraphicsLayoutItem(secondItem), C.int(secondCorner))
@@ -82,11 +69,7 @@ func (ptr *QGraphicsAnchorLayout) AddCornerAnchors(firstItem QGraphicsLayoutItem
 }
 
 func (ptr *QGraphicsAnchorLayout) Anchor(firstItem QGraphicsLayoutItem_ITF, firstEdge core.Qt__AnchorPoint, secondItem QGraphicsLayoutItem_ITF, secondEdge core.Qt__AnchorPoint) *QGraphicsAnchor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::anchor")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::anchor")
 
 	if ptr.Pointer() != nil {
 		return NewQGraphicsAnchorFromPointer(C.QGraphicsAnchorLayout_Anchor(ptr.Pointer(), PointerFromQGraphicsLayoutItem(firstItem), C.int(firstEdge), PointerFromQGraphicsLayoutItem(secondItem), C.int(secondEdge)))
@@ -95,11 +78,7 @@ func (ptr *QGraphicsAnchorLayout) Anchor(firstItem QGraphicsLayoutItem_ITF, firs
 }
 
 func (ptr *QGraphicsAnchorLayout) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::count")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGraphicsAnchorLayout_Count(ptr.Pointer()))
@@ -108,11 +87,7 @@ func (ptr *QGraphicsAnchorLayout) Count() int {
 }
 
 func (ptr *QGraphicsAnchorLayout) HorizontalSpacing() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::horizontalSpacing")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::horizontalSpacing")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGraphicsAnchorLayout_HorizontalSpacing(ptr.Pointer()))
@@ -120,24 +95,39 @@ func (ptr *QGraphicsAnchorLayout) HorizontalSpacing() float64 {
 	return 0
 }
 
-func (ptr *QGraphicsAnchorLayout) Invalidate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::invalidate")
-		}
-	}()
+func (ptr *QGraphicsAnchorLayout) ConnectInvalidate(f func()) {
+	defer qt.Recovering("connect QGraphicsAnchorLayout::invalidate")
 
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchorLayout_Invalidate(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "invalidate", f)
 	}
 }
 
+func (ptr *QGraphicsAnchorLayout) DisconnectInvalidate() {
+	defer qt.Recovering("disconnect QGraphicsAnchorLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "invalidate")
+	}
+}
+
+//export callbackQGraphicsAnchorLayoutInvalidate
+func callbackQGraphicsAnchorLayoutInvalidate(ptrName *C.char) bool {
+	defer qt.Recovering("callback QGraphicsAnchorLayout::invalidate")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "invalidate")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsAnchorLayout) ItemAt(index int) *QGraphicsLayoutItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::itemAt")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQGraphicsLayoutItemFromPointer(C.QGraphicsAnchorLayout_ItemAt(ptr.Pointer(), C.int(index)))
@@ -145,36 +135,39 @@ func (ptr *QGraphicsAnchorLayout) ItemAt(index int) *QGraphicsLayoutItem {
 	return nil
 }
 
-func (ptr *QGraphicsAnchorLayout) RemoveAt(index int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::removeAt")
-		}
-	}()
+func (ptr *QGraphicsAnchorLayout) ConnectRemoveAt(f func(index int)) {
+	defer qt.Recovering("connect QGraphicsAnchorLayout::removeAt")
 
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchorLayout_RemoveAt(ptr.Pointer(), C.int(index))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "removeAt", f)
 	}
 }
 
-func (ptr *QGraphicsAnchorLayout) SetGeometry(geom core.QRectF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::setGeometry")
-		}
-	}()
+func (ptr *QGraphicsAnchorLayout) DisconnectRemoveAt() {
+	defer qt.Recovering("disconnect QGraphicsAnchorLayout::removeAt")
 
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchorLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRectF(geom))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "removeAt")
 	}
+}
+
+//export callbackQGraphicsAnchorLayoutRemoveAt
+func callbackQGraphicsAnchorLayoutRemoveAt(ptrName *C.char, index C.int) bool {
+	defer qt.Recovering("callback QGraphicsAnchorLayout::removeAt")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "removeAt")
+	if signal != nil {
+		defer signal.(func(int))(int(index))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QGraphicsAnchorLayout) SetHorizontalSpacing(spacing float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::setHorizontalSpacing")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::setHorizontalSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchorLayout_SetHorizontalSpacing(ptr.Pointer(), C.double(spacing))
@@ -182,11 +175,7 @@ func (ptr *QGraphicsAnchorLayout) SetHorizontalSpacing(spacing float64) {
 }
 
 func (ptr *QGraphicsAnchorLayout) SetSpacing(spacing float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::setSpacing")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::setSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchorLayout_SetSpacing(ptr.Pointer(), C.double(spacing))
@@ -194,11 +183,7 @@ func (ptr *QGraphicsAnchorLayout) SetSpacing(spacing float64) {
 }
 
 func (ptr *QGraphicsAnchorLayout) SetVerticalSpacing(spacing float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::setVerticalSpacing")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::setVerticalSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchorLayout_SetVerticalSpacing(ptr.Pointer(), C.double(spacing))
@@ -206,11 +191,7 @@ func (ptr *QGraphicsAnchorLayout) SetVerticalSpacing(spacing float64) {
 }
 
 func (ptr *QGraphicsAnchorLayout) VerticalSpacing() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::verticalSpacing")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::verticalSpacing")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGraphicsAnchorLayout_VerticalSpacing(ptr.Pointer()))
@@ -219,13 +200,26 @@ func (ptr *QGraphicsAnchorLayout) VerticalSpacing() float64 {
 }
 
 func (ptr *QGraphicsAnchorLayout) DestroyQGraphicsAnchorLayout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchorLayout::~QGraphicsAnchorLayout")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchorLayout::~QGraphicsAnchorLayout")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayout(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsAnchorLayout) ObjectNameAbs() string {
+	defer qt.Recovering("QGraphicsAnchorLayout::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QGraphicsAnchorLayout_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QGraphicsAnchorLayout) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QGraphicsAnchorLayout::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchorLayout_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

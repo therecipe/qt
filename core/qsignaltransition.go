@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQSignalTransitionFromPointer(ptr unsafe.Pointer) *QSignalTransition {
 	var n = new(QSignalTransition)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSignalTransition_") {
-		n.SetObjectName("QSignalTransition_" + qt.RandomIdentifier())
+		n.SetObjectName("QSignalTransition_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,31 +37,50 @@ func (ptr *QSignalTransition) QSignalTransition_PTR() *QSignalTransition {
 }
 
 func NewQSignalTransition(sourceState QState_ITF) *QSignalTransition {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::QSignalTransition")
-		}
-	}()
+	defer qt.Recovering("QSignalTransition::QSignalTransition")
 
 	return NewQSignalTransitionFromPointer(C.QSignalTransition_NewQSignalTransition(PointerFromQState(sourceState)))
 }
 
 func NewQSignalTransition2(sender QObject_ITF, signal string, sourceState QState_ITF) *QSignalTransition {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::QSignalTransition")
-		}
-	}()
+	defer qt.Recovering("QSignalTransition::QSignalTransition")
 
 	return NewQSignalTransitionFromPointer(C.QSignalTransition_NewQSignalTransition2(PointerFromQObject(sender), C.CString(signal), PointerFromQState(sourceState)))
 }
 
+func (ptr *QSignalTransition) ConnectOnTransition(f func(event *QEvent)) {
+	defer qt.Recovering("connect QSignalTransition::onTransition")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "onTransition", f)
+	}
+}
+
+func (ptr *QSignalTransition) DisconnectOnTransition() {
+	defer qt.Recovering("disconnect QSignalTransition::onTransition")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "onTransition")
+	}
+}
+
+//export callbackQSignalTransitionOnTransition
+func callbackQSignalTransitionOnTransition(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSignalTransition::onTransition")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "onTransition")
+	if signal != nil {
+		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSignalTransition) SenderObject() *QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::senderObject")
-		}
-	}()
+	defer qt.Recovering("QSignalTransition::senderObject")
 
 	if ptr.Pointer() != nil {
 		return NewQObjectFromPointer(C.QSignalTransition_SenderObject(ptr.Pointer()))
@@ -71,11 +89,7 @@ func (ptr *QSignalTransition) SenderObject() *QObject {
 }
 
 func (ptr *QSignalTransition) ConnectSenderObjectChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::senderObjectChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSignalTransition::senderObjectChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_ConnectSenderObjectChanged(ptr.Pointer())
@@ -84,11 +98,7 @@ func (ptr *QSignalTransition) ConnectSenderObjectChanged(f func()) {
 }
 
 func (ptr *QSignalTransition) DisconnectSenderObjectChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::senderObjectChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSignalTransition::senderObjectChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_DisconnectSenderObjectChanged(ptr.Pointer())
@@ -98,21 +108,17 @@ func (ptr *QSignalTransition) DisconnectSenderObjectChanged() {
 
 //export callbackQSignalTransitionSenderObjectChanged
 func callbackQSignalTransitionSenderObjectChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::senderObjectChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSignalTransition::senderObjectChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "senderObjectChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "senderObjectChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QSignalTransition) SetSenderObject(sender QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::setSenderObject")
-		}
-	}()
+	defer qt.Recovering("QSignalTransition::setSenderObject")
 
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_SetSenderObject(ptr.Pointer(), PointerFromQObject(sender))
@@ -120,11 +126,7 @@ func (ptr *QSignalTransition) SetSenderObject(sender QObject_ITF) {
 }
 
 func (ptr *QSignalTransition) SetSignal(signal QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::setSignal")
-		}
-	}()
+	defer qt.Recovering("QSignalTransition::setSignal")
 
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_SetSignal(ptr.Pointer(), PointerFromQByteArray(signal))
@@ -132,11 +134,7 @@ func (ptr *QSignalTransition) SetSignal(signal QByteArray_ITF) {
 }
 
 func (ptr *QSignalTransition) Signal() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::signal")
-		}
-	}()
+	defer qt.Recovering("QSignalTransition::signal")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QSignalTransition_Signal(ptr.Pointer()))
@@ -145,11 +143,7 @@ func (ptr *QSignalTransition) Signal() *QByteArray {
 }
 
 func (ptr *QSignalTransition) ConnectSignalChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::signalChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSignalTransition::signalChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_ConnectSignalChanged(ptr.Pointer())
@@ -158,11 +152,7 @@ func (ptr *QSignalTransition) ConnectSignalChanged(f func()) {
 }
 
 func (ptr *QSignalTransition) DisconnectSignalChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::signalChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSignalTransition::signalChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_DisconnectSignalChanged(ptr.Pointer())
@@ -172,21 +162,17 @@ func (ptr *QSignalTransition) DisconnectSignalChanged() {
 
 //export callbackQSignalTransitionSignalChanged
 func callbackQSignalTransitionSignalChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::signalChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSignalTransition::signalChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "signalChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "signalChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QSignalTransition) DestroyQSignalTransition() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalTransition::~QSignalTransition")
-		}
-	}()
+	defer qt.Recovering("QSignalTransition::~QSignalTransition")
 
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_DestroyQSignalTransition(ptr.Pointer())

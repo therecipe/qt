@@ -3,8 +3,8 @@ package xmlpatterns
 //#include "xmlpatterns.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -27,6 +27,9 @@ func PointerFromQXmlFormatter(ptr QXmlFormatter_ITF) unsafe.Pointer {
 func NewQXmlFormatterFromPointer(ptr unsafe.Pointer) *QXmlFormatter {
 	var n = new(QXmlFormatter)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QXmlFormatter_") {
+		n.SetObjectNameAbs("QXmlFormatter_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -35,93 +38,168 @@ func (ptr *QXmlFormatter) QXmlFormatter_PTR() *QXmlFormatter {
 }
 
 func NewQXmlFormatter(query QXmlQuery_ITF, outputDevice core.QIODevice_ITF) *QXmlFormatter {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::QXmlFormatter")
-		}
-	}()
+	defer qt.Recovering("QXmlFormatter::QXmlFormatter")
 
 	return NewQXmlFormatterFromPointer(C.QXmlFormatter_NewQXmlFormatter(PointerFromQXmlQuery(query), core.PointerFromQIODevice(outputDevice)))
 }
 
-func (ptr *QXmlFormatter) Attribute(name QXmlName_ITF, value core.QStringRef_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::attribute")
-		}
-	}()
+func (ptr *QXmlFormatter) ConnectCharacters(f func(value *core.QStringRef)) {
+	defer qt.Recovering("connect QXmlFormatter::characters")
 
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_Attribute(ptr.Pointer(), PointerFromQXmlName(name), core.PointerFromQStringRef(value))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "characters", f)
 	}
 }
 
-func (ptr *QXmlFormatter) Characters(value core.QStringRef_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::characters")
-		}
-	}()
+func (ptr *QXmlFormatter) DisconnectCharacters() {
+	defer qt.Recovering("disconnect QXmlFormatter::characters")
 
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_Characters(ptr.Pointer(), core.PointerFromQStringRef(value))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "characters")
 	}
 }
 
-func (ptr *QXmlFormatter) Comment(value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::comment")
-		}
-	}()
+//export callbackQXmlFormatterCharacters
+func callbackQXmlFormatterCharacters(ptrName *C.char, value unsafe.Pointer) bool {
+	defer qt.Recovering("callback QXmlFormatter::characters")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "characters")
+	if signal != nil {
+		defer signal.(func(*core.QStringRef))(core.NewQStringRefFromPointer(value))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlFormatter) ConnectComment(f func(value string)) {
+	defer qt.Recovering("connect QXmlFormatter::comment")
 
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_Comment(ptr.Pointer(), C.CString(value))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "comment", f)
 	}
 }
 
-func (ptr *QXmlFormatter) EndDocument() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::endDocument")
-		}
-	}()
+func (ptr *QXmlFormatter) DisconnectComment() {
+	defer qt.Recovering("disconnect QXmlFormatter::comment")
 
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_EndDocument(ptr.Pointer())
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "comment")
 	}
 }
 
-func (ptr *QXmlFormatter) EndElement() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::endElement")
-		}
-	}()
+//export callbackQXmlFormatterComment
+func callbackQXmlFormatterComment(ptrName *C.char, value *C.char) bool {
+	defer qt.Recovering("callback QXmlFormatter::comment")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "comment")
+	if signal != nil {
+		defer signal.(func(string))(C.GoString(value))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlFormatter) ConnectEndDocument(f func()) {
+	defer qt.Recovering("connect QXmlFormatter::endDocument")
 
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_EndElement(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "endDocument", f)
 	}
 }
 
-func (ptr *QXmlFormatter) EndOfSequence() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::endOfSequence")
-		}
-	}()
+func (ptr *QXmlFormatter) DisconnectEndDocument() {
+	defer qt.Recovering("disconnect QXmlFormatter::endDocument")
 
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_EndOfSequence(ptr.Pointer())
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "endDocument")
 	}
+}
+
+//export callbackQXmlFormatterEndDocument
+func callbackQXmlFormatterEndDocument(ptrName *C.char) bool {
+	defer qt.Recovering("callback QXmlFormatter::endDocument")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "endDocument")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlFormatter) ConnectEndElement(f func()) {
+	defer qt.Recovering("connect QXmlFormatter::endElement")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "endElement", f)
+	}
+}
+
+func (ptr *QXmlFormatter) DisconnectEndElement() {
+	defer qt.Recovering("disconnect QXmlFormatter::endElement")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "endElement")
+	}
+}
+
+//export callbackQXmlFormatterEndElement
+func callbackQXmlFormatterEndElement(ptrName *C.char) bool {
+	defer qt.Recovering("callback QXmlFormatter::endElement")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "endElement")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlFormatter) ConnectEndOfSequence(f func()) {
+	defer qt.Recovering("connect QXmlFormatter::endOfSequence")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "endOfSequence", f)
+	}
+}
+
+func (ptr *QXmlFormatter) DisconnectEndOfSequence() {
+	defer qt.Recovering("disconnect QXmlFormatter::endOfSequence")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "endOfSequence")
+	}
+}
+
+//export callbackQXmlFormatterEndOfSequence
+func callbackQXmlFormatterEndOfSequence(ptrName *C.char) bool {
+	defer qt.Recovering("callback QXmlFormatter::endOfSequence")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "endOfSequence")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QXmlFormatter) IndentationDepth() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::indentationDepth")
-		}
-	}()
+	defer qt.Recovering("QXmlFormatter::indentationDepth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QXmlFormatter_IndentationDepth(ptr.Pointer()))
@@ -129,62 +207,89 @@ func (ptr *QXmlFormatter) IndentationDepth() int {
 	return 0
 }
 
-func (ptr *QXmlFormatter) ProcessingInstruction(name QXmlName_ITF, value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::processingInstruction")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QXmlFormatter_ProcessingInstruction(ptr.Pointer(), PointerFromQXmlName(name), C.CString(value))
-	}
-}
-
 func (ptr *QXmlFormatter) SetIndentationDepth(depth int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::setIndentationDepth")
-		}
-	}()
+	defer qt.Recovering("QXmlFormatter::setIndentationDepth")
 
 	if ptr.Pointer() != nil {
 		C.QXmlFormatter_SetIndentationDepth(ptr.Pointer(), C.int(depth))
 	}
 }
 
-func (ptr *QXmlFormatter) StartDocument() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::startDocument")
-		}
-	}()
+func (ptr *QXmlFormatter) ConnectStartDocument(f func()) {
+	defer qt.Recovering("connect QXmlFormatter::startDocument")
 
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_StartDocument(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "startDocument", f)
 	}
 }
 
-func (ptr *QXmlFormatter) StartElement(name QXmlName_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::startElement")
-		}
-	}()
+func (ptr *QXmlFormatter) DisconnectStartDocument() {
+	defer qt.Recovering("disconnect QXmlFormatter::startDocument")
 
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_StartElement(ptr.Pointer(), PointerFromQXmlName(name))
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "startDocument")
 	}
 }
 
-func (ptr *QXmlFormatter) StartOfSequence() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlFormatter::startOfSequence")
-		}
-	}()
+//export callbackQXmlFormatterStartDocument
+func callbackQXmlFormatterStartDocument(ptrName *C.char) bool {
+	defer qt.Recovering("callback QXmlFormatter::startDocument")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "startDocument")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlFormatter) ConnectStartOfSequence(f func()) {
+	defer qt.Recovering("connect QXmlFormatter::startOfSequence")
 
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_StartOfSequence(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "startOfSequence", f)
+	}
+}
+
+func (ptr *QXmlFormatter) DisconnectStartOfSequence() {
+	defer qt.Recovering("disconnect QXmlFormatter::startOfSequence")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "startOfSequence")
+	}
+}
+
+//export callbackQXmlFormatterStartOfSequence
+func callbackQXmlFormatterStartOfSequence(ptrName *C.char) bool {
+	defer qt.Recovering("callback QXmlFormatter::startOfSequence")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "startOfSequence")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QXmlFormatter) ObjectNameAbs() string {
+	defer qt.Recovering("QXmlFormatter::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlFormatter_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QXmlFormatter) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QXmlFormatter::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

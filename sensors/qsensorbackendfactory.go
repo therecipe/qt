@@ -3,7 +3,7 @@ package sensors
 //#include "sensors.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,11 +41,7 @@ func (ptr *QSensorBackendFactory) QSensorBackendFactory_PTR() *QSensorBackendFac
 }
 
 func (ptr *QSensorBackendFactory) CreateBackend(sensor QSensor_ITF) *QSensorBackend {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorBackendFactory::createBackend")
-		}
-	}()
+	defer qt.Recovering("QSensorBackendFactory::createBackend")
 
 	if ptr.Pointer() != nil {
 		return NewQSensorBackendFromPointer(C.QSensorBackendFactory_CreateBackend(ptr.Pointer(), PointerFromQSensor(sensor)))

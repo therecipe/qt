@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQCameraViewfinderSettingsControlFromPointer(ptr unsafe.Pointer) *QCamera
 	var n = new(QCameraViewfinderSettingsControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraViewfinderSettingsControl_") {
-		n.SetObjectName("QCameraViewfinderSettingsControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QCameraViewfinderSettingsControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -51,11 +50,7 @@ const (
 )
 
 func (ptr *QCameraViewfinderSettingsControl) IsViewfinderParameterSupported(parameter QCameraViewfinderSettingsControl__ViewfinderParameter) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraViewfinderSettingsControl::isViewfinderParameterSupported")
-		}
-	}()
+	defer qt.Recovering("QCameraViewfinderSettingsControl::isViewfinderParameterSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraViewfinderSettingsControl_IsViewfinderParameterSupported(ptr.Pointer(), C.int(parameter)) != 0
@@ -64,11 +59,7 @@ func (ptr *QCameraViewfinderSettingsControl) IsViewfinderParameterSupported(para
 }
 
 func (ptr *QCameraViewfinderSettingsControl) SetViewfinderParameter(parameter QCameraViewfinderSettingsControl__ViewfinderParameter, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraViewfinderSettingsControl::setViewfinderParameter")
-		}
-	}()
+	defer qt.Recovering("QCameraViewfinderSettingsControl::setViewfinderParameter")
 
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl_SetViewfinderParameter(ptr.Pointer(), C.int(parameter), core.PointerFromQVariant(value))
@@ -76,11 +67,7 @@ func (ptr *QCameraViewfinderSettingsControl) SetViewfinderParameter(parameter QC
 }
 
 func (ptr *QCameraViewfinderSettingsControl) ViewfinderParameter(parameter QCameraViewfinderSettingsControl__ViewfinderParameter) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraViewfinderSettingsControl::viewfinderParameter")
-		}
-	}()
+	defer qt.Recovering("QCameraViewfinderSettingsControl::viewfinderParameter")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QCameraViewfinderSettingsControl_ViewfinderParameter(ptr.Pointer(), C.int(parameter)))
@@ -89,11 +76,7 @@ func (ptr *QCameraViewfinderSettingsControl) ViewfinderParameter(parameter QCame
 }
 
 func (ptr *QCameraViewfinderSettingsControl) DestroyQCameraViewfinderSettingsControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraViewfinderSettingsControl::~QCameraViewfinderSettingsControl")
-		}
-	}()
+	defer qt.Recovering("QCameraViewfinderSettingsControl::~QCameraViewfinderSettingsControl")
 
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControl(ptr.Pointer())

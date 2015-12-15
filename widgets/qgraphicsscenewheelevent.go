@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,11 +35,7 @@ func (ptr *QGraphicsSceneWheelEvent) QGraphicsSceneWheelEvent_PTR() *QGraphicsSc
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Buttons() core.Qt__MouseButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneWheelEvent::buttons")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneWheelEvent::buttons")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseButton(C.QGraphicsSceneWheelEvent_Buttons(ptr.Pointer()))
@@ -48,11 +44,7 @@ func (ptr *QGraphicsSceneWheelEvent) Buttons() core.Qt__MouseButton {
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Delta() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneWheelEvent::delta")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneWheelEvent::delta")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGraphicsSceneWheelEvent_Delta(ptr.Pointer()))
@@ -61,11 +53,7 @@ func (ptr *QGraphicsSceneWheelEvent) Delta() int {
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Modifiers() core.Qt__KeyboardModifier {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneWheelEvent::modifiers")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneWheelEvent::modifiers")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__KeyboardModifier(C.QGraphicsSceneWheelEvent_Modifiers(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QGraphicsSceneWheelEvent) Modifiers() core.Qt__KeyboardModifier {
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Orientation() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneWheelEvent::orientation")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneWheelEvent::orientation")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QGraphicsSceneWheelEvent_Orientation(ptr.Pointer()))
@@ -86,12 +70,17 @@ func (ptr *QGraphicsSceneWheelEvent) Orientation() core.Qt__Orientation {
 	return 0
 }
 
+func (ptr *QGraphicsSceneWheelEvent) ScreenPos() *core.QPoint {
+	defer qt.Recovering("QGraphicsSceneWheelEvent::screenPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QGraphicsSceneWheelEvent_ScreenPos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsSceneWheelEvent) DestroyQGraphicsSceneWheelEvent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneWheelEvent::~QGraphicsSceneWheelEvent")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneWheelEvent::~QGraphicsSceneWheelEvent")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneWheelEvent_DestroyQGraphicsSceneWheelEvent(ptr.Pointer())

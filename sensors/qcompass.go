@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQCompassFromPointer(ptr unsafe.Pointer) *QCompass {
 	var n = new(QCompass)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QCompass_") {
-		n.SetObjectName("QCompass_" + qt.RandomIdentifier())
+		n.SetObjectName("QCompass_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QCompass) QCompass_PTR() *QCompass {
 }
 
 func (ptr *QCompass) Reading() *QCompassReading {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCompass::reading")
-		}
-	}()
+	defer qt.Recovering("QCompass::reading")
 
 	if ptr.Pointer() != nil {
 		return NewQCompassReadingFromPointer(C.QCompass_Reading(ptr.Pointer()))
@@ -52,21 +47,13 @@ func (ptr *QCompass) Reading() *QCompassReading {
 }
 
 func NewQCompass(parent core.QObject_ITF) *QCompass {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCompass::QCompass")
-		}
-	}()
+	defer qt.Recovering("QCompass::QCompass")
 
 	return NewQCompassFromPointer(C.QCompass_NewQCompass(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QCompass) DestroyQCompass() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCompass::~QCompass")
-		}
-	}()
+	defer qt.Recovering("QCompass::~QCompass")
 
 	if ptr.Pointer() != nil {
 		C.QCompass_DestroyQCompass(ptr.Pointer())

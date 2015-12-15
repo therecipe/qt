@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,21 +41,13 @@ func (ptr *QCollatorSortKey) QCollatorSortKey_PTR() *QCollatorSortKey {
 }
 
 func NewQCollatorSortKey(other QCollatorSortKey_ITF) *QCollatorSortKey {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCollatorSortKey::QCollatorSortKey")
-		}
-	}()
+	defer qt.Recovering("QCollatorSortKey::QCollatorSortKey")
 
 	return NewQCollatorSortKeyFromPointer(C.QCollatorSortKey_NewQCollatorSortKey(PointerFromQCollatorSortKey(other)))
 }
 
 func (ptr *QCollatorSortKey) Swap(other QCollatorSortKey_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCollatorSortKey::swap")
-		}
-	}()
+	defer qt.Recovering("QCollatorSortKey::swap")
 
 	if ptr.Pointer() != nil {
 		C.QCollatorSortKey_Swap(ptr.Pointer(), PointerFromQCollatorSortKey(other))
@@ -63,11 +55,7 @@ func (ptr *QCollatorSortKey) Swap(other QCollatorSortKey_ITF) {
 }
 
 func (ptr *QCollatorSortKey) DestroyQCollatorSortKey() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCollatorSortKey::~QCollatorSortKey")
-		}
-	}()
+	defer qt.Recovering("QCollatorSortKey::~QCollatorSortKey")
 
 	if ptr.Pointer() != nil {
 		C.QCollatorSortKey_DestroyQCollatorSortKey(ptr.Pointer())
@@ -75,11 +63,7 @@ func (ptr *QCollatorSortKey) DestroyQCollatorSortKey() {
 }
 
 func (ptr *QCollatorSortKey) Compare(otherKey QCollatorSortKey_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCollatorSortKey::compare")
-		}
-	}()
+	defer qt.Recovering("QCollatorSortKey::compare")
 
 	if ptr.Pointer() != nil {
 		return int(C.QCollatorSortKey_Compare(ptr.Pointer(), PointerFromQCollatorSortKey(otherKey)))

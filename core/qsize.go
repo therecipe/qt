@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QSize) QSize_PTR() *QSize {
 }
 
 func NewQSize() *QSize {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::QSize")
-		}
-	}()
+	defer qt.Recovering("QSize::QSize")
 
 	return NewQSizeFromPointer(C.QSize_NewQSize())
 }
 
 func NewQSize2(width int, height int) *QSize {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::QSize")
-		}
-	}()
+	defer qt.Recovering("QSize::QSize")
 
 	return NewQSizeFromPointer(C.QSize_NewQSize2(C.int(width), C.int(height)))
 }
 
 func (ptr *QSize) Height() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::height")
-		}
-	}()
+	defer qt.Recovering("QSize::height")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSize_Height(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QSize) Height() int {
 }
 
 func (ptr *QSize) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QSize::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QSize_IsEmpty(ptr.Pointer()) != 0
@@ -87,11 +71,7 @@ func (ptr *QSize) IsEmpty() bool {
 }
 
 func (ptr *QSize) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::isNull")
-		}
-	}()
+	defer qt.Recovering("QSize::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QSize_IsNull(ptr.Pointer()) != 0
@@ -100,11 +80,7 @@ func (ptr *QSize) IsNull() bool {
 }
 
 func (ptr *QSize) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::isValid")
-		}
-	}()
+	defer qt.Recovering("QSize::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QSize_IsValid(ptr.Pointer()) != 0
@@ -113,11 +89,7 @@ func (ptr *QSize) IsValid() bool {
 }
 
 func (ptr *QSize) Rheight() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::rheight")
-		}
-	}()
+	defer qt.Recovering("QSize::rheight")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSize_Rheight(ptr.Pointer()))
@@ -126,11 +98,7 @@ func (ptr *QSize) Rheight() int {
 }
 
 func (ptr *QSize) Rwidth() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::rwidth")
-		}
-	}()
+	defer qt.Recovering("QSize::rwidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSize_Rwidth(ptr.Pointer()))
@@ -139,11 +107,7 @@ func (ptr *QSize) Rwidth() int {
 }
 
 func (ptr *QSize) Scale2(size QSize_ITF, mode Qt__AspectRatioMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::scale")
-		}
-	}()
+	defer qt.Recovering("QSize::scale")
 
 	if ptr.Pointer() != nil {
 		C.QSize_Scale2(ptr.Pointer(), PointerFromQSize(size), C.int(mode))
@@ -151,11 +115,7 @@ func (ptr *QSize) Scale2(size QSize_ITF, mode Qt__AspectRatioMode) {
 }
 
 func (ptr *QSize) Scale(width int, height int, mode Qt__AspectRatioMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::scale")
-		}
-	}()
+	defer qt.Recovering("QSize::scale")
 
 	if ptr.Pointer() != nil {
 		C.QSize_Scale(ptr.Pointer(), C.int(width), C.int(height), C.int(mode))
@@ -163,11 +123,7 @@ func (ptr *QSize) Scale(width int, height int, mode Qt__AspectRatioMode) {
 }
 
 func (ptr *QSize) SetHeight(height int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::setHeight")
-		}
-	}()
+	defer qt.Recovering("QSize::setHeight")
 
 	if ptr.Pointer() != nil {
 		C.QSize_SetHeight(ptr.Pointer(), C.int(height))
@@ -175,11 +131,7 @@ func (ptr *QSize) SetHeight(height int) {
 }
 
 func (ptr *QSize) SetWidth(width int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::setWidth")
-		}
-	}()
+	defer qt.Recovering("QSize::setWidth")
 
 	if ptr.Pointer() != nil {
 		C.QSize_SetWidth(ptr.Pointer(), C.int(width))
@@ -187,11 +139,7 @@ func (ptr *QSize) SetWidth(width int) {
 }
 
 func (ptr *QSize) Transpose() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::transpose")
-		}
-	}()
+	defer qt.Recovering("QSize::transpose")
 
 	if ptr.Pointer() != nil {
 		C.QSize_Transpose(ptr.Pointer())
@@ -199,11 +147,7 @@ func (ptr *QSize) Transpose() {
 }
 
 func (ptr *QSize) Width() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSize::width")
-		}
-	}()
+	defer qt.Recovering("QSize::width")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSize_Width(ptr.Pointer()))

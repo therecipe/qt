@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -75,41 +74,25 @@ const (
 )
 
 func NewQTextOption3(other QTextOption_ITF) *QTextOption {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::QTextOption")
-		}
-	}()
+	defer qt.Recovering("QTextOption::QTextOption")
 
 	return NewQTextOptionFromPointer(C.QTextOption_NewQTextOption3(PointerFromQTextOption(other)))
 }
 
 func NewQTextOption() *QTextOption {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::QTextOption")
-		}
-	}()
+	defer qt.Recovering("QTextOption::QTextOption")
 
 	return NewQTextOptionFromPointer(C.QTextOption_NewQTextOption())
 }
 
 func NewQTextOption2(alignment core.Qt__AlignmentFlag) *QTextOption {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::QTextOption")
-		}
-	}()
+	defer qt.Recovering("QTextOption::QTextOption")
 
 	return NewQTextOptionFromPointer(C.QTextOption_NewQTextOption2(C.int(alignment)))
 }
 
 func (ptr *QTextOption) Alignment() core.Qt__AlignmentFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::alignment")
-		}
-	}()
+	defer qt.Recovering("QTextOption::alignment")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__AlignmentFlag(C.QTextOption_Alignment(ptr.Pointer()))
@@ -118,11 +101,7 @@ func (ptr *QTextOption) Alignment() core.Qt__AlignmentFlag {
 }
 
 func (ptr *QTextOption) Flags() QTextOption__Flag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::flags")
-		}
-	}()
+	defer qt.Recovering("QTextOption::flags")
 
 	if ptr.Pointer() != nil {
 		return QTextOption__Flag(C.QTextOption_Flags(ptr.Pointer()))
@@ -131,11 +110,7 @@ func (ptr *QTextOption) Flags() QTextOption__Flag {
 }
 
 func (ptr *QTextOption) SetAlignment(alignment core.Qt__AlignmentFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::setAlignment")
-		}
-	}()
+	defer qt.Recovering("QTextOption::setAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QTextOption_SetAlignment(ptr.Pointer(), C.int(alignment))
@@ -143,11 +118,7 @@ func (ptr *QTextOption) SetAlignment(alignment core.Qt__AlignmentFlag) {
 }
 
 func (ptr *QTextOption) SetFlags(flags QTextOption__Flag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::setFlags")
-		}
-	}()
+	defer qt.Recovering("QTextOption::setFlags")
 
 	if ptr.Pointer() != nil {
 		C.QTextOption_SetFlags(ptr.Pointer(), C.int(flags))
@@ -155,11 +126,7 @@ func (ptr *QTextOption) SetFlags(flags QTextOption__Flag) {
 }
 
 func (ptr *QTextOption) SetTabStop(tabStop float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::setTabStop")
-		}
-	}()
+	defer qt.Recovering("QTextOption::setTabStop")
 
 	if ptr.Pointer() != nil {
 		C.QTextOption_SetTabStop(ptr.Pointer(), C.double(tabStop))
@@ -167,11 +134,7 @@ func (ptr *QTextOption) SetTabStop(tabStop float64) {
 }
 
 func (ptr *QTextOption) SetTextDirection(direction core.Qt__LayoutDirection) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::setTextDirection")
-		}
-	}()
+	defer qt.Recovering("QTextOption::setTextDirection")
 
 	if ptr.Pointer() != nil {
 		C.QTextOption_SetTextDirection(ptr.Pointer(), C.int(direction))
@@ -179,11 +142,7 @@ func (ptr *QTextOption) SetTextDirection(direction core.Qt__LayoutDirection) {
 }
 
 func (ptr *QTextOption) SetUseDesignMetrics(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::setUseDesignMetrics")
-		}
-	}()
+	defer qt.Recovering("QTextOption::setUseDesignMetrics")
 
 	if ptr.Pointer() != nil {
 		C.QTextOption_SetUseDesignMetrics(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -191,11 +150,7 @@ func (ptr *QTextOption) SetUseDesignMetrics(enable bool) {
 }
 
 func (ptr *QTextOption) SetWrapMode(mode QTextOption__WrapMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::setWrapMode")
-		}
-	}()
+	defer qt.Recovering("QTextOption::setWrapMode")
 
 	if ptr.Pointer() != nil {
 		C.QTextOption_SetWrapMode(ptr.Pointer(), C.int(mode))
@@ -203,11 +158,7 @@ func (ptr *QTextOption) SetWrapMode(mode QTextOption__WrapMode) {
 }
 
 func (ptr *QTextOption) TabStop() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::tabStop")
-		}
-	}()
+	defer qt.Recovering("QTextOption::tabStop")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextOption_TabStop(ptr.Pointer()))
@@ -216,11 +167,7 @@ func (ptr *QTextOption) TabStop() float64 {
 }
 
 func (ptr *QTextOption) TextDirection() core.Qt__LayoutDirection {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::textDirection")
-		}
-	}()
+	defer qt.Recovering("QTextOption::textDirection")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__LayoutDirection(C.QTextOption_TextDirection(ptr.Pointer()))
@@ -229,11 +176,7 @@ func (ptr *QTextOption) TextDirection() core.Qt__LayoutDirection {
 }
 
 func (ptr *QTextOption) UseDesignMetrics() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::useDesignMetrics")
-		}
-	}()
+	defer qt.Recovering("QTextOption::useDesignMetrics")
 
 	if ptr.Pointer() != nil {
 		return C.QTextOption_UseDesignMetrics(ptr.Pointer()) != 0
@@ -242,11 +185,7 @@ func (ptr *QTextOption) UseDesignMetrics() bool {
 }
 
 func (ptr *QTextOption) WrapMode() QTextOption__WrapMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::wrapMode")
-		}
-	}()
+	defer qt.Recovering("QTextOption::wrapMode")
 
 	if ptr.Pointer() != nil {
 		return QTextOption__WrapMode(C.QTextOption_WrapMode(ptr.Pointer()))
@@ -255,11 +194,7 @@ func (ptr *QTextOption) WrapMode() QTextOption__WrapMode {
 }
 
 func (ptr *QTextOption) DestroyQTextOption() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextOption::~QTextOption")
-		}
-	}()
+	defer qt.Recovering("QTextOption::~QTextOption")
 
 	if ptr.Pointer() != nil {
 		C.QTextOption_DestroyQTextOption(ptr.Pointer())

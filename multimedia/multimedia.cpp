@@ -92,7 +92,6 @@
 #include <QVideoDeviceSelectorControl>
 #include <QVideoEncoderSettings>
 #include <QVideoEncoderSettingsControl>
-#include <QVideoFilterRunnable>
 #include <QVideoFrame>
 #include <QVideoProbe>
 #include <QVideoRendererControl>
@@ -101,14 +100,31 @@
 
 class MyQAbstractPlanarVideoBuffer: public QAbstractPlanarVideoBuffer {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 void QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(void* ptr){
 	static_cast<QAbstractPlanarVideoBuffer*>(ptr)->~QAbstractPlanarVideoBuffer();
 }
 
+char* QAbstractPlanarVideoBuffer_ObjectNameAbs(void* ptr){
+	return static_cast<MyQAbstractPlanarVideoBuffer*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QAbstractPlanarVideoBuffer_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQAbstractPlanarVideoBuffer*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQAbstractVideoBuffer: public QAbstractVideoBuffer {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	void release() { if (!callbackQAbstractVideoBufferRelease(this->objectNameAbs().toUtf8().data())) { QAbstractVideoBuffer::release(); }; };
+protected:
 };
 
 void* QAbstractVideoBuffer_Handle(void* ptr){
@@ -135,9 +151,18 @@ void QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(void* ptr){
 	static_cast<QAbstractVideoBuffer*>(ptr)->~QAbstractVideoBuffer();
 }
 
+char* QAbstractVideoBuffer_ObjectNameAbs(void* ptr){
+	return static_cast<MyQAbstractVideoBuffer*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QAbstractVideoBuffer_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQAbstractVideoBuffer*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQAbstractVideoFilter: public QAbstractVideoFilter {
 public:
-void Signal_ActiveChanged(){callbackQAbstractVideoFilterActiveChanged(this->objectName().toUtf8().data());};
+	void Signal_ActiveChanged() { callbackQAbstractVideoFilterActiveChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 int QAbstractVideoFilter_IsActive(void* ptr){
@@ -162,8 +187,10 @@ void* QAbstractVideoFilter_CreateFilterRunnable(void* ptr){
 
 class MyQAbstractVideoSurface: public QAbstractVideoSurface {
 public:
-void Signal_ActiveChanged(bool active){callbackQAbstractVideoSurfaceActiveChanged(this->objectName().toUtf8().data(), active);};
-void Signal_SupportedFormatsChanged(){callbackQAbstractVideoSurfaceSupportedFormatsChanged(this->objectName().toUtf8().data());};
+	void Signal_ActiveChanged(bool active) { callbackQAbstractVideoSurfaceActiveChanged(this->objectName().toUtf8().data(), active); };
+	void stop() { if (!callbackQAbstractVideoSurfaceStop(this->objectName().toUtf8().data())) { QAbstractVideoSurface::stop(); }; };
+	void Signal_SupportedFormatsChanged() { callbackQAbstractVideoSurfaceSupportedFormatsChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QAbstractVideoSurface_ConnectActiveChanged(void* ptr){
@@ -210,10 +237,6 @@ void QAbstractVideoSurface_DestroyQAbstractVideoSurface(void* ptr){
 	static_cast<QAbstractVideoSurface*>(ptr)->~QAbstractVideoSurface();
 }
 
-class MyQAudioBuffer: public QAudioBuffer {
-public:
-};
-
 void* QAudioBuffer_NewQAudioBuffer(){
 	return new QAudioBuffer();
 }
@@ -256,11 +279,12 @@ void QAudioBuffer_DestroyQAudioBuffer(void* ptr){
 
 class MyQAudioDecoder: public QAudioDecoder {
 public:
-void Signal_BufferAvailableChanged(bool available){callbackQAudioDecoderBufferAvailableChanged(this->objectName().toUtf8().data(), available);};
-void Signal_BufferReady(){callbackQAudioDecoderBufferReady(this->objectName().toUtf8().data());};
-void Signal_Finished(){callbackQAudioDecoderFinished(this->objectName().toUtf8().data());};
-void Signal_SourceChanged(){callbackQAudioDecoderSourceChanged(this->objectName().toUtf8().data());};
-void Signal_StateChanged(QAudioDecoder::State state){callbackQAudioDecoderStateChanged(this->objectName().toUtf8().data(), state);};
+	void Signal_BufferAvailableChanged(bool available) { callbackQAudioDecoderBufferAvailableChanged(this->objectName().toUtf8().data(), available); };
+	void Signal_BufferReady() { callbackQAudioDecoderBufferReady(this->objectName().toUtf8().data()); };
+	void Signal_Finished() { callbackQAudioDecoderFinished(this->objectName().toUtf8().data()); };
+	void Signal_SourceChanged() { callbackQAudioDecoderSourceChanged(this->objectName().toUtf8().data()); };
+	void Signal_StateChanged(QAudioDecoder::State state) { callbackQAudioDecoderStateChanged(this->objectName().toUtf8().data(), state); };
+protected:
 };
 
 char* QAudioDecoder_ErrorString(void* ptr){
@@ -353,12 +377,13 @@ void QAudioDecoder_DestroyQAudioDecoder(void* ptr){
 
 class MyQAudioDecoderControl: public QAudioDecoderControl {
 public:
-void Signal_BufferAvailableChanged(bool available){callbackQAudioDecoderControlBufferAvailableChanged(this->objectName().toUtf8().data(), available);};
-void Signal_BufferReady(){callbackQAudioDecoderControlBufferReady(this->objectName().toUtf8().data());};
-void Signal_Error(int error, const QString & errorString){callbackQAudioDecoderControlError(this->objectName().toUtf8().data(), error, errorString.toUtf8().data());};
-void Signal_Finished(){callbackQAudioDecoderControlFinished(this->objectName().toUtf8().data());};
-void Signal_SourceChanged(){callbackQAudioDecoderControlSourceChanged(this->objectName().toUtf8().data());};
-void Signal_StateChanged(QAudioDecoder::State state){callbackQAudioDecoderControlStateChanged(this->objectName().toUtf8().data(), state);};
+	void Signal_BufferAvailableChanged(bool available) { callbackQAudioDecoderControlBufferAvailableChanged(this->objectName().toUtf8().data(), available); };
+	void Signal_BufferReady() { callbackQAudioDecoderControlBufferReady(this->objectName().toUtf8().data()); };
+	void Signal_Error(int error, const QString & errorString) { callbackQAudioDecoderControlError(this->objectName().toUtf8().data(), error, errorString.toUtf8().data()); };
+	void Signal_Finished() { callbackQAudioDecoderControlFinished(this->objectName().toUtf8().data()); };
+	void Signal_SourceChanged() { callbackQAudioDecoderControlSourceChanged(this->objectName().toUtf8().data()); };
+	void Signal_StateChanged(QAudioDecoder::State state) { callbackQAudioDecoderControlStateChanged(this->objectName().toUtf8().data(), state); };
+protected:
 };
 
 int QAudioDecoderControl_BufferAvailable(void* ptr){
@@ -445,10 +470,6 @@ void QAudioDecoderControl_DestroyQAudioDecoderControl(void* ptr){
 	static_cast<QAudioDecoderControl*>(ptr)->~QAudioDecoderControl();
 }
 
-class MyQAudioDeviceInfo: public QAudioDeviceInfo {
-public:
-};
-
 void* QAudioDeviceInfo_NewQAudioDeviceInfo(){
 	return new QAudioDeviceInfo();
 }
@@ -476,10 +497,6 @@ char* QAudioDeviceInfo_SupportedCodecs(void* ptr){
 void QAudioDeviceInfo_DestroyQAudioDeviceInfo(void* ptr){
 	static_cast<QAudioDeviceInfo*>(ptr)->~QAudioDeviceInfo();
 }
-
-class MyQAudioEncoderSettings: public QAudioEncoderSettings {
-public:
-};
 
 void* QAudioEncoderSettings_NewQAudioEncoderSettings(){
 	return new QAudioEncoderSettings();
@@ -539,6 +556,7 @@ void QAudioEncoderSettings_DestroyQAudioEncoderSettings(void* ptr){
 
 class MyQAudioEncoderSettingsControl: public QAudioEncoderSettingsControl {
 public:
+protected:
 };
 
 char* QAudioEncoderSettingsControl_CodecDescription(void* ptr, char* codec){
@@ -556,10 +574,6 @@ char* QAudioEncoderSettingsControl_SupportedAudioCodecs(void* ptr){
 void QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(void* ptr){
 	static_cast<QAudioEncoderSettingsControl*>(ptr)->~QAudioEncoderSettingsControl();
 }
-
-class MyQAudioFormat: public QAudioFormat {
-public:
-};
 
 void* QAudioFormat_NewQAudioFormat(){
 	return new QAudioFormat();
@@ -631,7 +645,8 @@ void QAudioFormat_DestroyQAudioFormat(void* ptr){
 
 class MyQAudioInput: public QAudioInput {
 public:
-void Signal_Notify(){callbackQAudioInputNotify(this->objectName().toUtf8().data());};
+	void Signal_Notify() { callbackQAudioInputNotify(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QAudioInput_NewQAudioInput2(void* audioDevice, void* format, void* parent){
@@ -712,8 +727,9 @@ void QAudioInput_DestroyQAudioInput(void* ptr){
 
 class MyQAudioInputSelectorControl: public QAudioInputSelectorControl {
 public:
-void Signal_ActiveInputChanged(const QString & name){callbackQAudioInputSelectorControlActiveInputChanged(this->objectName().toUtf8().data(), name.toUtf8().data());};
-void Signal_AvailableInputsChanged(){callbackQAudioInputSelectorControlAvailableInputsChanged(this->objectName().toUtf8().data());};
+	void Signal_ActiveInputChanged(const QString & name) { callbackQAudioInputSelectorControlActiveInputChanged(this->objectName().toUtf8().data(), name.toUtf8().data()); };
+	void Signal_AvailableInputsChanged() { callbackQAudioInputSelectorControlAvailableInputsChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 char* QAudioInputSelectorControl_ActiveInput(void* ptr){
@@ -754,7 +770,8 @@ void QAudioInputSelectorControl_DestroyQAudioInputSelectorControl(void* ptr){
 
 class MyQAudioOutput: public QAudioOutput {
 public:
-void Signal_Notify(){callbackQAudioOutputNotify(this->objectName().toUtf8().data());};
+	void Signal_Notify() { callbackQAudioOutputNotify(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QAudioOutput_NewQAudioOutput2(void* audioDevice, void* format, void* parent){
@@ -843,8 +860,9 @@ void QAudioOutput_DestroyQAudioOutput(void* ptr){
 
 class MyQAudioOutputSelectorControl: public QAudioOutputSelectorControl {
 public:
-void Signal_ActiveOutputChanged(const QString & name){callbackQAudioOutputSelectorControlActiveOutputChanged(this->objectName().toUtf8().data(), name.toUtf8().data());};
-void Signal_AvailableOutputsChanged(){callbackQAudioOutputSelectorControlAvailableOutputsChanged(this->objectName().toUtf8().data());};
+	void Signal_ActiveOutputChanged(const QString & name) { callbackQAudioOutputSelectorControlActiveOutputChanged(this->objectName().toUtf8().data(), name.toUtf8().data()); };
+	void Signal_AvailableOutputsChanged() { callbackQAudioOutputSelectorControlAvailableOutputsChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 char* QAudioOutputSelectorControl_ActiveOutput(void* ptr){
@@ -885,7 +903,8 @@ void QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(void* ptr){
 
 class MyQAudioProbe: public QAudioProbe {
 public:
-void Signal_Flush(){callbackQAudioProbeFlush(this->objectName().toUtf8().data());};
+	void Signal_Flush() { callbackQAudioProbeFlush(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QAudioProbe_NewQAudioProbe(void* parent){
@@ -918,8 +937,9 @@ void QAudioProbe_DestroyQAudioProbe(void* ptr){
 
 class MyQAudioRecorder: public QAudioRecorder {
 public:
-void Signal_AudioInputChanged(const QString & name){callbackQAudioRecorderAudioInputChanged(this->objectName().toUtf8().data(), name.toUtf8().data());};
-void Signal_AvailableAudioInputsChanged(){callbackQAudioRecorderAvailableAudioInputsChanged(this->objectName().toUtf8().data());};
+	void Signal_AudioInputChanged(const QString & name) { callbackQAudioRecorderAudioInputChanged(this->objectName().toUtf8().data(), name.toUtf8().data()); };
+	void Signal_AvailableAudioInputsChanged() { callbackQAudioRecorderAvailableAudioInputsChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QAudioRecorder_NewQAudioRecorder(void* parent){
@@ -968,12 +988,17 @@ void QAudioRecorder_DestroyQAudioRecorder(void* ptr){
 
 class MyQCamera: public QCamera {
 public:
-void Signal_CaptureModeChanged(QCamera::CaptureModes mode){callbackQCameraCaptureModeChanged(this->objectName().toUtf8().data(), mode);};
-void Signal_LockFailed(){callbackQCameraLockFailed(this->objectName().toUtf8().data());};
-void Signal_LockStatusChanged(QCamera::LockStatus status, QCamera::LockChangeReason reason){callbackQCameraLockStatusChanged(this->objectName().toUtf8().data(), status, reason);};
-void Signal_Locked(){callbackQCameraLocked(this->objectName().toUtf8().data());};
-void Signal_StateChanged(QCamera::State state){callbackQCameraStateChanged(this->objectName().toUtf8().data(), state);};
-void Signal_StatusChanged(QCamera::Status status){callbackQCameraStatusChanged(this->objectName().toUtf8().data(), status);};
+	MyQCamera(QCamera::Position position, QObject *parent) : QCamera(position, parent) {};
+	MyQCamera(QObject *parent) : QCamera(parent) {};
+	MyQCamera(const QByteArray &deviceName, QObject *parent) : QCamera(deviceName, parent) {};
+	MyQCamera(const QCameraInfo &cameraInfo, QObject *parent) : QCamera(cameraInfo, parent) {};
+	void Signal_CaptureModeChanged(QCamera::CaptureModes mode) { callbackQCameraCaptureModeChanged(this->objectName().toUtf8().data(), mode); };
+	void Signal_LockFailed() { callbackQCameraLockFailed(this->objectName().toUtf8().data()); };
+	void Signal_LockStatusChanged(QCamera::LockStatus status, QCamera::LockChangeReason reason) { callbackQCameraLockStatusChanged(this->objectName().toUtf8().data(), status, reason); };
+	void Signal_Locked() { callbackQCameraLocked(this->objectName().toUtf8().data()); };
+	void Signal_StateChanged(QCamera::State state) { callbackQCameraStateChanged(this->objectName().toUtf8().data(), state); };
+	void Signal_StatusChanged(QCamera::Status status) { callbackQCameraStatusChanged(this->objectName().toUtf8().data(), status); };
+protected:
 };
 
 int QCamera_CaptureMode(void* ptr){
@@ -993,19 +1018,19 @@ int QCamera_Status(void* ptr){
 }
 
 void* QCamera_NewQCamera4(int position, void* parent){
-	return new QCamera(static_cast<QCamera::Position>(position), static_cast<QObject*>(parent));
+	return new MyQCamera(static_cast<QCamera::Position>(position), static_cast<QObject*>(parent));
 }
 
 void* QCamera_NewQCamera(void* parent){
-	return new QCamera(static_cast<QObject*>(parent));
+	return new MyQCamera(static_cast<QObject*>(parent));
 }
 
 void* QCamera_NewQCamera2(void* deviceName, void* parent){
-	return new QCamera(*static_cast<QByteArray*>(deviceName), static_cast<QObject*>(parent));
+	return new MyQCamera(*static_cast<QByteArray*>(deviceName), static_cast<QObject*>(parent));
 }
 
 void* QCamera_NewQCamera3(void* cameraInfo, void* parent){
-	return new QCamera(*static_cast<QCameraInfo*>(cameraInfo), static_cast<QObject*>(parent));
+	return new MyQCamera(*static_cast<QCameraInfo*>(cameraInfo), static_cast<QObject*>(parent));
 }
 
 void QCamera_ConnectCaptureModeChanged(void* ptr){
@@ -1138,7 +1163,8 @@ void QCamera_DestroyQCamera(void* ptr){
 
 class MyQCameraCaptureBufferFormatControl: public QCameraCaptureBufferFormatControl {
 public:
-void Signal_BufferFormatChanged(QVideoFrame::PixelFormat format){callbackQCameraCaptureBufferFormatControlBufferFormatChanged(this->objectName().toUtf8().data(), format);};
+	void Signal_BufferFormatChanged(QVideoFrame::PixelFormat format) { callbackQCameraCaptureBufferFormatControlBufferFormatChanged(this->objectName().toUtf8().data(), format); };
+protected:
 };
 
 int QCameraCaptureBufferFormatControl_BufferFormat(void* ptr){
@@ -1163,7 +1189,8 @@ void QCameraCaptureBufferFormatControl_DestroyQCameraCaptureBufferFormatControl(
 
 class MyQCameraCaptureDestinationControl: public QCameraCaptureDestinationControl {
 public:
-void Signal_CaptureDestinationChanged(QCameraImageCapture::CaptureDestinations destination){callbackQCameraCaptureDestinationControlCaptureDestinationChanged(this->objectName().toUtf8().data(), destination);};
+	void Signal_CaptureDestinationChanged(QCameraImageCapture::CaptureDestinations destination) { callbackQCameraCaptureDestinationControlCaptureDestinationChanged(this->objectName().toUtf8().data(), destination); };
+protected:
 };
 
 int QCameraCaptureDestinationControl_CaptureDestination(void* ptr){
@@ -1192,10 +1219,11 @@ void QCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControl(vo
 
 class MyQCameraControl: public QCameraControl {
 public:
-void Signal_CaptureModeChanged(QCamera::CaptureModes mode){callbackQCameraControlCaptureModeChanged(this->objectName().toUtf8().data(), mode);};
-void Signal_Error(int error, const QString & errorString){callbackQCameraControlError(this->objectName().toUtf8().data(), error, errorString.toUtf8().data());};
-void Signal_StateChanged(QCamera::State state){callbackQCameraControlStateChanged(this->objectName().toUtf8().data(), state);};
-void Signal_StatusChanged(QCamera::Status status){callbackQCameraControlStatusChanged(this->objectName().toUtf8().data(), status);};
+	void Signal_CaptureModeChanged(QCamera::CaptureModes mode) { callbackQCameraControlCaptureModeChanged(this->objectName().toUtf8().data(), mode); };
+	void Signal_Error(int error, const QString & errorString) { callbackQCameraControlError(this->objectName().toUtf8().data(), error, errorString.toUtf8().data()); };
+	void Signal_StateChanged(QCamera::State state) { callbackQCameraControlStateChanged(this->objectName().toUtf8().data(), state); };
+	void Signal_StatusChanged(QCamera::Status status) { callbackQCameraControlStatusChanged(this->objectName().toUtf8().data(), status); };
+protected:
 };
 
 int QCameraControl_CanChangeProperty(void* ptr, int changeType, int status){
@@ -1260,10 +1288,11 @@ void QCameraControl_DestroyQCameraControl(void* ptr){
 
 class MyQCameraExposure: public QCameraExposure {
 public:
-void Signal_ApertureRangeChanged(){callbackQCameraExposureApertureRangeChanged(this->objectName().toUtf8().data());};
-void Signal_FlashReady(bool ready){callbackQCameraExposureFlashReady(this->objectName().toUtf8().data(), ready);};
-void Signal_IsoSensitivityChanged(int value){callbackQCameraExposureIsoSensitivityChanged(this->objectName().toUtf8().data(), value);};
-void Signal_ShutterSpeedRangeChanged(){callbackQCameraExposureShutterSpeedRangeChanged(this->objectName().toUtf8().data());};
+	void Signal_ApertureRangeChanged() { callbackQCameraExposureApertureRangeChanged(this->objectName().toUtf8().data()); };
+	void Signal_FlashReady(bool ready) { callbackQCameraExposureFlashReady(this->objectName().toUtf8().data(), ready); };
+	void Signal_IsoSensitivityChanged(int value) { callbackQCameraExposureIsoSensitivityChanged(this->objectName().toUtf8().data(), value); };
+	void Signal_ShutterSpeedRangeChanged() { callbackQCameraExposureShutterSpeedRangeChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 double QCameraExposure_Aperture(void* ptr){
@@ -1404,9 +1433,10 @@ void QCameraExposure_DisconnectShutterSpeedRangeChanged(void* ptr){
 
 class MyQCameraExposureControl: public QCameraExposureControl {
 public:
-void Signal_ActualValueChanged(int parameter){callbackQCameraExposureControlActualValueChanged(this->objectName().toUtf8().data(), parameter);};
-void Signal_ParameterRangeChanged(int parameter){callbackQCameraExposureControlParameterRangeChanged(this->objectName().toUtf8().data(), parameter);};
-void Signal_RequestedValueChanged(int parameter){callbackQCameraExposureControlRequestedValueChanged(this->objectName().toUtf8().data(), parameter);};
+	void Signal_ActualValueChanged(int parameter) { callbackQCameraExposureControlActualValueChanged(this->objectName().toUtf8().data(), parameter); };
+	void Signal_ParameterRangeChanged(int parameter) { callbackQCameraExposureControlParameterRangeChanged(this->objectName().toUtf8().data(), parameter); };
+	void Signal_RequestedValueChanged(int parameter) { callbackQCameraExposureControlRequestedValueChanged(this->objectName().toUtf8().data(), parameter); };
+protected:
 };
 
 void* QCameraExposureControl_ActualValue(void* ptr, int parameter){
@@ -1453,10 +1483,6 @@ void QCameraExposureControl_DestroyQCameraExposureControl(void* ptr){
 	static_cast<QCameraExposureControl*>(ptr)->~QCameraExposureControl();
 }
 
-class MyQCameraFeedbackControl: public QCameraFeedbackControl {
-public:
-};
-
 int QCameraFeedbackControl_IsEventFeedbackEnabled(void* ptr, int event){
 	return static_cast<QCameraFeedbackControl*>(ptr)->isEventFeedbackEnabled(static_cast<QCameraFeedbackControl::EventType>(event));
 }
@@ -1483,7 +1509,8 @@ void QCameraFeedbackControl_DestroyQCameraFeedbackControl(void* ptr){
 
 class MyQCameraFlashControl: public QCameraFlashControl {
 public:
-void Signal_FlashReady(bool ready){callbackQCameraFlashControlFlashReady(this->objectName().toUtf8().data(), ready);};
+	void Signal_FlashReady(bool ready) { callbackQCameraFlashControlFlashReady(this->objectName().toUtf8().data(), ready); };
+protected:
 };
 
 int QCameraFlashControl_FlashMode(void* ptr){
@@ -1516,7 +1543,8 @@ void QCameraFlashControl_DestroyQCameraFlashControl(void* ptr){
 
 class MyQCameraFocus: public QCameraFocus {
 public:
-void Signal_FocusZonesChanged(){callbackQCameraFocusFocusZonesChanged(this->objectName().toUtf8().data());};
+	void Signal_FocusZonesChanged() { callbackQCameraFocusFocusZonesChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 double QCameraFocus_DigitalZoom(void* ptr){
@@ -1581,9 +1609,10 @@ void QCameraFocus_ZoomTo(void* ptr, double optical, double digital){
 
 class MyQCameraFocusControl: public QCameraFocusControl {
 public:
-void Signal_FocusModeChanged(QCameraFocus::FocusModes mode){callbackQCameraFocusControlFocusModeChanged(this->objectName().toUtf8().data(), mode);};
-void Signal_FocusPointModeChanged(QCameraFocus::FocusPointMode mode){callbackQCameraFocusControlFocusPointModeChanged(this->objectName().toUtf8().data(), mode);};
-void Signal_FocusZonesChanged(){callbackQCameraFocusControlFocusZonesChanged(this->objectName().toUtf8().data());};
+	void Signal_FocusModeChanged(QCameraFocus::FocusModes mode) { callbackQCameraFocusControlFocusModeChanged(this->objectName().toUtf8().data(), mode); };
+	void Signal_FocusPointModeChanged(QCameraFocus::FocusPointMode mode) { callbackQCameraFocusControlFocusPointModeChanged(this->objectName().toUtf8().data(), mode); };
+	void Signal_FocusZonesChanged() { callbackQCameraFocusControlFocusZonesChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 int QCameraFocusControl_FocusMode(void* ptr){
@@ -1642,10 +1671,6 @@ void QCameraFocusControl_DestroyQCameraFocusControl(void* ptr){
 	static_cast<QCameraFocusControl*>(ptr)->~QCameraFocusControl();
 }
 
-class MyQCameraFocusZone: public QCameraFocusZone {
-public:
-};
-
 void* QCameraFocusZone_NewQCameraFocusZone(void* other){
 	return new QCameraFocusZone(*static_cast<QCameraFocusZone*>(other));
 }
@@ -1664,12 +1689,14 @@ void QCameraFocusZone_DestroyQCameraFocusZone(void* ptr){
 
 class MyQCameraImageCapture: public QCameraImageCapture {
 public:
-void Signal_BufferFormatChanged(QVideoFrame::PixelFormat format){callbackQCameraImageCaptureBufferFormatChanged(this->objectName().toUtf8().data(), format);};
-void Signal_CaptureDestinationChanged(QCameraImageCapture::CaptureDestinations destination){callbackQCameraImageCaptureCaptureDestinationChanged(this->objectName().toUtf8().data(), destination);};
-void Signal_ImageExposed(int id){callbackQCameraImageCaptureImageExposed(this->objectName().toUtf8().data(), id);};
-void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value){callbackQCameraImageCaptureImageMetadataAvailable(this->objectName().toUtf8().data(), id, key.toUtf8().data(), new QVariant(value));};
-void Signal_ImageSaved(int id, const QString & fileName){callbackQCameraImageCaptureImageSaved(this->objectName().toUtf8().data(), id, fileName.toUtf8().data());};
-void Signal_ReadyForCaptureChanged(bool ready){callbackQCameraImageCaptureReadyForCaptureChanged(this->objectName().toUtf8().data(), ready);};
+	MyQCameraImageCapture(QMediaObject *mediaObject, QObject *parent) : QCameraImageCapture(mediaObject, parent) {};
+	void Signal_BufferFormatChanged(QVideoFrame::PixelFormat format) { callbackQCameraImageCaptureBufferFormatChanged(this->objectName().toUtf8().data(), format); };
+	void Signal_CaptureDestinationChanged(QCameraImageCapture::CaptureDestinations destination) { callbackQCameraImageCaptureCaptureDestinationChanged(this->objectName().toUtf8().data(), destination); };
+	void Signal_ImageExposed(int id) { callbackQCameraImageCaptureImageExposed(this->objectName().toUtf8().data(), id); };
+	void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value) { callbackQCameraImageCaptureImageMetadataAvailable(this->objectName().toUtf8().data(), id, key.toUtf8().data(), new QVariant(value)); };
+	void Signal_ImageSaved(int id, const QString & fileName) { callbackQCameraImageCaptureImageSaved(this->objectName().toUtf8().data(), id, fileName.toUtf8().data()); };
+	void Signal_ReadyForCaptureChanged(bool ready) { callbackQCameraImageCaptureReadyForCaptureChanged(this->objectName().toUtf8().data(), ready); };
+protected:
 };
 
 int QCameraImageCapture_IsReadyForCapture(void* ptr){
@@ -1677,7 +1704,7 @@ int QCameraImageCapture_IsReadyForCapture(void* ptr){
 }
 
 void* QCameraImageCapture_NewQCameraImageCapture(void* mediaObject, void* parent){
-	return new QCameraImageCapture(static_cast<QMediaObject*>(mediaObject), static_cast<QObject*>(parent));
+	return new MyQCameraImageCapture(static_cast<QMediaObject*>(mediaObject), static_cast<QObject*>(parent));
 }
 
 int QCameraImageCapture_BufferFormat(void* ptr){
@@ -1790,11 +1817,12 @@ void QCameraImageCapture_DestroyQCameraImageCapture(void* ptr){
 
 class MyQCameraImageCaptureControl: public QCameraImageCaptureControl {
 public:
-void Signal_Error(int id, int error, const QString & errorString){callbackQCameraImageCaptureControlError(this->objectName().toUtf8().data(), id, error, errorString.toUtf8().data());};
-void Signal_ImageExposed(int requestId){callbackQCameraImageCaptureControlImageExposed(this->objectName().toUtf8().data(), requestId);};
-void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value){callbackQCameraImageCaptureControlImageMetadataAvailable(this->objectName().toUtf8().data(), id, key.toUtf8().data(), new QVariant(value));};
-void Signal_ImageSaved(int requestId, const QString & fileName){callbackQCameraImageCaptureControlImageSaved(this->objectName().toUtf8().data(), requestId, fileName.toUtf8().data());};
-void Signal_ReadyForCaptureChanged(bool ready){callbackQCameraImageCaptureControlReadyForCaptureChanged(this->objectName().toUtf8().data(), ready);};
+	void Signal_Error(int id, int error, const QString & errorString) { callbackQCameraImageCaptureControlError(this->objectName().toUtf8().data(), id, error, errorString.toUtf8().data()); };
+	void Signal_ImageExposed(int requestId) { callbackQCameraImageCaptureControlImageExposed(this->objectName().toUtf8().data(), requestId); };
+	void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value) { callbackQCameraImageCaptureControlImageMetadataAvailable(this->objectName().toUtf8().data(), id, key.toUtf8().data(), new QVariant(value)); };
+	void Signal_ImageSaved(int requestId, const QString & fileName) { callbackQCameraImageCaptureControlImageSaved(this->objectName().toUtf8().data(), requestId, fileName.toUtf8().data()); };
+	void Signal_ReadyForCaptureChanged(bool ready) { callbackQCameraImageCaptureControlReadyForCaptureChanged(this->objectName().toUtf8().data(), ready); };
+protected:
 };
 
 void QCameraImageCaptureControl_CancelCapture(void* ptr){
@@ -1860,10 +1888,6 @@ void QCameraImageCaptureControl_SetDriveMode(void* ptr, int mode){
 void QCameraImageCaptureControl_DestroyQCameraImageCaptureControl(void* ptr){
 	static_cast<QCameraImageCaptureControl*>(ptr)->~QCameraImageCaptureControl();
 }
-
-class MyQCameraImageProcessing: public QCameraImageProcessing {
-public:
-};
 
 int QCameraImageProcessing_ColorFilter(void* ptr){
 	return static_cast<QCameraImageProcessing*>(ptr)->colorFilter();
@@ -1933,10 +1957,6 @@ int QCameraImageProcessing_WhiteBalanceMode(void* ptr){
 	return static_cast<QCameraImageProcessing*>(ptr)->whiteBalanceMode();
 }
 
-class MyQCameraImageProcessingControl: public QCameraImageProcessingControl {
-public:
-};
-
 int QCameraImageProcessingControl_IsParameterSupported(void* ptr, int parameter){
 	return static_cast<QCameraImageProcessingControl*>(ptr)->isParameterSupported(static_cast<QCameraImageProcessingControl::ProcessingParameter>(parameter));
 }
@@ -1956,10 +1976,6 @@ void QCameraImageProcessingControl_SetParameter(void* ptr, int parameter, void* 
 void QCameraImageProcessingControl_DestroyQCameraImageProcessingControl(void* ptr){
 	static_cast<QCameraImageProcessingControl*>(ptr)->~QCameraImageProcessingControl();
 }
-
-class MyQCameraInfo: public QCameraInfo {
-public:
-};
 
 void* QCameraInfo_NewQCameraInfo(void* name){
 	return new QCameraInfo(*static_cast<QByteArray*>(name));
@@ -1999,6 +2015,7 @@ void QCameraInfo_DestroyQCameraInfo(void* ptr){
 
 class MyQCameraInfoControl: public QCameraInfoControl {
 public:
+protected:
 };
 
 int QCameraInfoControl_CameraOrientation(void* ptr, char* deviceName){
@@ -2015,7 +2032,8 @@ void QCameraInfoControl_DestroyQCameraInfoControl(void* ptr){
 
 class MyQCameraLocksControl: public QCameraLocksControl {
 public:
-void Signal_LockStatusChanged(QCamera::LockType lock, QCamera::LockStatus status, QCamera::LockChangeReason reason){callbackQCameraLocksControlLockStatusChanged(this->objectName().toUtf8().data(), lock, status, reason);};
+	void Signal_LockStatusChanged(QCamera::LockType lock, QCamera::LockStatus status, QCamera::LockChangeReason reason) { callbackQCameraLocksControlLockStatusChanged(this->objectName().toUtf8().data(), lock, status, reason); };
+protected:
 };
 
 int QCameraLocksControl_LockStatus(void* ptr, int lock){
@@ -2045,10 +2063,6 @@ void QCameraLocksControl_Unlock(void* ptr, int locks){
 void QCameraLocksControl_DestroyQCameraLocksControl(void* ptr){
 	static_cast<QCameraLocksControl*>(ptr)->~QCameraLocksControl();
 }
-
-class MyQCameraViewfinderSettings: public QCameraViewfinderSettings {
-public:
-};
 
 void* QCameraViewfinderSettings_NewQCameraViewfinderSettings(){
 	return new QCameraViewfinderSettings();
@@ -2110,10 +2124,6 @@ void QCameraViewfinderSettings_DestroyQCameraViewfinderSettings(void* ptr){
 	static_cast<QCameraViewfinderSettings*>(ptr)->~QCameraViewfinderSettings();
 }
 
-class MyQCameraViewfinderSettingsControl: public QCameraViewfinderSettingsControl {
-public:
-};
-
 int QCameraViewfinderSettingsControl_IsViewfinderParameterSupported(void* ptr, int parameter){
 	return static_cast<QCameraViewfinderSettingsControl*>(ptr)->isViewfinderParameterSupported(static_cast<QCameraViewfinderSettingsControl::ViewfinderParameter>(parameter));
 }
@@ -2132,6 +2142,7 @@ void QCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControl(vo
 
 class MyQCameraViewfinderSettingsControl2: public QCameraViewfinderSettingsControl2 {
 public:
+protected:
 };
 
 void QCameraViewfinderSettingsControl2_SetViewfinderSettings(void* ptr, void* settings){
@@ -2144,6 +2155,7 @@ void QCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2(
 
 class MyQCameraZoomControl: public QCameraZoomControl {
 public:
+protected:
 };
 
 double QCameraZoomControl_CurrentDigitalZoom(void* ptr){
@@ -2180,6 +2192,7 @@ void QCameraZoomControl_DestroyQCameraZoomControl(void* ptr){
 
 class MyQImageEncoderControl: public QImageEncoderControl {
 public:
+protected:
 };
 
 char* QImageEncoderControl_ImageCodecDescription(void* ptr, char* codec){
@@ -2197,10 +2210,6 @@ char* QImageEncoderControl_SupportedImageCodecs(void* ptr){
 void QImageEncoderControl_DestroyQImageEncoderControl(void* ptr){
 	static_cast<QImageEncoderControl*>(ptr)->~QImageEncoderControl();
 }
-
-class MyQImageEncoderSettings: public QImageEncoderSettings {
-public:
-};
 
 void* QImageEncoderSettings_NewQImageEncoderSettings(){
 	return new QImageEncoderSettings();
@@ -2244,7 +2253,8 @@ void QImageEncoderSettings_DestroyQImageEncoderSettings(void* ptr){
 
 class MyQMediaAudioProbeControl: public QMediaAudioProbeControl {
 public:
-void Signal_Flush(){callbackQMediaAudioProbeControlFlush(this->objectName().toUtf8().data());};
+	void Signal_Flush() { callbackQMediaAudioProbeControlFlush(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QMediaAudioProbeControl_ConnectFlush(void* ptr){
@@ -2261,6 +2271,7 @@ void QMediaAudioProbeControl_DestroyQMediaAudioProbeControl(void* ptr){
 
 class MyQMediaAvailabilityControl: public QMediaAvailabilityControl {
 public:
+protected:
 };
 
 void QMediaAvailabilityControl_DestroyQMediaAvailabilityControl(void* ptr){
@@ -2269,6 +2280,10 @@ void QMediaAvailabilityControl_DestroyQMediaAvailabilityControl(void* ptr){
 
 class MyQMediaBindableInterface: public QMediaBindableInterface {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 void* QMediaBindableInterface_MediaObject(void* ptr){
@@ -2279,8 +2294,17 @@ void QMediaBindableInterface_DestroyQMediaBindableInterface(void* ptr){
 	static_cast<QMediaBindableInterface*>(ptr)->~QMediaBindableInterface();
 }
 
+char* QMediaBindableInterface_ObjectNameAbs(void* ptr){
+	return static_cast<MyQMediaBindableInterface*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QMediaBindableInterface_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQMediaBindableInterface*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQMediaContainerControl: public QMediaContainerControl {
 public:
+protected:
 };
 
 char* QMediaContainerControl_ContainerDescription(void* ptr, char* format){
@@ -2302,10 +2326,6 @@ char* QMediaContainerControl_SupportedContainers(void* ptr){
 void QMediaContainerControl_DestroyQMediaContainerControl(void* ptr){
 	static_cast<QMediaContainerControl*>(ptr)->~QMediaContainerControl();
 }
-
-class MyQMediaContent: public QMediaContent {
-public:
-};
 
 void* QMediaContent_NewQMediaContent(){
 	return new QMediaContent();
@@ -2343,17 +2363,14 @@ void QMediaContent_DestroyQMediaContent(void* ptr){
 	static_cast<QMediaContent*>(ptr)->~QMediaContent();
 }
 
-class MyQMediaControl: public QMediaControl {
-public:
-};
-
 void QMediaControl_DestroyQMediaControl(void* ptr){
 	static_cast<QMediaControl*>(ptr)->~QMediaControl();
 }
 
 class MyQMediaGaplessPlaybackControl: public QMediaGaplessPlaybackControl {
 public:
-void Signal_AdvancedToNextMedia(){callbackQMediaGaplessPlaybackControlAdvancedToNextMedia(this->objectName().toUtf8().data());};
+	void Signal_AdvancedToNextMedia() { callbackQMediaGaplessPlaybackControlAdvancedToNextMedia(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QMediaGaplessPlaybackControl_ConnectAdvancedToNextMedia(void* ptr){
@@ -2386,6 +2403,7 @@ void QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(void* ptr)
 
 class MyQMediaNetworkAccessControl: public QMediaNetworkAccessControl {
 public:
+protected:
 };
 
 void QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(void* ptr){
@@ -2394,10 +2412,12 @@ void QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(void* ptr){
 
 class MyQMediaObject: public QMediaObject {
 public:
-void Signal_AvailabilityChanged(bool available){callbackQMediaObjectAvailabilityChanged(this->objectName().toUtf8().data(), available);};
-void Signal_MetaDataAvailableChanged(bool available){callbackQMediaObjectMetaDataAvailableChanged(this->objectName().toUtf8().data(), available);};
-void Signal_MetaDataChanged(){callbackQMediaObjectMetaDataChanged(this->objectName().toUtf8().data());};
-void Signal_NotifyIntervalChanged(int milliseconds){callbackQMediaObjectNotifyIntervalChanged(this->objectName().toUtf8().data(), milliseconds);};
+	void Signal_AvailabilityChanged(bool available) { callbackQMediaObjectAvailabilityChanged(this->objectName().toUtf8().data(), available); };
+	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaObjectMetaDataAvailableChanged(this->objectName().toUtf8().data(), available); };
+	void Signal_MetaDataChanged() { callbackQMediaObjectMetaDataChanged(this->objectName().toUtf8().data()); };
+	void Signal_NotifyIntervalChanged(int milliseconds) { callbackQMediaObjectNotifyIntervalChanged(this->objectName().toUtf8().data(), milliseconds); };
+	void unbind(QObject * object) { if (!callbackQMediaObjectUnbind(this->objectName().toUtf8().data(), object)) { QMediaObject::unbind(object); }; };
+protected:
 };
 
 int QMediaObject_NotifyInterval(void* ptr){
@@ -2474,14 +2494,16 @@ void QMediaObject_DestroyQMediaObject(void* ptr){
 
 class MyQMediaPlayer: public QMediaPlayer {
 public:
-void Signal_AudioAvailableChanged(bool available){callbackQMediaPlayerAudioAvailableChanged(this->objectName().toUtf8().data(), available);};
-void Signal_BufferStatusChanged(int percentFilled){callbackQMediaPlayerBufferStatusChanged(this->objectName().toUtf8().data(), percentFilled);};
-void Signal_MediaStatusChanged(QMediaPlayer::MediaStatus status){callbackQMediaPlayerMediaStatusChanged(this->objectName().toUtf8().data(), status);};
-void Signal_MutedChanged(bool muted){callbackQMediaPlayerMutedChanged(this->objectName().toUtf8().data(), muted);};
-void Signal_SeekableChanged(bool seekable){callbackQMediaPlayerSeekableChanged(this->objectName().toUtf8().data(), seekable);};
-void Signal_StateChanged(QMediaPlayer::State state){callbackQMediaPlayerStateChanged(this->objectName().toUtf8().data(), state);};
-void Signal_VideoAvailableChanged(bool videoAvailable){callbackQMediaPlayerVideoAvailableChanged(this->objectName().toUtf8().data(), videoAvailable);};
-void Signal_VolumeChanged(int volume){callbackQMediaPlayerVolumeChanged(this->objectName().toUtf8().data(), volume);};
+	MyQMediaPlayer(QObject *parent, Flags flags) : QMediaPlayer(parent, flags) {};
+	void Signal_AudioAvailableChanged(bool available) { callbackQMediaPlayerAudioAvailableChanged(this->objectName().toUtf8().data(), available); };
+	void Signal_BufferStatusChanged(int percentFilled) { callbackQMediaPlayerBufferStatusChanged(this->objectName().toUtf8().data(), percentFilled); };
+	void Signal_MediaStatusChanged(QMediaPlayer::MediaStatus status) { callbackQMediaPlayerMediaStatusChanged(this->objectName().toUtf8().data(), status); };
+	void Signal_MutedChanged(bool muted) { callbackQMediaPlayerMutedChanged(this->objectName().toUtf8().data(), muted); };
+	void Signal_SeekableChanged(bool seekable) { callbackQMediaPlayerSeekableChanged(this->objectName().toUtf8().data(), seekable); };
+	void Signal_StateChanged(QMediaPlayer::State state) { callbackQMediaPlayerStateChanged(this->objectName().toUtf8().data(), state); };
+	void Signal_VideoAvailableChanged(bool videoAvailable) { callbackQMediaPlayerVideoAvailableChanged(this->objectName().toUtf8().data(), videoAvailable); };
+	void Signal_VolumeChanged(int volume) { callbackQMediaPlayerVolumeChanged(this->objectName().toUtf8().data(), volume); };
+protected:
 };
 
 int QMediaPlayer_BufferStatus(void* ptr){
@@ -2541,7 +2563,7 @@ int QMediaPlayer_Volume(void* ptr){
 }
 
 void* QMediaPlayer_NewQMediaPlayer(void* parent, int flags){
-	return new QMediaPlayer(static_cast<QObject*>(parent), static_cast<QMediaPlayer::Flag>(flags));
+	return new MyQMediaPlayer(static_cast<QObject*>(parent), static_cast<QMediaPlayer::Flag>(flags));
 }
 
 void QMediaPlayer_ConnectAudioAvailableChanged(void* ptr){
@@ -2642,15 +2664,16 @@ void QMediaPlayer_DestroyQMediaPlayer(void* ptr){
 
 class MyQMediaPlayerControl: public QMediaPlayerControl {
 public:
-void Signal_AudioAvailableChanged(bool audio){callbackQMediaPlayerControlAudioAvailableChanged(this->objectName().toUtf8().data(), audio);};
-void Signal_BufferStatusChanged(int progress){callbackQMediaPlayerControlBufferStatusChanged(this->objectName().toUtf8().data(), progress);};
-void Signal_Error(int error, const QString & errorString){callbackQMediaPlayerControlError(this->objectName().toUtf8().data(), error, errorString.toUtf8().data());};
-void Signal_MediaStatusChanged(QMediaPlayer::MediaStatus status){callbackQMediaPlayerControlMediaStatusChanged(this->objectName().toUtf8().data(), status);};
-void Signal_MutedChanged(bool mute){callbackQMediaPlayerControlMutedChanged(this->objectName().toUtf8().data(), mute);};
-void Signal_SeekableChanged(bool seekable){callbackQMediaPlayerControlSeekableChanged(this->objectName().toUtf8().data(), seekable);};
-void Signal_StateChanged(QMediaPlayer::State state){callbackQMediaPlayerControlStateChanged(this->objectName().toUtf8().data(), state);};
-void Signal_VideoAvailableChanged(bool video){callbackQMediaPlayerControlVideoAvailableChanged(this->objectName().toUtf8().data(), video);};
-void Signal_VolumeChanged(int volume){callbackQMediaPlayerControlVolumeChanged(this->objectName().toUtf8().data(), volume);};
+	void Signal_AudioAvailableChanged(bool audio) { callbackQMediaPlayerControlAudioAvailableChanged(this->objectName().toUtf8().data(), audio); };
+	void Signal_BufferStatusChanged(int progress) { callbackQMediaPlayerControlBufferStatusChanged(this->objectName().toUtf8().data(), progress); };
+	void Signal_Error(int error, const QString & errorString) { callbackQMediaPlayerControlError(this->objectName().toUtf8().data(), error, errorString.toUtf8().data()); };
+	void Signal_MediaStatusChanged(QMediaPlayer::MediaStatus status) { callbackQMediaPlayerControlMediaStatusChanged(this->objectName().toUtf8().data(), status); };
+	void Signal_MutedChanged(bool mute) { callbackQMediaPlayerControlMutedChanged(this->objectName().toUtf8().data(), mute); };
+	void Signal_SeekableChanged(bool seekable) { callbackQMediaPlayerControlSeekableChanged(this->objectName().toUtf8().data(), seekable); };
+	void Signal_StateChanged(QMediaPlayer::State state) { callbackQMediaPlayerControlStateChanged(this->objectName().toUtf8().data(), state); };
+	void Signal_VideoAvailableChanged(bool video) { callbackQMediaPlayerControlVideoAvailableChanged(this->objectName().toUtf8().data(), video); };
+	void Signal_VolumeChanged(int volume) { callbackQMediaPlayerControlVolumeChanged(this->objectName().toUtf8().data(), volume); };
+protected:
 };
 
 void QMediaPlayerControl_ConnectAudioAvailableChanged(void* ptr){
@@ -2795,15 +2818,17 @@ void QMediaPlayerControl_DestroyQMediaPlayerControl(void* ptr){
 
 class MyQMediaPlaylist: public QMediaPlaylist {
 public:
-void Signal_CurrentIndexChanged(int position){callbackQMediaPlaylistCurrentIndexChanged(this->objectName().toUtf8().data(), position);};
-void Signal_LoadFailed(){callbackQMediaPlaylistLoadFailed(this->objectName().toUtf8().data());};
-void Signal_Loaded(){callbackQMediaPlaylistLoaded(this->objectName().toUtf8().data());};
-void Signal_MediaAboutToBeInserted(int start, int end){callbackQMediaPlaylistMediaAboutToBeInserted(this->objectName().toUtf8().data(), start, end);};
-void Signal_MediaAboutToBeRemoved(int start, int end){callbackQMediaPlaylistMediaAboutToBeRemoved(this->objectName().toUtf8().data(), start, end);};
-void Signal_MediaChanged(int start, int end){callbackQMediaPlaylistMediaChanged(this->objectName().toUtf8().data(), start, end);};
-void Signal_MediaInserted(int start, int end){callbackQMediaPlaylistMediaInserted(this->objectName().toUtf8().data(), start, end);};
-void Signal_MediaRemoved(int start, int end){callbackQMediaPlaylistMediaRemoved(this->objectName().toUtf8().data(), start, end);};
-void Signal_PlaybackModeChanged(QMediaPlaylist::PlaybackMode mode){callbackQMediaPlaylistPlaybackModeChanged(this->objectName().toUtf8().data(), mode);};
+	MyQMediaPlaylist(QObject *parent) : QMediaPlaylist(parent) {};
+	void Signal_CurrentIndexChanged(int position) { callbackQMediaPlaylistCurrentIndexChanged(this->objectName().toUtf8().data(), position); };
+	void Signal_LoadFailed() { callbackQMediaPlaylistLoadFailed(this->objectName().toUtf8().data()); };
+	void Signal_Loaded() { callbackQMediaPlaylistLoaded(this->objectName().toUtf8().data()); };
+	void Signal_MediaAboutToBeInserted(int start, int end) { callbackQMediaPlaylistMediaAboutToBeInserted(this->objectName().toUtf8().data(), start, end); };
+	void Signal_MediaAboutToBeRemoved(int start, int end) { callbackQMediaPlaylistMediaAboutToBeRemoved(this->objectName().toUtf8().data(), start, end); };
+	void Signal_MediaChanged(int start, int end) { callbackQMediaPlaylistMediaChanged(this->objectName().toUtf8().data(), start, end); };
+	void Signal_MediaInserted(int start, int end) { callbackQMediaPlaylistMediaInserted(this->objectName().toUtf8().data(), start, end); };
+	void Signal_MediaRemoved(int start, int end) { callbackQMediaPlaylistMediaRemoved(this->objectName().toUtf8().data(), start, end); };
+	void Signal_PlaybackModeChanged(QMediaPlaylist::PlaybackMode mode) { callbackQMediaPlaylistPlaybackModeChanged(this->objectName().toUtf8().data(), mode); };
+protected:
 };
 
 int QMediaPlaylist_PlaybackMode(void* ptr){
@@ -2815,7 +2840,7 @@ void QMediaPlaylist_SetPlaybackMode(void* ptr, int mode){
 }
 
 void* QMediaPlaylist_NewQMediaPlaylist(void* parent){
-	return new QMediaPlaylist(static_cast<QObject*>(parent));
+	return new MyQMediaPlaylist(static_cast<QObject*>(parent));
 }
 
 int QMediaPlaylist_AddMedia(void* ptr, void* content){
@@ -2988,13 +3013,15 @@ void QMediaPlaylist_DestroyQMediaPlaylist(void* ptr){
 
 class MyQMediaRecorder: public QMediaRecorder {
 public:
-void Signal_AvailabilityChanged(bool available){callbackQMediaRecorderAvailabilityChanged(this->objectName().toUtf8().data(), available);};
-void Signal_MetaDataAvailableChanged(bool available){callbackQMediaRecorderMetaDataAvailableChanged(this->objectName().toUtf8().data(), available);};
-void Signal_MetaDataChanged(){callbackQMediaRecorderMetaDataChanged(this->objectName().toUtf8().data());};
-void Signal_MetaDataWritableChanged(bool writable){callbackQMediaRecorderMetaDataWritableChanged(this->objectName().toUtf8().data(), writable);};
-void Signal_MutedChanged(bool muted){callbackQMediaRecorderMutedChanged(this->objectName().toUtf8().data(), muted);};
-void Signal_StateChanged(QMediaRecorder::State state){callbackQMediaRecorderStateChanged(this->objectName().toUtf8().data(), state);};
-void Signal_StatusChanged(QMediaRecorder::Status status){callbackQMediaRecorderStatusChanged(this->objectName().toUtf8().data(), status);};
+	MyQMediaRecorder(QMediaObject *mediaObject, QObject *parent) : QMediaRecorder(mediaObject, parent) {};
+	void Signal_AvailabilityChanged(bool available) { callbackQMediaRecorderAvailabilityChanged(this->objectName().toUtf8().data(), available); };
+	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaRecorderMetaDataAvailableChanged(this->objectName().toUtf8().data(), available); };
+	void Signal_MetaDataChanged() { callbackQMediaRecorderMetaDataChanged(this->objectName().toUtf8().data()); };
+	void Signal_MetaDataWritableChanged(bool writable) { callbackQMediaRecorderMetaDataWritableChanged(this->objectName().toUtf8().data(), writable); };
+	void Signal_MutedChanged(bool muted) { callbackQMediaRecorderMutedChanged(this->objectName().toUtf8().data(), muted); };
+	void Signal_StateChanged(QMediaRecorder::State state) { callbackQMediaRecorderStateChanged(this->objectName().toUtf8().data(), state); };
+	void Signal_StatusChanged(QMediaRecorder::Status status) { callbackQMediaRecorderStatusChanged(this->objectName().toUtf8().data(), status); };
+protected:
 };
 
 int QMediaRecorder_IsMetaDataAvailable(void* ptr){
@@ -3026,7 +3053,7 @@ double QMediaRecorder_Volume(void* ptr){
 }
 
 void* QMediaRecorder_NewQMediaRecorder(void* mediaObject, void* parent){
-	return new QMediaRecorder(static_cast<QMediaObject*>(mediaObject), static_cast<QObject*>(parent));
+	return new MyQMediaRecorder(static_cast<QMediaObject*>(mediaObject), static_cast<QObject*>(parent));
 }
 
 char* QMediaRecorder_AudioCodecDescription(void* ptr, char* codec){
@@ -3179,10 +3206,11 @@ void QMediaRecorder_DestroyQMediaRecorder(void* ptr){
 
 class MyQMediaRecorderControl: public QMediaRecorderControl {
 public:
-void Signal_Error(int error, const QString & errorString){callbackQMediaRecorderControlError(this->objectName().toUtf8().data(), error, errorString.toUtf8().data());};
-void Signal_MutedChanged(bool muted){callbackQMediaRecorderControlMutedChanged(this->objectName().toUtf8().data(), muted);};
-void Signal_StateChanged(QMediaRecorder::State state){callbackQMediaRecorderControlStateChanged(this->objectName().toUtf8().data(), state);};
-void Signal_StatusChanged(QMediaRecorder::Status status){callbackQMediaRecorderControlStatusChanged(this->objectName().toUtf8().data(), status);};
+	void Signal_Error(int error, const QString & errorString) { callbackQMediaRecorderControlError(this->objectName().toUtf8().data(), error, errorString.toUtf8().data()); };
+	void Signal_MutedChanged(bool muted) { callbackQMediaRecorderControlMutedChanged(this->objectName().toUtf8().data(), muted); };
+	void Signal_StateChanged(QMediaRecorder::State state) { callbackQMediaRecorderControlStateChanged(this->objectName().toUtf8().data(), state); };
+	void Signal_StatusChanged(QMediaRecorder::Status status) { callbackQMediaRecorderControlStatusChanged(this->objectName().toUtf8().data(), status); };
+protected:
 };
 
 void QMediaRecorderControl_ApplySettings(void* ptr){
@@ -3252,10 +3280,6 @@ double QMediaRecorderControl_Volume(void* ptr){
 void QMediaRecorderControl_DestroyQMediaRecorderControl(void* ptr){
 	static_cast<QMediaRecorderControl*>(ptr)->~QMediaRecorderControl();
 }
-
-class MyQMediaResource: public QMediaResource {
-public:
-};
 
 void* QMediaResource_NewQMediaResource(){
 	return new QMediaResource();
@@ -3349,10 +3373,6 @@ void QMediaResource_DestroyQMediaResource(void* ptr){
 	static_cast<QMediaResource*>(ptr)->~QMediaResource();
 }
 
-class MyQMediaService: public QMediaService {
-public:
-};
-
 void QMediaService_ReleaseControl(void* ptr, void* control){
 	static_cast<QMediaService*>(ptr)->releaseControl(static_cast<QMediaControl*>(control));
 }
@@ -3371,6 +3391,10 @@ void QMediaService_DestroyQMediaService(void* ptr){
 
 class MyQMediaServiceCameraInfoInterface: public QMediaServiceCameraInfoInterface {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 int QMediaServiceCameraInfoInterface_CameraOrientation(void* ptr, void* device){
@@ -3385,8 +3409,20 @@ void QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(vo
 	static_cast<QMediaServiceCameraInfoInterface*>(ptr)->~QMediaServiceCameraInfoInterface();
 }
 
+char* QMediaServiceCameraInfoInterface_ObjectNameAbs(void* ptr){
+	return static_cast<MyQMediaServiceCameraInfoInterface*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QMediaServiceCameraInfoInterface_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQMediaServiceCameraInfoInterface*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQMediaServiceDefaultDeviceInterface: public QMediaServiceDefaultDeviceInterface {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 void* QMediaServiceDefaultDeviceInterface_DefaultDevice(void* ptr, void* service){
@@ -3397,17 +3433,33 @@ void QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterf
 	static_cast<QMediaServiceDefaultDeviceInterface*>(ptr)->~QMediaServiceDefaultDeviceInterface();
 }
 
+char* QMediaServiceDefaultDeviceInterface_ObjectNameAbs(void* ptr){
+	return static_cast<MyQMediaServiceDefaultDeviceInterface*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QMediaServiceDefaultDeviceInterface_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQMediaServiceDefaultDeviceInterface*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQMediaServiceFeaturesInterface: public QMediaServiceFeaturesInterface {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 void QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(void* ptr){
 	static_cast<QMediaServiceFeaturesInterface*>(ptr)->~QMediaServiceFeaturesInterface();
 }
 
-class MyQMediaServiceProviderPlugin: public QMediaServiceProviderPlugin {
-public:
-};
+char* QMediaServiceFeaturesInterface_ObjectNameAbs(void* ptr){
+	return static_cast<MyQMediaServiceFeaturesInterface*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QMediaServiceFeaturesInterface_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQMediaServiceFeaturesInterface*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 void* QMediaServiceProviderPlugin_Create(void* ptr, char* key){
 	return static_cast<QMediaServiceProviderPlugin*>(ptr)->create(QString(key));
@@ -3419,6 +3471,10 @@ void QMediaServiceProviderPlugin_Release(void* ptr, void* service){
 
 class MyQMediaServiceSupportedDevicesInterface: public QMediaServiceSupportedDevicesInterface {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 char* QMediaServiceSupportedDevicesInterface_DeviceDescription(void* ptr, void* service, void* device){
@@ -3429,8 +3485,20 @@ void QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevices
 	static_cast<QMediaServiceSupportedDevicesInterface*>(ptr)->~QMediaServiceSupportedDevicesInterface();
 }
 
+char* QMediaServiceSupportedDevicesInterface_ObjectNameAbs(void* ptr){
+	return static_cast<MyQMediaServiceSupportedDevicesInterface*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QMediaServiceSupportedDevicesInterface_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQMediaServiceSupportedDevicesInterface*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQMediaServiceSupportedFormatsInterface: public QMediaServiceSupportedFormatsInterface {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 char* QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(void* ptr){
@@ -3441,10 +3509,19 @@ void QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormats
 	static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->~QMediaServiceSupportedFormatsInterface();
 }
 
+char* QMediaServiceSupportedFormatsInterface_ObjectNameAbs(void* ptr){
+	return static_cast<MyQMediaServiceSupportedFormatsInterface*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QMediaServiceSupportedFormatsInterface_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQMediaServiceSupportedFormatsInterface*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQMediaStreamsControl: public QMediaStreamsControl {
 public:
-void Signal_ActiveStreamsChanged(){callbackQMediaStreamsControlActiveStreamsChanged(this->objectName().toUtf8().data());};
-void Signal_StreamsChanged(){callbackQMediaStreamsControlStreamsChanged(this->objectName().toUtf8().data());};
+	void Signal_ActiveStreamsChanged() { callbackQMediaStreamsControlActiveStreamsChanged(this->objectName().toUtf8().data()); };
+	void Signal_StreamsChanged() { callbackQMediaStreamsControlStreamsChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QMediaStreamsControl_ConnectActiveStreamsChanged(void* ptr){
@@ -3487,10 +3564,6 @@ void QMediaStreamsControl_DestroyQMediaStreamsControl(void* ptr){
 	static_cast<QMediaStreamsControl*>(ptr)->~QMediaStreamsControl();
 }
 
-class MyQMediaTimeInterval: public QMediaTimeInterval {
-public:
-};
-
 void* QMediaTimeInterval_NewQMediaTimeInterval(){
 	return new QMediaTimeInterval();
 }
@@ -3502,10 +3575,6 @@ void* QMediaTimeInterval_NewQMediaTimeInterval3(void* other){
 int QMediaTimeInterval_IsNormal(void* ptr){
 	return static_cast<QMediaTimeInterval*>(ptr)->isNormal();
 }
-
-class MyQMediaTimeRange: public QMediaTimeRange {
-public:
-};
 
 void* QMediaTimeRange_NewQMediaTimeRange(){
 	return new QMediaTimeRange();
@@ -3553,7 +3622,8 @@ void QMediaTimeRange_DestroyQMediaTimeRange(void* ptr){
 
 class MyQMediaVideoProbeControl: public QMediaVideoProbeControl {
 public:
-void Signal_Flush(){callbackQMediaVideoProbeControlFlush(this->objectName().toUtf8().data());};
+	void Signal_Flush() { callbackQMediaVideoProbeControlFlush(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QMediaVideoProbeControl_ConnectFlush(void* ptr){
@@ -3570,8 +3640,9 @@ void QMediaVideoProbeControl_DestroyQMediaVideoProbeControl(void* ptr){
 
 class MyQMetaDataReaderControl: public QMetaDataReaderControl {
 public:
-void Signal_MetaDataAvailableChanged(bool available){callbackQMetaDataReaderControlMetaDataAvailableChanged(this->objectName().toUtf8().data(), available);};
-void Signal_MetaDataChanged(){callbackQMetaDataReaderControlMetaDataChanged(this->objectName().toUtf8().data());};
+	void Signal_MetaDataAvailableChanged(bool available) { callbackQMetaDataReaderControlMetaDataAvailableChanged(this->objectName().toUtf8().data(), available); };
+	void Signal_MetaDataChanged() { callbackQMetaDataReaderControlMetaDataChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 char* QMetaDataReaderControl_AvailableMetaData(void* ptr){
@@ -3608,9 +3679,10 @@ void QMetaDataReaderControl_DestroyQMetaDataReaderControl(void* ptr){
 
 class MyQMetaDataWriterControl: public QMetaDataWriterControl {
 public:
-void Signal_MetaDataAvailableChanged(bool available){callbackQMetaDataWriterControlMetaDataAvailableChanged(this->objectName().toUtf8().data(), available);};
-void Signal_MetaDataChanged(){callbackQMetaDataWriterControlMetaDataChanged(this->objectName().toUtf8().data());};
-void Signal_WritableChanged(bool writable){callbackQMetaDataWriterControlWritableChanged(this->objectName().toUtf8().data(), writable);};
+	void Signal_MetaDataAvailableChanged(bool available) { callbackQMetaDataWriterControlMetaDataAvailableChanged(this->objectName().toUtf8().data(), available); };
+	void Signal_MetaDataChanged() { callbackQMetaDataWriterControlMetaDataChanged(this->objectName().toUtf8().data()); };
+	void Signal_WritableChanged(bool writable) { callbackQMetaDataWriterControlWritableChanged(this->objectName().toUtf8().data(), writable); };
+protected:
 };
 
 char* QMetaDataWriterControl_AvailableMetaData(void* ptr){
@@ -3663,12 +3735,14 @@ void QMetaDataWriterControl_DestroyQMetaDataWriterControl(void* ptr){
 
 class MyQRadioData: public QRadioData {
 public:
-void Signal_AlternativeFrequenciesEnabledChanged(bool enabled){callbackQRadioDataAlternativeFrequenciesEnabledChanged(this->objectName().toUtf8().data(), enabled);};
-void Signal_ProgramTypeChanged(QRadioData::ProgramType programType){callbackQRadioDataProgramTypeChanged(this->objectName().toUtf8().data(), programType);};
-void Signal_ProgramTypeNameChanged(QString programTypeName){callbackQRadioDataProgramTypeNameChanged(this->objectName().toUtf8().data(), programTypeName.toUtf8().data());};
-void Signal_RadioTextChanged(QString radioText){callbackQRadioDataRadioTextChanged(this->objectName().toUtf8().data(), radioText.toUtf8().data());};
-void Signal_StationIdChanged(QString stationId){callbackQRadioDataStationIdChanged(this->objectName().toUtf8().data(), stationId.toUtf8().data());};
-void Signal_StationNameChanged(QString stationName){callbackQRadioDataStationNameChanged(this->objectName().toUtf8().data(), stationName.toUtf8().data());};
+	MyQRadioData(QMediaObject *mediaObject, QObject *parent) : QRadioData(mediaObject, parent) {};
+	void Signal_AlternativeFrequenciesEnabledChanged(bool enabled) { callbackQRadioDataAlternativeFrequenciesEnabledChanged(this->objectName().toUtf8().data(), enabled); };
+	void Signal_ProgramTypeChanged(QRadioData::ProgramType programType) { callbackQRadioDataProgramTypeChanged(this->objectName().toUtf8().data(), programType); };
+	void Signal_ProgramTypeNameChanged(QString programTypeName) { callbackQRadioDataProgramTypeNameChanged(this->objectName().toUtf8().data(), programTypeName.toUtf8().data()); };
+	void Signal_RadioTextChanged(QString radioText) { callbackQRadioDataRadioTextChanged(this->objectName().toUtf8().data(), radioText.toUtf8().data()); };
+	void Signal_StationIdChanged(QString stationId) { callbackQRadioDataStationIdChanged(this->objectName().toUtf8().data(), stationId.toUtf8().data()); };
+	void Signal_StationNameChanged(QString stationName) { callbackQRadioDataStationNameChanged(this->objectName().toUtf8().data(), stationName.toUtf8().data()); };
+protected:
 };
 
 int QRadioData_IsAlternativeFrequenciesEnabled(void* ptr){
@@ -3700,7 +3774,7 @@ char* QRadioData_StationName(void* ptr){
 }
 
 void* QRadioData_NewQRadioData(void* mediaObject, void* parent){
-	return new QRadioData(static_cast<QMediaObject*>(mediaObject), static_cast<QObject*>(parent));
+	return new MyQRadioData(static_cast<QMediaObject*>(mediaObject), static_cast<QObject*>(parent));
 }
 
 void QRadioData_ConnectAlternativeFrequenciesEnabledChanged(void* ptr){
@@ -3769,12 +3843,13 @@ void QRadioData_DestroyQRadioData(void* ptr){
 
 class MyQRadioDataControl: public QRadioDataControl {
 public:
-void Signal_AlternativeFrequenciesEnabledChanged(bool enabled){callbackQRadioDataControlAlternativeFrequenciesEnabledChanged(this->objectName().toUtf8().data(), enabled);};
-void Signal_ProgramTypeChanged(QRadioData::ProgramType programType){callbackQRadioDataControlProgramTypeChanged(this->objectName().toUtf8().data(), programType);};
-void Signal_ProgramTypeNameChanged(QString programTypeName){callbackQRadioDataControlProgramTypeNameChanged(this->objectName().toUtf8().data(), programTypeName.toUtf8().data());};
-void Signal_RadioTextChanged(QString radioText){callbackQRadioDataControlRadioTextChanged(this->objectName().toUtf8().data(), radioText.toUtf8().data());};
-void Signal_StationIdChanged(QString stationId){callbackQRadioDataControlStationIdChanged(this->objectName().toUtf8().data(), stationId.toUtf8().data());};
-void Signal_StationNameChanged(QString stationName){callbackQRadioDataControlStationNameChanged(this->objectName().toUtf8().data(), stationName.toUtf8().data());};
+	void Signal_AlternativeFrequenciesEnabledChanged(bool enabled) { callbackQRadioDataControlAlternativeFrequenciesEnabledChanged(this->objectName().toUtf8().data(), enabled); };
+	void Signal_ProgramTypeChanged(QRadioData::ProgramType programType) { callbackQRadioDataControlProgramTypeChanged(this->objectName().toUtf8().data(), programType); };
+	void Signal_ProgramTypeNameChanged(QString programTypeName) { callbackQRadioDataControlProgramTypeNameChanged(this->objectName().toUtf8().data(), programTypeName.toUtf8().data()); };
+	void Signal_RadioTextChanged(QString radioText) { callbackQRadioDataControlRadioTextChanged(this->objectName().toUtf8().data(), radioText.toUtf8().data()); };
+	void Signal_StationIdChanged(QString stationId) { callbackQRadioDataControlStationIdChanged(this->objectName().toUtf8().data(), stationId.toUtf8().data()); };
+	void Signal_StationNameChanged(QString stationName) { callbackQRadioDataControlStationNameChanged(this->objectName().toUtf8().data(), stationName.toUtf8().data()); };
+protected:
 };
 
 void QRadioDataControl_ConnectAlternativeFrequenciesEnabledChanged(void* ptr){
@@ -3867,16 +3942,18 @@ void QRadioDataControl_DestroyQRadioDataControl(void* ptr){
 
 class MyQRadioTuner: public QRadioTuner {
 public:
-void Signal_AntennaConnectedChanged(bool connectionStatus){callbackQRadioTunerAntennaConnectedChanged(this->objectName().toUtf8().data(), connectionStatus);};
-void Signal_BandChanged(QRadioTuner::Band band){callbackQRadioTunerBandChanged(this->objectName().toUtf8().data(), band);};
-void Signal_FrequencyChanged(int frequency){callbackQRadioTunerFrequencyChanged(this->objectName().toUtf8().data(), frequency);};
-void Signal_MutedChanged(bool muted){callbackQRadioTunerMutedChanged(this->objectName().toUtf8().data(), muted);};
-void Signal_SearchingChanged(bool searching){callbackQRadioTunerSearchingChanged(this->objectName().toUtf8().data(), searching);};
-void Signal_SignalStrengthChanged(int strength){callbackQRadioTunerSignalStrengthChanged(this->objectName().toUtf8().data(), strength);};
-void Signal_StateChanged(QRadioTuner::State state){callbackQRadioTunerStateChanged(this->objectName().toUtf8().data(), state);};
-void Signal_StationFound(int frequency, QString stationId){callbackQRadioTunerStationFound(this->objectName().toUtf8().data(), frequency, stationId.toUtf8().data());};
-void Signal_StereoStatusChanged(bool stereo){callbackQRadioTunerStereoStatusChanged(this->objectName().toUtf8().data(), stereo);};
-void Signal_VolumeChanged(int volume){callbackQRadioTunerVolumeChanged(this->objectName().toUtf8().data(), volume);};
+	MyQRadioTuner(QObject *parent) : QRadioTuner(parent) {};
+	void Signal_AntennaConnectedChanged(bool connectionStatus) { callbackQRadioTunerAntennaConnectedChanged(this->objectName().toUtf8().data(), connectionStatus); };
+	void Signal_BandChanged(QRadioTuner::Band band) { callbackQRadioTunerBandChanged(this->objectName().toUtf8().data(), band); };
+	void Signal_FrequencyChanged(int frequency) { callbackQRadioTunerFrequencyChanged(this->objectName().toUtf8().data(), frequency); };
+	void Signal_MutedChanged(bool muted) { callbackQRadioTunerMutedChanged(this->objectName().toUtf8().data(), muted); };
+	void Signal_SearchingChanged(bool searching) { callbackQRadioTunerSearchingChanged(this->objectName().toUtf8().data(), searching); };
+	void Signal_SignalStrengthChanged(int strength) { callbackQRadioTunerSignalStrengthChanged(this->objectName().toUtf8().data(), strength); };
+	void Signal_StateChanged(QRadioTuner::State state) { callbackQRadioTunerStateChanged(this->objectName().toUtf8().data(), state); };
+	void Signal_StationFound(int frequency, QString stationId) { callbackQRadioTunerStationFound(this->objectName().toUtf8().data(), frequency, stationId.toUtf8().data()); };
+	void Signal_StereoStatusChanged(bool stereo) { callbackQRadioTunerStereoStatusChanged(this->objectName().toUtf8().data(), stereo); };
+	void Signal_VolumeChanged(int volume) { callbackQRadioTunerVolumeChanged(this->objectName().toUtf8().data(), volume); };
+protected:
 };
 
 int QRadioTuner_Band(void* ptr){
@@ -3932,7 +4009,7 @@ int QRadioTuner_Volume(void* ptr){
 }
 
 void* QRadioTuner_NewQRadioTuner(void* parent){
-	return new QRadioTuner(static_cast<QObject*>(parent));
+	return new MyQRadioTuner(static_cast<QObject*>(parent));
 }
 
 void QRadioTuner_ConnectAntennaConnectedChanged(void* ptr){
@@ -4069,16 +4146,17 @@ void QRadioTuner_DestroyQRadioTuner(void* ptr){
 
 class MyQRadioTunerControl: public QRadioTunerControl {
 public:
-void Signal_AntennaConnectedChanged(bool connectionStatus){callbackQRadioTunerControlAntennaConnectedChanged(this->objectName().toUtf8().data(), connectionStatus);};
-void Signal_BandChanged(QRadioTuner::Band band){callbackQRadioTunerControlBandChanged(this->objectName().toUtf8().data(), band);};
-void Signal_FrequencyChanged(int frequency){callbackQRadioTunerControlFrequencyChanged(this->objectName().toUtf8().data(), frequency);};
-void Signal_MutedChanged(bool muted){callbackQRadioTunerControlMutedChanged(this->objectName().toUtf8().data(), muted);};
-void Signal_SearchingChanged(bool searching){callbackQRadioTunerControlSearchingChanged(this->objectName().toUtf8().data(), searching);};
-void Signal_SignalStrengthChanged(int strength){callbackQRadioTunerControlSignalStrengthChanged(this->objectName().toUtf8().data(), strength);};
-void Signal_StateChanged(QRadioTuner::State state){callbackQRadioTunerControlStateChanged(this->objectName().toUtf8().data(), state);};
-void Signal_StationFound(int frequency, QString stationId){callbackQRadioTunerControlStationFound(this->objectName().toUtf8().data(), frequency, stationId.toUtf8().data());};
-void Signal_StereoStatusChanged(bool stereo){callbackQRadioTunerControlStereoStatusChanged(this->objectName().toUtf8().data(), stereo);};
-void Signal_VolumeChanged(int volume){callbackQRadioTunerControlVolumeChanged(this->objectName().toUtf8().data(), volume);};
+	void Signal_AntennaConnectedChanged(bool connectionStatus) { callbackQRadioTunerControlAntennaConnectedChanged(this->objectName().toUtf8().data(), connectionStatus); };
+	void Signal_BandChanged(QRadioTuner::Band band) { callbackQRadioTunerControlBandChanged(this->objectName().toUtf8().data(), band); };
+	void Signal_FrequencyChanged(int frequency) { callbackQRadioTunerControlFrequencyChanged(this->objectName().toUtf8().data(), frequency); };
+	void Signal_MutedChanged(bool muted) { callbackQRadioTunerControlMutedChanged(this->objectName().toUtf8().data(), muted); };
+	void Signal_SearchingChanged(bool searching) { callbackQRadioTunerControlSearchingChanged(this->objectName().toUtf8().data(), searching); };
+	void Signal_SignalStrengthChanged(int strength) { callbackQRadioTunerControlSignalStrengthChanged(this->objectName().toUtf8().data(), strength); };
+	void Signal_StateChanged(QRadioTuner::State state) { callbackQRadioTunerControlStateChanged(this->objectName().toUtf8().data(), state); };
+	void Signal_StationFound(int frequency, QString stationId) { callbackQRadioTunerControlStationFound(this->objectName().toUtf8().data(), frequency, stationId.toUtf8().data()); };
+	void Signal_StereoStatusChanged(bool stereo) { callbackQRadioTunerControlStereoStatusChanged(this->objectName().toUtf8().data(), stereo); };
+	void Signal_VolumeChanged(int volume) { callbackQRadioTunerControlVolumeChanged(this->objectName().toUtf8().data(), volume); };
+protected:
 };
 
 void QRadioTunerControl_ConnectAntennaConnectedChanged(void* ptr){
@@ -4261,10 +4339,6 @@ void QRadioTunerControl_DestroyQRadioTunerControl(void* ptr){
 	static_cast<QRadioTunerControl*>(ptr)->~QRadioTunerControl();
 }
 
-class MyQSound: public QSound {
-public:
-};
-
 void QSound_SetLoops(void* ptr, int number){
 	static_cast<QSound*>(ptr)->setLoops(number);
 }
@@ -4307,15 +4381,16 @@ void QSound_DestroyQSound(void* ptr){
 
 class MyQSoundEffect: public QSoundEffect {
 public:
-void Signal_CategoryChanged(){callbackQSoundEffectCategoryChanged(this->objectName().toUtf8().data());};
-void Signal_LoadedChanged(){callbackQSoundEffectLoadedChanged(this->objectName().toUtf8().data());};
-void Signal_LoopCountChanged(){callbackQSoundEffectLoopCountChanged(this->objectName().toUtf8().data());};
-void Signal_LoopsRemainingChanged(){callbackQSoundEffectLoopsRemainingChanged(this->objectName().toUtf8().data());};
-void Signal_MutedChanged(){callbackQSoundEffectMutedChanged(this->objectName().toUtf8().data());};
-void Signal_PlayingChanged(){callbackQSoundEffectPlayingChanged(this->objectName().toUtf8().data());};
-void Signal_SourceChanged(){callbackQSoundEffectSourceChanged(this->objectName().toUtf8().data());};
-void Signal_StatusChanged(){callbackQSoundEffectStatusChanged(this->objectName().toUtf8().data());};
-void Signal_VolumeChanged(){callbackQSoundEffectVolumeChanged(this->objectName().toUtf8().data());};
+	void Signal_CategoryChanged() { callbackQSoundEffectCategoryChanged(this->objectName().toUtf8().data()); };
+	void Signal_LoadedChanged() { callbackQSoundEffectLoadedChanged(this->objectName().toUtf8().data()); };
+	void Signal_LoopCountChanged() { callbackQSoundEffectLoopCountChanged(this->objectName().toUtf8().data()); };
+	void Signal_LoopsRemainingChanged() { callbackQSoundEffectLoopsRemainingChanged(this->objectName().toUtf8().data()); };
+	void Signal_MutedChanged() { callbackQSoundEffectMutedChanged(this->objectName().toUtf8().data()); };
+	void Signal_PlayingChanged() { callbackQSoundEffectPlayingChanged(this->objectName().toUtf8().data()); };
+	void Signal_SourceChanged() { callbackQSoundEffectSourceChanged(this->objectName().toUtf8().data()); };
+	void Signal_StatusChanged() { callbackQSoundEffectStatusChanged(this->objectName().toUtf8().data()); };
+	void Signal_VolumeChanged() { callbackQSoundEffectVolumeChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 int QSoundEffect_IsLoaded(void* ptr){
@@ -4464,8 +4539,9 @@ void QSoundEffect_DestroyQSoundEffect(void* ptr){
 
 class MyQVideoDeviceSelectorControl: public QVideoDeviceSelectorControl {
 public:
-void Signal_DevicesChanged(){callbackQVideoDeviceSelectorControlDevicesChanged(this->objectName().toUtf8().data());};
-void Signal_SelectedDeviceChanged(int index){callbackQVideoDeviceSelectorControlSelectedDeviceChanged(this->objectName().toUtf8().data(), index);};
+	void Signal_DevicesChanged() { callbackQVideoDeviceSelectorControlDevicesChanged(this->objectName().toUtf8().data()); };
+	void Signal_SelectedDeviceChanged(int index) { callbackQVideoDeviceSelectorControlSelectedDeviceChanged(this->objectName().toUtf8().data(), index); };
+protected:
 };
 
 int QVideoDeviceSelectorControl_DefaultDevice(void* ptr){
@@ -4511,10 +4587,6 @@ void QVideoDeviceSelectorControl_SetSelectedDevice(void* ptr, int index){
 void QVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl(void* ptr){
 	static_cast<QVideoDeviceSelectorControl*>(ptr)->~QVideoDeviceSelectorControl();
 }
-
-class MyQVideoEncoderSettings: public QVideoEncoderSettings {
-public:
-};
 
 void QVideoEncoderSettings_SetFrameRate(void* ptr, double rate){
 	static_cast<QVideoEncoderSettings*>(ptr)->setFrameRate(static_cast<qreal>(rate));
@@ -4574,6 +4646,7 @@ void QVideoEncoderSettings_DestroyQVideoEncoderSettings(void* ptr){
 
 class MyQVideoEncoderSettingsControl: public QVideoEncoderSettingsControl {
 public:
+protected:
 };
 
 void QVideoEncoderSettingsControl_SetVideoSettings(void* ptr, void* settings){
@@ -4591,14 +4664,6 @@ char* QVideoEncoderSettingsControl_VideoCodecDescription(void* ptr, char* codec)
 void QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(void* ptr){
 	static_cast<QVideoEncoderSettingsControl*>(ptr)->~QVideoEncoderSettingsControl();
 }
-
-class MyQVideoFilterRunnable: public QVideoFilterRunnable {
-public:
-};
-
-class MyQVideoFrame: public QVideoFrame {
-public:
-};
 
 void* QVideoFrame_NewQVideoFrame(){
 	return new QVideoFrame();
@@ -4714,7 +4779,8 @@ void QVideoFrame_DestroyQVideoFrame(void* ptr){
 
 class MyQVideoProbe: public QVideoProbe {
 public:
-void Signal_Flush(){callbackQVideoProbeFlush(this->objectName().toUtf8().data());};
+	void Signal_Flush() { callbackQVideoProbeFlush(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QVideoProbe_NewQVideoProbe(void* parent){
@@ -4745,10 +4811,6 @@ void QVideoProbe_DestroyQVideoProbe(void* ptr){
 	static_cast<QVideoProbe*>(ptr)->~QVideoProbe();
 }
 
-class MyQVideoRendererControl: public QVideoRendererControl {
-public:
-};
-
 void QVideoRendererControl_SetSurface(void* ptr, void* surface){
 	static_cast<QVideoRendererControl*>(ptr)->setSurface(static_cast<QAbstractVideoSurface*>(surface));
 }
@@ -4760,10 +4822,6 @@ void* QVideoRendererControl_Surface(void* ptr){
 void QVideoRendererControl_DestroyQVideoRendererControl(void* ptr){
 	static_cast<QVideoRendererControl*>(ptr)->~QVideoRendererControl();
 }
-
-class MyQVideoSurfaceFormat: public QVideoSurfaceFormat {
-public:
-};
 
 void* QVideoSurfaceFormat_NewQVideoSurfaceFormat(){
 	return new QVideoSurfaceFormat();
@@ -4855,12 +4913,13 @@ void QVideoSurfaceFormat_DestroyQVideoSurfaceFormat(void* ptr){
 
 class MyQVideoWindowControl: public QVideoWindowControl {
 public:
-void Signal_BrightnessChanged(int brightness){callbackQVideoWindowControlBrightnessChanged(this->objectName().toUtf8().data(), brightness);};
-void Signal_ContrastChanged(int contrast){callbackQVideoWindowControlContrastChanged(this->objectName().toUtf8().data(), contrast);};
-void Signal_FullScreenChanged(bool fullScreen){callbackQVideoWindowControlFullScreenChanged(this->objectName().toUtf8().data(), fullScreen);};
-void Signal_HueChanged(int hue){callbackQVideoWindowControlHueChanged(this->objectName().toUtf8().data(), hue);};
-void Signal_NativeSizeChanged(){callbackQVideoWindowControlNativeSizeChanged(this->objectName().toUtf8().data());};
-void Signal_SaturationChanged(int saturation){callbackQVideoWindowControlSaturationChanged(this->objectName().toUtf8().data(), saturation);};
+	void Signal_BrightnessChanged(int brightness) { callbackQVideoWindowControlBrightnessChanged(this->objectName().toUtf8().data(), brightness); };
+	void Signal_ContrastChanged(int contrast) { callbackQVideoWindowControlContrastChanged(this->objectName().toUtf8().data(), contrast); };
+	void Signal_FullScreenChanged(bool fullScreen) { callbackQVideoWindowControlFullScreenChanged(this->objectName().toUtf8().data(), fullScreen); };
+	void Signal_HueChanged(int hue) { callbackQVideoWindowControlHueChanged(this->objectName().toUtf8().data(), hue); };
+	void Signal_NativeSizeChanged() { callbackQVideoWindowControlNativeSizeChanged(this->objectName().toUtf8().data()); };
+	void Signal_SaturationChanged(int saturation) { callbackQVideoWindowControlSaturationChanged(this->objectName().toUtf8().data(), saturation); };
+protected:
 };
 
 int QVideoWindowControl_AspectRatioMode(void* ptr){

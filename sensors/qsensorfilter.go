@@ -3,7 +3,7 @@ package sensors
 //#include "sensors.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQSensorFilter(ptr QSensorFilter_ITF) unsafe.Pointer {
 func NewQSensorFilterFromPointer(ptr unsafe.Pointer) *QSensorFilter {
 	var n = new(QSensorFilter)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QSensorFilter_") {
+		n.SetObjectNameAbs("QSensorFilter_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,14 +44,27 @@ func (ptr *QSensorFilter) QSensorFilter_PTR() *QSensorFilter {
 }
 
 func (ptr *QSensorFilter) Filter(reading QSensorReading_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorFilter::filter")
-		}
-	}()
+	defer qt.Recovering("QSensorFilter::filter")
 
 	if ptr.Pointer() != nil {
 		return C.QSensorFilter_Filter(ptr.Pointer(), PointerFromQSensorReading(reading)) != 0
 	}
 	return false
+}
+
+func (ptr *QSensorFilter) ObjectNameAbs() string {
+	defer qt.Recovering("QSensorFilter::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QSensorFilter_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSensorFilter) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QSensorFilter::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QSensorFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+	}
 }

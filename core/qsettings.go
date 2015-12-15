@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -29,7 +28,7 @@ func NewQSettingsFromPointer(ptr unsafe.Pointer) *QSettings {
 	var n = new(QSettings)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSettings_") {
-		n.SetObjectName("QSettings_" + qt.RandomIdentifier())
+		n.SetObjectName("QSettings_" + qt.Identifier())
 	}
 	return n
 }
@@ -81,61 +80,37 @@ const (
 )
 
 func NewQSettings3(format QSettings__Format, scope QSettings__Scope, organization string, application string, parent QObject_ITF) *QSettings {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::QSettings")
-		}
-	}()
+	defer qt.Recovering("QSettings::QSettings")
 
 	return NewQSettingsFromPointer(C.QSettings_NewQSettings3(C.int(format), C.int(scope), C.CString(organization), C.CString(application), PointerFromQObject(parent)))
 }
 
 func NewQSettings5(parent QObject_ITF) *QSettings {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::QSettings")
-		}
-	}()
+	defer qt.Recovering("QSettings::QSettings")
 
 	return NewQSettingsFromPointer(C.QSettings_NewQSettings5(PointerFromQObject(parent)))
 }
 
 func NewQSettings2(scope QSettings__Scope, organization string, application string, parent QObject_ITF) *QSettings {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::QSettings")
-		}
-	}()
+	defer qt.Recovering("QSettings::QSettings")
 
 	return NewQSettingsFromPointer(C.QSettings_NewQSettings2(C.int(scope), C.CString(organization), C.CString(application), PointerFromQObject(parent)))
 }
 
 func NewQSettings4(fileName string, format QSettings__Format, parent QObject_ITF) *QSettings {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::QSettings")
-		}
-	}()
+	defer qt.Recovering("QSettings::QSettings")
 
 	return NewQSettingsFromPointer(C.QSettings_NewQSettings4(C.CString(fileName), C.int(format), PointerFromQObject(parent)))
 }
 
 func NewQSettings(organization string, application string, parent QObject_ITF) *QSettings {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::QSettings")
-		}
-	}()
+	defer qt.Recovering("QSettings::QSettings")
 
 	return NewQSettingsFromPointer(C.QSettings_NewQSettings(C.CString(organization), C.CString(application), PointerFromQObject(parent)))
 }
 
 func (ptr *QSettings) AllKeys() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::allKeys")
-		}
-	}()
+	defer qt.Recovering("QSettings::allKeys")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSettings_AllKeys(ptr.Pointer())), ",,,")
@@ -144,11 +119,7 @@ func (ptr *QSettings) AllKeys() []string {
 }
 
 func (ptr *QSettings) ApplicationName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::applicationName")
-		}
-	}()
+	defer qt.Recovering("QSettings::applicationName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSettings_ApplicationName(ptr.Pointer()))
@@ -157,11 +128,7 @@ func (ptr *QSettings) ApplicationName() string {
 }
 
 func (ptr *QSettings) BeginGroup(prefix string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::beginGroup")
-		}
-	}()
+	defer qt.Recovering("QSettings::beginGroup")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_BeginGroup(ptr.Pointer(), C.CString(prefix))
@@ -169,11 +136,7 @@ func (ptr *QSettings) BeginGroup(prefix string) {
 }
 
 func (ptr *QSettings) BeginReadArray(prefix string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::beginReadArray")
-		}
-	}()
+	defer qt.Recovering("QSettings::beginReadArray")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSettings_BeginReadArray(ptr.Pointer(), C.CString(prefix)))
@@ -182,11 +145,7 @@ func (ptr *QSettings) BeginReadArray(prefix string) int {
 }
 
 func (ptr *QSettings) BeginWriteArray(prefix string, size int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::beginWriteArray")
-		}
-	}()
+	defer qt.Recovering("QSettings::beginWriteArray")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_BeginWriteArray(ptr.Pointer(), C.CString(prefix), C.int(size))
@@ -194,11 +153,7 @@ func (ptr *QSettings) BeginWriteArray(prefix string, size int) {
 }
 
 func (ptr *QSettings) ChildGroups() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::childGroups")
-		}
-	}()
+	defer qt.Recovering("QSettings::childGroups")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSettings_ChildGroups(ptr.Pointer())), ",,,")
@@ -207,11 +162,7 @@ func (ptr *QSettings) ChildGroups() []string {
 }
 
 func (ptr *QSettings) ChildKeys() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::childKeys")
-		}
-	}()
+	defer qt.Recovering("QSettings::childKeys")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSettings_ChildKeys(ptr.Pointer())), ",,,")
@@ -220,11 +171,7 @@ func (ptr *QSettings) ChildKeys() []string {
 }
 
 func (ptr *QSettings) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::clear")
-		}
-	}()
+	defer qt.Recovering("QSettings::clear")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_Clear(ptr.Pointer())
@@ -232,11 +179,7 @@ func (ptr *QSettings) Clear() {
 }
 
 func (ptr *QSettings) Contains(key string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::contains")
-		}
-	}()
+	defer qt.Recovering("QSettings::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QSettings_Contains(ptr.Pointer(), C.CString(key)) != 0
@@ -245,21 +188,13 @@ func (ptr *QSettings) Contains(key string) bool {
 }
 
 func QSettings_DefaultFormat() QSettings__Format {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::defaultFormat")
-		}
-	}()
+	defer qt.Recovering("QSettings::defaultFormat")
 
 	return QSettings__Format(C.QSettings_QSettings_DefaultFormat())
 }
 
 func (ptr *QSettings) EndArray() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::endArray")
-		}
-	}()
+	defer qt.Recovering("QSettings::endArray")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_EndArray(ptr.Pointer())
@@ -267,11 +202,7 @@ func (ptr *QSettings) EndArray() {
 }
 
 func (ptr *QSettings) EndGroup() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::endGroup")
-		}
-	}()
+	defer qt.Recovering("QSettings::endGroup")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_EndGroup(ptr.Pointer())
@@ -279,11 +210,7 @@ func (ptr *QSettings) EndGroup() {
 }
 
 func (ptr *QSettings) FallbacksEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::fallbacksEnabled")
-		}
-	}()
+	defer qt.Recovering("QSettings::fallbacksEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QSettings_FallbacksEnabled(ptr.Pointer()) != 0
@@ -292,11 +219,7 @@ func (ptr *QSettings) FallbacksEnabled() bool {
 }
 
 func (ptr *QSettings) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::fileName")
-		}
-	}()
+	defer qt.Recovering("QSettings::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSettings_FileName(ptr.Pointer()))
@@ -305,11 +228,7 @@ func (ptr *QSettings) FileName() string {
 }
 
 func (ptr *QSettings) Format() QSettings__Format {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::format")
-		}
-	}()
+	defer qt.Recovering("QSettings::format")
 
 	if ptr.Pointer() != nil {
 		return QSettings__Format(C.QSettings_Format(ptr.Pointer()))
@@ -318,11 +237,7 @@ func (ptr *QSettings) Format() QSettings__Format {
 }
 
 func (ptr *QSettings) Group() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::group")
-		}
-	}()
+	defer qt.Recovering("QSettings::group")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSettings_Group(ptr.Pointer()))
@@ -331,11 +246,7 @@ func (ptr *QSettings) Group() string {
 }
 
 func (ptr *QSettings) IniCodec() *QTextCodec {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::iniCodec")
-		}
-	}()
+	defer qt.Recovering("QSettings::iniCodec")
 
 	if ptr.Pointer() != nil {
 		return NewQTextCodecFromPointer(C.QSettings_IniCodec(ptr.Pointer()))
@@ -344,11 +255,7 @@ func (ptr *QSettings) IniCodec() *QTextCodec {
 }
 
 func (ptr *QSettings) IsWritable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::isWritable")
-		}
-	}()
+	defer qt.Recovering("QSettings::isWritable")
 
 	if ptr.Pointer() != nil {
 		return C.QSettings_IsWritable(ptr.Pointer()) != 0
@@ -357,11 +264,7 @@ func (ptr *QSettings) IsWritable() bool {
 }
 
 func (ptr *QSettings) OrganizationName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::organizationName")
-		}
-	}()
+	defer qt.Recovering("QSettings::organizationName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSettings_OrganizationName(ptr.Pointer()))
@@ -370,11 +273,7 @@ func (ptr *QSettings) OrganizationName() string {
 }
 
 func (ptr *QSettings) Scope() QSettings__Scope {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::scope")
-		}
-	}()
+	defer qt.Recovering("QSettings::scope")
 
 	if ptr.Pointer() != nil {
 		return QSettings__Scope(C.QSettings_Scope(ptr.Pointer()))
@@ -383,11 +282,7 @@ func (ptr *QSettings) Scope() QSettings__Scope {
 }
 
 func (ptr *QSettings) SetArrayIndex(i int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::setArrayIndex")
-		}
-	}()
+	defer qt.Recovering("QSettings::setArrayIndex")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_SetArrayIndex(ptr.Pointer(), C.int(i))
@@ -395,21 +290,13 @@ func (ptr *QSettings) SetArrayIndex(i int) {
 }
 
 func QSettings_SetDefaultFormat(format QSettings__Format) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::setDefaultFormat")
-		}
-	}()
+	defer qt.Recovering("QSettings::setDefaultFormat")
 
 	C.QSettings_QSettings_SetDefaultFormat(C.int(format))
 }
 
 func (ptr *QSettings) SetFallbacksEnabled(b bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::setFallbacksEnabled")
-		}
-	}()
+	defer qt.Recovering("QSettings::setFallbacksEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_SetFallbacksEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(b)))
@@ -417,11 +304,7 @@ func (ptr *QSettings) SetFallbacksEnabled(b bool) {
 }
 
 func (ptr *QSettings) SetIniCodec(codec QTextCodec_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::setIniCodec")
-		}
-	}()
+	defer qt.Recovering("QSettings::setIniCodec")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_SetIniCodec(ptr.Pointer(), PointerFromQTextCodec(codec))
@@ -429,11 +312,7 @@ func (ptr *QSettings) SetIniCodec(codec QTextCodec_ITF) {
 }
 
 func (ptr *QSettings) SetIniCodec2(codecName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::setIniCodec")
-		}
-	}()
+	defer qt.Recovering("QSettings::setIniCodec")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_SetIniCodec2(ptr.Pointer(), C.CString(codecName))
@@ -441,21 +320,13 @@ func (ptr *QSettings) SetIniCodec2(codecName string) {
 }
 
 func QSettings_SetPath(format QSettings__Format, scope QSettings__Scope, path string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::setPath")
-		}
-	}()
+	defer qt.Recovering("QSettings::setPath")
 
 	C.QSettings_QSettings_SetPath(C.int(format), C.int(scope), C.CString(path))
 }
 
 func (ptr *QSettings) SetValue(key string, value QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::setValue")
-		}
-	}()
+	defer qt.Recovering("QSettings::setValue")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_SetValue(ptr.Pointer(), C.CString(key), PointerFromQVariant(value))
@@ -463,11 +334,7 @@ func (ptr *QSettings) SetValue(key string, value QVariant_ITF) {
 }
 
 func (ptr *QSettings) Status() QSettings__Status {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::status")
-		}
-	}()
+	defer qt.Recovering("QSettings::status")
 
 	if ptr.Pointer() != nil {
 		return QSettings__Status(C.QSettings_Status(ptr.Pointer()))
@@ -476,11 +343,7 @@ func (ptr *QSettings) Status() QSettings__Status {
 }
 
 func (ptr *QSettings) Sync() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::sync")
-		}
-	}()
+	defer qt.Recovering("QSettings::sync")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_Sync(ptr.Pointer())
@@ -488,11 +351,7 @@ func (ptr *QSettings) Sync() {
 }
 
 func (ptr *QSettings) Value(key string, defaultValue QVariant_ITF) *QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::value")
-		}
-	}()
+	defer qt.Recovering("QSettings::value")
 
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QSettings_Value(ptr.Pointer(), C.CString(key), PointerFromQVariant(defaultValue)))
@@ -501,11 +360,7 @@ func (ptr *QSettings) Value(key string, defaultValue QVariant_ITF) *QVariant {
 }
 
 func (ptr *QSettings) DestroyQSettings() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSettings::~QSettings")
-		}
-	}()
+	defer qt.Recovering("QSettings::~QSettings")
 
 	if ptr.Pointer() != nil {
 		C.QSettings_DestroyQSettings(ptr.Pointer())

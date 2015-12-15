@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -48,21 +48,13 @@ var (
 )
 
 func NewQStyleOptionSlider() *QStyleOptionSlider {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionSlider::QStyleOptionSlider")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionSlider::QStyleOptionSlider")
 
 	return NewQStyleOptionSliderFromPointer(C.QStyleOptionSlider_NewQStyleOptionSlider())
 }
 
 func NewQStyleOptionSlider2(other QStyleOptionSlider_ITF) *QStyleOptionSlider {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionSlider::QStyleOptionSlider")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionSlider::QStyleOptionSlider")
 
 	return NewQStyleOptionSliderFromPointer(C.QStyleOptionSlider_NewQStyleOptionSlider2(PointerFromQStyleOptionSlider(other)))
 }

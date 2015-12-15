@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,11 +35,7 @@ func (ptr *QGraphicsSceneDragDropEvent) QGraphicsSceneDragDropEvent_PTR() *QGrap
 }
 
 func (ptr *QGraphicsSceneDragDropEvent) AcceptProposedAction() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneDragDropEvent::acceptProposedAction")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneDragDropEvent::acceptProposedAction")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneDragDropEvent_AcceptProposedAction(ptr.Pointer())
@@ -47,11 +43,7 @@ func (ptr *QGraphicsSceneDragDropEvent) AcceptProposedAction() {
 }
 
 func (ptr *QGraphicsSceneDragDropEvent) Buttons() core.Qt__MouseButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneDragDropEvent::buttons")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneDragDropEvent::buttons")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseButton(C.QGraphicsSceneDragDropEvent_Buttons(ptr.Pointer()))
@@ -60,11 +52,7 @@ func (ptr *QGraphicsSceneDragDropEvent) Buttons() core.Qt__MouseButton {
 }
 
 func (ptr *QGraphicsSceneDragDropEvent) DropAction() core.Qt__DropAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneDragDropEvent::dropAction")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneDragDropEvent::dropAction")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QGraphicsSceneDragDropEvent_DropAction(ptr.Pointer()))
@@ -73,11 +61,7 @@ func (ptr *QGraphicsSceneDragDropEvent) DropAction() core.Qt__DropAction {
 }
 
 func (ptr *QGraphicsSceneDragDropEvent) MimeData() *core.QMimeData {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneDragDropEvent::mimeData")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneDragDropEvent::mimeData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQMimeDataFromPointer(C.QGraphicsSceneDragDropEvent_MimeData(ptr.Pointer()))
@@ -86,11 +70,7 @@ func (ptr *QGraphicsSceneDragDropEvent) MimeData() *core.QMimeData {
 }
 
 func (ptr *QGraphicsSceneDragDropEvent) Modifiers() core.Qt__KeyboardModifier {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneDragDropEvent::modifiers")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneDragDropEvent::modifiers")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__KeyboardModifier(C.QGraphicsSceneDragDropEvent_Modifiers(ptr.Pointer()))
@@ -99,11 +79,7 @@ func (ptr *QGraphicsSceneDragDropEvent) Modifiers() core.Qt__KeyboardModifier {
 }
 
 func (ptr *QGraphicsSceneDragDropEvent) PossibleActions() core.Qt__DropAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneDragDropEvent::possibleActions")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneDragDropEvent::possibleActions")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QGraphicsSceneDragDropEvent_PossibleActions(ptr.Pointer()))
@@ -112,11 +88,7 @@ func (ptr *QGraphicsSceneDragDropEvent) PossibleActions() core.Qt__DropAction {
 }
 
 func (ptr *QGraphicsSceneDragDropEvent) ProposedAction() core.Qt__DropAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneDragDropEvent::proposedAction")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneDragDropEvent::proposedAction")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QGraphicsSceneDragDropEvent_ProposedAction(ptr.Pointer()))
@@ -124,12 +96,17 @@ func (ptr *QGraphicsSceneDragDropEvent) ProposedAction() core.Qt__DropAction {
 	return 0
 }
 
+func (ptr *QGraphicsSceneDragDropEvent) ScreenPos() *core.QPoint {
+	defer qt.Recovering("QGraphicsSceneDragDropEvent::screenPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QGraphicsSceneDragDropEvent_ScreenPos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsSceneDragDropEvent) SetDropAction(action core.Qt__DropAction) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneDragDropEvent::setDropAction")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneDragDropEvent::setDropAction")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneDragDropEvent_SetDropAction(ptr.Pointer(), C.int(action))
@@ -137,11 +114,7 @@ func (ptr *QGraphicsSceneDragDropEvent) SetDropAction(action core.Qt__DropAction
 }
 
 func (ptr *QGraphicsSceneDragDropEvent) Source() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneDragDropEvent::source")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneDragDropEvent::source")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QGraphicsSceneDragDropEvent_Source(ptr.Pointer()))
@@ -150,11 +123,7 @@ func (ptr *QGraphicsSceneDragDropEvent) Source() *QWidget {
 }
 
 func (ptr *QGraphicsSceneDragDropEvent) DestroyQGraphicsSceneDragDropEvent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneDragDropEvent::~QGraphicsSceneDragDropEvent")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneDragDropEvent::~QGraphicsSceneDragDropEvent")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneDragDropEvent_DestroyQGraphicsSceneDragDropEvent(ptr.Pointer())

@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -48,21 +48,13 @@ var (
 )
 
 func NewQStyleOptionFocusRect() *QStyleOptionFocusRect {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionFocusRect::QStyleOptionFocusRect")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionFocusRect::QStyleOptionFocusRect")
 
 	return NewQStyleOptionFocusRectFromPointer(C.QStyleOptionFocusRect_NewQStyleOptionFocusRect())
 }
 
 func NewQStyleOptionFocusRect2(other QStyleOptionFocusRect_ITF) *QStyleOptionFocusRect {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionFocusRect::QStyleOptionFocusRect")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionFocusRect::QStyleOptionFocusRect")
 
 	return NewQStyleOptionFocusRectFromPointer(C.QStyleOptionFocusRect_NewQStyleOptionFocusRect2(PointerFromQStyleOptionFocusRect(other)))
 }

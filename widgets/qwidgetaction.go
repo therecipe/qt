@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQWidgetActionFromPointer(ptr unsafe.Pointer) *QWidgetAction {
 	var n = new(QWidgetAction)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QWidgetAction_") {
-		n.SetObjectName("QWidgetAction_" + qt.RandomIdentifier())
+		n.SetObjectName("QWidgetAction_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QWidgetAction) QWidgetAction_PTR() *QWidgetAction {
 }
 
 func NewQWidgetAction(parent core.QObject_ITF) *QWidgetAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetAction::QWidgetAction")
-		}
-	}()
+	defer qt.Recovering("QWidgetAction::QWidgetAction")
 
 	return NewQWidgetActionFromPointer(C.QWidgetAction_NewQWidgetAction(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QWidgetAction) DefaultWidget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetAction::defaultWidget")
-		}
-	}()
+	defer qt.Recovering("QWidgetAction::defaultWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidgetAction_DefaultWidget(ptr.Pointer()))
@@ -61,12 +52,39 @@ func (ptr *QWidgetAction) DefaultWidget() *QWidget {
 	return nil
 }
 
+func (ptr *QWidgetAction) ConnectDeleteWidget(f func(widget *QWidget)) {
+	defer qt.Recovering("connect QWidgetAction::deleteWidget")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "deleteWidget", f)
+	}
+}
+
+func (ptr *QWidgetAction) DisconnectDeleteWidget() {
+	defer qt.Recovering("disconnect QWidgetAction::deleteWidget")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "deleteWidget")
+	}
+}
+
+//export callbackQWidgetActionDeleteWidget
+func callbackQWidgetActionDeleteWidget(ptrName *C.char, widget unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidgetAction::deleteWidget")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "deleteWidget")
+	if signal != nil {
+		defer signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWidgetAction) ReleaseWidget(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetAction::releaseWidget")
-		}
-	}()
+	defer qt.Recovering("QWidgetAction::releaseWidget")
 
 	if ptr.Pointer() != nil {
 		C.QWidgetAction_ReleaseWidget(ptr.Pointer(), PointerFromQWidget(widget))
@@ -74,11 +92,7 @@ func (ptr *QWidgetAction) ReleaseWidget(widget QWidget_ITF) {
 }
 
 func (ptr *QWidgetAction) RequestWidget(parent QWidget_ITF) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetAction::requestWidget")
-		}
-	}()
+	defer qt.Recovering("QWidgetAction::requestWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidgetAction_RequestWidget(ptr.Pointer(), PointerFromQWidget(parent)))
@@ -87,11 +101,7 @@ func (ptr *QWidgetAction) RequestWidget(parent QWidget_ITF) *QWidget {
 }
 
 func (ptr *QWidgetAction) SetDefaultWidget(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetAction::setDefaultWidget")
-		}
-	}()
+	defer qt.Recovering("QWidgetAction::setDefaultWidget")
 
 	if ptr.Pointer() != nil {
 		C.QWidgetAction_SetDefaultWidget(ptr.Pointer(), PointerFromQWidget(widget))
@@ -99,11 +109,7 @@ func (ptr *QWidgetAction) SetDefaultWidget(widget QWidget_ITF) {
 }
 
 func (ptr *QWidgetAction) DestroyQWidgetAction() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetAction::~QWidgetAction")
-		}
-	}()
+	defer qt.Recovering("QWidgetAction::~QWidgetAction")
 
 	if ptr.Pointer() != nil {
 		C.QWidgetAction_DestroyQWidgetAction(ptr.Pointer())

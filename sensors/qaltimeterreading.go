@@ -4,7 +4,6 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQAltimeterReadingFromPointer(ptr unsafe.Pointer) *QAltimeterReading {
 	var n = new(QAltimeterReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAltimeterReading_") {
-		n.SetObjectName("QAltimeterReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QAltimeterReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QAltimeterReading) QAltimeterReading_PTR() *QAltimeterReading {
 }
 
 func (ptr *QAltimeterReading) Altitude() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAltimeterReading::altitude")
-		}
-	}()
+	defer qt.Recovering("QAltimeterReading::altitude")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QAltimeterReading_Altitude(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QAltimeterReading) Altitude() float64 {
 }
 
 func (ptr *QAltimeterReading) SetAltitude(altitude float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAltimeterReading::setAltitude")
-		}
-	}()
+	defer qt.Recovering("QAltimeterReading::setAltitude")
 
 	if ptr.Pointer() != nil {
 		C.QAltimeterReading_SetAltitude(ptr.Pointer(), C.double(altitude))

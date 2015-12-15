@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQTapSensorFromPointer(ptr unsafe.Pointer) *QTapSensor {
 	var n = new(QTapSensor)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QTapSensor_") {
-		n.SetObjectName("QTapSensor_" + qt.RandomIdentifier())
+		n.SetObjectName("QTapSensor_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QTapSensor) QTapSensor_PTR() *QTapSensor {
 }
 
 func (ptr *QTapSensor) Reading() *QTapReading {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapSensor::reading")
-		}
-	}()
+	defer qt.Recovering("QTapSensor::reading")
 
 	if ptr.Pointer() != nil {
 		return NewQTapReadingFromPointer(C.QTapSensor_Reading(ptr.Pointer()))
@@ -52,11 +47,7 @@ func (ptr *QTapSensor) Reading() *QTapReading {
 }
 
 func (ptr *QTapSensor) ReturnDoubleTapEvents() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapSensor::returnDoubleTapEvents")
-		}
-	}()
+	defer qt.Recovering("QTapSensor::returnDoubleTapEvents")
 
 	if ptr.Pointer() != nil {
 		return C.QTapSensor_ReturnDoubleTapEvents(ptr.Pointer()) != 0
@@ -65,11 +56,7 @@ func (ptr *QTapSensor) ReturnDoubleTapEvents() bool {
 }
 
 func (ptr *QTapSensor) SetReturnDoubleTapEvents(returnDoubleTapEvents bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapSensor::setReturnDoubleTapEvents")
-		}
-	}()
+	defer qt.Recovering("QTapSensor::setReturnDoubleTapEvents")
 
 	if ptr.Pointer() != nil {
 		C.QTapSensor_SetReturnDoubleTapEvents(ptr.Pointer(), C.int(qt.GoBoolToInt(returnDoubleTapEvents)))
@@ -77,21 +64,13 @@ func (ptr *QTapSensor) SetReturnDoubleTapEvents(returnDoubleTapEvents bool) {
 }
 
 func NewQTapSensor(parent core.QObject_ITF) *QTapSensor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapSensor::QTapSensor")
-		}
-	}()
+	defer qt.Recovering("QTapSensor::QTapSensor")
 
 	return NewQTapSensorFromPointer(C.QTapSensor_NewQTapSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QTapSensor) ConnectReturnDoubleTapEventsChanged(f func(returnDoubleTapEvents bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapSensor::returnDoubleTapEventsChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTapSensor::returnDoubleTapEventsChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTapSensor_ConnectReturnDoubleTapEventsChanged(ptr.Pointer())
@@ -100,11 +79,7 @@ func (ptr *QTapSensor) ConnectReturnDoubleTapEventsChanged(f func(returnDoubleTa
 }
 
 func (ptr *QTapSensor) DisconnectReturnDoubleTapEventsChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapSensor::returnDoubleTapEventsChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTapSensor::returnDoubleTapEventsChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTapSensor_DisconnectReturnDoubleTapEventsChanged(ptr.Pointer())
@@ -114,21 +89,17 @@ func (ptr *QTapSensor) DisconnectReturnDoubleTapEventsChanged() {
 
 //export callbackQTapSensorReturnDoubleTapEventsChanged
 func callbackQTapSensorReturnDoubleTapEventsChanged(ptrName *C.char, returnDoubleTapEvents C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapSensor::returnDoubleTapEventsChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTapSensor::returnDoubleTapEventsChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "returnDoubleTapEventsChanged").(func(bool))(int(returnDoubleTapEvents) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "returnDoubleTapEventsChanged")
+	if signal != nil {
+		signal.(func(bool))(int(returnDoubleTapEvents) != 0)
+	}
+
 }
 
 func (ptr *QTapSensor) DestroyQTapSensor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTapSensor::~QTapSensor")
-		}
-	}()
+	defer qt.Recovering("QTapSensor::~QTapSensor")
 
 	if ptr.Pointer() != nil {
 		C.QTapSensor_DestroyQTapSensor(ptr.Pointer())

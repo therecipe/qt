@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +41,19 @@ func (ptr *QTemporaryDir) QTemporaryDir_PTR() *QTemporaryDir {
 }
 
 func NewQTemporaryDir() *QTemporaryDir {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTemporaryDir::QTemporaryDir")
-		}
-	}()
+	defer qt.Recovering("QTemporaryDir::QTemporaryDir")
 
 	return NewQTemporaryDirFromPointer(C.QTemporaryDir_NewQTemporaryDir())
 }
 
 func NewQTemporaryDir2(templatePath string) *QTemporaryDir {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTemporaryDir::QTemporaryDir")
-		}
-	}()
+	defer qt.Recovering("QTemporaryDir::QTemporaryDir")
 
 	return NewQTemporaryDirFromPointer(C.QTemporaryDir_NewQTemporaryDir2(C.CString(templatePath)))
 }
 
 func (ptr *QTemporaryDir) AutoRemove() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTemporaryDir::autoRemove")
-		}
-	}()
+	defer qt.Recovering("QTemporaryDir::autoRemove")
 
 	if ptr.Pointer() != nil {
 		return C.QTemporaryDir_AutoRemove(ptr.Pointer()) != 0
@@ -75,11 +62,7 @@ func (ptr *QTemporaryDir) AutoRemove() bool {
 }
 
 func (ptr *QTemporaryDir) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTemporaryDir::isValid")
-		}
-	}()
+	defer qt.Recovering("QTemporaryDir::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QTemporaryDir_IsValid(ptr.Pointer()) != 0
@@ -88,11 +71,7 @@ func (ptr *QTemporaryDir) IsValid() bool {
 }
 
 func (ptr *QTemporaryDir) Path() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTemporaryDir::path")
-		}
-	}()
+	defer qt.Recovering("QTemporaryDir::path")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTemporaryDir_Path(ptr.Pointer()))
@@ -101,11 +80,7 @@ func (ptr *QTemporaryDir) Path() string {
 }
 
 func (ptr *QTemporaryDir) SetAutoRemove(b bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTemporaryDir::setAutoRemove")
-		}
-	}()
+	defer qt.Recovering("QTemporaryDir::setAutoRemove")
 
 	if ptr.Pointer() != nil {
 		C.QTemporaryDir_SetAutoRemove(ptr.Pointer(), C.int(qt.GoBoolToInt(b)))
@@ -113,11 +88,7 @@ func (ptr *QTemporaryDir) SetAutoRemove(b bool) {
 }
 
 func (ptr *QTemporaryDir) DestroyQTemporaryDir() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTemporaryDir::~QTemporaryDir")
-		}
-	}()
+	defer qt.Recovering("QTemporaryDir::~QTemporaryDir")
 
 	if ptr.Pointer() != nil {
 		C.QTemporaryDir_DestroyQTemporaryDir(ptr.Pointer())

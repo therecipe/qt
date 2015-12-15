@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQSyntaxHighlighterFromPointer(ptr unsafe.Pointer) *QSyntaxHighlighter {
 	var n = new(QSyntaxHighlighter)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSyntaxHighlighter_") {
-		n.SetObjectName("QSyntaxHighlighter_" + qt.RandomIdentifier())
+		n.SetObjectName("QSyntaxHighlighter_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QSyntaxHighlighter) QSyntaxHighlighter_PTR() *QSyntaxHighlighter {
 }
 
 func (ptr *QSyntaxHighlighter) Document() *QTextDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSyntaxHighlighter::document")
-		}
-	}()
+	defer qt.Recovering("QSyntaxHighlighter::document")
 
 	if ptr.Pointer() != nil {
 		return NewQTextDocumentFromPointer(C.QSyntaxHighlighter_Document(ptr.Pointer()))
@@ -52,11 +47,7 @@ func (ptr *QSyntaxHighlighter) Document() *QTextDocument {
 }
 
 func (ptr *QSyntaxHighlighter) Rehighlight() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSyntaxHighlighter::rehighlight")
-		}
-	}()
+	defer qt.Recovering("QSyntaxHighlighter::rehighlight")
 
 	if ptr.Pointer() != nil {
 		C.QSyntaxHighlighter_Rehighlight(ptr.Pointer())
@@ -64,11 +55,7 @@ func (ptr *QSyntaxHighlighter) Rehighlight() {
 }
 
 func (ptr *QSyntaxHighlighter) RehighlightBlock(block QTextBlock_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSyntaxHighlighter::rehighlightBlock")
-		}
-	}()
+	defer qt.Recovering("QSyntaxHighlighter::rehighlightBlock")
 
 	if ptr.Pointer() != nil {
 		C.QSyntaxHighlighter_RehighlightBlock(ptr.Pointer(), PointerFromQTextBlock(block))
@@ -76,11 +63,7 @@ func (ptr *QSyntaxHighlighter) RehighlightBlock(block QTextBlock_ITF) {
 }
 
 func (ptr *QSyntaxHighlighter) SetDocument(doc QTextDocument_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSyntaxHighlighter::setDocument")
-		}
-	}()
+	defer qt.Recovering("QSyntaxHighlighter::setDocument")
 
 	if ptr.Pointer() != nil {
 		C.QSyntaxHighlighter_SetDocument(ptr.Pointer(), PointerFromQTextDocument(doc))
@@ -88,11 +71,7 @@ func (ptr *QSyntaxHighlighter) SetDocument(doc QTextDocument_ITF) {
 }
 
 func (ptr *QSyntaxHighlighter) DestroyQSyntaxHighlighter() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSyntaxHighlighter::~QSyntaxHighlighter")
-		}
-	}()
+	defer qt.Recovering("QSyntaxHighlighter::~QSyntaxHighlighter")
 
 	if ptr.Pointer() != nil {
 		C.QSyntaxHighlighter_DestroyQSyntaxHighlighter(ptr.Pointer())

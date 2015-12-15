@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -35,7 +34,7 @@ func NewQObjectFromPointer(ptr unsafe.Pointer) *QObject {
 	var n = new(QObject)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QObject_") {
-		n.SetObjectName("QObject_" + qt.RandomIdentifier())
+		n.SetObjectName("QObject_" + qt.Identifier())
 	}
 	return n
 }
@@ -45,11 +44,7 @@ func (ptr *QObject) QObject_PTR() *QObject {
 }
 
 func (ptr *QObject) InstallEventFilter(filterObj QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::installEventFilter")
-		}
-	}()
+	defer qt.Recovering("QObject::installEventFilter")
 
 	if ptr.Pointer() != nil {
 		C.QObject_InstallEventFilter(ptr.Pointer(), PointerFromQObject(filterObj))
@@ -57,11 +52,7 @@ func (ptr *QObject) InstallEventFilter(filterObj QObject_ITF) {
 }
 
 func (ptr *QObject) ObjectName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::objectName")
-		}
-	}()
+	defer qt.Recovering("QObject::objectName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QObject_ObjectName(ptr.Pointer()))
@@ -70,33 +61,52 @@ func (ptr *QObject) ObjectName() string {
 }
 
 func (ptr *QObject) SetObjectName(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::setObjectName")
-		}
-	}()
+	defer qt.Recovering("QObject::setObjectName")
 
 	if ptr.Pointer() != nil {
 		C.QObject_SetObjectName(ptr.Pointer(), C.CString(name))
 	}
 }
 
+func (ptr *QObject) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QObject::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QObject) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QObject::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQObjectTimerEvent
+func callbackQObjectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QObject::timerEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
+	if signal != nil {
+		defer signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func NewQObject(parent QObject_ITF) *QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::QObject")
-		}
-	}()
+	defer qt.Recovering("QObject::QObject")
 
 	return NewQObjectFromPointer(C.QObject_NewQObject(PointerFromQObject(parent)))
 }
 
 func (ptr *QObject) BlockSignals(block bool) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::blockSignals")
-		}
-	}()
+	defer qt.Recovering("QObject::blockSignals")
 
 	if ptr.Pointer() != nil {
 		return C.QObject_BlockSignals(ptr.Pointer(), C.int(qt.GoBoolToInt(block))) != 0
@@ -104,12 +114,70 @@ func (ptr *QObject) BlockSignals(block bool) bool {
 	return false
 }
 
+func (ptr *QObject) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QObject::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QObject) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QObject::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQObjectChildEvent
+func callbackQObjectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QObject::childEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "childEvent")
+	if signal != nil {
+		defer signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QObject) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QObject::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QObject) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QObject::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQObjectCustomEvent
+func callbackQObjectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QObject::customEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "customEvent")
+	if signal != nil {
+		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QObject) DeleteLater() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::deleteLater")
-		}
-	}()
+	defer qt.Recovering("QObject::deleteLater")
 
 	if ptr.Pointer() != nil {
 		C.QObject_DeleteLater(ptr.Pointer())
@@ -118,11 +186,7 @@ func (ptr *QObject) DeleteLater() {
 }
 
 func (ptr *QObject) ConnectDestroyed(f func(obj *QObject)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::destroyed")
-		}
-	}()
+	defer qt.Recovering("connect QObject::destroyed")
 
 	if ptr.Pointer() != nil {
 		C.QObject_ConnectDestroyed(ptr.Pointer())
@@ -131,11 +195,7 @@ func (ptr *QObject) ConnectDestroyed(f func(obj *QObject)) {
 }
 
 func (ptr *QObject) DisconnectDestroyed() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::destroyed")
-		}
-	}()
+	defer qt.Recovering("disconnect QObject::destroyed")
 
 	if ptr.Pointer() != nil {
 		C.QObject_DisconnectDestroyed(ptr.Pointer())
@@ -145,21 +205,17 @@ func (ptr *QObject) DisconnectDestroyed() {
 
 //export callbackQObjectDestroyed
 func callbackQObjectDestroyed(ptrName *C.char, obj unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::destroyed")
-		}
-	}()
+	defer qt.Recovering("callback QObject::destroyed")
 
-	qt.GetSignal(C.GoString(ptrName), "destroyed").(func(*QObject))(NewQObjectFromPointer(obj))
+	var signal = qt.GetSignal(C.GoString(ptrName), "destroyed")
+	if signal != nil {
+		signal.(func(*QObject))(NewQObjectFromPointer(obj))
+	}
+
 }
 
 func (ptr *QObject) DumpObjectInfo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::dumpObjectInfo")
-		}
-	}()
+	defer qt.Recovering("QObject::dumpObjectInfo")
 
 	if ptr.Pointer() != nil {
 		C.QObject_DumpObjectInfo(ptr.Pointer())
@@ -167,11 +223,7 @@ func (ptr *QObject) DumpObjectInfo() {
 }
 
 func (ptr *QObject) DumpObjectTree() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::dumpObjectTree")
-		}
-	}()
+	defer qt.Recovering("QObject::dumpObjectTree")
 
 	if ptr.Pointer() != nil {
 		C.QObject_DumpObjectTree(ptr.Pointer())
@@ -179,11 +231,7 @@ func (ptr *QObject) DumpObjectTree() {
 }
 
 func (ptr *QObject) Event(e QEvent_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::event")
-		}
-	}()
+	defer qt.Recovering("QObject::event")
 
 	if ptr.Pointer() != nil {
 		return C.QObject_Event(ptr.Pointer(), PointerFromQEvent(e)) != 0
@@ -192,11 +240,7 @@ func (ptr *QObject) Event(e QEvent_ITF) bool {
 }
 
 func (ptr *QObject) EventFilter(watched QObject_ITF, event QEvent_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::eventFilter")
-		}
-	}()
+	defer qt.Recovering("QObject::eventFilter")
 
 	if ptr.Pointer() != nil {
 		return C.QObject_EventFilter(ptr.Pointer(), PointerFromQObject(watched), PointerFromQEvent(event)) != 0
@@ -205,11 +249,7 @@ func (ptr *QObject) EventFilter(watched QObject_ITF, event QEvent_ITF) bool {
 }
 
 func (ptr *QObject) FindChild(name string, options Qt__FindChildOption) unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::findChild")
-		}
-	}()
+	defer qt.Recovering("QObject::findChild")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QObject_FindChild(ptr.Pointer(), C.CString(name), C.int(options)))
@@ -218,11 +258,7 @@ func (ptr *QObject) FindChild(name string, options Qt__FindChildOption) unsafe.P
 }
 
 func (ptr *QObject) Inherits(className string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::inherits")
-		}
-	}()
+	defer qt.Recovering("QObject::inherits")
 
 	if ptr.Pointer() != nil {
 		return C.QObject_Inherits(ptr.Pointer(), C.CString(className)) != 0
@@ -231,11 +267,7 @@ func (ptr *QObject) Inherits(className string) bool {
 }
 
 func (ptr *QObject) IsWidgetType() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::isWidgetType")
-		}
-	}()
+	defer qt.Recovering("QObject::isWidgetType")
 
 	if ptr.Pointer() != nil {
 		return C.QObject_IsWidgetType(ptr.Pointer()) != 0
@@ -244,11 +276,7 @@ func (ptr *QObject) IsWidgetType() bool {
 }
 
 func (ptr *QObject) IsWindowType() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::isWindowType")
-		}
-	}()
+	defer qt.Recovering("QObject::isWindowType")
 
 	if ptr.Pointer() != nil {
 		return C.QObject_IsWindowType(ptr.Pointer()) != 0
@@ -257,11 +285,7 @@ func (ptr *QObject) IsWindowType() bool {
 }
 
 func (ptr *QObject) KillTimer(id int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::killTimer")
-		}
-	}()
+	defer qt.Recovering("QObject::killTimer")
 
 	if ptr.Pointer() != nil {
 		C.QObject_KillTimer(ptr.Pointer(), C.int(id))
@@ -269,11 +293,7 @@ func (ptr *QObject) KillTimer(id int) {
 }
 
 func (ptr *QObject) MetaObject() *QMetaObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::metaObject")
-		}
-	}()
+	defer qt.Recovering("QObject::metaObject")
 
 	if ptr.Pointer() != nil {
 		return NewQMetaObjectFromPointer(C.QObject_MetaObject(ptr.Pointer()))
@@ -282,11 +302,7 @@ func (ptr *QObject) MetaObject() *QMetaObject {
 }
 
 func (ptr *QObject) MoveToThread(targetThread QThread_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::moveToThread")
-		}
-	}()
+	defer qt.Recovering("QObject::moveToThread")
 
 	if ptr.Pointer() != nil {
 		C.QObject_MoveToThread(ptr.Pointer(), PointerFromQThread(targetThread))
@@ -294,11 +310,7 @@ func (ptr *QObject) MoveToThread(targetThread QThread_ITF) {
 }
 
 func (ptr *QObject) ConnectObjectNameChanged(f func(objectName string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::objectNameChanged")
-		}
-	}()
+	defer qt.Recovering("connect QObject::objectNameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QObject_ConnectObjectNameChanged(ptr.Pointer())
@@ -307,11 +319,7 @@ func (ptr *QObject) ConnectObjectNameChanged(f func(objectName string)) {
 }
 
 func (ptr *QObject) DisconnectObjectNameChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::objectNameChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QObject::objectNameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QObject_DisconnectObjectNameChanged(ptr.Pointer())
@@ -321,21 +329,17 @@ func (ptr *QObject) DisconnectObjectNameChanged() {
 
 //export callbackQObjectObjectNameChanged
 func callbackQObjectObjectNameChanged(ptrName *C.char, objectName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::objectNameChanged")
-		}
-	}()
+	defer qt.Recovering("callback QObject::objectNameChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "objectNameChanged").(func(string))(C.GoString(objectName))
+	var signal = qt.GetSignal(C.GoString(ptrName), "objectNameChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(objectName))
+	}
+
 }
 
 func (ptr *QObject) Parent() *QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::parent")
-		}
-	}()
+	defer qt.Recovering("QObject::parent")
 
 	if ptr.Pointer() != nil {
 		return NewQObjectFromPointer(C.QObject_Parent(ptr.Pointer()))
@@ -344,11 +348,7 @@ func (ptr *QObject) Parent() *QObject {
 }
 
 func (ptr *QObject) Property(name string) *QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::property")
-		}
-	}()
+	defer qt.Recovering("QObject::property")
 
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QObject_Property(ptr.Pointer(), C.CString(name)))
@@ -357,11 +357,7 @@ func (ptr *QObject) Property(name string) *QVariant {
 }
 
 func (ptr *QObject) RemoveEventFilter(obj QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::removeEventFilter")
-		}
-	}()
+	defer qt.Recovering("QObject::removeEventFilter")
 
 	if ptr.Pointer() != nil {
 		C.QObject_RemoveEventFilter(ptr.Pointer(), PointerFromQObject(obj))
@@ -369,11 +365,7 @@ func (ptr *QObject) RemoveEventFilter(obj QObject_ITF) {
 }
 
 func (ptr *QObject) SetParent(parent QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::setParent")
-		}
-	}()
+	defer qt.Recovering("QObject::setParent")
 
 	if ptr.Pointer() != nil {
 		C.QObject_SetParent(ptr.Pointer(), PointerFromQObject(parent))
@@ -381,11 +373,7 @@ func (ptr *QObject) SetParent(parent QObject_ITF) {
 }
 
 func (ptr *QObject) SetProperty(name string, value QVariant_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::setProperty")
-		}
-	}()
+	defer qt.Recovering("QObject::setProperty")
 
 	if ptr.Pointer() != nil {
 		return C.QObject_SetProperty(ptr.Pointer(), C.CString(name), PointerFromQVariant(value)) != 0
@@ -394,11 +382,7 @@ func (ptr *QObject) SetProperty(name string, value QVariant_ITF) bool {
 }
 
 func (ptr *QObject) StartTimer(interval int, timerType Qt__TimerType) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::startTimer")
-		}
-	}()
+	defer qt.Recovering("QObject::startTimer")
 
 	if ptr.Pointer() != nil {
 		return int(C.QObject_StartTimer(ptr.Pointer(), C.int(interval), C.int(timerType)))
@@ -407,11 +391,7 @@ func (ptr *QObject) StartTimer(interval int, timerType Qt__TimerType) int {
 }
 
 func (ptr *QObject) SignalsBlocked() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::signalsBlocked")
-		}
-	}()
+	defer qt.Recovering("QObject::signalsBlocked")
 
 	if ptr.Pointer() != nil {
 		return C.QObject_SignalsBlocked(ptr.Pointer()) != 0
@@ -420,11 +400,7 @@ func (ptr *QObject) SignalsBlocked() bool {
 }
 
 func (ptr *QObject) Thread() *QThread {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::thread")
-		}
-	}()
+	defer qt.Recovering("QObject::thread")
 
 	if ptr.Pointer() != nil {
 		return NewQThreadFromPointer(C.QObject_Thread(ptr.Pointer()))
@@ -433,21 +409,13 @@ func (ptr *QObject) Thread() *QThread {
 }
 
 func QObject_Tr(sourceText string, disambiguation string, n int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::tr")
-		}
-	}()
+	defer qt.Recovering("QObject::tr")
 
 	return C.GoString(C.QObject_QObject_Tr(C.CString(sourceText), C.CString(disambiguation), C.int(n)))
 }
 
 func (ptr *QObject) DestroyQObject() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QObject::~QObject")
-		}
-	}()
+	defer qt.Recovering("QObject::~QObject")
 
 	if ptr.Pointer() != nil {
 		C.QObject_DestroyQObject(ptr.Pointer())

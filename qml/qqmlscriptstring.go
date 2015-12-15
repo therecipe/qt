@@ -4,7 +4,6 @@ package qml
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +41,19 @@ func (ptr *QQmlScriptString) QQmlScriptString_PTR() *QQmlScriptString {
 }
 
 func NewQQmlScriptString() *QQmlScriptString {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlScriptString::QQmlScriptString")
-		}
-	}()
+	defer qt.Recovering("QQmlScriptString::QQmlScriptString")
 
 	return NewQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString())
 }
 
 func NewQQmlScriptString2(other QQmlScriptString_ITF) *QQmlScriptString {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlScriptString::QQmlScriptString")
-		}
-	}()
+	defer qt.Recovering("QQmlScriptString::QQmlScriptString")
 
 	return NewQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString2(PointerFromQQmlScriptString(other)))
 }
 
 func (ptr *QQmlScriptString) BooleanLiteral(ok bool) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlScriptString::booleanLiteral")
-		}
-	}()
+	defer qt.Recovering("QQmlScriptString::booleanLiteral")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlScriptString_BooleanLiteral(ptr.Pointer(), C.int(qt.GoBoolToInt(ok))) != 0
@@ -75,11 +62,7 @@ func (ptr *QQmlScriptString) BooleanLiteral(ok bool) bool {
 }
 
 func (ptr *QQmlScriptString) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlScriptString::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QQmlScriptString::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlScriptString_IsEmpty(ptr.Pointer()) != 0
@@ -88,11 +71,7 @@ func (ptr *QQmlScriptString) IsEmpty() bool {
 }
 
 func (ptr *QQmlScriptString) IsNullLiteral() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlScriptString::isNullLiteral")
-		}
-	}()
+	defer qt.Recovering("QQmlScriptString::isNullLiteral")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlScriptString_IsNullLiteral(ptr.Pointer()) != 0
@@ -101,11 +80,7 @@ func (ptr *QQmlScriptString) IsNullLiteral() bool {
 }
 
 func (ptr *QQmlScriptString) IsUndefinedLiteral() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlScriptString::isUndefinedLiteral")
-		}
-	}()
+	defer qt.Recovering("QQmlScriptString::isUndefinedLiteral")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlScriptString_IsUndefinedLiteral(ptr.Pointer()) != 0
@@ -114,11 +89,7 @@ func (ptr *QQmlScriptString) IsUndefinedLiteral() bool {
 }
 
 func (ptr *QQmlScriptString) NumberLiteral(ok bool) float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlScriptString::numberLiteral")
-		}
-	}()
+	defer qt.Recovering("QQmlScriptString::numberLiteral")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQmlScriptString_NumberLiteral(ptr.Pointer(), C.int(qt.GoBoolToInt(ok))))
@@ -127,11 +98,7 @@ func (ptr *QQmlScriptString) NumberLiteral(ok bool) float64 {
 }
 
 func (ptr *QQmlScriptString) StringLiteral() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlScriptString::stringLiteral")
-		}
-	}()
+	defer qt.Recovering("QQmlScriptString::stringLiteral")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlScriptString_StringLiteral(ptr.Pointer()))

@@ -5,7 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
 
@@ -29,7 +29,7 @@ func NewQProgressDialogFromPointer(ptr unsafe.Pointer) *QProgressDialog {
 	var n = new(QProgressDialog)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QProgressDialog_") {
-		n.SetObjectName("QProgressDialog_" + qt.RandomIdentifier())
+		n.SetObjectName("QProgressDialog_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +39,7 @@ func (ptr *QProgressDialog) QProgressDialog_PTR() *QProgressDialog {
 }
 
 func (ptr *QProgressDialog) AutoClose() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::autoClose")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::autoClose")
 
 	if ptr.Pointer() != nil {
 		return C.QProgressDialog_AutoClose(ptr.Pointer()) != 0
@@ -52,11 +48,7 @@ func (ptr *QProgressDialog) AutoClose() bool {
 }
 
 func (ptr *QProgressDialog) AutoReset() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::autoReset")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::autoReset")
 
 	if ptr.Pointer() != nil {
 		return C.QProgressDialog_AutoReset(ptr.Pointer()) != 0
@@ -65,11 +57,7 @@ func (ptr *QProgressDialog) AutoReset() bool {
 }
 
 func (ptr *QProgressDialog) LabelText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::labelText")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::labelText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QProgressDialog_LabelText(ptr.Pointer()))
@@ -78,11 +66,7 @@ func (ptr *QProgressDialog) LabelText() string {
 }
 
 func (ptr *QProgressDialog) Maximum() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::maximum")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::maximum")
 
 	if ptr.Pointer() != nil {
 		return int(C.QProgressDialog_Maximum(ptr.Pointer()))
@@ -91,11 +75,7 @@ func (ptr *QProgressDialog) Maximum() int {
 }
 
 func (ptr *QProgressDialog) Minimum() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::minimum")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::minimum")
 
 	if ptr.Pointer() != nil {
 		return int(C.QProgressDialog_Minimum(ptr.Pointer()))
@@ -104,11 +84,7 @@ func (ptr *QProgressDialog) Minimum() int {
 }
 
 func (ptr *QProgressDialog) MinimumDuration() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::minimumDuration")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::minimumDuration")
 
 	if ptr.Pointer() != nil {
 		return int(C.QProgressDialog_MinimumDuration(ptr.Pointer()))
@@ -117,11 +93,7 @@ func (ptr *QProgressDialog) MinimumDuration() int {
 }
 
 func (ptr *QProgressDialog) SetAutoClose(close bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setAutoClose")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setAutoClose")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetAutoClose(ptr.Pointer(), C.int(qt.GoBoolToInt(close)))
@@ -129,11 +101,7 @@ func (ptr *QProgressDialog) SetAutoClose(close bool) {
 }
 
 func (ptr *QProgressDialog) SetAutoReset(reset bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setAutoReset")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setAutoReset")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetAutoReset(ptr.Pointer(), C.int(qt.GoBoolToInt(reset)))
@@ -141,11 +109,7 @@ func (ptr *QProgressDialog) SetAutoReset(reset bool) {
 }
 
 func (ptr *QProgressDialog) SetLabelText(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setLabelText")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setLabelText")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetLabelText(ptr.Pointer(), C.CString(text))
@@ -153,11 +117,7 @@ func (ptr *QProgressDialog) SetLabelText(text string) {
 }
 
 func (ptr *QProgressDialog) SetMaximum(maximum int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setMaximum")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setMaximum")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetMaximum(ptr.Pointer(), C.int(maximum))
@@ -165,11 +125,7 @@ func (ptr *QProgressDialog) SetMaximum(maximum int) {
 }
 
 func (ptr *QProgressDialog) SetMinimum(minimum int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setMinimum")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setMinimum")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetMinimum(ptr.Pointer(), C.int(minimum))
@@ -177,11 +133,7 @@ func (ptr *QProgressDialog) SetMinimum(minimum int) {
 }
 
 func (ptr *QProgressDialog) SetMinimumDuration(ms int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setMinimumDuration")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setMinimumDuration")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetMinimumDuration(ptr.Pointer(), C.int(ms))
@@ -189,11 +141,7 @@ func (ptr *QProgressDialog) SetMinimumDuration(ms int) {
 }
 
 func (ptr *QProgressDialog) SetValue(progress int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setValue")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setValue")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetValue(ptr.Pointer(), C.int(progress))
@@ -201,11 +149,7 @@ func (ptr *QProgressDialog) SetValue(progress int) {
 }
 
 func (ptr *QProgressDialog) Value() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::value")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::value")
 
 	if ptr.Pointer() != nil {
 		return int(C.QProgressDialog_Value(ptr.Pointer()))
@@ -214,11 +158,7 @@ func (ptr *QProgressDialog) Value() int {
 }
 
 func (ptr *QProgressDialog) WasCanceled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::wasCanceled")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::wasCanceled")
 
 	if ptr.Pointer() != nil {
 		return C.QProgressDialog_WasCanceled(ptr.Pointer()) != 0
@@ -227,31 +167,19 @@ func (ptr *QProgressDialog) WasCanceled() bool {
 }
 
 func NewQProgressDialog(parent QWidget_ITF, f core.Qt__WindowType) *QProgressDialog {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::QProgressDialog")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::QProgressDialog")
 
 	return NewQProgressDialogFromPointer(C.QProgressDialog_NewQProgressDialog(PointerFromQWidget(parent), C.int(f)))
 }
 
 func NewQProgressDialog2(labelText string, cancelButtonText string, minimum int, maximum int, parent QWidget_ITF, f core.Qt__WindowType) *QProgressDialog {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::QProgressDialog")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::QProgressDialog")
 
 	return NewQProgressDialogFromPointer(C.QProgressDialog_NewQProgressDialog2(C.CString(labelText), C.CString(cancelButtonText), C.int(minimum), C.int(maximum), PointerFromQWidget(parent), C.int(f)))
 }
 
 func (ptr *QProgressDialog) Cancel() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::cancel")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::cancel")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_Cancel(ptr.Pointer())
@@ -259,11 +187,7 @@ func (ptr *QProgressDialog) Cancel() {
 }
 
 func (ptr *QProgressDialog) ConnectCanceled(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::canceled")
-		}
-	}()
+	defer qt.Recovering("connect QProgressDialog::canceled")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_ConnectCanceled(ptr.Pointer())
@@ -272,11 +196,7 @@ func (ptr *QProgressDialog) ConnectCanceled(f func()) {
 }
 
 func (ptr *QProgressDialog) DisconnectCanceled() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::canceled")
-		}
-	}()
+	defer qt.Recovering("disconnect QProgressDialog::canceled")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_DisconnectCanceled(ptr.Pointer())
@@ -286,21 +206,79 @@ func (ptr *QProgressDialog) DisconnectCanceled() {
 
 //export callbackQProgressDialogCanceled
 func callbackQProgressDialogCanceled(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::canceled")
-		}
-	}()
+	defer qt.Recovering("callback QProgressDialog::canceled")
 
-	qt.GetSignal(C.GoString(ptrName), "canceled").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "canceled")
+	if signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QProgressDialog) ConnectChangeEvent(f func(ev *core.QEvent)) {
+	defer qt.Recovering("connect QProgressDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QProgressDialog) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QProgressDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQProgressDialogChangeEvent
+func callbackQProgressDialogChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QProgressDialog::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QProgressDialog) ConnectCloseEvent(f func(e *gui.QCloseEvent)) {
+	defer qt.Recovering("connect QProgressDialog::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+	}
+}
+
+func (ptr *QProgressDialog) DisconnectCloseEvent() {
+	defer qt.Recovering("disconnect QProgressDialog::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+	}
+}
+
+//export callbackQProgressDialogCloseEvent
+func callbackQProgressDialogCloseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QProgressDialog::closeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "closeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QProgressDialog) Open(receiver core.QObject_ITF, member string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::open")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::open")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_Open(ptr.Pointer(), core.PointerFromQObject(receiver), C.CString(member))
@@ -308,23 +286,46 @@ func (ptr *QProgressDialog) Open(receiver core.QObject_ITF, member string) {
 }
 
 func (ptr *QProgressDialog) Reset() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::reset")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::reset")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_Reset(ptr.Pointer())
 	}
 }
 
+func (ptr *QProgressDialog) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
+	defer qt.Recovering("connect QProgressDialog::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+	}
+}
+
+func (ptr *QProgressDialog) DisconnectResizeEvent() {
+	defer qt.Recovering("disconnect QProgressDialog::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+	}
+}
+
+//export callbackQProgressDialogResizeEvent
+func callbackQProgressDialogResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QProgressDialog::resizeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QProgressDialog) SetBar(bar QProgressBar_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setBar")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setBar")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetBar(ptr.Pointer(), PointerFromQProgressBar(bar))
@@ -332,11 +333,7 @@ func (ptr *QProgressDialog) SetBar(bar QProgressBar_ITF) {
 }
 
 func (ptr *QProgressDialog) SetCancelButton(cancelButton QPushButton_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setCancelButton")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setCancelButton")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetCancelButton(ptr.Pointer(), PointerFromQPushButton(cancelButton))
@@ -344,11 +341,7 @@ func (ptr *QProgressDialog) SetCancelButton(cancelButton QPushButton_ITF) {
 }
 
 func (ptr *QProgressDialog) SetCancelButtonText(cancelButtonText string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setCancelButtonText")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setCancelButtonText")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetCancelButtonText(ptr.Pointer(), C.CString(cancelButtonText))
@@ -356,11 +349,7 @@ func (ptr *QProgressDialog) SetCancelButtonText(cancelButtonText string) {
 }
 
 func (ptr *QProgressDialog) SetLabel(label QLabel_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setLabel")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setLabel")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetLabel(ptr.Pointer(), PointerFromQLabel(label))
@@ -368,23 +357,46 @@ func (ptr *QProgressDialog) SetLabel(label QLabel_ITF) {
 }
 
 func (ptr *QProgressDialog) SetRange(minimum int, maximum int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::setRange")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::setRange")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_SetRange(ptr.Pointer(), C.int(minimum), C.int(maximum))
 	}
 }
 
+func (ptr *QProgressDialog) ConnectShowEvent(f func(e *gui.QShowEvent)) {
+	defer qt.Recovering("connect QProgressDialog::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+	}
+}
+
+func (ptr *QProgressDialog) DisconnectShowEvent() {
+	defer qt.Recovering("disconnect QProgressDialog::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+	}
+}
+
+//export callbackQProgressDialogShowEvent
+func callbackQProgressDialogShowEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QProgressDialog::showEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QProgressDialog) DestroyQProgressDialog() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QProgressDialog::~QProgressDialog")
-		}
-	}()
+	defer qt.Recovering("QProgressDialog::~QProgressDialog")
 
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_DestroyQProgressDialog(ptr.Pointer())

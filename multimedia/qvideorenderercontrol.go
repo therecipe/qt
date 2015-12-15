@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQVideoRendererControlFromPointer(ptr unsafe.Pointer) *QVideoRendererCont
 	var n = new(QVideoRendererControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoRendererControl_") {
-		n.SetObjectName("QVideoRendererControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QVideoRendererControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QVideoRendererControl) QVideoRendererControl_PTR() *QVideoRendererCon
 }
 
 func (ptr *QVideoRendererControl) SetSurface(surface QAbstractVideoSurface_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoRendererControl::setSurface")
-		}
-	}()
+	defer qt.Recovering("QVideoRendererControl::setSurface")
 
 	if ptr.Pointer() != nil {
 		C.QVideoRendererControl_SetSurface(ptr.Pointer(), PointerFromQAbstractVideoSurface(surface))
@@ -50,11 +45,7 @@ func (ptr *QVideoRendererControl) SetSurface(surface QAbstractVideoSurface_ITF) 
 }
 
 func (ptr *QVideoRendererControl) Surface() *QAbstractVideoSurface {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoRendererControl::surface")
-		}
-	}()
+	defer qt.Recovering("QVideoRendererControl::surface")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractVideoSurfaceFromPointer(C.QVideoRendererControl_Surface(ptr.Pointer()))
@@ -63,11 +54,7 @@ func (ptr *QVideoRendererControl) Surface() *QAbstractVideoSurface {
 }
 
 func (ptr *QVideoRendererControl) DestroyQVideoRendererControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVideoRendererControl::~QVideoRendererControl")
-		}
-	}()
+	defer qt.Recovering("QVideoRendererControl::~QVideoRendererControl")
 
 	if ptr.Pointer() != nil {
 		C.QVideoRendererControl_DestroyQVideoRendererControl(ptr.Pointer())

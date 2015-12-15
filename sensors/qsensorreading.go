@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQSensorReadingFromPointer(ptr unsafe.Pointer) *QSensorReading {
 	var n = new(QSensorReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSensorReading_") {
-		n.SetObjectName("QSensorReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QSensorReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QSensorReading) QSensorReading_PTR() *QSensorReading {
 }
 
 func (ptr *QSensorReading) Value(index int) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorReading::value")
-		}
-	}()
+	defer qt.Recovering("QSensorReading::value")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSensorReading_Value(ptr.Pointer(), C.int(index)))
@@ -52,11 +47,7 @@ func (ptr *QSensorReading) Value(index int) *core.QVariant {
 }
 
 func (ptr *QSensorReading) ValueCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorReading::valueCount")
-		}
-	}()
+	defer qt.Recovering("QSensorReading::valueCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSensorReading_ValueCount(ptr.Pointer()))

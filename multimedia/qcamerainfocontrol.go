@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQCameraInfoControlFromPointer(ptr unsafe.Pointer) *QCameraInfoControl {
 	var n = new(QCameraInfoControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraInfoControl_") {
-		n.SetObjectName("QCameraInfoControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QCameraInfoControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QCameraInfoControl) QCameraInfoControl_PTR() *QCameraInfoControl {
 }
 
 func (ptr *QCameraInfoControl) CameraOrientation(deviceName string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraInfoControl::cameraOrientation")
-		}
-	}()
+	defer qt.Recovering("QCameraInfoControl::cameraOrientation")
 
 	if ptr.Pointer() != nil {
 		return int(C.QCameraInfoControl_CameraOrientation(ptr.Pointer(), C.CString(deviceName)))
@@ -51,11 +46,7 @@ func (ptr *QCameraInfoControl) CameraOrientation(deviceName string) int {
 }
 
 func (ptr *QCameraInfoControl) CameraPosition(deviceName string) QCamera__Position {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraInfoControl::cameraPosition")
-		}
-	}()
+	defer qt.Recovering("QCameraInfoControl::cameraPosition")
 
 	if ptr.Pointer() != nil {
 		return QCamera__Position(C.QCameraInfoControl_CameraPosition(ptr.Pointer(), C.CString(deviceName)))
@@ -64,11 +55,7 @@ func (ptr *QCameraInfoControl) CameraPosition(deviceName string) QCamera__Positi
 }
 
 func (ptr *QCameraInfoControl) DestroyQCameraInfoControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraInfoControl::~QCameraInfoControl")
-		}
-	}()
+	defer qt.Recovering("QCameraInfoControl::~QCameraInfoControl")
 
 	if ptr.Pointer() != nil {
 		C.QCameraInfoControl_DestroyQCameraInfoControl(ptr.Pointer())

@@ -3,7 +3,7 @@ package script
 //#include "script.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,11 +41,7 @@ func (ptr *QScriptable) QScriptable_PTR() *QScriptable {
 }
 
 func (ptr *QScriptable) Argument(index int) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptable::argument")
-		}
-	}()
+	defer qt.Recovering("QScriptable::argument")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptable_Argument(ptr.Pointer(), C.int(index)))
@@ -54,11 +50,7 @@ func (ptr *QScriptable) Argument(index int) *QScriptValue {
 }
 
 func (ptr *QScriptable) ArgumentCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptable::argumentCount")
-		}
-	}()
+	defer qt.Recovering("QScriptable::argumentCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QScriptable_ArgumentCount(ptr.Pointer()))
@@ -67,11 +59,7 @@ func (ptr *QScriptable) ArgumentCount() int {
 }
 
 func (ptr *QScriptable) Context() *QScriptContext {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptable::context")
-		}
-	}()
+	defer qt.Recovering("QScriptable::context")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptContextFromPointer(C.QScriptable_Context(ptr.Pointer()))
@@ -80,11 +68,7 @@ func (ptr *QScriptable) Context() *QScriptContext {
 }
 
 func (ptr *QScriptable) Engine() *QScriptEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptable::engine")
-		}
-	}()
+	defer qt.Recovering("QScriptable::engine")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptEngineFromPointer(C.QScriptable_Engine(ptr.Pointer()))
@@ -93,11 +77,7 @@ func (ptr *QScriptable) Engine() *QScriptEngine {
 }
 
 func (ptr *QScriptable) ThisObject() *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptable::thisObject")
-		}
-	}()
+	defer qt.Recovering("QScriptable::thisObject")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptable_ThisObject(ptr.Pointer()))

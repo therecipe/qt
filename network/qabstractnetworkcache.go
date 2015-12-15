@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQAbstractNetworkCacheFromPointer(ptr unsafe.Pointer) *QAbstractNetworkCa
 	var n = new(QAbstractNetworkCache)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractNetworkCache_") {
-		n.SetObjectName("QAbstractNetworkCache_" + qt.RandomIdentifier())
+		n.SetObjectName("QAbstractNetworkCache_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QAbstractNetworkCache) QAbstractNetworkCache_PTR() *QAbstractNetworkC
 }
 
 func (ptr *QAbstractNetworkCache) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractNetworkCache::clear")
-		}
-	}()
+	defer qt.Recovering("QAbstractNetworkCache::clear")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractNetworkCache_Clear(ptr.Pointer())
@@ -51,11 +46,7 @@ func (ptr *QAbstractNetworkCache) Clear() {
 }
 
 func (ptr *QAbstractNetworkCache) Data(url core.QUrl_ITF) *core.QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractNetworkCache::data")
-		}
-	}()
+	defer qt.Recovering("QAbstractNetworkCache::data")
 
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QAbstractNetworkCache_Data(ptr.Pointer(), core.PointerFromQUrl(url)))
@@ -64,11 +55,7 @@ func (ptr *QAbstractNetworkCache) Data(url core.QUrl_ITF) *core.QIODevice {
 }
 
 func (ptr *QAbstractNetworkCache) Prepare(metaData QNetworkCacheMetaData_ITF) *core.QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractNetworkCache::prepare")
-		}
-	}()
+	defer qt.Recovering("QAbstractNetworkCache::prepare")
 
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QAbstractNetworkCache_Prepare(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
@@ -77,11 +64,7 @@ func (ptr *QAbstractNetworkCache) Prepare(metaData QNetworkCacheMetaData_ITF) *c
 }
 
 func (ptr *QAbstractNetworkCache) UpdateMetaData(metaData QNetworkCacheMetaData_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractNetworkCache::updateMetaData")
-		}
-	}()
+	defer qt.Recovering("QAbstractNetworkCache::updateMetaData")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractNetworkCache_UpdateMetaData(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData))
@@ -89,11 +72,7 @@ func (ptr *QAbstractNetworkCache) UpdateMetaData(metaData QNetworkCacheMetaData_
 }
 
 func (ptr *QAbstractNetworkCache) DestroyQAbstractNetworkCache() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractNetworkCache::~QAbstractNetworkCache")
-		}
-	}()
+	defer qt.Recovering("QAbstractNetworkCache::~QAbstractNetworkCache")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractNetworkCache_DestroyQAbstractNetworkCache(ptr.Pointer())

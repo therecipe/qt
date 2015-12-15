@@ -27,7 +27,7 @@ func NewQFutureWatcherFromPointer(ptr unsafe.Pointer) *QFutureWatcher {
 	var n = new(QFutureWatcher)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QFutureWatcher_") {
-		n.SetObjectName("QFutureWatcher_" + qt.RandomIdentifier())
+		n.SetObjectName("QFutureWatcher_" + qt.Identifier())
 	}
 	return n
 }

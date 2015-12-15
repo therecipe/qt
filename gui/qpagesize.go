@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -196,71 +196,43 @@ const (
 )
 
 func NewQPageSize() *QPageSize {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::QPageSize")
-		}
-	}()
+	defer qt.Recovering("QPageSize::QPageSize")
 
 	return NewQPageSizeFromPointer(C.QPageSize_NewQPageSize())
 }
 
 func NewQPageSize2(pageSize QPageSize__PageSizeId) *QPageSize {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::QPageSize")
-		}
-	}()
+	defer qt.Recovering("QPageSize::QPageSize")
 
 	return NewQPageSizeFromPointer(C.QPageSize_NewQPageSize2(C.int(pageSize)))
 }
 
 func NewQPageSize5(other QPageSize_ITF) *QPageSize {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::QPageSize")
-		}
-	}()
+	defer qt.Recovering("QPageSize::QPageSize")
 
 	return NewQPageSizeFromPointer(C.QPageSize_NewQPageSize5(PointerFromQPageSize(other)))
 }
 
 func NewQPageSize3(pointSize core.QSize_ITF, name string, matchPolicy QPageSize__SizeMatchPolicy) *QPageSize {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::QPageSize")
-		}
-	}()
+	defer qt.Recovering("QPageSize::QPageSize")
 
 	return NewQPageSizeFromPointer(C.QPageSize_NewQPageSize3(core.PointerFromQSize(pointSize), C.CString(name), C.int(matchPolicy)))
 }
 
 func NewQPageSize4(size core.QSizeF_ITF, units QPageSize__Unit, name string, matchPolicy QPageSize__SizeMatchPolicy) *QPageSize {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::QPageSize")
-		}
-	}()
+	defer qt.Recovering("QPageSize::QPageSize")
 
 	return NewQPageSizeFromPointer(C.QPageSize_NewQPageSize4(core.PointerFromQSizeF(size), C.int(units), C.CString(name), C.int(matchPolicy)))
 }
 
 func QPageSize_DefinitionUnits2(pageSizeId QPageSize__PageSizeId) QPageSize__Unit {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::definitionUnits")
-		}
-	}()
+	defer qt.Recovering("QPageSize::definitionUnits")
 
 	return QPageSize__Unit(C.QPageSize_QPageSize_DefinitionUnits2(C.int(pageSizeId)))
 }
 
 func (ptr *QPageSize) DefinitionUnits() QPageSize__Unit {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::definitionUnits")
-		}
-	}()
+	defer qt.Recovering("QPageSize::definitionUnits")
 
 	if ptr.Pointer() != nil {
 		return QPageSize__Unit(C.QPageSize_DefinitionUnits(ptr.Pointer()))
@@ -269,41 +241,25 @@ func (ptr *QPageSize) DefinitionUnits() QPageSize__Unit {
 }
 
 func QPageSize_Id2(pointSize core.QSize_ITF, matchPolicy QPageSize__SizeMatchPolicy) QPageSize__PageSizeId {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::id")
-		}
-	}()
+	defer qt.Recovering("QPageSize::id")
 
 	return QPageSize__PageSizeId(C.QPageSize_QPageSize_Id2(core.PointerFromQSize(pointSize), C.int(matchPolicy)))
 }
 
 func QPageSize_Id3(size core.QSizeF_ITF, units QPageSize__Unit, matchPolicy QPageSize__SizeMatchPolicy) QPageSize__PageSizeId {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::id")
-		}
-	}()
+	defer qt.Recovering("QPageSize::id")
 
 	return QPageSize__PageSizeId(C.QPageSize_QPageSize_Id3(core.PointerFromQSizeF(size), C.int(units), C.int(matchPolicy)))
 }
 
 func QPageSize_Id4(windowsId int) QPageSize__PageSizeId {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::id")
-		}
-	}()
+	defer qt.Recovering("QPageSize::id")
 
 	return QPageSize__PageSizeId(C.QPageSize_QPageSize_Id4(C.int(windowsId)))
 }
 
 func (ptr *QPageSize) Id() QPageSize__PageSizeId {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::id")
-		}
-	}()
+	defer qt.Recovering("QPageSize::id")
 
 	if ptr.Pointer() != nil {
 		return QPageSize__PageSizeId(C.QPageSize_Id(ptr.Pointer()))
@@ -312,11 +268,7 @@ func (ptr *QPageSize) Id() QPageSize__PageSizeId {
 }
 
 func (ptr *QPageSize) IsEquivalentTo(other QPageSize_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::isEquivalentTo")
-		}
-	}()
+	defer qt.Recovering("QPageSize::isEquivalentTo")
 
 	if ptr.Pointer() != nil {
 		return C.QPageSize_IsEquivalentTo(ptr.Pointer(), PointerFromQPageSize(other)) != 0
@@ -325,11 +277,7 @@ func (ptr *QPageSize) IsEquivalentTo(other QPageSize_ITF) bool {
 }
 
 func (ptr *QPageSize) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::isValid")
-		}
-	}()
+	defer qt.Recovering("QPageSize::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QPageSize_IsValid(ptr.Pointer()) != 0
@@ -338,21 +286,13 @@ func (ptr *QPageSize) IsValid() bool {
 }
 
 func QPageSize_Key2(pageSizeId QPageSize__PageSizeId) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::key")
-		}
-	}()
+	defer qt.Recovering("QPageSize::key")
 
 	return C.GoString(C.QPageSize_QPageSize_Key2(C.int(pageSizeId)))
 }
 
 func (ptr *QPageSize) Key() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::key")
-		}
-	}()
+	defer qt.Recovering("QPageSize::key")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QPageSize_Key(ptr.Pointer()))
@@ -361,21 +301,13 @@ func (ptr *QPageSize) Key() string {
 }
 
 func QPageSize_Name2(pageSizeId QPageSize__PageSizeId) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::name")
-		}
-	}()
+	defer qt.Recovering("QPageSize::name")
 
 	return C.GoString(C.QPageSize_QPageSize_Name2(C.int(pageSizeId)))
 }
 
 func (ptr *QPageSize) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::name")
-		}
-	}()
+	defer qt.Recovering("QPageSize::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QPageSize_Name(ptr.Pointer()))
@@ -384,11 +316,7 @@ func (ptr *QPageSize) Name() string {
 }
 
 func (ptr *QPageSize) Swap(other QPageSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::swap")
-		}
-	}()
+	defer qt.Recovering("QPageSize::swap")
 
 	if ptr.Pointer() != nil {
 		C.QPageSize_Swap(ptr.Pointer(), PointerFromQPageSize(other))
@@ -396,21 +324,13 @@ func (ptr *QPageSize) Swap(other QPageSize_ITF) {
 }
 
 func QPageSize_WindowsId2(pageSizeId QPageSize__PageSizeId) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::windowsId")
-		}
-	}()
+	defer qt.Recovering("QPageSize::windowsId")
 
 	return int(C.QPageSize_QPageSize_WindowsId2(C.int(pageSizeId)))
 }
 
 func (ptr *QPageSize) WindowsId() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::windowsId")
-		}
-	}()
+	defer qt.Recovering("QPageSize::windowsId")
 
 	if ptr.Pointer() != nil {
 		return int(C.QPageSize_WindowsId(ptr.Pointer()))
@@ -419,11 +339,7 @@ func (ptr *QPageSize) WindowsId() int {
 }
 
 func (ptr *QPageSize) DestroyQPageSize() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPageSize::~QPageSize")
-		}
-	}()
+	defer qt.Recovering("QPageSize::~QPageSize")
 
 	if ptr.Pointer() != nil {
 		C.QPageSize_DestroyQPageSize(ptr.Pointer())

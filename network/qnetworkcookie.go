@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -51,31 +50,19 @@ const (
 )
 
 func NewQNetworkCookie(name core.QByteArray_ITF, value core.QByteArray_ITF) *QNetworkCookie {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::QNetworkCookie")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::QNetworkCookie")
 
 	return NewQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie(core.PointerFromQByteArray(name), core.PointerFromQByteArray(value)))
 }
 
 func NewQNetworkCookie2(other QNetworkCookie_ITF) *QNetworkCookie {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::QNetworkCookie")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::QNetworkCookie")
 
 	return NewQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie2(PointerFromQNetworkCookie(other)))
 }
 
 func (ptr *QNetworkCookie) Domain() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::domain")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::domain")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkCookie_Domain(ptr.Pointer()))
@@ -84,11 +71,7 @@ func (ptr *QNetworkCookie) Domain() string {
 }
 
 func (ptr *QNetworkCookie) ExpirationDate() *core.QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::expirationDate")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::expirationDate")
 
 	if ptr.Pointer() != nil {
 		return core.NewQDateTimeFromPointer(C.QNetworkCookie_ExpirationDate(ptr.Pointer()))
@@ -97,11 +80,7 @@ func (ptr *QNetworkCookie) ExpirationDate() *core.QDateTime {
 }
 
 func (ptr *QNetworkCookie) HasSameIdentifier(other QNetworkCookie_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::hasSameIdentifier")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::hasSameIdentifier")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkCookie_HasSameIdentifier(ptr.Pointer(), PointerFromQNetworkCookie(other)) != 0
@@ -110,11 +89,7 @@ func (ptr *QNetworkCookie) HasSameIdentifier(other QNetworkCookie_ITF) bool {
 }
 
 func (ptr *QNetworkCookie) IsHttpOnly() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::isHttpOnly")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::isHttpOnly")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkCookie_IsHttpOnly(ptr.Pointer()) != 0
@@ -123,11 +98,7 @@ func (ptr *QNetworkCookie) IsHttpOnly() bool {
 }
 
 func (ptr *QNetworkCookie) IsSecure() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::isSecure")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::isSecure")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkCookie_IsSecure(ptr.Pointer()) != 0
@@ -136,11 +107,7 @@ func (ptr *QNetworkCookie) IsSecure() bool {
 }
 
 func (ptr *QNetworkCookie) IsSessionCookie() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::isSessionCookie")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::isSessionCookie")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkCookie_IsSessionCookie(ptr.Pointer()) != 0
@@ -149,11 +116,7 @@ func (ptr *QNetworkCookie) IsSessionCookie() bool {
 }
 
 func (ptr *QNetworkCookie) Name() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::name")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::name")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QNetworkCookie_Name(ptr.Pointer()))
@@ -162,11 +125,7 @@ func (ptr *QNetworkCookie) Name() *core.QByteArray {
 }
 
 func (ptr *QNetworkCookie) Normalize(url core.QUrl_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::normalize")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::normalize")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_Normalize(ptr.Pointer(), core.PointerFromQUrl(url))
@@ -174,11 +133,7 @@ func (ptr *QNetworkCookie) Normalize(url core.QUrl_ITF) {
 }
 
 func (ptr *QNetworkCookie) Path() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::path")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::path")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkCookie_Path(ptr.Pointer()))
@@ -187,11 +142,7 @@ func (ptr *QNetworkCookie) Path() string {
 }
 
 func (ptr *QNetworkCookie) SetDomain(domain string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::setDomain")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::setDomain")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_SetDomain(ptr.Pointer(), C.CString(domain))
@@ -199,11 +150,7 @@ func (ptr *QNetworkCookie) SetDomain(domain string) {
 }
 
 func (ptr *QNetworkCookie) SetExpirationDate(date core.QDateTime_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::setExpirationDate")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::setExpirationDate")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_SetExpirationDate(ptr.Pointer(), core.PointerFromQDateTime(date))
@@ -211,11 +158,7 @@ func (ptr *QNetworkCookie) SetExpirationDate(date core.QDateTime_ITF) {
 }
 
 func (ptr *QNetworkCookie) SetHttpOnly(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::setHttpOnly")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::setHttpOnly")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_SetHttpOnly(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -223,11 +166,7 @@ func (ptr *QNetworkCookie) SetHttpOnly(enable bool) {
 }
 
 func (ptr *QNetworkCookie) SetName(cookieName core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::setName")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::setName")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_SetName(ptr.Pointer(), core.PointerFromQByteArray(cookieName))
@@ -235,11 +174,7 @@ func (ptr *QNetworkCookie) SetName(cookieName core.QByteArray_ITF) {
 }
 
 func (ptr *QNetworkCookie) SetPath(path string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::setPath")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::setPath")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_SetPath(ptr.Pointer(), C.CString(path))
@@ -247,11 +182,7 @@ func (ptr *QNetworkCookie) SetPath(path string) {
 }
 
 func (ptr *QNetworkCookie) SetSecure(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::setSecure")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::setSecure")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_SetSecure(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -259,11 +190,7 @@ func (ptr *QNetworkCookie) SetSecure(enable bool) {
 }
 
 func (ptr *QNetworkCookie) SetValue(value core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::setValue")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::setValue")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_SetValue(ptr.Pointer(), core.PointerFromQByteArray(value))
@@ -271,11 +198,7 @@ func (ptr *QNetworkCookie) SetValue(value core.QByteArray_ITF) {
 }
 
 func (ptr *QNetworkCookie) Swap(other QNetworkCookie_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::swap")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::swap")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_Swap(ptr.Pointer(), PointerFromQNetworkCookie(other))
@@ -283,11 +206,7 @@ func (ptr *QNetworkCookie) Swap(other QNetworkCookie_ITF) {
 }
 
 func (ptr *QNetworkCookie) ToRawForm(form QNetworkCookie__RawForm) *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::toRawForm")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::toRawForm")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QNetworkCookie_ToRawForm(ptr.Pointer(), C.int(form)))
@@ -296,11 +215,7 @@ func (ptr *QNetworkCookie) ToRawForm(form QNetworkCookie__RawForm) *core.QByteAr
 }
 
 func (ptr *QNetworkCookie) Value() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::value")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::value")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QNetworkCookie_Value(ptr.Pointer()))
@@ -309,11 +224,7 @@ func (ptr *QNetworkCookie) Value() *core.QByteArray {
 }
 
 func (ptr *QNetworkCookie) DestroyQNetworkCookie() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkCookie::~QNetworkCookie")
-		}
-	}()
+	defer qt.Recovering("QNetworkCookie::~QNetworkCookie")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_DestroyQNetworkCookie(ptr.Pointer())

@@ -4,7 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -28,7 +28,7 @@ func NewQErrorMessageFromPointer(ptr unsafe.Pointer) *QErrorMessage {
 	var n = new(QErrorMessage)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QErrorMessage_") {
-		n.SetObjectName("QErrorMessage_" + qt.RandomIdentifier())
+		n.SetObjectName("QErrorMessage_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,31 +38,81 @@ func (ptr *QErrorMessage) QErrorMessage_PTR() *QErrorMessage {
 }
 
 func NewQErrorMessage(parent QWidget_ITF) *QErrorMessage {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QErrorMessage::QErrorMessage")
-		}
-	}()
+	defer qt.Recovering("QErrorMessage::QErrorMessage")
 
 	return NewQErrorMessageFromPointer(C.QErrorMessage_NewQErrorMessage(PointerFromQWidget(parent)))
 }
 
+func (ptr *QErrorMessage) ConnectChangeEvent(f func(e *core.QEvent)) {
+	defer qt.Recovering("connect QErrorMessage::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QErrorMessage) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QErrorMessage::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQErrorMessageChangeEvent
+func callbackQErrorMessageChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QErrorMessage::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QErrorMessage) ConnectDone(f func(a int)) {
+	defer qt.Recovering("connect QErrorMessage::done")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "done", f)
+	}
+}
+
+func (ptr *QErrorMessage) DisconnectDone() {
+	defer qt.Recovering("disconnect QErrorMessage::done")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "done")
+	}
+}
+
+//export callbackQErrorMessageDone
+func callbackQErrorMessageDone(ptrName *C.char, a C.int) bool {
+	defer qt.Recovering("callback QErrorMessage::done")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "done")
+	if signal != nil {
+		defer signal.(func(int))(int(a))
+		return true
+	}
+	return false
+
+}
+
 func QErrorMessage_QtHandler() *QErrorMessage {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QErrorMessage::qtHandler")
-		}
-	}()
+	defer qt.Recovering("QErrorMessage::qtHandler")
 
 	return NewQErrorMessageFromPointer(C.QErrorMessage_QErrorMessage_QtHandler())
 }
 
 func (ptr *QErrorMessage) ShowMessage(message string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QErrorMessage::showMessage")
-		}
-	}()
+	defer qt.Recovering("QErrorMessage::showMessage")
 
 	if ptr.Pointer() != nil {
 		C.QErrorMessage_ShowMessage(ptr.Pointer(), C.CString(message))
@@ -70,11 +120,7 @@ func (ptr *QErrorMessage) ShowMessage(message string) {
 }
 
 func (ptr *QErrorMessage) ShowMessage2(message string, ty string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QErrorMessage::showMessage")
-		}
-	}()
+	defer qt.Recovering("QErrorMessage::showMessage")
 
 	if ptr.Pointer() != nil {
 		C.QErrorMessage_ShowMessage2(ptr.Pointer(), C.CString(message), C.CString(ty))
@@ -82,11 +128,7 @@ func (ptr *QErrorMessage) ShowMessage2(message string, ty string) {
 }
 
 func (ptr *QErrorMessage) DestroyQErrorMessage() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QErrorMessage::~QErrorMessage")
-		}
-	}()
+	defer qt.Recovering("QErrorMessage::~QErrorMessage")
 
 	if ptr.Pointer() != nil {
 		C.QErrorMessage_DestroyQErrorMessage(ptr.Pointer())

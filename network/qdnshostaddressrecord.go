@@ -3,7 +3,7 @@ package network
 //#include "network.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QDnsHostAddressRecord) QDnsHostAddressRecord_PTR() *QDnsHostAddressRe
 }
 
 func NewQDnsHostAddressRecord() *QDnsHostAddressRecord {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsHostAddressRecord::QDnsHostAddressRecord")
-		}
-	}()
+	defer qt.Recovering("QDnsHostAddressRecord::QDnsHostAddressRecord")
 
 	return NewQDnsHostAddressRecordFromPointer(C.QDnsHostAddressRecord_NewQDnsHostAddressRecord())
 }
 
 func NewQDnsHostAddressRecord2(other QDnsHostAddressRecord_ITF) *QDnsHostAddressRecord {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsHostAddressRecord::QDnsHostAddressRecord")
-		}
-	}()
+	defer qt.Recovering("QDnsHostAddressRecord::QDnsHostAddressRecord")
 
 	return NewQDnsHostAddressRecordFromPointer(C.QDnsHostAddressRecord_NewQDnsHostAddressRecord2(PointerFromQDnsHostAddressRecord(other)))
 }
 
 func (ptr *QDnsHostAddressRecord) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsHostAddressRecord::name")
-		}
-	}()
+	defer qt.Recovering("QDnsHostAddressRecord::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDnsHostAddressRecord_Name(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QDnsHostAddressRecord) Name() string {
 }
 
 func (ptr *QDnsHostAddressRecord) Swap(other QDnsHostAddressRecord_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsHostAddressRecord::swap")
-		}
-	}()
+	defer qt.Recovering("QDnsHostAddressRecord::swap")
 
 	if ptr.Pointer() != nil {
 		C.QDnsHostAddressRecord_Swap(ptr.Pointer(), PointerFromQDnsHostAddressRecord(other))
@@ -86,11 +70,7 @@ func (ptr *QDnsHostAddressRecord) Swap(other QDnsHostAddressRecord_ITF) {
 }
 
 func (ptr *QDnsHostAddressRecord) DestroyQDnsHostAddressRecord() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsHostAddressRecord::~QDnsHostAddressRecord")
-		}
-	}()
+	defer qt.Recovering("QDnsHostAddressRecord::~QDnsHostAddressRecord")
 
 	if ptr.Pointer() != nil {
 		C.QDnsHostAddressRecord_DestroyQDnsHostAddressRecord(ptr.Pointer())

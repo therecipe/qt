@@ -6,6 +6,7 @@
 #include <QIODevice>
 #include <QMetaObject>
 #include <QObject>
+#include <QPaintEvent>
 #include <QPainter>
 #include <QRect>
 #include <QRectF>
@@ -22,6 +23,8 @@
 
 class MyQGraphicsSvgItem: public QGraphicsSvgItem {
 public:
+	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { if (!callbackQGraphicsSvgItemPaint(this->objectName().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget)) { QGraphicsSvgItem::paint(painter, option, widget); }; };
+protected:
 };
 
 char* QGraphicsSvgItem_ElementId(void* ptr){
@@ -54,6 +57,11 @@ int QGraphicsSvgItem_Type(void* ptr){
 
 class MyQSvgGenerator: public QSvgGenerator {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQSvgGenerator() : QSvgGenerator() {};
+protected:
 };
 
 char* QSvgGenerator_Description(void* ptr){
@@ -109,16 +117,25 @@ char* QSvgGenerator_Title(void* ptr){
 }
 
 void* QSvgGenerator_NewQSvgGenerator(){
-	return new QSvgGenerator();
+	return new MyQSvgGenerator();
 }
 
 void QSvgGenerator_DestroyQSvgGenerator(void* ptr){
 	static_cast<QSvgGenerator*>(ptr)->~QSvgGenerator();
 }
 
+char* QSvgGenerator_ObjectNameAbs(void* ptr){
+	return static_cast<MyQSvgGenerator*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QSvgGenerator_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQSvgGenerator*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQSvgRenderer: public QSvgRenderer {
 public:
-void Signal_RepaintNeeded(){callbackQSvgRendererRepaintNeeded(this->objectName().toUtf8().data());};
+	void Signal_RepaintNeeded() { callbackQSvgRendererRepaintNeeded(this->objectName().toUtf8().data()); };
+protected:
 };
 
 int QSvgRenderer_FramesPerSecond(void* ptr){
@@ -203,14 +220,18 @@ void QSvgRenderer_DestroyQSvgRenderer(void* ptr){
 
 class MyQSvgWidget: public QSvgWidget {
 public:
+	MyQSvgWidget(QWidget *parent) : QSvgWidget(parent) {};
+	MyQSvgWidget(const QString &file, QWidget *parent) : QSvgWidget(file, parent) {};
+protected:
+	void paintEvent(QPaintEvent * event) { if (!callbackQSvgWidgetPaintEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::paintEvent(event); }; };
 };
 
 void* QSvgWidget_NewQSvgWidget(void* parent){
-	return new QSvgWidget(static_cast<QWidget*>(parent));
+	return new MyQSvgWidget(static_cast<QWidget*>(parent));
 }
 
 void* QSvgWidget_NewQSvgWidget2(char* file, void* parent){
-	return new QSvgWidget(QString(file), static_cast<QWidget*>(parent));
+	return new MyQSvgWidget(QString(file), static_cast<QWidget*>(parent));
 }
 
 void QSvgWidget_Load2(void* ptr, void* contents){

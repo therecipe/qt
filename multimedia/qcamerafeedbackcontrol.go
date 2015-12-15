@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQCameraFeedbackControlFromPointer(ptr unsafe.Pointer) *QCameraFeedbackCo
 	var n = new(QCameraFeedbackControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraFeedbackControl_") {
-		n.SetObjectName("QCameraFeedbackControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QCameraFeedbackControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -55,11 +54,7 @@ const (
 )
 
 func (ptr *QCameraFeedbackControl) IsEventFeedbackEnabled(event QCameraFeedbackControl__EventType) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFeedbackControl::isEventFeedbackEnabled")
-		}
-	}()
+	defer qt.Recovering("QCameraFeedbackControl::isEventFeedbackEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraFeedbackControl_IsEventFeedbackEnabled(ptr.Pointer(), C.int(event)) != 0
@@ -68,11 +63,7 @@ func (ptr *QCameraFeedbackControl) IsEventFeedbackEnabled(event QCameraFeedbackC
 }
 
 func (ptr *QCameraFeedbackControl) IsEventFeedbackLocked(event QCameraFeedbackControl__EventType) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFeedbackControl::isEventFeedbackLocked")
-		}
-	}()
+	defer qt.Recovering("QCameraFeedbackControl::isEventFeedbackLocked")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraFeedbackControl_IsEventFeedbackLocked(ptr.Pointer(), C.int(event)) != 0
@@ -81,11 +72,7 @@ func (ptr *QCameraFeedbackControl) IsEventFeedbackLocked(event QCameraFeedbackCo
 }
 
 func (ptr *QCameraFeedbackControl) ResetEventFeedback(event QCameraFeedbackControl__EventType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFeedbackControl::resetEventFeedback")
-		}
-	}()
+	defer qt.Recovering("QCameraFeedbackControl::resetEventFeedback")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFeedbackControl_ResetEventFeedback(ptr.Pointer(), C.int(event))
@@ -93,11 +80,7 @@ func (ptr *QCameraFeedbackControl) ResetEventFeedback(event QCameraFeedbackContr
 }
 
 func (ptr *QCameraFeedbackControl) SetEventFeedbackEnabled(event QCameraFeedbackControl__EventType, enabled bool) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFeedbackControl::setEventFeedbackEnabled")
-		}
-	}()
+	defer qt.Recovering("QCameraFeedbackControl::setEventFeedbackEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraFeedbackControl_SetEventFeedbackEnabled(ptr.Pointer(), C.int(event), C.int(qt.GoBoolToInt(enabled))) != 0
@@ -106,11 +89,7 @@ func (ptr *QCameraFeedbackControl) SetEventFeedbackEnabled(event QCameraFeedback
 }
 
 func (ptr *QCameraFeedbackControl) SetEventFeedbackSound(event QCameraFeedbackControl__EventType, filePath string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFeedbackControl::setEventFeedbackSound")
-		}
-	}()
+	defer qt.Recovering("QCameraFeedbackControl::setEventFeedbackSound")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraFeedbackControl_SetEventFeedbackSound(ptr.Pointer(), C.int(event), C.CString(filePath)) != 0
@@ -119,11 +98,7 @@ func (ptr *QCameraFeedbackControl) SetEventFeedbackSound(event QCameraFeedbackCo
 }
 
 func (ptr *QCameraFeedbackControl) DestroyQCameraFeedbackControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraFeedbackControl::~QCameraFeedbackControl")
-		}
-	}()
+	defer qt.Recovering("QCameraFeedbackControl::~QCameraFeedbackControl")
 
 	if ptr.Pointer() != nil {
 		C.QCameraFeedbackControl_DestroyQCameraFeedbackControl(ptr.Pointer())

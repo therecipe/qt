@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -163,21 +163,13 @@ const (
 )
 
 func NewQTextFormat3(other QTextFormat_ITF) *QTextFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::QTextFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::QTextFormat")
 
 	return NewQTextFormatFromPointer(C.QTextFormat_NewQTextFormat3(PointerFromQTextFormat(other)))
 }
 
 func (ptr *QTextFormat) SetObjectIndex(index int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::setObjectIndex")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::setObjectIndex")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_SetObjectIndex(ptr.Pointer(), C.int(index))
@@ -185,31 +177,19 @@ func (ptr *QTextFormat) SetObjectIndex(index int) {
 }
 
 func NewQTextFormat() *QTextFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::QTextFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::QTextFormat")
 
 	return NewQTextFormatFromPointer(C.QTextFormat_NewQTextFormat())
 }
 
 func NewQTextFormat2(ty int) *QTextFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::QTextFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::QTextFormat")
 
 	return NewQTextFormatFromPointer(C.QTextFormat_NewQTextFormat2(C.int(ty)))
 }
 
 func (ptr *QTextFormat) Background() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::background")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::background")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QTextFormat_Background(ptr.Pointer()))
@@ -218,11 +198,7 @@ func (ptr *QTextFormat) Background() *QBrush {
 }
 
 func (ptr *QTextFormat) BoolProperty(propertyId int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::boolProperty")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::boolProperty")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFormat_BoolProperty(ptr.Pointer(), C.int(propertyId)) != 0
@@ -231,11 +207,7 @@ func (ptr *QTextFormat) BoolProperty(propertyId int) bool {
 }
 
 func (ptr *QTextFormat) BrushProperty(propertyId int) *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::brushProperty")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::brushProperty")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QTextFormat_BrushProperty(ptr.Pointer(), C.int(propertyId)))
@@ -244,11 +216,7 @@ func (ptr *QTextFormat) BrushProperty(propertyId int) *QBrush {
 }
 
 func (ptr *QTextFormat) ClearBackground() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::clearBackground")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::clearBackground")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_ClearBackground(ptr.Pointer())
@@ -256,11 +224,7 @@ func (ptr *QTextFormat) ClearBackground() {
 }
 
 func (ptr *QTextFormat) ClearForeground() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::clearForeground")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::clearForeground")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_ClearForeground(ptr.Pointer())
@@ -268,11 +232,7 @@ func (ptr *QTextFormat) ClearForeground() {
 }
 
 func (ptr *QTextFormat) ClearProperty(propertyId int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::clearProperty")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::clearProperty")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_ClearProperty(ptr.Pointer(), C.int(propertyId))
@@ -280,11 +240,7 @@ func (ptr *QTextFormat) ClearProperty(propertyId int) {
 }
 
 func (ptr *QTextFormat) ColorProperty(propertyId int) *QColor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::colorProperty")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::colorProperty")
 
 	if ptr.Pointer() != nil {
 		return NewQColorFromPointer(C.QTextFormat_ColorProperty(ptr.Pointer(), C.int(propertyId)))
@@ -293,11 +249,7 @@ func (ptr *QTextFormat) ColorProperty(propertyId int) *QColor {
 }
 
 func (ptr *QTextFormat) DoubleProperty(propertyId int) float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::doubleProperty")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::doubleProperty")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextFormat_DoubleProperty(ptr.Pointer(), C.int(propertyId)))
@@ -306,11 +258,7 @@ func (ptr *QTextFormat) DoubleProperty(propertyId int) float64 {
 }
 
 func (ptr *QTextFormat) Foreground() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::foreground")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::foreground")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QTextFormat_Foreground(ptr.Pointer()))
@@ -319,11 +267,7 @@ func (ptr *QTextFormat) Foreground() *QBrush {
 }
 
 func (ptr *QTextFormat) HasProperty(propertyId int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::hasProperty")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::hasProperty")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFormat_HasProperty(ptr.Pointer(), C.int(propertyId)) != 0
@@ -332,11 +276,7 @@ func (ptr *QTextFormat) HasProperty(propertyId int) bool {
 }
 
 func (ptr *QTextFormat) IntProperty(propertyId int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::intProperty")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::intProperty")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextFormat_IntProperty(ptr.Pointer(), C.int(propertyId)))
@@ -345,11 +285,7 @@ func (ptr *QTextFormat) IntProperty(propertyId int) int {
 }
 
 func (ptr *QTextFormat) IsBlockFormat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::isBlockFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::isBlockFormat")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFormat_IsBlockFormat(ptr.Pointer()) != 0
@@ -358,11 +294,7 @@ func (ptr *QTextFormat) IsBlockFormat() bool {
 }
 
 func (ptr *QTextFormat) IsCharFormat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::isCharFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::isCharFormat")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFormat_IsCharFormat(ptr.Pointer()) != 0
@@ -371,11 +303,7 @@ func (ptr *QTextFormat) IsCharFormat() bool {
 }
 
 func (ptr *QTextFormat) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFormat_IsEmpty(ptr.Pointer()) != 0
@@ -384,11 +312,7 @@ func (ptr *QTextFormat) IsEmpty() bool {
 }
 
 func (ptr *QTextFormat) IsFrameFormat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::isFrameFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::isFrameFormat")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFormat_IsFrameFormat(ptr.Pointer()) != 0
@@ -397,11 +321,7 @@ func (ptr *QTextFormat) IsFrameFormat() bool {
 }
 
 func (ptr *QTextFormat) IsImageFormat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::isImageFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::isImageFormat")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFormat_IsImageFormat(ptr.Pointer()) != 0
@@ -410,11 +330,7 @@ func (ptr *QTextFormat) IsImageFormat() bool {
 }
 
 func (ptr *QTextFormat) IsListFormat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::isListFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::isListFormat")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFormat_IsListFormat(ptr.Pointer()) != 0
@@ -423,11 +339,7 @@ func (ptr *QTextFormat) IsListFormat() bool {
 }
 
 func (ptr *QTextFormat) IsTableCellFormat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::isTableCellFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::isTableCellFormat")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFormat_IsTableCellFormat(ptr.Pointer()) != 0
@@ -436,11 +348,7 @@ func (ptr *QTextFormat) IsTableCellFormat() bool {
 }
 
 func (ptr *QTextFormat) IsTableFormat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::isTableFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::isTableFormat")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFormat_IsTableFormat(ptr.Pointer()) != 0
@@ -449,11 +357,7 @@ func (ptr *QTextFormat) IsTableFormat() bool {
 }
 
 func (ptr *QTextFormat) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::isValid")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFormat_IsValid(ptr.Pointer()) != 0
@@ -462,11 +366,7 @@ func (ptr *QTextFormat) IsValid() bool {
 }
 
 func (ptr *QTextFormat) LayoutDirection() core.Qt__LayoutDirection {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::layoutDirection")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::layoutDirection")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__LayoutDirection(C.QTextFormat_LayoutDirection(ptr.Pointer()))
@@ -475,11 +375,7 @@ func (ptr *QTextFormat) LayoutDirection() core.Qt__LayoutDirection {
 }
 
 func (ptr *QTextFormat) Merge(other QTextFormat_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::merge")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::merge")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_Merge(ptr.Pointer(), PointerFromQTextFormat(other))
@@ -487,11 +383,7 @@ func (ptr *QTextFormat) Merge(other QTextFormat_ITF) {
 }
 
 func (ptr *QTextFormat) ObjectIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::objectIndex")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::objectIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextFormat_ObjectIndex(ptr.Pointer()))
@@ -500,11 +392,7 @@ func (ptr *QTextFormat) ObjectIndex() int {
 }
 
 func (ptr *QTextFormat) ObjectType() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::objectType")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::objectType")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextFormat_ObjectType(ptr.Pointer()))
@@ -513,11 +401,7 @@ func (ptr *QTextFormat) ObjectType() int {
 }
 
 func (ptr *QTextFormat) Property(propertyId int) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::property")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::property")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QTextFormat_Property(ptr.Pointer(), C.int(propertyId)))
@@ -526,11 +410,7 @@ func (ptr *QTextFormat) Property(propertyId int) *core.QVariant {
 }
 
 func (ptr *QTextFormat) PropertyCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::propertyCount")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::propertyCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextFormat_PropertyCount(ptr.Pointer()))
@@ -539,11 +419,7 @@ func (ptr *QTextFormat) PropertyCount() int {
 }
 
 func (ptr *QTextFormat) SetBackground(brush QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::setBackground")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::setBackground")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_SetBackground(ptr.Pointer(), PointerFromQBrush(brush))
@@ -551,11 +427,7 @@ func (ptr *QTextFormat) SetBackground(brush QBrush_ITF) {
 }
 
 func (ptr *QTextFormat) SetForeground(brush QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::setForeground")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::setForeground")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_SetForeground(ptr.Pointer(), PointerFromQBrush(brush))
@@ -563,11 +435,7 @@ func (ptr *QTextFormat) SetForeground(brush QBrush_ITF) {
 }
 
 func (ptr *QTextFormat) SetLayoutDirection(direction core.Qt__LayoutDirection) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::setLayoutDirection")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::setLayoutDirection")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_SetLayoutDirection(ptr.Pointer(), C.int(direction))
@@ -575,11 +443,7 @@ func (ptr *QTextFormat) SetLayoutDirection(direction core.Qt__LayoutDirection) {
 }
 
 func (ptr *QTextFormat) SetObjectType(ty int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::setObjectType")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::setObjectType")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_SetObjectType(ptr.Pointer(), C.int(ty))
@@ -587,11 +451,7 @@ func (ptr *QTextFormat) SetObjectType(ty int) {
 }
 
 func (ptr *QTextFormat) SetProperty(propertyId int, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::setProperty")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::setProperty")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_SetProperty(ptr.Pointer(), C.int(propertyId), core.PointerFromQVariant(value))
@@ -599,11 +459,7 @@ func (ptr *QTextFormat) SetProperty(propertyId int, value core.QVariant_ITF) {
 }
 
 func (ptr *QTextFormat) StringProperty(propertyId int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::stringProperty")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::stringProperty")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextFormat_StringProperty(ptr.Pointer(), C.int(propertyId)))
@@ -612,11 +468,7 @@ func (ptr *QTextFormat) StringProperty(propertyId int) string {
 }
 
 func (ptr *QTextFormat) Swap(other QTextFormat_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::swap")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::swap")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_Swap(ptr.Pointer(), PointerFromQTextFormat(other))
@@ -624,11 +476,7 @@ func (ptr *QTextFormat) Swap(other QTextFormat_ITF) {
 }
 
 func (ptr *QTextFormat) Type() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::type")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::type")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextFormat_Type(ptr.Pointer()))
@@ -637,11 +485,7 @@ func (ptr *QTextFormat) Type() int {
 }
 
 func (ptr *QTextFormat) DestroyQTextFormat() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFormat::~QTextFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFormat::~QTextFormat")
 
 	if ptr.Pointer() != nil {
 		C.QTextFormat_DestroyQTextFormat(ptr.Pointer())

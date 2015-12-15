@@ -3,8 +3,8 @@ package xml
 //#include "xml.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -70,31 +70,19 @@ const (
 )
 
 func NewQDomNode() *QDomNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::QDomNode")
-		}
-	}()
+	defer qt.Recovering("QDomNode::QDomNode")
 
 	return NewQDomNodeFromPointer(C.QDomNode_NewQDomNode())
 }
 
 func NewQDomNode2(n QDomNode_ITF) *QDomNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::QDomNode")
-		}
-	}()
+	defer qt.Recovering("QDomNode::QDomNode")
 
 	return NewQDomNodeFromPointer(C.QDomNode_NewQDomNode2(PointerFromQDomNode(n)))
 }
 
 func (ptr *QDomNode) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::clear")
-		}
-	}()
+	defer qt.Recovering("QDomNode::clear")
 
 	if ptr.Pointer() != nil {
 		C.QDomNode_Clear(ptr.Pointer())
@@ -102,11 +90,7 @@ func (ptr *QDomNode) Clear() {
 }
 
 func (ptr *QDomNode) ColumnNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::columnNumber")
-		}
-	}()
+	defer qt.Recovering("QDomNode::columnNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QDomNode_ColumnNumber(ptr.Pointer()))
@@ -115,11 +99,7 @@ func (ptr *QDomNode) ColumnNumber() int {
 }
 
 func (ptr *QDomNode) HasAttributes() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::hasAttributes")
-		}
-	}()
+	defer qt.Recovering("QDomNode::hasAttributes")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_HasAttributes(ptr.Pointer()) != 0
@@ -128,11 +108,7 @@ func (ptr *QDomNode) HasAttributes() bool {
 }
 
 func (ptr *QDomNode) HasChildNodes() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::hasChildNodes")
-		}
-	}()
+	defer qt.Recovering("QDomNode::hasChildNodes")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_HasChildNodes(ptr.Pointer()) != 0
@@ -141,11 +117,7 @@ func (ptr *QDomNode) HasChildNodes() bool {
 }
 
 func (ptr *QDomNode) IsAttr() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isAttr")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isAttr")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsAttr(ptr.Pointer()) != 0
@@ -154,11 +126,7 @@ func (ptr *QDomNode) IsAttr() bool {
 }
 
 func (ptr *QDomNode) IsCDATASection() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isCDATASection")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isCDATASection")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsCDATASection(ptr.Pointer()) != 0
@@ -167,11 +135,7 @@ func (ptr *QDomNode) IsCDATASection() bool {
 }
 
 func (ptr *QDomNode) IsCharacterData() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isCharacterData")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isCharacterData")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsCharacterData(ptr.Pointer()) != 0
@@ -180,11 +144,7 @@ func (ptr *QDomNode) IsCharacterData() bool {
 }
 
 func (ptr *QDomNode) IsComment() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isComment")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isComment")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsComment(ptr.Pointer()) != 0
@@ -193,11 +153,7 @@ func (ptr *QDomNode) IsComment() bool {
 }
 
 func (ptr *QDomNode) IsDocument() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isDocument")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isDocument")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsDocument(ptr.Pointer()) != 0
@@ -206,11 +162,7 @@ func (ptr *QDomNode) IsDocument() bool {
 }
 
 func (ptr *QDomNode) IsDocumentFragment() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isDocumentFragment")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isDocumentFragment")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsDocumentFragment(ptr.Pointer()) != 0
@@ -219,11 +171,7 @@ func (ptr *QDomNode) IsDocumentFragment() bool {
 }
 
 func (ptr *QDomNode) IsDocumentType() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isDocumentType")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isDocumentType")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsDocumentType(ptr.Pointer()) != 0
@@ -232,11 +180,7 @@ func (ptr *QDomNode) IsDocumentType() bool {
 }
 
 func (ptr *QDomNode) IsElement() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isElement")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isElement")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsElement(ptr.Pointer()) != 0
@@ -245,11 +189,7 @@ func (ptr *QDomNode) IsElement() bool {
 }
 
 func (ptr *QDomNode) IsEntity() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isEntity")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isEntity")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsEntity(ptr.Pointer()) != 0
@@ -258,11 +198,7 @@ func (ptr *QDomNode) IsEntity() bool {
 }
 
 func (ptr *QDomNode) IsEntityReference() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isEntityReference")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isEntityReference")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsEntityReference(ptr.Pointer()) != 0
@@ -271,11 +207,7 @@ func (ptr *QDomNode) IsEntityReference() bool {
 }
 
 func (ptr *QDomNode) IsNotation() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isNotation")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isNotation")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsNotation(ptr.Pointer()) != 0
@@ -284,11 +216,7 @@ func (ptr *QDomNode) IsNotation() bool {
 }
 
 func (ptr *QDomNode) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isNull")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsNull(ptr.Pointer()) != 0
@@ -297,11 +225,7 @@ func (ptr *QDomNode) IsNull() bool {
 }
 
 func (ptr *QDomNode) IsProcessingInstruction() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isProcessingInstruction")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isProcessingInstruction")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsProcessingInstruction(ptr.Pointer()) != 0
@@ -310,11 +234,7 @@ func (ptr *QDomNode) IsProcessingInstruction() bool {
 }
 
 func (ptr *QDomNode) IsSupported(feature string, version string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isSupported")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsSupported(ptr.Pointer(), C.CString(feature), C.CString(version)) != 0
@@ -323,11 +243,7 @@ func (ptr *QDomNode) IsSupported(feature string, version string) bool {
 }
 
 func (ptr *QDomNode) IsText() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::isText")
-		}
-	}()
+	defer qt.Recovering("QDomNode::isText")
 
 	if ptr.Pointer() != nil {
 		return C.QDomNode_IsText(ptr.Pointer()) != 0
@@ -336,11 +252,7 @@ func (ptr *QDomNode) IsText() bool {
 }
 
 func (ptr *QDomNode) LineNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::lineNumber")
-		}
-	}()
+	defer qt.Recovering("QDomNode::lineNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QDomNode_LineNumber(ptr.Pointer()))
@@ -349,11 +261,7 @@ func (ptr *QDomNode) LineNumber() int {
 }
 
 func (ptr *QDomNode) LocalName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::localName")
-		}
-	}()
+	defer qt.Recovering("QDomNode::localName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomNode_LocalName(ptr.Pointer()))
@@ -362,11 +270,7 @@ func (ptr *QDomNode) LocalName() string {
 }
 
 func (ptr *QDomNode) NamespaceURI() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::namespaceURI")
-		}
-	}()
+	defer qt.Recovering("QDomNode::namespaceURI")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomNode_NamespaceURI(ptr.Pointer()))
@@ -375,11 +279,7 @@ func (ptr *QDomNode) NamespaceURI() string {
 }
 
 func (ptr *QDomNode) NodeName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::nodeName")
-		}
-	}()
+	defer qt.Recovering("QDomNode::nodeName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomNode_NodeName(ptr.Pointer()))
@@ -388,11 +288,7 @@ func (ptr *QDomNode) NodeName() string {
 }
 
 func (ptr *QDomNode) NodeType() QDomNode__NodeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::nodeType")
-		}
-	}()
+	defer qt.Recovering("QDomNode::nodeType")
 
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomNode_NodeType(ptr.Pointer()))
@@ -401,11 +297,7 @@ func (ptr *QDomNode) NodeType() QDomNode__NodeType {
 }
 
 func (ptr *QDomNode) NodeValue() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::nodeValue")
-		}
-	}()
+	defer qt.Recovering("QDomNode::nodeValue")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomNode_NodeValue(ptr.Pointer()))
@@ -414,11 +306,7 @@ func (ptr *QDomNode) NodeValue() string {
 }
 
 func (ptr *QDomNode) Normalize() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::normalize")
-		}
-	}()
+	defer qt.Recovering("QDomNode::normalize")
 
 	if ptr.Pointer() != nil {
 		C.QDomNode_Normalize(ptr.Pointer())
@@ -426,11 +314,7 @@ func (ptr *QDomNode) Normalize() {
 }
 
 func (ptr *QDomNode) Prefix() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::prefix")
-		}
-	}()
+	defer qt.Recovering("QDomNode::prefix")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomNode_Prefix(ptr.Pointer()))
@@ -439,11 +323,7 @@ func (ptr *QDomNode) Prefix() string {
 }
 
 func (ptr *QDomNode) Save(stream core.QTextStream_ITF, indent int, encodingPolicy QDomNode__EncodingPolicy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::save")
-		}
-	}()
+	defer qt.Recovering("QDomNode::save")
 
 	if ptr.Pointer() != nil {
 		C.QDomNode_Save(ptr.Pointer(), core.PointerFromQTextStream(stream), C.int(indent), C.int(encodingPolicy))
@@ -451,11 +331,7 @@ func (ptr *QDomNode) Save(stream core.QTextStream_ITF, indent int, encodingPolic
 }
 
 func (ptr *QDomNode) SetNodeValue(v string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::setNodeValue")
-		}
-	}()
+	defer qt.Recovering("QDomNode::setNodeValue")
 
 	if ptr.Pointer() != nil {
 		C.QDomNode_SetNodeValue(ptr.Pointer(), C.CString(v))
@@ -463,11 +339,7 @@ func (ptr *QDomNode) SetNodeValue(v string) {
 }
 
 func (ptr *QDomNode) SetPrefix(pre string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::setPrefix")
-		}
-	}()
+	defer qt.Recovering("QDomNode::setPrefix")
 
 	if ptr.Pointer() != nil {
 		C.QDomNode_SetPrefix(ptr.Pointer(), C.CString(pre))
@@ -475,11 +347,7 @@ func (ptr *QDomNode) SetPrefix(pre string) {
 }
 
 func (ptr *QDomNode) DestroyQDomNode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNode::~QDomNode")
-		}
-	}()
+	defer qt.Recovering("QDomNode::~QDomNode")
 
 	if ptr.Pointer() != nil {
 		C.QDomNode_DestroyQDomNode(ptr.Pointer())

@@ -21,10 +21,6 @@
 #include <QVariant>
 #include <QWidget>
 
-class MyQHelpContentItem: public QHelpContentItem {
-public:
-};
-
 void* QHelpContentItem_Child(void* ptr, int row){
 	return static_cast<QHelpContentItem*>(ptr)->child(row);
 }
@@ -55,8 +51,9 @@ void QHelpContentItem_DestroyQHelpContentItem(void* ptr){
 
 class MyQHelpContentModel: public QHelpContentModel {
 public:
-void Signal_ContentsCreated(){callbackQHelpContentModelContentsCreated(this->objectName().toUtf8().data());};
-void Signal_ContentsCreationStarted(){callbackQHelpContentModelContentsCreationStarted(this->objectName().toUtf8().data());};
+	void Signal_ContentsCreated() { callbackQHelpContentModelContentsCreated(this->objectName().toUtf8().data()); };
+	void Signal_ContentsCreationStarted() { callbackQHelpContentModelContentsCreationStarted(this->objectName().toUtf8().data()); };
+protected:
 };
 
 int QHelpContentModel_ColumnCount(void* ptr, void* parent){
@@ -113,15 +110,12 @@ void QHelpContentModel_DestroyQHelpContentModel(void* ptr){
 
 class MyQHelpContentWidget: public QHelpContentWidget {
 public:
+protected:
 };
 
 void* QHelpContentWidget_IndexOf(void* ptr, void* link){
 	return static_cast<QHelpContentWidget*>(ptr)->indexOf(*static_cast<QUrl*>(link)).internalPointer();
 }
-
-class MyQHelpEngine: public QHelpEngine {
-public:
-};
 
 void* QHelpEngine_NewQHelpEngine(char* collectionFile, void* parent){
 	return new QHelpEngine(QString(collectionFile), static_cast<QObject*>(parent));
@@ -153,11 +147,13 @@ void QHelpEngine_DestroyQHelpEngine(void* ptr){
 
 class MyQHelpEngineCore: public QHelpEngineCore {
 public:
-void Signal_CurrentFilterChanged(const QString & newFilter){callbackQHelpEngineCoreCurrentFilterChanged(this->objectName().toUtf8().data(), newFilter.toUtf8().data());};
-void Signal_ReadersAboutToBeInvalidated(){callbackQHelpEngineCoreReadersAboutToBeInvalidated(this->objectName().toUtf8().data());};
-void Signal_SetupFinished(){callbackQHelpEngineCoreSetupFinished(this->objectName().toUtf8().data());};
-void Signal_SetupStarted(){callbackQHelpEngineCoreSetupStarted(this->objectName().toUtf8().data());};
-void Signal_Warning(const QString & msg){callbackQHelpEngineCoreWarning(this->objectName().toUtf8().data(), msg.toUtf8().data());};
+	MyQHelpEngineCore(const QString &collectionFile, QObject *parent) : QHelpEngineCore(collectionFile, parent) {};
+	void Signal_CurrentFilterChanged(const QString & newFilter) { callbackQHelpEngineCoreCurrentFilterChanged(this->objectName().toUtf8().data(), newFilter.toUtf8().data()); };
+	void Signal_ReadersAboutToBeInvalidated() { callbackQHelpEngineCoreReadersAboutToBeInvalidated(this->objectName().toUtf8().data()); };
+	void Signal_SetupFinished() { callbackQHelpEngineCoreSetupFinished(this->objectName().toUtf8().data()); };
+	void Signal_SetupStarted() { callbackQHelpEngineCoreSetupStarted(this->objectName().toUtf8().data()); };
+	void Signal_Warning(const QString & msg) { callbackQHelpEngineCoreWarning(this->objectName().toUtf8().data(), msg.toUtf8().data()); };
+protected:
 };
 
 int QHelpEngineCore_AutoSaveFilter(void* ptr){
@@ -185,7 +181,7 @@ void QHelpEngineCore_SetCurrentFilter(void* ptr, char* filterName){
 }
 
 void* QHelpEngineCore_NewQHelpEngineCore(char* collectionFile, void* parent){
-	return new QHelpEngineCore(QString(collectionFile), static_cast<QObject*>(parent));
+	return new MyQHelpEngineCore(QString(collectionFile), static_cast<QObject*>(parent));
 }
 
 int QHelpEngineCore_AddCustomFilter(void* ptr, char* filterName, char* attributes){
@@ -306,8 +302,9 @@ void QHelpEngineCore_DestroyQHelpEngineCore(void* ptr){
 
 class MyQHelpIndexModel: public QHelpIndexModel {
 public:
-void Signal_IndexCreated(){callbackQHelpIndexModelIndexCreated(this->objectName().toUtf8().data());};
-void Signal_IndexCreationStarted(){callbackQHelpIndexModelIndexCreationStarted(this->objectName().toUtf8().data());};
+	void Signal_IndexCreated() { callbackQHelpIndexModelIndexCreated(this->objectName().toUtf8().data()); };
+	void Signal_IndexCreationStarted() { callbackQHelpIndexModelIndexCreationStarted(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QHelpIndexModel_CreateIndex(void* ptr, char* customFilterName){
@@ -340,6 +337,7 @@ int QHelpIndexModel_IsCreatingIndex(void* ptr){
 
 class MyQHelpIndexWidget: public QHelpIndexWidget {
 public:
+protected:
 };
 
 void QHelpIndexWidget_ActivateCurrentItem(void* ptr){
@@ -352,10 +350,11 @@ void QHelpIndexWidget_FilterIndices(void* ptr, char* filter, char* wildcard){
 
 class MyQHelpSearchEngine: public QHelpSearchEngine {
 public:
-void Signal_IndexingFinished(){callbackQHelpSearchEngineIndexingFinished(this->objectName().toUtf8().data());};
-void Signal_IndexingStarted(){callbackQHelpSearchEngineIndexingStarted(this->objectName().toUtf8().data());};
-void Signal_SearchingFinished(int hits){callbackQHelpSearchEngineSearchingFinished(this->objectName().toUtf8().data(), hits);};
-void Signal_SearchingStarted(){callbackQHelpSearchEngineSearchingStarted(this->objectName().toUtf8().data());};
+	void Signal_IndexingFinished() { callbackQHelpSearchEngineIndexingFinished(this->objectName().toUtf8().data()); };
+	void Signal_IndexingStarted() { callbackQHelpSearchEngineIndexingStarted(this->objectName().toUtf8().data()); };
+	void Signal_SearchingFinished(int hits) { callbackQHelpSearchEngineSearchingFinished(this->objectName().toUtf8().data(), hits); };
+	void Signal_SearchingStarted() { callbackQHelpSearchEngineSearchingStarted(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QHelpSearchEngine_NewQHelpSearchEngine(void* helpEngine, void* parent){
@@ -422,10 +421,6 @@ void QHelpSearchEngine_DestroyQHelpSearchEngine(void* ptr){
 	static_cast<QHelpSearchEngine*>(ptr)->~QHelpSearchEngine();
 }
 
-class MyQHelpSearchQuery: public QHelpSearchQuery {
-public:
-};
-
 void* QHelpSearchQuery_NewQHelpSearchQuery(){
 	return new QHelpSearchQuery();
 }
@@ -436,7 +431,8 @@ void* QHelpSearchQuery_NewQHelpSearchQuery2(int field, char* wordList){
 
 class MyQHelpSearchQueryWidget: public QHelpSearchQueryWidget {
 public:
-void Signal_Search(){callbackQHelpSearchQueryWidgetSearch(this->objectName().toUtf8().data());};
+	void Signal_Search() { callbackQHelpSearchQueryWidgetSearch(this->objectName().toUtf8().data()); };
+protected:
 };
 
 int QHelpSearchQueryWidget_IsCompactMode(void* ptr){
@@ -469,6 +465,7 @@ void QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(void* ptr){
 
 class MyQHelpSearchResultWidget: public QHelpSearchResultWidget {
 public:
+protected:
 };
 
 void QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(void* ptr){

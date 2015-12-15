@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -47,31 +47,19 @@ const (
 )
 
 func NewQAccessibleTableModelChangeEvent2(iface QAccessibleInterface_ITF, changeType QAccessibleTableModelChangeEvent__ModelChangeType) *QAccessibleTableModelChangeEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::QAccessibleTableModelChangeEvent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::QAccessibleTableModelChangeEvent")
 
 	return NewQAccessibleTableModelChangeEventFromPointer(C.QAccessibleTableModelChangeEvent_NewQAccessibleTableModelChangeEvent2(PointerFromQAccessibleInterface(iface), C.int(changeType)))
 }
 
 func NewQAccessibleTableModelChangeEvent(object core.QObject_ITF, changeType QAccessibleTableModelChangeEvent__ModelChangeType) *QAccessibleTableModelChangeEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::QAccessibleTableModelChangeEvent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::QAccessibleTableModelChangeEvent")
 
 	return NewQAccessibleTableModelChangeEventFromPointer(C.QAccessibleTableModelChangeEvent_NewQAccessibleTableModelChangeEvent(core.PointerFromQObject(object), C.int(changeType)))
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) FirstColumn() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::firstColumn")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::firstColumn")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableModelChangeEvent_FirstColumn(ptr.Pointer()))
@@ -80,11 +68,7 @@ func (ptr *QAccessibleTableModelChangeEvent) FirstColumn() int {
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) FirstRow() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::firstRow")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::firstRow")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableModelChangeEvent_FirstRow(ptr.Pointer()))
@@ -93,11 +77,7 @@ func (ptr *QAccessibleTableModelChangeEvent) FirstRow() int {
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) LastColumn() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::lastColumn")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::lastColumn")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableModelChangeEvent_LastColumn(ptr.Pointer()))
@@ -106,11 +86,7 @@ func (ptr *QAccessibleTableModelChangeEvent) LastColumn() int {
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) LastRow() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::lastRow")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::lastRow")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableModelChangeEvent_LastRow(ptr.Pointer()))
@@ -119,11 +95,7 @@ func (ptr *QAccessibleTableModelChangeEvent) LastRow() int {
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) ModelChangeType() QAccessibleTableModelChangeEvent__ModelChangeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::modelChangeType")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::modelChangeType")
 
 	if ptr.Pointer() != nil {
 		return QAccessibleTableModelChangeEvent__ModelChangeType(C.QAccessibleTableModelChangeEvent_ModelChangeType(ptr.Pointer()))
@@ -132,11 +104,7 @@ func (ptr *QAccessibleTableModelChangeEvent) ModelChangeType() QAccessibleTableM
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) SetFirstColumn(column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::setFirstColumn")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::setFirstColumn")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTableModelChangeEvent_SetFirstColumn(ptr.Pointer(), C.int(column))
@@ -144,11 +112,7 @@ func (ptr *QAccessibleTableModelChangeEvent) SetFirstColumn(column int) {
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) SetFirstRow(row int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::setFirstRow")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::setFirstRow")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTableModelChangeEvent_SetFirstRow(ptr.Pointer(), C.int(row))
@@ -156,11 +120,7 @@ func (ptr *QAccessibleTableModelChangeEvent) SetFirstRow(row int) {
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) SetLastColumn(column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::setLastColumn")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::setLastColumn")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTableModelChangeEvent_SetLastColumn(ptr.Pointer(), C.int(column))
@@ -168,11 +128,7 @@ func (ptr *QAccessibleTableModelChangeEvent) SetLastColumn(column int) {
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) SetLastRow(row int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::setLastRow")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::setLastRow")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTableModelChangeEvent_SetLastRow(ptr.Pointer(), C.int(row))
@@ -180,11 +136,7 @@ func (ptr *QAccessibleTableModelChangeEvent) SetLastRow(row int) {
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) SetModelChangeType(changeType QAccessibleTableModelChangeEvent__ModelChangeType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableModelChangeEvent::setModelChangeType")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::setModelChangeType")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTableModelChangeEvent_SetModelChangeType(ptr.Pointer(), C.int(changeType))

@@ -99,6 +99,8 @@ void* QGeoPositionInfoSourceFactory_AreaMonitor(void* ptr, void* parent);
 void* QGeoPositionInfoSourceFactory_PositionInfoSource(void* ptr, void* parent);
 void* QGeoPositionInfoSourceFactory_SatelliteInfoSource(void* ptr, void* parent);
 void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(void* ptr);
+char* QGeoPositionInfoSourceFactory_ObjectNameAbs(void* ptr);
+void QGeoPositionInfoSourceFactory_SetObjectNameAbs(void* ptr, char* name);
 void* QGeoRectangle_NewQGeoRectangle();
 void* QGeoRectangle_NewQGeoRectangle3(void* topLeft, void* bottomRight);
 void* QGeoRectangle_NewQGeoRectangle5(void* other);

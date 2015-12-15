@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,21 +41,13 @@ func (ptr *QStringMatcher) QStringMatcher_PTR() *QStringMatcher {
 }
 
 func NewQStringMatcher3(uc QChar_ITF, length int, cs Qt__CaseSensitivity) *QStringMatcher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStringMatcher::QStringMatcher")
-		}
-	}()
+	defer qt.Recovering("QStringMatcher::QStringMatcher")
 
 	return NewQStringMatcherFromPointer(C.QStringMatcher_NewQStringMatcher3(PointerFromQChar(uc), C.int(length), C.int(cs)))
 }
 
 func (ptr *QStringMatcher) Pattern() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStringMatcher::pattern")
-		}
-	}()
+	defer qt.Recovering("QStringMatcher::pattern")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStringMatcher_Pattern(ptr.Pointer()))
@@ -64,41 +56,25 @@ func (ptr *QStringMatcher) Pattern() string {
 }
 
 func NewQStringMatcher() *QStringMatcher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStringMatcher::QStringMatcher")
-		}
-	}()
+	defer qt.Recovering("QStringMatcher::QStringMatcher")
 
 	return NewQStringMatcherFromPointer(C.QStringMatcher_NewQStringMatcher())
 }
 
 func NewQStringMatcher2(pattern string, cs Qt__CaseSensitivity) *QStringMatcher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStringMatcher::QStringMatcher")
-		}
-	}()
+	defer qt.Recovering("QStringMatcher::QStringMatcher")
 
 	return NewQStringMatcherFromPointer(C.QStringMatcher_NewQStringMatcher2(C.CString(pattern), C.int(cs)))
 }
 
 func NewQStringMatcher4(other QStringMatcher_ITF) *QStringMatcher {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStringMatcher::QStringMatcher")
-		}
-	}()
+	defer qt.Recovering("QStringMatcher::QStringMatcher")
 
 	return NewQStringMatcherFromPointer(C.QStringMatcher_NewQStringMatcher4(PointerFromQStringMatcher(other)))
 }
 
 func (ptr *QStringMatcher) CaseSensitivity() Qt__CaseSensitivity {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStringMatcher::caseSensitivity")
-		}
-	}()
+	defer qt.Recovering("QStringMatcher::caseSensitivity")
 
 	if ptr.Pointer() != nil {
 		return Qt__CaseSensitivity(C.QStringMatcher_CaseSensitivity(ptr.Pointer()))
@@ -107,11 +83,7 @@ func (ptr *QStringMatcher) CaseSensitivity() Qt__CaseSensitivity {
 }
 
 func (ptr *QStringMatcher) IndexIn2(str QChar_ITF, length int, from int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStringMatcher::indexIn")
-		}
-	}()
+	defer qt.Recovering("QStringMatcher::indexIn")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStringMatcher_IndexIn2(ptr.Pointer(), PointerFromQChar(str), C.int(length), C.int(from)))
@@ -120,11 +92,7 @@ func (ptr *QStringMatcher) IndexIn2(str QChar_ITF, length int, from int) int {
 }
 
 func (ptr *QStringMatcher) IndexIn(str string, from int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStringMatcher::indexIn")
-		}
-	}()
+	defer qt.Recovering("QStringMatcher::indexIn")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStringMatcher_IndexIn(ptr.Pointer(), C.CString(str), C.int(from)))
@@ -133,11 +101,7 @@ func (ptr *QStringMatcher) IndexIn(str string, from int) int {
 }
 
 func (ptr *QStringMatcher) SetCaseSensitivity(cs Qt__CaseSensitivity) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStringMatcher::setCaseSensitivity")
-		}
-	}()
+	defer qt.Recovering("QStringMatcher::setCaseSensitivity")
 
 	if ptr.Pointer() != nil {
 		C.QStringMatcher_SetCaseSensitivity(ptr.Pointer(), C.int(cs))
@@ -145,11 +109,7 @@ func (ptr *QStringMatcher) SetCaseSensitivity(cs Qt__CaseSensitivity) {
 }
 
 func (ptr *QStringMatcher) SetPattern(pattern string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStringMatcher::setPattern")
-		}
-	}()
+	defer qt.Recovering("QStringMatcher::setPattern")
 
 	if ptr.Pointer() != nil {
 		C.QStringMatcher_SetPattern(ptr.Pointer(), C.CString(pattern))
@@ -157,11 +117,7 @@ func (ptr *QStringMatcher) SetPattern(pattern string) {
 }
 
 func (ptr *QStringMatcher) DestroyQStringMatcher() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStringMatcher::~QStringMatcher")
-		}
-	}()
+	defer qt.Recovering("QStringMatcher::~QStringMatcher")
 
 	if ptr.Pointer() != nil {
 		C.QStringMatcher_DestroyQStringMatcher(ptr.Pointer())

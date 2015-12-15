@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQItemEditorFactory(ptr QItemEditorFactory_ITF) unsafe.Pointer {
 func NewQItemEditorFactoryFromPointer(ptr unsafe.Pointer) *QItemEditorFactory {
 	var n = new(QItemEditorFactory)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QItemEditorFactory_") {
+		n.SetObjectNameAbs("QItemEditorFactory_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,21 +45,13 @@ func (ptr *QItemEditorFactory) QItemEditorFactory_PTR() *QItemEditorFactory {
 }
 
 func NewQItemEditorFactory() *QItemEditorFactory {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemEditorFactory::QItemEditorFactory")
-		}
-	}()
+	defer qt.Recovering("QItemEditorFactory::QItemEditorFactory")
 
 	return NewQItemEditorFactoryFromPointer(C.QItemEditorFactory_NewQItemEditorFactory())
 }
 
 func (ptr *QItemEditorFactory) CreateEditor(userType int, parent QWidget_ITF) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemEditorFactory::createEditor")
-		}
-	}()
+	defer qt.Recovering("QItemEditorFactory::createEditor")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QItemEditorFactory_CreateEditor(ptr.Pointer(), C.int(userType), PointerFromQWidget(parent)))
@@ -65,21 +60,13 @@ func (ptr *QItemEditorFactory) CreateEditor(userType int, parent QWidget_ITF) *Q
 }
 
 func QItemEditorFactory_DefaultFactory() *QItemEditorFactory {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemEditorFactory::defaultFactory")
-		}
-	}()
+	defer qt.Recovering("QItemEditorFactory::defaultFactory")
 
 	return NewQItemEditorFactoryFromPointer(C.QItemEditorFactory_QItemEditorFactory_DefaultFactory())
 }
 
 func (ptr *QItemEditorFactory) RegisterEditor(userType int, creator QItemEditorCreatorBase_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemEditorFactory::registerEditor")
-		}
-	}()
+	defer qt.Recovering("QItemEditorFactory::registerEditor")
 
 	if ptr.Pointer() != nil {
 		C.QItemEditorFactory_RegisterEditor(ptr.Pointer(), C.int(userType), PointerFromQItemEditorCreatorBase(creator))
@@ -87,21 +74,13 @@ func (ptr *QItemEditorFactory) RegisterEditor(userType int, creator QItemEditorC
 }
 
 func QItemEditorFactory_SetDefaultFactory(factory QItemEditorFactory_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemEditorFactory::setDefaultFactory")
-		}
-	}()
+	defer qt.Recovering("QItemEditorFactory::setDefaultFactory")
 
 	C.QItemEditorFactory_QItemEditorFactory_SetDefaultFactory(PointerFromQItemEditorFactory(factory))
 }
 
 func (ptr *QItemEditorFactory) ValuePropertyName(userType int) *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemEditorFactory::valuePropertyName")
-		}
-	}()
+	defer qt.Recovering("QItemEditorFactory::valuePropertyName")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QItemEditorFactory_ValuePropertyName(ptr.Pointer(), C.int(userType)))
@@ -110,13 +89,26 @@ func (ptr *QItemEditorFactory) ValuePropertyName(userType int) *core.QByteArray 
 }
 
 func (ptr *QItemEditorFactory) DestroyQItemEditorFactory() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemEditorFactory::~QItemEditorFactory")
-		}
-	}()
+	defer qt.Recovering("QItemEditorFactory::~QItemEditorFactory")
 
 	if ptr.Pointer() != nil {
 		C.QItemEditorFactory_DestroyQItemEditorFactory(ptr.Pointer())
+	}
+}
+
+func (ptr *QItemEditorFactory) ObjectNameAbs() string {
+	defer qt.Recovering("QItemEditorFactory::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QItemEditorFactory_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QItemEditorFactory) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QItemEditorFactory::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QItemEditorFactory_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

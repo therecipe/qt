@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,31 +34,19 @@ func (ptr *QDomNotation) QDomNotation_PTR() *QDomNotation {
 }
 
 func NewQDomNotation() *QDomNotation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNotation::QDomNotation")
-		}
-	}()
+	defer qt.Recovering("QDomNotation::QDomNotation")
 
 	return NewQDomNotationFromPointer(C.QDomNotation_NewQDomNotation())
 }
 
 func NewQDomNotation2(x QDomNotation_ITF) *QDomNotation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNotation::QDomNotation")
-		}
-	}()
+	defer qt.Recovering("QDomNotation::QDomNotation")
 
 	return NewQDomNotationFromPointer(C.QDomNotation_NewQDomNotation2(PointerFromQDomNotation(x)))
 }
 
 func (ptr *QDomNotation) NodeType() QDomNode__NodeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNotation::nodeType")
-		}
-	}()
+	defer qt.Recovering("QDomNotation::nodeType")
 
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomNotation_NodeType(ptr.Pointer()))
@@ -67,11 +55,7 @@ func (ptr *QDomNotation) NodeType() QDomNode__NodeType {
 }
 
 func (ptr *QDomNotation) PublicId() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNotation::publicId")
-		}
-	}()
+	defer qt.Recovering("QDomNotation::publicId")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomNotation_PublicId(ptr.Pointer()))
@@ -80,11 +64,7 @@ func (ptr *QDomNotation) PublicId() string {
 }
 
 func (ptr *QDomNotation) SystemId() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomNotation::systemId")
-		}
-	}()
+	defer qt.Recovering("QDomNotation::systemId")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomNotation_SystemId(ptr.Pointer()))

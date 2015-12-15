@@ -4,7 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
 
@@ -28,7 +28,7 @@ func NewQCommandLinkButtonFromPointer(ptr unsafe.Pointer) *QCommandLinkButton {
 	var n = new(QCommandLinkButton)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QCommandLinkButton_") {
-		n.SetObjectName("QCommandLinkButton_" + qt.RandomIdentifier())
+		n.SetObjectName("QCommandLinkButton_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +38,7 @@ func (ptr *QCommandLinkButton) QCommandLinkButton_PTR() *QCommandLinkButton {
 }
 
 func (ptr *QCommandLinkButton) Description() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCommandLinkButton::description")
-		}
-	}()
+	defer qt.Recovering("QCommandLinkButton::description")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QCommandLinkButton_Description(ptr.Pointer()))
@@ -51,11 +47,7 @@ func (ptr *QCommandLinkButton) Description() string {
 }
 
 func (ptr *QCommandLinkButton) SetDescription(description string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCommandLinkButton::setDescription")
-		}
-	}()
+	defer qt.Recovering("QCommandLinkButton::setDescription")
 
 	if ptr.Pointer() != nil {
 		C.QCommandLinkButton_SetDescription(ptr.Pointer(), C.CString(description))
@@ -63,41 +55,56 @@ func (ptr *QCommandLinkButton) SetDescription(description string) {
 }
 
 func NewQCommandLinkButton(parent QWidget_ITF) *QCommandLinkButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCommandLinkButton::QCommandLinkButton")
-		}
-	}()
+	defer qt.Recovering("QCommandLinkButton::QCommandLinkButton")
 
 	return NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton(PointerFromQWidget(parent)))
 }
 
 func NewQCommandLinkButton2(text string, parent QWidget_ITF) *QCommandLinkButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCommandLinkButton::QCommandLinkButton")
-		}
-	}()
+	defer qt.Recovering("QCommandLinkButton::QCommandLinkButton")
 
 	return NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton2(C.CString(text), PointerFromQWidget(parent)))
 }
 
 func NewQCommandLinkButton3(text string, description string, parent QWidget_ITF) *QCommandLinkButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCommandLinkButton::QCommandLinkButton")
-		}
-	}()
+	defer qt.Recovering("QCommandLinkButton::QCommandLinkButton")
 
 	return NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton3(C.CString(text), C.CString(description), PointerFromQWidget(parent)))
 }
 
+func (ptr *QCommandLinkButton) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QCommandLinkButton::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QCommandLinkButton) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QCommandLinkButton::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQCommandLinkButtonPaintEvent
+func callbackQCommandLinkButtonPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QCommandLinkButton::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QCommandLinkButton) DestroyQCommandLinkButton() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCommandLinkButton::~QCommandLinkButton")
-		}
-	}()
+	defer qt.Recovering("QCommandLinkButton::~QCommandLinkButton")
 
 	if ptr.Pointer() != nil {
 		C.QCommandLinkButton_DestroyQCommandLinkButton(ptr.Pointer())

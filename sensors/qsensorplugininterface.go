@@ -3,7 +3,7 @@ package sensors
 //#include "sensors.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,11 +41,7 @@ func (ptr *QSensorPluginInterface) QSensorPluginInterface_PTR() *QSensorPluginIn
 }
 
 func (ptr *QSensorPluginInterface) RegisterSensors() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorPluginInterface::registerSensors")
-		}
-	}()
+	defer qt.Recovering("QSensorPluginInterface::registerSensors")
 
 	if ptr.Pointer() != nil {
 		C.QSensorPluginInterface_RegisterSensors(ptr.Pointer())

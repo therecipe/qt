@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -75,91 +74,55 @@ const (
 )
 
 func NewQScriptValue() *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::QScriptValue")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::QScriptValue")
 
 	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue())
 }
 
 func NewQScriptValue10(value QScriptValue__SpecialValue) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::QScriptValue")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::QScriptValue")
 
 	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue10(C.int(value)))
 }
 
 func NewQScriptValue11(value bool) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::QScriptValue")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::QScriptValue")
 
 	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue11(C.int(qt.GoBoolToInt(value))))
 }
 
 func NewQScriptValue16(value core.QLatin1String_ITF) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::QScriptValue")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::QScriptValue")
 
 	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue16(core.PointerFromQLatin1String(value)))
 }
 
 func NewQScriptValue2(other QScriptValue_ITF) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::QScriptValue")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::QScriptValue")
 
 	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue2(PointerFromQScriptValue(other)))
 }
 
 func NewQScriptValue15(value string) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::QScriptValue")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::QScriptValue")
 
 	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue15(C.CString(value)))
 }
 
 func NewQScriptValue17(value string) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::QScriptValue")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::QScriptValue")
 
 	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue17(C.CString(value)))
 }
 
 func NewQScriptValue12(value int) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::QScriptValue")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::QScriptValue")
 
 	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue12(C.int(value)))
 }
 
 func (ptr *QScriptValue) Call2(thisObject QScriptValue_ITF, arguments QScriptValue_ITF) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::call")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::call")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptValue_Call2(ptr.Pointer(), PointerFromQScriptValue(thisObject), PointerFromQScriptValue(arguments)))
@@ -168,11 +131,7 @@ func (ptr *QScriptValue) Call2(thisObject QScriptValue_ITF, arguments QScriptVal
 }
 
 func (ptr *QScriptValue) Construct2(arguments QScriptValue_ITF) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::construct")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::construct")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptValue_Construct2(ptr.Pointer(), PointerFromQScriptValue(arguments)))
@@ -181,11 +140,7 @@ func (ptr *QScriptValue) Construct2(arguments QScriptValue_ITF) *QScriptValue {
 }
 
 func (ptr *QScriptValue) Data() *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::data")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::data")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptValue_Data(ptr.Pointer()))
@@ -194,11 +149,7 @@ func (ptr *QScriptValue) Data() *QScriptValue {
 }
 
 func (ptr *QScriptValue) Engine() *QScriptEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::engine")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::engine")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptEngineFromPointer(C.QScriptValue_Engine(ptr.Pointer()))
@@ -207,11 +158,7 @@ func (ptr *QScriptValue) Engine() *QScriptEngine {
 }
 
 func (ptr *QScriptValue) Equals(other QScriptValue_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::equals")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::equals")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_Equals(ptr.Pointer(), PointerFromQScriptValue(other)) != 0
@@ -220,11 +167,7 @@ func (ptr *QScriptValue) Equals(other QScriptValue_ITF) bool {
 }
 
 func (ptr *QScriptValue) InstanceOf(other QScriptValue_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::instanceOf")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::instanceOf")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_InstanceOf(ptr.Pointer(), PointerFromQScriptValue(other)) != 0
@@ -233,11 +176,7 @@ func (ptr *QScriptValue) InstanceOf(other QScriptValue_ITF) bool {
 }
 
 func (ptr *QScriptValue) IsArray() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isArray")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isArray")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsArray(ptr.Pointer()) != 0
@@ -246,11 +185,7 @@ func (ptr *QScriptValue) IsArray() bool {
 }
 
 func (ptr *QScriptValue) IsBool() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isBool")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isBool")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsBool(ptr.Pointer()) != 0
@@ -259,11 +194,7 @@ func (ptr *QScriptValue) IsBool() bool {
 }
 
 func (ptr *QScriptValue) IsDate() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isDate")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isDate")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsDate(ptr.Pointer()) != 0
@@ -272,11 +203,7 @@ func (ptr *QScriptValue) IsDate() bool {
 }
 
 func (ptr *QScriptValue) IsError() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isError")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isError")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsError(ptr.Pointer()) != 0
@@ -285,11 +212,7 @@ func (ptr *QScriptValue) IsError() bool {
 }
 
 func (ptr *QScriptValue) IsFunction() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isFunction")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isFunction")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsFunction(ptr.Pointer()) != 0
@@ -298,11 +221,7 @@ func (ptr *QScriptValue) IsFunction() bool {
 }
 
 func (ptr *QScriptValue) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isNull")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsNull(ptr.Pointer()) != 0
@@ -311,11 +230,7 @@ func (ptr *QScriptValue) IsNull() bool {
 }
 
 func (ptr *QScriptValue) IsNumber() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isNumber")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isNumber")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsNumber(ptr.Pointer()) != 0
@@ -324,11 +239,7 @@ func (ptr *QScriptValue) IsNumber() bool {
 }
 
 func (ptr *QScriptValue) IsObject() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isObject")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isObject")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsObject(ptr.Pointer()) != 0
@@ -337,11 +248,7 @@ func (ptr *QScriptValue) IsObject() bool {
 }
 
 func (ptr *QScriptValue) IsQMetaObject() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isQMetaObject")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isQMetaObject")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsQMetaObject(ptr.Pointer()) != 0
@@ -350,11 +257,7 @@ func (ptr *QScriptValue) IsQMetaObject() bool {
 }
 
 func (ptr *QScriptValue) IsQObject() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isQObject")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isQObject")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsQObject(ptr.Pointer()) != 0
@@ -363,11 +266,7 @@ func (ptr *QScriptValue) IsQObject() bool {
 }
 
 func (ptr *QScriptValue) IsRegExp() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isRegExp")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isRegExp")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsRegExp(ptr.Pointer()) != 0
@@ -376,11 +275,7 @@ func (ptr *QScriptValue) IsRegExp() bool {
 }
 
 func (ptr *QScriptValue) IsString() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isString")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isString")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsString(ptr.Pointer()) != 0
@@ -389,11 +284,7 @@ func (ptr *QScriptValue) IsString() bool {
 }
 
 func (ptr *QScriptValue) IsUndefined() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isUndefined")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isUndefined")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsUndefined(ptr.Pointer()) != 0
@@ -402,11 +293,7 @@ func (ptr *QScriptValue) IsUndefined() bool {
 }
 
 func (ptr *QScriptValue) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isValid")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsValid(ptr.Pointer()) != 0
@@ -415,11 +302,7 @@ func (ptr *QScriptValue) IsValid() bool {
 }
 
 func (ptr *QScriptValue) IsVariant() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::isVariant")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::isVariant")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_IsVariant(ptr.Pointer()) != 0
@@ -428,11 +311,7 @@ func (ptr *QScriptValue) IsVariant() bool {
 }
 
 func (ptr *QScriptValue) LessThan(other QScriptValue_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::lessThan")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::lessThan")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_LessThan(ptr.Pointer(), PointerFromQScriptValue(other)) != 0
@@ -441,11 +320,7 @@ func (ptr *QScriptValue) LessThan(other QScriptValue_ITF) bool {
 }
 
 func (ptr *QScriptValue) Property2(name QScriptString_ITF, mode QScriptValue__ResolveFlag) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::property")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::property")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptValue_Property2(ptr.Pointer(), PointerFromQScriptString(name), C.int(mode)))
@@ -454,11 +329,7 @@ func (ptr *QScriptValue) Property2(name QScriptString_ITF, mode QScriptValue__Re
 }
 
 func (ptr *QScriptValue) Property(name string, mode QScriptValue__ResolveFlag) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::property")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::property")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptValue_Property(ptr.Pointer(), C.CString(name), C.int(mode)))
@@ -467,11 +338,7 @@ func (ptr *QScriptValue) Property(name string, mode QScriptValue__ResolveFlag) *
 }
 
 func (ptr *QScriptValue) PropertyFlags2(name QScriptString_ITF, mode QScriptValue__ResolveFlag) QScriptValue__PropertyFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::propertyFlags")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::propertyFlags")
 
 	if ptr.Pointer() != nil {
 		return QScriptValue__PropertyFlag(C.QScriptValue_PropertyFlags2(ptr.Pointer(), PointerFromQScriptString(name), C.int(mode)))
@@ -480,11 +347,7 @@ func (ptr *QScriptValue) PropertyFlags2(name QScriptString_ITF, mode QScriptValu
 }
 
 func (ptr *QScriptValue) PropertyFlags(name string, mode QScriptValue__ResolveFlag) QScriptValue__PropertyFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::propertyFlags")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::propertyFlags")
 
 	if ptr.Pointer() != nil {
 		return QScriptValue__PropertyFlag(C.QScriptValue_PropertyFlags(ptr.Pointer(), C.CString(name), C.int(mode)))
@@ -493,11 +356,7 @@ func (ptr *QScriptValue) PropertyFlags(name string, mode QScriptValue__ResolveFl
 }
 
 func (ptr *QScriptValue) Prototype() *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::prototype")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::prototype")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptValue_Prototype(ptr.Pointer()))
@@ -506,11 +365,7 @@ func (ptr *QScriptValue) Prototype() *QScriptValue {
 }
 
 func (ptr *QScriptValue) ScriptClass() *QScriptClass {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::scriptClass")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::scriptClass")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptClassFromPointer(C.QScriptValue_ScriptClass(ptr.Pointer()))
@@ -519,11 +374,7 @@ func (ptr *QScriptValue) ScriptClass() *QScriptClass {
 }
 
 func (ptr *QScriptValue) SetData(data QScriptValue_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::setData")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::setData")
 
 	if ptr.Pointer() != nil {
 		C.QScriptValue_SetData(ptr.Pointer(), PointerFromQScriptValue(data))
@@ -531,11 +382,7 @@ func (ptr *QScriptValue) SetData(data QScriptValue_ITF) {
 }
 
 func (ptr *QScriptValue) SetProperty2(name QScriptString_ITF, value QScriptValue_ITF, flags QScriptValue__PropertyFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::setProperty")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::setProperty")
 
 	if ptr.Pointer() != nil {
 		C.QScriptValue_SetProperty2(ptr.Pointer(), PointerFromQScriptString(name), PointerFromQScriptValue(value), C.int(flags))
@@ -543,11 +390,7 @@ func (ptr *QScriptValue) SetProperty2(name QScriptString_ITF, value QScriptValue
 }
 
 func (ptr *QScriptValue) SetProperty(name string, value QScriptValue_ITF, flags QScriptValue__PropertyFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::setProperty")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::setProperty")
 
 	if ptr.Pointer() != nil {
 		C.QScriptValue_SetProperty(ptr.Pointer(), C.CString(name), PointerFromQScriptValue(value), C.int(flags))
@@ -555,11 +398,7 @@ func (ptr *QScriptValue) SetProperty(name string, value QScriptValue_ITF, flags 
 }
 
 func (ptr *QScriptValue) SetPrototype(prototype QScriptValue_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::setPrototype")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::setPrototype")
 
 	if ptr.Pointer() != nil {
 		C.QScriptValue_SetPrototype(ptr.Pointer(), PointerFromQScriptValue(prototype))
@@ -567,11 +406,7 @@ func (ptr *QScriptValue) SetPrototype(prototype QScriptValue_ITF) {
 }
 
 func (ptr *QScriptValue) SetScriptClass(scriptClass QScriptClass_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::setScriptClass")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::setScriptClass")
 
 	if ptr.Pointer() != nil {
 		C.QScriptValue_SetScriptClass(ptr.Pointer(), PointerFromQScriptClass(scriptClass))
@@ -579,11 +414,7 @@ func (ptr *QScriptValue) SetScriptClass(scriptClass QScriptClass_ITF) {
 }
 
 func (ptr *QScriptValue) StrictlyEquals(other QScriptValue_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::strictlyEquals")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::strictlyEquals")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_StrictlyEquals(ptr.Pointer(), PointerFromQScriptValue(other)) != 0
@@ -592,11 +423,7 @@ func (ptr *QScriptValue) StrictlyEquals(other QScriptValue_ITF) bool {
 }
 
 func (ptr *QScriptValue) ToBool() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::toBool")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::toBool")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptValue_ToBool(ptr.Pointer()) != 0
@@ -605,11 +432,7 @@ func (ptr *QScriptValue) ToBool() bool {
 }
 
 func (ptr *QScriptValue) ToDateTime() *core.QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::toDateTime")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::toDateTime")
 
 	if ptr.Pointer() != nil {
 		return core.NewQDateTimeFromPointer(C.QScriptValue_ToDateTime(ptr.Pointer()))
@@ -618,11 +441,7 @@ func (ptr *QScriptValue) ToDateTime() *core.QDateTime {
 }
 
 func (ptr *QScriptValue) ToQMetaObject() *core.QMetaObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::toQMetaObject")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::toQMetaObject")
 
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QScriptValue_ToQMetaObject(ptr.Pointer()))
@@ -631,11 +450,7 @@ func (ptr *QScriptValue) ToQMetaObject() *core.QMetaObject {
 }
 
 func (ptr *QScriptValue) ToQObject() *core.QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::toQObject")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::toQObject")
 
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QScriptValue_ToQObject(ptr.Pointer()))
@@ -644,11 +459,7 @@ func (ptr *QScriptValue) ToQObject() *core.QObject {
 }
 
 func (ptr *QScriptValue) ToRegExp() *core.QRegExp {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::toRegExp")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::toRegExp")
 
 	if ptr.Pointer() != nil {
 		return core.NewQRegExpFromPointer(C.QScriptValue_ToRegExp(ptr.Pointer()))
@@ -657,11 +468,7 @@ func (ptr *QScriptValue) ToRegExp() *core.QRegExp {
 }
 
 func (ptr *QScriptValue) ToString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::toString")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::toString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScriptValue_ToString(ptr.Pointer()))
@@ -670,11 +477,7 @@ func (ptr *QScriptValue) ToString() string {
 }
 
 func (ptr *QScriptValue) ToVariant() *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::toVariant")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::toVariant")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QScriptValue_ToVariant(ptr.Pointer()))
@@ -683,11 +486,7 @@ func (ptr *QScriptValue) ToVariant() *core.QVariant {
 }
 
 func (ptr *QScriptValue) DestroyQScriptValue() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptValue::~QScriptValue")
-		}
-	}()
+	defer qt.Recovering("QScriptValue::~QScriptValue")
 
 	if ptr.Pointer() != nil {
 		C.QScriptValue_DestroyQScriptValue(ptr.Pointer())

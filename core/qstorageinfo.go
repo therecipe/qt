@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,51 +41,31 @@ func (ptr *QStorageInfo) QStorageInfo_PTR() *QStorageInfo {
 }
 
 func NewQStorageInfo() *QStorageInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::QStorageInfo")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::QStorageInfo")
 
 	return NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo())
 }
 
 func NewQStorageInfo3(dir QDir_ITF) *QStorageInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::QStorageInfo")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::QStorageInfo")
 
 	return NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo3(PointerFromQDir(dir)))
 }
 
 func NewQStorageInfo4(other QStorageInfo_ITF) *QStorageInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::QStorageInfo")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::QStorageInfo")
 
 	return NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo4(PointerFromQStorageInfo(other)))
 }
 
 func NewQStorageInfo2(path string) *QStorageInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::QStorageInfo")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::QStorageInfo")
 
 	return NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo2(C.CString(path)))
 }
 
 func (ptr *QStorageInfo) Device() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::device")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::device")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QStorageInfo_Device(ptr.Pointer()))
@@ -94,11 +74,7 @@ func (ptr *QStorageInfo) Device() *QByteArray {
 }
 
 func (ptr *QStorageInfo) DisplayName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::displayName")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::displayName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStorageInfo_DisplayName(ptr.Pointer()))
@@ -107,11 +83,7 @@ func (ptr *QStorageInfo) DisplayName() string {
 }
 
 func (ptr *QStorageInfo) FileSystemType() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::fileSystemType")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::fileSystemType")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QStorageInfo_FileSystemType(ptr.Pointer()))
@@ -120,11 +92,7 @@ func (ptr *QStorageInfo) FileSystemType() *QByteArray {
 }
 
 func (ptr *QStorageInfo) IsReadOnly() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::isReadOnly")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::isReadOnly")
 
 	if ptr.Pointer() != nil {
 		return C.QStorageInfo_IsReadOnly(ptr.Pointer()) != 0
@@ -133,11 +101,7 @@ func (ptr *QStorageInfo) IsReadOnly() bool {
 }
 
 func (ptr *QStorageInfo) IsReady() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::isReady")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::isReady")
 
 	if ptr.Pointer() != nil {
 		return C.QStorageInfo_IsReady(ptr.Pointer()) != 0
@@ -146,11 +110,7 @@ func (ptr *QStorageInfo) IsReady() bool {
 }
 
 func (ptr *QStorageInfo) IsRoot() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::isRoot")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::isRoot")
 
 	if ptr.Pointer() != nil {
 		return C.QStorageInfo_IsRoot(ptr.Pointer()) != 0
@@ -159,11 +119,7 @@ func (ptr *QStorageInfo) IsRoot() bool {
 }
 
 func (ptr *QStorageInfo) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::isValid")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QStorageInfo_IsValid(ptr.Pointer()) != 0
@@ -172,11 +128,7 @@ func (ptr *QStorageInfo) IsValid() bool {
 }
 
 func (ptr *QStorageInfo) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::name")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStorageInfo_Name(ptr.Pointer()))
@@ -185,11 +137,7 @@ func (ptr *QStorageInfo) Name() string {
 }
 
 func (ptr *QStorageInfo) Refresh() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::refresh")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::refresh")
 
 	if ptr.Pointer() != nil {
 		C.QStorageInfo_Refresh(ptr.Pointer())
@@ -197,11 +145,7 @@ func (ptr *QStorageInfo) Refresh() {
 }
 
 func (ptr *QStorageInfo) RootPath() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::rootPath")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::rootPath")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStorageInfo_RootPath(ptr.Pointer()))
@@ -210,11 +154,7 @@ func (ptr *QStorageInfo) RootPath() string {
 }
 
 func (ptr *QStorageInfo) SetPath(path string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::setPath")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::setPath")
 
 	if ptr.Pointer() != nil {
 		C.QStorageInfo_SetPath(ptr.Pointer(), C.CString(path))
@@ -222,11 +162,7 @@ func (ptr *QStorageInfo) SetPath(path string) {
 }
 
 func (ptr *QStorageInfo) Swap(other QStorageInfo_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::swap")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::swap")
 
 	if ptr.Pointer() != nil {
 		C.QStorageInfo_Swap(ptr.Pointer(), PointerFromQStorageInfo(other))
@@ -234,11 +170,7 @@ func (ptr *QStorageInfo) Swap(other QStorageInfo_ITF) {
 }
 
 func (ptr *QStorageInfo) DestroyQStorageInfo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStorageInfo::~QStorageInfo")
-		}
-	}()
+	defer qt.Recovering("QStorageInfo::~QStorageInfo")
 
 	if ptr.Pointer() != nil {
 		C.QStorageInfo_DestroyQStorageInfo(ptr.Pointer())

@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQCameraZoomControlFromPointer(ptr unsafe.Pointer) *QCameraZoomControl {
 	var n = new(QCameraZoomControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraZoomControl_") {
-		n.SetObjectName("QCameraZoomControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QCameraZoomControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QCameraZoomControl) QCameraZoomControl_PTR() *QCameraZoomControl {
 }
 
 func (ptr *QCameraZoomControl) CurrentDigitalZoom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraZoomControl::currentDigitalZoom")
-		}
-	}()
+	defer qt.Recovering("QCameraZoomControl::currentDigitalZoom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraZoomControl_CurrentDigitalZoom(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QCameraZoomControl) CurrentDigitalZoom() float64 {
 }
 
 func (ptr *QCameraZoomControl) CurrentOpticalZoom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraZoomControl::currentOpticalZoom")
-		}
-	}()
+	defer qt.Recovering("QCameraZoomControl::currentOpticalZoom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraZoomControl_CurrentOpticalZoom(ptr.Pointer()))
@@ -64,11 +55,7 @@ func (ptr *QCameraZoomControl) CurrentOpticalZoom() float64 {
 }
 
 func (ptr *QCameraZoomControl) MaximumDigitalZoom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraZoomControl::maximumDigitalZoom")
-		}
-	}()
+	defer qt.Recovering("QCameraZoomControl::maximumDigitalZoom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraZoomControl_MaximumDigitalZoom(ptr.Pointer()))
@@ -77,11 +64,7 @@ func (ptr *QCameraZoomControl) MaximumDigitalZoom() float64 {
 }
 
 func (ptr *QCameraZoomControl) MaximumOpticalZoom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraZoomControl::maximumOpticalZoom")
-		}
-	}()
+	defer qt.Recovering("QCameraZoomControl::maximumOpticalZoom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraZoomControl_MaximumOpticalZoom(ptr.Pointer()))
@@ -90,11 +73,7 @@ func (ptr *QCameraZoomControl) MaximumOpticalZoom() float64 {
 }
 
 func (ptr *QCameraZoomControl) RequestedDigitalZoom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraZoomControl::requestedDigitalZoom")
-		}
-	}()
+	defer qt.Recovering("QCameraZoomControl::requestedDigitalZoom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraZoomControl_RequestedDigitalZoom(ptr.Pointer()))
@@ -103,11 +82,7 @@ func (ptr *QCameraZoomControl) RequestedDigitalZoom() float64 {
 }
 
 func (ptr *QCameraZoomControl) RequestedOpticalZoom() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraZoomControl::requestedOpticalZoom")
-		}
-	}()
+	defer qt.Recovering("QCameraZoomControl::requestedOpticalZoom")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraZoomControl_RequestedOpticalZoom(ptr.Pointer()))
@@ -116,11 +91,7 @@ func (ptr *QCameraZoomControl) RequestedOpticalZoom() float64 {
 }
 
 func (ptr *QCameraZoomControl) ZoomTo(optical float64, digital float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraZoomControl::zoomTo")
-		}
-	}()
+	defer qt.Recovering("QCameraZoomControl::zoomTo")
 
 	if ptr.Pointer() != nil {
 		C.QCameraZoomControl_ZoomTo(ptr.Pointer(), C.double(optical), C.double(digital))
@@ -128,11 +99,7 @@ func (ptr *QCameraZoomControl) ZoomTo(optical float64, digital float64) {
 }
 
 func (ptr *QCameraZoomControl) DestroyQCameraZoomControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraZoomControl::~QCameraZoomControl")
-		}
-	}()
+	defer qt.Recovering("QCameraZoomControl::~QCameraZoomControl")
 
 	if ptr.Pointer() != nil {
 		C.QCameraZoomControl_DestroyQCameraZoomControl(ptr.Pointer())

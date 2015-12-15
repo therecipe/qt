@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,31 +34,19 @@ func (ptr *QDomEntity) QDomEntity_PTR() *QDomEntity {
 }
 
 func NewQDomEntity() *QDomEntity {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomEntity::QDomEntity")
-		}
-	}()
+	defer qt.Recovering("QDomEntity::QDomEntity")
 
 	return NewQDomEntityFromPointer(C.QDomEntity_NewQDomEntity())
 }
 
 func NewQDomEntity2(x QDomEntity_ITF) *QDomEntity {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomEntity::QDomEntity")
-		}
-	}()
+	defer qt.Recovering("QDomEntity::QDomEntity")
 
 	return NewQDomEntityFromPointer(C.QDomEntity_NewQDomEntity2(PointerFromQDomEntity(x)))
 }
 
 func (ptr *QDomEntity) NodeType() QDomNode__NodeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomEntity::nodeType")
-		}
-	}()
+	defer qt.Recovering("QDomEntity::nodeType")
 
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomEntity_NodeType(ptr.Pointer()))
@@ -67,11 +55,7 @@ func (ptr *QDomEntity) NodeType() QDomNode__NodeType {
 }
 
 func (ptr *QDomEntity) NotationName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomEntity::notationName")
-		}
-	}()
+	defer qt.Recovering("QDomEntity::notationName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomEntity_NotationName(ptr.Pointer()))
@@ -80,11 +64,7 @@ func (ptr *QDomEntity) NotationName() string {
 }
 
 func (ptr *QDomEntity) PublicId() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomEntity::publicId")
-		}
-	}()
+	defer qt.Recovering("QDomEntity::publicId")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomEntity_PublicId(ptr.Pointer()))
@@ -93,11 +73,7 @@ func (ptr *QDomEntity) PublicId() string {
 }
 
 func (ptr *QDomEntity) SystemId() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomEntity::systemId")
-		}
-	}()
+	defer qt.Recovering("QDomEntity::systemId")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomEntity_SystemId(ptr.Pointer()))

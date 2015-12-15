@@ -3,8 +3,8 @@ package quick
 //#include "quick.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -35,21 +35,13 @@ func (ptr *QSGTransformNode) QSGTransformNode_PTR() *QSGTransformNode {
 }
 
 func NewQSGTransformNode() *QSGTransformNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTransformNode::QSGTransformNode")
-		}
-	}()
+	defer qt.Recovering("QSGTransformNode::QSGTransformNode")
 
 	return NewQSGTransformNodeFromPointer(C.QSGTransformNode_NewQSGTransformNode())
 }
 
 func (ptr *QSGTransformNode) SetMatrix(matrix gui.QMatrix4x4_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTransformNode::setMatrix")
-		}
-	}()
+	defer qt.Recovering("QSGTransformNode::setMatrix")
 
 	if ptr.Pointer() != nil {
 		C.QSGTransformNode_SetMatrix(ptr.Pointer(), gui.PointerFromQMatrix4x4(matrix))
@@ -57,11 +49,7 @@ func (ptr *QSGTransformNode) SetMatrix(matrix gui.QMatrix4x4_ITF) {
 }
 
 func (ptr *QSGTransformNode) DestroyQSGTransformNode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTransformNode::~QSGTransformNode")
-		}
-	}()
+	defer qt.Recovering("QSGTransformNode::~QSGTransformNode")
 
 	if ptr.Pointer() != nil {
 		C.QSGTransformNode_DestroyQSGTransformNode(ptr.Pointer())

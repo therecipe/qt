@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQSessionManagerFromPointer(ptr unsafe.Pointer) *QSessionManager {
 	var n = new(QSessionManager)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSessionManager_") {
-		n.SetObjectName("QSessionManager_" + qt.RandomIdentifier())
+		n.SetObjectName("QSessionManager_" + qt.Identifier())
 	}
 	return n
 }
@@ -50,11 +49,7 @@ const (
 )
 
 func (ptr *QSessionManager) RestartHint() QSessionManager__RestartHint {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::restartHint")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::restartHint")
 
 	if ptr.Pointer() != nil {
 		return QSessionManager__RestartHint(C.QSessionManager_RestartHint(ptr.Pointer()))
@@ -63,11 +58,7 @@ func (ptr *QSessionManager) RestartHint() QSessionManager__RestartHint {
 }
 
 func (ptr *QSessionManager) SessionKey() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::sessionKey")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::sessionKey")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSessionManager_SessionKey(ptr.Pointer()))
@@ -76,11 +67,7 @@ func (ptr *QSessionManager) SessionKey() string {
 }
 
 func (ptr *QSessionManager) AllowsErrorInteraction() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::allowsErrorInteraction")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::allowsErrorInteraction")
 
 	if ptr.Pointer() != nil {
 		return C.QSessionManager_AllowsErrorInteraction(ptr.Pointer()) != 0
@@ -89,11 +76,7 @@ func (ptr *QSessionManager) AllowsErrorInteraction() bool {
 }
 
 func (ptr *QSessionManager) AllowsInteraction() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::allowsInteraction")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::allowsInteraction")
 
 	if ptr.Pointer() != nil {
 		return C.QSessionManager_AllowsInteraction(ptr.Pointer()) != 0
@@ -102,11 +85,7 @@ func (ptr *QSessionManager) AllowsInteraction() bool {
 }
 
 func (ptr *QSessionManager) Cancel() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::cancel")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::cancel")
 
 	if ptr.Pointer() != nil {
 		C.QSessionManager_Cancel(ptr.Pointer())
@@ -114,11 +93,7 @@ func (ptr *QSessionManager) Cancel() {
 }
 
 func (ptr *QSessionManager) DiscardCommand() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::discardCommand")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::discardCommand")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSessionManager_DiscardCommand(ptr.Pointer())), ",,,")
@@ -127,11 +102,7 @@ func (ptr *QSessionManager) DiscardCommand() []string {
 }
 
 func (ptr *QSessionManager) IsPhase2() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::isPhase2")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::isPhase2")
 
 	if ptr.Pointer() != nil {
 		return C.QSessionManager_IsPhase2(ptr.Pointer()) != 0
@@ -140,11 +111,7 @@ func (ptr *QSessionManager) IsPhase2() bool {
 }
 
 func (ptr *QSessionManager) Release() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::release")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::release")
 
 	if ptr.Pointer() != nil {
 		C.QSessionManager_Release(ptr.Pointer())
@@ -152,11 +119,7 @@ func (ptr *QSessionManager) Release() {
 }
 
 func (ptr *QSessionManager) RequestPhase2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::requestPhase2")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::requestPhase2")
 
 	if ptr.Pointer() != nil {
 		C.QSessionManager_RequestPhase2(ptr.Pointer())
@@ -164,11 +127,7 @@ func (ptr *QSessionManager) RequestPhase2() {
 }
 
 func (ptr *QSessionManager) RestartCommand() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::restartCommand")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::restartCommand")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSessionManager_RestartCommand(ptr.Pointer())), ",,,")
@@ -177,11 +136,7 @@ func (ptr *QSessionManager) RestartCommand() []string {
 }
 
 func (ptr *QSessionManager) SessionId() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::sessionId")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::sessionId")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSessionManager_SessionId(ptr.Pointer()))
@@ -190,11 +145,7 @@ func (ptr *QSessionManager) SessionId() string {
 }
 
 func (ptr *QSessionManager) SetDiscardCommand(command []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::setDiscardCommand")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::setDiscardCommand")
 
 	if ptr.Pointer() != nil {
 		C.QSessionManager_SetDiscardCommand(ptr.Pointer(), C.CString(strings.Join(command, ",,,")))
@@ -202,11 +153,7 @@ func (ptr *QSessionManager) SetDiscardCommand(command []string) {
 }
 
 func (ptr *QSessionManager) SetManagerProperty2(name string, value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::setManagerProperty")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::setManagerProperty")
 
 	if ptr.Pointer() != nil {
 		C.QSessionManager_SetManagerProperty2(ptr.Pointer(), C.CString(name), C.CString(value))
@@ -214,11 +161,7 @@ func (ptr *QSessionManager) SetManagerProperty2(name string, value string) {
 }
 
 func (ptr *QSessionManager) SetManagerProperty(name string, value []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::setManagerProperty")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::setManagerProperty")
 
 	if ptr.Pointer() != nil {
 		C.QSessionManager_SetManagerProperty(ptr.Pointer(), C.CString(name), C.CString(strings.Join(value, ",,,")))
@@ -226,11 +169,7 @@ func (ptr *QSessionManager) SetManagerProperty(name string, value []string) {
 }
 
 func (ptr *QSessionManager) SetRestartCommand(command []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::setRestartCommand")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::setRestartCommand")
 
 	if ptr.Pointer() != nil {
 		C.QSessionManager_SetRestartCommand(ptr.Pointer(), C.CString(strings.Join(command, ",,,")))
@@ -238,11 +177,7 @@ func (ptr *QSessionManager) SetRestartCommand(command []string) {
 }
 
 func (ptr *QSessionManager) SetRestartHint(hint QSessionManager__RestartHint) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSessionManager::setRestartHint")
-		}
-	}()
+	defer qt.Recovering("QSessionManager::setRestartHint")
 
 	if ptr.Pointer() != nil {
 		C.QSessionManager_SetRestartHint(ptr.Pointer(), C.int(hint))

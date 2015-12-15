@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -40,7 +39,7 @@ func NewQLayoutFromPointer(ptr unsafe.Pointer) *QLayout {
 	var n = new(QLayout)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QLayout_") {
-		n.SetObjectName("QLayout_" + qt.RandomIdentifier())
+		n.SetObjectName("QLayout_" + qt.Identifier())
 	}
 	return n
 }
@@ -62,11 +61,7 @@ const (
 )
 
 func (ptr *QLayout) SetSizeConstraint(v QLayout__SizeConstraint) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::setSizeConstraint")
-		}
-	}()
+	defer qt.Recovering("QLayout::setSizeConstraint")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_SetSizeConstraint(ptr.Pointer(), C.int(v))
@@ -74,11 +69,7 @@ func (ptr *QLayout) SetSizeConstraint(v QLayout__SizeConstraint) {
 }
 
 func (ptr *QLayout) SetSpacing(v int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::setSpacing")
-		}
-	}()
+	defer qt.Recovering("QLayout::setSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_SetSpacing(ptr.Pointer(), C.int(v))
@@ -86,11 +77,7 @@ func (ptr *QLayout) SetSpacing(v int) {
 }
 
 func (ptr *QLayout) SizeConstraint() QLayout__SizeConstraint {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::sizeConstraint")
-		}
-	}()
+	defer qt.Recovering("QLayout::sizeConstraint")
 
 	if ptr.Pointer() != nil {
 		return QLayout__SizeConstraint(C.QLayout_SizeConstraint(ptr.Pointer()))
@@ -99,11 +86,7 @@ func (ptr *QLayout) SizeConstraint() QLayout__SizeConstraint {
 }
 
 func (ptr *QLayout) Spacing() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::spacing")
-		}
-	}()
+	defer qt.Recovering("QLayout::spacing")
 
 	if ptr.Pointer() != nil {
 		return int(C.QLayout_Spacing(ptr.Pointer()))
@@ -112,11 +95,7 @@ func (ptr *QLayout) Spacing() int {
 }
 
 func (ptr *QLayout) Activate() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::activate")
-		}
-	}()
+	defer qt.Recovering("QLayout::activate")
 
 	if ptr.Pointer() != nil {
 		return C.QLayout_Activate(ptr.Pointer()) != 0
@@ -125,11 +104,7 @@ func (ptr *QLayout) Activate() bool {
 }
 
 func (ptr *QLayout) AddItem(item QLayoutItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::addItem")
-		}
-	}()
+	defer qt.Recovering("QLayout::addItem")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_AddItem(ptr.Pointer(), PointerFromQLayoutItem(item))
@@ -137,23 +112,46 @@ func (ptr *QLayout) AddItem(item QLayoutItem_ITF) {
 }
 
 func (ptr *QLayout) AddWidget(w QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::addWidget")
-		}
-	}()
+	defer qt.Recovering("QLayout::addWidget")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_AddWidget(ptr.Pointer(), PointerFromQWidget(w))
 	}
 }
 
+func (ptr *QLayout) ConnectChildEvent(f func(e *core.QChildEvent)) {
+	defer qt.Recovering("connect QLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QLayout) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQLayoutChildEvent
+func callbackQLayoutChildEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QLayout::childEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "childEvent")
+	if signal != nil {
+		defer signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QLayout) ControlTypes() QSizePolicy__ControlType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::controlTypes")
-		}
-	}()
+	defer qt.Recovering("QLayout::controlTypes")
 
 	if ptr.Pointer() != nil {
 		return QSizePolicy__ControlType(C.QLayout_ControlTypes(ptr.Pointer()))
@@ -162,11 +160,7 @@ func (ptr *QLayout) ControlTypes() QSizePolicy__ControlType {
 }
 
 func (ptr *QLayout) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::count")
-		}
-	}()
+	defer qt.Recovering("QLayout::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QLayout_Count(ptr.Pointer()))
@@ -175,11 +169,7 @@ func (ptr *QLayout) Count() int {
 }
 
 func (ptr *QLayout) ExpandingDirections() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::expandingDirections")
-		}
-	}()
+	defer qt.Recovering("QLayout::expandingDirections")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QLayout_ExpandingDirections(ptr.Pointer()))
@@ -188,11 +178,7 @@ func (ptr *QLayout) ExpandingDirections() core.Qt__Orientation {
 }
 
 func (ptr *QLayout) GetContentsMargins(left int, top int, right int, bottom int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::getContentsMargins")
-		}
-	}()
+	defer qt.Recovering("QLayout::getContentsMargins")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_GetContentsMargins(ptr.Pointer(), C.int(left), C.int(top), C.int(right), C.int(bottom))
@@ -200,11 +186,7 @@ func (ptr *QLayout) GetContentsMargins(left int, top int, right int, bottom int)
 }
 
 func (ptr *QLayout) IndexOf(widget QWidget_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::indexOf")
-		}
-	}()
+	defer qt.Recovering("QLayout::indexOf")
 
 	if ptr.Pointer() != nil {
 		return int(C.QLayout_IndexOf(ptr.Pointer(), PointerFromQWidget(widget)))
@@ -212,24 +194,39 @@ func (ptr *QLayout) IndexOf(widget QWidget_ITF) int {
 	return 0
 }
 
-func (ptr *QLayout) Invalidate() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::invalidate")
-		}
-	}()
+func (ptr *QLayout) ConnectInvalidate(f func()) {
+	defer qt.Recovering("connect QLayout::invalidate")
 
 	if ptr.Pointer() != nil {
-		C.QLayout_Invalidate(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "invalidate", f)
 	}
 }
 
+func (ptr *QLayout) DisconnectInvalidate() {
+	defer qt.Recovering("disconnect QLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "invalidate")
+	}
+}
+
+//export callbackQLayoutInvalidate
+func callbackQLayoutInvalidate(ptrName *C.char) bool {
+	defer qt.Recovering("callback QLayout::invalidate")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "invalidate")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QLayout) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QLayout::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QLayout_IsEmpty(ptr.Pointer()) != 0
@@ -238,11 +235,7 @@ func (ptr *QLayout) IsEmpty() bool {
 }
 
 func (ptr *QLayout) IsEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::isEnabled")
-		}
-	}()
+	defer qt.Recovering("QLayout::isEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QLayout_IsEnabled(ptr.Pointer()) != 0
@@ -251,11 +244,7 @@ func (ptr *QLayout) IsEnabled() bool {
 }
 
 func (ptr *QLayout) ItemAt(index int) *QLayoutItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::itemAt")
-		}
-	}()
+	defer qt.Recovering("QLayout::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutItemFromPointer(C.QLayout_ItemAt(ptr.Pointer(), C.int(index)))
@@ -264,11 +253,7 @@ func (ptr *QLayout) ItemAt(index int) *QLayoutItem {
 }
 
 func (ptr *QLayout) Layout() *QLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::layout")
-		}
-	}()
+	defer qt.Recovering("QLayout::layout")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutFromPointer(C.QLayout_Layout(ptr.Pointer()))
@@ -277,11 +262,7 @@ func (ptr *QLayout) Layout() *QLayout {
 }
 
 func (ptr *QLayout) MenuBar() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::menuBar")
-		}
-	}()
+	defer qt.Recovering("QLayout::menuBar")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QLayout_MenuBar(ptr.Pointer()))
@@ -290,11 +271,7 @@ func (ptr *QLayout) MenuBar() *QWidget {
 }
 
 func (ptr *QLayout) ParentWidget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::parentWidget")
-		}
-	}()
+	defer qt.Recovering("QLayout::parentWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QLayout_ParentWidget(ptr.Pointer()))
@@ -303,11 +280,7 @@ func (ptr *QLayout) ParentWidget() *QWidget {
 }
 
 func (ptr *QLayout) RemoveItem(item QLayoutItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::removeItem")
-		}
-	}()
+	defer qt.Recovering("QLayout::removeItem")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_RemoveItem(ptr.Pointer(), PointerFromQLayoutItem(item))
@@ -315,11 +288,7 @@ func (ptr *QLayout) RemoveItem(item QLayoutItem_ITF) {
 }
 
 func (ptr *QLayout) RemoveWidget(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::removeWidget")
-		}
-	}()
+	defer qt.Recovering("QLayout::removeWidget")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_RemoveWidget(ptr.Pointer(), PointerFromQWidget(widget))
@@ -327,11 +296,7 @@ func (ptr *QLayout) RemoveWidget(widget QWidget_ITF) {
 }
 
 func (ptr *QLayout) ReplaceWidget(from QWidget_ITF, to QWidget_ITF, options core.Qt__FindChildOption) *QLayoutItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::replaceWidget")
-		}
-	}()
+	defer qt.Recovering("QLayout::replaceWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutItemFromPointer(C.QLayout_ReplaceWidget(ptr.Pointer(), PointerFromQWidget(from), PointerFromQWidget(to), C.int(options)))
@@ -340,11 +305,7 @@ func (ptr *QLayout) ReplaceWidget(from QWidget_ITF, to QWidget_ITF, options core
 }
 
 func (ptr *QLayout) SetAlignment2(l QLayout_ITF, alignment core.Qt__AlignmentFlag) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::setAlignment")
-		}
-	}()
+	defer qt.Recovering("QLayout::setAlignment")
 
 	if ptr.Pointer() != nil {
 		return C.QLayout_SetAlignment2(ptr.Pointer(), PointerFromQLayout(l), C.int(alignment)) != 0
@@ -353,11 +314,7 @@ func (ptr *QLayout) SetAlignment2(l QLayout_ITF, alignment core.Qt__AlignmentFla
 }
 
 func (ptr *QLayout) SetAlignment(w QWidget_ITF, alignment core.Qt__AlignmentFlag) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::setAlignment")
-		}
-	}()
+	defer qt.Recovering("QLayout::setAlignment")
 
 	if ptr.Pointer() != nil {
 		return C.QLayout_SetAlignment(ptr.Pointer(), PointerFromQWidget(w), C.int(alignment)) != 0
@@ -366,11 +323,7 @@ func (ptr *QLayout) SetAlignment(w QWidget_ITF, alignment core.Qt__AlignmentFlag
 }
 
 func (ptr *QLayout) SetContentsMargins2(margins core.QMargins_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::setContentsMargins")
-		}
-	}()
+	defer qt.Recovering("QLayout::setContentsMargins")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_SetContentsMargins2(ptr.Pointer(), core.PointerFromQMargins(margins))
@@ -378,11 +331,7 @@ func (ptr *QLayout) SetContentsMargins2(margins core.QMargins_ITF) {
 }
 
 func (ptr *QLayout) SetContentsMargins(left int, top int, right int, bottom int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::setContentsMargins")
-		}
-	}()
+	defer qt.Recovering("QLayout::setContentsMargins")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_SetContentsMargins(ptr.Pointer(), C.int(left), C.int(top), C.int(right), C.int(bottom))
@@ -390,35 +339,15 @@ func (ptr *QLayout) SetContentsMargins(left int, top int, right int, bottom int)
 }
 
 func (ptr *QLayout) SetEnabled(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::setEnabled")
-		}
-	}()
+	defer qt.Recovering("QLayout::setEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
-func (ptr *QLayout) SetGeometry(r core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::setGeometry")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRect(r))
-	}
-}
-
 func (ptr *QLayout) SetMenuBar(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::setMenuBar")
-		}
-	}()
+	defer qt.Recovering("QLayout::setMenuBar")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_SetMenuBar(ptr.Pointer(), PointerFromQWidget(widget))
@@ -426,11 +355,7 @@ func (ptr *QLayout) SetMenuBar(widget QWidget_ITF) {
 }
 
 func (ptr *QLayout) TakeAt(index int) *QLayoutItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::takeAt")
-		}
-	}()
+	defer qt.Recovering("QLayout::takeAt")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutItemFromPointer(C.QLayout_TakeAt(ptr.Pointer(), C.int(index)))
@@ -439,11 +364,7 @@ func (ptr *QLayout) TakeAt(index int) *QLayoutItem {
 }
 
 func (ptr *QLayout) Update() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLayout::update")
-		}
-	}()
+	defer qt.Recovering("QLayout::update")
 
 	if ptr.Pointer() != nil {
 		C.QLayout_Update(ptr.Pointer())

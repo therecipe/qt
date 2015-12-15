@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QQuaternion) QQuaternion_PTR() *QQuaternion {
 }
 
 func NewQQuaternion() *QQuaternion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuaternion::QQuaternion")
-		}
-	}()
+	defer qt.Recovering("QQuaternion::QQuaternion")
 
 	return NewQQuaternionFromPointer(C.QQuaternion_NewQQuaternion())
 }
 
 func NewQQuaternion5(vector QVector4D_ITF) *QQuaternion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuaternion::QQuaternion")
-		}
-	}()
+	defer qt.Recovering("QQuaternion::QQuaternion")
 
 	return NewQQuaternionFromPointer(C.QQuaternion_NewQQuaternion5(PointerFromQVector4D(vector)))
 }
 
 func (ptr *QQuaternion) GetAxes(xAxis QVector3D_ITF, yAxis QVector3D_ITF, zAxis QVector3D_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuaternion::getAxes")
-		}
-	}()
+	defer qt.Recovering("QQuaternion::getAxes")
 
 	if ptr.Pointer() != nil {
 		C.QQuaternion_GetAxes(ptr.Pointer(), PointerFromQVector3D(xAxis), PointerFromQVector3D(yAxis), PointerFromQVector3D(zAxis))
@@ -73,11 +61,7 @@ func (ptr *QQuaternion) GetAxes(xAxis QVector3D_ITF, yAxis QVector3D_ITF, zAxis 
 }
 
 func (ptr *QQuaternion) IsIdentity() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuaternion::isIdentity")
-		}
-	}()
+	defer qt.Recovering("QQuaternion::isIdentity")
 
 	if ptr.Pointer() != nil {
 		return C.QQuaternion_IsIdentity(ptr.Pointer()) != 0
@@ -86,11 +70,7 @@ func (ptr *QQuaternion) IsIdentity() bool {
 }
 
 func (ptr *QQuaternion) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuaternion::isNull")
-		}
-	}()
+	defer qt.Recovering("QQuaternion::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QQuaternion_IsNull(ptr.Pointer()) != 0
@@ -99,11 +79,7 @@ func (ptr *QQuaternion) IsNull() bool {
 }
 
 func (ptr *QQuaternion) Normalize() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuaternion::normalize")
-		}
-	}()
+	defer qt.Recovering("QQuaternion::normalize")
 
 	if ptr.Pointer() != nil {
 		C.QQuaternion_Normalize(ptr.Pointer())
@@ -111,11 +87,7 @@ func (ptr *QQuaternion) Normalize() {
 }
 
 func (ptr *QQuaternion) SetVector(vector QVector3D_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuaternion::setVector")
-		}
-	}()
+	defer qt.Recovering("QQuaternion::setVector")
 
 	if ptr.Pointer() != nil {
 		C.QQuaternion_SetVector(ptr.Pointer(), PointerFromQVector3D(vector))

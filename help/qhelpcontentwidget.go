@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/widgets"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQHelpContentWidgetFromPointer(ptr unsafe.Pointer) *QHelpContentWidget {
 	var n = new(QHelpContentWidget)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpContentWidget_") {
-		n.SetObjectName("QHelpContentWidget_" + qt.RandomIdentifier())
+		n.SetObjectName("QHelpContentWidget_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QHelpContentWidget) QHelpContentWidget_PTR() *QHelpContentWidget {
 }
 
 func (ptr *QHelpContentWidget) IndexOf(link core.QUrl_ITF) *core.QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpContentWidget::indexOf")
-		}
-	}()
+	defer qt.Recovering("QHelpContentWidget::indexOf")
 
 	if ptr.Pointer() != nil {
 		return core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexOf(ptr.Pointer(), core.PointerFromQUrl(link)))

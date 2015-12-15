@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQMediaControlFromPointer(ptr unsafe.Pointer) *QMediaControl {
 	var n = new(QMediaControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaControl_") {
-		n.SetObjectName("QMediaControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QMediaControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QMediaControl) QMediaControl_PTR() *QMediaControl {
 }
 
 func (ptr *QMediaControl) DestroyQMediaControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaControl::~QMediaControl")
-		}
-	}()
+	defer qt.Recovering("QMediaControl::~QMediaControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaControl_DestroyQMediaControl(ptr.Pointer())

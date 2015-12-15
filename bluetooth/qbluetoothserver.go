@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQBluetoothServerFromPointer(ptr unsafe.Pointer) *QBluetoothServer {
 	var n = new(QBluetoothServer)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QBluetoothServer_") {
-		n.SetObjectName("QBluetoothServer_" + qt.RandomIdentifier())
+		n.SetObjectName("QBluetoothServer_" + qt.Identifier())
 	}
 	return n
 }
@@ -51,21 +50,13 @@ const (
 )
 
 func NewQBluetoothServer(serverType QBluetoothServiceInfo__Protocol, parent core.QObject_ITF) *QBluetoothServer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::QBluetoothServer")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServer::QBluetoothServer")
 
 	return NewQBluetoothServerFromPointer(C.QBluetoothServer_NewQBluetoothServer(C.int(serverType), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBluetoothServer) ConnectNewConnection(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::newConnection")
-		}
-	}()
+	defer qt.Recovering("connect QBluetoothServer::newConnection")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServer_ConnectNewConnection(ptr.Pointer())
@@ -74,11 +65,7 @@ func (ptr *QBluetoothServer) ConnectNewConnection(f func()) {
 }
 
 func (ptr *QBluetoothServer) DisconnectNewConnection() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::newConnection")
-		}
-	}()
+	defer qt.Recovering("disconnect QBluetoothServer::newConnection")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServer_DisconnectNewConnection(ptr.Pointer())
@@ -88,21 +75,17 @@ func (ptr *QBluetoothServer) DisconnectNewConnection() {
 
 //export callbackQBluetoothServerNewConnection
 func callbackQBluetoothServerNewConnection(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::newConnection")
-		}
-	}()
+	defer qt.Recovering("callback QBluetoothServer::newConnection")
 
-	qt.GetSignal(C.GoString(ptrName), "newConnection").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "newConnection")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QBluetoothServer) Error() QBluetoothServer__Error {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::error")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServer::error")
 
 	if ptr.Pointer() != nil {
 		return QBluetoothServer__Error(C.QBluetoothServer_Error(ptr.Pointer()))
@@ -111,11 +94,7 @@ func (ptr *QBluetoothServer) Error() QBluetoothServer__Error {
 }
 
 func (ptr *QBluetoothServer) IsListening() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::isListening")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServer::isListening")
 
 	if ptr.Pointer() != nil {
 		return C.QBluetoothServer_IsListening(ptr.Pointer()) != 0
@@ -124,11 +103,7 @@ func (ptr *QBluetoothServer) IsListening() bool {
 }
 
 func (ptr *QBluetoothServer) MaxPendingConnections() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::maxPendingConnections")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServer::maxPendingConnections")
 
 	if ptr.Pointer() != nil {
 		return int(C.QBluetoothServer_MaxPendingConnections(ptr.Pointer()))
@@ -137,11 +112,7 @@ func (ptr *QBluetoothServer) MaxPendingConnections() int {
 }
 
 func (ptr *QBluetoothServer) ServerType() QBluetoothServiceInfo__Protocol {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::serverType")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServer::serverType")
 
 	if ptr.Pointer() != nil {
 		return QBluetoothServiceInfo__Protocol(C.QBluetoothServer_ServerType(ptr.Pointer()))
@@ -150,11 +121,7 @@ func (ptr *QBluetoothServer) ServerType() QBluetoothServiceInfo__Protocol {
 }
 
 func (ptr *QBluetoothServer) DestroyQBluetoothServer() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::~QBluetoothServer")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServer::~QBluetoothServer")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServer_DestroyQBluetoothServer(ptr.Pointer())
@@ -163,11 +130,7 @@ func (ptr *QBluetoothServer) DestroyQBluetoothServer() {
 }
 
 func (ptr *QBluetoothServer) Close() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::close")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServer::close")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServer_Close(ptr.Pointer())
@@ -175,11 +138,7 @@ func (ptr *QBluetoothServer) Close() {
 }
 
 func (ptr *QBluetoothServer) HasPendingConnections() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::hasPendingConnections")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServer::hasPendingConnections")
 
 	if ptr.Pointer() != nil {
 		return C.QBluetoothServer_HasPendingConnections(ptr.Pointer()) != 0
@@ -188,11 +147,7 @@ func (ptr *QBluetoothServer) HasPendingConnections() bool {
 }
 
 func (ptr *QBluetoothServer) NextPendingConnection() *QBluetoothSocket {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::nextPendingConnection")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServer::nextPendingConnection")
 
 	if ptr.Pointer() != nil {
 		return NewQBluetoothSocketFromPointer(C.QBluetoothServer_NextPendingConnection(ptr.Pointer()))
@@ -201,11 +156,7 @@ func (ptr *QBluetoothServer) NextPendingConnection() *QBluetoothSocket {
 }
 
 func (ptr *QBluetoothServer) SetMaxPendingConnections(numConnections int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServer::setMaxPendingConnections")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServer::setMaxPendingConnections")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServer_SetMaxPendingConnections(ptr.Pointer(), C.int(numConnections))

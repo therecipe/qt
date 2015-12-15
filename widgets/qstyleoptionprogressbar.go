@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -48,21 +48,13 @@ var (
 )
 
 func NewQStyleOptionProgressBar() *QStyleOptionProgressBar {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionProgressBar::QStyleOptionProgressBar")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionProgressBar::QStyleOptionProgressBar")
 
 	return NewQStyleOptionProgressBarFromPointer(C.QStyleOptionProgressBar_NewQStyleOptionProgressBar())
 }
 
 func NewQStyleOptionProgressBar2(other QStyleOptionProgressBar_ITF) *QStyleOptionProgressBar {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionProgressBar::QStyleOptionProgressBar")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionProgressBar::QStyleOptionProgressBar")
 
 	return NewQStyleOptionProgressBarFromPointer(C.QStyleOptionProgressBar_NewQStyleOptionProgressBar2(PointerFromQStyleOptionProgressBar(other)))
 }

@@ -28,7 +28,7 @@ func NewQPlatformGraphicsBufferFromPointer(ptr unsafe.Pointer) *QPlatformGraphic
 	var n = new(QPlatformGraphicsBuffer)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QPlatformGraphicsBuffer_") {
-		n.SetObjectName("QPlatformGraphicsBuffer_" + qt.RandomIdentifier())
+		n.SetObjectName("QPlatformGraphicsBuffer_" + qt.Identifier())
 	}
 	return n
 }

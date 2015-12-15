@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +42,19 @@ func (ptr *QDesktopServices) QDesktopServices_PTR() *QDesktopServices {
 }
 
 func QDesktopServices_OpenUrl(url core.QUrl_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDesktopServices::openUrl")
-		}
-	}()
+	defer qt.Recovering("QDesktopServices::openUrl")
 
 	return C.QDesktopServices_QDesktopServices_OpenUrl(core.PointerFromQUrl(url)) != 0
 }
 
 func QDesktopServices_SetUrlHandler(scheme string, receiver core.QObject_ITF, method string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDesktopServices::setUrlHandler")
-		}
-	}()
+	defer qt.Recovering("QDesktopServices::setUrlHandler")
 
 	C.QDesktopServices_QDesktopServices_SetUrlHandler(C.CString(scheme), core.PointerFromQObject(receiver), C.CString(method))
 }
 
 func QDesktopServices_UnsetUrlHandler(scheme string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDesktopServices::unsetUrlHandler")
-		}
-	}()
+	defer qt.Recovering("QDesktopServices::unsetUrlHandler")
 
 	C.QDesktopServices_QDesktopServices_UnsetUrlHandler(C.CString(scheme))
 }

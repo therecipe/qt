@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -50,21 +50,13 @@ const (
 )
 
 func NewQMimeDatabase() *QMimeDatabase {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeDatabase::QMimeDatabase")
-		}
-	}()
+	defer qt.Recovering("QMimeDatabase::QMimeDatabase")
 
 	return NewQMimeDatabaseFromPointer(C.QMimeDatabase_NewQMimeDatabase())
 }
 
 func (ptr *QMimeDatabase) DestroyQMimeDatabase() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeDatabase::~QMimeDatabase")
-		}
-	}()
+	defer qt.Recovering("QMimeDatabase::~QMimeDatabase")
 
 	if ptr.Pointer() != nil {
 		C.QMimeDatabase_DestroyQMimeDatabase(ptr.Pointer())
@@ -72,11 +64,7 @@ func (ptr *QMimeDatabase) DestroyQMimeDatabase() {
 }
 
 func (ptr *QMimeDatabase) SuffixForFileName(fileName string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMimeDatabase::suffixForFileName")
-		}
-	}()
+	defer qt.Recovering("QMimeDatabase::suffixForFileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMimeDatabase_SuffixForFileName(ptr.Pointer(), C.CString(fileName)))

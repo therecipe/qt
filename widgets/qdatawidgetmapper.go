@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQDataWidgetMapperFromPointer(ptr unsafe.Pointer) *QDataWidgetMapper {
 	var n = new(QDataWidgetMapper)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDataWidgetMapper_") {
-		n.SetObjectName("QDataWidgetMapper_" + qt.RandomIdentifier())
+		n.SetObjectName("QDataWidgetMapper_" + qt.Identifier())
 	}
 	return n
 }
@@ -47,11 +46,7 @@ const (
 )
 
 func (ptr *QDataWidgetMapper) CurrentIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::currentIndex")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::currentIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QDataWidgetMapper_CurrentIndex(ptr.Pointer()))
@@ -60,11 +55,7 @@ func (ptr *QDataWidgetMapper) CurrentIndex() int {
 }
 
 func (ptr *QDataWidgetMapper) Orientation() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::orientation")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::orientation")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QDataWidgetMapper_Orientation(ptr.Pointer()))
@@ -72,24 +63,39 @@ func (ptr *QDataWidgetMapper) Orientation() core.Qt__Orientation {
 	return 0
 }
 
-func (ptr *QDataWidgetMapper) SetCurrentIndex(index int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::setCurrentIndex")
-		}
-	}()
+func (ptr *QDataWidgetMapper) ConnectSetCurrentIndex(f func(index int)) {
+	defer qt.Recovering("connect QDataWidgetMapper::setCurrentIndex")
 
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_SetCurrentIndex(ptr.Pointer(), C.int(index))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setCurrentIndex", f)
 	}
 }
 
+func (ptr *QDataWidgetMapper) DisconnectSetCurrentIndex() {
+	defer qt.Recovering("disconnect QDataWidgetMapper::setCurrentIndex")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setCurrentIndex")
+	}
+}
+
+//export callbackQDataWidgetMapperSetCurrentIndex
+func callbackQDataWidgetMapperSetCurrentIndex(ptrName *C.char, index C.int) bool {
+	defer qt.Recovering("callback QDataWidgetMapper::setCurrentIndex")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setCurrentIndex")
+	if signal != nil {
+		defer signal.(func(int))(int(index))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QDataWidgetMapper) SetOrientation(aOrientation core.Qt__Orientation) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::setOrientation")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::setOrientation")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_SetOrientation(ptr.Pointer(), C.int(aOrientation))
@@ -97,11 +103,7 @@ func (ptr *QDataWidgetMapper) SetOrientation(aOrientation core.Qt__Orientation) 
 }
 
 func (ptr *QDataWidgetMapper) SetSubmitPolicy(policy QDataWidgetMapper__SubmitPolicy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::setSubmitPolicy")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::setSubmitPolicy")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_SetSubmitPolicy(ptr.Pointer(), C.int(policy))
@@ -109,11 +111,7 @@ func (ptr *QDataWidgetMapper) SetSubmitPolicy(policy QDataWidgetMapper__SubmitPo
 }
 
 func (ptr *QDataWidgetMapper) SubmitPolicy() QDataWidgetMapper__SubmitPolicy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::submitPolicy")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::submitPolicy")
 
 	if ptr.Pointer() != nil {
 		return QDataWidgetMapper__SubmitPolicy(C.QDataWidgetMapper_SubmitPolicy(ptr.Pointer()))
@@ -122,21 +120,13 @@ func (ptr *QDataWidgetMapper) SubmitPolicy() QDataWidgetMapper__SubmitPolicy {
 }
 
 func NewQDataWidgetMapper(parent core.QObject_ITF) *QDataWidgetMapper {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::QDataWidgetMapper")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::QDataWidgetMapper")
 
 	return NewQDataWidgetMapperFromPointer(C.QDataWidgetMapper_NewQDataWidgetMapper(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDataWidgetMapper) AddMapping(widget QWidget_ITF, section int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::addMapping")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::addMapping")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_AddMapping(ptr.Pointer(), PointerFromQWidget(widget), C.int(section))
@@ -144,11 +134,7 @@ func (ptr *QDataWidgetMapper) AddMapping(widget QWidget_ITF, section int) {
 }
 
 func (ptr *QDataWidgetMapper) AddMapping2(widget QWidget_ITF, section int, propertyName core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::addMapping")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::addMapping")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_AddMapping2(ptr.Pointer(), PointerFromQWidget(widget), C.int(section), core.PointerFromQByteArray(propertyName))
@@ -156,11 +142,7 @@ func (ptr *QDataWidgetMapper) AddMapping2(widget QWidget_ITF, section int, prope
 }
 
 func (ptr *QDataWidgetMapper) ClearMapping() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::clearMapping")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::clearMapping")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_ClearMapping(ptr.Pointer())
@@ -168,11 +150,7 @@ func (ptr *QDataWidgetMapper) ClearMapping() {
 }
 
 func (ptr *QDataWidgetMapper) ConnectCurrentIndexChanged(f func(index int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::currentIndexChanged")
-		}
-	}()
+	defer qt.Recovering("connect QDataWidgetMapper::currentIndexChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_ConnectCurrentIndexChanged(ptr.Pointer())
@@ -181,11 +159,7 @@ func (ptr *QDataWidgetMapper) ConnectCurrentIndexChanged(f func(index int)) {
 }
 
 func (ptr *QDataWidgetMapper) DisconnectCurrentIndexChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::currentIndexChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QDataWidgetMapper::currentIndexChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_DisconnectCurrentIndexChanged(ptr.Pointer())
@@ -195,21 +169,17 @@ func (ptr *QDataWidgetMapper) DisconnectCurrentIndexChanged() {
 
 //export callbackQDataWidgetMapperCurrentIndexChanged
 func callbackQDataWidgetMapperCurrentIndexChanged(ptrName *C.char, index C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::currentIndexChanged")
-		}
-	}()
+	defer qt.Recovering("callback QDataWidgetMapper::currentIndexChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentIndexChanged").(func(int))(int(index))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentIndexChanged")
+	if signal != nil {
+		signal.(func(int))(int(index))
+	}
+
 }
 
 func (ptr *QDataWidgetMapper) ItemDelegate() *QAbstractItemDelegate {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::itemDelegate")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::itemDelegate")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractItemDelegateFromPointer(C.QDataWidgetMapper_ItemDelegate(ptr.Pointer()))
@@ -218,11 +188,7 @@ func (ptr *QDataWidgetMapper) ItemDelegate() *QAbstractItemDelegate {
 }
 
 func (ptr *QDataWidgetMapper) MappedPropertyName(widget QWidget_ITF) *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::mappedPropertyName")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::mappedPropertyName")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QDataWidgetMapper_MappedPropertyName(ptr.Pointer(), PointerFromQWidget(widget)))
@@ -231,11 +197,7 @@ func (ptr *QDataWidgetMapper) MappedPropertyName(widget QWidget_ITF) *core.QByte
 }
 
 func (ptr *QDataWidgetMapper) MappedSection(widget QWidget_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::mappedSection")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::mappedSection")
 
 	if ptr.Pointer() != nil {
 		return int(C.QDataWidgetMapper_MappedSection(ptr.Pointer(), PointerFromQWidget(widget)))
@@ -244,11 +206,7 @@ func (ptr *QDataWidgetMapper) MappedSection(widget QWidget_ITF) int {
 }
 
 func (ptr *QDataWidgetMapper) MappedWidgetAt(section int) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::mappedWidgetAt")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::mappedWidgetAt")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QDataWidgetMapper_MappedWidgetAt(ptr.Pointer(), C.int(section)))
@@ -257,11 +215,7 @@ func (ptr *QDataWidgetMapper) MappedWidgetAt(section int) *QWidget {
 }
 
 func (ptr *QDataWidgetMapper) Model() *core.QAbstractItemModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::model")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::model")
 
 	if ptr.Pointer() != nil {
 		return core.NewQAbstractItemModelFromPointer(C.QDataWidgetMapper_Model(ptr.Pointer()))
@@ -270,11 +224,7 @@ func (ptr *QDataWidgetMapper) Model() *core.QAbstractItemModel {
 }
 
 func (ptr *QDataWidgetMapper) RemoveMapping(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::removeMapping")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::removeMapping")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_RemoveMapping(ptr.Pointer(), PointerFromQWidget(widget))
@@ -282,11 +232,7 @@ func (ptr *QDataWidgetMapper) RemoveMapping(widget QWidget_ITF) {
 }
 
 func (ptr *QDataWidgetMapper) Revert() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::revert")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::revert")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_Revert(ptr.Pointer())
@@ -294,11 +240,7 @@ func (ptr *QDataWidgetMapper) Revert() {
 }
 
 func (ptr *QDataWidgetMapper) RootIndex() *core.QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::rootIndex")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::rootIndex")
 
 	if ptr.Pointer() != nil {
 		return core.NewQModelIndexFromPointer(C.QDataWidgetMapper_RootIndex(ptr.Pointer()))
@@ -307,11 +249,7 @@ func (ptr *QDataWidgetMapper) RootIndex() *core.QModelIndex {
 }
 
 func (ptr *QDataWidgetMapper) SetCurrentModelIndex(index core.QModelIndex_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::setCurrentModelIndex")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::setCurrentModelIndex")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_SetCurrentModelIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
@@ -319,11 +257,7 @@ func (ptr *QDataWidgetMapper) SetCurrentModelIndex(index core.QModelIndex_ITF) {
 }
 
 func (ptr *QDataWidgetMapper) SetItemDelegate(delegate QAbstractItemDelegate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::setItemDelegate")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::setItemDelegate")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_SetItemDelegate(ptr.Pointer(), PointerFromQAbstractItemDelegate(delegate))
@@ -331,11 +265,7 @@ func (ptr *QDataWidgetMapper) SetItemDelegate(delegate QAbstractItemDelegate_ITF
 }
 
 func (ptr *QDataWidgetMapper) SetModel(model core.QAbstractItemModel_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::setModel")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::setModel")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_SetModel(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
@@ -343,11 +273,7 @@ func (ptr *QDataWidgetMapper) SetModel(model core.QAbstractItemModel_ITF) {
 }
 
 func (ptr *QDataWidgetMapper) SetRootIndex(index core.QModelIndex_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::setRootIndex")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::setRootIndex")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_SetRootIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
@@ -355,11 +281,7 @@ func (ptr *QDataWidgetMapper) SetRootIndex(index core.QModelIndex_ITF) {
 }
 
 func (ptr *QDataWidgetMapper) Submit() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::submit")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::submit")
 
 	if ptr.Pointer() != nil {
 		return C.QDataWidgetMapper_Submit(ptr.Pointer()) != 0
@@ -368,11 +290,7 @@ func (ptr *QDataWidgetMapper) Submit() bool {
 }
 
 func (ptr *QDataWidgetMapper) ToFirst() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::toFirst")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::toFirst")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_ToFirst(ptr.Pointer())
@@ -380,11 +298,7 @@ func (ptr *QDataWidgetMapper) ToFirst() {
 }
 
 func (ptr *QDataWidgetMapper) ToLast() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::toLast")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::toLast")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_ToLast(ptr.Pointer())
@@ -392,11 +306,7 @@ func (ptr *QDataWidgetMapper) ToLast() {
 }
 
 func (ptr *QDataWidgetMapper) ToNext() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::toNext")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::toNext")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_ToNext(ptr.Pointer())
@@ -404,11 +314,7 @@ func (ptr *QDataWidgetMapper) ToNext() {
 }
 
 func (ptr *QDataWidgetMapper) ToPrevious() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::toPrevious")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::toPrevious")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_ToPrevious(ptr.Pointer())
@@ -416,11 +322,7 @@ func (ptr *QDataWidgetMapper) ToPrevious() {
 }
 
 func (ptr *QDataWidgetMapper) DestroyQDataWidgetMapper() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataWidgetMapper::~QDataWidgetMapper")
-		}
-	}()
+	defer qt.Recovering("QDataWidgetMapper::~QDataWidgetMapper")
 
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_DestroyQDataWidgetMapper(ptr.Pointer())

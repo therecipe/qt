@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQGestureFromPointer(ptr unsafe.Pointer) *QGesture {
 	var n = new(QGesture)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGesture_") {
-		n.SetObjectName("QGesture_" + qt.RandomIdentifier())
+		n.SetObjectName("QGesture_" + qt.Identifier())
 	}
 	return n
 }
@@ -47,11 +46,7 @@ const (
 )
 
 func (ptr *QGesture) GestureCancelPolicy() QGesture__GestureCancelPolicy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGesture::gestureCancelPolicy")
-		}
-	}()
+	defer qt.Recovering("QGesture::gestureCancelPolicy")
 
 	if ptr.Pointer() != nil {
 		return QGesture__GestureCancelPolicy(C.QGesture_GestureCancelPolicy(ptr.Pointer()))
@@ -60,11 +55,7 @@ func (ptr *QGesture) GestureCancelPolicy() QGesture__GestureCancelPolicy {
 }
 
 func (ptr *QGesture) GestureType() core.Qt__GestureType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGesture::gestureType")
-		}
-	}()
+	defer qt.Recovering("QGesture::gestureType")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__GestureType(C.QGesture_GestureType(ptr.Pointer()))
@@ -73,11 +64,7 @@ func (ptr *QGesture) GestureType() core.Qt__GestureType {
 }
 
 func (ptr *QGesture) HasHotSpot() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGesture::hasHotSpot")
-		}
-	}()
+	defer qt.Recovering("QGesture::hasHotSpot")
 
 	if ptr.Pointer() != nil {
 		return C.QGesture_HasHotSpot(ptr.Pointer()) != 0
@@ -86,11 +73,7 @@ func (ptr *QGesture) HasHotSpot() bool {
 }
 
 func (ptr *QGesture) SetGestureCancelPolicy(policy QGesture__GestureCancelPolicy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGesture::setGestureCancelPolicy")
-		}
-	}()
+	defer qt.Recovering("QGesture::setGestureCancelPolicy")
 
 	if ptr.Pointer() != nil {
 		C.QGesture_SetGestureCancelPolicy(ptr.Pointer(), C.int(policy))
@@ -98,11 +81,7 @@ func (ptr *QGesture) SetGestureCancelPolicy(policy QGesture__GestureCancelPolicy
 }
 
 func (ptr *QGesture) SetHotSpot(value core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGesture::setHotSpot")
-		}
-	}()
+	defer qt.Recovering("QGesture::setHotSpot")
 
 	if ptr.Pointer() != nil {
 		C.QGesture_SetHotSpot(ptr.Pointer(), core.PointerFromQPointF(value))
@@ -110,11 +89,7 @@ func (ptr *QGesture) SetHotSpot(value core.QPointF_ITF) {
 }
 
 func (ptr *QGesture) UnsetHotSpot() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGesture::unsetHotSpot")
-		}
-	}()
+	defer qt.Recovering("QGesture::unsetHotSpot")
 
 	if ptr.Pointer() != nil {
 		C.QGesture_UnsetHotSpot(ptr.Pointer())
@@ -122,21 +97,13 @@ func (ptr *QGesture) UnsetHotSpot() {
 }
 
 func NewQGesture(parent core.QObject_ITF) *QGesture {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGesture::QGesture")
-		}
-	}()
+	defer qt.Recovering("QGesture::QGesture")
 
 	return NewQGestureFromPointer(C.QGesture_NewQGesture(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGesture) DestroyQGesture() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGesture::~QGesture")
-		}
-	}()
+	defer qt.Recovering("QGesture::~QGesture")
 
 	if ptr.Pointer() != nil {
 		C.QGesture_DestroyQGesture(ptr.Pointer())

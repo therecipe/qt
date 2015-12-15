@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,11 +35,7 @@ func (ptr *QGraphicsSceneMouseEvent) QGraphicsSceneMouseEvent_PTR() *QGraphicsSc
 }
 
 func (ptr *QGraphicsSceneMouseEvent) Button() core.Qt__MouseButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneMouseEvent::button")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneMouseEvent::button")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseButton(C.QGraphicsSceneMouseEvent_Button(ptr.Pointer()))
@@ -47,12 +43,17 @@ func (ptr *QGraphicsSceneMouseEvent) Button() core.Qt__MouseButton {
 	return 0
 }
 
+func (ptr *QGraphicsSceneMouseEvent) ButtonDownScreenPos(button core.Qt__MouseButton) *core.QPoint {
+	defer qt.Recovering("QGraphicsSceneMouseEvent::buttonDownScreenPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QGraphicsSceneMouseEvent_ButtonDownScreenPos(ptr.Pointer(), C.int(button)))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsSceneMouseEvent) Buttons() core.Qt__MouseButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneMouseEvent::buttons")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneMouseEvent::buttons")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseButton(C.QGraphicsSceneMouseEvent_Buttons(ptr.Pointer()))
@@ -61,11 +62,7 @@ func (ptr *QGraphicsSceneMouseEvent) Buttons() core.Qt__MouseButton {
 }
 
 func (ptr *QGraphicsSceneMouseEvent) Flags() core.Qt__MouseEventFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneMouseEvent::flags")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneMouseEvent::flags")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseEventFlag(C.QGraphicsSceneMouseEvent_Flags(ptr.Pointer()))
@@ -73,12 +70,17 @@ func (ptr *QGraphicsSceneMouseEvent) Flags() core.Qt__MouseEventFlag {
 	return 0
 }
 
+func (ptr *QGraphicsSceneMouseEvent) LastScreenPos() *core.QPoint {
+	defer qt.Recovering("QGraphicsSceneMouseEvent::lastScreenPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QGraphicsSceneMouseEvent_LastScreenPos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsSceneMouseEvent) Modifiers() core.Qt__KeyboardModifier {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneMouseEvent::modifiers")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneMouseEvent::modifiers")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__KeyboardModifier(C.QGraphicsSceneMouseEvent_Modifiers(ptr.Pointer()))
@@ -86,12 +88,17 @@ func (ptr *QGraphicsSceneMouseEvent) Modifiers() core.Qt__KeyboardModifier {
 	return 0
 }
 
+func (ptr *QGraphicsSceneMouseEvent) ScreenPos() *core.QPoint {
+	defer qt.Recovering("QGraphicsSceneMouseEvent::screenPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QGraphicsSceneMouseEvent_ScreenPos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsSceneMouseEvent) Source() core.Qt__MouseEventSource {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneMouseEvent::source")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneMouseEvent::source")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseEventSource(C.QGraphicsSceneMouseEvent_Source(ptr.Pointer()))
@@ -100,11 +107,7 @@ func (ptr *QGraphicsSceneMouseEvent) Source() core.Qt__MouseEventSource {
 }
 
 func (ptr *QGraphicsSceneMouseEvent) DestroyQGraphicsSceneMouseEvent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneMouseEvent::~QGraphicsSceneMouseEvent")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneMouseEvent::~QGraphicsSceneMouseEvent")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneMouseEvent_DestroyQGraphicsSceneMouseEvent(ptr.Pointer())

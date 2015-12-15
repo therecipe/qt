@@ -3,9 +3,9 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -28,6 +28,9 @@ func PointerFromQGraphicsEllipseItem(ptr QGraphicsEllipseItem_ITF) unsafe.Pointe
 func NewQGraphicsEllipseItemFromPointer(ptr unsafe.Pointer) *QGraphicsEllipseItem {
 	var n = new(QGraphicsEllipseItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QGraphicsEllipseItem_") {
+		n.SetObjectNameAbs("QGraphicsEllipseItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -36,11 +39,7 @@ func (ptr *QGraphicsEllipseItem) QGraphicsEllipseItem_PTR() *QGraphicsEllipseIte
 }
 
 func (ptr *QGraphicsEllipseItem) Contains(point core.QPointF_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsEllipseItem::contains")
-		}
-	}()
+	defer qt.Recovering("QGraphicsEllipseItem::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QGraphicsEllipseItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
@@ -49,11 +48,7 @@ func (ptr *QGraphicsEllipseItem) Contains(point core.QPointF_ITF) bool {
 }
 
 func (ptr *QGraphicsEllipseItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsEllipseItem::isObscuredBy")
-		}
-	}()
+	defer qt.Recovering("QGraphicsEllipseItem::isObscuredBy")
 
 	if ptr.Pointer() != nil {
 		return C.QGraphicsEllipseItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
@@ -61,24 +56,39 @@ func (ptr *QGraphicsEllipseItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
 	return false
 }
 
-func (ptr *QGraphicsEllipseItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsEllipseItem::paint")
-		}
-	}()
+func (ptr *QGraphicsEllipseItem) ConnectPaint(f func(painter *gui.QPainter, option *QStyleOptionGraphicsItem, widget *QWidget)) {
+	defer qt.Recovering("connect QGraphicsEllipseItem::paint")
 
 	if ptr.Pointer() != nil {
-		C.QGraphicsEllipseItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "paint", f)
 	}
 }
 
+func (ptr *QGraphicsEllipseItem) DisconnectPaint() {
+	defer qt.Recovering("disconnect QGraphicsEllipseItem::paint")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "paint")
+	}
+}
+
+//export callbackQGraphicsEllipseItemPaint
+func callbackQGraphicsEllipseItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsEllipseItem::paint")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paint")
+	if signal != nil {
+		defer signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsEllipseItem) SetRect(rect core.QRectF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsEllipseItem::setRect")
-		}
-	}()
+	defer qt.Recovering("QGraphicsEllipseItem::setRect")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsEllipseItem_SetRect(ptr.Pointer(), core.PointerFromQRectF(rect))
@@ -86,11 +96,7 @@ func (ptr *QGraphicsEllipseItem) SetRect(rect core.QRectF_ITF) {
 }
 
 func (ptr *QGraphicsEllipseItem) SetRect2(x float64, y float64, width float64, height float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsEllipseItem::setRect")
-		}
-	}()
+	defer qt.Recovering("QGraphicsEllipseItem::setRect")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsEllipseItem_SetRect2(ptr.Pointer(), C.double(x), C.double(y), C.double(width), C.double(height))
@@ -98,11 +104,7 @@ func (ptr *QGraphicsEllipseItem) SetRect2(x float64, y float64, width float64, h
 }
 
 func (ptr *QGraphicsEllipseItem) SetSpanAngle(angle int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsEllipseItem::setSpanAngle")
-		}
-	}()
+	defer qt.Recovering("QGraphicsEllipseItem::setSpanAngle")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsEllipseItem_SetSpanAngle(ptr.Pointer(), C.int(angle))
@@ -110,11 +112,7 @@ func (ptr *QGraphicsEllipseItem) SetSpanAngle(angle int) {
 }
 
 func (ptr *QGraphicsEllipseItem) SetStartAngle(angle int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsEllipseItem::setStartAngle")
-		}
-	}()
+	defer qt.Recovering("QGraphicsEllipseItem::setStartAngle")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsEllipseItem_SetStartAngle(ptr.Pointer(), C.int(angle))
@@ -122,11 +120,7 @@ func (ptr *QGraphicsEllipseItem) SetStartAngle(angle int) {
 }
 
 func (ptr *QGraphicsEllipseItem) SpanAngle() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsEllipseItem::spanAngle")
-		}
-	}()
+	defer qt.Recovering("QGraphicsEllipseItem::spanAngle")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGraphicsEllipseItem_SpanAngle(ptr.Pointer()))
@@ -135,11 +129,7 @@ func (ptr *QGraphicsEllipseItem) SpanAngle() int {
 }
 
 func (ptr *QGraphicsEllipseItem) StartAngle() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsEllipseItem::startAngle")
-		}
-	}()
+	defer qt.Recovering("QGraphicsEllipseItem::startAngle")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGraphicsEllipseItem_StartAngle(ptr.Pointer()))
@@ -148,11 +138,7 @@ func (ptr *QGraphicsEllipseItem) StartAngle() int {
 }
 
 func (ptr *QGraphicsEllipseItem) Type() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsEllipseItem::type")
-		}
-	}()
+	defer qt.Recovering("QGraphicsEllipseItem::type")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGraphicsEllipseItem_Type(ptr.Pointer()))
@@ -161,13 +147,26 @@ func (ptr *QGraphicsEllipseItem) Type() int {
 }
 
 func (ptr *QGraphicsEllipseItem) DestroyQGraphicsEllipseItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsEllipseItem::~QGraphicsEllipseItem")
-		}
-	}()
+	defer qt.Recovering("QGraphicsEllipseItem::~QGraphicsEllipseItem")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsEllipseItem_DestroyQGraphicsEllipseItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsEllipseItem) ObjectNameAbs() string {
+	defer qt.Recovering("QGraphicsEllipseItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QGraphicsEllipseItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QGraphicsEllipseItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QGraphicsEllipseItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsEllipseItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

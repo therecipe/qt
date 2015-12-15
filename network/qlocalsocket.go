@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQLocalSocketFromPointer(ptr unsafe.Pointer) *QLocalSocket {
 	var n = new(QLocalSocket)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QLocalSocket_") {
-		n.SetObjectName("QLocalSocket_" + qt.RandomIdentifier())
+		n.SetObjectName("QLocalSocket_" + qt.Identifier())
 	}
 	return n
 }
@@ -66,11 +65,7 @@ const (
 )
 
 func (ptr *QLocalSocket) Open(openMode core.QIODevice__OpenModeFlag) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::open")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::open")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalSocket_Open(ptr.Pointer(), C.int(openMode)) != 0
@@ -79,21 +74,13 @@ func (ptr *QLocalSocket) Open(openMode core.QIODevice__OpenModeFlag) bool {
 }
 
 func NewQLocalSocket(parent core.QObject_ITF) *QLocalSocket {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::QLocalSocket")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::QLocalSocket")
 
 	return NewQLocalSocketFromPointer(C.QLocalSocket_NewQLocalSocket(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QLocalSocket) ConnectToServer2(name string, openMode core.QIODevice__OpenModeFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::connectToServer")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::connectToServer")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_ConnectToServer2(ptr.Pointer(), C.CString(name), C.int(openMode))
@@ -101,11 +88,7 @@ func (ptr *QLocalSocket) ConnectToServer2(name string, openMode core.QIODevice__
 }
 
 func (ptr *QLocalSocket) ConnectConnected(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::connected")
-		}
-	}()
+	defer qt.Recovering("connect QLocalSocket::connected")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_ConnectConnected(ptr.Pointer())
@@ -114,11 +97,7 @@ func (ptr *QLocalSocket) ConnectConnected(f func()) {
 }
 
 func (ptr *QLocalSocket) DisconnectConnected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::connected")
-		}
-	}()
+	defer qt.Recovering("disconnect QLocalSocket::connected")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DisconnectConnected(ptr.Pointer())
@@ -128,21 +107,17 @@ func (ptr *QLocalSocket) DisconnectConnected() {
 
 //export callbackQLocalSocketConnected
 func callbackQLocalSocketConnected(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::connected")
-		}
-	}()
+	defer qt.Recovering("callback QLocalSocket::connected")
 
-	qt.GetSignal(C.GoString(ptrName), "connected").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "connected")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QLocalSocket) ConnectDisconnected(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::disconnected")
-		}
-	}()
+	defer qt.Recovering("connect QLocalSocket::disconnected")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_ConnectDisconnected(ptr.Pointer())
@@ -151,11 +126,7 @@ func (ptr *QLocalSocket) ConnectDisconnected(f func()) {
 }
 
 func (ptr *QLocalSocket) DisconnectDisconnected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::disconnected")
-		}
-	}()
+	defer qt.Recovering("disconnect QLocalSocket::disconnected")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DisconnectDisconnected(ptr.Pointer())
@@ -165,21 +136,17 @@ func (ptr *QLocalSocket) DisconnectDisconnected() {
 
 //export callbackQLocalSocketDisconnected
 func callbackQLocalSocketDisconnected(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::disconnected")
-		}
-	}()
+	defer qt.Recovering("callback QLocalSocket::disconnected")
 
-	qt.GetSignal(C.GoString(ptrName), "disconnected").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "disconnected")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QLocalSocket) FullServerName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::fullServerName")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::fullServerName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QLocalSocket_FullServerName(ptr.Pointer()))
@@ -188,11 +155,7 @@ func (ptr *QLocalSocket) FullServerName() string {
 }
 
 func (ptr *QLocalSocket) IsSequential() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::isSequential")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::isSequential")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalSocket_IsSequential(ptr.Pointer()) != 0
@@ -201,11 +164,7 @@ func (ptr *QLocalSocket) IsSequential() bool {
 }
 
 func (ptr *QLocalSocket) ServerName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::serverName")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::serverName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QLocalSocket_ServerName(ptr.Pointer()))
@@ -214,11 +173,7 @@ func (ptr *QLocalSocket) ServerName() string {
 }
 
 func (ptr *QLocalSocket) SetServerName(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::setServerName")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::setServerName")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_SetServerName(ptr.Pointer(), C.CString(name))
@@ -226,11 +181,7 @@ func (ptr *QLocalSocket) SetServerName(name string) {
 }
 
 func (ptr *QLocalSocket) ConnectStateChanged(f func(socketState QLocalSocket__LocalSocketState)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::stateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QLocalSocket::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_ConnectStateChanged(ptr.Pointer())
@@ -239,11 +190,7 @@ func (ptr *QLocalSocket) ConnectStateChanged(f func(socketState QLocalSocket__Lo
 }
 
 func (ptr *QLocalSocket) DisconnectStateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::stateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QLocalSocket::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DisconnectStateChanged(ptr.Pointer())
@@ -253,21 +200,17 @@ func (ptr *QLocalSocket) DisconnectStateChanged() {
 
 //export callbackQLocalSocketStateChanged
 func callbackQLocalSocketStateChanged(ptrName *C.char, socketState C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::stateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QLocalSocket::stateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "stateChanged").(func(QLocalSocket__LocalSocketState))(QLocalSocket__LocalSocketState(socketState))
+	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
+	if signal != nil {
+		signal.(func(QLocalSocket__LocalSocketState))(QLocalSocket__LocalSocketState(socketState))
+	}
+
 }
 
 func (ptr *QLocalSocket) DestroyQLocalSocket() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::~QLocalSocket")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::~QLocalSocket")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DestroyQLocalSocket(ptr.Pointer())
@@ -276,11 +219,7 @@ func (ptr *QLocalSocket) DestroyQLocalSocket() {
 }
 
 func (ptr *QLocalSocket) Abort() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::abort")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::abort")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_Abort(ptr.Pointer())
@@ -288,11 +227,7 @@ func (ptr *QLocalSocket) Abort() {
 }
 
 func (ptr *QLocalSocket) CanReadLine() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::canReadLine")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::canReadLine")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalSocket_CanReadLine(ptr.Pointer()) != 0
@@ -300,24 +235,39 @@ func (ptr *QLocalSocket) CanReadLine() bool {
 	return false
 }
 
-func (ptr *QLocalSocket) Close() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::close")
-		}
-	}()
+func (ptr *QLocalSocket) ConnectClose(f func()) {
+	defer qt.Recovering("connect QLocalSocket::close")
 
 	if ptr.Pointer() != nil {
-		C.QLocalSocket_Close(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "close", f)
 	}
 }
 
+func (ptr *QLocalSocket) DisconnectClose() {
+	defer qt.Recovering("disconnect QLocalSocket::close")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "close")
+	}
+}
+
+//export callbackQLocalSocketClose
+func callbackQLocalSocketClose(ptrName *C.char) bool {
+	defer qt.Recovering("callback QLocalSocket::close")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "close")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QLocalSocket) ConnectToServer(openMode core.QIODevice__OpenModeFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::connectToServer")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::connectToServer")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_ConnectToServer(ptr.Pointer(), C.int(openMode))
@@ -325,11 +275,7 @@ func (ptr *QLocalSocket) ConnectToServer(openMode core.QIODevice__OpenModeFlag) 
 }
 
 func (ptr *QLocalSocket) DisconnectFromServer() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::disconnectFromServer")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::disconnectFromServer")
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DisconnectFromServer(ptr.Pointer())
@@ -337,11 +283,7 @@ func (ptr *QLocalSocket) DisconnectFromServer() {
 }
 
 func (ptr *QLocalSocket) Error() QLocalSocket__LocalSocketError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::error")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::error")
 
 	if ptr.Pointer() != nil {
 		return QLocalSocket__LocalSocketError(C.QLocalSocket_Error(ptr.Pointer()))
@@ -350,11 +292,7 @@ func (ptr *QLocalSocket) Error() QLocalSocket__LocalSocketError {
 }
 
 func (ptr *QLocalSocket) Flush() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::flush")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::flush")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalSocket_Flush(ptr.Pointer()) != 0
@@ -363,11 +301,7 @@ func (ptr *QLocalSocket) Flush() bool {
 }
 
 func (ptr *QLocalSocket) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::isValid")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalSocket_IsValid(ptr.Pointer()) != 0
@@ -376,11 +310,7 @@ func (ptr *QLocalSocket) IsValid() bool {
 }
 
 func (ptr *QLocalSocket) WaitForBytesWritten(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::waitForBytesWritten")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::waitForBytesWritten")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalSocket_WaitForBytesWritten(ptr.Pointer(), C.int(msecs)) != 0
@@ -389,11 +319,7 @@ func (ptr *QLocalSocket) WaitForBytesWritten(msecs int) bool {
 }
 
 func (ptr *QLocalSocket) WaitForConnected(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::waitForConnected")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::waitForConnected")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalSocket_WaitForConnected(ptr.Pointer(), C.int(msecs)) != 0
@@ -402,11 +328,7 @@ func (ptr *QLocalSocket) WaitForConnected(msecs int) bool {
 }
 
 func (ptr *QLocalSocket) WaitForDisconnected(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::waitForDisconnected")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::waitForDisconnected")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalSocket_WaitForDisconnected(ptr.Pointer(), C.int(msecs)) != 0
@@ -415,11 +337,7 @@ func (ptr *QLocalSocket) WaitForDisconnected(msecs int) bool {
 }
 
 func (ptr *QLocalSocket) WaitForReadyRead(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLocalSocket::waitForReadyRead")
-		}
-	}()
+	defer qt.Recovering("QLocalSocket::waitForReadyRead")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalSocket_WaitForReadyRead(ptr.Pointer(), C.int(msecs)) != 0

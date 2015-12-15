@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQTimeLineFromPointer(ptr unsafe.Pointer) *QTimeLine {
 	var n = new(QTimeLine)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QTimeLine_") {
-		n.SetObjectName("QTimeLine_" + qt.RandomIdentifier())
+		n.SetObjectName("QTimeLine_" + qt.Identifier())
 	}
 	return n
 }
@@ -67,11 +66,7 @@ const (
 )
 
 func (ptr *QTimeLine) CurrentTime() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::currentTime")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::currentTime")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimeLine_CurrentTime(ptr.Pointer()))
@@ -80,11 +75,7 @@ func (ptr *QTimeLine) CurrentTime() int {
 }
 
 func (ptr *QTimeLine) CurveShape() QTimeLine__CurveShape {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::curveShape")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::curveShape")
 
 	if ptr.Pointer() != nil {
 		return QTimeLine__CurveShape(C.QTimeLine_CurveShape(ptr.Pointer()))
@@ -93,11 +84,7 @@ func (ptr *QTimeLine) CurveShape() QTimeLine__CurveShape {
 }
 
 func (ptr *QTimeLine) Direction() QTimeLine__Direction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::direction")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::direction")
 
 	if ptr.Pointer() != nil {
 		return QTimeLine__Direction(C.QTimeLine_Direction(ptr.Pointer()))
@@ -106,11 +93,7 @@ func (ptr *QTimeLine) Direction() QTimeLine__Direction {
 }
 
 func (ptr *QTimeLine) Duration() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::duration")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::duration")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimeLine_Duration(ptr.Pointer()))
@@ -119,11 +102,7 @@ func (ptr *QTimeLine) Duration() int {
 }
 
 func (ptr *QTimeLine) EasingCurve() *QEasingCurve {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::easingCurve")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::easingCurve")
 
 	if ptr.Pointer() != nil {
 		return NewQEasingCurveFromPointer(C.QTimeLine_EasingCurve(ptr.Pointer()))
@@ -132,11 +111,7 @@ func (ptr *QTimeLine) EasingCurve() *QEasingCurve {
 }
 
 func (ptr *QTimeLine) LoopCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::loopCount")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::loopCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimeLine_LoopCount(ptr.Pointer()))
@@ -145,11 +120,7 @@ func (ptr *QTimeLine) LoopCount() int {
 }
 
 func (ptr *QTimeLine) SetCurrentTime(msec int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::setCurrentTime")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::setCurrentTime")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetCurrentTime(ptr.Pointer(), C.int(msec))
@@ -157,11 +128,7 @@ func (ptr *QTimeLine) SetCurrentTime(msec int) {
 }
 
 func (ptr *QTimeLine) SetCurveShape(shape QTimeLine__CurveShape) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::setCurveShape")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::setCurveShape")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetCurveShape(ptr.Pointer(), C.int(shape))
@@ -169,11 +136,7 @@ func (ptr *QTimeLine) SetCurveShape(shape QTimeLine__CurveShape) {
 }
 
 func (ptr *QTimeLine) SetDirection(direction QTimeLine__Direction) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::setDirection")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::setDirection")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetDirection(ptr.Pointer(), C.int(direction))
@@ -181,11 +144,7 @@ func (ptr *QTimeLine) SetDirection(direction QTimeLine__Direction) {
 }
 
 func (ptr *QTimeLine) SetDuration(duration int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::setDuration")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::setDuration")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetDuration(ptr.Pointer(), C.int(duration))
@@ -193,11 +152,7 @@ func (ptr *QTimeLine) SetDuration(duration int) {
 }
 
 func (ptr *QTimeLine) SetEasingCurve(curve QEasingCurve_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::setEasingCurve")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::setEasingCurve")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetEasingCurve(ptr.Pointer(), PointerFromQEasingCurve(curve))
@@ -205,11 +160,7 @@ func (ptr *QTimeLine) SetEasingCurve(curve QEasingCurve_ITF) {
 }
 
 func (ptr *QTimeLine) SetLoopCount(count int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::setLoopCount")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::setLoopCount")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetLoopCount(ptr.Pointer(), C.int(count))
@@ -217,11 +168,7 @@ func (ptr *QTimeLine) SetLoopCount(count int) {
 }
 
 func (ptr *QTimeLine) SetUpdateInterval(interval int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::setUpdateInterval")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::setUpdateInterval")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetUpdateInterval(ptr.Pointer(), C.int(interval))
@@ -229,11 +176,7 @@ func (ptr *QTimeLine) SetUpdateInterval(interval int) {
 }
 
 func (ptr *QTimeLine) UpdateInterval() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::updateInterval")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::updateInterval")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimeLine_UpdateInterval(ptr.Pointer()))
@@ -242,21 +185,13 @@ func (ptr *QTimeLine) UpdateInterval() int {
 }
 
 func NewQTimeLine(duration int, parent QObject_ITF) *QTimeLine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::QTimeLine")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::QTimeLine")
 
 	return NewQTimeLineFromPointer(C.QTimeLine_NewQTimeLine(C.int(duration), PointerFromQObject(parent)))
 }
 
 func (ptr *QTimeLine) CurrentFrame() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::currentFrame")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::currentFrame")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimeLine_CurrentFrame(ptr.Pointer()))
@@ -265,11 +200,7 @@ func (ptr *QTimeLine) CurrentFrame() int {
 }
 
 func (ptr *QTimeLine) CurrentValue() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::currentValue")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::currentValue")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTimeLine_CurrentValue(ptr.Pointer()))
@@ -278,11 +209,7 @@ func (ptr *QTimeLine) CurrentValue() float64 {
 }
 
 func (ptr *QTimeLine) EndFrame() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::endFrame")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::endFrame")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimeLine_EndFrame(ptr.Pointer()))
@@ -291,11 +218,7 @@ func (ptr *QTimeLine) EndFrame() int {
 }
 
 func (ptr *QTimeLine) ConnectFinished(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::finished")
-		}
-	}()
+	defer qt.Recovering("connect QTimeLine::finished")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_ConnectFinished(ptr.Pointer())
@@ -304,11 +227,7 @@ func (ptr *QTimeLine) ConnectFinished(f func()) {
 }
 
 func (ptr *QTimeLine) DisconnectFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::finished")
-		}
-	}()
+	defer qt.Recovering("disconnect QTimeLine::finished")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_DisconnectFinished(ptr.Pointer())
@@ -318,21 +237,17 @@ func (ptr *QTimeLine) DisconnectFinished() {
 
 //export callbackQTimeLineFinished
 func callbackQTimeLineFinished(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::finished")
-		}
-	}()
+	defer qt.Recovering("callback QTimeLine::finished")
 
-	qt.GetSignal(C.GoString(ptrName), "finished").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QTimeLine) ConnectFrameChanged(f func(frame int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::frameChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTimeLine::frameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_ConnectFrameChanged(ptr.Pointer())
@@ -341,11 +256,7 @@ func (ptr *QTimeLine) ConnectFrameChanged(f func(frame int)) {
 }
 
 func (ptr *QTimeLine) DisconnectFrameChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::frameChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTimeLine::frameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_DisconnectFrameChanged(ptr.Pointer())
@@ -355,21 +266,17 @@ func (ptr *QTimeLine) DisconnectFrameChanged() {
 
 //export callbackQTimeLineFrameChanged
 func callbackQTimeLineFrameChanged(ptrName *C.char, frame C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::frameChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTimeLine::frameChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "frameChanged").(func(int))(int(frame))
+	var signal = qt.GetSignal(C.GoString(ptrName), "frameChanged")
+	if signal != nil {
+		signal.(func(int))(int(frame))
+	}
+
 }
 
 func (ptr *QTimeLine) FrameForTime(msec int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::frameForTime")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::frameForTime")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimeLine_FrameForTime(ptr.Pointer(), C.int(msec)))
@@ -378,11 +285,7 @@ func (ptr *QTimeLine) FrameForTime(msec int) int {
 }
 
 func (ptr *QTimeLine) Resume() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::resume")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::resume")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_Resume(ptr.Pointer())
@@ -390,11 +293,7 @@ func (ptr *QTimeLine) Resume() {
 }
 
 func (ptr *QTimeLine) SetEndFrame(frame int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::setEndFrame")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::setEndFrame")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetEndFrame(ptr.Pointer(), C.int(frame))
@@ -402,11 +301,7 @@ func (ptr *QTimeLine) SetEndFrame(frame int) {
 }
 
 func (ptr *QTimeLine) SetFrameRange(startFrame int, endFrame int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::setFrameRange")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::setFrameRange")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetFrameRange(ptr.Pointer(), C.int(startFrame), C.int(endFrame))
@@ -414,11 +309,7 @@ func (ptr *QTimeLine) SetFrameRange(startFrame int, endFrame int) {
 }
 
 func (ptr *QTimeLine) SetPaused(paused bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::setPaused")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::setPaused")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetPaused(ptr.Pointer(), C.int(qt.GoBoolToInt(paused)))
@@ -426,11 +317,7 @@ func (ptr *QTimeLine) SetPaused(paused bool) {
 }
 
 func (ptr *QTimeLine) SetStartFrame(frame int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::setStartFrame")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::setStartFrame")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetStartFrame(ptr.Pointer(), C.int(frame))
@@ -438,11 +325,7 @@ func (ptr *QTimeLine) SetStartFrame(frame int) {
 }
 
 func (ptr *QTimeLine) Start() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::start")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::start")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_Start(ptr.Pointer())
@@ -450,11 +333,7 @@ func (ptr *QTimeLine) Start() {
 }
 
 func (ptr *QTimeLine) StartFrame() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::startFrame")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::startFrame")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTimeLine_StartFrame(ptr.Pointer()))
@@ -463,11 +342,7 @@ func (ptr *QTimeLine) StartFrame() int {
 }
 
 func (ptr *QTimeLine) ConnectStateChanged(f func(newState QTimeLine__State)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::stateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTimeLine::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_ConnectStateChanged(ptr.Pointer())
@@ -476,11 +351,7 @@ func (ptr *QTimeLine) ConnectStateChanged(f func(newState QTimeLine__State)) {
 }
 
 func (ptr *QTimeLine) DisconnectStateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::stateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTimeLine::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_DisconnectStateChanged(ptr.Pointer())
@@ -490,33 +361,56 @@ func (ptr *QTimeLine) DisconnectStateChanged() {
 
 //export callbackQTimeLineStateChanged
 func callbackQTimeLineStateChanged(ptrName *C.char, newState C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::stateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTimeLine::stateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "stateChanged").(func(QTimeLine__State))(QTimeLine__State(newState))
+	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
+	if signal != nil {
+		signal.(func(QTimeLine__State))(QTimeLine__State(newState))
+	}
+
 }
 
 func (ptr *QTimeLine) Stop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::stop")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::stop")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_Stop(ptr.Pointer())
 	}
 }
 
+func (ptr *QTimeLine) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QTimeLine::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QTimeLine) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QTimeLine::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQTimeLineTimerEvent
+func callbackQTimeLineTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTimeLine::timerEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
+	if signal != nil {
+		defer signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTimeLine) ToggleDirection() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::toggleDirection")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::toggleDirection")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_ToggleDirection(ptr.Pointer())
@@ -524,11 +418,7 @@ func (ptr *QTimeLine) ToggleDirection() {
 }
 
 func (ptr *QTimeLine) ValueForTime(msec int) float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::valueForTime")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::valueForTime")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTimeLine_ValueForTime(ptr.Pointer(), C.int(msec)))
@@ -537,11 +427,7 @@ func (ptr *QTimeLine) ValueForTime(msec int) float64 {
 }
 
 func (ptr *QTimeLine) DestroyQTimeLine() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeLine::~QTimeLine")
-		}
-	}()
+	defer qt.Recovering("QTimeLine::~QTimeLine")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_DestroyQTimeLine(ptr.Pointer())

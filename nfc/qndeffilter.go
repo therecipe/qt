@@ -4,7 +4,6 @@ package nfc
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +41,19 @@ func (ptr *QNdefFilter) QNdefFilter_PTR() *QNdefFilter {
 }
 
 func NewQNdefFilter() *QNdefFilter {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNdefFilter::QNdefFilter")
-		}
-	}()
+	defer qt.Recovering("QNdefFilter::QNdefFilter")
 
 	return NewQNdefFilterFromPointer(C.QNdefFilter_NewQNdefFilter())
 }
 
 func NewQNdefFilter2(other QNdefFilter_ITF) *QNdefFilter {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNdefFilter::QNdefFilter")
-		}
-	}()
+	defer qt.Recovering("QNdefFilter::QNdefFilter")
 
 	return NewQNdefFilterFromPointer(C.QNdefFilter_NewQNdefFilter2(PointerFromQNdefFilter(other)))
 }
 
 func (ptr *QNdefFilter) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNdefFilter::clear")
-		}
-	}()
+	defer qt.Recovering("QNdefFilter::clear")
 
 	if ptr.Pointer() != nil {
 		C.QNdefFilter_Clear(ptr.Pointer())
@@ -74,11 +61,7 @@ func (ptr *QNdefFilter) Clear() {
 }
 
 func (ptr *QNdefFilter) OrderMatch() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNdefFilter::orderMatch")
-		}
-	}()
+	defer qt.Recovering("QNdefFilter::orderMatch")
 
 	if ptr.Pointer() != nil {
 		return C.QNdefFilter_OrderMatch(ptr.Pointer()) != 0
@@ -87,11 +70,7 @@ func (ptr *QNdefFilter) OrderMatch() bool {
 }
 
 func (ptr *QNdefFilter) RecordCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNdefFilter::recordCount")
-		}
-	}()
+	defer qt.Recovering("QNdefFilter::recordCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QNdefFilter_RecordCount(ptr.Pointer()))
@@ -100,11 +79,7 @@ func (ptr *QNdefFilter) RecordCount() int {
 }
 
 func (ptr *QNdefFilter) SetOrderMatch(on bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNdefFilter::setOrderMatch")
-		}
-	}()
+	defer qt.Recovering("QNdefFilter::setOrderMatch")
 
 	if ptr.Pointer() != nil {
 		C.QNdefFilter_SetOrderMatch(ptr.Pointer(), C.int(qt.GoBoolToInt(on)))
@@ -112,11 +87,7 @@ func (ptr *QNdefFilter) SetOrderMatch(on bool) {
 }
 
 func (ptr *QNdefFilter) DestroyQNdefFilter() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNdefFilter::~QNdefFilter")
-		}
-	}()
+	defer qt.Recovering("QNdefFilter::~QNdefFilter")
 
 	if ptr.Pointer() != nil {
 		C.QNdefFilter_DestroyQNdefFilter(ptr.Pointer())

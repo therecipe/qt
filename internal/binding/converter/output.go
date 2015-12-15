@@ -270,6 +270,10 @@ func cppOutput(name string, value string, f *parser.Function) string {
 				{
 					return fmt.Sprintf("new %v(%v.object())", value, name)
 				}
+			case "QPoint":
+				{
+					return fmt.Sprintf("new %v(static_cast<%v>(%v).x(), static_cast<%v>(%v).y())", value, value, name, value, name)
+				}
 			}
 		}
 	}

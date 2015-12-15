@@ -4,7 +4,6 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQSwipeGestureFromPointer(ptr unsafe.Pointer) *QSwipeGesture {
 	var n = new(QSwipeGesture)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSwipeGesture_") {
-		n.SetObjectName("QSwipeGesture_" + qt.RandomIdentifier())
+		n.SetObjectName("QSwipeGesture_" + qt.Identifier())
 	}
 	return n
 }
@@ -49,11 +48,7 @@ const (
 )
 
 func (ptr *QSwipeGesture) HorizontalDirection() QSwipeGesture__SwipeDirection {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSwipeGesture::horizontalDirection")
-		}
-	}()
+	defer qt.Recovering("QSwipeGesture::horizontalDirection")
 
 	if ptr.Pointer() != nil {
 		return QSwipeGesture__SwipeDirection(C.QSwipeGesture_HorizontalDirection(ptr.Pointer()))
@@ -62,11 +57,7 @@ func (ptr *QSwipeGesture) HorizontalDirection() QSwipeGesture__SwipeDirection {
 }
 
 func (ptr *QSwipeGesture) SetSwipeAngle(value float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSwipeGesture::setSwipeAngle")
-		}
-	}()
+	defer qt.Recovering("QSwipeGesture::setSwipeAngle")
 
 	if ptr.Pointer() != nil {
 		C.QSwipeGesture_SetSwipeAngle(ptr.Pointer(), C.double(value))
@@ -74,11 +65,7 @@ func (ptr *QSwipeGesture) SetSwipeAngle(value float64) {
 }
 
 func (ptr *QSwipeGesture) SwipeAngle() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSwipeGesture::swipeAngle")
-		}
-	}()
+	defer qt.Recovering("QSwipeGesture::swipeAngle")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QSwipeGesture_SwipeAngle(ptr.Pointer()))
@@ -87,11 +74,7 @@ func (ptr *QSwipeGesture) SwipeAngle() float64 {
 }
 
 func (ptr *QSwipeGesture) VerticalDirection() QSwipeGesture__SwipeDirection {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSwipeGesture::verticalDirection")
-		}
-	}()
+	defer qt.Recovering("QSwipeGesture::verticalDirection")
 
 	if ptr.Pointer() != nil {
 		return QSwipeGesture__SwipeDirection(C.QSwipeGesture_VerticalDirection(ptr.Pointer()))
@@ -100,11 +83,7 @@ func (ptr *QSwipeGesture) VerticalDirection() QSwipeGesture__SwipeDirection {
 }
 
 func (ptr *QSwipeGesture) DestroyQSwipeGesture() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSwipeGesture::~QSwipeGesture")
-		}
-	}()
+	defer qt.Recovering("QSwipeGesture::~QSwipeGesture")
 
 	if ptr.Pointer() != nil {
 		C.QSwipeGesture_DestroyQSwipeGesture(ptr.Pointer())

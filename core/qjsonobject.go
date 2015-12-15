@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"strings"
 	"unsafe"
 )
@@ -42,11 +42,7 @@ func (ptr *QJsonObject) QJsonObject_PTR() *QJsonObject {
 }
 
 func (ptr *QJsonObject) Contains(key string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonObject::contains")
-		}
-	}()
+	defer qt.Recovering("QJsonObject::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QJsonObject_Contains(ptr.Pointer(), C.CString(key)) != 0
@@ -55,11 +51,7 @@ func (ptr *QJsonObject) Contains(key string) bool {
 }
 
 func (ptr *QJsonObject) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonObject::count")
-		}
-	}()
+	defer qt.Recovering("QJsonObject::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QJsonObject_Count(ptr.Pointer()))
@@ -68,11 +60,7 @@ func (ptr *QJsonObject) Count() int {
 }
 
 func (ptr *QJsonObject) Empty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonObject::empty")
-		}
-	}()
+	defer qt.Recovering("QJsonObject::empty")
 
 	if ptr.Pointer() != nil {
 		return C.QJsonObject_Empty(ptr.Pointer()) != 0
@@ -81,11 +69,7 @@ func (ptr *QJsonObject) Empty() bool {
 }
 
 func (ptr *QJsonObject) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonObject::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QJsonObject::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QJsonObject_IsEmpty(ptr.Pointer()) != 0
@@ -94,11 +78,7 @@ func (ptr *QJsonObject) IsEmpty() bool {
 }
 
 func (ptr *QJsonObject) Keys() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonObject::keys")
-		}
-	}()
+	defer qt.Recovering("QJsonObject::keys")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QJsonObject_Keys(ptr.Pointer())), ",,,")
@@ -107,11 +87,7 @@ func (ptr *QJsonObject) Keys() []string {
 }
 
 func (ptr *QJsonObject) Length() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonObject::length")
-		}
-	}()
+	defer qt.Recovering("QJsonObject::length")
 
 	if ptr.Pointer() != nil {
 		return int(C.QJsonObject_Length(ptr.Pointer()))
@@ -120,11 +96,7 @@ func (ptr *QJsonObject) Length() int {
 }
 
 func (ptr *QJsonObject) Size() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonObject::size")
-		}
-	}()
+	defer qt.Recovering("QJsonObject::size")
 
 	if ptr.Pointer() != nil {
 		return int(C.QJsonObject_Size(ptr.Pointer()))
@@ -133,11 +105,7 @@ func (ptr *QJsonObject) Size() int {
 }
 
 func (ptr *QJsonObject) DestroyQJsonObject() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonObject::~QJsonObject")
-		}
-	}()
+	defer qt.Recovering("QJsonObject::~QJsonObject")
 
 	if ptr.Pointer() != nil {
 		C.QJsonObject_DestroyQJsonObject(ptr.Pointer())

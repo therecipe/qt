@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -96,21 +96,13 @@ const (
 )
 
 func NewQDataStream3(a QByteArray_ITF, mode QIODevice__OpenModeFlag) *QDataStream {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::QDataStream")
-		}
-	}()
+	defer qt.Recovering("QDataStream::QDataStream")
 
 	return NewQDataStreamFromPointer(C.QDataStream_NewQDataStream3(PointerFromQByteArray(a), C.int(mode)))
 }
 
 func (ptr *QDataStream) AtEnd() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::atEnd")
-		}
-	}()
+	defer qt.Recovering("QDataStream::atEnd")
 
 	if ptr.Pointer() != nil {
 		return C.QDataStream_AtEnd(ptr.Pointer()) != 0
@@ -119,41 +111,25 @@ func (ptr *QDataStream) AtEnd() bool {
 }
 
 func NewQDataStream() *QDataStream {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::QDataStream")
-		}
-	}()
+	defer qt.Recovering("QDataStream::QDataStream")
 
 	return NewQDataStreamFromPointer(C.QDataStream_NewQDataStream())
 }
 
 func NewQDataStream2(d QIODevice_ITF) *QDataStream {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::QDataStream")
-		}
-	}()
+	defer qt.Recovering("QDataStream::QDataStream")
 
 	return NewQDataStreamFromPointer(C.QDataStream_NewQDataStream2(PointerFromQIODevice(d)))
 }
 
 func NewQDataStream4(a QByteArray_ITF) *QDataStream {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::QDataStream")
-		}
-	}()
+	defer qt.Recovering("QDataStream::QDataStream")
 
 	return NewQDataStreamFromPointer(C.QDataStream_NewQDataStream4(PointerFromQByteArray(a)))
 }
 
 func (ptr *QDataStream) ByteOrder() QDataStream__ByteOrder {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::byteOrder")
-		}
-	}()
+	defer qt.Recovering("QDataStream::byteOrder")
 
 	if ptr.Pointer() != nil {
 		return QDataStream__ByteOrder(C.QDataStream_ByteOrder(ptr.Pointer()))
@@ -162,11 +138,7 @@ func (ptr *QDataStream) ByteOrder() QDataStream__ByteOrder {
 }
 
 func (ptr *QDataStream) Device() *QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::device")
-		}
-	}()
+	defer qt.Recovering("QDataStream::device")
 
 	if ptr.Pointer() != nil {
 		return NewQIODeviceFromPointer(C.QDataStream_Device(ptr.Pointer()))
@@ -175,11 +147,7 @@ func (ptr *QDataStream) Device() *QIODevice {
 }
 
 func (ptr *QDataStream) FloatingPointPrecision() QDataStream__FloatingPointPrecision {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::floatingPointPrecision")
-		}
-	}()
+	defer qt.Recovering("QDataStream::floatingPointPrecision")
 
 	if ptr.Pointer() != nil {
 		return QDataStream__FloatingPointPrecision(C.QDataStream_FloatingPointPrecision(ptr.Pointer()))
@@ -188,11 +156,7 @@ func (ptr *QDataStream) FloatingPointPrecision() QDataStream__FloatingPointPreci
 }
 
 func (ptr *QDataStream) ReadRawData(s string, len int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::readRawData")
-		}
-	}()
+	defer qt.Recovering("QDataStream::readRawData")
 
 	if ptr.Pointer() != nil {
 		return int(C.QDataStream_ReadRawData(ptr.Pointer(), C.CString(s), C.int(len)))
@@ -201,11 +165,7 @@ func (ptr *QDataStream) ReadRawData(s string, len int) int {
 }
 
 func (ptr *QDataStream) ResetStatus() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::resetStatus")
-		}
-	}()
+	defer qt.Recovering("QDataStream::resetStatus")
 
 	if ptr.Pointer() != nil {
 		C.QDataStream_ResetStatus(ptr.Pointer())
@@ -213,11 +173,7 @@ func (ptr *QDataStream) ResetStatus() {
 }
 
 func (ptr *QDataStream) SetByteOrder(bo QDataStream__ByteOrder) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::setByteOrder")
-		}
-	}()
+	defer qt.Recovering("QDataStream::setByteOrder")
 
 	if ptr.Pointer() != nil {
 		C.QDataStream_SetByteOrder(ptr.Pointer(), C.int(bo))
@@ -225,11 +181,7 @@ func (ptr *QDataStream) SetByteOrder(bo QDataStream__ByteOrder) {
 }
 
 func (ptr *QDataStream) SetDevice(d QIODevice_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::setDevice")
-		}
-	}()
+	defer qt.Recovering("QDataStream::setDevice")
 
 	if ptr.Pointer() != nil {
 		C.QDataStream_SetDevice(ptr.Pointer(), PointerFromQIODevice(d))
@@ -237,11 +189,7 @@ func (ptr *QDataStream) SetDevice(d QIODevice_ITF) {
 }
 
 func (ptr *QDataStream) SetFloatingPointPrecision(precision QDataStream__FloatingPointPrecision) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::setFloatingPointPrecision")
-		}
-	}()
+	defer qt.Recovering("QDataStream::setFloatingPointPrecision")
 
 	if ptr.Pointer() != nil {
 		C.QDataStream_SetFloatingPointPrecision(ptr.Pointer(), C.int(precision))
@@ -249,11 +197,7 @@ func (ptr *QDataStream) SetFloatingPointPrecision(precision QDataStream__Floatin
 }
 
 func (ptr *QDataStream) SetStatus(status QDataStream__Status) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::setStatus")
-		}
-	}()
+	defer qt.Recovering("QDataStream::setStatus")
 
 	if ptr.Pointer() != nil {
 		C.QDataStream_SetStatus(ptr.Pointer(), C.int(status))
@@ -261,11 +205,7 @@ func (ptr *QDataStream) SetStatus(status QDataStream__Status) {
 }
 
 func (ptr *QDataStream) SetVersion(v int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::setVersion")
-		}
-	}()
+	defer qt.Recovering("QDataStream::setVersion")
 
 	if ptr.Pointer() != nil {
 		C.QDataStream_SetVersion(ptr.Pointer(), C.int(v))
@@ -273,11 +213,7 @@ func (ptr *QDataStream) SetVersion(v int) {
 }
 
 func (ptr *QDataStream) SkipRawData(len int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::skipRawData")
-		}
-	}()
+	defer qt.Recovering("QDataStream::skipRawData")
 
 	if ptr.Pointer() != nil {
 		return int(C.QDataStream_SkipRawData(ptr.Pointer(), C.int(len)))
@@ -286,11 +222,7 @@ func (ptr *QDataStream) SkipRawData(len int) int {
 }
 
 func (ptr *QDataStream) Status() QDataStream__Status {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::status")
-		}
-	}()
+	defer qt.Recovering("QDataStream::status")
 
 	if ptr.Pointer() != nil {
 		return QDataStream__Status(C.QDataStream_Status(ptr.Pointer()))
@@ -299,11 +231,7 @@ func (ptr *QDataStream) Status() QDataStream__Status {
 }
 
 func (ptr *QDataStream) Version() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::version")
-		}
-	}()
+	defer qt.Recovering("QDataStream::version")
 
 	if ptr.Pointer() != nil {
 		return int(C.QDataStream_Version(ptr.Pointer()))
@@ -312,11 +240,7 @@ func (ptr *QDataStream) Version() int {
 }
 
 func (ptr *QDataStream) WriteRawData(s string, len int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::writeRawData")
-		}
-	}()
+	defer qt.Recovering("QDataStream::writeRawData")
 
 	if ptr.Pointer() != nil {
 		return int(C.QDataStream_WriteRawData(ptr.Pointer(), C.CString(s), C.int(len)))
@@ -325,11 +249,7 @@ func (ptr *QDataStream) WriteRawData(s string, len int) int {
 }
 
 func (ptr *QDataStream) DestroyQDataStream() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDataStream::~QDataStream")
-		}
-	}()
+	defer qt.Recovering("QDataStream::~QDataStream")
 
 	if ptr.Pointer() != nil {
 		C.QDataStream_DestroyQDataStream(ptr.Pointer())

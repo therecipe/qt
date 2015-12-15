@@ -4,7 +4,6 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQAmbientTemperatureReadingFromPointer(ptr unsafe.Pointer) *QAmbientTempe
 	var n = new(QAmbientTemperatureReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAmbientTemperatureReading_") {
-		n.SetObjectName("QAmbientTemperatureReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QAmbientTemperatureReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QAmbientTemperatureReading) QAmbientTemperatureReading_PTR() *QAmbien
 }
 
 func (ptr *QAmbientTemperatureReading) Temperature() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAmbientTemperatureReading::temperature")
-		}
-	}()
+	defer qt.Recovering("QAmbientTemperatureReading::temperature")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QAmbientTemperatureReading_Temperature(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QAmbientTemperatureReading) Temperature() float64 {
 }
 
 func (ptr *QAmbientTemperatureReading) SetTemperature(temperature float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAmbientTemperatureReading::setTemperature")
-		}
-	}()
+	defer qt.Recovering("QAmbientTemperatureReading::setTemperature")
 
 	if ptr.Pointer() != nil {
 		C.QAmbientTemperatureReading_SetTemperature(ptr.Pointer(), C.double(temperature))

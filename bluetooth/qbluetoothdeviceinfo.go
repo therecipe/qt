@@ -4,7 +4,6 @@ package bluetooth
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -228,31 +227,19 @@ const (
 )
 
 func NewQBluetoothDeviceInfo() *QBluetoothDeviceInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::QBluetoothDeviceInfo")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::QBluetoothDeviceInfo")
 
 	return NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo())
 }
 
 func NewQBluetoothDeviceInfo4(other QBluetoothDeviceInfo_ITF) *QBluetoothDeviceInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::QBluetoothDeviceInfo")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::QBluetoothDeviceInfo")
 
 	return NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo4(PointerFromQBluetoothDeviceInfo(other)))
 }
 
 func (ptr *QBluetoothDeviceInfo) CoreConfigurations() QBluetoothDeviceInfo__CoreConfiguration {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::coreConfigurations")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::coreConfigurations")
 
 	if ptr.Pointer() != nil {
 		return QBluetoothDeviceInfo__CoreConfiguration(C.QBluetoothDeviceInfo_CoreConfigurations(ptr.Pointer()))
@@ -261,11 +248,7 @@ func (ptr *QBluetoothDeviceInfo) CoreConfigurations() QBluetoothDeviceInfo__Core
 }
 
 func (ptr *QBluetoothDeviceInfo) IsCached() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::isCached")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::isCached")
 
 	if ptr.Pointer() != nil {
 		return C.QBluetoothDeviceInfo_IsCached(ptr.Pointer()) != 0
@@ -274,11 +257,7 @@ func (ptr *QBluetoothDeviceInfo) IsCached() bool {
 }
 
 func (ptr *QBluetoothDeviceInfo) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::isValid")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QBluetoothDeviceInfo_IsValid(ptr.Pointer()) != 0
@@ -287,11 +266,7 @@ func (ptr *QBluetoothDeviceInfo) IsValid() bool {
 }
 
 func (ptr *QBluetoothDeviceInfo) MajorDeviceClass() QBluetoothDeviceInfo__MajorDeviceClass {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::majorDeviceClass")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::majorDeviceClass")
 
 	if ptr.Pointer() != nil {
 		return QBluetoothDeviceInfo__MajorDeviceClass(C.QBluetoothDeviceInfo_MajorDeviceClass(ptr.Pointer()))
@@ -300,11 +275,7 @@ func (ptr *QBluetoothDeviceInfo) MajorDeviceClass() QBluetoothDeviceInfo__MajorD
 }
 
 func (ptr *QBluetoothDeviceInfo) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::name")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothDeviceInfo_Name(ptr.Pointer()))
@@ -313,11 +284,7 @@ func (ptr *QBluetoothDeviceInfo) Name() string {
 }
 
 func (ptr *QBluetoothDeviceInfo) ServiceClasses() QBluetoothDeviceInfo__ServiceClass {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::serviceClasses")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::serviceClasses")
 
 	if ptr.Pointer() != nil {
 		return QBluetoothDeviceInfo__ServiceClass(C.QBluetoothDeviceInfo_ServiceClasses(ptr.Pointer()))
@@ -326,11 +293,7 @@ func (ptr *QBluetoothDeviceInfo) ServiceClasses() QBluetoothDeviceInfo__ServiceC
 }
 
 func (ptr *QBluetoothDeviceInfo) ServiceUuidsCompleteness() QBluetoothDeviceInfo__DataCompleteness {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::serviceUuidsCompleteness")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::serviceUuidsCompleteness")
 
 	if ptr.Pointer() != nil {
 		return QBluetoothDeviceInfo__DataCompleteness(C.QBluetoothDeviceInfo_ServiceUuidsCompleteness(ptr.Pointer()))
@@ -339,11 +302,7 @@ func (ptr *QBluetoothDeviceInfo) ServiceUuidsCompleteness() QBluetoothDeviceInfo
 }
 
 func (ptr *QBluetoothDeviceInfo) SetCached(cached bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::setCached")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::setCached")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceInfo_SetCached(ptr.Pointer(), C.int(qt.GoBoolToInt(cached)))
@@ -351,11 +310,7 @@ func (ptr *QBluetoothDeviceInfo) SetCached(cached bool) {
 }
 
 func (ptr *QBluetoothDeviceInfo) SetCoreConfigurations(coreConfigs QBluetoothDeviceInfo__CoreConfiguration) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::setCoreConfigurations")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::setCoreConfigurations")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceInfo_SetCoreConfigurations(ptr.Pointer(), C.int(coreConfigs))
@@ -363,11 +318,7 @@ func (ptr *QBluetoothDeviceInfo) SetCoreConfigurations(coreConfigs QBluetoothDev
 }
 
 func (ptr *QBluetoothDeviceInfo) SetDeviceUuid(uuid QBluetoothUuid_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::setDeviceUuid")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::setDeviceUuid")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceInfo_SetDeviceUuid(ptr.Pointer(), PointerFromQBluetoothUuid(uuid))
@@ -375,11 +326,7 @@ func (ptr *QBluetoothDeviceInfo) SetDeviceUuid(uuid QBluetoothUuid_ITF) {
 }
 
 func (ptr *QBluetoothDeviceInfo) DestroyQBluetoothDeviceInfo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothDeviceInfo::~QBluetoothDeviceInfo")
-		}
-	}()
+	defer qt.Recovering("QBluetoothDeviceInfo::~QBluetoothDeviceInfo")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceInfo_DestroyQBluetoothDeviceInfo(ptr.Pointer())

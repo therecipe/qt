@@ -3,7 +3,7 @@ package script
 //#include "script.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,41 +41,25 @@ func (ptr *QScriptProgram) QScriptProgram_PTR() *QScriptProgram {
 }
 
 func NewQScriptProgram() *QScriptProgram {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptProgram::QScriptProgram")
-		}
-	}()
+	defer qt.Recovering("QScriptProgram::QScriptProgram")
 
 	return NewQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram())
 }
 
 func NewQScriptProgram3(other QScriptProgram_ITF) *QScriptProgram {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptProgram::QScriptProgram")
-		}
-	}()
+	defer qt.Recovering("QScriptProgram::QScriptProgram")
 
 	return NewQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram3(PointerFromQScriptProgram(other)))
 }
 
 func NewQScriptProgram2(sourceCode string, fileName string, firstLineNumber int) *QScriptProgram {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptProgram::QScriptProgram")
-		}
-	}()
+	defer qt.Recovering("QScriptProgram::QScriptProgram")
 
 	return NewQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram2(C.CString(sourceCode), C.CString(fileName), C.int(firstLineNumber)))
 }
 
 func (ptr *QScriptProgram) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptProgram::fileName")
-		}
-	}()
+	defer qt.Recovering("QScriptProgram::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScriptProgram_FileName(ptr.Pointer()))
@@ -84,11 +68,7 @@ func (ptr *QScriptProgram) FileName() string {
 }
 
 func (ptr *QScriptProgram) FirstLineNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptProgram::firstLineNumber")
-		}
-	}()
+	defer qt.Recovering("QScriptProgram::firstLineNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QScriptProgram_FirstLineNumber(ptr.Pointer()))
@@ -97,11 +77,7 @@ func (ptr *QScriptProgram) FirstLineNumber() int {
 }
 
 func (ptr *QScriptProgram) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptProgram::isNull")
-		}
-	}()
+	defer qt.Recovering("QScriptProgram::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptProgram_IsNull(ptr.Pointer()) != 0
@@ -110,11 +86,7 @@ func (ptr *QScriptProgram) IsNull() bool {
 }
 
 func (ptr *QScriptProgram) SourceCode() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptProgram::sourceCode")
-		}
-	}()
+	defer qt.Recovering("QScriptProgram::sourceCode")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScriptProgram_SourceCode(ptr.Pointer()))
@@ -123,11 +95,7 @@ func (ptr *QScriptProgram) SourceCode() string {
 }
 
 func (ptr *QScriptProgram) DestroyQScriptProgram() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptProgram::~QScriptProgram")
-		}
-	}()
+	defer qt.Recovering("QScriptProgram::~QScriptProgram")
 
 	if ptr.Pointer() != nil {
 		C.QScriptProgram_DestroyQScriptProgram(ptr.Pointer())

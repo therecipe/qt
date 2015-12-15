@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQDBusInterfaceFromPointer(ptr unsafe.Pointer) *QDBusInterface {
 	var n = new(QDBusInterface)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusInterface_") {
-		n.SetObjectName("QDBusInterface_" + qt.RandomIdentifier())
+		n.SetObjectName("QDBusInterface_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QDBusInterface) QDBusInterface_PTR() *QDBusInterface {
 }
 
 func NewQDBusInterface(service string, path string, interfa string, connection QDBusConnection_ITF, parent core.QObject_ITF) *QDBusInterface {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusInterface::QDBusInterface")
-		}
-	}()
+	defer qt.Recovering("QDBusInterface::QDBusInterface")
 
 	return NewQDBusInterfaceFromPointer(C.QDBusInterface_NewQDBusInterface(C.CString(service), C.CString(path), C.CString(interfa), PointerFromQDBusConnection(connection), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDBusInterface) DestroyQDBusInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusInterface::~QDBusInterface")
-		}
-	}()
+	defer qt.Recovering("QDBusInterface::~QDBusInterface")
 
 	if ptr.Pointer() != nil {
 		C.QDBusInterface_DestroyQDBusInterface(ptr.Pointer())

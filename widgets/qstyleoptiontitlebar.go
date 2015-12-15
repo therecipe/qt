@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -48,21 +48,13 @@ var (
 )
 
 func NewQStyleOptionTitleBar() *QStyleOptionTitleBar {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionTitleBar::QStyleOptionTitleBar")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionTitleBar::QStyleOptionTitleBar")
 
 	return NewQStyleOptionTitleBarFromPointer(C.QStyleOptionTitleBar_NewQStyleOptionTitleBar())
 }
 
 func NewQStyleOptionTitleBar2(other QStyleOptionTitleBar_ITF) *QStyleOptionTitleBar {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionTitleBar::QStyleOptionTitleBar")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionTitleBar::QStyleOptionTitleBar")
 
 	return NewQStyleOptionTitleBarFromPointer(C.QStyleOptionTitleBar_NewQStyleOptionTitleBar2(PointerFromQStyleOptionTitleBar(other)))
 }

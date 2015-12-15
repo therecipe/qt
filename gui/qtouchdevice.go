@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -62,21 +62,13 @@ const (
 )
 
 func NewQTouchDevice() *QTouchDevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTouchDevice::QTouchDevice")
-		}
-	}()
+	defer qt.Recovering("QTouchDevice::QTouchDevice")
 
 	return NewQTouchDeviceFromPointer(C.QTouchDevice_NewQTouchDevice())
 }
 
 func (ptr *QTouchDevice) Capabilities() QTouchDevice__CapabilityFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTouchDevice::capabilities")
-		}
-	}()
+	defer qt.Recovering("QTouchDevice::capabilities")
 
 	if ptr.Pointer() != nil {
 		return QTouchDevice__CapabilityFlag(C.QTouchDevice_Capabilities(ptr.Pointer()))
@@ -85,11 +77,7 @@ func (ptr *QTouchDevice) Capabilities() QTouchDevice__CapabilityFlag {
 }
 
 func (ptr *QTouchDevice) MaximumTouchPoints() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTouchDevice::maximumTouchPoints")
-		}
-	}()
+	defer qt.Recovering("QTouchDevice::maximumTouchPoints")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTouchDevice_MaximumTouchPoints(ptr.Pointer()))
@@ -98,11 +86,7 @@ func (ptr *QTouchDevice) MaximumTouchPoints() int {
 }
 
 func (ptr *QTouchDevice) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTouchDevice::name")
-		}
-	}()
+	defer qt.Recovering("QTouchDevice::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTouchDevice_Name(ptr.Pointer()))
@@ -111,11 +95,7 @@ func (ptr *QTouchDevice) Name() string {
 }
 
 func (ptr *QTouchDevice) SetCapabilities(caps QTouchDevice__CapabilityFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTouchDevice::setCapabilities")
-		}
-	}()
+	defer qt.Recovering("QTouchDevice::setCapabilities")
 
 	if ptr.Pointer() != nil {
 		C.QTouchDevice_SetCapabilities(ptr.Pointer(), C.int(caps))
@@ -123,11 +103,7 @@ func (ptr *QTouchDevice) SetCapabilities(caps QTouchDevice__CapabilityFlag) {
 }
 
 func (ptr *QTouchDevice) SetMaximumTouchPoints(max int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTouchDevice::setMaximumTouchPoints")
-		}
-	}()
+	defer qt.Recovering("QTouchDevice::setMaximumTouchPoints")
 
 	if ptr.Pointer() != nil {
 		C.QTouchDevice_SetMaximumTouchPoints(ptr.Pointer(), C.int(max))
@@ -135,11 +111,7 @@ func (ptr *QTouchDevice) SetMaximumTouchPoints(max int) {
 }
 
 func (ptr *QTouchDevice) SetName(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTouchDevice::setName")
-		}
-	}()
+	defer qt.Recovering("QTouchDevice::setName")
 
 	if ptr.Pointer() != nil {
 		C.QTouchDevice_SetName(ptr.Pointer(), C.CString(name))
@@ -147,11 +119,7 @@ func (ptr *QTouchDevice) SetName(name string) {
 }
 
 func (ptr *QTouchDevice) SetType(devType QTouchDevice__DeviceType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTouchDevice::setType")
-		}
-	}()
+	defer qt.Recovering("QTouchDevice::setType")
 
 	if ptr.Pointer() != nil {
 		C.QTouchDevice_SetType(ptr.Pointer(), C.int(devType))
@@ -159,11 +127,7 @@ func (ptr *QTouchDevice) SetType(devType QTouchDevice__DeviceType) {
 }
 
 func (ptr *QTouchDevice) Type() QTouchDevice__DeviceType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTouchDevice::type")
-		}
-	}()
+	defer qt.Recovering("QTouchDevice::type")
 
 	if ptr.Pointer() != nil {
 		return QTouchDevice__DeviceType(C.QTouchDevice_Type(ptr.Pointer()))
@@ -172,11 +136,7 @@ func (ptr *QTouchDevice) Type() QTouchDevice__DeviceType {
 }
 
 func (ptr *QTouchDevice) DestroyQTouchDevice() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTouchDevice::~QTouchDevice")
-		}
-	}()
+	defer qt.Recovering("QTouchDevice::~QTouchDevice")
 
 	if ptr.Pointer() != nil {
 		C.QTouchDevice_DestroyQTouchDevice(ptr.Pointer())

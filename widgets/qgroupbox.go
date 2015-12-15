@@ -5,7 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
 
@@ -29,7 +29,7 @@ func NewQGroupBoxFromPointer(ptr unsafe.Pointer) *QGroupBox {
 	var n = new(QGroupBox)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGroupBox_") {
-		n.SetObjectName("QGroupBox_" + qt.RandomIdentifier())
+		n.SetObjectName("QGroupBox_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +39,7 @@ func (ptr *QGroupBox) QGroupBox_PTR() *QGroupBox {
 }
 
 func (ptr *QGroupBox) Alignment() core.Qt__AlignmentFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::alignment")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::alignment")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__AlignmentFlag(C.QGroupBox_Alignment(ptr.Pointer()))
@@ -52,11 +48,7 @@ func (ptr *QGroupBox) Alignment() core.Qt__AlignmentFlag {
 }
 
 func (ptr *QGroupBox) IsCheckable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::isCheckable")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::isCheckable")
 
 	if ptr.Pointer() != nil {
 		return C.QGroupBox_IsCheckable(ptr.Pointer()) != 0
@@ -65,11 +57,7 @@ func (ptr *QGroupBox) IsCheckable() bool {
 }
 
 func (ptr *QGroupBox) IsChecked() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::isChecked")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::isChecked")
 
 	if ptr.Pointer() != nil {
 		return C.QGroupBox_IsChecked(ptr.Pointer()) != 0
@@ -78,11 +66,7 @@ func (ptr *QGroupBox) IsChecked() bool {
 }
 
 func (ptr *QGroupBox) IsFlat() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::isFlat")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::isFlat")
 
 	if ptr.Pointer() != nil {
 		return C.QGroupBox_IsFlat(ptr.Pointer()) != 0
@@ -91,11 +75,7 @@ func (ptr *QGroupBox) IsFlat() bool {
 }
 
 func (ptr *QGroupBox) SetAlignment(alignment int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::setAlignment")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::setAlignment")
 
 	if ptr.Pointer() != nil {
 		C.QGroupBox_SetAlignment(ptr.Pointer(), C.int(alignment))
@@ -103,11 +83,7 @@ func (ptr *QGroupBox) SetAlignment(alignment int) {
 }
 
 func (ptr *QGroupBox) SetCheckable(checkable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::setCheckable")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::setCheckable")
 
 	if ptr.Pointer() != nil {
 		C.QGroupBox_SetCheckable(ptr.Pointer(), C.int(qt.GoBoolToInt(checkable)))
@@ -115,11 +91,7 @@ func (ptr *QGroupBox) SetCheckable(checkable bool) {
 }
 
 func (ptr *QGroupBox) SetChecked(checked bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::setChecked")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::setChecked")
 
 	if ptr.Pointer() != nil {
 		C.QGroupBox_SetChecked(ptr.Pointer(), C.int(qt.GoBoolToInt(checked)))
@@ -127,11 +99,7 @@ func (ptr *QGroupBox) SetChecked(checked bool) {
 }
 
 func (ptr *QGroupBox) SetFlat(flat bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::setFlat")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::setFlat")
 
 	if ptr.Pointer() != nil {
 		C.QGroupBox_SetFlat(ptr.Pointer(), C.int(qt.GoBoolToInt(flat)))
@@ -139,11 +107,7 @@ func (ptr *QGroupBox) SetFlat(flat bool) {
 }
 
 func (ptr *QGroupBox) SetTitle(title string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::setTitle")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::setTitle")
 
 	if ptr.Pointer() != nil {
 		C.QGroupBox_SetTitle(ptr.Pointer(), C.CString(title))
@@ -151,11 +115,7 @@ func (ptr *QGroupBox) SetTitle(title string) {
 }
 
 func (ptr *QGroupBox) Title() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::title")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::title")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGroupBox_Title(ptr.Pointer()))
@@ -164,31 +124,81 @@ func (ptr *QGroupBox) Title() string {
 }
 
 func NewQGroupBox(parent QWidget_ITF) *QGroupBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::QGroupBox")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::QGroupBox")
 
 	return NewQGroupBoxFromPointer(C.QGroupBox_NewQGroupBox(PointerFromQWidget(parent)))
 }
 
 func NewQGroupBox2(title string, parent QWidget_ITF) *QGroupBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::QGroupBox")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::QGroupBox")
 
 	return NewQGroupBoxFromPointer(C.QGroupBox_NewQGroupBox2(C.CString(title), PointerFromQWidget(parent)))
 }
 
+func (ptr *QGroupBox) ConnectChangeEvent(f func(ev *core.QEvent)) {
+	defer qt.Recovering("connect QGroupBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QGroupBox) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QGroupBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQGroupBoxChangeEvent
+func callbackQGroupBoxChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGroupBox::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGroupBox) ConnectChildEvent(f func(c *core.QChildEvent)) {
+	defer qt.Recovering("connect QGroupBox::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QGroupBox) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QGroupBox::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQGroupBoxChildEvent
+func callbackQGroupBoxChildEvent(ptrName *C.char, c unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGroupBox::childEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "childEvent")
+	if signal != nil {
+		defer signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(c))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGroupBox) ConnectClicked(f func(checked bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::clicked")
-		}
-	}()
+	defer qt.Recovering("connect QGroupBox::clicked")
 
 	if ptr.Pointer() != nil {
 		C.QGroupBox_ConnectClicked(ptr.Pointer())
@@ -197,11 +207,7 @@ func (ptr *QGroupBox) ConnectClicked(f func(checked bool)) {
 }
 
 func (ptr *QGroupBox) DisconnectClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::clicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QGroupBox::clicked")
 
 	if ptr.Pointer() != nil {
 		C.QGroupBox_DisconnectClicked(ptr.Pointer())
@@ -211,21 +217,203 @@ func (ptr *QGroupBox) DisconnectClicked() {
 
 //export callbackQGroupBoxClicked
 func callbackQGroupBoxClicked(ptrName *C.char, checked C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::clicked")
-		}
-	}()
+	defer qt.Recovering("callback QGroupBox::clicked")
 
-	qt.GetSignal(C.GoString(ptrName), "clicked").(func(bool))(int(checked) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "clicked")
+	if signal != nil {
+		signal.(func(bool))(int(checked) != 0)
+	}
+
+}
+
+func (ptr *QGroupBox) ConnectFocusInEvent(f func(fe *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QGroupBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QGroupBox) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QGroupBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQGroupBoxFocusInEvent
+func callbackQGroupBoxFocusInEvent(ptrName *C.char, fe unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGroupBox::focusInEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(fe))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGroupBox) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QGroupBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+	}
+}
+
+func (ptr *QGroupBox) DisconnectMouseMoveEvent() {
+	defer qt.Recovering("disconnect QGroupBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+	}
+}
+
+//export callbackQGroupBoxMouseMoveEvent
+func callbackQGroupBoxMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGroupBox::mouseMoveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGroupBox) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QGroupBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QGroupBox) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QGroupBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQGroupBoxMousePressEvent
+func callbackQGroupBoxMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGroupBox::mousePressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGroupBox) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QGroupBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+	}
+}
+
+func (ptr *QGroupBox) DisconnectMouseReleaseEvent() {
+	defer qt.Recovering("disconnect QGroupBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+	}
+}
+
+//export callbackQGroupBoxMouseReleaseEvent
+func callbackQGroupBoxMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGroupBox::mouseReleaseEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGroupBox) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QGroupBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QGroupBox) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QGroupBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQGroupBoxPaintEvent
+func callbackQGroupBoxPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGroupBox::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGroupBox) ConnectResizeEvent(f func(e *gui.QResizeEvent)) {
+	defer qt.Recovering("connect QGroupBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+	}
+}
+
+func (ptr *QGroupBox) DisconnectResizeEvent() {
+	defer qt.Recovering("disconnect QGroupBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+	}
+}
+
+//export callbackQGroupBoxResizeEvent
+func callbackQGroupBoxResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGroupBox::resizeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QGroupBox) ConnectToggled(f func(on bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::toggled")
-		}
-	}()
+	defer qt.Recovering("connect QGroupBox::toggled")
 
 	if ptr.Pointer() != nil {
 		C.QGroupBox_ConnectToggled(ptr.Pointer())
@@ -234,11 +422,7 @@ func (ptr *QGroupBox) ConnectToggled(f func(on bool)) {
 }
 
 func (ptr *QGroupBox) DisconnectToggled() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::toggled")
-		}
-	}()
+	defer qt.Recovering("disconnect QGroupBox::toggled")
 
 	if ptr.Pointer() != nil {
 		C.QGroupBox_DisconnectToggled(ptr.Pointer())
@@ -248,21 +432,17 @@ func (ptr *QGroupBox) DisconnectToggled() {
 
 //export callbackQGroupBoxToggled
 func callbackQGroupBoxToggled(ptrName *C.char, on C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::toggled")
-		}
-	}()
+	defer qt.Recovering("callback QGroupBox::toggled")
 
-	qt.GetSignal(C.GoString(ptrName), "toggled").(func(bool))(int(on) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "toggled")
+	if signal != nil {
+		signal.(func(bool))(int(on) != 0)
+	}
+
 }
 
 func (ptr *QGroupBox) DestroyQGroupBox() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGroupBox::~QGroupBox")
-		}
-	}()
+	defer qt.Recovering("QGroupBox::~QGroupBox")
 
 	if ptr.Pointer() != nil {
 		C.QGroupBox_DestroyQGroupBox(ptr.Pointer())

@@ -3,7 +3,7 @@ package quick
 //#include "quick.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,21 +34,13 @@ func (ptr *QSGGeometryNode) QSGGeometryNode_PTR() *QSGGeometryNode {
 }
 
 func NewQSGGeometryNode() *QSGGeometryNode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometryNode::QSGGeometryNode")
-		}
-	}()
+	defer qt.Recovering("QSGGeometryNode::QSGGeometryNode")
 
 	return NewQSGGeometryNodeFromPointer(C.QSGGeometryNode_NewQSGGeometryNode())
 }
 
 func (ptr *QSGGeometryNode) Material() *QSGMaterial {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometryNode::material")
-		}
-	}()
+	defer qt.Recovering("QSGGeometryNode::material")
 
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialFromPointer(C.QSGGeometryNode_Material(ptr.Pointer()))
@@ -57,11 +49,7 @@ func (ptr *QSGGeometryNode) Material() *QSGMaterial {
 }
 
 func (ptr *QSGGeometryNode) OpaqueMaterial() *QSGMaterial {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometryNode::opaqueMaterial")
-		}
-	}()
+	defer qt.Recovering("QSGGeometryNode::opaqueMaterial")
 
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialFromPointer(C.QSGGeometryNode_OpaqueMaterial(ptr.Pointer()))
@@ -70,11 +58,7 @@ func (ptr *QSGGeometryNode) OpaqueMaterial() *QSGMaterial {
 }
 
 func (ptr *QSGGeometryNode) SetMaterial(material QSGMaterial_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometryNode::setMaterial")
-		}
-	}()
+	defer qt.Recovering("QSGGeometryNode::setMaterial")
 
 	if ptr.Pointer() != nil {
 		C.QSGGeometryNode_SetMaterial(ptr.Pointer(), PointerFromQSGMaterial(material))
@@ -82,11 +66,7 @@ func (ptr *QSGGeometryNode) SetMaterial(material QSGMaterial_ITF) {
 }
 
 func (ptr *QSGGeometryNode) SetOpaqueMaterial(material QSGMaterial_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometryNode::setOpaqueMaterial")
-		}
-	}()
+	defer qt.Recovering("QSGGeometryNode::setOpaqueMaterial")
 
 	if ptr.Pointer() != nil {
 		C.QSGGeometryNode_SetOpaqueMaterial(ptr.Pointer(), PointerFromQSGMaterial(material))
@@ -94,11 +74,7 @@ func (ptr *QSGGeometryNode) SetOpaqueMaterial(material QSGMaterial_ITF) {
 }
 
 func (ptr *QSGGeometryNode) DestroyQSGGeometryNode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometryNode::~QSGGeometryNode")
-		}
-	}()
+	defer qt.Recovering("QSGGeometryNode::~QSGGeometryNode")
 
 	if ptr.Pointer() != nil {
 		C.QSGGeometryNode_DestroyQSGGeometryNode(ptr.Pointer())

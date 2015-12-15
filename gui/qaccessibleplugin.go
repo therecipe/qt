@@ -28,7 +28,7 @@ func NewQAccessiblePluginFromPointer(ptr unsafe.Pointer) *QAccessiblePlugin {
 	var n = new(QAccessiblePlugin)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAccessiblePlugin_") {
-		n.SetObjectName("QAccessiblePlugin_" + qt.RandomIdentifier())
+		n.SetObjectName("QAccessiblePlugin_" + qt.Identifier())
 	}
 	return n
 }

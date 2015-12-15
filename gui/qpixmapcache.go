@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QPixmapCache) QPixmapCache_PTR() *QPixmapCache {
 }
 
 func QPixmapCache_CacheLimit() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPixmapCache::cacheLimit")
-		}
-	}()
+	defer qt.Recovering("QPixmapCache::cacheLimit")
 
 	return int(C.QPixmapCache_QPixmapCache_CacheLimit())
 }
 
 func QPixmapCache_Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPixmapCache::clear")
-		}
-	}()
+	defer qt.Recovering("QPixmapCache::clear")
 
 	C.QPixmapCache_QPixmapCache_Clear()
 }
 
 func QPixmapCache_SetCacheLimit(n int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPixmapCache::setCacheLimit")
-		}
-	}()
+	defer qt.Recovering("QPixmapCache::setCacheLimit")
 
 	C.QPixmapCache_QPixmapCache_SetCacheLimit(C.int(n))
 }

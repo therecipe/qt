@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQSqlDriverPluginFromPointer(ptr unsafe.Pointer) *QSqlDriverPlugin {
 	var n = new(QSqlDriverPlugin)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSqlDriverPlugin_") {
-		n.SetObjectName("QSqlDriverPlugin_" + qt.RandomIdentifier())
+		n.SetObjectName("QSqlDriverPlugin_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QSqlDriverPlugin) QSqlDriverPlugin_PTR() *QSqlDriverPlugin {
 }
 
 func (ptr *QSqlDriverPlugin) Create(key string) *QSqlDriver {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlDriverPlugin::create")
-		}
-	}()
+	defer qt.Recovering("QSqlDriverPlugin::create")
 
 	if ptr.Pointer() != nil {
 		return NewQSqlDriverFromPointer(C.QSqlDriverPlugin_Create(ptr.Pointer(), C.CString(key)))
@@ -52,11 +47,7 @@ func (ptr *QSqlDriverPlugin) Create(key string) *QSqlDriver {
 }
 
 func (ptr *QSqlDriverPlugin) DestroyQSqlDriverPlugin() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSqlDriverPlugin::~QSqlDriverPlugin")
-		}
-	}()
+	defer qt.Recovering("QSqlDriverPlugin::~QSqlDriverPlugin")
 
 	if ptr.Pointer() != nil {
 		C.QSqlDriverPlugin_DestroyQSqlDriverPlugin(ptr.Pointer())

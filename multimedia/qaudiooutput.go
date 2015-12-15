@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQAudioOutputFromPointer(ptr unsafe.Pointer) *QAudioOutput {
 	var n = new(QAudioOutput)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioOutput_") {
-		n.SetObjectName("QAudioOutput_" + qt.RandomIdentifier())
+		n.SetObjectName("QAudioOutput_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,31 +38,19 @@ func (ptr *QAudioOutput) QAudioOutput_PTR() *QAudioOutput {
 }
 
 func NewQAudioOutput2(audioDevice QAudioDeviceInfo_ITF, format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioOutput {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::QAudioOutput")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::QAudioOutput")
 
 	return NewQAudioOutputFromPointer(C.QAudioOutput_NewQAudioOutput2(PointerFromQAudioDeviceInfo(audioDevice), PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
 }
 
 func NewQAudioOutput(format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioOutput {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::QAudioOutput")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::QAudioOutput")
 
 	return NewQAudioOutputFromPointer(C.QAudioOutput_NewQAudioOutput(PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAudioOutput) BufferSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::bufferSize")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::bufferSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioOutput_BufferSize(ptr.Pointer()))
@@ -72,11 +59,7 @@ func (ptr *QAudioOutput) BufferSize() int {
 }
 
 func (ptr *QAudioOutput) BytesFree() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::bytesFree")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::bytesFree")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioOutput_BytesFree(ptr.Pointer()))
@@ -85,11 +68,7 @@ func (ptr *QAudioOutput) BytesFree() int {
 }
 
 func (ptr *QAudioOutput) Category() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::category")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::category")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAudioOutput_Category(ptr.Pointer()))
@@ -98,11 +77,7 @@ func (ptr *QAudioOutput) Category() string {
 }
 
 func (ptr *QAudioOutput) ConnectNotify(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::notify")
-		}
-	}()
+	defer qt.Recovering("connect QAudioOutput::notify")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_ConnectNotify(ptr.Pointer())
@@ -111,11 +86,7 @@ func (ptr *QAudioOutput) ConnectNotify(f func()) {
 }
 
 func (ptr *QAudioOutput) DisconnectNotify() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::notify")
-		}
-	}()
+	defer qt.Recovering("disconnect QAudioOutput::notify")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_DisconnectNotify(ptr.Pointer())
@@ -125,21 +96,17 @@ func (ptr *QAudioOutput) DisconnectNotify() {
 
 //export callbackQAudioOutputNotify
 func callbackQAudioOutputNotify(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::notify")
-		}
-	}()
+	defer qt.Recovering("callback QAudioOutput::notify")
 
-	qt.GetSignal(C.GoString(ptrName), "notify").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "notify")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QAudioOutput) NotifyInterval() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::notifyInterval")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::notifyInterval")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioOutput_NotifyInterval(ptr.Pointer()))
@@ -148,11 +115,7 @@ func (ptr *QAudioOutput) NotifyInterval() int {
 }
 
 func (ptr *QAudioOutput) PeriodSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::periodSize")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::periodSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioOutput_PeriodSize(ptr.Pointer()))
@@ -161,11 +124,7 @@ func (ptr *QAudioOutput) PeriodSize() int {
 }
 
 func (ptr *QAudioOutput) Reset() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::reset")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::reset")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_Reset(ptr.Pointer())
@@ -173,11 +132,7 @@ func (ptr *QAudioOutput) Reset() {
 }
 
 func (ptr *QAudioOutput) Resume() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::resume")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::resume")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_Resume(ptr.Pointer())
@@ -185,11 +140,7 @@ func (ptr *QAudioOutput) Resume() {
 }
 
 func (ptr *QAudioOutput) SetBufferSize(value int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::setBufferSize")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::setBufferSize")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_SetBufferSize(ptr.Pointer(), C.int(value))
@@ -197,11 +148,7 @@ func (ptr *QAudioOutput) SetBufferSize(value int) {
 }
 
 func (ptr *QAudioOutput) SetCategory(category string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::setCategory")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::setCategory")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_SetCategory(ptr.Pointer(), C.CString(category))
@@ -209,11 +156,7 @@ func (ptr *QAudioOutput) SetCategory(category string) {
 }
 
 func (ptr *QAudioOutput) SetNotifyInterval(ms int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::setNotifyInterval")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::setNotifyInterval")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_SetNotifyInterval(ptr.Pointer(), C.int(ms))
@@ -221,11 +164,7 @@ func (ptr *QAudioOutput) SetNotifyInterval(ms int) {
 }
 
 func (ptr *QAudioOutput) SetVolume(volume float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::setVolume")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::setVolume")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_SetVolume(ptr.Pointer(), C.double(volume))
@@ -233,11 +172,7 @@ func (ptr *QAudioOutput) SetVolume(volume float64) {
 }
 
 func (ptr *QAudioOutput) Start2() *core.QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::start")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::start")
 
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QAudioOutput_Start2(ptr.Pointer()))
@@ -246,11 +181,7 @@ func (ptr *QAudioOutput) Start2() *core.QIODevice {
 }
 
 func (ptr *QAudioOutput) Start(device core.QIODevice_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::start")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::start")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_Start(ptr.Pointer(), core.PointerFromQIODevice(device))
@@ -258,11 +189,7 @@ func (ptr *QAudioOutput) Start(device core.QIODevice_ITF) {
 }
 
 func (ptr *QAudioOutput) Stop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::stop")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::stop")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_Stop(ptr.Pointer())
@@ -270,11 +197,7 @@ func (ptr *QAudioOutput) Stop() {
 }
 
 func (ptr *QAudioOutput) Suspend() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::suspend")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::suspend")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_Suspend(ptr.Pointer())
@@ -282,11 +205,7 @@ func (ptr *QAudioOutput) Suspend() {
 }
 
 func (ptr *QAudioOutput) Volume() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::volume")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::volume")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QAudioOutput_Volume(ptr.Pointer()))
@@ -295,11 +214,7 @@ func (ptr *QAudioOutput) Volume() float64 {
 }
 
 func (ptr *QAudioOutput) DestroyQAudioOutput() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioOutput::~QAudioOutput")
-		}
-	}()
+	defer qt.Recovering("QAudioOutput::~QAudioOutput")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_DestroyQAudioOutput(ptr.Pointer())

@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,31 +34,19 @@ func (ptr *QDomComment) QDomComment_PTR() *QDomComment {
 }
 
 func NewQDomComment() *QDomComment {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomComment::QDomComment")
-		}
-	}()
+	defer qt.Recovering("QDomComment::QDomComment")
 
 	return NewQDomCommentFromPointer(C.QDomComment_NewQDomComment())
 }
 
 func NewQDomComment2(x QDomComment_ITF) *QDomComment {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomComment::QDomComment")
-		}
-	}()
+	defer qt.Recovering("QDomComment::QDomComment")
 
 	return NewQDomCommentFromPointer(C.QDomComment_NewQDomComment2(PointerFromQDomComment(x)))
 }
 
 func (ptr *QDomComment) NodeType() QDomNode__NodeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomComment::nodeType")
-		}
-	}()
+	defer qt.Recovering("QDomComment::nodeType")
 
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomComment_NodeType(ptr.Pointer()))

@@ -1,6 +1,7 @@
 package qt
 
 import (
+	"log"
 	"runtime"
 	"strconv"
 	"strings"
@@ -38,7 +39,7 @@ func DisconnectAllSignals(name string) {
 	}
 }
 
-func RandomIdentifier() string {
+func Identifier() string {
 	ids++
 	return strconv.Itoa(ids)
 }
@@ -56,4 +57,10 @@ func GoBoolToInt(b bool) int {
 		return 1
 	}
 	return 0
+}
+
+func Recovering(fn string) {
+	if recover() != nil {
+		log.Printf("recovered in: %v", fn)
+	}
 }

@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,21 +35,13 @@ func (ptr *QWhatsThisClickedEvent) QWhatsThisClickedEvent_PTR() *QWhatsThisClick
 }
 
 func NewQWhatsThisClickedEvent(href string) *QWhatsThisClickedEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWhatsThisClickedEvent::QWhatsThisClickedEvent")
-		}
-	}()
+	defer qt.Recovering("QWhatsThisClickedEvent::QWhatsThisClickedEvent")
 
 	return NewQWhatsThisClickedEventFromPointer(C.QWhatsThisClickedEvent_NewQWhatsThisClickedEvent(C.CString(href)))
 }
 
 func (ptr *QWhatsThisClickedEvent) Href() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWhatsThisClickedEvent::href")
-		}
-	}()
+	defer qt.Recovering("QWhatsThisClickedEvent::href")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWhatsThisClickedEvent_Href(ptr.Pointer()))

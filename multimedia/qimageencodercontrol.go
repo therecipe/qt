@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -29,7 +28,7 @@ func NewQImageEncoderControlFromPointer(ptr unsafe.Pointer) *QImageEncoderContro
 	var n = new(QImageEncoderControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QImageEncoderControl_") {
-		n.SetObjectName("QImageEncoderControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QImageEncoderControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QImageEncoderControl) QImageEncoderControl_PTR() *QImageEncoderContro
 }
 
 func (ptr *QImageEncoderControl) ImageCodecDescription(codec string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageEncoderControl::imageCodecDescription")
-		}
-	}()
+	defer qt.Recovering("QImageEncoderControl::imageCodecDescription")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QImageEncoderControl_ImageCodecDescription(ptr.Pointer(), C.CString(codec)))
@@ -52,11 +47,7 @@ func (ptr *QImageEncoderControl) ImageCodecDescription(codec string) string {
 }
 
 func (ptr *QImageEncoderControl) SetImageSettings(settings QImageEncoderSettings_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageEncoderControl::setImageSettings")
-		}
-	}()
+	defer qt.Recovering("QImageEncoderControl::setImageSettings")
 
 	if ptr.Pointer() != nil {
 		C.QImageEncoderControl_SetImageSettings(ptr.Pointer(), PointerFromQImageEncoderSettings(settings))
@@ -64,11 +55,7 @@ func (ptr *QImageEncoderControl) SetImageSettings(settings QImageEncoderSettings
 }
 
 func (ptr *QImageEncoderControl) SupportedImageCodecs() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageEncoderControl::supportedImageCodecs")
-		}
-	}()
+	defer qt.Recovering("QImageEncoderControl::supportedImageCodecs")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QImageEncoderControl_SupportedImageCodecs(ptr.Pointer())), ",,,")
@@ -77,11 +64,7 @@ func (ptr *QImageEncoderControl) SupportedImageCodecs() []string {
 }
 
 func (ptr *QImageEncoderControl) DestroyQImageEncoderControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImageEncoderControl::~QImageEncoderControl")
-		}
-	}()
+	defer qt.Recovering("QImageEncoderControl::~QImageEncoderControl")
 
 	if ptr.Pointer() != nil {
 		C.QImageEncoderControl_DestroyQImageEncoderControl(ptr.Pointer())

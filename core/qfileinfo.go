@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -42,61 +41,37 @@ func (ptr *QFileInfo) QFileInfo_PTR() *QFileInfo {
 }
 
 func NewQFileInfo() *QFileInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::QFileInfo")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::QFileInfo")
 
 	return NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo())
 }
 
 func NewQFileInfo5(dir QDir_ITF, file string) *QFileInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::QFileInfo")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::QFileInfo")
 
 	return NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo5(PointerFromQDir(dir), C.CString(file)))
 }
 
 func NewQFileInfo4(file QFile_ITF) *QFileInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::QFileInfo")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::QFileInfo")
 
 	return NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo4(PointerFromQFile(file)))
 }
 
 func NewQFileInfo6(fileinfo QFileInfo_ITF) *QFileInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::QFileInfo")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::QFileInfo")
 
 	return NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo6(PointerFromQFileInfo(fileinfo)))
 }
 
 func NewQFileInfo3(file string) *QFileInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::QFileInfo")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::QFileInfo")
 
 	return NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo3(C.CString(file)))
 }
 
 func (ptr *QFileInfo) AbsoluteDir() *QDir {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::absoluteDir")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::absoluteDir")
 
 	if ptr.Pointer() != nil {
 		return NewQDirFromPointer(C.QFileInfo_AbsoluteDir(ptr.Pointer()))
@@ -105,11 +80,7 @@ func (ptr *QFileInfo) AbsoluteDir() *QDir {
 }
 
 func (ptr *QFileInfo) AbsoluteFilePath() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::absoluteFilePath")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::absoluteFilePath")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_AbsoluteFilePath(ptr.Pointer()))
@@ -118,11 +89,7 @@ func (ptr *QFileInfo) AbsoluteFilePath() string {
 }
 
 func (ptr *QFileInfo) AbsolutePath() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::absolutePath")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::absolutePath")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_AbsolutePath(ptr.Pointer()))
@@ -131,11 +98,7 @@ func (ptr *QFileInfo) AbsolutePath() string {
 }
 
 func (ptr *QFileInfo) BaseName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::baseName")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::baseName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_BaseName(ptr.Pointer()))
@@ -144,11 +107,7 @@ func (ptr *QFileInfo) BaseName() string {
 }
 
 func (ptr *QFileInfo) BundleName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::bundleName")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::bundleName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_BundleName(ptr.Pointer()))
@@ -157,11 +116,7 @@ func (ptr *QFileInfo) BundleName() string {
 }
 
 func (ptr *QFileInfo) Caching() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::caching")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::caching")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_Caching(ptr.Pointer()) != 0
@@ -170,11 +125,7 @@ func (ptr *QFileInfo) Caching() bool {
 }
 
 func (ptr *QFileInfo) CanonicalFilePath() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::canonicalFilePath")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::canonicalFilePath")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_CanonicalFilePath(ptr.Pointer()))
@@ -183,11 +134,7 @@ func (ptr *QFileInfo) CanonicalFilePath() string {
 }
 
 func (ptr *QFileInfo) CanonicalPath() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::canonicalPath")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::canonicalPath")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_CanonicalPath(ptr.Pointer()))
@@ -196,11 +143,7 @@ func (ptr *QFileInfo) CanonicalPath() string {
 }
 
 func (ptr *QFileInfo) CompleteBaseName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::completeBaseName")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::completeBaseName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_CompleteBaseName(ptr.Pointer()))
@@ -209,11 +152,7 @@ func (ptr *QFileInfo) CompleteBaseName() string {
 }
 
 func (ptr *QFileInfo) CompleteSuffix() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::completeSuffix")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::completeSuffix")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_CompleteSuffix(ptr.Pointer()))
@@ -222,11 +161,7 @@ func (ptr *QFileInfo) CompleteSuffix() string {
 }
 
 func (ptr *QFileInfo) Created() *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::created")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::created")
 
 	if ptr.Pointer() != nil {
 		return NewQDateTimeFromPointer(C.QFileInfo_Created(ptr.Pointer()))
@@ -235,11 +170,7 @@ func (ptr *QFileInfo) Created() *QDateTime {
 }
 
 func (ptr *QFileInfo) Dir() *QDir {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::dir")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::dir")
 
 	if ptr.Pointer() != nil {
 		return NewQDirFromPointer(C.QFileInfo_Dir(ptr.Pointer()))
@@ -248,21 +179,13 @@ func (ptr *QFileInfo) Dir() *QDir {
 }
 
 func QFileInfo_Exists2(file string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::exists")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::exists")
 
 	return C.QFileInfo_QFileInfo_Exists2(C.CString(file)) != 0
 }
 
 func (ptr *QFileInfo) Exists() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::exists")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::exists")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_Exists(ptr.Pointer()) != 0
@@ -271,11 +194,7 @@ func (ptr *QFileInfo) Exists() bool {
 }
 
 func (ptr *QFileInfo) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::fileName")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_FileName(ptr.Pointer()))
@@ -284,11 +203,7 @@ func (ptr *QFileInfo) FileName() string {
 }
 
 func (ptr *QFileInfo) FilePath() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::filePath")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::filePath")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_FilePath(ptr.Pointer()))
@@ -297,11 +212,7 @@ func (ptr *QFileInfo) FilePath() string {
 }
 
 func (ptr *QFileInfo) Group() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::group")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::group")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_Group(ptr.Pointer()))
@@ -310,11 +221,7 @@ func (ptr *QFileInfo) Group() string {
 }
 
 func (ptr *QFileInfo) IsAbsolute() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isAbsolute")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isAbsolute")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsAbsolute(ptr.Pointer()) != 0
@@ -323,11 +230,7 @@ func (ptr *QFileInfo) IsAbsolute() bool {
 }
 
 func (ptr *QFileInfo) IsBundle() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isBundle")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isBundle")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsBundle(ptr.Pointer()) != 0
@@ -336,11 +239,7 @@ func (ptr *QFileInfo) IsBundle() bool {
 }
 
 func (ptr *QFileInfo) IsDir() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isDir")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isDir")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsDir(ptr.Pointer()) != 0
@@ -349,11 +248,7 @@ func (ptr *QFileInfo) IsDir() bool {
 }
 
 func (ptr *QFileInfo) IsExecutable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isExecutable")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isExecutable")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsExecutable(ptr.Pointer()) != 0
@@ -362,11 +257,7 @@ func (ptr *QFileInfo) IsExecutable() bool {
 }
 
 func (ptr *QFileInfo) IsFile() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isFile")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isFile")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsFile(ptr.Pointer()) != 0
@@ -375,11 +266,7 @@ func (ptr *QFileInfo) IsFile() bool {
 }
 
 func (ptr *QFileInfo) IsHidden() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isHidden")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isHidden")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsHidden(ptr.Pointer()) != 0
@@ -388,11 +275,7 @@ func (ptr *QFileInfo) IsHidden() bool {
 }
 
 func (ptr *QFileInfo) IsNativePath() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isNativePath")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isNativePath")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsNativePath(ptr.Pointer()) != 0
@@ -401,11 +284,7 @@ func (ptr *QFileInfo) IsNativePath() bool {
 }
 
 func (ptr *QFileInfo) IsReadable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isReadable")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isReadable")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsReadable(ptr.Pointer()) != 0
@@ -414,11 +293,7 @@ func (ptr *QFileInfo) IsReadable() bool {
 }
 
 func (ptr *QFileInfo) IsRelative() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isRelative")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isRelative")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsRelative(ptr.Pointer()) != 0
@@ -427,11 +302,7 @@ func (ptr *QFileInfo) IsRelative() bool {
 }
 
 func (ptr *QFileInfo) IsRoot() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isRoot")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isRoot")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsRoot(ptr.Pointer()) != 0
@@ -440,11 +311,7 @@ func (ptr *QFileInfo) IsRoot() bool {
 }
 
 func (ptr *QFileInfo) IsSymLink() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isSymLink")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isSymLink")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsSymLink(ptr.Pointer()) != 0
@@ -453,11 +320,7 @@ func (ptr *QFileInfo) IsSymLink() bool {
 }
 
 func (ptr *QFileInfo) IsWritable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::isWritable")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::isWritable")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_IsWritable(ptr.Pointer()) != 0
@@ -466,11 +329,7 @@ func (ptr *QFileInfo) IsWritable() bool {
 }
 
 func (ptr *QFileInfo) LastModified() *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::lastModified")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::lastModified")
 
 	if ptr.Pointer() != nil {
 		return NewQDateTimeFromPointer(C.QFileInfo_LastModified(ptr.Pointer()))
@@ -479,11 +338,7 @@ func (ptr *QFileInfo) LastModified() *QDateTime {
 }
 
 func (ptr *QFileInfo) LastRead() *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::lastRead")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::lastRead")
 
 	if ptr.Pointer() != nil {
 		return NewQDateTimeFromPointer(C.QFileInfo_LastRead(ptr.Pointer()))
@@ -492,11 +347,7 @@ func (ptr *QFileInfo) LastRead() *QDateTime {
 }
 
 func (ptr *QFileInfo) MakeAbsolute() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::makeAbsolute")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::makeAbsolute")
 
 	if ptr.Pointer() != nil {
 		return C.QFileInfo_MakeAbsolute(ptr.Pointer()) != 0
@@ -505,11 +356,7 @@ func (ptr *QFileInfo) MakeAbsolute() bool {
 }
 
 func (ptr *QFileInfo) Owner() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::owner")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::owner")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_Owner(ptr.Pointer()))
@@ -518,11 +365,7 @@ func (ptr *QFileInfo) Owner() string {
 }
 
 func (ptr *QFileInfo) Path() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::path")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::path")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_Path(ptr.Pointer()))
@@ -531,11 +374,7 @@ func (ptr *QFileInfo) Path() string {
 }
 
 func (ptr *QFileInfo) Refresh() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::refresh")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::refresh")
 
 	if ptr.Pointer() != nil {
 		C.QFileInfo_Refresh(ptr.Pointer())
@@ -543,11 +382,7 @@ func (ptr *QFileInfo) Refresh() {
 }
 
 func (ptr *QFileInfo) SetCaching(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::setCaching")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::setCaching")
 
 	if ptr.Pointer() != nil {
 		C.QFileInfo_SetCaching(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -555,11 +390,7 @@ func (ptr *QFileInfo) SetCaching(enable bool) {
 }
 
 func (ptr *QFileInfo) SetFile3(dir QDir_ITF, file string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::setFile")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::setFile")
 
 	if ptr.Pointer() != nil {
 		C.QFileInfo_SetFile3(ptr.Pointer(), PointerFromQDir(dir), C.CString(file))
@@ -567,11 +398,7 @@ func (ptr *QFileInfo) SetFile3(dir QDir_ITF, file string) {
 }
 
 func (ptr *QFileInfo) SetFile2(file QFile_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::setFile")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::setFile")
 
 	if ptr.Pointer() != nil {
 		C.QFileInfo_SetFile2(ptr.Pointer(), PointerFromQFile(file))
@@ -579,11 +406,7 @@ func (ptr *QFileInfo) SetFile2(file QFile_ITF) {
 }
 
 func (ptr *QFileInfo) SetFile(file string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::setFile")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::setFile")
 
 	if ptr.Pointer() != nil {
 		C.QFileInfo_SetFile(ptr.Pointer(), C.CString(file))
@@ -591,11 +414,7 @@ func (ptr *QFileInfo) SetFile(file string) {
 }
 
 func (ptr *QFileInfo) Suffix() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::suffix")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::suffix")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_Suffix(ptr.Pointer()))
@@ -604,11 +423,7 @@ func (ptr *QFileInfo) Suffix() string {
 }
 
 func (ptr *QFileInfo) Swap(other QFileInfo_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::swap")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::swap")
 
 	if ptr.Pointer() != nil {
 		C.QFileInfo_Swap(ptr.Pointer(), PointerFromQFileInfo(other))
@@ -616,11 +431,7 @@ func (ptr *QFileInfo) Swap(other QFileInfo_ITF) {
 }
 
 func (ptr *QFileInfo) SymLinkTarget() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::symLinkTarget")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::symLinkTarget")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileInfo_SymLinkTarget(ptr.Pointer()))
@@ -629,11 +440,7 @@ func (ptr *QFileInfo) SymLinkTarget() string {
 }
 
 func (ptr *QFileInfo) DestroyQFileInfo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileInfo::~QFileInfo")
-		}
-	}()
+	defer qt.Recovering("QFileInfo::~QFileInfo")
 
 	if ptr.Pointer() != nil {
 		C.QFileInfo_DestroyQFileInfo(ptr.Pointer())

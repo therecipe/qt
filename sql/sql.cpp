@@ -22,10 +22,6 @@
 #include <QString>
 #include <QVariant>
 
-class MyQSqlDatabase: public QSqlDatabase {
-public:
-};
-
 void* QSqlDatabase_NewQSqlDatabase(){
 	return new QSqlDatabase();
 }
@@ -160,7 +156,10 @@ void QSqlDatabase_DestroyQSqlDatabase(void* ptr){
 
 class MyQSqlDriver: public QSqlDriver {
 public:
-void Signal_Notification(const QString & name){callbackQSqlDriverNotification(this->objectName().toUtf8().data(), name.toUtf8().data());};
+	void Signal_Notification(const QString & name) { callbackQSqlDriverNotification(this->objectName().toUtf8().data(), name.toUtf8().data()); };
+protected:
+	void setOpen(bool open) { if (!callbackQSqlDriverSetOpen(this->objectName().toUtf8().data(), open)) { QSqlDriver::setOpen(open); }; };
+	void setOpenError(bool error) { if (!callbackQSqlDriverSetOpenError(this->objectName().toUtf8().data(), error)) { QSqlDriver::setOpenError(error); }; };
 };
 
 int QSqlDriver_BeginTransaction(void* ptr){
@@ -253,6 +252,10 @@ void QSqlDriver_DestroyQSqlDriver(void* ptr){
 
 class MyQSqlDriverCreatorBase: public QSqlDriverCreatorBase {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 void* QSqlDriverCreatorBase_CreateObject(void* ptr){
@@ -263,9 +266,13 @@ void QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(void* ptr){
 	static_cast<QSqlDriverCreatorBase*>(ptr)->~QSqlDriverCreatorBase();
 }
 
-class MyQSqlDriverPlugin: public QSqlDriverPlugin {
-public:
-};
+char* QSqlDriverCreatorBase_ObjectNameAbs(void* ptr){
+	return static_cast<MyQSqlDriverCreatorBase*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QSqlDriverCreatorBase_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQSqlDriverCreatorBase*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 void* QSqlDriverPlugin_Create(void* ptr, char* key){
 	return static_cast<QSqlDriverPlugin*>(ptr)->create(QString(key));
@@ -274,10 +281,6 @@ void* QSqlDriverPlugin_Create(void* ptr, char* key){
 void QSqlDriverPlugin_DestroyQSqlDriverPlugin(void* ptr){
 	static_cast<QSqlDriverPlugin*>(ptr)->~QSqlDriverPlugin();
 }
-
-class MyQSqlError: public QSqlError {
-public:
-};
 
 void* QSqlError_NewQSqlError3(void* other){
 	return new QSqlError(*static_cast<QSqlError*>(other));
@@ -314,10 +317,6 @@ int QSqlError_Type(void* ptr){
 void QSqlError_DestroyQSqlError(void* ptr){
 	static_cast<QSqlError*>(ptr)->~QSqlError();
 }
-
-class MyQSqlField: public QSqlField {
-public:
-};
 
 void* QSqlField_NewQSqlField2(void* other){
 	return new QSqlField(*static_cast<QSqlField*>(other));
@@ -415,10 +414,6 @@ void QSqlField_DestroyQSqlField(void* ptr){
 	static_cast<QSqlField*>(ptr)->~QSqlField();
 }
 
-class MyQSqlIndex: public QSqlIndex {
-public:
-};
-
 void* QSqlIndex_NewQSqlIndex2(void* other){
 	return new QSqlIndex(*static_cast<QSqlIndex*>(other));
 }
@@ -462,10 +457,6 @@ void QSqlIndex_SetName(void* ptr, char* name){
 void QSqlIndex_DestroyQSqlIndex(void* ptr){
 	static_cast<QSqlIndex*>(ptr)->~QSqlIndex();
 }
-
-class MyQSqlQuery: public QSqlQuery {
-public:
-};
 
 void* QSqlQuery_NewQSqlQuery3(void* db){
 	return new QSqlQuery(*static_cast<QSqlDatabase*>(db));
@@ -613,6 +604,10 @@ void QSqlQuery_DestroyQSqlQuery(void* ptr){
 
 class MyQSqlQueryModel: public QSqlQueryModel {
 public:
+	void clear() { if (!callbackQSqlQueryModelClear(this->objectName().toUtf8().data())) { QSqlQueryModel::clear(); }; };
+	void fetchMore(const QModelIndex & parent) { if (!callbackQSqlQueryModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QSqlQueryModel::fetchMore(parent); }; };
+protected:
+	void queryChange() { if (!callbackQSqlQueryModelQueryChange(this->objectName().toUtf8().data())) { QSqlQueryModel::queryChange(); }; };
 };
 
 int QSqlQueryModel_RowCount(void* ptr, void* parent){
@@ -666,10 +661,6 @@ void QSqlQueryModel_SetQuery2(void* ptr, char* query, void* db){
 void QSqlQueryModel_DestroyQSqlQueryModel(void* ptr){
 	static_cast<QSqlQueryModel*>(ptr)->~QSqlQueryModel();
 }
-
-class MyQSqlRecord: public QSqlRecord {
-public:
-};
 
 void* QSqlRecord_NewQSqlRecord(){
 	return new QSqlRecord();
@@ -763,10 +754,6 @@ void QSqlRecord_DestroyQSqlRecord(void* ptr){
 	static_cast<QSqlRecord*>(ptr)->~QSqlRecord();
 }
 
-class MyQSqlRelation: public QSqlRelation {
-public:
-};
-
 void* QSqlRelation_NewQSqlRelation(){
 	return new QSqlRelation();
 }
@@ -793,6 +780,10 @@ char* QSqlRelation_TableName(void* ptr){
 
 class MyQSqlRelationalTableModel: public QSqlRelationalTableModel {
 public:
+	void clear() { if (!callbackQSqlRelationalTableModelClear(this->objectName().toUtf8().data())) { QSqlRelationalTableModel::clear(); }; };
+	void revertRow(int row) { if (!callbackQSqlRelationalTableModelRevertRow(this->objectName().toUtf8().data(), row)) { QSqlRelationalTableModel::revertRow(row); }; };
+	void setTable(const QString & table) { if (!callbackQSqlRelationalTableModelSetTable(this->objectName().toUtf8().data(), table.toUtf8().data())) { QSqlRelationalTableModel::setTable(table); }; };
+protected:
 };
 
 void QSqlRelationalTableModel_Clear(void* ptr){
@@ -827,10 +818,6 @@ void QSqlRelationalTableModel_SetJoinMode(void* ptr, int joinMode){
 	static_cast<QSqlRelationalTableModel*>(ptr)->setJoinMode(static_cast<QSqlRelationalTableModel::JoinMode>(joinMode));
 }
 
-void QSqlRelationalTableModel_SetRelation(void* ptr, int column, void* relation){
-	static_cast<QSqlRelationalTableModel*>(ptr)->setRelation(column, *static_cast<QSqlRelation*>(relation));
-}
-
 void QSqlRelationalTableModel_SetTable(void* ptr, char* table){
 	static_cast<QSqlRelationalTableModel*>(ptr)->setTable(QString(table));
 }
@@ -841,6 +828,14 @@ void QSqlRelationalTableModel_DestroyQSqlRelationalTableModel(void* ptr){
 
 class MyQSqlResult: public QSqlResult {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
+	void setActive(bool active) { if (!callbackQSqlResultSetActive(this->objectNameAbs().toUtf8().data(), active)) { QSqlResult::setActive(active); }; };
+	void setAt(int index) { if (!callbackQSqlResultSetAt(this->objectNameAbs().toUtf8().data(), index)) { QSqlResult::setAt(index); }; };
+	void setForwardOnly(bool forward) { if (!callbackQSqlResultSetForwardOnly(this->objectNameAbs().toUtf8().data(), forward)) { QSqlResult::setForwardOnly(forward); }; };
+	void setQuery(const QString & query) { if (!callbackQSqlResultSetQuery(this->objectNameAbs().toUtf8().data(), query.toUtf8().data())) { QSqlResult::setQuery(query); }; };
 };
 
 void* QSqlResult_Handle(void* ptr){
@@ -851,9 +846,26 @@ void QSqlResult_DestroyQSqlResult(void* ptr){
 	static_cast<QSqlResult*>(ptr)->~QSqlResult();
 }
 
+char* QSqlResult_ObjectNameAbs(void* ptr){
+	return static_cast<MyQSqlResult*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QSqlResult_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQSqlResult*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQSqlTableModel: public QSqlTableModel {
 public:
-void Signal_BeforeDelete(int row){callbackQSqlTableModelBeforeDelete(this->objectName().toUtf8().data(), row);};
+	void Signal_BeforeDelete(int row) { callbackQSqlTableModelBeforeDelete(this->objectName().toUtf8().data(), row); };
+	void clear() { if (!callbackQSqlTableModelClear(this->objectName().toUtf8().data())) { QSqlTableModel::clear(); }; };
+	void revert() { if (!callbackQSqlTableModelRevert(this->objectName().toUtf8().data())) { QSqlTableModel::revert(); }; };
+	void revertRow(int row) { if (!callbackQSqlTableModelRevertRow(this->objectName().toUtf8().data(), row)) { QSqlTableModel::revertRow(row); }; };
+	void setEditStrategy(QSqlTableModel::EditStrategy strategy) { if (!callbackQSqlTableModelSetEditStrategy(this->objectName().toUtf8().data(), strategy)) { QSqlTableModel::setEditStrategy(strategy); }; };
+	void setFilter(const QString & filter) { if (!callbackQSqlTableModelSetFilter(this->objectName().toUtf8().data(), filter.toUtf8().data())) { QSqlTableModel::setFilter(filter); }; };
+	void setSort(int column, Qt::SortOrder order) { if (!callbackQSqlTableModelSetSort(this->objectName().toUtf8().data(), column, order)) { QSqlTableModel::setSort(column, order); }; };
+	void setTable(const QString & tableName) { if (!callbackQSqlTableModelSetTable(this->objectName().toUtf8().data(), tableName.toUtf8().data())) { QSqlTableModel::setTable(tableName); }; };
+	void sort(int column, Qt::SortOrder order) { if (!callbackQSqlTableModelSort(this->objectName().toUtf8().data(), column, order)) { QSqlTableModel::sort(column, order); }; };
+protected:
 };
 
 void QSqlTableModel_ConnectBeforeDelete(void* ptr){

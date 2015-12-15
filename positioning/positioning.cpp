@@ -21,10 +21,6 @@
 #include <QObject>
 #include <QString>
 
-class MyQGeoAddress: public QGeoAddress {
-public:
-};
-
 void* QGeoAddress_NewQGeoAddress(){
 	return new QGeoAddress();
 }
@@ -117,10 +113,6 @@ void QGeoAddress_DestroyQGeoAddress(void* ptr){
 	static_cast<QGeoAddress*>(ptr)->~QGeoAddress();
 }
 
-class MyQGeoAreaMonitorInfo: public QGeoAreaMonitorInfo {
-public:
-};
-
 void* QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo2(void* other){
 	return new QGeoAreaMonitorInfo(*static_cast<QGeoAreaMonitorInfo*>(other));
 }
@@ -171,6 +163,8 @@ void QGeoAreaMonitorInfo_DestroyQGeoAreaMonitorInfo(void* ptr){
 
 class MyQGeoAreaMonitorSource: public QGeoAreaMonitorSource {
 public:
+	void setPositionInfoSource(QGeoPositionInfoSource * newSource) { if (!callbackQGeoAreaMonitorSourceSetPositionInfoSource(this->objectName().toUtf8().data(), newSource)) { QGeoAreaMonitorSource::setPositionInfoSource(newSource); }; };
+protected:
 };
 
 char* QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources(){
@@ -221,10 +215,6 @@ void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(void* ptr){
 	static_cast<QGeoAreaMonitorSource*>(ptr)->~QGeoAreaMonitorSource();
 }
 
-class MyQGeoCircle: public QGeoCircle {
-public:
-};
-
 void* QGeoCircle_NewQGeoCircle(){
 	return new QGeoCircle();
 }
@@ -261,10 +251,6 @@ void QGeoCircle_DestroyQGeoCircle(void* ptr){
 	static_cast<QGeoCircle*>(ptr)->~QGeoCircle();
 }
 
-class MyQGeoCoordinate: public QGeoCoordinate {
-public:
-};
-
 void* QGeoCoordinate_NewQGeoCoordinate(){
 	return new QGeoCoordinate();
 }
@@ -296,10 +282,6 @@ int QGeoCoordinate_Type(void* ptr){
 void QGeoCoordinate_DestroyQGeoCoordinate(void* ptr){
 	static_cast<QGeoCoordinate*>(ptr)->~QGeoCoordinate();
 }
-
-class MyQGeoPositionInfo: public QGeoPositionInfo {
-public:
-};
 
 void* QGeoPositionInfo_NewQGeoPositionInfo(){
 	return new QGeoPositionInfo();
@@ -351,7 +333,10 @@ void QGeoPositionInfo_DestroyQGeoPositionInfo(void* ptr){
 
 class MyQGeoPositionInfoSource: public QGeoPositionInfoSource {
 public:
-void Signal_UpdateTimeout(){callbackQGeoPositionInfoSourceUpdateTimeout(this->objectName().toUtf8().data());};
+	void setUpdateInterval(int msec) { if (!callbackQGeoPositionInfoSourceSetUpdateInterval(this->objectName().toUtf8().data(), msec)) { QGeoPositionInfoSource::setUpdateInterval(msec); }; };
+	void setPreferredPositioningMethods(QGeoPositionInfoSource::PositioningMethods methods) { if (!callbackQGeoPositionInfoSourceSetPreferredPositioningMethods(this->objectName().toUtf8().data(), methods)) { QGeoPositionInfoSource::setPreferredPositioningMethods(methods); }; };
+	void Signal_UpdateTimeout() { callbackQGeoPositionInfoSourceUpdateTimeout(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QGeoPositionInfoSource_SetUpdateInterval(void* ptr, int msec){
@@ -424,6 +409,10 @@ void QGeoPositionInfoSource_DestroyQGeoPositionInfoSource(void* ptr){
 
 class MyQGeoPositionInfoSourceFactory: public QGeoPositionInfoSourceFactory {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 void* QGeoPositionInfoSourceFactory_AreaMonitor(void* ptr, void* parent){
@@ -442,9 +431,13 @@ void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(void* pt
 	static_cast<QGeoPositionInfoSourceFactory*>(ptr)->~QGeoPositionInfoSourceFactory();
 }
 
-class MyQGeoRectangle: public QGeoRectangle {
-public:
-};
+char* QGeoPositionInfoSourceFactory_ObjectNameAbs(void* ptr){
+	return static_cast<MyQGeoPositionInfoSourceFactory*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QGeoPositionInfoSourceFactory_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQGeoPositionInfoSourceFactory*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 void* QGeoRectangle_NewQGeoRectangle(){
 	return new QGeoRectangle();
@@ -497,10 +490,6 @@ char* QGeoRectangle_ToString(void* ptr){
 void QGeoRectangle_DestroyQGeoRectangle(void* ptr){
 	static_cast<QGeoRectangle*>(ptr)->~QGeoRectangle();
 }
-
-class MyQGeoSatelliteInfo: public QGeoSatelliteInfo {
-public:
-};
 
 void* QGeoSatelliteInfo_NewQGeoSatelliteInfo(){
 	return new QGeoSatelliteInfo();
@@ -556,7 +545,9 @@ void QGeoSatelliteInfo_DestroyQGeoSatelliteInfo(void* ptr){
 
 class MyQGeoSatelliteInfoSource: public QGeoSatelliteInfoSource {
 public:
-void Signal_RequestTimeout(){callbackQGeoSatelliteInfoSourceRequestTimeout(this->objectName().toUtf8().data());};
+	void setUpdateInterval(int msec) { if (!callbackQGeoSatelliteInfoSourceSetUpdateInterval(this->objectName().toUtf8().data(), msec)) { QGeoSatelliteInfoSource::setUpdateInterval(msec); }; };
+	void Signal_RequestTimeout() { callbackQGeoSatelliteInfoSourceRequestTimeout(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QGeoSatelliteInfoSource_SetUpdateInterval(void* ptr, int msec){
@@ -615,10 +606,6 @@ void QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(void* ptr){
 	static_cast<QGeoSatelliteInfoSource*>(ptr)->~QGeoSatelliteInfoSource();
 }
 
-class MyQGeoShape: public QGeoShape {
-public:
-};
-
 void* QGeoShape_NewQGeoShape(){
 	return new QGeoShape();
 }
@@ -657,10 +644,16 @@ void QGeoShape_DestroyQGeoShape(void* ptr){
 
 class MyQNmeaPositionInfoSource: public QNmeaPositionInfoSource {
 public:
+	MyQNmeaPositionInfoSource(UpdateMode updateMode, QObject *parent) : QNmeaPositionInfoSource(updateMode, parent) {};
+	void requestUpdate(int msec) { if (!callbackQNmeaPositionInfoSourceRequestUpdate(this->objectName().toUtf8().data(), msec)) { QNmeaPositionInfoSource::requestUpdate(msec); }; };
+	void setUpdateInterval(int msec) { if (!callbackQNmeaPositionInfoSourceSetUpdateInterval(this->objectName().toUtf8().data(), msec)) { QNmeaPositionInfoSource::setUpdateInterval(msec); }; };
+	void startUpdates() { if (!callbackQNmeaPositionInfoSourceStartUpdates(this->objectName().toUtf8().data())) { QNmeaPositionInfoSource::startUpdates(); }; };
+	void stopUpdates() { if (!callbackQNmeaPositionInfoSourceStopUpdates(this->objectName().toUtf8().data())) { QNmeaPositionInfoSource::stopUpdates(); }; };
+protected:
 };
 
 void* QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(int updateMode, void* parent){
-	return new QNmeaPositionInfoSource(static_cast<QNmeaPositionInfoSource::UpdateMode>(updateMode), static_cast<QObject*>(parent));
+	return new MyQNmeaPositionInfoSource(static_cast<QNmeaPositionInfoSource::UpdateMode>(updateMode), static_cast<QObject*>(parent));
 }
 
 void* QNmeaPositionInfoSource_Device(void* ptr){

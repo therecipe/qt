@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQDBusAbstractAdaptorFromPointer(ptr unsafe.Pointer) *QDBusAbstractAdapto
 	var n = new(QDBusAbstractAdaptor)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusAbstractAdaptor_") {
-		n.SetObjectName("QDBusAbstractAdaptor_" + qt.RandomIdentifier())
+		n.SetObjectName("QDBusAbstractAdaptor_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QDBusAbstractAdaptor) QDBusAbstractAdaptor_PTR() *QDBusAbstractAdapto
 }
 
 func (ptr *QDBusAbstractAdaptor) DestroyQDBusAbstractAdaptor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusAbstractAdaptor::~QDBusAbstractAdaptor")
-		}
-	}()
+	defer qt.Recovering("QDBusAbstractAdaptor::~QDBusAbstractAdaptor")
 
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(ptr.Pointer())

@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQAccessibleTableInterface(ptr QAccessibleTableInterface_ITF) uns
 func NewQAccessibleTableInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleTableInterface {
 	var n = new(QAccessibleTableInterface)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QAccessibleTableInterface_") {
+		n.SetObjectNameAbs("QAccessibleTableInterface_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,11 +44,7 @@ func (ptr *QAccessibleTableInterface) QAccessibleTableInterface_PTR() *QAccessib
 }
 
 func (ptr *QAccessibleTableInterface) Caption() *QAccessibleInterface {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::caption")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::caption")
 
 	if ptr.Pointer() != nil {
 		return NewQAccessibleInterfaceFromPointer(C.QAccessibleTableInterface_Caption(ptr.Pointer()))
@@ -54,11 +53,7 @@ func (ptr *QAccessibleTableInterface) Caption() *QAccessibleInterface {
 }
 
 func (ptr *QAccessibleTableInterface) CellAt(row int, column int) *QAccessibleInterface {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::cellAt")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::cellAt")
 
 	if ptr.Pointer() != nil {
 		return NewQAccessibleInterfaceFromPointer(C.QAccessibleTableInterface_CellAt(ptr.Pointer(), C.int(row), C.int(column)))
@@ -67,11 +62,7 @@ func (ptr *QAccessibleTableInterface) CellAt(row int, column int) *QAccessibleIn
 }
 
 func (ptr *QAccessibleTableInterface) ColumnCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::columnCount")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::columnCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableInterface_ColumnCount(ptr.Pointer()))
@@ -80,11 +71,7 @@ func (ptr *QAccessibleTableInterface) ColumnCount() int {
 }
 
 func (ptr *QAccessibleTableInterface) ColumnDescription(column int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::columnDescription")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::columnDescription")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAccessibleTableInterface_ColumnDescription(ptr.Pointer(), C.int(column)))
@@ -93,11 +80,7 @@ func (ptr *QAccessibleTableInterface) ColumnDescription(column int) string {
 }
 
 func (ptr *QAccessibleTableInterface) IsColumnSelected(column int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::isColumnSelected")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::isColumnSelected")
 
 	if ptr.Pointer() != nil {
 		return C.QAccessibleTableInterface_IsColumnSelected(ptr.Pointer(), C.int(column)) != 0
@@ -106,11 +89,7 @@ func (ptr *QAccessibleTableInterface) IsColumnSelected(column int) bool {
 }
 
 func (ptr *QAccessibleTableInterface) IsRowSelected(row int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::isRowSelected")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::isRowSelected")
 
 	if ptr.Pointer() != nil {
 		return C.QAccessibleTableInterface_IsRowSelected(ptr.Pointer(), C.int(row)) != 0
@@ -119,11 +98,7 @@ func (ptr *QAccessibleTableInterface) IsRowSelected(row int) bool {
 }
 
 func (ptr *QAccessibleTableInterface) ModelChange(event QAccessibleTableModelChangeEvent_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::modelChange")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::modelChange")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTableInterface_ModelChange(ptr.Pointer(), PointerFromQAccessibleTableModelChangeEvent(event))
@@ -131,11 +106,7 @@ func (ptr *QAccessibleTableInterface) ModelChange(event QAccessibleTableModelCha
 }
 
 func (ptr *QAccessibleTableInterface) RowCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::rowCount")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::rowCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableInterface_RowCount(ptr.Pointer()))
@@ -144,11 +115,7 @@ func (ptr *QAccessibleTableInterface) RowCount() int {
 }
 
 func (ptr *QAccessibleTableInterface) RowDescription(row int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::rowDescription")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::rowDescription")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAccessibleTableInterface_RowDescription(ptr.Pointer(), C.int(row)))
@@ -157,11 +124,7 @@ func (ptr *QAccessibleTableInterface) RowDescription(row int) string {
 }
 
 func (ptr *QAccessibleTableInterface) SelectColumn(column int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::selectColumn")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::selectColumn")
 
 	if ptr.Pointer() != nil {
 		return C.QAccessibleTableInterface_SelectColumn(ptr.Pointer(), C.int(column)) != 0
@@ -170,11 +133,7 @@ func (ptr *QAccessibleTableInterface) SelectColumn(column int) bool {
 }
 
 func (ptr *QAccessibleTableInterface) SelectRow(row int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::selectRow")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::selectRow")
 
 	if ptr.Pointer() != nil {
 		return C.QAccessibleTableInterface_SelectRow(ptr.Pointer(), C.int(row)) != 0
@@ -183,11 +142,7 @@ func (ptr *QAccessibleTableInterface) SelectRow(row int) bool {
 }
 
 func (ptr *QAccessibleTableInterface) SelectedCellCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::selectedCellCount")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::selectedCellCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableInterface_SelectedCellCount(ptr.Pointer()))
@@ -196,11 +151,7 @@ func (ptr *QAccessibleTableInterface) SelectedCellCount() int {
 }
 
 func (ptr *QAccessibleTableInterface) SelectedColumnCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::selectedColumnCount")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::selectedColumnCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableInterface_SelectedColumnCount(ptr.Pointer()))
@@ -209,11 +160,7 @@ func (ptr *QAccessibleTableInterface) SelectedColumnCount() int {
 }
 
 func (ptr *QAccessibleTableInterface) SelectedRowCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::selectedRowCount")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::selectedRowCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableInterface_SelectedRowCount(ptr.Pointer()))
@@ -222,11 +169,7 @@ func (ptr *QAccessibleTableInterface) SelectedRowCount() int {
 }
 
 func (ptr *QAccessibleTableInterface) Summary() *QAccessibleInterface {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::summary")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::summary")
 
 	if ptr.Pointer() != nil {
 		return NewQAccessibleInterfaceFromPointer(C.QAccessibleTableInterface_Summary(ptr.Pointer()))
@@ -235,11 +178,7 @@ func (ptr *QAccessibleTableInterface) Summary() *QAccessibleInterface {
 }
 
 func (ptr *QAccessibleTableInterface) UnselectColumn(column int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::unselectColumn")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::unselectColumn")
 
 	if ptr.Pointer() != nil {
 		return C.QAccessibleTableInterface_UnselectColumn(ptr.Pointer(), C.int(column)) != 0
@@ -248,11 +187,7 @@ func (ptr *QAccessibleTableInterface) UnselectColumn(column int) bool {
 }
 
 func (ptr *QAccessibleTableInterface) UnselectRow(row int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::unselectRow")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::unselectRow")
 
 	if ptr.Pointer() != nil {
 		return C.QAccessibleTableInterface_UnselectRow(ptr.Pointer(), C.int(row)) != 0
@@ -261,13 +196,26 @@ func (ptr *QAccessibleTableInterface) UnselectRow(row int) bool {
 }
 
 func (ptr *QAccessibleTableInterface) DestroyQAccessibleTableInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTableInterface::~QAccessibleTableInterface")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTableInterface::~QAccessibleTableInterface")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTableInterface_DestroyQAccessibleTableInterface(ptr.Pointer())
+	}
+}
+
+func (ptr *QAccessibleTableInterface) ObjectNameAbs() string {
+	defer qt.Recovering("QAccessibleTableInterface::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAccessibleTableInterface_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAccessibleTableInterface) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QAccessibleTableInterface::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTableInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

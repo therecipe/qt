@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/widgets"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQHelpSearchResultWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchResul
 	var n = new(QHelpSearchResultWidget)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpSearchResultWidget_") {
-		n.SetObjectName("QHelpSearchResultWidget_" + qt.RandomIdentifier())
+		n.SetObjectName("QHelpSearchResultWidget_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QHelpSearchResultWidget) QHelpSearchResultWidget_PTR() *QHelpSearchRe
 }
 
 func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidget() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpSearchResultWidget::~QHelpSearchResultWidget")
-		}
-	}()
+	defer qt.Recovering("QHelpSearchResultWidget::~QHelpSearchResultWidget")
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(ptr.Pointer())

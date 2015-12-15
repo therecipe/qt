@@ -28,7 +28,7 @@ func NewQGenericPluginFromPointer(ptr unsafe.Pointer) *QGenericPlugin {
 	var n = new(QGenericPlugin)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGenericPlugin_") {
-		n.SetObjectName("QGenericPlugin_" + qt.RandomIdentifier())
+		n.SetObjectName("QGenericPlugin_" + qt.Identifier())
 	}
 	return n
 }

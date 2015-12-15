@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,21 +41,13 @@ func (ptr *QModelIndex) QModelIndex_PTR() *QModelIndex {
 }
 
 func NewQModelIndex() *QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QModelIndex::QModelIndex")
-		}
-	}()
+	defer qt.Recovering("QModelIndex::QModelIndex")
 
 	return NewQModelIndexFromPointer(C.QModelIndex_NewQModelIndex())
 }
 
 func (ptr *QModelIndex) Child(row int, column int) *QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QModelIndex::child")
-		}
-	}()
+	defer qt.Recovering("QModelIndex::child")
 
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QModelIndex_Child(ptr.Pointer(), C.int(row), C.int(column)))
@@ -64,11 +56,7 @@ func (ptr *QModelIndex) Child(row int, column int) *QModelIndex {
 }
 
 func (ptr *QModelIndex) Column() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QModelIndex::column")
-		}
-	}()
+	defer qt.Recovering("QModelIndex::column")
 
 	if ptr.Pointer() != nil {
 		return int(C.QModelIndex_Column(ptr.Pointer()))
@@ -77,11 +65,7 @@ func (ptr *QModelIndex) Column() int {
 }
 
 func (ptr *QModelIndex) Data(role int) *QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QModelIndex::data")
-		}
-	}()
+	defer qt.Recovering("QModelIndex::data")
 
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QModelIndex_Data(ptr.Pointer(), C.int(role)))
@@ -90,11 +74,7 @@ func (ptr *QModelIndex) Data(role int) *QVariant {
 }
 
 func (ptr *QModelIndex) Flags() Qt__ItemFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QModelIndex::flags")
-		}
-	}()
+	defer qt.Recovering("QModelIndex::flags")
 
 	if ptr.Pointer() != nil {
 		return Qt__ItemFlag(C.QModelIndex_Flags(ptr.Pointer()))
@@ -103,11 +83,7 @@ func (ptr *QModelIndex) Flags() Qt__ItemFlag {
 }
 
 func (ptr *QModelIndex) InternalPointer() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QModelIndex::internalPointer")
-		}
-	}()
+	defer qt.Recovering("QModelIndex::internalPointer")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QModelIndex_InternalPointer(ptr.Pointer()))
@@ -116,11 +92,7 @@ func (ptr *QModelIndex) InternalPointer() unsafe.Pointer {
 }
 
 func (ptr *QModelIndex) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QModelIndex::isValid")
-		}
-	}()
+	defer qt.Recovering("QModelIndex::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QModelIndex_IsValid(ptr.Pointer()) != 0
@@ -129,11 +101,7 @@ func (ptr *QModelIndex) IsValid() bool {
 }
 
 func (ptr *QModelIndex) Model() *QAbstractItemModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QModelIndex::model")
-		}
-	}()
+	defer qt.Recovering("QModelIndex::model")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractItemModelFromPointer(C.QModelIndex_Model(ptr.Pointer()))
@@ -142,11 +110,7 @@ func (ptr *QModelIndex) Model() *QAbstractItemModel {
 }
 
 func (ptr *QModelIndex) Parent() *QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QModelIndex::parent")
-		}
-	}()
+	defer qt.Recovering("QModelIndex::parent")
 
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QModelIndex_Parent(ptr.Pointer()))
@@ -155,11 +119,7 @@ func (ptr *QModelIndex) Parent() *QModelIndex {
 }
 
 func (ptr *QModelIndex) Row() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QModelIndex::row")
-		}
-	}()
+	defer qt.Recovering("QModelIndex::row")
 
 	if ptr.Pointer() != nil {
 		return int(C.QModelIndex_Row(ptr.Pointer()))
@@ -168,11 +128,7 @@ func (ptr *QModelIndex) Row() int {
 }
 
 func (ptr *QModelIndex) Sibling(row int, column int) *QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QModelIndex::sibling")
-		}
-	}()
+	defer qt.Recovering("QModelIndex::sibling")
 
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QModelIndex_Sibling(ptr.Pointer(), C.int(row), C.int(column)))

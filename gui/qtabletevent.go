@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -58,11 +58,7 @@ const (
 )
 
 func (ptr *QTabletEvent) Button() core.Qt__MouseButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::button")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::button")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseButton(C.QTabletEvent_Button(ptr.Pointer()))
@@ -71,11 +67,7 @@ func (ptr *QTabletEvent) Button() core.Qt__MouseButton {
 }
 
 func (ptr *QTabletEvent) Buttons() core.Qt__MouseButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::buttons")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::buttons")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseButton(C.QTabletEvent_Buttons(ptr.Pointer()))
@@ -84,11 +76,7 @@ func (ptr *QTabletEvent) Buttons() core.Qt__MouseButton {
 }
 
 func (ptr *QTabletEvent) Device() QTabletEvent__TabletDevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::device")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::device")
 
 	if ptr.Pointer() != nil {
 		return QTabletEvent__TabletDevice(C.QTabletEvent_Device(ptr.Pointer()))
@@ -96,12 +84,17 @@ func (ptr *QTabletEvent) Device() QTabletEvent__TabletDevice {
 	return 0
 }
 
+func (ptr *QTabletEvent) GlobalPos() *core.QPoint {
+	defer qt.Recovering("QTabletEvent::globalPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QTabletEvent_GlobalPos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QTabletEvent) GlobalX() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::globalX")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::globalX")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabletEvent_GlobalX(ptr.Pointer()))
@@ -110,11 +103,7 @@ func (ptr *QTabletEvent) GlobalX() int {
 }
 
 func (ptr *QTabletEvent) GlobalY() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::globalY")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::globalY")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabletEvent_GlobalY(ptr.Pointer()))
@@ -123,11 +112,7 @@ func (ptr *QTabletEvent) GlobalY() int {
 }
 
 func (ptr *QTabletEvent) HiResGlobalX() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::hiResGlobalX")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::hiResGlobalX")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTabletEvent_HiResGlobalX(ptr.Pointer()))
@@ -136,11 +121,7 @@ func (ptr *QTabletEvent) HiResGlobalX() float64 {
 }
 
 func (ptr *QTabletEvent) HiResGlobalY() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::hiResGlobalY")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::hiResGlobalY")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTabletEvent_HiResGlobalY(ptr.Pointer()))
@@ -149,11 +130,7 @@ func (ptr *QTabletEvent) HiResGlobalY() float64 {
 }
 
 func (ptr *QTabletEvent) PointerType() QTabletEvent__PointerType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::pointerType")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::pointerType")
 
 	if ptr.Pointer() != nil {
 		return QTabletEvent__PointerType(C.QTabletEvent_PointerType(ptr.Pointer()))
@@ -161,12 +138,17 @@ func (ptr *QTabletEvent) PointerType() QTabletEvent__PointerType {
 	return 0
 }
 
+func (ptr *QTabletEvent) Pos() *core.QPoint {
+	defer qt.Recovering("QTabletEvent::pos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QTabletEvent_Pos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QTabletEvent) Pressure() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::pressure")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::pressure")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTabletEvent_Pressure(ptr.Pointer()))
@@ -175,11 +157,7 @@ func (ptr *QTabletEvent) Pressure() float64 {
 }
 
 func (ptr *QTabletEvent) Rotation() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::rotation")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::rotation")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTabletEvent_Rotation(ptr.Pointer()))
@@ -188,11 +166,7 @@ func (ptr *QTabletEvent) Rotation() float64 {
 }
 
 func (ptr *QTabletEvent) TangentialPressure() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::tangentialPressure")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::tangentialPressure")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTabletEvent_TangentialPressure(ptr.Pointer()))
@@ -201,11 +175,7 @@ func (ptr *QTabletEvent) TangentialPressure() float64 {
 }
 
 func (ptr *QTabletEvent) X() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::x")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::x")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabletEvent_X(ptr.Pointer()))
@@ -214,11 +184,7 @@ func (ptr *QTabletEvent) X() int {
 }
 
 func (ptr *QTabletEvent) XTilt() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::xTilt")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::xTilt")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabletEvent_XTilt(ptr.Pointer()))
@@ -227,11 +193,7 @@ func (ptr *QTabletEvent) XTilt() int {
 }
 
 func (ptr *QTabletEvent) Y() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::y")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::y")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabletEvent_Y(ptr.Pointer()))
@@ -240,11 +202,7 @@ func (ptr *QTabletEvent) Y() int {
 }
 
 func (ptr *QTabletEvent) YTilt() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::yTilt")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::yTilt")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabletEvent_YTilt(ptr.Pointer()))
@@ -253,11 +211,7 @@ func (ptr *QTabletEvent) YTilt() int {
 }
 
 func (ptr *QTabletEvent) Z() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTabletEvent::z")
-		}
-	}()
+	defer qt.Recovering("QTabletEvent::z")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTabletEvent_Z(ptr.Pointer()))

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQDBusVirtualObjectFromPointer(ptr unsafe.Pointer) *QDBusVirtualObject {
 	var n = new(QDBusVirtualObject)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusVirtualObject_") {
-		n.SetObjectName("QDBusVirtualObject_" + qt.RandomIdentifier())
+		n.SetObjectName("QDBusVirtualObject_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QDBusVirtualObject) QDBusVirtualObject_PTR() *QDBusVirtualObject {
 }
 
 func (ptr *QDBusVirtualObject) HandleMessage(message QDBusMessage_ITF, connection QDBusConnection_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusVirtualObject::handleMessage")
-		}
-	}()
+	defer qt.Recovering("QDBusVirtualObject::handleMessage")
 
 	if ptr.Pointer() != nil {
 		return C.QDBusVirtualObject_HandleMessage(ptr.Pointer(), PointerFromQDBusMessage(message), PointerFromQDBusConnection(connection)) != 0
@@ -52,11 +47,7 @@ func (ptr *QDBusVirtualObject) HandleMessage(message QDBusMessage_ITF, connectio
 }
 
 func (ptr *QDBusVirtualObject) Introspect(path string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusVirtualObject::introspect")
-		}
-	}()
+	defer qt.Recovering("QDBusVirtualObject::introspect")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusVirtualObject_Introspect(ptr.Pointer(), C.CString(path)))
@@ -65,11 +56,7 @@ func (ptr *QDBusVirtualObject) Introspect(path string) string {
 }
 
 func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObject() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDBusVirtualObject::~QDBusVirtualObject")
-		}
-	}()
+	defer qt.Recovering("QDBusVirtualObject::~QDBusVirtualObject")
 
 	if ptr.Pointer() != nil {
 		C.QDBusVirtualObject_DestroyQDBusVirtualObject(ptr.Pointer())

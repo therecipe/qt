@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,11 +35,7 @@ func (ptr *QNativeGestureEvent) QNativeGestureEvent_PTR() *QNativeGestureEvent {
 }
 
 func (ptr *QNativeGestureEvent) GestureType() core.Qt__NativeGestureType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNativeGestureEvent::gestureType")
-		}
-	}()
+	defer qt.Recovering("QNativeGestureEvent::gestureType")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__NativeGestureType(C.QNativeGestureEvent_GestureType(ptr.Pointer()))
@@ -47,12 +43,26 @@ func (ptr *QNativeGestureEvent) GestureType() core.Qt__NativeGestureType {
 	return 0
 }
 
+func (ptr *QNativeGestureEvent) GlobalPos() *core.QPoint {
+	defer qt.Recovering("QNativeGestureEvent::globalPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QNativeGestureEvent_GlobalPos(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNativeGestureEvent) Pos() *core.QPoint {
+	defer qt.Recovering("QNativeGestureEvent::pos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QNativeGestureEvent_Pos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QNativeGestureEvent) Value() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNativeGestureEvent::value")
-		}
-	}()
+	defer qt.Recovering("QNativeGestureEvent::value")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QNativeGestureEvent_Value(ptr.Pointer()))

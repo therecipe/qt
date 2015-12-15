@@ -3,8 +3,8 @@ package qml
 //#include "qml.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,31 +42,19 @@ func (ptr *QQmlError) QQmlError_PTR() *QQmlError {
 }
 
 func NewQQmlError() *QQmlError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::QQmlError")
-		}
-	}()
+	defer qt.Recovering("QQmlError::QQmlError")
 
 	return NewQQmlErrorFromPointer(C.QQmlError_NewQQmlError())
 }
 
 func NewQQmlError2(other QQmlError_ITF) *QQmlError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::QQmlError")
-		}
-	}()
+	defer qt.Recovering("QQmlError::QQmlError")
 
 	return NewQQmlErrorFromPointer(C.QQmlError_NewQQmlError2(PointerFromQQmlError(other)))
 }
 
 func (ptr *QQmlError) Column() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::column")
-		}
-	}()
+	defer qt.Recovering("QQmlError::column")
 
 	if ptr.Pointer() != nil {
 		return int(C.QQmlError_Column(ptr.Pointer()))
@@ -75,11 +63,7 @@ func (ptr *QQmlError) Column() int {
 }
 
 func (ptr *QQmlError) Description() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::description")
-		}
-	}()
+	defer qt.Recovering("QQmlError::description")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlError_Description(ptr.Pointer()))
@@ -88,11 +72,7 @@ func (ptr *QQmlError) Description() string {
 }
 
 func (ptr *QQmlError) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::isValid")
-		}
-	}()
+	defer qt.Recovering("QQmlError::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QQmlError_IsValid(ptr.Pointer()) != 0
@@ -101,11 +81,7 @@ func (ptr *QQmlError) IsValid() bool {
 }
 
 func (ptr *QQmlError) Line() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::line")
-		}
-	}()
+	defer qt.Recovering("QQmlError::line")
 
 	if ptr.Pointer() != nil {
 		return int(C.QQmlError_Line(ptr.Pointer()))
@@ -114,11 +90,7 @@ func (ptr *QQmlError) Line() int {
 }
 
 func (ptr *QQmlError) Object() *core.QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::object")
-		}
-	}()
+	defer qt.Recovering("QQmlError::object")
 
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QQmlError_Object(ptr.Pointer()))
@@ -127,11 +99,7 @@ func (ptr *QQmlError) Object() *core.QObject {
 }
 
 func (ptr *QQmlError) SetColumn(column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::setColumn")
-		}
-	}()
+	defer qt.Recovering("QQmlError::setColumn")
 
 	if ptr.Pointer() != nil {
 		C.QQmlError_SetColumn(ptr.Pointer(), C.int(column))
@@ -139,11 +107,7 @@ func (ptr *QQmlError) SetColumn(column int) {
 }
 
 func (ptr *QQmlError) SetDescription(description string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::setDescription")
-		}
-	}()
+	defer qt.Recovering("QQmlError::setDescription")
 
 	if ptr.Pointer() != nil {
 		C.QQmlError_SetDescription(ptr.Pointer(), C.CString(description))
@@ -151,11 +115,7 @@ func (ptr *QQmlError) SetDescription(description string) {
 }
 
 func (ptr *QQmlError) SetLine(line int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::setLine")
-		}
-	}()
+	defer qt.Recovering("QQmlError::setLine")
 
 	if ptr.Pointer() != nil {
 		C.QQmlError_SetLine(ptr.Pointer(), C.int(line))
@@ -163,11 +123,7 @@ func (ptr *QQmlError) SetLine(line int) {
 }
 
 func (ptr *QQmlError) SetObject(object core.QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::setObject")
-		}
-	}()
+	defer qt.Recovering("QQmlError::setObject")
 
 	if ptr.Pointer() != nil {
 		C.QQmlError_SetObject(ptr.Pointer(), core.PointerFromQObject(object))
@@ -175,11 +131,7 @@ func (ptr *QQmlError) SetObject(object core.QObject_ITF) {
 }
 
 func (ptr *QQmlError) SetUrl(url core.QUrl_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::setUrl")
-		}
-	}()
+	defer qt.Recovering("QQmlError::setUrl")
 
 	if ptr.Pointer() != nil {
 		C.QQmlError_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
@@ -187,11 +139,7 @@ func (ptr *QQmlError) SetUrl(url core.QUrl_ITF) {
 }
 
 func (ptr *QQmlError) ToString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlError::toString")
-		}
-	}()
+	defer qt.Recovering("QQmlError::toString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlError_ToString(ptr.Pointer()))

@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQWizardFromPointer(ptr unsafe.Pointer) *QWizard {
 	var n = new(QWizard)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QWizard_") {
-		n.SetObjectName("QWizard_" + qt.RandomIdentifier())
+		n.SetObjectName("QWizard_" + qt.Identifier())
 	}
 	return n
 }
@@ -103,12 +102,39 @@ var (
 	QWizard__NStyles      = QWizard__WizardStyle(4)
 )
 
+func (ptr *QWizard) ConnectCleanupPage(f func(id int)) {
+	defer qt.Recovering("connect QWizard::cleanupPage")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "cleanupPage", f)
+	}
+}
+
+func (ptr *QWizard) DisconnectCleanupPage() {
+	defer qt.Recovering("disconnect QWizard::cleanupPage")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "cleanupPage")
+	}
+}
+
+//export callbackQWizardCleanupPage
+func callbackQWizardCleanupPage(ptrName *C.char, id C.int) bool {
+	defer qt.Recovering("callback QWizard::cleanupPage")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "cleanupPage")
+	if signal != nil {
+		defer signal.(func(int))(int(id))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWizard) CurrentId() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::currentId")
-		}
-	}()
+	defer qt.Recovering("QWizard::currentId")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWizard_CurrentId(ptr.Pointer()))
@@ -117,11 +143,7 @@ func (ptr *QWizard) CurrentId() int {
 }
 
 func (ptr *QWizard) HasVisitedPage(id int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::hasVisitedPage")
-		}
-	}()
+	defer qt.Recovering("QWizard::hasVisitedPage")
 
 	if ptr.Pointer() != nil {
 		return C.QWizard_HasVisitedPage(ptr.Pointer(), C.int(id)) != 0
@@ -129,12 +151,39 @@ func (ptr *QWizard) HasVisitedPage(id int) bool {
 	return false
 }
 
+func (ptr *QWizard) ConnectInitializePage(f func(id int)) {
+	defer qt.Recovering("connect QWizard::initializePage")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "initializePage", f)
+	}
+}
+
+func (ptr *QWizard) DisconnectInitializePage() {
+	defer qt.Recovering("disconnect QWizard::initializePage")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "initializePage")
+	}
+}
+
+//export callbackQWizardInitializePage
+func callbackQWizardInitializePage(ptrName *C.char, id C.int) bool {
+	defer qt.Recovering("callback QWizard::initializePage")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "initializePage")
+	if signal != nil {
+		defer signal.(func(int))(int(id))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWizard) Options() QWizard__WizardOption {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::options")
-		}
-	}()
+	defer qt.Recovering("QWizard::options")
 
 	if ptr.Pointer() != nil {
 		return QWizard__WizardOption(C.QWizard_Options(ptr.Pointer()))
@@ -143,11 +192,7 @@ func (ptr *QWizard) Options() QWizard__WizardOption {
 }
 
 func (ptr *QWizard) Page(id int) *QWizardPage {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::page")
-		}
-	}()
+	defer qt.Recovering("QWizard::page")
 
 	if ptr.Pointer() != nil {
 		return NewQWizardPageFromPointer(C.QWizard_Page(ptr.Pointer(), C.int(id)))
@@ -156,11 +201,7 @@ func (ptr *QWizard) Page(id int) *QWizardPage {
 }
 
 func (ptr *QWizard) SetOptions(options QWizard__WizardOption) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setOptions")
-		}
-	}()
+	defer qt.Recovering("QWizard::setOptions")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetOptions(ptr.Pointer(), C.int(options))
@@ -168,11 +209,7 @@ func (ptr *QWizard) SetOptions(options QWizard__WizardOption) {
 }
 
 func (ptr *QWizard) SetPage(id int, page QWizardPage_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setPage")
-		}
-	}()
+	defer qt.Recovering("QWizard::setPage")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetPage(ptr.Pointer(), C.int(id), PointerFromQWizardPage(page))
@@ -180,11 +217,7 @@ func (ptr *QWizard) SetPage(id int, page QWizardPage_ITF) {
 }
 
 func (ptr *QWizard) SetStartId(id int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setStartId")
-		}
-	}()
+	defer qt.Recovering("QWizard::setStartId")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetStartId(ptr.Pointer(), C.int(id))
@@ -192,11 +225,7 @@ func (ptr *QWizard) SetStartId(id int) {
 }
 
 func (ptr *QWizard) SetSubTitleFormat(format core.Qt__TextFormat) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setSubTitleFormat")
-		}
-	}()
+	defer qt.Recovering("QWizard::setSubTitleFormat")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetSubTitleFormat(ptr.Pointer(), C.int(format))
@@ -204,11 +233,7 @@ func (ptr *QWizard) SetSubTitleFormat(format core.Qt__TextFormat) {
 }
 
 func (ptr *QWizard) SetTitleFormat(format core.Qt__TextFormat) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setTitleFormat")
-		}
-	}()
+	defer qt.Recovering("QWizard::setTitleFormat")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetTitleFormat(ptr.Pointer(), C.int(format))
@@ -216,11 +241,7 @@ func (ptr *QWizard) SetTitleFormat(format core.Qt__TextFormat) {
 }
 
 func (ptr *QWizard) SetWizardStyle(style QWizard__WizardStyle) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setWizardStyle")
-		}
-	}()
+	defer qt.Recovering("QWizard::setWizardStyle")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetWizardStyle(ptr.Pointer(), C.int(style))
@@ -228,11 +249,7 @@ func (ptr *QWizard) SetWizardStyle(style QWizard__WizardStyle) {
 }
 
 func (ptr *QWizard) StartId() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::startId")
-		}
-	}()
+	defer qt.Recovering("QWizard::startId")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWizard_StartId(ptr.Pointer()))
@@ -241,11 +258,7 @@ func (ptr *QWizard) StartId() int {
 }
 
 func (ptr *QWizard) SubTitleFormat() core.Qt__TextFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::subTitleFormat")
-		}
-	}()
+	defer qt.Recovering("QWizard::subTitleFormat")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__TextFormat(C.QWizard_SubTitleFormat(ptr.Pointer()))
@@ -254,11 +267,7 @@ func (ptr *QWizard) SubTitleFormat() core.Qt__TextFormat {
 }
 
 func (ptr *QWizard) TitleFormat() core.Qt__TextFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::titleFormat")
-		}
-	}()
+	defer qt.Recovering("QWizard::titleFormat")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__TextFormat(C.QWizard_TitleFormat(ptr.Pointer()))
@@ -267,11 +276,7 @@ func (ptr *QWizard) TitleFormat() core.Qt__TextFormat {
 }
 
 func (ptr *QWizard) WizardStyle() QWizard__WizardStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::wizardStyle")
-		}
-	}()
+	defer qt.Recovering("QWizard::wizardStyle")
 
 	if ptr.Pointer() != nil {
 		return QWizard__WizardStyle(C.QWizard_WizardStyle(ptr.Pointer()))
@@ -280,21 +285,13 @@ func (ptr *QWizard) WizardStyle() QWizard__WizardStyle {
 }
 
 func NewQWizard(parent QWidget_ITF, flags core.Qt__WindowType) *QWizard {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::QWizard")
-		}
-	}()
+	defer qt.Recovering("QWizard::QWizard")
 
 	return NewQWizardFromPointer(C.QWizard_NewQWizard(PointerFromQWidget(parent), C.int(flags)))
 }
 
 func (ptr *QWizard) AddPage(page QWizardPage_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::addPage")
-		}
-	}()
+	defer qt.Recovering("QWizard::addPage")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWizard_AddPage(ptr.Pointer(), PointerFromQWizardPage(page)))
@@ -303,11 +300,7 @@ func (ptr *QWizard) AddPage(page QWizardPage_ITF) int {
 }
 
 func (ptr *QWizard) Back() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::back")
-		}
-	}()
+	defer qt.Recovering("QWizard::back")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_Back(ptr.Pointer())
@@ -315,11 +308,7 @@ func (ptr *QWizard) Back() {
 }
 
 func (ptr *QWizard) Button(which QWizard__WizardButton) *QAbstractButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::button")
-		}
-	}()
+	defer qt.Recovering("QWizard::button")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractButtonFromPointer(C.QWizard_Button(ptr.Pointer(), C.int(which)))
@@ -328,11 +317,7 @@ func (ptr *QWizard) Button(which QWizard__WizardButton) *QAbstractButton {
 }
 
 func (ptr *QWizard) ButtonText(which QWizard__WizardButton) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::buttonText")
-		}
-	}()
+	defer qt.Recovering("QWizard::buttonText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWizard_ButtonText(ptr.Pointer(), C.int(which)))
@@ -341,11 +326,7 @@ func (ptr *QWizard) ButtonText(which QWizard__WizardButton) string {
 }
 
 func (ptr *QWizard) ConnectCurrentIdChanged(f func(id int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::currentIdChanged")
-		}
-	}()
+	defer qt.Recovering("connect QWizard::currentIdChanged")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_ConnectCurrentIdChanged(ptr.Pointer())
@@ -354,11 +335,7 @@ func (ptr *QWizard) ConnectCurrentIdChanged(f func(id int)) {
 }
 
 func (ptr *QWizard) DisconnectCurrentIdChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::currentIdChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QWizard::currentIdChanged")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_DisconnectCurrentIdChanged(ptr.Pointer())
@@ -368,21 +345,17 @@ func (ptr *QWizard) DisconnectCurrentIdChanged() {
 
 //export callbackQWizardCurrentIdChanged
 func callbackQWizardCurrentIdChanged(ptrName *C.char, id C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::currentIdChanged")
-		}
-	}()
+	defer qt.Recovering("callback QWizard::currentIdChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentIdChanged").(func(int))(int(id))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentIdChanged")
+	if signal != nil {
+		signal.(func(int))(int(id))
+	}
+
 }
 
 func (ptr *QWizard) CurrentPage() *QWizardPage {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::currentPage")
-		}
-	}()
+	defer qt.Recovering("QWizard::currentPage")
 
 	if ptr.Pointer() != nil {
 		return NewQWizardPageFromPointer(C.QWizard_CurrentPage(ptr.Pointer()))
@@ -391,11 +364,7 @@ func (ptr *QWizard) CurrentPage() *QWizardPage {
 }
 
 func (ptr *QWizard) ConnectCustomButtonClicked(f func(which int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::customButtonClicked")
-		}
-	}()
+	defer qt.Recovering("connect QWizard::customButtonClicked")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_ConnectCustomButtonClicked(ptr.Pointer())
@@ -404,11 +373,7 @@ func (ptr *QWizard) ConnectCustomButtonClicked(f func(which int)) {
 }
 
 func (ptr *QWizard) DisconnectCustomButtonClicked() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::customButtonClicked")
-		}
-	}()
+	defer qt.Recovering("disconnect QWizard::customButtonClicked")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_DisconnectCustomButtonClicked(ptr.Pointer())
@@ -418,21 +383,48 @@ func (ptr *QWizard) DisconnectCustomButtonClicked() {
 
 //export callbackQWizardCustomButtonClicked
 func callbackQWizardCustomButtonClicked(ptrName *C.char, which C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::customButtonClicked")
-		}
-	}()
+	defer qt.Recovering("callback QWizard::customButtonClicked")
 
-	qt.GetSignal(C.GoString(ptrName), "customButtonClicked").(func(int))(int(which))
+	var signal = qt.GetSignal(C.GoString(ptrName), "customButtonClicked")
+	if signal != nil {
+		signal.(func(int))(int(which))
+	}
+
+}
+
+func (ptr *QWizard) ConnectDone(f func(result int)) {
+	defer qt.Recovering("connect QWizard::done")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "done", f)
+	}
+}
+
+func (ptr *QWizard) DisconnectDone() {
+	defer qt.Recovering("disconnect QWizard::done")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "done")
+	}
+}
+
+//export callbackQWizardDone
+func callbackQWizardDone(ptrName *C.char, result C.int) bool {
+	defer qt.Recovering("callback QWizard::done")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "done")
+	if signal != nil {
+		defer signal.(func(int))(int(result))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QWizard) Field(name string) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::field")
-		}
-	}()
+	defer qt.Recovering("QWizard::field")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QWizard_Field(ptr.Pointer(), C.CString(name)))
@@ -441,11 +433,7 @@ func (ptr *QWizard) Field(name string) *core.QVariant {
 }
 
 func (ptr *QWizard) ConnectHelpRequested(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::helpRequested")
-		}
-	}()
+	defer qt.Recovering("connect QWizard::helpRequested")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_ConnectHelpRequested(ptr.Pointer())
@@ -454,11 +442,7 @@ func (ptr *QWizard) ConnectHelpRequested(f func()) {
 }
 
 func (ptr *QWizard) DisconnectHelpRequested() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::helpRequested")
-		}
-	}()
+	defer qt.Recovering("disconnect QWizard::helpRequested")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_DisconnectHelpRequested(ptr.Pointer())
@@ -468,21 +452,17 @@ func (ptr *QWizard) DisconnectHelpRequested() {
 
 //export callbackQWizardHelpRequested
 func callbackQWizardHelpRequested(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::helpRequested")
-		}
-	}()
+	defer qt.Recovering("callback QWizard::helpRequested")
 
-	qt.GetSignal(C.GoString(ptrName), "helpRequested").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "helpRequested")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QWizard) Next() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::next")
-		}
-	}()
+	defer qt.Recovering("QWizard::next")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_Next(ptr.Pointer())
@@ -490,11 +470,7 @@ func (ptr *QWizard) Next() {
 }
 
 func (ptr *QWizard) NextId() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::nextId")
-		}
-	}()
+	defer qt.Recovering("QWizard::nextId")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWizard_NextId(ptr.Pointer()))
@@ -503,11 +479,7 @@ func (ptr *QWizard) NextId() int {
 }
 
 func (ptr *QWizard) ConnectPageAdded(f func(id int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::pageAdded")
-		}
-	}()
+	defer qt.Recovering("connect QWizard::pageAdded")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_ConnectPageAdded(ptr.Pointer())
@@ -516,11 +488,7 @@ func (ptr *QWizard) ConnectPageAdded(f func(id int)) {
 }
 
 func (ptr *QWizard) DisconnectPageAdded() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::pageAdded")
-		}
-	}()
+	defer qt.Recovering("disconnect QWizard::pageAdded")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_DisconnectPageAdded(ptr.Pointer())
@@ -530,21 +498,17 @@ func (ptr *QWizard) DisconnectPageAdded() {
 
 //export callbackQWizardPageAdded
 func callbackQWizardPageAdded(ptrName *C.char, id C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::pageAdded")
-		}
-	}()
+	defer qt.Recovering("callback QWizard::pageAdded")
 
-	qt.GetSignal(C.GoString(ptrName), "pageAdded").(func(int))(int(id))
+	var signal = qt.GetSignal(C.GoString(ptrName), "pageAdded")
+	if signal != nil {
+		signal.(func(int))(int(id))
+	}
+
 }
 
 func (ptr *QWizard) ConnectPageRemoved(f func(id int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::pageRemoved")
-		}
-	}()
+	defer qt.Recovering("connect QWizard::pageRemoved")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_ConnectPageRemoved(ptr.Pointer())
@@ -553,11 +517,7 @@ func (ptr *QWizard) ConnectPageRemoved(f func(id int)) {
 }
 
 func (ptr *QWizard) DisconnectPageRemoved() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::pageRemoved")
-		}
-	}()
+	defer qt.Recovering("disconnect QWizard::pageRemoved")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_DisconnectPageRemoved(ptr.Pointer())
@@ -567,33 +527,87 @@ func (ptr *QWizard) DisconnectPageRemoved() {
 
 //export callbackQWizardPageRemoved
 func callbackQWizardPageRemoved(ptrName *C.char, id C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::pageRemoved")
-		}
-	}()
+	defer qt.Recovering("callback QWizard::pageRemoved")
 
-	qt.GetSignal(C.GoString(ptrName), "pageRemoved").(func(int))(int(id))
+	var signal = qt.GetSignal(C.GoString(ptrName), "pageRemoved")
+	if signal != nil {
+		signal.(func(int))(int(id))
+	}
+
+}
+
+func (ptr *QWizard) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QWizard::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QWizard) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QWizard::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQWizardPaintEvent
+func callbackQWizardPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWizard::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QWizard) RemovePage(id int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::removePage")
-		}
-	}()
+	defer qt.Recovering("QWizard::removePage")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_RemovePage(ptr.Pointer(), C.int(id))
 	}
 }
 
+func (ptr *QWizard) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
+	defer qt.Recovering("connect QWizard::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+	}
+}
+
+func (ptr *QWizard) DisconnectResizeEvent() {
+	defer qt.Recovering("disconnect QWizard::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+	}
+}
+
+//export callbackQWizardResizeEvent
+func callbackQWizardResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWizard::resizeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWizard) Restart() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::restart")
-		}
-	}()
+	defer qt.Recovering("QWizard::restart")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_Restart(ptr.Pointer())
@@ -601,11 +615,7 @@ func (ptr *QWizard) Restart() {
 }
 
 func (ptr *QWizard) SetButton(which QWizard__WizardButton, button QAbstractButton_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setButton")
-		}
-	}()
+	defer qt.Recovering("QWizard::setButton")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetButton(ptr.Pointer(), C.int(which), PointerFromQAbstractButton(button))
@@ -613,11 +623,7 @@ func (ptr *QWizard) SetButton(which QWizard__WizardButton, button QAbstractButto
 }
 
 func (ptr *QWizard) SetButtonText(which QWizard__WizardButton, text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setButtonText")
-		}
-	}()
+	defer qt.Recovering("QWizard::setButtonText")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetButtonText(ptr.Pointer(), C.int(which), C.CString(text))
@@ -625,11 +631,7 @@ func (ptr *QWizard) SetButtonText(which QWizard__WizardButton, text string) {
 }
 
 func (ptr *QWizard) SetDefaultProperty(className string, property string, changedSignal string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setDefaultProperty")
-		}
-	}()
+	defer qt.Recovering("QWizard::setDefaultProperty")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetDefaultProperty(ptr.Pointer(), C.CString(className), C.CString(property), C.CString(changedSignal))
@@ -637,11 +639,7 @@ func (ptr *QWizard) SetDefaultProperty(className string, property string, change
 }
 
 func (ptr *QWizard) SetField(name string, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setField")
-		}
-	}()
+	defer qt.Recovering("QWizard::setField")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetField(ptr.Pointer(), C.CString(name), core.PointerFromQVariant(value))
@@ -649,11 +647,7 @@ func (ptr *QWizard) SetField(name string, value core.QVariant_ITF) {
 }
 
 func (ptr *QWizard) SetOption(option QWizard__WizardOption, on bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setOption")
-		}
-	}()
+	defer qt.Recovering("QWizard::setOption")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetOption(ptr.Pointer(), C.int(option), C.int(qt.GoBoolToInt(on)))
@@ -661,11 +655,7 @@ func (ptr *QWizard) SetOption(option QWizard__WizardOption, on bool) {
 }
 
 func (ptr *QWizard) SetPixmap(which QWizard__WizardPixmap, pixmap gui.QPixmap_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setPixmap")
-		}
-	}()
+	defer qt.Recovering("QWizard::setPixmap")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetPixmap(ptr.Pointer(), C.int(which), gui.PointerFromQPixmap(pixmap))
@@ -673,35 +663,46 @@ func (ptr *QWizard) SetPixmap(which QWizard__WizardPixmap, pixmap gui.QPixmap_IT
 }
 
 func (ptr *QWizard) SetSideWidget(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setSideWidget")
-		}
-	}()
+	defer qt.Recovering("QWizard::setSideWidget")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_SetSideWidget(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
-func (ptr *QWizard) SetVisible(visible bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::setVisible")
-		}
-	}()
+func (ptr *QWizard) ConnectSetVisible(f func(visible bool)) {
+	defer qt.Recovering("connect QWizard::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QWizard_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
 	}
 }
 
+func (ptr *QWizard) DisconnectSetVisible() {
+	defer qt.Recovering("disconnect QWizard::setVisible")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+	}
+}
+
+//export callbackQWizardSetVisible
+func callbackQWizardSetVisible(ptrName *C.char, visible C.int) bool {
+	defer qt.Recovering("callback QWizard::setVisible")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
+	if signal != nil {
+		defer signal.(func(bool))(int(visible) != 0)
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QWizard) SideWidget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::sideWidget")
-		}
-	}()
+	defer qt.Recovering("QWizard::sideWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWizard_SideWidget(ptr.Pointer()))
@@ -710,11 +711,7 @@ func (ptr *QWizard) SideWidget() *QWidget {
 }
 
 func (ptr *QWizard) TestOption(option QWizard__WizardOption) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::testOption")
-		}
-	}()
+	defer qt.Recovering("QWizard::testOption")
 
 	if ptr.Pointer() != nil {
 		return C.QWizard_TestOption(ptr.Pointer(), C.int(option)) != 0
@@ -723,11 +720,7 @@ func (ptr *QWizard) TestOption(option QWizard__WizardOption) bool {
 }
 
 func (ptr *QWizard) ValidateCurrentPage() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::validateCurrentPage")
-		}
-	}()
+	defer qt.Recovering("QWizard::validateCurrentPage")
 
 	if ptr.Pointer() != nil {
 		return C.QWizard_ValidateCurrentPage(ptr.Pointer()) != 0
@@ -736,11 +729,7 @@ func (ptr *QWizard) ValidateCurrentPage() bool {
 }
 
 func (ptr *QWizard) DestroyQWizard() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWizard::~QWizard")
-		}
-	}()
+	defer qt.Recovering("QWizard::~QWizard")
 
 	if ptr.Pointer() != nil {
 		C.QWizard_DestroyQWizard(ptr.Pointer())

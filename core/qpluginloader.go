@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQPluginLoaderFromPointer(ptr unsafe.Pointer) *QPluginLoader {
 	var n = new(QPluginLoader)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QPluginLoader_") {
-		n.SetObjectName("QPluginLoader_" + qt.RandomIdentifier())
+		n.SetObjectName("QPluginLoader_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QPluginLoader) QPluginLoader_PTR() *QPluginLoader {
 }
 
 func (ptr *QPluginLoader) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::fileName")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QPluginLoader_FileName(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QPluginLoader) FileName() string {
 }
 
 func (ptr *QPluginLoader) LoadHints() QLibrary__LoadHint {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::loadHints")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::loadHints")
 
 	if ptr.Pointer() != nil {
 		return QLibrary__LoadHint(C.QPluginLoader_LoadHints(ptr.Pointer()))
@@ -64,11 +55,7 @@ func (ptr *QPluginLoader) LoadHints() QLibrary__LoadHint {
 }
 
 func (ptr *QPluginLoader) SetFileName(fileName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::setFileName")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::setFileName")
 
 	if ptr.Pointer() != nil {
 		C.QPluginLoader_SetFileName(ptr.Pointer(), C.CString(fileName))
@@ -76,11 +63,7 @@ func (ptr *QPluginLoader) SetFileName(fileName string) {
 }
 
 func (ptr *QPluginLoader) SetLoadHints(loadHints QLibrary__LoadHint) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::setLoadHints")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::setLoadHints")
 
 	if ptr.Pointer() != nil {
 		C.QPluginLoader_SetLoadHints(ptr.Pointer(), C.int(loadHints))
@@ -88,31 +71,19 @@ func (ptr *QPluginLoader) SetLoadHints(loadHints QLibrary__LoadHint) {
 }
 
 func NewQPluginLoader(parent QObject_ITF) *QPluginLoader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::QPluginLoader")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::QPluginLoader")
 
 	return NewQPluginLoaderFromPointer(C.QPluginLoader_NewQPluginLoader(PointerFromQObject(parent)))
 }
 
 func NewQPluginLoader2(fileName string, parent QObject_ITF) *QPluginLoader {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::QPluginLoader")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::QPluginLoader")
 
 	return NewQPluginLoaderFromPointer(C.QPluginLoader_NewQPluginLoader2(C.CString(fileName), PointerFromQObject(parent)))
 }
 
 func (ptr *QPluginLoader) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::errorString")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QPluginLoader_ErrorString(ptr.Pointer()))
@@ -121,11 +92,7 @@ func (ptr *QPluginLoader) ErrorString() string {
 }
 
 func (ptr *QPluginLoader) Instance() *QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::instance")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::instance")
 
 	if ptr.Pointer() != nil {
 		return NewQObjectFromPointer(C.QPluginLoader_Instance(ptr.Pointer()))
@@ -134,11 +101,7 @@ func (ptr *QPluginLoader) Instance() *QObject {
 }
 
 func (ptr *QPluginLoader) IsLoaded() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::isLoaded")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::isLoaded")
 
 	if ptr.Pointer() != nil {
 		return C.QPluginLoader_IsLoaded(ptr.Pointer()) != 0
@@ -147,11 +110,7 @@ func (ptr *QPluginLoader) IsLoaded() bool {
 }
 
 func (ptr *QPluginLoader) Load() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::load")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::load")
 
 	if ptr.Pointer() != nil {
 		return C.QPluginLoader_Load(ptr.Pointer()) != 0
@@ -160,11 +119,7 @@ func (ptr *QPluginLoader) Load() bool {
 }
 
 func (ptr *QPluginLoader) MetaData() *QJsonObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::metaData")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::metaData")
 
 	if ptr.Pointer() != nil {
 		return NewQJsonObjectFromPointer(C.QPluginLoader_MetaData(ptr.Pointer()))
@@ -173,11 +128,7 @@ func (ptr *QPluginLoader) MetaData() *QJsonObject {
 }
 
 func (ptr *QPluginLoader) Unload() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::unload")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::unload")
 
 	if ptr.Pointer() != nil {
 		return C.QPluginLoader_Unload(ptr.Pointer()) != 0
@@ -186,11 +137,7 @@ func (ptr *QPluginLoader) Unload() bool {
 }
 
 func (ptr *QPluginLoader) DestroyQPluginLoader() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPluginLoader::~QPluginLoader")
-		}
-	}()
+	defer qt.Recovering("QPluginLoader::~QPluginLoader")
 
 	if ptr.Pointer() != nil {
 		C.QPluginLoader_DestroyQPluginLoader(ptr.Pointer())

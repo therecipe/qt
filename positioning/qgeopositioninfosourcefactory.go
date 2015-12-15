@@ -3,8 +3,8 @@ package positioning
 //#include "positioning.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQGeoPositionInfoSourceFactory(ptr QGeoPositionInfoSourceFactory_
 func NewQGeoPositionInfoSourceFactoryFromPointer(ptr unsafe.Pointer) *QGeoPositionInfoSourceFactory {
 	var n = new(QGeoPositionInfoSourceFactory)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QGeoPositionInfoSourceFactory_") {
+		n.SetObjectNameAbs("QGeoPositionInfoSourceFactory_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,11 +45,7 @@ func (ptr *QGeoPositionInfoSourceFactory) QGeoPositionInfoSourceFactory_PTR() *Q
 }
 
 func (ptr *QGeoPositionInfoSourceFactory) AreaMonitor(parent core.QObject_ITF) *QGeoAreaMonitorSource {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoPositionInfoSourceFactory::areaMonitor")
-		}
-	}()
+	defer qt.Recovering("QGeoPositionInfoSourceFactory::areaMonitor")
 
 	if ptr.Pointer() != nil {
 		return NewQGeoAreaMonitorSourceFromPointer(C.QGeoPositionInfoSourceFactory_AreaMonitor(ptr.Pointer(), core.PointerFromQObject(parent)))
@@ -55,11 +54,7 @@ func (ptr *QGeoPositionInfoSourceFactory) AreaMonitor(parent core.QObject_ITF) *
 }
 
 func (ptr *QGeoPositionInfoSourceFactory) PositionInfoSource(parent core.QObject_ITF) *QGeoPositionInfoSource {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoPositionInfoSourceFactory::positionInfoSource")
-		}
-	}()
+	defer qt.Recovering("QGeoPositionInfoSourceFactory::positionInfoSource")
 
 	if ptr.Pointer() != nil {
 		return NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSourceFactory_PositionInfoSource(ptr.Pointer(), core.PointerFromQObject(parent)))
@@ -68,11 +63,7 @@ func (ptr *QGeoPositionInfoSourceFactory) PositionInfoSource(parent core.QObject
 }
 
 func (ptr *QGeoPositionInfoSourceFactory) SatelliteInfoSource(parent core.QObject_ITF) *QGeoSatelliteInfoSource {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoPositionInfoSourceFactory::satelliteInfoSource")
-		}
-	}()
+	defer qt.Recovering("QGeoPositionInfoSourceFactory::satelliteInfoSource")
 
 	if ptr.Pointer() != nil {
 		return NewQGeoSatelliteInfoSourceFromPointer(C.QGeoPositionInfoSourceFactory_SatelliteInfoSource(ptr.Pointer(), core.PointerFromQObject(parent)))
@@ -81,13 +72,26 @@ func (ptr *QGeoPositionInfoSourceFactory) SatelliteInfoSource(parent core.QObjec
 }
 
 func (ptr *QGeoPositionInfoSourceFactory) DestroyQGeoPositionInfoSourceFactory() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoPositionInfoSourceFactory::~QGeoPositionInfoSourceFactory")
-		}
-	}()
+	defer qt.Recovering("QGeoPositionInfoSourceFactory::~QGeoPositionInfoSourceFactory")
 
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(ptr.Pointer())
+	}
+}
+
+func (ptr *QGeoPositionInfoSourceFactory) ObjectNameAbs() string {
+	defer qt.Recovering("QGeoPositionInfoSourceFactory::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QGeoPositionInfoSourceFactory_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QGeoPositionInfoSourceFactory) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QGeoPositionInfoSourceFactory::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSourceFactory_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

@@ -23,3 +23,8 @@ func setAndroidParamsAndEnv(p *C.char, e *C.char) {
 	}
 	os.Setenv("PWD", os.Getenv("HOME"))
 }
+
+//export getGoLibPath
+func getGoLibPath() *C.char {
+	return C.CString(os.Args[0])
+}

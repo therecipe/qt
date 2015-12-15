@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQUdpSocketFromPointer(ptr unsafe.Pointer) *QUdpSocket {
 	var n = new(QUdpSocket)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QUdpSocket_") {
-		n.SetObjectName("QUdpSocket_" + qt.RandomIdentifier())
+		n.SetObjectName("QUdpSocket_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QUdpSocket) QUdpSocket_PTR() *QUdpSocket {
 }
 
 func NewQUdpSocket(parent core.QObject_ITF) *QUdpSocket {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUdpSocket::QUdpSocket")
-		}
-	}()
+	defer qt.Recovering("QUdpSocket::QUdpSocket")
 
 	return NewQUdpSocketFromPointer(C.QUdpSocket_NewQUdpSocket(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QUdpSocket) HasPendingDatagrams() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUdpSocket::hasPendingDatagrams")
-		}
-	}()
+	defer qt.Recovering("QUdpSocket::hasPendingDatagrams")
 
 	if ptr.Pointer() != nil {
 		return C.QUdpSocket_HasPendingDatagrams(ptr.Pointer()) != 0
@@ -62,11 +53,7 @@ func (ptr *QUdpSocket) HasPendingDatagrams() bool {
 }
 
 func (ptr *QUdpSocket) JoinMulticastGroup(groupAddress QHostAddress_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUdpSocket::joinMulticastGroup")
-		}
-	}()
+	defer qt.Recovering("QUdpSocket::joinMulticastGroup")
 
 	if ptr.Pointer() != nil {
 		return C.QUdpSocket_JoinMulticastGroup(ptr.Pointer(), PointerFromQHostAddress(groupAddress)) != 0
@@ -75,11 +62,7 @@ func (ptr *QUdpSocket) JoinMulticastGroup(groupAddress QHostAddress_ITF) bool {
 }
 
 func (ptr *QUdpSocket) JoinMulticastGroup2(groupAddress QHostAddress_ITF, iface QNetworkInterface_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUdpSocket::joinMulticastGroup")
-		}
-	}()
+	defer qt.Recovering("QUdpSocket::joinMulticastGroup")
 
 	if ptr.Pointer() != nil {
 		return C.QUdpSocket_JoinMulticastGroup2(ptr.Pointer(), PointerFromQHostAddress(groupAddress), PointerFromQNetworkInterface(iface)) != 0
@@ -88,11 +71,7 @@ func (ptr *QUdpSocket) JoinMulticastGroup2(groupAddress QHostAddress_ITF, iface 
 }
 
 func (ptr *QUdpSocket) LeaveMulticastGroup(groupAddress QHostAddress_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUdpSocket::leaveMulticastGroup")
-		}
-	}()
+	defer qt.Recovering("QUdpSocket::leaveMulticastGroup")
 
 	if ptr.Pointer() != nil {
 		return C.QUdpSocket_LeaveMulticastGroup(ptr.Pointer(), PointerFromQHostAddress(groupAddress)) != 0
@@ -101,11 +80,7 @@ func (ptr *QUdpSocket) LeaveMulticastGroup(groupAddress QHostAddress_ITF) bool {
 }
 
 func (ptr *QUdpSocket) LeaveMulticastGroup2(groupAddress QHostAddress_ITF, iface QNetworkInterface_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUdpSocket::leaveMulticastGroup")
-		}
-	}()
+	defer qt.Recovering("QUdpSocket::leaveMulticastGroup")
 
 	if ptr.Pointer() != nil {
 		return C.QUdpSocket_LeaveMulticastGroup2(ptr.Pointer(), PointerFromQHostAddress(groupAddress), PointerFromQNetworkInterface(iface)) != 0
@@ -114,11 +89,7 @@ func (ptr *QUdpSocket) LeaveMulticastGroup2(groupAddress QHostAddress_ITF, iface
 }
 
 func (ptr *QUdpSocket) SetMulticastInterface(iface QNetworkInterface_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUdpSocket::setMulticastInterface")
-		}
-	}()
+	defer qt.Recovering("QUdpSocket::setMulticastInterface")
 
 	if ptr.Pointer() != nil {
 		C.QUdpSocket_SetMulticastInterface(ptr.Pointer(), PointerFromQNetworkInterface(iface))
@@ -126,11 +97,7 @@ func (ptr *QUdpSocket) SetMulticastInterface(iface QNetworkInterface_ITF) {
 }
 
 func (ptr *QUdpSocket) DestroyQUdpSocket() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUdpSocket::~QUdpSocket")
-		}
-	}()
+	defer qt.Recovering("QUdpSocket::~QUdpSocket")
 
 	if ptr.Pointer() != nil {
 		C.QUdpSocket_DestroyQUdpSocket(ptr.Pointer())

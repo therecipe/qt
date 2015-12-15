@@ -3,8 +3,8 @@ package quick
 //#include "quick.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQSGGeometry(ptr QSGGeometry_ITF) unsafe.Pointer {
 func NewQSGGeometryFromPointer(ptr unsafe.Pointer) *QSGGeometry {
 	var n = new(QSGGeometry)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QSGGeometry_") {
+		n.SetObjectNameAbs("QSGGeometry_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -52,11 +55,7 @@ const (
 )
 
 func (ptr *QSGGeometry) Allocate(vertexCount int, indexCount int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::allocate")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::allocate")
 
 	if ptr.Pointer() != nil {
 		C.QSGGeometry_Allocate(ptr.Pointer(), C.int(vertexCount), C.int(indexCount))
@@ -64,11 +63,7 @@ func (ptr *QSGGeometry) Allocate(vertexCount int, indexCount int) {
 }
 
 func (ptr *QSGGeometry) AttributeCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::attributeCount")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::attributeCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSGGeometry_AttributeCount(ptr.Pointer()))
@@ -77,11 +72,7 @@ func (ptr *QSGGeometry) AttributeCount() int {
 }
 
 func (ptr *QSGGeometry) IndexCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::indexCount")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::indexCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSGGeometry_IndexCount(ptr.Pointer()))
@@ -90,11 +81,7 @@ func (ptr *QSGGeometry) IndexCount() int {
 }
 
 func (ptr *QSGGeometry) IndexData() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::indexData")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::indexData")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QSGGeometry_IndexData(ptr.Pointer()))
@@ -103,11 +90,7 @@ func (ptr *QSGGeometry) IndexData() unsafe.Pointer {
 }
 
 func (ptr *QSGGeometry) IndexData2() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::indexData")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::indexData")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QSGGeometry_IndexData2(ptr.Pointer()))
@@ -116,11 +99,7 @@ func (ptr *QSGGeometry) IndexData2() unsafe.Pointer {
 }
 
 func (ptr *QSGGeometry) IndexDataPattern() QSGGeometry__DataPattern {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::indexDataPattern")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::indexDataPattern")
 
 	if ptr.Pointer() != nil {
 		return QSGGeometry__DataPattern(C.QSGGeometry_IndexDataPattern(ptr.Pointer()))
@@ -129,11 +108,7 @@ func (ptr *QSGGeometry) IndexDataPattern() QSGGeometry__DataPattern {
 }
 
 func (ptr *QSGGeometry) IndexType() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::indexType")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::indexType")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSGGeometry_IndexType(ptr.Pointer()))
@@ -142,11 +117,7 @@ func (ptr *QSGGeometry) IndexType() int {
 }
 
 func (ptr *QSGGeometry) MarkIndexDataDirty() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::markIndexDataDirty")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::markIndexDataDirty")
 
 	if ptr.Pointer() != nil {
 		C.QSGGeometry_MarkIndexDataDirty(ptr.Pointer())
@@ -154,11 +125,7 @@ func (ptr *QSGGeometry) MarkIndexDataDirty() {
 }
 
 func (ptr *QSGGeometry) MarkVertexDataDirty() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::markVertexDataDirty")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::markVertexDataDirty")
 
 	if ptr.Pointer() != nil {
 		C.QSGGeometry_MarkVertexDataDirty(ptr.Pointer())
@@ -166,11 +133,7 @@ func (ptr *QSGGeometry) MarkVertexDataDirty() {
 }
 
 func (ptr *QSGGeometry) SetIndexDataPattern(p QSGGeometry__DataPattern) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::setIndexDataPattern")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::setIndexDataPattern")
 
 	if ptr.Pointer() != nil {
 		C.QSGGeometry_SetIndexDataPattern(ptr.Pointer(), C.int(p))
@@ -178,11 +141,7 @@ func (ptr *QSGGeometry) SetIndexDataPattern(p QSGGeometry__DataPattern) {
 }
 
 func (ptr *QSGGeometry) SetVertexDataPattern(p QSGGeometry__DataPattern) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::setVertexDataPattern")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::setVertexDataPattern")
 
 	if ptr.Pointer() != nil {
 		C.QSGGeometry_SetVertexDataPattern(ptr.Pointer(), C.int(p))
@@ -190,11 +149,7 @@ func (ptr *QSGGeometry) SetVertexDataPattern(p QSGGeometry__DataPattern) {
 }
 
 func (ptr *QSGGeometry) SizeOfIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::sizeOfIndex")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::sizeOfIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSGGeometry_SizeOfIndex(ptr.Pointer()))
@@ -203,11 +158,7 @@ func (ptr *QSGGeometry) SizeOfIndex() int {
 }
 
 func (ptr *QSGGeometry) SizeOfVertex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::sizeOfVertex")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::sizeOfVertex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSGGeometry_SizeOfVertex(ptr.Pointer()))
@@ -216,31 +167,19 @@ func (ptr *QSGGeometry) SizeOfVertex() int {
 }
 
 func QSGGeometry_UpdateRectGeometry(g QSGGeometry_ITF, rect core.QRectF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::updateRectGeometry")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::updateRectGeometry")
 
 	C.QSGGeometry_QSGGeometry_UpdateRectGeometry(PointerFromQSGGeometry(g), core.PointerFromQRectF(rect))
 }
 
 func QSGGeometry_UpdateTexturedRectGeometry(g QSGGeometry_ITF, rect core.QRectF_ITF, textureRect core.QRectF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::updateTexturedRectGeometry")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::updateTexturedRectGeometry")
 
 	C.QSGGeometry_QSGGeometry_UpdateTexturedRectGeometry(PointerFromQSGGeometry(g), core.PointerFromQRectF(rect), core.PointerFromQRectF(textureRect))
 }
 
 func (ptr *QSGGeometry) VertexCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::vertexCount")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::vertexCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSGGeometry_VertexCount(ptr.Pointer()))
@@ -249,11 +188,7 @@ func (ptr *QSGGeometry) VertexCount() int {
 }
 
 func (ptr *QSGGeometry) VertexData() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::vertexData")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::vertexData")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QSGGeometry_VertexData(ptr.Pointer()))
@@ -262,11 +197,7 @@ func (ptr *QSGGeometry) VertexData() unsafe.Pointer {
 }
 
 func (ptr *QSGGeometry) VertexData2() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::vertexData")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::vertexData")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QSGGeometry_VertexData2(ptr.Pointer()))
@@ -275,11 +206,7 @@ func (ptr *QSGGeometry) VertexData2() unsafe.Pointer {
 }
 
 func (ptr *QSGGeometry) VertexDataPattern() QSGGeometry__DataPattern {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::vertexDataPattern")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::vertexDataPattern")
 
 	if ptr.Pointer() != nil {
 		return QSGGeometry__DataPattern(C.QSGGeometry_VertexDataPattern(ptr.Pointer()))
@@ -288,13 +215,26 @@ func (ptr *QSGGeometry) VertexDataPattern() QSGGeometry__DataPattern {
 }
 
 func (ptr *QSGGeometry) DestroyQSGGeometry() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGGeometry::~QSGGeometry")
-		}
-	}()
+	defer qt.Recovering("QSGGeometry::~QSGGeometry")
 
 	if ptr.Pointer() != nil {
 		C.QSGGeometry_DestroyQSGGeometry(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGGeometry) ObjectNameAbs() string {
+	defer qt.Recovering("QSGGeometry::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QSGGeometry_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSGGeometry) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QSGGeometry::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QSGGeometry_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

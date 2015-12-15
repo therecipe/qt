@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,11 +34,7 @@ func (ptr *QBitmap) QBitmap_PTR() *QBitmap {
 }
 
 func (ptr *QBitmap) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBitmap::clear")
-		}
-	}()
+	defer qt.Recovering("QBitmap::clear")
 
 	if ptr.Pointer() != nil {
 		C.QBitmap_Clear(ptr.Pointer())
@@ -46,11 +42,7 @@ func (ptr *QBitmap) Clear() {
 }
 
 func (ptr *QBitmap) Swap(other QBitmap_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBitmap::swap")
-		}
-	}()
+	defer qt.Recovering("QBitmap::swap")
 
 	if ptr.Pointer() != nil {
 		C.QBitmap_Swap(ptr.Pointer(), PointerFromQBitmap(other))
@@ -58,11 +50,7 @@ func (ptr *QBitmap) Swap(other QBitmap_ITF) {
 }
 
 func (ptr *QBitmap) DestroyQBitmap() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBitmap::~QBitmap")
-		}
-	}()
+	defer qt.Recovering("QBitmap::~QBitmap")
 
 	if ptr.Pointer() != nil {
 		C.QBitmap_DestroyQBitmap(ptr.Pointer())

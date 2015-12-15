@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -50,11 +50,7 @@ const (
 )
 
 func (ptr *QLineF) AngleTo(line QLineF_ITF) float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::angleTo")
-		}
-	}()
+	defer qt.Recovering("QLineF::angleTo")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QLineF_AngleTo(ptr.Pointer(), PointerFromQLineF(line)))
@@ -63,11 +59,7 @@ func (ptr *QLineF) AngleTo(line QLineF_ITF) float64 {
 }
 
 func (ptr *QLineF) Intersect(line QLineF_ITF, intersectionPoint QPointF_ITF) QLineF__IntersectType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::intersect")
-		}
-	}()
+	defer qt.Recovering("QLineF::intersect")
 
 	if ptr.Pointer() != nil {
 		return QLineF__IntersectType(C.QLineF_Intersect(ptr.Pointer(), PointerFromQLineF(line), PointerFromQPointF(intersectionPoint)))
@@ -76,51 +68,31 @@ func (ptr *QLineF) Intersect(line QLineF_ITF, intersectionPoint QPointF_ITF) QLi
 }
 
 func NewQLineF() *QLineF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::QLineF")
-		}
-	}()
+	defer qt.Recovering("QLineF::QLineF")
 
 	return NewQLineFFromPointer(C.QLineF_NewQLineF())
 }
 
 func NewQLineF4(line QLine_ITF) *QLineF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::QLineF")
-		}
-	}()
+	defer qt.Recovering("QLineF::QLineF")
 
 	return NewQLineFFromPointer(C.QLineF_NewQLineF4(PointerFromQLine(line)))
 }
 
 func NewQLineF2(p1 QPointF_ITF, p2 QPointF_ITF) *QLineF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::QLineF")
-		}
-	}()
+	defer qt.Recovering("QLineF::QLineF")
 
 	return NewQLineFFromPointer(C.QLineF_NewQLineF2(PointerFromQPointF(p1), PointerFromQPointF(p2)))
 }
 
 func NewQLineF3(x1 float64, y1 float64, x2 float64, y2 float64) *QLineF {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::QLineF")
-		}
-	}()
+	defer qt.Recovering("QLineF::QLineF")
 
 	return NewQLineFFromPointer(C.QLineF_NewQLineF3(C.double(x1), C.double(y1), C.double(x2), C.double(y2)))
 }
 
 func (ptr *QLineF) Angle() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::angle")
-		}
-	}()
+	defer qt.Recovering("QLineF::angle")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QLineF_Angle(ptr.Pointer()))
@@ -129,11 +101,7 @@ func (ptr *QLineF) Angle() float64 {
 }
 
 func (ptr *QLineF) Dx() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::dx")
-		}
-	}()
+	defer qt.Recovering("QLineF::dx")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QLineF_Dx(ptr.Pointer()))
@@ -142,11 +110,7 @@ func (ptr *QLineF) Dx() float64 {
 }
 
 func (ptr *QLineF) Dy() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::dy")
-		}
-	}()
+	defer qt.Recovering("QLineF::dy")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QLineF_Dy(ptr.Pointer()))
@@ -155,11 +119,7 @@ func (ptr *QLineF) Dy() float64 {
 }
 
 func (ptr *QLineF) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::isNull")
-		}
-	}()
+	defer qt.Recovering("QLineF::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QLineF_IsNull(ptr.Pointer()) != 0
@@ -168,11 +128,7 @@ func (ptr *QLineF) IsNull() bool {
 }
 
 func (ptr *QLineF) Length() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::length")
-		}
-	}()
+	defer qt.Recovering("QLineF::length")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QLineF_Length(ptr.Pointer()))
@@ -181,11 +137,7 @@ func (ptr *QLineF) Length() float64 {
 }
 
 func (ptr *QLineF) SetAngle(angle float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::setAngle")
-		}
-	}()
+	defer qt.Recovering("QLineF::setAngle")
 
 	if ptr.Pointer() != nil {
 		C.QLineF_SetAngle(ptr.Pointer(), C.double(angle))
@@ -193,11 +145,7 @@ func (ptr *QLineF) SetAngle(angle float64) {
 }
 
 func (ptr *QLineF) SetLength(length float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::setLength")
-		}
-	}()
+	defer qt.Recovering("QLineF::setLength")
 
 	if ptr.Pointer() != nil {
 		C.QLineF_SetLength(ptr.Pointer(), C.double(length))
@@ -205,11 +153,7 @@ func (ptr *QLineF) SetLength(length float64) {
 }
 
 func (ptr *QLineF) SetLine(x1 float64, y1 float64, x2 float64, y2 float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::setLine")
-		}
-	}()
+	defer qt.Recovering("QLineF::setLine")
 
 	if ptr.Pointer() != nil {
 		C.QLineF_SetLine(ptr.Pointer(), C.double(x1), C.double(y1), C.double(x2), C.double(y2))
@@ -217,11 +161,7 @@ func (ptr *QLineF) SetLine(x1 float64, y1 float64, x2 float64, y2 float64) {
 }
 
 func (ptr *QLineF) SetP1(p1 QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::setP1")
-		}
-	}()
+	defer qt.Recovering("QLineF::setP1")
 
 	if ptr.Pointer() != nil {
 		C.QLineF_SetP1(ptr.Pointer(), PointerFromQPointF(p1))
@@ -229,11 +169,7 @@ func (ptr *QLineF) SetP1(p1 QPointF_ITF) {
 }
 
 func (ptr *QLineF) SetP2(p2 QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::setP2")
-		}
-	}()
+	defer qt.Recovering("QLineF::setP2")
 
 	if ptr.Pointer() != nil {
 		C.QLineF_SetP2(ptr.Pointer(), PointerFromQPointF(p2))
@@ -241,11 +177,7 @@ func (ptr *QLineF) SetP2(p2 QPointF_ITF) {
 }
 
 func (ptr *QLineF) SetPoints(p1 QPointF_ITF, p2 QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::setPoints")
-		}
-	}()
+	defer qt.Recovering("QLineF::setPoints")
 
 	if ptr.Pointer() != nil {
 		C.QLineF_SetPoints(ptr.Pointer(), PointerFromQPointF(p1), PointerFromQPointF(p2))
@@ -253,11 +185,7 @@ func (ptr *QLineF) SetPoints(p1 QPointF_ITF, p2 QPointF_ITF) {
 }
 
 func (ptr *QLineF) Translate(offset QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::translate")
-		}
-	}()
+	defer qt.Recovering("QLineF::translate")
 
 	if ptr.Pointer() != nil {
 		C.QLineF_Translate(ptr.Pointer(), PointerFromQPointF(offset))
@@ -265,11 +193,7 @@ func (ptr *QLineF) Translate(offset QPointF_ITF) {
 }
 
 func (ptr *QLineF) Translate2(dx float64, dy float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::translate")
-		}
-	}()
+	defer qt.Recovering("QLineF::translate")
 
 	if ptr.Pointer() != nil {
 		C.QLineF_Translate2(ptr.Pointer(), C.double(dx), C.double(dy))
@@ -277,11 +201,7 @@ func (ptr *QLineF) Translate2(dx float64, dy float64) {
 }
 
 func (ptr *QLineF) X1() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::x1")
-		}
-	}()
+	defer qt.Recovering("QLineF::x1")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QLineF_X1(ptr.Pointer()))
@@ -290,11 +210,7 @@ func (ptr *QLineF) X1() float64 {
 }
 
 func (ptr *QLineF) X2() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::x2")
-		}
-	}()
+	defer qt.Recovering("QLineF::x2")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QLineF_X2(ptr.Pointer()))
@@ -303,11 +219,7 @@ func (ptr *QLineF) X2() float64 {
 }
 
 func (ptr *QLineF) Y1() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::y1")
-		}
-	}()
+	defer qt.Recovering("QLineF::y1")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QLineF_Y1(ptr.Pointer()))
@@ -316,11 +228,7 @@ func (ptr *QLineF) Y1() float64 {
 }
 
 func (ptr *QLineF) Y2() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLineF::y2")
-		}
-	}()
+	defer qt.Recovering("QLineF::y2")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QLineF_Y2(ptr.Pointer()))

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQSGTextureFromPointer(ptr unsafe.Pointer) *QSGTexture {
 	var n = new(QSGTexture)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSGTexture_") {
-		n.SetObjectName("QSGTexture_" + qt.RandomIdentifier())
+		n.SetObjectName("QSGTexture_" + qt.Identifier())
 	}
 	return n
 }
@@ -56,11 +55,7 @@ const (
 )
 
 func (ptr *QSGTexture) Bind() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::bind")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::bind")
 
 	if ptr.Pointer() != nil {
 		C.QSGTexture_Bind(ptr.Pointer())
@@ -68,11 +63,7 @@ func (ptr *QSGTexture) Bind() {
 }
 
 func (ptr *QSGTexture) Filtering() QSGTexture__Filtering {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::filtering")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::filtering")
 
 	if ptr.Pointer() != nil {
 		return QSGTexture__Filtering(C.QSGTexture_Filtering(ptr.Pointer()))
@@ -81,11 +72,7 @@ func (ptr *QSGTexture) Filtering() QSGTexture__Filtering {
 }
 
 func (ptr *QSGTexture) HasAlphaChannel() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::hasAlphaChannel")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::hasAlphaChannel")
 
 	if ptr.Pointer() != nil {
 		return C.QSGTexture_HasAlphaChannel(ptr.Pointer()) != 0
@@ -94,11 +81,7 @@ func (ptr *QSGTexture) HasAlphaChannel() bool {
 }
 
 func (ptr *QSGTexture) HasMipmaps() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::hasMipmaps")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::hasMipmaps")
 
 	if ptr.Pointer() != nil {
 		return C.QSGTexture_HasMipmaps(ptr.Pointer()) != 0
@@ -107,11 +90,7 @@ func (ptr *QSGTexture) HasMipmaps() bool {
 }
 
 func (ptr *QSGTexture) HorizontalWrapMode() QSGTexture__WrapMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::horizontalWrapMode")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::horizontalWrapMode")
 
 	if ptr.Pointer() != nil {
 		return QSGTexture__WrapMode(C.QSGTexture_HorizontalWrapMode(ptr.Pointer()))
@@ -120,11 +99,7 @@ func (ptr *QSGTexture) HorizontalWrapMode() QSGTexture__WrapMode {
 }
 
 func (ptr *QSGTexture) IsAtlasTexture() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::isAtlasTexture")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::isAtlasTexture")
 
 	if ptr.Pointer() != nil {
 		return C.QSGTexture_IsAtlasTexture(ptr.Pointer()) != 0
@@ -133,11 +108,7 @@ func (ptr *QSGTexture) IsAtlasTexture() bool {
 }
 
 func (ptr *QSGTexture) MipmapFiltering() QSGTexture__Filtering {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::mipmapFiltering")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::mipmapFiltering")
 
 	if ptr.Pointer() != nil {
 		return QSGTexture__Filtering(C.QSGTexture_MipmapFiltering(ptr.Pointer()))
@@ -146,11 +117,7 @@ func (ptr *QSGTexture) MipmapFiltering() QSGTexture__Filtering {
 }
 
 func (ptr *QSGTexture) RemovedFromAtlas() *QSGTexture {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::removedFromAtlas")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::removedFromAtlas")
 
 	if ptr.Pointer() != nil {
 		return NewQSGTextureFromPointer(C.QSGTexture_RemovedFromAtlas(ptr.Pointer()))
@@ -159,11 +126,7 @@ func (ptr *QSGTexture) RemovedFromAtlas() *QSGTexture {
 }
 
 func (ptr *QSGTexture) SetFiltering(filter QSGTexture__Filtering) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::setFiltering")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::setFiltering")
 
 	if ptr.Pointer() != nil {
 		C.QSGTexture_SetFiltering(ptr.Pointer(), C.int(filter))
@@ -171,11 +134,7 @@ func (ptr *QSGTexture) SetFiltering(filter QSGTexture__Filtering) {
 }
 
 func (ptr *QSGTexture) SetHorizontalWrapMode(hwrap QSGTexture__WrapMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::setHorizontalWrapMode")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::setHorizontalWrapMode")
 
 	if ptr.Pointer() != nil {
 		C.QSGTexture_SetHorizontalWrapMode(ptr.Pointer(), C.int(hwrap))
@@ -183,11 +142,7 @@ func (ptr *QSGTexture) SetHorizontalWrapMode(hwrap QSGTexture__WrapMode) {
 }
 
 func (ptr *QSGTexture) SetMipmapFiltering(filter QSGTexture__Filtering) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::setMipmapFiltering")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::setMipmapFiltering")
 
 	if ptr.Pointer() != nil {
 		C.QSGTexture_SetMipmapFiltering(ptr.Pointer(), C.int(filter))
@@ -195,11 +150,7 @@ func (ptr *QSGTexture) SetMipmapFiltering(filter QSGTexture__Filtering) {
 }
 
 func (ptr *QSGTexture) SetVerticalWrapMode(vwrap QSGTexture__WrapMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::setVerticalWrapMode")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::setVerticalWrapMode")
 
 	if ptr.Pointer() != nil {
 		C.QSGTexture_SetVerticalWrapMode(ptr.Pointer(), C.int(vwrap))
@@ -207,11 +158,7 @@ func (ptr *QSGTexture) SetVerticalWrapMode(vwrap QSGTexture__WrapMode) {
 }
 
 func (ptr *QSGTexture) TextureId() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::textureId")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::textureId")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSGTexture_TextureId(ptr.Pointer()))
@@ -220,11 +167,7 @@ func (ptr *QSGTexture) TextureId() int {
 }
 
 func (ptr *QSGTexture) UpdateBindOptions(force bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::updateBindOptions")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::updateBindOptions")
 
 	if ptr.Pointer() != nil {
 		C.QSGTexture_UpdateBindOptions(ptr.Pointer(), C.int(qt.GoBoolToInt(force)))
@@ -232,11 +175,7 @@ func (ptr *QSGTexture) UpdateBindOptions(force bool) {
 }
 
 func (ptr *QSGTexture) VerticalWrapMode() QSGTexture__WrapMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::verticalWrapMode")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::verticalWrapMode")
 
 	if ptr.Pointer() != nil {
 		return QSGTexture__WrapMode(C.QSGTexture_VerticalWrapMode(ptr.Pointer()))
@@ -245,11 +184,7 @@ func (ptr *QSGTexture) VerticalWrapMode() QSGTexture__WrapMode {
 }
 
 func (ptr *QSGTexture) DestroyQSGTexture() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGTexture::~QSGTexture")
-		}
-	}()
+	defer qt.Recovering("QSGTexture::~QSGTexture")
 
 	if ptr.Pointer() != nil {
 		C.QSGTexture_DestroyQSGTexture(ptr.Pointer())

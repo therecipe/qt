@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -49,21 +49,13 @@ var (
 )
 
 func NewQTextListFormat() *QTextListFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextListFormat::QTextListFormat")
-		}
-	}()
+	defer qt.Recovering("QTextListFormat::QTextListFormat")
 
 	return NewQTextListFormatFromPointer(C.QTextListFormat_NewQTextListFormat())
 }
 
 func (ptr *QTextListFormat) Indent() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextListFormat::indent")
-		}
-	}()
+	defer qt.Recovering("QTextListFormat::indent")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextListFormat_Indent(ptr.Pointer()))
@@ -72,11 +64,7 @@ func (ptr *QTextListFormat) Indent() int {
 }
 
 func (ptr *QTextListFormat) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextListFormat::isValid")
-		}
-	}()
+	defer qt.Recovering("QTextListFormat::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QTextListFormat_IsValid(ptr.Pointer()) != 0
@@ -85,11 +73,7 @@ func (ptr *QTextListFormat) IsValid() bool {
 }
 
 func (ptr *QTextListFormat) NumberPrefix() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextListFormat::numberPrefix")
-		}
-	}()
+	defer qt.Recovering("QTextListFormat::numberPrefix")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextListFormat_NumberPrefix(ptr.Pointer()))
@@ -98,11 +82,7 @@ func (ptr *QTextListFormat) NumberPrefix() string {
 }
 
 func (ptr *QTextListFormat) NumberSuffix() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextListFormat::numberSuffix")
-		}
-	}()
+	defer qt.Recovering("QTextListFormat::numberSuffix")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextListFormat_NumberSuffix(ptr.Pointer()))
@@ -111,11 +91,7 @@ func (ptr *QTextListFormat) NumberSuffix() string {
 }
 
 func (ptr *QTextListFormat) SetIndent(indentation int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextListFormat::setIndent")
-		}
-	}()
+	defer qt.Recovering("QTextListFormat::setIndent")
 
 	if ptr.Pointer() != nil {
 		C.QTextListFormat_SetIndent(ptr.Pointer(), C.int(indentation))
@@ -123,11 +99,7 @@ func (ptr *QTextListFormat) SetIndent(indentation int) {
 }
 
 func (ptr *QTextListFormat) SetNumberPrefix(numberPrefix string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextListFormat::setNumberPrefix")
-		}
-	}()
+	defer qt.Recovering("QTextListFormat::setNumberPrefix")
 
 	if ptr.Pointer() != nil {
 		C.QTextListFormat_SetNumberPrefix(ptr.Pointer(), C.CString(numberPrefix))
@@ -135,11 +107,7 @@ func (ptr *QTextListFormat) SetNumberPrefix(numberPrefix string) {
 }
 
 func (ptr *QTextListFormat) SetNumberSuffix(numberSuffix string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextListFormat::setNumberSuffix")
-		}
-	}()
+	defer qt.Recovering("QTextListFormat::setNumberSuffix")
 
 	if ptr.Pointer() != nil {
 		C.QTextListFormat_SetNumberSuffix(ptr.Pointer(), C.CString(numberSuffix))
@@ -147,11 +115,7 @@ func (ptr *QTextListFormat) SetNumberSuffix(numberSuffix string) {
 }
 
 func (ptr *QTextListFormat) SetStyle(style QTextListFormat__Style) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextListFormat::setStyle")
-		}
-	}()
+	defer qt.Recovering("QTextListFormat::setStyle")
 
 	if ptr.Pointer() != nil {
 		C.QTextListFormat_SetStyle(ptr.Pointer(), C.int(style))
@@ -159,11 +123,7 @@ func (ptr *QTextListFormat) SetStyle(style QTextListFormat__Style) {
 }
 
 func (ptr *QTextListFormat) Style() QTextListFormat__Style {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextListFormat::style")
-		}
-	}()
+	defer qt.Recovering("QTextListFormat::style")
 
 	if ptr.Pointer() != nil {
 		return QTextListFormat__Style(C.QTextListFormat_Style(ptr.Pointer()))

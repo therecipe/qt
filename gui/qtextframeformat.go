@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -60,21 +60,13 @@ const (
 )
 
 func NewQTextFrameFormat() *QTextFrameFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::QTextFrameFormat")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::QTextFrameFormat")
 
 	return NewQTextFrameFormatFromPointer(C.QTextFrameFormat_NewQTextFrameFormat())
 }
 
 func (ptr *QTextFrameFormat) BottomMargin() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::bottomMargin")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::bottomMargin")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextFrameFormat_BottomMargin(ptr.Pointer()))
@@ -83,11 +75,7 @@ func (ptr *QTextFrameFormat) BottomMargin() float64 {
 }
 
 func (ptr *QTextFrameFormat) LeftMargin() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::leftMargin")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::leftMargin")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextFrameFormat_LeftMargin(ptr.Pointer()))
@@ -96,11 +84,7 @@ func (ptr *QTextFrameFormat) LeftMargin() float64 {
 }
 
 func (ptr *QTextFrameFormat) RightMargin() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::rightMargin")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::rightMargin")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextFrameFormat_RightMargin(ptr.Pointer()))
@@ -109,11 +93,7 @@ func (ptr *QTextFrameFormat) RightMargin() float64 {
 }
 
 func (ptr *QTextFrameFormat) SetMargin(margin float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setMargin")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setMargin")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetMargin(ptr.Pointer(), C.double(margin))
@@ -121,11 +101,7 @@ func (ptr *QTextFrameFormat) SetMargin(margin float64) {
 }
 
 func (ptr *QTextFrameFormat) TopMargin() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::topMargin")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::topMargin")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextFrameFormat_TopMargin(ptr.Pointer()))
@@ -134,11 +110,7 @@ func (ptr *QTextFrameFormat) TopMargin() float64 {
 }
 
 func (ptr *QTextFrameFormat) Border() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::border")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::border")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextFrameFormat_Border(ptr.Pointer()))
@@ -147,11 +119,7 @@ func (ptr *QTextFrameFormat) Border() float64 {
 }
 
 func (ptr *QTextFrameFormat) BorderBrush() *QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::borderBrush")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::borderBrush")
 
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QTextFrameFormat_BorderBrush(ptr.Pointer()))
@@ -160,11 +128,7 @@ func (ptr *QTextFrameFormat) BorderBrush() *QBrush {
 }
 
 func (ptr *QTextFrameFormat) BorderStyle() QTextFrameFormat__BorderStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::borderStyle")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::borderStyle")
 
 	if ptr.Pointer() != nil {
 		return QTextFrameFormat__BorderStyle(C.QTextFrameFormat_BorderStyle(ptr.Pointer()))
@@ -173,11 +137,7 @@ func (ptr *QTextFrameFormat) BorderStyle() QTextFrameFormat__BorderStyle {
 }
 
 func (ptr *QTextFrameFormat) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::isValid")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QTextFrameFormat_IsValid(ptr.Pointer()) != 0
@@ -186,11 +146,7 @@ func (ptr *QTextFrameFormat) IsValid() bool {
 }
 
 func (ptr *QTextFrameFormat) Margin() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::margin")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::margin")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextFrameFormat_Margin(ptr.Pointer()))
@@ -199,11 +155,7 @@ func (ptr *QTextFrameFormat) Margin() float64 {
 }
 
 func (ptr *QTextFrameFormat) Padding() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::padding")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::padding")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextFrameFormat_Padding(ptr.Pointer()))
@@ -212,11 +164,7 @@ func (ptr *QTextFrameFormat) Padding() float64 {
 }
 
 func (ptr *QTextFrameFormat) PageBreakPolicy() QTextFormat__PageBreakFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::pageBreakPolicy")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::pageBreakPolicy")
 
 	if ptr.Pointer() != nil {
 		return QTextFormat__PageBreakFlag(C.QTextFrameFormat_PageBreakPolicy(ptr.Pointer()))
@@ -225,11 +173,7 @@ func (ptr *QTextFrameFormat) PageBreakPolicy() QTextFormat__PageBreakFlag {
 }
 
 func (ptr *QTextFrameFormat) Position() QTextFrameFormat__Position {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::position")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::position")
 
 	if ptr.Pointer() != nil {
 		return QTextFrameFormat__Position(C.QTextFrameFormat_Position(ptr.Pointer()))
@@ -238,11 +182,7 @@ func (ptr *QTextFrameFormat) Position() QTextFrameFormat__Position {
 }
 
 func (ptr *QTextFrameFormat) SetBorder(width float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setBorder")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setBorder")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetBorder(ptr.Pointer(), C.double(width))
@@ -250,11 +190,7 @@ func (ptr *QTextFrameFormat) SetBorder(width float64) {
 }
 
 func (ptr *QTextFrameFormat) SetBorderBrush(brush QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setBorderBrush")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setBorderBrush")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetBorderBrush(ptr.Pointer(), PointerFromQBrush(brush))
@@ -262,11 +198,7 @@ func (ptr *QTextFrameFormat) SetBorderBrush(brush QBrush_ITF) {
 }
 
 func (ptr *QTextFrameFormat) SetBorderStyle(style QTextFrameFormat__BorderStyle) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setBorderStyle")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setBorderStyle")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetBorderStyle(ptr.Pointer(), C.int(style))
@@ -274,11 +206,7 @@ func (ptr *QTextFrameFormat) SetBorderStyle(style QTextFrameFormat__BorderStyle)
 }
 
 func (ptr *QTextFrameFormat) SetBottomMargin(margin float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setBottomMargin")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setBottomMargin")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetBottomMargin(ptr.Pointer(), C.double(margin))
@@ -286,11 +214,7 @@ func (ptr *QTextFrameFormat) SetBottomMargin(margin float64) {
 }
 
 func (ptr *QTextFrameFormat) SetHeight(height QTextLength_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setHeight")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setHeight")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetHeight(ptr.Pointer(), PointerFromQTextLength(height))
@@ -298,11 +222,7 @@ func (ptr *QTextFrameFormat) SetHeight(height QTextLength_ITF) {
 }
 
 func (ptr *QTextFrameFormat) SetHeight2(height float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setHeight")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setHeight")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetHeight2(ptr.Pointer(), C.double(height))
@@ -310,11 +230,7 @@ func (ptr *QTextFrameFormat) SetHeight2(height float64) {
 }
 
 func (ptr *QTextFrameFormat) SetLeftMargin(margin float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setLeftMargin")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setLeftMargin")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetLeftMargin(ptr.Pointer(), C.double(margin))
@@ -322,11 +238,7 @@ func (ptr *QTextFrameFormat) SetLeftMargin(margin float64) {
 }
 
 func (ptr *QTextFrameFormat) SetPadding(width float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setPadding")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setPadding")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetPadding(ptr.Pointer(), C.double(width))
@@ -334,11 +246,7 @@ func (ptr *QTextFrameFormat) SetPadding(width float64) {
 }
 
 func (ptr *QTextFrameFormat) SetPageBreakPolicy(policy QTextFormat__PageBreakFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setPageBreakPolicy")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setPageBreakPolicy")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetPageBreakPolicy(ptr.Pointer(), C.int(policy))
@@ -346,11 +254,7 @@ func (ptr *QTextFrameFormat) SetPageBreakPolicy(policy QTextFormat__PageBreakFla
 }
 
 func (ptr *QTextFrameFormat) SetPosition(policy QTextFrameFormat__Position) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setPosition")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setPosition")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetPosition(ptr.Pointer(), C.int(policy))
@@ -358,11 +262,7 @@ func (ptr *QTextFrameFormat) SetPosition(policy QTextFrameFormat__Position) {
 }
 
 func (ptr *QTextFrameFormat) SetRightMargin(margin float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setRightMargin")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setRightMargin")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetRightMargin(ptr.Pointer(), C.double(margin))
@@ -370,11 +270,7 @@ func (ptr *QTextFrameFormat) SetRightMargin(margin float64) {
 }
 
 func (ptr *QTextFrameFormat) SetTopMargin(margin float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setTopMargin")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setTopMargin")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetTopMargin(ptr.Pointer(), C.double(margin))
@@ -382,11 +278,7 @@ func (ptr *QTextFrameFormat) SetTopMargin(margin float64) {
 }
 
 func (ptr *QTextFrameFormat) SetWidth(width QTextLength_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setWidth")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setWidth")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetWidth(ptr.Pointer(), PointerFromQTextLength(width))
@@ -394,11 +286,7 @@ func (ptr *QTextFrameFormat) SetWidth(width QTextLength_ITF) {
 }
 
 func (ptr *QTextFrameFormat) SetWidth2(width float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextFrameFormat::setWidth")
-		}
-	}()
+	defer qt.Recovering("QTextFrameFormat::setWidth")
 
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetWidth2(ptr.Pointer(), C.double(width))

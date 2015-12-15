@@ -4,7 +4,6 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQCameraCaptureDestinationControlFromPointer(ptr unsafe.Pointer) *QCamera
 	var n = new(QCameraCaptureDestinationControl)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraCaptureDestinationControl_") {
-		n.SetObjectName("QCameraCaptureDestinationControl_" + qt.RandomIdentifier())
+		n.SetObjectName("QCameraCaptureDestinationControl_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QCameraCaptureDestinationControl) QCameraCaptureDestinationControl_PT
 }
 
 func (ptr *QCameraCaptureDestinationControl) CaptureDestination() QCameraImageCapture__CaptureDestination {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraCaptureDestinationControl::captureDestination")
-		}
-	}()
+	defer qt.Recovering("QCameraCaptureDestinationControl::captureDestination")
 
 	if ptr.Pointer() != nil {
 		return QCameraImageCapture__CaptureDestination(C.QCameraCaptureDestinationControl_CaptureDestination(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QCameraCaptureDestinationControl) CaptureDestination() QCameraImageCa
 }
 
 func (ptr *QCameraCaptureDestinationControl) ConnectCaptureDestinationChanged(f func(destination QCameraImageCapture__CaptureDestination)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraCaptureDestinationControl::captureDestinationChanged")
-		}
-	}()
+	defer qt.Recovering("connect QCameraCaptureDestinationControl::captureDestinationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureDestinationControl_ConnectCaptureDestinationChanged(ptr.Pointer())
@@ -64,11 +55,7 @@ func (ptr *QCameraCaptureDestinationControl) ConnectCaptureDestinationChanged(f 
 }
 
 func (ptr *QCameraCaptureDestinationControl) DisconnectCaptureDestinationChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraCaptureDestinationControl::captureDestinationChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QCameraCaptureDestinationControl::captureDestinationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureDestinationControl_DisconnectCaptureDestinationChanged(ptr.Pointer())
@@ -78,21 +65,17 @@ func (ptr *QCameraCaptureDestinationControl) DisconnectCaptureDestinationChanged
 
 //export callbackQCameraCaptureDestinationControlCaptureDestinationChanged
 func callbackQCameraCaptureDestinationControlCaptureDestinationChanged(ptrName *C.char, destination C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraCaptureDestinationControl::captureDestinationChanged")
-		}
-	}()
+	defer qt.Recovering("callback QCameraCaptureDestinationControl::captureDestinationChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "captureDestinationChanged").(func(QCameraImageCapture__CaptureDestination))(QCameraImageCapture__CaptureDestination(destination))
+	var signal = qt.GetSignal(C.GoString(ptrName), "captureDestinationChanged")
+	if signal != nil {
+		signal.(func(QCameraImageCapture__CaptureDestination))(QCameraImageCapture__CaptureDestination(destination))
+	}
+
 }
 
 func (ptr *QCameraCaptureDestinationControl) IsCaptureDestinationSupported(destination QCameraImageCapture__CaptureDestination) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraCaptureDestinationControl::isCaptureDestinationSupported")
-		}
-	}()
+	defer qt.Recovering("QCameraCaptureDestinationControl::isCaptureDestinationSupported")
 
 	if ptr.Pointer() != nil {
 		return C.QCameraCaptureDestinationControl_IsCaptureDestinationSupported(ptr.Pointer(), C.int(destination)) != 0
@@ -101,11 +84,7 @@ func (ptr *QCameraCaptureDestinationControl) IsCaptureDestinationSupported(desti
 }
 
 func (ptr *QCameraCaptureDestinationControl) SetCaptureDestination(destination QCameraImageCapture__CaptureDestination) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraCaptureDestinationControl::setCaptureDestination")
-		}
-	}()
+	defer qt.Recovering("QCameraCaptureDestinationControl::setCaptureDestination")
 
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureDestinationControl_SetCaptureDestination(ptr.Pointer(), C.int(destination))
@@ -113,11 +92,7 @@ func (ptr *QCameraCaptureDestinationControl) SetCaptureDestination(destination Q
 }
 
 func (ptr *QCameraCaptureDestinationControl) DestroyQCameraCaptureDestinationControl() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QCameraCaptureDestinationControl::~QCameraCaptureDestinationControl")
-		}
-	}()
+	defer qt.Recovering("QCameraCaptureDestinationControl::~QCameraCaptureDestinationControl")
 
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControl(ptr.Pointer())

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQQmlNdefRecordFromPointer(ptr unsafe.Pointer) *QQmlNdefRecord {
 	var n = new(QQmlNdefRecord)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlNdefRecord_") {
-		n.SetObjectName("QQmlNdefRecord_" + qt.RandomIdentifier())
+		n.SetObjectName("QQmlNdefRecord_" + qt.Identifier())
 	}
 	return n
 }
@@ -51,11 +50,7 @@ const (
 )
 
 func (ptr *QQmlNdefRecord) TypeNameFormat() QQmlNdefRecord__TypeNameFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::typeNameFormat")
-		}
-	}()
+	defer qt.Recovering("QQmlNdefRecord::typeNameFormat")
 
 	if ptr.Pointer() != nil {
 		return QQmlNdefRecord__TypeNameFormat(C.QQmlNdefRecord_TypeNameFormat(ptr.Pointer()))
@@ -64,31 +59,19 @@ func (ptr *QQmlNdefRecord) TypeNameFormat() QQmlNdefRecord__TypeNameFormat {
 }
 
 func NewQQmlNdefRecord(parent core.QObject_ITF) *QQmlNdefRecord {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::QQmlNdefRecord")
-		}
-	}()
+	defer qt.Recovering("QQmlNdefRecord::QQmlNdefRecord")
 
 	return NewQQmlNdefRecordFromPointer(C.QQmlNdefRecord_NewQQmlNdefRecord(core.PointerFromQObject(parent)))
 }
 
 func NewQQmlNdefRecord2(record QNdefRecord_ITF, parent core.QObject_ITF) *QQmlNdefRecord {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::QQmlNdefRecord")
-		}
-	}()
+	defer qt.Recovering("QQmlNdefRecord::QQmlNdefRecord")
 
 	return NewQQmlNdefRecordFromPointer(C.QQmlNdefRecord_NewQQmlNdefRecord2(PointerFromQNdefRecord(record), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlNdefRecord) ConnectRecordChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::recordChanged")
-		}
-	}()
+	defer qt.Recovering("connect QQmlNdefRecord::recordChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_ConnectRecordChanged(ptr.Pointer())
@@ -97,11 +80,7 @@ func (ptr *QQmlNdefRecord) ConnectRecordChanged(f func()) {
 }
 
 func (ptr *QQmlNdefRecord) DisconnectRecordChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::recordChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QQmlNdefRecord::recordChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DisconnectRecordChanged(ptr.Pointer())
@@ -111,21 +90,17 @@ func (ptr *QQmlNdefRecord) DisconnectRecordChanged() {
 
 //export callbackQQmlNdefRecordRecordChanged
 func callbackQQmlNdefRecordRecordChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::recordChanged")
-		}
-	}()
+	defer qt.Recovering("callback QQmlNdefRecord::recordChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "recordChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "recordChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QQmlNdefRecord) SetRecord(record QNdefRecord_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::setRecord")
-		}
-	}()
+	defer qt.Recovering("QQmlNdefRecord::setRecord")
 
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_SetRecord(ptr.Pointer(), PointerFromQNdefRecord(record))
@@ -133,11 +108,7 @@ func (ptr *QQmlNdefRecord) SetRecord(record QNdefRecord_ITF) {
 }
 
 func (ptr *QQmlNdefRecord) SetType(newtype string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::setType")
-		}
-	}()
+	defer qt.Recovering("QQmlNdefRecord::setType")
 
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_SetType(ptr.Pointer(), C.CString(newtype))
@@ -145,11 +116,7 @@ func (ptr *QQmlNdefRecord) SetType(newtype string) {
 }
 
 func (ptr *QQmlNdefRecord) SetTypeNameFormat(newTypeNameFormat QQmlNdefRecord__TypeNameFormat) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::setTypeNameFormat")
-		}
-	}()
+	defer qt.Recovering("QQmlNdefRecord::setTypeNameFormat")
 
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_SetTypeNameFormat(ptr.Pointer(), C.int(newTypeNameFormat))
@@ -157,11 +124,7 @@ func (ptr *QQmlNdefRecord) SetTypeNameFormat(newTypeNameFormat QQmlNdefRecord__T
 }
 
 func (ptr *QQmlNdefRecord) Type() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::type")
-		}
-	}()
+	defer qt.Recovering("QQmlNdefRecord::type")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlNdefRecord_Type(ptr.Pointer()))
@@ -170,11 +133,7 @@ func (ptr *QQmlNdefRecord) Type() string {
 }
 
 func (ptr *QQmlNdefRecord) ConnectTypeChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::typeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QQmlNdefRecord::typeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_ConnectTypeChanged(ptr.Pointer())
@@ -183,11 +142,7 @@ func (ptr *QQmlNdefRecord) ConnectTypeChanged(f func()) {
 }
 
 func (ptr *QQmlNdefRecord) DisconnectTypeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::typeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QQmlNdefRecord::typeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DisconnectTypeChanged(ptr.Pointer())
@@ -197,21 +152,17 @@ func (ptr *QQmlNdefRecord) DisconnectTypeChanged() {
 
 //export callbackQQmlNdefRecordTypeChanged
 func callbackQQmlNdefRecordTypeChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::typeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QQmlNdefRecord::typeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "typeChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "typeChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QQmlNdefRecord) ConnectTypeNameFormatChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::typeNameFormatChanged")
-		}
-	}()
+	defer qt.Recovering("connect QQmlNdefRecord::typeNameFormatChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_ConnectTypeNameFormatChanged(ptr.Pointer())
@@ -220,11 +171,7 @@ func (ptr *QQmlNdefRecord) ConnectTypeNameFormatChanged(f func()) {
 }
 
 func (ptr *QQmlNdefRecord) DisconnectTypeNameFormatChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::typeNameFormatChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QQmlNdefRecord::typeNameFormatChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DisconnectTypeNameFormatChanged(ptr.Pointer())
@@ -234,11 +181,11 @@ func (ptr *QQmlNdefRecord) DisconnectTypeNameFormatChanged() {
 
 //export callbackQQmlNdefRecordTypeNameFormatChanged
 func callbackQQmlNdefRecordTypeNameFormatChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlNdefRecord::typeNameFormatChanged")
-		}
-	}()
+	defer qt.Recovering("callback QQmlNdefRecord::typeNameFormatChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "typeNameFormatChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "typeNameFormatChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }

@@ -3,9 +3,9 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -28,6 +28,9 @@ func PointerFromQGraphicsPathItem(ptr QGraphicsPathItem_ITF) unsafe.Pointer {
 func NewQGraphicsPathItemFromPointer(ptr unsafe.Pointer) *QGraphicsPathItem {
 	var n = new(QGraphicsPathItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QGraphicsPathItem_") {
+		n.SetObjectNameAbs("QGraphicsPathItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -36,11 +39,7 @@ func (ptr *QGraphicsPathItem) QGraphicsPathItem_PTR() *QGraphicsPathItem {
 }
 
 func (ptr *QGraphicsPathItem) Contains(point core.QPointF_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPathItem::contains")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPathItem::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QGraphicsPathItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
@@ -49,11 +48,7 @@ func (ptr *QGraphicsPathItem) Contains(point core.QPointF_ITF) bool {
 }
 
 func (ptr *QGraphicsPathItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPathItem::isObscuredBy")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPathItem::isObscuredBy")
 
 	if ptr.Pointer() != nil {
 		return C.QGraphicsPathItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
@@ -61,24 +56,39 @@ func (ptr *QGraphicsPathItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
 	return false
 }
 
-func (ptr *QGraphicsPathItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPathItem::paint")
-		}
-	}()
+func (ptr *QGraphicsPathItem) ConnectPaint(f func(painter *gui.QPainter, option *QStyleOptionGraphicsItem, widget *QWidget)) {
+	defer qt.Recovering("connect QGraphicsPathItem::paint")
 
 	if ptr.Pointer() != nil {
-		C.QGraphicsPathItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "paint", f)
 	}
 }
 
+func (ptr *QGraphicsPathItem) DisconnectPaint() {
+	defer qt.Recovering("disconnect QGraphicsPathItem::paint")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "paint")
+	}
+}
+
+//export callbackQGraphicsPathItemPaint
+func callbackQGraphicsPathItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsPathItem::paint")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paint")
+	if signal != nil {
+		defer signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGraphicsPathItem) SetPath(path gui.QPainterPath_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPathItem::setPath")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPathItem::setPath")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsPathItem_SetPath(ptr.Pointer(), gui.PointerFromQPainterPath(path))
@@ -86,11 +96,7 @@ func (ptr *QGraphicsPathItem) SetPath(path gui.QPainterPath_ITF) {
 }
 
 func (ptr *QGraphicsPathItem) Type() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPathItem::type")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPathItem::type")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGraphicsPathItem_Type(ptr.Pointer()))
@@ -99,13 +105,26 @@ func (ptr *QGraphicsPathItem) Type() int {
 }
 
 func (ptr *QGraphicsPathItem) DestroyQGraphicsPathItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsPathItem::~QGraphicsPathItem")
-		}
-	}()
+	defer qt.Recovering("QGraphicsPathItem::~QGraphicsPathItem")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsPathItem_DestroyQGraphicsPathItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsPathItem) ObjectNameAbs() string {
+	defer qt.Recovering("QGraphicsPathItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QGraphicsPathItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QGraphicsPathItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QGraphicsPathItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsPathItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

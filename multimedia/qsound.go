@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQSoundFromPointer(ptr unsafe.Pointer) *QSound {
 	var n = new(QSound)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSound_") {
-		n.SetObjectName("QSound_" + qt.RandomIdentifier())
+		n.SetObjectName("QSound_" + qt.Identifier())
 	}
 	return n
 }
@@ -46,11 +45,7 @@ const (
 )
 
 func (ptr *QSound) SetLoops(number int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSound::setLoops")
-		}
-	}()
+	defer qt.Recovering("QSound::setLoops")
 
 	if ptr.Pointer() != nil {
 		C.QSound_SetLoops(ptr.Pointer(), C.int(number))
@@ -58,21 +53,13 @@ func (ptr *QSound) SetLoops(number int) {
 }
 
 func NewQSound(filename string, parent core.QObject_ITF) *QSound {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSound::QSound")
-		}
-	}()
+	defer qt.Recovering("QSound::QSound")
 
 	return NewQSoundFromPointer(C.QSound_NewQSound(C.CString(filename), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSound) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSound::fileName")
-		}
-	}()
+	defer qt.Recovering("QSound::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSound_FileName(ptr.Pointer()))
@@ -81,11 +68,7 @@ func (ptr *QSound) FileName() string {
 }
 
 func (ptr *QSound) IsFinished() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSound::isFinished")
-		}
-	}()
+	defer qt.Recovering("QSound::isFinished")
 
 	if ptr.Pointer() != nil {
 		return C.QSound_IsFinished(ptr.Pointer()) != 0
@@ -94,11 +77,7 @@ func (ptr *QSound) IsFinished() bool {
 }
 
 func (ptr *QSound) Loops() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSound::loops")
-		}
-	}()
+	defer qt.Recovering("QSound::loops")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSound_Loops(ptr.Pointer()))
@@ -107,11 +86,7 @@ func (ptr *QSound) Loops() int {
 }
 
 func (ptr *QSound) LoopsRemaining() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSound::loopsRemaining")
-		}
-	}()
+	defer qt.Recovering("QSound::loopsRemaining")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSound_LoopsRemaining(ptr.Pointer()))
@@ -120,11 +95,7 @@ func (ptr *QSound) LoopsRemaining() int {
 }
 
 func (ptr *QSound) Play2() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSound::play")
-		}
-	}()
+	defer qt.Recovering("QSound::play")
 
 	if ptr.Pointer() != nil {
 		C.QSound_Play2(ptr.Pointer())
@@ -132,21 +103,13 @@ func (ptr *QSound) Play2() {
 }
 
 func QSound_Play(filename string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSound::play")
-		}
-	}()
+	defer qt.Recovering("QSound::play")
 
 	C.QSound_QSound_Play(C.CString(filename))
 }
 
 func (ptr *QSound) Stop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSound::stop")
-		}
-	}()
+	defer qt.Recovering("QSound::stop")
 
 	if ptr.Pointer() != nil {
 		C.QSound_Stop(ptr.Pointer())
@@ -154,11 +117,7 @@ func (ptr *QSound) Stop() {
 }
 
 func (ptr *QSound) DestroyQSound() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSound::~QSound")
-		}
-	}()
+	defer qt.Recovering("QSound::~QSound")
 
 	if ptr.Pointer() != nil {
 		C.QSound_DestroyQSound(ptr.Pointer())

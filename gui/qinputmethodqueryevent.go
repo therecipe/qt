@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,21 +35,13 @@ func (ptr *QInputMethodQueryEvent) QInputMethodQueryEvent_PTR() *QInputMethodQue
 }
 
 func NewQInputMethodQueryEvent(queries core.Qt__InputMethodQuery) *QInputMethodQueryEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputMethodQueryEvent::QInputMethodQueryEvent")
-		}
-	}()
+	defer qt.Recovering("QInputMethodQueryEvent::QInputMethodQueryEvent")
 
 	return NewQInputMethodQueryEventFromPointer(C.QInputMethodQueryEvent_NewQInputMethodQueryEvent(C.int(queries)))
 }
 
 func (ptr *QInputMethodQueryEvent) Queries() core.Qt__InputMethodQuery {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputMethodQueryEvent::queries")
-		}
-	}()
+	defer qt.Recovering("QInputMethodQueryEvent::queries")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__InputMethodQuery(C.QInputMethodQueryEvent_Queries(ptr.Pointer()))
@@ -58,11 +50,7 @@ func (ptr *QInputMethodQueryEvent) Queries() core.Qt__InputMethodQuery {
 }
 
 func (ptr *QInputMethodQueryEvent) SetValue(query core.Qt__InputMethodQuery, value core.QVariant_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputMethodQueryEvent::setValue")
-		}
-	}()
+	defer qt.Recovering("QInputMethodQueryEvent::setValue")
 
 	if ptr.Pointer() != nil {
 		C.QInputMethodQueryEvent_SetValue(ptr.Pointer(), C.int(query), core.PointerFromQVariant(value))
@@ -70,11 +58,7 @@ func (ptr *QInputMethodQueryEvent) SetValue(query core.Qt__InputMethodQuery, val
 }
 
 func (ptr *QInputMethodQueryEvent) Value(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QInputMethodQueryEvent::value")
-		}
-	}()
+	defer qt.Recovering("QInputMethodQueryEvent::value")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QInputMethodQueryEvent_Value(ptr.Pointer(), C.int(query)))

@@ -23,10 +23,15 @@
 
 class MyQScriptClass: public QScriptClass {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQScriptClass(QScriptEngine *engine) : QScriptClass(engine) {};
+protected:
 };
 
 void* QScriptClass_NewQScriptClass(void* engine){
-	return new QScriptClass(static_cast<QScriptEngine*>(engine));
+	return new MyQScriptClass(static_cast<QScriptEngine*>(engine));
 }
 
 void* QScriptClass_Engine(void* ptr){
@@ -57,9 +62,13 @@ void QScriptClass_DestroyQScriptClass(void* ptr){
 	static_cast<QScriptClass*>(ptr)->~QScriptClass();
 }
 
-class MyQScriptContext: public QScriptContext {
-public:
-};
+char* QScriptClass_ObjectNameAbs(void* ptr){
+	return static_cast<MyQScriptClass*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QScriptClass_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQScriptClass*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 void* QScriptContext_ActivationObject(void* ptr){
 	return new QScriptValue(static_cast<QScriptContext*>(ptr)->activationObject());
@@ -129,10 +138,6 @@ void QScriptContext_DestroyQScriptContext(void* ptr){
 	static_cast<QScriptContext*>(ptr)->~QScriptContext();
 }
 
-class MyQScriptContextInfo: public QScriptContextInfo {
-public:
-};
-
 void* QScriptContextInfo_NewQScriptContextInfo3(){
 	return new QScriptContextInfo();
 }
@@ -187,15 +192,18 @@ void QScriptContextInfo_DestroyQScriptContextInfo(void* ptr){
 
 class MyQScriptEngine: public QScriptEngine {
 public:
-void Signal_SignalHandlerException(const QScriptValue & exception){callbackQScriptEngineSignalHandlerException(this->objectName().toUtf8().data(), new QScriptValue(exception));};
+	MyQScriptEngine() : QScriptEngine() {};
+	MyQScriptEngine(QObject *parent) : QScriptEngine(parent) {};
+	void Signal_SignalHandlerException(const QScriptValue & exception) { callbackQScriptEngineSignalHandlerException(this->objectName().toUtf8().data(), new QScriptValue(exception)); };
+protected:
 };
 
 void* QScriptEngine_NewQScriptEngine(){
-	return new QScriptEngine();
+	return new MyQScriptEngine();
 }
 
 void* QScriptEngine_NewQScriptEngine2(void* parent){
-	return new QScriptEngine(static_cast<QObject*>(parent));
+	return new MyQScriptEngine(static_cast<QObject*>(parent));
 }
 
 void QScriptEngine_AbortEvaluation(void* ptr, void* result){
@@ -368,10 +376,17 @@ void QScriptEngine_DestroyQScriptEngine(void* ptr){
 
 class MyQScriptEngineAgent: public QScriptEngineAgent {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQScriptEngineAgent(QScriptEngine *engine) : QScriptEngineAgent(engine) {};
+	void contextPop() { if (!callbackQScriptEngineAgentContextPop(this->objectNameAbs().toUtf8().data())) { QScriptEngineAgent::contextPop(); }; };
+	void contextPush() { if (!callbackQScriptEngineAgentContextPush(this->objectNameAbs().toUtf8().data())) { QScriptEngineAgent::contextPush(); }; };
+protected:
 };
 
 void* QScriptEngineAgent_NewQScriptEngineAgent(void* engine){
-	return new QScriptEngineAgent(static_cast<QScriptEngine*>(engine));
+	return new MyQScriptEngineAgent(static_cast<QScriptEngine*>(engine));
 }
 
 void QScriptEngineAgent_ContextPop(void* ptr){
@@ -398,9 +413,13 @@ void QScriptEngineAgent_DestroyQScriptEngineAgent(void* ptr){
 	static_cast<QScriptEngineAgent*>(ptr)->~QScriptEngineAgent();
 }
 
-class MyQScriptExtensionPlugin: public QScriptExtensionPlugin {
-public:
-};
+char* QScriptEngineAgent_ObjectNameAbs(void* ptr){
+	return static_cast<MyQScriptEngineAgent*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QScriptEngineAgent_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQScriptEngineAgent*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 void QScriptExtensionPlugin_Initialize(void* ptr, char* key, void* engine){
 	static_cast<QScriptExtensionPlugin*>(ptr)->initialize(QString(key), static_cast<QScriptEngine*>(engine));
@@ -417,10 +436,6 @@ void* QScriptExtensionPlugin_SetupPackage(void* ptr, char* key, void* engine){
 void QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(void* ptr){
 	static_cast<QScriptExtensionPlugin*>(ptr)->~QScriptExtensionPlugin();
 }
-
-class MyQScriptProgram: public QScriptProgram {
-public:
-};
 
 void* QScriptProgram_NewQScriptProgram(){
 	return new QScriptProgram();
@@ -454,10 +469,6 @@ void QScriptProgram_DestroyQScriptProgram(void* ptr){
 	static_cast<QScriptProgram*>(ptr)->~QScriptProgram();
 }
 
-class MyQScriptString: public QScriptString {
-public:
-};
-
 void* QScriptString_NewQScriptString(){
 	return new QScriptString();
 }
@@ -478,10 +489,6 @@ void QScriptString_DestroyQScriptString(void* ptr){
 	static_cast<QScriptString*>(ptr)->~QScriptString();
 }
 
-class MyQScriptSyntaxCheckResult: public QScriptSyntaxCheckResult {
-public:
-};
-
 void* QScriptSyntaxCheckResult_NewQScriptSyntaxCheckResult(void* other){
 	return new QScriptSyntaxCheckResult(*static_cast<QScriptSyntaxCheckResult*>(other));
 }
@@ -501,10 +508,6 @@ char* QScriptSyntaxCheckResult_ErrorMessage(void* ptr){
 void QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(void* ptr){
 	static_cast<QScriptSyntaxCheckResult*>(ptr)->~QScriptSyntaxCheckResult();
 }
-
-class MyQScriptValue: public QScriptValue {
-public:
-};
 
 void* QScriptValue_NewQScriptValue(){
 	return new QScriptValue();
@@ -705,10 +708,6 @@ void* QScriptValue_ToVariant(void* ptr){
 void QScriptValue_DestroyQScriptValue(void* ptr){
 	static_cast<QScriptValue*>(ptr)->~QScriptValue();
 }
-
-class MyQScriptable: public QScriptable {
-public:
-};
 
 void* QScriptable_Argument(void* ptr, int index){
 	return new QScriptValue(static_cast<QScriptable*>(ptr)->argument(index));

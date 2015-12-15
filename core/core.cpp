@@ -38,7 +38,6 @@
 #include <QEventLoop>
 #include <QEventLoopLocker>
 #include <QEventTransition>
-#include <QException>
 #include <QFile>
 #include <QFileDevice>
 #include <QFileInfo>
@@ -72,9 +71,7 @@
 #include <QMargins>
 #include <QMarginsF>
 #include <QMessageAuthenticationCode>
-#include <QMessageLogContext>
 #include <QMessageLogger>
-#include <QMetaClassInfo>
 #include <QMetaEnum>
 #include <QMetaMethod>
 #include <QMetaObject>
@@ -149,7 +146,6 @@
 #include <QTimer>
 #include <QTimerEvent>
 #include <QTranslator>
-#include <QUnhandledException>
 #include <QUrl>
 #include <QUrlQuery>
 #include <QUuid>
@@ -168,10 +164,13 @@
 
 class MyQAbstractAnimation: public QAbstractAnimation {
 public:
-void Signal_CurrentLoopChanged(int currentLoop){callbackQAbstractAnimationCurrentLoopChanged(this->objectName().toUtf8().data(), currentLoop);};
-void Signal_DirectionChanged(QAbstractAnimation::Direction newDirection){callbackQAbstractAnimationDirectionChanged(this->objectName().toUtf8().data(), newDirection);};
-void Signal_Finished(){callbackQAbstractAnimationFinished(this->objectName().toUtf8().data());};
-void Signal_StateChanged(QAbstractAnimation::State newState, QAbstractAnimation::State oldState){callbackQAbstractAnimationStateChanged(this->objectName().toUtf8().data(), newState, oldState);};
+	void Signal_CurrentLoopChanged(int currentLoop) { callbackQAbstractAnimationCurrentLoopChanged(this->objectName().toUtf8().data(), currentLoop); };
+	void Signal_DirectionChanged(QAbstractAnimation::Direction newDirection) { callbackQAbstractAnimationDirectionChanged(this->objectName().toUtf8().data(), newDirection); };
+	void Signal_Finished() { callbackQAbstractAnimationFinished(this->objectName().toUtf8().data()); };
+	void Signal_StateChanged(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQAbstractAnimationStateChanged(this->objectName().toUtf8().data(), newState, oldState); };
+protected:
+	void updateDirection(QAbstractAnimation::Direction direction) { if (!callbackQAbstractAnimationUpdateDirection(this->objectName().toUtf8().data(), direction)) { QAbstractAnimation::updateDirection(direction); }; };
+	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { if (!callbackQAbstractAnimationUpdateState(this->objectName().toUtf8().data(), newState, oldState)) { QAbstractAnimation::updateState(newState, oldState); }; };
 };
 
 int QAbstractAnimation_CurrentLoop(void* ptr){
@@ -276,8 +275,9 @@ void QAbstractAnimation_DestroyQAbstractAnimation(void* ptr){
 
 class MyQAbstractEventDispatcher: public QAbstractEventDispatcher {
 public:
-void Signal_AboutToBlock(){callbackQAbstractEventDispatcherAboutToBlock(this->objectName().toUtf8().data());};
-void Signal_Awake(){callbackQAbstractEventDispatcherAwake(this->objectName().toUtf8().data());};
+	void Signal_AboutToBlock() { callbackQAbstractEventDispatcherAboutToBlock(this->objectName().toUtf8().data()); };
+	void Signal_Awake() { callbackQAbstractEventDispatcherAwake(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QAbstractEventDispatcher_ConnectAboutToBlock(void* ptr){
@@ -350,21 +350,25 @@ void QAbstractEventDispatcher_DestroyQAbstractEventDispatcher(void* ptr){
 
 class MyQAbstractItemModel: public QAbstractItemModel {
 public:
-void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last){callbackQAbstractItemModelColumnsAboutToBeInserted(this->objectName().toUtf8().data(), parent.internalPointer(), first, last);};
-void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn){callbackQAbstractItemModelColumnsAboutToBeMoved(this->objectName().toUtf8().data(), sourceParent.internalPointer(), sourceStart, sourceEnd, destinationParent.internalPointer(), destinationColumn);};
-void Signal_ColumnsAboutToBeRemoved(const QModelIndex & parent, int first, int last){callbackQAbstractItemModelColumnsAboutToBeRemoved(this->objectName().toUtf8().data(), parent.internalPointer(), first, last);};
-void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last){callbackQAbstractItemModelColumnsInserted(this->objectName().toUtf8().data(), parent.internalPointer(), first, last);};
-void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column){callbackQAbstractItemModelColumnsMoved(this->objectName().toUtf8().data(), parent.internalPointer(), start, end, destination.internalPointer(), column);};
-void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last){callbackQAbstractItemModelColumnsRemoved(this->objectName().toUtf8().data(), parent.internalPointer(), first, last);};
-void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last){callbackQAbstractItemModelHeaderDataChanged(this->objectName().toUtf8().data(), orientation, first, last);};
-void Signal_ModelAboutToBeReset(){callbackQAbstractItemModelModelAboutToBeReset(this->objectName().toUtf8().data());};
-void Signal_ModelReset(){callbackQAbstractItemModelModelReset(this->objectName().toUtf8().data());};
-void Signal_RowsAboutToBeInserted(const QModelIndex & parent, int start, int end){callbackQAbstractItemModelRowsAboutToBeInserted(this->objectName().toUtf8().data(), parent.internalPointer(), start, end);};
-void Signal_RowsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationRow){callbackQAbstractItemModelRowsAboutToBeMoved(this->objectName().toUtf8().data(), sourceParent.internalPointer(), sourceStart, sourceEnd, destinationParent.internalPointer(), destinationRow);};
-void Signal_RowsAboutToBeRemoved(const QModelIndex & parent, int first, int last){callbackQAbstractItemModelRowsAboutToBeRemoved(this->objectName().toUtf8().data(), parent.internalPointer(), first, last);};
-void Signal_RowsInserted(const QModelIndex & parent, int first, int last){callbackQAbstractItemModelRowsInserted(this->objectName().toUtf8().data(), parent.internalPointer(), first, last);};
-void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row){callbackQAbstractItemModelRowsMoved(this->objectName().toUtf8().data(), parent.internalPointer(), start, end, destination.internalPointer(), row);};
-void Signal_RowsRemoved(const QModelIndex & parent, int first, int last){callbackQAbstractItemModelRowsRemoved(this->objectName().toUtf8().data(), parent.internalPointer(), first, last);};
+	void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsAboutToBeInserted(this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
+	void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn) { callbackQAbstractItemModelColumnsAboutToBeMoved(this->objectName().toUtf8().data(), sourceParent.internalPointer(), sourceStart, sourceEnd, destinationParent.internalPointer(), destinationColumn); };
+	void Signal_ColumnsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsAboutToBeRemoved(this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
+	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsInserted(this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
+	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQAbstractItemModelColumnsMoved(this->objectName().toUtf8().data(), parent.internalPointer(), start, end, destination.internalPointer(), column); };
+	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsRemoved(this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
+	void fetchMore(const QModelIndex & parent) { if (!callbackQAbstractItemModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QAbstractItemModel::fetchMore(parent); }; };
+	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQAbstractItemModelHeaderDataChanged(this->objectName().toUtf8().data(), orientation, first, last); };
+	void Signal_ModelAboutToBeReset() { callbackQAbstractItemModelModelAboutToBeReset(this->objectName().toUtf8().data()); };
+	void Signal_ModelReset() { callbackQAbstractItemModelModelReset(this->objectName().toUtf8().data()); };
+	void revert() { if (!callbackQAbstractItemModelRevert(this->objectName().toUtf8().data())) { QAbstractItemModel::revert(); }; };
+	void Signal_RowsAboutToBeInserted(const QModelIndex & parent, int start, int end) { callbackQAbstractItemModelRowsAboutToBeInserted(this->objectName().toUtf8().data(), parent.internalPointer(), start, end); };
+	void Signal_RowsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationRow) { callbackQAbstractItemModelRowsAboutToBeMoved(this->objectName().toUtf8().data(), sourceParent.internalPointer(), sourceStart, sourceEnd, destinationParent.internalPointer(), destinationRow); };
+	void Signal_RowsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsAboutToBeRemoved(this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
+	void Signal_RowsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsInserted(this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
+	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackQAbstractItemModelRowsMoved(this->objectName().toUtf8().data(), parent.internalPointer(), start, end, destination.internalPointer(), row); };
+	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsRemoved(this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
+	void sort(int column, Qt::SortOrder order) { if (!callbackQAbstractItemModelSort(this->objectName().toUtf8().data(), column, order)) { QAbstractItemModel::sort(column, order); }; };
+protected:
 };
 
 void* QAbstractItemModel_Sibling(void* ptr, int row, int column, void* index){
@@ -633,6 +637,7 @@ void QAbstractItemModel_DestroyQAbstractItemModel(void* ptr){
 
 class MyQAbstractListModel: public QAbstractListModel {
 public:
+protected:
 };
 
 void* QAbstractListModel_Index(void* ptr, int row, int column, void* parent){
@@ -657,15 +662,32 @@ void QAbstractListModel_DestroyQAbstractListModel(void* ptr){
 
 class MyQAbstractNativeEventFilter: public QAbstractNativeEventFilter {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(void* ptr){
 	static_cast<QAbstractNativeEventFilter*>(ptr)->~QAbstractNativeEventFilter();
 }
 
+char* QAbstractNativeEventFilter_ObjectNameAbs(void* ptr){
+	return static_cast<MyQAbstractNativeEventFilter*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QAbstractNativeEventFilter_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQAbstractNativeEventFilter*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQAbstractProxyModel: public QAbstractProxyModel {
 public:
-void Signal_SourceModelChanged(){callbackQAbstractProxyModelSourceModelChanged(this->objectName().toUtf8().data());};
+	void fetchMore(const QModelIndex & parent) { if (!callbackQAbstractProxyModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QAbstractProxyModel::fetchMore(parent); }; };
+	void revert() { if (!callbackQAbstractProxyModelRevert(this->objectName().toUtf8().data())) { QAbstractProxyModel::revert(); }; };
+	void setSourceModel(QAbstractItemModel * sourceModel) { if (!callbackQAbstractProxyModelSetSourceModel(this->objectName().toUtf8().data(), sourceModel)) { QAbstractProxyModel::setSourceModel(sourceModel); }; };
+	void sort(int column, Qt::SortOrder order) { if (!callbackQAbstractProxyModelSort(this->objectName().toUtf8().data(), column, order)) { QAbstractProxyModel::sort(column, order); }; };
+	void Signal_SourceModelChanged() { callbackQAbstractProxyModelSourceModelChanged(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QAbstractProxyModel_Buddy(void* ptr, void* index){
@@ -770,9 +792,10 @@ void QAbstractProxyModel_DestroyQAbstractProxyModel(void* ptr){
 
 class MyQAbstractState: public QAbstractState {
 public:
-void Signal_ActiveChanged(bool active){callbackQAbstractStateActiveChanged(this->objectName().toUtf8().data(), active);};
-void Signal_Entered(){callbackQAbstractStateEntered(this->objectName().toUtf8().data());};
-void Signal_Exited(){callbackQAbstractStateExited(this->objectName().toUtf8().data());};
+	void Signal_ActiveChanged(bool active) { callbackQAbstractStateActiveChanged(this->objectName().toUtf8().data(), active); };
+	void Signal_Entered() { callbackQAbstractStateEntered(this->objectName().toUtf8().data()); };
+	void Signal_Exited() { callbackQAbstractStateExited(this->objectName().toUtf8().data()); };
+protected:
 };
 
 int QAbstractState_Active(void* ptr){
@@ -817,6 +840,7 @@ void QAbstractState_DestroyQAbstractState(void* ptr){
 
 class MyQAbstractTableModel: public QAbstractTableModel {
 public:
+protected:
 };
 
 void* QAbstractTableModel_Index(void* ptr, int row, int column, void* parent){
@@ -841,9 +865,10 @@ void QAbstractTableModel_DestroyQAbstractTableModel(void* ptr){
 
 class MyQAbstractTransition: public QAbstractTransition {
 public:
-void Signal_TargetStateChanged(){callbackQAbstractTransitionTargetStateChanged(this->objectName().toUtf8().data());};
-void Signal_TargetStatesChanged(){callbackQAbstractTransitionTargetStatesChanged(this->objectName().toUtf8().data());};
-void Signal_Triggered(){callbackQAbstractTransitionTriggered(this->objectName().toUtf8().data());};
+	void Signal_TargetStateChanged() { callbackQAbstractTransitionTargetStateChanged(this->objectName().toUtf8().data()); };
+	void Signal_TargetStatesChanged() { callbackQAbstractTransitionTargetStatesChanged(this->objectName().toUtf8().data()); };
+	void Signal_Triggered() { callbackQAbstractTransitionTriggered(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void QAbstractTransition_AddAnimation(void* ptr, void* animation){
@@ -906,10 +931,6 @@ void QAbstractTransition_DestroyQAbstractTransition(void* ptr){
 	static_cast<QAbstractTransition*>(ptr)->~QAbstractTransition();
 }
 
-class MyQAssociativeIterable: public QAssociativeIterable {
-public:
-};
-
 int QAssociativeIterable_Size(void* ptr){
 	return static_cast<QAssociativeIterable*>(ptr)->size();
 }
@@ -917,10 +938,6 @@ int QAssociativeIterable_Size(void* ptr){
 void* QAssociativeIterable_Value(void* ptr, void* key){
 	return new QVariant(static_cast<QAssociativeIterable*>(ptr)->value(*static_cast<QVariant*>(key)));
 }
-
-class MyQBasicTimer: public QBasicTimer {
-public:
-};
 
 void QBasicTimer_Start(void* ptr, int msec, void* object){
 	static_cast<QBasicTimer*>(ptr)->start(msec, static_cast<QObject*>(object));
@@ -949,10 +966,6 @@ int QBasicTimer_TimerId(void* ptr){
 void QBasicTimer_DestroyQBasicTimer(void* ptr){
 	static_cast<QBasicTimer*>(ptr)->~QBasicTimer();
 }
-
-class MyQBitArray: public QBitArray {
-public:
-};
 
 void* QBitArray_NewQBitArray(){
 	return new QBitArray();
@@ -1040,14 +1053,18 @@ void QBitArray_Truncate(void* ptr, int pos){
 
 class MyQBuffer: public QBuffer {
 public:
+	MyQBuffer(QByteArray *byteArray, QObject *parent) : QBuffer(byteArray, parent) {};
+	MyQBuffer(QObject *parent) : QBuffer(parent) {};
+	void close() { if (!callbackQBufferClose(this->objectName().toUtf8().data())) { QBuffer::close(); }; };
+protected:
 };
 
 void* QBuffer_NewQBuffer2(void* byteArray, void* parent){
-	return new QBuffer(static_cast<QByteArray*>(byteArray), static_cast<QObject*>(parent));
+	return new MyQBuffer(static_cast<QByteArray*>(byteArray), static_cast<QObject*>(parent));
 }
 
 void* QBuffer_NewQBuffer(void* parent){
-	return new QBuffer(static_cast<QObject*>(parent));
+	return new MyQBuffer(static_cast<QObject*>(parent));
 }
 
 int QBuffer_AtEnd(void* ptr){
@@ -1093,10 +1110,6 @@ void QBuffer_SetData2(void* ptr, char* data, int size){
 void QBuffer_DestroyQBuffer(void* ptr){
 	static_cast<QBuffer*>(ptr)->~QBuffer();
 }
-
-class MyQByteArray: public QByteArray {
-public:
-};
 
 void QByteArray_Clear(void* ptr){
 	static_cast<QByteArray*>(ptr)->clear();
@@ -1406,10 +1419,6 @@ void* QByteArray_Trimmed(void* ptr){
 	return new QByteArray(static_cast<QByteArray*>(ptr)->trimmed());
 }
 
-class MyQByteArrayList: public QByteArrayList {
-public:
-};
-
 void* QByteArrayList_Join(void* ptr){
 	return new QByteArray(static_cast<QByteArrayList*>(ptr)->join());
 }
@@ -1421,10 +1430,6 @@ void* QByteArrayList_Join3(void* ptr, char* separator){
 void* QByteArrayList_Join2(void* ptr, void* separator){
 	return new QByteArray(static_cast<QByteArrayList*>(ptr)->join(*static_cast<QByteArray*>(separator)));
 }
-
-class MyQByteArrayMatcher: public QByteArrayMatcher {
-public:
-};
 
 void* QByteArrayMatcher_NewQByteArrayMatcher(){
 	return new QByteArrayMatcher();
@@ -1461,10 +1466,6 @@ void QByteArrayMatcher_SetPattern(void* ptr, void* pattern){
 void QByteArrayMatcher_DestroyQByteArrayMatcher(void* ptr){
 	static_cast<QByteArrayMatcher*>(ptr)->~QByteArrayMatcher();
 }
-
-class MyQChar: public QChar {
-public:
-};
 
 void* QChar_NewQChar(){
 	return new QChar();
@@ -1594,10 +1595,6 @@ int QChar_UnicodeVersion(void* ptr){
 	return static_cast<QChar*>(ptr)->unicodeVersion();
 }
 
-class MyQChildEvent: public QChildEvent {
-public:
-};
-
 void* QChildEvent_NewQChildEvent(int ty, void* child){
 	return new QChildEvent(static_cast<QEvent::Type>(ty), static_cast<QObject*>(child));
 }
@@ -1617,10 +1614,6 @@ int QChildEvent_Polished(void* ptr){
 int QChildEvent_Removed(void* ptr){
 	return static_cast<QChildEvent*>(ptr)->removed();
 }
-
-class MyQCollator: public QCollator {
-public:
-};
 
 int QCollator_CaseSensitivity(void* ptr){
 	return static_cast<QCollator*>(ptr)->caseSensitivity();
@@ -1682,10 +1675,6 @@ int QCollator_Compare2(void* ptr, void* s1, void* s2){
 	return static_cast<QCollator*>(ptr)->compare(*static_cast<QStringRef*>(s1), *static_cast<QStringRef*>(s2));
 }
 
-class MyQCollatorSortKey: public QCollatorSortKey {
-public:
-};
-
 void* QCollatorSortKey_NewQCollatorSortKey(void* other){
 	return new QCollatorSortKey(*static_cast<QCollatorSortKey*>(other));
 }
@@ -1701,10 +1690,6 @@ void QCollatorSortKey_DestroyQCollatorSortKey(void* ptr){
 int QCollatorSortKey_Compare(void* ptr, void* otherKey){
 	return static_cast<QCollatorSortKey*>(ptr)->compare(*static_cast<QCollatorSortKey*>(otherKey));
 }
-
-class MyQCommandLineOption: public QCommandLineOption {
-public:
-};
 
 void* QCommandLineOption_NewQCommandLineOption5(void* other){
 	return new QCommandLineOption(*static_cast<QCommandLineOption*>(other));
@@ -1765,10 +1750,6 @@ char* QCommandLineOption_ValueName(void* ptr){
 void QCommandLineOption_DestroyQCommandLineOption(void* ptr){
 	static_cast<QCommandLineOption*>(ptr)->~QCommandLineOption();
 }
-
-class MyQCommandLineParser: public QCommandLineParser {
-public:
-};
 
 void* QCommandLineParser_NewQCommandLineParser(){
 	return new QCommandLineParser();
@@ -1876,7 +1857,9 @@ void QCommandLineParser_DestroyQCommandLineParser(void* ptr){
 
 class MyQCoreApplication: public QCoreApplication {
 public:
-void Signal_AboutToQuit(){callbackQCoreApplicationAboutToQuit(this->objectName().toUtf8().data());};
+	MyQCoreApplication(int &argc, char **argv) : QCoreApplication(argc, argv) {};
+	void Signal_AboutToQuit() { callbackQCoreApplicationAboutToQuit(this->objectName().toUtf8().data()); };
+protected:
 };
 
 char* QCoreApplication_QCoreApplication_ApplicationName(){
@@ -1918,7 +1901,7 @@ void* QCoreApplication_NewQCoreApplication(int argc, char* argv){
 	for (int i = 0; i < argc; i++)
 		argvs[i] = aList[i].data();
 
-	return new QCoreApplication(argcs, argvs);
+	return new MyQCoreApplication(argcs, argvs);
 }
 
 void QCoreApplication_ConnectAboutToQuit(void* ptr){
@@ -2069,10 +2052,6 @@ void QCoreApplication_DestroyQCoreApplication(void* ptr){
 	static_cast<QCoreApplication*>(ptr)->~QCoreApplication();
 }
 
-class MyQCryptographicHash: public QCryptographicHash {
-public:
-};
-
 void* QCryptographicHash_NewQCryptographicHash(int method){
 	return new QCryptographicHash(static_cast<QCryptographicHash::Algorithm>(method));
 }
@@ -2104,10 +2083,6 @@ void* QCryptographicHash_Result(void* ptr){
 void QCryptographicHash_DestroyQCryptographicHash(void* ptr){
 	static_cast<QCryptographicHash*>(ptr)->~QCryptographicHash();
 }
-
-class MyQDataStream: public QDataStream {
-public:
-};
 
 void* QDataStream_NewQDataStream3(void* a, int mode){
 	return new QDataStream(static_cast<QByteArray*>(a), static_cast<QIODevice::OpenModeFlag>(mode));
@@ -2188,10 +2163,6 @@ int QDataStream_WriteRawData(void* ptr, char* s, int len){
 void QDataStream_DestroyQDataStream(void* ptr){
 	static_cast<QDataStream*>(ptr)->~QDataStream();
 }
-
-class MyQDate: public QDate {
-public:
-};
 
 int QDate_QDate_IsLeapYear(int year){
 	return QDate::isLeapYear(year);
@@ -2280,10 +2251,6 @@ int QDate_WeekNumber(void* ptr, int yearNumber){
 int QDate_Year(void* ptr){
 	return static_cast<QDate*>(ptr)->year();
 }
-
-class MyQDateTime: public QDateTime {
-public:
-};
 
 void* QDateTime_QDateTime_CurrentDateTime(){
 	return new QDateTime(QDateTime::currentDateTime());
@@ -2417,10 +2384,6 @@ void QDateTime_DestroyQDateTime(void* ptr){
 	static_cast<QDateTime*>(ptr)->~QDateTime();
 }
 
-class MyQDebugStateSaver: public QDebugStateSaver {
-public:
-};
-
 void* QDebugStateSaver_NewQDebugStateSaver(void* dbg){
 	return new QDebugStateSaver(*static_cast<QDebug*>(dbg));
 }
@@ -2428,10 +2391,6 @@ void* QDebugStateSaver_NewQDebugStateSaver(void* dbg){
 void QDebugStateSaver_DestroyQDebugStateSaver(void* ptr){
 	static_cast<QDebugStateSaver*>(ptr)->~QDebugStateSaver();
 }
-
-class MyQDir: public QDir {
-public:
-};
 
 void* QDir_NewQDir(void* dir){
 	return new QDir(*static_cast<QDir*>(dir));
@@ -2657,10 +2616,6 @@ void QDir_DestroyQDir(void* ptr){
 	static_cast<QDir*>(ptr)->~QDir();
 }
 
-class MyQDynamicPropertyChangeEvent: public QDynamicPropertyChangeEvent {
-public:
-};
-
 void* QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(void* name){
 	return new QDynamicPropertyChangeEvent(*static_cast<QByteArray*>(name));
 }
@@ -2668,10 +2623,6 @@ void* QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(void* name){
 void* QDynamicPropertyChangeEvent_PropertyName(void* ptr){
 	return new QByteArray(static_cast<QDynamicPropertyChangeEvent*>(ptr)->propertyName());
 }
-
-class MyQEasingCurve: public QEasingCurve {
-public:
-};
 
 void* QEasingCurve_NewQEasingCurve3(void* other){
 	return new QEasingCurve(*static_cast<QEasingCurve*>(other));
@@ -2737,10 +2688,6 @@ void QEasingCurve_DestroyQEasingCurve(void* ptr){
 	static_cast<QEasingCurve*>(ptr)->~QEasingCurve();
 }
 
-class MyQElapsedTimer: public QElapsedTimer {
-public:
-};
-
 void* QElapsedTimer_NewQElapsedTimer(){
 	return new QElapsedTimer();
 }
@@ -2767,10 +2714,15 @@ void QElapsedTimer_Start(void* ptr){
 
 class MyQEvent: public QEvent {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQEvent(Type type) : QEvent(type) {};
+protected:
 };
 
 void* QEvent_NewQEvent(int ty){
-	return new QEvent(static_cast<QEvent::Type>(ty));
+	return new MyQEvent(static_cast<QEvent::Type>(ty));
 }
 
 void QEvent_Accept(void* ptr){
@@ -2805,12 +2757,22 @@ void QEvent_DestroyQEvent(void* ptr){
 	static_cast<QEvent*>(ptr)->~QEvent();
 }
 
+char* QEvent_ObjectNameAbs(void* ptr){
+	return static_cast<MyQEvent*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QEvent_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQEvent*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQEventLoop: public QEventLoop {
 public:
+	MyQEventLoop(QObject *parent) : QEventLoop(parent) {};
+protected:
 };
 
 void* QEventLoop_NewQEventLoop(void* parent){
-	return new QEventLoop(static_cast<QObject*>(parent));
+	return new MyQEventLoop(static_cast<QObject*>(parent));
 }
 
 int QEventLoop_Event(void* ptr, void* event){
@@ -2849,10 +2811,6 @@ void QEventLoop_DestroyQEventLoop(void* ptr){
 	static_cast<QEventLoop*>(ptr)->~QEventLoop();
 }
 
-class MyQEventLoopLocker: public QEventLoopLocker {
-public:
-};
-
 void* QEventLoopLocker_NewQEventLoopLocker(){
 	return new QEventLoopLocker();
 }
@@ -2871,14 +2829,18 @@ void QEventLoopLocker_DestroyQEventLoopLocker(void* ptr){
 
 class MyQEventTransition: public QEventTransition {
 public:
+	MyQEventTransition(QObject *object, QEvent::Type type, QState *sourceState) : QEventTransition(object, type, sourceState) {};
+	MyQEventTransition(QState *sourceState) : QEventTransition(sourceState) {};
+protected:
+	void onTransition(QEvent * event) { if (!callbackQEventTransitionOnTransition(this->objectName().toUtf8().data(), event)) { QEventTransition::onTransition(event); }; };
 };
 
 void* QEventTransition_NewQEventTransition2(void* object, int ty, void* sourceState){
-	return new QEventTransition(static_cast<QObject*>(object), static_cast<QEvent::Type>(ty), static_cast<QState*>(sourceState));
+	return new MyQEventTransition(static_cast<QObject*>(object), static_cast<QEvent::Type>(ty), static_cast<QState*>(sourceState));
 }
 
 void* QEventTransition_NewQEventTransition(void* sourceState){
-	return new QEventTransition(static_cast<QState*>(sourceState));
+	return new MyQEventTransition(static_cast<QState*>(sourceState));
 }
 
 void* QEventTransition_EventSource(void* ptr){
@@ -2901,32 +2863,24 @@ void QEventTransition_DestroyQEventTransition(void* ptr){
 	static_cast<QEventTransition*>(ptr)->~QEventTransition();
 }
 
-class MyQException: public QException {
-public:
-};
-
-void* QException_Clone(void* ptr){
-	return static_cast<QException*>(ptr)->clone();
-}
-
-void QException_Raise(void* ptr){
-	static_cast<QException*>(ptr)->raise();
-}
-
 class MyQFile: public QFile {
 public:
+	MyQFile(QObject *parent) : QFile(parent) {};
+	MyQFile(const QString &name) : QFile(name) {};
+	MyQFile(const QString &name, QObject *parent) : QFile(name, parent) {};
+protected:
 };
 
 void* QFile_NewQFile3(void* parent){
-	return new QFile(static_cast<QObject*>(parent));
+	return new MyQFile(static_cast<QObject*>(parent));
 }
 
 void* QFile_NewQFile(char* name){
-	return new QFile(QString(name));
+	return new MyQFile(QString(name));
 }
 
 void* QFile_NewQFile4(char* name, void* parent){
-	return new QFile(QString(name), static_cast<QObject*>(parent));
+	return new MyQFile(QString(name), static_cast<QObject*>(parent));
 }
 
 int QFile_QFile_Copy2(char* fileName, char* newName){
@@ -3019,6 +2973,8 @@ void QFile_DestroyQFile(void* ptr){
 
 class MyQFileDevice: public QFileDevice {
 public:
+	void close() { if (!callbackQFileDeviceClose(this->objectName().toUtf8().data())) { QFileDevice::close(); }; };
+protected:
 };
 
 int QFileDevice_AtEnd(void* ptr){
@@ -3064,10 +3020,6 @@ void QFileDevice_UnsetError(void* ptr){
 void QFileDevice_DestroyQFileDevice(void* ptr){
 	static_cast<QFileDevice*>(ptr)->~QFileDevice();
 }
-
-class MyQFileInfo: public QFileInfo {
-public:
-};
 
 void* QFileInfo_NewQFileInfo(){
 	return new QFileInfo();
@@ -3261,10 +3213,6 @@ void QFileInfo_DestroyQFileInfo(void* ptr){
 	static_cast<QFileInfo*>(ptr)->~QFileInfo();
 }
 
-class MyQFileSelector: public QFileSelector {
-public:
-};
-
 void* QFileSelector_NewQFileSelector(void* parent){
 	return new QFileSelector(static_cast<QObject*>(parent));
 }
@@ -3291,8 +3239,9 @@ void QFileSelector_DestroyQFileSelector(void* ptr){
 
 class MyQFileSystemWatcher: public QFileSystemWatcher {
 public:
-void Signal_DirectoryChanged(const QString & path){callbackQFileSystemWatcherDirectoryChanged(this->objectName().toUtf8().data(), path.toUtf8().data());};
-void Signal_FileChanged(const QString & path){callbackQFileSystemWatcherFileChanged(this->objectName().toUtf8().data(), path.toUtf8().data());};
+	void Signal_DirectoryChanged(const QString & path) { callbackQFileSystemWatcherDirectoryChanged(this->objectName().toUtf8().data(), path.toUtf8().data()); };
+	void Signal_FileChanged(const QString & path) { callbackQFileSystemWatcherFileChanged(this->objectName().toUtf8().data(), path.toUtf8().data()); };
+protected:
 };
 
 char* QFileSystemWatcher_Directories(void* ptr){
@@ -3349,48 +3298,45 @@ void QFileSystemWatcher_DestroyQFileSystemWatcher(void* ptr){
 
 class MyQFinalState: public QFinalState {
 public:
+	MyQFinalState(QState *parent) : QFinalState(parent) {};
+protected:
+	void onEntry(QEvent * event) { if (!callbackQFinalStateOnEntry(this->objectName().toUtf8().data(), event)) { QFinalState::onEntry(event); }; };
+	void onExit(QEvent * event) { if (!callbackQFinalStateOnExit(this->objectName().toUtf8().data(), event)) { QFinalState::onExit(event); }; };
 };
 
 void* QFinalState_NewQFinalState(void* parent){
-	return new QFinalState(static_cast<QState*>(parent));
+	return new MyQFinalState(static_cast<QState*>(parent));
 }
 
 void QFinalState_DestroyQFinalState(void* ptr){
 	static_cast<QFinalState*>(ptr)->~QFinalState();
 }
 
-class MyQFlag: public QFlag {
-public:
-};
-
 void* QFlag_NewQFlag(int value){
 	return new QFlag(value);
 }
-
-class MyQGenericArgument: public QGenericArgument {
-public:
-};
 
 void* QGenericArgument_Data(void* ptr){
 	return static_cast<QGenericArgument*>(ptr)->data();
 }
 
-class MyQGenericReturnArgument: public QGenericReturnArgument {
-public:
-};
-
 class MyQHistoryState: public QHistoryState {
 public:
-void Signal_DefaultStateChanged(){callbackQHistoryStateDefaultStateChanged(this->objectName().toUtf8().data());};
-void Signal_HistoryTypeChanged(){callbackQHistoryStateHistoryTypeChanged(this->objectName().toUtf8().data());};
+	MyQHistoryState(HistoryType type, QState *parent) : QHistoryState(type, parent) {};
+	MyQHistoryState(QState *parent) : QHistoryState(parent) {};
+	void Signal_DefaultStateChanged() { callbackQHistoryStateDefaultStateChanged(this->objectName().toUtf8().data()); };
+	void Signal_HistoryTypeChanged() { callbackQHistoryStateHistoryTypeChanged(this->objectName().toUtf8().data()); };
+protected:
+	void onEntry(QEvent * event) { if (!callbackQHistoryStateOnEntry(this->objectName().toUtf8().data(), event)) { QHistoryState::onEntry(event); }; };
+	void onExit(QEvent * event) { if (!callbackQHistoryStateOnExit(this->objectName().toUtf8().data(), event)) { QHistoryState::onExit(event); }; };
 };
 
 void* QHistoryState_NewQHistoryState2(int ty, void* parent){
-	return new QHistoryState(static_cast<QHistoryState::HistoryType>(ty), static_cast<QState*>(parent));
+	return new MyQHistoryState(static_cast<QHistoryState::HistoryType>(ty), static_cast<QState*>(parent));
 }
 
 void* QHistoryState_NewQHistoryState(void* parent){
-	return new QHistoryState(static_cast<QState*>(parent));
+	return new MyQHistoryState(static_cast<QState*>(parent));
 }
 
 void* QHistoryState_DefaultState(void* ptr){
@@ -3431,9 +3377,11 @@ void QHistoryState_DestroyQHistoryState(void* ptr){
 
 class MyQIODevice: public QIODevice {
 public:
-void Signal_AboutToClose(){callbackQIODeviceAboutToClose(this->objectName().toUtf8().data());};
-void Signal_ReadChannelFinished(){callbackQIODeviceReadChannelFinished(this->objectName().toUtf8().data());};
-void Signal_ReadyRead(){callbackQIODeviceReadyRead(this->objectName().toUtf8().data());};
+	void Signal_AboutToClose() { callbackQIODeviceAboutToClose(this->objectName().toUtf8().data()); };
+	void close() { if (!callbackQIODeviceClose(this->objectName().toUtf8().data())) { QIODevice::close(); }; };
+	void Signal_ReadChannelFinished() { callbackQIODeviceReadChannelFinished(this->objectName().toUtf8().data()); };
+	void Signal_ReadyRead() { callbackQIODeviceReadyRead(this->objectName().toUtf8().data()); };
+protected:
 };
 
 int QIODevice_GetChar(void* ptr, char* c){
@@ -3542,10 +3490,13 @@ void QIODevice_DestroyQIODevice(void* ptr){
 
 class MyQIdentityProxyModel: public QIdentityProxyModel {
 public:
+	MyQIdentityProxyModel(QObject *parent) : QIdentityProxyModel(parent) {};
+	void setSourceModel(QAbstractItemModel * newSourceModel) { if (!callbackQIdentityProxyModelSetSourceModel(this->objectName().toUtf8().data(), newSourceModel)) { QIdentityProxyModel::setSourceModel(newSourceModel); }; };
+protected:
 };
 
 void* QIdentityProxyModel_NewQIdentityProxyModel(void* parent){
-	return new QIdentityProxyModel(static_cast<QObject*>(parent));
+	return new MyQIdentityProxyModel(static_cast<QObject*>(parent));
 }
 
 int QIdentityProxyModel_ColumnCount(void* ptr, void* parent){
@@ -3608,10 +3559,6 @@ void QIdentityProxyModel_DestroyQIdentityProxyModel(void* ptr){
 	static_cast<QIdentityProxyModel*>(ptr)->~QIdentityProxyModel();
 }
 
-class MyQItemSelection: public QItemSelection {
-public:
-};
-
 void* QItemSelection_NewQItemSelection(){
 	return new QItemSelection();
 }
@@ -3638,18 +3585,26 @@ void QItemSelection_QItemSelection_Split(void* ran, void* other, void* result){
 
 class MyQItemSelectionModel: public QItemSelectionModel {
 public:
-void Signal_CurrentChanged(const QModelIndex & current, const QModelIndex & previous){callbackQItemSelectionModelCurrentChanged(this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer());};
-void Signal_CurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous){callbackQItemSelectionModelCurrentColumnChanged(this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer());};
-void Signal_CurrentRowChanged(const QModelIndex & current, const QModelIndex & previous){callbackQItemSelectionModelCurrentRowChanged(this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer());};
-void Signal_ModelChanged(QAbstractItemModel * model){callbackQItemSelectionModelModelChanged(this->objectName().toUtf8().data(), model);};
+	MyQItemSelectionModel(QAbstractItemModel *model) : QItemSelectionModel(model) {};
+	MyQItemSelectionModel(QAbstractItemModel *model, QObject *parent) : QItemSelectionModel(model, parent) {};
+	void clear() { if (!callbackQItemSelectionModelClear(this->objectName().toUtf8().data())) { QItemSelectionModel::clear(); }; };
+	void clearCurrentIndex() { if (!callbackQItemSelectionModelClearCurrentIndex(this->objectName().toUtf8().data())) { QItemSelectionModel::clearCurrentIndex(); }; };
+	void Signal_CurrentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentChanged(this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
+	void Signal_CurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentColumnChanged(this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
+	void Signal_CurrentRowChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentRowChanged(this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
+	void Signal_ModelChanged(QAbstractItemModel * model) { callbackQItemSelectionModelModelChanged(this->objectName().toUtf8().data(), model); };
+	void reset() { if (!callbackQItemSelectionModelReset(this->objectName().toUtf8().data())) { QItemSelectionModel::reset(); }; };
+	void select(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { if (!callbackQItemSelectionModelSelect(this->objectName().toUtf8().data(), index.internalPointer(), command)) { QItemSelectionModel::select(index, command); }; };
+	void setCurrentIndex(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { if (!callbackQItemSelectionModelSetCurrentIndex(this->objectName().toUtf8().data(), index.internalPointer(), command)) { QItemSelectionModel::setCurrentIndex(index, command); }; };
+protected:
 };
 
 void* QItemSelectionModel_NewQItemSelectionModel(void* model){
-	return new QItemSelectionModel(static_cast<QAbstractItemModel*>(model));
+	return new MyQItemSelectionModel(static_cast<QAbstractItemModel*>(model));
 }
 
 void* QItemSelectionModel_NewQItemSelectionModel2(void* model, void* parent){
-	return new QItemSelectionModel(static_cast<QAbstractItemModel*>(model), static_cast<QObject*>(parent));
+	return new MyQItemSelectionModel(static_cast<QAbstractItemModel*>(model), static_cast<QObject*>(parent));
 }
 
 void QItemSelectionModel_Clear(void* ptr){
@@ -3736,10 +3691,6 @@ int QItemSelectionModel_RowIntersectsSelection(void* ptr, int row, void* parent)
 	return static_cast<QItemSelectionModel*>(ptr)->rowIntersectsSelection(row, *static_cast<QModelIndex*>(parent));
 }
 
-void QItemSelectionModel_Select2(void* ptr, void* selection, int command){
-	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "select", Q_ARG(QItemSelection, *static_cast<QItemSelection*>(selection)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
-}
-
 void QItemSelectionModel_Select(void* ptr, void* index, int command){
 	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "select", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
 }
@@ -3755,10 +3706,6 @@ void QItemSelectionModel_SetModel(void* ptr, void* model){
 void QItemSelectionModel_DestroyQItemSelectionModel(void* ptr){
 	static_cast<QItemSelectionModel*>(ptr)->~QItemSelectionModel();
 }
-
-class MyQItemSelectionRange: public QItemSelectionRange {
-public:
-};
 
 int QItemSelectionRange_Intersects(void* ptr, void* other){
 	return static_cast<QItemSelectionRange*>(ptr)->intersects(*static_cast<QItemSelectionRange*>(other));
@@ -3828,10 +3775,6 @@ int QItemSelectionRange_Width(void* ptr){
 	return static_cast<QItemSelectionRange*>(ptr)->width();
 }
 
-class MyQJsonArray: public QJsonArray {
-public:
-};
-
 void QJsonArray_Append(void* ptr, void* value){
 	static_cast<QJsonArray*>(ptr)->append(*static_cast<QJsonValue*>(value));
 }
@@ -3895,10 +3838,6 @@ int QJsonArray_Size(void* ptr){
 void QJsonArray_DestroyQJsonArray(void* ptr){
 	static_cast<QJsonArray*>(ptr)->~QJsonArray();
 }
-
-class MyQJsonDocument: public QJsonDocument {
-public:
-};
 
 void* QJsonDocument_NewQJsonDocument(){
 	return new QJsonDocument();
@@ -3980,10 +3919,6 @@ void QJsonDocument_DestroyQJsonDocument(void* ptr){
 	static_cast<QJsonDocument*>(ptr)->~QJsonDocument();
 }
 
-class MyQJsonObject: public QJsonObject {
-public:
-};
-
 int QJsonObject_Contains(void* ptr, char* key){
 	return static_cast<QJsonObject*>(ptr)->contains(QString(key));
 }
@@ -4016,17 +3951,9 @@ void QJsonObject_DestroyQJsonObject(void* ptr){
 	static_cast<QJsonObject*>(ptr)->~QJsonObject();
 }
 
-class MyQJsonParseError: public QJsonParseError {
-public:
-};
-
 char* QJsonParseError_ErrorString(void* ptr){
 	return static_cast<QJsonParseError*>(ptr)->errorString().toUtf8().data();
 }
-
-class MyQJsonValue: public QJsonValue {
-public:
-};
 
 void* QJsonValue_NewQJsonValue5(void* s){
 	return new QJsonValue(*static_cast<QLatin1String*>(s));
@@ -4132,17 +4059,9 @@ void QJsonValue_DestroyQJsonValue(void* ptr){
 	static_cast<QJsonValue*>(ptr)->~QJsonValue();
 }
 
-class MyQLatin1Char: public QLatin1Char {
-public:
-};
-
 void* QLatin1Char_NewQLatin1Char(char* c){
 	return new QLatin1Char(*c);
 }
-
-class MyQLatin1String: public QLatin1String {
-public:
-};
 
 void* QLatin1String_NewQLatin1String3(void* str){
 	return new QLatin1String(*static_cast<QByteArray*>(str));
@@ -4159,10 +4078,6 @@ void* QLatin1String_NewQLatin1String2(char* str, int size){
 int QLatin1String_Size(void* ptr){
 	return static_cast<QLatin1String*>(ptr)->size();
 }
-
-class MyQLibrary: public QLibrary {
-public:
-};
 
 char* QLibrary_FileName(void* ptr){
 	return static_cast<QLibrary*>(ptr)->fileName().toUtf8().data();
@@ -4228,10 +4143,6 @@ void QLibrary_DestroyQLibrary(void* ptr){
 	static_cast<QLibrary*>(ptr)->~QLibrary();
 }
 
-class MyQLibraryInfo: public QLibraryInfo {
-public:
-};
-
 int QLibraryInfo_QLibraryInfo_IsDebugBuild(){
 	return QLibraryInfo::isDebugBuild();
 }
@@ -4247,10 +4158,6 @@ char* QLibraryInfo_QLibraryInfo_Licensee(){
 char* QLibraryInfo_QLibraryInfo_Location(int loc){
 	return QLibraryInfo::location(static_cast<QLibraryInfo::LibraryLocation>(loc)).toUtf8().data();
 }
-
-class MyQLine: public QLine {
-public:
-};
 
 void* QLine_NewQLine(){
 	return new QLine();
@@ -4274,6 +4181,14 @@ int QLine_Dy(void* ptr){
 
 int QLine_IsNull(void* ptr){
 	return static_cast<QLine*>(ptr)->isNull();
+}
+
+void* QLine_P1(void* ptr){
+	return new QPoint(static_cast<QPoint>(static_cast<QLine*>(ptr)->p1()).x(), static_cast<QPoint>(static_cast<QLine*>(ptr)->p1()).y());
+}
+
+void* QLine_P2(void* ptr){
+	return new QPoint(static_cast<QPoint>(static_cast<QLine*>(ptr)->p2()).x(), static_cast<QPoint>(static_cast<QLine*>(ptr)->p2()).y());
 }
 
 void QLine_SetLine(void* ptr, int x1, int y1, int x2, int y2){
@@ -4315,10 +4230,6 @@ int QLine_Y1(void* ptr){
 int QLine_Y2(void* ptr){
 	return static_cast<QLine*>(ptr)->y2();
 }
-
-class MyQLineF: public QLineF {
-public:
-};
 
 double QLineF_AngleTo(void* ptr, void* line){
 	return static_cast<double>(static_cast<QLineF*>(ptr)->angleTo(*static_cast<QLineF*>(line)));
@@ -4411,10 +4322,6 @@ double QLineF_Y1(void* ptr){
 double QLineF_Y2(void* ptr){
 	return static_cast<double>(static_cast<QLineF*>(ptr)->y2());
 }
-
-class MyQLocale: public QLocale {
-public:
-};
 
 void* QLocale_NewQLocale(){
 	return new QLocale();
@@ -4616,10 +4523,6 @@ void QLocale_DestroyQLocale(void* ptr){
 	static_cast<QLocale*>(ptr)->~QLocale();
 }
 
-class MyQLockFile: public QLockFile {
-public:
-};
-
 void* QLockFile_NewQLockFile(char* fileName){
 	return new QLockFile(QString(fileName));
 }
@@ -4660,10 +4563,6 @@ void QLockFile_Unlock(void* ptr){
 	static_cast<QLockFile*>(ptr)->unlock();
 }
 
-class MyQLoggingCategory: public QLoggingCategory {
-public:
-};
-
 void* QLoggingCategory_NewQLoggingCategory(char* category){
 	return new QLoggingCategory(const_cast<const char*>(category));
 }
@@ -4695,10 +4594,6 @@ void QLoggingCategory_QLoggingCategory_SetFilterRules(char* rules){
 void QLoggingCategory_DestroyQLoggingCategory(void* ptr){
 	static_cast<QLoggingCategory*>(ptr)->~QLoggingCategory();
 }
-
-class MyQMargins: public QMargins {
-public:
-};
 
 void* QMargins_NewQMargins(){
 	return new QMargins();
@@ -4743,10 +4638,6 @@ void QMargins_SetTop(void* ptr, int Top){
 int QMargins_Top(void* ptr){
 	return static_cast<QMargins*>(ptr)->top();
 }
-
-class MyQMarginsF: public QMarginsF {
-public:
-};
 
 void* QMarginsF_NewQMarginsF(){
 	return new QMarginsF();
@@ -4796,10 +4687,6 @@ double QMarginsF_Top(void* ptr){
 	return static_cast<double>(static_cast<QMarginsF*>(ptr)->top());
 }
 
-class MyQMessageAuthenticationCode: public QMessageAuthenticationCode {
-public:
-};
-
 void* QMessageAuthenticationCode_NewQMessageAuthenticationCode(int method, void* key){
 	return new QMessageAuthenticationCode(static_cast<QCryptographicHash::Algorithm>(method), *static_cast<QByteArray*>(key));
 }
@@ -4836,14 +4723,6 @@ void QMessageAuthenticationCode_DestroyQMessageAuthenticationCode(void* ptr){
 	static_cast<QMessageAuthenticationCode*>(ptr)->~QMessageAuthenticationCode();
 }
 
-class MyQMessageLogContext: public QMessageLogContext {
-public:
-};
-
-class MyQMessageLogger: public QMessageLogger {
-public:
-};
-
 void* QMessageLogger_NewQMessageLogger(){
 	return new QMessageLogger();
 }
@@ -4855,14 +4734,6 @@ void* QMessageLogger_NewQMessageLogger2(char* file, int line, char* function){
 void* QMessageLogger_NewQMessageLogger3(char* file, int line, char* function, char* category){
 	return new QMessageLogger(const_cast<const char*>(file), line, const_cast<const char*>(function), const_cast<const char*>(category));
 }
-
-class MyQMetaClassInfo: public QMetaClassInfo {
-public:
-};
-
-class MyQMetaEnum: public QMetaEnum {
-public:
-};
 
 int QMetaEnum_IsFlag(void* ptr){
 	return static_cast<QMetaEnum*>(ptr)->isFlag();
@@ -4891,10 +4762,6 @@ int QMetaEnum_Value(void* ptr, int index){
 void* QMetaEnum_ValueToKeys(void* ptr, int value){
 	return new QByteArray(static_cast<QMetaEnum*>(ptr)->valueToKeys(value));
 }
-
-class MyQMetaMethod: public QMetaMethod {
-public:
-};
 
 int QMetaMethod_Access(void* ptr){
 	return static_cast<QMetaMethod*>(ptr)->access();
@@ -4951,10 +4818,6 @@ int QMetaMethod_ReturnType(void* ptr){
 int QMetaMethod_Revision(void* ptr){
 	return static_cast<QMetaMethod*>(ptr)->revision();
 }
-
-class MyQMetaObject: public QMetaObject {
-public:
-};
 
 void QMetaObject_QMetaObject_ConnectSlotsByName(void* object){
 	QMetaObject::connectSlotsByName(static_cast<QObject*>(object));
@@ -5064,10 +4927,6 @@ void* QMetaObject_SuperClass(void* ptr){
 	return const_cast<QMetaObject*>(static_cast<QMetaObject*>(ptr)->superClass());
 }
 
-class MyQMetaProperty: public QMetaProperty {
-public:
-};
-
 int QMetaProperty_HasNotifySignal(void* ptr){
 	return static_cast<QMetaProperty*>(ptr)->hasNotifySignal();
 }
@@ -5148,10 +5007,6 @@ int QMetaProperty_Write(void* ptr, void* object, void* value){
 	return static_cast<QMetaProperty*>(ptr)->write(static_cast<QObject*>(object), *static_cast<QVariant*>(value));
 }
 
-class MyQMetaType: public QMetaType {
-public:
-};
-
 void* QMetaType_NewQMetaType(int typeId){
 	return new QMetaType(typeId);
 }
@@ -5206,10 +5061,12 @@ void QMetaType_DestroyQMetaType(void* ptr){
 
 class MyQMimeData: public QMimeData {
 public:
+	MyQMimeData() : QMimeData() {};
+protected:
 };
 
 void* QMimeData_NewQMimeData(){
-	return new QMimeData();
+	return new MyQMimeData();
 }
 
 void QMimeData_Clear(void* ptr){
@@ -5292,10 +5149,6 @@ void QMimeData_DestroyQMimeData(void* ptr){
 	static_cast<QMimeData*>(ptr)->~QMimeData();
 }
 
-class MyQMimeDatabase: public QMimeDatabase {
-public:
-};
-
 void* QMimeDatabase_NewQMimeDatabase(){
 	return new QMimeDatabase();
 }
@@ -5307,10 +5160,6 @@ void QMimeDatabase_DestroyQMimeDatabase(void* ptr){
 char* QMimeDatabase_SuffixForFileName(void* ptr, char* fileName){
 	return static_cast<QMimeDatabase*>(ptr)->suffixForFileName(QString(fileName)).toUtf8().data();
 }
-
-class MyQMimeType: public QMimeType {
-public:
-};
 
 void* QMimeType_NewQMimeType(){
 	return new QMimeType();
@@ -5384,10 +5233,6 @@ void QMimeType_Swap(void* ptr, void* other){
 	static_cast<QMimeType*>(ptr)->swap(*static_cast<QMimeType*>(other));
 }
 
-class MyQModelIndex: public QModelIndex {
-public:
-};
-
 void* QModelIndex_NewQModelIndex(){
 	return new QModelIndex();
 }
@@ -5432,10 +5277,6 @@ void* QModelIndex_Sibling(void* ptr, int row, int column){
 	return static_cast<QModelIndex*>(ptr)->sibling(row, column).internalPointer();
 }
 
-class MyQMutex: public QMutex {
-public:
-};
-
 void QMutex_Lock(void* ptr){
 	static_cast<QMutex*>(ptr)->lock();
 }
@@ -5455,10 +5296,6 @@ void* QMutex_NewQMutex(int mode){
 int QMutex_IsRecursive(void* ptr){
 	return static_cast<QMutex*>(ptr)->isRecursive();
 }
-
-class MyQMutexLocker: public QMutexLocker {
-public:
-};
 
 void* QMutexLocker_NewQMutexLocker(void* mutex){
 	return new QMutexLocker(static_cast<QMutex*>(mutex));
@@ -5482,8 +5319,13 @@ void QMutexLocker_DestroyQMutexLocker(void* ptr){
 
 class MyQObject: public QObject {
 public:
-void Signal_Destroyed(QObject * obj){callbackQObjectDestroyed(this->objectName().toUtf8().data(), obj);};
-void Signal_ObjectNameChanged(const QString & objectName){callbackQObjectObjectNameChanged(this->objectName().toUtf8().data(), objectName.toUtf8().data());};
+	MyQObject(QObject *parent) : QObject(parent) {};
+	void Signal_Destroyed(QObject * obj) { callbackQObjectDestroyed(this->objectName().toUtf8().data(), obj); };
+	void Signal_ObjectNameChanged(const QString & objectName) { callbackQObjectObjectNameChanged(this->objectName().toUtf8().data(), objectName.toUtf8().data()); };
+protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQObjectTimerEvent(this->objectName().toUtf8().data(), event)) { QObject::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQObjectChildEvent(this->objectName().toUtf8().data(), event)) { QObject::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQObjectCustomEvent(this->objectName().toUtf8().data(), event)) { QObject::customEvent(event); }; };
 };
 
 void QObject_InstallEventFilter(void* ptr, void* filterObj){
@@ -5499,7 +5341,7 @@ void QObject_SetObjectName(void* ptr, char* name){
 }
 
 void* QObject_NewQObject(void* parent){
-	return new QObject(static_cast<QObject*>(parent));
+	return new MyQObject(static_cast<QObject*>(parent));
 }
 
 int QObject_BlockSignals(void* ptr, int block){
@@ -5610,10 +5452,6 @@ void QObject_DestroyQObject(void* ptr){
 	static_cast<QObject*>(ptr)->~QObject();
 }
 
-class MyQObjectCleanupHandler: public QObjectCleanupHandler {
-public:
-};
-
 void* QObjectCleanupHandler_NewQObjectCleanupHandler(){
 	return new QObjectCleanupHandler();
 }
@@ -5636,6 +5474,10 @@ void QObjectCleanupHandler_DestroyQObjectCleanupHandler(void* ptr){
 
 class MyQParallelAnimationGroup: public QParallelAnimationGroup {
 public:
+protected:
+	void updateCurrentTime(int currentTime) { if (!callbackQParallelAnimationGroupUpdateCurrentTime(this->objectName().toUtf8().data(), currentTime)) { QParallelAnimationGroup::updateCurrentTime(currentTime); }; };
+	void updateDirection(QAbstractAnimation::Direction direction) { if (!callbackQParallelAnimationGroupUpdateDirection(this->objectName().toUtf8().data(), direction)) { QParallelAnimationGroup::updateDirection(direction); }; };
+	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { if (!callbackQParallelAnimationGroupUpdateState(this->objectName().toUtf8().data(), newState, oldState)) { QParallelAnimationGroup::updateState(newState, oldState); }; };
 };
 
 int QParallelAnimationGroup_Duration(void* ptr){
@@ -5648,6 +5490,10 @@ void QParallelAnimationGroup_DestroyQParallelAnimationGroup(void* ptr){
 
 class MyQPauseAnimation: public QPauseAnimation {
 public:
+	MyQPauseAnimation(QObject *parent) : QPauseAnimation(parent) {};
+	MyQPauseAnimation(int msecs, QObject *parent) : QPauseAnimation(msecs, parent) {};
+protected:
+	void updateCurrentTime(int v) { if (!callbackQPauseAnimationUpdateCurrentTime(this->objectName().toUtf8().data(), v)) { QPauseAnimation::updateCurrentTime(v); }; };
 };
 
 int QPauseAnimation_Duration(void* ptr){
@@ -5659,20 +5505,16 @@ void QPauseAnimation_SetDuration(void* ptr, int msecs){
 }
 
 void* QPauseAnimation_NewQPauseAnimation(void* parent){
-	return new QPauseAnimation(static_cast<QObject*>(parent));
+	return new MyQPauseAnimation(static_cast<QObject*>(parent));
 }
 
 void* QPauseAnimation_NewQPauseAnimation2(int msecs, void* parent){
-	return new QPauseAnimation(msecs, static_cast<QObject*>(parent));
+	return new MyQPauseAnimation(msecs, static_cast<QObject*>(parent));
 }
 
 void QPauseAnimation_DestroyQPauseAnimation(void* ptr){
 	static_cast<QPauseAnimation*>(ptr)->~QPauseAnimation();
 }
-
-class MyQPersistentModelIndex: public QPersistentModelIndex {
-public:
-};
 
 void* QPersistentModelIndex_NewQPersistentModelIndex3(void* other){
 	return new QPersistentModelIndex(*static_cast<QPersistentModelIndex*>(other));
@@ -5726,10 +5568,6 @@ void QPersistentModelIndex_Swap(void* ptr, void* other){
 	static_cast<QPersistentModelIndex*>(ptr)->swap(*static_cast<QPersistentModelIndex*>(other));
 }
 
-class MyQPluginLoader: public QPluginLoader {
-public:
-};
-
 char* QPluginLoader_FileName(void* ptr){
 	return static_cast<QPluginLoader*>(ptr)->fileName().toUtf8().data();
 }
@@ -5782,10 +5620,6 @@ void QPluginLoader_DestroyQPluginLoader(void* ptr){
 	static_cast<QPluginLoader*>(ptr)->~QPluginLoader();
 }
 
-class MyQPoint: public QPoint {
-public:
-};
-
 void* QPoint_NewQPoint(){
 	return new QPoint();
 }
@@ -5830,10 +5664,6 @@ int QPoint_Y(void* ptr){
 	return static_cast<QPoint*>(ptr)->y();
 }
 
-class MyQPointF: public QPointF {
-public:
-};
-
 void* QPointF_NewQPointF(){
 	return new QPointF();
 }
@@ -5874,6 +5704,10 @@ void QPointF_SetY(void* ptr, double y){
 	static_cast<QPointF*>(ptr)->setY(static_cast<qreal>(y));
 }
 
+void* QPointF_ToPoint(void* ptr){
+	return new QPoint(static_cast<QPoint>(static_cast<QPointF*>(ptr)->toPoint()).x(), static_cast<QPoint>(static_cast<QPointF*>(ptr)->toPoint()).y());
+}
+
 double QPointF_X(void* ptr){
 	return static_cast<double>(static_cast<QPointF*>(ptr)->x());
 }
@@ -5884,15 +5718,19 @@ double QPointF_Y(void* ptr){
 
 class MyQProcess: public QProcess {
 public:
-void Signal_Finished(int exitCode, QProcess::ExitStatus exitStatus){callbackQProcessFinished(this->objectName().toUtf8().data(), exitCode, exitStatus);};
-void Signal_ReadyReadStandardError(){callbackQProcessReadyReadStandardError(this->objectName().toUtf8().data());};
-void Signal_ReadyReadStandardOutput(){callbackQProcessReadyReadStandardOutput(this->objectName().toUtf8().data());};
-void Signal_Started(){callbackQProcessStarted(this->objectName().toUtf8().data());};
-void Signal_StateChanged(QProcess::ProcessState newState){callbackQProcessStateChanged(this->objectName().toUtf8().data(), newState);};
+	MyQProcess(QObject *parent) : QProcess(parent) {};
+	void close() { if (!callbackQProcessClose(this->objectName().toUtf8().data())) { QProcess::close(); }; };
+	void Signal_Finished(int exitCode, QProcess::ExitStatus exitStatus) { callbackQProcessFinished(this->objectName().toUtf8().data(), exitCode, exitStatus); };
+	void Signal_ReadyReadStandardError() { callbackQProcessReadyReadStandardError(this->objectName().toUtf8().data()); };
+	void Signal_ReadyReadStandardOutput() { callbackQProcessReadyReadStandardOutput(this->objectName().toUtf8().data()); };
+	void Signal_Started() { callbackQProcessStarted(this->objectName().toUtf8().data()); };
+	void Signal_StateChanged(QProcess::ProcessState newState) { callbackQProcessStateChanged(this->objectName().toUtf8().data(), newState); };
+protected:
+	void setupChildProcess() { if (!callbackQProcessSetupChildProcess(this->objectName().toUtf8().data())) { QProcess::setupChildProcess(); }; };
 };
 
 void* QProcess_NewQProcess(void* parent){
-	return new QProcess(static_cast<QObject*>(parent));
+	return new MyQProcess(static_cast<QObject*>(parent));
 }
 
 char* QProcess_Arguments(void* ptr){
@@ -6111,10 +5949,6 @@ void QProcess_DestroyQProcess(void* ptr){
 	static_cast<QProcess*>(ptr)->~QProcess();
 }
 
-class MyQProcessEnvironment: public QProcessEnvironment {
-public:
-};
-
 void* QProcessEnvironment_NewQProcessEnvironment(){
 	return new QProcessEnvironment();
 }
@@ -6157,6 +5991,11 @@ void QProcessEnvironment_DestroyQProcessEnvironment(void* ptr){
 
 class MyQPropertyAnimation: public QPropertyAnimation {
 public:
+	MyQPropertyAnimation(QObject *parent) : QPropertyAnimation(parent) {};
+	MyQPropertyAnimation(QObject *target, const QByteArray &propertyName, QObject *parent) : QPropertyAnimation(target, propertyName, parent) {};
+protected:
+	void updateCurrentValue(const QVariant & value) { if (!callbackQPropertyAnimationUpdateCurrentValue(this->objectName().toUtf8().data(), new QVariant(value))) { QPropertyAnimation::updateCurrentValue(value); }; };
+	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { if (!callbackQPropertyAnimationUpdateState(this->objectName().toUtf8().data(), newState, oldState)) { QPropertyAnimation::updateState(newState, oldState); }; };
 };
 
 void* QPropertyAnimation_PropertyName(void* ptr){
@@ -6176,20 +6015,16 @@ void* QPropertyAnimation_TargetObject(void* ptr){
 }
 
 void* QPropertyAnimation_NewQPropertyAnimation(void* parent){
-	return new QPropertyAnimation(static_cast<QObject*>(parent));
+	return new MyQPropertyAnimation(static_cast<QObject*>(parent));
 }
 
 void* QPropertyAnimation_NewQPropertyAnimation2(void* target, void* propertyName, void* parent){
-	return new QPropertyAnimation(static_cast<QObject*>(target), *static_cast<QByteArray*>(propertyName), static_cast<QObject*>(parent));
+	return new MyQPropertyAnimation(static_cast<QObject*>(target), *static_cast<QByteArray*>(propertyName), static_cast<QObject*>(parent));
 }
 
 void QPropertyAnimation_DestroyQPropertyAnimation(void* ptr){
 	static_cast<QPropertyAnimation*>(ptr)->~QPropertyAnimation();
 }
-
-class MyQReadLocker: public QReadLocker {
-public:
-};
 
 void* QReadLocker_NewQReadLocker(void* lock){
 	return new QReadLocker(static_cast<QReadWriteLock*>(lock));
@@ -6210,10 +6045,6 @@ void QReadLocker_Unlock(void* ptr){
 void QReadLocker_DestroyQReadLocker(void* ptr){
 	static_cast<QReadLocker*>(ptr)->~QReadLocker();
 }
-
-class MyQReadWriteLock: public QReadWriteLock {
-public:
-};
 
 void* QReadWriteLock_NewQReadWriteLock(int recursionMode){
 	return new QReadWriteLock(static_cast<QReadWriteLock::RecursionMode>(recursionMode));
@@ -6251,10 +6082,6 @@ void QReadWriteLock_DestroyQReadWriteLock(void* ptr){
 	static_cast<QReadWriteLock*>(ptr)->~QReadWriteLock();
 }
 
-class MyQRect: public QRect {
-public:
-};
-
 int QRect_Contains(void* ptr, void* point, int proper){
 	return static_cast<QRect*>(ptr)->contains(*static_cast<QPoint*>(point), proper != 0);
 }
@@ -6289,6 +6116,18 @@ void QRect_Adjust(void* ptr, int dx1, int dy1, int dx2, int dy2){
 
 int QRect_Bottom(void* ptr){
 	return static_cast<QRect*>(ptr)->bottom();
+}
+
+void* QRect_BottomLeft(void* ptr){
+	return new QPoint(static_cast<QPoint>(static_cast<QRect*>(ptr)->bottomLeft()).x(), static_cast<QPoint>(static_cast<QRect*>(ptr)->bottomLeft()).y());
+}
+
+void* QRect_BottomRight(void* ptr){
+	return new QPoint(static_cast<QPoint>(static_cast<QRect*>(ptr)->bottomRight()).x(), static_cast<QPoint>(static_cast<QRect*>(ptr)->bottomRight()).y());
+}
+
+void* QRect_Center(void* ptr){
+	return new QPoint(static_cast<QPoint>(static_cast<QRect*>(ptr)->center()).x(), static_cast<QPoint>(static_cast<QRect*>(ptr)->center()).y());
 }
 
 int QRect_Contains3(void* ptr, int x, int y){
@@ -6439,6 +6278,14 @@ int QRect_Top(void* ptr){
 	return static_cast<QRect*>(ptr)->top();
 }
 
+void* QRect_TopLeft(void* ptr){
+	return new QPoint(static_cast<QPoint>(static_cast<QRect*>(ptr)->topLeft()).x(), static_cast<QPoint>(static_cast<QRect*>(ptr)->topLeft()).y());
+}
+
+void* QRect_TopRight(void* ptr){
+	return new QPoint(static_cast<QPoint>(static_cast<QRect*>(ptr)->topRight()).x(), static_cast<QPoint>(static_cast<QRect*>(ptr)->topRight()).y());
+}
+
 void QRect_Translate2(void* ptr, void* offset){
 	static_cast<QRect*>(ptr)->translate(*static_cast<QPoint*>(offset));
 }
@@ -6458,10 +6305,6 @@ int QRect_X(void* ptr){
 int QRect_Y(void* ptr){
 	return static_cast<QRect*>(ptr)->y();
 }
-
-class MyQRectF: public QRectF {
-public:
-};
 
 int QRectF_Contains(void* ptr, void* point){
 	return static_cast<QRectF*>(ptr)->contains(*static_cast<QPointF*>(point));
@@ -6659,10 +6502,6 @@ double QRectF_Y(void* ptr){
 	return static_cast<double>(static_cast<QRectF*>(ptr)->y());
 }
 
-class MyQRegExp: public QRegExp {
-public:
-};
-
 void* QRegExp_NewQRegExp(){
 	return new QRegExp();
 }
@@ -6763,10 +6602,6 @@ void QRegExp_DestroyQRegExp(void* ptr){
 	static_cast<QRegExp*>(ptr)->~QRegExp();
 }
 
-class MyQRegularExpression: public QRegularExpression {
-public:
-};
-
 void* QRegularExpression_NewQRegularExpression(){
 	return new QRegularExpression();
 }
@@ -6846,10 +6681,6 @@ void QRegularExpression_Swap(void* ptr, void* other){
 void QRegularExpression_DestroyQRegularExpression(void* ptr){
 	static_cast<QRegularExpression*>(ptr)->~QRegularExpression();
 }
-
-class MyQRegularExpressionMatch: public QRegularExpressionMatch {
-public:
-};
 
 void* QRegularExpressionMatch_NewQRegularExpressionMatch(){
 	return new QRegularExpressionMatch();
@@ -6939,10 +6770,6 @@ void QRegularExpressionMatch_DestroyQRegularExpressionMatch(void* ptr){
 	static_cast<QRegularExpressionMatch*>(ptr)->~QRegularExpressionMatch();
 }
 
-class MyQResource: public QResource {
-public:
-};
-
 int QResource_QResource_RegisterResource(char* rccFileName, char* mapRoot){
 	return QResource::registerResource(QString(rccFileName), QString(mapRoot));
 }
@@ -6985,6 +6812,10 @@ void QResource_DestroyQResource(void* ptr){
 
 class MyQRunnable: public QRunnable {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 int QRunnable_AutoDelete(void* ptr){
@@ -7003,20 +6834,32 @@ void QRunnable_DestroyQRunnable(void* ptr){
 	static_cast<QRunnable*>(ptr)->~QRunnable();
 }
 
+char* QRunnable_ObjectNameAbs(void* ptr){
+	return static_cast<MyQRunnable*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QRunnable_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQRunnable*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQSaveFile: public QSaveFile {
 public:
+	MyQSaveFile(QObject *parent) : QSaveFile(parent) {};
+	MyQSaveFile(const QString &name) : QSaveFile(name) {};
+	MyQSaveFile(const QString &name, QObject *parent) : QSaveFile(name, parent) {};
+protected:
 };
 
 void* QSaveFile_NewQSaveFile2(void* parent){
-	return new QSaveFile(static_cast<QObject*>(parent));
+	return new MyQSaveFile(static_cast<QObject*>(parent));
 }
 
 void* QSaveFile_NewQSaveFile(char* name){
-	return new QSaveFile(QString(name));
+	return new MyQSaveFile(QString(name));
 }
 
 void* QSaveFile_NewQSaveFile3(char* name, void* parent){
-	return new QSaveFile(QString(name), static_cast<QObject*>(parent));
+	return new MyQSaveFile(QString(name), static_cast<QObject*>(parent));
 }
 
 void QSaveFile_CancelWriting(void* ptr){
@@ -7051,10 +6894,6 @@ void QSaveFile_DestroyQSaveFile(void* ptr){
 	static_cast<QSaveFile*>(ptr)->~QSaveFile();
 }
 
-class MyQSemaphore: public QSemaphore {
-public:
-};
-
 void* QSemaphore_NewQSemaphore(int n){
 	return new QSemaphore(n);
 }
@@ -7085,7 +6924,11 @@ void QSemaphore_DestroyQSemaphore(void* ptr){
 
 class MyQSequentialAnimationGroup: public QSequentialAnimationGroup {
 public:
-void Signal_CurrentAnimationChanged(QAbstractAnimation * current){callbackQSequentialAnimationGroupCurrentAnimationChanged(this->objectName().toUtf8().data(), current);};
+	void Signal_CurrentAnimationChanged(QAbstractAnimation * current) { callbackQSequentialAnimationGroupCurrentAnimationChanged(this->objectName().toUtf8().data(), current); };
+protected:
+	void updateCurrentTime(int currentTime) { if (!callbackQSequentialAnimationGroupUpdateCurrentTime(this->objectName().toUtf8().data(), currentTime)) { QSequentialAnimationGroup::updateCurrentTime(currentTime); }; };
+	void updateDirection(QAbstractAnimation::Direction direction) { if (!callbackQSequentialAnimationGroupUpdateDirection(this->objectName().toUtf8().data(), direction)) { QSequentialAnimationGroup::updateDirection(direction); }; };
+	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { if (!callbackQSequentialAnimationGroupUpdateState(this->objectName().toUtf8().data(), newState, oldState)) { QSequentialAnimationGroup::updateState(newState, oldState); }; };
 };
 
 void* QSequentialAnimationGroup_CurrentAnimation(void* ptr){
@@ -7116,10 +6959,6 @@ void QSequentialAnimationGroup_DestroyQSequentialAnimationGroup(void* ptr){
 	static_cast<QSequentialAnimationGroup*>(ptr)->~QSequentialAnimationGroup();
 }
 
-class MyQSequentialIterable: public QSequentialIterable {
-public:
-};
-
 void* QSequentialIterable_At(void* ptr, int idx){
 	return new QVariant(static_cast<QSequentialIterable*>(ptr)->at(idx));
 }
@@ -7134,26 +6973,32 @@ int QSequentialIterable_Size(void* ptr){
 
 class MyQSettings: public QSettings {
 public:
+	MyQSettings(Format format, Scope scope, const QString &organization, const QString &application, QObject *parent) : QSettings(format, scope, organization, application, parent) {};
+	MyQSettings(QObject *parent) : QSettings(parent) {};
+	MyQSettings(Scope scope, const QString &organization, const QString &application, QObject *parent) : QSettings(scope, organization, application, parent) {};
+	MyQSettings(const QString &fileName, Format format, QObject *parent) : QSettings(fileName, format, parent) {};
+	MyQSettings(const QString &organization, const QString &application, QObject *parent) : QSettings(organization, application, parent) {};
+protected:
 };
 
 void* QSettings_NewQSettings3(int format, int scope, char* organization, char* application, void* parent){
-	return new QSettings(static_cast<QSettings::Format>(format), static_cast<QSettings::Scope>(scope), QString(organization), QString(application), static_cast<QObject*>(parent));
+	return new MyQSettings(static_cast<QSettings::Format>(format), static_cast<QSettings::Scope>(scope), QString(organization), QString(application), static_cast<QObject*>(parent));
 }
 
 void* QSettings_NewQSettings5(void* parent){
-	return new QSettings(static_cast<QObject*>(parent));
+	return new MyQSettings(static_cast<QObject*>(parent));
 }
 
 void* QSettings_NewQSettings2(int scope, char* organization, char* application, void* parent){
-	return new QSettings(static_cast<QSettings::Scope>(scope), QString(organization), QString(application), static_cast<QObject*>(parent));
+	return new MyQSettings(static_cast<QSettings::Scope>(scope), QString(organization), QString(application), static_cast<QObject*>(parent));
 }
 
 void* QSettings_NewQSettings4(char* fileName, int format, void* parent){
-	return new QSettings(QString(fileName), static_cast<QSettings::Format>(format), static_cast<QObject*>(parent));
+	return new MyQSettings(QString(fileName), static_cast<QSettings::Format>(format), static_cast<QObject*>(parent));
 }
 
 void* QSettings_NewQSettings(char* organization, char* application, void* parent){
-	return new QSettings(QString(organization), QString(application), static_cast<QObject*>(parent));
+	return new MyQSettings(QString(organization), QString(application), static_cast<QObject*>(parent));
 }
 
 char* QSettings_AllKeys(void* ptr){
@@ -7280,10 +7125,6 @@ void QSettings_DestroyQSettings(void* ptr){
 	static_cast<QSettings*>(ptr)->~QSettings();
 }
 
-class MyQSharedData: public QSharedData {
-public:
-};
-
 void* QSharedData_NewQSharedData(){
 	return new QSharedData();
 }
@@ -7291,10 +7132,6 @@ void* QSharedData_NewQSharedData(){
 void* QSharedData_NewQSharedData2(void* other){
 	return new QSharedData(*static_cast<QSharedData*>(other));
 }
-
-class MyQSharedMemory: public QSharedMemory {
-public:
-};
 
 void* QSharedMemory_NewQSharedMemory2(void* parent){
 	return new QSharedMemory(static_cast<QObject*>(parent));
@@ -7372,10 +7209,6 @@ void QSharedMemory_DestroyQSharedMemory(void* ptr){
 	static_cast<QSharedMemory*>(ptr)->~QSharedMemory();
 }
 
-class MyQSignalBlocker: public QSignalBlocker {
-public:
-};
-
 void QSignalBlocker_Reblock(void* ptr){
 	static_cast<QSignalBlocker*>(ptr)->reblock();
 }
@@ -7390,7 +7223,8 @@ void QSignalBlocker_DestroyQSignalBlocker(void* ptr){
 
 class MyQSignalMapper: public QSignalMapper {
 public:
-void Signal_Mapped(int i){callbackQSignalMapperMapped(this->objectName().toUtf8().data(), i);};
+	void Signal_Mapped(int i) { callbackQSignalMapperMapped(this->objectName().toUtf8().data(), i); };
+protected:
 };
 
 void* QSignalMapper_NewQSignalMapper(void* parent){
@@ -7447,16 +7281,20 @@ void QSignalMapper_DestroyQSignalMapper(void* ptr){
 
 class MyQSignalTransition: public QSignalTransition {
 public:
-void Signal_SenderObjectChanged(){callbackQSignalTransitionSenderObjectChanged(this->objectName().toUtf8().data());};
-void Signal_SignalChanged(){callbackQSignalTransitionSignalChanged(this->objectName().toUtf8().data());};
+	MyQSignalTransition(QState *sourceState) : QSignalTransition(sourceState) {};
+	MyQSignalTransition(const QObject *sender, const char *signal, QState *sourceState) : QSignalTransition(sender, signal, sourceState) {};
+	void Signal_SenderObjectChanged() { callbackQSignalTransitionSenderObjectChanged(this->objectName().toUtf8().data()); };
+	void Signal_SignalChanged() { callbackQSignalTransitionSignalChanged(this->objectName().toUtf8().data()); };
+protected:
+	void onTransition(QEvent * event) { if (!callbackQSignalTransitionOnTransition(this->objectName().toUtf8().data(), event)) { QSignalTransition::onTransition(event); }; };
 };
 
 void* QSignalTransition_NewQSignalTransition(void* sourceState){
-	return new QSignalTransition(static_cast<QState*>(sourceState));
+	return new MyQSignalTransition(static_cast<QState*>(sourceState));
 }
 
 void* QSignalTransition_NewQSignalTransition2(void* sender, char* signal, void* sourceState){
-	return new QSignalTransition(static_cast<QObject*>(sender), const_cast<const char*>(signal), static_cast<QState*>(sourceState));
+	return new MyQSignalTransition(static_cast<QObject*>(sender), const_cast<const char*>(signal), static_cast<QState*>(sourceState));
 }
 
 void* QSignalTransition_SenderObject(void* ptr){
@@ -7494,10 +7332,6 @@ void QSignalTransition_DisconnectSignalChanged(void* ptr){
 void QSignalTransition_DestroyQSignalTransition(void* ptr){
 	static_cast<QSignalTransition*>(ptr)->~QSignalTransition();
 }
-
-class MyQSize: public QSize {
-public:
-};
 
 void* QSize_NewQSize(){
 	return new QSize();
@@ -7554,10 +7388,6 @@ void QSize_Transpose(void* ptr){
 int QSize_Width(void* ptr){
 	return static_cast<QSize*>(ptr)->width();
 }
-
-class MyQSizeF: public QSizeF {
-public:
-};
 
 void* QSizeF_NewQSizeF(){
 	return new QSizeF();
@@ -7621,7 +7451,8 @@ double QSizeF_Width(void* ptr){
 
 class MyQSocketNotifier: public QSocketNotifier {
 public:
-void Signal_Activated(int socket){callbackQSocketNotifierActivated(this->objectName().toUtf8().data(), socket);};
+	void Signal_Activated(int socket) { callbackQSocketNotifierActivated(this->objectName().toUtf8().data(), socket); };
+protected:
 };
 
 void QSocketNotifier_ConnectActivated(void* ptr){
@@ -7650,6 +7481,11 @@ void QSocketNotifier_DestroyQSocketNotifier(void* ptr){
 
 class MyQSortFilterProxyModel: public QSortFilterProxyModel {
 public:
+	MyQSortFilterProxyModel(QObject *parent) : QSortFilterProxyModel(parent) {};
+	void fetchMore(const QModelIndex & parent) { if (!callbackQSortFilterProxyModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QSortFilterProxyModel::fetchMore(parent); }; };
+	void setSourceModel(QAbstractItemModel * sourceModel) { if (!callbackQSortFilterProxyModelSetSourceModel(this->objectName().toUtf8().data(), sourceModel)) { QSortFilterProxyModel::setSourceModel(sourceModel); }; };
+	void sort(int column, Qt::SortOrder order) { if (!callbackQSortFilterProxyModelSort(this->objectName().toUtf8().data(), column, order)) { QSortFilterProxyModel::sort(column, order); }; };
+protected:
 };
 
 int QSortFilterProxyModel_DynamicSortFilter(void* ptr){
@@ -7717,7 +7553,7 @@ int QSortFilterProxyModel_SortRole(void* ptr){
 }
 
 void* QSortFilterProxyModel_NewQSortFilterProxyModel(void* parent){
-	return new QSortFilterProxyModel(static_cast<QObject*>(parent));
+	return new MyQSortFilterProxyModel(static_cast<QObject*>(parent));
 }
 
 void* QSortFilterProxyModel_Buddy(void* ptr, void* index){
@@ -7848,10 +7684,6 @@ void QSortFilterProxyModel_DestroyQSortFilterProxyModel(void* ptr){
 	static_cast<QSortFilterProxyModel*>(ptr)->~QSortFilterProxyModel();
 }
 
-class MyQStandardPaths: public QStandardPaths {
-public:
-};
-
 void QStandardPaths_QStandardPaths_SetTestModeEnabled(int testMode){
 	QStandardPaths::setTestModeEnabled(testMode != 0);
 }
@@ -7882,19 +7714,24 @@ char* QStandardPaths_QStandardPaths_WritableLocation(int ty){
 
 class MyQState: public QState {
 public:
-void Signal_ChildModeChanged(){callbackQStateChildModeChanged(this->objectName().toUtf8().data());};
-void Signal_ErrorStateChanged(){callbackQStateErrorStateChanged(this->objectName().toUtf8().data());};
-void Signal_Finished(){callbackQStateFinished(this->objectName().toUtf8().data());};
-void Signal_InitialStateChanged(){callbackQStateInitialStateChanged(this->objectName().toUtf8().data());};
-void Signal_PropertiesAssigned(){callbackQStatePropertiesAssigned(this->objectName().toUtf8().data());};
+	MyQState(ChildMode childMode, QState *parent) : QState(childMode, parent) {};
+	MyQState(QState *parent) : QState(parent) {};
+	void Signal_ChildModeChanged() { callbackQStateChildModeChanged(this->objectName().toUtf8().data()); };
+	void Signal_ErrorStateChanged() { callbackQStateErrorStateChanged(this->objectName().toUtf8().data()); };
+	void Signal_Finished() { callbackQStateFinished(this->objectName().toUtf8().data()); };
+	void Signal_InitialStateChanged() { callbackQStateInitialStateChanged(this->objectName().toUtf8().data()); };
+	void Signal_PropertiesAssigned() { callbackQStatePropertiesAssigned(this->objectName().toUtf8().data()); };
+protected:
+	void onEntry(QEvent * event) { if (!callbackQStateOnEntry(this->objectName().toUtf8().data(), event)) { QState::onEntry(event); }; };
+	void onExit(QEvent * event) { if (!callbackQStateOnExit(this->objectName().toUtf8().data(), event)) { QState::onExit(event); }; };
 };
 
 void* QState_NewQState2(int childMode, void* parent){
-	return new QState(static_cast<QState::ChildMode>(childMode), static_cast<QState*>(parent));
+	return new MyQState(static_cast<QState::ChildMode>(childMode), static_cast<QState*>(parent));
 }
 
 void* QState_NewQState(void* parent){
-	return new QState(static_cast<QState*>(parent));
+	return new MyQState(static_cast<QState*>(parent));
 }
 
 void* QState_AddTransition3(void* ptr, void* target){
@@ -7987,17 +7824,22 @@ void QState_DestroyQState(void* ptr){
 
 class MyQStateMachine: public QStateMachine {
 public:
-void Signal_RunningChanged(bool running){callbackQStateMachineRunningChanged(this->objectName().toUtf8().data(), running);};
-void Signal_Started(){callbackQStateMachineStarted(this->objectName().toUtf8().data());};
-void Signal_Stopped(){callbackQStateMachineStopped(this->objectName().toUtf8().data());};
+	MyQStateMachine(QObject *parent) : QStateMachine(parent) {};
+	MyQStateMachine(QState::ChildMode childMode, QObject *parent) : QStateMachine(childMode, parent) {};
+	void Signal_RunningChanged(bool running) { callbackQStateMachineRunningChanged(this->objectName().toUtf8().data(), running); };
+	void Signal_Started() { callbackQStateMachineStarted(this->objectName().toUtf8().data()); };
+	void Signal_Stopped() { callbackQStateMachineStopped(this->objectName().toUtf8().data()); };
+protected:
+	void onEntry(QEvent * event) { if (!callbackQStateMachineOnEntry(this->objectName().toUtf8().data(), event)) { QStateMachine::onEntry(event); }; };
+	void onExit(QEvent * event) { if (!callbackQStateMachineOnExit(this->objectName().toUtf8().data(), event)) { QStateMachine::onExit(event); }; };
 };
 
 void* QStateMachine_NewQStateMachine(void* parent){
-	return new QStateMachine(static_cast<QObject*>(parent));
+	return new MyQStateMachine(static_cast<QObject*>(parent));
 }
 
 void* QStateMachine_NewQStateMachine2(int childMode, void* parent){
-	return new QStateMachine(static_cast<QState::ChildMode>(childMode), static_cast<QObject*>(parent));
+	return new MyQStateMachine(static_cast<QState::ChildMode>(childMode), static_cast<QObject*>(parent));
 }
 
 void QStateMachine_AddDefaultAnimation(void* ptr, void* animation){
@@ -8104,10 +7946,6 @@ void QStateMachine_DestroyQStateMachine(void* ptr){
 	static_cast<QStateMachine*>(ptr)->~QStateMachine();
 }
 
-class MyQStaticPlugin: public QStaticPlugin {
-public:
-};
-
 void* QStaticPlugin_Instance(void* ptr){
 	return static_cast<QStaticPlugin*>(ptr)->instance();
 }
@@ -8115,10 +7953,6 @@ void* QStaticPlugin_Instance(void* ptr){
 void* QStaticPlugin_MetaData(void* ptr){
 	return new QJsonObject(static_cast<QStaticPlugin*>(ptr)->metaData());
 }
-
-class MyQStorageInfo: public QStorageInfo {
-public:
-};
 
 void* QStorageInfo_NewQStorageInfo(){
 	return new QStorageInfo();
@@ -8190,6 +8024,8 @@ void QStorageInfo_DestroyQStorageInfo(void* ptr){
 
 class MyQStringListModel: public QStringListModel {
 public:
+	void sort(int column, Qt::SortOrder order) { if (!callbackQStringListModelSort(this->objectName().toUtf8().data(), column, order)) { QStringListModel::sort(column, order); }; };
+protected:
 };
 
 void* QStringListModel_Data(void* ptr, void* index, int role){
@@ -8236,10 +8072,6 @@ int QStringListModel_SupportedDropActions(void* ptr){
 	return static_cast<QStringListModel*>(ptr)->supportedDropActions();
 }
 
-class MyQStringMatcher: public QStringMatcher {
-public:
-};
-
 void* QStringMatcher_NewQStringMatcher3(void* uc, int length, int cs){
 	return new QStringMatcher(static_cast<QChar*>(uc), length, static_cast<Qt::CaseSensitivity>(cs));
 }
@@ -8283,10 +8115,6 @@ void QStringMatcher_SetPattern(void* ptr, char* pattern){
 void QStringMatcher_DestroyQStringMatcher(void* ptr){
 	static_cast<QStringMatcher*>(ptr)->~QStringMatcher();
 }
-
-class MyQStringRef: public QStringRef {
-public:
-};
 
 void* QStringRef_Left(void* ptr, int n){
 	return new QStringRef(static_cast<QStringRef*>(ptr)->left(n));
@@ -8524,10 +8352,6 @@ void QStringRef_DestroyQStringRef(void* ptr){
 	static_cast<QStringRef*>(ptr)->~QStringRef();
 }
 
-class MyQSysInfo: public QSysInfo {
-public:
-};
-
 int QSysInfo_ByteOrder_Type(){
 	return QSysInfo::ByteOrder;
 }
@@ -8632,10 +8456,6 @@ int QSysInfo_QSysInfo_WindowsVersion(){
 	return QSysInfo::windowsVersion();
 }
 
-class MyQSystemSemaphore: public QSystemSemaphore {
-public:
-};
-
 void* QSystemSemaphore_NewQSystemSemaphore(char* key, int initialValue, int mode){
 	return new QSystemSemaphore(QString(key), initialValue, static_cast<QSystemSemaphore::AccessMode>(mode));
 }
@@ -8668,10 +8488,6 @@ void QSystemSemaphore_DestroyQSystemSemaphore(void* ptr){
 	static_cast<QSystemSemaphore*>(ptr)->~QSystemSemaphore();
 }
 
-class MyQTemporaryDir: public QTemporaryDir {
-public:
-};
-
 void* QTemporaryDir_NewQTemporaryDir(){
 	return new QTemporaryDir();
 }
@@ -8702,22 +8518,27 @@ void QTemporaryDir_DestroyQTemporaryDir(void* ptr){
 
 class MyQTemporaryFile: public QTemporaryFile {
 public:
+	MyQTemporaryFile() : QTemporaryFile() {};
+	MyQTemporaryFile(QObject *parent) : QTemporaryFile(parent) {};
+	MyQTemporaryFile(const QString &templateName) : QTemporaryFile(templateName) {};
+	MyQTemporaryFile(const QString &templateName, QObject *parent) : QTemporaryFile(templateName, parent) {};
+protected:
 };
 
 void* QTemporaryFile_NewQTemporaryFile(){
-	return new QTemporaryFile();
+	return new MyQTemporaryFile();
 }
 
 void* QTemporaryFile_NewQTemporaryFile3(void* parent){
-	return new QTemporaryFile(static_cast<QObject*>(parent));
+	return new MyQTemporaryFile(static_cast<QObject*>(parent));
 }
 
 void* QTemporaryFile_NewQTemporaryFile2(char* templateName){
-	return new QTemporaryFile(QString(templateName));
+	return new MyQTemporaryFile(QString(templateName));
 }
 
 void* QTemporaryFile_NewQTemporaryFile4(char* templateName, void* parent){
-	return new QTemporaryFile(QString(templateName), static_cast<QObject*>(parent));
+	return new MyQTemporaryFile(QString(templateName), static_cast<QObject*>(parent));
 }
 
 int QTemporaryFile_AutoRemove(void* ptr){
@@ -8755,10 +8576,6 @@ void QTemporaryFile_SetFileTemplate(void* ptr, char* name){
 void QTemporaryFile_DestroyQTemporaryFile(void* ptr){
 	static_cast<QTemporaryFile*>(ptr)->~QTemporaryFile();
 }
-
-class MyQTextBoundaryFinder: public QTextBoundaryFinder {
-public:
-};
 
 void* QTextBoundaryFinder_NewQTextBoundaryFinder(){
 	return new QTextBoundaryFinder();
@@ -8822,6 +8639,10 @@ void QTextBoundaryFinder_DestroyQTextBoundaryFinder(void* ptr){
 
 class MyQTextCodec: public QTextCodec {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 int QTextCodec_CanEncode(void* ptr, void* ch){
@@ -8888,9 +8709,13 @@ void QTextCodec_QTextCodec_SetCodecForLocale(void* c){
 	QTextCodec::setCodecForLocale(static_cast<QTextCodec*>(c));
 }
 
-class MyQTextDecoder: public QTextDecoder {
-public:
-};
+char* QTextCodec_ObjectNameAbs(void* ptr){
+	return static_cast<MyQTextCodec*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QTextCodec_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQTextCodec*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 void* QTextDecoder_NewQTextDecoder(void* codec){
 	return new QTextDecoder(static_cast<QTextCodec*>(codec));
@@ -8903,10 +8728,6 @@ void* QTextDecoder_NewQTextDecoder2(void* codec, int flags){
 void QTextDecoder_DestroyQTextDecoder(void* ptr){
 	static_cast<QTextDecoder*>(ptr)->~QTextDecoder();
 }
-
-class MyQTextEncoder: public QTextEncoder {
-public:
-};
 
 void* QTextEncoder_NewQTextEncoder(void* codec){
 	return new QTextEncoder(static_cast<QTextCodec*>(codec));
@@ -8930,6 +8751,10 @@ void QTextEncoder_DestroyQTextEncoder(void* ptr){
 
 class MyQTextStream: public QTextStream {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 int QTextStream_AtEnd(void* ptr){
@@ -9068,10 +8893,21 @@ void QTextStream_DestroyQTextStream(void* ptr){
 	static_cast<QTextStream*>(ptr)->~QTextStream();
 }
 
+char* QTextStream_ObjectNameAbs(void* ptr){
+	return static_cast<MyQTextStream*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QTextStream_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQTextStream*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQThread: public QThread {
 public:
-void Signal_Finished(){callbackQThreadFinished(this->objectName().toUtf8().data());};
-void Signal_Started(){callbackQThreadStarted(this->objectName().toUtf8().data());};
+	MyQThread(QObject *parent) : QThread(parent) {};
+	void Signal_Finished() { callbackQThreadFinished(this->objectName().toUtf8().data()); };
+	void Signal_Started() { callbackQThreadStarted(this->objectName().toUtf8().data()); };
+protected:
+	void run() { if (!callbackQThreadRun(this->objectName().toUtf8().data())) { QThread::run(); }; };
 };
 
 void QThread_SetPriority(void* ptr, int priority){
@@ -9079,7 +8915,7 @@ void QThread_SetPriority(void* ptr, int priority){
 }
 
 void* QThread_NewQThread(void* parent){
-	return new QThread(static_cast<QObject*>(parent));
+	return new MyQThread(static_cast<QObject*>(parent));
 }
 
 void* QThread_QThread_CurrentThread(){
@@ -9166,10 +9002,6 @@ void QThread_QThread_YieldCurrentThread(){
 	QThread::yieldCurrentThread();
 }
 
-class MyQThreadPool: public QThreadPool {
-public:
-};
-
 int QThreadPool_ActiveThreadCount(void* ptr){
 	return static_cast<QThreadPool*>(ptr)->activeThreadCount();
 }
@@ -9229,10 +9061,6 @@ int QThreadPool_WaitForDone(void* ptr, int msecs){
 void QThreadPool_DestroyQThreadPool(void* ptr){
 	static_cast<QThreadPool*>(ptr)->~QThreadPool();
 }
-
-class MyQTime: public QTime {
-public:
-};
 
 void* QTime_NewQTime(){
 	return new QTime();
@@ -9308,9 +9136,12 @@ char* QTime_ToString(void* ptr, char* format){
 
 class MyQTimeLine: public QTimeLine {
 public:
-void Signal_Finished(){callbackQTimeLineFinished(this->objectName().toUtf8().data());};
-void Signal_FrameChanged(int frame){callbackQTimeLineFrameChanged(this->objectName().toUtf8().data(), frame);};
-void Signal_StateChanged(QTimeLine::State newState){callbackQTimeLineStateChanged(this->objectName().toUtf8().data(), newState);};
+	MyQTimeLine(int duration, QObject *parent) : QTimeLine(duration, parent) {};
+	void Signal_Finished() { callbackQTimeLineFinished(this->objectName().toUtf8().data()); };
+	void Signal_FrameChanged(int frame) { callbackQTimeLineFrameChanged(this->objectName().toUtf8().data(), frame); };
+	void Signal_StateChanged(QTimeLine::State newState) { callbackQTimeLineStateChanged(this->objectName().toUtf8().data(), newState); };
+protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQTimeLineTimerEvent(this->objectName().toUtf8().data(), event)) { QTimeLine::timerEvent(event); }; };
 };
 
 int QTimeLine_CurrentTime(void* ptr){
@@ -9370,7 +9201,7 @@ int QTimeLine_UpdateInterval(void* ptr){
 }
 
 void* QTimeLine_NewQTimeLine(int duration, void* parent){
-	return new QTimeLine(duration, static_cast<QObject*>(parent));
+	return new MyQTimeLine(duration, static_cast<QObject*>(parent));
 }
 
 int QTimeLine_CurrentFrame(void* ptr){
@@ -9456,10 +9287,6 @@ double QTimeLine_ValueForTime(void* ptr, int msec){
 void QTimeLine_DestroyQTimeLine(void* ptr){
 	static_cast<QTimeLine*>(ptr)->~QTimeLine();
 }
-
-class MyQTimeZone: public QTimeZone {
-public:
-};
 
 void* QTimeZone_NewQTimeZone(){
 	return new QTimeZone();
@@ -9571,7 +9398,10 @@ void QTimeZone_DestroyQTimeZone(void* ptr){
 
 class MyQTimer: public QTimer {
 public:
-void Signal_Timeout(){callbackQTimerTimeout(this->objectName().toUtf8().data());};
+	MyQTimer(QObject *parent) : QTimer(parent) {};
+	void Signal_Timeout() { callbackQTimerTimeout(this->objectName().toUtf8().data()); };
+protected:
+	void timerEvent(QTimerEvent * e) { if (!callbackQTimerTimerEvent(this->objectName().toUtf8().data(), e)) { QTimer::timerEvent(e); }; };
 };
 
 int QTimer_RemainingTime(void* ptr){
@@ -9583,7 +9413,7 @@ void QTimer_SetInterval(void* ptr, int msec){
 }
 
 void* QTimer_NewQTimer(void* parent){
-	return new QTimer(static_cast<QObject*>(parent));
+	return new MyQTimer(static_cast<QObject*>(parent));
 }
 
 int QTimer_Interval(void* ptr){
@@ -9646,10 +9476,6 @@ void QTimer_DestroyQTimer(void* ptr){
 	static_cast<QTimer*>(ptr)->~QTimer();
 }
 
-class MyQTimerEvent: public QTimerEvent {
-public:
-};
-
 void* QTimerEvent_NewQTimerEvent(int timerId){
 	return new QTimerEvent(timerId);
 }
@@ -9660,10 +9486,12 @@ int QTimerEvent_TimerId(void* ptr){
 
 class MyQTranslator: public QTranslator {
 public:
+	MyQTranslator(QObject *parent) : QTranslator(parent) {};
+protected:
 };
 
 void* QTranslator_NewQTranslator(void* parent){
-	return new QTranslator(static_cast<QObject*>(parent));
+	return new MyQTranslator(static_cast<QObject*>(parent));
 }
 
 int QTranslator_IsEmpty(void* ptr){
@@ -9685,14 +9513,6 @@ char* QTranslator_Translate(void* ptr, char* context, char* sourceText, char* di
 void QTranslator_DestroyQTranslator(void* ptr){
 	static_cast<QTranslator*>(ptr)->~QTranslator();
 }
-
-class MyQUnhandledException: public QUnhandledException {
-public:
-};
-
-class MyQUrl: public QUrl {
-public:
-};
 
 void* QUrl_NewQUrl(){
 	return new QUrl();
@@ -9898,10 +9718,6 @@ void QUrl_DestroyQUrl(void* ptr){
 	static_cast<QUrl*>(ptr)->~QUrl();
 }
 
-class MyQUrlQuery: public QUrlQuery {
-public:
-};
-
 void* QUrlQuery_NewQUrlQuery(){
 	return new QUrlQuery();
 }
@@ -9966,10 +9782,6 @@ void QUrlQuery_DestroyQUrlQuery(void* ptr){
 	static_cast<QUrlQuery*>(ptr)->~QUrlQuery();
 }
 
-class MyQUuid: public QUuid {
-public:
-};
-
 int QUuid_Variant(void* ptr){
 	return static_cast<QUuid*>(ptr)->variant();
 }
@@ -10005,10 +9817,6 @@ void* QUuid_ToRfc4122(void* ptr){
 char* QUuid_ToString(void* ptr){
 	return static_cast<QUuid*>(ptr)->toString().toUtf8().data();
 }
-
-class MyQVariant: public QVariant {
-public:
-};
 
 void* QVariant_NewQVariant20(void* c){
 	return new QVariant(*static_cast<QChar*>(c));
@@ -10154,6 +9962,10 @@ void* QVariant_ToEasingCurve(void* ptr){
 	return new QEasingCurve(static_cast<QVariant*>(ptr)->toEasingCurve());
 }
 
+void* QVariant_ToPoint(void* ptr){
+	return new QPoint(static_cast<QPoint>(static_cast<QVariant*>(ptr)->toPoint()).x(), static_cast<QPoint>(static_cast<QVariant*>(ptr)->toPoint()).y());
+}
+
 void* QVariant_ToRegExp(void* ptr){
 	return new QRegExp(static_cast<QVariant*>(ptr)->toRegExp());
 }
@@ -10240,7 +10052,12 @@ int QVariant_UserType(void* ptr){
 
 class MyQVariantAnimation: public QVariantAnimation {
 public:
-void Signal_ValueChanged(const QVariant & value){callbackQVariantAnimationValueChanged(this->objectName().toUtf8().data(), new QVariant(value));};
+	MyQVariantAnimation(QObject *parent) : QVariantAnimation(parent) {};
+	void Signal_ValueChanged(const QVariant & value) { callbackQVariantAnimationValueChanged(this->objectName().toUtf8().data(), new QVariant(value)); };
+protected:
+	void updateCurrentTime(int v) { if (!callbackQVariantAnimationUpdateCurrentTime(this->objectName().toUtf8().data(), v)) { QVariantAnimation::updateCurrentTime(v); }; };
+	void updateCurrentValue(const QVariant & value) { if (!callbackQVariantAnimationUpdateCurrentValue(this->objectName().toUtf8().data(), new QVariant(value))) { QVariantAnimation::updateCurrentValue(value); }; };
+	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { if (!callbackQVariantAnimationUpdateState(this->objectName().toUtf8().data(), newState, oldState)) { QVariantAnimation::updateState(newState, oldState); }; };
 };
 
 void* QVariantAnimation_CurrentValue(void* ptr){
@@ -10280,7 +10097,7 @@ void* QVariantAnimation_StartValue(void* ptr){
 }
 
 void* QVariantAnimation_NewQVariantAnimation(void* parent){
-	return new QVariantAnimation(static_cast<QObject*>(parent));
+	return new MyQVariantAnimation(static_cast<QObject*>(parent));
 }
 
 void* QVariantAnimation_KeyValueAt(void* ptr, double step){
@@ -10303,10 +10120,6 @@ void QVariantAnimation_DestroyQVariantAnimation(void* ptr){
 	static_cast<QVariantAnimation*>(ptr)->~QVariantAnimation();
 }
 
-class MyQWaitCondition: public QWaitCondition {
-public:
-};
-
 void* QWaitCondition_NewQWaitCondition(){
 	return new QWaitCondition();
 }
@@ -10322,10 +10135,6 @@ void QWaitCondition_WakeOne(void* ptr){
 void QWaitCondition_DestroyQWaitCondition(void* ptr){
 	static_cast<QWaitCondition*>(ptr)->~QWaitCondition();
 }
-
-class MyQWriteLocker: public QWriteLocker {
-public:
-};
 
 void* QWriteLocker_NewQWriteLocker(void* lock){
 	return new QWriteLocker(static_cast<QReadWriteLock*>(lock));
@@ -10346,10 +10155,6 @@ void QWriteLocker_Unlock(void* ptr){
 void QWriteLocker_DestroyQWriteLocker(void* ptr){
 	static_cast<QWriteLocker*>(ptr)->~QWriteLocker();
 }
-
-class MyQXmlStreamAttribute: public QXmlStreamAttribute {
-public:
-};
 
 void* QXmlStreamAttribute_NewQXmlStreamAttribute(){
 	return new QXmlStreamAttribute();
@@ -10395,10 +10200,6 @@ void QXmlStreamAttribute_DestroyQXmlStreamAttribute(void* ptr){
 	static_cast<QXmlStreamAttribute*>(ptr)->~QXmlStreamAttribute();
 }
 
-class MyQXmlStreamAttributes: public QXmlStreamAttributes {
-public:
-};
-
 void* QXmlStreamAttributes_NewQXmlStreamAttributes(){
 	return new QXmlStreamAttributes();
 }
@@ -10443,10 +10244,6 @@ void* QXmlStreamAttributes_Value4(void* ptr, char* qualifiedName){
 	return new QStringRef(static_cast<QXmlStreamAttributes*>(ptr)->value(QString(qualifiedName)));
 }
 
-class MyQXmlStreamEntityDeclaration: public QXmlStreamEntityDeclaration {
-public:
-};
-
 void* QXmlStreamEntityDeclaration_NewQXmlStreamEntityDeclaration(){
 	return new QXmlStreamEntityDeclaration();
 }
@@ -10481,6 +10278,10 @@ void QXmlStreamEntityDeclaration_DestroyQXmlStreamEntityDeclaration(void* ptr){
 
 class MyQXmlStreamEntityResolver: public QXmlStreamEntityResolver {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 char* QXmlStreamEntityResolver_ResolveUndeclaredEntity(void* ptr, char* name){
@@ -10491,9 +10292,13 @@ void QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(void* ptr){
 	static_cast<QXmlStreamEntityResolver*>(ptr)->~QXmlStreamEntityResolver();
 }
 
-class MyQXmlStreamNamespaceDeclaration: public QXmlStreamNamespaceDeclaration {
-public:
-};
+char* QXmlStreamEntityResolver_ObjectNameAbs(void* ptr){
+	return static_cast<MyQXmlStreamEntityResolver*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QXmlStreamEntityResolver_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQXmlStreamEntityResolver*>(ptr)->setObjectNameAbs(QString(name));
+}
 
 void* QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration(){
 	return new QXmlStreamNamespaceDeclaration();
@@ -10519,10 +10324,6 @@ void QXmlStreamNamespaceDeclaration_DestroyQXmlStreamNamespaceDeclaration(void* 
 	static_cast<QXmlStreamNamespaceDeclaration*>(ptr)->~QXmlStreamNamespaceDeclaration();
 }
 
-class MyQXmlStreamNotationDeclaration: public QXmlStreamNotationDeclaration {
-public:
-};
-
 void* QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration(){
 	return new QXmlStreamNotationDeclaration();
 }
@@ -10546,10 +10347,6 @@ void* QXmlStreamNotationDeclaration_SystemId(void* ptr){
 void QXmlStreamNotationDeclaration_DestroyQXmlStreamNotationDeclaration(void* ptr){
 	static_cast<QXmlStreamNotationDeclaration*>(ptr)->~QXmlStreamNotationDeclaration();
 }
-
-class MyQXmlStreamReader: public QXmlStreamReader {
-public:
-};
 
 int QXmlStreamReader_NamespaceProcessing(void* ptr){
 	return static_cast<QXmlStreamReader*>(ptr)->namespaceProcessing();
@@ -10758,10 +10555,6 @@ int QXmlStreamReader_TokenType(void* ptr){
 void QXmlStreamReader_DestroyQXmlStreamReader(void* ptr){
 	static_cast<QXmlStreamReader*>(ptr)->~QXmlStreamReader();
 }
-
-class MyQXmlStreamWriter: public QXmlStreamWriter {
-public:
-};
 
 int QXmlStreamWriter_AutoFormattingIndent(void* ptr){
 	return static_cast<QXmlStreamWriter*>(ptr)->autoFormattingIndent();

@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -27,6 +27,9 @@ func PointerFromQAbstractGraphicsShapeItem(ptr QAbstractGraphicsShapeItem_ITF) u
 func NewQAbstractGraphicsShapeItemFromPointer(ptr unsafe.Pointer) *QAbstractGraphicsShapeItem {
 	var n = new(QAbstractGraphicsShapeItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QAbstractGraphicsShapeItem_") {
+		n.SetObjectNameAbs("QAbstractGraphicsShapeItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -35,11 +38,7 @@ func (ptr *QAbstractGraphicsShapeItem) QAbstractGraphicsShapeItem_PTR() *QAbstra
 }
 
 func (ptr *QAbstractGraphicsShapeItem) Brush() *gui.QBrush {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractGraphicsShapeItem::brush")
-		}
-	}()
+	defer qt.Recovering("QAbstractGraphicsShapeItem::brush")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQBrushFromPointer(C.QAbstractGraphicsShapeItem_Brush(ptr.Pointer()))
@@ -48,11 +47,7 @@ func (ptr *QAbstractGraphicsShapeItem) Brush() *gui.QBrush {
 }
 
 func (ptr *QAbstractGraphicsShapeItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractGraphicsShapeItem::isObscuredBy")
-		}
-	}()
+	defer qt.Recovering("QAbstractGraphicsShapeItem::isObscuredBy")
 
 	if ptr.Pointer() != nil {
 		return C.QAbstractGraphicsShapeItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
@@ -61,11 +56,7 @@ func (ptr *QAbstractGraphicsShapeItem) IsObscuredBy(item QGraphicsItem_ITF) bool
 }
 
 func (ptr *QAbstractGraphicsShapeItem) SetBrush(brush gui.QBrush_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractGraphicsShapeItem::setBrush")
-		}
-	}()
+	defer qt.Recovering("QAbstractGraphicsShapeItem::setBrush")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractGraphicsShapeItem_SetBrush(ptr.Pointer(), gui.PointerFromQBrush(brush))
@@ -73,11 +64,7 @@ func (ptr *QAbstractGraphicsShapeItem) SetBrush(brush gui.QBrush_ITF) {
 }
 
 func (ptr *QAbstractGraphicsShapeItem) SetPen(pen gui.QPen_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractGraphicsShapeItem::setPen")
-		}
-	}()
+	defer qt.Recovering("QAbstractGraphicsShapeItem::setPen")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractGraphicsShapeItem_SetPen(ptr.Pointer(), gui.PointerFromQPen(pen))
@@ -85,13 +72,26 @@ func (ptr *QAbstractGraphicsShapeItem) SetPen(pen gui.QPen_ITF) {
 }
 
 func (ptr *QAbstractGraphicsShapeItem) DestroyQAbstractGraphicsShapeItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractGraphicsShapeItem::~QAbstractGraphicsShapeItem")
-		}
-	}()
+	defer qt.Recovering("QAbstractGraphicsShapeItem::~QAbstractGraphicsShapeItem")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractGraphicsShapeItem_DestroyQAbstractGraphicsShapeItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractGraphicsShapeItem) ObjectNameAbs() string {
+	defer qt.Recovering("QAbstractGraphicsShapeItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAbstractGraphicsShapeItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAbstractGraphicsShapeItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QAbstractGraphicsShapeItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractGraphicsShapeItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

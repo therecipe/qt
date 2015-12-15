@@ -28,7 +28,7 @@ func NewQOpenGLContextFromPointer(ptr unsafe.Pointer) *QOpenGLContext {
 	var n = new(QOpenGLContext)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLContext_") {
-		n.SetObjectName("QOpenGLContext_" + qt.RandomIdentifier())
+		n.SetObjectName("QOpenGLContext_" + qt.Identifier())
 	}
 	return n
 }

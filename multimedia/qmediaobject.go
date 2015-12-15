@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQMediaObjectFromPointer(ptr unsafe.Pointer) *QMediaObject {
 	var n = new(QMediaObject)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaObject_") {
-		n.SetObjectName("QMediaObject_" + qt.RandomIdentifier())
+		n.SetObjectName("QMediaObject_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QMediaObject) QMediaObject_PTR() *QMediaObject {
 }
 
 func (ptr *QMediaObject) NotifyInterval() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::notifyInterval")
-		}
-	}()
+	defer qt.Recovering("QMediaObject::notifyInterval")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMediaObject_NotifyInterval(ptr.Pointer()))
@@ -53,11 +48,7 @@ func (ptr *QMediaObject) NotifyInterval() int {
 }
 
 func (ptr *QMediaObject) SetNotifyInterval(milliSeconds int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::setNotifyInterval")
-		}
-	}()
+	defer qt.Recovering("QMediaObject::setNotifyInterval")
 
 	if ptr.Pointer() != nil {
 		C.QMediaObject_SetNotifyInterval(ptr.Pointer(), C.int(milliSeconds))
@@ -65,11 +56,7 @@ func (ptr *QMediaObject) SetNotifyInterval(milliSeconds int) {
 }
 
 func (ptr *QMediaObject) ConnectAvailabilityChanged(f func(available bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::availabilityChanged")
-		}
-	}()
+	defer qt.Recovering("connect QMediaObject::availabilityChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMediaObject_ConnectAvailabilityChanged(ptr.Pointer())
@@ -78,11 +65,7 @@ func (ptr *QMediaObject) ConnectAvailabilityChanged(f func(available bool)) {
 }
 
 func (ptr *QMediaObject) DisconnectAvailabilityChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::availabilityChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QMediaObject::availabilityChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMediaObject_DisconnectAvailabilityChanged(ptr.Pointer())
@@ -92,21 +75,17 @@ func (ptr *QMediaObject) DisconnectAvailabilityChanged() {
 
 //export callbackQMediaObjectAvailabilityChanged
 func callbackQMediaObjectAvailabilityChanged(ptrName *C.char, available C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::availabilityChanged")
-		}
-	}()
+	defer qt.Recovering("callback QMediaObject::availabilityChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "availabilityChanged").(func(bool))(int(available) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "availabilityChanged")
+	if signal != nil {
+		signal.(func(bool))(int(available) != 0)
+	}
+
 }
 
 func (ptr *QMediaObject) AvailableMetaData() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::availableMetaData")
-		}
-	}()
+	defer qt.Recovering("QMediaObject::availableMetaData")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QMediaObject_AvailableMetaData(ptr.Pointer())), ",,,")
@@ -115,11 +94,7 @@ func (ptr *QMediaObject) AvailableMetaData() []string {
 }
 
 func (ptr *QMediaObject) Bind(object core.QObject_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::bind")
-		}
-	}()
+	defer qt.Recovering("QMediaObject::bind")
 
 	if ptr.Pointer() != nil {
 		return C.QMediaObject_Bind(ptr.Pointer(), core.PointerFromQObject(object)) != 0
@@ -128,11 +103,7 @@ func (ptr *QMediaObject) Bind(object core.QObject_ITF) bool {
 }
 
 func (ptr *QMediaObject) IsAvailable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::isAvailable")
-		}
-	}()
+	defer qt.Recovering("QMediaObject::isAvailable")
 
 	if ptr.Pointer() != nil {
 		return C.QMediaObject_IsAvailable(ptr.Pointer()) != 0
@@ -141,11 +112,7 @@ func (ptr *QMediaObject) IsAvailable() bool {
 }
 
 func (ptr *QMediaObject) IsMetaDataAvailable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::isMetaDataAvailable")
-		}
-	}()
+	defer qt.Recovering("QMediaObject::isMetaDataAvailable")
 
 	if ptr.Pointer() != nil {
 		return C.QMediaObject_IsMetaDataAvailable(ptr.Pointer()) != 0
@@ -154,11 +121,7 @@ func (ptr *QMediaObject) IsMetaDataAvailable() bool {
 }
 
 func (ptr *QMediaObject) MetaData(key string) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::metaData")
-		}
-	}()
+	defer qt.Recovering("QMediaObject::metaData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QMediaObject_MetaData(ptr.Pointer(), C.CString(key)))
@@ -167,11 +130,7 @@ func (ptr *QMediaObject) MetaData(key string) *core.QVariant {
 }
 
 func (ptr *QMediaObject) ConnectMetaDataAvailableChanged(f func(available bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::metaDataAvailableChanged")
-		}
-	}()
+	defer qt.Recovering("connect QMediaObject::metaDataAvailableChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMediaObject_ConnectMetaDataAvailableChanged(ptr.Pointer())
@@ -180,11 +139,7 @@ func (ptr *QMediaObject) ConnectMetaDataAvailableChanged(f func(available bool))
 }
 
 func (ptr *QMediaObject) DisconnectMetaDataAvailableChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::metaDataAvailableChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QMediaObject::metaDataAvailableChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMediaObject_DisconnectMetaDataAvailableChanged(ptr.Pointer())
@@ -194,21 +149,17 @@ func (ptr *QMediaObject) DisconnectMetaDataAvailableChanged() {
 
 //export callbackQMediaObjectMetaDataAvailableChanged
 func callbackQMediaObjectMetaDataAvailableChanged(ptrName *C.char, available C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::metaDataAvailableChanged")
-		}
-	}()
+	defer qt.Recovering("callback QMediaObject::metaDataAvailableChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "metaDataAvailableChanged").(func(bool))(int(available) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataAvailableChanged")
+	if signal != nil {
+		signal.(func(bool))(int(available) != 0)
+	}
+
 }
 
 func (ptr *QMediaObject) ConnectMetaDataChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::metaDataChanged")
-		}
-	}()
+	defer qt.Recovering("connect QMediaObject::metaDataChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMediaObject_ConnectMetaDataChanged(ptr.Pointer())
@@ -217,11 +168,7 @@ func (ptr *QMediaObject) ConnectMetaDataChanged(f func()) {
 }
 
 func (ptr *QMediaObject) DisconnectMetaDataChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::metaDataChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QMediaObject::metaDataChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMediaObject_DisconnectMetaDataChanged(ptr.Pointer())
@@ -231,21 +178,17 @@ func (ptr *QMediaObject) DisconnectMetaDataChanged() {
 
 //export callbackQMediaObjectMetaDataChanged
 func callbackQMediaObjectMetaDataChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::metaDataChanged")
-		}
-	}()
+	defer qt.Recovering("callback QMediaObject::metaDataChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "metaDataChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QMediaObject) ConnectNotifyIntervalChanged(f func(milliseconds int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::notifyIntervalChanged")
-		}
-	}()
+	defer qt.Recovering("connect QMediaObject::notifyIntervalChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMediaObject_ConnectNotifyIntervalChanged(ptr.Pointer())
@@ -254,11 +197,7 @@ func (ptr *QMediaObject) ConnectNotifyIntervalChanged(f func(milliseconds int)) 
 }
 
 func (ptr *QMediaObject) DisconnectNotifyIntervalChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::notifyIntervalChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QMediaObject::notifyIntervalChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMediaObject_DisconnectNotifyIntervalChanged(ptr.Pointer())
@@ -268,21 +207,17 @@ func (ptr *QMediaObject) DisconnectNotifyIntervalChanged() {
 
 //export callbackQMediaObjectNotifyIntervalChanged
 func callbackQMediaObjectNotifyIntervalChanged(ptrName *C.char, milliseconds C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::notifyIntervalChanged")
-		}
-	}()
+	defer qt.Recovering("callback QMediaObject::notifyIntervalChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "notifyIntervalChanged").(func(int))(int(milliseconds))
+	var signal = qt.GetSignal(C.GoString(ptrName), "notifyIntervalChanged")
+	if signal != nil {
+		signal.(func(int))(int(milliseconds))
+	}
+
 }
 
 func (ptr *QMediaObject) Service() *QMediaService {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::service")
-		}
-	}()
+	defer qt.Recovering("QMediaObject::service")
 
 	if ptr.Pointer() != nil {
 		return NewQMediaServiceFromPointer(C.QMediaObject_Service(ptr.Pointer()))
@@ -290,24 +225,39 @@ func (ptr *QMediaObject) Service() *QMediaService {
 	return nil
 }
 
-func (ptr *QMediaObject) Unbind(object core.QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::unbind")
-		}
-	}()
+func (ptr *QMediaObject) ConnectUnbind(f func(object *core.QObject)) {
+	defer qt.Recovering("connect QMediaObject::unbind")
 
 	if ptr.Pointer() != nil {
-		C.QMediaObject_Unbind(ptr.Pointer(), core.PointerFromQObject(object))
+
+		qt.ConnectSignal(ptr.ObjectName(), "unbind", f)
 	}
 }
 
+func (ptr *QMediaObject) DisconnectUnbind() {
+	defer qt.Recovering("disconnect QMediaObject::unbind")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "unbind")
+	}
+}
+
+//export callbackQMediaObjectUnbind
+func callbackQMediaObjectUnbind(ptrName *C.char, object unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMediaObject::unbind")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "unbind")
+	if signal != nil {
+		defer signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMediaObject) DestroyQMediaObject() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMediaObject::~QMediaObject")
-		}
-	}()
+	defer qt.Recovering("QMediaObject::~QMediaObject")
 
 	if ptr.Pointer() != nil {
 		C.QMediaObject_DestroyQMediaObject(ptr.Pointer())

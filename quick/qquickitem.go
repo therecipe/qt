@@ -7,7 +7,6 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/qml"
-	"log"
 	"unsafe"
 )
 
@@ -42,7 +41,7 @@ func NewQQuickItemFromPointer(ptr unsafe.Pointer) *QQuickItem {
 	var n = new(QQuickItem)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickItem_") {
-		n.SetObjectName("QQuickItem_" + qt.RandomIdentifier())
+		n.SetObjectName("QQuickItem_" + qt.Identifier())
 	}
 	return n
 }
@@ -93,21 +92,13 @@ const (
 )
 
 func NewQQuickItem(parent QQuickItem_ITF) *QQuickItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::QQuickItem")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::QQuickItem")
 
 	return NewQQuickItemFromPointer(C.QQuickItem_NewQQuickItem(PointerFromQQuickItem(parent)))
 }
 
 func (ptr *QQuickItem) ActiveFocusOnTab() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::activeFocusOnTab")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::activeFocusOnTab")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_ActiveFocusOnTab(ptr.Pointer()) != 0
@@ -116,11 +107,7 @@ func (ptr *QQuickItem) ActiveFocusOnTab() bool {
 }
 
 func (ptr *QQuickItem) Antialiasing() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::antialiasing")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::antialiasing")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_Antialiasing(ptr.Pointer()) != 0
@@ -129,11 +116,7 @@ func (ptr *QQuickItem) Antialiasing() bool {
 }
 
 func (ptr *QQuickItem) BaselineOffset() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::baselineOffset")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::baselineOffset")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickItem_BaselineOffset(ptr.Pointer()))
@@ -142,11 +125,7 @@ func (ptr *QQuickItem) BaselineOffset() float64 {
 }
 
 func (ptr *QQuickItem) Clip() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::clip")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::clip")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_Clip(ptr.Pointer()) != 0
@@ -155,11 +134,7 @@ func (ptr *QQuickItem) Clip() bool {
 }
 
 func (ptr *QQuickItem) HasActiveFocus() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::hasActiveFocus")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::hasActiveFocus")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_HasActiveFocus(ptr.Pointer()) != 0
@@ -168,11 +143,7 @@ func (ptr *QQuickItem) HasActiveFocus() bool {
 }
 
 func (ptr *QQuickItem) HasFocus() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::hasFocus")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::hasFocus")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_HasFocus(ptr.Pointer()) != 0
@@ -181,11 +152,7 @@ func (ptr *QQuickItem) HasFocus() bool {
 }
 
 func (ptr *QQuickItem) Height() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::height")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::height")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickItem_Height(ptr.Pointer()))
@@ -194,11 +161,7 @@ func (ptr *QQuickItem) Height() float64 {
 }
 
 func (ptr *QQuickItem) ImplicitHeight() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::implicitHeight")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::implicitHeight")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickItem_ImplicitHeight(ptr.Pointer()))
@@ -207,11 +170,7 @@ func (ptr *QQuickItem) ImplicitHeight() float64 {
 }
 
 func (ptr *QQuickItem) IsEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::isEnabled")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::isEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_IsEnabled(ptr.Pointer()) != 0
@@ -220,11 +179,7 @@ func (ptr *QQuickItem) IsEnabled() bool {
 }
 
 func (ptr *QQuickItem) IsTextureProvider() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::isTextureProvider")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::isTextureProvider")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_IsTextureProvider(ptr.Pointer()) != 0
@@ -233,11 +188,7 @@ func (ptr *QQuickItem) IsTextureProvider() bool {
 }
 
 func (ptr *QQuickItem) IsVisible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::isVisible")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::isVisible")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_IsVisible(ptr.Pointer()) != 0
@@ -246,11 +197,7 @@ func (ptr *QQuickItem) IsVisible() bool {
 }
 
 func (ptr *QQuickItem) Opacity() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::opacity")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::opacity")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickItem_Opacity(ptr.Pointer()))
@@ -259,11 +206,7 @@ func (ptr *QQuickItem) Opacity() float64 {
 }
 
 func (ptr *QQuickItem) ParentItem() *QQuickItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::parentItem")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::parentItem")
 
 	if ptr.Pointer() != nil {
 		return NewQQuickItemFromPointer(C.QQuickItem_ParentItem(ptr.Pointer()))
@@ -272,11 +215,7 @@ func (ptr *QQuickItem) ParentItem() *QQuickItem {
 }
 
 func (ptr *QQuickItem) ResetAntialiasing() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::resetAntialiasing")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::resetAntialiasing")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_ResetAntialiasing(ptr.Pointer())
@@ -284,11 +223,7 @@ func (ptr *QQuickItem) ResetAntialiasing() {
 }
 
 func (ptr *QQuickItem) ResetHeight() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::resetHeight")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::resetHeight")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_ResetHeight(ptr.Pointer())
@@ -296,11 +231,7 @@ func (ptr *QQuickItem) ResetHeight() {
 }
 
 func (ptr *QQuickItem) ResetWidth() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::resetWidth")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::resetWidth")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_ResetWidth(ptr.Pointer())
@@ -308,11 +239,7 @@ func (ptr *QQuickItem) ResetWidth() {
 }
 
 func (ptr *QQuickItem) Rotation() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::rotation")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::rotation")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickItem_Rotation(ptr.Pointer()))
@@ -321,11 +248,7 @@ func (ptr *QQuickItem) Rotation() float64 {
 }
 
 func (ptr *QQuickItem) Scale() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::scale")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::scale")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickItem_Scale(ptr.Pointer()))
@@ -334,11 +257,7 @@ func (ptr *QQuickItem) Scale() float64 {
 }
 
 func (ptr *QQuickItem) SetActiveFocusOnTab(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setActiveFocusOnTab")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setActiveFocusOnTab")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetActiveFocusOnTab(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -346,11 +265,7 @@ func (ptr *QQuickItem) SetActiveFocusOnTab(v bool) {
 }
 
 func (ptr *QQuickItem) SetAntialiasing(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setAntialiasing")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setAntialiasing")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetAntialiasing(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -358,11 +273,7 @@ func (ptr *QQuickItem) SetAntialiasing(v bool) {
 }
 
 func (ptr *QQuickItem) SetBaselineOffset(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setBaselineOffset")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setBaselineOffset")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetBaselineOffset(ptr.Pointer(), C.double(v))
@@ -370,11 +281,7 @@ func (ptr *QQuickItem) SetBaselineOffset(v float64) {
 }
 
 func (ptr *QQuickItem) SetClip(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setClip")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setClip")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetClip(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -382,11 +289,7 @@ func (ptr *QQuickItem) SetClip(v bool) {
 }
 
 func (ptr *QQuickItem) SetEnabled(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setEnabled")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -394,11 +297,7 @@ func (ptr *QQuickItem) SetEnabled(v bool) {
 }
 
 func (ptr *QQuickItem) SetFocus(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setFocus")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setFocus")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetFocus(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -406,11 +305,7 @@ func (ptr *QQuickItem) SetFocus(v bool) {
 }
 
 func (ptr *QQuickItem) SetFocus2(focus bool, reason core.Qt__FocusReason) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setFocus")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setFocus")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetFocus2(ptr.Pointer(), C.int(qt.GoBoolToInt(focus)), C.int(reason))
@@ -418,11 +313,7 @@ func (ptr *QQuickItem) SetFocus2(focus bool, reason core.Qt__FocusReason) {
 }
 
 func (ptr *QQuickItem) SetHeight(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setHeight")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setHeight")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetHeight(ptr.Pointer(), C.double(v))
@@ -430,11 +321,7 @@ func (ptr *QQuickItem) SetHeight(v float64) {
 }
 
 func (ptr *QQuickItem) SetImplicitHeight(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setImplicitHeight")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setImplicitHeight")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetImplicitHeight(ptr.Pointer(), C.double(v))
@@ -442,11 +329,7 @@ func (ptr *QQuickItem) SetImplicitHeight(v float64) {
 }
 
 func (ptr *QQuickItem) SetImplicitWidth(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setImplicitWidth")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setImplicitWidth")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetImplicitWidth(ptr.Pointer(), C.double(v))
@@ -454,11 +337,7 @@ func (ptr *QQuickItem) SetImplicitWidth(v float64) {
 }
 
 func (ptr *QQuickItem) SetOpacity(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setOpacity")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setOpacity")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetOpacity(ptr.Pointer(), C.double(v))
@@ -466,11 +345,7 @@ func (ptr *QQuickItem) SetOpacity(v float64) {
 }
 
 func (ptr *QQuickItem) SetParentItem(parent QQuickItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setParentItem")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setParentItem")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetParentItem(ptr.Pointer(), PointerFromQQuickItem(parent))
@@ -478,11 +353,7 @@ func (ptr *QQuickItem) SetParentItem(parent QQuickItem_ITF) {
 }
 
 func (ptr *QQuickItem) SetRotation(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setRotation")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setRotation")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetRotation(ptr.Pointer(), C.double(v))
@@ -490,11 +361,7 @@ func (ptr *QQuickItem) SetRotation(v float64) {
 }
 
 func (ptr *QQuickItem) SetScale(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setScale")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setScale")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetScale(ptr.Pointer(), C.double(v))
@@ -502,11 +369,7 @@ func (ptr *QQuickItem) SetScale(v float64) {
 }
 
 func (ptr *QQuickItem) SetSmooth(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setSmooth")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setSmooth")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetSmooth(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -514,11 +377,7 @@ func (ptr *QQuickItem) SetSmooth(v bool) {
 }
 
 func (ptr *QQuickItem) SetState(v string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setState")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setState")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetState(ptr.Pointer(), C.CString(v))
@@ -526,11 +385,7 @@ func (ptr *QQuickItem) SetState(v string) {
 }
 
 func (ptr *QQuickItem) SetTransformOrigin(v QQuickItem__TransformOrigin) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setTransformOrigin")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setTransformOrigin")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetTransformOrigin(ptr.Pointer(), C.int(v))
@@ -538,11 +393,7 @@ func (ptr *QQuickItem) SetTransformOrigin(v QQuickItem__TransformOrigin) {
 }
 
 func (ptr *QQuickItem) SetVisible(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setVisible")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setVisible")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -550,11 +401,7 @@ func (ptr *QQuickItem) SetVisible(v bool) {
 }
 
 func (ptr *QQuickItem) SetWidth(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setWidth")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setWidth")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetWidth(ptr.Pointer(), C.double(v))
@@ -562,11 +409,7 @@ func (ptr *QQuickItem) SetWidth(v float64) {
 }
 
 func (ptr *QQuickItem) SetX(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setX")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setX")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetX(ptr.Pointer(), C.double(v))
@@ -574,11 +417,7 @@ func (ptr *QQuickItem) SetX(v float64) {
 }
 
 func (ptr *QQuickItem) SetY(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setY")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setY")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetY(ptr.Pointer(), C.double(v))
@@ -586,11 +425,7 @@ func (ptr *QQuickItem) SetY(v float64) {
 }
 
 func (ptr *QQuickItem) SetZ(v float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setZ")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setZ")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetZ(ptr.Pointer(), C.double(v))
@@ -598,11 +433,7 @@ func (ptr *QQuickItem) SetZ(v float64) {
 }
 
 func (ptr *QQuickItem) Smooth() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::smooth")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::smooth")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_Smooth(ptr.Pointer()) != 0
@@ -611,11 +442,7 @@ func (ptr *QQuickItem) Smooth() bool {
 }
 
 func (ptr *QQuickItem) TextureProvider() *QSGTextureProvider {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::textureProvider")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::textureProvider")
 
 	if ptr.Pointer() != nil {
 		return NewQSGTextureProviderFromPointer(C.QQuickItem_TextureProvider(ptr.Pointer()))
@@ -624,11 +451,7 @@ func (ptr *QQuickItem) TextureProvider() *QSGTextureProvider {
 }
 
 func (ptr *QQuickItem) TransformOrigin() QQuickItem__TransformOrigin {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::transformOrigin")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::transformOrigin")
 
 	if ptr.Pointer() != nil {
 		return QQuickItem__TransformOrigin(C.QQuickItem_TransformOrigin(ptr.Pointer()))
@@ -637,11 +460,7 @@ func (ptr *QQuickItem) TransformOrigin() QQuickItem__TransformOrigin {
 }
 
 func (ptr *QQuickItem) Width() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::width")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::width")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickItem_Width(ptr.Pointer()))
@@ -650,11 +469,7 @@ func (ptr *QQuickItem) Width() float64 {
 }
 
 func (ptr *QQuickItem) X() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::x")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::x")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickItem_X(ptr.Pointer()))
@@ -663,11 +478,7 @@ func (ptr *QQuickItem) X() float64 {
 }
 
 func (ptr *QQuickItem) Y() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::y")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::y")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickItem_Y(ptr.Pointer()))
@@ -676,11 +487,7 @@ func (ptr *QQuickItem) Y() float64 {
 }
 
 func (ptr *QQuickItem) Z() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::z")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::z")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickItem_Z(ptr.Pointer()))
@@ -689,11 +496,7 @@ func (ptr *QQuickItem) Z() float64 {
 }
 
 func (ptr *QQuickItem) AcceptHoverEvents() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::acceptHoverEvents")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::acceptHoverEvents")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_AcceptHoverEvents(ptr.Pointer()) != 0
@@ -702,11 +505,7 @@ func (ptr *QQuickItem) AcceptHoverEvents() bool {
 }
 
 func (ptr *QQuickItem) AcceptedMouseButtons() core.Qt__MouseButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::acceptedMouseButtons")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::acceptedMouseButtons")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseButton(C.QQuickItem_AcceptedMouseButtons(ptr.Pointer()))
@@ -715,11 +514,7 @@ func (ptr *QQuickItem) AcceptedMouseButtons() core.Qt__MouseButton {
 }
 
 func (ptr *QQuickItem) ChildAt(x float64, y float64) *QQuickItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::childAt")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::childAt")
 
 	if ptr.Pointer() != nil {
 		return NewQQuickItemFromPointer(C.QQuickItem_ChildAt(ptr.Pointer(), C.double(x), C.double(y)))
@@ -727,12 +522,70 @@ func (ptr *QQuickItem) ChildAt(x float64, y float64) *QQuickItem {
 	return nil
 }
 
+func (ptr *QQuickItem) ConnectClassBegin(f func()) {
+	defer qt.Recovering("connect QQuickItem::classBegin")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "classBegin", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectClassBegin() {
+	defer qt.Recovering("disconnect QQuickItem::classBegin")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "classBegin")
+	}
+}
+
+//export callbackQQuickItemClassBegin
+func callbackQQuickItemClassBegin(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQuickItem::classBegin")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "classBegin")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectComponentComplete(f func()) {
+	defer qt.Recovering("connect QQuickItem::componentComplete")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "componentComplete", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectComponentComplete() {
+	defer qt.Recovering("disconnect QQuickItem::componentComplete")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "componentComplete")
+	}
+}
+
+//export callbackQQuickItemComponentComplete
+func callbackQQuickItemComponentComplete(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQuickItem::componentComplete")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "componentComplete")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QQuickItem) Contains(point core.QPointF_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::contains")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
@@ -740,12 +593,132 @@ func (ptr *QQuickItem) Contains(point core.QPointF_ITF) bool {
 	return false
 }
 
+func (ptr *QQuickItem) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
+	defer qt.Recovering("connect QQuickItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectDragEnterEvent() {
+	defer qt.Recovering("disconnect QQuickItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+	}
+}
+
+//export callbackQQuickItemDragEnterEvent
+func callbackQQuickItemDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::dragEnterEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dragEnterEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
+	defer qt.Recovering("connect QQuickItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectDragLeaveEvent() {
+	defer qt.Recovering("disconnect QQuickItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+	}
+}
+
+//export callbackQQuickItemDragLeaveEvent
+func callbackQQuickItemDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::dragLeaveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
+	defer qt.Recovering("connect QQuickItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectDragMoveEvent() {
+	defer qt.Recovering("disconnect QQuickItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+	}
+}
+
+//export callbackQQuickItemDragMoveEvent
+func callbackQQuickItemDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::dragMoveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dragMoveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectDropEvent(f func(event *gui.QDropEvent)) {
+	defer qt.Recovering("connect QQuickItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectDropEvent() {
+	defer qt.Recovering("disconnect QQuickItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+	}
+}
+
+//export callbackQQuickItemDropEvent
+func callbackQQuickItemDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::dropEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QQuickItem) FiltersChildMouseEvents() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::filtersChildMouseEvents")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::filtersChildMouseEvents")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_FiltersChildMouseEvents(ptr.Pointer()) != 0
@@ -754,11 +727,7 @@ func (ptr *QQuickItem) FiltersChildMouseEvents() bool {
 }
 
 func (ptr *QQuickItem) Flags() QQuickItem__Flag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::flags")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::flags")
 
 	if ptr.Pointer() != nil {
 		return QQuickItem__Flag(C.QQuickItem_Flags(ptr.Pointer()))
@@ -766,12 +735,70 @@ func (ptr *QQuickItem) Flags() QQuickItem__Flag {
 	return 0
 }
 
+func (ptr *QQuickItem) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QQuickItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QQuickItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQQuickItemFocusInEvent
+func callbackQQuickItemFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::focusInEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QQuickItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QQuickItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+//export callbackQQuickItemFocusOutEvent
+func callbackQQuickItemFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::focusOutEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QQuickItem) ForceActiveFocus() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::forceActiveFocus")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::forceActiveFocus")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_ForceActiveFocus(ptr.Pointer())
@@ -779,11 +806,7 @@ func (ptr *QQuickItem) ForceActiveFocus() {
 }
 
 func (ptr *QQuickItem) ForceActiveFocus2(reason core.Qt__FocusReason) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::forceActiveFocus")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::forceActiveFocus")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_ForceActiveFocus2(ptr.Pointer(), C.int(reason))
@@ -791,23 +814,108 @@ func (ptr *QQuickItem) ForceActiveFocus2(reason core.Qt__FocusReason) {
 }
 
 func (ptr *QQuickItem) GrabMouse() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::grabMouse")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::grabMouse")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_GrabMouse(ptr.Pointer())
 	}
 }
 
+func (ptr *QQuickItem) ConnectHoverEnterEvent(f func(event *gui.QHoverEvent)) {
+	defer qt.Recovering("connect QQuickItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverEnterEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectHoverEnterEvent() {
+	defer qt.Recovering("disconnect QQuickItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverEnterEvent")
+	}
+}
+
+//export callbackQQuickItemHoverEnterEvent
+func callbackQQuickItemHoverEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::hoverEnterEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "hoverEnterEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QHoverEvent))(gui.NewQHoverEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectHoverLeaveEvent(f func(event *gui.QHoverEvent)) {
+	defer qt.Recovering("connect QQuickItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverLeaveEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectHoverLeaveEvent() {
+	defer qt.Recovering("disconnect QQuickItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverLeaveEvent")
+	}
+}
+
+//export callbackQQuickItemHoverLeaveEvent
+func callbackQQuickItemHoverLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::hoverLeaveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "hoverLeaveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QHoverEvent))(gui.NewQHoverEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectHoverMoveEvent(f func(event *gui.QHoverEvent)) {
+	defer qt.Recovering("connect QQuickItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverMoveEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectHoverMoveEvent() {
+	defer qt.Recovering("disconnect QQuickItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverMoveEvent")
+	}
+}
+
+//export callbackQQuickItemHoverMoveEvent
+func callbackQQuickItemHoverMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::hoverMoveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "hoverMoveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QHoverEvent))(gui.NewQHoverEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QQuickItem) ImplicitWidth() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::implicitWidth")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::implicitWidth")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickItem_ImplicitWidth(ptr.Pointer()))
@@ -815,12 +923,39 @@ func (ptr *QQuickItem) ImplicitWidth() float64 {
 	return 0
 }
 
+func (ptr *QQuickItem) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
+	defer qt.Recovering("connect QQuickItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectInputMethodEvent() {
+	defer qt.Recovering("disconnect QQuickItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+	}
+}
+
+//export callbackQQuickItemInputMethodEvent
+func callbackQQuickItemInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::inputMethodEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "inputMethodEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QQuickItem) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::inputMethodQuery")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QQuickItem_InputMethodQuery(ptr.Pointer(), C.int(query)))
@@ -829,11 +964,7 @@ func (ptr *QQuickItem) InputMethodQuery(query core.Qt__InputMethodQuery) *core.Q
 }
 
 func (ptr *QQuickItem) IsFocusScope() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::isFocusScope")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::isFocusScope")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_IsFocusScope(ptr.Pointer()) != 0
@@ -842,11 +973,7 @@ func (ptr *QQuickItem) IsFocusScope() bool {
 }
 
 func (ptr *QQuickItem) KeepMouseGrab() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::keepMouseGrab")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::keepMouseGrab")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_KeepMouseGrab(ptr.Pointer()) != 0
@@ -855,11 +982,7 @@ func (ptr *QQuickItem) KeepMouseGrab() bool {
 }
 
 func (ptr *QQuickItem) KeepTouchGrab() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::keepTouchGrab")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::keepTouchGrab")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_KeepTouchGrab(ptr.Pointer()) != 0
@@ -867,12 +990,225 @@ func (ptr *QQuickItem) KeepTouchGrab() bool {
 	return false
 }
 
+func (ptr *QQuickItem) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QQuickItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QQuickItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQQuickItemKeyPressEvent
+func callbackQQuickItemKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::keyPressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QQuickItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectKeyReleaseEvent() {
+	defer qt.Recovering("disconnect QQuickItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+	}
+}
+
+//export callbackQQuickItemKeyReleaseEvent
+func callbackQQuickItemKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::keyReleaseEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QQuickItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectMouseDoubleClickEvent() {
+	defer qt.Recovering("disconnect QQuickItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+	}
+}
+
+//export callbackQQuickItemMouseDoubleClickEvent
+func callbackQQuickItemMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::mouseDoubleClickEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QQuickItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectMouseMoveEvent() {
+	defer qt.Recovering("disconnect QQuickItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+	}
+}
+
+//export callbackQQuickItemMouseMoveEvent
+func callbackQQuickItemMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::mouseMoveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QQuickItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QQuickItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQQuickItemMousePressEvent
+func callbackQQuickItemMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::mousePressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QQuickItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectMouseReleaseEvent() {
+	defer qt.Recovering("disconnect QQuickItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+	}
+}
+
+//export callbackQQuickItemMouseReleaseEvent
+func callbackQQuickItemMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::mouseReleaseEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectMouseUngrabEvent(f func()) {
+	defer qt.Recovering("connect QQuickItem::mouseUngrabEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseUngrabEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectMouseUngrabEvent() {
+	defer qt.Recovering("disconnect QQuickItem::mouseUngrabEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseUngrabEvent")
+	}
+}
+
+//export callbackQQuickItemMouseUngrabEvent
+func callbackQQuickItemMouseUngrabEvent(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQuickItem::mouseUngrabEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseUngrabEvent")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QQuickItem) NextItemInFocusChain(forward bool) *QQuickItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::nextItemInFocusChain")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::nextItemInFocusChain")
 
 	if ptr.Pointer() != nil {
 		return NewQQuickItemFromPointer(C.QQuickItem_NextItemInFocusChain(ptr.Pointer(), C.int(qt.GoBoolToInt(forward))))
@@ -881,23 +1217,46 @@ func (ptr *QQuickItem) NextItemInFocusChain(forward bool) *QQuickItem {
 }
 
 func (ptr *QQuickItem) Polish() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::polish")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::polish")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_Polish(ptr.Pointer())
 	}
 }
 
+func (ptr *QQuickItem) ConnectReleaseResources(f func()) {
+	defer qt.Recovering("connect QQuickItem::releaseResources")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "releaseResources", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectReleaseResources() {
+	defer qt.Recovering("disconnect QQuickItem::releaseResources")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "releaseResources")
+	}
+}
+
+//export callbackQQuickItemReleaseResources
+func callbackQQuickItemReleaseResources(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQuickItem::releaseResources")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "releaseResources")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QQuickItem) ScopedFocusItem() *QQuickItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::scopedFocusItem")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::scopedFocusItem")
 
 	if ptr.Pointer() != nil {
 		return NewQQuickItemFromPointer(C.QQuickItem_ScopedFocusItem(ptr.Pointer()))
@@ -906,11 +1265,7 @@ func (ptr *QQuickItem) ScopedFocusItem() *QQuickItem {
 }
 
 func (ptr *QQuickItem) SetAcceptHoverEvents(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setAcceptHoverEvents")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setAcceptHoverEvents")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetAcceptHoverEvents(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -918,11 +1273,7 @@ func (ptr *QQuickItem) SetAcceptHoverEvents(enabled bool) {
 }
 
 func (ptr *QQuickItem) SetAcceptedMouseButtons(buttons core.Qt__MouseButton) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setAcceptedMouseButtons")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setAcceptedMouseButtons")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetAcceptedMouseButtons(ptr.Pointer(), C.int(buttons))
@@ -930,11 +1281,7 @@ func (ptr *QQuickItem) SetAcceptedMouseButtons(buttons core.Qt__MouseButton) {
 }
 
 func (ptr *QQuickItem) SetCursor(cursor gui.QCursor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setCursor")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setCursor")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetCursor(ptr.Pointer(), gui.PointerFromQCursor(cursor))
@@ -942,11 +1289,7 @@ func (ptr *QQuickItem) SetCursor(cursor gui.QCursor_ITF) {
 }
 
 func (ptr *QQuickItem) SetFiltersChildMouseEvents(filter bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setFiltersChildMouseEvents")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setFiltersChildMouseEvents")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetFiltersChildMouseEvents(ptr.Pointer(), C.int(qt.GoBoolToInt(filter)))
@@ -954,11 +1297,7 @@ func (ptr *QQuickItem) SetFiltersChildMouseEvents(filter bool) {
 }
 
 func (ptr *QQuickItem) SetFlag(flag QQuickItem__Flag, enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setFlag")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setFlag")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetFlag(ptr.Pointer(), C.int(flag), C.int(qt.GoBoolToInt(enabled)))
@@ -966,11 +1305,7 @@ func (ptr *QQuickItem) SetFlag(flag QQuickItem__Flag, enabled bool) {
 }
 
 func (ptr *QQuickItem) SetFlags(flags QQuickItem__Flag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setFlags")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setFlags")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetFlags(ptr.Pointer(), C.int(flags))
@@ -978,11 +1313,7 @@ func (ptr *QQuickItem) SetFlags(flags QQuickItem__Flag) {
 }
 
 func (ptr *QQuickItem) SetKeepMouseGrab(keep bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setKeepMouseGrab")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setKeepMouseGrab")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetKeepMouseGrab(ptr.Pointer(), C.int(qt.GoBoolToInt(keep)))
@@ -990,11 +1321,7 @@ func (ptr *QQuickItem) SetKeepMouseGrab(keep bool) {
 }
 
 func (ptr *QQuickItem) SetKeepTouchGrab(keep bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::setKeepTouchGrab")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::setKeepTouchGrab")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetKeepTouchGrab(ptr.Pointer(), C.int(qt.GoBoolToInt(keep)))
@@ -1002,11 +1329,7 @@ func (ptr *QQuickItem) SetKeepTouchGrab(keep bool) {
 }
 
 func (ptr *QQuickItem) StackAfter(sibling QQuickItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::stackAfter")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::stackAfter")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_StackAfter(ptr.Pointer(), PointerFromQQuickItem(sibling))
@@ -1014,23 +1337,77 @@ func (ptr *QQuickItem) StackAfter(sibling QQuickItem_ITF) {
 }
 
 func (ptr *QQuickItem) StackBefore(sibling QQuickItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::stackBefore")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::stackBefore")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_StackBefore(ptr.Pointer(), PointerFromQQuickItem(sibling))
 	}
 }
 
+func (ptr *QQuickItem) ConnectTouchEvent(f func(event *gui.QTouchEvent)) {
+	defer qt.Recovering("connect QQuickItem::touchEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "touchEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectTouchEvent() {
+	defer qt.Recovering("disconnect QQuickItem::touchEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "touchEvent")
+	}
+}
+
+//export callbackQQuickItemTouchEvent
+func callbackQQuickItemTouchEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::touchEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "touchEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QTouchEvent))(gui.NewQTouchEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectTouchUngrabEvent(f func()) {
+	defer qt.Recovering("connect QQuickItem::touchUngrabEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "touchUngrabEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectTouchUngrabEvent() {
+	defer qt.Recovering("disconnect QQuickItem::touchUngrabEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "touchUngrabEvent")
+	}
+}
+
+//export callbackQQuickItemTouchUngrabEvent
+func callbackQQuickItemTouchUngrabEvent(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQuickItem::touchUngrabEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "touchUngrabEvent")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QQuickItem) UngrabMouse() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::ungrabMouse")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::ungrabMouse")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_UngrabMouse(ptr.Pointer())
@@ -1038,11 +1415,7 @@ func (ptr *QQuickItem) UngrabMouse() {
 }
 
 func (ptr *QQuickItem) UngrabTouchPoints() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::ungrabTouchPoints")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::ungrabTouchPoints")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_UngrabTouchPoints(ptr.Pointer())
@@ -1050,11 +1423,7 @@ func (ptr *QQuickItem) UngrabTouchPoints() {
 }
 
 func (ptr *QQuickItem) UnsetCursor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::unsetCursor")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::unsetCursor")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_UnsetCursor(ptr.Pointer())
@@ -1062,23 +1431,77 @@ func (ptr *QQuickItem) UnsetCursor() {
 }
 
 func (ptr *QQuickItem) Update() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::update")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::update")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_Update(ptr.Pointer())
 	}
 }
 
+func (ptr *QQuickItem) ConnectUpdatePolish(f func()) {
+	defer qt.Recovering("connect QQuickItem::updatePolish")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updatePolish", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectUpdatePolish() {
+	defer qt.Recovering("disconnect QQuickItem::updatePolish")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updatePolish")
+	}
+}
+
+//export callbackQQuickItemUpdatePolish
+func callbackQQuickItemUpdatePolish(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQuickItem::updatePolish")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "updatePolish")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickItem) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
+	defer qt.Recovering("connect QQuickItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QQuickItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQQuickItemWheelEvent
+func callbackQQuickItemWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickItem::wheelEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QQuickItem) Window() *QQuickWindow {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::window")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::window")
 
 	if ptr.Pointer() != nil {
 		return NewQQuickWindowFromPointer(C.QQuickItem_Window(ptr.Pointer()))
@@ -1087,11 +1510,7 @@ func (ptr *QQuickItem) Window() *QQuickWindow {
 }
 
 func (ptr *QQuickItem) ConnectWindowChanged(f func(window *QQuickWindow)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::windowChanged")
-		}
-	}()
+	defer qt.Recovering("connect QQuickItem::windowChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_ConnectWindowChanged(ptr.Pointer())
@@ -1100,11 +1519,7 @@ func (ptr *QQuickItem) ConnectWindowChanged(f func(window *QQuickWindow)) {
 }
 
 func (ptr *QQuickItem) DisconnectWindowChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::windowChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QQuickItem::windowChanged")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_DisconnectWindowChanged(ptr.Pointer())
@@ -1114,21 +1529,17 @@ func (ptr *QQuickItem) DisconnectWindowChanged() {
 
 //export callbackQQuickItemWindowChanged
 func callbackQQuickItemWindowChanged(ptrName *C.char, window unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::windowChanged")
-		}
-	}()
+	defer qt.Recovering("callback QQuickItem::windowChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "windowChanged").(func(*QQuickWindow))(NewQQuickWindowFromPointer(window))
+	var signal = qt.GetSignal(C.GoString(ptrName), "windowChanged")
+	if signal != nil {
+		signal.(func(*QQuickWindow))(NewQQuickWindowFromPointer(window))
+	}
+
 }
 
 func (ptr *QQuickItem) DestroyQQuickItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQuickItem::~QQuickItem")
-		}
-	}()
+	defer qt.Recovering("QQuickItem::~QQuickItem")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_DestroyQQuickItem(ptr.Pointer())

@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"strings"
 	"unsafe"
 )
@@ -42,31 +42,19 @@ func (ptr *QRegularExpressionMatch) QRegularExpressionMatch_PTR() *QRegularExpre
 }
 
 func NewQRegularExpressionMatch() *QRegularExpressionMatch {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::QRegularExpressionMatch")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::QRegularExpressionMatch")
 
 	return NewQRegularExpressionMatchFromPointer(C.QRegularExpressionMatch_NewQRegularExpressionMatch())
 }
 
 func NewQRegularExpressionMatch2(match QRegularExpressionMatch_ITF) *QRegularExpressionMatch {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::QRegularExpressionMatch")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::QRegularExpressionMatch")
 
 	return NewQRegularExpressionMatchFromPointer(C.QRegularExpressionMatch_NewQRegularExpressionMatch2(PointerFromQRegularExpressionMatch(match)))
 }
 
 func (ptr *QRegularExpressionMatch) Captured2(name string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::captured")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::captured")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRegularExpressionMatch_Captured2(ptr.Pointer(), C.CString(name)))
@@ -75,11 +63,7 @@ func (ptr *QRegularExpressionMatch) Captured2(name string) string {
 }
 
 func (ptr *QRegularExpressionMatch) Captured(nth int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::captured")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::captured")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRegularExpressionMatch_Captured(ptr.Pointer(), C.int(nth)))
@@ -88,11 +72,7 @@ func (ptr *QRegularExpressionMatch) Captured(nth int) string {
 }
 
 func (ptr *QRegularExpressionMatch) CapturedEnd2(name string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::capturedEnd")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::capturedEnd")
 
 	if ptr.Pointer() != nil {
 		return int(C.QRegularExpressionMatch_CapturedEnd2(ptr.Pointer(), C.CString(name)))
@@ -101,11 +81,7 @@ func (ptr *QRegularExpressionMatch) CapturedEnd2(name string) int {
 }
 
 func (ptr *QRegularExpressionMatch) CapturedEnd(nth int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::capturedEnd")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::capturedEnd")
 
 	if ptr.Pointer() != nil {
 		return int(C.QRegularExpressionMatch_CapturedEnd(ptr.Pointer(), C.int(nth)))
@@ -114,11 +90,7 @@ func (ptr *QRegularExpressionMatch) CapturedEnd(nth int) int {
 }
 
 func (ptr *QRegularExpressionMatch) CapturedLength2(name string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::capturedLength")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::capturedLength")
 
 	if ptr.Pointer() != nil {
 		return int(C.QRegularExpressionMatch_CapturedLength2(ptr.Pointer(), C.CString(name)))
@@ -127,11 +99,7 @@ func (ptr *QRegularExpressionMatch) CapturedLength2(name string) int {
 }
 
 func (ptr *QRegularExpressionMatch) CapturedLength(nth int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::capturedLength")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::capturedLength")
 
 	if ptr.Pointer() != nil {
 		return int(C.QRegularExpressionMatch_CapturedLength(ptr.Pointer(), C.int(nth)))
@@ -140,11 +108,7 @@ func (ptr *QRegularExpressionMatch) CapturedLength(nth int) int {
 }
 
 func (ptr *QRegularExpressionMatch) CapturedRef2(name string) *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::capturedRef")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::capturedRef")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QRegularExpressionMatch_CapturedRef2(ptr.Pointer(), C.CString(name)))
@@ -153,11 +117,7 @@ func (ptr *QRegularExpressionMatch) CapturedRef2(name string) *QStringRef {
 }
 
 func (ptr *QRegularExpressionMatch) CapturedRef(nth int) *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::capturedRef")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::capturedRef")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QRegularExpressionMatch_CapturedRef(ptr.Pointer(), C.int(nth)))
@@ -166,11 +126,7 @@ func (ptr *QRegularExpressionMatch) CapturedRef(nth int) *QStringRef {
 }
 
 func (ptr *QRegularExpressionMatch) CapturedStart2(name string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::capturedStart")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::capturedStart")
 
 	if ptr.Pointer() != nil {
 		return int(C.QRegularExpressionMatch_CapturedStart2(ptr.Pointer(), C.CString(name)))
@@ -179,11 +135,7 @@ func (ptr *QRegularExpressionMatch) CapturedStart2(name string) int {
 }
 
 func (ptr *QRegularExpressionMatch) CapturedStart(nth int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::capturedStart")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::capturedStart")
 
 	if ptr.Pointer() != nil {
 		return int(C.QRegularExpressionMatch_CapturedStart(ptr.Pointer(), C.int(nth)))
@@ -192,11 +144,7 @@ func (ptr *QRegularExpressionMatch) CapturedStart(nth int) int {
 }
 
 func (ptr *QRegularExpressionMatch) CapturedTexts() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::capturedTexts")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::capturedTexts")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QRegularExpressionMatch_CapturedTexts(ptr.Pointer())), ",,,")
@@ -205,11 +153,7 @@ func (ptr *QRegularExpressionMatch) CapturedTexts() []string {
 }
 
 func (ptr *QRegularExpressionMatch) HasMatch() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::hasMatch")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::hasMatch")
 
 	if ptr.Pointer() != nil {
 		return C.QRegularExpressionMatch_HasMatch(ptr.Pointer()) != 0
@@ -218,11 +162,7 @@ func (ptr *QRegularExpressionMatch) HasMatch() bool {
 }
 
 func (ptr *QRegularExpressionMatch) HasPartialMatch() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::hasPartialMatch")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::hasPartialMatch")
 
 	if ptr.Pointer() != nil {
 		return C.QRegularExpressionMatch_HasPartialMatch(ptr.Pointer()) != 0
@@ -231,11 +171,7 @@ func (ptr *QRegularExpressionMatch) HasPartialMatch() bool {
 }
 
 func (ptr *QRegularExpressionMatch) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::isValid")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QRegularExpressionMatch_IsValid(ptr.Pointer()) != 0
@@ -244,11 +180,7 @@ func (ptr *QRegularExpressionMatch) IsValid() bool {
 }
 
 func (ptr *QRegularExpressionMatch) LastCapturedIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::lastCapturedIndex")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::lastCapturedIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QRegularExpressionMatch_LastCapturedIndex(ptr.Pointer()))
@@ -257,11 +189,7 @@ func (ptr *QRegularExpressionMatch) LastCapturedIndex() int {
 }
 
 func (ptr *QRegularExpressionMatch) MatchOptions() QRegularExpression__MatchOption {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::matchOptions")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::matchOptions")
 
 	if ptr.Pointer() != nil {
 		return QRegularExpression__MatchOption(C.QRegularExpressionMatch_MatchOptions(ptr.Pointer()))
@@ -270,11 +198,7 @@ func (ptr *QRegularExpressionMatch) MatchOptions() QRegularExpression__MatchOpti
 }
 
 func (ptr *QRegularExpressionMatch) MatchType() QRegularExpression__MatchType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::matchType")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::matchType")
 
 	if ptr.Pointer() != nil {
 		return QRegularExpression__MatchType(C.QRegularExpressionMatch_MatchType(ptr.Pointer()))
@@ -283,11 +207,7 @@ func (ptr *QRegularExpressionMatch) MatchType() QRegularExpression__MatchType {
 }
 
 func (ptr *QRegularExpressionMatch) RegularExpression() *QRegularExpression {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::regularExpression")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::regularExpression")
 
 	if ptr.Pointer() != nil {
 		return NewQRegularExpressionFromPointer(C.QRegularExpressionMatch_RegularExpression(ptr.Pointer()))
@@ -296,11 +216,7 @@ func (ptr *QRegularExpressionMatch) RegularExpression() *QRegularExpression {
 }
 
 func (ptr *QRegularExpressionMatch) Swap(other QRegularExpressionMatch_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::swap")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::swap")
 
 	if ptr.Pointer() != nil {
 		C.QRegularExpressionMatch_Swap(ptr.Pointer(), PointerFromQRegularExpressionMatch(other))
@@ -308,11 +224,7 @@ func (ptr *QRegularExpressionMatch) Swap(other QRegularExpressionMatch_ITF) {
 }
 
 func (ptr *QRegularExpressionMatch) DestroyQRegularExpressionMatch() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpressionMatch::~QRegularExpressionMatch")
-		}
-	}()
+	defer qt.Recovering("QRegularExpressionMatch::~QRegularExpressionMatch")
 
 	if ptr.Pointer() != nil {
 		C.QRegularExpressionMatch_DestroyQRegularExpressionMatch(ptr.Pointer())

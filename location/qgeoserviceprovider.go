@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQGeoServiceProviderFromPointer(ptr unsafe.Pointer) *QGeoServiceProvider 
 	var n = new(QGeoServiceProvider)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoServiceProvider_") {
-		n.SetObjectName("QGeoServiceProvider_" + qt.RandomIdentifier())
+		n.SetObjectName("QGeoServiceProvider_" + qt.Identifier())
 	}
 	return n
 }
@@ -107,21 +106,13 @@ var (
 )
 
 func QGeoServiceProvider_AvailableServiceProviders() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::availableServiceProviders")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::availableServiceProviders")
 
 	return strings.Split(C.GoString(C.QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()), ",,,")
 }
 
 func (ptr *QGeoServiceProvider) Error() QGeoServiceProvider__Error {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::error")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::error")
 
 	if ptr.Pointer() != nil {
 		return QGeoServiceProvider__Error(C.QGeoServiceProvider_Error(ptr.Pointer()))
@@ -130,11 +121,7 @@ func (ptr *QGeoServiceProvider) Error() QGeoServiceProvider__Error {
 }
 
 func (ptr *QGeoServiceProvider) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::errorString")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGeoServiceProvider_ErrorString(ptr.Pointer()))
@@ -143,11 +130,7 @@ func (ptr *QGeoServiceProvider) ErrorString() string {
 }
 
 func (ptr *QGeoServiceProvider) GeocodingFeatures() QGeoServiceProvider__GeocodingFeature {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::geocodingFeatures")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::geocodingFeatures")
 
 	if ptr.Pointer() != nil {
 		return QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_GeocodingFeatures(ptr.Pointer()))
@@ -156,11 +139,7 @@ func (ptr *QGeoServiceProvider) GeocodingFeatures() QGeoServiceProvider__Geocodi
 }
 
 func (ptr *QGeoServiceProvider) GeocodingManager() *QGeoCodingManager {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::geocodingManager")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::geocodingManager")
 
 	if ptr.Pointer() != nil {
 		return NewQGeoCodingManagerFromPointer(C.QGeoServiceProvider_GeocodingManager(ptr.Pointer()))
@@ -169,11 +148,7 @@ func (ptr *QGeoServiceProvider) GeocodingManager() *QGeoCodingManager {
 }
 
 func (ptr *QGeoServiceProvider) MappingFeatures() QGeoServiceProvider__MappingFeature {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::mappingFeatures")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::mappingFeatures")
 
 	if ptr.Pointer() != nil {
 		return QGeoServiceProvider__MappingFeature(C.QGeoServiceProvider_MappingFeatures(ptr.Pointer()))
@@ -182,11 +157,7 @@ func (ptr *QGeoServiceProvider) MappingFeatures() QGeoServiceProvider__MappingFe
 }
 
 func (ptr *QGeoServiceProvider) PlaceManager() *QPlaceManager {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::placeManager")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::placeManager")
 
 	if ptr.Pointer() != nil {
 		return NewQPlaceManagerFromPointer(C.QGeoServiceProvider_PlaceManager(ptr.Pointer()))
@@ -195,11 +166,7 @@ func (ptr *QGeoServiceProvider) PlaceManager() *QPlaceManager {
 }
 
 func (ptr *QGeoServiceProvider) PlacesFeatures() QGeoServiceProvider__PlacesFeature {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::placesFeatures")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::placesFeatures")
 
 	if ptr.Pointer() != nil {
 		return QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_PlacesFeatures(ptr.Pointer()))
@@ -208,11 +175,7 @@ func (ptr *QGeoServiceProvider) PlacesFeatures() QGeoServiceProvider__PlacesFeat
 }
 
 func (ptr *QGeoServiceProvider) RoutingFeatures() QGeoServiceProvider__RoutingFeature {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::routingFeatures")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::routingFeatures")
 
 	if ptr.Pointer() != nil {
 		return QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_RoutingFeatures(ptr.Pointer()))
@@ -221,11 +184,7 @@ func (ptr *QGeoServiceProvider) RoutingFeatures() QGeoServiceProvider__RoutingFe
 }
 
 func (ptr *QGeoServiceProvider) RoutingManager() *QGeoRoutingManager {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::routingManager")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::routingManager")
 
 	if ptr.Pointer() != nil {
 		return NewQGeoRoutingManagerFromPointer(C.QGeoServiceProvider_RoutingManager(ptr.Pointer()))
@@ -234,11 +193,7 @@ func (ptr *QGeoServiceProvider) RoutingManager() *QGeoRoutingManager {
 }
 
 func (ptr *QGeoServiceProvider) SetAllowExperimental(allow bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::setAllowExperimental")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::setAllowExperimental")
 
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProvider_SetAllowExperimental(ptr.Pointer(), C.int(qt.GoBoolToInt(allow)))
@@ -246,11 +201,7 @@ func (ptr *QGeoServiceProvider) SetAllowExperimental(allow bool) {
 }
 
 func (ptr *QGeoServiceProvider) SetLocale(locale core.QLocale_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::setLocale")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::setLocale")
 
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProvider_SetLocale(ptr.Pointer(), core.PointerFromQLocale(locale))
@@ -258,11 +209,7 @@ func (ptr *QGeoServiceProvider) SetLocale(locale core.QLocale_ITF) {
 }
 
 func (ptr *QGeoServiceProvider) DestroyQGeoServiceProvider() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoServiceProvider::~QGeoServiceProvider")
-		}
-	}()
+	defer qt.Recovering("QGeoServiceProvider::~QGeoServiceProvider")
 
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProvider_DestroyQGeoServiceProvider(ptr.Pointer())

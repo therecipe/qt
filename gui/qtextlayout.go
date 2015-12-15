@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -51,11 +50,7 @@ const (
 )
 
 func (ptr *QTextLayout) DrawCursor2(painter QPainter_ITF, position core.QPointF_ITF, cursorPosition int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::drawCursor")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::drawCursor")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_DrawCursor2(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQPointF(position), C.int(cursorPosition))
@@ -63,11 +58,7 @@ func (ptr *QTextLayout) DrawCursor2(painter QPainter_ITF, position core.QPointF_
 }
 
 func (ptr *QTextLayout) DrawCursor(painter QPainter_ITF, position core.QPointF_ITF, cursorPosition int, width int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::drawCursor")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::drawCursor")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_DrawCursor(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQPointF(position), C.int(cursorPosition), C.int(width))
@@ -75,41 +66,25 @@ func (ptr *QTextLayout) DrawCursor(painter QPainter_ITF, position core.QPointF_I
 }
 
 func NewQTextLayout() *QTextLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::QTextLayout")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::QTextLayout")
 
 	return NewQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout())
 }
 
 func NewQTextLayout2(text string) *QTextLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::QTextLayout")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::QTextLayout")
 
 	return NewQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout2(C.CString(text)))
 }
 
 func NewQTextLayout3(text string, font QFont_ITF, paintdevice QPaintDevice_ITF) *QTextLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::QTextLayout")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::QTextLayout")
 
 	return NewQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout3(C.CString(text), PointerFromQFont(font), PointerFromQPaintDevice(paintdevice)))
 }
 
 func (ptr *QTextLayout) BeginLayout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::beginLayout")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::beginLayout")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_BeginLayout(ptr.Pointer())
@@ -117,11 +92,7 @@ func (ptr *QTextLayout) BeginLayout() {
 }
 
 func (ptr *QTextLayout) CacheEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::cacheEnabled")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::cacheEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QTextLayout_CacheEnabled(ptr.Pointer()) != 0
@@ -130,11 +101,7 @@ func (ptr *QTextLayout) CacheEnabled() bool {
 }
 
 func (ptr *QTextLayout) ClearAdditionalFormats() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::clearAdditionalFormats")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::clearAdditionalFormats")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_ClearAdditionalFormats(ptr.Pointer())
@@ -142,11 +109,7 @@ func (ptr *QTextLayout) ClearAdditionalFormats() {
 }
 
 func (ptr *QTextLayout) ClearLayout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::clearLayout")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::clearLayout")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_ClearLayout(ptr.Pointer())
@@ -154,11 +117,7 @@ func (ptr *QTextLayout) ClearLayout() {
 }
 
 func (ptr *QTextLayout) CursorMoveStyle() core.Qt__CursorMoveStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::cursorMoveStyle")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::cursorMoveStyle")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__CursorMoveStyle(C.QTextLayout_CursorMoveStyle(ptr.Pointer()))
@@ -167,11 +126,7 @@ func (ptr *QTextLayout) CursorMoveStyle() core.Qt__CursorMoveStyle {
 }
 
 func (ptr *QTextLayout) EndLayout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::endLayout")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::endLayout")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_EndLayout(ptr.Pointer())
@@ -179,11 +134,7 @@ func (ptr *QTextLayout) EndLayout() {
 }
 
 func (ptr *QTextLayout) IsValidCursorPosition(pos int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::isValidCursorPosition")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::isValidCursorPosition")
 
 	if ptr.Pointer() != nil {
 		return C.QTextLayout_IsValidCursorPosition(ptr.Pointer(), C.int(pos)) != 0
@@ -192,11 +143,7 @@ func (ptr *QTextLayout) IsValidCursorPosition(pos int) bool {
 }
 
 func (ptr *QTextLayout) LeftCursorPosition(oldPos int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::leftCursorPosition")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::leftCursorPosition")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextLayout_LeftCursorPosition(ptr.Pointer(), C.int(oldPos)))
@@ -205,11 +152,7 @@ func (ptr *QTextLayout) LeftCursorPosition(oldPos int) int {
 }
 
 func (ptr *QTextLayout) LineCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::lineCount")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::lineCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextLayout_LineCount(ptr.Pointer()))
@@ -218,11 +161,7 @@ func (ptr *QTextLayout) LineCount() int {
 }
 
 func (ptr *QTextLayout) MaximumWidth() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::maximumWidth")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::maximumWidth")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLayout_MaximumWidth(ptr.Pointer()))
@@ -231,11 +170,7 @@ func (ptr *QTextLayout) MaximumWidth() float64 {
 }
 
 func (ptr *QTextLayout) MinimumWidth() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::minimumWidth")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::minimumWidth")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLayout_MinimumWidth(ptr.Pointer()))
@@ -244,11 +179,7 @@ func (ptr *QTextLayout) MinimumWidth() float64 {
 }
 
 func (ptr *QTextLayout) NextCursorPosition(oldPos int, mode QTextLayout__CursorMode) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::nextCursorPosition")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::nextCursorPosition")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextLayout_NextCursorPosition(ptr.Pointer(), C.int(oldPos), C.int(mode)))
@@ -257,11 +188,7 @@ func (ptr *QTextLayout) NextCursorPosition(oldPos int, mode QTextLayout__CursorM
 }
 
 func (ptr *QTextLayout) PreeditAreaPosition() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::preeditAreaPosition")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::preeditAreaPosition")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextLayout_PreeditAreaPosition(ptr.Pointer()))
@@ -270,11 +197,7 @@ func (ptr *QTextLayout) PreeditAreaPosition() int {
 }
 
 func (ptr *QTextLayout) PreeditAreaText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::preeditAreaText")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::preeditAreaText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextLayout_PreeditAreaText(ptr.Pointer()))
@@ -283,11 +206,7 @@ func (ptr *QTextLayout) PreeditAreaText() string {
 }
 
 func (ptr *QTextLayout) PreviousCursorPosition(oldPos int, mode QTextLayout__CursorMode) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::previousCursorPosition")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::previousCursorPosition")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextLayout_PreviousCursorPosition(ptr.Pointer(), C.int(oldPos), C.int(mode)))
@@ -296,11 +215,7 @@ func (ptr *QTextLayout) PreviousCursorPosition(oldPos int, mode QTextLayout__Cur
 }
 
 func (ptr *QTextLayout) RightCursorPosition(oldPos int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::rightCursorPosition")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::rightCursorPosition")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextLayout_RightCursorPosition(ptr.Pointer(), C.int(oldPos)))
@@ -309,11 +224,7 @@ func (ptr *QTextLayout) RightCursorPosition(oldPos int) int {
 }
 
 func (ptr *QTextLayout) SetCacheEnabled(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::setCacheEnabled")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::setCacheEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_SetCacheEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -321,11 +232,7 @@ func (ptr *QTextLayout) SetCacheEnabled(enable bool) {
 }
 
 func (ptr *QTextLayout) SetCursorMoveStyle(style core.Qt__CursorMoveStyle) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::setCursorMoveStyle")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::setCursorMoveStyle")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_SetCursorMoveStyle(ptr.Pointer(), C.int(style))
@@ -333,11 +240,7 @@ func (ptr *QTextLayout) SetCursorMoveStyle(style core.Qt__CursorMoveStyle) {
 }
 
 func (ptr *QTextLayout) SetFont(font QFont_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::setFont")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::setFont")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_SetFont(ptr.Pointer(), PointerFromQFont(font))
@@ -345,11 +248,7 @@ func (ptr *QTextLayout) SetFont(font QFont_ITF) {
 }
 
 func (ptr *QTextLayout) SetPosition(p core.QPointF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::setPosition")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::setPosition")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_SetPosition(ptr.Pointer(), core.PointerFromQPointF(p))
@@ -357,11 +256,7 @@ func (ptr *QTextLayout) SetPosition(p core.QPointF_ITF) {
 }
 
 func (ptr *QTextLayout) SetPreeditArea(position int, text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::setPreeditArea")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::setPreeditArea")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_SetPreeditArea(ptr.Pointer(), C.int(position), C.CString(text))
@@ -369,11 +264,7 @@ func (ptr *QTextLayout) SetPreeditArea(position int, text string) {
 }
 
 func (ptr *QTextLayout) SetText(stri string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::setText")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::setText")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_SetText(ptr.Pointer(), C.CString(stri))
@@ -381,11 +272,7 @@ func (ptr *QTextLayout) SetText(stri string) {
 }
 
 func (ptr *QTextLayout) SetTextOption(option QTextOption_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::setTextOption")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::setTextOption")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_SetTextOption(ptr.Pointer(), PointerFromQTextOption(option))
@@ -393,11 +280,7 @@ func (ptr *QTextLayout) SetTextOption(option QTextOption_ITF) {
 }
 
 func (ptr *QTextLayout) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::text")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextLayout_Text(ptr.Pointer()))
@@ -406,11 +289,7 @@ func (ptr *QTextLayout) Text() string {
 }
 
 func (ptr *QTextLayout) DestroyQTextLayout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextLayout::~QTextLayout")
-		}
-	}()
+	defer qt.Recovering("QTextLayout::~QTextLayout")
 
 	if ptr.Pointer() != nil {
 		C.QTextLayout_DestroyQTextLayout(ptr.Pointer())

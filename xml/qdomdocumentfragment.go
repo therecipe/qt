@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,31 +34,19 @@ func (ptr *QDomDocumentFragment) QDomDocumentFragment_PTR() *QDomDocumentFragmen
 }
 
 func NewQDomDocumentFragment() *QDomDocumentFragment {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomDocumentFragment::QDomDocumentFragment")
-		}
-	}()
+	defer qt.Recovering("QDomDocumentFragment::QDomDocumentFragment")
 
 	return NewQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment())
 }
 
 func NewQDomDocumentFragment2(x QDomDocumentFragment_ITF) *QDomDocumentFragment {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomDocumentFragment::QDomDocumentFragment")
-		}
-	}()
+	defer qt.Recovering("QDomDocumentFragment::QDomDocumentFragment")
 
 	return NewQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment2(PointerFromQDomDocumentFragment(x)))
 }
 
 func (ptr *QDomDocumentFragment) NodeType() QDomNode__NodeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomDocumentFragment::nodeType")
-		}
-	}()
+	defer qt.Recovering("QDomDocumentFragment::nodeType")
 
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomDocumentFragment_NodeType(ptr.Pointer()))

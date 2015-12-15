@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQAbstractNativeEventFilter(ptr QAbstractNativeEventFilter_ITF) u
 func NewQAbstractNativeEventFilterFromPointer(ptr unsafe.Pointer) *QAbstractNativeEventFilter {
 	var n = new(QAbstractNativeEventFilter)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QAbstractNativeEventFilter_") {
+		n.SetObjectNameAbs("QAbstractNativeEventFilter_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -41,13 +44,26 @@ func (ptr *QAbstractNativeEventFilter) QAbstractNativeEventFilter_PTR() *QAbstra
 }
 
 func (ptr *QAbstractNativeEventFilter) DestroyQAbstractNativeEventFilter() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractNativeEventFilter::~QAbstractNativeEventFilter")
-		}
-	}()
+	defer qt.Recovering("QAbstractNativeEventFilter::~QAbstractNativeEventFilter")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractNativeEventFilter) ObjectNameAbs() string {
+	defer qt.Recovering("QAbstractNativeEventFilter::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAbstractNativeEventFilter_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAbstractNativeEventFilter) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QAbstractNativeEventFilter::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractNativeEventFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

@@ -3,7 +3,7 @@ package xmlpatterns
 //#include "xmlpatterns.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -63,31 +63,19 @@ const (
 )
 
 func NewQXmlNodeModelIndex() *QXmlNodeModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNodeModelIndex::QXmlNodeModelIndex")
-		}
-	}()
+	defer qt.Recovering("QXmlNodeModelIndex::QXmlNodeModelIndex")
 
 	return NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex())
 }
 
 func NewQXmlNodeModelIndex2(other QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNodeModelIndex::QXmlNodeModelIndex")
-		}
-	}()
+	defer qt.Recovering("QXmlNodeModelIndex::QXmlNodeModelIndex")
 
 	return NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex2(PointerFromQXmlNodeModelIndex(other)))
 }
 
 func (ptr *QXmlNodeModelIndex) InternalPointer() unsafe.Pointer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNodeModelIndex::internalPointer")
-		}
-	}()
+	defer qt.Recovering("QXmlNodeModelIndex::internalPointer")
 
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QXmlNodeModelIndex_InternalPointer(ptr.Pointer()))
@@ -96,11 +84,7 @@ func (ptr *QXmlNodeModelIndex) InternalPointer() unsafe.Pointer {
 }
 
 func (ptr *QXmlNodeModelIndex) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNodeModelIndex::isNull")
-		}
-	}()
+	defer qt.Recovering("QXmlNodeModelIndex::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlNodeModelIndex_IsNull(ptr.Pointer()) != 0
@@ -109,11 +93,7 @@ func (ptr *QXmlNodeModelIndex) IsNull() bool {
 }
 
 func (ptr *QXmlNodeModelIndex) Model() *QAbstractXmlNodeModel {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNodeModelIndex::model")
-		}
-	}()
+	defer qt.Recovering("QXmlNodeModelIndex::model")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractXmlNodeModelFromPointer(C.QXmlNodeModelIndex_Model(ptr.Pointer()))

@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQFileDeviceFromPointer(ptr unsafe.Pointer) *QFileDevice {
 	var n = new(QFileDevice)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QFileDevice_") {
-		n.SetObjectName("QFileDevice_" + qt.RandomIdentifier())
+		n.SetObjectName("QFileDevice_" + qt.Identifier())
 	}
 	return n
 }
@@ -93,11 +92,7 @@ const (
 )
 
 func (ptr *QFileDevice) AtEnd() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDevice::atEnd")
-		}
-	}()
+	defer qt.Recovering("QFileDevice::atEnd")
 
 	if ptr.Pointer() != nil {
 		return C.QFileDevice_AtEnd(ptr.Pointer()) != 0
@@ -105,24 +100,39 @@ func (ptr *QFileDevice) AtEnd() bool {
 	return false
 }
 
-func (ptr *QFileDevice) Close() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDevice::close")
-		}
-	}()
+func (ptr *QFileDevice) ConnectClose(f func()) {
+	defer qt.Recovering("connect QFileDevice::close")
 
 	if ptr.Pointer() != nil {
-		C.QFileDevice_Close(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "close", f)
 	}
 }
 
+func (ptr *QFileDevice) DisconnectClose() {
+	defer qt.Recovering("disconnect QFileDevice::close")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "close")
+	}
+}
+
+//export callbackQFileDeviceClose
+func callbackQFileDeviceClose(ptrName *C.char) bool {
+	defer qt.Recovering("callback QFileDevice::close")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "close")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QFileDevice) Error() QFileDevice__FileError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDevice::error")
-		}
-	}()
+	defer qt.Recovering("QFileDevice::error")
 
 	if ptr.Pointer() != nil {
 		return QFileDevice__FileError(C.QFileDevice_Error(ptr.Pointer()))
@@ -131,11 +141,7 @@ func (ptr *QFileDevice) Error() QFileDevice__FileError {
 }
 
 func (ptr *QFileDevice) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDevice::fileName")
-		}
-	}()
+	defer qt.Recovering("QFileDevice::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFileDevice_FileName(ptr.Pointer()))
@@ -144,11 +150,7 @@ func (ptr *QFileDevice) FileName() string {
 }
 
 func (ptr *QFileDevice) Flush() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDevice::flush")
-		}
-	}()
+	defer qt.Recovering("QFileDevice::flush")
 
 	if ptr.Pointer() != nil {
 		return C.QFileDevice_Flush(ptr.Pointer()) != 0
@@ -157,11 +159,7 @@ func (ptr *QFileDevice) Flush() bool {
 }
 
 func (ptr *QFileDevice) Handle() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDevice::handle")
-		}
-	}()
+	defer qt.Recovering("QFileDevice::handle")
 
 	if ptr.Pointer() != nil {
 		return int(C.QFileDevice_Handle(ptr.Pointer()))
@@ -170,11 +168,7 @@ func (ptr *QFileDevice) Handle() int {
 }
 
 func (ptr *QFileDevice) IsSequential() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDevice::isSequential")
-		}
-	}()
+	defer qt.Recovering("QFileDevice::isSequential")
 
 	if ptr.Pointer() != nil {
 		return C.QFileDevice_IsSequential(ptr.Pointer()) != 0
@@ -183,11 +177,7 @@ func (ptr *QFileDevice) IsSequential() bool {
 }
 
 func (ptr *QFileDevice) Permissions() QFileDevice__Permission {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDevice::permissions")
-		}
-	}()
+	defer qt.Recovering("QFileDevice::permissions")
 
 	if ptr.Pointer() != nil {
 		return QFileDevice__Permission(C.QFileDevice_Permissions(ptr.Pointer()))
@@ -196,11 +186,7 @@ func (ptr *QFileDevice) Permissions() QFileDevice__Permission {
 }
 
 func (ptr *QFileDevice) SetPermissions(permissions QFileDevice__Permission) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDevice::setPermissions")
-		}
-	}()
+	defer qt.Recovering("QFileDevice::setPermissions")
 
 	if ptr.Pointer() != nil {
 		return C.QFileDevice_SetPermissions(ptr.Pointer(), C.int(permissions)) != 0
@@ -209,11 +195,7 @@ func (ptr *QFileDevice) SetPermissions(permissions QFileDevice__Permission) bool
 }
 
 func (ptr *QFileDevice) UnsetError() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDevice::unsetError")
-		}
-	}()
+	defer qt.Recovering("QFileDevice::unsetError")
 
 	if ptr.Pointer() != nil {
 		C.QFileDevice_UnsetError(ptr.Pointer())
@@ -221,11 +203,7 @@ func (ptr *QFileDevice) UnsetError() {
 }
 
 func (ptr *QFileDevice) DestroyQFileDevice() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QFileDevice::~QFileDevice")
-		}
-	}()
+	defer qt.Recovering("QFileDevice::~QFileDevice")
 
 	if ptr.Pointer() != nil {
 		C.QFileDevice_DestroyQFileDevice(ptr.Pointer())

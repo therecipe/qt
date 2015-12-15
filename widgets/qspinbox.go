@@ -4,7 +4,6 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQSpinBoxFromPointer(ptr unsafe.Pointer) *QSpinBox {
 	var n = new(QSpinBox)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSpinBox_") {
-		n.SetObjectName("QSpinBox_" + qt.RandomIdentifier())
+		n.SetObjectName("QSpinBox_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QSpinBox) QSpinBox_PTR() *QSpinBox {
 }
 
 func (ptr *QSpinBox) CleanText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::cleanText")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::cleanText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSpinBox_CleanText(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QSpinBox) CleanText() string {
 }
 
 func (ptr *QSpinBox) DisplayIntegerBase() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::displayIntegerBase")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::displayIntegerBase")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSpinBox_DisplayIntegerBase(ptr.Pointer()))
@@ -64,11 +55,7 @@ func (ptr *QSpinBox) DisplayIntegerBase() int {
 }
 
 func (ptr *QSpinBox) Maximum() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::maximum")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::maximum")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSpinBox_Maximum(ptr.Pointer()))
@@ -77,11 +64,7 @@ func (ptr *QSpinBox) Maximum() int {
 }
 
 func (ptr *QSpinBox) Minimum() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::minimum")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::minimum")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSpinBox_Minimum(ptr.Pointer()))
@@ -90,11 +73,7 @@ func (ptr *QSpinBox) Minimum() int {
 }
 
 func (ptr *QSpinBox) Prefix() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::prefix")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::prefix")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSpinBox_Prefix(ptr.Pointer()))
@@ -103,11 +82,7 @@ func (ptr *QSpinBox) Prefix() string {
 }
 
 func (ptr *QSpinBox) SetDisplayIntegerBase(base int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::setDisplayIntegerBase")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::setDisplayIntegerBase")
 
 	if ptr.Pointer() != nil {
 		C.QSpinBox_SetDisplayIntegerBase(ptr.Pointer(), C.int(base))
@@ -115,11 +90,7 @@ func (ptr *QSpinBox) SetDisplayIntegerBase(base int) {
 }
 
 func (ptr *QSpinBox) SetMaximum(max int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::setMaximum")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::setMaximum")
 
 	if ptr.Pointer() != nil {
 		C.QSpinBox_SetMaximum(ptr.Pointer(), C.int(max))
@@ -127,11 +98,7 @@ func (ptr *QSpinBox) SetMaximum(max int) {
 }
 
 func (ptr *QSpinBox) SetMinimum(min int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::setMinimum")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::setMinimum")
 
 	if ptr.Pointer() != nil {
 		C.QSpinBox_SetMinimum(ptr.Pointer(), C.int(min))
@@ -139,11 +106,7 @@ func (ptr *QSpinBox) SetMinimum(min int) {
 }
 
 func (ptr *QSpinBox) SetPrefix(prefix string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::setPrefix")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::setPrefix")
 
 	if ptr.Pointer() != nil {
 		C.QSpinBox_SetPrefix(ptr.Pointer(), C.CString(prefix))
@@ -151,11 +114,7 @@ func (ptr *QSpinBox) SetPrefix(prefix string) {
 }
 
 func (ptr *QSpinBox) SetSingleStep(val int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::setSingleStep")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::setSingleStep")
 
 	if ptr.Pointer() != nil {
 		C.QSpinBox_SetSingleStep(ptr.Pointer(), C.int(val))
@@ -163,11 +122,7 @@ func (ptr *QSpinBox) SetSingleStep(val int) {
 }
 
 func (ptr *QSpinBox) SetSuffix(suffix string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::setSuffix")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::setSuffix")
 
 	if ptr.Pointer() != nil {
 		C.QSpinBox_SetSuffix(ptr.Pointer(), C.CString(suffix))
@@ -175,11 +130,7 @@ func (ptr *QSpinBox) SetSuffix(suffix string) {
 }
 
 func (ptr *QSpinBox) SetValue(val int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::setValue")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::setValue")
 
 	if ptr.Pointer() != nil {
 		C.QSpinBox_SetValue(ptr.Pointer(), C.int(val))
@@ -187,11 +138,7 @@ func (ptr *QSpinBox) SetValue(val int) {
 }
 
 func (ptr *QSpinBox) SingleStep() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::singleStep")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::singleStep")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSpinBox_SingleStep(ptr.Pointer()))
@@ -200,11 +147,7 @@ func (ptr *QSpinBox) SingleStep() int {
 }
 
 func (ptr *QSpinBox) Suffix() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::suffix")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::suffix")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSpinBox_Suffix(ptr.Pointer()))
@@ -213,11 +156,7 @@ func (ptr *QSpinBox) Suffix() string {
 }
 
 func (ptr *QSpinBox) Value() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::value")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::value")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSpinBox_Value(ptr.Pointer()))
@@ -226,21 +165,13 @@ func (ptr *QSpinBox) Value() int {
 }
 
 func NewQSpinBox(parent QWidget_ITF) *QSpinBox {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::QSpinBox")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::QSpinBox")
 
 	return NewQSpinBoxFromPointer(C.QSpinBox_NewQSpinBox(PointerFromQWidget(parent)))
 }
 
 func (ptr *QSpinBox) SetRange(minimum int, maximum int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::setRange")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::setRange")
 
 	if ptr.Pointer() != nil {
 		C.QSpinBox_SetRange(ptr.Pointer(), C.int(minimum), C.int(maximum))
@@ -248,11 +179,7 @@ func (ptr *QSpinBox) SetRange(minimum int, maximum int) {
 }
 
 func (ptr *QSpinBox) ConnectValueChanged(f func(i int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::valueChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSpinBox::valueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSpinBox_ConnectValueChanged(ptr.Pointer())
@@ -261,11 +188,7 @@ func (ptr *QSpinBox) ConnectValueChanged(f func(i int)) {
 }
 
 func (ptr *QSpinBox) DisconnectValueChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::valueChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSpinBox::valueChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSpinBox_DisconnectValueChanged(ptr.Pointer())
@@ -275,21 +198,17 @@ func (ptr *QSpinBox) DisconnectValueChanged() {
 
 //export callbackQSpinBoxValueChanged
 func callbackQSpinBoxValueChanged(ptrName *C.char, i C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::valueChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSpinBox::valueChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "valueChanged").(func(int))(int(i))
+	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
+	if signal != nil {
+		signal.(func(int))(int(i))
+	}
+
 }
 
 func (ptr *QSpinBox) DestroyQSpinBox() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpinBox::~QSpinBox")
-		}
-	}()
+	defer qt.Recovering("QSpinBox::~QSpinBox")
 
 	if ptr.Pointer() != nil {
 		C.QSpinBox_DestroyQSpinBox(ptr.Pointer())

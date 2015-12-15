@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,31 +35,19 @@ func (ptr *QAccessibleTextInsertEvent) QAccessibleTextInsertEvent_PTR() *QAccess
 }
 
 func NewQAccessibleTextInsertEvent2(iface QAccessibleInterface_ITF, position int, text string) *QAccessibleTextInsertEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextInsertEvent::QAccessibleTextInsertEvent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextInsertEvent::QAccessibleTextInsertEvent")
 
 	return NewQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent2(PointerFromQAccessibleInterface(iface), C.int(position), C.CString(text)))
 }
 
 func NewQAccessibleTextInsertEvent(object core.QObject_ITF, position int, text string) *QAccessibleTextInsertEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextInsertEvent::QAccessibleTextInsertEvent")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextInsertEvent::QAccessibleTextInsertEvent")
 
 	return NewQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent(core.PointerFromQObject(object), C.int(position), C.CString(text)))
 }
 
 func (ptr *QAccessibleTextInsertEvent) ChangePosition() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextInsertEvent::changePosition")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextInsertEvent::changePosition")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTextInsertEvent_ChangePosition(ptr.Pointer()))
@@ -68,11 +56,7 @@ func (ptr *QAccessibleTextInsertEvent) ChangePosition() int {
 }
 
 func (ptr *QAccessibleTextInsertEvent) TextInserted() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessibleTextInsertEvent::textInserted")
-		}
-	}()
+	defer qt.Recovering("QAccessibleTextInsertEvent::textInserted")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAccessibleTextInsertEvent_TextInserted(ptr.Pointer()))

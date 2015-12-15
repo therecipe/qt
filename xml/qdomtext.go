@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,31 +34,19 @@ func (ptr *QDomText) QDomText_PTR() *QDomText {
 }
 
 func NewQDomText() *QDomText {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomText::QDomText")
-		}
-	}()
+	defer qt.Recovering("QDomText::QDomText")
 
 	return NewQDomTextFromPointer(C.QDomText_NewQDomText())
 }
 
 func NewQDomText2(x QDomText_ITF) *QDomText {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomText::QDomText")
-		}
-	}()
+	defer qt.Recovering("QDomText::QDomText")
 
 	return NewQDomTextFromPointer(C.QDomText_NewQDomText2(PointerFromQDomText(x)))
 }
 
 func (ptr *QDomText) NodeType() QDomNode__NodeType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDomText::nodeType")
-		}
-	}()
+	defer qt.Recovering("QDomText::nodeType")
 
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomText_NodeType(ptr.Pointer()))

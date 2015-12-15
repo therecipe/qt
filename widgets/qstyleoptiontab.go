@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -84,21 +84,13 @@ const (
 )
 
 func NewQStyleOptionTab() *QStyleOptionTab {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionTab::QStyleOptionTab")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionTab::QStyleOptionTab")
 
 	return NewQStyleOptionTabFromPointer(C.QStyleOptionTab_NewQStyleOptionTab())
 }
 
 func NewQStyleOptionTab2(other QStyleOptionTab_ITF) *QStyleOptionTab {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionTab::QStyleOptionTab")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionTab::QStyleOptionTab")
 
 	return NewQStyleOptionTabFromPointer(C.QStyleOptionTab_NewQStyleOptionTab2(PointerFromQStyleOptionTab(other)))
 }

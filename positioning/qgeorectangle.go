@@ -3,7 +3,7 @@ package positioning
 //#include "positioning.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,51 +34,31 @@ func (ptr *QGeoRectangle) QGeoRectangle_PTR() *QGeoRectangle {
 }
 
 func NewQGeoRectangle() *QGeoRectangle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::QGeoRectangle")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::QGeoRectangle")
 
 	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle())
 }
 
 func NewQGeoRectangle3(topLeft QGeoCoordinate_ITF, bottomRight QGeoCoordinate_ITF) *QGeoRectangle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::QGeoRectangle")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::QGeoRectangle")
 
 	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle3(PointerFromQGeoCoordinate(topLeft), PointerFromQGeoCoordinate(bottomRight)))
 }
 
 func NewQGeoRectangle5(other QGeoRectangle_ITF) *QGeoRectangle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::QGeoRectangle")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::QGeoRectangle")
 
 	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle5(PointerFromQGeoRectangle(other)))
 }
 
 func NewQGeoRectangle6(other QGeoShape_ITF) *QGeoRectangle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::QGeoRectangle")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::QGeoRectangle")
 
 	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle6(PointerFromQGeoShape(other)))
 }
 
 func (ptr *QGeoRectangle) Contains(rectangle QGeoRectangle_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::contains")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::contains")
 
 	if ptr.Pointer() != nil {
 		return C.QGeoRectangle_Contains(ptr.Pointer(), PointerFromQGeoRectangle(rectangle)) != 0
@@ -87,11 +67,7 @@ func (ptr *QGeoRectangle) Contains(rectangle QGeoRectangle_ITF) bool {
 }
 
 func (ptr *QGeoRectangle) Intersects(rectangle QGeoRectangle_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::intersects")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::intersects")
 
 	if ptr.Pointer() != nil {
 		return C.QGeoRectangle_Intersects(ptr.Pointer(), PointerFromQGeoRectangle(rectangle)) != 0
@@ -100,11 +76,7 @@ func (ptr *QGeoRectangle) Intersects(rectangle QGeoRectangle_ITF) bool {
 }
 
 func (ptr *QGeoRectangle) SetBottomLeft(bottomLeft QGeoCoordinate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::setBottomLeft")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::setBottomLeft")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRectangle_SetBottomLeft(ptr.Pointer(), PointerFromQGeoCoordinate(bottomLeft))
@@ -112,11 +84,7 @@ func (ptr *QGeoRectangle) SetBottomLeft(bottomLeft QGeoCoordinate_ITF) {
 }
 
 func (ptr *QGeoRectangle) SetBottomRight(bottomRight QGeoCoordinate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::setBottomRight")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::setBottomRight")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRectangle_SetBottomRight(ptr.Pointer(), PointerFromQGeoCoordinate(bottomRight))
@@ -124,11 +92,7 @@ func (ptr *QGeoRectangle) SetBottomRight(bottomRight QGeoCoordinate_ITF) {
 }
 
 func (ptr *QGeoRectangle) SetCenter(center QGeoCoordinate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::setCenter")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::setCenter")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRectangle_SetCenter(ptr.Pointer(), PointerFromQGeoCoordinate(center))
@@ -136,11 +100,7 @@ func (ptr *QGeoRectangle) SetCenter(center QGeoCoordinate_ITF) {
 }
 
 func (ptr *QGeoRectangle) SetTopLeft(topLeft QGeoCoordinate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::setTopLeft")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::setTopLeft")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRectangle_SetTopLeft(ptr.Pointer(), PointerFromQGeoCoordinate(topLeft))
@@ -148,11 +108,7 @@ func (ptr *QGeoRectangle) SetTopLeft(topLeft QGeoCoordinate_ITF) {
 }
 
 func (ptr *QGeoRectangle) SetTopRight(topRight QGeoCoordinate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::setTopRight")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::setTopRight")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRectangle_SetTopRight(ptr.Pointer(), PointerFromQGeoCoordinate(topRight))
@@ -160,11 +116,7 @@ func (ptr *QGeoRectangle) SetTopRight(topRight QGeoCoordinate_ITF) {
 }
 
 func (ptr *QGeoRectangle) ToString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::toString")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::toString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGeoRectangle_ToString(ptr.Pointer()))
@@ -173,11 +125,7 @@ func (ptr *QGeoRectangle) ToString() string {
 }
 
 func (ptr *QGeoRectangle) DestroyQGeoRectangle() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRectangle::~QGeoRectangle")
-		}
-	}()
+	defer qt.Recovering("QGeoRectangle::~QGeoRectangle")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRectangle_DestroyQGeoRectangle(ptr.Pointer())

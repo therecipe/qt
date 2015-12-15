@@ -3,7 +3,7 @@ package network
 //#include "network.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QDnsMailExchangeRecord) QDnsMailExchangeRecord_PTR() *QDnsMailExchang
 }
 
 func NewQDnsMailExchangeRecord() *QDnsMailExchangeRecord {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsMailExchangeRecord::QDnsMailExchangeRecord")
-		}
-	}()
+	defer qt.Recovering("QDnsMailExchangeRecord::QDnsMailExchangeRecord")
 
 	return NewQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord())
 }
 
 func NewQDnsMailExchangeRecord2(other QDnsMailExchangeRecord_ITF) *QDnsMailExchangeRecord {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsMailExchangeRecord::QDnsMailExchangeRecord")
-		}
-	}()
+	defer qt.Recovering("QDnsMailExchangeRecord::QDnsMailExchangeRecord")
 
 	return NewQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord2(PointerFromQDnsMailExchangeRecord(other)))
 }
 
 func (ptr *QDnsMailExchangeRecord) Exchange() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsMailExchangeRecord::exchange")
-		}
-	}()
+	defer qt.Recovering("QDnsMailExchangeRecord::exchange")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDnsMailExchangeRecord_Exchange(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QDnsMailExchangeRecord) Exchange() string {
 }
 
 func (ptr *QDnsMailExchangeRecord) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsMailExchangeRecord::name")
-		}
-	}()
+	defer qt.Recovering("QDnsMailExchangeRecord::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDnsMailExchangeRecord_Name(ptr.Pointer()))
@@ -87,11 +71,7 @@ func (ptr *QDnsMailExchangeRecord) Name() string {
 }
 
 func (ptr *QDnsMailExchangeRecord) Swap(other QDnsMailExchangeRecord_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsMailExchangeRecord::swap")
-		}
-	}()
+	defer qt.Recovering("QDnsMailExchangeRecord::swap")
 
 	if ptr.Pointer() != nil {
 		C.QDnsMailExchangeRecord_Swap(ptr.Pointer(), PointerFromQDnsMailExchangeRecord(other))
@@ -99,11 +79,7 @@ func (ptr *QDnsMailExchangeRecord) Swap(other QDnsMailExchangeRecord_ITF) {
 }
 
 func (ptr *QDnsMailExchangeRecord) DestroyQDnsMailExchangeRecord() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDnsMailExchangeRecord::~QDnsMailExchangeRecord")
-		}
-	}()
+	defer qt.Recovering("QDnsMailExchangeRecord::~QDnsMailExchangeRecord")
 
 	if ptr.Pointer() != nil {
 		C.QDnsMailExchangeRecord_DestroyQDnsMailExchangeRecord(ptr.Pointer())

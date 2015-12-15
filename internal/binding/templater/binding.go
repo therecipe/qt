@@ -39,17 +39,18 @@ func GenModule(name string) {
 		//Dry Run
 		for _, c := range parser.ClassMap {
 			if moduleT == strings.TrimPrefix(c.Module, "Qt") {
+				AddObjectNameFunctionIfNeeded(c)
 				for _, f := range map[string]func(*parser.Class) string{"go": GoTemplate} {
 					f(c)
 				}
 			}
 		}
-		CppTemplateAIO("Qt" + moduleT)
-		HTemplateAIO("Qt" + moduleT)
+		CppTemplate("Qt" + moduleT)
+		HTemplate("Qt" + moduleT)
 
 		utils.MakeFolder(utils.GetQtPkgPath(name))
-		utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v%v.cpp", strings.ToLower(moduleT), suffix)), CppTemplateAIO("Qt"+moduleT))
-		utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v%v.h", strings.ToLower(moduleT), suffix)), HTemplateAIO("Qt"+moduleT))
+		utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v%v.cpp", strings.ToLower(moduleT), suffix)), CppTemplate("Qt"+moduleT))
+		utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v%v.h", strings.ToLower(moduleT), suffix)), HTemplate("Qt"+moduleT))
 
 		var fcount = 0
 		for _, c := range parser.ClassMap {
@@ -127,3 +128,34 @@ func GenModule(name string) {
 
 	}
 }
+
+func AddObjectNameFunctionIfNeeded(c *parser.Class) {
+	if !c.IsQObjectSubClass() && c.Name != "QMetaType" && hasVirtualFunction(c) {
+		c.Functions = append(c.Functions, &parser.Function{
+			Name:     "objectNameAbs",
+			Fullname: c.Name + "::" + "objectNameAbs",
+			Access:   "public",
+			Meta:     "plain",
+			Output:   "QString",
+		})
+		c.Functions = append(c.Functions, &parser.Function{
+			Name:     "setObjectNameAbs",
+			Fullname: c.Name + "::" + "setObjectNameAbs",
+			Access:   "public",
+			Meta:     "plain",
+			Output:   "void",
+			Parameters: []*parser.Parameter{&parser.Parameter{
+				Name:  "name",
+				Value: "QString",
+			}},
+		})
+	}
+}
+
+/*
+
+&{objectName QObject::objectName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.cpp non plain false false  QString QString objectName() const []  }
+&{setObjectName QObject::setObjectName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.cpp non plain false false  void void setObjectName(const QString &name) [0xc820478c40]  }
+
+
+*/

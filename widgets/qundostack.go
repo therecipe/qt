@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQUndoStackFromPointer(ptr unsafe.Pointer) *QUndoStack {
 	var n = new(QUndoStack)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QUndoStack_") {
-		n.SetObjectName("QUndoStack_" + qt.RandomIdentifier())
+		n.SetObjectName("QUndoStack_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QUndoStack) QUndoStack_PTR() *QUndoStack {
 }
 
 func (ptr *QUndoStack) IsActive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::isActive")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::isActive")
 
 	if ptr.Pointer() != nil {
 		return C.QUndoStack_IsActive(ptr.Pointer()) != 0
@@ -52,11 +47,7 @@ func (ptr *QUndoStack) IsActive() bool {
 }
 
 func (ptr *QUndoStack) SetActive(active bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::setActive")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::setActive")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_SetActive(ptr.Pointer(), C.int(qt.GoBoolToInt(active)))
@@ -64,11 +55,7 @@ func (ptr *QUndoStack) SetActive(active bool) {
 }
 
 func (ptr *QUndoStack) SetUndoLimit(limit int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::setUndoLimit")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::setUndoLimit")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_SetUndoLimit(ptr.Pointer(), C.int(limit))
@@ -76,11 +63,7 @@ func (ptr *QUndoStack) SetUndoLimit(limit int) {
 }
 
 func (ptr *QUndoStack) UndoLimit() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::undoLimit")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::undoLimit")
 
 	if ptr.Pointer() != nil {
 		return int(C.QUndoStack_UndoLimit(ptr.Pointer()))
@@ -89,21 +72,13 @@ func (ptr *QUndoStack) UndoLimit() int {
 }
 
 func NewQUndoStack(parent core.QObject_ITF) *QUndoStack {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::QUndoStack")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::QUndoStack")
 
 	return NewQUndoStackFromPointer(C.QUndoStack_NewQUndoStack(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QUndoStack) BeginMacro(text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::beginMacro")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::beginMacro")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_BeginMacro(ptr.Pointer(), C.CString(text))
@@ -111,11 +86,7 @@ func (ptr *QUndoStack) BeginMacro(text string) {
 }
 
 func (ptr *QUndoStack) CanRedo() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::canRedo")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::canRedo")
 
 	if ptr.Pointer() != nil {
 		return C.QUndoStack_CanRedo(ptr.Pointer()) != 0
@@ -124,11 +95,7 @@ func (ptr *QUndoStack) CanRedo() bool {
 }
 
 func (ptr *QUndoStack) ConnectCanRedoChanged(f func(canRedo bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::canRedoChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoStack::canRedoChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_ConnectCanRedoChanged(ptr.Pointer())
@@ -137,11 +104,7 @@ func (ptr *QUndoStack) ConnectCanRedoChanged(f func(canRedo bool)) {
 }
 
 func (ptr *QUndoStack) DisconnectCanRedoChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::canRedoChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoStack::canRedoChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DisconnectCanRedoChanged(ptr.Pointer())
@@ -151,21 +114,17 @@ func (ptr *QUndoStack) DisconnectCanRedoChanged() {
 
 //export callbackQUndoStackCanRedoChanged
 func callbackQUndoStackCanRedoChanged(ptrName *C.char, canRedo C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::canRedoChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoStack::canRedoChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "canRedoChanged").(func(bool))(int(canRedo) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "canRedoChanged")
+	if signal != nil {
+		signal.(func(bool))(int(canRedo) != 0)
+	}
+
 }
 
 func (ptr *QUndoStack) CanUndo() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::canUndo")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::canUndo")
 
 	if ptr.Pointer() != nil {
 		return C.QUndoStack_CanUndo(ptr.Pointer()) != 0
@@ -174,11 +133,7 @@ func (ptr *QUndoStack) CanUndo() bool {
 }
 
 func (ptr *QUndoStack) ConnectCanUndoChanged(f func(canUndo bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::canUndoChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoStack::canUndoChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_ConnectCanUndoChanged(ptr.Pointer())
@@ -187,11 +142,7 @@ func (ptr *QUndoStack) ConnectCanUndoChanged(f func(canUndo bool)) {
 }
 
 func (ptr *QUndoStack) DisconnectCanUndoChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::canUndoChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoStack::canUndoChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DisconnectCanUndoChanged(ptr.Pointer())
@@ -201,21 +152,17 @@ func (ptr *QUndoStack) DisconnectCanUndoChanged() {
 
 //export callbackQUndoStackCanUndoChanged
 func callbackQUndoStackCanUndoChanged(ptrName *C.char, canUndo C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::canUndoChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoStack::canUndoChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "canUndoChanged").(func(bool))(int(canUndo) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "canUndoChanged")
+	if signal != nil {
+		signal.(func(bool))(int(canUndo) != 0)
+	}
+
 }
 
 func (ptr *QUndoStack) ConnectCleanChanged(f func(clean bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::cleanChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoStack::cleanChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_ConnectCleanChanged(ptr.Pointer())
@@ -224,11 +171,7 @@ func (ptr *QUndoStack) ConnectCleanChanged(f func(clean bool)) {
 }
 
 func (ptr *QUndoStack) DisconnectCleanChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::cleanChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoStack::cleanChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DisconnectCleanChanged(ptr.Pointer())
@@ -238,21 +181,17 @@ func (ptr *QUndoStack) DisconnectCleanChanged() {
 
 //export callbackQUndoStackCleanChanged
 func callbackQUndoStackCleanChanged(ptrName *C.char, clean C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::cleanChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoStack::cleanChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "cleanChanged").(func(bool))(int(clean) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "cleanChanged")
+	if signal != nil {
+		signal.(func(bool))(int(clean) != 0)
+	}
+
 }
 
 func (ptr *QUndoStack) CleanIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::cleanIndex")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::cleanIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QUndoStack_CleanIndex(ptr.Pointer()))
@@ -261,11 +200,7 @@ func (ptr *QUndoStack) CleanIndex() int {
 }
 
 func (ptr *QUndoStack) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::clear")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::clear")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_Clear(ptr.Pointer())
@@ -273,11 +208,7 @@ func (ptr *QUndoStack) Clear() {
 }
 
 func (ptr *QUndoStack) Command(index int) *QUndoCommand {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::command")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::command")
 
 	if ptr.Pointer() != nil {
 		return NewQUndoCommandFromPointer(C.QUndoStack_Command(ptr.Pointer(), C.int(index)))
@@ -286,11 +217,7 @@ func (ptr *QUndoStack) Command(index int) *QUndoCommand {
 }
 
 func (ptr *QUndoStack) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::count")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QUndoStack_Count(ptr.Pointer()))
@@ -299,11 +226,7 @@ func (ptr *QUndoStack) Count() int {
 }
 
 func (ptr *QUndoStack) CreateRedoAction(parent core.QObject_ITF, prefix string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::createRedoAction")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::createRedoAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QUndoStack_CreateRedoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.CString(prefix)))
@@ -312,11 +235,7 @@ func (ptr *QUndoStack) CreateRedoAction(parent core.QObject_ITF, prefix string) 
 }
 
 func (ptr *QUndoStack) CreateUndoAction(parent core.QObject_ITF, prefix string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::createUndoAction")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::createUndoAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QUndoStack_CreateUndoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.CString(prefix)))
@@ -325,11 +244,7 @@ func (ptr *QUndoStack) CreateUndoAction(parent core.QObject_ITF, prefix string) 
 }
 
 func (ptr *QUndoStack) EndMacro() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::endMacro")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::endMacro")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_EndMacro(ptr.Pointer())
@@ -337,11 +252,7 @@ func (ptr *QUndoStack) EndMacro() {
 }
 
 func (ptr *QUndoStack) Index() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::index")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::index")
 
 	if ptr.Pointer() != nil {
 		return int(C.QUndoStack_Index(ptr.Pointer()))
@@ -350,11 +261,7 @@ func (ptr *QUndoStack) Index() int {
 }
 
 func (ptr *QUndoStack) ConnectIndexChanged(f func(idx int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::indexChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoStack::indexChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_ConnectIndexChanged(ptr.Pointer())
@@ -363,11 +270,7 @@ func (ptr *QUndoStack) ConnectIndexChanged(f func(idx int)) {
 }
 
 func (ptr *QUndoStack) DisconnectIndexChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::indexChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoStack::indexChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DisconnectIndexChanged(ptr.Pointer())
@@ -377,21 +280,17 @@ func (ptr *QUndoStack) DisconnectIndexChanged() {
 
 //export callbackQUndoStackIndexChanged
 func callbackQUndoStackIndexChanged(ptrName *C.char, idx C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::indexChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoStack::indexChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "indexChanged").(func(int))(int(idx))
+	var signal = qt.GetSignal(C.GoString(ptrName), "indexChanged")
+	if signal != nil {
+		signal.(func(int))(int(idx))
+	}
+
 }
 
 func (ptr *QUndoStack) IsClean() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::isClean")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::isClean")
 
 	if ptr.Pointer() != nil {
 		return C.QUndoStack_IsClean(ptr.Pointer()) != 0
@@ -400,11 +299,7 @@ func (ptr *QUndoStack) IsClean() bool {
 }
 
 func (ptr *QUndoStack) Push(cmd QUndoCommand_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::push")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::push")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_Push(ptr.Pointer(), PointerFromQUndoCommand(cmd))
@@ -412,11 +307,7 @@ func (ptr *QUndoStack) Push(cmd QUndoCommand_ITF) {
 }
 
 func (ptr *QUndoStack) Redo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::redo")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::redo")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_Redo(ptr.Pointer())
@@ -424,11 +315,7 @@ func (ptr *QUndoStack) Redo() {
 }
 
 func (ptr *QUndoStack) RedoText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::redoText")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::redoText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QUndoStack_RedoText(ptr.Pointer()))
@@ -437,11 +324,7 @@ func (ptr *QUndoStack) RedoText() string {
 }
 
 func (ptr *QUndoStack) ConnectRedoTextChanged(f func(redoText string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::redoTextChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoStack::redoTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_ConnectRedoTextChanged(ptr.Pointer())
@@ -450,11 +333,7 @@ func (ptr *QUndoStack) ConnectRedoTextChanged(f func(redoText string)) {
 }
 
 func (ptr *QUndoStack) DisconnectRedoTextChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::redoTextChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoStack::redoTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DisconnectRedoTextChanged(ptr.Pointer())
@@ -464,21 +343,17 @@ func (ptr *QUndoStack) DisconnectRedoTextChanged() {
 
 //export callbackQUndoStackRedoTextChanged
 func callbackQUndoStackRedoTextChanged(ptrName *C.char, redoText *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::redoTextChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoStack::redoTextChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "redoTextChanged").(func(string))(C.GoString(redoText))
+	var signal = qt.GetSignal(C.GoString(ptrName), "redoTextChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(redoText))
+	}
+
 }
 
 func (ptr *QUndoStack) SetClean() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::setClean")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::setClean")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_SetClean(ptr.Pointer())
@@ -486,11 +361,7 @@ func (ptr *QUndoStack) SetClean() {
 }
 
 func (ptr *QUndoStack) SetIndex(idx int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::setIndex")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::setIndex")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_SetIndex(ptr.Pointer(), C.int(idx))
@@ -498,11 +369,7 @@ func (ptr *QUndoStack) SetIndex(idx int) {
 }
 
 func (ptr *QUndoStack) Text(idx int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::text")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QUndoStack_Text(ptr.Pointer(), C.int(idx)))
@@ -511,11 +378,7 @@ func (ptr *QUndoStack) Text(idx int) string {
 }
 
 func (ptr *QUndoStack) Undo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::undo")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::undo")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_Undo(ptr.Pointer())
@@ -523,11 +386,7 @@ func (ptr *QUndoStack) Undo() {
 }
 
 func (ptr *QUndoStack) UndoText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::undoText")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::undoText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QUndoStack_UndoText(ptr.Pointer()))
@@ -536,11 +395,7 @@ func (ptr *QUndoStack) UndoText() string {
 }
 
 func (ptr *QUndoStack) ConnectUndoTextChanged(f func(undoText string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::undoTextChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoStack::undoTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_ConnectUndoTextChanged(ptr.Pointer())
@@ -549,11 +404,7 @@ func (ptr *QUndoStack) ConnectUndoTextChanged(f func(undoText string)) {
 }
 
 func (ptr *QUndoStack) DisconnectUndoTextChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::undoTextChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoStack::undoTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DisconnectUndoTextChanged(ptr.Pointer())
@@ -563,21 +414,17 @@ func (ptr *QUndoStack) DisconnectUndoTextChanged() {
 
 //export callbackQUndoStackUndoTextChanged
 func callbackQUndoStackUndoTextChanged(ptrName *C.char, undoText *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::undoTextChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoStack::undoTextChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "undoTextChanged").(func(string))(C.GoString(undoText))
+	var signal = qt.GetSignal(C.GoString(ptrName), "undoTextChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(undoText))
+	}
+
 }
 
 func (ptr *QUndoStack) DestroyQUndoStack() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoStack::~QUndoStack")
-		}
-	}()
+	defer qt.Recovering("QUndoStack::~QUndoStack")
 
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DestroyQUndoStack(ptr.Pointer())

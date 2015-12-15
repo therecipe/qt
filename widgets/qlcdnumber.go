@@ -4,7 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
 
@@ -28,7 +28,7 @@ func NewQLCDNumberFromPointer(ptr unsafe.Pointer) *QLCDNumber {
 	var n = new(QLCDNumber)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QLCDNumber_") {
-		n.SetObjectName("QLCDNumber_" + qt.RandomIdentifier())
+		n.SetObjectName("QLCDNumber_" + qt.Identifier())
 	}
 	return n
 }
@@ -57,11 +57,7 @@ var (
 )
 
 func (ptr *QLCDNumber) IntValue() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::intValue")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::intValue")
 
 	if ptr.Pointer() != nil {
 		return int(C.QLCDNumber_IntValue(ptr.Pointer()))
@@ -70,11 +66,7 @@ func (ptr *QLCDNumber) IntValue() int {
 }
 
 func (ptr *QLCDNumber) Mode() QLCDNumber__Mode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::mode")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::mode")
 
 	if ptr.Pointer() != nil {
 		return QLCDNumber__Mode(C.QLCDNumber_Mode(ptr.Pointer()))
@@ -83,11 +75,7 @@ func (ptr *QLCDNumber) Mode() QLCDNumber__Mode {
 }
 
 func (ptr *QLCDNumber) SegmentStyle() QLCDNumber__SegmentStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::segmentStyle")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::segmentStyle")
 
 	if ptr.Pointer() != nil {
 		return QLCDNumber__SegmentStyle(C.QLCDNumber_SegmentStyle(ptr.Pointer()))
@@ -96,11 +84,7 @@ func (ptr *QLCDNumber) SegmentStyle() QLCDNumber__SegmentStyle {
 }
 
 func (ptr *QLCDNumber) SetMode(v QLCDNumber__Mode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::setMode")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::setMode")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_SetMode(ptr.Pointer(), C.int(v))
@@ -108,11 +92,7 @@ func (ptr *QLCDNumber) SetMode(v QLCDNumber__Mode) {
 }
 
 func (ptr *QLCDNumber) SetSegmentStyle(v QLCDNumber__SegmentStyle) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::setSegmentStyle")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::setSegmentStyle")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_SetSegmentStyle(ptr.Pointer(), C.int(v))
@@ -120,11 +100,7 @@ func (ptr *QLCDNumber) SetSegmentStyle(v QLCDNumber__SegmentStyle) {
 }
 
 func (ptr *QLCDNumber) SetSmallDecimalPoint(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::setSmallDecimalPoint")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::setSmallDecimalPoint")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_SetSmallDecimalPoint(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -132,11 +108,7 @@ func (ptr *QLCDNumber) SetSmallDecimalPoint(v bool) {
 }
 
 func (ptr *QLCDNumber) SmallDecimalPoint() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::smallDecimalPoint")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::smallDecimalPoint")
 
 	if ptr.Pointer() != nil {
 		return C.QLCDNumber_SmallDecimalPoint(ptr.Pointer()) != 0
@@ -145,21 +117,13 @@ func (ptr *QLCDNumber) SmallDecimalPoint() bool {
 }
 
 func NewQLCDNumber(parent QWidget_ITF) *QLCDNumber {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::QLCDNumber")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::QLCDNumber")
 
 	return NewQLCDNumberFromPointer(C.QLCDNumber_NewQLCDNumber(PointerFromQWidget(parent)))
 }
 
 func (ptr *QLCDNumber) CheckOverflow2(num int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::checkOverflow")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::checkOverflow")
 
 	if ptr.Pointer() != nil {
 		return C.QLCDNumber_CheckOverflow2(ptr.Pointer(), C.int(num)) != 0
@@ -168,11 +132,7 @@ func (ptr *QLCDNumber) CheckOverflow2(num int) bool {
 }
 
 func (ptr *QLCDNumber) DigitCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::digitCount")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::digitCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QLCDNumber_DigitCount(ptr.Pointer()))
@@ -181,11 +141,7 @@ func (ptr *QLCDNumber) DigitCount() int {
 }
 
 func (ptr *QLCDNumber) Display(s string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::display")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::display")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_Display(ptr.Pointer(), C.CString(s))
@@ -193,11 +149,7 @@ func (ptr *QLCDNumber) Display(s string) {
 }
 
 func (ptr *QLCDNumber) Display3(num int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::display")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::display")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_Display3(ptr.Pointer(), C.int(num))
@@ -205,11 +157,7 @@ func (ptr *QLCDNumber) Display3(num int) {
 }
 
 func (ptr *QLCDNumber) ConnectOverflow(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::overflow")
-		}
-	}()
+	defer qt.Recovering("connect QLCDNumber::overflow")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_ConnectOverflow(ptr.Pointer())
@@ -218,11 +166,7 @@ func (ptr *QLCDNumber) ConnectOverflow(f func()) {
 }
 
 func (ptr *QLCDNumber) DisconnectOverflow() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::overflow")
-		}
-	}()
+	defer qt.Recovering("disconnect QLCDNumber::overflow")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_DisconnectOverflow(ptr.Pointer())
@@ -232,21 +176,48 @@ func (ptr *QLCDNumber) DisconnectOverflow() {
 
 //export callbackQLCDNumberOverflow
 func callbackQLCDNumberOverflow(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::overflow")
-		}
-	}()
+	defer qt.Recovering("callback QLCDNumber::overflow")
 
-	qt.GetSignal(C.GoString(ptrName), "overflow").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "overflow")
+	if signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QLCDNumber) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QLCDNumber::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QLCDNumber) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QLCDNumber::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQLCDNumberPaintEvent
+func callbackQLCDNumberPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QLCDNumber::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QLCDNumber) SetBinMode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::setBinMode")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::setBinMode")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_SetBinMode(ptr.Pointer())
@@ -254,11 +225,7 @@ func (ptr *QLCDNumber) SetBinMode() {
 }
 
 func (ptr *QLCDNumber) SetDecMode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::setDecMode")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::setDecMode")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_SetDecMode(ptr.Pointer())
@@ -266,11 +233,7 @@ func (ptr *QLCDNumber) SetDecMode() {
 }
 
 func (ptr *QLCDNumber) SetDigitCount(numDigits int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::setDigitCount")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::setDigitCount")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_SetDigitCount(ptr.Pointer(), C.int(numDigits))
@@ -278,11 +241,7 @@ func (ptr *QLCDNumber) SetDigitCount(numDigits int) {
 }
 
 func (ptr *QLCDNumber) SetHexMode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::setHexMode")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::setHexMode")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_SetHexMode(ptr.Pointer())
@@ -290,11 +249,7 @@ func (ptr *QLCDNumber) SetHexMode() {
 }
 
 func (ptr *QLCDNumber) SetOctMode() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::setOctMode")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::setOctMode")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_SetOctMode(ptr.Pointer())
@@ -302,11 +257,7 @@ func (ptr *QLCDNumber) SetOctMode() {
 }
 
 func (ptr *QLCDNumber) DestroyQLCDNumber() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLCDNumber::~QLCDNumber")
-		}
-	}()
+	defer qt.Recovering("QLCDNumber::~QLCDNumber")
 
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_DestroyQLCDNumber(ptr.Pointer())

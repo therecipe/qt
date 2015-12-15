@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQAbstractListModelFromPointer(ptr unsafe.Pointer) *QAbstractListModel {
 	var n = new(QAbstractListModel)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractListModel_") {
-		n.SetObjectName("QAbstractListModel_" + qt.RandomIdentifier())
+		n.SetObjectName("QAbstractListModel_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QAbstractListModel) QAbstractListModel_PTR() *QAbstractListModel {
 }
 
 func (ptr *QAbstractListModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractListModel::index")
-		}
-	}()
+	defer qt.Recovering("QAbstractListModel::index")
 
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QAbstractListModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
@@ -51,11 +46,7 @@ func (ptr *QAbstractListModel) Index(row int, column int, parent QModelIndex_ITF
 }
 
 func (ptr *QAbstractListModel) DropMimeData(data QMimeData_ITF, action Qt__DropAction, row int, column int, parent QModelIndex_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractListModel::dropMimeData")
-		}
-	}()
+	defer qt.Recovering("QAbstractListModel::dropMimeData")
 
 	if ptr.Pointer() != nil {
 		return C.QAbstractListModel_DropMimeData(ptr.Pointer(), PointerFromQMimeData(data), C.int(action), C.int(row), C.int(column), PointerFromQModelIndex(parent)) != 0
@@ -64,11 +55,7 @@ func (ptr *QAbstractListModel) DropMimeData(data QMimeData_ITF, action Qt__DropA
 }
 
 func (ptr *QAbstractListModel) Flags(index QModelIndex_ITF) Qt__ItemFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractListModel::flags")
-		}
-	}()
+	defer qt.Recovering("QAbstractListModel::flags")
 
 	if ptr.Pointer() != nil {
 		return Qt__ItemFlag(C.QAbstractListModel_Flags(ptr.Pointer(), PointerFromQModelIndex(index)))
@@ -77,11 +64,7 @@ func (ptr *QAbstractListModel) Flags(index QModelIndex_ITF) Qt__ItemFlag {
 }
 
 func (ptr *QAbstractListModel) Sibling(row int, column int, idx QModelIndex_ITF) *QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractListModel::sibling")
-		}
-	}()
+	defer qt.Recovering("QAbstractListModel::sibling")
 
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QAbstractListModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
@@ -90,11 +73,7 @@ func (ptr *QAbstractListModel) Sibling(row int, column int, idx QModelIndex_ITF)
 }
 
 func (ptr *QAbstractListModel) DestroyQAbstractListModel() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAbstractListModel::~QAbstractListModel")
-		}
-	}()
+	defer qt.Recovering("QAbstractListModel::~QAbstractListModel")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractListModel_DestroyQAbstractListModel(ptr.Pointer())

@@ -3,8 +3,8 @@ package location
 //#include "location.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/positioning"
-	"log"
 	"unsafe"
 )
 
@@ -105,31 +105,19 @@ const (
 )
 
 func NewQGeoRouteRequest2(origin positioning.QGeoCoordinate_ITF, destination positioning.QGeoCoordinate_ITF) *QGeoRouteRequest {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::QGeoRouteRequest")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::QGeoRouteRequest")
 
 	return NewQGeoRouteRequestFromPointer(C.QGeoRouteRequest_NewQGeoRouteRequest2(positioning.PointerFromQGeoCoordinate(origin), positioning.PointerFromQGeoCoordinate(destination)))
 }
 
 func NewQGeoRouteRequest3(other QGeoRouteRequest_ITF) *QGeoRouteRequest {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::QGeoRouteRequest")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::QGeoRouteRequest")
 
 	return NewQGeoRouteRequestFromPointer(C.QGeoRouteRequest_NewQGeoRouteRequest3(PointerFromQGeoRouteRequest(other)))
 }
 
 func (ptr *QGeoRouteRequest) FeatureWeight(featureType QGeoRouteRequest__FeatureType) QGeoRouteRequest__FeatureWeight {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::featureWeight")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::featureWeight")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__FeatureWeight(C.QGeoRouteRequest_FeatureWeight(ptr.Pointer(), C.int(featureType)))
@@ -138,11 +126,7 @@ func (ptr *QGeoRouteRequest) FeatureWeight(featureType QGeoRouteRequest__Feature
 }
 
 func (ptr *QGeoRouteRequest) ManeuverDetail() QGeoRouteRequest__ManeuverDetail {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::maneuverDetail")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::maneuverDetail")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__ManeuverDetail(C.QGeoRouteRequest_ManeuverDetail(ptr.Pointer()))
@@ -151,11 +135,7 @@ func (ptr *QGeoRouteRequest) ManeuverDetail() QGeoRouteRequest__ManeuverDetail {
 }
 
 func (ptr *QGeoRouteRequest) NumberAlternativeRoutes() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::numberAlternativeRoutes")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::numberAlternativeRoutes")
 
 	if ptr.Pointer() != nil {
 		return int(C.QGeoRouteRequest_NumberAlternativeRoutes(ptr.Pointer()))
@@ -164,11 +144,7 @@ func (ptr *QGeoRouteRequest) NumberAlternativeRoutes() int {
 }
 
 func (ptr *QGeoRouteRequest) RouteOptimization() QGeoRouteRequest__RouteOptimization {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::routeOptimization")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::routeOptimization")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__RouteOptimization(C.QGeoRouteRequest_RouteOptimization(ptr.Pointer()))
@@ -177,11 +153,7 @@ func (ptr *QGeoRouteRequest) RouteOptimization() QGeoRouteRequest__RouteOptimiza
 }
 
 func (ptr *QGeoRouteRequest) SegmentDetail() QGeoRouteRequest__SegmentDetail {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::segmentDetail")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::segmentDetail")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__SegmentDetail(C.QGeoRouteRequest_SegmentDetail(ptr.Pointer()))
@@ -190,11 +162,7 @@ func (ptr *QGeoRouteRequest) SegmentDetail() QGeoRouteRequest__SegmentDetail {
 }
 
 func (ptr *QGeoRouteRequest) SetFeatureWeight(featureType QGeoRouteRequest__FeatureType, featureWeight QGeoRouteRequest__FeatureWeight) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::setFeatureWeight")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::setFeatureWeight")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteRequest_SetFeatureWeight(ptr.Pointer(), C.int(featureType), C.int(featureWeight))
@@ -202,11 +170,7 @@ func (ptr *QGeoRouteRequest) SetFeatureWeight(featureType QGeoRouteRequest__Feat
 }
 
 func (ptr *QGeoRouteRequest) SetManeuverDetail(maneuverDetail QGeoRouteRequest__ManeuverDetail) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::setManeuverDetail")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::setManeuverDetail")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteRequest_SetManeuverDetail(ptr.Pointer(), C.int(maneuverDetail))
@@ -214,11 +178,7 @@ func (ptr *QGeoRouteRequest) SetManeuverDetail(maneuverDetail QGeoRouteRequest__
 }
 
 func (ptr *QGeoRouteRequest) SetNumberAlternativeRoutes(alternatives int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::setNumberAlternativeRoutes")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::setNumberAlternativeRoutes")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteRequest_SetNumberAlternativeRoutes(ptr.Pointer(), C.int(alternatives))
@@ -226,11 +186,7 @@ func (ptr *QGeoRouteRequest) SetNumberAlternativeRoutes(alternatives int) {
 }
 
 func (ptr *QGeoRouteRequest) SetRouteOptimization(optimization QGeoRouteRequest__RouteOptimization) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::setRouteOptimization")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::setRouteOptimization")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteRequest_SetRouteOptimization(ptr.Pointer(), C.int(optimization))
@@ -238,11 +194,7 @@ func (ptr *QGeoRouteRequest) SetRouteOptimization(optimization QGeoRouteRequest_
 }
 
 func (ptr *QGeoRouteRequest) SetSegmentDetail(segmentDetail QGeoRouteRequest__SegmentDetail) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::setSegmentDetail")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::setSegmentDetail")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteRequest_SetSegmentDetail(ptr.Pointer(), C.int(segmentDetail))
@@ -250,11 +202,7 @@ func (ptr *QGeoRouteRequest) SetSegmentDetail(segmentDetail QGeoRouteRequest__Se
 }
 
 func (ptr *QGeoRouteRequest) SetTravelModes(travelModes QGeoRouteRequest__TravelMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::setTravelModes")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::setTravelModes")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteRequest_SetTravelModes(ptr.Pointer(), C.int(travelModes))
@@ -262,11 +210,7 @@ func (ptr *QGeoRouteRequest) SetTravelModes(travelModes QGeoRouteRequest__Travel
 }
 
 func (ptr *QGeoRouteRequest) TravelModes() QGeoRouteRequest__TravelMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::travelModes")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::travelModes")
 
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__TravelMode(C.QGeoRouteRequest_TravelModes(ptr.Pointer()))
@@ -275,11 +219,7 @@ func (ptr *QGeoRouteRequest) TravelModes() QGeoRouteRequest__TravelMode {
 }
 
 func (ptr *QGeoRouteRequest) DestroyQGeoRouteRequest() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGeoRouteRequest::~QGeoRouteRequest")
-		}
-	}()
+	defer qt.Recovering("QGeoRouteRequest::~QGeoRouteRequest")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteRequest_DestroyQGeoRouteRequest(ptr.Pointer())

@@ -3,7 +3,7 @@ package script
 //#include "script.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"strings"
 	"unsafe"
 )
@@ -52,41 +52,25 @@ const (
 )
 
 func NewQScriptContextInfo3() *QScriptContextInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::QScriptContextInfo")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::QScriptContextInfo")
 
 	return NewQScriptContextInfoFromPointer(C.QScriptContextInfo_NewQScriptContextInfo3())
 }
 
 func NewQScriptContextInfo(context QScriptContext_ITF) *QScriptContextInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::QScriptContextInfo")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::QScriptContextInfo")
 
 	return NewQScriptContextInfoFromPointer(C.QScriptContextInfo_NewQScriptContextInfo(PointerFromQScriptContext(context)))
 }
 
 func NewQScriptContextInfo2(other QScriptContextInfo_ITF) *QScriptContextInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::QScriptContextInfo")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::QScriptContextInfo")
 
 	return NewQScriptContextInfoFromPointer(C.QScriptContextInfo_NewQScriptContextInfo2(PointerFromQScriptContextInfo(other)))
 }
 
 func (ptr *QScriptContextInfo) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::fileName")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScriptContextInfo_FileName(ptr.Pointer()))
@@ -95,11 +79,7 @@ func (ptr *QScriptContextInfo) FileName() string {
 }
 
 func (ptr *QScriptContextInfo) FunctionEndLineNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::functionEndLineNumber")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::functionEndLineNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QScriptContextInfo_FunctionEndLineNumber(ptr.Pointer()))
@@ -108,11 +88,7 @@ func (ptr *QScriptContextInfo) FunctionEndLineNumber() int {
 }
 
 func (ptr *QScriptContextInfo) FunctionMetaIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::functionMetaIndex")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::functionMetaIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QScriptContextInfo_FunctionMetaIndex(ptr.Pointer()))
@@ -121,11 +97,7 @@ func (ptr *QScriptContextInfo) FunctionMetaIndex() int {
 }
 
 func (ptr *QScriptContextInfo) FunctionName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::functionName")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::functionName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScriptContextInfo_FunctionName(ptr.Pointer()))
@@ -134,11 +106,7 @@ func (ptr *QScriptContextInfo) FunctionName() string {
 }
 
 func (ptr *QScriptContextInfo) FunctionParameterNames() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::functionParameterNames")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::functionParameterNames")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QScriptContextInfo_FunctionParameterNames(ptr.Pointer())), ",,,")
@@ -147,11 +115,7 @@ func (ptr *QScriptContextInfo) FunctionParameterNames() []string {
 }
 
 func (ptr *QScriptContextInfo) FunctionStartLineNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::functionStartLineNumber")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::functionStartLineNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QScriptContextInfo_FunctionStartLineNumber(ptr.Pointer()))
@@ -160,11 +124,7 @@ func (ptr *QScriptContextInfo) FunctionStartLineNumber() int {
 }
 
 func (ptr *QScriptContextInfo) FunctionType() QScriptContextInfo__FunctionType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::functionType")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::functionType")
 
 	if ptr.Pointer() != nil {
 		return QScriptContextInfo__FunctionType(C.QScriptContextInfo_FunctionType(ptr.Pointer()))
@@ -173,11 +133,7 @@ func (ptr *QScriptContextInfo) FunctionType() QScriptContextInfo__FunctionType {
 }
 
 func (ptr *QScriptContextInfo) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::isNull")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QScriptContextInfo_IsNull(ptr.Pointer()) != 0
@@ -186,11 +142,7 @@ func (ptr *QScriptContextInfo) IsNull() bool {
 }
 
 func (ptr *QScriptContextInfo) LineNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::lineNumber")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::lineNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QScriptContextInfo_LineNumber(ptr.Pointer()))
@@ -199,11 +151,7 @@ func (ptr *QScriptContextInfo) LineNumber() int {
 }
 
 func (ptr *QScriptContextInfo) DestroyQScriptContextInfo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptContextInfo::~QScriptContextInfo")
-		}
-	}()
+	defer qt.Recovering("QScriptContextInfo::~QScriptContextInfo")
 
 	if ptr.Pointer() != nil {
 		C.QScriptContextInfo_DestroyQScriptContextInfo(ptr.Pointer())

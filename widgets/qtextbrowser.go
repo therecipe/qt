@@ -5,7 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +30,7 @@ func NewQTextBrowserFromPointer(ptr unsafe.Pointer) *QTextBrowser {
 	var n = new(QTextBrowser)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QTextBrowser_") {
-		n.SetObjectName("QTextBrowser_" + qt.RandomIdentifier())
+		n.SetObjectName("QTextBrowser_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +40,7 @@ func (ptr *QTextBrowser) QTextBrowser_PTR() *QTextBrowser {
 }
 
 func (ptr *QTextBrowser) OpenExternalLinks() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::openExternalLinks")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::openExternalLinks")
 
 	if ptr.Pointer() != nil {
 		return C.QTextBrowser_OpenExternalLinks(ptr.Pointer()) != 0
@@ -53,11 +49,7 @@ func (ptr *QTextBrowser) OpenExternalLinks() bool {
 }
 
 func (ptr *QTextBrowser) OpenLinks() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::openLinks")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::openLinks")
 
 	if ptr.Pointer() != nil {
 		return C.QTextBrowser_OpenLinks(ptr.Pointer()) != 0
@@ -66,11 +58,7 @@ func (ptr *QTextBrowser) OpenLinks() bool {
 }
 
 func (ptr *QTextBrowser) SearchPaths() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::searchPaths")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::searchPaths")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QTextBrowser_SearchPaths(ptr.Pointer())), ",,,")
@@ -79,11 +67,7 @@ func (ptr *QTextBrowser) SearchPaths() []string {
 }
 
 func (ptr *QTextBrowser) SetOpenExternalLinks(open bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::setOpenExternalLinks")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::setOpenExternalLinks")
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_SetOpenExternalLinks(ptr.Pointer(), C.int(qt.GoBoolToInt(open)))
@@ -91,11 +75,7 @@ func (ptr *QTextBrowser) SetOpenExternalLinks(open bool) {
 }
 
 func (ptr *QTextBrowser) SetOpenLinks(open bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::setOpenLinks")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::setOpenLinks")
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_SetOpenLinks(ptr.Pointer(), C.int(qt.GoBoolToInt(open)))
@@ -103,57 +83,52 @@ func (ptr *QTextBrowser) SetOpenLinks(open bool) {
 }
 
 func (ptr *QTextBrowser) SetSearchPaths(paths []string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::setSearchPaths")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::setSearchPaths")
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_SetSearchPaths(ptr.Pointer(), C.CString(strings.Join(paths, ",,,")))
 	}
 }
 
-func (ptr *QTextBrowser) SetSource(name core.QUrl_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::setSource")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QTextBrowser_SetSource(ptr.Pointer(), core.PointerFromQUrl(name))
-	}
-}
-
 func NewQTextBrowser(parent QWidget_ITF) *QTextBrowser {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::QTextBrowser")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::QTextBrowser")
 
 	return NewQTextBrowserFromPointer(C.QTextBrowser_NewQTextBrowser(PointerFromQWidget(parent)))
 }
 
-func (ptr *QTextBrowser) Backward() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::backward")
-		}
-	}()
+func (ptr *QTextBrowser) ConnectBackward(f func()) {
+	defer qt.Recovering("connect QTextBrowser::backward")
 
 	if ptr.Pointer() != nil {
-		C.QTextBrowser_Backward(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "backward", f)
 	}
 }
 
+func (ptr *QTextBrowser) DisconnectBackward() {
+	defer qt.Recovering("disconnect QTextBrowser::backward")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "backward")
+	}
+}
+
+//export callbackQTextBrowserBackward
+func callbackQTextBrowserBackward(ptrName *C.char) bool {
+	defer qt.Recovering("callback QTextBrowser::backward")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "backward")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTextBrowser) ConnectBackwardAvailable(f func(available bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::backwardAvailable")
-		}
-	}()
+	defer qt.Recovering("connect QTextBrowser::backwardAvailable")
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_ConnectBackwardAvailable(ptr.Pointer())
@@ -162,11 +137,7 @@ func (ptr *QTextBrowser) ConnectBackwardAvailable(f func(available bool)) {
 }
 
 func (ptr *QTextBrowser) DisconnectBackwardAvailable() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::backwardAvailable")
-		}
-	}()
+	defer qt.Recovering("disconnect QTextBrowser::backwardAvailable")
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_DisconnectBackwardAvailable(ptr.Pointer())
@@ -176,21 +147,17 @@ func (ptr *QTextBrowser) DisconnectBackwardAvailable() {
 
 //export callbackQTextBrowserBackwardAvailable
 func callbackQTextBrowserBackwardAvailable(ptrName *C.char, available C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::backwardAvailable")
-		}
-	}()
+	defer qt.Recovering("callback QTextBrowser::backwardAvailable")
 
-	qt.GetSignal(C.GoString(ptrName), "backwardAvailable").(func(bool))(int(available) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "backwardAvailable")
+	if signal != nil {
+		signal.(func(bool))(int(available) != 0)
+	}
+
 }
 
 func (ptr *QTextBrowser) BackwardHistoryCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::backwardHistoryCount")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::backwardHistoryCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextBrowser_BackwardHistoryCount(ptr.Pointer()))
@@ -199,35 +166,77 @@ func (ptr *QTextBrowser) BackwardHistoryCount() int {
 }
 
 func (ptr *QTextBrowser) ClearHistory() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::clearHistory")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::clearHistory")
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_ClearHistory(ptr.Pointer())
 	}
 }
 
-func (ptr *QTextBrowser) Forward() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::forward")
-		}
-	}()
+func (ptr *QTextBrowser) ConnectFocusOutEvent(f func(ev *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QTextBrowser::focusOutEvent")
 
 	if ptr.Pointer() != nil {
-		C.QTextBrowser_Forward(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
 	}
 }
 
+func (ptr *QTextBrowser) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QTextBrowser::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+//export callbackQTextBrowserFocusOutEvent
+func callbackQTextBrowserFocusOutEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTextBrowser::focusOutEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTextBrowser) ConnectForward(f func()) {
+	defer qt.Recovering("connect QTextBrowser::forward")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "forward", f)
+	}
+}
+
+func (ptr *QTextBrowser) DisconnectForward() {
+	defer qt.Recovering("disconnect QTextBrowser::forward")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "forward")
+	}
+}
+
+//export callbackQTextBrowserForward
+func callbackQTextBrowserForward(ptrName *C.char) bool {
+	defer qt.Recovering("callback QTextBrowser::forward")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "forward")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTextBrowser) ConnectForwardAvailable(f func(available bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::forwardAvailable")
-		}
-	}()
+	defer qt.Recovering("connect QTextBrowser::forwardAvailable")
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_ConnectForwardAvailable(ptr.Pointer())
@@ -236,11 +245,7 @@ func (ptr *QTextBrowser) ConnectForwardAvailable(f func(available bool)) {
 }
 
 func (ptr *QTextBrowser) DisconnectForwardAvailable() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::forwardAvailable")
-		}
-	}()
+	defer qt.Recovering("disconnect QTextBrowser::forwardAvailable")
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_DisconnectForwardAvailable(ptr.Pointer())
@@ -250,21 +255,17 @@ func (ptr *QTextBrowser) DisconnectForwardAvailable() {
 
 //export callbackQTextBrowserForwardAvailable
 func callbackQTextBrowserForwardAvailable(ptrName *C.char, available C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::forwardAvailable")
-		}
-	}()
+	defer qt.Recovering("callback QTextBrowser::forwardAvailable")
 
-	qt.GetSignal(C.GoString(ptrName), "forwardAvailable").(func(bool))(int(available) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "forwardAvailable")
+	if signal != nil {
+		signal.(func(bool))(int(available) != 0)
+	}
+
 }
 
 func (ptr *QTextBrowser) ForwardHistoryCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::forwardHistoryCount")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::forwardHistoryCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextBrowser_ForwardHistoryCount(ptr.Pointer()))
@@ -273,11 +274,7 @@ func (ptr *QTextBrowser) ForwardHistoryCount() int {
 }
 
 func (ptr *QTextBrowser) ConnectHistoryChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::historyChanged")
-		}
-	}()
+	defer qt.Recovering("connect QTextBrowser::historyChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_ConnectHistoryChanged(ptr.Pointer())
@@ -286,11 +283,7 @@ func (ptr *QTextBrowser) ConnectHistoryChanged(f func()) {
 }
 
 func (ptr *QTextBrowser) DisconnectHistoryChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::historyChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QTextBrowser::historyChanged")
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_DisconnectHistoryChanged(ptr.Pointer())
@@ -300,21 +293,17 @@ func (ptr *QTextBrowser) DisconnectHistoryChanged() {
 
 //export callbackQTextBrowserHistoryChanged
 func callbackQTextBrowserHistoryChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::historyChanged")
-		}
-	}()
+	defer qt.Recovering("callback QTextBrowser::historyChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "historyChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "historyChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QTextBrowser) HistoryTitle(i int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::historyTitle")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::historyTitle")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextBrowser_HistoryTitle(ptr.Pointer(), C.int(i)))
@@ -322,24 +311,39 @@ func (ptr *QTextBrowser) HistoryTitle(i int) string {
 	return ""
 }
 
-func (ptr *QTextBrowser) Home() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::home")
-		}
-	}()
+func (ptr *QTextBrowser) ConnectHome(f func()) {
+	defer qt.Recovering("connect QTextBrowser::home")
 
 	if ptr.Pointer() != nil {
-		C.QTextBrowser_Home(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "home", f)
 	}
 }
 
+func (ptr *QTextBrowser) DisconnectHome() {
+	defer qt.Recovering("disconnect QTextBrowser::home")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "home")
+	}
+}
+
+//export callbackQTextBrowserHome
+func callbackQTextBrowserHome(ptrName *C.char) bool {
+	defer qt.Recovering("callback QTextBrowser::home")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "home")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTextBrowser) IsBackwardAvailable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::isBackwardAvailable")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::isBackwardAvailable")
 
 	if ptr.Pointer() != nil {
 		return C.QTextBrowser_IsBackwardAvailable(ptr.Pointer()) != 0
@@ -348,11 +352,7 @@ func (ptr *QTextBrowser) IsBackwardAvailable() bool {
 }
 
 func (ptr *QTextBrowser) IsForwardAvailable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::isForwardAvailable")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::isForwardAvailable")
 
 	if ptr.Pointer() != nil {
 		return C.QTextBrowser_IsForwardAvailable(ptr.Pointer()) != 0
@@ -360,12 +360,39 @@ func (ptr *QTextBrowser) IsForwardAvailable() bool {
 	return false
 }
 
+func (ptr *QTextBrowser) ConnectKeyPressEvent(f func(ev *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QTextBrowser::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QTextBrowser) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QTextBrowser::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQTextBrowserKeyPressEvent
+func callbackQTextBrowserKeyPressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTextBrowser::keyPressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTextBrowser) LoadResource(ty int, name core.QUrl_ITF) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::loadResource")
-		}
-	}()
+	defer qt.Recovering("QTextBrowser::loadResource")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QTextBrowser_LoadResource(ptr.Pointer(), C.int(ty), core.PointerFromQUrl(name)))
@@ -373,14 +400,157 @@ func (ptr *QTextBrowser) LoadResource(ty int, name core.QUrl_ITF) *core.QVariant
 	return nil
 }
 
-func (ptr *QTextBrowser) Reload() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextBrowser::reload")
-		}
-	}()
+func (ptr *QTextBrowser) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QTextBrowser::mouseMoveEvent")
 
 	if ptr.Pointer() != nil {
-		C.QTextBrowser_Reload(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
 	}
+}
+
+func (ptr *QTextBrowser) DisconnectMouseMoveEvent() {
+	defer qt.Recovering("disconnect QTextBrowser::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+	}
+}
+
+//export callbackQTextBrowserMouseMoveEvent
+func callbackQTextBrowserMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTextBrowser::mouseMoveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTextBrowser) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QTextBrowser::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QTextBrowser) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QTextBrowser::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQTextBrowserMousePressEvent
+func callbackQTextBrowserMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTextBrowser::mousePressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTextBrowser) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QTextBrowser::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+	}
+}
+
+func (ptr *QTextBrowser) DisconnectMouseReleaseEvent() {
+	defer qt.Recovering("disconnect QTextBrowser::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+	}
+}
+
+//export callbackQTextBrowserMouseReleaseEvent
+func callbackQTextBrowserMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTextBrowser::mouseReleaseEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTextBrowser) ConnectPaintEvent(f func(e *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QTextBrowser::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QTextBrowser) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QTextBrowser::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQTextBrowserPaintEvent
+func callbackQTextBrowserPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTextBrowser::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTextBrowser) ConnectReload(f func()) {
+	defer qt.Recovering("connect QTextBrowser::reload")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "reload", f)
+	}
+}
+
+func (ptr *QTextBrowser) DisconnectReload() {
+	defer qt.Recovering("disconnect QTextBrowser::reload")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "reload")
+	}
+}
+
+//export callbackQTextBrowserReload
+func callbackQTextBrowserReload(ptrName *C.char) bool {
+	defer qt.Recovering("callback QTextBrowser::reload")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "reload")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
 }

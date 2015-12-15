@@ -28,7 +28,7 @@ func NewQIconEnginePluginFromPointer(ptr unsafe.Pointer) *QIconEnginePlugin {
 	var n = new(QIconEnginePlugin)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QIconEnginePlugin_") {
-		n.SetObjectName("QIconEnginePlugin_" + qt.RandomIdentifier())
+		n.SetObjectName("QIconEnginePlugin_" + qt.Identifier())
 	}
 	return n
 }

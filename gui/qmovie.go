@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQMovieFromPointer(ptr unsafe.Pointer) *QMovie {
 	var n = new(QMovie)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMovie_") {
-		n.SetObjectName("QMovie_" + qt.RandomIdentifier())
+		n.SetObjectName("QMovie_" + qt.Identifier())
 	}
 	return n
 }
@@ -56,11 +55,7 @@ const (
 )
 
 func (ptr *QMovie) CacheMode() QMovie__CacheMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::cacheMode")
-		}
-	}()
+	defer qt.Recovering("QMovie::cacheMode")
 
 	if ptr.Pointer() != nil {
 		return QMovie__CacheMode(C.QMovie_CacheMode(ptr.Pointer()))
@@ -69,11 +64,7 @@ func (ptr *QMovie) CacheMode() QMovie__CacheMode {
 }
 
 func (ptr *QMovie) SetCacheMode(mode QMovie__CacheMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::setCacheMode")
-		}
-	}()
+	defer qt.Recovering("QMovie::setCacheMode")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_SetCacheMode(ptr.Pointer(), C.int(mode))
@@ -81,11 +72,7 @@ func (ptr *QMovie) SetCacheMode(mode QMovie__CacheMode) {
 }
 
 func (ptr *QMovie) SetSpeed(percentSpeed int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::setSpeed")
-		}
-	}()
+	defer qt.Recovering("QMovie::setSpeed")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_SetSpeed(ptr.Pointer(), C.int(percentSpeed))
@@ -93,11 +80,7 @@ func (ptr *QMovie) SetSpeed(percentSpeed int) {
 }
 
 func (ptr *QMovie) Speed() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::speed")
-		}
-	}()
+	defer qt.Recovering("QMovie::speed")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMovie_Speed(ptr.Pointer()))
@@ -106,41 +89,25 @@ func (ptr *QMovie) Speed() int {
 }
 
 func NewQMovie2(device core.QIODevice_ITF, format core.QByteArray_ITF, parent core.QObject_ITF) *QMovie {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::QMovie")
-		}
-	}()
+	defer qt.Recovering("QMovie::QMovie")
 
 	return NewQMovieFromPointer(C.QMovie_NewQMovie2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format), core.PointerFromQObject(parent)))
 }
 
 func NewQMovie(parent core.QObject_ITF) *QMovie {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::QMovie")
-		}
-	}()
+	defer qt.Recovering("QMovie::QMovie")
 
 	return NewQMovieFromPointer(C.QMovie_NewQMovie(core.PointerFromQObject(parent)))
 }
 
 func NewQMovie3(fileName string, format core.QByteArray_ITF, parent core.QObject_ITF) *QMovie {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::QMovie")
-		}
-	}()
+	defer qt.Recovering("QMovie::QMovie")
 
 	return NewQMovieFromPointer(C.QMovie_NewQMovie3(C.CString(fileName), core.PointerFromQByteArray(format), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QMovie) BackgroundColor() *QColor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::backgroundColor")
-		}
-	}()
+	defer qt.Recovering("QMovie::backgroundColor")
 
 	if ptr.Pointer() != nil {
 		return NewQColorFromPointer(C.QMovie_BackgroundColor(ptr.Pointer()))
@@ -149,11 +116,7 @@ func (ptr *QMovie) BackgroundColor() *QColor {
 }
 
 func (ptr *QMovie) CurrentFrameNumber() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::currentFrameNumber")
-		}
-	}()
+	defer qt.Recovering("QMovie::currentFrameNumber")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMovie_CurrentFrameNumber(ptr.Pointer()))
@@ -162,11 +125,7 @@ func (ptr *QMovie) CurrentFrameNumber() int {
 }
 
 func (ptr *QMovie) Device() *core.QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::device")
-		}
-	}()
+	defer qt.Recovering("QMovie::device")
 
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QMovie_Device(ptr.Pointer()))
@@ -175,11 +134,7 @@ func (ptr *QMovie) Device() *core.QIODevice {
 }
 
 func (ptr *QMovie) ConnectError(f func(error QImageReader__ImageReaderError)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::error")
-		}
-	}()
+	defer qt.Recovering("connect QMovie::error")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_ConnectError(ptr.Pointer())
@@ -188,11 +143,7 @@ func (ptr *QMovie) ConnectError(f func(error QImageReader__ImageReaderError)) {
 }
 
 func (ptr *QMovie) DisconnectError() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::error")
-		}
-	}()
+	defer qt.Recovering("disconnect QMovie::error")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_DisconnectError(ptr.Pointer())
@@ -202,21 +153,17 @@ func (ptr *QMovie) DisconnectError() {
 
 //export callbackQMovieError
 func callbackQMovieError(ptrName *C.char, error C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::error")
-		}
-	}()
+	defer qt.Recovering("callback QMovie::error")
 
-	qt.GetSignal(C.GoString(ptrName), "error").(func(QImageReader__ImageReaderError))(QImageReader__ImageReaderError(error))
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QImageReader__ImageReaderError))(QImageReader__ImageReaderError(error))
+	}
+
 }
 
 func (ptr *QMovie) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::fileName")
-		}
-	}()
+	defer qt.Recovering("QMovie::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMovie_FileName(ptr.Pointer()))
@@ -225,11 +172,7 @@ func (ptr *QMovie) FileName() string {
 }
 
 func (ptr *QMovie) ConnectFinished(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::finished")
-		}
-	}()
+	defer qt.Recovering("connect QMovie::finished")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_ConnectFinished(ptr.Pointer())
@@ -238,11 +181,7 @@ func (ptr *QMovie) ConnectFinished(f func()) {
 }
 
 func (ptr *QMovie) DisconnectFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::finished")
-		}
-	}()
+	defer qt.Recovering("disconnect QMovie::finished")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_DisconnectFinished(ptr.Pointer())
@@ -252,21 +191,17 @@ func (ptr *QMovie) DisconnectFinished() {
 
 //export callbackQMovieFinished
 func callbackQMovieFinished(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::finished")
-		}
-	}()
+	defer qt.Recovering("callback QMovie::finished")
 
-	qt.GetSignal(C.GoString(ptrName), "finished").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QMovie) Format() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::format")
-		}
-	}()
+	defer qt.Recovering("QMovie::format")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QMovie_Format(ptr.Pointer()))
@@ -275,11 +210,7 @@ func (ptr *QMovie) Format() *core.QByteArray {
 }
 
 func (ptr *QMovie) ConnectFrameChanged(f func(frameNumber int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::frameChanged")
-		}
-	}()
+	defer qt.Recovering("connect QMovie::frameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_ConnectFrameChanged(ptr.Pointer())
@@ -288,11 +219,7 @@ func (ptr *QMovie) ConnectFrameChanged(f func(frameNumber int)) {
 }
 
 func (ptr *QMovie) DisconnectFrameChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::frameChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QMovie::frameChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_DisconnectFrameChanged(ptr.Pointer())
@@ -302,21 +229,17 @@ func (ptr *QMovie) DisconnectFrameChanged() {
 
 //export callbackQMovieFrameChanged
 func callbackQMovieFrameChanged(ptrName *C.char, frameNumber C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::frameChanged")
-		}
-	}()
+	defer qt.Recovering("callback QMovie::frameChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "frameChanged").(func(int))(int(frameNumber))
+	var signal = qt.GetSignal(C.GoString(ptrName), "frameChanged")
+	if signal != nil {
+		signal.(func(int))(int(frameNumber))
+	}
+
 }
 
 func (ptr *QMovie) FrameCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::frameCount")
-		}
-	}()
+	defer qt.Recovering("QMovie::frameCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMovie_FrameCount(ptr.Pointer()))
@@ -325,11 +248,7 @@ func (ptr *QMovie) FrameCount() int {
 }
 
 func (ptr *QMovie) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::isValid")
-		}
-	}()
+	defer qt.Recovering("QMovie::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QMovie_IsValid(ptr.Pointer()) != 0
@@ -338,11 +257,7 @@ func (ptr *QMovie) IsValid() bool {
 }
 
 func (ptr *QMovie) JumpToFrame(frameNumber int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::jumpToFrame")
-		}
-	}()
+	defer qt.Recovering("QMovie::jumpToFrame")
 
 	if ptr.Pointer() != nil {
 		return C.QMovie_JumpToFrame(ptr.Pointer(), C.int(frameNumber)) != 0
@@ -351,11 +266,7 @@ func (ptr *QMovie) JumpToFrame(frameNumber int) bool {
 }
 
 func (ptr *QMovie) JumpToNextFrame() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::jumpToNextFrame")
-		}
-	}()
+	defer qt.Recovering("QMovie::jumpToNextFrame")
 
 	if ptr.Pointer() != nil {
 		return C.QMovie_JumpToNextFrame(ptr.Pointer()) != 0
@@ -364,11 +275,7 @@ func (ptr *QMovie) JumpToNextFrame() bool {
 }
 
 func (ptr *QMovie) LoopCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::loopCount")
-		}
-	}()
+	defer qt.Recovering("QMovie::loopCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMovie_LoopCount(ptr.Pointer()))
@@ -377,11 +284,7 @@ func (ptr *QMovie) LoopCount() int {
 }
 
 func (ptr *QMovie) NextFrameDelay() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::nextFrameDelay")
-		}
-	}()
+	defer qt.Recovering("QMovie::nextFrameDelay")
 
 	if ptr.Pointer() != nil {
 		return int(C.QMovie_NextFrameDelay(ptr.Pointer()))
@@ -390,11 +293,7 @@ func (ptr *QMovie) NextFrameDelay() int {
 }
 
 func (ptr *QMovie) SetBackgroundColor(color QColor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::setBackgroundColor")
-		}
-	}()
+	defer qt.Recovering("QMovie::setBackgroundColor")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_SetBackgroundColor(ptr.Pointer(), PointerFromQColor(color))
@@ -402,11 +301,7 @@ func (ptr *QMovie) SetBackgroundColor(color QColor_ITF) {
 }
 
 func (ptr *QMovie) SetDevice(device core.QIODevice_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::setDevice")
-		}
-	}()
+	defer qt.Recovering("QMovie::setDevice")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_SetDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
@@ -414,11 +309,7 @@ func (ptr *QMovie) SetDevice(device core.QIODevice_ITF) {
 }
 
 func (ptr *QMovie) SetFileName(fileName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::setFileName")
-		}
-	}()
+	defer qt.Recovering("QMovie::setFileName")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_SetFileName(ptr.Pointer(), C.CString(fileName))
@@ -426,11 +317,7 @@ func (ptr *QMovie) SetFileName(fileName string) {
 }
 
 func (ptr *QMovie) SetFormat(format core.QByteArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::setFormat")
-		}
-	}()
+	defer qt.Recovering("QMovie::setFormat")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_SetFormat(ptr.Pointer(), core.PointerFromQByteArray(format))
@@ -438,11 +325,7 @@ func (ptr *QMovie) SetFormat(format core.QByteArray_ITF) {
 }
 
 func (ptr *QMovie) SetPaused(paused bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::setPaused")
-		}
-	}()
+	defer qt.Recovering("QMovie::setPaused")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_SetPaused(ptr.Pointer(), C.int(qt.GoBoolToInt(paused)))
@@ -450,11 +333,7 @@ func (ptr *QMovie) SetPaused(paused bool) {
 }
 
 func (ptr *QMovie) SetScaledSize(size core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::setScaledSize")
-		}
-	}()
+	defer qt.Recovering("QMovie::setScaledSize")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_SetScaledSize(ptr.Pointer(), core.PointerFromQSize(size))
@@ -462,11 +341,7 @@ func (ptr *QMovie) SetScaledSize(size core.QSize_ITF) {
 }
 
 func (ptr *QMovie) Start() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::start")
-		}
-	}()
+	defer qt.Recovering("QMovie::start")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_Start(ptr.Pointer())
@@ -474,11 +349,7 @@ func (ptr *QMovie) Start() {
 }
 
 func (ptr *QMovie) ConnectStarted(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::started")
-		}
-	}()
+	defer qt.Recovering("connect QMovie::started")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_ConnectStarted(ptr.Pointer())
@@ -487,11 +358,7 @@ func (ptr *QMovie) ConnectStarted(f func()) {
 }
 
 func (ptr *QMovie) DisconnectStarted() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::started")
-		}
-	}()
+	defer qt.Recovering("disconnect QMovie::started")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_DisconnectStarted(ptr.Pointer())
@@ -501,21 +368,17 @@ func (ptr *QMovie) DisconnectStarted() {
 
 //export callbackQMovieStarted
 func callbackQMovieStarted(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::started")
-		}
-	}()
+	defer qt.Recovering("callback QMovie::started")
 
-	qt.GetSignal(C.GoString(ptrName), "started").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "started")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QMovie) ConnectStateChanged(f func(state QMovie__MovieState)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::stateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QMovie::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_ConnectStateChanged(ptr.Pointer())
@@ -524,11 +387,7 @@ func (ptr *QMovie) ConnectStateChanged(f func(state QMovie__MovieState)) {
 }
 
 func (ptr *QMovie) DisconnectStateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::stateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QMovie::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_DisconnectStateChanged(ptr.Pointer())
@@ -538,21 +397,17 @@ func (ptr *QMovie) DisconnectStateChanged() {
 
 //export callbackQMovieStateChanged
 func callbackQMovieStateChanged(ptrName *C.char, state C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::stateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QMovie::stateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "stateChanged").(func(QMovie__MovieState))(QMovie__MovieState(state))
+	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
+	if signal != nil {
+		signal.(func(QMovie__MovieState))(QMovie__MovieState(state))
+	}
+
 }
 
 func (ptr *QMovie) Stop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::stop")
-		}
-	}()
+	defer qt.Recovering("QMovie::stop")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_Stop(ptr.Pointer())
@@ -560,11 +415,7 @@ func (ptr *QMovie) Stop() {
 }
 
 func (ptr *QMovie) DestroyQMovie() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMovie::~QMovie")
-		}
-	}()
+	defer qt.Recovering("QMovie::~QMovie")
 
 	if ptr.Pointer() != nil {
 		C.QMovie_DestroyQMovie(ptr.Pointer())

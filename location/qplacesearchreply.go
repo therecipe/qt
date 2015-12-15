@@ -27,7 +27,7 @@ func NewQPlaceSearchReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchReply {
 	var n = new(QPlaceSearchReply)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceSearchReply_") {
-		n.SetObjectName("QPlaceSearchReply_" + qt.RandomIdentifier())
+		n.SetObjectName("QPlaceSearchReply_" + qt.Identifier())
 	}
 	return n
 }

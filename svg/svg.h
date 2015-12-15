@@ -24,6 +24,8 @@ void QSvgGenerator_SetViewBox2(void* ptr, void* viewBox);
 char* QSvgGenerator_Title(void* ptr);
 void* QSvgGenerator_NewQSvgGenerator();
 void QSvgGenerator_DestroyQSvgGenerator(void* ptr);
+char* QSvgGenerator_ObjectNameAbs(void* ptr);
+void QSvgGenerator_SetObjectNameAbs(void* ptr, char* name);
 int QSvgRenderer_FramesPerSecond(void* ptr);
 void QSvgRenderer_SetFramesPerSecond(void* ptr, int num);
 void QSvgRenderer_SetViewBox(void* ptr, void* viewbox);

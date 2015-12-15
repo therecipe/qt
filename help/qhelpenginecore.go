@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQHelpEngineCoreFromPointer(ptr unsafe.Pointer) *QHelpEngineCore {
 	var n = new(QHelpEngineCore)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpEngineCore_") {
-		n.SetObjectName("QHelpEngineCore_" + qt.RandomIdentifier())
+		n.SetObjectName("QHelpEngineCore_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QHelpEngineCore) QHelpEngineCore_PTR() *QHelpEngineCore {
 }
 
 func (ptr *QHelpEngineCore) AutoSaveFilter() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::autoSaveFilter")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::autoSaveFilter")
 
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_AutoSaveFilter(ptr.Pointer()) != 0
@@ -53,11 +48,7 @@ func (ptr *QHelpEngineCore) AutoSaveFilter() bool {
 }
 
 func (ptr *QHelpEngineCore) CollectionFile() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::collectionFile")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::collectionFile")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QHelpEngineCore_CollectionFile(ptr.Pointer()))
@@ -66,11 +57,7 @@ func (ptr *QHelpEngineCore) CollectionFile() string {
 }
 
 func (ptr *QHelpEngineCore) CurrentFilter() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::currentFilter")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::currentFilter")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QHelpEngineCore_CurrentFilter(ptr.Pointer()))
@@ -79,11 +66,7 @@ func (ptr *QHelpEngineCore) CurrentFilter() string {
 }
 
 func (ptr *QHelpEngineCore) SetAutoSaveFilter(save bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::setAutoSaveFilter")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::setAutoSaveFilter")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_SetAutoSaveFilter(ptr.Pointer(), C.int(qt.GoBoolToInt(save)))
@@ -91,11 +74,7 @@ func (ptr *QHelpEngineCore) SetAutoSaveFilter(save bool) {
 }
 
 func (ptr *QHelpEngineCore) SetCollectionFile(fileName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::setCollectionFile")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::setCollectionFile")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_SetCollectionFile(ptr.Pointer(), C.CString(fileName))
@@ -103,11 +82,7 @@ func (ptr *QHelpEngineCore) SetCollectionFile(fileName string) {
 }
 
 func (ptr *QHelpEngineCore) SetCurrentFilter(filterName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::setCurrentFilter")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::setCurrentFilter")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_SetCurrentFilter(ptr.Pointer(), C.CString(filterName))
@@ -115,21 +90,13 @@ func (ptr *QHelpEngineCore) SetCurrentFilter(filterName string) {
 }
 
 func NewQHelpEngineCore(collectionFile string, parent core.QObject_ITF) *QHelpEngineCore {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::QHelpEngineCore")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::QHelpEngineCore")
 
 	return NewQHelpEngineCoreFromPointer(C.QHelpEngineCore_NewQHelpEngineCore(C.CString(collectionFile), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHelpEngineCore) AddCustomFilter(filterName string, attributes []string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::addCustomFilter")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::addCustomFilter")
 
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_AddCustomFilter(ptr.Pointer(), C.CString(filterName), C.CString(strings.Join(attributes, ",,,"))) != 0
@@ -138,11 +105,7 @@ func (ptr *QHelpEngineCore) AddCustomFilter(filterName string, attributes []stri
 }
 
 func (ptr *QHelpEngineCore) CopyCollectionFile(fileName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::copyCollectionFile")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::copyCollectionFile")
 
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_CopyCollectionFile(ptr.Pointer(), C.CString(fileName)) != 0
@@ -151,11 +114,7 @@ func (ptr *QHelpEngineCore) CopyCollectionFile(fileName string) bool {
 }
 
 func (ptr *QHelpEngineCore) ConnectCurrentFilterChanged(f func(newFilter string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::currentFilterChanged")
-		}
-	}()
+	defer qt.Recovering("connect QHelpEngineCore::currentFilterChanged")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectCurrentFilterChanged(ptr.Pointer())
@@ -164,11 +123,7 @@ func (ptr *QHelpEngineCore) ConnectCurrentFilterChanged(f func(newFilter string)
 }
 
 func (ptr *QHelpEngineCore) DisconnectCurrentFilterChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::currentFilterChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QHelpEngineCore::currentFilterChanged")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectCurrentFilterChanged(ptr.Pointer())
@@ -178,21 +133,17 @@ func (ptr *QHelpEngineCore) DisconnectCurrentFilterChanged() {
 
 //export callbackQHelpEngineCoreCurrentFilterChanged
 func callbackQHelpEngineCoreCurrentFilterChanged(ptrName *C.char, newFilter *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::currentFilterChanged")
-		}
-	}()
+	defer qt.Recovering("callback QHelpEngineCore::currentFilterChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentFilterChanged").(func(string))(C.GoString(newFilter))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentFilterChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(newFilter))
+	}
+
 }
 
 func (ptr *QHelpEngineCore) CustomFilters() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::customFilters")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::customFilters")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpEngineCore_CustomFilters(ptr.Pointer())), ",,,")
@@ -201,11 +152,7 @@ func (ptr *QHelpEngineCore) CustomFilters() []string {
 }
 
 func (ptr *QHelpEngineCore) CustomValue(key string, defaultValue core.QVariant_ITF) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::customValue")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::customValue")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QHelpEngineCore_CustomValue(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(defaultValue)))
@@ -214,11 +161,7 @@ func (ptr *QHelpEngineCore) CustomValue(key string, defaultValue core.QVariant_I
 }
 
 func (ptr *QHelpEngineCore) DocumentationFileName(namespaceName string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::documentationFileName")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::documentationFileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QHelpEngineCore_DocumentationFileName(ptr.Pointer(), C.CString(namespaceName)))
@@ -227,11 +170,7 @@ func (ptr *QHelpEngineCore) DocumentationFileName(namespaceName string) string {
 }
 
 func (ptr *QHelpEngineCore) Error() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::error")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::error")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QHelpEngineCore_Error(ptr.Pointer()))
@@ -240,11 +179,7 @@ func (ptr *QHelpEngineCore) Error() string {
 }
 
 func (ptr *QHelpEngineCore) FileData(url core.QUrl_ITF) *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::fileData")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::fileData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QHelpEngineCore_FileData(ptr.Pointer(), core.PointerFromQUrl(url)))
@@ -253,11 +188,7 @@ func (ptr *QHelpEngineCore) FileData(url core.QUrl_ITF) *core.QByteArray {
 }
 
 func (ptr *QHelpEngineCore) FilterAttributes() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::filterAttributes")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::filterAttributes")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpEngineCore_FilterAttributes(ptr.Pointer())), ",,,")
@@ -266,11 +197,7 @@ func (ptr *QHelpEngineCore) FilterAttributes() []string {
 }
 
 func (ptr *QHelpEngineCore) FilterAttributes2(filterName string) []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::filterAttributes")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::filterAttributes")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpEngineCore_FilterAttributes2(ptr.Pointer(), C.CString(filterName))), ",,,")
@@ -279,31 +206,19 @@ func (ptr *QHelpEngineCore) FilterAttributes2(filterName string) []string {
 }
 
 func QHelpEngineCore_MetaData(documentationFileName string, name string) *core.QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::metaData")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::metaData")
 
 	return core.NewQVariantFromPointer(C.QHelpEngineCore_QHelpEngineCore_MetaData(C.CString(documentationFileName), C.CString(name)))
 }
 
 func QHelpEngineCore_NamespaceName(documentationFileName string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::namespaceName")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::namespaceName")
 
 	return C.GoString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(C.CString(documentationFileName)))
 }
 
 func (ptr *QHelpEngineCore) ConnectReadersAboutToBeInvalidated(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::readersAboutToBeInvalidated")
-		}
-	}()
+	defer qt.Recovering("connect QHelpEngineCore::readersAboutToBeInvalidated")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectReadersAboutToBeInvalidated(ptr.Pointer())
@@ -312,11 +227,7 @@ func (ptr *QHelpEngineCore) ConnectReadersAboutToBeInvalidated(f func()) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectReadersAboutToBeInvalidated() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::readersAboutToBeInvalidated")
-		}
-	}()
+	defer qt.Recovering("disconnect QHelpEngineCore::readersAboutToBeInvalidated")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectReadersAboutToBeInvalidated(ptr.Pointer())
@@ -326,21 +237,17 @@ func (ptr *QHelpEngineCore) DisconnectReadersAboutToBeInvalidated() {
 
 //export callbackQHelpEngineCoreReadersAboutToBeInvalidated
 func callbackQHelpEngineCoreReadersAboutToBeInvalidated(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::readersAboutToBeInvalidated")
-		}
-	}()
+	defer qt.Recovering("callback QHelpEngineCore::readersAboutToBeInvalidated")
 
-	qt.GetSignal(C.GoString(ptrName), "readersAboutToBeInvalidated").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "readersAboutToBeInvalidated")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QHelpEngineCore) RegisterDocumentation(documentationFileName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::registerDocumentation")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::registerDocumentation")
 
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_RegisterDocumentation(ptr.Pointer(), C.CString(documentationFileName)) != 0
@@ -349,11 +256,7 @@ func (ptr *QHelpEngineCore) RegisterDocumentation(documentationFileName string) 
 }
 
 func (ptr *QHelpEngineCore) RegisteredDocumentations() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::registeredDocumentations")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::registeredDocumentations")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpEngineCore_RegisteredDocumentations(ptr.Pointer())), ",,,")
@@ -362,11 +265,7 @@ func (ptr *QHelpEngineCore) RegisteredDocumentations() []string {
 }
 
 func (ptr *QHelpEngineCore) RemoveCustomFilter(filterName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::removeCustomFilter")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::removeCustomFilter")
 
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_RemoveCustomFilter(ptr.Pointer(), C.CString(filterName)) != 0
@@ -375,11 +274,7 @@ func (ptr *QHelpEngineCore) RemoveCustomFilter(filterName string) bool {
 }
 
 func (ptr *QHelpEngineCore) RemoveCustomValue(key string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::removeCustomValue")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::removeCustomValue")
 
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_RemoveCustomValue(ptr.Pointer(), C.CString(key)) != 0
@@ -388,11 +283,7 @@ func (ptr *QHelpEngineCore) RemoveCustomValue(key string) bool {
 }
 
 func (ptr *QHelpEngineCore) SetCustomValue(key string, value core.QVariant_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::setCustomValue")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::setCustomValue")
 
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_SetCustomValue(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(value)) != 0
@@ -401,11 +292,7 @@ func (ptr *QHelpEngineCore) SetCustomValue(key string, value core.QVariant_ITF) 
 }
 
 func (ptr *QHelpEngineCore) SetupData() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::setupData")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::setupData")
 
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_SetupData(ptr.Pointer()) != 0
@@ -414,11 +301,7 @@ func (ptr *QHelpEngineCore) SetupData() bool {
 }
 
 func (ptr *QHelpEngineCore) ConnectSetupFinished(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::setupFinished")
-		}
-	}()
+	defer qt.Recovering("connect QHelpEngineCore::setupFinished")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectSetupFinished(ptr.Pointer())
@@ -427,11 +310,7 @@ func (ptr *QHelpEngineCore) ConnectSetupFinished(f func()) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectSetupFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::setupFinished")
-		}
-	}()
+	defer qt.Recovering("disconnect QHelpEngineCore::setupFinished")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectSetupFinished(ptr.Pointer())
@@ -441,21 +320,17 @@ func (ptr *QHelpEngineCore) DisconnectSetupFinished() {
 
 //export callbackQHelpEngineCoreSetupFinished
 func callbackQHelpEngineCoreSetupFinished(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::setupFinished")
-		}
-	}()
+	defer qt.Recovering("callback QHelpEngineCore::setupFinished")
 
-	qt.GetSignal(C.GoString(ptrName), "setupFinished").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "setupFinished")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QHelpEngineCore) ConnectSetupStarted(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::setupStarted")
-		}
-	}()
+	defer qt.Recovering("connect QHelpEngineCore::setupStarted")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectSetupStarted(ptr.Pointer())
@@ -464,11 +339,7 @@ func (ptr *QHelpEngineCore) ConnectSetupStarted(f func()) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectSetupStarted() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::setupStarted")
-		}
-	}()
+	defer qt.Recovering("disconnect QHelpEngineCore::setupStarted")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectSetupStarted(ptr.Pointer())
@@ -478,21 +349,17 @@ func (ptr *QHelpEngineCore) DisconnectSetupStarted() {
 
 //export callbackQHelpEngineCoreSetupStarted
 func callbackQHelpEngineCoreSetupStarted(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::setupStarted")
-		}
-	}()
+	defer qt.Recovering("callback QHelpEngineCore::setupStarted")
 
-	qt.GetSignal(C.GoString(ptrName), "setupStarted").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "setupStarted")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QHelpEngineCore) UnregisterDocumentation(namespaceName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::unregisterDocumentation")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::unregisterDocumentation")
 
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_UnregisterDocumentation(ptr.Pointer(), C.CString(namespaceName)) != 0
@@ -501,11 +368,7 @@ func (ptr *QHelpEngineCore) UnregisterDocumentation(namespaceName string) bool {
 }
 
 func (ptr *QHelpEngineCore) ConnectWarning(f func(msg string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::warning")
-		}
-	}()
+	defer qt.Recovering("connect QHelpEngineCore::warning")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectWarning(ptr.Pointer())
@@ -514,11 +377,7 @@ func (ptr *QHelpEngineCore) ConnectWarning(f func(msg string)) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectWarning() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::warning")
-		}
-	}()
+	defer qt.Recovering("disconnect QHelpEngineCore::warning")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectWarning(ptr.Pointer())
@@ -528,21 +387,17 @@ func (ptr *QHelpEngineCore) DisconnectWarning() {
 
 //export callbackQHelpEngineCoreWarning
 func callbackQHelpEngineCoreWarning(ptrName *C.char, msg *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::warning")
-		}
-	}()
+	defer qt.Recovering("callback QHelpEngineCore::warning")
 
-	qt.GetSignal(C.GoString(ptrName), "warning").(func(string))(C.GoString(msg))
+	var signal = qt.GetSignal(C.GoString(ptrName), "warning")
+	if signal != nil {
+		signal.(func(string))(C.GoString(msg))
+	}
+
 }
 
 func (ptr *QHelpEngineCore) DestroyQHelpEngineCore() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QHelpEngineCore::~QHelpEngineCore")
-		}
-	}()
+	defer qt.Recovering("QHelpEngineCore::~QHelpEngineCore")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DestroyQHelpEngineCore(ptr.Pointer())

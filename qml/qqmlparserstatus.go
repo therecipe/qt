@@ -3,7 +3,7 @@ package qml
 //#include "qml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,11 +41,7 @@ func (ptr *QQmlParserStatus) QQmlParserStatus_PTR() *QQmlParserStatus {
 }
 
 func (ptr *QQmlParserStatus) ClassBegin() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlParserStatus::classBegin")
-		}
-	}()
+	defer qt.Recovering("QQmlParserStatus::classBegin")
 
 	if ptr.Pointer() != nil {
 		C.QQmlParserStatus_ClassBegin(ptr.Pointer())
@@ -53,11 +49,7 @@ func (ptr *QQmlParserStatus) ClassBegin() {
 }
 
 func (ptr *QQmlParserStatus) ComponentComplete() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QQmlParserStatus::componentComplete")
-		}
-	}()
+	defer qt.Recovering("QQmlParserStatus::componentComplete")
 
 	if ptr.Pointer() != nil {
 		C.QQmlParserStatus_ComponentComplete(ptr.Pointer())

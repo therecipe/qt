@@ -3,9 +3,9 @@ package xmlpatterns
 //#include "xmlpatterns.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
-	"log"
 	"unsafe"
 )
 
@@ -43,31 +43,19 @@ func (ptr *QXmlSchemaValidator) QXmlSchemaValidator_PTR() *QXmlSchemaValidator {
 }
 
 func NewQXmlSchemaValidator() *QXmlSchemaValidator {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::QXmlSchemaValidator")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::QXmlSchemaValidator")
 
 	return NewQXmlSchemaValidatorFromPointer(C.QXmlSchemaValidator_NewQXmlSchemaValidator())
 }
 
 func NewQXmlSchemaValidator2(schema QXmlSchema_ITF) *QXmlSchemaValidator {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::QXmlSchemaValidator")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::QXmlSchemaValidator")
 
 	return NewQXmlSchemaValidatorFromPointer(C.QXmlSchemaValidator_NewQXmlSchemaValidator2(PointerFromQXmlSchema(schema)))
 }
 
 func (ptr *QXmlSchemaValidator) MessageHandler() *QAbstractMessageHandler {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::messageHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::messageHandler")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractMessageHandlerFromPointer(C.QXmlSchemaValidator_MessageHandler(ptr.Pointer()))
@@ -76,11 +64,7 @@ func (ptr *QXmlSchemaValidator) MessageHandler() *QAbstractMessageHandler {
 }
 
 func (ptr *QXmlSchemaValidator) NetworkAccessManager() *network.QNetworkAccessManager {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::networkAccessManager")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::networkAccessManager")
 
 	if ptr.Pointer() != nil {
 		return network.NewQNetworkAccessManagerFromPointer(C.QXmlSchemaValidator_NetworkAccessManager(ptr.Pointer()))
@@ -89,11 +73,7 @@ func (ptr *QXmlSchemaValidator) NetworkAccessManager() *network.QNetworkAccessMa
 }
 
 func (ptr *QXmlSchemaValidator) SetMessageHandler(handler QAbstractMessageHandler_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::setMessageHandler")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::setMessageHandler")
 
 	if ptr.Pointer() != nil {
 		C.QXmlSchemaValidator_SetMessageHandler(ptr.Pointer(), PointerFromQAbstractMessageHandler(handler))
@@ -101,11 +81,7 @@ func (ptr *QXmlSchemaValidator) SetMessageHandler(handler QAbstractMessageHandle
 }
 
 func (ptr *QXmlSchemaValidator) SetNetworkAccessManager(manager network.QNetworkAccessManager_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::setNetworkAccessManager")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::setNetworkAccessManager")
 
 	if ptr.Pointer() != nil {
 		C.QXmlSchemaValidator_SetNetworkAccessManager(ptr.Pointer(), network.PointerFromQNetworkAccessManager(manager))
@@ -113,11 +89,7 @@ func (ptr *QXmlSchemaValidator) SetNetworkAccessManager(manager network.QNetwork
 }
 
 func (ptr *QXmlSchemaValidator) SetSchema(schema QXmlSchema_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::setSchema")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::setSchema")
 
 	if ptr.Pointer() != nil {
 		C.QXmlSchemaValidator_SetSchema(ptr.Pointer(), PointerFromQXmlSchema(schema))
@@ -125,11 +97,7 @@ func (ptr *QXmlSchemaValidator) SetSchema(schema QXmlSchema_ITF) {
 }
 
 func (ptr *QXmlSchemaValidator) SetUriResolver(resolver QAbstractUriResolver_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::setUriResolver")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::setUriResolver")
 
 	if ptr.Pointer() != nil {
 		C.QXmlSchemaValidator_SetUriResolver(ptr.Pointer(), PointerFromQAbstractUriResolver(resolver))
@@ -137,11 +105,7 @@ func (ptr *QXmlSchemaValidator) SetUriResolver(resolver QAbstractUriResolver_ITF
 }
 
 func (ptr *QXmlSchemaValidator) UriResolver() *QAbstractUriResolver {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::uriResolver")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::uriResolver")
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractUriResolverFromPointer(C.QXmlSchemaValidator_UriResolver(ptr.Pointer()))
@@ -150,11 +114,7 @@ func (ptr *QXmlSchemaValidator) UriResolver() *QAbstractUriResolver {
 }
 
 func (ptr *QXmlSchemaValidator) Validate2(source core.QIODevice_ITF, documentUri core.QUrl_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::validate")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::validate")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSchemaValidator_Validate2(ptr.Pointer(), core.PointerFromQIODevice(source), core.PointerFromQUrl(documentUri)) != 0
@@ -163,11 +123,7 @@ func (ptr *QXmlSchemaValidator) Validate2(source core.QIODevice_ITF, documentUri
 }
 
 func (ptr *QXmlSchemaValidator) Validate3(data core.QByteArray_ITF, documentUri core.QUrl_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::validate")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::validate")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSchemaValidator_Validate3(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(documentUri)) != 0
@@ -176,11 +132,7 @@ func (ptr *QXmlSchemaValidator) Validate3(data core.QByteArray_ITF, documentUri 
 }
 
 func (ptr *QXmlSchemaValidator) Validate(source core.QUrl_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::validate")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::validate")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlSchemaValidator_Validate(ptr.Pointer(), core.PointerFromQUrl(source)) != 0
@@ -189,11 +141,7 @@ func (ptr *QXmlSchemaValidator) Validate(source core.QUrl_ITF) bool {
 }
 
 func (ptr *QXmlSchemaValidator) DestroyQXmlSchemaValidator() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlSchemaValidator::~QXmlSchemaValidator")
-		}
-	}()
+	defer qt.Recovering("QXmlSchemaValidator::~QXmlSchemaValidator")
 
 	if ptr.Pointer() != nil {
 		C.QXmlSchemaValidator_DestroyQXmlSchemaValidator(ptr.Pointer())

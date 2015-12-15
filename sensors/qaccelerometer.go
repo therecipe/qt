@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQAccelerometerFromPointer(ptr unsafe.Pointer) *QAccelerometer {
 	var n = new(QAccelerometer)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QAccelerometer_") {
-		n.SetObjectName("QAccelerometer_" + qt.RandomIdentifier())
+		n.SetObjectName("QAccelerometer_" + qt.Identifier())
 	}
 	return n
 }
@@ -48,11 +47,7 @@ const (
 )
 
 func (ptr *QAccelerometer) AccelerationMode() QAccelerometer__AccelerationMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccelerometer::accelerationMode")
-		}
-	}()
+	defer qt.Recovering("QAccelerometer::accelerationMode")
 
 	if ptr.Pointer() != nil {
 		return QAccelerometer__AccelerationMode(C.QAccelerometer_AccelerationMode(ptr.Pointer()))
@@ -61,11 +56,7 @@ func (ptr *QAccelerometer) AccelerationMode() QAccelerometer__AccelerationMode {
 }
 
 func (ptr *QAccelerometer) Reading() *QAccelerometerReading {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccelerometer::reading")
-		}
-	}()
+	defer qt.Recovering("QAccelerometer::reading")
 
 	if ptr.Pointer() != nil {
 		return NewQAccelerometerReadingFromPointer(C.QAccelerometer_Reading(ptr.Pointer()))
@@ -74,21 +65,13 @@ func (ptr *QAccelerometer) Reading() *QAccelerometerReading {
 }
 
 func NewQAccelerometer(parent core.QObject_ITF) *QAccelerometer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccelerometer::QAccelerometer")
-		}
-	}()
+	defer qt.Recovering("QAccelerometer::QAccelerometer")
 
 	return NewQAccelerometerFromPointer(C.QAccelerometer_NewQAccelerometer(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAccelerometer) ConnectAccelerationModeChanged(f func(accelerationMode QAccelerometer__AccelerationMode)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccelerometer::accelerationModeChanged")
-		}
-	}()
+	defer qt.Recovering("connect QAccelerometer::accelerationModeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAccelerometer_ConnectAccelerationModeChanged(ptr.Pointer())
@@ -97,11 +80,7 @@ func (ptr *QAccelerometer) ConnectAccelerationModeChanged(f func(accelerationMod
 }
 
 func (ptr *QAccelerometer) DisconnectAccelerationModeChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccelerometer::accelerationModeChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QAccelerometer::accelerationModeChanged")
 
 	if ptr.Pointer() != nil {
 		C.QAccelerometer_DisconnectAccelerationModeChanged(ptr.Pointer())
@@ -111,21 +90,17 @@ func (ptr *QAccelerometer) DisconnectAccelerationModeChanged() {
 
 //export callbackQAccelerometerAccelerationModeChanged
 func callbackQAccelerometerAccelerationModeChanged(ptrName *C.char, accelerationMode C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccelerometer::accelerationModeChanged")
-		}
-	}()
+	defer qt.Recovering("callback QAccelerometer::accelerationModeChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "accelerationModeChanged").(func(QAccelerometer__AccelerationMode))(QAccelerometer__AccelerationMode(accelerationMode))
+	var signal = qt.GetSignal(C.GoString(ptrName), "accelerationModeChanged")
+	if signal != nil {
+		signal.(func(QAccelerometer__AccelerationMode))(QAccelerometer__AccelerationMode(accelerationMode))
+	}
+
 }
 
 func (ptr *QAccelerometer) SetAccelerationMode(accelerationMode QAccelerometer__AccelerationMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccelerometer::setAccelerationMode")
-		}
-	}()
+	defer qt.Recovering("QAccelerometer::setAccelerationMode")
 
 	if ptr.Pointer() != nil {
 		C.QAccelerometer_SetAccelerationMode(ptr.Pointer(), C.int(accelerationMode))
@@ -133,11 +108,7 @@ func (ptr *QAccelerometer) SetAccelerationMode(accelerationMode QAccelerometer__
 }
 
 func (ptr *QAccelerometer) DestroyQAccelerometer() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccelerometer::~QAccelerometer")
-		}
-	}()
+	defer qt.Recovering("QAccelerometer::~QAccelerometer")
 
 	if ptr.Pointer() != nil {
 		C.QAccelerometer_DestroyQAccelerometer(ptr.Pointer())

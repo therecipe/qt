@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQTimeEditFromPointer(ptr unsafe.Pointer) *QTimeEdit {
 	var n = new(QTimeEdit)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QTimeEdit_") {
-		n.SetObjectName("QTimeEdit_" + qt.RandomIdentifier())
+		n.SetObjectName("QTimeEdit_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,31 +38,19 @@ func (ptr *QTimeEdit) QTimeEdit_PTR() *QTimeEdit {
 }
 
 func NewQTimeEdit(parent QWidget_ITF) *QTimeEdit {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeEdit::QTimeEdit")
-		}
-	}()
+	defer qt.Recovering("QTimeEdit::QTimeEdit")
 
 	return NewQTimeEditFromPointer(C.QTimeEdit_NewQTimeEdit(PointerFromQWidget(parent)))
 }
 
 func NewQTimeEdit2(time core.QTime_ITF, parent QWidget_ITF) *QTimeEdit {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeEdit::QTimeEdit")
-		}
-	}()
+	defer qt.Recovering("QTimeEdit::QTimeEdit")
 
 	return NewQTimeEditFromPointer(C.QTimeEdit_NewQTimeEdit2(core.PointerFromQTime(time), PointerFromQWidget(parent)))
 }
 
 func (ptr *QTimeEdit) DestroyQTimeEdit() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTimeEdit::~QTimeEdit")
-		}
-	}()
+	defer qt.Recovering("QTimeEdit::~QTimeEdit")
 
 	if ptr.Pointer() != nil {
 		C.QTimeEdit_DestroyQTimeEdit(ptr.Pointer())

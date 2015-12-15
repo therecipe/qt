@@ -28,7 +28,7 @@ func NewQGeoCodeReplyFromPointer(ptr unsafe.Pointer) *QGeoCodeReply {
 	var n = new(QGeoCodeReply)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoCodeReply_") {
-		n.SetObjectName("QGeoCodeReply_" + qt.RandomIdentifier())
+		n.SetObjectName("QGeoCodeReply_" + qt.Identifier())
 	}
 	return n
 }

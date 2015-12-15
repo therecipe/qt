@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,51 +41,31 @@ func (ptr *QDateTime) QDateTime_PTR() *QDateTime {
 }
 
 func QDateTime_CurrentDateTime() *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::currentDateTime")
-		}
-	}()
+	defer qt.Recovering("QDateTime::currentDateTime")
 
 	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTime())
 }
 
 func QDateTime_CurrentDateTimeUtc() *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::currentDateTimeUtc")
-		}
-	}()
+	defer qt.Recovering("QDateTime::currentDateTimeUtc")
 
 	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTimeUtc())
 }
 
 func QDateTime_FromString(stri string, format Qt__DateFormat) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::fromString")
-		}
-	}()
+	defer qt.Recovering("QDateTime::fromString")
 
 	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString(C.CString(stri), C.int(format)))
 }
 
 func QDateTime_FromString2(stri string, format string) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::fromString")
-		}
-	}()
+	defer qt.Recovering("QDateTime::fromString")
 
 	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString2(C.CString(stri), C.CString(format)))
 }
 
 func (ptr *QDateTime) ToOffsetFromUtc(offsetSeconds int) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::toOffsetFromUtc")
-		}
-	}()
+	defer qt.Recovering("QDateTime::toOffsetFromUtc")
 
 	if ptr.Pointer() != nil {
 		return NewQDateTimeFromPointer(C.QDateTime_ToOffsetFromUtc(ptr.Pointer(), C.int(offsetSeconds)))
@@ -94,11 +74,7 @@ func (ptr *QDateTime) ToOffsetFromUtc(offsetSeconds int) *QDateTime {
 }
 
 func (ptr *QDateTime) ToString2(format Qt__DateFormat) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::toString")
-		}
-	}()
+	defer qt.Recovering("QDateTime::toString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDateTime_ToString2(ptr.Pointer(), C.int(format)))
@@ -107,11 +83,7 @@ func (ptr *QDateTime) ToString2(format Qt__DateFormat) string {
 }
 
 func (ptr *QDateTime) ToTimeSpec(spec Qt__TimeSpec) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::toTimeSpec")
-		}
-	}()
+	defer qt.Recovering("QDateTime::toTimeSpec")
 
 	if ptr.Pointer() != nil {
 		return NewQDateTimeFromPointer(C.QDateTime_ToTimeSpec(ptr.Pointer(), C.int(spec)))
@@ -120,71 +92,43 @@ func (ptr *QDateTime) ToTimeSpec(spec Qt__TimeSpec) *QDateTime {
 }
 
 func NewQDateTime() *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::QDateTime")
-		}
-	}()
+	defer qt.Recovering("QDateTime::QDateTime")
 
 	return NewQDateTimeFromPointer(C.QDateTime_NewQDateTime())
 }
 
 func NewQDateTime2(date QDate_ITF) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::QDateTime")
-		}
-	}()
+	defer qt.Recovering("QDateTime::QDateTime")
 
 	return NewQDateTimeFromPointer(C.QDateTime_NewQDateTime2(PointerFromQDate(date)))
 }
 
 func NewQDateTime3(date QDate_ITF, time QTime_ITF, spec Qt__TimeSpec) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::QDateTime")
-		}
-	}()
+	defer qt.Recovering("QDateTime::QDateTime")
 
 	return NewQDateTimeFromPointer(C.QDateTime_NewQDateTime3(PointerFromQDate(date), PointerFromQTime(time), C.int(spec)))
 }
 
 func NewQDateTime4(date QDate_ITF, time QTime_ITF, spec Qt__TimeSpec, offsetSeconds int) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::QDateTime")
-		}
-	}()
+	defer qt.Recovering("QDateTime::QDateTime")
 
 	return NewQDateTimeFromPointer(C.QDateTime_NewQDateTime4(PointerFromQDate(date), PointerFromQTime(time), C.int(spec), C.int(offsetSeconds)))
 }
 
 func NewQDateTime5(date QDate_ITF, time QTime_ITF, timeZone QTimeZone_ITF) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::QDateTime")
-		}
-	}()
+	defer qt.Recovering("QDateTime::QDateTime")
 
 	return NewQDateTimeFromPointer(C.QDateTime_NewQDateTime5(PointerFromQDate(date), PointerFromQTime(time), PointerFromQTimeZone(timeZone)))
 }
 
 func NewQDateTime6(other QDateTime_ITF) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::QDateTime")
-		}
-	}()
+	defer qt.Recovering("QDateTime::QDateTime")
 
 	return NewQDateTimeFromPointer(C.QDateTime_NewQDateTime6(PointerFromQDateTime(other)))
 }
 
 func (ptr *QDateTime) AddMonths(nmonths int) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::addMonths")
-		}
-	}()
+	defer qt.Recovering("QDateTime::addMonths")
 
 	if ptr.Pointer() != nil {
 		return NewQDateTimeFromPointer(C.QDateTime_AddMonths(ptr.Pointer(), C.int(nmonths)))
@@ -193,11 +137,7 @@ func (ptr *QDateTime) AddMonths(nmonths int) *QDateTime {
 }
 
 func (ptr *QDateTime) AddYears(nyears int) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::addYears")
-		}
-	}()
+	defer qt.Recovering("QDateTime::addYears")
 
 	if ptr.Pointer() != nil {
 		return NewQDateTimeFromPointer(C.QDateTime_AddYears(ptr.Pointer(), C.int(nyears)))
@@ -206,11 +146,7 @@ func (ptr *QDateTime) AddYears(nyears int) *QDateTime {
 }
 
 func (ptr *QDateTime) IsDaylightTime() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::isDaylightTime")
-		}
-	}()
+	defer qt.Recovering("QDateTime::isDaylightTime")
 
 	if ptr.Pointer() != nil {
 		return C.QDateTime_IsDaylightTime(ptr.Pointer()) != 0
@@ -219,11 +155,7 @@ func (ptr *QDateTime) IsDaylightTime() bool {
 }
 
 func (ptr *QDateTime) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::isNull")
-		}
-	}()
+	defer qt.Recovering("QDateTime::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QDateTime_IsNull(ptr.Pointer()) != 0
@@ -232,11 +164,7 @@ func (ptr *QDateTime) IsNull() bool {
 }
 
 func (ptr *QDateTime) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::isValid")
-		}
-	}()
+	defer qt.Recovering("QDateTime::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QDateTime_IsValid(ptr.Pointer()) != 0
@@ -245,11 +173,7 @@ func (ptr *QDateTime) IsValid() bool {
 }
 
 func (ptr *QDateTime) OffsetFromUtc() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::offsetFromUtc")
-		}
-	}()
+	defer qt.Recovering("QDateTime::offsetFromUtc")
 
 	if ptr.Pointer() != nil {
 		return int(C.QDateTime_OffsetFromUtc(ptr.Pointer()))
@@ -258,11 +182,7 @@ func (ptr *QDateTime) OffsetFromUtc() int {
 }
 
 func (ptr *QDateTime) SetDate(date QDate_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::setDate")
-		}
-	}()
+	defer qt.Recovering("QDateTime::setDate")
 
 	if ptr.Pointer() != nil {
 		C.QDateTime_SetDate(ptr.Pointer(), PointerFromQDate(date))
@@ -270,11 +190,7 @@ func (ptr *QDateTime) SetDate(date QDate_ITF) {
 }
 
 func (ptr *QDateTime) SetOffsetFromUtc(offsetSeconds int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::setOffsetFromUtc")
-		}
-	}()
+	defer qt.Recovering("QDateTime::setOffsetFromUtc")
 
 	if ptr.Pointer() != nil {
 		C.QDateTime_SetOffsetFromUtc(ptr.Pointer(), C.int(offsetSeconds))
@@ -282,11 +198,7 @@ func (ptr *QDateTime) SetOffsetFromUtc(offsetSeconds int) {
 }
 
 func (ptr *QDateTime) SetTime(time QTime_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::setTime")
-		}
-	}()
+	defer qt.Recovering("QDateTime::setTime")
 
 	if ptr.Pointer() != nil {
 		C.QDateTime_SetTime(ptr.Pointer(), PointerFromQTime(time))
@@ -294,11 +206,7 @@ func (ptr *QDateTime) SetTime(time QTime_ITF) {
 }
 
 func (ptr *QDateTime) SetTimeSpec(spec Qt__TimeSpec) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::setTimeSpec")
-		}
-	}()
+	defer qt.Recovering("QDateTime::setTimeSpec")
 
 	if ptr.Pointer() != nil {
 		C.QDateTime_SetTimeSpec(ptr.Pointer(), C.int(spec))
@@ -306,11 +214,7 @@ func (ptr *QDateTime) SetTimeSpec(spec Qt__TimeSpec) {
 }
 
 func (ptr *QDateTime) SetTimeZone(toZone QTimeZone_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::setTimeZone")
-		}
-	}()
+	defer qt.Recovering("QDateTime::setTimeZone")
 
 	if ptr.Pointer() != nil {
 		C.QDateTime_SetTimeZone(ptr.Pointer(), PointerFromQTimeZone(toZone))
@@ -318,11 +222,7 @@ func (ptr *QDateTime) SetTimeZone(toZone QTimeZone_ITF) {
 }
 
 func (ptr *QDateTime) Swap(other QDateTime_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::swap")
-		}
-	}()
+	defer qt.Recovering("QDateTime::swap")
 
 	if ptr.Pointer() != nil {
 		C.QDateTime_Swap(ptr.Pointer(), PointerFromQDateTime(other))
@@ -330,11 +230,7 @@ func (ptr *QDateTime) Swap(other QDateTime_ITF) {
 }
 
 func (ptr *QDateTime) TimeSpec() Qt__TimeSpec {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::timeSpec")
-		}
-	}()
+	defer qt.Recovering("QDateTime::timeSpec")
 
 	if ptr.Pointer() != nil {
 		return Qt__TimeSpec(C.QDateTime_TimeSpec(ptr.Pointer()))
@@ -343,11 +239,7 @@ func (ptr *QDateTime) TimeSpec() Qt__TimeSpec {
 }
 
 func (ptr *QDateTime) TimeZone() *QTimeZone {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::timeZone")
-		}
-	}()
+	defer qt.Recovering("QDateTime::timeZone")
 
 	if ptr.Pointer() != nil {
 		return NewQTimeZoneFromPointer(C.QDateTime_TimeZone(ptr.Pointer()))
@@ -356,11 +248,7 @@ func (ptr *QDateTime) TimeZone() *QTimeZone {
 }
 
 func (ptr *QDateTime) TimeZoneAbbreviation() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::timeZoneAbbreviation")
-		}
-	}()
+	defer qt.Recovering("QDateTime::timeZoneAbbreviation")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDateTime_TimeZoneAbbreviation(ptr.Pointer()))
@@ -369,11 +257,7 @@ func (ptr *QDateTime) TimeZoneAbbreviation() string {
 }
 
 func (ptr *QDateTime) ToLocalTime() *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::toLocalTime")
-		}
-	}()
+	defer qt.Recovering("QDateTime::toLocalTime")
 
 	if ptr.Pointer() != nil {
 		return NewQDateTimeFromPointer(C.QDateTime_ToLocalTime(ptr.Pointer()))
@@ -382,11 +266,7 @@ func (ptr *QDateTime) ToLocalTime() *QDateTime {
 }
 
 func (ptr *QDateTime) ToString(format string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::toString")
-		}
-	}()
+	defer qt.Recovering("QDateTime::toString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDateTime_ToString(ptr.Pointer(), C.CString(format)))
@@ -395,11 +275,7 @@ func (ptr *QDateTime) ToString(format string) string {
 }
 
 func (ptr *QDateTime) ToTimeZone(timeZone QTimeZone_ITF) *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::toTimeZone")
-		}
-	}()
+	defer qt.Recovering("QDateTime::toTimeZone")
 
 	if ptr.Pointer() != nil {
 		return NewQDateTimeFromPointer(C.QDateTime_ToTimeZone(ptr.Pointer(), PointerFromQTimeZone(timeZone)))
@@ -408,11 +284,7 @@ func (ptr *QDateTime) ToTimeZone(timeZone QTimeZone_ITF) *QDateTime {
 }
 
 func (ptr *QDateTime) ToUTC() *QDateTime {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::toUTC")
-		}
-	}()
+	defer qt.Recovering("QDateTime::toUTC")
 
 	if ptr.Pointer() != nil {
 		return NewQDateTimeFromPointer(C.QDateTime_ToUTC(ptr.Pointer()))
@@ -421,11 +293,7 @@ func (ptr *QDateTime) ToUTC() *QDateTime {
 }
 
 func (ptr *QDateTime) DestroyQDateTime() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDateTime::~QDateTime")
-		}
-	}()
+	defer qt.Recovering("QDateTime::~QDateTime")
 
 	if ptr.Pointer() != nil {
 		C.QDateTime_DestroyQDateTime(ptr.Pointer())

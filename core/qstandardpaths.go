@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -77,71 +76,43 @@ const (
 )
 
 func QStandardPaths_SetTestModeEnabled(testMode bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardPaths::setTestModeEnabled")
-		}
-	}()
+	defer qt.Recovering("QStandardPaths::setTestModeEnabled")
 
 	C.QStandardPaths_QStandardPaths_SetTestModeEnabled(C.int(qt.GoBoolToInt(testMode)))
 }
 
 func QStandardPaths_FindExecutable(executableName string, paths []string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardPaths::findExecutable")
-		}
-	}()
+	defer qt.Recovering("QStandardPaths::findExecutable")
 
 	return C.GoString(C.QStandardPaths_QStandardPaths_FindExecutable(C.CString(executableName), C.CString(strings.Join(paths, ",,,"))))
 }
 
 func QStandardPaths_Locate(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardPaths::locate")
-		}
-	}()
+	defer qt.Recovering("QStandardPaths::locate")
 
 	return C.GoString(C.QStandardPaths_QStandardPaths_Locate(C.int(ty), C.CString(fileName), C.int(options)))
 }
 
 func QStandardPaths_LocateAll(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardPaths::locateAll")
-		}
-	}()
+	defer qt.Recovering("QStandardPaths::locateAll")
 
 	return strings.Split(C.GoString(C.QStandardPaths_QStandardPaths_LocateAll(C.int(ty), C.CString(fileName), C.int(options))), ",,,")
 }
 
 func QStandardPaths_DisplayName(ty QStandardPaths__StandardLocation) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardPaths::displayName")
-		}
-	}()
+	defer qt.Recovering("QStandardPaths::displayName")
 
 	return C.GoString(C.QStandardPaths_QStandardPaths_DisplayName(C.int(ty)))
 }
 
 func QStandardPaths_StandardLocations(ty QStandardPaths__StandardLocation) []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardPaths::standardLocations")
-		}
-	}()
+	defer qt.Recovering("QStandardPaths::standardLocations")
 
 	return strings.Split(C.GoString(C.QStandardPaths_QStandardPaths_StandardLocations(C.int(ty))), ",,,")
 }
 
 func QStandardPaths_WritableLocation(ty QStandardPaths__StandardLocation) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStandardPaths::writableLocation")
-		}
-	}()
+	defer qt.Recovering("QStandardPaths::writableLocation")
 
 	return C.GoString(C.QStandardPaths_QStandardPaths_WritableLocation(C.int(ty)))
 }

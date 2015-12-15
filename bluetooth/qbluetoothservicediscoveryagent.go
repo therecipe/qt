@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQBluetoothServiceDiscoveryAgentFromPointer(ptr unsafe.Pointer) *QBluetoo
 	var n = new(QBluetoothServiceDiscoveryAgent)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QBluetoothServiceDiscoveryAgent_") {
-		n.SetObjectName("QBluetoothServiceDiscoveryAgent_" + qt.RandomIdentifier())
+		n.SetObjectName("QBluetoothServiceDiscoveryAgent_" + qt.Identifier())
 	}
 	return n
 }
@@ -58,11 +57,7 @@ const (
 )
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectCanceled(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::canceled")
-		}
-	}()
+	defer qt.Recovering("connect QBluetoothServiceDiscoveryAgent::canceled")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_ConnectCanceled(ptr.Pointer())
@@ -71,11 +66,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectCanceled(f func()) {
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectCanceled() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::canceled")
-		}
-	}()
+	defer qt.Recovering("disconnect QBluetoothServiceDiscoveryAgent::canceled")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_DisconnectCanceled(ptr.Pointer())
@@ -85,21 +76,17 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectCanceled() {
 
 //export callbackQBluetoothServiceDiscoveryAgentCanceled
 func callbackQBluetoothServiceDiscoveryAgentCanceled(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::canceled")
-		}
-	}()
+	defer qt.Recovering("callback QBluetoothServiceDiscoveryAgent::canceled")
 
-	qt.GetSignal(C.GoString(ptrName), "canceled").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "canceled")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectFinished(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::finished")
-		}
-	}()
+	defer qt.Recovering("connect QBluetoothServiceDiscoveryAgent::finished")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_ConnectFinished(ptr.Pointer())
@@ -108,11 +95,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectFinished(f func()) {
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::finished")
-		}
-	}()
+	defer qt.Recovering("disconnect QBluetoothServiceDiscoveryAgent::finished")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_DisconnectFinished(ptr.Pointer())
@@ -122,41 +105,29 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectFinished() {
 
 //export callbackQBluetoothServiceDiscoveryAgentFinished
 func callbackQBluetoothServiceDiscoveryAgentFinished(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::finished")
-		}
-	}()
+	defer qt.Recovering("callback QBluetoothServiceDiscoveryAgent::finished")
 
-	qt.GetSignal(C.GoString(ptrName), "finished").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func NewQBluetoothServiceDiscoveryAgent(parent core.QObject_ITF) *QBluetoothServiceDiscoveryAgent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::QBluetoothServiceDiscoveryAgent")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::QBluetoothServiceDiscoveryAgent")
 
 	return NewQBluetoothServiceDiscoveryAgentFromPointer(C.QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent(core.PointerFromQObject(parent)))
 }
 
 func NewQBluetoothServiceDiscoveryAgent2(deviceAdapter QBluetoothAddress_ITF, parent core.QObject_ITF) *QBluetoothServiceDiscoveryAgent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::QBluetoothServiceDiscoveryAgent")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::QBluetoothServiceDiscoveryAgent")
 
 	return NewQBluetoothServiceDiscoveryAgentFromPointer(C.QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent2(PointerFromQBluetoothAddress(deviceAdapter), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::clear")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::clear")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_Clear(ptr.Pointer())
@@ -164,11 +135,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) Clear() {
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) Error() QBluetoothServiceDiscoveryAgent__Error {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::error")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::error")
 
 	if ptr.Pointer() != nil {
 		return QBluetoothServiceDiscoveryAgent__Error(C.QBluetoothServiceDiscoveryAgent_Error(ptr.Pointer()))
@@ -177,11 +144,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) Error() QBluetoothServiceDiscoveryAg
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::errorString")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothServiceDiscoveryAgent_ErrorString(ptr.Pointer()))
@@ -190,11 +153,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ErrorString() string {
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) IsActive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::isActive")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::isActive")
 
 	if ptr.Pointer() != nil {
 		return C.QBluetoothServiceDiscoveryAgent_IsActive(ptr.Pointer()) != 0
@@ -203,11 +162,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) IsActive() bool {
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) SetRemoteAddress(address QBluetoothAddress_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::setRemoteAddress")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::setRemoteAddress")
 
 	if ptr.Pointer() != nil {
 		return C.QBluetoothServiceDiscoveryAgent_SetRemoteAddress(ptr.Pointer(), PointerFromQBluetoothAddress(address)) != 0
@@ -216,11 +171,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) SetRemoteAddress(address QBluetoothA
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) SetUuidFilter2(uuid QBluetoothUuid_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::setUuidFilter")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::setUuidFilter")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_SetUuidFilter2(ptr.Pointer(), PointerFromQBluetoothUuid(uuid))
@@ -228,11 +179,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) SetUuidFilter2(uuid QBluetoothUuid_I
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) Start(mode QBluetoothServiceDiscoveryAgent__DiscoveryMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::start")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::start")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_Start(ptr.Pointer(), C.int(mode))
@@ -240,11 +187,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) Start(mode QBluetoothServiceDiscover
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) Stop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::stop")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::stop")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_Stop(ptr.Pointer())
@@ -252,11 +195,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) Stop() {
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) DestroyQBluetoothServiceDiscoveryAgent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothServiceDiscoveryAgent::~QBluetoothServiceDiscoveryAgent")
-		}
-	}()
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::~QBluetoothServiceDiscoveryAgent")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(ptr.Pointer())

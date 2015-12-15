@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -69,11 +69,7 @@ const (
 )
 
 func (ptr *QGradient) SetColorAt(position float64, color QColor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGradient::setColorAt")
-		}
-	}()
+	defer qt.Recovering("QGradient::setColorAt")
 
 	if ptr.Pointer() != nil {
 		C.QGradient_SetColorAt(ptr.Pointer(), C.double(position), PointerFromQColor(color))
@@ -81,11 +77,7 @@ func (ptr *QGradient) SetColorAt(position float64, color QColor_ITF) {
 }
 
 func (ptr *QGradient) CoordinateMode() QGradient__CoordinateMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGradient::coordinateMode")
-		}
-	}()
+	defer qt.Recovering("QGradient::coordinateMode")
 
 	if ptr.Pointer() != nil {
 		return QGradient__CoordinateMode(C.QGradient_CoordinateMode(ptr.Pointer()))
@@ -94,11 +86,7 @@ func (ptr *QGradient) CoordinateMode() QGradient__CoordinateMode {
 }
 
 func (ptr *QGradient) SetCoordinateMode(mode QGradient__CoordinateMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGradient::setCoordinateMode")
-		}
-	}()
+	defer qt.Recovering("QGradient::setCoordinateMode")
 
 	if ptr.Pointer() != nil {
 		C.QGradient_SetCoordinateMode(ptr.Pointer(), C.int(mode))
@@ -106,11 +94,7 @@ func (ptr *QGradient) SetCoordinateMode(mode QGradient__CoordinateMode) {
 }
 
 func (ptr *QGradient) SetSpread(method QGradient__Spread) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGradient::setSpread")
-		}
-	}()
+	defer qt.Recovering("QGradient::setSpread")
 
 	if ptr.Pointer() != nil {
 		C.QGradient_SetSpread(ptr.Pointer(), C.int(method))
@@ -118,11 +102,7 @@ func (ptr *QGradient) SetSpread(method QGradient__Spread) {
 }
 
 func (ptr *QGradient) Spread() QGradient__Spread {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGradient::spread")
-		}
-	}()
+	defer qt.Recovering("QGradient::spread")
 
 	if ptr.Pointer() != nil {
 		return QGradient__Spread(C.QGradient_Spread(ptr.Pointer()))
@@ -131,11 +111,7 @@ func (ptr *QGradient) Spread() QGradient__Spread {
 }
 
 func (ptr *QGradient) Type() QGradient__Type {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGradient::type")
-		}
-	}()
+	defer qt.Recovering("QGradient::type")
 
 	if ptr.Pointer() != nil {
 		return QGradient__Type(C.QGradient_Type(ptr.Pointer()))

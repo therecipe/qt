@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,11 +35,7 @@ func (ptr *QIconDragEvent) QIconDragEvent_PTR() *QIconDragEvent {
 }
 
 func NewQIconDragEvent() *QIconDragEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QIconDragEvent::QIconDragEvent")
-		}
-	}()
+	defer qt.Recovering("QIconDragEvent::QIconDragEvent")
 
 	return NewQIconDragEventFromPointer(C.QIconDragEvent_NewQIconDragEvent())
 }

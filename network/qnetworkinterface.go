@@ -3,7 +3,7 @@ package network
 //#include "network.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -53,31 +53,19 @@ const (
 )
 
 func NewQNetworkInterface() *QNetworkInterface {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkInterface::QNetworkInterface")
-		}
-	}()
+	defer qt.Recovering("QNetworkInterface::QNetworkInterface")
 
 	return NewQNetworkInterfaceFromPointer(C.QNetworkInterface_NewQNetworkInterface())
 }
 
 func NewQNetworkInterface2(other QNetworkInterface_ITF) *QNetworkInterface {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkInterface::QNetworkInterface")
-		}
-	}()
+	defer qt.Recovering("QNetworkInterface::QNetworkInterface")
 
 	return NewQNetworkInterfaceFromPointer(C.QNetworkInterface_NewQNetworkInterface2(PointerFromQNetworkInterface(other)))
 }
 
 func (ptr *QNetworkInterface) Flags() QNetworkInterface__InterfaceFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkInterface::flags")
-		}
-	}()
+	defer qt.Recovering("QNetworkInterface::flags")
 
 	if ptr.Pointer() != nil {
 		return QNetworkInterface__InterfaceFlag(C.QNetworkInterface_Flags(ptr.Pointer()))
@@ -86,11 +74,7 @@ func (ptr *QNetworkInterface) Flags() QNetworkInterface__InterfaceFlag {
 }
 
 func (ptr *QNetworkInterface) HardwareAddress() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkInterface::hardwareAddress")
-		}
-	}()
+	defer qt.Recovering("QNetworkInterface::hardwareAddress")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkInterface_HardwareAddress(ptr.Pointer()))
@@ -99,11 +83,7 @@ func (ptr *QNetworkInterface) HardwareAddress() string {
 }
 
 func (ptr *QNetworkInterface) HumanReadableName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkInterface::humanReadableName")
-		}
-	}()
+	defer qt.Recovering("QNetworkInterface::humanReadableName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkInterface_HumanReadableName(ptr.Pointer()))
@@ -112,11 +92,7 @@ func (ptr *QNetworkInterface) HumanReadableName() string {
 }
 
 func (ptr *QNetworkInterface) Index() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkInterface::index")
-		}
-	}()
+	defer qt.Recovering("QNetworkInterface::index")
 
 	if ptr.Pointer() != nil {
 		return int(C.QNetworkInterface_Index(ptr.Pointer()))
@@ -125,11 +101,7 @@ func (ptr *QNetworkInterface) Index() int {
 }
 
 func (ptr *QNetworkInterface) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkInterface::isValid")
-		}
-	}()
+	defer qt.Recovering("QNetworkInterface::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QNetworkInterface_IsValid(ptr.Pointer()) != 0
@@ -138,11 +110,7 @@ func (ptr *QNetworkInterface) IsValid() bool {
 }
 
 func (ptr *QNetworkInterface) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkInterface::name")
-		}
-	}()
+	defer qt.Recovering("QNetworkInterface::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QNetworkInterface_Name(ptr.Pointer()))
@@ -151,11 +119,7 @@ func (ptr *QNetworkInterface) Name() string {
 }
 
 func (ptr *QNetworkInterface) Swap(other QNetworkInterface_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkInterface::swap")
-		}
-	}()
+	defer qt.Recovering("QNetworkInterface::swap")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkInterface_Swap(ptr.Pointer(), PointerFromQNetworkInterface(other))
@@ -163,11 +127,7 @@ func (ptr *QNetworkInterface) Swap(other QNetworkInterface_ITF) {
 }
 
 func (ptr *QNetworkInterface) DestroyQNetworkInterface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkInterface::~QNetworkInterface")
-		}
-	}()
+	defer qt.Recovering("QNetworkInterface::~QNetworkInterface")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkInterface_DestroyQNetworkInterface(ptr.Pointer())

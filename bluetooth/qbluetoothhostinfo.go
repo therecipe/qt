@@ -3,7 +3,7 @@ package bluetooth
 //#include "bluetooth.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QBluetoothHostInfo) QBluetoothHostInfo_PTR() *QBluetoothHostInfo {
 }
 
 func NewQBluetoothHostInfo() *QBluetoothHostInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothHostInfo::QBluetoothHostInfo")
-		}
-	}()
+	defer qt.Recovering("QBluetoothHostInfo::QBluetoothHostInfo")
 
 	return NewQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo())
 }
 
 func NewQBluetoothHostInfo2(other QBluetoothHostInfo_ITF) *QBluetoothHostInfo {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothHostInfo::QBluetoothHostInfo")
-		}
-	}()
+	defer qt.Recovering("QBluetoothHostInfo::QBluetoothHostInfo")
 
 	return NewQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo2(PointerFromQBluetoothHostInfo(other)))
 }
 
 func (ptr *QBluetoothHostInfo) Name() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothHostInfo::name")
-		}
-	}()
+	defer qt.Recovering("QBluetoothHostInfo::name")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothHostInfo_Name(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QBluetoothHostInfo) Name() string {
 }
 
 func (ptr *QBluetoothHostInfo) SetAddress(address QBluetoothAddress_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothHostInfo::setAddress")
-		}
-	}()
+	defer qt.Recovering("QBluetoothHostInfo::setAddress")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothHostInfo_SetAddress(ptr.Pointer(), PointerFromQBluetoothAddress(address))
@@ -86,11 +70,7 @@ func (ptr *QBluetoothHostInfo) SetAddress(address QBluetoothAddress_ITF) {
 }
 
 func (ptr *QBluetoothHostInfo) SetName(name string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothHostInfo::setName")
-		}
-	}()
+	defer qt.Recovering("QBluetoothHostInfo::setName")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothHostInfo_SetName(ptr.Pointer(), C.CString(name))
@@ -98,11 +78,7 @@ func (ptr *QBluetoothHostInfo) SetName(name string) {
 }
 
 func (ptr *QBluetoothHostInfo) DestroyQBluetoothHostInfo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothHostInfo::~QBluetoothHostInfo")
-		}
-	}()
+	defer qt.Recovering("QBluetoothHostInfo::~QBluetoothHostInfo")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothHostInfo_DestroyQBluetoothHostInfo(ptr.Pointer())

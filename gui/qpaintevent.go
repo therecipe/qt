@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -35,31 +35,19 @@ func (ptr *QPaintEvent) QPaintEvent_PTR() *QPaintEvent {
 }
 
 func NewQPaintEvent2(paintRect core.QRect_ITF) *QPaintEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEvent::QPaintEvent")
-		}
-	}()
+	defer qt.Recovering("QPaintEvent::QPaintEvent")
 
 	return NewQPaintEventFromPointer(C.QPaintEvent_NewQPaintEvent2(core.PointerFromQRect(paintRect)))
 }
 
 func NewQPaintEvent(paintRegion QRegion_ITF) *QPaintEvent {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEvent::QPaintEvent")
-		}
-	}()
+	defer qt.Recovering("QPaintEvent::QPaintEvent")
 
 	return NewQPaintEventFromPointer(C.QPaintEvent_NewQPaintEvent(PointerFromQRegion(paintRegion)))
 }
 
 func (ptr *QPaintEvent) Region() *QRegion {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPaintEvent::region")
-		}
-	}()
+	defer qt.Recovering("QPaintEvent::region")
 
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QPaintEvent_Region(ptr.Pointer()))

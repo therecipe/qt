@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -62,21 +62,13 @@ const (
 )
 
 func NewQSystemSemaphore(key string, initialValue int, mode QSystemSemaphore__AccessMode) *QSystemSemaphore {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemSemaphore::QSystemSemaphore")
-		}
-	}()
+	defer qt.Recovering("QSystemSemaphore::QSystemSemaphore")
 
 	return NewQSystemSemaphoreFromPointer(C.QSystemSemaphore_NewQSystemSemaphore(C.CString(key), C.int(initialValue), C.int(mode)))
 }
 
 func (ptr *QSystemSemaphore) Acquire() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemSemaphore::acquire")
-		}
-	}()
+	defer qt.Recovering("QSystemSemaphore::acquire")
 
 	if ptr.Pointer() != nil {
 		return C.QSystemSemaphore_Acquire(ptr.Pointer()) != 0
@@ -85,11 +77,7 @@ func (ptr *QSystemSemaphore) Acquire() bool {
 }
 
 func (ptr *QSystemSemaphore) Error() QSystemSemaphore__SystemSemaphoreError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemSemaphore::error")
-		}
-	}()
+	defer qt.Recovering("QSystemSemaphore::error")
 
 	if ptr.Pointer() != nil {
 		return QSystemSemaphore__SystemSemaphoreError(C.QSystemSemaphore_Error(ptr.Pointer()))
@@ -98,11 +86,7 @@ func (ptr *QSystemSemaphore) Error() QSystemSemaphore__SystemSemaphoreError {
 }
 
 func (ptr *QSystemSemaphore) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemSemaphore::errorString")
-		}
-	}()
+	defer qt.Recovering("QSystemSemaphore::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSystemSemaphore_ErrorString(ptr.Pointer()))
@@ -111,11 +95,7 @@ func (ptr *QSystemSemaphore) ErrorString() string {
 }
 
 func (ptr *QSystemSemaphore) Key() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemSemaphore::key")
-		}
-	}()
+	defer qt.Recovering("QSystemSemaphore::key")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSystemSemaphore_Key(ptr.Pointer()))
@@ -124,11 +104,7 @@ func (ptr *QSystemSemaphore) Key() string {
 }
 
 func (ptr *QSystemSemaphore) Release(n int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemSemaphore::release")
-		}
-	}()
+	defer qt.Recovering("QSystemSemaphore::release")
 
 	if ptr.Pointer() != nil {
 		return C.QSystemSemaphore_Release(ptr.Pointer(), C.int(n)) != 0
@@ -137,11 +113,7 @@ func (ptr *QSystemSemaphore) Release(n int) bool {
 }
 
 func (ptr *QSystemSemaphore) SetKey(key string, initialValue int, mode QSystemSemaphore__AccessMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemSemaphore::setKey")
-		}
-	}()
+	defer qt.Recovering("QSystemSemaphore::setKey")
 
 	if ptr.Pointer() != nil {
 		C.QSystemSemaphore_SetKey(ptr.Pointer(), C.CString(key), C.int(initialValue), C.int(mode))
@@ -149,11 +121,7 @@ func (ptr *QSystemSemaphore) SetKey(key string, initialValue int, mode QSystemSe
 }
 
 func (ptr *QSystemSemaphore) DestroyQSystemSemaphore() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSystemSemaphore::~QSystemSemaphore")
-		}
-	}()
+	defer qt.Recovering("QSystemSemaphore::~QSystemSemaphore")
 
 	if ptr.Pointer() != nil {
 		C.QSystemSemaphore_DestroyQSystemSemaphore(ptr.Pointer())

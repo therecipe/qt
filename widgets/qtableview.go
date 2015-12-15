@@ -5,7 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
 
@@ -29,7 +29,7 @@ func NewQTableViewFromPointer(ptr unsafe.Pointer) *QTableView {
 	var n = new(QTableView)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QTableView_") {
-		n.SetObjectName("QTableView_" + qt.RandomIdentifier())
+		n.SetObjectName("QTableView_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +39,7 @@ func (ptr *QTableView) QTableView_PTR() *QTableView {
 }
 
 func (ptr *QTableView) GridStyle() core.Qt__PenStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::gridStyle")
-		}
-	}()
+	defer qt.Recovering("QTableView::gridStyle")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__PenStyle(C.QTableView_GridStyle(ptr.Pointer()))
@@ -52,11 +48,7 @@ func (ptr *QTableView) GridStyle() core.Qt__PenStyle {
 }
 
 func (ptr *QTableView) IsCornerButtonEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::isCornerButtonEnabled")
-		}
-	}()
+	defer qt.Recovering("QTableView::isCornerButtonEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QTableView_IsCornerButtonEnabled(ptr.Pointer()) != 0
@@ -65,11 +57,7 @@ func (ptr *QTableView) IsCornerButtonEnabled() bool {
 }
 
 func (ptr *QTableView) IsSortingEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::isSortingEnabled")
-		}
-	}()
+	defer qt.Recovering("QTableView::isSortingEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QTableView_IsSortingEnabled(ptr.Pointer()) != 0
@@ -78,11 +66,7 @@ func (ptr *QTableView) IsSortingEnabled() bool {
 }
 
 func (ptr *QTableView) SetCornerButtonEnabled(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setCornerButtonEnabled")
-		}
-	}()
+	defer qt.Recovering("QTableView::setCornerButtonEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetCornerButtonEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -90,11 +74,7 @@ func (ptr *QTableView) SetCornerButtonEnabled(enable bool) {
 }
 
 func (ptr *QTableView) SetGridStyle(style core.Qt__PenStyle) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setGridStyle")
-		}
-	}()
+	defer qt.Recovering("QTableView::setGridStyle")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetGridStyle(ptr.Pointer(), C.int(style))
@@ -102,11 +82,7 @@ func (ptr *QTableView) SetGridStyle(style core.Qt__PenStyle) {
 }
 
 func (ptr *QTableView) SetShowGrid(show bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setShowGrid")
-		}
-	}()
+	defer qt.Recovering("QTableView::setShowGrid")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetShowGrid(ptr.Pointer(), C.int(qt.GoBoolToInt(show)))
@@ -114,11 +90,7 @@ func (ptr *QTableView) SetShowGrid(show bool) {
 }
 
 func (ptr *QTableView) SetSpan(row int, column int, rowSpanCount int, columnSpanCount int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setSpan")
-		}
-	}()
+	defer qt.Recovering("QTableView::setSpan")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetSpan(ptr.Pointer(), C.int(row), C.int(column), C.int(rowSpanCount), C.int(columnSpanCount))
@@ -126,11 +98,7 @@ func (ptr *QTableView) SetSpan(row int, column int, rowSpanCount int, columnSpan
 }
 
 func (ptr *QTableView) SetWordWrap(on bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setWordWrap")
-		}
-	}()
+	defer qt.Recovering("QTableView::setWordWrap")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetWordWrap(ptr.Pointer(), C.int(qt.GoBoolToInt(on)))
@@ -138,11 +106,7 @@ func (ptr *QTableView) SetWordWrap(on bool) {
 }
 
 func (ptr *QTableView) ShowGrid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::showGrid")
-		}
-	}()
+	defer qt.Recovering("QTableView::showGrid")
 
 	if ptr.Pointer() != nil {
 		return C.QTableView_ShowGrid(ptr.Pointer()) != 0
@@ -151,11 +115,7 @@ func (ptr *QTableView) ShowGrid() bool {
 }
 
 func (ptr *QTableView) WordWrap() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::wordWrap")
-		}
-	}()
+	defer qt.Recovering("QTableView::wordWrap")
 
 	if ptr.Pointer() != nil {
 		return C.QTableView_WordWrap(ptr.Pointer()) != 0
@@ -164,11 +124,7 @@ func (ptr *QTableView) WordWrap() bool {
 }
 
 func (ptr *QTableView) ClearSpans() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::clearSpans")
-		}
-	}()
+	defer qt.Recovering("QTableView::clearSpans")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_ClearSpans(ptr.Pointer())
@@ -176,11 +132,7 @@ func (ptr *QTableView) ClearSpans() {
 }
 
 func (ptr *QTableView) ColumnAt(x int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::columnAt")
-		}
-	}()
+	defer qt.Recovering("QTableView::columnAt")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableView_ColumnAt(ptr.Pointer(), C.int(x)))
@@ -189,11 +141,7 @@ func (ptr *QTableView) ColumnAt(x int) int {
 }
 
 func (ptr *QTableView) ColumnSpan(row int, column int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::columnSpan")
-		}
-	}()
+	defer qt.Recovering("QTableView::columnSpan")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableView_ColumnSpan(ptr.Pointer(), C.int(row), C.int(column)))
@@ -202,11 +150,7 @@ func (ptr *QTableView) ColumnSpan(row int, column int) int {
 }
 
 func (ptr *QTableView) ColumnViewportPosition(column int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::columnViewportPosition")
-		}
-	}()
+	defer qt.Recovering("QTableView::columnViewportPosition")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableView_ColumnViewportPosition(ptr.Pointer(), C.int(column)))
@@ -215,11 +159,7 @@ func (ptr *QTableView) ColumnViewportPosition(column int) int {
 }
 
 func (ptr *QTableView) ColumnWidth(column int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::columnWidth")
-		}
-	}()
+	defer qt.Recovering("QTableView::columnWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableView_ColumnWidth(ptr.Pointer(), C.int(column)))
@@ -227,12 +167,39 @@ func (ptr *QTableView) ColumnWidth(column int) int {
 	return 0
 }
 
+func (ptr *QTableView) ConnectCurrentChanged(f func(current *core.QModelIndex, previous *core.QModelIndex)) {
+	defer qt.Recovering("connect QTableView::currentChanged")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "currentChanged", f)
+	}
+}
+
+func (ptr *QTableView) DisconnectCurrentChanged() {
+	defer qt.Recovering("disconnect QTableView::currentChanged")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "currentChanged")
+	}
+}
+
+//export callbackQTableViewCurrentChanged
+func callbackQTableViewCurrentChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTableView::currentChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
+	if signal != nil {
+		defer signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTableView) HideColumn(column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::hideColumn")
-		}
-	}()
+	defer qt.Recovering("QTableView::hideColumn")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_HideColumn(ptr.Pointer(), C.int(column))
@@ -240,11 +207,7 @@ func (ptr *QTableView) HideColumn(column int) {
 }
 
 func (ptr *QTableView) HideRow(row int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::hideRow")
-		}
-	}()
+	defer qt.Recovering("QTableView::hideRow")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_HideRow(ptr.Pointer(), C.int(row))
@@ -252,11 +215,7 @@ func (ptr *QTableView) HideRow(row int) {
 }
 
 func (ptr *QTableView) HorizontalHeader() *QHeaderView {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::horizontalHeader")
-		}
-	}()
+	defer qt.Recovering("QTableView::horizontalHeader")
 
 	if ptr.Pointer() != nil {
 		return NewQHeaderViewFromPointer(C.QTableView_HorizontalHeader(ptr.Pointer()))
@@ -265,11 +224,7 @@ func (ptr *QTableView) HorizontalHeader() *QHeaderView {
 }
 
 func (ptr *QTableView) IndexAt(pos core.QPoint_ITF) *core.QModelIndex {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::indexAt")
-		}
-	}()
+	defer qt.Recovering("QTableView::indexAt")
 
 	if ptr.Pointer() != nil {
 		return core.NewQModelIndexFromPointer(C.QTableView_IndexAt(ptr.Pointer(), core.PointerFromQPoint(pos)))
@@ -278,11 +233,7 @@ func (ptr *QTableView) IndexAt(pos core.QPoint_ITF) *core.QModelIndex {
 }
 
 func (ptr *QTableView) IsColumnHidden(column int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::isColumnHidden")
-		}
-	}()
+	defer qt.Recovering("QTableView::isColumnHidden")
 
 	if ptr.Pointer() != nil {
 		return C.QTableView_IsColumnHidden(ptr.Pointer(), C.int(column)) != 0
@@ -291,11 +242,7 @@ func (ptr *QTableView) IsColumnHidden(column int) bool {
 }
 
 func (ptr *QTableView) IsRowHidden(row int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::isRowHidden")
-		}
-	}()
+	defer qt.Recovering("QTableView::isRowHidden")
 
 	if ptr.Pointer() != nil {
 		return C.QTableView_IsRowHidden(ptr.Pointer(), C.int(row)) != 0
@@ -303,12 +250,39 @@ func (ptr *QTableView) IsRowHidden(row int) bool {
 	return false
 }
 
+func (ptr *QTableView) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QTableView::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QTableView) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QTableView::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQTableViewPaintEvent
+func callbackQTableViewPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTableView::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTableView) ResizeColumnToContents(column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::resizeColumnToContents")
-		}
-	}()
+	defer qt.Recovering("QTableView::resizeColumnToContents")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_ResizeColumnToContents(ptr.Pointer(), C.int(column))
@@ -316,11 +290,7 @@ func (ptr *QTableView) ResizeColumnToContents(column int) {
 }
 
 func (ptr *QTableView) ResizeColumnsToContents() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::resizeColumnsToContents")
-		}
-	}()
+	defer qt.Recovering("QTableView::resizeColumnsToContents")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_ResizeColumnsToContents(ptr.Pointer())
@@ -328,11 +298,7 @@ func (ptr *QTableView) ResizeColumnsToContents() {
 }
 
 func (ptr *QTableView) ResizeRowToContents(row int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::resizeRowToContents")
-		}
-	}()
+	defer qt.Recovering("QTableView::resizeRowToContents")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_ResizeRowToContents(ptr.Pointer(), C.int(row))
@@ -340,11 +306,7 @@ func (ptr *QTableView) ResizeRowToContents(row int) {
 }
 
 func (ptr *QTableView) ResizeRowsToContents() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::resizeRowsToContents")
-		}
-	}()
+	defer qt.Recovering("QTableView::resizeRowsToContents")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_ResizeRowsToContents(ptr.Pointer())
@@ -352,11 +314,7 @@ func (ptr *QTableView) ResizeRowsToContents() {
 }
 
 func (ptr *QTableView) RowAt(y int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::rowAt")
-		}
-	}()
+	defer qt.Recovering("QTableView::rowAt")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableView_RowAt(ptr.Pointer(), C.int(y)))
@@ -365,11 +323,7 @@ func (ptr *QTableView) RowAt(y int) int {
 }
 
 func (ptr *QTableView) RowHeight(row int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::rowHeight")
-		}
-	}()
+	defer qt.Recovering("QTableView::rowHeight")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableView_RowHeight(ptr.Pointer(), C.int(row)))
@@ -378,11 +332,7 @@ func (ptr *QTableView) RowHeight(row int) int {
 }
 
 func (ptr *QTableView) RowSpan(row int, column int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::rowSpan")
-		}
-	}()
+	defer qt.Recovering("QTableView::rowSpan")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableView_RowSpan(ptr.Pointer(), C.int(row), C.int(column)))
@@ -391,11 +341,7 @@ func (ptr *QTableView) RowSpan(row int, column int) int {
 }
 
 func (ptr *QTableView) RowViewportPosition(row int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::rowViewportPosition")
-		}
-	}()
+	defer qt.Recovering("QTableView::rowViewportPosition")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTableView_RowViewportPosition(ptr.Pointer(), C.int(row)))
@@ -404,11 +350,7 @@ func (ptr *QTableView) RowViewportPosition(row int) int {
 }
 
 func (ptr *QTableView) SelectColumn(column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::selectColumn")
-		}
-	}()
+	defer qt.Recovering("QTableView::selectColumn")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SelectColumn(ptr.Pointer(), C.int(column))
@@ -416,11 +358,7 @@ func (ptr *QTableView) SelectColumn(column int) {
 }
 
 func (ptr *QTableView) SelectRow(row int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::selectRow")
-		}
-	}()
+	defer qt.Recovering("QTableView::selectRow")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SelectRow(ptr.Pointer(), C.int(row))
@@ -428,11 +366,7 @@ func (ptr *QTableView) SelectRow(row int) {
 }
 
 func (ptr *QTableView) SetColumnHidden(column int, hide bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setColumnHidden")
-		}
-	}()
+	defer qt.Recovering("QTableView::setColumnHidden")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetColumnHidden(ptr.Pointer(), C.int(column), C.int(qt.GoBoolToInt(hide)))
@@ -440,11 +374,7 @@ func (ptr *QTableView) SetColumnHidden(column int, hide bool) {
 }
 
 func (ptr *QTableView) SetColumnWidth(column int, width int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setColumnWidth")
-		}
-	}()
+	defer qt.Recovering("QTableView::setColumnWidth")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetColumnWidth(ptr.Pointer(), C.int(column), C.int(width))
@@ -452,47 +382,77 @@ func (ptr *QTableView) SetColumnWidth(column int, width int) {
 }
 
 func (ptr *QTableView) SetHorizontalHeader(header QHeaderView_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setHorizontalHeader")
-		}
-	}()
+	defer qt.Recovering("QTableView::setHorizontalHeader")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetHorizontalHeader(ptr.Pointer(), PointerFromQHeaderView(header))
 	}
 }
 
-func (ptr *QTableView) SetModel(model core.QAbstractItemModel_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setModel")
-		}
-	}()
+func (ptr *QTableView) ConnectSetModel(f func(model *core.QAbstractItemModel)) {
+	defer qt.Recovering("connect QTableView::setModel")
 
 	if ptr.Pointer() != nil {
-		C.QTableView_SetModel(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setModel", f)
 	}
 }
 
-func (ptr *QTableView) SetRootIndex(index core.QModelIndex_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setRootIndex")
-		}
-	}()
+func (ptr *QTableView) DisconnectSetModel() {
+	defer qt.Recovering("disconnect QTableView::setModel")
 
 	if ptr.Pointer() != nil {
-		C.QTableView_SetRootIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setModel")
 	}
+}
+
+//export callbackQTableViewSetModel
+func callbackQTableViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTableView::setModel")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setModel")
+	if signal != nil {
+		defer signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTableView) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
+	defer qt.Recovering("connect QTableView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setRootIndex", f)
+	}
+}
+
+func (ptr *QTableView) DisconnectSetRootIndex() {
+	defer qt.Recovering("disconnect QTableView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setRootIndex")
+	}
+}
+
+//export callbackQTableViewSetRootIndex
+func callbackQTableViewSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTableView::setRootIndex")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setRootIndex")
+	if signal != nil {
+		defer signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QTableView) SetRowHeight(row int, height int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setRowHeight")
-		}
-	}()
+	defer qt.Recovering("QTableView::setRowHeight")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetRowHeight(ptr.Pointer(), C.int(row), C.int(height))
@@ -500,35 +460,46 @@ func (ptr *QTableView) SetRowHeight(row int, height int) {
 }
 
 func (ptr *QTableView) SetRowHidden(row int, hide bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setRowHidden")
-		}
-	}()
+	defer qt.Recovering("QTableView::setRowHidden")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetRowHidden(ptr.Pointer(), C.int(row), C.int(qt.GoBoolToInt(hide)))
 	}
 }
 
-func (ptr *QTableView) SetSelectionModel(selectionModel core.QItemSelectionModel_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setSelectionModel")
-		}
-	}()
+func (ptr *QTableView) ConnectSetSelectionModel(f func(selectionModel *core.QItemSelectionModel)) {
+	defer qt.Recovering("connect QTableView::setSelectionModel")
 
 	if ptr.Pointer() != nil {
-		C.QTableView_SetSelectionModel(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSelectionModel", f)
 	}
 }
 
+func (ptr *QTableView) DisconnectSetSelectionModel() {
+	defer qt.Recovering("disconnect QTableView::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSelectionModel")
+	}
+}
+
+//export callbackQTableViewSetSelectionModel
+func callbackQTableViewSetSelectionModel(ptrName *C.char, selectionModel unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTableView::setSelectionModel")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setSelectionModel")
+	if signal != nil {
+		defer signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTableView) SetSortingEnabled(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setSortingEnabled")
-		}
-	}()
+	defer qt.Recovering("QTableView::setSortingEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetSortingEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -536,11 +507,7 @@ func (ptr *QTableView) SetSortingEnabled(enable bool) {
 }
 
 func (ptr *QTableView) SetVerticalHeader(header QHeaderView_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::setVerticalHeader")
-		}
-	}()
+	defer qt.Recovering("QTableView::setVerticalHeader")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SetVerticalHeader(ptr.Pointer(), PointerFromQHeaderView(header))
@@ -548,11 +515,7 @@ func (ptr *QTableView) SetVerticalHeader(header QHeaderView_ITF) {
 }
 
 func (ptr *QTableView) ShowColumn(column int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::showColumn")
-		}
-	}()
+	defer qt.Recovering("QTableView::showColumn")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_ShowColumn(ptr.Pointer(), C.int(column))
@@ -560,11 +523,7 @@ func (ptr *QTableView) ShowColumn(column int) {
 }
 
 func (ptr *QTableView) ShowRow(row int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::showRow")
-		}
-	}()
+	defer qt.Recovering("QTableView::showRow")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_ShowRow(ptr.Pointer(), C.int(row))
@@ -572,23 +531,77 @@ func (ptr *QTableView) ShowRow(row int) {
 }
 
 func (ptr *QTableView) SortByColumn(column int, order core.Qt__SortOrder) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::sortByColumn")
-		}
-	}()
+	defer qt.Recovering("QTableView::sortByColumn")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_SortByColumn(ptr.Pointer(), C.int(column), C.int(order))
 	}
 }
 
+func (ptr *QTableView) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QTableView::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QTableView) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QTableView::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQTableViewTimerEvent
+func callbackQTableViewTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTableView::timerEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
+	if signal != nil {
+		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTableView) ConnectUpdateGeometries(f func()) {
+	defer qt.Recovering("connect QTableView::updateGeometries")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateGeometries", f)
+	}
+}
+
+func (ptr *QTableView) DisconnectUpdateGeometries() {
+	defer qt.Recovering("disconnect QTableView::updateGeometries")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateGeometries")
+	}
+}
+
+//export callbackQTableViewUpdateGeometries
+func callbackQTableViewUpdateGeometries(ptrName *C.char) bool {
+	defer qt.Recovering("callback QTableView::updateGeometries")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "updateGeometries")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTableView) VerticalHeader() *QHeaderView {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::verticalHeader")
-		}
-	}()
+	defer qt.Recovering("QTableView::verticalHeader")
 
 	if ptr.Pointer() != nil {
 		return NewQHeaderViewFromPointer(C.QTableView_VerticalHeader(ptr.Pointer()))
@@ -597,11 +610,7 @@ func (ptr *QTableView) VerticalHeader() *QHeaderView {
 }
 
 func (ptr *QTableView) DestroyQTableView() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTableView::~QTableView")
-		}
-	}()
+	defer qt.Recovering("QTableView::~QTableView")
 
 	if ptr.Pointer() != nil {
 		C.QTableView_DestroyQTableView(ptr.Pointer())

@@ -3,8 +3,8 @@ package xml
 //#include "xml.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQXmlAttributes(ptr QXmlAttributes_ITF) unsafe.Pointer {
 func NewQXmlAttributesFromPointer(ptr unsafe.Pointer) *QXmlAttributes {
 	var n = new(QXmlAttributes)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QXmlAttributes_") {
+		n.SetObjectNameAbs("QXmlAttributes_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,21 +45,13 @@ func (ptr *QXmlAttributes) QXmlAttributes_PTR() *QXmlAttributes {
 }
 
 func NewQXmlAttributes() *QXmlAttributes {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::QXmlAttributes")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::QXmlAttributes")
 
 	return NewQXmlAttributesFromPointer(C.QXmlAttributes_NewQXmlAttributes())
 }
 
 func (ptr *QXmlAttributes) DestroyQXmlAttributes() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::~QXmlAttributes")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::~QXmlAttributes")
 
 	if ptr.Pointer() != nil {
 		C.QXmlAttributes_DestroyQXmlAttributes(ptr.Pointer())
@@ -64,11 +59,7 @@ func (ptr *QXmlAttributes) DestroyQXmlAttributes() {
 }
 
 func (ptr *QXmlAttributes) Append(qName string, uri string, localPart string, value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::append")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::append")
 
 	if ptr.Pointer() != nil {
 		C.QXmlAttributes_Append(ptr.Pointer(), C.CString(qName), C.CString(uri), C.CString(localPart), C.CString(value))
@@ -76,11 +67,7 @@ func (ptr *QXmlAttributes) Append(qName string, uri string, localPart string, va
 }
 
 func (ptr *QXmlAttributes) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::clear")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::clear")
 
 	if ptr.Pointer() != nil {
 		C.QXmlAttributes_Clear(ptr.Pointer())
@@ -88,11 +75,7 @@ func (ptr *QXmlAttributes) Clear() {
 }
 
 func (ptr *QXmlAttributes) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::count")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QXmlAttributes_Count(ptr.Pointer()))
@@ -101,11 +84,7 @@ func (ptr *QXmlAttributes) Count() int {
 }
 
 func (ptr *QXmlAttributes) Index2(qName core.QLatin1String_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::index")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::index")
 
 	if ptr.Pointer() != nil {
 		return int(C.QXmlAttributes_Index2(ptr.Pointer(), core.PointerFromQLatin1String(qName)))
@@ -114,11 +93,7 @@ func (ptr *QXmlAttributes) Index2(qName core.QLatin1String_ITF) int {
 }
 
 func (ptr *QXmlAttributes) Index(qName string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::index")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::index")
 
 	if ptr.Pointer() != nil {
 		return int(C.QXmlAttributes_Index(ptr.Pointer(), C.CString(qName)))
@@ -127,11 +102,7 @@ func (ptr *QXmlAttributes) Index(qName string) int {
 }
 
 func (ptr *QXmlAttributes) Index3(uri string, localPart string) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::index")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::index")
 
 	if ptr.Pointer() != nil {
 		return int(C.QXmlAttributes_Index3(ptr.Pointer(), C.CString(uri), C.CString(localPart)))
@@ -140,11 +111,7 @@ func (ptr *QXmlAttributes) Index3(uri string, localPart string) int {
 }
 
 func (ptr *QXmlAttributes) Length() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::length")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::length")
 
 	if ptr.Pointer() != nil {
 		return int(C.QXmlAttributes_Length(ptr.Pointer()))
@@ -153,11 +120,7 @@ func (ptr *QXmlAttributes) Length() int {
 }
 
 func (ptr *QXmlAttributes) LocalName(index int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::localName")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::localName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlAttributes_LocalName(ptr.Pointer(), C.int(index)))
@@ -166,11 +129,7 @@ func (ptr *QXmlAttributes) LocalName(index int) string {
 }
 
 func (ptr *QXmlAttributes) QName(index int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::qName")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::qName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlAttributes_QName(ptr.Pointer(), C.int(index)))
@@ -179,11 +138,7 @@ func (ptr *QXmlAttributes) QName(index int) string {
 }
 
 func (ptr *QXmlAttributes) Type2(qName string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::type")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::type")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlAttributes_Type2(ptr.Pointer(), C.CString(qName)))
@@ -192,11 +147,7 @@ func (ptr *QXmlAttributes) Type2(qName string) string {
 }
 
 func (ptr *QXmlAttributes) Type3(uri string, localName string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::type")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::type")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlAttributes_Type3(ptr.Pointer(), C.CString(uri), C.CString(localName)))
@@ -205,11 +156,7 @@ func (ptr *QXmlAttributes) Type3(uri string, localName string) string {
 }
 
 func (ptr *QXmlAttributes) Type(index int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::type")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::type")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlAttributes_Type(ptr.Pointer(), C.int(index)))
@@ -218,11 +165,7 @@ func (ptr *QXmlAttributes) Type(index int) string {
 }
 
 func (ptr *QXmlAttributes) Uri(index int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::uri")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::uri")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlAttributes_Uri(ptr.Pointer(), C.int(index)))
@@ -231,11 +174,7 @@ func (ptr *QXmlAttributes) Uri(index int) string {
 }
 
 func (ptr *QXmlAttributes) Value3(qName core.QLatin1String_ITF) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::value")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::value")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlAttributes_Value3(ptr.Pointer(), core.PointerFromQLatin1String(qName)))
@@ -244,11 +183,7 @@ func (ptr *QXmlAttributes) Value3(qName core.QLatin1String_ITF) string {
 }
 
 func (ptr *QXmlAttributes) Value2(qName string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::value")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::value")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlAttributes_Value2(ptr.Pointer(), C.CString(qName)))
@@ -257,11 +192,7 @@ func (ptr *QXmlAttributes) Value2(qName string) string {
 }
 
 func (ptr *QXmlAttributes) Value4(uri string, localName string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::value")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::value")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlAttributes_Value4(ptr.Pointer(), C.CString(uri), C.CString(localName)))
@@ -270,14 +201,27 @@ func (ptr *QXmlAttributes) Value4(uri string, localName string) string {
 }
 
 func (ptr *QXmlAttributes) Value(index int) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlAttributes::value")
-		}
-	}()
+	defer qt.Recovering("QXmlAttributes::value")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlAttributes_Value(ptr.Pointer(), C.int(index)))
 	}
 	return ""
+}
+
+func (ptr *QXmlAttributes) ObjectNameAbs() string {
+	defer qt.Recovering("QXmlAttributes::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlAttributes_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QXmlAttributes) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QXmlAttributes::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QXmlAttributes_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+	}
 }

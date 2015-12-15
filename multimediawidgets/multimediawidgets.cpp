@@ -5,11 +5,16 @@
 #include <QCameraViewfinder>
 #include <QGraphicsItem>
 #include <QGraphicsVideoItem>
+#include <QHideEvent>
 #include <QMetaObject>
+#include <QMoveEvent>
 #include <QObject>
+#include <QPaintEvent>
 #include <QPainter>
 #include <QPoint>
 #include <QPointF>
+#include <QResizeEvent>
+#include <QShowEvent>
 #include <QSize>
 #include <QSizeF>
 #include <QStyle>
@@ -21,10 +26,12 @@
 
 class MyQCameraViewfinder: public QCameraViewfinder {
 public:
+	MyQCameraViewfinder(QWidget *parent) : QCameraViewfinder(parent) {};
+protected:
 };
 
 void* QCameraViewfinder_NewQCameraViewfinder(void* parent){
-	return new QCameraViewfinder(static_cast<QWidget*>(parent));
+	return new MyQCameraViewfinder(static_cast<QWidget*>(parent));
 }
 
 void* QCameraViewfinder_MediaObject(void* ptr){
@@ -37,10 +44,13 @@ void QCameraViewfinder_DestroyQCameraViewfinder(void* ptr){
 
 class MyQGraphicsVideoItem: public QGraphicsVideoItem {
 public:
+	MyQGraphicsVideoItem(QGraphicsItem *parent) : QGraphicsVideoItem(parent) {};
+	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { if (!callbackQGraphicsVideoItemPaint(this->objectName().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget)) { QGraphicsVideoItem::paint(painter, option, widget); }; };
+protected:
 };
 
 void* QGraphicsVideoItem_NewQGraphicsVideoItem(void* parent){
-	return new QGraphicsVideoItem(static_cast<QGraphicsItem*>(parent));
+	return new MyQGraphicsVideoItem(static_cast<QGraphicsItem*>(parent));
 }
 
 int QGraphicsVideoItem_AspectRatioMode(void* ptr){
@@ -73,11 +83,18 @@ void QGraphicsVideoItem_DestroyQGraphicsVideoItem(void* ptr){
 
 class MyQVideoWidget: public QVideoWidget {
 public:
-void Signal_BrightnessChanged(int brightness){callbackQVideoWidgetBrightnessChanged(this->objectName().toUtf8().data(), brightness);};
-void Signal_ContrastChanged(int contrast){callbackQVideoWidgetContrastChanged(this->objectName().toUtf8().data(), contrast);};
-void Signal_FullScreenChanged(bool fullScreen){callbackQVideoWidgetFullScreenChanged(this->objectName().toUtf8().data(), fullScreen);};
-void Signal_HueChanged(int hue){callbackQVideoWidgetHueChanged(this->objectName().toUtf8().data(), hue);};
-void Signal_SaturationChanged(int saturation){callbackQVideoWidgetSaturationChanged(this->objectName().toUtf8().data(), saturation);};
+	MyQVideoWidget(QWidget *parent) : QVideoWidget(parent) {};
+	void Signal_BrightnessChanged(int brightness) { callbackQVideoWidgetBrightnessChanged(this->objectName().toUtf8().data(), brightness); };
+	void Signal_ContrastChanged(int contrast) { callbackQVideoWidgetContrastChanged(this->objectName().toUtf8().data(), contrast); };
+	void Signal_FullScreenChanged(bool fullScreen) { callbackQVideoWidgetFullScreenChanged(this->objectName().toUtf8().data(), fullScreen); };
+	void Signal_HueChanged(int hue) { callbackQVideoWidgetHueChanged(this->objectName().toUtf8().data(), hue); };
+	void Signal_SaturationChanged(int saturation) { callbackQVideoWidgetSaturationChanged(this->objectName().toUtf8().data(), saturation); };
+protected:
+	void hideEvent(QHideEvent * event) { if (!callbackQVideoWidgetHideEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::hideEvent(event); }; };
+	void moveEvent(QMoveEvent * event) { if (!callbackQVideoWidgetMoveEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::moveEvent(event); }; };
+	void paintEvent(QPaintEvent * event) { if (!callbackQVideoWidgetPaintEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::paintEvent(event); }; };
+	void resizeEvent(QResizeEvent * event) { if (!callbackQVideoWidgetResizeEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::resizeEvent(event); }; };
+	void showEvent(QShowEvent * event) { if (!callbackQVideoWidgetShowEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::showEvent(event); }; };
 };
 
 int QVideoWidget_AspectRatioMode(void* ptr){
@@ -129,7 +146,7 @@ void QVideoWidget_SetSaturation(void* ptr, int saturation){
 }
 
 void* QVideoWidget_NewQVideoWidget(void* parent){
-	return new QVideoWidget(static_cast<QWidget*>(parent));
+	return new MyQVideoWidget(static_cast<QWidget*>(parent));
 }
 
 void QVideoWidget_ConnectBrightnessChanged(void* ptr){
@@ -182,11 +199,12 @@ void QVideoWidget_DestroyQVideoWidget(void* ptr){
 
 class MyQVideoWidgetControl: public QVideoWidgetControl {
 public:
-void Signal_BrightnessChanged(int brightness){callbackQVideoWidgetControlBrightnessChanged(this->objectName().toUtf8().data(), brightness);};
-void Signal_ContrastChanged(int contrast){callbackQVideoWidgetControlContrastChanged(this->objectName().toUtf8().data(), contrast);};
-void Signal_FullScreenChanged(bool fullScreen){callbackQVideoWidgetControlFullScreenChanged(this->objectName().toUtf8().data(), fullScreen);};
-void Signal_HueChanged(int hue){callbackQVideoWidgetControlHueChanged(this->objectName().toUtf8().data(), hue);};
-void Signal_SaturationChanged(int saturation){callbackQVideoWidgetControlSaturationChanged(this->objectName().toUtf8().data(), saturation);};
+	void Signal_BrightnessChanged(int brightness) { callbackQVideoWidgetControlBrightnessChanged(this->objectName().toUtf8().data(), brightness); };
+	void Signal_ContrastChanged(int contrast) { callbackQVideoWidgetControlContrastChanged(this->objectName().toUtf8().data(), contrast); };
+	void Signal_FullScreenChanged(bool fullScreen) { callbackQVideoWidgetControlFullScreenChanged(this->objectName().toUtf8().data(), fullScreen); };
+	void Signal_HueChanged(int hue) { callbackQVideoWidgetControlHueChanged(this->objectName().toUtf8().data(), hue); };
+	void Signal_SaturationChanged(int saturation) { callbackQVideoWidgetControlSaturationChanged(this->objectName().toUtf8().data(), saturation); };
+protected:
 };
 
 int QVideoWidgetControl_AspectRatioMode(void* ptr){

@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -52,11 +52,7 @@ const (
 )
 
 func (ptr *QTextItem) Ascent() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextItem::ascent")
-		}
-	}()
+	defer qt.Recovering("QTextItem::ascent")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextItem_Ascent(ptr.Pointer()))
@@ -65,11 +61,7 @@ func (ptr *QTextItem) Ascent() float64 {
 }
 
 func (ptr *QTextItem) Descent() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextItem::descent")
-		}
-	}()
+	defer qt.Recovering("QTextItem::descent")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextItem_Descent(ptr.Pointer()))
@@ -78,11 +70,7 @@ func (ptr *QTextItem) Descent() float64 {
 }
 
 func (ptr *QTextItem) RenderFlags() QTextItem__RenderFlag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextItem::renderFlags")
-		}
-	}()
+	defer qt.Recovering("QTextItem::renderFlags")
 
 	if ptr.Pointer() != nil {
 		return QTextItem__RenderFlag(C.QTextItem_RenderFlags(ptr.Pointer()))
@@ -91,11 +79,7 @@ func (ptr *QTextItem) RenderFlags() QTextItem__RenderFlag {
 }
 
 func (ptr *QTextItem) Text() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextItem::text")
-		}
-	}()
+	defer qt.Recovering("QTextItem::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextItem_Text(ptr.Pointer()))
@@ -104,11 +88,7 @@ func (ptr *QTextItem) Text() string {
 }
 
 func (ptr *QTextItem) Width() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextItem::width")
-		}
-	}()
+	defer qt.Recovering("QTextItem::width")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTextItem_Width(ptr.Pointer()))

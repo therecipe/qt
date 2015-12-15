@@ -4,7 +4,6 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQGyroscopeReadingFromPointer(ptr unsafe.Pointer) *QGyroscopeReading {
 	var n = new(QGyroscopeReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGyroscopeReading_") {
-		n.SetObjectName("QGyroscopeReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QGyroscopeReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QGyroscopeReading) QGyroscopeReading_PTR() *QGyroscopeReading {
 }
 
 func (ptr *QGyroscopeReading) X() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGyroscopeReading::x")
-		}
-	}()
+	defer qt.Recovering("QGyroscopeReading::x")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGyroscopeReading_X(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QGyroscopeReading) X() float64 {
 }
 
 func (ptr *QGyroscopeReading) Y() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGyroscopeReading::y")
-		}
-	}()
+	defer qt.Recovering("QGyroscopeReading::y")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGyroscopeReading_Y(ptr.Pointer()))
@@ -64,11 +55,7 @@ func (ptr *QGyroscopeReading) Y() float64 {
 }
 
 func (ptr *QGyroscopeReading) Z() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGyroscopeReading::z")
-		}
-	}()
+	defer qt.Recovering("QGyroscopeReading::z")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGyroscopeReading_Z(ptr.Pointer()))
@@ -77,11 +64,7 @@ func (ptr *QGyroscopeReading) Z() float64 {
 }
 
 func (ptr *QGyroscopeReading) SetX(x float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGyroscopeReading::setX")
-		}
-	}()
+	defer qt.Recovering("QGyroscopeReading::setX")
 
 	if ptr.Pointer() != nil {
 		C.QGyroscopeReading_SetX(ptr.Pointer(), C.double(x))
@@ -89,11 +72,7 @@ func (ptr *QGyroscopeReading) SetX(x float64) {
 }
 
 func (ptr *QGyroscopeReading) SetY(y float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGyroscopeReading::setY")
-		}
-	}()
+	defer qt.Recovering("QGyroscopeReading::setY")
 
 	if ptr.Pointer() != nil {
 		C.QGyroscopeReading_SetY(ptr.Pointer(), C.double(y))
@@ -101,11 +80,7 @@ func (ptr *QGyroscopeReading) SetY(y float64) {
 }
 
 func (ptr *QGyroscopeReading) SetZ(z float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGyroscopeReading::setZ")
-		}
-	}()
+	defer qt.Recovering("QGyroscopeReading::setZ")
 
 	if ptr.Pointer() != nil {
 		C.QGyroscopeReading_SetZ(ptr.Pointer(), C.double(z))

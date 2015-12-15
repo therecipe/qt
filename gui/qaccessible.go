@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -247,41 +247,25 @@ const (
 )
 
 func QAccessible_IsActive() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessible::isActive")
-		}
-	}()
+	defer qt.Recovering("QAccessible::isActive")
 
 	return C.QAccessible_QAccessible_IsActive() != 0
 }
 
 func QAccessible_QueryAccessibleInterface(object core.QObject_ITF) *QAccessibleInterface {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessible::queryAccessibleInterface")
-		}
-	}()
+	defer qt.Recovering("QAccessible::queryAccessibleInterface")
 
 	return NewQAccessibleInterfaceFromPointer(C.QAccessible_QAccessible_QueryAccessibleInterface(core.PointerFromQObject(object)))
 }
 
 func QAccessible_SetRootObject(object core.QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessible::setRootObject")
-		}
-	}()
+	defer qt.Recovering("QAccessible::setRootObject")
 
 	C.QAccessible_QAccessible_SetRootObject(core.PointerFromQObject(object))
 }
 
 func QAccessible_UpdateAccessibility(event QAccessibleEvent_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAccessible::updateAccessibility")
-		}
-	}()
+	defer qt.Recovering("QAccessible::updateAccessibility")
 
 	C.QAccessible_QAccessible_UpdateAccessibility(PointerFromQAccessibleEvent(event))
 }

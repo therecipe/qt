@@ -4,8 +4,6 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +27,7 @@ func NewQStackedLayoutFromPointer(ptr unsafe.Pointer) *QStackedLayout {
 	var n = new(QStackedLayout)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QStackedLayout_") {
-		n.SetObjectName("QStackedLayout_" + qt.RandomIdentifier())
+		n.SetObjectName("QStackedLayout_" + qt.Identifier())
 	}
 	return n
 }
@@ -47,11 +45,7 @@ const (
 )
 
 func (ptr *QStackedLayout) Count() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::count")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::count")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStackedLayout_Count(ptr.Pointer()))
@@ -60,11 +54,7 @@ func (ptr *QStackedLayout) Count() int {
 }
 
 func (ptr *QStackedLayout) CurrentIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::currentIndex")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::currentIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStackedLayout_CurrentIndex(ptr.Pointer()))
@@ -73,11 +63,7 @@ func (ptr *QStackedLayout) CurrentIndex() int {
 }
 
 func (ptr *QStackedLayout) SetCurrentIndex(index int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::setCurrentIndex")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::setCurrentIndex")
 
 	if ptr.Pointer() != nil {
 		C.QStackedLayout_SetCurrentIndex(ptr.Pointer(), C.int(index))
@@ -85,11 +71,7 @@ func (ptr *QStackedLayout) SetCurrentIndex(index int) {
 }
 
 func (ptr *QStackedLayout) SetCurrentWidget(widget QWidget_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::setCurrentWidget")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::setCurrentWidget")
 
 	if ptr.Pointer() != nil {
 		C.QStackedLayout_SetCurrentWidget(ptr.Pointer(), PointerFromQWidget(widget))
@@ -97,11 +79,7 @@ func (ptr *QStackedLayout) SetCurrentWidget(widget QWidget_ITF) {
 }
 
 func (ptr *QStackedLayout) SetStackingMode(stackingMode QStackedLayout__StackingMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::setStackingMode")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::setStackingMode")
 
 	if ptr.Pointer() != nil {
 		C.QStackedLayout_SetStackingMode(ptr.Pointer(), C.int(stackingMode))
@@ -109,11 +87,7 @@ func (ptr *QStackedLayout) SetStackingMode(stackingMode QStackedLayout__Stacking
 }
 
 func (ptr *QStackedLayout) StackingMode() QStackedLayout__StackingMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::stackingMode")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::stackingMode")
 
 	if ptr.Pointer() != nil {
 		return QStackedLayout__StackingMode(C.QStackedLayout_StackingMode(ptr.Pointer()))
@@ -122,53 +96,56 @@ func (ptr *QStackedLayout) StackingMode() QStackedLayout__StackingMode {
 }
 
 func NewQStackedLayout() *QStackedLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::QStackedLayout")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::QStackedLayout")
 
 	return NewQStackedLayoutFromPointer(C.QStackedLayout_NewQStackedLayout())
 }
 
 func NewQStackedLayout3(parentLayout QLayout_ITF) *QStackedLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::QStackedLayout")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::QStackedLayout")
 
 	return NewQStackedLayoutFromPointer(C.QStackedLayout_NewQStackedLayout3(PointerFromQLayout(parentLayout)))
 }
 
 func NewQStackedLayout2(parent QWidget_ITF) *QStackedLayout {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::QStackedLayout")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::QStackedLayout")
 
 	return NewQStackedLayoutFromPointer(C.QStackedLayout_NewQStackedLayout2(PointerFromQWidget(parent)))
 }
 
-func (ptr *QStackedLayout) AddItem(item QLayoutItem_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::addItem")
-		}
-	}()
+func (ptr *QStackedLayout) ConnectAddItem(f func(item *QLayoutItem)) {
+	defer qt.Recovering("connect QStackedLayout::addItem")
 
 	if ptr.Pointer() != nil {
-		C.QStackedLayout_AddItem(ptr.Pointer(), PointerFromQLayoutItem(item))
+
+		qt.ConnectSignal(ptr.ObjectName(), "addItem", f)
 	}
 }
 
+func (ptr *QStackedLayout) DisconnectAddItem() {
+	defer qt.Recovering("disconnect QStackedLayout::addItem")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "addItem")
+	}
+}
+
+//export callbackQStackedLayoutAddItem
+func callbackQStackedLayoutAddItem(ptrName *C.char, item unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStackedLayout::addItem")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "addItem")
+	if signal != nil {
+		defer signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QStackedLayout) AddWidget(widget QWidget_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::addWidget")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::addWidget")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStackedLayout_AddWidget(ptr.Pointer(), PointerFromQWidget(widget)))
@@ -177,11 +154,7 @@ func (ptr *QStackedLayout) AddWidget(widget QWidget_ITF) int {
 }
 
 func (ptr *QStackedLayout) ConnectCurrentChanged(f func(index int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::currentChanged")
-		}
-	}()
+	defer qt.Recovering("connect QStackedLayout::currentChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStackedLayout_ConnectCurrentChanged(ptr.Pointer())
@@ -190,11 +163,7 @@ func (ptr *QStackedLayout) ConnectCurrentChanged(f func(index int)) {
 }
 
 func (ptr *QStackedLayout) DisconnectCurrentChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::currentChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QStackedLayout::currentChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStackedLayout_DisconnectCurrentChanged(ptr.Pointer())
@@ -204,21 +173,17 @@ func (ptr *QStackedLayout) DisconnectCurrentChanged() {
 
 //export callbackQStackedLayoutCurrentChanged
 func callbackQStackedLayoutCurrentChanged(ptrName *C.char, index C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::currentChanged")
-		}
-	}()
+	defer qt.Recovering("callback QStackedLayout::currentChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "currentChanged").(func(int))(int(index))
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
+	if signal != nil {
+		signal.(func(int))(int(index))
+	}
+
 }
 
 func (ptr *QStackedLayout) CurrentWidget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::currentWidget")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::currentWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QStackedLayout_CurrentWidget(ptr.Pointer()))
@@ -227,11 +192,7 @@ func (ptr *QStackedLayout) CurrentWidget() *QWidget {
 }
 
 func (ptr *QStackedLayout) HasHeightForWidth() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::hasHeightForWidth")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::hasHeightForWidth")
 
 	if ptr.Pointer() != nil {
 		return C.QStackedLayout_HasHeightForWidth(ptr.Pointer()) != 0
@@ -240,11 +201,7 @@ func (ptr *QStackedLayout) HasHeightForWidth() bool {
 }
 
 func (ptr *QStackedLayout) HeightForWidth(width int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::heightForWidth")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::heightForWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStackedLayout_HeightForWidth(ptr.Pointer(), C.int(width)))
@@ -253,11 +210,7 @@ func (ptr *QStackedLayout) HeightForWidth(width int) int {
 }
 
 func (ptr *QStackedLayout) InsertWidget(index int, widget QWidget_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::insertWidget")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::insertWidget")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStackedLayout_InsertWidget(ptr.Pointer(), C.int(index), PointerFromQWidget(widget)))
@@ -266,11 +219,7 @@ func (ptr *QStackedLayout) InsertWidget(index int, widget QWidget_ITF) int {
 }
 
 func (ptr *QStackedLayout) ItemAt(index int) *QLayoutItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::itemAt")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::itemAt")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutItemFromPointer(C.QStackedLayout_ItemAt(ptr.Pointer(), C.int(index)))
@@ -278,24 +227,8 @@ func (ptr *QStackedLayout) ItemAt(index int) *QLayoutItem {
 	return nil
 }
 
-func (ptr *QStackedLayout) SetGeometry(rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::setGeometry")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QStackedLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRect(rect))
-	}
-}
-
 func (ptr *QStackedLayout) TakeAt(index int) *QLayoutItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::takeAt")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::takeAt")
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutItemFromPointer(C.QStackedLayout_TakeAt(ptr.Pointer(), C.int(index)))
@@ -304,11 +237,7 @@ func (ptr *QStackedLayout) TakeAt(index int) *QLayoutItem {
 }
 
 func (ptr *QStackedLayout) Widget(index int) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::widget")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::widget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QStackedLayout_Widget(ptr.Pointer(), C.int(index)))
@@ -317,11 +246,7 @@ func (ptr *QStackedLayout) Widget(index int) *QWidget {
 }
 
 func (ptr *QStackedLayout) ConnectWidgetRemoved(f func(index int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::widgetRemoved")
-		}
-	}()
+	defer qt.Recovering("connect QStackedLayout::widgetRemoved")
 
 	if ptr.Pointer() != nil {
 		C.QStackedLayout_ConnectWidgetRemoved(ptr.Pointer())
@@ -330,11 +255,7 @@ func (ptr *QStackedLayout) ConnectWidgetRemoved(f func(index int)) {
 }
 
 func (ptr *QStackedLayout) DisconnectWidgetRemoved() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::widgetRemoved")
-		}
-	}()
+	defer qt.Recovering("disconnect QStackedLayout::widgetRemoved")
 
 	if ptr.Pointer() != nil {
 		C.QStackedLayout_DisconnectWidgetRemoved(ptr.Pointer())
@@ -344,21 +265,17 @@ func (ptr *QStackedLayout) DisconnectWidgetRemoved() {
 
 //export callbackQStackedLayoutWidgetRemoved
 func callbackQStackedLayoutWidgetRemoved(ptrName *C.char, index C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::widgetRemoved")
-		}
-	}()
+	defer qt.Recovering("callback QStackedLayout::widgetRemoved")
 
-	qt.GetSignal(C.GoString(ptrName), "widgetRemoved").(func(int))(int(index))
+	var signal = qt.GetSignal(C.GoString(ptrName), "widgetRemoved")
+	if signal != nil {
+		signal.(func(int))(int(index))
+	}
+
 }
 
 func (ptr *QStackedLayout) DestroyQStackedLayout() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStackedLayout::~QStackedLayout")
-		}
-	}()
+	defer qt.Recovering("QStackedLayout::~QStackedLayout")
 
 	if ptr.Pointer() != nil {
 		C.QStackedLayout_DestroyQStackedLayout(ptr.Pointer())

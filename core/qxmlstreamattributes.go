@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -34,21 +34,13 @@ func (ptr *QXmlStreamAttributes) QXmlStreamAttributes_PTR() *QXmlStreamAttribute
 }
 
 func NewQXmlStreamAttributes() *QXmlStreamAttributes {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamAttributes::QXmlStreamAttributes")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamAttributes::QXmlStreamAttributes")
 
 	return NewQXmlStreamAttributesFromPointer(C.QXmlStreamAttributes_NewQXmlStreamAttributes())
 }
 
 func (ptr *QXmlStreamAttributes) Append(namespaceUri string, name string, value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamAttributes::append")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamAttributes::append")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamAttributes_Append(ptr.Pointer(), C.CString(namespaceUri), C.CString(name), C.CString(value))
@@ -56,11 +48,7 @@ func (ptr *QXmlStreamAttributes) Append(namespaceUri string, name string, value 
 }
 
 func (ptr *QXmlStreamAttributes) Append2(qualifiedName string, value string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamAttributes::append")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamAttributes::append")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamAttributes_Append2(ptr.Pointer(), C.CString(qualifiedName), C.CString(value))
@@ -68,11 +56,7 @@ func (ptr *QXmlStreamAttributes) Append2(qualifiedName string, value string) {
 }
 
 func (ptr *QXmlStreamAttributes) HasAttribute2(qualifiedName QLatin1String_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamAttributes::hasAttribute")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamAttributes::hasAttribute")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamAttributes_HasAttribute2(ptr.Pointer(), PointerFromQLatin1String(qualifiedName)) != 0
@@ -81,11 +65,7 @@ func (ptr *QXmlStreamAttributes) HasAttribute2(qualifiedName QLatin1String_ITF) 
 }
 
 func (ptr *QXmlStreamAttributes) HasAttribute3(namespaceUri string, name string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamAttributes::hasAttribute")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamAttributes::hasAttribute")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamAttributes_HasAttribute3(ptr.Pointer(), C.CString(namespaceUri), C.CString(name)) != 0
@@ -94,11 +74,7 @@ func (ptr *QXmlStreamAttributes) HasAttribute3(namespaceUri string, name string)
 }
 
 func (ptr *QXmlStreamAttributes) HasAttribute(qualifiedName string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamAttributes::hasAttribute")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamAttributes::hasAttribute")
 
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamAttributes_HasAttribute(ptr.Pointer(), C.CString(qualifiedName)) != 0
@@ -107,11 +83,7 @@ func (ptr *QXmlStreamAttributes) HasAttribute(qualifiedName string) bool {
 }
 
 func (ptr *QXmlStreamAttributes) Value3(namespaceUri QLatin1String_ITF, name QLatin1String_ITF) *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamAttributes::value")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamAttributes::value")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamAttributes_Value3(ptr.Pointer(), PointerFromQLatin1String(namespaceUri), PointerFromQLatin1String(name)))
@@ -120,11 +92,7 @@ func (ptr *QXmlStreamAttributes) Value3(namespaceUri QLatin1String_ITF, name QLa
 }
 
 func (ptr *QXmlStreamAttributes) Value5(qualifiedName QLatin1String_ITF) *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamAttributes::value")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamAttributes::value")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamAttributes_Value5(ptr.Pointer(), PointerFromQLatin1String(qualifiedName)))
@@ -133,11 +101,7 @@ func (ptr *QXmlStreamAttributes) Value5(qualifiedName QLatin1String_ITF) *QStrin
 }
 
 func (ptr *QXmlStreamAttributes) Value2(namespaceUri string, name QLatin1String_ITF) *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamAttributes::value")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamAttributes::value")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamAttributes_Value2(ptr.Pointer(), C.CString(namespaceUri), PointerFromQLatin1String(name)))
@@ -146,11 +110,7 @@ func (ptr *QXmlStreamAttributes) Value2(namespaceUri string, name QLatin1String_
 }
 
 func (ptr *QXmlStreamAttributes) Value(namespaceUri string, name string) *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamAttributes::value")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamAttributes::value")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamAttributes_Value(ptr.Pointer(), C.CString(namespaceUri), C.CString(name)))
@@ -159,11 +119,7 @@ func (ptr *QXmlStreamAttributes) Value(namespaceUri string, name string) *QStrin
 }
 
 func (ptr *QXmlStreamAttributes) Value4(qualifiedName string) *QStringRef {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlStreamAttributes::value")
-		}
-	}()
+	defer qt.Recovering("QXmlStreamAttributes::value")
 
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamAttributes_Value4(ptr.Pointer(), C.CString(qualifiedName)))

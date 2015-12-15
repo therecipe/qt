@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQDragFromPointer(ptr unsafe.Pointer) *QDrag {
 	var n = new(QDrag)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDrag_") {
-		n.SetObjectName("QDrag_" + qt.RandomIdentifier())
+		n.SetObjectName("QDrag_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QDrag) QDrag_PTR() *QDrag {
 }
 
 func NewQDrag(dragSource core.QObject_ITF) *QDrag {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::QDrag")
-		}
-	}()
+	defer qt.Recovering("QDrag::QDrag")
 
 	return NewQDragFromPointer(C.QDrag_NewQDrag(core.PointerFromQObject(dragSource)))
 }
 
 func (ptr *QDrag) ConnectActionChanged(f func(action core.Qt__DropAction)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::actionChanged")
-		}
-	}()
+	defer qt.Recovering("connect QDrag::actionChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDrag_ConnectActionChanged(ptr.Pointer())
@@ -62,11 +53,7 @@ func (ptr *QDrag) ConnectActionChanged(f func(action core.Qt__DropAction)) {
 }
 
 func (ptr *QDrag) DisconnectActionChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::actionChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QDrag::actionChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDrag_DisconnectActionChanged(ptr.Pointer())
@@ -76,21 +63,17 @@ func (ptr *QDrag) DisconnectActionChanged() {
 
 //export callbackQDragActionChanged
 func callbackQDragActionChanged(ptrName *C.char, action C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::actionChanged")
-		}
-	}()
+	defer qt.Recovering("callback QDrag::actionChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "actionChanged").(func(core.Qt__DropAction))(core.Qt__DropAction(action))
+	var signal = qt.GetSignal(C.GoString(ptrName), "actionChanged")
+	if signal != nil {
+		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(action))
+	}
+
 }
 
 func (ptr *QDrag) Exec(supportedActions core.Qt__DropAction) core.Qt__DropAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::exec")
-		}
-	}()
+	defer qt.Recovering("QDrag::exec")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QDrag_Exec(ptr.Pointer(), C.int(supportedActions)))
@@ -99,11 +82,7 @@ func (ptr *QDrag) Exec(supportedActions core.Qt__DropAction) core.Qt__DropAction
 }
 
 func (ptr *QDrag) Exec2(supportedActions core.Qt__DropAction, defaultDropAction core.Qt__DropAction) core.Qt__DropAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::exec")
-		}
-	}()
+	defer qt.Recovering("QDrag::exec")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QDrag_Exec2(ptr.Pointer(), C.int(supportedActions), C.int(defaultDropAction)))
@@ -111,12 +90,17 @@ func (ptr *QDrag) Exec2(supportedActions core.Qt__DropAction, defaultDropAction 
 	return 0
 }
 
+func (ptr *QDrag) HotSpot() *core.QPoint {
+	defer qt.Recovering("QDrag::hotSpot")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QDrag_HotSpot(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDrag) MimeData() *core.QMimeData {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::mimeData")
-		}
-	}()
+	defer qt.Recovering("QDrag::mimeData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQMimeDataFromPointer(C.QDrag_MimeData(ptr.Pointer()))
@@ -125,11 +109,7 @@ func (ptr *QDrag) MimeData() *core.QMimeData {
 }
 
 func (ptr *QDrag) SetDragCursor(cursor QPixmap_ITF, action core.Qt__DropAction) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::setDragCursor")
-		}
-	}()
+	defer qt.Recovering("QDrag::setDragCursor")
 
 	if ptr.Pointer() != nil {
 		C.QDrag_SetDragCursor(ptr.Pointer(), PointerFromQPixmap(cursor), C.int(action))
@@ -137,11 +117,7 @@ func (ptr *QDrag) SetDragCursor(cursor QPixmap_ITF, action core.Qt__DropAction) 
 }
 
 func (ptr *QDrag) SetHotSpot(hotspot core.QPoint_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::setHotSpot")
-		}
-	}()
+	defer qt.Recovering("QDrag::setHotSpot")
 
 	if ptr.Pointer() != nil {
 		C.QDrag_SetHotSpot(ptr.Pointer(), core.PointerFromQPoint(hotspot))
@@ -149,11 +125,7 @@ func (ptr *QDrag) SetHotSpot(hotspot core.QPoint_ITF) {
 }
 
 func (ptr *QDrag) SetMimeData(data core.QMimeData_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::setMimeData")
-		}
-	}()
+	defer qt.Recovering("QDrag::setMimeData")
 
 	if ptr.Pointer() != nil {
 		C.QDrag_SetMimeData(ptr.Pointer(), core.PointerFromQMimeData(data))
@@ -161,11 +133,7 @@ func (ptr *QDrag) SetMimeData(data core.QMimeData_ITF) {
 }
 
 func (ptr *QDrag) SetPixmap(pixmap QPixmap_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::setPixmap")
-		}
-	}()
+	defer qt.Recovering("QDrag::setPixmap")
 
 	if ptr.Pointer() != nil {
 		C.QDrag_SetPixmap(ptr.Pointer(), PointerFromQPixmap(pixmap))
@@ -173,11 +141,7 @@ func (ptr *QDrag) SetPixmap(pixmap QPixmap_ITF) {
 }
 
 func (ptr *QDrag) Source() *core.QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::source")
-		}
-	}()
+	defer qt.Recovering("QDrag::source")
 
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QDrag_Source(ptr.Pointer()))
@@ -186,11 +150,7 @@ func (ptr *QDrag) Source() *core.QObject {
 }
 
 func (ptr *QDrag) SupportedActions() core.Qt__DropAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::supportedActions")
-		}
-	}()
+	defer qt.Recovering("QDrag::supportedActions")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QDrag_SupportedActions(ptr.Pointer()))
@@ -199,11 +159,7 @@ func (ptr *QDrag) SupportedActions() core.Qt__DropAction {
 }
 
 func (ptr *QDrag) Target() *core.QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::target")
-		}
-	}()
+	defer qt.Recovering("QDrag::target")
 
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QDrag_Target(ptr.Pointer()))
@@ -212,11 +168,7 @@ func (ptr *QDrag) Target() *core.QObject {
 }
 
 func (ptr *QDrag) ConnectTargetChanged(f func(newTarget *core.QObject)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::targetChanged")
-		}
-	}()
+	defer qt.Recovering("connect QDrag::targetChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDrag_ConnectTargetChanged(ptr.Pointer())
@@ -225,11 +177,7 @@ func (ptr *QDrag) ConnectTargetChanged(f func(newTarget *core.QObject)) {
 }
 
 func (ptr *QDrag) DisconnectTargetChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::targetChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QDrag::targetChanged")
 
 	if ptr.Pointer() != nil {
 		C.QDrag_DisconnectTargetChanged(ptr.Pointer())
@@ -239,21 +187,17 @@ func (ptr *QDrag) DisconnectTargetChanged() {
 
 //export callbackQDragTargetChanged
 func callbackQDragTargetChanged(ptrName *C.char, newTarget unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::targetChanged")
-		}
-	}()
+	defer qt.Recovering("callback QDrag::targetChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "targetChanged").(func(*core.QObject))(core.NewQObjectFromPointer(newTarget))
+	var signal = qt.GetSignal(C.GoString(ptrName), "targetChanged")
+	if signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(newTarget))
+	}
+
 }
 
 func (ptr *QDrag) DestroyQDrag() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDrag::~QDrag")
-		}
-	}()
+	defer qt.Recovering("QDrag::~QDrag")
 
 	if ptr.Pointer() != nil {
 		C.QDrag_DestroyQDrag(ptr.Pointer())

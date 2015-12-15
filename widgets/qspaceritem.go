@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -27,6 +27,9 @@ func PointerFromQSpacerItem(ptr QSpacerItem_ITF) unsafe.Pointer {
 func NewQSpacerItemFromPointer(ptr unsafe.Pointer) *QSpacerItem {
 	var n = new(QSpacerItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QSpacerItem_") {
+		n.SetObjectNameAbs("QSpacerItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -35,21 +38,13 @@ func (ptr *QSpacerItem) QSpacerItem_PTR() *QSpacerItem {
 }
 
 func NewQSpacerItem(w int, h int, hPolicy QSizePolicy__Policy, vPolicy QSizePolicy__Policy) *QSpacerItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpacerItem::QSpacerItem")
-		}
-	}()
+	defer qt.Recovering("QSpacerItem::QSpacerItem")
 
 	return NewQSpacerItemFromPointer(C.QSpacerItem_NewQSpacerItem(C.int(w), C.int(h), C.int(hPolicy), C.int(vPolicy)))
 }
 
 func (ptr *QSpacerItem) ChangeSize(w int, h int, hPolicy QSizePolicy__Policy, vPolicy QSizePolicy__Policy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpacerItem::changeSize")
-		}
-	}()
+	defer qt.Recovering("QSpacerItem::changeSize")
 
 	if ptr.Pointer() != nil {
 		C.QSpacerItem_ChangeSize(ptr.Pointer(), C.int(w), C.int(h), C.int(hPolicy), C.int(vPolicy))
@@ -57,11 +52,7 @@ func (ptr *QSpacerItem) ChangeSize(w int, h int, hPolicy QSizePolicy__Policy, vP
 }
 
 func (ptr *QSpacerItem) ExpandingDirections() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpacerItem::expandingDirections")
-		}
-	}()
+	defer qt.Recovering("QSpacerItem::expandingDirections")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QSpacerItem_ExpandingDirections(ptr.Pointer()))
@@ -70,11 +61,7 @@ func (ptr *QSpacerItem) ExpandingDirections() core.Qt__Orientation {
 }
 
 func (ptr *QSpacerItem) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpacerItem::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QSpacerItem::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QSpacerItem_IsEmpty(ptr.Pointer()) != 0
@@ -82,24 +69,8 @@ func (ptr *QSpacerItem) IsEmpty() bool {
 	return false
 }
 
-func (ptr *QSpacerItem) SetGeometry(r core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpacerItem::setGeometry")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QSpacerItem_SetGeometry(ptr.Pointer(), core.PointerFromQRect(r))
-	}
-}
-
 func (ptr *QSpacerItem) SpacerItem() *QSpacerItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpacerItem::spacerItem")
-		}
-	}()
+	defer qt.Recovering("QSpacerItem::spacerItem")
 
 	if ptr.Pointer() != nil {
 		return NewQSpacerItemFromPointer(C.QSpacerItem_SpacerItem(ptr.Pointer()))
@@ -108,13 +79,26 @@ func (ptr *QSpacerItem) SpacerItem() *QSpacerItem {
 }
 
 func (ptr *QSpacerItem) DestroyQSpacerItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSpacerItem::~QSpacerItem")
-		}
-	}()
+	defer qt.Recovering("QSpacerItem::~QSpacerItem")
 
 	if ptr.Pointer() != nil {
 		C.QSpacerItem_DestroyQSpacerItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QSpacerItem) ObjectNameAbs() string {
+	defer qt.Recovering("QSpacerItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QSpacerItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSpacerItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QSpacerItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QSpacerItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

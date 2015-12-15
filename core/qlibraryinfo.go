@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -62,41 +62,25 @@ const (
 )
 
 func QLibraryInfo_IsDebugBuild() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibraryInfo::isDebugBuild")
-		}
-	}()
+	defer qt.Recovering("QLibraryInfo::isDebugBuild")
 
 	return C.QLibraryInfo_QLibraryInfo_IsDebugBuild() != 0
 }
 
 func QLibraryInfo_LicensedProducts() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibraryInfo::licensedProducts")
-		}
-	}()
+	defer qt.Recovering("QLibraryInfo::licensedProducts")
 
 	return C.GoString(C.QLibraryInfo_QLibraryInfo_LicensedProducts())
 }
 
 func QLibraryInfo_Licensee() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibraryInfo::licensee")
-		}
-	}()
+	defer qt.Recovering("QLibraryInfo::licensee")
 
 	return C.GoString(C.QLibraryInfo_QLibraryInfo_Licensee())
 }
 
 func QLibraryInfo_Location(loc QLibraryInfo__LibraryLocation) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLibraryInfo::location")
-		}
-	}()
+	defer qt.Recovering("QLibraryInfo::location")
 
 	return C.GoString(C.QLibraryInfo_QLibraryInfo_Location(C.int(loc)))
 }

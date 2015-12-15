@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQStateMachineFromPointer(ptr unsafe.Pointer) *QStateMachine {
 	var n = new(QStateMachine)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QStateMachine_") {
-		n.SetObjectName("QStateMachine_" + qt.RandomIdentifier())
+		n.SetObjectName("QStateMachine_" + qt.Identifier())
 	}
 	return n
 }
@@ -56,31 +55,19 @@ const (
 )
 
 func NewQStateMachine(parent QObject_ITF) *QStateMachine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::QStateMachine")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::QStateMachine")
 
 	return NewQStateMachineFromPointer(C.QStateMachine_NewQStateMachine(PointerFromQObject(parent)))
 }
 
 func NewQStateMachine2(childMode QState__ChildMode, parent QObject_ITF) *QStateMachine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::QStateMachine")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::QStateMachine")
 
 	return NewQStateMachineFromPointer(C.QStateMachine_NewQStateMachine2(C.int(childMode), PointerFromQObject(parent)))
 }
 
 func (ptr *QStateMachine) AddDefaultAnimation(animation QAbstractAnimation_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::addDefaultAnimation")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::addDefaultAnimation")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_AddDefaultAnimation(ptr.Pointer(), PointerFromQAbstractAnimation(animation))
@@ -88,11 +75,7 @@ func (ptr *QStateMachine) AddDefaultAnimation(animation QAbstractAnimation_ITF) 
 }
 
 func (ptr *QStateMachine) AddState(state QAbstractState_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::addState")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::addState")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_AddState(ptr.Pointer(), PointerFromQAbstractState(state))
@@ -100,11 +83,7 @@ func (ptr *QStateMachine) AddState(state QAbstractState_ITF) {
 }
 
 func (ptr *QStateMachine) ClearError() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::clearError")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::clearError")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_ClearError(ptr.Pointer())
@@ -112,11 +91,7 @@ func (ptr *QStateMachine) ClearError() {
 }
 
 func (ptr *QStateMachine) CancelDelayedEvent(id int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::cancelDelayedEvent")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::cancelDelayedEvent")
 
 	if ptr.Pointer() != nil {
 		return C.QStateMachine_CancelDelayedEvent(ptr.Pointer(), C.int(id)) != 0
@@ -125,11 +100,7 @@ func (ptr *QStateMachine) CancelDelayedEvent(id int) bool {
 }
 
 func (ptr *QStateMachine) Error() QStateMachine__Error {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::error")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::error")
 
 	if ptr.Pointer() != nil {
 		return QStateMachine__Error(C.QStateMachine_Error(ptr.Pointer()))
@@ -138,11 +109,7 @@ func (ptr *QStateMachine) Error() QStateMachine__Error {
 }
 
 func (ptr *QStateMachine) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::errorString")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStateMachine_ErrorString(ptr.Pointer()))
@@ -151,11 +118,7 @@ func (ptr *QStateMachine) ErrorString() string {
 }
 
 func (ptr *QStateMachine) EventFilter(watched QObject_ITF, event QEvent_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::eventFilter")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::eventFilter")
 
 	if ptr.Pointer() != nil {
 		return C.QStateMachine_EventFilter(ptr.Pointer(), PointerFromQObject(watched), PointerFromQEvent(event)) != 0
@@ -164,11 +127,7 @@ func (ptr *QStateMachine) EventFilter(watched QObject_ITF, event QEvent_ITF) boo
 }
 
 func (ptr *QStateMachine) GlobalRestorePolicy() QState__RestorePolicy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::globalRestorePolicy")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::globalRestorePolicy")
 
 	if ptr.Pointer() != nil {
 		return QState__RestorePolicy(C.QStateMachine_GlobalRestorePolicy(ptr.Pointer()))
@@ -177,11 +136,7 @@ func (ptr *QStateMachine) GlobalRestorePolicy() QState__RestorePolicy {
 }
 
 func (ptr *QStateMachine) IsAnimated() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::isAnimated")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::isAnimated")
 
 	if ptr.Pointer() != nil {
 		return C.QStateMachine_IsAnimated(ptr.Pointer()) != 0
@@ -190,11 +145,7 @@ func (ptr *QStateMachine) IsAnimated() bool {
 }
 
 func (ptr *QStateMachine) IsRunning() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::isRunning")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::isRunning")
 
 	if ptr.Pointer() != nil {
 		return C.QStateMachine_IsRunning(ptr.Pointer()) != 0
@@ -202,12 +153,70 @@ func (ptr *QStateMachine) IsRunning() bool {
 	return false
 }
 
+func (ptr *QStateMachine) ConnectOnEntry(f func(event *QEvent)) {
+	defer qt.Recovering("connect QStateMachine::onEntry")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "onEntry", f)
+	}
+}
+
+func (ptr *QStateMachine) DisconnectOnEntry() {
+	defer qt.Recovering("disconnect QStateMachine::onEntry")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "onEntry")
+	}
+}
+
+//export callbackQStateMachineOnEntry
+func callbackQStateMachineOnEntry(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStateMachine::onEntry")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "onEntry")
+	if signal != nil {
+		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QStateMachine) ConnectOnExit(f func(event *QEvent)) {
+	defer qt.Recovering("connect QStateMachine::onExit")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "onExit", f)
+	}
+}
+
+func (ptr *QStateMachine) DisconnectOnExit() {
+	defer qt.Recovering("disconnect QStateMachine::onExit")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "onExit")
+	}
+}
+
+//export callbackQStateMachineOnExit
+func callbackQStateMachineOnExit(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStateMachine::onExit")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "onExit")
+	if signal != nil {
+		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QStateMachine) PostDelayedEvent(event QEvent_ITF, delay int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::postDelayedEvent")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::postDelayedEvent")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStateMachine_PostDelayedEvent(ptr.Pointer(), PointerFromQEvent(event), C.int(delay)))
@@ -216,11 +225,7 @@ func (ptr *QStateMachine) PostDelayedEvent(event QEvent_ITF, delay int) int {
 }
 
 func (ptr *QStateMachine) PostEvent(event QEvent_ITF, priority QStateMachine__EventPriority) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::postEvent")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::postEvent")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_PostEvent(ptr.Pointer(), PointerFromQEvent(event), C.int(priority))
@@ -228,11 +233,7 @@ func (ptr *QStateMachine) PostEvent(event QEvent_ITF, priority QStateMachine__Ev
 }
 
 func (ptr *QStateMachine) RemoveDefaultAnimation(animation QAbstractAnimation_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::removeDefaultAnimation")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::removeDefaultAnimation")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_RemoveDefaultAnimation(ptr.Pointer(), PointerFromQAbstractAnimation(animation))
@@ -240,11 +241,7 @@ func (ptr *QStateMachine) RemoveDefaultAnimation(animation QAbstractAnimation_IT
 }
 
 func (ptr *QStateMachine) RemoveState(state QAbstractState_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::removeState")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::removeState")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_RemoveState(ptr.Pointer(), PointerFromQAbstractState(state))
@@ -252,11 +249,7 @@ func (ptr *QStateMachine) RemoveState(state QAbstractState_ITF) {
 }
 
 func (ptr *QStateMachine) ConnectRunningChanged(f func(running bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::runningChanged")
-		}
-	}()
+	defer qt.Recovering("connect QStateMachine::runningChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_ConnectRunningChanged(ptr.Pointer())
@@ -265,11 +258,7 @@ func (ptr *QStateMachine) ConnectRunningChanged(f func(running bool)) {
 }
 
 func (ptr *QStateMachine) DisconnectRunningChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::runningChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QStateMachine::runningChanged")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_DisconnectRunningChanged(ptr.Pointer())
@@ -279,21 +268,17 @@ func (ptr *QStateMachine) DisconnectRunningChanged() {
 
 //export callbackQStateMachineRunningChanged
 func callbackQStateMachineRunningChanged(ptrName *C.char, running C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::runningChanged")
-		}
-	}()
+	defer qt.Recovering("callback QStateMachine::runningChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "runningChanged").(func(bool))(int(running) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "runningChanged")
+	if signal != nil {
+		signal.(func(bool))(int(running) != 0)
+	}
+
 }
 
 func (ptr *QStateMachine) SetAnimated(enabled bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::setAnimated")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::setAnimated")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_SetAnimated(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
@@ -301,11 +286,7 @@ func (ptr *QStateMachine) SetAnimated(enabled bool) {
 }
 
 func (ptr *QStateMachine) SetGlobalRestorePolicy(restorePolicy QState__RestorePolicy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::setGlobalRestorePolicy")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::setGlobalRestorePolicy")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_SetGlobalRestorePolicy(ptr.Pointer(), C.int(restorePolicy))
@@ -313,11 +294,7 @@ func (ptr *QStateMachine) SetGlobalRestorePolicy(restorePolicy QState__RestorePo
 }
 
 func (ptr *QStateMachine) SetRunning(running bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::setRunning")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::setRunning")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_SetRunning(ptr.Pointer(), C.int(qt.GoBoolToInt(running)))
@@ -325,11 +302,7 @@ func (ptr *QStateMachine) SetRunning(running bool) {
 }
 
 func (ptr *QStateMachine) Start() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::start")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::start")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_Start(ptr.Pointer())
@@ -337,11 +310,7 @@ func (ptr *QStateMachine) Start() {
 }
 
 func (ptr *QStateMachine) ConnectStarted(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::started")
-		}
-	}()
+	defer qt.Recovering("connect QStateMachine::started")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_ConnectStarted(ptr.Pointer())
@@ -350,11 +319,7 @@ func (ptr *QStateMachine) ConnectStarted(f func()) {
 }
 
 func (ptr *QStateMachine) DisconnectStarted() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::started")
-		}
-	}()
+	defer qt.Recovering("disconnect QStateMachine::started")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_DisconnectStarted(ptr.Pointer())
@@ -364,21 +329,17 @@ func (ptr *QStateMachine) DisconnectStarted() {
 
 //export callbackQStateMachineStarted
 func callbackQStateMachineStarted(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::started")
-		}
-	}()
+	defer qt.Recovering("callback QStateMachine::started")
 
-	qt.GetSignal(C.GoString(ptrName), "started").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "started")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QStateMachine) Stop() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::stop")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::stop")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_Stop(ptr.Pointer())
@@ -386,11 +347,7 @@ func (ptr *QStateMachine) Stop() {
 }
 
 func (ptr *QStateMachine) ConnectStopped(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::stopped")
-		}
-	}()
+	defer qt.Recovering("connect QStateMachine::stopped")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_ConnectStopped(ptr.Pointer())
@@ -399,11 +356,7 @@ func (ptr *QStateMachine) ConnectStopped(f func()) {
 }
 
 func (ptr *QStateMachine) DisconnectStopped() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::stopped")
-		}
-	}()
+	defer qt.Recovering("disconnect QStateMachine::stopped")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_DisconnectStopped(ptr.Pointer())
@@ -413,21 +366,17 @@ func (ptr *QStateMachine) DisconnectStopped() {
 
 //export callbackQStateMachineStopped
 func callbackQStateMachineStopped(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::stopped")
-		}
-	}()
+	defer qt.Recovering("callback QStateMachine::stopped")
 
-	qt.GetSignal(C.GoString(ptrName), "stopped").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "stopped")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QStateMachine) DestroyQStateMachine() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStateMachine::~QStateMachine")
-		}
-	}()
+	defer qt.Recovering("QStateMachine::~QStateMachine")
 
 	if ptr.Pointer() != nil {
 		C.QStateMachine_DestroyQStateMachine(ptr.Pointer())

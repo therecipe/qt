@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -33,6 +33,9 @@ func PointerFromQSurface(ptr QSurface_ITF) unsafe.Pointer {
 func NewQSurfaceFromPointer(ptr unsafe.Pointer) *QSurface {
 	var n = new(QSurface)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QSurface_") {
+		n.SetObjectNameAbs("QSurface_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -58,11 +61,7 @@ const (
 )
 
 func (ptr *QSurface) SupportsOpenGL() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurface::supportsOpenGL")
-		}
-	}()
+	defer qt.Recovering("QSurface::supportsOpenGL")
 
 	if ptr.Pointer() != nil {
 		return C.QSurface_SupportsOpenGL(ptr.Pointer()) != 0
@@ -71,11 +70,7 @@ func (ptr *QSurface) SupportsOpenGL() bool {
 }
 
 func (ptr *QSurface) SurfaceClass() QSurface__SurfaceClass {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurface::surfaceClass")
-		}
-	}()
+	defer qt.Recovering("QSurface::surfaceClass")
 
 	if ptr.Pointer() != nil {
 		return QSurface__SurfaceClass(C.QSurface_SurfaceClass(ptr.Pointer()))
@@ -84,11 +79,7 @@ func (ptr *QSurface) SurfaceClass() QSurface__SurfaceClass {
 }
 
 func (ptr *QSurface) SurfaceType() QSurface__SurfaceType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurface::surfaceType")
-		}
-	}()
+	defer qt.Recovering("QSurface::surfaceType")
 
 	if ptr.Pointer() != nil {
 		return QSurface__SurfaceType(C.QSurface_SurfaceType(ptr.Pointer()))
@@ -97,13 +88,26 @@ func (ptr *QSurface) SurfaceType() QSurface__SurfaceType {
 }
 
 func (ptr *QSurface) DestroyQSurface() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSurface::~QSurface")
-		}
-	}()
+	defer qt.Recovering("QSurface::~QSurface")
 
 	if ptr.Pointer() != nil {
 		C.QSurface_DestroyQSurface(ptr.Pointer())
+	}
+}
+
+func (ptr *QSurface) ObjectNameAbs() string {
+	defer qt.Recovering("QSurface::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QSurface_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSurface) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QSurface::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QSurface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

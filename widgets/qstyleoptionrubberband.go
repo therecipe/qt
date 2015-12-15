@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -48,21 +48,13 @@ var (
 )
 
 func NewQStyleOptionRubberBand() *QStyleOptionRubberBand {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionRubberBand::QStyleOptionRubberBand")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionRubberBand::QStyleOptionRubberBand")
 
 	return NewQStyleOptionRubberBandFromPointer(C.QStyleOptionRubberBand_NewQStyleOptionRubberBand())
 }
 
 func NewQStyleOptionRubberBand2(other QStyleOptionRubberBand_ITF) *QStyleOptionRubberBand {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionRubberBand::QStyleOptionRubberBand")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionRubberBand::QStyleOptionRubberBand")
 
 	return NewQStyleOptionRubberBandFromPointer(C.QStyleOptionRubberBand_NewQStyleOptionRubberBand2(PointerFromQStyleOptionRubberBand(other)))
 }

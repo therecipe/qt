@@ -3,7 +3,7 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -48,21 +48,13 @@ var (
 )
 
 func NewQStyleOptionTabWidgetFrame() *QStyleOptionTabWidgetFrame {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame")
 
 	return NewQStyleOptionTabWidgetFrameFromPointer(C.QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame())
 }
 
 func NewQStyleOptionTabWidgetFrame2(other QStyleOptionTabWidgetFrame_ITF) *QStyleOptionTabWidgetFrame {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame")
-		}
-	}()
+	defer qt.Recovering("QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame")
 
 	return NewQStyleOptionTabWidgetFrameFromPointer(C.QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame2(PointerFromQStyleOptionTabWidgetFrame(other)))
 }

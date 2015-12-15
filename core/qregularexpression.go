@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"strings"
 	"unsafe"
 )
@@ -77,41 +77,25 @@ const (
 )
 
 func NewQRegularExpression() *QRegularExpression {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::QRegularExpression")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::QRegularExpression")
 
 	return NewQRegularExpressionFromPointer(C.QRegularExpression_NewQRegularExpression())
 }
 
 func NewQRegularExpression3(re QRegularExpression_ITF) *QRegularExpression {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::QRegularExpression")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::QRegularExpression")
 
 	return NewQRegularExpressionFromPointer(C.QRegularExpression_NewQRegularExpression3(PointerFromQRegularExpression(re)))
 }
 
 func NewQRegularExpression2(pattern string, options QRegularExpression__PatternOption) *QRegularExpression {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::QRegularExpression")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::QRegularExpression")
 
 	return NewQRegularExpressionFromPointer(C.QRegularExpression_NewQRegularExpression2(C.CString(pattern), C.int(options)))
 }
 
 func (ptr *QRegularExpression) CaptureCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::captureCount")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::captureCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QRegularExpression_CaptureCount(ptr.Pointer()))
@@ -120,11 +104,7 @@ func (ptr *QRegularExpression) CaptureCount() int {
 }
 
 func (ptr *QRegularExpression) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::errorString")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRegularExpression_ErrorString(ptr.Pointer()))
@@ -133,21 +113,13 @@ func (ptr *QRegularExpression) ErrorString() string {
 }
 
 func QRegularExpression_Escape(str string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::escape")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::escape")
 
 	return C.GoString(C.QRegularExpression_QRegularExpression_Escape(C.CString(str)))
 }
 
 func (ptr *QRegularExpression) GlobalMatch(subject string, offset int, matchType QRegularExpression__MatchType, matchOptions QRegularExpression__MatchOption) *QRegularExpressionMatchIterator {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::globalMatch")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::globalMatch")
 
 	if ptr.Pointer() != nil {
 		return NewQRegularExpressionMatchIteratorFromPointer(C.QRegularExpression_GlobalMatch(ptr.Pointer(), C.CString(subject), C.int(offset), C.int(matchType), C.int(matchOptions)))
@@ -156,11 +128,7 @@ func (ptr *QRegularExpression) GlobalMatch(subject string, offset int, matchType
 }
 
 func (ptr *QRegularExpression) GlobalMatch2(subjectRef QStringRef_ITF, offset int, matchType QRegularExpression__MatchType, matchOptions QRegularExpression__MatchOption) *QRegularExpressionMatchIterator {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::globalMatch")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::globalMatch")
 
 	if ptr.Pointer() != nil {
 		return NewQRegularExpressionMatchIteratorFromPointer(C.QRegularExpression_GlobalMatch2(ptr.Pointer(), PointerFromQStringRef(subjectRef), C.int(offset), C.int(matchType), C.int(matchOptions)))
@@ -169,11 +137,7 @@ func (ptr *QRegularExpression) GlobalMatch2(subjectRef QStringRef_ITF, offset in
 }
 
 func (ptr *QRegularExpression) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::isValid")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QRegularExpression_IsValid(ptr.Pointer()) != 0
@@ -182,11 +146,7 @@ func (ptr *QRegularExpression) IsValid() bool {
 }
 
 func (ptr *QRegularExpression) Match(subject string, offset int, matchType QRegularExpression__MatchType, matchOptions QRegularExpression__MatchOption) *QRegularExpressionMatch {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::match")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::match")
 
 	if ptr.Pointer() != nil {
 		return NewQRegularExpressionMatchFromPointer(C.QRegularExpression_Match(ptr.Pointer(), C.CString(subject), C.int(offset), C.int(matchType), C.int(matchOptions)))
@@ -195,11 +155,7 @@ func (ptr *QRegularExpression) Match(subject string, offset int, matchType QRegu
 }
 
 func (ptr *QRegularExpression) Match2(subjectRef QStringRef_ITF, offset int, matchType QRegularExpression__MatchType, matchOptions QRegularExpression__MatchOption) *QRegularExpressionMatch {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::match")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::match")
 
 	if ptr.Pointer() != nil {
 		return NewQRegularExpressionMatchFromPointer(C.QRegularExpression_Match2(ptr.Pointer(), PointerFromQStringRef(subjectRef), C.int(offset), C.int(matchType), C.int(matchOptions)))
@@ -208,11 +164,7 @@ func (ptr *QRegularExpression) Match2(subjectRef QStringRef_ITF, offset int, mat
 }
 
 func (ptr *QRegularExpression) NamedCaptureGroups() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::namedCaptureGroups")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::namedCaptureGroups")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QRegularExpression_NamedCaptureGroups(ptr.Pointer())), ",,,")
@@ -221,11 +173,7 @@ func (ptr *QRegularExpression) NamedCaptureGroups() []string {
 }
 
 func (ptr *QRegularExpression) Optimize() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::optimize")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::optimize")
 
 	if ptr.Pointer() != nil {
 		C.QRegularExpression_Optimize(ptr.Pointer())
@@ -233,11 +181,7 @@ func (ptr *QRegularExpression) Optimize() {
 }
 
 func (ptr *QRegularExpression) Pattern() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::pattern")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::pattern")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRegularExpression_Pattern(ptr.Pointer()))
@@ -246,11 +190,7 @@ func (ptr *QRegularExpression) Pattern() string {
 }
 
 func (ptr *QRegularExpression) PatternErrorOffset() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::patternErrorOffset")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::patternErrorOffset")
 
 	if ptr.Pointer() != nil {
 		return int(C.QRegularExpression_PatternErrorOffset(ptr.Pointer()))
@@ -259,11 +199,7 @@ func (ptr *QRegularExpression) PatternErrorOffset() int {
 }
 
 func (ptr *QRegularExpression) PatternOptions() QRegularExpression__PatternOption {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::patternOptions")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::patternOptions")
 
 	if ptr.Pointer() != nil {
 		return QRegularExpression__PatternOption(C.QRegularExpression_PatternOptions(ptr.Pointer()))
@@ -272,11 +208,7 @@ func (ptr *QRegularExpression) PatternOptions() QRegularExpression__PatternOptio
 }
 
 func (ptr *QRegularExpression) SetPattern(pattern string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::setPattern")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::setPattern")
 
 	if ptr.Pointer() != nil {
 		C.QRegularExpression_SetPattern(ptr.Pointer(), C.CString(pattern))
@@ -284,11 +216,7 @@ func (ptr *QRegularExpression) SetPattern(pattern string) {
 }
 
 func (ptr *QRegularExpression) SetPatternOptions(options QRegularExpression__PatternOption) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::setPatternOptions")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::setPatternOptions")
 
 	if ptr.Pointer() != nil {
 		C.QRegularExpression_SetPatternOptions(ptr.Pointer(), C.int(options))
@@ -296,11 +224,7 @@ func (ptr *QRegularExpression) SetPatternOptions(options QRegularExpression__Pat
 }
 
 func (ptr *QRegularExpression) Swap(other QRegularExpression_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::swap")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::swap")
 
 	if ptr.Pointer() != nil {
 		C.QRegularExpression_Swap(ptr.Pointer(), PointerFromQRegularExpression(other))
@@ -308,11 +232,7 @@ func (ptr *QRegularExpression) Swap(other QRegularExpression_ITF) {
 }
 
 func (ptr *QRegularExpression) DestroyQRegularExpression() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QRegularExpression::~QRegularExpression")
-		}
-	}()
+	defer qt.Recovering("QRegularExpression::~QRegularExpression")
 
 	if ptr.Pointer() != nil {
 		C.QRegularExpression_DestroyQRegularExpression(ptr.Pointer())

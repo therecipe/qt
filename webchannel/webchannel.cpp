@@ -10,7 +10,8 @@
 
 class MyQWebChannel: public QWebChannel {
 public:
-void Signal_BlockUpdatesChanged(bool block){callbackQWebChannelBlockUpdatesChanged(this->objectName().toUtf8().data(), block);};
+	void Signal_BlockUpdatesChanged(bool block) { callbackQWebChannelBlockUpdatesChanged(this->objectName().toUtf8().data(), block); };
+protected:
 };
 
 int QWebChannel_BlockUpdates(void* ptr){
@@ -55,7 +56,8 @@ void QWebChannel_DestroyQWebChannel(void* ptr){
 
 class MyQWebChannelAbstractTransport: public QWebChannelAbstractTransport {
 public:
-void Signal_MessageReceived(const QJsonObject & message, QWebChannelAbstractTransport * transport){callbackQWebChannelAbstractTransportMessageReceived(this->objectName().toUtf8().data(), new QJsonObject(message), transport);};
+	void Signal_MessageReceived(const QJsonObject & message, QWebChannelAbstractTransport * transport) { callbackQWebChannelAbstractTransportMessageReceived(this->objectName().toUtf8().data(), new QJsonObject(message), transport); };
+protected:
 };
 
 void QWebChannelAbstractTransport_ConnectMessageReceived(void* ptr){

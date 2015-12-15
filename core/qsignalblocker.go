@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,11 +41,7 @@ func (ptr *QSignalBlocker) QSignalBlocker_PTR() *QSignalBlocker {
 }
 
 func (ptr *QSignalBlocker) Reblock() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalBlocker::reblock")
-		}
-	}()
+	defer qt.Recovering("QSignalBlocker::reblock")
 
 	if ptr.Pointer() != nil {
 		C.QSignalBlocker_Reblock(ptr.Pointer())
@@ -53,11 +49,7 @@ func (ptr *QSignalBlocker) Reblock() {
 }
 
 func (ptr *QSignalBlocker) Unblock() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalBlocker::unblock")
-		}
-	}()
+	defer qt.Recovering("QSignalBlocker::unblock")
 
 	if ptr.Pointer() != nil {
 		C.QSignalBlocker_Unblock(ptr.Pointer())
@@ -65,11 +57,7 @@ func (ptr *QSignalBlocker) Unblock() {
 }
 
 func (ptr *QSignalBlocker) DestroyQSignalBlocker() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalBlocker::~QSignalBlocker")
-		}
-	}()
+	defer qt.Recovering("QSignalBlocker::~QSignalBlocker")
 
 	if ptr.Pointer() != nil {
 		C.QSignalBlocker_DestroyQSignalBlocker(ptr.Pointer())

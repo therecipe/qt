@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQSignalMapperFromPointer(ptr unsafe.Pointer) *QSignalMapper {
 	var n = new(QSignalMapper)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSignalMapper_") {
-		n.SetObjectName("QSignalMapper_" + qt.RandomIdentifier())
+		n.SetObjectName("QSignalMapper_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,21 +37,13 @@ func (ptr *QSignalMapper) QSignalMapper_PTR() *QSignalMapper {
 }
 
 func NewQSignalMapper(parent QObject_ITF) *QSignalMapper {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::QSignalMapper")
-		}
-	}()
+	defer qt.Recovering("QSignalMapper::QSignalMapper")
 
 	return NewQSignalMapperFromPointer(C.QSignalMapper_NewQSignalMapper(PointerFromQObject(parent)))
 }
 
 func (ptr *QSignalMapper) Map() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::map")
-		}
-	}()
+	defer qt.Recovering("QSignalMapper::map")
 
 	if ptr.Pointer() != nil {
 		C.QSignalMapper_Map(ptr.Pointer())
@@ -60,11 +51,7 @@ func (ptr *QSignalMapper) Map() {
 }
 
 func (ptr *QSignalMapper) Map2(sender QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::map")
-		}
-	}()
+	defer qt.Recovering("QSignalMapper::map")
 
 	if ptr.Pointer() != nil {
 		C.QSignalMapper_Map2(ptr.Pointer(), PointerFromQObject(sender))
@@ -72,11 +59,7 @@ func (ptr *QSignalMapper) Map2(sender QObject_ITF) {
 }
 
 func (ptr *QSignalMapper) ConnectMapped(f func(i int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::mapped")
-		}
-	}()
+	defer qt.Recovering("connect QSignalMapper::mapped")
 
 	if ptr.Pointer() != nil {
 		C.QSignalMapper_ConnectMapped(ptr.Pointer())
@@ -85,11 +68,7 @@ func (ptr *QSignalMapper) ConnectMapped(f func(i int)) {
 }
 
 func (ptr *QSignalMapper) DisconnectMapped() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::mapped")
-		}
-	}()
+	defer qt.Recovering("disconnect QSignalMapper::mapped")
 
 	if ptr.Pointer() != nil {
 		C.QSignalMapper_DisconnectMapped(ptr.Pointer())
@@ -99,21 +78,17 @@ func (ptr *QSignalMapper) DisconnectMapped() {
 
 //export callbackQSignalMapperMapped
 func callbackQSignalMapperMapped(ptrName *C.char, i C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::mapped")
-		}
-	}()
+	defer qt.Recovering("callback QSignalMapper::mapped")
 
-	qt.GetSignal(C.GoString(ptrName), "mapped").(func(int))(int(i))
+	var signal = qt.GetSignal(C.GoString(ptrName), "mapped")
+	if signal != nil {
+		signal.(func(int))(int(i))
+	}
+
 }
 
 func (ptr *QSignalMapper) Mapping4(object QObject_ITF) *QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::mapping")
-		}
-	}()
+	defer qt.Recovering("QSignalMapper::mapping")
 
 	if ptr.Pointer() != nil {
 		return NewQObjectFromPointer(C.QSignalMapper_Mapping4(ptr.Pointer(), PointerFromQObject(object)))
@@ -122,11 +97,7 @@ func (ptr *QSignalMapper) Mapping4(object QObject_ITF) *QObject {
 }
 
 func (ptr *QSignalMapper) Mapping2(id string) *QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::mapping")
-		}
-	}()
+	defer qt.Recovering("QSignalMapper::mapping")
 
 	if ptr.Pointer() != nil {
 		return NewQObjectFromPointer(C.QSignalMapper_Mapping2(ptr.Pointer(), C.CString(id)))
@@ -135,11 +106,7 @@ func (ptr *QSignalMapper) Mapping2(id string) *QObject {
 }
 
 func (ptr *QSignalMapper) Mapping(id int) *QObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::mapping")
-		}
-	}()
+	defer qt.Recovering("QSignalMapper::mapping")
 
 	if ptr.Pointer() != nil {
 		return NewQObjectFromPointer(C.QSignalMapper_Mapping(ptr.Pointer(), C.int(id)))
@@ -148,11 +115,7 @@ func (ptr *QSignalMapper) Mapping(id int) *QObject {
 }
 
 func (ptr *QSignalMapper) RemoveMappings(sender QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::removeMappings")
-		}
-	}()
+	defer qt.Recovering("QSignalMapper::removeMappings")
 
 	if ptr.Pointer() != nil {
 		C.QSignalMapper_RemoveMappings(ptr.Pointer(), PointerFromQObject(sender))
@@ -160,11 +123,7 @@ func (ptr *QSignalMapper) RemoveMappings(sender QObject_ITF) {
 }
 
 func (ptr *QSignalMapper) SetMapping4(sender QObject_ITF, object QObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::setMapping")
-		}
-	}()
+	defer qt.Recovering("QSignalMapper::setMapping")
 
 	if ptr.Pointer() != nil {
 		C.QSignalMapper_SetMapping4(ptr.Pointer(), PointerFromQObject(sender), PointerFromQObject(object))
@@ -172,11 +131,7 @@ func (ptr *QSignalMapper) SetMapping4(sender QObject_ITF, object QObject_ITF) {
 }
 
 func (ptr *QSignalMapper) SetMapping2(sender QObject_ITF, text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::setMapping")
-		}
-	}()
+	defer qt.Recovering("QSignalMapper::setMapping")
 
 	if ptr.Pointer() != nil {
 		C.QSignalMapper_SetMapping2(ptr.Pointer(), PointerFromQObject(sender), C.CString(text))
@@ -184,11 +139,7 @@ func (ptr *QSignalMapper) SetMapping2(sender QObject_ITF, text string) {
 }
 
 func (ptr *QSignalMapper) SetMapping(sender QObject_ITF, id int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::setMapping")
-		}
-	}()
+	defer qt.Recovering("QSignalMapper::setMapping")
 
 	if ptr.Pointer() != nil {
 		C.QSignalMapper_SetMapping(ptr.Pointer(), PointerFromQObject(sender), C.int(id))
@@ -196,11 +147,7 @@ func (ptr *QSignalMapper) SetMapping(sender QObject_ITF, id int) {
 }
 
 func (ptr *QSignalMapper) DestroyQSignalMapper() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSignalMapper::~QSignalMapper")
-		}
-	}()
+	defer qt.Recovering("QSignalMapper::~QSignalMapper")
 
 	if ptr.Pointer() != nil {
 		C.QSignalMapper_DestroyQSignalMapper(ptr.Pointer())

@@ -5,7 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
+	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
 
@@ -29,7 +29,7 @@ func NewQToolButtonFromPointer(ptr unsafe.Pointer) *QToolButton {
 	var n = new(QToolButton)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QToolButton_") {
-		n.SetObjectName("QToolButton_" + qt.RandomIdentifier())
+		n.SetObjectName("QToolButton_" + qt.Identifier())
 	}
 	return n
 }
@@ -48,11 +48,7 @@ const (
 )
 
 func (ptr *QToolButton) ArrowType() core.Qt__ArrowType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::arrowType")
-		}
-	}()
+	defer qt.Recovering("QToolButton::arrowType")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ArrowType(C.QToolButton_ArrowType(ptr.Pointer()))
@@ -61,11 +57,7 @@ func (ptr *QToolButton) ArrowType() core.Qt__ArrowType {
 }
 
 func (ptr *QToolButton) AutoRaise() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::autoRaise")
-		}
-	}()
+	defer qt.Recovering("QToolButton::autoRaise")
 
 	if ptr.Pointer() != nil {
 		return C.QToolButton_AutoRaise(ptr.Pointer()) != 0
@@ -73,12 +65,39 @@ func (ptr *QToolButton) AutoRaise() bool {
 	return false
 }
 
+func (ptr *QToolButton) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QToolButton::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QToolButton::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQToolButtonPaintEvent
+func callbackQToolButtonPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QToolButton) PopupMode() QToolButton__ToolButtonPopupMode {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::popupMode")
-		}
-	}()
+	defer qt.Recovering("QToolButton::popupMode")
 
 	if ptr.Pointer() != nil {
 		return QToolButton__ToolButtonPopupMode(C.QToolButton_PopupMode(ptr.Pointer()))
@@ -87,11 +106,7 @@ func (ptr *QToolButton) PopupMode() QToolButton__ToolButtonPopupMode {
 }
 
 func (ptr *QToolButton) SetArrowType(ty core.Qt__ArrowType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::setArrowType")
-		}
-	}()
+	defer qt.Recovering("QToolButton::setArrowType")
 
 	if ptr.Pointer() != nil {
 		C.QToolButton_SetArrowType(ptr.Pointer(), C.int(ty))
@@ -99,11 +114,7 @@ func (ptr *QToolButton) SetArrowType(ty core.Qt__ArrowType) {
 }
 
 func (ptr *QToolButton) SetAutoRaise(enable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::setAutoRaise")
-		}
-	}()
+	defer qt.Recovering("QToolButton::setAutoRaise")
 
 	if ptr.Pointer() != nil {
 		C.QToolButton_SetAutoRaise(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
@@ -111,11 +122,7 @@ func (ptr *QToolButton) SetAutoRaise(enable bool) {
 }
 
 func (ptr *QToolButton) SetPopupMode(mode QToolButton__ToolButtonPopupMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::setPopupMode")
-		}
-	}()
+	defer qt.Recovering("QToolButton::setPopupMode")
 
 	if ptr.Pointer() != nil {
 		C.QToolButton_SetPopupMode(ptr.Pointer(), C.int(mode))
@@ -123,11 +130,7 @@ func (ptr *QToolButton) SetPopupMode(mode QToolButton__ToolButtonPopupMode) {
 }
 
 func (ptr *QToolButton) SetToolButtonStyle(style core.Qt__ToolButtonStyle) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::setToolButtonStyle")
-		}
-	}()
+	defer qt.Recovering("QToolButton::setToolButtonStyle")
 
 	if ptr.Pointer() != nil {
 		C.QToolButton_SetToolButtonStyle(ptr.Pointer(), C.int(style))
@@ -135,11 +138,7 @@ func (ptr *QToolButton) SetToolButtonStyle(style core.Qt__ToolButtonStyle) {
 }
 
 func (ptr *QToolButton) ToolButtonStyle() core.Qt__ToolButtonStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::toolButtonStyle")
-		}
-	}()
+	defer qt.Recovering("QToolButton::toolButtonStyle")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ToolButtonStyle(C.QToolButton_ToolButtonStyle(ptr.Pointer()))
@@ -148,21 +147,137 @@ func (ptr *QToolButton) ToolButtonStyle() core.Qt__ToolButtonStyle {
 }
 
 func NewQToolButton(parent QWidget_ITF) *QToolButton {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::QToolButton")
-		}
-	}()
+	defer qt.Recovering("QToolButton::QToolButton")
 
 	return NewQToolButtonFromPointer(C.QToolButton_NewQToolButton(PointerFromQWidget(parent)))
 }
 
+func (ptr *QToolButton) ConnectActionEvent(f func(event *gui.QActionEvent)) {
+	defer qt.Recovering("connect QToolButton::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "actionEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectActionEvent() {
+	defer qt.Recovering("disconnect QToolButton::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "actionEvent")
+	}
+}
+
+//export callbackQToolButtonActionEvent
+func callbackQToolButtonActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::actionEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "actionEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectChangeEvent(f func(e *core.QEvent)) {
+	defer qt.Recovering("connect QToolButton::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QToolButton::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQToolButtonChangeEvent
+func callbackQToolButtonChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectEnterEvent(f func(e *core.QEvent)) {
+	defer qt.Recovering("connect QToolButton::enterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "enterEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectEnterEvent() {
+	defer qt.Recovering("disconnect QToolButton::enterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "enterEvent")
+	}
+}
+
+//export callbackQToolButtonEnterEvent
+func callbackQToolButtonEnterEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::enterEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "enterEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectLeaveEvent(f func(e *core.QEvent)) {
+	defer qt.Recovering("connect QToolButton::leaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "leaveEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectLeaveEvent() {
+	defer qt.Recovering("disconnect QToolButton::leaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "leaveEvent")
+	}
+}
+
+//export callbackQToolButtonLeaveEvent
+func callbackQToolButtonLeaveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::leaveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "leaveEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QToolButton) Menu() *QMenu {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::menu")
-		}
-	}()
+	defer qt.Recovering("QToolButton::menu")
 
 	if ptr.Pointer() != nil {
 		return NewQMenuFromPointer(C.QToolButton_Menu(ptr.Pointer()))
@@ -170,12 +285,101 @@ func (ptr *QToolButton) Menu() *QMenu {
 	return nil
 }
 
+func (ptr *QToolButton) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QToolButton::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QToolButton::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQToolButtonMousePressEvent
+func callbackQToolButtonMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::mousePressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QToolButton::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectMouseReleaseEvent() {
+	defer qt.Recovering("disconnect QToolButton::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+	}
+}
+
+//export callbackQToolButtonMouseReleaseEvent
+func callbackQToolButtonMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::mouseReleaseEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectNextCheckState(f func()) {
+	defer qt.Recovering("connect QToolButton::nextCheckState")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "nextCheckState", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectNextCheckState() {
+	defer qt.Recovering("disconnect QToolButton::nextCheckState")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "nextCheckState")
+	}
+}
+
+//export callbackQToolButtonNextCheckState
+func callbackQToolButtonNextCheckState(ptrName *C.char) bool {
+	defer qt.Recovering("callback QToolButton::nextCheckState")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "nextCheckState")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QToolButton) SetMenu(menu QMenu_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::setMenu")
-		}
-	}()
+	defer qt.Recovering("QToolButton::setMenu")
 
 	if ptr.Pointer() != nil {
 		C.QToolButton_SetMenu(ptr.Pointer(), PointerFromQMenu(menu))
@@ -183,23 +387,46 @@ func (ptr *QToolButton) SetMenu(menu QMenu_ITF) {
 }
 
 func (ptr *QToolButton) ShowMenu() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::showMenu")
-		}
-	}()
+	defer qt.Recovering("QToolButton::showMenu")
 
 	if ptr.Pointer() != nil {
 		C.QToolButton_ShowMenu(ptr.Pointer())
 	}
 }
 
+func (ptr *QToolButton) ConnectTimerEvent(f func(e *core.QTimerEvent)) {
+	defer qt.Recovering("connect QToolButton::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QToolButton::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQToolButtonTimerEvent
+func callbackQToolButtonTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::timerEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
+	if signal != nil {
+		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QToolButton) ConnectTriggered(f func(action *QAction)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::triggered")
-		}
-	}()
+	defer qt.Recovering("connect QToolButton::triggered")
 
 	if ptr.Pointer() != nil {
 		C.QToolButton_ConnectTriggered(ptr.Pointer())
@@ -208,11 +435,7 @@ func (ptr *QToolButton) ConnectTriggered(f func(action *QAction)) {
 }
 
 func (ptr *QToolButton) DisconnectTriggered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::triggered")
-		}
-	}()
+	defer qt.Recovering("disconnect QToolButton::triggered")
 
 	if ptr.Pointer() != nil {
 		C.QToolButton_DisconnectTriggered(ptr.Pointer())
@@ -222,21 +445,17 @@ func (ptr *QToolButton) DisconnectTriggered() {
 
 //export callbackQToolButtonTriggered
 func callbackQToolButtonTriggered(ptrName *C.char, action unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::triggered")
-		}
-	}()
+	defer qt.Recovering("callback QToolButton::triggered")
 
-	qt.GetSignal(C.GoString(ptrName), "triggered").(func(*QAction))(NewQActionFromPointer(action))
+	var signal = qt.GetSignal(C.GoString(ptrName), "triggered")
+	if signal != nil {
+		signal.(func(*QAction))(NewQActionFromPointer(action))
+	}
+
 }
 
 func (ptr *QToolButton) DestroyQToolButton() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolButton::~QToolButton")
-		}
-	}()
+	defer qt.Recovering("QToolButton::~QToolButton")
 
 	if ptr.Pointer() != nil {
 		C.QToolButton_DestroyQToolButton(ptr.Pointer())

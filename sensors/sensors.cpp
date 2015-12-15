@@ -72,7 +72,9 @@
 
 class MyQAccelerometer: public QAccelerometer {
 public:
-void Signal_AccelerationModeChanged(QAccelerometer::AccelerationMode accelerationMode){callbackQAccelerometerAccelerationModeChanged(this->objectName().toUtf8().data(), accelerationMode);};
+	MyQAccelerometer(QObject *parent) : QAccelerometer(parent) {};
+	void Signal_AccelerationModeChanged(QAccelerometer::AccelerationMode accelerationMode) { callbackQAccelerometerAccelerationModeChanged(this->objectName().toUtf8().data(), accelerationMode); };
+protected:
 };
 
 int QAccelerometer_AccelerationMode(void* ptr){
@@ -84,7 +86,7 @@ void* QAccelerometer_Reading(void* ptr){
 }
 
 void* QAccelerometer_NewQAccelerometer(void* parent){
-	return new QAccelerometer(static_cast<QObject*>(parent));
+	return new MyQAccelerometer(static_cast<QObject*>(parent));
 }
 
 void QAccelerometer_ConnectAccelerationModeChanged(void* ptr){
@@ -103,17 +105,9 @@ void QAccelerometer_DestroyQAccelerometer(void* ptr){
 	static_cast<QAccelerometer*>(ptr)->~QAccelerometer();
 }
 
-class MyQAccelerometerFilter: public QAccelerometerFilter {
-public:
-};
-
 int QAccelerometerFilter_Filter(void* ptr, void* reading){
 	return static_cast<QAccelerometerFilter*>(ptr)->filter(static_cast<QAccelerometerReading*>(reading));
 }
-
-class MyQAccelerometerReading: public QAccelerometerReading {
-public:
-};
 
 double QAccelerometerReading_X(void* ptr){
 	return static_cast<double>(static_cast<QAccelerometerReading*>(ptr)->x());
@@ -139,10 +133,6 @@ void QAccelerometerReading_SetZ(void* ptr, double z){
 	static_cast<QAccelerometerReading*>(ptr)->setZ(static_cast<qreal>(z));
 }
 
-class MyQAltimeter: public QAltimeter {
-public:
-};
-
 void* QAltimeter_Reading(void* ptr){
 	return static_cast<QAltimeter*>(ptr)->reading();
 }
@@ -155,17 +145,9 @@ void QAltimeter_DestroyQAltimeter(void* ptr){
 	static_cast<QAltimeter*>(ptr)->~QAltimeter();
 }
 
-class MyQAltimeterFilter: public QAltimeterFilter {
-public:
-};
-
 int QAltimeterFilter_Filter(void* ptr, void* reading){
 	return static_cast<QAltimeterFilter*>(ptr)->filter(static_cast<QAltimeterReading*>(reading));
 }
-
-class MyQAltimeterReading: public QAltimeterReading {
-public:
-};
 
 double QAltimeterReading_Altitude(void* ptr){
 	return static_cast<double>(static_cast<QAltimeterReading*>(ptr)->altitude());
@@ -175,17 +157,9 @@ void QAltimeterReading_SetAltitude(void* ptr, double altitude){
 	static_cast<QAltimeterReading*>(ptr)->setAltitude(static_cast<qreal>(altitude));
 }
 
-class MyQAmbientLightFilter: public QAmbientLightFilter {
-public:
-};
-
 int QAmbientLightFilter_Filter(void* ptr, void* reading){
 	return static_cast<QAmbientLightFilter*>(ptr)->filter(static_cast<QAmbientLightReading*>(reading));
 }
-
-class MyQAmbientLightReading: public QAmbientLightReading {
-public:
-};
 
 int QAmbientLightReading_LightLevel(void* ptr){
 	return static_cast<QAmbientLightReading*>(ptr)->lightLevel();
@@ -197,6 +171,8 @@ void QAmbientLightReading_SetLightLevel(void* ptr, int lightLevel){
 
 class MyQAmbientLightSensor: public QAmbientLightSensor {
 public:
+	MyQAmbientLightSensor(QObject *parent) : QAmbientLightSensor(parent) {};
+protected:
 };
 
 void* QAmbientLightSensor_Reading(void* ptr){
@@ -204,24 +180,16 @@ void* QAmbientLightSensor_Reading(void* ptr){
 }
 
 void* QAmbientLightSensor_NewQAmbientLightSensor(void* parent){
-	return new QAmbientLightSensor(static_cast<QObject*>(parent));
+	return new MyQAmbientLightSensor(static_cast<QObject*>(parent));
 }
 
 void QAmbientLightSensor_DestroyQAmbientLightSensor(void* ptr){
 	static_cast<QAmbientLightSensor*>(ptr)->~QAmbientLightSensor();
 }
 
-class MyQAmbientTemperatureFilter: public QAmbientTemperatureFilter {
-public:
-};
-
 int QAmbientTemperatureFilter_Filter(void* ptr, void* reading){
 	return static_cast<QAmbientTemperatureFilter*>(ptr)->filter(static_cast<QAmbientTemperatureReading*>(reading));
 }
-
-class MyQAmbientTemperatureReading: public QAmbientTemperatureReading {
-public:
-};
 
 double QAmbientTemperatureReading_Temperature(void* ptr){
 	return static_cast<double>(static_cast<QAmbientTemperatureReading*>(ptr)->temperature());
@@ -230,10 +198,6 @@ double QAmbientTemperatureReading_Temperature(void* ptr){
 void QAmbientTemperatureReading_SetTemperature(void* ptr, double temperature){
 	static_cast<QAmbientTemperatureReading*>(ptr)->setTemperature(static_cast<qreal>(temperature));
 }
-
-class MyQAmbientTemperatureSensor: public QAmbientTemperatureSensor {
-public:
-};
 
 void* QAmbientTemperatureSensor_Reading(void* ptr){
 	return static_cast<QAmbientTemperatureSensor*>(ptr)->reading();
@@ -249,6 +213,8 @@ void QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(void* ptr){
 
 class MyQCompass: public QCompass {
 public:
+	MyQCompass(QObject *parent) : QCompass(parent) {};
+protected:
 };
 
 void* QCompass_Reading(void* ptr){
@@ -256,24 +222,16 @@ void* QCompass_Reading(void* ptr){
 }
 
 void* QCompass_NewQCompass(void* parent){
-	return new QCompass(static_cast<QObject*>(parent));
+	return new MyQCompass(static_cast<QObject*>(parent));
 }
 
 void QCompass_DestroyQCompass(void* ptr){
 	static_cast<QCompass*>(ptr)->~QCompass();
 }
 
-class MyQCompassFilter: public QCompassFilter {
-public:
-};
-
 int QCompassFilter_Filter(void* ptr, void* reading){
 	return static_cast<QCompassFilter*>(ptr)->filter(static_cast<QCompassReading*>(reading));
 }
-
-class MyQCompassReading: public QCompassReading {
-public:
-};
 
 double QCompassReading_Azimuth(void* ptr){
 	return static_cast<double>(static_cast<QCompassReading*>(ptr)->azimuth());
@@ -291,17 +249,9 @@ void QCompassReading_SetCalibrationLevel(void* ptr, double calibrationLevel){
 	static_cast<QCompassReading*>(ptr)->setCalibrationLevel(static_cast<qreal>(calibrationLevel));
 }
 
-class MyQDistanceFilter: public QDistanceFilter {
-public:
-};
-
 int QDistanceFilter_Filter(void* ptr, void* reading){
 	return static_cast<QDistanceFilter*>(ptr)->filter(static_cast<QDistanceReading*>(reading));
 }
-
-class MyQDistanceReading: public QDistanceReading {
-public:
-};
 
 double QDistanceReading_Distance(void* ptr){
 	return static_cast<double>(static_cast<QDistanceReading*>(ptr)->distance());
@@ -310,10 +260,6 @@ double QDistanceReading_Distance(void* ptr){
 void QDistanceReading_SetDistance(void* ptr, double distance){
 	static_cast<QDistanceReading*>(ptr)->setDistance(static_cast<qreal>(distance));
 }
-
-class MyQDistanceSensor: public QDistanceSensor {
-public:
-};
 
 void* QDistanceSensor_Reading(void* ptr){
 	return static_cast<QDistanceSensor*>(ptr)->reading();
@@ -329,6 +275,8 @@ void QDistanceSensor_DestroyQDistanceSensor(void* ptr){
 
 class MyQGyroscope: public QGyroscope {
 public:
+	MyQGyroscope(QObject *parent) : QGyroscope(parent) {};
+protected:
 };
 
 void* QGyroscope_Reading(void* ptr){
@@ -336,24 +284,16 @@ void* QGyroscope_Reading(void* ptr){
 }
 
 void* QGyroscope_NewQGyroscope(void* parent){
-	return new QGyroscope(static_cast<QObject*>(parent));
+	return new MyQGyroscope(static_cast<QObject*>(parent));
 }
 
 void QGyroscope_DestroyQGyroscope(void* ptr){
 	static_cast<QGyroscope*>(ptr)->~QGyroscope();
 }
 
-class MyQGyroscopeFilter: public QGyroscopeFilter {
-public:
-};
-
 int QGyroscopeFilter_Filter(void* ptr, void* reading){
 	return static_cast<QGyroscopeFilter*>(ptr)->filter(static_cast<QGyroscopeReading*>(reading));
 }
-
-class MyQGyroscopeReading: public QGyroscopeReading {
-public:
-};
 
 double QGyroscopeReading_X(void* ptr){
 	return static_cast<double>(static_cast<QGyroscopeReading*>(ptr)->x());
@@ -379,17 +319,9 @@ void QGyroscopeReading_SetZ(void* ptr, double z){
 	static_cast<QGyroscopeReading*>(ptr)->setZ(static_cast<qreal>(z));
 }
 
-class MyQHolsterFilter: public QHolsterFilter {
-public:
-};
-
 int QHolsterFilter_Filter(void* ptr, void* reading){
 	return static_cast<QHolsterFilter*>(ptr)->filter(static_cast<QHolsterReading*>(reading));
 }
-
-class MyQHolsterReading: public QHolsterReading {
-public:
-};
 
 int QHolsterReading_Holstered(void* ptr){
 	return static_cast<QHolsterReading*>(ptr)->holstered();
@@ -398,10 +330,6 @@ int QHolsterReading_Holstered(void* ptr){
 void QHolsterReading_SetHolstered(void* ptr, int holstered){
 	static_cast<QHolsterReading*>(ptr)->setHolstered(holstered != 0);
 }
-
-class MyQHolsterSensor: public QHolsterSensor {
-public:
-};
 
 void* QHolsterSensor_Reading(void* ptr){
 	return static_cast<QHolsterSensor*>(ptr)->reading();
@@ -415,17 +343,9 @@ void QHolsterSensor_DestroyQHolsterSensor(void* ptr){
 	static_cast<QHolsterSensor*>(ptr)->~QHolsterSensor();
 }
 
-class MyQIRProximityFilter: public QIRProximityFilter {
-public:
-};
-
 int QIRProximityFilter_Filter(void* ptr, void* reading){
 	return static_cast<QIRProximityFilter*>(ptr)->filter(static_cast<QIRProximityReading*>(reading));
 }
-
-class MyQIRProximityReading: public QIRProximityReading {
-public:
-};
 
 double QIRProximityReading_Reflectance(void* ptr){
 	return static_cast<double>(static_cast<QIRProximityReading*>(ptr)->reflectance());
@@ -437,6 +357,8 @@ void QIRProximityReading_SetReflectance(void* ptr, double reflectance){
 
 class MyQIRProximitySensor: public QIRProximitySensor {
 public:
+	MyQIRProximitySensor(QObject *parent) : QIRProximitySensor(parent) {};
+protected:
 };
 
 void* QIRProximitySensor_Reading(void* ptr){
@@ -444,24 +366,16 @@ void* QIRProximitySensor_Reading(void* ptr){
 }
 
 void* QIRProximitySensor_NewQIRProximitySensor(void* parent){
-	return new QIRProximitySensor(static_cast<QObject*>(parent));
+	return new MyQIRProximitySensor(static_cast<QObject*>(parent));
 }
 
 void QIRProximitySensor_DestroyQIRProximitySensor(void* ptr){
 	static_cast<QIRProximitySensor*>(ptr)->~QIRProximitySensor();
 }
 
-class MyQLightFilter: public QLightFilter {
-public:
-};
-
 int QLightFilter_Filter(void* ptr, void* reading){
 	return static_cast<QLightFilter*>(ptr)->filter(static_cast<QLightReading*>(reading));
 }
-
-class MyQLightReading: public QLightReading {
-public:
-};
 
 double QLightReading_Lux(void* ptr){
 	return static_cast<double>(static_cast<QLightReading*>(ptr)->lux());
@@ -473,6 +387,8 @@ void QLightReading_SetLux(void* ptr, double lux){
 
 class MyQLightSensor: public QLightSensor {
 public:
+	MyQLightSensor(QObject *parent) : QLightSensor(parent) {};
+protected:
 };
 
 double QLightSensor_FieldOfView(void* ptr){
@@ -484,7 +400,7 @@ void* QLightSensor_Reading(void* ptr){
 }
 
 void* QLightSensor_NewQLightSensor(void* parent){
-	return new QLightSensor(static_cast<QObject*>(parent));
+	return new MyQLightSensor(static_cast<QObject*>(parent));
 }
 
 void QLightSensor_SetFieldOfView(void* ptr, double fieldOfView){
@@ -497,7 +413,9 @@ void QLightSensor_DestroyQLightSensor(void* ptr){
 
 class MyQMagnetometer: public QMagnetometer {
 public:
-void Signal_ReturnGeoValuesChanged(bool returnGeoValues){callbackQMagnetometerReturnGeoValuesChanged(this->objectName().toUtf8().data(), returnGeoValues);};
+	MyQMagnetometer(QObject *parent) : QMagnetometer(parent) {};
+	void Signal_ReturnGeoValuesChanged(bool returnGeoValues) { callbackQMagnetometerReturnGeoValuesChanged(this->objectName().toUtf8().data(), returnGeoValues); };
+protected:
 };
 
 void* QMagnetometer_Reading(void* ptr){
@@ -513,7 +431,7 @@ void QMagnetometer_SetReturnGeoValues(void* ptr, int returnGeoValues){
 }
 
 void* QMagnetometer_NewQMagnetometer(void* parent){
-	return new QMagnetometer(static_cast<QObject*>(parent));
+	return new MyQMagnetometer(static_cast<QObject*>(parent));
 }
 
 void QMagnetometer_ConnectReturnGeoValuesChanged(void* ptr){
@@ -528,17 +446,9 @@ void QMagnetometer_DestroyQMagnetometer(void* ptr){
 	static_cast<QMagnetometer*>(ptr)->~QMagnetometer();
 }
 
-class MyQMagnetometerFilter: public QMagnetometerFilter {
-public:
-};
-
 int QMagnetometerFilter_Filter(void* ptr, void* reading){
 	return static_cast<QMagnetometerFilter*>(ptr)->filter(static_cast<QMagnetometerReading*>(reading));
 }
-
-class MyQMagnetometerReading: public QMagnetometerReading {
-public:
-};
 
 double QMagnetometerReading_CalibrationLevel(void* ptr){
 	return static_cast<double>(static_cast<QMagnetometerReading*>(ptr)->calibrationLevel());
@@ -572,17 +482,9 @@ void QMagnetometerReading_SetZ(void* ptr, double z){
 	static_cast<QMagnetometerReading*>(ptr)->setZ(static_cast<qreal>(z));
 }
 
-class MyQOrientationFilter: public QOrientationFilter {
-public:
-};
-
 int QOrientationFilter_Filter(void* ptr, void* reading){
 	return static_cast<QOrientationFilter*>(ptr)->filter(static_cast<QOrientationReading*>(reading));
 }
-
-class MyQOrientationReading: public QOrientationReading {
-public:
-};
 
 int QOrientationReading_Orientation(void* ptr){
 	return static_cast<QOrientationReading*>(ptr)->orientation();
@@ -594,6 +496,8 @@ void QOrientationReading_SetOrientation(void* ptr, int orientation){
 
 class MyQOrientationSensor: public QOrientationSensor {
 public:
+	MyQOrientationSensor(QObject *parent) : QOrientationSensor(parent) {};
+protected:
 };
 
 void* QOrientationSensor_Reading(void* ptr){
@@ -601,24 +505,16 @@ void* QOrientationSensor_Reading(void* ptr){
 }
 
 void* QOrientationSensor_NewQOrientationSensor(void* parent){
-	return new QOrientationSensor(static_cast<QObject*>(parent));
+	return new MyQOrientationSensor(static_cast<QObject*>(parent));
 }
 
 void QOrientationSensor_DestroyQOrientationSensor(void* ptr){
 	static_cast<QOrientationSensor*>(ptr)->~QOrientationSensor();
 }
 
-class MyQPressureFilter: public QPressureFilter {
-public:
-};
-
 int QPressureFilter_Filter(void* ptr, void* reading){
 	return static_cast<QPressureFilter*>(ptr)->filter(static_cast<QPressureReading*>(reading));
 }
-
-class MyQPressureReading: public QPressureReading {
-public:
-};
 
 double QPressureReading_Pressure(void* ptr){
 	return static_cast<double>(static_cast<QPressureReading*>(ptr)->pressure());
@@ -636,10 +532,6 @@ void QPressureReading_SetTemperature(void* ptr, double temperature){
 	static_cast<QPressureReading*>(ptr)->setTemperature(static_cast<qreal>(temperature));
 }
 
-class MyQPressureSensor: public QPressureSensor {
-public:
-};
-
 void* QPressureSensor_Reading(void* ptr){
 	return static_cast<QPressureSensor*>(ptr)->reading();
 }
@@ -652,17 +544,9 @@ void QPressureSensor_DestroyQPressureSensor(void* ptr){
 	static_cast<QPressureSensor*>(ptr)->~QPressureSensor();
 }
 
-class MyQProximityFilter: public QProximityFilter {
-public:
-};
-
 int QProximityFilter_Filter(void* ptr, void* reading){
 	return static_cast<QProximityFilter*>(ptr)->filter(static_cast<QProximityReading*>(reading));
 }
-
-class MyQProximityReading: public QProximityReading {
-public:
-};
 
 int QProximityReading_Close(void* ptr){
 	return static_cast<QProximityReading*>(ptr)->close();
@@ -674,6 +558,8 @@ void QProximityReading_SetClose(void* ptr, int close){
 
 class MyQProximitySensor: public QProximitySensor {
 public:
+	MyQProximitySensor(QObject *parent) : QProximitySensor(parent) {};
+protected:
 };
 
 void* QProximitySensor_Reading(void* ptr){
@@ -681,24 +567,16 @@ void* QProximitySensor_Reading(void* ptr){
 }
 
 void* QProximitySensor_NewQProximitySensor(void* parent){
-	return new QProximitySensor(static_cast<QObject*>(parent));
+	return new MyQProximitySensor(static_cast<QObject*>(parent));
 }
 
 void QProximitySensor_DestroyQProximitySensor(void* ptr){
 	static_cast<QProximitySensor*>(ptr)->~QProximitySensor();
 }
 
-class MyQRotationFilter: public QRotationFilter {
-public:
-};
-
 int QRotationFilter_Filter(void* ptr, void* reading){
 	return static_cast<QRotationFilter*>(ptr)->filter(static_cast<QRotationReading*>(reading));
 }
-
-class MyQRotationReading: public QRotationReading {
-public:
-};
 
 double QRotationReading_X(void* ptr){
 	return static_cast<double>(static_cast<QRotationReading*>(ptr)->x());
@@ -718,7 +596,9 @@ void QRotationReading_SetFromEuler(void* ptr, double x, double y, double z){
 
 class MyQRotationSensor: public QRotationSensor {
 public:
-void Signal_HasZChanged(bool hasZ){callbackQRotationSensorHasZChanged(this->objectName().toUtf8().data(), hasZ);};
+	MyQRotationSensor(QObject *parent) : QRotationSensor(parent) {};
+	void Signal_HasZChanged(bool hasZ) { callbackQRotationSensorHasZChanged(this->objectName().toUtf8().data(), hasZ); };
+protected:
 };
 
 int QRotationSensor_HasZ(void* ptr){
@@ -730,7 +610,7 @@ void* QRotationSensor_Reading(void* ptr){
 }
 
 void* QRotationSensor_NewQRotationSensor(void* parent){
-	return new QRotationSensor(static_cast<QObject*>(parent));
+	return new MyQRotationSensor(static_cast<QObject*>(parent));
 }
 
 void QRotationSensor_ConnectHasZChanged(void* ptr){
@@ -751,20 +631,22 @@ void QRotationSensor_DestroyQRotationSensor(void* ptr){
 
 class MyQSensor: public QSensor {
 public:
-void Signal_ActiveChanged(){callbackQSensorActiveChanged(this->objectName().toUtf8().data());};
-void Signal_AlwaysOnChanged(){callbackQSensorAlwaysOnChanged(this->objectName().toUtf8().data());};
-void Signal_AvailableSensorsChanged(){callbackQSensorAvailableSensorsChanged(this->objectName().toUtf8().data());};
-void Signal_AxesOrientationModeChanged(QSensor::AxesOrientationMode axesOrientationMode){callbackQSensorAxesOrientationModeChanged(this->objectName().toUtf8().data(), axesOrientationMode);};
-void Signal_BufferSizeChanged(int bufferSize){callbackQSensorBufferSizeChanged(this->objectName().toUtf8().data(), bufferSize);};
-void Signal_BusyChanged(){callbackQSensorBusyChanged(this->objectName().toUtf8().data());};
-void Signal_CurrentOrientationChanged(int currentOrientation){callbackQSensorCurrentOrientationChanged(this->objectName().toUtf8().data(), currentOrientation);};
-void Signal_DataRateChanged(){callbackQSensorDataRateChanged(this->objectName().toUtf8().data());};
-void Signal_EfficientBufferSizeChanged(int efficientBufferSize){callbackQSensorEfficientBufferSizeChanged(this->objectName().toUtf8().data(), efficientBufferSize);};
-void Signal_MaxBufferSizeChanged(int maxBufferSize){callbackQSensorMaxBufferSizeChanged(this->objectName().toUtf8().data(), maxBufferSize);};
-void Signal_ReadingChanged(){callbackQSensorReadingChanged(this->objectName().toUtf8().data());};
-void Signal_SensorError(int error){callbackQSensorSensorError(this->objectName().toUtf8().data(), error);};
-void Signal_SkipDuplicatesChanged(bool skipDuplicates){callbackQSensorSkipDuplicatesChanged(this->objectName().toUtf8().data(), skipDuplicates);};
-void Signal_UserOrientationChanged(int userOrientation){callbackQSensorUserOrientationChanged(this->objectName().toUtf8().data(), userOrientation);};
+	MyQSensor(const QByteArray &type, QObject *parent) : QSensor(type, parent) {};
+	void Signal_ActiveChanged() { callbackQSensorActiveChanged(this->objectName().toUtf8().data()); };
+	void Signal_AlwaysOnChanged() { callbackQSensorAlwaysOnChanged(this->objectName().toUtf8().data()); };
+	void Signal_AvailableSensorsChanged() { callbackQSensorAvailableSensorsChanged(this->objectName().toUtf8().data()); };
+	void Signal_AxesOrientationModeChanged(QSensor::AxesOrientationMode axesOrientationMode) { callbackQSensorAxesOrientationModeChanged(this->objectName().toUtf8().data(), axesOrientationMode); };
+	void Signal_BufferSizeChanged(int bufferSize) { callbackQSensorBufferSizeChanged(this->objectName().toUtf8().data(), bufferSize); };
+	void Signal_BusyChanged() { callbackQSensorBusyChanged(this->objectName().toUtf8().data()); };
+	void Signal_CurrentOrientationChanged(int currentOrientation) { callbackQSensorCurrentOrientationChanged(this->objectName().toUtf8().data(), currentOrientation); };
+	void Signal_DataRateChanged() { callbackQSensorDataRateChanged(this->objectName().toUtf8().data()); };
+	void Signal_EfficientBufferSizeChanged(int efficientBufferSize) { callbackQSensorEfficientBufferSizeChanged(this->objectName().toUtf8().data(), efficientBufferSize); };
+	void Signal_MaxBufferSizeChanged(int maxBufferSize) { callbackQSensorMaxBufferSizeChanged(this->objectName().toUtf8().data(), maxBufferSize); };
+	void Signal_ReadingChanged() { callbackQSensorReadingChanged(this->objectName().toUtf8().data()); };
+	void Signal_SensorError(int error) { callbackQSensorSensorError(this->objectName().toUtf8().data(), error); };
+	void Signal_SkipDuplicatesChanged(bool skipDuplicates) { callbackQSensorSkipDuplicatesChanged(this->objectName().toUtf8().data(), skipDuplicates); };
+	void Signal_UserOrientationChanged(int userOrientation) { callbackQSensorUserOrientationChanged(this->objectName().toUtf8().data(), userOrientation); };
+protected:
 };
 
 int QSensor_AxesOrientationMode(void* ptr){
@@ -872,7 +754,7 @@ int QSensor_UserOrientation(void* ptr){
 }
 
 void* QSensor_NewQSensor(void* ty, void* parent){
-	return new QSensor(*static_cast<QByteArray*>(ty), static_cast<QObject*>(parent));
+	return new MyQSensor(*static_cast<QByteArray*>(ty), static_cast<QObject*>(parent));
 }
 
 void QSensor_ConnectActiveChanged(void* ptr){
@@ -1037,6 +919,7 @@ void QSensor_DestroyQSensor(void* ptr){
 
 class MyQSensorBackend: public QSensorBackend {
 public:
+protected:
 };
 
 void QSensorBackend_AddDataRate(void* ptr, double min, double max){
@@ -1091,17 +974,9 @@ void QSensorBackend_Stop(void* ptr){
 	static_cast<QSensorBackend*>(ptr)->stop();
 }
 
-class MyQSensorBackendFactory: public QSensorBackendFactory {
-public:
-};
-
 void* QSensorBackendFactory_CreateBackend(void* ptr, void* sensor){
 	return static_cast<QSensorBackendFactory*>(ptr)->createBackend(static_cast<QSensor*>(sensor));
 }
-
-class MyQSensorChangesInterface: public QSensorChangesInterface {
-public:
-};
 
 void QSensorChangesInterface_SensorsChanged(void* ptr){
 	static_cast<QSensorChangesInterface*>(ptr)->sensorsChanged();
@@ -1109,14 +984,27 @@ void QSensorChangesInterface_SensorsChanged(void* ptr){
 
 class MyQSensorFilter: public QSensorFilter {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 int QSensorFilter_Filter(void* ptr, void* reading){
 	return static_cast<QSensorFilter*>(ptr)->filter(static_cast<QSensorReading*>(reading));
 }
 
+char* QSensorFilter_ObjectNameAbs(void* ptr){
+	return static_cast<MyQSensorFilter*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QSensorFilter_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQSensorFilter*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQSensorGesture: public QSensorGesture {
 public:
+protected:
 };
 
 void* QSensorGesture_NewQSensorGesture(char* ids, void* parent){
@@ -1153,7 +1041,8 @@ void QSensorGesture_DestroyQSensorGesture(void* ptr){
 
 class MyQSensorGestureManager: public QSensorGestureManager {
 public:
-void Signal_NewSensorGestureAvailable(){callbackQSensorGestureManagerNewSensorGestureAvailable(this->objectName().toUtf8().data());};
+	void Signal_NewSensorGestureAvailable() { callbackQSensorGestureManagerNewSensorGestureAvailable(this->objectName().toUtf8().data()); };
+protected:
 };
 
 void* QSensorGestureManager_NewQSensorGestureManager(void* parent){
@@ -1190,6 +1079,10 @@ void QSensorGestureManager_DestroyQSensorGestureManager(void* ptr){
 
 class MyQSensorGesturePluginInterface: public QSensorGesturePluginInterface {
 public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+protected:
 };
 
 char* QSensorGesturePluginInterface_Name(void* ptr){
@@ -1204,8 +1097,17 @@ void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(void* pt
 	static_cast<QSensorGesturePluginInterface*>(ptr)->~QSensorGesturePluginInterface();
 }
 
+char* QSensorGesturePluginInterface_ObjectNameAbs(void* ptr){
+	return static_cast<MyQSensorGesturePluginInterface*>(ptr)->objectNameAbs().toUtf8().data();
+}
+
+void QSensorGesturePluginInterface_SetObjectNameAbs(void* ptr, char* name){
+	static_cast<MyQSensorGesturePluginInterface*>(ptr)->setObjectNameAbs(QString(name));
+}
+
 class MyQSensorGestureRecognizer: public QSensorGestureRecognizer {
 public:
+protected:
 };
 
 void QSensorGestureRecognizer_CreateBackend(void* ptr){
@@ -1236,10 +1138,6 @@ void QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(void* ptr){
 	static_cast<QSensorGestureRecognizer*>(ptr)->~QSensorGestureRecognizer();
 }
 
-class MyQSensorManager: public QSensorManager {
-public:
-};
-
 void* QSensorManager_QSensorManager_CreateBackend(void* sensor){
 	return QSensorManager::createBackend(static_cast<QSensor*>(sensor));
 }
@@ -1260,17 +1158,9 @@ void QSensorManager_QSensorManager_UnregisterBackend(void* ty, void* identifier)
 	QSensorManager::unregisterBackend(*static_cast<QByteArray*>(ty), *static_cast<QByteArray*>(identifier));
 }
 
-class MyQSensorPluginInterface: public QSensorPluginInterface {
-public:
-};
-
 void QSensorPluginInterface_RegisterSensors(void* ptr){
 	static_cast<QSensorPluginInterface*>(ptr)->registerSensors();
 }
-
-class MyQSensorReading: public QSensorReading {
-public:
-};
 
 void* QSensorReading_Value(void* ptr, int index){
 	return new QVariant(static_cast<QSensorReading*>(ptr)->value(index));
@@ -1280,17 +1170,9 @@ int QSensorReading_ValueCount(void* ptr){
 	return static_cast<QSensorReading*>(ptr)->valueCount();
 }
 
-class MyQTapFilter: public QTapFilter {
-public:
-};
-
 int QTapFilter_Filter(void* ptr, void* reading){
 	return static_cast<QTapFilter*>(ptr)->filter(static_cast<QTapReading*>(reading));
 }
-
-class MyQTapReading: public QTapReading {
-public:
-};
 
 int QTapReading_IsDoubleTap(void* ptr){
 	return static_cast<QTapReading*>(ptr)->isDoubleTap();
@@ -1310,7 +1192,9 @@ void QTapReading_SetTapDirection(void* ptr, int tapDirection){
 
 class MyQTapSensor: public QTapSensor {
 public:
-void Signal_ReturnDoubleTapEventsChanged(bool returnDoubleTapEvents){callbackQTapSensorReturnDoubleTapEventsChanged(this->objectName().toUtf8().data(), returnDoubleTapEvents);};
+	MyQTapSensor(QObject *parent) : QTapSensor(parent) {};
+	void Signal_ReturnDoubleTapEventsChanged(bool returnDoubleTapEvents) { callbackQTapSensorReturnDoubleTapEventsChanged(this->objectName().toUtf8().data(), returnDoubleTapEvents); };
+protected:
 };
 
 void* QTapSensor_Reading(void* ptr){
@@ -1326,7 +1210,7 @@ void QTapSensor_SetReturnDoubleTapEvents(void* ptr, int returnDoubleTapEvents){
 }
 
 void* QTapSensor_NewQTapSensor(void* parent){
-	return new QTapSensor(static_cast<QObject*>(parent));
+	return new MyQTapSensor(static_cast<QObject*>(parent));
 }
 
 void QTapSensor_ConnectReturnDoubleTapEventsChanged(void* ptr){
@@ -1341,17 +1225,9 @@ void QTapSensor_DestroyQTapSensor(void* ptr){
 	static_cast<QTapSensor*>(ptr)->~QTapSensor();
 }
 
-class MyQTiltFilter: public QTiltFilter {
-public:
-};
-
 int QTiltFilter_Filter(void* ptr, void* reading){
 	return static_cast<QTiltFilter*>(ptr)->filter(static_cast<QTiltReading*>(reading));
 }
-
-class MyQTiltReading: public QTiltReading {
-public:
-};
 
 double QTiltReading_XRotation(void* ptr){
 	return static_cast<double>(static_cast<QTiltReading*>(ptr)->xRotation());
@@ -1368,10 +1244,6 @@ void QTiltReading_SetXRotation(void* ptr, double x){
 void QTiltReading_SetYRotation(void* ptr, double y){
 	static_cast<QTiltReading*>(ptr)->setYRotation(static_cast<qreal>(y));
 }
-
-class MyQTiltSensor: public QTiltSensor {
-public:
-};
 
 void* QTiltSensor_NewQTiltSensor(void* parent){
 	return new QTiltSensor(static_cast<QObject*>(parent));

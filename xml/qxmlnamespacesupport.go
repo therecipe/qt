@@ -3,7 +3,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"strings"
 	"unsafe"
 )
@@ -42,21 +42,13 @@ func (ptr *QXmlNamespaceSupport) QXmlNamespaceSupport_PTR() *QXmlNamespaceSuppor
 }
 
 func NewQXmlNamespaceSupport() *QXmlNamespaceSupport {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamespaceSupport::QXmlNamespaceSupport")
-		}
-	}()
+	defer qt.Recovering("QXmlNamespaceSupport::QXmlNamespaceSupport")
 
 	return NewQXmlNamespaceSupportFromPointer(C.QXmlNamespaceSupport_NewQXmlNamespaceSupport())
 }
 
 func (ptr *QXmlNamespaceSupport) PopContext() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamespaceSupport::popContext")
-		}
-	}()
+	defer qt.Recovering("QXmlNamespaceSupport::popContext")
 
 	if ptr.Pointer() != nil {
 		C.QXmlNamespaceSupport_PopContext(ptr.Pointer())
@@ -64,11 +56,7 @@ func (ptr *QXmlNamespaceSupport) PopContext() {
 }
 
 func (ptr *QXmlNamespaceSupport) Prefix(uri string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamespaceSupport::prefix")
-		}
-	}()
+	defer qt.Recovering("QXmlNamespaceSupport::prefix")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlNamespaceSupport_Prefix(ptr.Pointer(), C.CString(uri)))
@@ -77,11 +65,7 @@ func (ptr *QXmlNamespaceSupport) Prefix(uri string) string {
 }
 
 func (ptr *QXmlNamespaceSupport) Prefixes() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamespaceSupport::prefixes")
-		}
-	}()
+	defer qt.Recovering("QXmlNamespaceSupport::prefixes")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QXmlNamespaceSupport_Prefixes(ptr.Pointer())), ",,,")
@@ -90,11 +74,7 @@ func (ptr *QXmlNamespaceSupport) Prefixes() []string {
 }
 
 func (ptr *QXmlNamespaceSupport) Prefixes2(uri string) []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamespaceSupport::prefixes")
-		}
-	}()
+	defer qt.Recovering("QXmlNamespaceSupport::prefixes")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QXmlNamespaceSupport_Prefixes2(ptr.Pointer(), C.CString(uri))), ",,,")
@@ -103,11 +83,7 @@ func (ptr *QXmlNamespaceSupport) Prefixes2(uri string) []string {
 }
 
 func (ptr *QXmlNamespaceSupport) PushContext() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamespaceSupport::pushContext")
-		}
-	}()
+	defer qt.Recovering("QXmlNamespaceSupport::pushContext")
 
 	if ptr.Pointer() != nil {
 		C.QXmlNamespaceSupport_PushContext(ptr.Pointer())
@@ -115,11 +91,7 @@ func (ptr *QXmlNamespaceSupport) PushContext() {
 }
 
 func (ptr *QXmlNamespaceSupport) Reset() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamespaceSupport::reset")
-		}
-	}()
+	defer qt.Recovering("QXmlNamespaceSupport::reset")
 
 	if ptr.Pointer() != nil {
 		C.QXmlNamespaceSupport_Reset(ptr.Pointer())
@@ -127,11 +99,7 @@ func (ptr *QXmlNamespaceSupport) Reset() {
 }
 
 func (ptr *QXmlNamespaceSupport) SetPrefix(pre string, uri string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamespaceSupport::setPrefix")
-		}
-	}()
+	defer qt.Recovering("QXmlNamespaceSupport::setPrefix")
 
 	if ptr.Pointer() != nil {
 		C.QXmlNamespaceSupport_SetPrefix(ptr.Pointer(), C.CString(pre), C.CString(uri))
@@ -139,11 +107,7 @@ func (ptr *QXmlNamespaceSupport) SetPrefix(pre string, uri string) {
 }
 
 func (ptr *QXmlNamespaceSupport) Uri(prefix string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamespaceSupport::uri")
-		}
-	}()
+	defer qt.Recovering("QXmlNamespaceSupport::uri")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlNamespaceSupport_Uri(ptr.Pointer(), C.CString(prefix)))
@@ -152,11 +116,7 @@ func (ptr *QXmlNamespaceSupport) Uri(prefix string) string {
 }
 
 func (ptr *QXmlNamespaceSupport) DestroyQXmlNamespaceSupport() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QXmlNamespaceSupport::~QXmlNamespaceSupport")
-		}
-	}()
+	defer qt.Recovering("QXmlNamespaceSupport::~QXmlNamespaceSupport")
 
 	if ptr.Pointer() != nil {
 		C.QXmlNamespaceSupport_DestroyQXmlNamespaceSupport(ptr.Pointer())

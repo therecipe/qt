@@ -3,7 +3,7 @@ package network
 //#include "network.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QNetworkAddressEntry) QNetworkAddressEntry_PTR() *QNetworkAddressEntr
 }
 
 func NewQNetworkAddressEntry() *QNetworkAddressEntry {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkAddressEntry::QNetworkAddressEntry")
-		}
-	}()
+	defer qt.Recovering("QNetworkAddressEntry::QNetworkAddressEntry")
 
 	return NewQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry())
 }
 
 func NewQNetworkAddressEntry2(other QNetworkAddressEntry_ITF) *QNetworkAddressEntry {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkAddressEntry::QNetworkAddressEntry")
-		}
-	}()
+	defer qt.Recovering("QNetworkAddressEntry::QNetworkAddressEntry")
 
 	return NewQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry2(PointerFromQNetworkAddressEntry(other)))
 }
 
 func (ptr *QNetworkAddressEntry) PrefixLength() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkAddressEntry::prefixLength")
-		}
-	}()
+	defer qt.Recovering("QNetworkAddressEntry::prefixLength")
 
 	if ptr.Pointer() != nil {
 		return int(C.QNetworkAddressEntry_PrefixLength(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QNetworkAddressEntry) PrefixLength() int {
 }
 
 func (ptr *QNetworkAddressEntry) SetBroadcast(newBroadcast QHostAddress_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkAddressEntry::setBroadcast")
-		}
-	}()
+	defer qt.Recovering("QNetworkAddressEntry::setBroadcast")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_SetBroadcast(ptr.Pointer(), PointerFromQHostAddress(newBroadcast))
@@ -86,11 +70,7 @@ func (ptr *QNetworkAddressEntry) SetBroadcast(newBroadcast QHostAddress_ITF) {
 }
 
 func (ptr *QNetworkAddressEntry) SetIp(newIp QHostAddress_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkAddressEntry::setIp")
-		}
-	}()
+	defer qt.Recovering("QNetworkAddressEntry::setIp")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_SetIp(ptr.Pointer(), PointerFromQHostAddress(newIp))
@@ -98,11 +78,7 @@ func (ptr *QNetworkAddressEntry) SetIp(newIp QHostAddress_ITF) {
 }
 
 func (ptr *QNetworkAddressEntry) SetNetmask(newNetmask QHostAddress_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkAddressEntry::setNetmask")
-		}
-	}()
+	defer qt.Recovering("QNetworkAddressEntry::setNetmask")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_SetNetmask(ptr.Pointer(), PointerFromQHostAddress(newNetmask))
@@ -110,11 +86,7 @@ func (ptr *QNetworkAddressEntry) SetNetmask(newNetmask QHostAddress_ITF) {
 }
 
 func (ptr *QNetworkAddressEntry) SetPrefixLength(length int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkAddressEntry::setPrefixLength")
-		}
-	}()
+	defer qt.Recovering("QNetworkAddressEntry::setPrefixLength")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_SetPrefixLength(ptr.Pointer(), C.int(length))
@@ -122,11 +94,7 @@ func (ptr *QNetworkAddressEntry) SetPrefixLength(length int) {
 }
 
 func (ptr *QNetworkAddressEntry) Swap(other QNetworkAddressEntry_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkAddressEntry::swap")
-		}
-	}()
+	defer qt.Recovering("QNetworkAddressEntry::swap")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_Swap(ptr.Pointer(), PointerFromQNetworkAddressEntry(other))
@@ -134,11 +102,7 @@ func (ptr *QNetworkAddressEntry) Swap(other QNetworkAddressEntry_ITF) {
 }
 
 func (ptr *QNetworkAddressEntry) DestroyQNetworkAddressEntry() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QNetworkAddressEntry::~QNetworkAddressEntry")
-		}
-	}()
+	defer qt.Recovering("QNetworkAddressEntry::~QNetworkAddressEntry")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_DestroyQNetworkAddressEntry(ptr.Pointer())

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -36,11 +35,7 @@ func (ptr *QGestureEvent) QGestureEvent_PTR() *QGestureEvent {
 }
 
 func (ptr *QGestureEvent) Accept(gesture QGesture_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGestureEvent::accept")
-		}
-	}()
+	defer qt.Recovering("QGestureEvent::accept")
 
 	if ptr.Pointer() != nil {
 		C.QGestureEvent_Accept(ptr.Pointer(), PointerFromQGesture(gesture))
@@ -48,11 +43,7 @@ func (ptr *QGestureEvent) Accept(gesture QGesture_ITF) {
 }
 
 func (ptr *QGestureEvent) Accept2(gestureType core.Qt__GestureType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGestureEvent::accept")
-		}
-	}()
+	defer qt.Recovering("QGestureEvent::accept")
 
 	if ptr.Pointer() != nil {
 		C.QGestureEvent_Accept2(ptr.Pointer(), C.int(gestureType))
@@ -60,11 +51,7 @@ func (ptr *QGestureEvent) Accept2(gestureType core.Qt__GestureType) {
 }
 
 func (ptr *QGestureEvent) Gesture(ty core.Qt__GestureType) *QGesture {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGestureEvent::gesture")
-		}
-	}()
+	defer qt.Recovering("QGestureEvent::gesture")
 
 	if ptr.Pointer() != nil {
 		return NewQGestureFromPointer(C.QGestureEvent_Gesture(ptr.Pointer(), C.int(ty)))
@@ -73,11 +60,7 @@ func (ptr *QGestureEvent) Gesture(ty core.Qt__GestureType) *QGesture {
 }
 
 func (ptr *QGestureEvent) Ignore(gesture QGesture_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGestureEvent::ignore")
-		}
-	}()
+	defer qt.Recovering("QGestureEvent::ignore")
 
 	if ptr.Pointer() != nil {
 		C.QGestureEvent_Ignore(ptr.Pointer(), PointerFromQGesture(gesture))
@@ -85,11 +68,7 @@ func (ptr *QGestureEvent) Ignore(gesture QGesture_ITF) {
 }
 
 func (ptr *QGestureEvent) Ignore2(gestureType core.Qt__GestureType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGestureEvent::ignore")
-		}
-	}()
+	defer qt.Recovering("QGestureEvent::ignore")
 
 	if ptr.Pointer() != nil {
 		C.QGestureEvent_Ignore2(ptr.Pointer(), C.int(gestureType))
@@ -97,11 +76,7 @@ func (ptr *QGestureEvent) Ignore2(gestureType core.Qt__GestureType) {
 }
 
 func (ptr *QGestureEvent) IsAccepted(gesture QGesture_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGestureEvent::isAccepted")
-		}
-	}()
+	defer qt.Recovering("QGestureEvent::isAccepted")
 
 	if ptr.Pointer() != nil {
 		return C.QGestureEvent_IsAccepted(ptr.Pointer(), PointerFromQGesture(gesture)) != 0
@@ -110,11 +85,7 @@ func (ptr *QGestureEvent) IsAccepted(gesture QGesture_ITF) bool {
 }
 
 func (ptr *QGestureEvent) IsAccepted2(gestureType core.Qt__GestureType) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGestureEvent::isAccepted")
-		}
-	}()
+	defer qt.Recovering("QGestureEvent::isAccepted")
 
 	if ptr.Pointer() != nil {
 		return C.QGestureEvent_IsAccepted2(ptr.Pointer(), C.int(gestureType)) != 0
@@ -123,11 +94,7 @@ func (ptr *QGestureEvent) IsAccepted2(gestureType core.Qt__GestureType) bool {
 }
 
 func (ptr *QGestureEvent) SetAccepted(gesture QGesture_ITF, value bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGestureEvent::setAccepted")
-		}
-	}()
+	defer qt.Recovering("QGestureEvent::setAccepted")
 
 	if ptr.Pointer() != nil {
 		C.QGestureEvent_SetAccepted(ptr.Pointer(), PointerFromQGesture(gesture), C.int(qt.GoBoolToInt(value)))
@@ -135,11 +102,7 @@ func (ptr *QGestureEvent) SetAccepted(gesture QGesture_ITF, value bool) {
 }
 
 func (ptr *QGestureEvent) SetAccepted2(gestureType core.Qt__GestureType, value bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGestureEvent::setAccepted")
-		}
-	}()
+	defer qt.Recovering("QGestureEvent::setAccepted")
 
 	if ptr.Pointer() != nil {
 		C.QGestureEvent_SetAccepted2(ptr.Pointer(), C.int(gestureType), C.int(qt.GoBoolToInt(value)))
@@ -147,11 +110,7 @@ func (ptr *QGestureEvent) SetAccepted2(gestureType core.Qt__GestureType, value b
 }
 
 func (ptr *QGestureEvent) Widget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGestureEvent::widget")
-		}
-	}()
+	defer qt.Recovering("QGestureEvent::widget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QGestureEvent_Widget(ptr.Pointer()))
@@ -160,11 +119,7 @@ func (ptr *QGestureEvent) Widget() *QWidget {
 }
 
 func (ptr *QGestureEvent) DestroyQGestureEvent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGestureEvent::~QGestureEvent")
-		}
-	}()
+	defer qt.Recovering("QGestureEvent::~QGestureEvent")
 
 	if ptr.Pointer() != nil {
 		C.QGestureEvent_DestroyQGestureEvent(ptr.Pointer())

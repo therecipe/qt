@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQDistanceSensorFromPointer(ptr unsafe.Pointer) *QDistanceSensor {
 	var n = new(QDistanceSensor)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QDistanceSensor_") {
-		n.SetObjectName("QDistanceSensor_" + qt.RandomIdentifier())
+		n.SetObjectName("QDistanceSensor_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QDistanceSensor) QDistanceSensor_PTR() *QDistanceSensor {
 }
 
 func (ptr *QDistanceSensor) Reading() *QDistanceReading {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDistanceSensor::reading")
-		}
-	}()
+	defer qt.Recovering("QDistanceSensor::reading")
 
 	if ptr.Pointer() != nil {
 		return NewQDistanceReadingFromPointer(C.QDistanceSensor_Reading(ptr.Pointer()))
@@ -52,21 +47,13 @@ func (ptr *QDistanceSensor) Reading() *QDistanceReading {
 }
 
 func NewQDistanceSensor(parent core.QObject_ITF) *QDistanceSensor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDistanceSensor::QDistanceSensor")
-		}
-	}()
+	defer qt.Recovering("QDistanceSensor::QDistanceSensor")
 
 	return NewQDistanceSensorFromPointer(C.QDistanceSensor_NewQDistanceSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDistanceSensor) DestroyQDistanceSensor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QDistanceSensor::~QDistanceSensor")
-		}
-	}()
+	defer qt.Recovering("QDistanceSensor::~QDistanceSensor")
 
 	if ptr.Pointer() != nil {
 		C.QDistanceSensor_DestroyQDistanceSensor(ptr.Pointer())

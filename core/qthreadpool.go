@@ -4,7 +4,6 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQThreadPoolFromPointer(ptr unsafe.Pointer) *QThreadPool {
 	var n = new(QThreadPool)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QThreadPool_") {
-		n.SetObjectName("QThreadPool_" + qt.RandomIdentifier())
+		n.SetObjectName("QThreadPool_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QThreadPool) QThreadPool_PTR() *QThreadPool {
 }
 
 func (ptr *QThreadPool) ActiveThreadCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::activeThreadCount")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::activeThreadCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QThreadPool_ActiveThreadCount(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QThreadPool) ActiveThreadCount() int {
 }
 
 func (ptr *QThreadPool) ExpiryTimeout() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::expiryTimeout")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::expiryTimeout")
 
 	if ptr.Pointer() != nil {
 		return int(C.QThreadPool_ExpiryTimeout(ptr.Pointer()))
@@ -64,11 +55,7 @@ func (ptr *QThreadPool) ExpiryTimeout() int {
 }
 
 func (ptr *QThreadPool) MaxThreadCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::maxThreadCount")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::maxThreadCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QThreadPool_MaxThreadCount(ptr.Pointer()))
@@ -77,11 +64,7 @@ func (ptr *QThreadPool) MaxThreadCount() int {
 }
 
 func (ptr *QThreadPool) SetExpiryTimeout(expiryTimeout int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::setExpiryTimeout")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::setExpiryTimeout")
 
 	if ptr.Pointer() != nil {
 		C.QThreadPool_SetExpiryTimeout(ptr.Pointer(), C.int(expiryTimeout))
@@ -89,11 +72,7 @@ func (ptr *QThreadPool) SetExpiryTimeout(expiryTimeout int) {
 }
 
 func (ptr *QThreadPool) SetMaxThreadCount(maxThreadCount int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::setMaxThreadCount")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::setMaxThreadCount")
 
 	if ptr.Pointer() != nil {
 		C.QThreadPool_SetMaxThreadCount(ptr.Pointer(), C.int(maxThreadCount))
@@ -101,21 +80,13 @@ func (ptr *QThreadPool) SetMaxThreadCount(maxThreadCount int) {
 }
 
 func NewQThreadPool(parent QObject_ITF) *QThreadPool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::QThreadPool")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::QThreadPool")
 
 	return NewQThreadPoolFromPointer(C.QThreadPool_NewQThreadPool(PointerFromQObject(parent)))
 }
 
 func (ptr *QThreadPool) Cancel(runnable QRunnable_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::cancel")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::cancel")
 
 	if ptr.Pointer() != nil {
 		C.QThreadPool_Cancel(ptr.Pointer(), PointerFromQRunnable(runnable))
@@ -123,11 +94,7 @@ func (ptr *QThreadPool) Cancel(runnable QRunnable_ITF) {
 }
 
 func (ptr *QThreadPool) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::clear")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::clear")
 
 	if ptr.Pointer() != nil {
 		C.QThreadPool_Clear(ptr.Pointer())
@@ -135,21 +102,13 @@ func (ptr *QThreadPool) Clear() {
 }
 
 func QThreadPool_GlobalInstance() *QThreadPool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::globalInstance")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::globalInstance")
 
 	return NewQThreadPoolFromPointer(C.QThreadPool_QThreadPool_GlobalInstance())
 }
 
 func (ptr *QThreadPool) ReleaseThread() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::releaseThread")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::releaseThread")
 
 	if ptr.Pointer() != nil {
 		C.QThreadPool_ReleaseThread(ptr.Pointer())
@@ -157,11 +116,7 @@ func (ptr *QThreadPool) ReleaseThread() {
 }
 
 func (ptr *QThreadPool) ReserveThread() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::reserveThread")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::reserveThread")
 
 	if ptr.Pointer() != nil {
 		C.QThreadPool_ReserveThread(ptr.Pointer())
@@ -169,11 +124,7 @@ func (ptr *QThreadPool) ReserveThread() {
 }
 
 func (ptr *QThreadPool) Start(runnable QRunnable_ITF, priority int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::start")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::start")
 
 	if ptr.Pointer() != nil {
 		C.QThreadPool_Start(ptr.Pointer(), PointerFromQRunnable(runnable), C.int(priority))
@@ -181,11 +132,7 @@ func (ptr *QThreadPool) Start(runnable QRunnable_ITF, priority int) {
 }
 
 func (ptr *QThreadPool) TryStart(runnable QRunnable_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::tryStart")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::tryStart")
 
 	if ptr.Pointer() != nil {
 		return C.QThreadPool_TryStart(ptr.Pointer(), PointerFromQRunnable(runnable)) != 0
@@ -194,11 +141,7 @@ func (ptr *QThreadPool) TryStart(runnable QRunnable_ITF) bool {
 }
 
 func (ptr *QThreadPool) WaitForDone(msecs int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::waitForDone")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::waitForDone")
 
 	if ptr.Pointer() != nil {
 		return C.QThreadPool_WaitForDone(ptr.Pointer(), C.int(msecs)) != 0
@@ -207,11 +150,7 @@ func (ptr *QThreadPool) WaitForDone(msecs int) bool {
 }
 
 func (ptr *QThreadPool) DestroyQThreadPool() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QThreadPool::~QThreadPool")
-		}
-	}()
+	defer qt.Recovering("QThreadPool::~QThreadPool")
 
 	if ptr.Pointer() != nil {
 		C.QThreadPool_DestroyQThreadPool(ptr.Pointer())

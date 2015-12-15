@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQLowEnergyControllerFromPointer(ptr unsafe.Pointer) *QLowEnergyControlle
 	var n = new(QLowEnergyController)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QLowEnergyController_") {
-		n.SetObjectName("QLowEnergyController_" + qt.RandomIdentifier())
+		n.SetObjectName("QLowEnergyController_" + qt.Identifier())
 	}
 	return n
 }
@@ -71,11 +70,7 @@ const (
 )
 
 func (ptr *QLowEnergyController) ConnectConnected(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::connected")
-		}
-	}()
+	defer qt.Recovering("connect QLowEnergyController::connected")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_ConnectConnected(ptr.Pointer())
@@ -84,11 +79,7 @@ func (ptr *QLowEnergyController) ConnectConnected(f func()) {
 }
 
 func (ptr *QLowEnergyController) DisconnectConnected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::connected")
-		}
-	}()
+	defer qt.Recovering("disconnect QLowEnergyController::connected")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_DisconnectConnected(ptr.Pointer())
@@ -98,21 +89,17 @@ func (ptr *QLowEnergyController) DisconnectConnected() {
 
 //export callbackQLowEnergyControllerConnected
 func callbackQLowEnergyControllerConnected(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::connected")
-		}
-	}()
+	defer qt.Recovering("callback QLowEnergyController::connected")
 
-	qt.GetSignal(C.GoString(ptrName), "connected").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "connected")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QLowEnergyController) ConnectDisconnected(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::disconnected")
-		}
-	}()
+	defer qt.Recovering("connect QLowEnergyController::disconnected")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_ConnectDisconnected(ptr.Pointer())
@@ -121,11 +108,7 @@ func (ptr *QLowEnergyController) ConnectDisconnected(f func()) {
 }
 
 func (ptr *QLowEnergyController) DisconnectDisconnected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::disconnected")
-		}
-	}()
+	defer qt.Recovering("disconnect QLowEnergyController::disconnected")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_DisconnectDisconnected(ptr.Pointer())
@@ -135,21 +118,17 @@ func (ptr *QLowEnergyController) DisconnectDisconnected() {
 
 //export callbackQLowEnergyControllerDisconnected
 func callbackQLowEnergyControllerDisconnected(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::disconnected")
-		}
-	}()
+	defer qt.Recovering("callback QLowEnergyController::disconnected")
 
-	qt.GetSignal(C.GoString(ptrName), "disconnected").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "disconnected")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QLowEnergyController) ConnectDiscoveryFinished(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::discoveryFinished")
-		}
-	}()
+	defer qt.Recovering("connect QLowEnergyController::discoveryFinished")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_ConnectDiscoveryFinished(ptr.Pointer())
@@ -158,11 +137,7 @@ func (ptr *QLowEnergyController) ConnectDiscoveryFinished(f func()) {
 }
 
 func (ptr *QLowEnergyController) DisconnectDiscoveryFinished() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::discoveryFinished")
-		}
-	}()
+	defer qt.Recovering("disconnect QLowEnergyController::discoveryFinished")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_DisconnectDiscoveryFinished(ptr.Pointer())
@@ -172,21 +147,17 @@ func (ptr *QLowEnergyController) DisconnectDiscoveryFinished() {
 
 //export callbackQLowEnergyControllerDiscoveryFinished
 func callbackQLowEnergyControllerDiscoveryFinished(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::discoveryFinished")
-		}
-	}()
+	defer qt.Recovering("callback QLowEnergyController::discoveryFinished")
 
-	qt.GetSignal(C.GoString(ptrName), "discoveryFinished").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "discoveryFinished")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QLowEnergyController) ConnectStateChanged(f func(state QLowEnergyController__ControllerState)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::stateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QLowEnergyController::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_ConnectStateChanged(ptr.Pointer())
@@ -195,11 +166,7 @@ func (ptr *QLowEnergyController) ConnectStateChanged(f func(state QLowEnergyCont
 }
 
 func (ptr *QLowEnergyController) DisconnectStateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::stateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QLowEnergyController::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_DisconnectStateChanged(ptr.Pointer())
@@ -209,31 +176,23 @@ func (ptr *QLowEnergyController) DisconnectStateChanged() {
 
 //export callbackQLowEnergyControllerStateChanged
 func callbackQLowEnergyControllerStateChanged(ptrName *C.char, state C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::stateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QLowEnergyController::stateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "stateChanged").(func(QLowEnergyController__ControllerState))(QLowEnergyController__ControllerState(state))
+	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
+	if signal != nil {
+		signal.(func(QLowEnergyController__ControllerState))(QLowEnergyController__ControllerState(state))
+	}
+
 }
 
 func NewQLowEnergyController(remoteDeviceInfo QBluetoothDeviceInfo_ITF, parent core.QObject_ITF) *QLowEnergyController {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::QLowEnergyController")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyController::QLowEnergyController")
 
 	return NewQLowEnergyControllerFromPointer(C.QLowEnergyController_NewQLowEnergyController(PointerFromQBluetoothDeviceInfo(remoteDeviceInfo), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QLowEnergyController) ConnectToDevice() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::connectToDevice")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyController::connectToDevice")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_ConnectToDevice(ptr.Pointer())
@@ -241,11 +200,7 @@ func (ptr *QLowEnergyController) ConnectToDevice() {
 }
 
 func (ptr *QLowEnergyController) CreateServiceObject(serviceUuid QBluetoothUuid_ITF, parent core.QObject_ITF) *QLowEnergyService {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::createServiceObject")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyController::createServiceObject")
 
 	if ptr.Pointer() != nil {
 		return NewQLowEnergyServiceFromPointer(C.QLowEnergyController_CreateServiceObject(ptr.Pointer(), PointerFromQBluetoothUuid(serviceUuid), core.PointerFromQObject(parent)))
@@ -254,11 +209,7 @@ func (ptr *QLowEnergyController) CreateServiceObject(serviceUuid QBluetoothUuid_
 }
 
 func (ptr *QLowEnergyController) DisconnectFromDevice() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::disconnectFromDevice")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyController::disconnectFromDevice")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_DisconnectFromDevice(ptr.Pointer())
@@ -266,11 +217,7 @@ func (ptr *QLowEnergyController) DisconnectFromDevice() {
 }
 
 func (ptr *QLowEnergyController) DiscoverServices() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::discoverServices")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyController::discoverServices")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_DiscoverServices(ptr.Pointer())
@@ -278,11 +225,7 @@ func (ptr *QLowEnergyController) DiscoverServices() {
 }
 
 func (ptr *QLowEnergyController) Error() QLowEnergyController__Error {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::error")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyController::error")
 
 	if ptr.Pointer() != nil {
 		return QLowEnergyController__Error(C.QLowEnergyController_Error(ptr.Pointer()))
@@ -291,11 +234,7 @@ func (ptr *QLowEnergyController) Error() QLowEnergyController__Error {
 }
 
 func (ptr *QLowEnergyController) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::errorString")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyController::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QLowEnergyController_ErrorString(ptr.Pointer()))
@@ -304,11 +243,7 @@ func (ptr *QLowEnergyController) ErrorString() string {
 }
 
 func (ptr *QLowEnergyController) RemoteAddressType() QLowEnergyController__RemoteAddressType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::remoteAddressType")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyController::remoteAddressType")
 
 	if ptr.Pointer() != nil {
 		return QLowEnergyController__RemoteAddressType(C.QLowEnergyController_RemoteAddressType(ptr.Pointer()))
@@ -317,11 +252,7 @@ func (ptr *QLowEnergyController) RemoteAddressType() QLowEnergyController__Remot
 }
 
 func (ptr *QLowEnergyController) RemoteName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::remoteName")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyController::remoteName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QLowEnergyController_RemoteName(ptr.Pointer()))
@@ -330,11 +261,7 @@ func (ptr *QLowEnergyController) RemoteName() string {
 }
 
 func (ptr *QLowEnergyController) SetRemoteAddressType(ty QLowEnergyController__RemoteAddressType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::setRemoteAddressType")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyController::setRemoteAddressType")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_SetRemoteAddressType(ptr.Pointer(), C.int(ty))
@@ -342,11 +269,7 @@ func (ptr *QLowEnergyController) SetRemoteAddressType(ty QLowEnergyController__R
 }
 
 func (ptr *QLowEnergyController) DestroyQLowEnergyController() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QLowEnergyController::~QLowEnergyController")
-		}
-	}()
+	defer qt.Recovering("QLowEnergyController::~QLowEnergyController")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_DestroyQLowEnergyController(ptr.Pointer())

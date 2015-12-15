@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQGraphicsAnchorFromPointer(ptr unsafe.Pointer) *QGraphicsAnchor {
 	var n = new(QGraphicsAnchor)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QGraphicsAnchor_") {
-		n.SetObjectName("QGraphicsAnchor_" + qt.RandomIdentifier())
+		n.SetObjectName("QGraphicsAnchor_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,11 +38,7 @@ func (ptr *QGraphicsAnchor) QGraphicsAnchor_PTR() *QGraphicsAnchor {
 }
 
 func (ptr *QGraphicsAnchor) SetSizePolicy(policy QSizePolicy__Policy) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchor::setSizePolicy")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchor::setSizePolicy")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchor_SetSizePolicy(ptr.Pointer(), C.int(policy))
@@ -51,11 +46,7 @@ func (ptr *QGraphicsAnchor) SetSizePolicy(policy QSizePolicy__Policy) {
 }
 
 func (ptr *QGraphicsAnchor) SetSpacing(spacing float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchor::setSpacing")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchor::setSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchor_SetSpacing(ptr.Pointer(), C.double(spacing))
@@ -63,11 +54,7 @@ func (ptr *QGraphicsAnchor) SetSpacing(spacing float64) {
 }
 
 func (ptr *QGraphicsAnchor) SizePolicy() QSizePolicy__Policy {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchor::sizePolicy")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchor::sizePolicy")
 
 	if ptr.Pointer() != nil {
 		return QSizePolicy__Policy(C.QGraphicsAnchor_SizePolicy(ptr.Pointer()))
@@ -76,11 +63,7 @@ func (ptr *QGraphicsAnchor) SizePolicy() QSizePolicy__Policy {
 }
 
 func (ptr *QGraphicsAnchor) Spacing() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchor::spacing")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchor::spacing")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QGraphicsAnchor_Spacing(ptr.Pointer()))
@@ -89,11 +72,7 @@ func (ptr *QGraphicsAnchor) Spacing() float64 {
 }
 
 func (ptr *QGraphicsAnchor) UnsetSpacing() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchor::unsetSpacing")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchor::unsetSpacing")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchor_UnsetSpacing(ptr.Pointer())
@@ -101,11 +80,7 @@ func (ptr *QGraphicsAnchor) UnsetSpacing() {
 }
 
 func (ptr *QGraphicsAnchor) DestroyQGraphicsAnchor() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsAnchor::~QGraphicsAnchor")
-		}
-	}()
+	defer qt.Recovering("QGraphicsAnchor::~QGraphicsAnchor")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchor_DestroyQGraphicsAnchor(ptr.Pointer())

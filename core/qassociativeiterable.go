@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,11 +41,7 @@ func (ptr *QAssociativeIterable) QAssociativeIterable_PTR() *QAssociativeIterabl
 }
 
 func (ptr *QAssociativeIterable) Size() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAssociativeIterable::size")
-		}
-	}()
+	defer qt.Recovering("QAssociativeIterable::size")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAssociativeIterable_Size(ptr.Pointer()))
@@ -54,11 +50,7 @@ func (ptr *QAssociativeIterable) Size() int {
 }
 
 func (ptr *QAssociativeIterable) Value(key QVariant_ITF) *QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAssociativeIterable::value")
-		}
-	}()
+	defer qt.Recovering("QAssociativeIterable::value")
 
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QAssociativeIterable_Value(ptr.Pointer(), PointerFromQVariant(key)))

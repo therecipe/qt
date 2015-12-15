@@ -3,9 +3,9 @@ package svg
 //#include "svg.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -28,6 +28,9 @@ func PointerFromQSvgGenerator(ptr QSvgGenerator_ITF) unsafe.Pointer {
 func NewQSvgGeneratorFromPointer(ptr unsafe.Pointer) *QSvgGenerator {
 	var n = new(QSvgGenerator)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QSvgGenerator_") {
+		n.SetObjectNameAbs("QSvgGenerator_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -36,11 +39,7 @@ func (ptr *QSvgGenerator) QSvgGenerator_PTR() *QSvgGenerator {
 }
 
 func (ptr *QSvgGenerator) Description() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::description")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::description")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSvgGenerator_Description(ptr.Pointer()))
@@ -49,11 +48,7 @@ func (ptr *QSvgGenerator) Description() string {
 }
 
 func (ptr *QSvgGenerator) FileName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::fileName")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::fileName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSvgGenerator_FileName(ptr.Pointer()))
@@ -62,11 +57,7 @@ func (ptr *QSvgGenerator) FileName() string {
 }
 
 func (ptr *QSvgGenerator) OutputDevice() *core.QIODevice {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::outputDevice")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::outputDevice")
 
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QSvgGenerator_OutputDevice(ptr.Pointer()))
@@ -75,11 +66,7 @@ func (ptr *QSvgGenerator) OutputDevice() *core.QIODevice {
 }
 
 func (ptr *QSvgGenerator) Resolution() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::resolution")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::resolution")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSvgGenerator_Resolution(ptr.Pointer()))
@@ -88,11 +75,7 @@ func (ptr *QSvgGenerator) Resolution() int {
 }
 
 func (ptr *QSvgGenerator) SetDescription(description string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::setDescription")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::setDescription")
 
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_SetDescription(ptr.Pointer(), C.CString(description))
@@ -100,11 +83,7 @@ func (ptr *QSvgGenerator) SetDescription(description string) {
 }
 
 func (ptr *QSvgGenerator) SetFileName(fileName string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::setFileName")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::setFileName")
 
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_SetFileName(ptr.Pointer(), C.CString(fileName))
@@ -112,11 +91,7 @@ func (ptr *QSvgGenerator) SetFileName(fileName string) {
 }
 
 func (ptr *QSvgGenerator) SetOutputDevice(outputDevice core.QIODevice_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::setOutputDevice")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::setOutputDevice")
 
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_SetOutputDevice(ptr.Pointer(), core.PointerFromQIODevice(outputDevice))
@@ -124,11 +99,7 @@ func (ptr *QSvgGenerator) SetOutputDevice(outputDevice core.QIODevice_ITF) {
 }
 
 func (ptr *QSvgGenerator) SetResolution(dpi int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::setResolution")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::setResolution")
 
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_SetResolution(ptr.Pointer(), C.int(dpi))
@@ -136,11 +107,7 @@ func (ptr *QSvgGenerator) SetResolution(dpi int) {
 }
 
 func (ptr *QSvgGenerator) SetSize(size core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::setSize")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::setSize")
 
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_SetSize(ptr.Pointer(), core.PointerFromQSize(size))
@@ -148,11 +115,7 @@ func (ptr *QSvgGenerator) SetSize(size core.QSize_ITF) {
 }
 
 func (ptr *QSvgGenerator) SetTitle(title string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::setTitle")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::setTitle")
 
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_SetTitle(ptr.Pointer(), C.CString(title))
@@ -160,11 +123,7 @@ func (ptr *QSvgGenerator) SetTitle(title string) {
 }
 
 func (ptr *QSvgGenerator) SetViewBox(viewBox core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::setViewBox")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::setViewBox")
 
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_SetViewBox(ptr.Pointer(), core.PointerFromQRect(viewBox))
@@ -172,11 +131,7 @@ func (ptr *QSvgGenerator) SetViewBox(viewBox core.QRect_ITF) {
 }
 
 func (ptr *QSvgGenerator) SetViewBox2(viewBox core.QRectF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::setViewBox")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::setViewBox")
 
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_SetViewBox2(ptr.Pointer(), core.PointerFromQRectF(viewBox))
@@ -184,11 +139,7 @@ func (ptr *QSvgGenerator) SetViewBox2(viewBox core.QRectF_ITF) {
 }
 
 func (ptr *QSvgGenerator) Title() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::title")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::title")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSvgGenerator_Title(ptr.Pointer()))
@@ -197,23 +148,32 @@ func (ptr *QSvgGenerator) Title() string {
 }
 
 func NewQSvgGenerator() *QSvgGenerator {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::QSvgGenerator")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::QSvgGenerator")
 
 	return NewQSvgGeneratorFromPointer(C.QSvgGenerator_NewQSvgGenerator())
 }
 
 func (ptr *QSvgGenerator) DestroyQSvgGenerator() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSvgGenerator::~QSvgGenerator")
-		}
-	}()
+	defer qt.Recovering("QSvgGenerator::~QSvgGenerator")
 
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_DestroyQSvgGenerator(ptr.Pointer())
+	}
+}
+
+func (ptr *QSvgGenerator) ObjectNameAbs() string {
+	defer qt.Recovering("QSvgGenerator::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QSvgGenerator_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSvgGenerator) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QSvgGenerator::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QSvgGenerator_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

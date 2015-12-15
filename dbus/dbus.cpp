@@ -25,16 +25,13 @@
 #include <QString>
 #include <QVariant>
 
-class MyQDBusAbstractAdaptor: public QDBusAbstractAdaptor {
-public:
-};
-
 void QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(void* ptr){
 	static_cast<QDBusAbstractAdaptor*>(ptr)->~QDBusAbstractAdaptor();
 }
 
 class MyQDBusAbstractInterface: public QDBusAbstractInterface {
 public:
+protected:
 };
 
 char* QDBusAbstractInterface_Interface(void* ptr){
@@ -64,10 +61,6 @@ int QDBusAbstractInterface_Timeout(void* ptr){
 void QDBusAbstractInterface_DestroyQDBusAbstractInterface(void* ptr){
 	static_cast<QDBusAbstractInterface*>(ptr)->~QDBusAbstractInterface();
 }
-
-class MyQDBusArgument: public QDBusArgument {
-public:
-};
 
 void* QDBusArgument_NewQDBusArgument(){
 	return new QDBusArgument();
@@ -156,10 +149,6 @@ void QDBusArgument_EndStructure2(void* ptr){
 void QDBusArgument_DestroyQDBusArgument(void* ptr){
 	static_cast<QDBusArgument*>(ptr)->~QDBusArgument();
 }
-
-class MyQDBusConnection: public QDBusConnection {
-public:
-};
 
 void* QDBusConnection_NewQDBusConnection2(void* other){
 	return new QDBusConnection(*static_cast<QDBusConnection*>(other));
@@ -251,8 +240,9 @@ void QDBusConnection_DestroyQDBusConnection(void* ptr){
 
 class MyQDBusConnectionInterface: public QDBusConnectionInterface {
 public:
-void Signal_ServiceRegistered(const QString & serviceName){callbackQDBusConnectionInterfaceServiceRegistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data());};
-void Signal_ServiceUnregistered(const QString & serviceName){callbackQDBusConnectionInterfaceServiceUnregistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data());};
+	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusConnectionInterfaceServiceRegistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
+	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusConnectionInterfaceServiceUnregistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
+protected:
 };
 
 void QDBusConnectionInterface_ConnectServiceRegistered(void* ptr){
@@ -270,10 +260,6 @@ void QDBusConnectionInterface_ConnectServiceUnregistered(void* ptr){
 void QDBusConnectionInterface_DisconnectServiceUnregistered(void* ptr){
 	QObject::disconnect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceUnregistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceUnregistered));;
 }
-
-class MyQDBusContext: public QDBusContext {
-public:
-};
 
 void* QDBusContext_NewQDBusContext(){
 	return new QDBusContext();
@@ -303,10 +289,6 @@ void QDBusContext_DestroyQDBusContext(void* ptr){
 	static_cast<QDBusContext*>(ptr)->~QDBusContext();
 }
 
-class MyQDBusError: public QDBusError {
-public:
-};
-
 char* QDBusError_QDBusError_ErrorString(int error){
 	return QDBusError::errorString(static_cast<QDBusError::ErrorType>(error)).toUtf8().data();
 }
@@ -327,10 +309,6 @@ int QDBusError_Type(void* ptr){
 	return static_cast<QDBusError*>(ptr)->type();
 }
 
-class MyQDBusInterface: public QDBusInterface {
-public:
-};
-
 void* QDBusInterface_NewQDBusInterface(char* service, char* path, char* interfa, void* connection, void* parent){
 	return new QDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QObject*>(parent));
 }
@@ -338,10 +316,6 @@ void* QDBusInterface_NewQDBusInterface(char* service, char* path, char* interfa,
 void QDBusInterface_DestroyQDBusInterface(void* ptr){
 	static_cast<QDBusInterface*>(ptr)->~QDBusInterface();
 }
-
-class MyQDBusMessage: public QDBusMessage {
-public:
-};
 
 void* QDBusMessage_NewQDBusMessage(){
 	return new QDBusMessage();
@@ -407,10 +381,6 @@ void QDBusMessage_DestroyQDBusMessage(void* ptr){
 	static_cast<QDBusMessage*>(ptr)->~QDBusMessage();
 }
 
-class MyQDBusObjectPath: public QDBusObjectPath {
-public:
-};
-
 void* QDBusObjectPath_NewQDBusObjectPath(){
 	return new QDBusObjectPath();
 }
@@ -435,10 +405,6 @@ void QDBusObjectPath_SetPath(void* ptr, char* path){
 	static_cast<QDBusObjectPath*>(ptr)->setPath(QString(path));
 }
 
-class MyQDBusPendingCall: public QDBusPendingCall {
-public:
-};
-
 void* QDBusPendingCall_NewQDBusPendingCall(void* other){
 	return new QDBusPendingCall(*static_cast<QDBusPendingCall*>(other));
 }
@@ -453,7 +419,8 @@ void QDBusPendingCall_DestroyQDBusPendingCall(void* ptr){
 
 class MyQDBusPendingCallWatcher: public QDBusPendingCallWatcher {
 public:
-void Signal_Finished(QDBusPendingCallWatcher * self){callbackQDBusPendingCallWatcherFinished(this->objectName().toUtf8().data(), self);};
+	void Signal_Finished(QDBusPendingCallWatcher * self) { callbackQDBusPendingCallWatcherFinished(this->objectName().toUtf8().data(), self); };
+protected:
 };
 
 void QDBusPendingCallWatcher_WaitForFinished(void* ptr){
@@ -482,14 +449,17 @@ void QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcher(void* ptr){
 
 class MyQDBusServer: public QDBusServer {
 public:
+	MyQDBusServer(QObject *parent) : QDBusServer(parent) {};
+	MyQDBusServer(const QString &address, QObject *parent) : QDBusServer(address, parent) {};
+protected:
 };
 
 void* QDBusServer_NewQDBusServer2(void* parent){
-	return new QDBusServer(static_cast<QObject*>(parent));
+	return new MyQDBusServer(static_cast<QObject*>(parent));
 }
 
 void* QDBusServer_NewQDBusServer(char* address, void* parent){
-	return new QDBusServer(QString(address), static_cast<QObject*>(parent));
+	return new MyQDBusServer(QString(address), static_cast<QObject*>(parent));
 }
 
 char* QDBusServer_Address(void* ptr){
@@ -514,9 +484,10 @@ void QDBusServer_DestroyQDBusServer(void* ptr){
 
 class MyQDBusServiceWatcher: public QDBusServiceWatcher {
 public:
-void Signal_ServiceOwnerChanged(const QString & serviceName, const QString & oldOwner, const QString & newOwner){callbackQDBusServiceWatcherServiceOwnerChanged(this->objectName().toUtf8().data(), serviceName.toUtf8().data(), oldOwner.toUtf8().data(), newOwner.toUtf8().data());};
-void Signal_ServiceRegistered(const QString & serviceName){callbackQDBusServiceWatcherServiceRegistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data());};
-void Signal_ServiceUnregistered(const QString & serviceName){callbackQDBusServiceWatcherServiceUnregistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data());};
+	void Signal_ServiceOwnerChanged(const QString & serviceName, const QString & oldOwner, const QString & newOwner) { callbackQDBusServiceWatcherServiceOwnerChanged(this->objectName().toUtf8().data(), serviceName.toUtf8().data(), oldOwner.toUtf8().data(), newOwner.toUtf8().data()); };
+	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusServiceWatcherServiceRegistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
+	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusServiceWatcherServiceUnregistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
+protected:
 };
 
 void QDBusServiceWatcher_SetWatchMode(void* ptr, int mode){
@@ -583,10 +554,6 @@ void QDBusServiceWatcher_DestroyQDBusServiceWatcher(void* ptr){
 	static_cast<QDBusServiceWatcher*>(ptr)->~QDBusServiceWatcher();
 }
 
-class MyQDBusSignature: public QDBusSignature {
-public:
-};
-
 void* QDBusSignature_NewQDBusSignature(){
 	return new QDBusSignature();
 }
@@ -610,10 +577,6 @@ void QDBusSignature_SetSignature(void* ptr, char* signature){
 char* QDBusSignature_Signature(void* ptr){
 	return static_cast<QDBusSignature*>(ptr)->signature().toUtf8().data();
 }
-
-class MyQDBusUnixFileDescriptor: public QDBusUnixFileDescriptor {
-public:
-};
 
 void* QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor(){
 	return new QDBusUnixFileDescriptor();
@@ -651,10 +614,6 @@ void QDBusUnixFileDescriptor_DestroyQDBusUnixFileDescriptor(void* ptr){
 	static_cast<QDBusUnixFileDescriptor*>(ptr)->~QDBusUnixFileDescriptor();
 }
 
-class MyQDBusVariant: public QDBusVariant {
-public:
-};
-
 void* QDBusVariant_NewQDBusVariant(){
 	return new QDBusVariant();
 }
@@ -673,6 +632,7 @@ void* QDBusVariant_Variant(void* ptr){
 
 class MyQDBusVirtualObject: public QDBusVirtualObject {
 public:
+protected:
 };
 
 int QDBusVirtualObject_HandleMessage(void* ptr, void* message, void* connection){

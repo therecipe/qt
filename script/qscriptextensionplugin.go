@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQScriptExtensionPluginFromPointer(ptr unsafe.Pointer) *QScriptExtensionP
 	var n = new(QScriptExtensionPlugin)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QScriptExtensionPlugin_") {
-		n.SetObjectName("QScriptExtensionPlugin_" + qt.RandomIdentifier())
+		n.SetObjectName("QScriptExtensionPlugin_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QScriptExtensionPlugin) QScriptExtensionPlugin_PTR() *QScriptExtensio
 }
 
 func (ptr *QScriptExtensionPlugin) Initialize(key string, engine QScriptEngine_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptExtensionPlugin::initialize")
-		}
-	}()
+	defer qt.Recovering("QScriptExtensionPlugin::initialize")
 
 	if ptr.Pointer() != nil {
 		C.QScriptExtensionPlugin_Initialize(ptr.Pointer(), C.CString(key), PointerFromQScriptEngine(engine))
@@ -52,11 +47,7 @@ func (ptr *QScriptExtensionPlugin) Initialize(key string, engine QScriptEngine_I
 }
 
 func (ptr *QScriptExtensionPlugin) Keys() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptExtensionPlugin::keys")
-		}
-	}()
+	defer qt.Recovering("QScriptExtensionPlugin::keys")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QScriptExtensionPlugin_Keys(ptr.Pointer())), ",,,")
@@ -65,11 +56,7 @@ func (ptr *QScriptExtensionPlugin) Keys() []string {
 }
 
 func (ptr *QScriptExtensionPlugin) SetupPackage(key string, engine QScriptEngine_ITF) *QScriptValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptExtensionPlugin::setupPackage")
-		}
-	}()
+	defer qt.Recovering("QScriptExtensionPlugin::setupPackage")
 
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptExtensionPlugin_SetupPackage(ptr.Pointer(), C.CString(key), PointerFromQScriptEngine(engine)))
@@ -78,11 +65,7 @@ func (ptr *QScriptExtensionPlugin) SetupPackage(key string, engine QScriptEngine
 }
 
 func (ptr *QScriptExtensionPlugin) DestroyQScriptExtensionPlugin() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QScriptExtensionPlugin::~QScriptExtensionPlugin")
-		}
-	}()
+	defer qt.Recovering("QScriptExtensionPlugin::~QScriptExtensionPlugin")
 
 	if ptr.Pointer() != nil {
 		C.QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(ptr.Pointer())

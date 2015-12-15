@@ -3,8 +3,8 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -60,31 +60,19 @@ const (
 )
 
 func NewQAudioFormat() *QAudioFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::QAudioFormat")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::QAudioFormat")
 
 	return NewQAudioFormatFromPointer(C.QAudioFormat_NewQAudioFormat())
 }
 
 func NewQAudioFormat2(other QAudioFormat_ITF) *QAudioFormat {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::QAudioFormat")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::QAudioFormat")
 
 	return NewQAudioFormatFromPointer(C.QAudioFormat_NewQAudioFormat2(PointerFromQAudioFormat(other)))
 }
 
 func (ptr *QAudioFormat) ByteOrder() QAudioFormat__Endian {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::byteOrder")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::byteOrder")
 
 	if ptr.Pointer() != nil {
 		return QAudioFormat__Endian(C.QAudioFormat_ByteOrder(ptr.Pointer()))
@@ -93,11 +81,7 @@ func (ptr *QAudioFormat) ByteOrder() QAudioFormat__Endian {
 }
 
 func (ptr *QAudioFormat) BytesPerFrame() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::bytesPerFrame")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::bytesPerFrame")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioFormat_BytesPerFrame(ptr.Pointer()))
@@ -106,11 +90,7 @@ func (ptr *QAudioFormat) BytesPerFrame() int {
 }
 
 func (ptr *QAudioFormat) ChannelCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::channelCount")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::channelCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioFormat_ChannelCount(ptr.Pointer()))
@@ -119,11 +99,7 @@ func (ptr *QAudioFormat) ChannelCount() int {
 }
 
 func (ptr *QAudioFormat) Codec() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::codec")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::codec")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAudioFormat_Codec(ptr.Pointer()))
@@ -132,11 +108,7 @@ func (ptr *QAudioFormat) Codec() string {
 }
 
 func (ptr *QAudioFormat) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::isValid")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QAudioFormat_IsValid(ptr.Pointer()) != 0
@@ -145,11 +117,7 @@ func (ptr *QAudioFormat) IsValid() bool {
 }
 
 func (ptr *QAudioFormat) SampleRate() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::sampleRate")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::sampleRate")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioFormat_SampleRate(ptr.Pointer()))
@@ -158,11 +126,7 @@ func (ptr *QAudioFormat) SampleRate() int {
 }
 
 func (ptr *QAudioFormat) SampleSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::sampleSize")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::sampleSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioFormat_SampleSize(ptr.Pointer()))
@@ -171,11 +135,7 @@ func (ptr *QAudioFormat) SampleSize() int {
 }
 
 func (ptr *QAudioFormat) SampleType() QAudioFormat__SampleType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::sampleType")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::sampleType")
 
 	if ptr.Pointer() != nil {
 		return QAudioFormat__SampleType(C.QAudioFormat_SampleType(ptr.Pointer()))
@@ -184,11 +144,7 @@ func (ptr *QAudioFormat) SampleType() QAudioFormat__SampleType {
 }
 
 func (ptr *QAudioFormat) SetByteOrder(byteOrder QAudioFormat__Endian) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::setByteOrder")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::setByteOrder")
 
 	if ptr.Pointer() != nil {
 		C.QAudioFormat_SetByteOrder(ptr.Pointer(), C.int(byteOrder))
@@ -196,11 +152,7 @@ func (ptr *QAudioFormat) SetByteOrder(byteOrder QAudioFormat__Endian) {
 }
 
 func (ptr *QAudioFormat) SetChannelCount(channels int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::setChannelCount")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::setChannelCount")
 
 	if ptr.Pointer() != nil {
 		C.QAudioFormat_SetChannelCount(ptr.Pointer(), C.int(channels))
@@ -208,11 +160,7 @@ func (ptr *QAudioFormat) SetChannelCount(channels int) {
 }
 
 func (ptr *QAudioFormat) SetCodec(codec string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::setCodec")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::setCodec")
 
 	if ptr.Pointer() != nil {
 		C.QAudioFormat_SetCodec(ptr.Pointer(), C.CString(codec))
@@ -220,11 +168,7 @@ func (ptr *QAudioFormat) SetCodec(codec string) {
 }
 
 func (ptr *QAudioFormat) SetSampleRate(samplerate int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::setSampleRate")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::setSampleRate")
 
 	if ptr.Pointer() != nil {
 		C.QAudioFormat_SetSampleRate(ptr.Pointer(), C.int(samplerate))
@@ -232,11 +176,7 @@ func (ptr *QAudioFormat) SetSampleRate(samplerate int) {
 }
 
 func (ptr *QAudioFormat) SetSampleSize(sampleSize int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::setSampleSize")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::setSampleSize")
 
 	if ptr.Pointer() != nil {
 		C.QAudioFormat_SetSampleSize(ptr.Pointer(), C.int(sampleSize))
@@ -244,11 +184,7 @@ func (ptr *QAudioFormat) SetSampleSize(sampleSize int) {
 }
 
 func (ptr *QAudioFormat) SetSampleType(sampleType QAudioFormat__SampleType) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::setSampleType")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::setSampleType")
 
 	if ptr.Pointer() != nil {
 		C.QAudioFormat_SetSampleType(ptr.Pointer(), C.int(sampleType))
@@ -256,11 +192,7 @@ func (ptr *QAudioFormat) SetSampleType(sampleType QAudioFormat__SampleType) {
 }
 
 func (ptr *QAudioFormat) DestroyQAudioFormat() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QAudioFormat::~QAudioFormat")
-		}
-	}()
+	defer qt.Recovering("QAudioFormat::~QAudioFormat")
 
 	if ptr.Pointer() != nil {
 		C.QAudioFormat_DestroyQAudioFormat(ptr.Pointer())

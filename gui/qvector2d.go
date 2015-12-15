@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -42,61 +42,37 @@ func (ptr *QVector2D) QVector2D_PTR() *QVector2D {
 }
 
 func NewQVector2D() *QVector2D {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVector2D::QVector2D")
-		}
-	}()
+	defer qt.Recovering("QVector2D::QVector2D")
 
 	return NewQVector2DFromPointer(C.QVector2D_NewQVector2D())
 }
 
 func NewQVector2D4(point core.QPoint_ITF) *QVector2D {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVector2D::QVector2D")
-		}
-	}()
+	defer qt.Recovering("QVector2D::QVector2D")
 
 	return NewQVector2DFromPointer(C.QVector2D_NewQVector2D4(core.PointerFromQPoint(point)))
 }
 
 func NewQVector2D5(point core.QPointF_ITF) *QVector2D {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVector2D::QVector2D")
-		}
-	}()
+	defer qt.Recovering("QVector2D::QVector2D")
 
 	return NewQVector2DFromPointer(C.QVector2D_NewQVector2D5(core.PointerFromQPointF(point)))
 }
 
 func NewQVector2D6(vector QVector3D_ITF) *QVector2D {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVector2D::QVector2D")
-		}
-	}()
+	defer qt.Recovering("QVector2D::QVector2D")
 
 	return NewQVector2DFromPointer(C.QVector2D_NewQVector2D6(PointerFromQVector3D(vector)))
 }
 
 func NewQVector2D7(vector QVector4D_ITF) *QVector2D {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVector2D::QVector2D")
-		}
-	}()
+	defer qt.Recovering("QVector2D::QVector2D")
 
 	return NewQVector2DFromPointer(C.QVector2D_NewQVector2D7(PointerFromQVector4D(vector)))
 }
 
 func (ptr *QVector2D) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVector2D::isNull")
-		}
-	}()
+	defer qt.Recovering("QVector2D::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QVector2D_IsNull(ptr.Pointer()) != 0
@@ -105,13 +81,18 @@ func (ptr *QVector2D) IsNull() bool {
 }
 
 func (ptr *QVector2D) Normalize() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QVector2D::normalize")
-		}
-	}()
+	defer qt.Recovering("QVector2D::normalize")
 
 	if ptr.Pointer() != nil {
 		C.QVector2D_Normalize(ptr.Pointer())
 	}
+}
+
+func (ptr *QVector2D) ToPoint() *core.QPoint {
+	defer qt.Recovering("QVector2D::toPoint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QVector2D_ToPoint(ptr.Pointer()))
+	}
+	return nil
 }

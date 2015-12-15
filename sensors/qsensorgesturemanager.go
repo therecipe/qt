@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -30,7 +29,7 @@ func NewQSensorGestureManagerFromPointer(ptr unsafe.Pointer) *QSensorGestureMana
 	var n = new(QSensorGestureManager)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSensorGestureManager_") {
-		n.SetObjectName("QSensorGestureManager_" + qt.RandomIdentifier())
+		n.SetObjectName("QSensorGestureManager_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,21 +39,13 @@ func (ptr *QSensorGestureManager) QSensorGestureManager_PTR() *QSensorGestureMan
 }
 
 func NewQSensorGestureManager(parent core.QObject_ITF) *QSensorGestureManager {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureManager::QSensorGestureManager")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureManager::QSensorGestureManager")
 
 	return NewQSensorGestureManagerFromPointer(C.QSensorGestureManager_NewQSensorGestureManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSensorGestureManager) GestureIds() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureManager::gestureIds")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureManager::gestureIds")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSensorGestureManager_GestureIds(ptr.Pointer())), ",,,")
@@ -63,11 +54,7 @@ func (ptr *QSensorGestureManager) GestureIds() []string {
 }
 
 func (ptr *QSensorGestureManager) ConnectNewSensorGestureAvailable(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureManager::newSensorGestureAvailable")
-		}
-	}()
+	defer qt.Recovering("connect QSensorGestureManager::newSensorGestureAvailable")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGestureManager_ConnectNewSensorGestureAvailable(ptr.Pointer())
@@ -76,11 +63,7 @@ func (ptr *QSensorGestureManager) ConnectNewSensorGestureAvailable(f func()) {
 }
 
 func (ptr *QSensorGestureManager) DisconnectNewSensorGestureAvailable() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureManager::newSensorGestureAvailable")
-		}
-	}()
+	defer qt.Recovering("disconnect QSensorGestureManager::newSensorGestureAvailable")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGestureManager_DisconnectNewSensorGestureAvailable(ptr.Pointer())
@@ -90,21 +73,17 @@ func (ptr *QSensorGestureManager) DisconnectNewSensorGestureAvailable() {
 
 //export callbackQSensorGestureManagerNewSensorGestureAvailable
 func callbackQSensorGestureManagerNewSensorGestureAvailable(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureManager::newSensorGestureAvailable")
-		}
-	}()
+	defer qt.Recovering("callback QSensorGestureManager::newSensorGestureAvailable")
 
-	qt.GetSignal(C.GoString(ptrName), "newSensorGestureAvailable").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "newSensorGestureAvailable")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QSensorGestureManager) RecognizerSignals(gestureId string) []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureManager::recognizerSignals")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureManager::recognizerSignals")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), C.CString(gestureId))), ",,,")
@@ -113,11 +92,7 @@ func (ptr *QSensorGestureManager) RecognizerSignals(gestureId string) []string {
 }
 
 func (ptr *QSensorGestureManager) RegisterSensorGestureRecognizer(recognizer QSensorGestureRecognizer_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureManager::registerSensorGestureRecognizer")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureManager::registerSensorGestureRecognizer")
 
 	if ptr.Pointer() != nil {
 		return C.QSensorGestureManager_RegisterSensorGestureRecognizer(ptr.Pointer(), PointerFromQSensorGestureRecognizer(recognizer)) != 0
@@ -126,21 +101,13 @@ func (ptr *QSensorGestureManager) RegisterSensorGestureRecognizer(recognizer QSe
 }
 
 func QSensorGestureManager_SensorGestureRecognizer(id string) *QSensorGestureRecognizer {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureManager::sensorGestureRecognizer")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureManager::sensorGestureRecognizer")
 
 	return NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(C.CString(id)))
 }
 
 func (ptr *QSensorGestureManager) DestroyQSensorGestureManager() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSensorGestureManager::~QSensorGestureManager")
-		}
-	}()
+	defer qt.Recovering("QSensorGestureManager::~QSensorGestureManager")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGestureManager_DestroyQSensorGestureManager(ptr.Pointer())

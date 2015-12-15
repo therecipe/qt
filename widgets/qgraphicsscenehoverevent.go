@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,12 +34,17 @@ func (ptr *QGraphicsSceneHoverEvent) QGraphicsSceneHoverEvent_PTR() *QGraphicsSc
 	return ptr
 }
 
+func (ptr *QGraphicsSceneHoverEvent) LastScreenPos() *core.QPoint {
+	defer qt.Recovering("QGraphicsSceneHoverEvent::lastScreenPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QGraphicsSceneHoverEvent_LastScreenPos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsSceneHoverEvent) Modifiers() core.Qt__KeyboardModifier {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneHoverEvent::modifiers")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneHoverEvent::modifiers")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__KeyboardModifier(C.QGraphicsSceneHoverEvent_Modifiers(ptr.Pointer()))
@@ -47,12 +52,17 @@ func (ptr *QGraphicsSceneHoverEvent) Modifiers() core.Qt__KeyboardModifier {
 	return 0
 }
 
+func (ptr *QGraphicsSceneHoverEvent) ScreenPos() *core.QPoint {
+	defer qt.Recovering("QGraphicsSceneHoverEvent::screenPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QGraphicsSceneHoverEvent_ScreenPos(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsSceneHoverEvent) DestroyQGraphicsSceneHoverEvent() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QGraphicsSceneHoverEvent::~QGraphicsSceneHoverEvent")
-		}
-	}()
+	defer qt.Recovering("QGraphicsSceneHoverEvent::~QGraphicsSceneHoverEvent")
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneHoverEvent_DestroyQGraphicsSceneHoverEvent(ptr.Pointer())

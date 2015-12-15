@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -62,11 +62,7 @@ const (
 )
 
 func (ptr *QJsonParseError) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonParseError::errorString")
-		}
-	}()
+	defer qt.Recovering("QJsonParseError::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QJsonParseError_ErrorString(ptr.Pointer()))

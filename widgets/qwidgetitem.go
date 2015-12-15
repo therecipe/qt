@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -27,6 +27,9 @@ func PointerFromQWidgetItem(ptr QWidgetItem_ITF) unsafe.Pointer {
 func NewQWidgetItemFromPointer(ptr unsafe.Pointer) *QWidgetItem {
 	var n = new(QWidgetItem)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QWidgetItem_") {
+		n.SetObjectNameAbs("QWidgetItem_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -35,21 +38,13 @@ func (ptr *QWidgetItem) QWidgetItem_PTR() *QWidgetItem {
 }
 
 func NewQWidgetItem(widget QWidget_ITF) *QWidgetItem {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetItem::QWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QWidgetItem::QWidgetItem")
 
 	return NewQWidgetItemFromPointer(C.QWidgetItem_NewQWidgetItem(PointerFromQWidget(widget)))
 }
 
 func (ptr *QWidgetItem) ControlTypes() QSizePolicy__ControlType {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetItem::controlTypes")
-		}
-	}()
+	defer qt.Recovering("QWidgetItem::controlTypes")
 
 	if ptr.Pointer() != nil {
 		return QSizePolicy__ControlType(C.QWidgetItem_ControlTypes(ptr.Pointer()))
@@ -58,11 +53,7 @@ func (ptr *QWidgetItem) ControlTypes() QSizePolicy__ControlType {
 }
 
 func (ptr *QWidgetItem) ExpandingDirections() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetItem::expandingDirections")
-		}
-	}()
+	defer qt.Recovering("QWidgetItem::expandingDirections")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QWidgetItem_ExpandingDirections(ptr.Pointer()))
@@ -71,11 +62,7 @@ func (ptr *QWidgetItem) ExpandingDirections() core.Qt__Orientation {
 }
 
 func (ptr *QWidgetItem) HasHeightForWidth() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetItem::hasHeightForWidth")
-		}
-	}()
+	defer qt.Recovering("QWidgetItem::hasHeightForWidth")
 
 	if ptr.Pointer() != nil {
 		return C.QWidgetItem_HasHeightForWidth(ptr.Pointer()) != 0
@@ -84,11 +71,7 @@ func (ptr *QWidgetItem) HasHeightForWidth() bool {
 }
 
 func (ptr *QWidgetItem) HeightForWidth(w int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetItem::heightForWidth")
-		}
-	}()
+	defer qt.Recovering("QWidgetItem::heightForWidth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QWidgetItem_HeightForWidth(ptr.Pointer(), C.int(w)))
@@ -97,11 +80,7 @@ func (ptr *QWidgetItem) HeightForWidth(w int) int {
 }
 
 func (ptr *QWidgetItem) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetItem::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QWidgetItem::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QWidgetItem_IsEmpty(ptr.Pointer()) != 0
@@ -109,24 +88,8 @@ func (ptr *QWidgetItem) IsEmpty() bool {
 	return false
 }
 
-func (ptr *QWidgetItem) SetGeometry(rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetItem::setGeometry")
-		}
-	}()
-
-	if ptr.Pointer() != nil {
-		C.QWidgetItem_SetGeometry(ptr.Pointer(), core.PointerFromQRect(rect))
-	}
-}
-
 func (ptr *QWidgetItem) Widget() *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetItem::widget")
-		}
-	}()
+	defer qt.Recovering("QWidgetItem::widget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidgetItem_Widget(ptr.Pointer()))
@@ -135,13 +98,26 @@ func (ptr *QWidgetItem) Widget() *QWidget {
 }
 
 func (ptr *QWidgetItem) DestroyQWidgetItem() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QWidgetItem::~QWidgetItem")
-		}
-	}()
+	defer qt.Recovering("QWidgetItem::~QWidgetItem")
 
 	if ptr.Pointer() != nil {
 		C.QWidgetItem_DestroyQWidgetItem(ptr.Pointer())
+	}
+}
+
+func (ptr *QWidgetItem) ObjectNameAbs() string {
+	defer qt.Recovering("QWidgetItem::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QWidgetItem_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QWidgetItem) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QWidgetItem::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QWidgetItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

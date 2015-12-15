@@ -3,7 +3,7 @@ package core
 //#include "core.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -57,51 +57,31 @@ const (
 )
 
 func NewQJsonDocument() *QJsonDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::QJsonDocument")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::QJsonDocument")
 
 	return NewQJsonDocumentFromPointer(C.QJsonDocument_NewQJsonDocument())
 }
 
 func NewQJsonDocument3(array QJsonArray_ITF) *QJsonDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::QJsonDocument")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::QJsonDocument")
 
 	return NewQJsonDocumentFromPointer(C.QJsonDocument_NewQJsonDocument3(PointerFromQJsonArray(array)))
 }
 
 func NewQJsonDocument4(other QJsonDocument_ITF) *QJsonDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::QJsonDocument")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::QJsonDocument")
 
 	return NewQJsonDocumentFromPointer(C.QJsonDocument_NewQJsonDocument4(PointerFromQJsonDocument(other)))
 }
 
 func NewQJsonDocument2(object QJsonObject_ITF) *QJsonDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::QJsonDocument")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::QJsonDocument")
 
 	return NewQJsonDocumentFromPointer(C.QJsonDocument_NewQJsonDocument2(PointerFromQJsonObject(object)))
 }
 
 func (ptr *QJsonDocument) Array() *QJsonArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::array")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::array")
 
 	if ptr.Pointer() != nil {
 		return NewQJsonArrayFromPointer(C.QJsonDocument_Array(ptr.Pointer()))
@@ -110,51 +90,31 @@ func (ptr *QJsonDocument) Array() *QJsonArray {
 }
 
 func QJsonDocument_FromBinaryData(data QByteArray_ITF, validation QJsonDocument__DataValidation) *QJsonDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::fromBinaryData")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::fromBinaryData")
 
 	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromBinaryData(PointerFromQByteArray(data), C.int(validation)))
 }
 
 func QJsonDocument_FromJson(json QByteArray_ITF, error QJsonParseError_ITF) *QJsonDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::fromJson")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::fromJson")
 
 	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromJson(PointerFromQByteArray(json), PointerFromQJsonParseError(error)))
 }
 
 func QJsonDocument_FromRawData(data string, size int, validation QJsonDocument__DataValidation) *QJsonDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::fromRawData")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::fromRawData")
 
 	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromRawData(C.CString(data), C.int(size), C.int(validation)))
 }
 
 func QJsonDocument_FromVariant(variant QVariant_ITF) *QJsonDocument {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::fromVariant")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::fromVariant")
 
 	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromVariant(PointerFromQVariant(variant)))
 }
 
 func (ptr *QJsonDocument) IsArray() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::isArray")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::isArray")
 
 	if ptr.Pointer() != nil {
 		return C.QJsonDocument_IsArray(ptr.Pointer()) != 0
@@ -163,11 +123,7 @@ func (ptr *QJsonDocument) IsArray() bool {
 }
 
 func (ptr *QJsonDocument) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QJsonDocument_IsEmpty(ptr.Pointer()) != 0
@@ -176,11 +132,7 @@ func (ptr *QJsonDocument) IsEmpty() bool {
 }
 
 func (ptr *QJsonDocument) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::isNull")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QJsonDocument_IsNull(ptr.Pointer()) != 0
@@ -189,11 +141,7 @@ func (ptr *QJsonDocument) IsNull() bool {
 }
 
 func (ptr *QJsonDocument) IsObject() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::isObject")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::isObject")
 
 	if ptr.Pointer() != nil {
 		return C.QJsonDocument_IsObject(ptr.Pointer()) != 0
@@ -202,11 +150,7 @@ func (ptr *QJsonDocument) IsObject() bool {
 }
 
 func (ptr *QJsonDocument) Object() *QJsonObject {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::object")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::object")
 
 	if ptr.Pointer() != nil {
 		return NewQJsonObjectFromPointer(C.QJsonDocument_Object(ptr.Pointer()))
@@ -215,11 +159,7 @@ func (ptr *QJsonDocument) Object() *QJsonObject {
 }
 
 func (ptr *QJsonDocument) SetArray(array QJsonArray_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::setArray")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::setArray")
 
 	if ptr.Pointer() != nil {
 		C.QJsonDocument_SetArray(ptr.Pointer(), PointerFromQJsonArray(array))
@@ -227,11 +167,7 @@ func (ptr *QJsonDocument) SetArray(array QJsonArray_ITF) {
 }
 
 func (ptr *QJsonDocument) SetObject(object QJsonObject_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::setObject")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::setObject")
 
 	if ptr.Pointer() != nil {
 		C.QJsonDocument_SetObject(ptr.Pointer(), PointerFromQJsonObject(object))
@@ -239,11 +175,7 @@ func (ptr *QJsonDocument) SetObject(object QJsonObject_ITF) {
 }
 
 func (ptr *QJsonDocument) ToBinaryData() *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::toBinaryData")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::toBinaryData")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QJsonDocument_ToBinaryData(ptr.Pointer()))
@@ -252,11 +184,7 @@ func (ptr *QJsonDocument) ToBinaryData() *QByteArray {
 }
 
 func (ptr *QJsonDocument) ToJson(format QJsonDocument__JsonFormat) *QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::toJson")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::toJson")
 
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QJsonDocument_ToJson(ptr.Pointer(), C.int(format)))
@@ -265,11 +193,7 @@ func (ptr *QJsonDocument) ToJson(format QJsonDocument__JsonFormat) *QByteArray {
 }
 
 func (ptr *QJsonDocument) ToVariant() *QVariant {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::toVariant")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::toVariant")
 
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QJsonDocument_ToVariant(ptr.Pointer()))
@@ -278,11 +202,7 @@ func (ptr *QJsonDocument) ToVariant() *QVariant {
 }
 
 func (ptr *QJsonDocument) DestroyQJsonDocument() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJsonDocument::~QJsonDocument")
-		}
-	}()
+	defer qt.Recovering("QJsonDocument::~QJsonDocument")
 
 	if ptr.Pointer() != nil {
 		C.QJsonDocument_DestroyQJsonDocument(ptr.Pointer())

@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQJSEngineFromPointer(ptr unsafe.Pointer) *QJSEngine {
 	var n = new(QJSEngine)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QJSEngine_") {
-		n.SetObjectName("QJSEngine_" + qt.RandomIdentifier())
+		n.SetObjectName("QJSEngine_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,31 +38,19 @@ func (ptr *QJSEngine) QJSEngine_PTR() *QJSEngine {
 }
 
 func NewQJSEngine() *QJSEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJSEngine::QJSEngine")
-		}
-	}()
+	defer qt.Recovering("QJSEngine::QJSEngine")
 
 	return NewQJSEngineFromPointer(C.QJSEngine_NewQJSEngine())
 }
 
 func NewQJSEngine2(parent core.QObject_ITF) *QJSEngine {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJSEngine::QJSEngine")
-		}
-	}()
+	defer qt.Recovering("QJSEngine::QJSEngine")
 
 	return NewQJSEngineFromPointer(C.QJSEngine_NewQJSEngine2(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QJSEngine) CollectGarbage() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJSEngine::collectGarbage")
-		}
-	}()
+	defer qt.Recovering("QJSEngine::collectGarbage")
 
 	if ptr.Pointer() != nil {
 		C.QJSEngine_CollectGarbage(ptr.Pointer())
@@ -71,11 +58,7 @@ func (ptr *QJSEngine) CollectGarbage() {
 }
 
 func (ptr *QJSEngine) Evaluate(program string, fileName string, lineNumber int) *QJSValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJSEngine::evaluate")
-		}
-	}()
+	defer qt.Recovering("QJSEngine::evaluate")
 
 	if ptr.Pointer() != nil {
 		return NewQJSValueFromPointer(C.QJSEngine_Evaluate(ptr.Pointer(), C.CString(program), C.CString(fileName), C.int(lineNumber)))
@@ -84,11 +67,7 @@ func (ptr *QJSEngine) Evaluate(program string, fileName string, lineNumber int) 
 }
 
 func (ptr *QJSEngine) GlobalObject() *QJSValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJSEngine::globalObject")
-		}
-	}()
+	defer qt.Recovering("QJSEngine::globalObject")
 
 	if ptr.Pointer() != nil {
 		return NewQJSValueFromPointer(C.QJSEngine_GlobalObject(ptr.Pointer()))
@@ -97,11 +76,7 @@ func (ptr *QJSEngine) GlobalObject() *QJSValue {
 }
 
 func (ptr *QJSEngine) InstallTranslatorFunctions(object QJSValue_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJSEngine::installTranslatorFunctions")
-		}
-	}()
+	defer qt.Recovering("QJSEngine::installTranslatorFunctions")
 
 	if ptr.Pointer() != nil {
 		C.QJSEngine_InstallTranslatorFunctions(ptr.Pointer(), PointerFromQJSValue(object))
@@ -109,11 +84,7 @@ func (ptr *QJSEngine) InstallTranslatorFunctions(object QJSValue_ITF) {
 }
 
 func (ptr *QJSEngine) NewObject() *QJSValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJSEngine::newObject")
-		}
-	}()
+	defer qt.Recovering("QJSEngine::newObject")
 
 	if ptr.Pointer() != nil {
 		return NewQJSValueFromPointer(C.QJSEngine_NewObject(ptr.Pointer()))
@@ -122,11 +93,7 @@ func (ptr *QJSEngine) NewObject() *QJSValue {
 }
 
 func (ptr *QJSEngine) NewQObject(object core.QObject_ITF) *QJSValue {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJSEngine::newQObject")
-		}
-	}()
+	defer qt.Recovering("QJSEngine::newQObject")
 
 	if ptr.Pointer() != nil {
 		return NewQJSValueFromPointer(C.QJSEngine_NewQObject(ptr.Pointer(), core.PointerFromQObject(object)))
@@ -135,11 +102,7 @@ func (ptr *QJSEngine) NewQObject(object core.QObject_ITF) *QJSValue {
 }
 
 func (ptr *QJSEngine) DestroyQJSEngine() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QJSEngine::~QJSEngine")
-		}
-	}()
+	defer qt.Recovering("QJSEngine::~QJSEngine")
 
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DestroyQJSEngine(ptr.Pointer())

@@ -3,8 +3,8 @@ package widgets
 //#include "widgets.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -34,6 +34,9 @@ func PointerFromQItemEditorCreatorBase(ptr QItemEditorCreatorBase_ITF) unsafe.Po
 func NewQItemEditorCreatorBaseFromPointer(ptr unsafe.Pointer) *QItemEditorCreatorBase {
 	var n = new(QItemEditorCreatorBase)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QItemEditorCreatorBase_") {
+		n.SetObjectNameAbs("QItemEditorCreatorBase_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -42,11 +45,7 @@ func (ptr *QItemEditorCreatorBase) QItemEditorCreatorBase_PTR() *QItemEditorCrea
 }
 
 func (ptr *QItemEditorCreatorBase) DestroyQItemEditorCreatorBase() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemEditorCreatorBase::~QItemEditorCreatorBase")
-		}
-	}()
+	defer qt.Recovering("QItemEditorCreatorBase::~QItemEditorCreatorBase")
 
 	if ptr.Pointer() != nil {
 		C.QItemEditorCreatorBase_DestroyQItemEditorCreatorBase(ptr.Pointer())
@@ -54,11 +53,7 @@ func (ptr *QItemEditorCreatorBase) DestroyQItemEditorCreatorBase() {
 }
 
 func (ptr *QItemEditorCreatorBase) CreateWidget(parent QWidget_ITF) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemEditorCreatorBase::createWidget")
-		}
-	}()
+	defer qt.Recovering("QItemEditorCreatorBase::createWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QItemEditorCreatorBase_CreateWidget(ptr.Pointer(), PointerFromQWidget(parent)))
@@ -67,14 +62,27 @@ func (ptr *QItemEditorCreatorBase) CreateWidget(parent QWidget_ITF) *QWidget {
 }
 
 func (ptr *QItemEditorCreatorBase) ValuePropertyName() *core.QByteArray {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QItemEditorCreatorBase::valuePropertyName")
-		}
-	}()
+	defer qt.Recovering("QItemEditorCreatorBase::valuePropertyName")
 
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QItemEditorCreatorBase_ValuePropertyName(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QItemEditorCreatorBase) ObjectNameAbs() string {
+	defer qt.Recovering("QItemEditorCreatorBase::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QItemEditorCreatorBase_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QItemEditorCreatorBase) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QItemEditorCreatorBase::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QItemEditorCreatorBase_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+	}
 }

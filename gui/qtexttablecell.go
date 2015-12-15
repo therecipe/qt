@@ -3,7 +3,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,31 +41,19 @@ func (ptr *QTextTableCell) QTextTableCell_PTR() *QTextTableCell {
 }
 
 func NewQTextTableCell() *QTextTableCell {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextTableCell::QTextTableCell")
-		}
-	}()
+	defer qt.Recovering("QTextTableCell::QTextTableCell")
 
 	return NewQTextTableCellFromPointer(C.QTextTableCell_NewQTextTableCell())
 }
 
 func NewQTextTableCell2(other QTextTableCell_ITF) *QTextTableCell {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextTableCell::QTextTableCell")
-		}
-	}()
+	defer qt.Recovering("QTextTableCell::QTextTableCell")
 
 	return NewQTextTableCellFromPointer(C.QTextTableCell_NewQTextTableCell2(PointerFromQTextTableCell(other)))
 }
 
 func (ptr *QTextTableCell) Column() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextTableCell::column")
-		}
-	}()
+	defer qt.Recovering("QTextTableCell::column")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextTableCell_Column(ptr.Pointer()))
@@ -74,11 +62,7 @@ func (ptr *QTextTableCell) Column() int {
 }
 
 func (ptr *QTextTableCell) ColumnSpan() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextTableCell::columnSpan")
-		}
-	}()
+	defer qt.Recovering("QTextTableCell::columnSpan")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextTableCell_ColumnSpan(ptr.Pointer()))
@@ -87,11 +71,7 @@ func (ptr *QTextTableCell) ColumnSpan() int {
 }
 
 func (ptr *QTextTableCell) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextTableCell::isValid")
-		}
-	}()
+	defer qt.Recovering("QTextTableCell::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QTextTableCell_IsValid(ptr.Pointer()) != 0
@@ -100,11 +80,7 @@ func (ptr *QTextTableCell) IsValid() bool {
 }
 
 func (ptr *QTextTableCell) Row() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextTableCell::row")
-		}
-	}()
+	defer qt.Recovering("QTextTableCell::row")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextTableCell_Row(ptr.Pointer()))
@@ -113,11 +89,7 @@ func (ptr *QTextTableCell) Row() int {
 }
 
 func (ptr *QTextTableCell) RowSpan() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextTableCell::rowSpan")
-		}
-	}()
+	defer qt.Recovering("QTextTableCell::rowSpan")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextTableCell_RowSpan(ptr.Pointer()))
@@ -126,11 +98,7 @@ func (ptr *QTextTableCell) RowSpan() int {
 }
 
 func (ptr *QTextTableCell) SetFormat(format QTextCharFormat_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextTableCell::setFormat")
-		}
-	}()
+	defer qt.Recovering("QTextTableCell::setFormat")
 
 	if ptr.Pointer() != nil {
 		C.QTextTableCell_SetFormat(ptr.Pointer(), PointerFromQTextCharFormat(format))
@@ -138,11 +106,7 @@ func (ptr *QTextTableCell) SetFormat(format QTextCharFormat_ITF) {
 }
 
 func (ptr *QTextTableCell) TableCellFormatIndex() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextTableCell::tableCellFormatIndex")
-		}
-	}()
+	defer qt.Recovering("QTextTableCell::tableCellFormatIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QTextTableCell_TableCellFormatIndex(ptr.Pointer()))
@@ -151,11 +115,7 @@ func (ptr *QTextTableCell) TableCellFormatIndex() int {
 }
 
 func (ptr *QTextTableCell) DestroyQTextTableCell() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QTextTableCell::~QTextTableCell")
-		}
-	}()
+	defer qt.Recovering("QTextTableCell::~QTextTableCell")
 
 	if ptr.Pointer() != nil {
 		C.QTextTableCell_DestroyQTextTableCell(ptr.Pointer())

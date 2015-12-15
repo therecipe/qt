@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQMenuFromPointer(ptr unsafe.Pointer) *QMenu {
 	var n = new(QMenu)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QMenu_") {
-		n.SetObjectName("QMenu_" + qt.RandomIdentifier())
+		n.SetObjectName("QMenu_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QMenu) QMenu_PTR() *QMenu {
 }
 
 func (ptr *QMenu) IsTearOffEnabled() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::isTearOffEnabled")
-		}
-	}()
+	defer qt.Recovering("QMenu::isTearOffEnabled")
 
 	if ptr.Pointer() != nil {
 		return C.QMenu_IsTearOffEnabled(ptr.Pointer()) != 0
@@ -53,11 +48,7 @@ func (ptr *QMenu) IsTearOffEnabled() bool {
 }
 
 func (ptr *QMenu) SeparatorsCollapsible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::separatorsCollapsible")
-		}
-	}()
+	defer qt.Recovering("QMenu::separatorsCollapsible")
 
 	if ptr.Pointer() != nil {
 		return C.QMenu_SeparatorsCollapsible(ptr.Pointer()) != 0
@@ -66,11 +57,7 @@ func (ptr *QMenu) SeparatorsCollapsible() bool {
 }
 
 func (ptr *QMenu) SetIcon(icon gui.QIcon_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::setIcon")
-		}
-	}()
+	defer qt.Recovering("QMenu::setIcon")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
@@ -78,11 +65,7 @@ func (ptr *QMenu) SetIcon(icon gui.QIcon_ITF) {
 }
 
 func (ptr *QMenu) SetSeparatorsCollapsible(collapse bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::setSeparatorsCollapsible")
-		}
-	}()
+	defer qt.Recovering("QMenu::setSeparatorsCollapsible")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_SetSeparatorsCollapsible(ptr.Pointer(), C.int(qt.GoBoolToInt(collapse)))
@@ -90,11 +73,7 @@ func (ptr *QMenu) SetSeparatorsCollapsible(collapse bool) {
 }
 
 func (ptr *QMenu) SetTearOffEnabled(v bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::setTearOffEnabled")
-		}
-	}()
+	defer qt.Recovering("QMenu::setTearOffEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_SetTearOffEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
@@ -102,11 +81,7 @@ func (ptr *QMenu) SetTearOffEnabled(v bool) {
 }
 
 func (ptr *QMenu) SetTitle(title string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::setTitle")
-		}
-	}()
+	defer qt.Recovering("QMenu::setTitle")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_SetTitle(ptr.Pointer(), C.CString(title))
@@ -114,11 +89,7 @@ func (ptr *QMenu) SetTitle(title string) {
 }
 
 func (ptr *QMenu) SetToolTipsVisible(visible bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::setToolTipsVisible")
-		}
-	}()
+	defer qt.Recovering("QMenu::setToolTipsVisible")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_SetToolTipsVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
@@ -126,11 +97,7 @@ func (ptr *QMenu) SetToolTipsVisible(visible bool) {
 }
 
 func (ptr *QMenu) Title() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::title")
-		}
-	}()
+	defer qt.Recovering("QMenu::title")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMenu_Title(ptr.Pointer()))
@@ -139,11 +106,7 @@ func (ptr *QMenu) Title() string {
 }
 
 func (ptr *QMenu) ToolTipsVisible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::toolTipsVisible")
-		}
-	}()
+	defer qt.Recovering("QMenu::toolTipsVisible")
 
 	if ptr.Pointer() != nil {
 		return C.QMenu_ToolTipsVisible(ptr.Pointer()) != 0
@@ -152,31 +115,19 @@ func (ptr *QMenu) ToolTipsVisible() bool {
 }
 
 func NewQMenu(parent QWidget_ITF) *QMenu {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::QMenu")
-		}
-	}()
+	defer qt.Recovering("QMenu::QMenu")
 
 	return NewQMenuFromPointer(C.QMenu_NewQMenu(PointerFromQWidget(parent)))
 }
 
 func NewQMenu2(title string, parent QWidget_ITF) *QMenu {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::QMenu")
-		}
-	}()
+	defer qt.Recovering("QMenu::QMenu")
 
 	return NewQMenuFromPointer(C.QMenu_NewQMenu2(C.CString(title), PointerFromQWidget(parent)))
 }
 
 func (ptr *QMenu) ConnectAboutToHide(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::aboutToHide")
-		}
-	}()
+	defer qt.Recovering("connect QMenu::aboutToHide")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_ConnectAboutToHide(ptr.Pointer())
@@ -185,11 +136,7 @@ func (ptr *QMenu) ConnectAboutToHide(f func()) {
 }
 
 func (ptr *QMenu) DisconnectAboutToHide() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::aboutToHide")
-		}
-	}()
+	defer qt.Recovering("disconnect QMenu::aboutToHide")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_DisconnectAboutToHide(ptr.Pointer())
@@ -199,21 +146,17 @@ func (ptr *QMenu) DisconnectAboutToHide() {
 
 //export callbackQMenuAboutToHide
 func callbackQMenuAboutToHide(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::aboutToHide")
-		}
-	}()
+	defer qt.Recovering("callback QMenu::aboutToHide")
 
-	qt.GetSignal(C.GoString(ptrName), "aboutToHide").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "aboutToHide")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QMenu) ConnectAboutToShow(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::aboutToShow")
-		}
-	}()
+	defer qt.Recovering("connect QMenu::aboutToShow")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_ConnectAboutToShow(ptr.Pointer())
@@ -222,11 +165,7 @@ func (ptr *QMenu) ConnectAboutToShow(f func()) {
 }
 
 func (ptr *QMenu) DisconnectAboutToShow() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::aboutToShow")
-		}
-	}()
+	defer qt.Recovering("disconnect QMenu::aboutToShow")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_DisconnectAboutToShow(ptr.Pointer())
@@ -236,21 +175,17 @@ func (ptr *QMenu) DisconnectAboutToShow() {
 
 //export callbackQMenuAboutToShow
 func callbackQMenuAboutToShow(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::aboutToShow")
-		}
-	}()
+	defer qt.Recovering("callback QMenu::aboutToShow")
 
-	qt.GetSignal(C.GoString(ptrName), "aboutToShow").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "aboutToShow")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QMenu) ActionAt(pt core.QPoint_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::actionAt")
-		}
-	}()
+	defer qt.Recovering("QMenu::actionAt")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_ActionAt(ptr.Pointer(), core.PointerFromQPoint(pt)))
@@ -258,12 +193,39 @@ func (ptr *QMenu) ActionAt(pt core.QPoint_ITF) *QAction {
 	return nil
 }
 
+func (ptr *QMenu) ConnectActionEvent(f func(e *gui.QActionEvent)) {
+	defer qt.Recovering("connect QMenu::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "actionEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectActionEvent() {
+	defer qt.Recovering("disconnect QMenu::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "actionEvent")
+	}
+}
+
+//export callbackQMenuActionEvent
+func callbackQMenuActionEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::actionEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "actionEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMenu) ActiveAction() *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::activeAction")
-		}
-	}()
+	defer qt.Recovering("QMenu::activeAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_ActiveAction(ptr.Pointer()))
@@ -272,11 +234,7 @@ func (ptr *QMenu) ActiveAction() *QAction {
 }
 
 func (ptr *QMenu) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::addAction")
-		}
-	}()
+	defer qt.Recovering("QMenu::addAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_AddAction2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text)))
@@ -285,11 +243,7 @@ func (ptr *QMenu) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
 }
 
 func (ptr *QMenu) AddAction4(icon gui.QIcon_ITF, text string, receiver core.QObject_ITF, member string, shortcut gui.QKeySequence_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::addAction")
-		}
-	}()
+	defer qt.Recovering("QMenu::addAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_AddAction4(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text), core.PointerFromQObject(receiver), C.CString(member), gui.PointerFromQKeySequence(shortcut)))
@@ -298,11 +252,7 @@ func (ptr *QMenu) AddAction4(icon gui.QIcon_ITF, text string, receiver core.QObj
 }
 
 func (ptr *QMenu) AddAction(text string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::addAction")
-		}
-	}()
+	defer qt.Recovering("QMenu::addAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_AddAction(ptr.Pointer(), C.CString(text)))
@@ -311,11 +261,7 @@ func (ptr *QMenu) AddAction(text string) *QAction {
 }
 
 func (ptr *QMenu) AddAction3(text string, receiver core.QObject_ITF, member string, shortcut gui.QKeySequence_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::addAction")
-		}
-	}()
+	defer qt.Recovering("QMenu::addAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_AddAction3(ptr.Pointer(), C.CString(text), core.PointerFromQObject(receiver), C.CString(member), gui.PointerFromQKeySequence(shortcut)))
@@ -324,11 +270,7 @@ func (ptr *QMenu) AddAction3(text string, receiver core.QObject_ITF, member stri
 }
 
 func (ptr *QMenu) AddMenu(menu QMenu_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::addMenu")
-		}
-	}()
+	defer qt.Recovering("QMenu::addMenu")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_AddMenu(ptr.Pointer(), PointerFromQMenu(menu)))
@@ -337,11 +279,7 @@ func (ptr *QMenu) AddMenu(menu QMenu_ITF) *QAction {
 }
 
 func (ptr *QMenu) AddMenu3(icon gui.QIcon_ITF, title string) *QMenu {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::addMenu")
-		}
-	}()
+	defer qt.Recovering("QMenu::addMenu")
 
 	if ptr.Pointer() != nil {
 		return NewQMenuFromPointer(C.QMenu_AddMenu3(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(title)))
@@ -350,11 +288,7 @@ func (ptr *QMenu) AddMenu3(icon gui.QIcon_ITF, title string) *QMenu {
 }
 
 func (ptr *QMenu) AddMenu2(title string) *QMenu {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::addMenu")
-		}
-	}()
+	defer qt.Recovering("QMenu::addMenu")
 
 	if ptr.Pointer() != nil {
 		return NewQMenuFromPointer(C.QMenu_AddMenu2(ptr.Pointer(), C.CString(title)))
@@ -363,11 +297,7 @@ func (ptr *QMenu) AddMenu2(title string) *QMenu {
 }
 
 func (ptr *QMenu) AddSection2(icon gui.QIcon_ITF, text string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::addSection")
-		}
-	}()
+	defer qt.Recovering("QMenu::addSection")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_AddSection2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text)))
@@ -376,11 +306,7 @@ func (ptr *QMenu) AddSection2(icon gui.QIcon_ITF, text string) *QAction {
 }
 
 func (ptr *QMenu) AddSection(text string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::addSection")
-		}
-	}()
+	defer qt.Recovering("QMenu::addSection")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_AddSection(ptr.Pointer(), C.CString(text)))
@@ -389,11 +315,7 @@ func (ptr *QMenu) AddSection(text string) *QAction {
 }
 
 func (ptr *QMenu) AddSeparator() *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::addSeparator")
-		}
-	}()
+	defer qt.Recovering("QMenu::addSeparator")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_AddSeparator(ptr.Pointer()))
@@ -401,24 +323,78 @@ func (ptr *QMenu) AddSeparator() *QAction {
 	return nil
 }
 
+func (ptr *QMenu) ConnectChangeEvent(f func(e *core.QEvent)) {
+	defer qt.Recovering("connect QMenu::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QMenu::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQMenuChangeEvent
+func callbackQMenuChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMenu) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::clear")
-		}
-	}()
+	defer qt.Recovering("QMenu::clear")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_Clear(ptr.Pointer())
 	}
 }
 
+func (ptr *QMenu) ConnectEnterEvent(f func(v *core.QEvent)) {
+	defer qt.Recovering("connect QMenu::enterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "enterEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectEnterEvent() {
+	defer qt.Recovering("disconnect QMenu::enterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "enterEvent")
+	}
+}
+
+//export callbackQMenuEnterEvent
+func callbackQMenuEnterEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::enterEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "enterEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMenu) Exec() *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::exec")
-		}
-	}()
+	defer qt.Recovering("QMenu::exec")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_Exec(ptr.Pointer()))
@@ -427,11 +403,7 @@ func (ptr *QMenu) Exec() *QAction {
 }
 
 func (ptr *QMenu) Exec2(p core.QPoint_ITF, action QAction_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::exec")
-		}
-	}()
+	defer qt.Recovering("QMenu::exec")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_Exec2(ptr.Pointer(), core.PointerFromQPoint(p), PointerFromQAction(action)))
@@ -439,12 +411,39 @@ func (ptr *QMenu) Exec2(p core.QPoint_ITF, action QAction_ITF) *QAction {
 	return nil
 }
 
+func (ptr *QMenu) ConnectHideEvent(f func(v *gui.QHideEvent)) {
+	defer qt.Recovering("connect QMenu::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectHideEvent() {
+	defer qt.Recovering("disconnect QMenu::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+	}
+}
+
+//export callbackQMenuHideEvent
+func callbackQMenuHideEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::hideEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "hideEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMenu) HideTearOffMenu() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::hideTearOffMenu")
-		}
-	}()
+	defer qt.Recovering("QMenu::hideTearOffMenu")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_HideTearOffMenu(ptr.Pointer())
@@ -452,11 +451,7 @@ func (ptr *QMenu) HideTearOffMenu() {
 }
 
 func (ptr *QMenu) ConnectHovered(f func(action *QAction)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::hovered")
-		}
-	}()
+	defer qt.Recovering("connect QMenu::hovered")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_ConnectHovered(ptr.Pointer())
@@ -465,11 +460,7 @@ func (ptr *QMenu) ConnectHovered(f func(action *QAction)) {
 }
 
 func (ptr *QMenu) DisconnectHovered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::hovered")
-		}
-	}()
+	defer qt.Recovering("disconnect QMenu::hovered")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_DisconnectHovered(ptr.Pointer())
@@ -479,21 +470,17 @@ func (ptr *QMenu) DisconnectHovered() {
 
 //export callbackQMenuHovered
 func callbackQMenuHovered(ptrName *C.char, action unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::hovered")
-		}
-	}()
+	defer qt.Recovering("callback QMenu::hovered")
 
-	qt.GetSignal(C.GoString(ptrName), "hovered").(func(*QAction))(NewQActionFromPointer(action))
+	var signal = qt.GetSignal(C.GoString(ptrName), "hovered")
+	if signal != nil {
+		signal.(func(*QAction))(NewQActionFromPointer(action))
+	}
+
 }
 
 func (ptr *QMenu) InsertMenu(before QAction_ITF, menu QMenu_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::insertMenu")
-		}
-	}()
+	defer qt.Recovering("QMenu::insertMenu")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_InsertMenu(ptr.Pointer(), PointerFromQAction(before), PointerFromQMenu(menu)))
@@ -502,11 +489,7 @@ func (ptr *QMenu) InsertMenu(before QAction_ITF, menu QMenu_ITF) *QAction {
 }
 
 func (ptr *QMenu) InsertSection2(before QAction_ITF, icon gui.QIcon_ITF, text string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::insertSection")
-		}
-	}()
+	defer qt.Recovering("QMenu::insertSection")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_InsertSection2(ptr.Pointer(), PointerFromQAction(before), gui.PointerFromQIcon(icon), C.CString(text)))
@@ -515,11 +498,7 @@ func (ptr *QMenu) InsertSection2(before QAction_ITF, icon gui.QIcon_ITF, text st
 }
 
 func (ptr *QMenu) InsertSection(before QAction_ITF, text string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::insertSection")
-		}
-	}()
+	defer qt.Recovering("QMenu::insertSection")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_InsertSection(ptr.Pointer(), PointerFromQAction(before), C.CString(text)))
@@ -528,11 +507,7 @@ func (ptr *QMenu) InsertSection(before QAction_ITF, text string) *QAction {
 }
 
 func (ptr *QMenu) InsertSeparator(before QAction_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::insertSeparator")
-		}
-	}()
+	defer qt.Recovering("QMenu::insertSeparator")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_InsertSeparator(ptr.Pointer(), PointerFromQAction(before)))
@@ -541,11 +516,7 @@ func (ptr *QMenu) InsertSeparator(before QAction_ITF) *QAction {
 }
 
 func (ptr *QMenu) IsEmpty() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::isEmpty")
-		}
-	}()
+	defer qt.Recovering("QMenu::isEmpty")
 
 	if ptr.Pointer() != nil {
 		return C.QMenu_IsEmpty(ptr.Pointer()) != 0
@@ -554,11 +525,7 @@ func (ptr *QMenu) IsEmpty() bool {
 }
 
 func (ptr *QMenu) IsTearOffMenuVisible() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::isTearOffMenuVisible")
-		}
-	}()
+	defer qt.Recovering("QMenu::isTearOffMenuVisible")
 
 	if ptr.Pointer() != nil {
 		return C.QMenu_IsTearOffMenuVisible(ptr.Pointer()) != 0
@@ -566,12 +533,70 @@ func (ptr *QMenu) IsTearOffMenuVisible() bool {
 	return false
 }
 
+func (ptr *QMenu) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QMenu::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QMenu::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQMenuKeyPressEvent
+func callbackQMenuKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::keyPressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QMenu) ConnectLeaveEvent(f func(v *core.QEvent)) {
+	defer qt.Recovering("connect QMenu::leaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "leaveEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectLeaveEvent() {
+	defer qt.Recovering("disconnect QMenu::leaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "leaveEvent")
+	}
+}
+
+//export callbackQMenuLeaveEvent
+func callbackQMenuLeaveEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::leaveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "leaveEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMenu) MenuAction() *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::menuAction")
-		}
-	}()
+	defer qt.Recovering("QMenu::menuAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QMenu_MenuAction(ptr.Pointer()))
@@ -579,12 +604,132 @@ func (ptr *QMenu) MenuAction() *QAction {
 	return nil
 }
 
+func (ptr *QMenu) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QMenu::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectMouseMoveEvent() {
+	defer qt.Recovering("disconnect QMenu::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+	}
+}
+
+//export callbackQMenuMouseMoveEvent
+func callbackQMenuMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::mouseMoveEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QMenu) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QMenu::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QMenu::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQMenuMousePressEvent
+func callbackQMenuMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::mousePressEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QMenu) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QMenu::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectMouseReleaseEvent() {
+	defer qt.Recovering("disconnect QMenu::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+	}
+}
+
+//export callbackQMenuMouseReleaseEvent
+func callbackQMenuMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::mouseReleaseEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QMenu) ConnectPaintEvent(f func(e *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QMenu::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QMenu::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQMenuPaintEvent
+func callbackQMenuPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMenu) Popup(p core.QPoint_ITF, atAction QAction_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::popup")
-		}
-	}()
+	defer qt.Recovering("QMenu::popup")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_Popup(ptr.Pointer(), core.PointerFromQPoint(p), PointerFromQAction(atAction))
@@ -592,23 +737,46 @@ func (ptr *QMenu) Popup(p core.QPoint_ITF, atAction QAction_ITF) {
 }
 
 func (ptr *QMenu) SetActiveAction(act QAction_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::setActiveAction")
-		}
-	}()
+	defer qt.Recovering("QMenu::setActiveAction")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_SetActiveAction(ptr.Pointer(), PointerFromQAction(act))
 	}
 }
 
+func (ptr *QMenu) ConnectTimerEvent(f func(e *core.QTimerEvent)) {
+	defer qt.Recovering("connect QMenu::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QMenu::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQMenuTimerEvent
+func callbackQMenuTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::timerEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
+	if signal != nil {
+		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMenu) ConnectTriggered(f func(action *QAction)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::triggered")
-		}
-	}()
+	defer qt.Recovering("connect QMenu::triggered")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_ConnectTriggered(ptr.Pointer())
@@ -617,11 +785,7 @@ func (ptr *QMenu) ConnectTriggered(f func(action *QAction)) {
 }
 
 func (ptr *QMenu) DisconnectTriggered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::triggered")
-		}
-	}()
+	defer qt.Recovering("disconnect QMenu::triggered")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_DisconnectTriggered(ptr.Pointer())
@@ -631,21 +795,48 @@ func (ptr *QMenu) DisconnectTriggered() {
 
 //export callbackQMenuTriggered
 func callbackQMenuTriggered(ptrName *C.char, action unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::triggered")
-		}
-	}()
+	defer qt.Recovering("callback QMenu::triggered")
 
-	qt.GetSignal(C.GoString(ptrName), "triggered").(func(*QAction))(NewQActionFromPointer(action))
+	var signal = qt.GetSignal(C.GoString(ptrName), "triggered")
+	if signal != nil {
+		signal.(func(*QAction))(NewQActionFromPointer(action))
+	}
+
+}
+
+func (ptr *QMenu) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
+	defer qt.Recovering("connect QMenu::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QMenu) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QMenu::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQMenuWheelEvent
+func callbackQMenuWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMenu::wheelEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QMenu) DestroyQMenu() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QMenu::~QMenu")
-		}
-	}()
+	defer qt.Recovering("QMenu::~QMenu")
 
 	if ptr.Pointer() != nil {
 		C.QMenu_DestroyQMenu(ptr.Pointer())

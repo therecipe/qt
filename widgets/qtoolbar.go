@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQToolBarFromPointer(ptr unsafe.Pointer) *QToolBar {
 	var n = new(QToolBar)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QToolBar_") {
-		n.SetObjectName("QToolBar_" + qt.RandomIdentifier())
+		n.SetObjectName("QToolBar_" + qt.Identifier())
 	}
 	return n
 }
@@ -40,11 +39,7 @@ func (ptr *QToolBar) QToolBar_PTR() *QToolBar {
 }
 
 func (ptr *QToolBar) AllowedAreas() core.Qt__ToolBarArea {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::allowedAreas")
-		}
-	}()
+	defer qt.Recovering("QToolBar::allowedAreas")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ToolBarArea(C.QToolBar_AllowedAreas(ptr.Pointer()))
@@ -53,11 +48,7 @@ func (ptr *QToolBar) AllowedAreas() core.Qt__ToolBarArea {
 }
 
 func (ptr *QToolBar) IsFloatable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::isFloatable")
-		}
-	}()
+	defer qt.Recovering("QToolBar::isFloatable")
 
 	if ptr.Pointer() != nil {
 		return C.QToolBar_IsFloatable(ptr.Pointer()) != 0
@@ -66,11 +57,7 @@ func (ptr *QToolBar) IsFloatable() bool {
 }
 
 func (ptr *QToolBar) IsFloating() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::isFloating")
-		}
-	}()
+	defer qt.Recovering("QToolBar::isFloating")
 
 	if ptr.Pointer() != nil {
 		return C.QToolBar_IsFloating(ptr.Pointer()) != 0
@@ -79,11 +66,7 @@ func (ptr *QToolBar) IsFloating() bool {
 }
 
 func (ptr *QToolBar) IsMovable() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::isMovable")
-		}
-	}()
+	defer qt.Recovering("QToolBar::isMovable")
 
 	if ptr.Pointer() != nil {
 		return C.QToolBar_IsMovable(ptr.Pointer()) != 0
@@ -92,11 +75,7 @@ func (ptr *QToolBar) IsMovable() bool {
 }
 
 func (ptr *QToolBar) Orientation() core.Qt__Orientation {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::orientation")
-		}
-	}()
+	defer qt.Recovering("QToolBar::orientation")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QToolBar_Orientation(ptr.Pointer()))
@@ -105,11 +84,7 @@ func (ptr *QToolBar) Orientation() core.Qt__Orientation {
 }
 
 func (ptr *QToolBar) SetAllowedAreas(areas core.Qt__ToolBarArea) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::setAllowedAreas")
-		}
-	}()
+	defer qt.Recovering("QToolBar::setAllowedAreas")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_SetAllowedAreas(ptr.Pointer(), C.int(areas))
@@ -117,11 +92,7 @@ func (ptr *QToolBar) SetAllowedAreas(areas core.Qt__ToolBarArea) {
 }
 
 func (ptr *QToolBar) SetFloatable(floatable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::setFloatable")
-		}
-	}()
+	defer qt.Recovering("QToolBar::setFloatable")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_SetFloatable(ptr.Pointer(), C.int(qt.GoBoolToInt(floatable)))
@@ -129,11 +100,7 @@ func (ptr *QToolBar) SetFloatable(floatable bool) {
 }
 
 func (ptr *QToolBar) SetIconSize(iconSize core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::setIconSize")
-		}
-	}()
+	defer qt.Recovering("QToolBar::setIconSize")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_SetIconSize(ptr.Pointer(), core.PointerFromQSize(iconSize))
@@ -141,11 +108,7 @@ func (ptr *QToolBar) SetIconSize(iconSize core.QSize_ITF) {
 }
 
 func (ptr *QToolBar) SetMovable(movable bool) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::setMovable")
-		}
-	}()
+	defer qt.Recovering("QToolBar::setMovable")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_SetMovable(ptr.Pointer(), C.int(qt.GoBoolToInt(movable)))
@@ -153,11 +116,7 @@ func (ptr *QToolBar) SetMovable(movable bool) {
 }
 
 func (ptr *QToolBar) SetOrientation(orientation core.Qt__Orientation) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::setOrientation")
-		}
-	}()
+	defer qt.Recovering("QToolBar::setOrientation")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_SetOrientation(ptr.Pointer(), C.int(orientation))
@@ -165,11 +124,7 @@ func (ptr *QToolBar) SetOrientation(orientation core.Qt__Orientation) {
 }
 
 func (ptr *QToolBar) SetToolButtonStyle(toolButtonStyle core.Qt__ToolButtonStyle) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::setToolButtonStyle")
-		}
-	}()
+	defer qt.Recovering("QToolBar::setToolButtonStyle")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_SetToolButtonStyle(ptr.Pointer(), C.int(toolButtonStyle))
@@ -177,11 +132,7 @@ func (ptr *QToolBar) SetToolButtonStyle(toolButtonStyle core.Qt__ToolButtonStyle
 }
 
 func (ptr *QToolBar) ToolButtonStyle() core.Qt__ToolButtonStyle {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::toolButtonStyle")
-		}
-	}()
+	defer qt.Recovering("QToolBar::toolButtonStyle")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__ToolButtonStyle(C.QToolBar_ToolButtonStyle(ptr.Pointer()))
@@ -190,31 +141,19 @@ func (ptr *QToolBar) ToolButtonStyle() core.Qt__ToolButtonStyle {
 }
 
 func NewQToolBar2(parent QWidget_ITF) *QToolBar {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::QToolBar")
-		}
-	}()
+	defer qt.Recovering("QToolBar::QToolBar")
 
 	return NewQToolBarFromPointer(C.QToolBar_NewQToolBar2(PointerFromQWidget(parent)))
 }
 
 func NewQToolBar(title string, parent QWidget_ITF) *QToolBar {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::QToolBar")
-		}
-	}()
+	defer qt.Recovering("QToolBar::QToolBar")
 
 	return NewQToolBarFromPointer(C.QToolBar_NewQToolBar(C.CString(title), PointerFromQWidget(parent)))
 }
 
 func (ptr *QToolBar) ActionAt(p core.QPoint_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::actionAt")
-		}
-	}()
+	defer qt.Recovering("QToolBar::actionAt")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QToolBar_ActionAt(ptr.Pointer(), core.PointerFromQPoint(p)))
@@ -223,11 +162,7 @@ func (ptr *QToolBar) ActionAt(p core.QPoint_ITF) *QAction {
 }
 
 func (ptr *QToolBar) ActionAt2(x int, y int) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::actionAt")
-		}
-	}()
+	defer qt.Recovering("QToolBar::actionAt")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QToolBar_ActionAt2(ptr.Pointer(), C.int(x), C.int(y)))
@@ -235,12 +170,39 @@ func (ptr *QToolBar) ActionAt2(x int, y int) *QAction {
 	return nil
 }
 
+func (ptr *QToolBar) ConnectActionEvent(f func(event *gui.QActionEvent)) {
+	defer qt.Recovering("connect QToolBar::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "actionEvent", f)
+	}
+}
+
+func (ptr *QToolBar) DisconnectActionEvent() {
+	defer qt.Recovering("disconnect QToolBar::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "actionEvent")
+	}
+}
+
+//export callbackQToolBarActionEvent
+func callbackQToolBarActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolBar::actionEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "actionEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QToolBar) ConnectActionTriggered(f func(action *QAction)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::actionTriggered")
-		}
-	}()
+	defer qt.Recovering("connect QToolBar::actionTriggered")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_ConnectActionTriggered(ptr.Pointer())
@@ -249,11 +211,7 @@ func (ptr *QToolBar) ConnectActionTriggered(f func(action *QAction)) {
 }
 
 func (ptr *QToolBar) DisconnectActionTriggered() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::actionTriggered")
-		}
-	}()
+	defer qt.Recovering("disconnect QToolBar::actionTriggered")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_DisconnectActionTriggered(ptr.Pointer())
@@ -263,21 +221,17 @@ func (ptr *QToolBar) DisconnectActionTriggered() {
 
 //export callbackQToolBarActionTriggered
 func callbackQToolBarActionTriggered(ptrName *C.char, action unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::actionTriggered")
-		}
-	}()
+	defer qt.Recovering("callback QToolBar::actionTriggered")
 
-	qt.GetSignal(C.GoString(ptrName), "actionTriggered").(func(*QAction))(NewQActionFromPointer(action))
+	var signal = qt.GetSignal(C.GoString(ptrName), "actionTriggered")
+	if signal != nil {
+		signal.(func(*QAction))(NewQActionFromPointer(action))
+	}
+
 }
 
 func (ptr *QToolBar) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::addAction")
-		}
-	}()
+	defer qt.Recovering("QToolBar::addAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QToolBar_AddAction2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text)))
@@ -286,11 +240,7 @@ func (ptr *QToolBar) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
 }
 
 func (ptr *QToolBar) AddAction4(icon gui.QIcon_ITF, text string, receiver core.QObject_ITF, member string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::addAction")
-		}
-	}()
+	defer qt.Recovering("QToolBar::addAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QToolBar_AddAction4(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text), core.PointerFromQObject(receiver), C.CString(member)))
@@ -299,11 +249,7 @@ func (ptr *QToolBar) AddAction4(icon gui.QIcon_ITF, text string, receiver core.Q
 }
 
 func (ptr *QToolBar) AddAction(text string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::addAction")
-		}
-	}()
+	defer qt.Recovering("QToolBar::addAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QToolBar_AddAction(ptr.Pointer(), C.CString(text)))
@@ -312,11 +258,7 @@ func (ptr *QToolBar) AddAction(text string) *QAction {
 }
 
 func (ptr *QToolBar) AddAction3(text string, receiver core.QObject_ITF, member string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::addAction")
-		}
-	}()
+	defer qt.Recovering("QToolBar::addAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QToolBar_AddAction3(ptr.Pointer(), C.CString(text), core.PointerFromQObject(receiver), C.CString(member)))
@@ -325,11 +267,7 @@ func (ptr *QToolBar) AddAction3(text string, receiver core.QObject_ITF, member s
 }
 
 func (ptr *QToolBar) AddSeparator() *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::addSeparator")
-		}
-	}()
+	defer qt.Recovering("QToolBar::addSeparator")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QToolBar_AddSeparator(ptr.Pointer()))
@@ -338,11 +276,7 @@ func (ptr *QToolBar) AddSeparator() *QAction {
 }
 
 func (ptr *QToolBar) AddWidget(widget QWidget_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::addWidget")
-		}
-	}()
+	defer qt.Recovering("QToolBar::addWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QToolBar_AddWidget(ptr.Pointer(), PointerFromQWidget(widget)))
@@ -351,11 +285,7 @@ func (ptr *QToolBar) AddWidget(widget QWidget_ITF) *QAction {
 }
 
 func (ptr *QToolBar) ConnectAllowedAreasChanged(f func(allowedAreas core.Qt__ToolBarArea)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::allowedAreasChanged")
-		}
-	}()
+	defer qt.Recovering("connect QToolBar::allowedAreasChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_ConnectAllowedAreasChanged(ptr.Pointer())
@@ -364,11 +294,7 @@ func (ptr *QToolBar) ConnectAllowedAreasChanged(f func(allowedAreas core.Qt__Too
 }
 
 func (ptr *QToolBar) DisconnectAllowedAreasChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::allowedAreasChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QToolBar::allowedAreasChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_DisconnectAllowedAreasChanged(ptr.Pointer())
@@ -378,21 +304,48 @@ func (ptr *QToolBar) DisconnectAllowedAreasChanged() {
 
 //export callbackQToolBarAllowedAreasChanged
 func callbackQToolBarAllowedAreasChanged(ptrName *C.char, allowedAreas C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::allowedAreasChanged")
-		}
-	}()
+	defer qt.Recovering("callback QToolBar::allowedAreasChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "allowedAreasChanged").(func(core.Qt__ToolBarArea))(core.Qt__ToolBarArea(allowedAreas))
+	var signal = qt.GetSignal(C.GoString(ptrName), "allowedAreasChanged")
+	if signal != nil {
+		signal.(func(core.Qt__ToolBarArea))(core.Qt__ToolBarArea(allowedAreas))
+	}
+
+}
+
+func (ptr *QToolBar) ConnectChangeEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QToolBar::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QToolBar) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QToolBar::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQToolBarChangeEvent
+func callbackQToolBarChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolBar::changeEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
+	if signal != nil {
+		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QToolBar) Clear() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::clear")
-		}
-	}()
+	defer qt.Recovering("QToolBar::clear")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_Clear(ptr.Pointer())
@@ -400,11 +353,7 @@ func (ptr *QToolBar) Clear() {
 }
 
 func (ptr *QToolBar) InsertSeparator(before QAction_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::insertSeparator")
-		}
-	}()
+	defer qt.Recovering("QToolBar::insertSeparator")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QToolBar_InsertSeparator(ptr.Pointer(), PointerFromQAction(before)))
@@ -413,11 +362,7 @@ func (ptr *QToolBar) InsertSeparator(before QAction_ITF) *QAction {
 }
 
 func (ptr *QToolBar) InsertWidget(before QAction_ITF, widget QWidget_ITF) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::insertWidget")
-		}
-	}()
+	defer qt.Recovering("QToolBar::insertWidget")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QToolBar_InsertWidget(ptr.Pointer(), PointerFromQAction(before), PointerFromQWidget(widget)))
@@ -426,11 +371,7 @@ func (ptr *QToolBar) InsertWidget(before QAction_ITF, widget QWidget_ITF) *QActi
 }
 
 func (ptr *QToolBar) IsAreaAllowed(area core.Qt__ToolBarArea) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::isAreaAllowed")
-		}
-	}()
+	defer qt.Recovering("QToolBar::isAreaAllowed")
 
 	if ptr.Pointer() != nil {
 		return C.QToolBar_IsAreaAllowed(ptr.Pointer(), C.int(area)) != 0
@@ -439,11 +380,7 @@ func (ptr *QToolBar) IsAreaAllowed(area core.Qt__ToolBarArea) bool {
 }
 
 func (ptr *QToolBar) ConnectMovableChanged(f func(movable bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::movableChanged")
-		}
-	}()
+	defer qt.Recovering("connect QToolBar::movableChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_ConnectMovableChanged(ptr.Pointer())
@@ -452,11 +389,7 @@ func (ptr *QToolBar) ConnectMovableChanged(f func(movable bool)) {
 }
 
 func (ptr *QToolBar) DisconnectMovableChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::movableChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QToolBar::movableChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_DisconnectMovableChanged(ptr.Pointer())
@@ -466,21 +399,17 @@ func (ptr *QToolBar) DisconnectMovableChanged() {
 
 //export callbackQToolBarMovableChanged
 func callbackQToolBarMovableChanged(ptrName *C.char, movable C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::movableChanged")
-		}
-	}()
+	defer qt.Recovering("callback QToolBar::movableChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "movableChanged").(func(bool))(int(movable) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "movableChanged")
+	if signal != nil {
+		signal.(func(bool))(int(movable) != 0)
+	}
+
 }
 
 func (ptr *QToolBar) ConnectOrientationChanged(f func(orientation core.Qt__Orientation)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::orientationChanged")
-		}
-	}()
+	defer qt.Recovering("connect QToolBar::orientationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_ConnectOrientationChanged(ptr.Pointer())
@@ -489,11 +418,7 @@ func (ptr *QToolBar) ConnectOrientationChanged(f func(orientation core.Qt__Orien
 }
 
 func (ptr *QToolBar) DisconnectOrientationChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::orientationChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QToolBar::orientationChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_DisconnectOrientationChanged(ptr.Pointer())
@@ -503,21 +428,48 @@ func (ptr *QToolBar) DisconnectOrientationChanged() {
 
 //export callbackQToolBarOrientationChanged
 func callbackQToolBarOrientationChanged(ptrName *C.char, orientation C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::orientationChanged")
-		}
-	}()
+	defer qt.Recovering("callback QToolBar::orientationChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "orientationChanged").(func(core.Qt__Orientation))(core.Qt__Orientation(orientation))
+	var signal = qt.GetSignal(C.GoString(ptrName), "orientationChanged")
+	if signal != nil {
+		signal.(func(core.Qt__Orientation))(core.Qt__Orientation(orientation))
+	}
+
+}
+
+func (ptr *QToolBar) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	defer qt.Recovering("connect QToolBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+	}
+}
+
+func (ptr *QToolBar) DisconnectPaintEvent() {
+	defer qt.Recovering("disconnect QToolBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+	}
+}
+
+//export callbackQToolBarPaintEvent
+func callbackQToolBarPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolBar::paintEvent")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
+	if signal != nil {
+		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QToolBar) ToggleViewAction() *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::toggleViewAction")
-		}
-	}()
+	defer qt.Recovering("QToolBar::toggleViewAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QToolBar_ToggleViewAction(ptr.Pointer()))
@@ -526,11 +478,7 @@ func (ptr *QToolBar) ToggleViewAction() *QAction {
 }
 
 func (ptr *QToolBar) ConnectToolButtonStyleChanged(f func(toolButtonStyle core.Qt__ToolButtonStyle)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::toolButtonStyleChanged")
-		}
-	}()
+	defer qt.Recovering("connect QToolBar::toolButtonStyleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_ConnectToolButtonStyleChanged(ptr.Pointer())
@@ -539,11 +487,7 @@ func (ptr *QToolBar) ConnectToolButtonStyleChanged(f func(toolButtonStyle core.Q
 }
 
 func (ptr *QToolBar) DisconnectToolButtonStyleChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::toolButtonStyleChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QToolBar::toolButtonStyleChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_DisconnectToolButtonStyleChanged(ptr.Pointer())
@@ -553,21 +497,17 @@ func (ptr *QToolBar) DisconnectToolButtonStyleChanged() {
 
 //export callbackQToolBarToolButtonStyleChanged
 func callbackQToolBarToolButtonStyleChanged(ptrName *C.char, toolButtonStyle C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::toolButtonStyleChanged")
-		}
-	}()
+	defer qt.Recovering("callback QToolBar::toolButtonStyleChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "toolButtonStyleChanged").(func(core.Qt__ToolButtonStyle))(core.Qt__ToolButtonStyle(toolButtonStyle))
+	var signal = qt.GetSignal(C.GoString(ptrName), "toolButtonStyleChanged")
+	if signal != nil {
+		signal.(func(core.Qt__ToolButtonStyle))(core.Qt__ToolButtonStyle(toolButtonStyle))
+	}
+
 }
 
 func (ptr *QToolBar) ConnectTopLevelChanged(f func(topLevel bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::topLevelChanged")
-		}
-	}()
+	defer qt.Recovering("connect QToolBar::topLevelChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_ConnectTopLevelChanged(ptr.Pointer())
@@ -576,11 +516,7 @@ func (ptr *QToolBar) ConnectTopLevelChanged(f func(topLevel bool)) {
 }
 
 func (ptr *QToolBar) DisconnectTopLevelChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::topLevelChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QToolBar::topLevelChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_DisconnectTopLevelChanged(ptr.Pointer())
@@ -590,21 +526,17 @@ func (ptr *QToolBar) DisconnectTopLevelChanged() {
 
 //export callbackQToolBarTopLevelChanged
 func callbackQToolBarTopLevelChanged(ptrName *C.char, topLevel C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::topLevelChanged")
-		}
-	}()
+	defer qt.Recovering("callback QToolBar::topLevelChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "topLevelChanged").(func(bool))(int(topLevel) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "topLevelChanged")
+	if signal != nil {
+		signal.(func(bool))(int(topLevel) != 0)
+	}
+
 }
 
 func (ptr *QToolBar) ConnectVisibilityChanged(f func(visible bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::visibilityChanged")
-		}
-	}()
+	defer qt.Recovering("connect QToolBar::visibilityChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_ConnectVisibilityChanged(ptr.Pointer())
@@ -613,11 +545,7 @@ func (ptr *QToolBar) ConnectVisibilityChanged(f func(visible bool)) {
 }
 
 func (ptr *QToolBar) DisconnectVisibilityChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::visibilityChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QToolBar::visibilityChanged")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_DisconnectVisibilityChanged(ptr.Pointer())
@@ -627,21 +555,17 @@ func (ptr *QToolBar) DisconnectVisibilityChanged() {
 
 //export callbackQToolBarVisibilityChanged
 func callbackQToolBarVisibilityChanged(ptrName *C.char, visible C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::visibilityChanged")
-		}
-	}()
+	defer qt.Recovering("callback QToolBar::visibilityChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "visibilityChanged").(func(bool))(int(visible) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "visibilityChanged")
+	if signal != nil {
+		signal.(func(bool))(int(visible) != 0)
+	}
+
 }
 
 func (ptr *QToolBar) WidgetForAction(action QAction_ITF) *QWidget {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::widgetForAction")
-		}
-	}()
+	defer qt.Recovering("QToolBar::widgetForAction")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QToolBar_WidgetForAction(ptr.Pointer(), PointerFromQAction(action)))
@@ -650,11 +574,7 @@ func (ptr *QToolBar) WidgetForAction(action QAction_ITF) *QWidget {
 }
 
 func (ptr *QToolBar) DestroyQToolBar() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QToolBar::~QToolBar")
-		}
-	}()
+	defer qt.Recovering("QToolBar::~QToolBar")
 
 	if ptr.Pointer() != nil {
 		C.QToolBar_DestroyQToolBar(ptr.Pointer())

@@ -4,7 +4,6 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"log"
 	"unsafe"
 )
 
@@ -28,7 +27,7 @@ func NewQPressureReadingFromPointer(ptr unsafe.Pointer) *QPressureReading {
 	var n = new(QPressureReading)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QPressureReading_") {
-		n.SetObjectName("QPressureReading_" + qt.RandomIdentifier())
+		n.SetObjectName("QPressureReading_" + qt.Identifier())
 	}
 	return n
 }
@@ -38,11 +37,7 @@ func (ptr *QPressureReading) QPressureReading_PTR() *QPressureReading {
 }
 
 func (ptr *QPressureReading) Pressure() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPressureReading::pressure")
-		}
-	}()
+	defer qt.Recovering("QPressureReading::pressure")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPressureReading_Pressure(ptr.Pointer()))
@@ -51,11 +46,7 @@ func (ptr *QPressureReading) Pressure() float64 {
 }
 
 func (ptr *QPressureReading) Temperature() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPressureReading::temperature")
-		}
-	}()
+	defer qt.Recovering("QPressureReading::temperature")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QPressureReading_Temperature(ptr.Pointer()))
@@ -64,11 +55,7 @@ func (ptr *QPressureReading) Temperature() float64 {
 }
 
 func (ptr *QPressureReading) SetPressure(pressure float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPressureReading::setPressure")
-		}
-	}()
+	defer qt.Recovering("QPressureReading::setPressure")
 
 	if ptr.Pointer() != nil {
 		C.QPressureReading_SetPressure(ptr.Pointer(), C.double(pressure))
@@ -76,11 +63,7 @@ func (ptr *QPressureReading) SetPressure(pressure float64) {
 }
 
 func (ptr *QPressureReading) SetTemperature(temperature float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPressureReading::setTemperature")
-		}
-	}()
+	defer qt.Recovering("QPressureReading::setTemperature")
 
 	if ptr.Pointer() != nil {
 		C.QPressureReading_SetTemperature(ptr.Pointer(), C.double(temperature))

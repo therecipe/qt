@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQSGAbstractRendererFromPointer(ptr unsafe.Pointer) *QSGAbstractRenderer 
 	var n = new(QSGAbstractRenderer)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QSGAbstractRenderer_") {
-		n.SetObjectName("QSGAbstractRenderer_" + qt.RandomIdentifier())
+		n.SetObjectName("QSGAbstractRenderer_" + qt.Identifier())
 	}
 	return n
 }
@@ -49,11 +48,7 @@ const (
 )
 
 func (ptr *QSGAbstractRenderer) ClearColor() *gui.QColor {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::clearColor")
-		}
-	}()
+	defer qt.Recovering("QSGAbstractRenderer::clearColor")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQColorFromPointer(C.QSGAbstractRenderer_ClearColor(ptr.Pointer()))
@@ -62,11 +57,7 @@ func (ptr *QSGAbstractRenderer) ClearColor() *gui.QColor {
 }
 
 func (ptr *QSGAbstractRenderer) ClearMode() QSGAbstractRenderer__ClearModeBit {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::clearMode")
-		}
-	}()
+	defer qt.Recovering("QSGAbstractRenderer::clearMode")
 
 	if ptr.Pointer() != nil {
 		return QSGAbstractRenderer__ClearModeBit(C.QSGAbstractRenderer_ClearMode(ptr.Pointer()))
@@ -75,11 +66,7 @@ func (ptr *QSGAbstractRenderer) ClearMode() QSGAbstractRenderer__ClearModeBit {
 }
 
 func (ptr *QSGAbstractRenderer) ConnectSceneGraphChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::sceneGraphChanged")
-		}
-	}()
+	defer qt.Recovering("connect QSGAbstractRenderer::sceneGraphChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_ConnectSceneGraphChanged(ptr.Pointer())
@@ -88,11 +75,7 @@ func (ptr *QSGAbstractRenderer) ConnectSceneGraphChanged(f func()) {
 }
 
 func (ptr *QSGAbstractRenderer) DisconnectSceneGraphChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::sceneGraphChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QSGAbstractRenderer::sceneGraphChanged")
 
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_DisconnectSceneGraphChanged(ptr.Pointer())
@@ -102,21 +85,17 @@ func (ptr *QSGAbstractRenderer) DisconnectSceneGraphChanged() {
 
 //export callbackQSGAbstractRendererSceneGraphChanged
 func callbackQSGAbstractRendererSceneGraphChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::sceneGraphChanged")
-		}
-	}()
+	defer qt.Recovering("callback QSGAbstractRenderer::sceneGraphChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "sceneGraphChanged").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "sceneGraphChanged")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QSGAbstractRenderer) SetClearColor(color gui.QColor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::setClearColor")
-		}
-	}()
+	defer qt.Recovering("QSGAbstractRenderer::setClearColor")
 
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_SetClearColor(ptr.Pointer(), gui.PointerFromQColor(color))
@@ -124,11 +103,7 @@ func (ptr *QSGAbstractRenderer) SetClearColor(color gui.QColor_ITF) {
 }
 
 func (ptr *QSGAbstractRenderer) SetClearMode(mode QSGAbstractRenderer__ClearModeBit) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::setClearMode")
-		}
-	}()
+	defer qt.Recovering("QSGAbstractRenderer::setClearMode")
 
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_SetClearMode(ptr.Pointer(), C.int(mode))
@@ -136,11 +111,7 @@ func (ptr *QSGAbstractRenderer) SetClearMode(mode QSGAbstractRenderer__ClearMode
 }
 
 func (ptr *QSGAbstractRenderer) SetDeviceRect(rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::setDeviceRect")
-		}
-	}()
+	defer qt.Recovering("QSGAbstractRenderer::setDeviceRect")
 
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_SetDeviceRect(ptr.Pointer(), core.PointerFromQRect(rect))
@@ -148,11 +119,7 @@ func (ptr *QSGAbstractRenderer) SetDeviceRect(rect core.QRect_ITF) {
 }
 
 func (ptr *QSGAbstractRenderer) SetDeviceRect2(size core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::setDeviceRect")
-		}
-	}()
+	defer qt.Recovering("QSGAbstractRenderer::setDeviceRect")
 
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_SetDeviceRect2(ptr.Pointer(), core.PointerFromQSize(size))
@@ -160,11 +127,7 @@ func (ptr *QSGAbstractRenderer) SetDeviceRect2(size core.QSize_ITF) {
 }
 
 func (ptr *QSGAbstractRenderer) SetProjectionMatrix(matrix gui.QMatrix4x4_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::setProjectionMatrix")
-		}
-	}()
+	defer qt.Recovering("QSGAbstractRenderer::setProjectionMatrix")
 
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_SetProjectionMatrix(ptr.Pointer(), gui.PointerFromQMatrix4x4(matrix))
@@ -172,11 +135,7 @@ func (ptr *QSGAbstractRenderer) SetProjectionMatrix(matrix gui.QMatrix4x4_ITF) {
 }
 
 func (ptr *QSGAbstractRenderer) SetProjectionMatrixToRect(rect core.QRectF_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::setProjectionMatrixToRect")
-		}
-	}()
+	defer qt.Recovering("QSGAbstractRenderer::setProjectionMatrixToRect")
 
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_SetProjectionMatrixToRect(ptr.Pointer(), core.PointerFromQRectF(rect))
@@ -184,11 +143,7 @@ func (ptr *QSGAbstractRenderer) SetProjectionMatrixToRect(rect core.QRectF_ITF) 
 }
 
 func (ptr *QSGAbstractRenderer) SetViewportRect(rect core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::setViewportRect")
-		}
-	}()
+	defer qt.Recovering("QSGAbstractRenderer::setViewportRect")
 
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_SetViewportRect(ptr.Pointer(), core.PointerFromQRect(rect))
@@ -196,11 +151,7 @@ func (ptr *QSGAbstractRenderer) SetViewportRect(rect core.QRect_ITF) {
 }
 
 func (ptr *QSGAbstractRenderer) SetViewportRect2(size core.QSize_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSGAbstractRenderer::setViewportRect")
-		}
-	}()
+	defer qt.Recovering("QSGAbstractRenderer::setViewportRect")
 
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_SetViewportRect2(ptr.Pointer(), core.PointerFromQSize(size))

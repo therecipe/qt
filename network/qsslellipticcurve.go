@@ -3,7 +3,7 @@ package network
 //#include "network.h"
 import "C"
 import (
-	"log"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -41,21 +41,13 @@ func (ptr *QSslEllipticCurve) QSslEllipticCurve_PTR() *QSslEllipticCurve {
 }
 
 func NewQSslEllipticCurve() *QSslEllipticCurve {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslEllipticCurve::QSslEllipticCurve")
-		}
-	}()
+	defer qt.Recovering("QSslEllipticCurve::QSslEllipticCurve")
 
 	return NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_NewQSslEllipticCurve())
 }
 
 func (ptr *QSslEllipticCurve) IsValid() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslEllipticCurve::isValid")
-		}
-	}()
+	defer qt.Recovering("QSslEllipticCurve::isValid")
 
 	if ptr.Pointer() != nil {
 		return C.QSslEllipticCurve_IsValid(ptr.Pointer()) != 0
@@ -64,11 +56,7 @@ func (ptr *QSslEllipticCurve) IsValid() bool {
 }
 
 func (ptr *QSslEllipticCurve) IsTlsNamedCurve() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslEllipticCurve::isTlsNamedCurve")
-		}
-	}()
+	defer qt.Recovering("QSslEllipticCurve::isTlsNamedCurve")
 
 	if ptr.Pointer() != nil {
 		return C.QSslEllipticCurve_IsTlsNamedCurve(ptr.Pointer()) != 0
@@ -77,11 +65,7 @@ func (ptr *QSslEllipticCurve) IsTlsNamedCurve() bool {
 }
 
 func (ptr *QSslEllipticCurve) LongName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslEllipticCurve::longName")
-		}
-	}()
+	defer qt.Recovering("QSslEllipticCurve::longName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslEllipticCurve_LongName(ptr.Pointer()))
@@ -90,11 +74,7 @@ func (ptr *QSslEllipticCurve) LongName() string {
 }
 
 func (ptr *QSslEllipticCurve) ShortName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QSslEllipticCurve::shortName")
-		}
-	}()
+	defer qt.Recovering("QSslEllipticCurve::shortName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslEllipticCurve_ShortName(ptr.Pointer()))

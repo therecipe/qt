@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQValidatorFromPointer(ptr unsafe.Pointer) *QValidator {
 	var n = new(QValidator)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QValidator_") {
-		n.SetObjectName("QValidator_" + qt.RandomIdentifier())
+		n.SetObjectName("QValidator_" + qt.Identifier())
 	}
 	return n
 }
@@ -48,11 +47,7 @@ const (
 )
 
 func (ptr *QValidator) ConnectChanged(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QValidator::changed")
-		}
-	}()
+	defer qt.Recovering("connect QValidator::changed")
 
 	if ptr.Pointer() != nil {
 		C.QValidator_ConnectChanged(ptr.Pointer())
@@ -61,11 +56,7 @@ func (ptr *QValidator) ConnectChanged(f func()) {
 }
 
 func (ptr *QValidator) DisconnectChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QValidator::changed")
-		}
-	}()
+	defer qt.Recovering("disconnect QValidator::changed")
 
 	if ptr.Pointer() != nil {
 		C.QValidator_DisconnectChanged(ptr.Pointer())
@@ -75,21 +66,17 @@ func (ptr *QValidator) DisconnectChanged() {
 
 //export callbackQValidatorChanged
 func callbackQValidatorChanged(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QValidator::changed")
-		}
-	}()
+	defer qt.Recovering("callback QValidator::changed")
 
-	qt.GetSignal(C.GoString(ptrName), "changed").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "changed")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QValidator) SetLocale(locale core.QLocale_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QValidator::setLocale")
-		}
-	}()
+	defer qt.Recovering("QValidator::setLocale")
 
 	if ptr.Pointer() != nil {
 		C.QValidator_SetLocale(ptr.Pointer(), core.PointerFromQLocale(locale))
@@ -97,11 +84,7 @@ func (ptr *QValidator) SetLocale(locale core.QLocale_ITF) {
 }
 
 func (ptr *QValidator) DestroyQValidator() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QValidator::~QValidator")
-		}
-	}()
+	defer qt.Recovering("QValidator::~QValidator")
 
 	if ptr.Pointer() != nil {
 		C.QValidator_DestroyQValidator(ptr.Pointer())

@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -27,6 +27,9 @@ func PointerFromQPicture(ptr QPicture_ITF) unsafe.Pointer {
 func NewQPictureFromPointer(ptr unsafe.Pointer) *QPicture {
 	var n = new(QPicture)
 	n.SetPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QPicture_") {
+		n.SetObjectNameAbs("QPicture_" + qt.Identifier())
+	}
 	return n
 }
 
@@ -35,11 +38,7 @@ func (ptr *QPicture) QPicture_PTR() *QPicture {
 }
 
 func (ptr *QPicture) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPicture::isNull")
-		}
-	}()
+	defer qt.Recovering("QPicture::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QPicture_IsNull(ptr.Pointer()) != 0
@@ -48,11 +47,7 @@ func (ptr *QPicture) IsNull() bool {
 }
 
 func (ptr *QPicture) Load2(dev core.QIODevice_ITF, format string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPicture::load")
-		}
-	}()
+	defer qt.Recovering("QPicture::load")
 
 	if ptr.Pointer() != nil {
 		return C.QPicture_Load2(ptr.Pointer(), core.PointerFromQIODevice(dev), C.CString(format)) != 0
@@ -61,11 +56,7 @@ func (ptr *QPicture) Load2(dev core.QIODevice_ITF, format string) bool {
 }
 
 func (ptr *QPicture) Load(fileName string, format string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPicture::load")
-		}
-	}()
+	defer qt.Recovering("QPicture::load")
 
 	if ptr.Pointer() != nil {
 		return C.QPicture_Load(ptr.Pointer(), C.CString(fileName), C.CString(format)) != 0
@@ -74,11 +65,7 @@ func (ptr *QPicture) Load(fileName string, format string) bool {
 }
 
 func (ptr *QPicture) Play(painter QPainter_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPicture::play")
-		}
-	}()
+	defer qt.Recovering("QPicture::play")
 
 	if ptr.Pointer() != nil {
 		return C.QPicture_Play(ptr.Pointer(), PointerFromQPainter(painter)) != 0
@@ -87,11 +74,7 @@ func (ptr *QPicture) Play(painter QPainter_ITF) bool {
 }
 
 func (ptr *QPicture) Save2(dev core.QIODevice_ITF, format string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPicture::save")
-		}
-	}()
+	defer qt.Recovering("QPicture::save")
 
 	if ptr.Pointer() != nil {
 		return C.QPicture_Save2(ptr.Pointer(), core.PointerFromQIODevice(dev), C.CString(format)) != 0
@@ -100,11 +83,7 @@ func (ptr *QPicture) Save2(dev core.QIODevice_ITF, format string) bool {
 }
 
 func (ptr *QPicture) Save(fileName string, format string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPicture::save")
-		}
-	}()
+	defer qt.Recovering("QPicture::save")
 
 	if ptr.Pointer() != nil {
 		return C.QPicture_Save(ptr.Pointer(), C.CString(fileName), C.CString(format)) != 0
@@ -113,11 +92,7 @@ func (ptr *QPicture) Save(fileName string, format string) bool {
 }
 
 func (ptr *QPicture) SetBoundingRect(r core.QRect_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPicture::setBoundingRect")
-		}
-	}()
+	defer qt.Recovering("QPicture::setBoundingRect")
 
 	if ptr.Pointer() != nil {
 		C.QPicture_SetBoundingRect(ptr.Pointer(), core.PointerFromQRect(r))
@@ -125,11 +100,7 @@ func (ptr *QPicture) SetBoundingRect(r core.QRect_ITF) {
 }
 
 func (ptr *QPicture) Swap(other QPicture_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPicture::swap")
-		}
-	}()
+	defer qt.Recovering("QPicture::swap")
 
 	if ptr.Pointer() != nil {
 		C.QPicture_Swap(ptr.Pointer(), PointerFromQPicture(other))
@@ -137,13 +108,26 @@ func (ptr *QPicture) Swap(other QPicture_ITF) {
 }
 
 func (ptr *QPicture) DestroyQPicture() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QPicture::~QPicture")
-		}
-	}()
+	defer qt.Recovering("QPicture::~QPicture")
 
 	if ptr.Pointer() != nil {
 		C.QPicture_DestroyQPicture(ptr.Pointer())
+	}
+}
+
+func (ptr *QPicture) ObjectNameAbs() string {
+	defer qt.Recovering("QPicture::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QPicture_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPicture) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QPicture::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QPicture_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }

@@ -3,8 +3,8 @@ package bluetooth
 //#include "bluetooth.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -325,111 +325,67 @@ const (
 )
 
 func NewQBluetoothUuid() *QBluetoothUuid {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::QBluetoothUuid")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
 	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid())
 }
 
 func NewQBluetoothUuid4(uuid QBluetoothUuid__CharacteristicType) *QBluetoothUuid {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::QBluetoothUuid")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
 	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid4(C.int(uuid)))
 }
 
 func NewQBluetoothUuid5(uuid QBluetoothUuid__DescriptorType) *QBluetoothUuid {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::QBluetoothUuid")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
 	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid5(C.int(uuid)))
 }
 
 func NewQBluetoothUuid2(uuid QBluetoothUuid__ProtocolUuid) *QBluetoothUuid {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::QBluetoothUuid")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
 	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid2(C.int(uuid)))
 }
 
 func NewQBluetoothUuid3(uuid QBluetoothUuid__ServiceClassUuid) *QBluetoothUuid {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::QBluetoothUuid")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
 	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid3(C.int(uuid)))
 }
 
 func NewQBluetoothUuid10(uuid QBluetoothUuid_ITF) *QBluetoothUuid {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::QBluetoothUuid")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
 	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid10(PointerFromQBluetoothUuid(uuid)))
 }
 
 func NewQBluetoothUuid9(uuid string) *QBluetoothUuid {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::QBluetoothUuid")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
 	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid9(C.CString(uuid)))
 }
 
 func NewQBluetoothUuid11(uuid core.QUuid_ITF) *QBluetoothUuid {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::QBluetoothUuid")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
 	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid11(core.PointerFromQUuid(uuid)))
 }
 
 func QBluetoothUuid_CharacteristicToString(uuid QBluetoothUuid__CharacteristicType) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::characteristicToString")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::characteristicToString")
 
 	return C.GoString(C.QBluetoothUuid_QBluetoothUuid_CharacteristicToString(C.int(uuid)))
 }
 
 func QBluetoothUuid_DescriptorToString(uuid QBluetoothUuid__DescriptorType) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::descriptorToString")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::descriptorToString")
 
 	return C.GoString(C.QBluetoothUuid_QBluetoothUuid_DescriptorToString(C.int(uuid)))
 }
 
 func (ptr *QBluetoothUuid) MinimumSize() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::minimumSize")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::minimumSize")
 
 	if ptr.Pointer() != nil {
 		return int(C.QBluetoothUuid_MinimumSize(ptr.Pointer()))
@@ -438,31 +394,19 @@ func (ptr *QBluetoothUuid) MinimumSize() int {
 }
 
 func QBluetoothUuid_ProtocolToString(uuid QBluetoothUuid__ProtocolUuid) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::protocolToString")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::protocolToString")
 
 	return C.GoString(C.QBluetoothUuid_QBluetoothUuid_ProtocolToString(C.int(uuid)))
 }
 
 func QBluetoothUuid_ServiceClassToString(uuid QBluetoothUuid__ServiceClassUuid) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::serviceClassToString")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::serviceClassToString")
 
 	return C.GoString(C.QBluetoothUuid_QBluetoothUuid_ServiceClassToString(C.int(uuid)))
 }
 
 func (ptr *QBluetoothUuid) DestroyQBluetoothUuid() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothUuid::~QBluetoothUuid")
-		}
-	}()
+	defer qt.Recovering("QBluetoothUuid::~QBluetoothUuid")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothUuid_DestroyQBluetoothUuid(ptr.Pointer())

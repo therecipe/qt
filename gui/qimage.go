@@ -3,8 +3,8 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"strings"
 	"unsafe"
 )
@@ -75,11 +75,7 @@ const (
 )
 
 func (ptr *QImage) ColorCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::colorCount")
-		}
-	}()
+	defer qt.Recovering("QImage::colorCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_ColorCount(ptr.Pointer()))
@@ -88,11 +84,7 @@ func (ptr *QImage) ColorCount() int {
 }
 
 func (ptr *QImage) Fill2(color core.Qt__GlobalColor) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::fill")
-		}
-	}()
+	defer qt.Recovering("QImage::fill")
 
 	if ptr.Pointer() != nil {
 		C.QImage_Fill2(ptr.Pointer(), C.int(color))
@@ -100,11 +92,7 @@ func (ptr *QImage) Fill2(color core.Qt__GlobalColor) {
 }
 
 func (ptr *QImage) Fill3(color QColor_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::fill")
-		}
-	}()
+	defer qt.Recovering("QImage::fill")
 
 	if ptr.Pointer() != nil {
 		C.QImage_Fill3(ptr.Pointer(), PointerFromQColor(color))
@@ -112,11 +100,7 @@ func (ptr *QImage) Fill3(color QColor_ITF) {
 }
 
 func (ptr *QImage) Height() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::height")
-		}
-	}()
+	defer qt.Recovering("QImage::height")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_Height(ptr.Pointer()))
@@ -125,11 +109,7 @@ func (ptr *QImage) Height() int {
 }
 
 func (ptr *QImage) IsNull() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::isNull")
-		}
-	}()
+	defer qt.Recovering("QImage::isNull")
 
 	if ptr.Pointer() != nil {
 		return C.QImage_IsNull(ptr.Pointer()) != 0
@@ -137,12 +117,17 @@ func (ptr *QImage) IsNull() bool {
 	return false
 }
 
+func (ptr *QImage) Offset() *core.QPoint {
+	defer qt.Recovering("QImage::offset")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QImage_Offset(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QImage) SetOffset(offset core.QPoint_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::setOffset")
-		}
-	}()
+	defer qt.Recovering("QImage::setOffset")
 
 	if ptr.Pointer() != nil {
 		C.QImage_SetOffset(ptr.Pointer(), core.PointerFromQPoint(offset))
@@ -150,11 +135,7 @@ func (ptr *QImage) SetOffset(offset core.QPoint_ITF) {
 }
 
 func (ptr *QImage) SetText(key string, text string) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::setText")
-		}
-	}()
+	defer qt.Recovering("QImage::setText")
 
 	if ptr.Pointer() != nil {
 		C.QImage_SetText(ptr.Pointer(), C.CString(key), C.CString(text))
@@ -162,11 +143,7 @@ func (ptr *QImage) SetText(key string, text string) {
 }
 
 func (ptr *QImage) Width() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::width")
-		}
-	}()
+	defer qt.Recovering("QImage::width")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_Width(ptr.Pointer()))
@@ -175,11 +152,7 @@ func (ptr *QImage) Width() int {
 }
 
 func (ptr *QImage) AllGray() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::allGray")
-		}
-	}()
+	defer qt.Recovering("QImage::allGray")
 
 	if ptr.Pointer() != nil {
 		return C.QImage_AllGray(ptr.Pointer()) != 0
@@ -188,11 +161,7 @@ func (ptr *QImage) AllGray() bool {
 }
 
 func (ptr *QImage) BitPlaneCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::bitPlaneCount")
-		}
-	}()
+	defer qt.Recovering("QImage::bitPlaneCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_BitPlaneCount(ptr.Pointer()))
@@ -201,11 +170,7 @@ func (ptr *QImage) BitPlaneCount() int {
 }
 
 func (ptr *QImage) ByteCount() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::byteCount")
-		}
-	}()
+	defer qt.Recovering("QImage::byteCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_ByteCount(ptr.Pointer()))
@@ -214,11 +179,7 @@ func (ptr *QImage) ByteCount() int {
 }
 
 func (ptr *QImage) BytesPerLine() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::bytesPerLine")
-		}
-	}()
+	defer qt.Recovering("QImage::bytesPerLine")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_BytesPerLine(ptr.Pointer()))
@@ -227,11 +188,7 @@ func (ptr *QImage) BytesPerLine() int {
 }
 
 func (ptr *QImage) Depth() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::depth")
-		}
-	}()
+	defer qt.Recovering("QImage::depth")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_Depth(ptr.Pointer()))
@@ -240,11 +197,7 @@ func (ptr *QImage) Depth() int {
 }
 
 func (ptr *QImage) DevicePixelRatio() float64 {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::devicePixelRatio")
-		}
-	}()
+	defer qt.Recovering("QImage::devicePixelRatio")
 
 	if ptr.Pointer() != nil {
 		return float64(C.QImage_DevicePixelRatio(ptr.Pointer()))
@@ -253,11 +206,7 @@ func (ptr *QImage) DevicePixelRatio() float64 {
 }
 
 func (ptr *QImage) DotsPerMeterX() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::dotsPerMeterX")
-		}
-	}()
+	defer qt.Recovering("QImage::dotsPerMeterX")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_DotsPerMeterX(ptr.Pointer()))
@@ -266,11 +215,7 @@ func (ptr *QImage) DotsPerMeterX() int {
 }
 
 func (ptr *QImage) DotsPerMeterY() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::dotsPerMeterY")
-		}
-	}()
+	defer qt.Recovering("QImage::dotsPerMeterY")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_DotsPerMeterY(ptr.Pointer()))
@@ -279,11 +224,7 @@ func (ptr *QImage) DotsPerMeterY() int {
 }
 
 func (ptr *QImage) Format() QImage__Format {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::format")
-		}
-	}()
+	defer qt.Recovering("QImage::format")
 
 	if ptr.Pointer() != nil {
 		return QImage__Format(C.QImage_Format(ptr.Pointer()))
@@ -292,11 +233,7 @@ func (ptr *QImage) Format() QImage__Format {
 }
 
 func (ptr *QImage) HasAlphaChannel() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::hasAlphaChannel")
-		}
-	}()
+	defer qt.Recovering("QImage::hasAlphaChannel")
 
 	if ptr.Pointer() != nil {
 		return C.QImage_HasAlphaChannel(ptr.Pointer()) != 0
@@ -305,11 +242,7 @@ func (ptr *QImage) HasAlphaChannel() bool {
 }
 
 func (ptr *QImage) InvertPixels(mode QImage__InvertMode) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::invertPixels")
-		}
-	}()
+	defer qt.Recovering("QImage::invertPixels")
 
 	if ptr.Pointer() != nil {
 		C.QImage_InvertPixels(ptr.Pointer(), C.int(mode))
@@ -317,11 +250,7 @@ func (ptr *QImage) InvertPixels(mode QImage__InvertMode) {
 }
 
 func (ptr *QImage) IsGrayscale() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::isGrayscale")
-		}
-	}()
+	defer qt.Recovering("QImage::isGrayscale")
 
 	if ptr.Pointer() != nil {
 		return C.QImage_IsGrayscale(ptr.Pointer()) != 0
@@ -330,11 +259,7 @@ func (ptr *QImage) IsGrayscale() bool {
 }
 
 func (ptr *QImage) Load2(device core.QIODevice_ITF, format string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::load")
-		}
-	}()
+	defer qt.Recovering("QImage::load")
 
 	if ptr.Pointer() != nil {
 		return C.QImage_Load2(ptr.Pointer(), core.PointerFromQIODevice(device), C.CString(format)) != 0
@@ -343,11 +268,7 @@ func (ptr *QImage) Load2(device core.QIODevice_ITF, format string) bool {
 }
 
 func (ptr *QImage) Load(fileName string, format string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::load")
-		}
-	}()
+	defer qt.Recovering("QImage::load")
 
 	if ptr.Pointer() != nil {
 		return C.QImage_Load(ptr.Pointer(), C.CString(fileName), C.CString(format)) != 0
@@ -356,11 +277,7 @@ func (ptr *QImage) Load(fileName string, format string) bool {
 }
 
 func (ptr *QImage) LoadFromData2(data core.QByteArray_ITF, format string) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::loadFromData")
-		}
-	}()
+	defer qt.Recovering("QImage::loadFromData")
 
 	if ptr.Pointer() != nil {
 		return C.QImage_LoadFromData2(ptr.Pointer(), core.PointerFromQByteArray(data), C.CString(format)) != 0
@@ -369,11 +286,7 @@ func (ptr *QImage) LoadFromData2(data core.QByteArray_ITF, format string) bool {
 }
 
 func (ptr *QImage) PixelIndex(position core.QPoint_ITF) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::pixelIndex")
-		}
-	}()
+	defer qt.Recovering("QImage::pixelIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_PixelIndex(ptr.Pointer(), core.PointerFromQPoint(position)))
@@ -382,11 +295,7 @@ func (ptr *QImage) PixelIndex(position core.QPoint_ITF) int {
 }
 
 func (ptr *QImage) PixelIndex2(x int, y int) int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::pixelIndex")
-		}
-	}()
+	defer qt.Recovering("QImage::pixelIndex")
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_PixelIndex2(ptr.Pointer(), C.int(x), C.int(y)))
@@ -395,11 +304,7 @@ func (ptr *QImage) PixelIndex2(x int, y int) int {
 }
 
 func (ptr *QImage) Save2(device core.QIODevice_ITF, format string, quality int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::save")
-		}
-	}()
+	defer qt.Recovering("QImage::save")
 
 	if ptr.Pointer() != nil {
 		return C.QImage_Save2(ptr.Pointer(), core.PointerFromQIODevice(device), C.CString(format), C.int(quality)) != 0
@@ -408,11 +313,7 @@ func (ptr *QImage) Save2(device core.QIODevice_ITF, format string, quality int) 
 }
 
 func (ptr *QImage) Save(fileName string, format string, quality int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::save")
-		}
-	}()
+	defer qt.Recovering("QImage::save")
 
 	if ptr.Pointer() != nil {
 		return C.QImage_Save(ptr.Pointer(), C.CString(fileName), C.CString(format), C.int(quality)) != 0
@@ -421,11 +322,7 @@ func (ptr *QImage) Save(fileName string, format string, quality int) bool {
 }
 
 func (ptr *QImage) SetColorCount(colorCount int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::setColorCount")
-		}
-	}()
+	defer qt.Recovering("QImage::setColorCount")
 
 	if ptr.Pointer() != nil {
 		C.QImage_SetColorCount(ptr.Pointer(), C.int(colorCount))
@@ -433,11 +330,7 @@ func (ptr *QImage) SetColorCount(colorCount int) {
 }
 
 func (ptr *QImage) SetDevicePixelRatio(scaleFactor float64) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::setDevicePixelRatio")
-		}
-	}()
+	defer qt.Recovering("QImage::setDevicePixelRatio")
 
 	if ptr.Pointer() != nil {
 		C.QImage_SetDevicePixelRatio(ptr.Pointer(), C.double(scaleFactor))
@@ -445,11 +338,7 @@ func (ptr *QImage) SetDevicePixelRatio(scaleFactor float64) {
 }
 
 func (ptr *QImage) SetDotsPerMeterX(x int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::setDotsPerMeterX")
-		}
-	}()
+	defer qt.Recovering("QImage::setDotsPerMeterX")
 
 	if ptr.Pointer() != nil {
 		C.QImage_SetDotsPerMeterX(ptr.Pointer(), C.int(x))
@@ -457,11 +346,7 @@ func (ptr *QImage) SetDotsPerMeterX(x int) {
 }
 
 func (ptr *QImage) SetDotsPerMeterY(y int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::setDotsPerMeterY")
-		}
-	}()
+	defer qt.Recovering("QImage::setDotsPerMeterY")
 
 	if ptr.Pointer() != nil {
 		C.QImage_SetDotsPerMeterY(ptr.Pointer(), C.int(y))
@@ -469,11 +354,7 @@ func (ptr *QImage) SetDotsPerMeterY(y int) {
 }
 
 func (ptr *QImage) Swap(other QImage_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::swap")
-		}
-	}()
+	defer qt.Recovering("QImage::swap")
 
 	if ptr.Pointer() != nil {
 		C.QImage_Swap(ptr.Pointer(), PointerFromQImage(other))
@@ -481,11 +362,7 @@ func (ptr *QImage) Swap(other QImage_ITF) {
 }
 
 func (ptr *QImage) Text(key string) string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::text")
-		}
-	}()
+	defer qt.Recovering("QImage::text")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QImage_Text(ptr.Pointer(), C.CString(key)))
@@ -494,11 +371,7 @@ func (ptr *QImage) Text(key string) string {
 }
 
 func (ptr *QImage) TextKeys() []string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::textKeys")
-		}
-	}()
+	defer qt.Recovering("QImage::textKeys")
 
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QImage_TextKeys(ptr.Pointer())), ",,,")
@@ -507,21 +380,13 @@ func (ptr *QImage) TextKeys() []string {
 }
 
 func QImage_ToImageFormat(format QPixelFormat_ITF) QImage__Format {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::toImageFormat")
-		}
-	}()
+	defer qt.Recovering("QImage::toImageFormat")
 
 	return QImage__Format(C.QImage_QImage_ToImageFormat(PointerFromQPixelFormat(format)))
 }
 
 func (ptr *QImage) Valid(pos core.QPoint_ITF) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::valid")
-		}
-	}()
+	defer qt.Recovering("QImage::valid")
 
 	if ptr.Pointer() != nil {
 		return C.QImage_Valid(ptr.Pointer(), core.PointerFromQPoint(pos)) != 0
@@ -530,11 +395,7 @@ func (ptr *QImage) Valid(pos core.QPoint_ITF) bool {
 }
 
 func (ptr *QImage) Valid2(x int, y int) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::valid")
-		}
-	}()
+	defer qt.Recovering("QImage::valid")
 
 	if ptr.Pointer() != nil {
 		return C.QImage_Valid2(ptr.Pointer(), C.int(x), C.int(y)) != 0
@@ -543,11 +404,7 @@ func (ptr *QImage) Valid2(x int, y int) bool {
 }
 
 func (ptr *QImage) DestroyQImage() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QImage::~QImage")
-		}
-	}()
+	defer qt.Recovering("QImage::~QImage")
 
 	if ptr.Pointer() != nil {
 		C.QImage_DestroyQImage(ptr.Pointer())

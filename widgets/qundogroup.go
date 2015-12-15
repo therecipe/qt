@@ -5,7 +5,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"log"
 	"unsafe"
 )
 
@@ -29,7 +28,7 @@ func NewQUndoGroupFromPointer(ptr unsafe.Pointer) *QUndoGroup {
 	var n = new(QUndoGroup)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QUndoGroup_") {
-		n.SetObjectName("QUndoGroup_" + qt.RandomIdentifier())
+		n.SetObjectName("QUndoGroup_" + qt.Identifier())
 	}
 	return n
 }
@@ -39,21 +38,13 @@ func (ptr *QUndoGroup) QUndoGroup_PTR() *QUndoGroup {
 }
 
 func NewQUndoGroup(parent core.QObject_ITF) *QUndoGroup {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::QUndoGroup")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::QUndoGroup")
 
 	return NewQUndoGroupFromPointer(C.QUndoGroup_NewQUndoGroup(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QUndoGroup) ActiveStack() *QUndoStack {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::activeStack")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::activeStack")
 
 	if ptr.Pointer() != nil {
 		return NewQUndoStackFromPointer(C.QUndoGroup_ActiveStack(ptr.Pointer()))
@@ -62,11 +53,7 @@ func (ptr *QUndoGroup) ActiveStack() *QUndoStack {
 }
 
 func (ptr *QUndoGroup) ConnectActiveStackChanged(f func(stack *QUndoStack)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::activeStackChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoGroup::activeStackChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_ConnectActiveStackChanged(ptr.Pointer())
@@ -75,11 +62,7 @@ func (ptr *QUndoGroup) ConnectActiveStackChanged(f func(stack *QUndoStack)) {
 }
 
 func (ptr *QUndoGroup) DisconnectActiveStackChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::activeStackChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoGroup::activeStackChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DisconnectActiveStackChanged(ptr.Pointer())
@@ -89,21 +72,17 @@ func (ptr *QUndoGroup) DisconnectActiveStackChanged() {
 
 //export callbackQUndoGroupActiveStackChanged
 func callbackQUndoGroupActiveStackChanged(ptrName *C.char, stack unsafe.Pointer) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::activeStackChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoGroup::activeStackChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "activeStackChanged").(func(*QUndoStack))(NewQUndoStackFromPointer(stack))
+	var signal = qt.GetSignal(C.GoString(ptrName), "activeStackChanged")
+	if signal != nil {
+		signal.(func(*QUndoStack))(NewQUndoStackFromPointer(stack))
+	}
+
 }
 
 func (ptr *QUndoGroup) AddStack(stack QUndoStack_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::addStack")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::addStack")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_AddStack(ptr.Pointer(), PointerFromQUndoStack(stack))
@@ -111,11 +90,7 @@ func (ptr *QUndoGroup) AddStack(stack QUndoStack_ITF) {
 }
 
 func (ptr *QUndoGroup) CanRedo() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::canRedo")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::canRedo")
 
 	if ptr.Pointer() != nil {
 		return C.QUndoGroup_CanRedo(ptr.Pointer()) != 0
@@ -124,11 +99,7 @@ func (ptr *QUndoGroup) CanRedo() bool {
 }
 
 func (ptr *QUndoGroup) ConnectCanRedoChanged(f func(canRedo bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::canRedoChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoGroup::canRedoChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_ConnectCanRedoChanged(ptr.Pointer())
@@ -137,11 +108,7 @@ func (ptr *QUndoGroup) ConnectCanRedoChanged(f func(canRedo bool)) {
 }
 
 func (ptr *QUndoGroup) DisconnectCanRedoChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::canRedoChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoGroup::canRedoChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DisconnectCanRedoChanged(ptr.Pointer())
@@ -151,21 +118,17 @@ func (ptr *QUndoGroup) DisconnectCanRedoChanged() {
 
 //export callbackQUndoGroupCanRedoChanged
 func callbackQUndoGroupCanRedoChanged(ptrName *C.char, canRedo C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::canRedoChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoGroup::canRedoChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "canRedoChanged").(func(bool))(int(canRedo) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "canRedoChanged")
+	if signal != nil {
+		signal.(func(bool))(int(canRedo) != 0)
+	}
+
 }
 
 func (ptr *QUndoGroup) CanUndo() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::canUndo")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::canUndo")
 
 	if ptr.Pointer() != nil {
 		return C.QUndoGroup_CanUndo(ptr.Pointer()) != 0
@@ -174,11 +137,7 @@ func (ptr *QUndoGroup) CanUndo() bool {
 }
 
 func (ptr *QUndoGroup) ConnectCanUndoChanged(f func(canUndo bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::canUndoChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoGroup::canUndoChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_ConnectCanUndoChanged(ptr.Pointer())
@@ -187,11 +146,7 @@ func (ptr *QUndoGroup) ConnectCanUndoChanged(f func(canUndo bool)) {
 }
 
 func (ptr *QUndoGroup) DisconnectCanUndoChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::canUndoChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoGroup::canUndoChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DisconnectCanUndoChanged(ptr.Pointer())
@@ -201,21 +156,17 @@ func (ptr *QUndoGroup) DisconnectCanUndoChanged() {
 
 //export callbackQUndoGroupCanUndoChanged
 func callbackQUndoGroupCanUndoChanged(ptrName *C.char, canUndo C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::canUndoChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoGroup::canUndoChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "canUndoChanged").(func(bool))(int(canUndo) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "canUndoChanged")
+	if signal != nil {
+		signal.(func(bool))(int(canUndo) != 0)
+	}
+
 }
 
 func (ptr *QUndoGroup) ConnectCleanChanged(f func(clean bool)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::cleanChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoGroup::cleanChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_ConnectCleanChanged(ptr.Pointer())
@@ -224,11 +175,7 @@ func (ptr *QUndoGroup) ConnectCleanChanged(f func(clean bool)) {
 }
 
 func (ptr *QUndoGroup) DisconnectCleanChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::cleanChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoGroup::cleanChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DisconnectCleanChanged(ptr.Pointer())
@@ -238,21 +185,17 @@ func (ptr *QUndoGroup) DisconnectCleanChanged() {
 
 //export callbackQUndoGroupCleanChanged
 func callbackQUndoGroupCleanChanged(ptrName *C.char, clean C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::cleanChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoGroup::cleanChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "cleanChanged").(func(bool))(int(clean) != 0)
+	var signal = qt.GetSignal(C.GoString(ptrName), "cleanChanged")
+	if signal != nil {
+		signal.(func(bool))(int(clean) != 0)
+	}
+
 }
 
 func (ptr *QUndoGroup) CreateRedoAction(parent core.QObject_ITF, prefix string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::createRedoAction")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::createRedoAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QUndoGroup_CreateRedoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.CString(prefix)))
@@ -261,11 +204,7 @@ func (ptr *QUndoGroup) CreateRedoAction(parent core.QObject_ITF, prefix string) 
 }
 
 func (ptr *QUndoGroup) CreateUndoAction(parent core.QObject_ITF, prefix string) *QAction {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::createUndoAction")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::createUndoAction")
 
 	if ptr.Pointer() != nil {
 		return NewQActionFromPointer(C.QUndoGroup_CreateUndoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.CString(prefix)))
@@ -274,11 +213,7 @@ func (ptr *QUndoGroup) CreateUndoAction(parent core.QObject_ITF, prefix string) 
 }
 
 func (ptr *QUndoGroup) ConnectIndexChanged(f func(idx int)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::indexChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoGroup::indexChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_ConnectIndexChanged(ptr.Pointer())
@@ -287,11 +222,7 @@ func (ptr *QUndoGroup) ConnectIndexChanged(f func(idx int)) {
 }
 
 func (ptr *QUndoGroup) DisconnectIndexChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::indexChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoGroup::indexChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DisconnectIndexChanged(ptr.Pointer())
@@ -301,21 +232,17 @@ func (ptr *QUndoGroup) DisconnectIndexChanged() {
 
 //export callbackQUndoGroupIndexChanged
 func callbackQUndoGroupIndexChanged(ptrName *C.char, idx C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::indexChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoGroup::indexChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "indexChanged").(func(int))(int(idx))
+	var signal = qt.GetSignal(C.GoString(ptrName), "indexChanged")
+	if signal != nil {
+		signal.(func(int))(int(idx))
+	}
+
 }
 
 func (ptr *QUndoGroup) IsClean() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::isClean")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::isClean")
 
 	if ptr.Pointer() != nil {
 		return C.QUndoGroup_IsClean(ptr.Pointer()) != 0
@@ -324,11 +251,7 @@ func (ptr *QUndoGroup) IsClean() bool {
 }
 
 func (ptr *QUndoGroup) Redo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::redo")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::redo")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_Redo(ptr.Pointer())
@@ -336,11 +259,7 @@ func (ptr *QUndoGroup) Redo() {
 }
 
 func (ptr *QUndoGroup) RedoText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::redoText")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::redoText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QUndoGroup_RedoText(ptr.Pointer()))
@@ -349,11 +268,7 @@ func (ptr *QUndoGroup) RedoText() string {
 }
 
 func (ptr *QUndoGroup) ConnectRedoTextChanged(f func(redoText string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::redoTextChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoGroup::redoTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_ConnectRedoTextChanged(ptr.Pointer())
@@ -362,11 +277,7 @@ func (ptr *QUndoGroup) ConnectRedoTextChanged(f func(redoText string)) {
 }
 
 func (ptr *QUndoGroup) DisconnectRedoTextChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::redoTextChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoGroup::redoTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DisconnectRedoTextChanged(ptr.Pointer())
@@ -376,21 +287,17 @@ func (ptr *QUndoGroup) DisconnectRedoTextChanged() {
 
 //export callbackQUndoGroupRedoTextChanged
 func callbackQUndoGroupRedoTextChanged(ptrName *C.char, redoText *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::redoTextChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoGroup::redoTextChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "redoTextChanged").(func(string))(C.GoString(redoText))
+	var signal = qt.GetSignal(C.GoString(ptrName), "redoTextChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(redoText))
+	}
+
 }
 
 func (ptr *QUndoGroup) RemoveStack(stack QUndoStack_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::removeStack")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::removeStack")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_RemoveStack(ptr.Pointer(), PointerFromQUndoStack(stack))
@@ -398,11 +305,7 @@ func (ptr *QUndoGroup) RemoveStack(stack QUndoStack_ITF) {
 }
 
 func (ptr *QUndoGroup) SetActiveStack(stack QUndoStack_ITF) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::setActiveStack")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::setActiveStack")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_SetActiveStack(ptr.Pointer(), PointerFromQUndoStack(stack))
@@ -410,11 +313,7 @@ func (ptr *QUndoGroup) SetActiveStack(stack QUndoStack_ITF) {
 }
 
 func (ptr *QUndoGroup) Undo() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::undo")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::undo")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_Undo(ptr.Pointer())
@@ -422,11 +321,7 @@ func (ptr *QUndoGroup) Undo() {
 }
 
 func (ptr *QUndoGroup) UndoText() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::undoText")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::undoText")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QUndoGroup_UndoText(ptr.Pointer()))
@@ -435,11 +330,7 @@ func (ptr *QUndoGroup) UndoText() string {
 }
 
 func (ptr *QUndoGroup) ConnectUndoTextChanged(f func(undoText string)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::undoTextChanged")
-		}
-	}()
+	defer qt.Recovering("connect QUndoGroup::undoTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_ConnectUndoTextChanged(ptr.Pointer())
@@ -448,11 +339,7 @@ func (ptr *QUndoGroup) ConnectUndoTextChanged(f func(undoText string)) {
 }
 
 func (ptr *QUndoGroup) DisconnectUndoTextChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::undoTextChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QUndoGroup::undoTextChanged")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DisconnectUndoTextChanged(ptr.Pointer())
@@ -462,21 +349,17 @@ func (ptr *QUndoGroup) DisconnectUndoTextChanged() {
 
 //export callbackQUndoGroupUndoTextChanged
 func callbackQUndoGroupUndoTextChanged(ptrName *C.char, undoText *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::undoTextChanged")
-		}
-	}()
+	defer qt.Recovering("callback QUndoGroup::undoTextChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "undoTextChanged").(func(string))(C.GoString(undoText))
+	var signal = qt.GetSignal(C.GoString(ptrName), "undoTextChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(undoText))
+	}
+
 }
 
 func (ptr *QUndoGroup) DestroyQUndoGroup() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QUndoGroup::~QUndoGroup")
-		}
-	}()
+	defer qt.Recovering("QUndoGroup::~QUndoGroup")
 
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DestroyQUndoGroup(ptr.Pointer())

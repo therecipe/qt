@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
-	"log"
 	"unsafe"
 )
 
@@ -30,7 +29,7 @@ func NewQBluetoothSocketFromPointer(ptr unsafe.Pointer) *QBluetoothSocket {
 	var n = new(QBluetoothSocket)
 	n.SetPointer(ptr)
 	for len(n.ObjectName()) < len("QBluetoothSocket_") {
-		n.SetObjectName("QBluetoothSocket_" + qt.RandomIdentifier())
+		n.SetObjectName("QBluetoothSocket_" + qt.Identifier())
 	}
 	return n
 }
@@ -66,11 +65,7 @@ const (
 )
 
 func (ptr *QBluetoothSocket) ConnectConnected(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::connected")
-		}
-	}()
+	defer qt.Recovering("connect QBluetoothSocket::connected")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_ConnectConnected(ptr.Pointer())
@@ -79,11 +74,7 @@ func (ptr *QBluetoothSocket) ConnectConnected(f func()) {
 }
 
 func (ptr *QBluetoothSocket) DisconnectConnected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::connected")
-		}
-	}()
+	defer qt.Recovering("disconnect QBluetoothSocket::connected")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_DisconnectConnected(ptr.Pointer())
@@ -93,21 +84,17 @@ func (ptr *QBluetoothSocket) DisconnectConnected() {
 
 //export callbackQBluetoothSocketConnected
 func callbackQBluetoothSocketConnected(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::connected")
-		}
-	}()
+	defer qt.Recovering("callback QBluetoothSocket::connected")
 
-	qt.GetSignal(C.GoString(ptrName), "connected").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "connected")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QBluetoothSocket) ConnectDisconnected(f func()) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::disconnected")
-		}
-	}()
+	defer qt.Recovering("connect QBluetoothSocket::disconnected")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_ConnectDisconnected(ptr.Pointer())
@@ -116,11 +103,7 @@ func (ptr *QBluetoothSocket) ConnectDisconnected(f func()) {
 }
 
 func (ptr *QBluetoothSocket) DisconnectDisconnected() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::disconnected")
-		}
-	}()
+	defer qt.Recovering("disconnect QBluetoothSocket::disconnected")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_DisconnectDisconnected(ptr.Pointer())
@@ -130,21 +113,17 @@ func (ptr *QBluetoothSocket) DisconnectDisconnected() {
 
 //export callbackQBluetoothSocketDisconnected
 func callbackQBluetoothSocketDisconnected(ptrName *C.char) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::disconnected")
-		}
-	}()
+	defer qt.Recovering("callback QBluetoothSocket::disconnected")
 
-	qt.GetSignal(C.GoString(ptrName), "disconnected").(func())()
+	var signal = qt.GetSignal(C.GoString(ptrName), "disconnected")
+	if signal != nil {
+		signal.(func())()
+	}
+
 }
 
 func (ptr *QBluetoothSocket) ConnectStateChanged(f func(state QBluetoothSocket__SocketState)) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::stateChanged")
-		}
-	}()
+	defer qt.Recovering("connect QBluetoothSocket::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_ConnectStateChanged(ptr.Pointer())
@@ -153,11 +132,7 @@ func (ptr *QBluetoothSocket) ConnectStateChanged(f func(state QBluetoothSocket__
 }
 
 func (ptr *QBluetoothSocket) DisconnectStateChanged() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::stateChanged")
-		}
-	}()
+	defer qt.Recovering("disconnect QBluetoothSocket::stateChanged")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_DisconnectStateChanged(ptr.Pointer())
@@ -167,41 +142,29 @@ func (ptr *QBluetoothSocket) DisconnectStateChanged() {
 
 //export callbackQBluetoothSocketStateChanged
 func callbackQBluetoothSocketStateChanged(ptrName *C.char, state C.int) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::stateChanged")
-		}
-	}()
+	defer qt.Recovering("callback QBluetoothSocket::stateChanged")
 
-	qt.GetSignal(C.GoString(ptrName), "stateChanged").(func(QBluetoothSocket__SocketState))(QBluetoothSocket__SocketState(state))
+	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
+	if signal != nil {
+		signal.(func(QBluetoothSocket__SocketState))(QBluetoothSocket__SocketState(state))
+	}
+
 }
 
 func NewQBluetoothSocket(socketType QBluetoothServiceInfo__Protocol, parent core.QObject_ITF) *QBluetoothSocket {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::QBluetoothSocket")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::QBluetoothSocket")
 
 	return NewQBluetoothSocketFromPointer(C.QBluetoothSocket_NewQBluetoothSocket(C.int(socketType), core.PointerFromQObject(parent)))
 }
 
 func NewQBluetoothSocket2(parent core.QObject_ITF) *QBluetoothSocket {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::QBluetoothSocket")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::QBluetoothSocket")
 
 	return NewQBluetoothSocketFromPointer(C.QBluetoothSocket_NewQBluetoothSocket2(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBluetoothSocket) Abort() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::abort")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::abort")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_Abort(ptr.Pointer())
@@ -209,11 +172,7 @@ func (ptr *QBluetoothSocket) Abort() {
 }
 
 func (ptr *QBluetoothSocket) CanReadLine() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::canReadLine")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::canReadLine")
 
 	if ptr.Pointer() != nil {
 		return C.QBluetoothSocket_CanReadLine(ptr.Pointer()) != 0
@@ -221,24 +180,39 @@ func (ptr *QBluetoothSocket) CanReadLine() bool {
 	return false
 }
 
-func (ptr *QBluetoothSocket) Close() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::close")
-		}
-	}()
+func (ptr *QBluetoothSocket) ConnectClose(f func()) {
+	defer qt.Recovering("connect QBluetoothSocket::close")
 
 	if ptr.Pointer() != nil {
-		C.QBluetoothSocket_Close(ptr.Pointer())
+
+		qt.ConnectSignal(ptr.ObjectName(), "close", f)
 	}
 }
 
+func (ptr *QBluetoothSocket) DisconnectClose() {
+	defer qt.Recovering("disconnect QBluetoothSocket::close")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "close")
+	}
+}
+
+//export callbackQBluetoothSocketClose
+func callbackQBluetoothSocketClose(ptrName *C.char) bool {
+	defer qt.Recovering("callback QBluetoothSocket::close")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "close")
+	if signal != nil {
+		defer signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QBluetoothSocket) ConnectToService2(address QBluetoothAddress_ITF, uuid QBluetoothUuid_ITF, openMode core.QIODevice__OpenModeFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::connectToService")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::connectToService")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_ConnectToService2(ptr.Pointer(), PointerFromQBluetoothAddress(address), PointerFromQBluetoothUuid(uuid), C.int(openMode))
@@ -246,11 +220,7 @@ func (ptr *QBluetoothSocket) ConnectToService2(address QBluetoothAddress_ITF, uu
 }
 
 func (ptr *QBluetoothSocket) ConnectToService(service QBluetoothServiceInfo_ITF, openMode core.QIODevice__OpenModeFlag) {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::connectToService")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::connectToService")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_ConnectToService(ptr.Pointer(), PointerFromQBluetoothServiceInfo(service), C.int(openMode))
@@ -258,11 +228,7 @@ func (ptr *QBluetoothSocket) ConnectToService(service QBluetoothServiceInfo_ITF,
 }
 
 func (ptr *QBluetoothSocket) DisconnectFromService() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::disconnectFromService")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::disconnectFromService")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_DisconnectFromService(ptr.Pointer())
@@ -270,11 +236,7 @@ func (ptr *QBluetoothSocket) DisconnectFromService() {
 }
 
 func (ptr *QBluetoothSocket) Error() QBluetoothSocket__SocketError {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::error")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::error")
 
 	if ptr.Pointer() != nil {
 		return QBluetoothSocket__SocketError(C.QBluetoothSocket_Error(ptr.Pointer()))
@@ -283,11 +245,7 @@ func (ptr *QBluetoothSocket) Error() QBluetoothSocket__SocketError {
 }
 
 func (ptr *QBluetoothSocket) ErrorString() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::errorString")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::errorString")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothSocket_ErrorString(ptr.Pointer()))
@@ -296,11 +254,7 @@ func (ptr *QBluetoothSocket) ErrorString() string {
 }
 
 func (ptr *QBluetoothSocket) IsSequential() bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::isSequential")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::isSequential")
 
 	if ptr.Pointer() != nil {
 		return C.QBluetoothSocket_IsSequential(ptr.Pointer()) != 0
@@ -309,11 +263,7 @@ func (ptr *QBluetoothSocket) IsSequential() bool {
 }
 
 func (ptr *QBluetoothSocket) LocalName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::localName")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::localName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothSocket_LocalName(ptr.Pointer()))
@@ -322,11 +272,7 @@ func (ptr *QBluetoothSocket) LocalName() string {
 }
 
 func (ptr *QBluetoothSocket) PeerName() string {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::peerName")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::peerName")
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothSocket_PeerName(ptr.Pointer()))
@@ -335,11 +281,7 @@ func (ptr *QBluetoothSocket) PeerName() string {
 }
 
 func (ptr *QBluetoothSocket) SetSocketDescriptor(socketDescriptor int, socketType QBluetoothServiceInfo__Protocol, socketState QBluetoothSocket__SocketState, openMode core.QIODevice__OpenModeFlag) bool {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::setSocketDescriptor")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::setSocketDescriptor")
 
 	if ptr.Pointer() != nil {
 		return C.QBluetoothSocket_SetSocketDescriptor(ptr.Pointer(), C.int(socketDescriptor), C.int(socketType), C.int(socketState), C.int(openMode)) != 0
@@ -348,11 +290,7 @@ func (ptr *QBluetoothSocket) SetSocketDescriptor(socketDescriptor int, socketTyp
 }
 
 func (ptr *QBluetoothSocket) SocketDescriptor() int {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::socketDescriptor")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::socketDescriptor")
 
 	if ptr.Pointer() != nil {
 		return int(C.QBluetoothSocket_SocketDescriptor(ptr.Pointer()))
@@ -361,11 +299,7 @@ func (ptr *QBluetoothSocket) SocketDescriptor() int {
 }
 
 func (ptr *QBluetoothSocket) SocketType() QBluetoothServiceInfo__Protocol {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::socketType")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::socketType")
 
 	if ptr.Pointer() != nil {
 		return QBluetoothServiceInfo__Protocol(C.QBluetoothSocket_SocketType(ptr.Pointer()))
@@ -374,11 +308,7 @@ func (ptr *QBluetoothSocket) SocketType() QBluetoothServiceInfo__Protocol {
 }
 
 func (ptr *QBluetoothSocket) DestroyQBluetoothSocket() {
-	defer func() {
-		if recover() != nil {
-			log.Println("recovered in QBluetoothSocket::~QBluetoothSocket")
-		}
-	}()
+	defer qt.Recovering("QBluetoothSocket::~QBluetoothSocket")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_DestroyQBluetoothSocket(ptr.Pointer())
