@@ -75,6 +75,15 @@ func NewQPolygon2(size int) *QPolygon {
 	return NewQPolygonFromPointer(C.QPolygon_NewQPolygon2(C.int(size)))
 }
 
+func (ptr *QPolygon) BoundingRect() *core.QRect {
+	defer qt.Recovering("QPolygon::boundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPolygon_BoundingRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPolygon) Point2(index int) *core.QPoint {
 	defer qt.Recovering("QPolygon::point")
 

@@ -78,12 +78,20 @@ func goType(f *parser.Function, value string) string {
 		{
 			return "float64"
 		}
+
+	case "qint64":
+		{
+			return "int64"
+		}
 	}
 
 	switch {
 	case isEnum(f.Class(), value):
 		{
 			if c, exists := parser.ClassMap[class(cppEnum(f, value, false))]; exists && module(c.Module) != module(f) && module(c.Module) != "" {
+				if parser.ClassMap[f.Class()].WeakLink[c.Module] {
+					return "int64"
+				}
 				return module(c.Module) + "." + goEnum(f, value)
 			}
 			return goEnum(f, value)
@@ -92,6 +100,9 @@ func goType(f *parser.Function, value string) string {
 	case isClass(value):
 		{
 			if m := module(parser.ClassMap[value].Module); m != module(f) {
+				if parser.ClassMap[f.Class()].WeakLink[parser.ClassMap[value].Module] {
+					return "unsafe.Pointer"
+				}
 				return m + "." + value
 			}
 			return value
@@ -120,6 +131,16 @@ func cgoType(f *parser.Function, value string) string {
 	case "void", "":
 		{
 			return ""
+		}
+
+	case "qreal":
+		{
+			return "C.double"
+		}
+
+	case "qint64":
+		{
+			return "C.longlong"
 		}
 	}
 
@@ -204,6 +225,11 @@ func cppType(f *parser.Function, value string) string {
 	case "qreal":
 		{
 			return "double"
+		}
+
+	case "qint64":
+		{
+			return "long long"
 		}
 	}
 

@@ -119,6 +119,35 @@ func (ptr *QCameraFocus) SetFocusPointMode(mode QCameraFocus__FocusPointMode) {
 	}
 }
 
+func (ptr *QCameraFocus) ConnectDigitalZoomChanged(f func(value float64)) {
+	defer qt.Recovering("connect QCameraFocus::digitalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_ConnectDigitalZoomChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "digitalZoomChanged", f)
+	}
+}
+
+func (ptr *QCameraFocus) DisconnectDigitalZoomChanged() {
+	defer qt.Recovering("disconnect QCameraFocus::digitalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_DisconnectDigitalZoomChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "digitalZoomChanged")
+	}
+}
+
+//export callbackQCameraFocusDigitalZoomChanged
+func callbackQCameraFocusDigitalZoomChanged(ptrName *C.char, value C.double) {
+	defer qt.Recovering("callback QCameraFocus::digitalZoomChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "digitalZoomChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(value))
+	}
+
+}
+
 func (ptr *QCameraFocus) ConnectFocusZonesChanged(f func()) {
 	defer qt.Recovering("connect QCameraFocus::focusZonesChanged")
 
@@ -184,6 +213,35 @@ func (ptr *QCameraFocus) MaximumDigitalZoom() float64 {
 	return 0
 }
 
+func (ptr *QCameraFocus) ConnectMaximumDigitalZoomChanged(f func(zoom float64)) {
+	defer qt.Recovering("connect QCameraFocus::maximumDigitalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_ConnectMaximumDigitalZoomChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "maximumDigitalZoomChanged", f)
+	}
+}
+
+func (ptr *QCameraFocus) DisconnectMaximumDigitalZoomChanged() {
+	defer qt.Recovering("disconnect QCameraFocus::maximumDigitalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_DisconnectMaximumDigitalZoomChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "maximumDigitalZoomChanged")
+	}
+}
+
+//export callbackQCameraFocusMaximumDigitalZoomChanged
+func callbackQCameraFocusMaximumDigitalZoomChanged(ptrName *C.char, zoom C.double) {
+	defer qt.Recovering("callback QCameraFocus::maximumDigitalZoomChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "maximumDigitalZoomChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(zoom))
+	}
+
+}
+
 func (ptr *QCameraFocus) MaximumOpticalZoom() float64 {
 	defer qt.Recovering("QCameraFocus::maximumOpticalZoom")
 
@@ -191,6 +249,64 @@ func (ptr *QCameraFocus) MaximumOpticalZoom() float64 {
 		return float64(C.QCameraFocus_MaximumOpticalZoom(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QCameraFocus) ConnectMaximumOpticalZoomChanged(f func(zoom float64)) {
+	defer qt.Recovering("connect QCameraFocus::maximumOpticalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_ConnectMaximumOpticalZoomChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "maximumOpticalZoomChanged", f)
+	}
+}
+
+func (ptr *QCameraFocus) DisconnectMaximumOpticalZoomChanged() {
+	defer qt.Recovering("disconnect QCameraFocus::maximumOpticalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_DisconnectMaximumOpticalZoomChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "maximumOpticalZoomChanged")
+	}
+}
+
+//export callbackQCameraFocusMaximumOpticalZoomChanged
+func callbackQCameraFocusMaximumOpticalZoomChanged(ptrName *C.char, zoom C.double) {
+	defer qt.Recovering("callback QCameraFocus::maximumOpticalZoomChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "maximumOpticalZoomChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(zoom))
+	}
+
+}
+
+func (ptr *QCameraFocus) ConnectOpticalZoomChanged(f func(value float64)) {
+	defer qt.Recovering("connect QCameraFocus::opticalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_ConnectOpticalZoomChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "opticalZoomChanged", f)
+	}
+}
+
+func (ptr *QCameraFocus) DisconnectOpticalZoomChanged() {
+	defer qt.Recovering("disconnect QCameraFocus::opticalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_DisconnectOpticalZoomChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "opticalZoomChanged")
+	}
+}
+
+//export callbackQCameraFocusOpticalZoomChanged
+func callbackQCameraFocusOpticalZoomChanged(ptrName *C.char, value C.double) {
+	defer qt.Recovering("callback QCameraFocus::opticalZoomChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "opticalZoomChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(value))
+	}
+
 }
 
 func (ptr *QCameraFocus) ZoomTo(optical float64, digital float64) {

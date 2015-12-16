@@ -97,6 +97,15 @@ func (ptr *QVideoSurfaceFormat) FrameRate() float64 {
 	return 0
 }
 
+func (ptr *QVideoSurfaceFormat) FrameSize() *core.QSize {
+	defer qt.Recovering("QVideoSurfaceFormat::frameSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QVideoSurfaceFormat_FrameSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QVideoSurfaceFormat) FrameWidth() int {
 	defer qt.Recovering("QVideoSurfaceFormat::frameWidth")
 
@@ -122,6 +131,15 @@ func (ptr *QVideoSurfaceFormat) IsValid() bool {
 		return C.QVideoSurfaceFormat_IsValid(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QVideoSurfaceFormat) PixelAspectRatio() *core.QSize {
+	defer qt.Recovering("QVideoSurfaceFormat::pixelAspectRatio")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QVideoSurfaceFormat_PixelAspectRatio(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QVideoSurfaceFormat) PixelFormat() QVideoFrame__PixelFormat {
@@ -221,6 +239,24 @@ func (ptr *QVideoSurfaceFormat) SetYCbCrColorSpace(space QVideoSurfaceFormat__YC
 	if ptr.Pointer() != nil {
 		C.QVideoSurfaceFormat_SetYCbCrColorSpace(ptr.Pointer(), C.int(space))
 	}
+}
+
+func (ptr *QVideoSurfaceFormat) SizeHint() *core.QSize {
+	defer qt.Recovering("QVideoSurfaceFormat::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QVideoSurfaceFormat_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QVideoSurfaceFormat) Viewport() *core.QRect {
+	defer qt.Recovering("QVideoSurfaceFormat::viewport")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QVideoSurfaceFormat_Viewport(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QVideoSurfaceFormat) YCbCrColorSpace() QVideoSurfaceFormat__YCbCrColorSpace {

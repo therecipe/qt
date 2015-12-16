@@ -31,6 +31,10 @@ char* QGraphicsSvgItem_ElementId(void* ptr){
 	return static_cast<QGraphicsSvgItem*>(ptr)->elementId().toUtf8().data();
 }
 
+void* QGraphicsSvgItem_MaximumCacheSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QGraphicsSvgItem*>(ptr)->maximumCacheSize()).width(), static_cast<QSize>(static_cast<QGraphicsSvgItem*>(ptr)->maximumCacheSize()).height());
+}
+
 void QGraphicsSvgItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<QGraphicsSvgItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
@@ -112,12 +116,20 @@ void QSvgGenerator_SetViewBox2(void* ptr, void* viewBox){
 	static_cast<QSvgGenerator*>(ptr)->setViewBox(*static_cast<QRectF*>(viewBox));
 }
 
+void* QSvgGenerator_Size(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSvgGenerator*>(ptr)->size()).width(), static_cast<QSize>(static_cast<QSvgGenerator*>(ptr)->size()).height());
+}
+
 char* QSvgGenerator_Title(void* ptr){
 	return static_cast<QSvgGenerator*>(ptr)->title().toUtf8().data();
 }
 
 void* QSvgGenerator_NewQSvgGenerator(){
 	return new MyQSvgGenerator();
+}
+
+void* QSvgGenerator_ViewBox(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QSvgGenerator*>(ptr)->viewBox()).x(), static_cast<QRect>(static_cast<QSvgGenerator*>(ptr)->viewBox()).y(), static_cast<QRect>(static_cast<QSvgGenerator*>(ptr)->viewBox()).width(), static_cast<QRect>(static_cast<QSvgGenerator*>(ptr)->viewBox()).height());
 }
 
 void QSvgGenerator_DestroyQSvgGenerator(void* ptr){
@@ -174,6 +186,10 @@ int QSvgRenderer_Animated(void* ptr){
 	return static_cast<QSvgRenderer*>(ptr)->animated();
 }
 
+void* QSvgRenderer_DefaultSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSvgRenderer*>(ptr)->defaultSize()).width(), static_cast<QSize>(static_cast<QSvgRenderer*>(ptr)->defaultSize()).height());
+}
+
 int QSvgRenderer_ElementExists(void* ptr, char* id){
 	return static_cast<QSvgRenderer*>(ptr)->elementExists(QString(id));
 }
@@ -214,6 +230,10 @@ void QSvgRenderer_DisconnectRepaintNeeded(void* ptr){
 	QObject::disconnect(static_cast<QSvgRenderer*>(ptr), static_cast<void (QSvgRenderer::*)()>(&QSvgRenderer::repaintNeeded), static_cast<MyQSvgRenderer*>(ptr), static_cast<void (MyQSvgRenderer::*)()>(&MyQSvgRenderer::Signal_RepaintNeeded));;
 }
 
+void* QSvgRenderer_ViewBox(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QSvgRenderer*>(ptr)->viewBox()).x(), static_cast<QRect>(static_cast<QSvgRenderer*>(ptr)->viewBox()).y(), static_cast<QRect>(static_cast<QSvgRenderer*>(ptr)->viewBox()).width(), static_cast<QRect>(static_cast<QSvgRenderer*>(ptr)->viewBox()).height());
+}
+
 void QSvgRenderer_DestroyQSvgRenderer(void* ptr){
 	static_cast<QSvgRenderer*>(ptr)->~QSvgRenderer();
 }
@@ -244,6 +264,10 @@ void QSvgWidget_Load(void* ptr, char* file){
 
 void* QSvgWidget_Renderer(void* ptr){
 	return static_cast<QSvgWidget*>(ptr)->renderer();
+}
+
+void* QSvgWidget_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSvgWidget*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QSvgWidget*>(ptr)->sizeHint()).height());
 }
 
 void QSvgWidget_DestroyQSvgWidget(void* ptr){

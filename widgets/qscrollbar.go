@@ -245,6 +245,15 @@ func callbackQScrollBarPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
 
 }
 
+func (ptr *QScrollBar) SizeHint() *core.QSize {
+	defer qt.Recovering("QScrollBar::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QScrollBar_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QScrollBar) ConnectSliderChange(f func(change QAbstractSlider__SliderChange)) {
 	defer qt.Recovering("connect QScrollBar::sliderChange")
 

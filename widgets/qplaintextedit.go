@@ -503,6 +503,24 @@ func callbackQPlainTextEditCursorPositionChanged(ptrName *C.char) {
 
 }
 
+func (ptr *QPlainTextEdit) CursorRect2() *core.QRect {
+	defer qt.Recovering("QPlainTextEdit::cursorRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPlainTextEdit_CursorRect2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPlainTextEdit) CursorRect(cursor gui.QTextCursor_ITF) *core.QRect {
+	defer qt.Recovering("QPlainTextEdit::cursorRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPlainTextEdit_CursorRect(ptr.Pointer(), gui.PointerFromQTextCursor(cursor)))
+	}
+	return nil
+}
+
 func (ptr *QPlainTextEdit) Cut() {
 	defer qt.Recovering("QPlainTextEdit::cut")
 
@@ -1393,6 +1411,35 @@ func callbackQPlainTextEditUndoAvailable(ptrName *C.char, available C.int) {
 	var signal = qt.GetSignal(C.GoString(ptrName), "undoAvailable")
 	if signal != nil {
 		signal.(func(bool))(int(available) != 0)
+	}
+
+}
+
+func (ptr *QPlainTextEdit) ConnectUpdateRequest(f func(rect *core.QRect, dy int)) {
+	defer qt.Recovering("connect QPlainTextEdit::updateRequest")
+
+	if ptr.Pointer() != nil {
+		C.QPlainTextEdit_ConnectUpdateRequest(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "updateRequest", f)
+	}
+}
+
+func (ptr *QPlainTextEdit) DisconnectUpdateRequest() {
+	defer qt.Recovering("disconnect QPlainTextEdit::updateRequest")
+
+	if ptr.Pointer() != nil {
+		C.QPlainTextEdit_DisconnectUpdateRequest(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "updateRequest")
+	}
+}
+
+//export callbackQPlainTextEditUpdateRequest
+func callbackQPlainTextEditUpdateRequest(ptrName *C.char, rect unsafe.Pointer, dy C.int) {
+	defer qt.Recovering("callback QPlainTextEdit::updateRequest")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "updateRequest")
+	if signal != nil {
+		signal.(func(*core.QRect, int))(core.NewQRectFromPointer(rect), int(dy))
 	}
 
 }

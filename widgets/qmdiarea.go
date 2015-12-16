@@ -302,6 +302,15 @@ func (ptr *QMdiArea) CurrentSubWindow() *QMdiSubWindow {
 	return nil
 }
 
+func (ptr *QMdiArea) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QMdiArea::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QMdiArea_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMdiArea) ConnectPaintEvent(f func(paintEvent *gui.QPaintEvent)) {
 	defer qt.Recovering("connect QMdiArea::paintEvent")
 
@@ -479,6 +488,15 @@ func callbackQMdiAreaShowEvent(ptrName *C.char, showEvent unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QMdiArea) SizeHint() *core.QSize {
+	defer qt.Recovering("QMdiArea::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QMdiArea_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMdiArea) ConnectSubWindowActivated(f func(window *QMdiSubWindow)) {

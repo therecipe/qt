@@ -91,6 +91,15 @@ func (ptr *QMacToolBarItem) DestroyQMacToolBarItem() {
 	}
 }
 
+func (ptr *QMacToolBarItem) Icon() *gui.QIcon {
+	defer qt.Recovering("QMacToolBarItem::icon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QMacToolBarItem_Icon(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMacToolBarItem) Selectable() bool {
 	defer qt.Recovering("QMacToolBarItem::selectable")
 

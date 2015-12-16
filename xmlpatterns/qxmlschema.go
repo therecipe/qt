@@ -54,6 +54,15 @@ func NewQXmlSchema2(other QXmlSchema_ITF) *QXmlSchema {
 	return NewQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema2(PointerFromQXmlSchema(other)))
 }
 
+func (ptr *QXmlSchema) DocumentUri() *core.QUrl {
+	defer qt.Recovering("QXmlSchema::documentUri")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QXmlSchema_DocumentUri(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QXmlSchema) IsValid() bool {
 	defer qt.Recovering("QXmlSchema::isValid")
 

@@ -16,6 +16,7 @@
 #include <QMetaObject>
 #include <QModelIndex>
 #include <QObject>
+#include <QPoint>
 #include <QString>
 #include <QUrl>
 #include <QVariant>
@@ -43,6 +44,10 @@ int QHelpContentItem_Row(void* ptr){
 
 char* QHelpContentItem_Title(void* ptr){
 	return static_cast<QHelpContentItem*>(ptr)->title().toUtf8().data();
+}
+
+void* QHelpContentItem_Url(void* ptr){
+	return new QUrl(static_cast<QHelpContentItem*>(ptr)->url());
 }
 
 void QHelpContentItem_DestroyQHelpContentItem(void* ptr){
@@ -110,11 +115,20 @@ void QHelpContentModel_DestroyQHelpContentModel(void* ptr){
 
 class MyQHelpContentWidget: public QHelpContentWidget {
 public:
+	void Signal_LinkActivated(const QUrl & link) { callbackQHelpContentWidgetLinkActivated(this->objectName().toUtf8().data(), new QUrl(link)); };
 protected:
 };
 
 void* QHelpContentWidget_IndexOf(void* ptr, void* link){
 	return static_cast<QHelpContentWidget*>(ptr)->indexOf(*static_cast<QUrl*>(link)).internalPointer();
+}
+
+void QHelpContentWidget_ConnectLinkActivated(void* ptr){
+	QObject::connect(static_cast<QHelpContentWidget*>(ptr), static_cast<void (QHelpContentWidget::*)(const QUrl &)>(&QHelpContentWidget::linkActivated), static_cast<MyQHelpContentWidget*>(ptr), static_cast<void (MyQHelpContentWidget::*)(const QUrl &)>(&MyQHelpContentWidget::Signal_LinkActivated));;
+}
+
+void QHelpContentWidget_DisconnectLinkActivated(void* ptr){
+	QObject::disconnect(static_cast<QHelpContentWidget*>(ptr), static_cast<void (QHelpContentWidget::*)(const QUrl &)>(&QHelpContentWidget::linkActivated), static_cast<MyQHelpContentWidget*>(ptr), static_cast<void (MyQHelpContentWidget::*)(const QUrl &)>(&MyQHelpContentWidget::Signal_LinkActivated));;
 }
 
 void* QHelpEngine_NewQHelpEngine(char* collectionFile, void* parent){
@@ -228,6 +242,10 @@ char* QHelpEngineCore_FilterAttributes2(void* ptr, char* filterName){
 	return static_cast<QHelpEngineCore*>(ptr)->filterAttributes(QString(filterName)).join(",,,").toUtf8().data();
 }
 
+void* QHelpEngineCore_FindFile(void* ptr, void* url){
+	return new QUrl(static_cast<QHelpEngineCore*>(ptr)->findFile(*static_cast<QUrl*>(url)));
+}
+
 void* QHelpEngineCore_QHelpEngineCore_MetaData(char* documentationFileName, char* name){
 	return new QVariant(QHelpEngineCore::metaData(QString(documentationFileName), QString(name)));
 }
@@ -337,6 +355,7 @@ int QHelpIndexModel_IsCreatingIndex(void* ptr){
 
 class MyQHelpIndexWidget: public QHelpIndexWidget {
 public:
+	void Signal_LinkActivated(const QUrl & link, const QString & keyword) { callbackQHelpIndexWidgetLinkActivated(this->objectName().toUtf8().data(), new QUrl(link), keyword.toUtf8().data()); };
 protected:
 };
 
@@ -346,6 +365,14 @@ void QHelpIndexWidget_ActivateCurrentItem(void* ptr){
 
 void QHelpIndexWidget_FilterIndices(void* ptr, char* filter, char* wildcard){
 	QMetaObject::invokeMethod(static_cast<QHelpIndexWidget*>(ptr), "filterIndices", Q_ARG(QString, QString(filter)), Q_ARG(QString, QString(wildcard)));
+}
+
+void QHelpIndexWidget_ConnectLinkActivated(void* ptr){
+	QObject::connect(static_cast<QHelpIndexWidget*>(ptr), static_cast<void (QHelpIndexWidget::*)(const QUrl &, const QString &)>(&QHelpIndexWidget::linkActivated), static_cast<MyQHelpIndexWidget*>(ptr), static_cast<void (MyQHelpIndexWidget::*)(const QUrl &, const QString &)>(&MyQHelpIndexWidget::Signal_LinkActivated));;
+}
+
+void QHelpIndexWidget_DisconnectLinkActivated(void* ptr){
+	QObject::disconnect(static_cast<QHelpIndexWidget*>(ptr), static_cast<void (QHelpIndexWidget::*)(const QUrl &, const QString &)>(&QHelpIndexWidget::linkActivated), static_cast<MyQHelpIndexWidget*>(ptr), static_cast<void (MyQHelpIndexWidget::*)(const QUrl &, const QString &)>(&MyQHelpIndexWidget::Signal_LinkActivated));;
 }
 
 class MyQHelpSearchEngine: public QHelpSearchEngine {
@@ -465,8 +492,21 @@ void QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(void* ptr){
 
 class MyQHelpSearchResultWidget: public QHelpSearchResultWidget {
 public:
+	void Signal_RequestShowLink(const QUrl & link) { callbackQHelpSearchResultWidgetRequestShowLink(this->objectName().toUtf8().data(), new QUrl(link)); };
 protected:
 };
+
+void* QHelpSearchResultWidget_LinkAt(void* ptr, void* point){
+	return new QUrl(static_cast<QHelpSearchResultWidget*>(ptr)->linkAt(*static_cast<QPoint*>(point)));
+}
+
+void QHelpSearchResultWidget_ConnectRequestShowLink(void* ptr){
+	QObject::connect(static_cast<QHelpSearchResultWidget*>(ptr), static_cast<void (QHelpSearchResultWidget::*)(const QUrl &)>(&QHelpSearchResultWidget::requestShowLink), static_cast<MyQHelpSearchResultWidget*>(ptr), static_cast<void (MyQHelpSearchResultWidget::*)(const QUrl &)>(&MyQHelpSearchResultWidget::Signal_RequestShowLink));;
+}
+
+void QHelpSearchResultWidget_DisconnectRequestShowLink(void* ptr){
+	QObject::disconnect(static_cast<QHelpSearchResultWidget*>(ptr), static_cast<void (QHelpSearchResultWidget::*)(const QUrl &)>(&QHelpSearchResultWidget::requestShowLink), static_cast<MyQHelpSearchResultWidget*>(ptr), static_cast<void (MyQHelpSearchResultWidget::*)(const QUrl &)>(&MyQHelpSearchResultWidget::Signal_RequestShowLink));;
+}
 
 void QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(void* ptr){
 	static_cast<QHelpSearchResultWidget*>(ptr)->~QHelpSearchResultWidget();

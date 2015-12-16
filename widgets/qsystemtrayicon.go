@@ -59,6 +59,15 @@ const (
 	QSystemTrayIcon__Critical    = QSystemTrayIcon__MessageIcon(3)
 )
 
+func (ptr *QSystemTrayIcon) Icon() *gui.QIcon {
+	defer qt.Recovering("QSystemTrayIcon::icon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QSystemTrayIcon_Icon(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSystemTrayIcon) IsVisible() bool {
 	defer qt.Recovering("QSystemTrayIcon::isVisible")
 
@@ -155,6 +164,15 @@ func (ptr *QSystemTrayIcon) ContextMenu() *QMenu {
 
 	if ptr.Pointer() != nil {
 		return NewQMenuFromPointer(C.QSystemTrayIcon_ContextMenu(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSystemTrayIcon) Geometry() *core.QRect {
+	defer qt.Recovering("QSystemTrayIcon::geometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QSystemTrayIcon_Geometry(ptr.Pointer()))
 	}
 	return nil
 }

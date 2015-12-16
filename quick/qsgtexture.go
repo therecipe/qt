@@ -166,6 +166,15 @@ func (ptr *QSGTexture) TextureId() int {
 	return 0
 }
 
+func (ptr *QSGTexture) TextureSize() *core.QSize {
+	defer qt.Recovering("QSGTexture::textureSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSGTexture_TextureSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSGTexture) UpdateBindOptions(force bool) {
 	defer qt.Recovering("QSGTexture::updateBindOptions")
 

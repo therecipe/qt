@@ -285,6 +285,15 @@ func (ptr *QToolButton) Menu() *QMenu {
 	return nil
 }
 
+func (ptr *QToolButton) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QToolButton::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QToolButton_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QToolButton) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QToolButton::mousePressEvent")
 
@@ -392,6 +401,15 @@ func (ptr *QToolButton) ShowMenu() {
 	if ptr.Pointer() != nil {
 		C.QToolButton_ShowMenu(ptr.Pointer())
 	}
+}
+
+func (ptr *QToolButton) SizeHint() *core.QSize {
+	defer qt.Recovering("QToolButton::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QToolButton_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QToolButton) ConnectTimerEvent(f func(e *core.QTimerEvent)) {

@@ -205,6 +205,15 @@ func (ptr *QPalette) ButtonText() *QBrush {
 	return nil
 }
 
+func (ptr *QPalette) CacheKey() int64 {
+	defer qt.Recovering("QPalette::cacheKey")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QPalette_CacheKey(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QPalette) Color(group QPalette__ColorGroup, role QPalette__ColorRole) *QColor {
 	defer qt.Recovering("QPalette::color")
 

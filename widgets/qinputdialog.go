@@ -413,6 +413,15 @@ func callbackQInputDialogIntValueSelected(ptrName *C.char, value C.int) {
 
 }
 
+func (ptr *QInputDialog) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QInputDialog::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QInputDialog_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QInputDialog) Open(receiver core.QObject_ITF, member string) {
 	defer qt.Recovering("QInputDialog::open")
 
@@ -466,6 +475,15 @@ func callbackQInputDialogSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QInputDialog) SizeHint() *core.QSize {
+	defer qt.Recovering("QInputDialog::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QInputDialog_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QInputDialog) TestOption(option QInputDialog__InputDialogOption) bool {

@@ -123,6 +123,35 @@ func callbackQNetworkReplyClose(ptrName *C.char) bool {
 
 }
 
+func (ptr *QNetworkReply) ConnectDownloadProgress(f func(bytesReceived int64, bytesTotal int64)) {
+	defer qt.Recovering("connect QNetworkReply::downloadProgress")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_ConnectDownloadProgress(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "downloadProgress", f)
+	}
+}
+
+func (ptr *QNetworkReply) DisconnectDownloadProgress() {
+	defer qt.Recovering("disconnect QNetworkReply::downloadProgress")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_DisconnectDownloadProgress(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "downloadProgress")
+	}
+}
+
+//export callbackQNetworkReplyDownloadProgress
+func callbackQNetworkReplyDownloadProgress(ptrName *C.char, bytesReceived C.longlong, bytesTotal C.longlong) {
+	defer qt.Recovering("callback QNetworkReply::downloadProgress")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "downloadProgress")
+	if signal != nil {
+		signal.(func(int64, int64))(int64(bytesReceived), int64(bytesTotal))
+	}
+
+}
+
 func (ptr *QNetworkReply) ConnectEncrypted(f func()) {
 	defer qt.Recovering("connect QNetworkReply::encrypted")
 
@@ -148,6 +177,35 @@ func callbackQNetworkReplyEncrypted(ptrName *C.char) {
 	var signal = qt.GetSignal(C.GoString(ptrName), "encrypted")
 	if signal != nil {
 		signal.(func())()
+	}
+
+}
+
+func (ptr *QNetworkReply) ConnectError2(f func(code QNetworkReply__NetworkError)) {
+	defer qt.Recovering("connect QNetworkReply::error")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QNetworkReply) DisconnectError2() {
+	defer qt.Recovering("disconnect QNetworkReply::error")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQNetworkReplyError2
+func callbackQNetworkReplyError2(ptrName *C.char, code C.int) {
+	defer qt.Recovering("callback QNetworkReply::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QNetworkReply__NetworkError))(QNetworkReply__NetworkError(code))
 	}
 
 }
@@ -342,12 +400,90 @@ func (ptr *QNetworkReply) RawHeader(headerName core.QByteArray_ITF) *core.QByteA
 	return nil
 }
 
+func (ptr *QNetworkReply) ReadBufferSize() int64 {
+	defer qt.Recovering("QNetworkReply::readBufferSize")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QNetworkReply_ReadBufferSize(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QNetworkReply) ConnectSetReadBufferSize(f func(size int64)) {
+	defer qt.Recovering("connect QNetworkReply::setReadBufferSize")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setReadBufferSize", f)
+	}
+}
+
+func (ptr *QNetworkReply) DisconnectSetReadBufferSize() {
+	defer qt.Recovering("disconnect QNetworkReply::setReadBufferSize")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setReadBufferSize")
+	}
+}
+
+//export callbackQNetworkReplySetReadBufferSize
+func callbackQNetworkReplySetReadBufferSize(ptrName *C.char, size C.longlong) bool {
+	defer qt.Recovering("callback QNetworkReply::setReadBufferSize")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setReadBufferSize")
+	if signal != nil {
+		defer signal.(func(int64))(int64(size))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QNetworkReply) SetSslConfiguration(config QSslConfiguration_ITF) {
 	defer qt.Recovering("QNetworkReply::setSslConfiguration")
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_SetSslConfiguration(ptr.Pointer(), PointerFromQSslConfiguration(config))
 	}
+}
+
+func (ptr *QNetworkReply) ConnectUploadProgress(f func(bytesSent int64, bytesTotal int64)) {
+	defer qt.Recovering("connect QNetworkReply::uploadProgress")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_ConnectUploadProgress(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "uploadProgress", f)
+	}
+}
+
+func (ptr *QNetworkReply) DisconnectUploadProgress() {
+	defer qt.Recovering("disconnect QNetworkReply::uploadProgress")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_DisconnectUploadProgress(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "uploadProgress")
+	}
+}
+
+//export callbackQNetworkReplyUploadProgress
+func callbackQNetworkReplyUploadProgress(ptrName *C.char, bytesSent C.longlong, bytesTotal C.longlong) {
+	defer qt.Recovering("callback QNetworkReply::uploadProgress")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "uploadProgress")
+	if signal != nil {
+		signal.(func(int64, int64))(int64(bytesSent), int64(bytesTotal))
+	}
+
+}
+
+func (ptr *QNetworkReply) Url() *core.QUrl {
+	defer qt.Recovering("QNetworkReply::url")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QNetworkReply_Url(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QNetworkReply) DestroyQNetworkReply() {

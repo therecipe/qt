@@ -57,6 +57,15 @@ func NewQElapsedTimer() *QElapsedTimer {
 	return NewQElapsedTimerFromPointer(C.QElapsedTimer_NewQElapsedTimer())
 }
 
+func (ptr *QElapsedTimer) HasExpired(timeout int64) bool {
+	defer qt.Recovering("QElapsedTimer::hasExpired")
+
+	if ptr.Pointer() != nil {
+		return C.QElapsedTimer_HasExpired(ptr.Pointer(), C.longlong(timeout)) != 0
+	}
+	return false
+}
+
 func (ptr *QElapsedTimer) Invalidate() {
 	defer qt.Recovering("QElapsedTimer::invalidate")
 
@@ -80,10 +89,64 @@ func QElapsedTimer_ClockType() QElapsedTimer__ClockType {
 	return QElapsedTimer__ClockType(C.QElapsedTimer_QElapsedTimer_ClockType())
 }
 
+func (ptr *QElapsedTimer) Elapsed() int64 {
+	defer qt.Recovering("QElapsedTimer::elapsed")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QElapsedTimer_Elapsed(ptr.Pointer()))
+	}
+	return 0
+}
+
 func QElapsedTimer_IsMonotonic() bool {
 	defer qt.Recovering("QElapsedTimer::isMonotonic")
 
 	return C.QElapsedTimer_QElapsedTimer_IsMonotonic() != 0
+}
+
+func (ptr *QElapsedTimer) MsecsSinceReference() int64 {
+	defer qt.Recovering("QElapsedTimer::msecsSinceReference")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QElapsedTimer_MsecsSinceReference(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QElapsedTimer) MsecsTo(other QElapsedTimer_ITF) int64 {
+	defer qt.Recovering("QElapsedTimer::msecsTo")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QElapsedTimer_MsecsTo(ptr.Pointer(), PointerFromQElapsedTimer(other)))
+	}
+	return 0
+}
+
+func (ptr *QElapsedTimer) NsecsElapsed() int64 {
+	defer qt.Recovering("QElapsedTimer::nsecsElapsed")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QElapsedTimer_NsecsElapsed(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QElapsedTimer) Restart() int64 {
+	defer qt.Recovering("QElapsedTimer::restart")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QElapsedTimer_Restart(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QElapsedTimer) SecsTo(other QElapsedTimer_ITF) int64 {
+	defer qt.Recovering("QElapsedTimer::secsTo")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QElapsedTimer_SecsTo(ptr.Pointer(), PointerFromQElapsedTimer(other)))
+	}
+	return 0
 }
 
 func (ptr *QElapsedTimer) Start() {

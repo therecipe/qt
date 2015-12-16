@@ -229,6 +229,10 @@ public:
 protected:
 };
 
+void* QQmlAbstractUrlInterceptor_Intercept(void* ptr, void* url, int ty){
+	return new QUrl(static_cast<QQmlAbstractUrlInterceptor*>(ptr)->intercept(*static_cast<QUrl*>(url), static_cast<QQmlAbstractUrlInterceptor::DataType>(ty)));
+}
+
 void QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(void* ptr){
 	static_cast<QQmlAbstractUrlInterceptor*>(ptr)->~QQmlAbstractUrlInterceptor();
 }
@@ -243,6 +247,7 @@ void QQmlAbstractUrlInterceptor_SetObjectNameAbs(void* ptr, char* name){
 
 class MyQQmlApplicationEngine: public QQmlApplicationEngine {
 public:
+	void Signal_ObjectCreated(QObject * object, const QUrl & url) { callbackQQmlApplicationEngineObjectCreated(this->objectName().toUtf8().data(), object, new QUrl(url)); };
 protected:
 };
 
@@ -270,6 +275,14 @@ void QQmlApplicationEngine_LoadData(void* ptr, void* data, void* url){
 	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "loadData", Q_ARG(QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
+void QQmlApplicationEngine_ConnectObjectCreated(void* ptr){
+	QObject::connect(static_cast<QQmlApplicationEngine*>(ptr), static_cast<void (QQmlApplicationEngine::*)(QObject *, const QUrl &)>(&QQmlApplicationEngine::objectCreated), static_cast<MyQQmlApplicationEngine*>(ptr), static_cast<void (MyQQmlApplicationEngine::*)(QObject *, const QUrl &)>(&MyQQmlApplicationEngine::Signal_ObjectCreated));;
+}
+
+void QQmlApplicationEngine_DisconnectObjectCreated(void* ptr){
+	QObject::disconnect(static_cast<QQmlApplicationEngine*>(ptr), static_cast<void (QQmlApplicationEngine::*)(QObject *, const QUrl &)>(&QQmlApplicationEngine::objectCreated), static_cast<MyQQmlApplicationEngine*>(ptr), static_cast<void (MyQQmlApplicationEngine::*)(QObject *, const QUrl &)>(&MyQQmlApplicationEngine::Signal_ObjectCreated));;
+}
+
 void QQmlApplicationEngine_DestroyQQmlApplicationEngine(void* ptr){
 	static_cast<QQmlApplicationEngine*>(ptr)->~QQmlApplicationEngine();
 }
@@ -282,6 +295,7 @@ public:
 	MyQQmlComponent(QQmlEngine *engine, const QUrl &url, CompilationMode mode, QObject *parent) : QQmlComponent(engine, url, mode, parent) {};
 	MyQQmlComponent(QQmlEngine *engine, const QUrl &url, QObject *parent) : QQmlComponent(engine, url, parent) {};
 	void completeCreate() { if (!callbackQQmlComponentCompleteCreate(this->objectName().toUtf8().data())) { QQmlComponent::completeCreate(); }; };
+	void Signal_ProgressChanged(qreal progress) { callbackQQmlComponentProgressChanged(this->objectName().toUtf8().data(), static_cast<double>(progress)); };
 	void Signal_StatusChanged(QQmlComponent::Status status) { callbackQQmlComponentStatusChanged(this->objectName().toUtf8().data(), status); };
 protected:
 };
@@ -292,6 +306,10 @@ double QQmlComponent_Progress(void* ptr){
 
 int QQmlComponent_Status(void* ptr){
 	return static_cast<QQmlComponent*>(ptr)->status();
+}
+
+void* QQmlComponent_Url(void* ptr){
+	return new QUrl(static_cast<QQmlComponent*>(ptr)->url());
 }
 
 void* QQmlComponent_NewQQmlComponent(void* engine, void* parent){
@@ -358,6 +376,14 @@ void QQmlComponent_LoadUrl2(void* ptr, void* url, int mode){
 	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "loadUrl", Q_ARG(QUrl, *static_cast<QUrl*>(url)), Q_ARG(QQmlComponent::CompilationMode, static_cast<QQmlComponent::CompilationMode>(mode)));
 }
 
+void QQmlComponent_ConnectProgressChanged(void* ptr){
+	QObject::connect(static_cast<QQmlComponent*>(ptr), static_cast<void (QQmlComponent::*)(qreal)>(&QQmlComponent::progressChanged), static_cast<MyQQmlComponent*>(ptr), static_cast<void (MyQQmlComponent::*)(qreal)>(&MyQQmlComponent::Signal_ProgressChanged));;
+}
+
+void QQmlComponent_DisconnectProgressChanged(void* ptr){
+	QObject::disconnect(static_cast<QQmlComponent*>(ptr), static_cast<void (QQmlComponent::*)(qreal)>(&QQmlComponent::progressChanged), static_cast<MyQQmlComponent*>(ptr), static_cast<void (MyQQmlComponent::*)(qreal)>(&MyQQmlComponent::Signal_ProgressChanged));;
+}
+
 void QQmlComponent_SetData(void* ptr, void* data, void* url){
 	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "setData", Q_ARG(QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
@@ -389,6 +415,10 @@ void* QQmlContext_NewQQmlContext(void* engine, void* parent){
 	return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
 }
 
+void* QQmlContext_BaseUrl(void* ptr){
+	return new QUrl(static_cast<QQmlContext*>(ptr)->baseUrl());
+}
+
 void* QQmlContext_ContextObject(void* ptr){
 	return static_cast<QQmlContext*>(ptr)->contextObject();
 }
@@ -411,6 +441,10 @@ char* QQmlContext_NameForObject(void* ptr, void* object){
 
 void* QQmlContext_ParentContext(void* ptr){
 	return static_cast<QQmlContext*>(ptr)->parentContext();
+}
+
+void* QQmlContext_ResolvedUrl(void* ptr, void* src){
+	return new QUrl(static_cast<QQmlContext*>(ptr)->resolvedUrl(*static_cast<QUrl*>(src)));
 }
 
 void QQmlContext_SetBaseUrl(void* ptr, void* baseUrl){
@@ -462,6 +496,10 @@ void QQmlEngine_AddImportPath(void* ptr, char* path){
 
 void QQmlEngine_AddPluginPath(void* ptr, char* path){
 	static_cast<QQmlEngine*>(ptr)->addPluginPath(QString(path));
+}
+
+void* QQmlEngine_BaseUrl(void* ptr){
+	return new QUrl(static_cast<QQmlEngine*>(ptr)->baseUrl());
 }
 
 void QQmlEngine_ClearComponentCache(void* ptr){
@@ -612,6 +650,10 @@ char* QQmlError_ToString(void* ptr){
 	return static_cast<QQmlError*>(ptr)->toString().toUtf8().data();
 }
 
+void* QQmlError_Url(void* ptr){
+	return new QUrl(static_cast<QQmlError*>(ptr)->url());
+}
+
 class MyQQmlExpression: public QQmlExpression {
 public:
 	MyQQmlExpression() : QQmlExpression() {};
@@ -705,6 +747,10 @@ class MyQQmlExtensionPlugin: public QQmlExtensionPlugin {
 public:
 protected:
 };
+
+void* QQmlExtensionPlugin_BaseUrl(void* ptr){
+	return new QUrl(static_cast<QQmlExtensionPlugin*>(ptr)->baseUrl());
+}
 
 void QQmlExtensionPlugin_RegisterTypes(void* ptr, char* uri){
 	static_cast<QQmlExtensionPlugin*>(ptr)->registerTypes(const_cast<const char*>(uri));

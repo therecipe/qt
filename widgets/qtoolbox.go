@@ -193,6 +193,15 @@ func (ptr *QToolBox) IsItemEnabled(index int) bool {
 	return false
 }
 
+func (ptr *QToolBox) ItemIcon(index int) *gui.QIcon {
+	defer qt.Recovering("QToolBox::itemIcon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QToolBox_ItemIcon(ptr.Pointer(), C.int(index)))
+	}
+	return nil
+}
+
 func (ptr *QToolBox) ConnectItemInserted(f func(index int)) {
 	defer qt.Recovering("connect QToolBox::itemInserted")
 

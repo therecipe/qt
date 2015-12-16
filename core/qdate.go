@@ -120,6 +120,15 @@ func (ptr *QDate) DaysInYear() int {
 	return 0
 }
 
+func (ptr *QDate) DaysTo(d QDate_ITF) int64 {
+	defer qt.Recovering("QDate::daysTo")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QDate_DaysTo(ptr.Pointer(), PointerFromQDate(d)))
+	}
+	return 0
+}
+
 func (ptr *QDate) GetDate(year int, month int, day int) {
 	defer qt.Recovering("QDate::getDate")
 
@@ -192,6 +201,15 @@ func QDate_ShortMonthName(month int, ty QDate__MonthNameType) string {
 	defer qt.Recovering("QDate::shortMonthName")
 
 	return C.GoString(C.QDate_QDate_ShortMonthName(C.int(month), C.int(ty)))
+}
+
+func (ptr *QDate) ToJulianDay() int64 {
+	defer qt.Recovering("QDate::toJulianDay")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QDate_ToJulianDay(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QDate) ToString(format string) string {

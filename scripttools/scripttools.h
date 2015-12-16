@@ -15,6 +15,7 @@ void QScriptEngineDebugger_ConnectEvaluationSuspended(void* ptr);
 void QScriptEngineDebugger_DisconnectEvaluationSuspended(void* ptr);
 void QScriptEngineDebugger_SetAutoShowStandardWindow(void* ptr, int autoShow);
 void* QScriptEngineDebugger_StandardWindow(void* ptr);
+int QScriptEngineDebugger_State(void* ptr);
 void* QScriptEngineDebugger_Widget(void* ptr, int widget);
 void QScriptEngineDebugger_DestroyQScriptEngineDebugger(void* ptr);
 

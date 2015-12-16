@@ -174,6 +174,21 @@ func QFile_Rename2(oldName string, newName string) bool {
 	return C.QFile_QFile_Rename2(C.CString(oldName), C.CString(newName)) != 0
 }
 
+func QFile_Resize2(fileName string, sz int64) bool {
+	defer qt.Recovering("QFile::resize")
+
+	return C.QFile_QFile_Resize2(C.CString(fileName), C.longlong(sz)) != 0
+}
+
+func (ptr *QFile) Resize(sz int64) bool {
+	defer qt.Recovering("QFile::resize")
+
+	if ptr.Pointer() != nil {
+		return C.QFile_Resize(ptr.Pointer(), C.longlong(sz)) != 0
+	}
+	return false
+}
+
 func (ptr *QFile) SetFileName(name string) {
 	defer qt.Recovering("QFile::setFileName")
 
@@ -195,6 +210,15 @@ func QFile_SetPermissions2(fileName string, permissions QFileDevice__Permission)
 	defer qt.Recovering("QFile::setPermissions")
 
 	return C.QFile_QFile_SetPermissions2(C.CString(fileName), C.int(permissions)) != 0
+}
+
+func (ptr *QFile) Size() int64 {
+	defer qt.Recovering("QFile::size")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QFile_Size(ptr.Pointer()))
+	}
+	return 0
 }
 
 func QFile_SymLinkTarget(fileName string) string {

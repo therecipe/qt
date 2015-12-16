@@ -5,6 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
 
@@ -68,6 +69,15 @@ func NewQFileIconProvider() *QFileIconProvider {
 	defer qt.Recovering("QFileIconProvider::QFileIconProvider")
 
 	return NewQFileIconProviderFromPointer(C.QFileIconProvider_NewQFileIconProvider())
+}
+
+func (ptr *QFileIconProvider) Icon(ty QFileIconProvider__IconType) *gui.QIcon {
+	defer qt.Recovering("QFileIconProvider::icon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QFileIconProvider_Icon(ptr.Pointer(), C.int(ty)))
+	}
+	return nil
 }
 
 func (ptr *QFileIconProvider) Options() QFileIconProvider__Option {

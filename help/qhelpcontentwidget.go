@@ -46,3 +46,32 @@ func (ptr *QHelpContentWidget) IndexOf(link core.QUrl_ITF) *core.QModelIndex {
 	}
 	return nil
 }
+
+func (ptr *QHelpContentWidget) ConnectLinkActivated(f func(link *core.QUrl)) {
+	defer qt.Recovering("connect QHelpContentWidget::linkActivated")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ConnectLinkActivated(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "linkActivated", f)
+	}
+}
+
+func (ptr *QHelpContentWidget) DisconnectLinkActivated() {
+	defer qt.Recovering("disconnect QHelpContentWidget::linkActivated")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_DisconnectLinkActivated(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "linkActivated")
+	}
+}
+
+//export callbackQHelpContentWidgetLinkActivated
+func callbackQHelpContentWidgetLinkActivated(ptrName *C.char, link unsafe.Pointer) {
+	defer qt.Recovering("callback QHelpContentWidget::linkActivated")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "linkActivated")
+	if signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
+	}
+
+}

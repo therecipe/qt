@@ -35,7 +35,7 @@ func HTemplate(m string) (o string) {
 		if isSupportedClass(c) {
 			for _, f := range c.Functions {
 				switch {
-				case f.Meta == "signal" && !f.Overload:
+				case f.Meta == "signal":
 					{
 						for _, signalMode := range []string{"Connect", "Disconnect"} {
 							f.SignalMode = signalMode
@@ -45,6 +45,7 @@ func HTemplate(m string) (o string) {
 						}
 						f.SignalMode = ""
 					}
+
 				case isGeneric(f):
 					{
 						for _, m := range jniGenericModes(f) {
@@ -55,6 +56,7 @@ func HTemplate(m string) (o string) {
 							f.TemplateMode = ""
 						}
 					}
+
 				default:
 					{
 						if i := cppFunctionHeader(f); isSupportedFunction(c, f) && f.Access == "public" {
@@ -121,7 +123,7 @@ func CppTemplate(m string) (o string) {
 
 					for _, f := range c.Functions {
 						if f.Access == m {
-							if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure") && f.Output == "void") && !f.Overload {
+							if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.Output == "void" {
 								if i := cppFunctionSignal(f); isSupportedFunction(c, f) {
 									o += fmt.Sprintf("\t%v;\n", i)
 								}
@@ -145,7 +147,7 @@ func CppTemplate(m string) (o string) {
 
 		if isSupportedClass(c) {
 			for _, f := range c.Functions {
-				if f.Meta == "signal" && !f.Overload {
+				if f.Meta == "signal" {
 					for _, signalMode := range []string{"Connect", "Disconnect"} {
 						f.SignalMode = signalMode
 						if i := cppFunction(f); isSupportedFunction(c, f) {

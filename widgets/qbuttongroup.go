@@ -158,6 +158,35 @@ func callbackQButtonGroupButtonClicked(ptrName *C.char, button unsafe.Pointer) {
 
 }
 
+func (ptr *QButtonGroup) ConnectButtonClicked2(f func(id int)) {
+	defer qt.Recovering("connect QButtonGroup::buttonClicked")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ConnectButtonClicked2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "buttonClicked", f)
+	}
+}
+
+func (ptr *QButtonGroup) DisconnectButtonClicked2() {
+	defer qt.Recovering("disconnect QButtonGroup::buttonClicked")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_DisconnectButtonClicked2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "buttonClicked")
+	}
+}
+
+//export callbackQButtonGroupButtonClicked2
+func callbackQButtonGroupButtonClicked2(ptrName *C.char, id C.int) {
+	defer qt.Recovering("callback QButtonGroup::buttonClicked")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "buttonClicked")
+	if signal != nil {
+		signal.(func(int))(int(id))
+	}
+
+}
+
 func (ptr *QButtonGroup) ConnectButtonPressed(f func(button *QAbstractButton)) {
 	defer qt.Recovering("connect QButtonGroup::buttonPressed")
 
@@ -183,6 +212,35 @@ func callbackQButtonGroupButtonPressed(ptrName *C.char, button unsafe.Pointer) {
 	var signal = qt.GetSignal(C.GoString(ptrName), "buttonPressed")
 	if signal != nil {
 		signal.(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
+	}
+
+}
+
+func (ptr *QButtonGroup) ConnectButtonPressed2(f func(id int)) {
+	defer qt.Recovering("connect QButtonGroup::buttonPressed")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ConnectButtonPressed2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "buttonPressed", f)
+	}
+}
+
+func (ptr *QButtonGroup) DisconnectButtonPressed2() {
+	defer qt.Recovering("disconnect QButtonGroup::buttonPressed")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_DisconnectButtonPressed2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "buttonPressed")
+	}
+}
+
+//export callbackQButtonGroupButtonPressed2
+func callbackQButtonGroupButtonPressed2(ptrName *C.char, id C.int) {
+	defer qt.Recovering("callback QButtonGroup::buttonPressed")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "buttonPressed")
+	if signal != nil {
+		signal.(func(int))(int(id))
 	}
 
 }
@@ -216,6 +274,35 @@ func callbackQButtonGroupButtonReleased(ptrName *C.char, button unsafe.Pointer) 
 
 }
 
+func (ptr *QButtonGroup) ConnectButtonReleased2(f func(id int)) {
+	defer qt.Recovering("connect QButtonGroup::buttonReleased")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ConnectButtonReleased2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "buttonReleased", f)
+	}
+}
+
+func (ptr *QButtonGroup) DisconnectButtonReleased2() {
+	defer qt.Recovering("disconnect QButtonGroup::buttonReleased")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_DisconnectButtonReleased2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "buttonReleased")
+	}
+}
+
+//export callbackQButtonGroupButtonReleased2
+func callbackQButtonGroupButtonReleased2(ptrName *C.char, id C.int) {
+	defer qt.Recovering("callback QButtonGroup::buttonReleased")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "buttonReleased")
+	if signal != nil {
+		signal.(func(int))(int(id))
+	}
+
+}
+
 func (ptr *QButtonGroup) ConnectButtonToggled(f func(button *QAbstractButton, checked bool)) {
 	defer qt.Recovering("connect QButtonGroup::buttonToggled")
 
@@ -241,6 +328,35 @@ func callbackQButtonGroupButtonToggled(ptrName *C.char, button unsafe.Pointer, c
 	var signal = qt.GetSignal(C.GoString(ptrName), "buttonToggled")
 	if signal != nil {
 		signal.(func(*QAbstractButton, bool))(NewQAbstractButtonFromPointer(button), int(checked) != 0)
+	}
+
+}
+
+func (ptr *QButtonGroup) ConnectButtonToggled2(f func(id int, checked bool)) {
+	defer qt.Recovering("connect QButtonGroup::buttonToggled")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ConnectButtonToggled2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "buttonToggled", f)
+	}
+}
+
+func (ptr *QButtonGroup) DisconnectButtonToggled2() {
+	defer qt.Recovering("disconnect QButtonGroup::buttonToggled")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_DisconnectButtonToggled2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "buttonToggled")
+	}
+}
+
+//export callbackQButtonGroupButtonToggled2
+func callbackQButtonGroupButtonToggled2(ptrName *C.char, id C.int, checked C.int) {
+	defer qt.Recovering("callback QButtonGroup::buttonToggled")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "buttonToggled")
+	if signal != nil {
+		signal.(func(int, bool))(int(id), int(checked) != 0)
 	}
 
 }

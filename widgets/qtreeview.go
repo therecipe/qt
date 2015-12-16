@@ -390,6 +390,37 @@ func callbackQTreeViewDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool 
 
 }
 
+func (ptr *QTreeView) ConnectDrawBranches(f func(painter *gui.QPainter, rect *core.QRect, index *core.QModelIndex)) {
+	defer qt.Recovering("connect QTreeView::drawBranches")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "drawBranches", f)
+	}
+}
+
+func (ptr *QTreeView) DisconnectDrawBranches() {
+	defer qt.Recovering("disconnect QTreeView::drawBranches")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "drawBranches")
+	}
+}
+
+//export callbackQTreeViewDrawBranches
+func callbackQTreeViewDrawBranches(ptrName *C.char, painter unsafe.Pointer, rect unsafe.Pointer, index unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTreeView::drawBranches")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "drawBranches")
+	if signal != nil {
+		defer signal.(func(*gui.QPainter, *core.QRect, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), core.NewQModelIndexFromPointer(index))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTreeView) ExpandAll() {
 	defer qt.Recovering("QTreeView::expandAll")
 
@@ -1027,6 +1058,37 @@ func (ptr *QTreeView) SetRowHidden(row int, parent core.QModelIndex_ITF, hide bo
 	}
 }
 
+func (ptr *QTreeView) ConnectSetSelection(f func(rect *core.QRect, command core.QItemSelectionModel__SelectionFlag)) {
+	defer qt.Recovering("connect QTreeView::setSelection")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSelection", f)
+	}
+}
+
+func (ptr *QTreeView) DisconnectSetSelection() {
+	defer qt.Recovering("disconnect QTreeView::setSelection")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSelection")
+	}
+}
+
+//export callbackQTreeViewSetSelection
+func callbackQTreeViewSetSelection(ptrName *C.char, rect unsafe.Pointer, command C.int) bool {
+	defer qt.Recovering("callback QTreeView::setSelection")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setSelection")
+	if signal != nil {
+		defer signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTreeView) ConnectSetSelectionModel(f func(selectionModel *core.QItemSelectionModel)) {
 	defer qt.Recovering("connect QTreeView::setSelectionModel")
 
@@ -1151,6 +1213,15 @@ func callbackQTreeViewUpdateGeometries(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTreeView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
+	defer qt.Recovering("QTreeView::visualRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QTreeView_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
 }
 
 func (ptr *QTreeView) DestroyQTreeView() {

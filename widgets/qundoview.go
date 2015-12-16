@@ -37,6 +37,15 @@ func (ptr *QUndoView) QUndoView_PTR() *QUndoView {
 	return ptr
 }
 
+func (ptr *QUndoView) CleanIcon() *gui.QIcon {
+	defer qt.Recovering("QUndoView::cleanIcon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QUndoView_CleanIcon(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QUndoView) EmptyLabel() string {
 	defer qt.Recovering("QUndoView::emptyLabel")
 

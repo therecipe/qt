@@ -701,6 +701,15 @@ func (ptr *QTreeWidget) TopLevelItem(index int) *QTreeWidgetItem {
 	return nil
 }
 
+func (ptr *QTreeWidget) VisualItemRect(item QTreeWidgetItem_ITF) *core.QRect {
+	defer qt.Recovering("QTreeWidget::visualItemRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QTreeWidget_VisualItemRect(ptr.Pointer(), PointerFromQTreeWidgetItem(item)))
+	}
+	return nil
+}
+
 func (ptr *QTreeWidget) DestroyQTreeWidget() {
 	defer qt.Recovering("QTreeWidget::~QTreeWidget")
 

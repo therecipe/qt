@@ -64,6 +64,33 @@ func NewQStorageInfo2(path string) *QStorageInfo {
 	return NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo2(C.CString(path)))
 }
 
+func (ptr *QStorageInfo) BytesAvailable() int64 {
+	defer qt.Recovering("QStorageInfo::bytesAvailable")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QStorageInfo_BytesAvailable(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QStorageInfo) BytesFree() int64 {
+	defer qt.Recovering("QStorageInfo::bytesFree")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QStorageInfo_BytesFree(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QStorageInfo) BytesTotal() int64 {
+	defer qt.Recovering("QStorageInfo::bytesTotal")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QStorageInfo_BytesTotal(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QStorageInfo) Device() *QByteArray {
 	defer qt.Recovering("QStorageInfo::device")
 

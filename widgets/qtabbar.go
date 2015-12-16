@@ -141,6 +141,15 @@ func (ptr *QTabBar) Expanding() bool {
 	return false
 }
 
+func (ptr *QTabBar) IconSize() *core.QSize {
+	defer qt.Recovering("QTabBar::iconSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QTabBar_IconSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QTabBar) IsMovable() bool {
 	defer qt.Recovering("QTabBar::isMovable")
 
@@ -463,6 +472,15 @@ func callbackQTabBarKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 
 }
 
+func (ptr *QTabBar) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QTabBar::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QTabBar_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QTabBar) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QTabBar::mouseMoveEvent")
 
@@ -729,6 +747,15 @@ func callbackQTabBarShowEvent(ptrName *C.char, v unsafe.Pointer) bool {
 
 }
 
+func (ptr *QTabBar) SizeHint() *core.QSize {
+	defer qt.Recovering("QTabBar::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QTabBar_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QTabBar) TabAt(position core.QPoint_ITF) int {
 	defer qt.Recovering("QTabBar::tabAt")
 
@@ -843,6 +870,15 @@ func (ptr *QTabBar) TabData(index int) *core.QVariant {
 	return nil
 }
 
+func (ptr *QTabBar) TabIcon(index int) *gui.QIcon {
+	defer qt.Recovering("QTabBar::tabIcon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QTabBar_TabIcon(ptr.Pointer(), C.int(index)))
+	}
+	return nil
+}
+
 func (ptr *QTabBar) ConnectTabInserted(f func(index int)) {
 	defer qt.Recovering("connect QTabBar::tabInserted")
 
@@ -932,6 +968,15 @@ func callbackQTabBarTabMoved(ptrName *C.char, from C.int, to C.int) {
 		signal.(func(int, int))(int(from), int(to))
 	}
 
+}
+
+func (ptr *QTabBar) TabRect(index int) *core.QRect {
+	defer qt.Recovering("QTabBar::tabRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QTabBar_TabRect(ptr.Pointer(), C.int(index)))
+	}
+	return nil
 }
 
 func (ptr *QTabBar) ConnectTabRemoved(f func(index int)) {

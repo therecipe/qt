@@ -192,6 +192,15 @@ func (ptr *QStandardItem) HasChildren() bool {
 	return false
 }
 
+func (ptr *QStandardItem) Icon() *QIcon {
+	defer qt.Recovering("QStandardItem::icon")
+
+	if ptr.Pointer() != nil {
+		return NewQIconFromPointer(C.QStandardItem_Icon(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QStandardItem) Index() *core.QModelIndex {
 	defer qt.Recovering("QStandardItem::index")
 
@@ -585,6 +594,15 @@ func (ptr *QStandardItem) SetWhatsThis(whatsThis string) {
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetWhatsThis(ptr.Pointer(), C.CString(whatsThis))
 	}
+}
+
+func (ptr *QStandardItem) SizeHint() *core.QSize {
+	defer qt.Recovering("QStandardItem::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QStandardItem_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QStandardItem) SortChildren(column int, order core.Qt__SortOrder) {

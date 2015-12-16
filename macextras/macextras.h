@@ -21,6 +21,7 @@ void* QMacToolBarItem_NewQMacToolBarItem(void* parent);
 void QMacToolBarItem_ConnectActivated(void* ptr);
 void QMacToolBarItem_DisconnectActivated(void* ptr);
 void QMacToolBarItem_DestroyQMacToolBarItem(void* ptr);
+void* QMacToolBarItem_Icon(void* ptr);
 int QMacToolBarItem_Selectable(void* ptr);
 void QMacToolBarItem_SetIcon(void* ptr, void* icon);
 void QMacToolBarItem_SetSelectable(void* ptr, int selectable);

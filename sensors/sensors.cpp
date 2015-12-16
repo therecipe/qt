@@ -122,15 +122,15 @@ double QAccelerometerReading_Z(void* ptr){
 }
 
 void QAccelerometerReading_SetX(void* ptr, double x){
-	static_cast<QAccelerometerReading*>(ptr)->setX(static_cast<qreal>(x));
+	static_cast<QAccelerometerReading*>(ptr)->setX(static_cast<double>(x));
 }
 
 void QAccelerometerReading_SetY(void* ptr, double y){
-	static_cast<QAccelerometerReading*>(ptr)->setY(static_cast<qreal>(y));
+	static_cast<QAccelerometerReading*>(ptr)->setY(static_cast<double>(y));
 }
 
 void QAccelerometerReading_SetZ(void* ptr, double z){
-	static_cast<QAccelerometerReading*>(ptr)->setZ(static_cast<qreal>(z));
+	static_cast<QAccelerometerReading*>(ptr)->setZ(static_cast<double>(z));
 }
 
 void* QAltimeter_Reading(void* ptr){
@@ -154,7 +154,7 @@ double QAltimeterReading_Altitude(void* ptr){
 }
 
 void QAltimeterReading_SetAltitude(void* ptr, double altitude){
-	static_cast<QAltimeterReading*>(ptr)->setAltitude(static_cast<qreal>(altitude));
+	static_cast<QAltimeterReading*>(ptr)->setAltitude(static_cast<double>(altitude));
 }
 
 int QAmbientLightFilter_Filter(void* ptr, void* reading){
@@ -196,7 +196,7 @@ double QAmbientTemperatureReading_Temperature(void* ptr){
 }
 
 void QAmbientTemperatureReading_SetTemperature(void* ptr, double temperature){
-	static_cast<QAmbientTemperatureReading*>(ptr)->setTemperature(static_cast<qreal>(temperature));
+	static_cast<QAmbientTemperatureReading*>(ptr)->setTemperature(static_cast<double>(temperature));
 }
 
 void* QAmbientTemperatureSensor_Reading(void* ptr){
@@ -242,11 +242,11 @@ double QCompassReading_CalibrationLevel(void* ptr){
 }
 
 void QCompassReading_SetAzimuth(void* ptr, double azimuth){
-	static_cast<QCompassReading*>(ptr)->setAzimuth(static_cast<qreal>(azimuth));
+	static_cast<QCompassReading*>(ptr)->setAzimuth(static_cast<double>(azimuth));
 }
 
 void QCompassReading_SetCalibrationLevel(void* ptr, double calibrationLevel){
-	static_cast<QCompassReading*>(ptr)->setCalibrationLevel(static_cast<qreal>(calibrationLevel));
+	static_cast<QCompassReading*>(ptr)->setCalibrationLevel(static_cast<double>(calibrationLevel));
 }
 
 int QDistanceFilter_Filter(void* ptr, void* reading){
@@ -258,7 +258,7 @@ double QDistanceReading_Distance(void* ptr){
 }
 
 void QDistanceReading_SetDistance(void* ptr, double distance){
-	static_cast<QDistanceReading*>(ptr)->setDistance(static_cast<qreal>(distance));
+	static_cast<QDistanceReading*>(ptr)->setDistance(static_cast<double>(distance));
 }
 
 void* QDistanceSensor_Reading(void* ptr){
@@ -308,15 +308,15 @@ double QGyroscopeReading_Z(void* ptr){
 }
 
 void QGyroscopeReading_SetX(void* ptr, double x){
-	static_cast<QGyroscopeReading*>(ptr)->setX(static_cast<qreal>(x));
+	static_cast<QGyroscopeReading*>(ptr)->setX(static_cast<double>(x));
 }
 
 void QGyroscopeReading_SetY(void* ptr, double y){
-	static_cast<QGyroscopeReading*>(ptr)->setY(static_cast<qreal>(y));
+	static_cast<QGyroscopeReading*>(ptr)->setY(static_cast<double>(y));
 }
 
 void QGyroscopeReading_SetZ(void* ptr, double z){
-	static_cast<QGyroscopeReading*>(ptr)->setZ(static_cast<qreal>(z));
+	static_cast<QGyroscopeReading*>(ptr)->setZ(static_cast<double>(z));
 }
 
 int QHolsterFilter_Filter(void* ptr, void* reading){
@@ -352,7 +352,7 @@ double QIRProximityReading_Reflectance(void* ptr){
 }
 
 void QIRProximityReading_SetReflectance(void* ptr, double reflectance){
-	static_cast<QIRProximityReading*>(ptr)->setReflectance(static_cast<qreal>(reflectance));
+	static_cast<QIRProximityReading*>(ptr)->setReflectance(static_cast<double>(reflectance));
 }
 
 class MyQIRProximitySensor: public QIRProximitySensor {
@@ -382,12 +382,13 @@ double QLightReading_Lux(void* ptr){
 }
 
 void QLightReading_SetLux(void* ptr, double lux){
-	static_cast<QLightReading*>(ptr)->setLux(static_cast<qreal>(lux));
+	static_cast<QLightReading*>(ptr)->setLux(static_cast<double>(lux));
 }
 
 class MyQLightSensor: public QLightSensor {
 public:
 	MyQLightSensor(QObject *parent) : QLightSensor(parent) {};
+	void Signal_FieldOfViewChanged(qreal fieldOfView) { callbackQLightSensorFieldOfViewChanged(this->objectName().toUtf8().data(), static_cast<double>(fieldOfView)); };
 protected:
 };
 
@@ -403,8 +404,16 @@ void* QLightSensor_NewQLightSensor(void* parent){
 	return new MyQLightSensor(static_cast<QObject*>(parent));
 }
 
+void QLightSensor_ConnectFieldOfViewChanged(void* ptr){
+	QObject::connect(static_cast<QLightSensor*>(ptr), static_cast<void (QLightSensor::*)(qreal)>(&QLightSensor::fieldOfViewChanged), static_cast<MyQLightSensor*>(ptr), static_cast<void (MyQLightSensor::*)(qreal)>(&MyQLightSensor::Signal_FieldOfViewChanged));;
+}
+
+void QLightSensor_DisconnectFieldOfViewChanged(void* ptr){
+	QObject::disconnect(static_cast<QLightSensor*>(ptr), static_cast<void (QLightSensor::*)(qreal)>(&QLightSensor::fieldOfViewChanged), static_cast<MyQLightSensor*>(ptr), static_cast<void (MyQLightSensor::*)(qreal)>(&MyQLightSensor::Signal_FieldOfViewChanged));;
+}
+
 void QLightSensor_SetFieldOfView(void* ptr, double fieldOfView){
-	static_cast<QLightSensor*>(ptr)->setFieldOfView(static_cast<qreal>(fieldOfView));
+	static_cast<QLightSensor*>(ptr)->setFieldOfView(static_cast<double>(fieldOfView));
 }
 
 void QLightSensor_DestroyQLightSensor(void* ptr){
@@ -467,19 +476,19 @@ double QMagnetometerReading_Z(void* ptr){
 }
 
 void QMagnetometerReading_SetCalibrationLevel(void* ptr, double calibrationLevel){
-	static_cast<QMagnetometerReading*>(ptr)->setCalibrationLevel(static_cast<qreal>(calibrationLevel));
+	static_cast<QMagnetometerReading*>(ptr)->setCalibrationLevel(static_cast<double>(calibrationLevel));
 }
 
 void QMagnetometerReading_SetX(void* ptr, double x){
-	static_cast<QMagnetometerReading*>(ptr)->setX(static_cast<qreal>(x));
+	static_cast<QMagnetometerReading*>(ptr)->setX(static_cast<double>(x));
 }
 
 void QMagnetometerReading_SetY(void* ptr, double y){
-	static_cast<QMagnetometerReading*>(ptr)->setY(static_cast<qreal>(y));
+	static_cast<QMagnetometerReading*>(ptr)->setY(static_cast<double>(y));
 }
 
 void QMagnetometerReading_SetZ(void* ptr, double z){
-	static_cast<QMagnetometerReading*>(ptr)->setZ(static_cast<qreal>(z));
+	static_cast<QMagnetometerReading*>(ptr)->setZ(static_cast<double>(z));
 }
 
 int QOrientationFilter_Filter(void* ptr, void* reading){
@@ -525,11 +534,11 @@ double QPressureReading_Temperature(void* ptr){
 }
 
 void QPressureReading_SetPressure(void* ptr, double pressure){
-	static_cast<QPressureReading*>(ptr)->setPressure(static_cast<qreal>(pressure));
+	static_cast<QPressureReading*>(ptr)->setPressure(static_cast<double>(pressure));
 }
 
 void QPressureReading_SetTemperature(void* ptr, double temperature){
-	static_cast<QPressureReading*>(ptr)->setTemperature(static_cast<qreal>(temperature));
+	static_cast<QPressureReading*>(ptr)->setTemperature(static_cast<double>(temperature));
 }
 
 void* QPressureSensor_Reading(void* ptr){
@@ -591,7 +600,7 @@ double QRotationReading_Z(void* ptr){
 }
 
 void QRotationReading_SetFromEuler(void* ptr, double x, double y, double z){
-	static_cast<QRotationReading*>(ptr)->setFromEuler(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(z));
+	static_cast<QRotationReading*>(ptr)->setFromEuler(static_cast<double>(x), static_cast<double>(y), static_cast<double>(z));
 }
 
 class MyQRotationSensor: public QRotationSensor {
@@ -923,7 +932,7 @@ protected:
 };
 
 void QSensorBackend_AddDataRate(void* ptr, double min, double max){
-	static_cast<QSensorBackend*>(ptr)->addDataRate(static_cast<qreal>(min), static_cast<qreal>(max));
+	static_cast<QSensorBackend*>(ptr)->addDataRate(static_cast<double>(min), static_cast<double>(max));
 }
 
 int QSensorBackend_IsFeatureSupported(void* ptr, int feature){
@@ -939,7 +948,7 @@ void QSensorBackend_SensorError(void* ptr, int error){
 }
 
 void QSensorBackend_AddOutputRange(void* ptr, double min, double max, double accuracy){
-	static_cast<QSensorBackend*>(ptr)->addOutputRange(static_cast<qreal>(min), static_cast<qreal>(max), static_cast<qreal>(accuracy));
+	static_cast<QSensorBackend*>(ptr)->addOutputRange(static_cast<double>(min), static_cast<double>(max), static_cast<double>(accuracy));
 }
 
 void QSensorBackend_NewReadingAvailable(void* ptr){
@@ -1238,11 +1247,11 @@ double QTiltReading_YRotation(void* ptr){
 }
 
 void QTiltReading_SetXRotation(void* ptr, double x){
-	static_cast<QTiltReading*>(ptr)->setXRotation(static_cast<qreal>(x));
+	static_cast<QTiltReading*>(ptr)->setXRotation(static_cast<double>(x));
 }
 
 void QTiltReading_SetYRotation(void* ptr, double y){
-	static_cast<QTiltReading*>(ptr)->setYRotation(static_cast<qreal>(y));
+	static_cast<QTiltReading*>(ptr)->setYRotation(static_cast<double>(y));
 }
 
 void* QTiltSensor_NewQTiltSensor(void* parent){

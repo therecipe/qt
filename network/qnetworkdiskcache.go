@@ -52,6 +52,15 @@ func (ptr *QNetworkDiskCache) CacheDirectory() string {
 	return ""
 }
 
+func (ptr *QNetworkDiskCache) CacheSize() int64 {
+	defer qt.Recovering("QNetworkDiskCache::cacheSize")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QNetworkDiskCache_CacheSize(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QNetworkDiskCache) ConnectClear(f func()) {
 	defer qt.Recovering("connect QNetworkDiskCache::clear")
 
@@ -92,6 +101,15 @@ func (ptr *QNetworkDiskCache) Data(url core.QUrl_ITF) *core.QIODevice {
 	return nil
 }
 
+func (ptr *QNetworkDiskCache) MaximumCacheSize() int64 {
+	defer qt.Recovering("QNetworkDiskCache::maximumCacheSize")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QNetworkDiskCache_MaximumCacheSize(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QNetworkDiskCache) Prepare(metaData QNetworkCacheMetaData_ITF) *core.QIODevice {
 	defer qt.Recovering("QNetworkDiskCache::prepare")
 
@@ -106,6 +124,14 @@ func (ptr *QNetworkDiskCache) SetCacheDirectory(cacheDir string) {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkDiskCache_SetCacheDirectory(ptr.Pointer(), C.CString(cacheDir))
+	}
+}
+
+func (ptr *QNetworkDiskCache) SetMaximumCacheSize(size int64) {
+	defer qt.Recovering("QNetworkDiskCache::setMaximumCacheSize")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkDiskCache_SetMaximumCacheSize(ptr.Pointer(), C.longlong(size))
 	}
 }
 

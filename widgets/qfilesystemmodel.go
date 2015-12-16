@@ -5,6 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/gui"
 	"strings"
 	"unsafe"
 )
@@ -208,6 +209,15 @@ func callbackQFileSystemModelFetchMore(ptrName *C.char, parent unsafe.Pointer) b
 	}
 	return false
 
+}
+
+func (ptr *QFileSystemModel) FileIcon(index core.QModelIndex_ITF) *gui.QIcon {
+	defer qt.Recovering("QFileSystemModel::fileIcon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QFileSystemModel_FileIcon(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
 }
 
 func (ptr *QFileSystemModel) FileName(index core.QModelIndex_ITF) string {
@@ -479,6 +489,15 @@ func (ptr *QFileSystemModel) SetRootPath(newPath string) *core.QModelIndex {
 		return core.NewQModelIndexFromPointer(C.QFileSystemModel_SetRootPath(ptr.Pointer(), C.CString(newPath)))
 	}
 	return nil
+}
+
+func (ptr *QFileSystemModel) Size(index core.QModelIndex_ITF) int64 {
+	defer qt.Recovering("QFileSystemModel::size")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QFileSystemModel_Size(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return 0
 }
 
 func (ptr *QFileSystemModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {

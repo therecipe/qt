@@ -395,6 +395,15 @@ func callbackQProgressDialogShowEvent(ptrName *C.char, e unsafe.Pointer) bool {
 
 }
 
+func (ptr *QProgressDialog) SizeHint() *core.QSize {
+	defer qt.Recovering("QProgressDialog::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QProgressDialog_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QProgressDialog) DestroyQProgressDialog() {
 	defer qt.Recovering("QProgressDialog::~QProgressDialog")
 

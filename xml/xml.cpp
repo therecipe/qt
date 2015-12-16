@@ -33,6 +33,7 @@
 #include <QXmlInputSource>
 #include <QXmlLexicalHandler>
 #include <QXmlLocator>
+#include <QXmlName>
 #include <QXmlNamespaceSupport>
 #include <QXmlParseException>
 #include <QXmlReader>
@@ -1372,14 +1373,6 @@ void* QXmlSimpleReader_LexicalHandler(void* ptr){
 
 int QXmlSimpleReader_Parse(void* ptr, void* input){
 	return static_cast<QXmlSimpleReader*>(ptr)->parse(*static_cast<QXmlInputSource*>(input));
-}
-
-int QXmlSimpleReader_Parse2(void* ptr, void* input){
-	return static_cast<QXmlSimpleReader*>(ptr)->parse(static_cast<QXmlInputSource*>(input));
-}
-
-int QXmlSimpleReader_Parse3(void* ptr, void* input, int incremental){
-	return static_cast<QXmlSimpleReader*>(ptr)->parse(static_cast<QXmlInputSource*>(input), incremental != 0);
 }
 
 int QXmlSimpleReader_ParseContinue(void* ptr){

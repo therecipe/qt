@@ -132,6 +132,35 @@ func callbackQMetaDataWriterControlMetaDataChanged(ptrName *C.char) {
 
 }
 
+func (ptr *QMetaDataWriterControl) ConnectMetaDataChanged2(f func(key string, value *core.QVariant)) {
+	defer qt.Recovering("connect QMetaDataWriterControl::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_ConnectMetaDataChanged2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "metaDataChanged", f)
+	}
+}
+
+func (ptr *QMetaDataWriterControl) DisconnectMetaDataChanged2() {
+	defer qt.Recovering("disconnect QMetaDataWriterControl::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_DisconnectMetaDataChanged2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "metaDataChanged")
+	}
+}
+
+//export callbackQMetaDataWriterControlMetaDataChanged2
+func callbackQMetaDataWriterControlMetaDataChanged2(ptrName *C.char, key *C.char, value unsafe.Pointer) {
+	defer qt.Recovering("callback QMetaDataWriterControl::metaDataChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataChanged")
+	if signal != nil {
+		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
+	}
+
+}
+
 func (ptr *QMetaDataWriterControl) SetMetaData(key string, value core.QVariant_ITF) {
 	defer qt.Recovering("QMetaDataWriterControl::setMetaData")
 

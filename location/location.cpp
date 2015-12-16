@@ -45,7 +45,7 @@ void QGeoManeuver_SetDirection(void* ptr, int direction){
 }
 
 void QGeoManeuver_SetDistanceToNextInstruction(void* ptr, double distance){
-	static_cast<QGeoManeuver*>(ptr)->setDistanceToNextInstruction(static_cast<qreal>(distance));
+	static_cast<QGeoManeuver*>(ptr)->setDistanceToNextInstruction(static_cast<double>(distance));
 }
 
 void QGeoManeuver_SetInstructionText(void* ptr, char* instructionText){
@@ -93,7 +93,7 @@ void QGeoRoute_SetBounds(void* ptr, void* bounds){
 }
 
 void QGeoRoute_SetDistance(void* ptr, double distance){
-	static_cast<QGeoRoute*>(ptr)->setDistance(static_cast<qreal>(distance));
+	static_cast<QGeoRoute*>(ptr)->setDistance(static_cast<double>(distance));
 }
 
 void QGeoRoute_SetFirstRouteSegment(void* ptr, void* routeSegment){
@@ -132,6 +132,7 @@ class MyQGeoRouteReply: public QGeoRouteReply {
 public:
 	MyQGeoRouteReply(Error error, const QString &errorString, QObject *parent) : QGeoRouteReply(error, errorString, parent) {};
 	void abort() { if (!callbackQGeoRouteReplyAbort(this->objectName().toUtf8().data())) { QGeoRouteReply::abort(); }; };
+	void Signal_Error2(QGeoRouteReply::Error error, const QString & errorString) { callbackQGeoRouteReplyError2(this->objectName().toUtf8().data(), error, errorString.toUtf8().data()); };
 	void Signal_Finished() { callbackQGeoRouteReplyFinished(this->objectName().toUtf8().data()); };
 protected:
 };
@@ -142,6 +143,14 @@ void* QGeoRouteReply_NewQGeoRouteReply(int error, char* errorString, void* paren
 
 void QGeoRouteReply_Abort(void* ptr){
 	static_cast<QGeoRouteReply*>(ptr)->abort();
+}
+
+void QGeoRouteReply_ConnectError2(void* ptr){
+	QObject::connect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)(QGeoRouteReply::Error, const QString &)>(&QGeoRouteReply::error), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)(QGeoRouteReply::Error, const QString &)>(&MyQGeoRouteReply::Signal_Error2));;
+}
+
+void QGeoRouteReply_DisconnectError2(void* ptr){
+	QObject::disconnect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)(QGeoRouteReply::Error, const QString &)>(&QGeoRouteReply::error), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)(QGeoRouteReply::Error, const QString &)>(&MyQGeoRouteReply::Signal_Error2));;
 }
 
 int QGeoRouteReply_Error(void* ptr){
@@ -245,7 +254,7 @@ int QGeoRouteSegment_IsValid(void* ptr){
 }
 
 void QGeoRouteSegment_SetDistance(void* ptr, double distance){
-	static_cast<QGeoRouteSegment*>(ptr)->setDistance(static_cast<qreal>(distance));
+	static_cast<QGeoRouteSegment*>(ptr)->setDistance(static_cast<double>(distance));
 }
 
 void QGeoRouteSegment_SetManeuver(void* ptr, void* maneuver){

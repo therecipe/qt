@@ -346,6 +346,35 @@ func callbackQFileDialogCurrentChanged(ptrName *C.char, path *C.char) {
 
 }
 
+func (ptr *QFileDialog) ConnectCurrentUrlChanged(f func(url *core.QUrl)) {
+	defer qt.Recovering("connect QFileDialog::currentUrlChanged")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ConnectCurrentUrlChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "currentUrlChanged", f)
+	}
+}
+
+func (ptr *QFileDialog) DisconnectCurrentUrlChanged() {
+	defer qt.Recovering("disconnect QFileDialog::currentUrlChanged")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DisconnectCurrentUrlChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "currentUrlChanged")
+	}
+}
+
+//export callbackQFileDialogCurrentUrlChanged
+func callbackQFileDialogCurrentUrlChanged(ptrName *C.char, url unsafe.Pointer) {
+	defer qt.Recovering("callback QFileDialog::currentUrlChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentUrlChanged")
+	if signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
+	}
+
+}
+
 func (ptr *QFileDialog) Directory() *core.QDir {
 	defer qt.Recovering("QFileDialog::directory")
 
@@ -380,6 +409,44 @@ func callbackQFileDialogDirectoryEntered(ptrName *C.char, directory *C.char) {
 	var signal = qt.GetSignal(C.GoString(ptrName), "directoryEntered")
 	if signal != nil {
 		signal.(func(string))(C.GoString(directory))
+	}
+
+}
+
+func (ptr *QFileDialog) DirectoryUrl() *core.QUrl {
+	defer qt.Recovering("QFileDialog::directoryUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QFileDialog_DirectoryUrl(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QFileDialog) ConnectDirectoryUrlEntered(f func(directory *core.QUrl)) {
+	defer qt.Recovering("connect QFileDialog::directoryUrlEntered")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ConnectDirectoryUrlEntered(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "directoryUrlEntered", f)
+	}
+}
+
+func (ptr *QFileDialog) DisconnectDirectoryUrlEntered() {
+	defer qt.Recovering("disconnect QFileDialog::directoryUrlEntered")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DisconnectDirectoryUrlEntered(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "directoryUrlEntered")
+	}
+}
+
+//export callbackQFileDialogDirectoryUrlEntered
+func callbackQFileDialogDirectoryUrlEntered(ptrName *C.char, directory unsafe.Pointer) {
+	defer qt.Recovering("callback QFileDialog::directoryUrlEntered")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "directoryUrlEntered")
+	if signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(directory))
 	}
 
 }
@@ -517,6 +584,12 @@ func QFileDialog_GetExistingDirectory(parent QWidget_ITF, caption string, dir st
 	return C.GoString(C.QFileDialog_QFileDialog_GetExistingDirectory(PointerFromQWidget(parent), C.CString(caption), C.CString(dir), C.int(options)))
 }
 
+func QFileDialog_GetExistingDirectoryUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
+	defer qt.Recovering("QFileDialog::getExistingDirectoryUrl")
+
+	return core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), C.CString(caption), core.PointerFromQUrl(dir), C.int(options), C.CString(strings.Join(supportedSchemes, ",,,"))))
+}
+
 func QFileDialog_GetOpenFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
 	defer qt.Recovering("QFileDialog::getOpenFileName")
 
@@ -529,10 +602,22 @@ func QFileDialog_GetOpenFileNames(parent QWidget_ITF, caption string, dir string
 	return strings.Split(C.GoString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), C.CString(caption), C.CString(dir), C.CString(filter), C.CString(selectedFilter), C.int(options))), ",,,")
 }
 
+func QFileDialog_GetOpenFileUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, filter string, selectedFilter string, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
+	defer qt.Recovering("QFileDialog::getOpenFileUrl")
+
+	return core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), C.CString(caption), core.PointerFromQUrl(dir), C.CString(filter), C.CString(selectedFilter), C.int(options), C.CString(strings.Join(supportedSchemes, ",,,"))))
+}
+
 func QFileDialog_GetSaveFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
 	defer qt.Recovering("QFileDialog::getSaveFileName")
 
 	return C.GoString(C.QFileDialog_QFileDialog_GetSaveFileName(PointerFromQWidget(parent), C.CString(caption), C.CString(dir), C.CString(filter), C.CString(selectedFilter), C.int(options)))
+}
+
+func QFileDialog_GetSaveFileUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, filter string, selectedFilter string, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
+	defer qt.Recovering("QFileDialog::getSaveFileUrl")
+
+	return core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), C.CString(caption), core.PointerFromQUrl(dir), C.CString(filter), C.CString(selectedFilter), C.int(options), C.CString(strings.Join(supportedSchemes, ",,,"))))
 }
 
 func (ptr *QFileDialog) History() []string {
@@ -816,6 +901,35 @@ func (ptr *QFileDialog) TestOption(option QFileDialog__Option) bool {
 		return C.QFileDialog_TestOption(ptr.Pointer(), C.int(option)) != 0
 	}
 	return false
+}
+
+func (ptr *QFileDialog) ConnectUrlSelected(f func(url *core.QUrl)) {
+	defer qt.Recovering("connect QFileDialog::urlSelected")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ConnectUrlSelected(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "urlSelected", f)
+	}
+}
+
+func (ptr *QFileDialog) DisconnectUrlSelected() {
+	defer qt.Recovering("disconnect QFileDialog::urlSelected")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DisconnectUrlSelected(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "urlSelected")
+	}
+}
+
+//export callbackQFileDialogUrlSelected
+func callbackQFileDialogUrlSelected(ptrName *C.char, url unsafe.Pointer) {
+	defer qt.Recovering("callback QFileDialog::urlSelected")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "urlSelected")
+	if signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
+	}
+
 }
 
 func (ptr *QFileDialog) DestroyQFileDialog() {

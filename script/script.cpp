@@ -114,6 +114,10 @@ void QScriptContext_SetThisObject(void* ptr, void* thisObject){
 	static_cast<QScriptContext*>(ptr)->setThisObject(*static_cast<QScriptValue*>(thisObject));
 }
 
+int QScriptContext_State(void* ptr){
+	return static_cast<QScriptContext*>(ptr)->state();
+}
+
 void* QScriptContext_ThisObject(void* ptr){
 	return new QScriptValue(static_cast<QScriptContext*>(ptr)->thisObject());
 }
@@ -184,6 +188,10 @@ int QScriptContextInfo_IsNull(void* ptr){
 
 int QScriptContextInfo_LineNumber(void* ptr){
 	return static_cast<QScriptContextInfo*>(ptr)->lineNumber();
+}
+
+long long QScriptContextInfo_ScriptId(void* ptr){
+	return static_cast<long long>(static_cast<QScriptContextInfo*>(ptr)->scriptId());
 }
 
 void QScriptContextInfo_DestroyQScriptContextInfo(void* ptr){
@@ -382,6 +390,13 @@ public:
 	MyQScriptEngineAgent(QScriptEngine *engine) : QScriptEngineAgent(engine) {};
 	void contextPop() { if (!callbackQScriptEngineAgentContextPop(this->objectNameAbs().toUtf8().data())) { QScriptEngineAgent::contextPop(); }; };
 	void contextPush() { if (!callbackQScriptEngineAgentContextPush(this->objectNameAbs().toUtf8().data())) { QScriptEngineAgent::contextPush(); }; };
+	void exceptionCatch(qint64 scriptId, const QScriptValue & exception) { if (!callbackQScriptEngineAgentExceptionCatch(this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(exception))) { QScriptEngineAgent::exceptionCatch(scriptId, exception); }; };
+	void exceptionThrow(qint64 scriptId, const QScriptValue & exception, bool hasHandler) { if (!callbackQScriptEngineAgentExceptionThrow(this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(exception), hasHandler)) { QScriptEngineAgent::exceptionThrow(scriptId, exception, hasHandler); }; };
+	void functionEntry(qint64 scriptId) { if (!callbackQScriptEngineAgentFunctionEntry(this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId))) { QScriptEngineAgent::functionEntry(scriptId); }; };
+	void functionExit(qint64 scriptId, const QScriptValue & returnValue) { if (!callbackQScriptEngineAgentFunctionExit(this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(returnValue))) { QScriptEngineAgent::functionExit(scriptId, returnValue); }; };
+	void positionChange(qint64 scriptId, int lineNumber, int columnNumber) { if (!callbackQScriptEngineAgentPositionChange(this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), lineNumber, columnNumber)) { QScriptEngineAgent::positionChange(scriptId, lineNumber, columnNumber); }; };
+	void scriptLoad(qint64 id, const QString & program, const QString & fileName, int baseLineNumber) { if (!callbackQScriptEngineAgentScriptLoad(this->objectNameAbs().toUtf8().data(), static_cast<long long>(id), program.toUtf8().data(), fileName.toUtf8().data(), baseLineNumber)) { QScriptEngineAgent::scriptLoad(id, program, fileName, baseLineNumber); }; };
+	void scriptUnload(qint64 id) { if (!callbackQScriptEngineAgentScriptUnload(this->objectNameAbs().toUtf8().data(), static_cast<long long>(id))) { QScriptEngineAgent::scriptUnload(id); }; };
 protected:
 };
 
@@ -401,8 +416,36 @@ void* QScriptEngineAgent_Engine(void* ptr){
 	return static_cast<QScriptEngineAgent*>(ptr)->engine();
 }
 
+void QScriptEngineAgent_ExceptionCatch(void* ptr, long long scriptId, void* exception){
+	static_cast<QScriptEngineAgent*>(ptr)->exceptionCatch(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(exception));
+}
+
+void QScriptEngineAgent_ExceptionThrow(void* ptr, long long scriptId, void* exception, int hasHandler){
+	static_cast<QScriptEngineAgent*>(ptr)->exceptionThrow(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(exception), hasHandler != 0);
+}
+
 void* QScriptEngineAgent_Extension(void* ptr, int extension, void* argument){
 	return new QVariant(static_cast<QScriptEngineAgent*>(ptr)->extension(static_cast<QScriptEngineAgent::Extension>(extension), *static_cast<QVariant*>(argument)));
+}
+
+void QScriptEngineAgent_FunctionEntry(void* ptr, long long scriptId){
+	static_cast<QScriptEngineAgent*>(ptr)->functionEntry(static_cast<long long>(scriptId));
+}
+
+void QScriptEngineAgent_FunctionExit(void* ptr, long long scriptId, void* returnValue){
+	static_cast<QScriptEngineAgent*>(ptr)->functionExit(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(returnValue));
+}
+
+void QScriptEngineAgent_PositionChange(void* ptr, long long scriptId, int lineNumber, int columnNumber){
+	static_cast<QScriptEngineAgent*>(ptr)->positionChange(static_cast<long long>(scriptId), lineNumber, columnNumber);
+}
+
+void QScriptEngineAgent_ScriptLoad(void* ptr, long long id, char* program, char* fileName, int baseLineNumber){
+	static_cast<QScriptEngineAgent*>(ptr)->scriptLoad(static_cast<long long>(id), QString(program), QString(fileName), baseLineNumber);
+}
+
+void QScriptEngineAgent_ScriptUnload(void* ptr, long long id){
+	static_cast<QScriptEngineAgent*>(ptr)->scriptUnload(static_cast<long long>(id));
 }
 
 int QScriptEngineAgent_SupportsExtension(void* ptr, int extension){
@@ -503,6 +546,10 @@ int QScriptSyntaxCheckResult_ErrorLineNumber(void* ptr){
 
 char* QScriptSyntaxCheckResult_ErrorMessage(void* ptr){
 	return static_cast<QScriptSyntaxCheckResult*>(ptr)->errorMessage().toUtf8().data();
+}
+
+int QScriptSyntaxCheckResult_State(void* ptr){
+	return static_cast<QScriptSyntaxCheckResult*>(ptr)->state();
 }
 
 void QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(void* ptr){

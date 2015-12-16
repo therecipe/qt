@@ -133,6 +133,35 @@ func callbackQWebSocketBinaryMessageReceived(ptrName *C.char, message unsafe.Poi
 
 }
 
+func (ptr *QWebSocket) ConnectBytesWritten(f func(bytes int64)) {
+	defer qt.Recovering("connect QWebSocket::bytesWritten")
+
+	if ptr.Pointer() != nil {
+		C.QWebSocket_ConnectBytesWritten(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "bytesWritten", f)
+	}
+}
+
+func (ptr *QWebSocket) DisconnectBytesWritten() {
+	defer qt.Recovering("disconnect QWebSocket::bytesWritten")
+
+	if ptr.Pointer() != nil {
+		C.QWebSocket_DisconnectBytesWritten(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "bytesWritten")
+	}
+}
+
+//export callbackQWebSocketBytesWritten
+func callbackQWebSocketBytesWritten(ptrName *C.char, bytes C.longlong) {
+	defer qt.Recovering("callback QWebSocket::bytesWritten")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "bytesWritten")
+	if signal != nil {
+		signal.(func(int64))(int64(bytes))
+	}
+
+}
+
 func (ptr *QWebSocket) CloseReason() string {
 	defer qt.Recovering("QWebSocket::closeReason")
 
@@ -196,6 +225,35 @@ func callbackQWebSocketDisconnected(ptrName *C.char) {
 	var signal = qt.GetSignal(C.GoString(ptrName), "disconnected")
 	if signal != nil {
 		signal.(func())()
+	}
+
+}
+
+func (ptr *QWebSocket) ConnectError2(f func(error network.QAbstractSocket__SocketError)) {
+	defer qt.Recovering("connect QWebSocket::error")
+
+	if ptr.Pointer() != nil {
+		C.QWebSocket_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QWebSocket) DisconnectError2() {
+	defer qt.Recovering("disconnect QWebSocket::error")
+
+	if ptr.Pointer() != nil {
+		C.QWebSocket_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQWebSocketError2
+func callbackQWebSocketError2(ptrName *C.char, error C.int) {
+	defer qt.Recovering("callback QWebSocket::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(network.QAbstractSocket__SocketError))(network.QAbstractSocket__SocketError(error))
 	}
 
 }
@@ -296,6 +354,15 @@ func (ptr *QWebSocket) Ping(payload core.QByteArray_ITF) {
 	}
 }
 
+func (ptr *QWebSocket) ReadBufferSize() int64 {
+	defer qt.Recovering("QWebSocket::readBufferSize")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QWebSocket_ReadBufferSize(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QWebSocket) ConnectReadChannelFinished(f func()) {
 	defer qt.Recovering("connect QWebSocket::readChannelFinished")
 
@@ -325,6 +392,15 @@ func callbackQWebSocketReadChannelFinished(ptrName *C.char) {
 
 }
 
+func (ptr *QWebSocket) RequestUrl() *core.QUrl {
+	defer qt.Recovering("QWebSocket::requestUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QWebSocket_RequestUrl(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWebSocket) ResourceName() string {
 	defer qt.Recovering("QWebSocket::resourceName")
 
@@ -340,6 +416,24 @@ func (ptr *QWebSocket) Resume() {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_Resume(ptr.Pointer())
 	}
+}
+
+func (ptr *QWebSocket) SendBinaryMessage(data core.QByteArray_ITF) int64 {
+	defer qt.Recovering("QWebSocket::sendBinaryMessage")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QWebSocket_SendBinaryMessage(ptr.Pointer(), core.PointerFromQByteArray(data)))
+	}
+	return 0
+}
+
+func (ptr *QWebSocket) SendTextMessage(message string) int64 {
+	defer qt.Recovering("QWebSocket::sendTextMessage")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QWebSocket_SendTextMessage(ptr.Pointer(), C.CString(message)))
+	}
+	return 0
 }
 
 func (ptr *QWebSocket) SetMaskGenerator(maskGenerator QMaskGenerator_ITF) {
@@ -366,12 +460,29 @@ func (ptr *QWebSocket) SetProxy(networkProxy network.QNetworkProxy_ITF) {
 	}
 }
 
+func (ptr *QWebSocket) SetReadBufferSize(size int64) {
+	defer qt.Recovering("QWebSocket::setReadBufferSize")
+
+	if ptr.Pointer() != nil {
+		C.QWebSocket_SetReadBufferSize(ptr.Pointer(), C.longlong(size))
+	}
+}
+
 func (ptr *QWebSocket) SetSslConfiguration(sslConfiguration network.QSslConfiguration_ITF) {
 	defer qt.Recovering("QWebSocket::setSslConfiguration")
 
 	if ptr.Pointer() != nil {
 		C.QWebSocket_SetSslConfiguration(ptr.Pointer(), network.PointerFromQSslConfiguration(sslConfiguration))
 	}
+}
+
+func (ptr *QWebSocket) State() network.QAbstractSocket__SocketState {
+	defer qt.Recovering("QWebSocket::state")
+
+	if ptr.Pointer() != nil {
+		return network.QAbstractSocket__SocketState(C.QWebSocket_State(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QWebSocket) ConnectStateChanged(f func(state network.QAbstractSocket__SocketState)) {

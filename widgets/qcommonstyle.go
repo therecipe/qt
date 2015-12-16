@@ -158,6 +158,15 @@ func (ptr *QCommonStyle) PixelMetric(m QStyle__PixelMetric, opt QStyleOption_ITF
 	return 0
 }
 
+func (ptr *QCommonStyle) SizeFromContents(ct QStyle__ContentsType, opt QStyleOption_ITF, csz core.QSize_ITF, widget QWidget_ITF) *core.QSize {
+	defer qt.Recovering("QCommonStyle::sizeFromContents")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QCommonStyle_SizeFromContents(ptr.Pointer(), C.int(ct), PointerFromQStyleOption(opt), core.PointerFromQSize(csz), PointerFromQWidget(widget)))
+	}
+	return nil
+}
+
 func (ptr *QCommonStyle) StyleHint(sh QStyle__StyleHint, opt QStyleOption_ITF, widget QWidget_ITF, hret QStyleHintReturn_ITF) int {
 	defer qt.Recovering("QCommonStyle::styleHint")
 
@@ -165,6 +174,24 @@ func (ptr *QCommonStyle) StyleHint(sh QStyle__StyleHint, opt QStyleOption_ITF, w
 		return int(C.QCommonStyle_StyleHint(ptr.Pointer(), C.int(sh), PointerFromQStyleOption(opt), PointerFromQWidget(widget), PointerFromQStyleHintReturn(hret)))
 	}
 	return 0
+}
+
+func (ptr *QCommonStyle) SubControlRect(cc QStyle__ComplexControl, opt QStyleOptionComplex_ITF, sc QStyle__SubControl, widget QWidget_ITF) *core.QRect {
+	defer qt.Recovering("QCommonStyle::subControlRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QCommonStyle_SubControlRect(ptr.Pointer(), C.int(cc), PointerFromQStyleOptionComplex(opt), C.int(sc), PointerFromQWidget(widget)))
+	}
+	return nil
+}
+
+func (ptr *QCommonStyle) SubElementRect(sr QStyle__SubElement, opt QStyleOption_ITF, widget QWidget_ITF) *core.QRect {
+	defer qt.Recovering("QCommonStyle::subElementRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QCommonStyle_SubElementRect(ptr.Pointer(), C.int(sr), PointerFromQStyleOption(opt), PointerFromQWidget(widget)))
+	}
+	return nil
 }
 
 func (ptr *QCommonStyle) ConnectUnpolish(f func(widget *QWidget)) {

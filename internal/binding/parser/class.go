@@ -19,6 +19,7 @@ type Class struct {
 	Enums     []*Enum     `xml:"enum"`
 	DocModule string
 	Stub      bool
+	WeakLink  map[string]bool
 }
 
 func (c *Class) register(module string) {

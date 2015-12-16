@@ -4,6 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
@@ -208,6 +209,15 @@ func (ptr *QPushButton) Menu() *QMenu {
 	return nil
 }
 
+func (ptr *QPushButton) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QPushButton::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QPushButton_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPushButton) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
 	defer qt.Recovering("connect QPushButton::paintEvent")
 
@@ -253,6 +263,15 @@ func (ptr *QPushButton) ShowMenu() {
 	if ptr.Pointer() != nil {
 		C.QPushButton_ShowMenu(ptr.Pointer())
 	}
+}
+
+func (ptr *QPushButton) SizeHint() *core.QSize {
+	defer qt.Recovering("QPushButton::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QPushButton_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QPushButton) DestroyQPushButton() {

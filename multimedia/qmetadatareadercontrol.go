@@ -123,6 +123,35 @@ func callbackQMetaDataReaderControlMetaDataChanged(ptrName *C.char) {
 
 }
 
+func (ptr *QMetaDataReaderControl) ConnectMetaDataChanged2(f func(key string, value *core.QVariant)) {
+	defer qt.Recovering("connect QMetaDataReaderControl::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataReaderControl_ConnectMetaDataChanged2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "metaDataChanged", f)
+	}
+}
+
+func (ptr *QMetaDataReaderControl) DisconnectMetaDataChanged2() {
+	defer qt.Recovering("disconnect QMetaDataReaderControl::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataReaderControl_DisconnectMetaDataChanged2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "metaDataChanged")
+	}
+}
+
+//export callbackQMetaDataReaderControlMetaDataChanged2
+func callbackQMetaDataReaderControlMetaDataChanged2(ptrName *C.char, key *C.char, value unsafe.Pointer) {
+	defer qt.Recovering("callback QMetaDataReaderControl::metaDataChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataChanged")
+	if signal != nil {
+		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
+	}
+
+}
+
 func (ptr *QMetaDataReaderControl) DestroyQMetaDataReaderControl() {
 	defer qt.Recovering("QMetaDataReaderControl::~QMetaDataReaderControl")
 

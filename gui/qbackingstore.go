@@ -114,6 +114,15 @@ func (ptr *QBackingStore) SetStaticContents(region QRegion_ITF) {
 	}
 }
 
+func (ptr *QBackingStore) Size() *core.QSize {
+	defer qt.Recovering("QBackingStore::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QBackingStore_Size(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QBackingStore) StaticContents() *QRegion {
 	defer qt.Recovering("QBackingStore::staticContents")
 

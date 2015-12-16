@@ -148,6 +148,15 @@ func callbackQItemDelegateSetModelData(ptrName *C.char, editor unsafe.Pointer, m
 
 }
 
+func (ptr *QItemDelegate) SizeHint(option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
+	defer qt.Recovering("QItemDelegate::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QItemDelegate_SizeHint(ptr.Pointer(), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
 func (ptr *QItemDelegate) DestroyQItemDelegate() {
 	defer qt.Recovering("QItemDelegate::~QItemDelegate")
 

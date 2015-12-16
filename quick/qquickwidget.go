@@ -328,6 +328,15 @@ func callbackQQuickWidgetHideEvent(ptrName *C.char, v unsafe.Pointer) bool {
 
 }
 
+func (ptr *QQuickWidget) InitialSize() *core.QSize {
+	defer qt.Recovering("QQuickWidget::initialSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QQuickWidget_InitialSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickWidget) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
 	defer qt.Recovering("connect QQuickWidget::keyPressEvent")
 
@@ -652,6 +661,15 @@ func callbackQQuickWidgetStatusChanged(ptrName *C.char, status C.int) {
 		signal.(func(QQuickWidget__Status))(QQuickWidget__Status(status))
 	}
 
+}
+
+func (ptr *QQuickWidget) Source() *core.QUrl {
+	defer qt.Recovering("QQuickWidget::source")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QQuickWidget_Source(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QQuickWidget) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {

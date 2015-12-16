@@ -88,6 +88,15 @@ func (ptr *QMatrix4x4) Map(point core.QPoint_ITF) *core.QPoint {
 	return nil
 }
 
+func (ptr *QMatrix4x4) MapRect(rect core.QRect_ITF) *core.QRect {
+	defer qt.Recovering("QMatrix4x4::mapRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QMatrix4x4_MapRect(ptr.Pointer(), core.PointerFromQRect(rect)))
+	}
+	return nil
+}
+
 func (ptr *QMatrix4x4) Optimize() {
 	defer qt.Recovering("QMatrix4x4::optimize")
 

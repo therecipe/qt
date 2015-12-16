@@ -205,6 +205,15 @@ func (ptr *QHelpEngineCore) FilterAttributes2(filterName string) []string {
 	return make([]string, 0)
 }
 
+func (ptr *QHelpEngineCore) FindFile(url core.QUrl_ITF) *core.QUrl {
+	defer qt.Recovering("QHelpEngineCore::findFile")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QHelpEngineCore_FindFile(ptr.Pointer(), core.PointerFromQUrl(url)))
+	}
+	return nil
+}
+
 func QHelpEngineCore_MetaData(documentationFileName string, name string) *core.QVariant {
 	defer qt.Recovering("QHelpEngineCore::metaData")
 

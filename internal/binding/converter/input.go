@@ -42,6 +42,11 @@ func goInput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.double(%v)", name)
 		}
 
+	case "qint64":
+		{
+			return fmt.Sprintf("C.longlong(%v)", name)
+		}
+
 	case "jclass", "jobject":
 		{
 			return name
@@ -80,6 +85,9 @@ func goInput(name string, value string, f *parser.Function) string {
 	case isClass(value):
 		{
 			if m := module(parser.ClassMap[value].Module); m != module(f) {
+				if parser.ClassMap[f.Class()].WeakLink[parser.ClassMap[value].Module] {
+					return name
+				}
 				return fmt.Sprintf("%v.PointerFrom%v(%v)", m, strings.Title(value), name)
 			}
 			return fmt.Sprintf("PointerFrom%v(%v)", strings.Title(value), name)
@@ -165,10 +173,20 @@ func cppInput(name string, value string, f *parser.Function) string {
 			if strings.Contains(vOld, "*") {
 				f.Access = "unsupported_CppInput"
 				return f.Access
-				//return fmt.Sprintf("&static_cast<qreal>(%v)", name)
+				//return fmt.Sprintf("&static_cast<double>(%v)", name)
 			}
 
-			return fmt.Sprintf("static_cast<qreal>(%v)", name)
+			return fmt.Sprintf("static_cast<double>(%v)", name)
+		}
+
+	case "qint64":
+		{
+			if strings.Contains(vOld, "*") {
+				f.Access = "unsupported_CppInput"
+				return f.Access
+			}
+
+			return fmt.Sprintf("static_cast<long long>(%v)", name)
 		}
 
 	case "jclass", "jobject":

@@ -37,6 +37,15 @@ func (ptr *QQuickItemGrabResult) QQuickItemGrabResult_PTR() *QQuickItemGrabResul
 	return ptr
 }
 
+func (ptr *QQuickItemGrabResult) Url() *core.QUrl {
+	defer qt.Recovering("QQuickItemGrabResult::url")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QQuickItemGrabResult_Url(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickItemGrabResult) ConnectReady(f func()) {
 	defer qt.Recovering("connect QQuickItemGrabResult::ready")
 

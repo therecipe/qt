@@ -477,6 +477,15 @@ func callbackQLabelLinkHovered(ptrName *C.char, link *C.char) {
 
 }
 
+func (ptr *QLabel) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QLabel::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QLabel_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QLabel) ConnectMouseMoveEvent(f func(ev *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QLabel::mouseMoveEvent")
 
@@ -666,6 +675,15 @@ func (ptr *QLabel) SetSelection(start int, length int) {
 	if ptr.Pointer() != nil {
 		C.QLabel_SetSelection(ptr.Pointer(), C.int(start), C.int(length))
 	}
+}
+
+func (ptr *QLabel) SizeHint() *core.QSize {
+	defer qt.Recovering("QLabel::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QLabel_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QLabel) DestroyQLabel() {

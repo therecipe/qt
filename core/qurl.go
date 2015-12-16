@@ -91,6 +91,12 @@ const (
 	QUrl__AssumeLocalFile   = QUrl__UserInputResolutionOption(1)
 )
 
+func QUrl_FromEncoded(input QByteArray_ITF, parsingMode QUrl__ParsingMode) *QUrl {
+	defer qt.Recovering("QUrl::fromEncoded")
+
+	return NewQUrlFromPointer(C.QUrl_QUrl_FromEncoded(PointerFromQByteArray(input), C.int(parsingMode)))
+}
+
 func NewQUrl() *QUrl {
 	defer qt.Recovering("QUrl::QUrl")
 
@@ -113,6 +119,15 @@ func NewQUrl2(other QUrl_ITF) *QUrl {
 	defer qt.Recovering("QUrl::QUrl")
 
 	return NewQUrlFromPointer(C.QUrl_NewQUrl2(PointerFromQUrl(other)))
+}
+
+func (ptr *QUrl) Adjusted(options QUrl__UrlFormattingOption) *QUrl {
+	defer qt.Recovering("QUrl::adjusted")
+
+	if ptr.Pointer() != nil {
+		return NewQUrlFromPointer(C.QUrl_Adjusted(ptr.Pointer(), C.int(options)))
+	}
+	return nil
 }
 
 func (ptr *QUrl) Authority(options QUrl__ComponentFormattingOption) string {
@@ -165,10 +180,28 @@ func QUrl_FromAce(domain QByteArray_ITF) string {
 	return C.GoString(C.QUrl_QUrl_FromAce(PointerFromQByteArray(domain)))
 }
 
+func QUrl_FromLocalFile(localFile string) *QUrl {
+	defer qt.Recovering("QUrl::fromLocalFile")
+
+	return NewQUrlFromPointer(C.QUrl_QUrl_FromLocalFile(C.CString(localFile)))
+}
+
 func QUrl_FromPercentEncoding(input QByteArray_ITF) string {
 	defer qt.Recovering("QUrl::fromPercentEncoding")
 
 	return C.GoString(C.QUrl_QUrl_FromPercentEncoding(PointerFromQByteArray(input)))
+}
+
+func QUrl_FromUserInput(userInput string) *QUrl {
+	defer qt.Recovering("QUrl::fromUserInput")
+
+	return NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput(C.CString(userInput)))
+}
+
+func QUrl_FromUserInput2(userInput string, workingDirectory string, options QUrl__UserInputResolutionOption) *QUrl {
+	defer qt.Recovering("QUrl::fromUserInput")
+
+	return NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput2(C.CString(userInput), C.CString(workingDirectory), C.int(options)))
 }
 
 func (ptr *QUrl) HasFragment() bool {
@@ -292,6 +325,15 @@ func (ptr *QUrl) Query(options QUrl__ComponentFormattingOption) string {
 		return C.GoString(C.QUrl_Query(ptr.Pointer(), C.int(options)))
 	}
 	return ""
+}
+
+func (ptr *QUrl) Resolved(relative QUrl_ITF) *QUrl {
+	defer qt.Recovering("QUrl::resolved")
+
+	if ptr.Pointer() != nil {
+		return NewQUrlFromPointer(C.QUrl_Resolved(ptr.Pointer(), PointerFromQUrl(relative)))
+	}
+	return nil
 }
 
 func (ptr *QUrl) Scheme() string {

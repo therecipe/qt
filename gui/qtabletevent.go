@@ -57,6 +57,12 @@ const (
 	QTabletEvent__RotationStylus = QTabletEvent__TabletDevice(6)
 )
 
+func NewQTabletEvent(ty core.QEvent__Type, pos core.QPointF_ITF, globalPos core.QPointF_ITF, device int, pointerType int, pressure float64, xTilt int, yTilt int, tangentialPressure float64, rotation float64, z int, keyState core.Qt__KeyboardModifier, uniqueID int64, button core.Qt__MouseButton, buttons core.Qt__MouseButton) *QTabletEvent {
+	defer qt.Recovering("QTabletEvent::QTabletEvent")
+
+	return NewQTabletEventFromPointer(C.QTabletEvent_NewQTabletEvent(C.int(ty), core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), C.int(device), C.int(pointerType), C.double(pressure), C.int(xTilt), C.int(yTilt), C.double(tangentialPressure), C.double(rotation), C.int(z), C.int(keyState), C.longlong(uniqueID), C.int(button), C.int(buttons)))
+}
+
 func (ptr *QTabletEvent) Button() core.Qt__MouseButton {
 	defer qt.Recovering("QTabletEvent::button")
 
@@ -170,6 +176,15 @@ func (ptr *QTabletEvent) TangentialPressure() float64 {
 
 	if ptr.Pointer() != nil {
 		return float64(C.QTabletEvent_TangentialPressure(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QTabletEvent) UniqueId() int64 {
+	defer qt.Recovering("QTabletEvent::uniqueId")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QTabletEvent_UniqueId(ptr.Pointer()))
 	}
 	return 0
 }

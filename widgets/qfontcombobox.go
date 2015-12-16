@@ -4,6 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
@@ -94,6 +95,15 @@ func NewQFontComboBox(parent QWidget_ITF) *QFontComboBox {
 	defer qt.Recovering("QFontComboBox::QFontComboBox")
 
 	return NewQFontComboBoxFromPointer(C.QFontComboBox_NewQFontComboBox(PointerFromQWidget(parent)))
+}
+
+func (ptr *QFontComboBox) SizeHint() *core.QSize {
+	defer qt.Recovering("QFontComboBox::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QFontComboBox_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QFontComboBox) DestroyQFontComboBox() {

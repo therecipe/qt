@@ -145,6 +145,35 @@ func callbackQLocalSocketDisconnected(ptrName *C.char) {
 
 }
 
+func (ptr *QLocalSocket) ConnectError2(f func(socketError QLocalSocket__LocalSocketError)) {
+	defer qt.Recovering("connect QLocalSocket::error")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QLocalSocket) DisconnectError2() {
+	defer qt.Recovering("disconnect QLocalSocket::error")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQLocalSocketError2
+func callbackQLocalSocketError2(ptrName *C.char, socketError C.int) {
+	defer qt.Recovering("callback QLocalSocket::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QLocalSocket__LocalSocketError))(QLocalSocket__LocalSocketError(socketError))
+	}
+
+}
+
 func (ptr *QLocalSocket) FullServerName() string {
 	defer qt.Recovering("QLocalSocket::fullServerName")
 
@@ -178,6 +207,15 @@ func (ptr *QLocalSocket) SetServerName(name string) {
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_SetServerName(ptr.Pointer(), C.CString(name))
 	}
+}
+
+func (ptr *QLocalSocket) State() QLocalSocket__LocalSocketState {
+	defer qt.Recovering("QLocalSocket::state")
+
+	if ptr.Pointer() != nil {
+		return QLocalSocket__LocalSocketState(C.QLocalSocket_State(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QLocalSocket) ConnectStateChanged(f func(socketState QLocalSocket__LocalSocketState)) {
@@ -224,6 +262,24 @@ func (ptr *QLocalSocket) Abort() {
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_Abort(ptr.Pointer())
 	}
+}
+
+func (ptr *QLocalSocket) BytesAvailable() int64 {
+	defer qt.Recovering("QLocalSocket::bytesAvailable")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QLocalSocket_BytesAvailable(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLocalSocket) BytesToWrite() int64 {
+	defer qt.Recovering("QLocalSocket::bytesToWrite")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QLocalSocket_BytesToWrite(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QLocalSocket) CanReadLine() bool {
@@ -307,6 +363,23 @@ func (ptr *QLocalSocket) IsValid() bool {
 		return C.QLocalSocket_IsValid(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QLocalSocket) ReadBufferSize() int64 {
+	defer qt.Recovering("QLocalSocket::readBufferSize")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QLocalSocket_ReadBufferSize(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLocalSocket) SetReadBufferSize(size int64) {
+	defer qt.Recovering("QLocalSocket::setReadBufferSize")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_SetReadBufferSize(ptr.Pointer(), C.longlong(size))
+	}
 }
 
 func (ptr *QLocalSocket) WaitForBytesWritten(msecs int) bool {

@@ -308,8 +308,6 @@ int QXmlSimpleReader_HasFeature(void* ptr, char* name);
 int QXmlSimpleReader_HasProperty(void* ptr, char* name);
 void* QXmlSimpleReader_LexicalHandler(void* ptr);
 int QXmlSimpleReader_Parse(void* ptr, void* input);
-int QXmlSimpleReader_Parse2(void* ptr, void* input);
-int QXmlSimpleReader_Parse3(void* ptr, void* input, int incremental);
 int QXmlSimpleReader_ParseContinue(void* ptr);
 void* QXmlSimpleReader_Property(void* ptr, char* name, int ok);
 void QXmlSimpleReader_SetContentHandler(void* ptr, void* handler);

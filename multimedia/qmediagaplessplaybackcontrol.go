@@ -74,6 +74,35 @@ func (ptr *QMediaGaplessPlaybackControl) CrossfadeTime() float64 {
 	return 0
 }
 
+func (ptr *QMediaGaplessPlaybackControl) ConnectCrossfadeTimeChanged(f func(crossfadeTime float64)) {
+	defer qt.Recovering("connect QMediaGaplessPlaybackControl::crossfadeTimeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_ConnectCrossfadeTimeChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "crossfadeTimeChanged", f)
+	}
+}
+
+func (ptr *QMediaGaplessPlaybackControl) DisconnectCrossfadeTimeChanged() {
+	defer qt.Recovering("disconnect QMediaGaplessPlaybackControl::crossfadeTimeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_DisconnectCrossfadeTimeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "crossfadeTimeChanged")
+	}
+}
+
+//export callbackQMediaGaplessPlaybackControlCrossfadeTimeChanged
+func callbackQMediaGaplessPlaybackControlCrossfadeTimeChanged(ptrName *C.char, crossfadeTime C.double) {
+	defer qt.Recovering("callback QMediaGaplessPlaybackControl::crossfadeTimeChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "crossfadeTimeChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(crossfadeTime))
+	}
+
+}
+
 func (ptr *QMediaGaplessPlaybackControl) IsCrossfadeSupported() bool {
 	defer qt.Recovering("QMediaGaplessPlaybackControl::isCrossfadeSupported")
 

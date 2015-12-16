@@ -52,6 +52,46 @@ const (
 	QIconEngine__IconNameHook       = QIconEngine__IconEngineHook(2)
 )
 
+func (ptr *QIconEngine) ActualSize(size core.QSize_ITF, mode QIcon__Mode, state QIcon__State) *core.QSize {
+	defer qt.Recovering("QIconEngine::actualSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QIconEngine_ActualSize(ptr.Pointer(), core.PointerFromQSize(size), C.int(mode), C.int(state)))
+	}
+	return nil
+}
+
+func (ptr *QIconEngine) ConnectAddFile(f func(fileName string, size *core.QSize, mode QIcon__Mode, state QIcon__State)) {
+	defer qt.Recovering("connect QIconEngine::addFile")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "addFile", f)
+	}
+}
+
+func (ptr *QIconEngine) DisconnectAddFile() {
+	defer qt.Recovering("disconnect QIconEngine::addFile")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "addFile")
+	}
+}
+
+//export callbackQIconEngineAddFile
+func callbackQIconEngineAddFile(ptrName *C.char, fileName *C.char, size unsafe.Pointer, mode C.int, state C.int) bool {
+	defer qt.Recovering("callback QIconEngine::addFile")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "addFile")
+	if signal != nil {
+		defer signal.(func(string, *core.QSize, QIcon__Mode, QIcon__State))(C.GoString(fileName), core.NewQSizeFromPointer(size), QIcon__Mode(mode), QIcon__State(state))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QIconEngine) Clone() *QIconEngine {
 	defer qt.Recovering("QIconEngine::clone")
 

@@ -4,6 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
@@ -93,6 +94,15 @@ func NewQDial(parent QWidget_ITF) *QDial {
 	defer qt.Recovering("QDial::QDial")
 
 	return NewQDialFromPointer(C.QDial_NewQDial(PointerFromQWidget(parent)))
+}
+
+func (ptr *QDial) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QDial::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QDial_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QDial) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
@@ -248,6 +258,15 @@ func callbackQDialResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QDial) SizeHint() *core.QSize {
+	defer qt.Recovering("QDial::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QDial_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QDial) ConnectSliderChange(f func(change QAbstractSlider__SliderChange)) {

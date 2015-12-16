@@ -107,6 +107,15 @@ func (ptr *QSvgWidget) Renderer() *QSvgRenderer {
 	return nil
 }
 
+func (ptr *QSvgWidget) SizeHint() *core.QSize {
+	defer qt.Recovering("QSvgWidget::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSvgWidget_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSvgWidget) DestroyQSvgWidget() {
 	defer qt.Recovering("QSvgWidget::~QSvgWidget")
 

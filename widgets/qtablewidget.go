@@ -875,6 +875,15 @@ func (ptr *QTableWidget) VisualColumn(logicalColumn int) int {
 	return 0
 }
 
+func (ptr *QTableWidget) VisualItemRect(item QTableWidgetItem_ITF) *core.QRect {
+	defer qt.Recovering("QTableWidget::visualItemRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QTableWidget_VisualItemRect(ptr.Pointer(), PointerFromQTableWidgetItem(item)))
+	}
+	return nil
+}
+
 func (ptr *QTableWidget) VisualRow(logicalRow int) int {
 	defer qt.Recovering("QTableWidget::visualRow")
 

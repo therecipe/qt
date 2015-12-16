@@ -104,6 +104,15 @@ func (ptr *QSvgRenderer) Animated() bool {
 	return false
 }
 
+func (ptr *QSvgRenderer) DefaultSize() *core.QSize {
+	defer qt.Recovering("QSvgRenderer::defaultSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSvgRenderer_DefaultSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSvgRenderer) ElementExists(id string) bool {
 	defer qt.Recovering("QSvgRenderer::elementExists")
 
@@ -200,6 +209,15 @@ func callbackQSvgRendererRepaintNeeded(ptrName *C.char) {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSvgRenderer) ViewBox() *core.QRect {
+	defer qt.Recovering("QSvgRenderer::viewBox")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QSvgRenderer_ViewBox(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSvgRenderer) DestroyQSvgRenderer() {

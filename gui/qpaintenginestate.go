@@ -148,3 +148,12 @@ func (ptr *QPaintEngineState) RenderHints() QPainter__RenderHint {
 	}
 	return 0
 }
+
+func (ptr *QPaintEngineState) State() QPaintEngine__DirtyFlag {
+	defer qt.Recovering("QPaintEngineState::state")
+
+	if ptr.Pointer() != nil {
+		return QPaintEngine__DirtyFlag(C.QPaintEngineState_State(ptr.Pointer()))
+	}
+	return 0
+}

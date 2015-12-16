@@ -52,6 +52,24 @@ func NewQSize2(width int, height int) *QSize {
 	return NewQSizeFromPointer(C.QSize_NewQSize2(C.int(width), C.int(height)))
 }
 
+func (ptr *QSize) BoundedTo(otherSize QSize_ITF) *QSize {
+	defer qt.Recovering("QSize::boundedTo")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFromPointer(C.QSize_BoundedTo(ptr.Pointer(), PointerFromQSize(otherSize)))
+	}
+	return nil
+}
+
+func (ptr *QSize) ExpandedTo(otherSize QSize_ITF) *QSize {
+	defer qt.Recovering("QSize::expandedTo")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFromPointer(C.QSize_ExpandedTo(ptr.Pointer(), PointerFromQSize(otherSize)))
+	}
+	return nil
+}
+
 func (ptr *QSize) Height() int {
 	defer qt.Recovering("QSize::height")
 
@@ -122,6 +140,24 @@ func (ptr *QSize) Scale(width int, height int, mode Qt__AspectRatioMode) {
 	}
 }
 
+func (ptr *QSize) Scaled2(s QSize_ITF, mode Qt__AspectRatioMode) *QSize {
+	defer qt.Recovering("QSize::scaled")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFromPointer(C.QSize_Scaled2(ptr.Pointer(), PointerFromQSize(s), C.int(mode)))
+	}
+	return nil
+}
+
+func (ptr *QSize) Scaled(width int, height int, mode Qt__AspectRatioMode) *QSize {
+	defer qt.Recovering("QSize::scaled")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFromPointer(C.QSize_Scaled(ptr.Pointer(), C.int(width), C.int(height), C.int(mode)))
+	}
+	return nil
+}
+
 func (ptr *QSize) SetHeight(height int) {
 	defer qt.Recovering("QSize::setHeight")
 
@@ -144,6 +180,15 @@ func (ptr *QSize) Transpose() {
 	if ptr.Pointer() != nil {
 		C.QSize_Transpose(ptr.Pointer())
 	}
+}
+
+func (ptr *QSize) Transposed() *QSize {
+	defer qt.Recovering("QSize::transposed")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFromPointer(C.QSize_Transposed(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSize) Width() int {

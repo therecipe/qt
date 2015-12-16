@@ -76,6 +76,8 @@ void QLightReading_SetLux(void* ptr, double lux);
 double QLightSensor_FieldOfView(void* ptr);
 void* QLightSensor_Reading(void* ptr);
 void* QLightSensor_NewQLightSensor(void* parent);
+void QLightSensor_ConnectFieldOfViewChanged(void* ptr);
+void QLightSensor_DisconnectFieldOfViewChanged(void* ptr);
 void QLightSensor_SetFieldOfView(void* ptr, double fieldOfView);
 void QLightSensor_DestroyQLightSensor(void* ptr);
 void* QMagnetometer_Reading(void* ptr);

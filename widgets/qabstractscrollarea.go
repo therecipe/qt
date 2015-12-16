@@ -378,6 +378,24 @@ func callbackQAbstractScrollAreaKeyPressEvent(ptrName *C.char, e unsafe.Pointer)
 
 }
 
+func (ptr *QAbstractScrollArea) MaximumViewportSize() *core.QSize {
+	defer qt.Recovering("QAbstractScrollArea::maximumViewportSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QAbstractScrollArea_MaximumViewportSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstractScrollArea) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QAbstractScrollArea::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QAbstractScrollArea_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QAbstractScrollArea) ConnectMouseDoubleClickEvent(f func(e *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QAbstractScrollArea::mouseDoubleClickEvent")
 
@@ -594,6 +612,15 @@ func callbackQAbstractScrollAreaSetupViewport(ptrName *C.char, viewport unsafe.P
 	}
 	return false
 
+}
+
+func (ptr *QAbstractScrollArea) SizeHint() *core.QSize {
+	defer qt.Recovering("QAbstractScrollArea::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QAbstractScrollArea_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QAbstractScrollArea) VerticalScrollBar() *QScrollBar {

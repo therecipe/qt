@@ -335,6 +335,37 @@ func callbackQColumnViewSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool
 
 }
 
+func (ptr *QColumnView) ConnectSetSelection(f func(rect *core.QRect, command core.QItemSelectionModel__SelectionFlag)) {
+	defer qt.Recovering("connect QColumnView::setSelection")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSelection", f)
+	}
+}
+
+func (ptr *QColumnView) DisconnectSetSelection() {
+	defer qt.Recovering("disconnect QColumnView::setSelection")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSelection")
+	}
+}
+
+//export callbackQColumnViewSetSelection
+func callbackQColumnViewSetSelection(ptrName *C.char, rect unsafe.Pointer, command C.int) bool {
+	defer qt.Recovering("callback QColumnView::setSelection")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setSelection")
+	if signal != nil {
+		defer signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QColumnView) ConnectSetSelectionModel(f func(newSelectionModel *core.QItemSelectionModel)) {
 	defer qt.Recovering("connect QColumnView::setSelectionModel")
 
@@ -366,6 +397,15 @@ func callbackQColumnViewSetSelectionModel(ptrName *C.char, newSelectionModel uns
 
 }
 
+func (ptr *QColumnView) SizeHint() *core.QSize {
+	defer qt.Recovering("QColumnView::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QColumnView_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QColumnView) ConnectUpdatePreviewWidget(f func(index *core.QModelIndex)) {
 	defer qt.Recovering("connect QColumnView::updatePreviewWidget")
 
@@ -393,6 +433,15 @@ func callbackQColumnViewUpdatePreviewWidget(ptrName *C.char, index unsafe.Pointe
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	}
 
+}
+
+func (ptr *QColumnView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
+	defer qt.Recovering("QColumnView::visualRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QColumnView_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
 }
 
 func (ptr *QColumnView) DestroyQColumnView() {

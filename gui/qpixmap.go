@@ -70,11 +70,38 @@ func (ptr *QPixmap) IsQBitmap() bool {
 	return false
 }
 
+func (ptr *QPixmap) Rect() *core.QRect {
+	defer qt.Recovering("QPixmap::rect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPixmap_Rect(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPixmap) Size() *core.QSize {
+	defer qt.Recovering("QPixmap::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QPixmap_Size(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPixmap) Width() int {
 	defer qt.Recovering("QPixmap::width")
 
 	if ptr.Pointer() != nil {
 		return int(C.QPixmap_Width(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPixmap) CacheKey() int64 {
+	defer qt.Recovering("QPixmap::cacheKey")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QPixmap_CacheKey(ptr.Pointer()))
 	}
 	return 0
 }

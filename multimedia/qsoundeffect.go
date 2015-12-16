@@ -351,6 +351,15 @@ func (ptr *QSoundEffect) SetVolume(volume float64) {
 	}
 }
 
+func (ptr *QSoundEffect) Source() *core.QUrl {
+	defer qt.Recovering("QSoundEffect::source")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QSoundEffect_Source(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSoundEffect) ConnectSourceChanged(f func()) {
 	defer qt.Recovering("connect QSoundEffect::sourceChanged")
 

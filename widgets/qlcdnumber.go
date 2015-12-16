@@ -4,6 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
@@ -254,6 +255,15 @@ func (ptr *QLCDNumber) SetOctMode() {
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_SetOctMode(ptr.Pointer())
 	}
+}
+
+func (ptr *QLCDNumber) SizeHint() *core.QSize {
+	defer qt.Recovering("QLCDNumber::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QLCDNumber_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QLCDNumber) DestroyQLCDNumber() {

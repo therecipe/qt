@@ -152,6 +152,15 @@ func (ptr *QAccessibleInterface) Parent() *QAccessibleInterface {
 	return nil
 }
 
+func (ptr *QAccessibleInterface) Rect() *core.QRect {
+	defer qt.Recovering("QAccessibleInterface::rect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QAccessibleInterface_Rect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QAccessibleInterface) Role() QAccessible__Role {
 	defer qt.Recovering("QAccessibleInterface::role")
 

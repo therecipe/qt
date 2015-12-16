@@ -105,6 +105,15 @@ func (ptr *QSlider) Event(event core.QEvent_ITF) bool {
 	return false
 }
 
+func (ptr *QSlider) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QSlider::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSlider_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSlider) ConnectMouseMoveEvent(f func(ev *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QSlider::mouseMoveEvent")
 
@@ -227,6 +236,15 @@ func callbackQSliderPaintEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QSlider) SizeHint() *core.QSize {
+	defer qt.Recovering("QSlider::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSlider_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSlider) DestroyQSlider() {

@@ -107,6 +107,15 @@ func callbackQCheckBoxCheckStateSet(ptrName *C.char) bool {
 
 }
 
+func (ptr *QCheckBox) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QCheckBox::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QCheckBox_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QCheckBox) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QCheckBox::mouseMoveEvent")
 
@@ -206,6 +215,15 @@ func (ptr *QCheckBox) SetCheckState(state core.Qt__CheckState) {
 	if ptr.Pointer() != nil {
 		C.QCheckBox_SetCheckState(ptr.Pointer(), C.int(state))
 	}
+}
+
+func (ptr *QCheckBox) SizeHint() *core.QSize {
+	defer qt.Recovering("QCheckBox::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QCheckBox_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QCheckBox) ConnectStateChanged(f func(state int)) {

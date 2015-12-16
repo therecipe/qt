@@ -216,6 +216,35 @@ func (ptr *QCameraExposure) SetSpotMeteringPoint(point core.QPointF_ITF) {
 	}
 }
 
+func (ptr *QCameraExposure) ConnectApertureChanged(f func(value float64)) {
+	defer qt.Recovering("connect QCameraExposure::apertureChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_ConnectApertureChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "apertureChanged", f)
+	}
+}
+
+func (ptr *QCameraExposure) DisconnectApertureChanged() {
+	defer qt.Recovering("disconnect QCameraExposure::apertureChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_DisconnectApertureChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "apertureChanged")
+	}
+}
+
+//export callbackQCameraExposureApertureChanged
+func callbackQCameraExposureApertureChanged(ptrName *C.char, value C.double) {
+	defer qt.Recovering("callback QCameraExposure::apertureChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "apertureChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(value))
+	}
+
+}
+
 func (ptr *QCameraExposure) ConnectApertureRangeChanged(f func()) {
 	defer qt.Recovering("connect QCameraExposure::apertureRangeChanged")
 
@@ -241,6 +270,35 @@ func callbackQCameraExposureApertureRangeChanged(ptrName *C.char) {
 	var signal = qt.GetSignal(C.GoString(ptrName), "apertureRangeChanged")
 	if signal != nil {
 		signal.(func())()
+	}
+
+}
+
+func (ptr *QCameraExposure) ConnectExposureCompensationChanged(f func(value float64)) {
+	defer qt.Recovering("connect QCameraExposure::exposureCompensationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_ConnectExposureCompensationChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "exposureCompensationChanged", f)
+	}
+}
+
+func (ptr *QCameraExposure) DisconnectExposureCompensationChanged() {
+	defer qt.Recovering("disconnect QCameraExposure::exposureCompensationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_DisconnectExposureCompensationChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "exposureCompensationChanged")
+	}
+}
+
+//export callbackQCameraExposureExposureCompensationChanged
+func callbackQCameraExposureExposureCompensationChanged(ptrName *C.char, value C.double) {
+	defer qt.Recovering("callback QCameraExposure::exposureCompensationChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "exposureCompensationChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(value))
 	}
 
 }
@@ -398,6 +456,35 @@ func (ptr *QCameraExposure) ShutterSpeed() float64 {
 		return float64(C.QCameraExposure_ShutterSpeed(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QCameraExposure) ConnectShutterSpeedChanged(f func(speed float64)) {
+	defer qt.Recovering("connect QCameraExposure::shutterSpeedChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_ConnectShutterSpeedChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "shutterSpeedChanged", f)
+	}
+}
+
+func (ptr *QCameraExposure) DisconnectShutterSpeedChanged() {
+	defer qt.Recovering("disconnect QCameraExposure::shutterSpeedChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_DisconnectShutterSpeedChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "shutterSpeedChanged")
+	}
+}
+
+//export callbackQCameraExposureShutterSpeedChanged
+func callbackQCameraExposureShutterSpeedChanged(ptrName *C.char, speed C.double) {
+	defer qt.Recovering("callback QCameraExposure::shutterSpeedChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "shutterSpeedChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(speed))
+	}
+
 }
 
 func (ptr *QCameraExposure) ConnectShutterSpeedRangeChanged(f func()) {

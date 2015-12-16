@@ -216,6 +216,15 @@ func (ptr *QScriptEngineDebugger) StandardWindow() *widgets.QMainWindow {
 	return nil
 }
 
+func (ptr *QScriptEngineDebugger) State() QScriptEngineDebugger__DebuggerState {
+	defer qt.Recovering("QScriptEngineDebugger::state")
+
+	if ptr.Pointer() != nil {
+		return QScriptEngineDebugger__DebuggerState(C.QScriptEngineDebugger_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QScriptEngineDebugger) Widget(widget QScriptEngineDebugger__DebuggerWidget) *widgets.QWidget {
 	defer qt.Recovering("QScriptEngineDebugger::widget")
 

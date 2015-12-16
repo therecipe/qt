@@ -204,6 +204,15 @@ func (ptr *QGeoAddress) SetText(text string) {
 	}
 }
 
+func (ptr *QGeoAddress) State() string {
+	defer qt.Recovering("QGeoAddress::state")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QGeoAddress_State(ptr.Pointer()))
+	}
+	return ""
+}
+
 func (ptr *QGeoAddress) Street() string {
 	defer qt.Recovering("QGeoAddress::street")
 

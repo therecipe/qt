@@ -414,6 +414,15 @@ func (ptr *QMdiSubWindow) MdiArea() *QMdiArea {
 	return nil
 }
 
+func (ptr *QMdiSubWindow) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QMdiSubWindow::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QMdiSubWindow_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMdiSubWindow) ConnectMouseDoubleClickEvent(f func(mouseEvent *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QMdiSubWindow::mouseDoubleClickEvent")
 
@@ -700,6 +709,15 @@ func (ptr *QMdiSubWindow) ShowSystemMenu() {
 	if ptr.Pointer() != nil {
 		C.QMdiSubWindow_ShowSystemMenu(ptr.Pointer())
 	}
+}
+
+func (ptr *QMdiSubWindow) SizeHint() *core.QSize {
+	defer qt.Recovering("QMdiSubWindow::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QMdiSubWindow_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMdiSubWindow) SystemMenu() *QMenu {

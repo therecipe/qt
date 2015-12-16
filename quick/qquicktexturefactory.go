@@ -55,6 +55,15 @@ func (ptr *QQuickTextureFactory) TextureByteCount() int {
 	return 0
 }
 
+func (ptr *QQuickTextureFactory) TextureSize() *core.QSize {
+	defer qt.Recovering("QQuickTextureFactory::textureSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QQuickTextureFactory_TextureSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickTextureFactory) DestroyQQuickTextureFactory() {
 	defer qt.Recovering("QQuickTextureFactory::~QQuickTextureFactory")
 

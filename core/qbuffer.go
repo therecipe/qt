@@ -133,6 +133,24 @@ func (ptr *QBuffer) Open(flags QIODevice__OpenModeFlag) bool {
 	return false
 }
 
+func (ptr *QBuffer) Pos() int64 {
+	defer qt.Recovering("QBuffer::pos")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QBuffer_Pos(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QBuffer) Seek(pos int64) bool {
+	defer qt.Recovering("QBuffer::seek")
+
+	if ptr.Pointer() != nil {
+		return C.QBuffer_Seek(ptr.Pointer(), C.longlong(pos)) != 0
+	}
+	return false
+}
+
 func (ptr *QBuffer) SetBuffer(byteArray QByteArray_ITF) {
 	defer qt.Recovering("QBuffer::setBuffer")
 
@@ -155,6 +173,15 @@ func (ptr *QBuffer) SetData2(data string, size int) {
 	if ptr.Pointer() != nil {
 		C.QBuffer_SetData2(ptr.Pointer(), C.CString(data), C.int(size))
 	}
+}
+
+func (ptr *QBuffer) Size() int64 {
+	defer qt.Recovering("QBuffer::size")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QBuffer_Size(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QBuffer) DestroyQBuffer() {

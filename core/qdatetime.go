@@ -52,6 +52,12 @@ func QDateTime_CurrentDateTimeUtc() *QDateTime {
 	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTimeUtc())
 }
 
+func QDateTime_CurrentMSecsSinceEpoch() int64 {
+	defer qt.Recovering("QDateTime::currentMSecsSinceEpoch")
+
+	return int64(C.QDateTime_QDateTime_CurrentMSecsSinceEpoch())
+}
+
 func QDateTime_FromString(stri string, format Qt__DateFormat) *QDateTime {
 	defer qt.Recovering("QDateTime::fromString")
 
@@ -127,11 +133,38 @@ func NewQDateTime6(other QDateTime_ITF) *QDateTime {
 	return NewQDateTimeFromPointer(C.QDateTime_NewQDateTime6(PointerFromQDateTime(other)))
 }
 
+func (ptr *QDateTime) AddDays(ndays int64) *QDateTime {
+	defer qt.Recovering("QDateTime::addDays")
+
+	if ptr.Pointer() != nil {
+		return NewQDateTimeFromPointer(C.QDateTime_AddDays(ptr.Pointer(), C.longlong(ndays)))
+	}
+	return nil
+}
+
+func (ptr *QDateTime) AddMSecs(msecs int64) *QDateTime {
+	defer qt.Recovering("QDateTime::addMSecs")
+
+	if ptr.Pointer() != nil {
+		return NewQDateTimeFromPointer(C.QDateTime_AddMSecs(ptr.Pointer(), C.longlong(msecs)))
+	}
+	return nil
+}
+
 func (ptr *QDateTime) AddMonths(nmonths int) *QDateTime {
 	defer qt.Recovering("QDateTime::addMonths")
 
 	if ptr.Pointer() != nil {
 		return NewQDateTimeFromPointer(C.QDateTime_AddMonths(ptr.Pointer(), C.int(nmonths)))
+	}
+	return nil
+}
+
+func (ptr *QDateTime) AddSecs(s int64) *QDateTime {
+	defer qt.Recovering("QDateTime::addSecs")
+
+	if ptr.Pointer() != nil {
+		return NewQDateTimeFromPointer(C.QDateTime_AddSecs(ptr.Pointer(), C.longlong(s)))
 	}
 	return nil
 }
@@ -143,6 +176,33 @@ func (ptr *QDateTime) AddYears(nyears int) *QDateTime {
 		return NewQDateTimeFromPointer(C.QDateTime_AddYears(ptr.Pointer(), C.int(nyears)))
 	}
 	return nil
+}
+
+func (ptr *QDateTime) DaysTo(other QDateTime_ITF) int64 {
+	defer qt.Recovering("QDateTime::daysTo")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QDateTime_DaysTo(ptr.Pointer(), PointerFromQDateTime(other)))
+	}
+	return 0
+}
+
+func QDateTime_FromMSecsSinceEpoch(msecs int64) *QDateTime {
+	defer qt.Recovering("QDateTime::fromMSecsSinceEpoch")
+
+	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch(C.longlong(msecs)))
+}
+
+func QDateTime_FromMSecsSinceEpoch2(msecs int64, spec Qt__TimeSpec, offsetSeconds int) *QDateTime {
+	defer qt.Recovering("QDateTime::fromMSecsSinceEpoch")
+
+	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch2(C.longlong(msecs), C.int(spec), C.int(offsetSeconds)))
+}
+
+func QDateTime_FromMSecsSinceEpoch3(msecs int64, timeZone QTimeZone_ITF) *QDateTime {
+	defer qt.Recovering("QDateTime::fromMSecsSinceEpoch")
+
+	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch3(C.longlong(msecs), PointerFromQTimeZone(timeZone)))
 }
 
 func (ptr *QDateTime) IsDaylightTime() bool {
@@ -172,6 +232,15 @@ func (ptr *QDateTime) IsValid() bool {
 	return false
 }
 
+func (ptr *QDateTime) MsecsTo(other QDateTime_ITF) int64 {
+	defer qt.Recovering("QDateTime::msecsTo")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QDateTime_MsecsTo(ptr.Pointer(), PointerFromQDateTime(other)))
+	}
+	return 0
+}
+
 func (ptr *QDateTime) OffsetFromUtc() int {
 	defer qt.Recovering("QDateTime::offsetFromUtc")
 
@@ -181,11 +250,28 @@ func (ptr *QDateTime) OffsetFromUtc() int {
 	return 0
 }
 
+func (ptr *QDateTime) SecsTo(other QDateTime_ITF) int64 {
+	defer qt.Recovering("QDateTime::secsTo")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QDateTime_SecsTo(ptr.Pointer(), PointerFromQDateTime(other)))
+	}
+	return 0
+}
+
 func (ptr *QDateTime) SetDate(date QDate_ITF) {
 	defer qt.Recovering("QDateTime::setDate")
 
 	if ptr.Pointer() != nil {
 		C.QDateTime_SetDate(ptr.Pointer(), PointerFromQDate(date))
+	}
+}
+
+func (ptr *QDateTime) SetMSecsSinceEpoch(msecs int64) {
+	defer qt.Recovering("QDateTime::setMSecsSinceEpoch")
+
+	if ptr.Pointer() != nil {
+		C.QDateTime_SetMSecsSinceEpoch(ptr.Pointer(), C.longlong(msecs))
 	}
 }
 
@@ -263,6 +349,15 @@ func (ptr *QDateTime) ToLocalTime() *QDateTime {
 		return NewQDateTimeFromPointer(C.QDateTime_ToLocalTime(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QDateTime) ToMSecsSinceEpoch() int64 {
+	defer qt.Recovering("QDateTime::toMSecsSinceEpoch")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QDateTime_ToMSecsSinceEpoch(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QDateTime) ToString(format string) string {

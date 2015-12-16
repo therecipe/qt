@@ -61,6 +61,35 @@ func NewQLightSensor(parent core.QObject_ITF) *QLightSensor {
 	return NewQLightSensorFromPointer(C.QLightSensor_NewQLightSensor(core.PointerFromQObject(parent)))
 }
 
+func (ptr *QLightSensor) ConnectFieldOfViewChanged(f func(fieldOfView float64)) {
+	defer qt.Recovering("connect QLightSensor::fieldOfViewChanged")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_ConnectFieldOfViewChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "fieldOfViewChanged", f)
+	}
+}
+
+func (ptr *QLightSensor) DisconnectFieldOfViewChanged() {
+	defer qt.Recovering("disconnect QLightSensor::fieldOfViewChanged")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_DisconnectFieldOfViewChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "fieldOfViewChanged")
+	}
+}
+
+//export callbackQLightSensorFieldOfViewChanged
+func callbackQLightSensorFieldOfViewChanged(ptrName *C.char, fieldOfView C.double) {
+	defer qt.Recovering("callback QLightSensor::fieldOfViewChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "fieldOfViewChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(fieldOfView))
+	}
+
+}
+
 func (ptr *QLightSensor) SetFieldOfView(fieldOfView float64) {
 	defer qt.Recovering("QLightSensor::setFieldOfView")
 

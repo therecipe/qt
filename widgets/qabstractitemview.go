@@ -251,6 +251,15 @@ func (ptr *QAbstractItemView) HorizontalScrollMode() QAbstractItemView__ScrollMo
 	return 0
 }
 
+func (ptr *QAbstractItemView) IconSize() *core.QSize {
+	defer qt.Recovering("QAbstractItemView::iconSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QAbstractItemView_IconSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QAbstractItemView) SelectionBehavior() QAbstractItemView__SelectionBehavior {
 	defer qt.Recovering("QAbstractItemView::selectionBehavior")
 
@@ -858,6 +867,35 @@ func callbackQAbstractItemViewFocusOutEvent(ptrName *C.char, event unsafe.Pointe
 		return true
 	}
 	return false
+
+}
+
+func (ptr *QAbstractItemView) ConnectIconSizeChanged(f func(size *core.QSize)) {
+	defer qt.Recovering("connect QAbstractItemView::iconSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemView_ConnectIconSizeChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "iconSizeChanged", f)
+	}
+}
+
+func (ptr *QAbstractItemView) DisconnectIconSizeChanged() {
+	defer qt.Recovering("disconnect QAbstractItemView::iconSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemView_DisconnectIconSizeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "iconSizeChanged")
+	}
+}
+
+//export callbackQAbstractItemViewIconSizeChanged
+func callbackQAbstractItemViewIconSizeChanged(ptrName *C.char, size unsafe.Pointer) {
+	defer qt.Recovering("callback QAbstractItemView::iconSizeChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "iconSizeChanged")
+	if signal != nil {
+		signal.(func(*core.QSize))(core.NewQSizeFromPointer(size))
+	}
 
 }
 
@@ -1526,6 +1564,15 @@ func (ptr *QAbstractItemView) SizeHintForColumn(column int) int {
 	return 0
 }
 
+func (ptr *QAbstractItemView) SizeHintForIndex(index core.QModelIndex_ITF) *core.QSize {
+	defer qt.Recovering("QAbstractItemView::sizeHintForIndex")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QAbstractItemView_SizeHintForIndex(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
 func (ptr *QAbstractItemView) SizeHintForRow(row int) int {
 	defer qt.Recovering("QAbstractItemView::sizeHintForRow")
 
@@ -1663,6 +1710,15 @@ func callbackQAbstractItemViewViewportEntered(ptrName *C.char) {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QAbstractItemView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
+	defer qt.Recovering("QAbstractItemView::visualRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QAbstractItemView_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
 }
 
 func (ptr *QAbstractItemView) DestroyQAbstractItemView() {

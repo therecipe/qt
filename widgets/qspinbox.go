@@ -178,6 +178,35 @@ func (ptr *QSpinBox) SetRange(minimum int, maximum int) {
 	}
 }
 
+func (ptr *QSpinBox) ConnectValueChanged2(f func(text string)) {
+	defer qt.Recovering("connect QSpinBox::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ConnectValueChanged2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "valueChanged", f)
+	}
+}
+
+func (ptr *QSpinBox) DisconnectValueChanged2() {
+	defer qt.Recovering("disconnect QSpinBox::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_DisconnectValueChanged2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "valueChanged")
+	}
+}
+
+//export callbackQSpinBoxValueChanged2
+func callbackQSpinBoxValueChanged2(ptrName *C.char, text *C.char) {
+	defer qt.Recovering("callback QSpinBox::valueChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(text))
+	}
+
+}
+
 func (ptr *QSpinBox) ConnectValueChanged(f func(i int)) {
 	defer qt.Recovering("connect QSpinBox::valueChanged")
 

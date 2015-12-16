@@ -93,6 +93,15 @@ func (ptr *QMediaResource) ChannelCount() int {
 	return 0
 }
 
+func (ptr *QMediaResource) DataSize() int64 {
+	defer qt.Recovering("QMediaResource::dataSize")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QMediaResource_DataSize(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QMediaResource) IsNull() bool {
 	defer qt.Recovering("QMediaResource::isNull")
 
@@ -118,6 +127,15 @@ func (ptr *QMediaResource) MimeType() string {
 		return C.GoString(C.QMediaResource_MimeType(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QMediaResource) Resolution() *core.QSize {
+	defer qt.Recovering("QMediaResource::resolution")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QMediaResource_Resolution(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMediaResource) SampleRate() int {
@@ -150,6 +168,14 @@ func (ptr *QMediaResource) SetChannelCount(channels int) {
 
 	if ptr.Pointer() != nil {
 		C.QMediaResource_SetChannelCount(ptr.Pointer(), C.int(channels))
+	}
+}
+
+func (ptr *QMediaResource) SetDataSize(size int64) {
+	defer qt.Recovering("QMediaResource::setDataSize")
+
+	if ptr.Pointer() != nil {
+		C.QMediaResource_SetDataSize(ptr.Pointer(), C.longlong(size))
 	}
 }
 
@@ -199,6 +225,15 @@ func (ptr *QMediaResource) SetVideoCodec(codec string) {
 	if ptr.Pointer() != nil {
 		C.QMediaResource_SetVideoCodec(ptr.Pointer(), C.CString(codec))
 	}
+}
+
+func (ptr *QMediaResource) Url() *core.QUrl {
+	defer qt.Recovering("QMediaResource::url")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QMediaResource_Url(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMediaResource) VideoBitRate() int {

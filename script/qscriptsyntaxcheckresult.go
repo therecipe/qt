@@ -82,6 +82,15 @@ func (ptr *QScriptSyntaxCheckResult) ErrorMessage() string {
 	return ""
 }
 
+func (ptr *QScriptSyntaxCheckResult) State() QScriptSyntaxCheckResult__State {
+	defer qt.Recovering("QScriptSyntaxCheckResult::state")
+
+	if ptr.Pointer() != nil {
+		return QScriptSyntaxCheckResult__State(C.QScriptSyntaxCheckResult_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QScriptSyntaxCheckResult) DestroyQScriptSyntaxCheckResult() {
 	defer qt.Recovering("QScriptSyntaxCheckResult::~QScriptSyntaxCheckResult")
 

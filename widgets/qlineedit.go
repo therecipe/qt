@@ -877,6 +877,15 @@ func callbackQLineEditKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool 
 
 }
 
+func (ptr *QLineEdit) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QLineEdit::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QLineEdit_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QLineEdit) ConnectMouseDoubleClickEvent(f func(e *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QLineEdit::mouseDoubleClickEvent")
 
@@ -1161,6 +1170,15 @@ func (ptr *QLineEdit) SetValidator(v gui.QValidator_ITF) {
 	if ptr.Pointer() != nil {
 		C.QLineEdit_SetValidator(ptr.Pointer(), gui.PointerFromQValidator(v))
 	}
+}
+
+func (ptr *QLineEdit) SizeHint() *core.QSize {
+	defer qt.Recovering("QLineEdit::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QLineEdit_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QLineEdit) ConnectTextChanged(f func(text string)) {

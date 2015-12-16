@@ -46,6 +46,15 @@ func (ptr *QPicture) IsNull() bool {
 	return false
 }
 
+func (ptr *QPicture) BoundingRect() *core.QRect {
+	defer qt.Recovering("QPicture::boundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPicture_BoundingRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPicture) Load2(dev core.QIODevice_ITF, format string) bool {
 	defer qt.Recovering("QPicture::load")
 

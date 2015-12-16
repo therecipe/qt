@@ -4,6 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -34,6 +35,15 @@ func NewQMacNativeWidgetFromPointer(ptr unsafe.Pointer) *QMacNativeWidget {
 
 func (ptr *QMacNativeWidget) QMacNativeWidget_PTR() *QMacNativeWidget {
 	return ptr
+}
+
+func (ptr *QMacNativeWidget) SizeHint() *core.QSize {
+	defer qt.Recovering("QMacNativeWidget::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QMacNativeWidget_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMacNativeWidget) DestroyQMacNativeWidget() {

@@ -246,6 +246,15 @@ func (ptr *QNdefNfcSmartPosterRecord) TypeInfo() *core.QByteArray {
 	return nil
 }
 
+func (ptr *QNdefNfcSmartPosterRecord) Uri() *core.QUrl {
+	defer qt.Recovering("QNdefNfcSmartPosterRecord::uri")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QNdefNfcSmartPosterRecord_Uri(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QNdefNfcSmartPosterRecord) DestroyQNdefNfcSmartPosterRecord() {
 	defer qt.Recovering("QNdefNfcSmartPosterRecord::~QNdefNfcSmartPosterRecord")
 

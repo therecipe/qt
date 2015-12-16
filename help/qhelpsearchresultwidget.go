@@ -4,6 +4,7 @@ package help
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/widgets"
 	"unsafe"
 )
@@ -35,6 +36,44 @@ func NewQHelpSearchResultWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchResul
 
 func (ptr *QHelpSearchResultWidget) QHelpSearchResultWidget_PTR() *QHelpSearchResultWidget {
 	return ptr
+}
+
+func (ptr *QHelpSearchResultWidget) LinkAt(point core.QPoint_ITF) *core.QUrl {
+	defer qt.Recovering("QHelpSearchResultWidget::linkAt")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QHelpSearchResultWidget_LinkAt(ptr.Pointer(), core.PointerFromQPoint(point)))
+	}
+	return nil
+}
+
+func (ptr *QHelpSearchResultWidget) ConnectRequestShowLink(f func(link *core.QUrl)) {
+	defer qt.Recovering("connect QHelpSearchResultWidget::requestShowLink")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_ConnectRequestShowLink(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "requestShowLink", f)
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) DisconnectRequestShowLink() {
+	defer qt.Recovering("disconnect QHelpSearchResultWidget::requestShowLink")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_DisconnectRequestShowLink(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "requestShowLink")
+	}
+}
+
+//export callbackQHelpSearchResultWidgetRequestShowLink
+func callbackQHelpSearchResultWidgetRequestShowLink(ptrName *C.char, link unsafe.Pointer) {
+	defer qt.Recovering("callback QHelpSearchResultWidget::requestShowLink")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "requestShowLink")
+	if signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
+	}
+
 }
 
 func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidget() {

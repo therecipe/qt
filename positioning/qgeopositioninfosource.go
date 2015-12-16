@@ -125,6 +125,35 @@ func QGeoPositionInfoSource_CreateSource(sourceName string, parent core.QObject_
 	return NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSource_QGeoPositionInfoSource_CreateSource(C.CString(sourceName), core.PointerFromQObject(parent)))
 }
 
+func (ptr *QGeoPositionInfoSource) ConnectError2(f func(positioningError QGeoPositionInfoSource__Error)) {
+	defer qt.Recovering("connect QGeoPositionInfoSource::error")
+
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) DisconnectError2() {
+	defer qt.Recovering("disconnect QGeoPositionInfoSource::error")
+
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQGeoPositionInfoSourceError2
+func callbackQGeoPositionInfoSourceError2(ptrName *C.char, positioningError C.int) {
+	defer qt.Recovering("callback QGeoPositionInfoSource::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QGeoPositionInfoSource__Error))(QGeoPositionInfoSource__Error(positioningError))
+	}
+
+}
+
 func (ptr *QGeoPositionInfoSource) Error() QGeoPositionInfoSource__Error {
 	defer qt.Recovering("QGeoPositionInfoSource::error")
 

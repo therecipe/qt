@@ -138,6 +138,15 @@ func (ptr *QSvgGenerator) SetViewBox2(viewBox core.QRectF_ITF) {
 	}
 }
 
+func (ptr *QSvgGenerator) Size() *core.QSize {
+	defer qt.Recovering("QSvgGenerator::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSvgGenerator_Size(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSvgGenerator) Title() string {
 	defer qt.Recovering("QSvgGenerator::title")
 
@@ -151,6 +160,15 @@ func NewQSvgGenerator() *QSvgGenerator {
 	defer qt.Recovering("QSvgGenerator::QSvgGenerator")
 
 	return NewQSvgGeneratorFromPointer(C.QSvgGenerator_NewQSvgGenerator())
+}
+
+func (ptr *QSvgGenerator) ViewBox() *core.QRect {
+	defer qt.Recovering("QSvgGenerator::viewBox")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QSvgGenerator_ViewBox(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSvgGenerator) DestroyQSvgGenerator() {

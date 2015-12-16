@@ -66,6 +66,7 @@
 #include <QFontComboBox>
 #include <QFontDatabase>
 #include <QFontDialog>
+#include <QFontMetrics>
 #include <QFormLayout>
 #include <QFrame>
 #include <QGesture>
@@ -325,6 +326,14 @@ int QAbstractButton_AutoRepeatInterval(void* ptr){
 	return static_cast<QAbstractButton*>(ptr)->autoRepeatInterval();
 }
 
+void* QAbstractButton_Icon(void* ptr){
+	return new QIcon(static_cast<QAbstractButton*>(ptr)->icon());
+}
+
+void* QAbstractButton_IconSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QAbstractButton*>(ptr)->iconSize()).width(), static_cast<QSize>(static_cast<QAbstractButton*>(ptr)->iconSize()).height());
+}
+
 int QAbstractButton_IsCheckable(void* ptr){
 	return static_cast<QAbstractButton*>(ptr)->isCheckable();
 }
@@ -528,6 +537,10 @@ void QAbstractItemDelegate_SetModelData(void* ptr, void* editor, void* model, vo
 	static_cast<QAbstractItemDelegate*>(ptr)->setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
 }
 
+void* QAbstractItemDelegate_SizeHint(void* ptr, void* option, void* index){
+	return new QSize(static_cast<QSize>(static_cast<QAbstractItemDelegate*>(ptr)->sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractItemDelegate*>(ptr)->sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index))).height());
+}
+
 void QAbstractItemDelegate_ConnectSizeHintChanged(void* ptr){
 	QObject::connect(static_cast<QAbstractItemDelegate*>(ptr), static_cast<void (QAbstractItemDelegate::*)(const QModelIndex &)>(&QAbstractItemDelegate::sizeHintChanged), static_cast<MyQAbstractItemDelegate*>(ptr), static_cast<void (MyQAbstractItemDelegate::*)(const QModelIndex &)>(&MyQAbstractItemDelegate::Signal_SizeHintChanged));;
 }
@@ -546,6 +559,7 @@ public:
 	void Signal_Clicked(const QModelIndex & index) { callbackQAbstractItemViewClicked(this->objectName().toUtf8().data(), index.internalPointer()); };
 	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemViewDoubleClicked(this->objectName().toUtf8().data(), index.internalPointer()); };
 	void Signal_Entered(const QModelIndex & index) { callbackQAbstractItemViewEntered(this->objectName().toUtf8().data(), index.internalPointer()); };
+	void Signal_IconSizeChanged(const QSize & size) { callbackQAbstractItemViewIconSizeChanged(this->objectName().toUtf8().data(), new QSize(static_cast<QSize>(size).width(), static_cast<QSize>(size).height())); };
 	void keyboardSearch(const QString & search) { if (!callbackQAbstractItemViewKeyboardSearch(this->objectName().toUtf8().data(), search.toUtf8().data())) { QAbstractItemView::keyboardSearch(search); }; };
 	void Signal_Pressed(const QModelIndex & index) { callbackQAbstractItemViewPressed(this->objectName().toUtf8().data(), index.internalPointer()); };
 	void reset() { if (!callbackQAbstractItemViewReset(this->objectName().toUtf8().data())) { QAbstractItemView::reset(); }; };
@@ -613,6 +627,10 @@ int QAbstractItemView_HasAutoScroll(void* ptr){
 
 int QAbstractItemView_HorizontalScrollMode(void* ptr){
 	return static_cast<QAbstractItemView*>(ptr)->horizontalScrollMode();
+}
+
+void* QAbstractItemView_IconSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QAbstractItemView*>(ptr)->iconSize()).width(), static_cast<QSize>(static_cast<QAbstractItemView*>(ptr)->iconSize()).height());
 }
 
 int QAbstractItemView_SelectionBehavior(void* ptr){
@@ -751,6 +769,14 @@ void QAbstractItemView_DisconnectEntered(void* ptr){
 	QObject::disconnect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::entered), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QModelIndex &)>(&MyQAbstractItemView::Signal_Entered));;
 }
 
+void QAbstractItemView_ConnectIconSizeChanged(void* ptr){
+	QObject::connect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QSize &)>(&QAbstractItemView::iconSizeChanged), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QSize &)>(&MyQAbstractItemView::Signal_IconSizeChanged));;
+}
+
+void QAbstractItemView_DisconnectIconSizeChanged(void* ptr){
+	QObject::disconnect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QSize &)>(&QAbstractItemView::iconSizeChanged), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QSize &)>(&MyQAbstractItemView::Signal_IconSizeChanged));;
+}
+
 void* QAbstractItemView_IndexAt(void* ptr, void* point){
 	return static_cast<QAbstractItemView*>(ptr)->indexAt(*static_cast<QPoint*>(point)).internalPointer();
 }
@@ -863,6 +889,10 @@ int QAbstractItemView_SizeHintForColumn(void* ptr, int column){
 	return static_cast<QAbstractItemView*>(ptr)->sizeHintForColumn(column);
 }
 
+void* QAbstractItemView_SizeHintForIndex(void* ptr, void* index){
+	return new QSize(static_cast<QSize>(static_cast<QAbstractItemView*>(ptr)->sizeHintForIndex(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractItemView*>(ptr)->sizeHintForIndex(*static_cast<QModelIndex*>(index))).height());
+}
+
 int QAbstractItemView_SizeHintForRow(void* ptr, int row){
 	return static_cast<QAbstractItemView*>(ptr)->sizeHintForRow(row);
 }
@@ -877,6 +907,10 @@ void QAbstractItemView_ConnectViewportEntered(void* ptr){
 
 void QAbstractItemView_DisconnectViewportEntered(void* ptr){
 	QObject::disconnect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)()>(&QAbstractItemView::viewportEntered), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)()>(&MyQAbstractItemView::Signal_ViewportEntered));;
+}
+
+void* QAbstractItemView_VisualRect(void* ptr, void* index){
+	return new QRect(static_cast<QRect>(static_cast<QAbstractItemView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QAbstractItemView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QAbstractItemView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QAbstractItemView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).height());
 }
 
 void QAbstractItemView_DestroyQAbstractItemView(void* ptr){
@@ -944,6 +978,14 @@ void* QAbstractScrollArea_HorizontalScrollBar(void* ptr){
 	return static_cast<QAbstractScrollArea*>(ptr)->horizontalScrollBar();
 }
 
+void* QAbstractScrollArea_MaximumViewportSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QAbstractScrollArea*>(ptr)->maximumViewportSize()).width(), static_cast<QSize>(static_cast<QAbstractScrollArea*>(ptr)->maximumViewportSize()).height());
+}
+
+void* QAbstractScrollArea_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QAbstractScrollArea*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QAbstractScrollArea*>(ptr)->minimumSizeHint()).height());
+}
+
 void QAbstractScrollArea_SetCornerWidget(void* ptr, void* widget){
 	static_cast<QAbstractScrollArea*>(ptr)->setCornerWidget(static_cast<QWidget*>(widget));
 }
@@ -962,6 +1004,10 @@ void QAbstractScrollArea_SetViewport(void* ptr, void* widget){
 
 void QAbstractScrollArea_SetupViewport(void* ptr, void* viewport){
 	static_cast<QAbstractScrollArea*>(ptr)->setupViewport(static_cast<QWidget*>(viewport));
+}
+
+void* QAbstractScrollArea_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QAbstractScrollArea*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QAbstractScrollArea*>(ptr)->sizeHint()).height());
 }
 
 void* QAbstractScrollArea_VerticalScrollBar(void* ptr){
@@ -1286,8 +1332,16 @@ void QAbstractSpinBox_InterpretText(void* ptr){
 	static_cast<QAbstractSpinBox*>(ptr)->interpretText();
 }
 
+void* QAbstractSpinBox_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QAbstractSpinBox*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QAbstractSpinBox*>(ptr)->minimumSizeHint()).height());
+}
+
 void QAbstractSpinBox_SelectAll(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "selectAll");
+}
+
+void* QAbstractSpinBox_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QAbstractSpinBox*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QAbstractSpinBox*>(ptr)->sizeHint()).height());
 }
 
 void QAbstractSpinBox_StepBy(void* ptr, int steps){
@@ -1368,6 +1422,10 @@ void* QAccessibleWidget_Parent(void* ptr){
 	return static_cast<QAccessibleWidget*>(ptr)->parent();
 }
 
+void* QAccessibleWidget_Rect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QAccessibleWidget*>(ptr)->rect()).x(), static_cast<QRect>(static_cast<QAccessibleWidget*>(ptr)->rect()).y(), static_cast<QRect>(static_cast<QAccessibleWidget*>(ptr)->rect()).width(), static_cast<QRect>(static_cast<QAccessibleWidget*>(ptr)->rect()).height());
+}
+
 int QAccessibleWidget_Role(void* ptr){
 	return static_cast<QAccessibleWidget*>(ptr)->role();
 }
@@ -1402,6 +1460,10 @@ protected:
 
 int QAction_AutoRepeat(void* ptr){
 	return static_cast<QAction*>(ptr)->autoRepeat();
+}
+
+void* QAction_Icon(void* ptr){
+	return new QIcon(static_cast<QAction*>(ptr)->icon());
 }
 
 char* QAction_IconText(void* ptr){
@@ -1746,6 +1808,10 @@ int QApplication_QApplication_DoubleClickInterval(){
 	return QApplication::doubleClickInterval();
 }
 
+void* QApplication_QApplication_GlobalStrut(){
+	return new QSize(static_cast<QSize>(QApplication::globalStrut()).width(), static_cast<QSize>(QApplication::globalStrut()).height());
+}
+
 int QApplication_QApplication_IsEffectEnabled(int effect){
 	return QApplication::isEffectEnabled(static_cast<Qt::UIEffect>(effect));
 }
@@ -1828,6 +1894,10 @@ int QApplication_QApplication_WheelScrollLines(){
 
 void* QApplication_QApplication_WidgetAt(void* point){
 	return QApplication::widgetAt(*static_cast<QPoint*>(point));
+}
+
+void* QApplication_QApplication_WindowIcon(){
+	return new QIcon(QApplication::windowIcon());
 }
 
 void* QApplication_NewQApplication(int argc, char* argv){
@@ -1929,6 +1999,7 @@ public:
 	MyQBoxLayout(Direction dir, QWidget *parent) : QBoxLayout(dir, parent) {};
 	void addItem(QLayoutItem * item) { if (!callbackQBoxLayoutAddItem(this->objectName().toUtf8().data(), item)) { QBoxLayout::addItem(item); }; };
 	void invalidate() { if (!callbackQBoxLayoutInvalidate(this->objectName().toUtf8().data())) { QBoxLayout::invalidate(); }; };
+	void setGeometry(const QRect & r) { if (!callbackQBoxLayoutSetGeometry(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(r).x(), static_cast<QRect>(r).y(), static_cast<QRect>(r).width(), static_cast<QRect>(r).height()))) { QBoxLayout::setGeometry(r); }; };
 protected:
 };
 
@@ -2016,12 +2087,24 @@ void* QBoxLayout_ItemAt(void* ptr, int index){
 	return static_cast<QBoxLayout*>(ptr)->itemAt(index);
 }
 
+void* QBoxLayout_MaximumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QBoxLayout*>(ptr)->maximumSize()).width(), static_cast<QSize>(static_cast<QBoxLayout*>(ptr)->maximumSize()).height());
+}
+
 int QBoxLayout_MinimumHeightForWidth(void* ptr, int w){
 	return static_cast<QBoxLayout*>(ptr)->minimumHeightForWidth(w);
 }
 
+void* QBoxLayout_MinimumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QBoxLayout*>(ptr)->minimumSize()).width(), static_cast<QSize>(static_cast<QBoxLayout*>(ptr)->minimumSize()).height());
+}
+
 void QBoxLayout_SetDirection(void* ptr, int direction){
 	static_cast<QBoxLayout*>(ptr)->setDirection(static_cast<QBoxLayout::Direction>(direction));
+}
+
+void QBoxLayout_SetGeometry(void* ptr, void* r){
+	static_cast<QBoxLayout*>(ptr)->setGeometry(*static_cast<QRect*>(r));
 }
 
 void QBoxLayout_SetSpacing(void* ptr, int spacing){
@@ -2038,6 +2121,10 @@ int QBoxLayout_SetStretchFactor2(void* ptr, void* layout, int stretch){
 
 int QBoxLayout_SetStretchFactor(void* ptr, void* widget, int stretch){
 	return static_cast<QBoxLayout*>(ptr)->setStretchFactor(static_cast<QWidget*>(widget), stretch);
+}
+
+void* QBoxLayout_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QBoxLayout*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QBoxLayout*>(ptr)->sizeHint()).height());
 }
 
 int QBoxLayout_Spacing(void* ptr){
@@ -2059,9 +2146,13 @@ void QBoxLayout_DestroyQBoxLayout(void* ptr){
 class MyQButtonGroup: public QButtonGroup {
 public:
 	void Signal_ButtonClicked(QAbstractButton * button) { callbackQButtonGroupButtonClicked(this->objectName().toUtf8().data(), button); };
+	void Signal_ButtonClicked2(int id) { callbackQButtonGroupButtonClicked2(this->objectName().toUtf8().data(), id); };
 	void Signal_ButtonPressed(QAbstractButton * button) { callbackQButtonGroupButtonPressed(this->objectName().toUtf8().data(), button); };
+	void Signal_ButtonPressed2(int id) { callbackQButtonGroupButtonPressed2(this->objectName().toUtf8().data(), id); };
 	void Signal_ButtonReleased(QAbstractButton * button) { callbackQButtonGroupButtonReleased(this->objectName().toUtf8().data(), button); };
+	void Signal_ButtonReleased2(int id) { callbackQButtonGroupButtonReleased2(this->objectName().toUtf8().data(), id); };
 	void Signal_ButtonToggled(QAbstractButton * button, bool checked) { callbackQButtonGroupButtonToggled(this->objectName().toUtf8().data(), button, checked); };
+	void Signal_ButtonToggled2(int id, bool checked) { callbackQButtonGroupButtonToggled2(this->objectName().toUtf8().data(), id, checked); };
 protected:
 };
 
@@ -2117,12 +2208,28 @@ void QButtonGroup_DisconnectButtonClicked(void* ptr){
 	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonClicked), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *)>(&MyQButtonGroup::Signal_ButtonClicked));;
 }
 
+void QButtonGroup_ConnectButtonClicked2(void* ptr){
+	QObject::connect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(int)>(&MyQButtonGroup::Signal_ButtonClicked2));;
+}
+
+void QButtonGroup_DisconnectButtonClicked2(void* ptr){
+	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(int)>(&MyQButtonGroup::Signal_ButtonClicked2));;
+}
+
 void QButtonGroup_ConnectButtonPressed(void* ptr){
 	QObject::connect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonPressed), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *)>(&MyQButtonGroup::Signal_ButtonPressed));;
 }
 
 void QButtonGroup_DisconnectButtonPressed(void* ptr){
 	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonPressed), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *)>(&MyQButtonGroup::Signal_ButtonPressed));;
+}
+
+void QButtonGroup_ConnectButtonPressed2(void* ptr){
+	QObject::connect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonPressed), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(int)>(&MyQButtonGroup::Signal_ButtonPressed2));;
+}
+
+void QButtonGroup_DisconnectButtonPressed2(void* ptr){
+	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonPressed), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(int)>(&MyQButtonGroup::Signal_ButtonPressed2));;
 }
 
 void QButtonGroup_ConnectButtonReleased(void* ptr){
@@ -2133,12 +2240,28 @@ void QButtonGroup_DisconnectButtonReleased(void* ptr){
 	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonReleased), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *)>(&MyQButtonGroup::Signal_ButtonReleased));;
 }
 
+void QButtonGroup_ConnectButtonReleased2(void* ptr){
+	QObject::connect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonReleased), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(int)>(&MyQButtonGroup::Signal_ButtonReleased2));;
+}
+
+void QButtonGroup_DisconnectButtonReleased2(void* ptr){
+	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonReleased), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(int)>(&MyQButtonGroup::Signal_ButtonReleased2));;
+}
+
 void QButtonGroup_ConnectButtonToggled(void* ptr){
 	QObject::connect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *, bool)>(&QButtonGroup::buttonToggled), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *, bool)>(&MyQButtonGroup::Signal_ButtonToggled));;
 }
 
 void QButtonGroup_DisconnectButtonToggled(void* ptr){
 	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *, bool)>(&QButtonGroup::buttonToggled), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *, bool)>(&MyQButtonGroup::Signal_ButtonToggled));;
+}
+
+void QButtonGroup_ConnectButtonToggled2(void* ptr){
+	QObject::connect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(int, bool)>(&QButtonGroup::buttonToggled), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(int, bool)>(&MyQButtonGroup::Signal_ButtonToggled2));;
+}
+
+void QButtonGroup_DisconnectButtonToggled2(void* ptr){
+	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(int, bool)>(&QButtonGroup::buttonToggled), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(int, bool)>(&MyQButtonGroup::Signal_ButtonToggled2));;
 }
 
 class MyQCalendarWidget: public QCalendarWidget {
@@ -2240,6 +2363,10 @@ void QCalendarWidget_DisconnectCurrentPageChanged(void* ptr){
 	QObject::disconnect(static_cast<QCalendarWidget*>(ptr), static_cast<void (QCalendarWidget::*)(int, int)>(&QCalendarWidget::currentPageChanged), static_cast<MyQCalendarWidget*>(ptr), static_cast<void (MyQCalendarWidget::*)(int, int)>(&MyQCalendarWidget::Signal_CurrentPageChanged));;
 }
 
+void* QCalendarWidget_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QCalendarWidget*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QCalendarWidget*>(ptr)->minimumSizeHint()).height());
+}
+
 int QCalendarWidget_MonthShown(void* ptr){
 	return static_cast<QCalendarWidget*>(ptr)->monthShown();
 }
@@ -2296,6 +2423,10 @@ void QCalendarWidget_ShowToday(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "showToday");
 }
 
+void* QCalendarWidget_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QCalendarWidget*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QCalendarWidget*>(ptr)->sizeHint()).height());
+}
+
 int QCalendarWidget_YearShown(void* ptr){
 	return static_cast<QCalendarWidget*>(ptr)->yearShown();
 }
@@ -2336,8 +2467,16 @@ int QCheckBox_CheckState(void* ptr){
 	return static_cast<QCheckBox*>(ptr)->checkState();
 }
 
+void* QCheckBox_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QCheckBox*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QCheckBox*>(ptr)->minimumSizeHint()).height());
+}
+
 void QCheckBox_SetCheckState(void* ptr, int state){
 	static_cast<QCheckBox*>(ptr)->setCheckState(static_cast<Qt::CheckState>(state));
+}
+
+void* QCheckBox_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QCheckBox*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QCheckBox*>(ptr)->sizeHint()).height());
 }
 
 void QCheckBox_ConnectStateChanged(void* ptr){
@@ -2486,6 +2625,7 @@ protected:
 	void resizeEvent(QResizeEvent * event) { if (!callbackQColumnViewResizeEvent(this->objectName().toUtf8().data(), event)) { QColumnView::resizeEvent(event); }; };
 	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQColumnViewRowsInserted(this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QColumnView::rowsInserted(parent, start, end); }; };
 	void scrollContentsBy(int dx, int dy) { if (!callbackQColumnViewScrollContentsBy(this->objectName().toUtf8().data(), dx, dy)) { QColumnView::scrollContentsBy(dx, dy); }; };
+	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { if (!callbackQColumnViewSetSelection(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command)) { QColumnView::setSelection(rect, command); }; };
 };
 
 int QColumnView_ResizeGripsVisible(void* ptr){
@@ -2532,12 +2672,20 @@ void QColumnView_SetSelectionModel(void* ptr, void* newSelectionModel){
 	static_cast<QColumnView*>(ptr)->setSelectionModel(static_cast<QItemSelectionModel*>(newSelectionModel));
 }
 
+void* QColumnView_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QColumnView*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QColumnView*>(ptr)->sizeHint()).height());
+}
+
 void QColumnView_ConnectUpdatePreviewWidget(void* ptr){
 	QObject::connect(static_cast<QColumnView*>(ptr), static_cast<void (QColumnView::*)(const QModelIndex &)>(&QColumnView::updatePreviewWidget), static_cast<MyQColumnView*>(ptr), static_cast<void (MyQColumnView::*)(const QModelIndex &)>(&MyQColumnView::Signal_UpdatePreviewWidget));;
 }
 
 void QColumnView_DisconnectUpdatePreviewWidget(void* ptr){
 	QObject::disconnect(static_cast<QColumnView*>(ptr), static_cast<void (QColumnView::*)(const QModelIndex &)>(&QColumnView::updatePreviewWidget), static_cast<MyQColumnView*>(ptr), static_cast<void (MyQColumnView::*)(const QModelIndex &)>(&MyQColumnView::Signal_UpdatePreviewWidget));;
+}
+
+void* QColumnView_VisualRect(void* ptr, void* index){
+	return new QRect(static_cast<QRect>(static_cast<QColumnView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QColumnView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QColumnView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QColumnView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).height());
 }
 
 void QColumnView_DestroyQColumnView(void* ptr){
@@ -2547,11 +2695,14 @@ void QColumnView_DestroyQColumnView(void* ptr){
 class MyQComboBox: public QComboBox {
 public:
 	MyQComboBox(QWidget *parent) : QComboBox(parent) {};
+	void Signal_Activated2(const QString & text) { callbackQComboBoxActivated2(this->objectName().toUtf8().data(), text.toUtf8().data()); };
 	void Signal_Activated(int index) { callbackQComboBoxActivated(this->objectName().toUtf8().data(), index); };
+	void Signal_CurrentIndexChanged2(const QString & text) { callbackQComboBoxCurrentIndexChanged2(this->objectName().toUtf8().data(), text.toUtf8().data()); };
 	void Signal_CurrentIndexChanged(int index) { callbackQComboBoxCurrentIndexChanged(this->objectName().toUtf8().data(), index); };
 	void Signal_CurrentTextChanged(const QString & text) { callbackQComboBoxCurrentTextChanged(this->objectName().toUtf8().data(), text.toUtf8().data()); };
 	void Signal_EditTextChanged(const QString & text) { callbackQComboBoxEditTextChanged(this->objectName().toUtf8().data(), text.toUtf8().data()); };
 	void hidePopup() { if (!callbackQComboBoxHidePopup(this->objectName().toUtf8().data())) { QComboBox::hidePopup(); }; };
+	void Signal_Highlighted2(const QString & text) { callbackQComboBoxHighlighted2(this->objectName().toUtf8().data(), text.toUtf8().data()); };
 	void Signal_Highlighted(int index) { callbackQComboBoxHighlighted(this->objectName().toUtf8().data(), index); };
 	void showPopup() { if (!callbackQComboBoxShowPopup(this->objectName().toUtf8().data())) { QComboBox::showPopup(); }; };
 protected:
@@ -2593,6 +2744,10 @@ int QComboBox_DuplicatesEnabled(void* ptr){
 
 int QComboBox_HasFrame(void* ptr){
 	return static_cast<QComboBox*>(ptr)->hasFrame();
+}
+
+void* QComboBox_IconSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QComboBox*>(ptr)->iconSize()).width(), static_cast<QSize>(static_cast<QComboBox*>(ptr)->iconSize()).height());
 }
 
 int QComboBox_InsertPolicy(void* ptr){
@@ -2683,6 +2838,14 @@ void* QComboBox_NewQComboBox(void* parent){
 	return new MyQComboBox(static_cast<QWidget*>(parent));
 }
 
+void QComboBox_ConnectActivated2(void* ptr){
+	QObject::connect(static_cast<QComboBox*>(ptr), static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::activated), static_cast<MyQComboBox*>(ptr), static_cast<void (MyQComboBox::*)(const QString &)>(&MyQComboBox::Signal_Activated2));;
+}
+
+void QComboBox_DisconnectActivated2(void* ptr){
+	QObject::disconnect(static_cast<QComboBox*>(ptr), static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::activated), static_cast<MyQComboBox*>(ptr), static_cast<void (MyQComboBox::*)(const QString &)>(&MyQComboBox::Signal_Activated2));;
+}
+
 void QComboBox_ConnectActivated(void* ptr){
 	QObject::connect(static_cast<QComboBox*>(ptr), static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), static_cast<MyQComboBox*>(ptr), static_cast<void (MyQComboBox::*)(int)>(&MyQComboBox::Signal_Activated));;
 }
@@ -2713,6 +2876,14 @@ void QComboBox_ClearEditText(void* ptr){
 
 void* QComboBox_Completer(void* ptr){
 	return static_cast<QComboBox*>(ptr)->completer();
+}
+
+void QComboBox_ConnectCurrentIndexChanged2(void* ptr){
+	QObject::connect(static_cast<QComboBox*>(ptr), static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::currentIndexChanged), static_cast<MyQComboBox*>(ptr), static_cast<void (MyQComboBox::*)(const QString &)>(&MyQComboBox::Signal_CurrentIndexChanged2));;
+}
+
+void QComboBox_DisconnectCurrentIndexChanged2(void* ptr){
+	QObject::disconnect(static_cast<QComboBox*>(ptr), static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::currentIndexChanged), static_cast<MyQComboBox*>(ptr), static_cast<void (MyQComboBox::*)(const QString &)>(&MyQComboBox::Signal_CurrentIndexChanged2));;
 }
 
 void QComboBox_ConnectCurrentIndexChanged(void* ptr){
@@ -2755,6 +2926,14 @@ void QComboBox_HidePopup(void* ptr){
 	static_cast<QComboBox*>(ptr)->hidePopup();
 }
 
+void QComboBox_ConnectHighlighted2(void* ptr){
+	QObject::connect(static_cast<QComboBox*>(ptr), static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::highlighted), static_cast<MyQComboBox*>(ptr), static_cast<void (MyQComboBox::*)(const QString &)>(&MyQComboBox::Signal_Highlighted2));;
+}
+
+void QComboBox_DisconnectHighlighted2(void* ptr){
+	QObject::disconnect(static_cast<QComboBox*>(ptr), static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::highlighted), static_cast<MyQComboBox*>(ptr), static_cast<void (MyQComboBox::*)(const QString &)>(&MyQComboBox::Signal_Highlighted2));;
+}
+
 void QComboBox_ConnectHighlighted(void* ptr){
 	QObject::connect(static_cast<QComboBox*>(ptr), static_cast<void (QComboBox::*)(int)>(&QComboBox::highlighted), static_cast<MyQComboBox*>(ptr), static_cast<void (MyQComboBox::*)(int)>(&MyQComboBox::Signal_Highlighted));;
 }
@@ -2791,12 +2970,20 @@ void* QComboBox_ItemDelegate(void* ptr){
 	return static_cast<QComboBox*>(ptr)->itemDelegate();
 }
 
+void* QComboBox_ItemIcon(void* ptr, int index){
+	return new QIcon(static_cast<QComboBox*>(ptr)->itemIcon(index));
+}
+
 char* QComboBox_ItemText(void* ptr, int index){
 	return static_cast<QComboBox*>(ptr)->itemText(index).toUtf8().data();
 }
 
 void* QComboBox_LineEdit(void* ptr){
 	return static_cast<QComboBox*>(ptr)->lineEdit();
+}
+
+void* QComboBox_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QComboBox*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QComboBox*>(ptr)->minimumSizeHint()).height());
 }
 
 void* QComboBox_Model(void* ptr){
@@ -2849,6 +3036,10 @@ void QComboBox_SetView(void* ptr, void* itemView){
 
 void QComboBox_ShowPopup(void* ptr){
 	static_cast<QComboBox*>(ptr)->showPopup();
+}
+
+void* QComboBox_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QComboBox*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QComboBox*>(ptr)->sizeHint()).height());
 }
 
 void* QComboBox_Validator(void* ptr){
@@ -2929,8 +3120,20 @@ int QCommonStyle_PixelMetric(void* ptr, int m, void* opt, void* widget){
 	return static_cast<QCommonStyle*>(ptr)->pixelMetric(static_cast<QStyle::PixelMetric>(m), static_cast<QStyleOption*>(opt), static_cast<QWidget*>(widget));
 }
 
+void* QCommonStyle_SizeFromContents(void* ptr, int ct, void* opt, void* csz, void* widget){
+	return new QSize(static_cast<QSize>(static_cast<QCommonStyle*>(ptr)->sizeFromContents(static_cast<QStyle::ContentsType>(ct), static_cast<QStyleOption*>(opt), *static_cast<QSize*>(csz), static_cast<QWidget*>(widget))).width(), static_cast<QSize>(static_cast<QCommonStyle*>(ptr)->sizeFromContents(static_cast<QStyle::ContentsType>(ct), static_cast<QStyleOption*>(opt), *static_cast<QSize*>(csz), static_cast<QWidget*>(widget))).height());
+}
+
 int QCommonStyle_StyleHint(void* ptr, int sh, void* opt, void* widget, void* hret){
 	return static_cast<QCommonStyle*>(ptr)->styleHint(static_cast<QStyle::StyleHint>(sh), static_cast<QStyleOption*>(opt), static_cast<QWidget*>(widget), static_cast<QStyleHintReturn*>(hret));
+}
+
+void* QCommonStyle_SubControlRect(void* ptr, int cc, void* opt, int sc, void* widget){
+	return new QRect(static_cast<QRect>(static_cast<QCommonStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(opt), static_cast<QStyle::SubControl>(sc), static_cast<QWidget*>(widget))).x(), static_cast<QRect>(static_cast<QCommonStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(opt), static_cast<QStyle::SubControl>(sc), static_cast<QWidget*>(widget))).y(), static_cast<QRect>(static_cast<QCommonStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(opt), static_cast<QStyle::SubControl>(sc), static_cast<QWidget*>(widget))).width(), static_cast<QRect>(static_cast<QCommonStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(opt), static_cast<QStyle::SubControl>(sc), static_cast<QWidget*>(widget))).height());
+}
+
+void* QCommonStyle_SubElementRect(void* ptr, int sr, void* opt, void* widget){
+	return new QRect(static_cast<QRect>(static_cast<QCommonStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(sr), static_cast<QStyleOption*>(opt), static_cast<QWidget*>(widget))).x(), static_cast<QRect>(static_cast<QCommonStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(sr), static_cast<QStyleOption*>(opt), static_cast<QWidget*>(widget))).y(), static_cast<QRect>(static_cast<QCommonStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(sr), static_cast<QStyleOption*>(opt), static_cast<QWidget*>(widget))).width(), static_cast<QRect>(static_cast<QCommonStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(sr), static_cast<QStyleOption*>(opt), static_cast<QWidget*>(widget))).height());
 }
 
 void QCommonStyle_Unpolish(void* ptr, void* widget){
@@ -2946,7 +3149,9 @@ public:
 	MyQCompleter(QAbstractItemModel *model, QObject *parent) : QCompleter(model, parent) {};
 	MyQCompleter(QObject *parent) : QCompleter(parent) {};
 	MyQCompleter(const QStringList &list, QObject *parent) : QCompleter(list, parent) {};
+	void Signal_Activated2(const QModelIndex & index) { callbackQCompleterActivated2(this->objectName().toUtf8().data(), index.internalPointer()); };
 	void Signal_Activated(const QString & text) { callbackQCompleterActivated(this->objectName().toUtf8().data(), text.toUtf8().data()); };
+	void Signal_Highlighted2(const QModelIndex & index) { callbackQCompleterHighlighted2(this->objectName().toUtf8().data(), index.internalPointer()); };
 	void Signal_Highlighted(const QString & text) { callbackQCompleterHighlighted(this->objectName().toUtf8().data(), text.toUtf8().data()); };
 protected:
 };
@@ -3035,6 +3240,14 @@ void* QCompleter_NewQCompleter3(char* list, void* parent){
 	return new MyQCompleter(QString(list).split(",,,", QString::SkipEmptyParts), static_cast<QObject*>(parent));
 }
 
+void QCompleter_ConnectActivated2(void* ptr){
+	QObject::connect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QModelIndex &)>(&QCompleter::activated), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QModelIndex &)>(&MyQCompleter::Signal_Activated2));;
+}
+
+void QCompleter_DisconnectActivated2(void* ptr){
+	QObject::disconnect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QModelIndex &)>(&QCompleter::activated), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QModelIndex &)>(&MyQCompleter::Signal_Activated2));;
+}
+
 void QCompleter_ConnectActivated(void* ptr){
 	QObject::connect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QString &)>(&QCompleter::activated), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QString &)>(&MyQCompleter::Signal_Activated));;
 }
@@ -3065,6 +3278,14 @@ void* QCompleter_CurrentIndex(void* ptr){
 
 int QCompleter_CurrentRow(void* ptr){
 	return static_cast<QCompleter*>(ptr)->currentRow();
+}
+
+void QCompleter_ConnectHighlighted2(void* ptr){
+	QObject::connect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QModelIndex &)>(&QCompleter::highlighted), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QModelIndex &)>(&MyQCompleter::Signal_Highlighted2));;
+}
+
+void QCompleter_DisconnectHighlighted2(void* ptr){
+	QObject::disconnect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QModelIndex &)>(&QCompleter::highlighted), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QModelIndex &)>(&MyQCompleter::Signal_Highlighted2));;
 }
 
 void QCompleter_ConnectHighlighted(void* ptr){
@@ -3456,6 +3677,10 @@ void QDateTimeEdit_SetTimeRange(void* ptr, void* min, void* max){
 	static_cast<QDateTimeEdit*>(ptr)->setTimeRange(*static_cast<QTime*>(min), *static_cast<QTime*>(max));
 }
 
+void* QDateTimeEdit_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QDateTimeEdit*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QDateTimeEdit*>(ptr)->sizeHint()).height());
+}
+
 void QDateTimeEdit_StepBy(void* ptr, int steps){
 	static_cast<QDateTimeEdit*>(ptr)->stepBy(steps);
 }
@@ -3473,6 +3698,14 @@ protected:
 	void resizeEvent(QResizeEvent * event) { if (!callbackQDesktopWidgetResizeEvent(this->objectName().toUtf8().data(), event)) { QDesktopWidget::resizeEvent(event); }; };
 };
 
+void* QDesktopWidget_AvailableGeometry2(void* ptr, void* widget){
+	return new QRect(static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(static_cast<QWidget*>(widget))).x(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(static_cast<QWidget*>(widget))).y(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(static_cast<QWidget*>(widget))).width(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(static_cast<QWidget*>(widget))).height());
+}
+
+void* QDesktopWidget_AvailableGeometry(void* ptr, int screen){
+	return new QRect(static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(screen)).x(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(screen)).y(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(screen)).width(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(screen)).height());
+}
+
 int QDesktopWidget_IsVirtualDesktop(void* ptr){
 	return static_cast<QDesktopWidget*>(ptr)->isVirtualDesktop();
 }
@@ -3485,12 +3718,24 @@ void* QDesktopWidget_Screen(void* ptr, int screen){
 	return static_cast<QDesktopWidget*>(ptr)->screen(screen);
 }
 
+void* QDesktopWidget_ScreenGeometry2(void* ptr, void* widget){
+	return new QRect(static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(static_cast<QWidget*>(widget))).x(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(static_cast<QWidget*>(widget))).y(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(static_cast<QWidget*>(widget))).width(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(static_cast<QWidget*>(widget))).height());
+}
+
+void* QDesktopWidget_ScreenGeometry(void* ptr, int screen){
+	return new QRect(static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(screen)).x(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(screen)).y(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(screen)).width(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(screen)).height());
+}
+
 int QDesktopWidget_ScreenNumber2(void* ptr, void* point){
 	return static_cast<QDesktopWidget*>(ptr)->screenNumber(*static_cast<QPoint*>(point));
 }
 
 int QDesktopWidget_ScreenNumber(void* ptr, void* widget){
 	return static_cast<QDesktopWidget*>(ptr)->screenNumber(static_cast<QWidget*>(widget));
+}
+
+void* QDesktopWidget_AvailableGeometry3(void* ptr, void* p){
+	return new QRect(static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(*static_cast<QPoint*>(p))).x(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(*static_cast<QPoint*>(p))).y(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(*static_cast<QPoint*>(p))).width(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->availableGeometry(*static_cast<QPoint*>(p))).height());
 }
 
 void QDesktopWidget_ConnectResized(void* ptr){
@@ -3511,6 +3756,10 @@ void QDesktopWidget_ConnectScreenCountChanged(void* ptr){
 
 void QDesktopWidget_DisconnectScreenCountChanged(void* ptr){
 	QObject::disconnect(static_cast<QDesktopWidget*>(ptr), static_cast<void (QDesktopWidget::*)(int)>(&QDesktopWidget::screenCountChanged), static_cast<MyQDesktopWidget*>(ptr), static_cast<void (MyQDesktopWidget::*)(int)>(&MyQDesktopWidget::Signal_ScreenCountChanged));;
+}
+
+void* QDesktopWidget_ScreenGeometry3(void* ptr, void* p){
+	return new QRect(static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(*static_cast<QPoint*>(p))).x(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(*static_cast<QPoint*>(p))).y(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(*static_cast<QPoint*>(p))).width(), static_cast<QRect>(static_cast<QDesktopWidget*>(ptr)->screenGeometry(*static_cast<QPoint*>(p))).height());
 }
 
 void QDesktopWidget_ConnectWorkAreaResized(void* ptr){
@@ -3559,6 +3808,14 @@ int QDial_Wrapping(void* ptr){
 
 void* QDial_NewQDial(void* parent){
 	return new MyQDial(static_cast<QWidget*>(parent));
+}
+
+void* QDial_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QDial*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QDial*>(ptr)->minimumSizeHint()).height());
+}
+
+void* QDial_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QDial*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QDial*>(ptr)->sizeHint()).height());
 }
 
 void QDial_DestroyQDial(void* ptr){
@@ -3632,6 +3889,10 @@ void QDialog_DisconnectFinished(void* ptr){
 	QObject::disconnect(static_cast<QDialog*>(ptr), static_cast<void (QDialog::*)(int)>(&QDialog::finished), static_cast<MyQDialog*>(ptr), static_cast<void (MyQDialog::*)(int)>(&MyQDialog::Signal_Finished));;
 }
 
+void* QDialog_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QDialog*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QDialog*>(ptr)->minimumSizeHint()).height());
+}
+
 void QDialog_Open(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "open");
 }
@@ -3654,6 +3915,10 @@ int QDialog_Result(void* ptr){
 
 void QDialog_SetVisible(void* ptr, int visible){
 	static_cast<QDialog*>(ptr)->setVisible(visible != 0);
+}
+
+void* QDialog_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QDialog*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QDialog*>(ptr)->sizeHint()).height());
 }
 
 void QDialog_DestroyQDialog(void* ptr){
@@ -3900,6 +4165,7 @@ void QDockWidget_DestroyQDockWidget(void* ptr){
 class MyQDoubleSpinBox: public QDoubleSpinBox {
 public:
 	MyQDoubleSpinBox(QWidget *parent) : QDoubleSpinBox(parent) {};
+	void Signal_ValueChanged2(const QString & text) { callbackQDoubleSpinBoxValueChanged2(this->objectName().toUtf8().data(), text.toUtf8().data()); };
 protected:
 };
 
@@ -3933,6 +4199,14 @@ char* QDoubleSpinBox_Suffix(void* ptr){
 
 void* QDoubleSpinBox_NewQDoubleSpinBox(void* parent){
 	return new MyQDoubleSpinBox(static_cast<QWidget*>(parent));
+}
+
+void QDoubleSpinBox_ConnectValueChanged2(void* ptr){
+	QObject::connect(static_cast<QDoubleSpinBox*>(ptr), static_cast<void (QDoubleSpinBox::*)(const QString &)>(&QDoubleSpinBox::valueChanged), static_cast<MyQDoubleSpinBox*>(ptr), static_cast<void (MyQDoubleSpinBox::*)(const QString &)>(&MyQDoubleSpinBox::Signal_ValueChanged2));;
+}
+
+void QDoubleSpinBox_DisconnectValueChanged2(void* ptr){
+	QObject::disconnect(static_cast<QDoubleSpinBox*>(ptr), static_cast<void (QDoubleSpinBox::*)(const QString &)>(&QDoubleSpinBox::valueChanged), static_cast<MyQDoubleSpinBox*>(ptr), static_cast<void (MyQDoubleSpinBox::*)(const QString &)>(&MyQDoubleSpinBox::Signal_ValueChanged2));;
 }
 
 void QDoubleSpinBox_DestroyQDoubleSpinBox(void* ptr){
@@ -3972,11 +4246,14 @@ public:
 	MyQFileDialog(QWidget *parent, Qt::WindowFlags flags) : QFileDialog(parent, flags) {};
 	MyQFileDialog(QWidget *parent, const QString &caption, const QString &directory, const QString &filter) : QFileDialog(parent, caption, directory, filter) {};
 	void Signal_CurrentChanged(const QString & path) { callbackQFileDialogCurrentChanged(this->objectName().toUtf8().data(), path.toUtf8().data()); };
+	void Signal_CurrentUrlChanged(const QUrl & url) { callbackQFileDialogCurrentUrlChanged(this->objectName().toUtf8().data(), new QUrl(url)); };
 	void Signal_DirectoryEntered(const QString & directory) { callbackQFileDialogDirectoryEntered(this->objectName().toUtf8().data(), directory.toUtf8().data()); };
+	void Signal_DirectoryUrlEntered(const QUrl & directory) { callbackQFileDialogDirectoryUrlEntered(this->objectName().toUtf8().data(), new QUrl(directory)); };
 	void Signal_FileSelected(const QString & file) { callbackQFileDialogFileSelected(this->objectName().toUtf8().data(), file.toUtf8().data()); };
 	void Signal_FilesSelected(const QStringList & selected) { callbackQFileDialogFilesSelected(this->objectName().toUtf8().data(), selected.join(",,,").toUtf8().data()); };
 	void Signal_FilterSelected(const QString & filter) { callbackQFileDialogFilterSelected(this->objectName().toUtf8().data(), filter.toUtf8().data()); };
 	void setVisible(bool visible) { if (!callbackQFileDialogSetVisible(this->objectName().toUtf8().data(), visible)) { QFileDialog::setVisible(visible); }; };
+	void Signal_UrlSelected(const QUrl & url) { callbackQFileDialogUrlSelected(this->objectName().toUtf8().data(), new QUrl(url)); };
 protected:
 	void accept() { if (!callbackQFileDialogAccept(this->objectName().toUtf8().data())) { QFileDialog::accept(); }; };
 	void changeEvent(QEvent * e) { if (!callbackQFileDialogChangeEvent(this->objectName().toUtf8().data(), e)) { QFileDialog::changeEvent(e); }; };
@@ -4071,6 +4348,14 @@ void QFileDialog_DisconnectCurrentChanged(void* ptr){
 	QObject::disconnect(static_cast<QFileDialog*>(ptr), static_cast<void (QFileDialog::*)(const QString &)>(&QFileDialog::currentChanged), static_cast<MyQFileDialog*>(ptr), static_cast<void (MyQFileDialog::*)(const QString &)>(&MyQFileDialog::Signal_CurrentChanged));;
 }
 
+void QFileDialog_ConnectCurrentUrlChanged(void* ptr){
+	QObject::connect(static_cast<QFileDialog*>(ptr), static_cast<void (QFileDialog::*)(const QUrl &)>(&QFileDialog::currentUrlChanged), static_cast<MyQFileDialog*>(ptr), static_cast<void (MyQFileDialog::*)(const QUrl &)>(&MyQFileDialog::Signal_CurrentUrlChanged));;
+}
+
+void QFileDialog_DisconnectCurrentUrlChanged(void* ptr){
+	QObject::disconnect(static_cast<QFileDialog*>(ptr), static_cast<void (QFileDialog::*)(const QUrl &)>(&QFileDialog::currentUrlChanged), static_cast<MyQFileDialog*>(ptr), static_cast<void (MyQFileDialog::*)(const QUrl &)>(&MyQFileDialog::Signal_CurrentUrlChanged));;
+}
+
 void* QFileDialog_Directory(void* ptr){
 	return new QDir(static_cast<QFileDialog*>(ptr)->directory());
 }
@@ -4081,6 +4366,18 @@ void QFileDialog_ConnectDirectoryEntered(void* ptr){
 
 void QFileDialog_DisconnectDirectoryEntered(void* ptr){
 	QObject::disconnect(static_cast<QFileDialog*>(ptr), static_cast<void (QFileDialog::*)(const QString &)>(&QFileDialog::directoryEntered), static_cast<MyQFileDialog*>(ptr), static_cast<void (MyQFileDialog::*)(const QString &)>(&MyQFileDialog::Signal_DirectoryEntered));;
+}
+
+void* QFileDialog_DirectoryUrl(void* ptr){
+	return new QUrl(static_cast<QFileDialog*>(ptr)->directoryUrl());
+}
+
+void QFileDialog_ConnectDirectoryUrlEntered(void* ptr){
+	QObject::connect(static_cast<QFileDialog*>(ptr), static_cast<void (QFileDialog::*)(const QUrl &)>(&QFileDialog::directoryUrlEntered), static_cast<MyQFileDialog*>(ptr), static_cast<void (MyQFileDialog::*)(const QUrl &)>(&MyQFileDialog::Signal_DirectoryUrlEntered));;
+}
+
+void QFileDialog_DisconnectDirectoryUrlEntered(void* ptr){
+	QObject::disconnect(static_cast<QFileDialog*>(ptr), static_cast<void (QFileDialog::*)(const QUrl &)>(&QFileDialog::directoryUrlEntered), static_cast<MyQFileDialog*>(ptr), static_cast<void (MyQFileDialog::*)(const QUrl &)>(&MyQFileDialog::Signal_DirectoryUrlEntered));;
 }
 
 void QFileDialog_ConnectFileSelected(void* ptr){
@@ -4115,6 +4412,10 @@ char* QFileDialog_QFileDialog_GetExistingDirectory(void* parent, char* caption, 
 	return QFileDialog::getExistingDirectory(static_cast<QWidget*>(parent), QString(caption), QString(dir), static_cast<QFileDialog::Option>(options)).toUtf8().data();
 }
 
+void* QFileDialog_QFileDialog_GetExistingDirectoryUrl(void* parent, char* caption, void* dir, int options, char* supportedSchemes){
+	return new QUrl(QFileDialog::getExistingDirectoryUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split(",,,", QString::SkipEmptyParts)));
+}
+
 char* QFileDialog_QFileDialog_GetOpenFileName(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, int options){
 	return QFileDialog::getOpenFileName(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).toUtf8().data();
 }
@@ -4123,8 +4424,16 @@ char* QFileDialog_QFileDialog_GetOpenFileNames(void* parent, char* caption, char
 	return QFileDialog::getOpenFileNames(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).join(",,,").toUtf8().data();
 }
 
+void* QFileDialog_QFileDialog_GetOpenFileUrl(void* parent, char* caption, void* dir, char* filter, char* selectedFilter, int options, char* supportedSchemes){
+	return new QUrl(QFileDialog::getOpenFileUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split(",,,", QString::SkipEmptyParts)));
+}
+
 char* QFileDialog_QFileDialog_GetSaveFileName(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, int options){
 	return QFileDialog::getSaveFileName(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).toUtf8().data();
+}
+
+void* QFileDialog_QFileDialog_GetSaveFileUrl(void* parent, char* caption, void* dir, char* filter, char* selectedFilter, int options, char* supportedSchemes){
+	return new QUrl(QFileDialog::getSaveFileUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split(",,,", QString::SkipEmptyParts)));
 }
 
 char* QFileDialog_History(void* ptr){
@@ -4251,6 +4560,14 @@ int QFileDialog_TestOption(void* ptr, int option){
 	return static_cast<QFileDialog*>(ptr)->testOption(static_cast<QFileDialog::Option>(option));
 }
 
+void QFileDialog_ConnectUrlSelected(void* ptr){
+	QObject::connect(static_cast<QFileDialog*>(ptr), static_cast<void (QFileDialog::*)(const QUrl &)>(&QFileDialog::urlSelected), static_cast<MyQFileDialog*>(ptr), static_cast<void (MyQFileDialog::*)(const QUrl &)>(&MyQFileDialog::Signal_UrlSelected));;
+}
+
+void QFileDialog_DisconnectUrlSelected(void* ptr){
+	QObject::disconnect(static_cast<QFileDialog*>(ptr), static_cast<void (QFileDialog::*)(const QUrl &)>(&QFileDialog::urlSelected), static_cast<MyQFileDialog*>(ptr), static_cast<void (MyQFileDialog::*)(const QUrl &)>(&MyQFileDialog::Signal_UrlSelected));;
+}
+
 void QFileDialog_DestroyQFileDialog(void* ptr){
 	static_cast<QFileDialog*>(ptr)->~QFileDialog();
 }
@@ -4266,6 +4583,10 @@ protected:
 
 void* QFileIconProvider_NewQFileIconProvider(){
 	return new MyQFileIconProvider();
+}
+
+void* QFileIconProvider_Icon(void* ptr, int ty){
+	return new QIcon(static_cast<QFileIconProvider*>(ptr)->icon(static_cast<QFileIconProvider::IconType>(ty)));
 }
 
 int QFileIconProvider_Options(void* ptr){
@@ -4374,6 +4695,10 @@ int QFileSystemModel_DropMimeData(void* ptr, void* data, int action, int row, in
 
 void QFileSystemModel_FetchMore(void* ptr, void* parent){
 	static_cast<QFileSystemModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+void* QFileSystemModel_FileIcon(void* ptr, void* index){
+	return new QIcon(static_cast<QFileSystemModel*>(ptr)->fileIcon(*static_cast<QModelIndex*>(index)));
 }
 
 char* QFileSystemModel_FileName(void* ptr, void* index){
@@ -4488,6 +4813,10 @@ void* QFileSystemModel_SetRootPath(void* ptr, char* newPath){
 	return static_cast<QFileSystemModel*>(ptr)->setRootPath(QString(newPath)).internalPointer();
 }
 
+long long QFileSystemModel_Size(void* ptr, void* index){
+	return static_cast<long long>(static_cast<QFileSystemModel*>(ptr)->size(*static_cast<QModelIndex*>(index)));
+}
+
 void QFileSystemModel_Sort(void* ptr, int column, int order){
 	static_cast<QFileSystemModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
 }
@@ -4557,6 +4886,10 @@ void* QFontComboBox_NewQFontComboBox(void* parent){
 	return new MyQFontComboBox(static_cast<QWidget*>(parent));
 }
 
+void* QFontComboBox_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QFontComboBox*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QFontComboBox*>(ptr)->sizeHint()).height());
+}
+
 void QFontComboBox_DestroyQFontComboBox(void* ptr){
 	static_cast<QFontComboBox*>(ptr)->~QFontComboBox();
 }
@@ -4612,6 +4945,7 @@ public:
 	MyQFormLayout(QWidget *parent) : QFormLayout(parent) {};
 	void addItem(QLayoutItem * item) { if (!callbackQFormLayoutAddItem(this->objectName().toUtf8().data(), item)) { QFormLayout::addItem(item); }; };
 	void invalidate() { if (!callbackQFormLayoutInvalidate(this->objectName().toUtf8().data())) { QFormLayout::invalidate(); }; };
+	void setGeometry(const QRect & rect) { if (!callbackQFormLayoutSetGeometry(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()))) { QFormLayout::setGeometry(rect); }; };
 protected:
 };
 
@@ -4739,10 +5073,6 @@ void QFormLayout_Invalidate(void* ptr){
 	static_cast<QFormLayout*>(ptr)->invalidate();
 }
 
-void* QFormLayout_ItemAt2(void* ptr, int index){
-	return static_cast<QFormLayout*>(ptr)->itemAt(index);
-}
-
 void* QFormLayout_ItemAt(void* ptr, int row, int role){
 	return static_cast<QFormLayout*>(ptr)->itemAt(row, static_cast<QFormLayout::ItemRole>(role));
 }
@@ -4755,8 +5085,16 @@ void* QFormLayout_LabelForField(void* ptr, void* field){
 	return static_cast<QFormLayout*>(ptr)->labelForField(static_cast<QWidget*>(field));
 }
 
+void* QFormLayout_MinimumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QFormLayout*>(ptr)->minimumSize()).width(), static_cast<QSize>(static_cast<QFormLayout*>(ptr)->minimumSize()).height());
+}
+
 int QFormLayout_RowCount(void* ptr){
 	return static_cast<QFormLayout*>(ptr)->rowCount();
+}
+
+void QFormLayout_SetGeometry(void* ptr, void* rect){
+	static_cast<QFormLayout*>(ptr)->setGeometry(*static_cast<QRect*>(rect));
 }
 
 void QFormLayout_SetItem(void* ptr, int row, int role, void* item){
@@ -4773,6 +5111,10 @@ void QFormLayout_SetSpacing(void* ptr, int spacing){
 
 void QFormLayout_SetWidget(void* ptr, int row, int role, void* widget){
 	static_cast<QFormLayout*>(ptr)->setWidget(row, static_cast<QFormLayout::ItemRole>(role), static_cast<QWidget*>(widget));
+}
+
+void* QFormLayout_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QFormLayout*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QFormLayout*>(ptr)->sizeHint()).height());
 }
 
 int QFormLayout_Spacing(void* ptr){
@@ -4794,6 +5136,10 @@ protected:
 	void changeEvent(QEvent * ev) { if (!callbackQFrameChangeEvent(this->objectName().toUtf8().data(), ev)) { QFrame::changeEvent(ev); }; };
 	void paintEvent(QPaintEvent * v) { if (!callbackQFramePaintEvent(this->objectName().toUtf8().data(), v)) { QFrame::paintEvent(v); }; };
 };
+
+void* QFrame_FrameRect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QFrame*>(ptr)->frameRect()).x(), static_cast<QRect>(static_cast<QFrame*>(ptr)->frameRect()).y(), static_cast<QRect>(static_cast<QFrame*>(ptr)->frameRect()).width(), static_cast<QRect>(static_cast<QFrame*>(ptr)->frameRect()).height());
+}
 
 int QFrame_FrameShadow(void* ptr){
 	return static_cast<QFrame*>(ptr)->frameShadow();
@@ -4847,6 +5193,10 @@ void QFrame_SetFrameStyle(void* ptr, int style){
 	static_cast<QFrame*>(ptr)->setFrameStyle(style);
 }
 
+void* QFrame_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QFrame*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QFrame*>(ptr)->sizeHint()).height());
+}
+
 void QFrame_DestroyQFrame(void* ptr){
 	static_cast<QFrame*>(ptr)->~QFrame();
 }
@@ -4869,6 +5219,10 @@ void QGesture_SetGestureCancelPolicy(void* ptr, int policy){
 
 void QGesture_SetHotSpot(void* ptr, void* value){
 	static_cast<QGesture*>(ptr)->setHotSpot(*static_cast<QPointF*>(value));
+}
+
+int QGesture_State(void* ptr){
+	return static_cast<QGesture*>(ptr)->state();
 }
 
 void QGesture_UnsetHotSpot(void* ptr){
@@ -4932,7 +5286,7 @@ void QGraphicsAnchor_SetSizePolicy(void* ptr, int policy){
 }
 
 void QGraphicsAnchor_SetSpacing(void* ptr, double spacing){
-	static_cast<QGraphicsAnchor*>(ptr)->setSpacing(static_cast<qreal>(spacing));
+	static_cast<QGraphicsAnchor*>(ptr)->setSpacing(static_cast<double>(spacing));
 }
 
 int QGraphicsAnchor_SizePolicy(void* ptr){
@@ -5003,15 +5357,15 @@ void QGraphicsAnchorLayout_RemoveAt(void* ptr, int index){
 }
 
 void QGraphicsAnchorLayout_SetHorizontalSpacing(void* ptr, double spacing){
-	static_cast<QGraphicsAnchorLayout*>(ptr)->setHorizontalSpacing(static_cast<qreal>(spacing));
+	static_cast<QGraphicsAnchorLayout*>(ptr)->setHorizontalSpacing(static_cast<double>(spacing));
 }
 
 void QGraphicsAnchorLayout_SetSpacing(void* ptr, double spacing){
-	static_cast<QGraphicsAnchorLayout*>(ptr)->setSpacing(static_cast<qreal>(spacing));
+	static_cast<QGraphicsAnchorLayout*>(ptr)->setSpacing(static_cast<double>(spacing));
 }
 
 void QGraphicsAnchorLayout_SetVerticalSpacing(void* ptr, double spacing){
-	static_cast<QGraphicsAnchorLayout*>(ptr)->setVerticalSpacing(static_cast<qreal>(spacing));
+	static_cast<QGraphicsAnchorLayout*>(ptr)->setVerticalSpacing(static_cast<double>(spacing));
 }
 
 double QGraphicsAnchorLayout_VerticalSpacing(void* ptr){
@@ -5034,6 +5388,7 @@ class MyQGraphicsBlurEffect: public QGraphicsBlurEffect {
 public:
 	MyQGraphicsBlurEffect(QObject *parent) : QGraphicsBlurEffect(parent) {};
 	void Signal_BlurHintsChanged(QGraphicsBlurEffect::BlurHints hints) { callbackQGraphicsBlurEffectBlurHintsChanged(this->objectName().toUtf8().data(), hints); };
+	void Signal_BlurRadiusChanged(qreal radius) { callbackQGraphicsBlurEffectBlurRadiusChanged(this->objectName().toUtf8().data(), static_cast<double>(radius)); };
 protected:
 };
 
@@ -5050,7 +5405,7 @@ void QGraphicsBlurEffect_SetBlurHints(void* ptr, int hints){
 }
 
 void QGraphicsBlurEffect_SetBlurRadius(void* ptr, double blurRadius){
-	QMetaObject::invokeMethod(static_cast<QGraphicsBlurEffect*>(ptr), "setBlurRadius", Q_ARG(qreal, static_cast<qreal>(blurRadius)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsBlurEffect*>(ptr), "setBlurRadius", Q_ARG(qreal, static_cast<double>(blurRadius)));
 }
 
 void* QGraphicsBlurEffect_NewQGraphicsBlurEffect(void* parent){
@@ -5065,6 +5420,14 @@ void QGraphicsBlurEffect_DisconnectBlurHintsChanged(void* ptr){
 	QObject::disconnect(static_cast<QGraphicsBlurEffect*>(ptr), static_cast<void (QGraphicsBlurEffect::*)(QGraphicsBlurEffect::BlurHints)>(&QGraphicsBlurEffect::blurHintsChanged), static_cast<MyQGraphicsBlurEffect*>(ptr), static_cast<void (MyQGraphicsBlurEffect::*)(QGraphicsBlurEffect::BlurHints)>(&MyQGraphicsBlurEffect::Signal_BlurHintsChanged));;
 }
 
+void QGraphicsBlurEffect_ConnectBlurRadiusChanged(void* ptr){
+	QObject::connect(static_cast<QGraphicsBlurEffect*>(ptr), static_cast<void (QGraphicsBlurEffect::*)(qreal)>(&QGraphicsBlurEffect::blurRadiusChanged), static_cast<MyQGraphicsBlurEffect*>(ptr), static_cast<void (MyQGraphicsBlurEffect::*)(qreal)>(&MyQGraphicsBlurEffect::Signal_BlurRadiusChanged));;
+}
+
+void QGraphicsBlurEffect_DisconnectBlurRadiusChanged(void* ptr){
+	QObject::disconnect(static_cast<QGraphicsBlurEffect*>(ptr), static_cast<void (QGraphicsBlurEffect::*)(qreal)>(&QGraphicsBlurEffect::blurRadiusChanged), static_cast<MyQGraphicsBlurEffect*>(ptr), static_cast<void (MyQGraphicsBlurEffect::*)(qreal)>(&MyQGraphicsBlurEffect::Signal_BlurRadiusChanged));;
+}
+
 void QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(void* ptr){
 	static_cast<QGraphicsBlurEffect*>(ptr)->~QGraphicsBlurEffect();
 }
@@ -5073,6 +5436,7 @@ class MyQGraphicsColorizeEffect: public QGraphicsColorizeEffect {
 public:
 	MyQGraphicsColorizeEffect(QObject *parent) : QGraphicsColorizeEffect(parent) {};
 	void Signal_ColorChanged(const QColor & color) { callbackQGraphicsColorizeEffectColorChanged(this->objectName().toUtf8().data(), new QColor(color)); };
+	void Signal_StrengthChanged(qreal strength) { callbackQGraphicsColorizeEffectStrengthChanged(this->objectName().toUtf8().data(), static_cast<double>(strength)); };
 protected:
 };
 
@@ -5085,7 +5449,7 @@ void QGraphicsColorizeEffect_SetColor(void* ptr, void* c){
 }
 
 void QGraphicsColorizeEffect_SetStrength(void* ptr, double strength){
-	QMetaObject::invokeMethod(static_cast<QGraphicsColorizeEffect*>(ptr), "setStrength", Q_ARG(qreal, static_cast<qreal>(strength)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsColorizeEffect*>(ptr), "setStrength", Q_ARG(qreal, static_cast<double>(strength)));
 }
 
 double QGraphicsColorizeEffect_Strength(void* ptr){
@@ -5104,6 +5468,14 @@ void QGraphicsColorizeEffect_DisconnectColorChanged(void* ptr){
 	QObject::disconnect(static_cast<QGraphicsColorizeEffect*>(ptr), static_cast<void (QGraphicsColorizeEffect::*)(const QColor &)>(&QGraphicsColorizeEffect::colorChanged), static_cast<MyQGraphicsColorizeEffect*>(ptr), static_cast<void (MyQGraphicsColorizeEffect::*)(const QColor &)>(&MyQGraphicsColorizeEffect::Signal_ColorChanged));;
 }
 
+void QGraphicsColorizeEffect_ConnectStrengthChanged(void* ptr){
+	QObject::connect(static_cast<QGraphicsColorizeEffect*>(ptr), static_cast<void (QGraphicsColorizeEffect::*)(qreal)>(&QGraphicsColorizeEffect::strengthChanged), static_cast<MyQGraphicsColorizeEffect*>(ptr), static_cast<void (MyQGraphicsColorizeEffect::*)(qreal)>(&MyQGraphicsColorizeEffect::Signal_StrengthChanged));;
+}
+
+void QGraphicsColorizeEffect_DisconnectStrengthChanged(void* ptr){
+	QObject::disconnect(static_cast<QGraphicsColorizeEffect*>(ptr), static_cast<void (QGraphicsColorizeEffect::*)(qreal)>(&QGraphicsColorizeEffect::strengthChanged), static_cast<MyQGraphicsColorizeEffect*>(ptr), static_cast<void (MyQGraphicsColorizeEffect::*)(qreal)>(&MyQGraphicsColorizeEffect::Signal_StrengthChanged));;
+}
+
 void QGraphicsColorizeEffect_DestroyQGraphicsColorizeEffect(void* ptr){
 	static_cast<QGraphicsColorizeEffect*>(ptr)->~QGraphicsColorizeEffect();
 }
@@ -5111,6 +5483,7 @@ void QGraphicsColorizeEffect_DestroyQGraphicsColorizeEffect(void* ptr){
 class MyQGraphicsDropShadowEffect: public QGraphicsDropShadowEffect {
 public:
 	MyQGraphicsDropShadowEffect(QObject *parent) : QGraphicsDropShadowEffect(parent) {};
+	void Signal_BlurRadiusChanged(qreal blurRadius) { callbackQGraphicsDropShadowEffectBlurRadiusChanged(this->objectName().toUtf8().data(), static_cast<double>(blurRadius)); };
 	void Signal_ColorChanged(const QColor & color) { callbackQGraphicsDropShadowEffectColorChanged(this->objectName().toUtf8().data(), new QColor(color)); };
 protected:
 };
@@ -5124,7 +5497,7 @@ void* QGraphicsDropShadowEffect_Color(void* ptr){
 }
 
 void QGraphicsDropShadowEffect_SetBlurRadius(void* ptr, double blurRadius){
-	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setBlurRadius", Q_ARG(qreal, static_cast<qreal>(blurRadius)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setBlurRadius", Q_ARG(qreal, static_cast<double>(blurRadius)));
 }
 
 void QGraphicsDropShadowEffect_SetColor(void* ptr, void* color){
@@ -5139,6 +5512,14 @@ void* QGraphicsDropShadowEffect_NewQGraphicsDropShadowEffect(void* parent){
 	return new MyQGraphicsDropShadowEffect(static_cast<QObject*>(parent));
 }
 
+void QGraphicsDropShadowEffect_ConnectBlurRadiusChanged(void* ptr){
+	QObject::connect(static_cast<QGraphicsDropShadowEffect*>(ptr), static_cast<void (QGraphicsDropShadowEffect::*)(qreal)>(&QGraphicsDropShadowEffect::blurRadiusChanged), static_cast<MyQGraphicsDropShadowEffect*>(ptr), static_cast<void (MyQGraphicsDropShadowEffect::*)(qreal)>(&MyQGraphicsDropShadowEffect::Signal_BlurRadiusChanged));;
+}
+
+void QGraphicsDropShadowEffect_DisconnectBlurRadiusChanged(void* ptr){
+	QObject::disconnect(static_cast<QGraphicsDropShadowEffect*>(ptr), static_cast<void (QGraphicsDropShadowEffect::*)(qreal)>(&QGraphicsDropShadowEffect::blurRadiusChanged), static_cast<MyQGraphicsDropShadowEffect*>(ptr), static_cast<void (MyQGraphicsDropShadowEffect::*)(qreal)>(&MyQGraphicsDropShadowEffect::Signal_BlurRadiusChanged));;
+}
+
 void QGraphicsDropShadowEffect_ConnectColorChanged(void* ptr){
 	QObject::connect(static_cast<QGraphicsDropShadowEffect*>(ptr), static_cast<void (QGraphicsDropShadowEffect::*)(const QColor &)>(&QGraphicsDropShadowEffect::colorChanged), static_cast<MyQGraphicsDropShadowEffect*>(ptr), static_cast<void (MyQGraphicsDropShadowEffect::*)(const QColor &)>(&MyQGraphicsDropShadowEffect::Signal_ColorChanged));;
 }
@@ -5148,19 +5529,19 @@ void QGraphicsDropShadowEffect_DisconnectColorChanged(void* ptr){
 }
 
 void QGraphicsDropShadowEffect_SetOffset3(void* ptr, double d){
-	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setOffset", Q_ARG(qreal, static_cast<qreal>(d)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setOffset", Q_ARG(qreal, static_cast<double>(d)));
 }
 
 void QGraphicsDropShadowEffect_SetOffset2(void* ptr, double dx, double dy){
-	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setOffset", Q_ARG(qreal, static_cast<qreal>(dx)), Q_ARG(qreal, static_cast<qreal>(dy)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setOffset", Q_ARG(qreal, static_cast<double>(dx)), Q_ARG(qreal, static_cast<double>(dy)));
 }
 
 void QGraphicsDropShadowEffect_SetXOffset(void* ptr, double dx){
-	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setXOffset", Q_ARG(qreal, static_cast<qreal>(dx)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setXOffset", Q_ARG(qreal, static_cast<double>(dx)));
 }
 
 void QGraphicsDropShadowEffect_SetYOffset(void* ptr, double dy){
-	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setYOffset", Q_ARG(qreal, static_cast<qreal>(dy)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setYOffset", Q_ARG(qreal, static_cast<double>(dy)));
 }
 
 double QGraphicsDropShadowEffect_XOffset(void* ptr){
@@ -5201,7 +5582,7 @@ void QGraphicsEllipseItem_SetRect(void* ptr, void* rect){
 }
 
 void QGraphicsEllipseItem_SetRect2(void* ptr, double x, double y, double width, double height){
-	static_cast<QGraphicsEllipseItem*>(ptr)->setRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(width), static_cast<qreal>(height));
+	static_cast<QGraphicsEllipseItem*>(ptr)->setRect(static_cast<double>(x), static_cast<double>(y), static_cast<double>(width), static_cast<double>(height));
 }
 
 void QGraphicsEllipseItem_SetSpanAngle(void* ptr, int angle){
@@ -5303,10 +5684,6 @@ void QGraphicsGridLayout_Invalidate(void* ptr){
 	static_cast<QGraphicsGridLayout*>(ptr)->invalidate();
 }
 
-void* QGraphicsGridLayout_ItemAt2(void* ptr, int index){
-	return static_cast<QGraphicsGridLayout*>(ptr)->itemAt(index);
-}
-
 void* QGraphicsGridLayout_ItemAt(void* ptr, int row, int column){
 	return static_cast<QGraphicsGridLayout*>(ptr)->itemAt(row, column);
 }
@@ -5356,23 +5733,23 @@ void QGraphicsGridLayout_SetColumnAlignment(void* ptr, int column, int alignment
 }
 
 void QGraphicsGridLayout_SetColumnFixedWidth(void* ptr, int column, double width){
-	static_cast<QGraphicsGridLayout*>(ptr)->setColumnFixedWidth(column, static_cast<qreal>(width));
+	static_cast<QGraphicsGridLayout*>(ptr)->setColumnFixedWidth(column, static_cast<double>(width));
 }
 
 void QGraphicsGridLayout_SetColumnMaximumWidth(void* ptr, int column, double width){
-	static_cast<QGraphicsGridLayout*>(ptr)->setColumnMaximumWidth(column, static_cast<qreal>(width));
+	static_cast<QGraphicsGridLayout*>(ptr)->setColumnMaximumWidth(column, static_cast<double>(width));
 }
 
 void QGraphicsGridLayout_SetColumnMinimumWidth(void* ptr, int column, double width){
-	static_cast<QGraphicsGridLayout*>(ptr)->setColumnMinimumWidth(column, static_cast<qreal>(width));
+	static_cast<QGraphicsGridLayout*>(ptr)->setColumnMinimumWidth(column, static_cast<double>(width));
 }
 
 void QGraphicsGridLayout_SetColumnPreferredWidth(void* ptr, int column, double width){
-	static_cast<QGraphicsGridLayout*>(ptr)->setColumnPreferredWidth(column, static_cast<qreal>(width));
+	static_cast<QGraphicsGridLayout*>(ptr)->setColumnPreferredWidth(column, static_cast<double>(width));
 }
 
 void QGraphicsGridLayout_SetColumnSpacing(void* ptr, int column, double spacing){
-	static_cast<QGraphicsGridLayout*>(ptr)->setColumnSpacing(column, static_cast<qreal>(spacing));
+	static_cast<QGraphicsGridLayout*>(ptr)->setColumnSpacing(column, static_cast<double>(spacing));
 }
 
 void QGraphicsGridLayout_SetColumnStretchFactor(void* ptr, int column, int stretch){
@@ -5380,7 +5757,7 @@ void QGraphicsGridLayout_SetColumnStretchFactor(void* ptr, int column, int stret
 }
 
 void QGraphicsGridLayout_SetHorizontalSpacing(void* ptr, double spacing){
-	static_cast<QGraphicsGridLayout*>(ptr)->setHorizontalSpacing(static_cast<qreal>(spacing));
+	static_cast<QGraphicsGridLayout*>(ptr)->setHorizontalSpacing(static_cast<double>(spacing));
 }
 
 void QGraphicsGridLayout_SetRowAlignment(void* ptr, int row, int alignment){
@@ -5388,23 +5765,23 @@ void QGraphicsGridLayout_SetRowAlignment(void* ptr, int row, int alignment){
 }
 
 void QGraphicsGridLayout_SetRowFixedHeight(void* ptr, int row, double height){
-	static_cast<QGraphicsGridLayout*>(ptr)->setRowFixedHeight(row, static_cast<qreal>(height));
+	static_cast<QGraphicsGridLayout*>(ptr)->setRowFixedHeight(row, static_cast<double>(height));
 }
 
 void QGraphicsGridLayout_SetRowMaximumHeight(void* ptr, int row, double height){
-	static_cast<QGraphicsGridLayout*>(ptr)->setRowMaximumHeight(row, static_cast<qreal>(height));
+	static_cast<QGraphicsGridLayout*>(ptr)->setRowMaximumHeight(row, static_cast<double>(height));
 }
 
 void QGraphicsGridLayout_SetRowMinimumHeight(void* ptr, int row, double height){
-	static_cast<QGraphicsGridLayout*>(ptr)->setRowMinimumHeight(row, static_cast<qreal>(height));
+	static_cast<QGraphicsGridLayout*>(ptr)->setRowMinimumHeight(row, static_cast<double>(height));
 }
 
 void QGraphicsGridLayout_SetRowPreferredHeight(void* ptr, int row, double height){
-	static_cast<QGraphicsGridLayout*>(ptr)->setRowPreferredHeight(row, static_cast<qreal>(height));
+	static_cast<QGraphicsGridLayout*>(ptr)->setRowPreferredHeight(row, static_cast<double>(height));
 }
 
 void QGraphicsGridLayout_SetRowSpacing(void* ptr, int row, double spacing){
-	static_cast<QGraphicsGridLayout*>(ptr)->setRowSpacing(row, static_cast<qreal>(spacing));
+	static_cast<QGraphicsGridLayout*>(ptr)->setRowSpacing(row, static_cast<double>(spacing));
 }
 
 void QGraphicsGridLayout_SetRowStretchFactor(void* ptr, int row, int stretch){
@@ -5412,11 +5789,11 @@ void QGraphicsGridLayout_SetRowStretchFactor(void* ptr, int row, int stretch){
 }
 
 void QGraphicsGridLayout_SetSpacing(void* ptr, double spacing){
-	static_cast<QGraphicsGridLayout*>(ptr)->setSpacing(static_cast<qreal>(spacing));
+	static_cast<QGraphicsGridLayout*>(ptr)->setSpacing(static_cast<double>(spacing));
 }
 
 void QGraphicsGridLayout_SetVerticalSpacing(void* ptr, double spacing){
-	static_cast<QGraphicsGridLayout*>(ptr)->setVerticalSpacing(static_cast<qreal>(spacing));
+	static_cast<QGraphicsGridLayout*>(ptr)->setVerticalSpacing(static_cast<double>(spacing));
 }
 
 double QGraphicsGridLayout_VerticalSpacing(void* ptr){
@@ -5502,7 +5879,7 @@ void* QGraphicsLineItem_NewQGraphicsLineItem2(void* line, void* parent){
 }
 
 void* QGraphicsLineItem_NewQGraphicsLineItem3(double x1, double y1, double x2, double y2, void* parent){
-	return new MyQGraphicsLineItem(static_cast<qreal>(x1), static_cast<qreal>(y1), static_cast<qreal>(x2), static_cast<qreal>(y2), static_cast<QGraphicsItem*>(parent));
+	return new MyQGraphicsLineItem(static_cast<double>(x1), static_cast<double>(y1), static_cast<double>(x2), static_cast<double>(y2), static_cast<QGraphicsItem*>(parent));
 }
 
 int QGraphicsLineItem_Contains(void* ptr, void* point){
@@ -5522,7 +5899,7 @@ void QGraphicsLineItem_SetLine(void* ptr, void* line){
 }
 
 void QGraphicsLineItem_SetLine2(void* ptr, double x1, double y1, double x2, double y2){
-	static_cast<QGraphicsLineItem*>(ptr)->setLine(static_cast<qreal>(x1), static_cast<qreal>(y1), static_cast<qreal>(x2), static_cast<qreal>(y2));
+	static_cast<QGraphicsLineItem*>(ptr)->setLine(static_cast<double>(x1), static_cast<double>(y1), static_cast<double>(x2), static_cast<double>(y2));
 }
 
 void QGraphicsLineItem_SetPen(void* ptr, void* pen){
@@ -5618,7 +5995,7 @@ void QGraphicsLinearLayout_SetAlignment(void* ptr, void* item, int alignment){
 }
 
 void QGraphicsLinearLayout_SetItemSpacing(void* ptr, int index, double spacing){
-	static_cast<QGraphicsLinearLayout*>(ptr)->setItemSpacing(index, static_cast<qreal>(spacing));
+	static_cast<QGraphicsLinearLayout*>(ptr)->setItemSpacing(index, static_cast<double>(spacing));
 }
 
 void QGraphicsLinearLayout_SetOrientation(void* ptr, int orientation){
@@ -5626,7 +6003,7 @@ void QGraphicsLinearLayout_SetOrientation(void* ptr, int orientation){
 }
 
 void QGraphicsLinearLayout_SetSpacing(void* ptr, double spacing){
-	static_cast<QGraphicsLinearLayout*>(ptr)->setSpacing(static_cast<qreal>(spacing));
+	static_cast<QGraphicsLinearLayout*>(ptr)->setSpacing(static_cast<double>(spacing));
 }
 
 void QGraphicsLinearLayout_SetStretchFactor(void* ptr, void* item, int stretch){
@@ -5754,6 +6131,7 @@ void QGraphicsObject_DestroyQGraphicsObject(void* ptr){
 class MyQGraphicsOpacityEffect: public QGraphicsOpacityEffect {
 public:
 	MyQGraphicsOpacityEffect(QObject *parent) : QGraphicsOpacityEffect(parent) {};
+	void Signal_OpacityChanged(qreal opacity) { callbackQGraphicsOpacityEffectOpacityChanged(this->objectName().toUtf8().data(), static_cast<double>(opacity)); };
 	void Signal_OpacityMaskChanged(const QBrush & mask) { callbackQGraphicsOpacityEffectOpacityMaskChanged(this->objectName().toUtf8().data(), new QBrush(mask)); };
 protected:
 };
@@ -5767,7 +6145,7 @@ void* QGraphicsOpacityEffect_OpacityMask(void* ptr){
 }
 
 void QGraphicsOpacityEffect_SetOpacity(void* ptr, double opacity){
-	QMetaObject::invokeMethod(static_cast<QGraphicsOpacityEffect*>(ptr), "setOpacity", Q_ARG(qreal, static_cast<qreal>(opacity)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsOpacityEffect*>(ptr), "setOpacity", Q_ARG(qreal, static_cast<double>(opacity)));
 }
 
 void QGraphicsOpacityEffect_SetOpacityMask(void* ptr, void* mask){
@@ -5776,6 +6154,14 @@ void QGraphicsOpacityEffect_SetOpacityMask(void* ptr, void* mask){
 
 void* QGraphicsOpacityEffect_NewQGraphicsOpacityEffect(void* parent){
 	return new MyQGraphicsOpacityEffect(static_cast<QObject*>(parent));
+}
+
+void QGraphicsOpacityEffect_ConnectOpacityChanged(void* ptr){
+	QObject::connect(static_cast<QGraphicsOpacityEffect*>(ptr), static_cast<void (QGraphicsOpacityEffect::*)(qreal)>(&QGraphicsOpacityEffect::opacityChanged), static_cast<MyQGraphicsOpacityEffect*>(ptr), static_cast<void (MyQGraphicsOpacityEffect::*)(qreal)>(&MyQGraphicsOpacityEffect::Signal_OpacityChanged));;
+}
+
+void QGraphicsOpacityEffect_DisconnectOpacityChanged(void* ptr){
+	QObject::disconnect(static_cast<QGraphicsOpacityEffect*>(ptr), static_cast<void (QGraphicsOpacityEffect::*)(qreal)>(&QGraphicsOpacityEffect::opacityChanged), static_cast<MyQGraphicsOpacityEffect*>(ptr), static_cast<void (MyQGraphicsOpacityEffect::*)(qreal)>(&MyQGraphicsOpacityEffect::Signal_OpacityChanged));;
 }
 
 void QGraphicsOpacityEffect_ConnectOpacityMaskChanged(void* ptr){
@@ -5867,7 +6253,7 @@ void QGraphicsPixmapItem_SetOffset(void* ptr, void* offset){
 }
 
 void QGraphicsPixmapItem_SetOffset2(void* ptr, double x, double y){
-	static_cast<QGraphicsPixmapItem*>(ptr)->setOffset(static_cast<qreal>(x), static_cast<qreal>(y));
+	static_cast<QGraphicsPixmapItem*>(ptr)->setOffset(static_cast<double>(x), static_cast<double>(y));
 }
 
 void QGraphicsPixmapItem_SetPixmap(void* ptr, void* pixmap){
@@ -6039,7 +6425,7 @@ void QGraphicsRectItem_Paint(void* ptr, void* painter, void* option, void* widge
 }
 
 void QGraphicsRectItem_SetRect2(void* ptr, double x, double y, double width, double height){
-	static_cast<QGraphicsRectItem*>(ptr)->setRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(width), static_cast<qreal>(height));
+	static_cast<QGraphicsRectItem*>(ptr)->setRect(static_cast<double>(x), static_cast<double>(y), static_cast<double>(width), static_cast<double>(height));
 }
 
 int QGraphicsRectItem_Type(void* ptr){
@@ -6073,7 +6459,7 @@ double QGraphicsRotation_Angle(void* ptr){
 }
 
 void QGraphicsRotation_SetAngle(void* ptr, double v){
-	static_cast<QGraphicsRotation*>(ptr)->setAngle(static_cast<qreal>(v));
+	static_cast<QGraphicsRotation*>(ptr)->setAngle(static_cast<double>(v));
 }
 
 void QGraphicsRotation_SetAxis2(void* ptr, int axis){
@@ -6141,15 +6527,15 @@ void QGraphicsScale_SetOrigin(void* ptr, void* point){
 }
 
 void QGraphicsScale_SetXScale(void* ptr, double v){
-	static_cast<QGraphicsScale*>(ptr)->setXScale(static_cast<qreal>(v));
+	static_cast<QGraphicsScale*>(ptr)->setXScale(static_cast<double>(v));
 }
 
 void QGraphicsScale_SetYScale(void* ptr, double v){
-	static_cast<QGraphicsScale*>(ptr)->setYScale(static_cast<qreal>(v));
+	static_cast<QGraphicsScale*>(ptr)->setYScale(static_cast<double>(v));
 }
 
 void QGraphicsScale_SetZScale(void* ptr, double v){
-	static_cast<QGraphicsScale*>(ptr)->setZScale(static_cast<qreal>(v));
+	static_cast<QGraphicsScale*>(ptr)->setZScale(static_cast<double>(v));
 }
 
 double QGraphicsScale_XScale(void* ptr){
@@ -6287,7 +6673,7 @@ void QGraphicsScene_SetItemIndexMethod(void* ptr, int method){
 }
 
 void QGraphicsScene_SetMinimumRenderSize(void* ptr, double minSize){
-	static_cast<QGraphicsScene*>(ptr)->setMinimumRenderSize(static_cast<qreal>(minSize));
+	static_cast<QGraphicsScene*>(ptr)->setMinimumRenderSize(static_cast<double>(minSize));
 }
 
 void QGraphicsScene_SetPalette(void* ptr, void* palette){
@@ -6323,7 +6709,7 @@ void* QGraphicsScene_NewQGraphicsScene2(void* sceneRect, void* parent){
 }
 
 void* QGraphicsScene_NewQGraphicsScene3(double x, double y, double width, double height, void* parent){
-	return new MyQGraphicsScene(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(width), static_cast<qreal>(height), static_cast<QObject*>(parent));
+	return new MyQGraphicsScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(width), static_cast<double>(height), static_cast<QObject*>(parent));
 }
 
 void* QGraphicsScene_ActivePanel(void* ptr){
@@ -6339,7 +6725,7 @@ void* QGraphicsScene_AddEllipse(void* ptr, void* rect, void* pen, void* brush){
 }
 
 void* QGraphicsScene_AddEllipse2(void* ptr, double x, double y, double w, double h, void* pen, void* brush){
-	return static_cast<QGraphicsScene*>(ptr)->addEllipse(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h), *static_cast<QPen*>(pen), *static_cast<QBrush*>(brush));
+	return static_cast<QGraphicsScene*>(ptr)->addEllipse(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h), *static_cast<QPen*>(pen), *static_cast<QBrush*>(brush));
 }
 
 void QGraphicsScene_AddItem(void* ptr, void* item){
@@ -6351,7 +6737,7 @@ void* QGraphicsScene_AddLine(void* ptr, void* line, void* pen){
 }
 
 void* QGraphicsScene_AddLine2(void* ptr, double x1, double y1, double x2, double y2, void* pen){
-	return static_cast<QGraphicsScene*>(ptr)->addLine(static_cast<qreal>(x1), static_cast<qreal>(y1), static_cast<qreal>(x2), static_cast<qreal>(y2), *static_cast<QPen*>(pen));
+	return static_cast<QGraphicsScene*>(ptr)->addLine(static_cast<double>(x1), static_cast<double>(y1), static_cast<double>(x2), static_cast<double>(y2), *static_cast<QPen*>(pen));
 }
 
 void* QGraphicsScene_AddPath(void* ptr, void* path, void* pen, void* brush){
@@ -6371,7 +6757,7 @@ void* QGraphicsScene_AddRect(void* ptr, void* rect, void* pen, void* brush){
 }
 
 void* QGraphicsScene_AddRect2(void* ptr, double x, double y, double w, double h, void* pen, void* brush){
-	return static_cast<QGraphicsScene*>(ptr)->addRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h), *static_cast<QPen*>(pen), *static_cast<QBrush*>(brush));
+	return static_cast<QGraphicsScene*>(ptr)->addRect(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h), *static_cast<QPen*>(pen), *static_cast<QBrush*>(brush));
 }
 
 void* QGraphicsScene_AddSimpleText(void* ptr, char* text, void* font){
@@ -6435,7 +6821,7 @@ void QGraphicsScene_Invalidate(void* ptr, void* rect, int layers){
 }
 
 void QGraphicsScene_Invalidate2(void* ptr, double x, double y, double w, double h, int layers){
-	static_cast<QGraphicsScene*>(ptr)->invalidate(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h), static_cast<QGraphicsScene::SceneLayer>(layers));
+	static_cast<QGraphicsScene*>(ptr)->invalidate(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h), static_cast<QGraphicsScene::SceneLayer>(layers));
 }
 
 int QGraphicsScene_IsActive(void* ptr){
@@ -6447,7 +6833,7 @@ void* QGraphicsScene_ItemAt(void* ptr, void* position, void* deviceTransform){
 }
 
 void* QGraphicsScene_ItemAt3(void* ptr, double x, double y, void* deviceTransform){
-	return static_cast<QGraphicsScene*>(ptr)->itemAt(static_cast<qreal>(x), static_cast<qreal>(y), *static_cast<QTransform*>(deviceTransform));
+	return static_cast<QGraphicsScene*>(ptr)->itemAt(static_cast<double>(x), static_cast<double>(y), *static_cast<QTransform*>(deviceTransform));
 }
 
 void* QGraphicsScene_MouseGrabberItem(void* ptr){
@@ -6491,7 +6877,7 @@ void QGraphicsScene_SetFocusItem(void* ptr, void* item, int focusReason){
 }
 
 void QGraphicsScene_SetSceneRect2(void* ptr, double x, double y, double w, double h){
-	static_cast<QGraphicsScene*>(ptr)->setSceneRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
+	static_cast<QGraphicsScene*>(ptr)->setSceneRect(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h));
 }
 
 void QGraphicsScene_SetSelectionArea2(void* ptr, void* path, int mode, void* deviceTransform){
@@ -6515,7 +6901,7 @@ void* QGraphicsScene_Style(void* ptr){
 }
 
 void QGraphicsScene_Update2(void* ptr, double x, double y, double w, double h){
-	static_cast<QGraphicsScene*>(ptr)->update(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
+	static_cast<QGraphicsScene*>(ptr)->update(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h));
 }
 
 double QGraphicsScene_Width(void* ptr){
@@ -6849,7 +7235,7 @@ void QGraphicsTextItem_SetTextInteractionFlags(void* ptr, int flags){
 }
 
 void QGraphicsTextItem_SetTextWidth(void* ptr, double width){
-	static_cast<QGraphicsTextItem*>(ptr)->setTextWidth(static_cast<qreal>(width));
+	static_cast<QGraphicsTextItem*>(ptr)->setTextWidth(static_cast<double>(width));
 }
 
 int QGraphicsTextItem_TabChangesFocus(void* ptr){
@@ -7024,7 +7410,7 @@ void QGraphicsView_CenterOn(void* ptr, void* pos){
 }
 
 void QGraphicsView_CenterOn2(void* ptr, double x, double y){
-	static_cast<QGraphicsView*>(ptr)->centerOn(static_cast<qreal>(x), static_cast<qreal>(y));
+	static_cast<QGraphicsView*>(ptr)->centerOn(static_cast<double>(x), static_cast<double>(y));
 }
 
 void QGraphicsView_EnsureVisible3(void* ptr, void* item, int xmargin, int ymargin){
@@ -7036,7 +7422,7 @@ void QGraphicsView_EnsureVisible(void* ptr, void* rect, int xmargin, int ymargin
 }
 
 void QGraphicsView_EnsureVisible2(void* ptr, double x, double y, double w, double h, int xmargin, int ymargin){
-	static_cast<QGraphicsView*>(ptr)->ensureVisible(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h), xmargin, ymargin);
+	static_cast<QGraphicsView*>(ptr)->ensureVisible(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h), xmargin, ymargin);
 }
 
 void QGraphicsView_FitInView3(void* ptr, void* item, int aspectRatioMode){
@@ -7048,7 +7434,7 @@ void QGraphicsView_FitInView(void* ptr, void* rect, int aspectRatioMode){
 }
 
 void QGraphicsView_FitInView2(void* ptr, double x, double y, double w, double h, int aspectRatioMode){
-	static_cast<QGraphicsView*>(ptr)->fitInView(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h), static_cast<Qt::AspectRatioMode>(aspectRatioMode));
+	static_cast<QGraphicsView*>(ptr)->fitInView(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h), static_cast<Qt::AspectRatioMode>(aspectRatioMode));
 }
 
 void* QGraphicsView_InputMethodQuery(void* ptr, int query){
@@ -7076,7 +7462,7 @@ void* QGraphicsView_MapFromScene(void* ptr, void* point){
 }
 
 void* QGraphicsView_MapFromScene5(void* ptr, double x, double y){
-	return new QPoint(static_cast<QPoint>(static_cast<QGraphicsView*>(ptr)->mapFromScene(static_cast<qreal>(x), static_cast<qreal>(y))).x(), static_cast<QPoint>(static_cast<QGraphicsView*>(ptr)->mapFromScene(static_cast<qreal>(x), static_cast<qreal>(y))).y());
+	return new QPoint(static_cast<QPoint>(static_cast<QGraphicsView*>(ptr)->mapFromScene(static_cast<double>(x), static_cast<double>(y))).x(), static_cast<QPoint>(static_cast<QGraphicsView*>(ptr)->mapFromScene(static_cast<double>(x), static_cast<double>(y))).y());
 }
 
 void QGraphicsView_Render(void* ptr, void* painter, void* target, void* source, int aspectRatioMode){
@@ -7096,11 +7482,15 @@ void QGraphicsView_ResetTransform(void* ptr){
 }
 
 void QGraphicsView_Rotate(void* ptr, double angle){
-	static_cast<QGraphicsView*>(ptr)->rotate(static_cast<qreal>(angle));
+	static_cast<QGraphicsView*>(ptr)->rotate(static_cast<double>(angle));
+}
+
+void* QGraphicsView_RubberBandRect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QGraphicsView*>(ptr)->rubberBandRect()).x(), static_cast<QRect>(static_cast<QGraphicsView*>(ptr)->rubberBandRect()).y(), static_cast<QRect>(static_cast<QGraphicsView*>(ptr)->rubberBandRect()).width(), static_cast<QRect>(static_cast<QGraphicsView*>(ptr)->rubberBandRect()).height());
 }
 
 void QGraphicsView_Scale(void* ptr, double sx, double sy){
-	static_cast<QGraphicsView*>(ptr)->scale(static_cast<qreal>(sx), static_cast<qreal>(sy));
+	static_cast<QGraphicsView*>(ptr)->scale(static_cast<double>(sx), static_cast<double>(sy));
 }
 
 void* QGraphicsView_Scene(void* ptr){
@@ -7120,7 +7510,7 @@ void QGraphicsView_SetScene(void* ptr, void* scene){
 }
 
 void QGraphicsView_SetSceneRect2(void* ptr, double x, double y, double w, double h){
-	static_cast<QGraphicsView*>(ptr)->setSceneRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
+	static_cast<QGraphicsView*>(ptr)->setSceneRect(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h));
 }
 
 void QGraphicsView_SetTransform(void* ptr, void* matrix, int combine){
@@ -7128,11 +7518,15 @@ void QGraphicsView_SetTransform(void* ptr, void* matrix, int combine){
 }
 
 void QGraphicsView_Shear(void* ptr, double sh, double sv){
-	static_cast<QGraphicsView*>(ptr)->shear(static_cast<qreal>(sh), static_cast<qreal>(sv));
+	static_cast<QGraphicsView*>(ptr)->shear(static_cast<double>(sh), static_cast<double>(sv));
+}
+
+void* QGraphicsView_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QGraphicsView*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QGraphicsView*>(ptr)->sizeHint()).height());
 }
 
 void QGraphicsView_Translate(void* ptr, double dx, double dy){
-	static_cast<QGraphicsView*>(ptr)->translate(static_cast<qreal>(dx), static_cast<qreal>(dy));
+	static_cast<QGraphicsView*>(ptr)->translate(static_cast<double>(dx), static_cast<double>(dy));
 }
 
 void QGraphicsView_UpdateSceneRect(void* ptr, void* rect){
@@ -7290,7 +7684,7 @@ void QGraphicsWidget_RemoveAction(void* ptr, void* action){
 }
 
 void QGraphicsWidget_Resize2(void* ptr, double w, double h){
-	static_cast<QGraphicsWidget*>(ptr)->resize(static_cast<qreal>(w), static_cast<qreal>(h));
+	static_cast<QGraphicsWidget*>(ptr)->resize(static_cast<double>(w), static_cast<double>(h));
 }
 
 void QGraphicsWidget_SetAttribute(void* ptr, int attribute, int on){
@@ -7298,11 +7692,11 @@ void QGraphicsWidget_SetAttribute(void* ptr, int attribute, int on){
 }
 
 void QGraphicsWidget_SetContentsMargins(void* ptr, double left, double top, double right, double bottom){
-	static_cast<QGraphicsWidget*>(ptr)->setContentsMargins(static_cast<qreal>(left), static_cast<qreal>(top), static_cast<qreal>(right), static_cast<qreal>(bottom));
+	static_cast<QGraphicsWidget*>(ptr)->setContentsMargins(static_cast<double>(left), static_cast<double>(top), static_cast<double>(right), static_cast<double>(bottom));
 }
 
 void QGraphicsWidget_SetGeometry2(void* ptr, double x, double y, double w, double h){
-	static_cast<QGraphicsWidget*>(ptr)->setGeometry(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
+	static_cast<QGraphicsWidget*>(ptr)->setGeometry(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h));
 }
 
 void QGraphicsWidget_SetShortcutAutoRepeat(void* ptr, int id, int enabled){
@@ -7322,7 +7716,7 @@ void QGraphicsWidget_QGraphicsWidget_SetTabOrder(void* first, void* second){
 }
 
 void QGraphicsWidget_SetWindowFrameMargins(void* ptr, double left, double top, double right, double bottom){
-	static_cast<QGraphicsWidget*>(ptr)->setWindowFrameMargins(static_cast<qreal>(left), static_cast<qreal>(top), static_cast<qreal>(right), static_cast<qreal>(bottom));
+	static_cast<QGraphicsWidget*>(ptr)->setWindowFrameMargins(static_cast<double>(left), static_cast<double>(top), static_cast<double>(right), static_cast<double>(bottom));
 }
 
 void* QGraphicsWidget_Style(void* ptr){
@@ -7354,6 +7748,7 @@ public:
 	MyQGridLayout() : QGridLayout() {};
 	MyQGridLayout(QWidget *parent) : QGridLayout(parent) {};
 	void invalidate() { if (!callbackQGridLayoutInvalidate(this->objectName().toUtf8().data())) { QGridLayout::invalidate(); }; };
+	void setGeometry(const QRect & rect) { if (!callbackQGridLayoutSetGeometry(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()))) { QGridLayout::setGeometry(rect); }; };
 protected:
 };
 
@@ -7401,6 +7796,10 @@ void QGridLayout_AddWidget(void* ptr, void* widget, int row, int column, int ali
 	static_cast<QGridLayout*>(ptr)->addWidget(static_cast<QWidget*>(widget), row, column, static_cast<Qt::AlignmentFlag>(alignment));
 }
 
+void* QGridLayout_CellRect(void* ptr, int row, int column){
+	return new QRect(static_cast<QRect>(static_cast<QGridLayout*>(ptr)->cellRect(row, column)).x(), static_cast<QRect>(static_cast<QGridLayout*>(ptr)->cellRect(row, column)).y(), static_cast<QRect>(static_cast<QGridLayout*>(ptr)->cellRect(row, column)).width(), static_cast<QRect>(static_cast<QGridLayout*>(ptr)->cellRect(row, column)).height());
+}
+
 int QGridLayout_ColumnCount(void* ptr){
 	return static_cast<QGridLayout*>(ptr)->columnCount();
 }
@@ -7445,8 +7844,16 @@ void* QGridLayout_ItemAtPosition(void* ptr, int row, int column){
 	return static_cast<QGridLayout*>(ptr)->itemAtPosition(row, column);
 }
 
+void* QGridLayout_MaximumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QGridLayout*>(ptr)->maximumSize()).width(), static_cast<QSize>(static_cast<QGridLayout*>(ptr)->maximumSize()).height());
+}
+
 int QGridLayout_MinimumHeightForWidth(void* ptr, int w){
 	return static_cast<QGridLayout*>(ptr)->minimumHeightForWidth(w);
+}
+
+void* QGridLayout_MinimumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QGridLayout*>(ptr)->minimumSize()).width(), static_cast<QSize>(static_cast<QGridLayout*>(ptr)->minimumSize()).height());
 }
 
 int QGridLayout_OriginCorner(void* ptr){
@@ -7473,6 +7880,10 @@ void QGridLayout_SetColumnStretch(void* ptr, int column, int stretch){
 	static_cast<QGridLayout*>(ptr)->setColumnStretch(column, stretch);
 }
 
+void QGridLayout_SetGeometry(void* ptr, void* rect){
+	static_cast<QGridLayout*>(ptr)->setGeometry(*static_cast<QRect*>(rect));
+}
+
 void QGridLayout_SetOriginCorner(void* ptr, int corner){
 	static_cast<QGridLayout*>(ptr)->setOriginCorner(static_cast<Qt::Corner>(corner));
 }
@@ -7487,6 +7898,10 @@ void QGridLayout_SetRowStretch(void* ptr, int row, int stretch){
 
 void QGridLayout_SetSpacing(void* ptr, int spacing){
 	static_cast<QGridLayout*>(ptr)->setSpacing(spacing);
+}
+
+void* QGridLayout_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QGridLayout*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QGridLayout*>(ptr)->sizeHint()).height());
 }
 
 int QGridLayout_Spacing(void* ptr){
@@ -7574,6 +7989,10 @@ void QGroupBox_DisconnectClicked(void* ptr){
 	QObject::disconnect(static_cast<QGroupBox*>(ptr), static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::clicked), static_cast<MyQGroupBox*>(ptr), static_cast<void (MyQGroupBox::*)(bool)>(&MyQGroupBox::Signal_Clicked));;
 }
 
+void* QGroupBox_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QGroupBox*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QGroupBox*>(ptr)->minimumSizeHint()).height());
+}
+
 void QGroupBox_ConnectToggled(void* ptr){
 	QObject::connect(static_cast<QGroupBox*>(ptr), static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::toggled), static_cast<MyQGroupBox*>(ptr), static_cast<void (MyQGroupBox::*)(bool)>(&MyQGroupBox::Signal_Toggled));;
 }
@@ -7620,6 +8039,8 @@ protected:
 	void mousePressEvent(QMouseEvent * e) { if (!callbackQHeaderViewMousePressEvent(this->objectName().toUtf8().data(), e)) { QHeaderView::mousePressEvent(e); }; };
 	void mouseReleaseEvent(QMouseEvent * e) { if (!callbackQHeaderViewMouseReleaseEvent(this->objectName().toUtf8().data(), e)) { QHeaderView::mouseReleaseEvent(e); }; };
 	void paintEvent(QPaintEvent * e) { if (!callbackQHeaderViewPaintEvent(this->objectName().toUtf8().data(), e)) { QHeaderView::paintEvent(e); }; };
+	void paintSection(QPainter * painter, const QRect & rect, int logicalIndex) const { if (!callbackQHeaderViewPaintSection(this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), logicalIndex)) { QHeaderView::paintSection(painter, rect, logicalIndex); }; };
+	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags flags) { if (!callbackQHeaderViewSetSelection(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), flags)) { QHeaderView::setSelection(rect, flags); }; };
 };
 
 int QHeaderView_CascadingSectionResizes(void* ptr){
@@ -7926,6 +8347,10 @@ void QHeaderView_ShowSection(void* ptr, int logicalIndex){
 	static_cast<QHeaderView*>(ptr)->showSection(logicalIndex);
 }
 
+void* QHeaderView_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QHeaderView*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QHeaderView*>(ptr)->sizeHint()).height());
+}
+
 void QHeaderView_ConnectSortIndicatorChanged(void* ptr){
 	QObject::connect(static_cast<QHeaderView*>(ptr), static_cast<void (QHeaderView::*)(int, Qt::SortOrder)>(&QHeaderView::sortIndicatorChanged), static_cast<MyQHeaderView*>(ptr), static_cast<void (MyQHeaderView::*)(int, Qt::SortOrder)>(&MyQHeaderView::Signal_SortIndicatorChanged));;
 }
@@ -8126,6 +8551,10 @@ void QInputDialog_DisconnectIntValueSelected(void* ptr){
 	QObject::disconnect(static_cast<QInputDialog*>(ptr), static_cast<void (QInputDialog::*)(int)>(&QInputDialog::intValueSelected), static_cast<MyQInputDialog*>(ptr), static_cast<void (MyQInputDialog::*)(int)>(&MyQInputDialog::Signal_IntValueSelected));;
 }
 
+void* QInputDialog_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QInputDialog*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QInputDialog*>(ptr)->minimumSizeHint()).height());
+}
+
 void QInputDialog_Open(void* ptr, void* receiver, char* member){
 	static_cast<QInputDialog*>(ptr)->open(static_cast<QObject*>(receiver), const_cast<const char*>(member));
 }
@@ -8140,6 +8569,10 @@ void QInputDialog_SetOption(void* ptr, int option, int on){
 
 void QInputDialog_SetVisible(void* ptr, int visible){
 	static_cast<QInputDialog*>(ptr)->setVisible(visible != 0);
+}
+
+void* QInputDialog_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QInputDialog*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QInputDialog*>(ptr)->sizeHint()).height());
 }
 
 int QInputDialog_TestOption(void* ptr, int option){
@@ -8204,6 +8637,10 @@ void QItemDelegate_SetItemEditorFactory(void* ptr, void* factory){
 
 void QItemDelegate_SetModelData(void* ptr, void* editor, void* model, void* index){
 	static_cast<QItemDelegate*>(ptr)->setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
+}
+
+void* QItemDelegate_SizeHint(void* ptr, void* option, void* index){
+	return new QSize(static_cast<QSize>(static_cast<QItemDelegate*>(ptr)->sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QItemDelegate*>(ptr)->sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index))).height());
 }
 
 void QItemDelegate_DestroyQItemDelegate(void* ptr){
@@ -8442,6 +8879,10 @@ void QLCDNumber_SetOctMode(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "setOctMode");
 }
 
+void* QLCDNumber_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QLCDNumber*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QLCDNumber*>(ptr)->sizeHint()).height());
+}
+
 void QLCDNumber_DestroyQLCDNumber(void* ptr){
 	static_cast<QLCDNumber*>(ptr)->~QLCDNumber();
 }
@@ -8588,6 +9029,10 @@ void QLabel_DisconnectLinkHovered(void* ptr){
 	QObject::disconnect(static_cast<QLabel*>(ptr), static_cast<void (QLabel::*)(const QString &)>(&QLabel::linkHovered), static_cast<MyQLabel*>(ptr), static_cast<void (MyQLabel::*)(const QString &)>(&MyQLabel::Signal_LinkHovered));;
 }
 
+void* QLabel_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QLabel*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QLabel*>(ptr)->minimumSizeHint()).height());
+}
+
 void* QLabel_Movie(void* ptr){
 	return static_cast<QLabel*>(ptr)->movie();
 }
@@ -8620,6 +9065,10 @@ void QLabel_SetSelection(void* ptr, int start, int length){
 	static_cast<QLabel*>(ptr)->setSelection(start, length);
 }
 
+void* QLabel_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QLabel*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QLabel*>(ptr)->sizeHint()).height());
+}
+
 void QLabel_DestroyQLabel(void* ptr){
 	static_cast<QLabel*>(ptr)->~QLabel();
 }
@@ -8627,6 +9076,7 @@ void QLabel_DestroyQLabel(void* ptr){
 class MyQLayout: public QLayout {
 public:
 	void invalidate() { if (!callbackQLayoutInvalidate(this->objectName().toUtf8().data())) { QLayout::invalidate(); }; };
+	void setGeometry(const QRect & r) { if (!callbackQLayoutSetGeometry(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(r).x(), static_cast<QRect>(r).y(), static_cast<QRect>(r).width(), static_cast<QRect>(r).height()))) { QLayout::setGeometry(r); }; };
 protected:
 	void childEvent(QChildEvent * e) { if (!callbackQLayoutChildEvent(this->objectName().toUtf8().data(), e)) { QLayout::childEvent(e); }; };
 };
@@ -8659,6 +9109,14 @@ void QLayout_AddWidget(void* ptr, void* w){
 	static_cast<QLayout*>(ptr)->addWidget(static_cast<QWidget*>(w));
 }
 
+void* QLayout_QLayout_ClosestAcceptableSize(void* widget, void* size){
+	return new QSize(static_cast<QSize>(QLayout::closestAcceptableSize(static_cast<QWidget*>(widget), *static_cast<QSize*>(size))).width(), static_cast<QSize>(QLayout::closestAcceptableSize(static_cast<QWidget*>(widget), *static_cast<QSize*>(size))).height());
+}
+
+void* QLayout_ContentsRect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QLayout*>(ptr)->contentsRect()).x(), static_cast<QRect>(static_cast<QLayout*>(ptr)->contentsRect()).y(), static_cast<QRect>(static_cast<QLayout*>(ptr)->contentsRect()).width(), static_cast<QRect>(static_cast<QLayout*>(ptr)->contentsRect()).height());
+}
+
 int QLayout_ControlTypes(void* ptr){
 	return static_cast<QLayout*>(ptr)->controlTypes();
 }
@@ -8669,6 +9127,10 @@ int QLayout_Count(void* ptr){
 
 int QLayout_ExpandingDirections(void* ptr){
 	return static_cast<QLayout*>(ptr)->expandingDirections();
+}
+
+void* QLayout_Geometry(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QLayout*>(ptr)->geometry()).x(), static_cast<QRect>(static_cast<QLayout*>(ptr)->geometry()).y(), static_cast<QRect>(static_cast<QLayout*>(ptr)->geometry()).width(), static_cast<QRect>(static_cast<QLayout*>(ptr)->geometry()).height());
 }
 
 void QLayout_GetContentsMargins(void* ptr, int left, int top, int right, int bottom){
@@ -8699,8 +9161,16 @@ void* QLayout_Layout(void* ptr){
 	return static_cast<QLayout*>(ptr)->layout();
 }
 
+void* QLayout_MaximumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QLayout*>(ptr)->maximumSize()).width(), static_cast<QSize>(static_cast<QLayout*>(ptr)->maximumSize()).height());
+}
+
 void* QLayout_MenuBar(void* ptr){
 	return static_cast<QLayout*>(ptr)->menuBar();
+}
+
+void* QLayout_MinimumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QLayout*>(ptr)->minimumSize()).width(), static_cast<QSize>(static_cast<QLayout*>(ptr)->minimumSize()).height());
 }
 
 void* QLayout_ParentWidget(void* ptr){
@@ -8739,6 +9209,10 @@ void QLayout_SetEnabled(void* ptr, int enable){
 	static_cast<QLayout*>(ptr)->setEnabled(enable != 0);
 }
 
+void QLayout_SetGeometry(void* ptr, void* r){
+	static_cast<QLayout*>(ptr)->setGeometry(*static_cast<QRect*>(r));
+}
+
 void QLayout_SetMenuBar(void* ptr, void* widget){
 	static_cast<QLayout*>(ptr)->setMenuBar(static_cast<QWidget*>(widget));
 }
@@ -8772,6 +9246,10 @@ int QLayoutItem_ExpandingDirections(void* ptr){
 	return static_cast<QLayoutItem*>(ptr)->expandingDirections();
 }
 
+void* QLayoutItem_Geometry(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QLayoutItem*>(ptr)->geometry()).x(), static_cast<QRect>(static_cast<QLayoutItem*>(ptr)->geometry()).y(), static_cast<QRect>(static_cast<QLayoutItem*>(ptr)->geometry()).width(), static_cast<QRect>(static_cast<QLayoutItem*>(ptr)->geometry()).height());
+}
+
 int QLayoutItem_HasHeightForWidth(void* ptr){
 	return static_cast<QLayoutItem*>(ptr)->hasHeightForWidth();
 }
@@ -8792,8 +9270,16 @@ void* QLayoutItem_Layout(void* ptr){
 	return static_cast<QLayoutItem*>(ptr)->layout();
 }
 
+void* QLayoutItem_MaximumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QLayoutItem*>(ptr)->maximumSize()).width(), static_cast<QSize>(static_cast<QLayoutItem*>(ptr)->maximumSize()).height());
+}
+
 int QLayoutItem_MinimumHeightForWidth(void* ptr, int w){
 	return static_cast<QLayoutItem*>(ptr)->minimumHeightForWidth(w);
+}
+
+void* QLayoutItem_MinimumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QLayoutItem*>(ptr)->minimumSize()).width(), static_cast<QSize>(static_cast<QLayoutItem*>(ptr)->minimumSize()).height());
 }
 
 void QLayoutItem_SetAlignment(void* ptr, int alignment){
@@ -8802,6 +9288,10 @@ void QLayoutItem_SetAlignment(void* ptr, int alignment){
 
 void QLayoutItem_SetGeometry(void* ptr, void* r){
 	static_cast<QLayoutItem*>(ptr)->setGeometry(*static_cast<QRect*>(r));
+}
+
+void* QLayoutItem_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QLayoutItem*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QLayoutItem*>(ptr)->sizeHint()).height());
 }
 
 void* QLayoutItem_SpacerItem(void* ptr){
@@ -9084,6 +9574,10 @@ void* QLineEdit_InputMethodQuery(void* ptr, int property){
 	return new QVariant(static_cast<QLineEdit*>(ptr)->inputMethodQuery(static_cast<Qt::InputMethodQuery>(property)));
 }
 
+void* QLineEdit_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QLineEdit*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QLineEdit*>(ptr)->minimumSizeHint()).height());
+}
+
 void QLineEdit_Paste(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "paste");
 }
@@ -9136,6 +9630,10 @@ void QLineEdit_SetValidator(void* ptr, void* v){
 	static_cast<QLineEdit*>(ptr)->setValidator(static_cast<QValidator*>(v));
 }
 
+void* QLineEdit_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QLineEdit*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QLineEdit*>(ptr)->sizeHint()).height());
+}
+
 void QLineEdit_ConnectTextChanged(void* ptr){
 	QObject::connect(static_cast<QLineEdit*>(ptr), static_cast<void (QLineEdit::*)(const QString &)>(&QLineEdit::textChanged), static_cast<MyQLineEdit*>(ptr), static_cast<void (MyQLineEdit::*)(const QString &)>(&MyQLineEdit::Signal_TextChanged));;
 }
@@ -9179,6 +9677,7 @@ protected:
 	void resizeEvent(QResizeEvent * e) { if (!callbackQListViewResizeEvent(this->objectName().toUtf8().data(), e)) { QListView::resizeEvent(e); }; };
 	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQListViewRowsAboutToBeRemoved(this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QListView::rowsAboutToBeRemoved(parent, start, end); }; };
 	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQListViewRowsInserted(this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QListView::rowsInserted(parent, start, end); }; };
+	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { if (!callbackQListViewSetSelection(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command)) { QListView::setSelection(rect, command); }; };
 	void startDrag(Qt::DropActions supportedActions) { if (!callbackQListViewStartDrag(this->objectName().toUtf8().data(), supportedActions)) { QListView::startDrag(supportedActions); }; };
 	void timerEvent(QTimerEvent * e) { if (!callbackQListViewTimerEvent(this->objectName().toUtf8().data(), e)) { QListView::timerEvent(e); }; };
 	void updateGeometries() { if (!callbackQListViewUpdateGeometries(this->objectName().toUtf8().data())) { QListView::updateGeometries(); }; };
@@ -9190,6 +9689,10 @@ int QListView_BatchSize(void* ptr){
 
 int QListView_Flow(void* ptr){
 	return static_cast<QListView*>(ptr)->flow();
+}
+
+void* QListView_GridSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QListView*>(ptr)->gridSize()).width(), static_cast<QSize>(static_cast<QListView*>(ptr)->gridSize()).height());
 }
 
 int QListView_IsSelectionRectVisible(void* ptr){
@@ -9306,6 +9809,10 @@ void QListView_ScrollTo(void* ptr, void* index, int hint){
 
 void QListView_SetRowHidden(void* ptr, int row, int hide){
 	static_cast<QListView*>(ptr)->setRowHidden(row, hide != 0);
+}
+
+void* QListView_VisualRect(void* ptr, void* index){
+	return new QRect(static_cast<QRect>(static_cast<QListView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QListView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QListView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QListView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).height());
 }
 
 void QListView_DestroyQListView(void* ptr){
@@ -9533,6 +10040,10 @@ void* QListWidget_TakeItem(void* ptr, int row){
 	return static_cast<QListWidget*>(ptr)->takeItem(row);
 }
 
+void* QListWidget_VisualItemRect(void* ptr, void* item){
+	return new QRect(static_cast<QRect>(static_cast<QListWidget*>(ptr)->visualItemRect(static_cast<QListWidgetItem*>(item))).x(), static_cast<QRect>(static_cast<QListWidget*>(ptr)->visualItemRect(static_cast<QListWidgetItem*>(item))).y(), static_cast<QRect>(static_cast<QListWidget*>(ptr)->visualItemRect(static_cast<QListWidgetItem*>(item))).width(), static_cast<QRect>(static_cast<QListWidget*>(ptr)->visualItemRect(static_cast<QListWidgetItem*>(item))).height());
+}
+
 void QListWidget_DestroyQListWidget(void* ptr){
 	static_cast<QListWidget*>(ptr)->~QListWidget();
 }
@@ -9592,6 +10103,10 @@ int QListWidgetItem_Flags(void* ptr){
 
 void* QListWidgetItem_Foreground(void* ptr){
 	return new QBrush(static_cast<QListWidgetItem*>(ptr)->foreground());
+}
+
+void* QListWidgetItem_Icon(void* ptr){
+	return new QIcon(static_cast<QListWidgetItem*>(ptr)->icon());
 }
 
 int QListWidgetItem_IsHidden(void* ptr){
@@ -9662,6 +10177,10 @@ void QListWidgetItem_SetWhatsThis(void* ptr, char* whatsThis){
 	static_cast<QListWidgetItem*>(ptr)->setWhatsThis(QString(whatsThis));
 }
 
+void* QListWidgetItem_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QListWidgetItem*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QListWidgetItem*>(ptr)->sizeHint()).height());
+}
+
 char* QListWidgetItem_StatusTip(void* ptr){
 	return static_cast<QListWidgetItem*>(ptr)->statusTip().toUtf8().data();
 }
@@ -9712,6 +10231,10 @@ public:
 protected:
 };
 
+void* QMacNativeWidget_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QMacNativeWidget*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QMacNativeWidget*>(ptr)->sizeHint()).height());
+}
+
 void QMacNativeWidget_DestroyQMacNativeWidget(void* ptr){
 	static_cast<QMacNativeWidget*>(ptr)->~QMacNativeWidget();
 }
@@ -9719,6 +10242,7 @@ void QMacNativeWidget_DestroyQMacNativeWidget(void* ptr){
 class MyQMainWindow: public QMainWindow {
 public:
 	MyQMainWindow(QWidget *parent, Qt::WindowFlags flags) : QMainWindow(parent, flags) {};
+	void Signal_IconSizeChanged(const QSize & iconSize) { callbackQMainWindowIconSizeChanged(this->objectName().toUtf8().data(), new QSize(static_cast<QSize>(iconSize).width(), static_cast<QSize>(iconSize).height())); };
 	void Signal_ToolButtonStyleChanged(Qt::ToolButtonStyle toolButtonStyle) { callbackQMainWindowToolButtonStyleChanged(this->objectName().toUtf8().data(), toolButtonStyle); };
 protected:
 	void contextMenuEvent(QContextMenuEvent * event) { if (!callbackQMainWindowContextMenuEvent(this->objectName().toUtf8().data(), event)) { QMainWindow::contextMenuEvent(event); }; };
@@ -9730,6 +10254,10 @@ int QMainWindow_DockOptions(void* ptr){
 
 int QMainWindow_DocumentMode(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->documentMode();
+}
+
+void* QMainWindow_IconSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QMainWindow*>(ptr)->iconSize()).width(), static_cast<QSize>(static_cast<QMainWindow*>(ptr)->iconSize()).height());
 }
 
 int QMainWindow_IsAnimated(void* ptr){
@@ -9834,6 +10362,14 @@ void* QMainWindow_CreatePopupMenu(void* ptr){
 
 int QMainWindow_DockWidgetArea(void* ptr, void* dockwidget){
 	return static_cast<QMainWindow*>(ptr)->dockWidgetArea(static_cast<QDockWidget*>(dockwidget));
+}
+
+void QMainWindow_ConnectIconSizeChanged(void* ptr){
+	QObject::connect(static_cast<QMainWindow*>(ptr), static_cast<void (QMainWindow::*)(const QSize &)>(&QMainWindow::iconSizeChanged), static_cast<MyQMainWindow*>(ptr), static_cast<void (MyQMainWindow::*)(const QSize &)>(&MyQMainWindow::Signal_IconSizeChanged));;
+}
+
+void QMainWindow_DisconnectIconSizeChanged(void* ptr){
+	QObject::disconnect(static_cast<QMainWindow*>(ptr), static_cast<void (QMainWindow::*)(const QSize &)>(&QMainWindow::iconSizeChanged), static_cast<MyQMainWindow*>(ptr), static_cast<void (MyQMainWindow::*)(const QSize &)>(&MyQMainWindow::Signal_IconSizeChanged));;
 }
 
 void QMainWindow_InsertToolBar(void* ptr, void* before, void* toolbar){
@@ -10046,6 +10582,10 @@ void* QMdiArea_CurrentSubWindow(void* ptr){
 	return static_cast<QMdiArea*>(ptr)->currentSubWindow();
 }
 
+void* QMdiArea_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QMdiArea*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QMdiArea*>(ptr)->minimumSizeHint()).height());
+}
+
 void QMdiArea_RemoveSubWindow(void* ptr, void* widget){
 	static_cast<QMdiArea*>(ptr)->removeSubWindow(static_cast<QWidget*>(widget));
 }
@@ -10056,6 +10596,10 @@ void QMdiArea_SetActiveSubWindow(void* ptr, void* window){
 
 void QMdiArea_SetOption(void* ptr, int option, int on){
 	static_cast<QMdiArea*>(ptr)->setOption(static_cast<QMdiArea::AreaOption>(option), on != 0);
+}
+
+void* QMdiArea_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QMdiArea*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QMdiArea*>(ptr)->sizeHint()).height());
 }
 
 void QMdiArea_ConnectSubWindowActivated(void* ptr){
@@ -10140,6 +10684,10 @@ void* QMdiSubWindow_MdiArea(void* ptr){
 	return static_cast<QMdiSubWindow*>(ptr)->mdiArea();
 }
 
+void* QMdiSubWindow_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QMdiSubWindow*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QMdiSubWindow*>(ptr)->minimumSizeHint()).height());
+}
+
 void QMdiSubWindow_SetOption(void* ptr, int option, int on){
 	static_cast<QMdiSubWindow*>(ptr)->setOption(static_cast<QMdiSubWindow::SubWindowOption>(option), on != 0);
 }
@@ -10158,6 +10706,10 @@ void QMdiSubWindow_ShowShaded(void* ptr){
 
 void QMdiSubWindow_ShowSystemMenu(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "showSystemMenu");
+}
+
+void* QMdiSubWindow_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QMdiSubWindow*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QMdiSubWindow*>(ptr)->sizeHint()).height());
 }
 
 void* QMdiSubWindow_SystemMenu(void* ptr){
@@ -10206,6 +10758,10 @@ protected:
 	void timerEvent(QTimerEvent * e) { if (!callbackQMenuTimerEvent(this->objectName().toUtf8().data(), e)) { QMenu::timerEvent(e); }; };
 	void wheelEvent(QWheelEvent * e) { if (!callbackQMenuWheelEvent(this->objectName().toUtf8().data(), e)) { QMenu::wheelEvent(e); }; };
 };
+
+void* QMenu_Icon(void* ptr){
+	return new QIcon(static_cast<QMenu*>(ptr)->icon());
+}
 
 int QMenu_IsTearOffEnabled(void* ptr){
 	return static_cast<QMenu*>(ptr)->isTearOffEnabled();
@@ -10269,6 +10825,10 @@ void QMenu_DisconnectAboutToShow(void* ptr){
 
 void* QMenu_ActionAt(void* ptr, void* pt){
 	return static_cast<QMenu*>(ptr)->actionAt(*static_cast<QPoint*>(pt));
+}
+
+void* QMenu_ActionGeometry(void* ptr, void* act){
+	return new QRect(static_cast<QRect>(static_cast<QMenu*>(ptr)->actionGeometry(static_cast<QAction*>(act))).x(), static_cast<QRect>(static_cast<QMenu*>(ptr)->actionGeometry(static_cast<QAction*>(act))).y(), static_cast<QRect>(static_cast<QMenu*>(ptr)->actionGeometry(static_cast<QAction*>(act))).width(), static_cast<QRect>(static_cast<QMenu*>(ptr)->actionGeometry(static_cast<QAction*>(act))).height());
 }
 
 void* QMenu_ActiveAction(void* ptr){
@@ -10375,6 +10935,10 @@ void QMenu_SetActiveAction(void* ptr, void* act){
 	static_cast<QMenu*>(ptr)->setActiveAction(static_cast<QAction*>(act));
 }
 
+void* QMenu_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QMenu*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QMenu*>(ptr)->sizeHint()).height());
+}
+
 void QMenu_ConnectTriggered(void* ptr){
 	QObject::connect(static_cast<QMenu*>(ptr), static_cast<void (QMenu::*)(QAction *)>(&QMenu::triggered), static_cast<MyQMenu*>(ptr), static_cast<void (MyQMenu::*)(QAction *)>(&MyQMenu::Signal_Triggered));;
 }
@@ -10436,6 +11000,10 @@ void* QMenuBar_ActionAt(void* ptr, void* pt){
 	return static_cast<QMenuBar*>(ptr)->actionAt(*static_cast<QPoint*>(pt));
 }
 
+void* QMenuBar_ActionGeometry(void* ptr, void* act){
+	return new QRect(static_cast<QRect>(static_cast<QMenuBar*>(ptr)->actionGeometry(static_cast<QAction*>(act))).x(), static_cast<QRect>(static_cast<QMenuBar*>(ptr)->actionGeometry(static_cast<QAction*>(act))).y(), static_cast<QRect>(static_cast<QMenuBar*>(ptr)->actionGeometry(static_cast<QAction*>(act))).width(), static_cast<QRect>(static_cast<QMenuBar*>(ptr)->actionGeometry(static_cast<QAction*>(act))).height());
+}
+
 void* QMenuBar_ActiveAction(void* ptr){
 	return static_cast<QMenuBar*>(ptr)->activeAction();
 }
@@ -10492,12 +11060,20 @@ void* QMenuBar_InsertSeparator(void* ptr, void* before){
 	return static_cast<QMenuBar*>(ptr)->insertSeparator(static_cast<QAction*>(before));
 }
 
+void* QMenuBar_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QMenuBar*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QMenuBar*>(ptr)->minimumSizeHint()).height());
+}
+
 void QMenuBar_SetActiveAction(void* ptr, void* act){
 	static_cast<QMenuBar*>(ptr)->setActiveAction(static_cast<QAction*>(act));
 }
 
 void QMenuBar_SetVisible(void* ptr, int visible){
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
+}
+
+void* QMenuBar_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QMenuBar*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QMenuBar*>(ptr)->sizeHint()).height());
 }
 
 void QMenuBar_ConnectTriggered(void* ptr){
@@ -10763,7 +11339,7 @@ double QPanGesture_Acceleration(void* ptr){
 }
 
 void QPanGesture_SetAcceleration(void* ptr, double value){
-	static_cast<QPanGesture*>(ptr)->setAcceleration(static_cast<qreal>(value));
+	static_cast<QPanGesture*>(ptr)->setAcceleration(static_cast<double>(value));
 }
 
 void QPanGesture_SetLastOffset(void* ptr, void* value){
@@ -10811,19 +11387,19 @@ void QPinchGesture_SetLastCenterPoint(void* ptr, void* value){
 }
 
 void QPinchGesture_SetLastRotationAngle(void* ptr, double value){
-	static_cast<QPinchGesture*>(ptr)->setLastRotationAngle(static_cast<qreal>(value));
+	static_cast<QPinchGesture*>(ptr)->setLastRotationAngle(static_cast<double>(value));
 }
 
 void QPinchGesture_SetLastScaleFactor(void* ptr, double value){
-	static_cast<QPinchGesture*>(ptr)->setLastScaleFactor(static_cast<qreal>(value));
+	static_cast<QPinchGesture*>(ptr)->setLastScaleFactor(static_cast<double>(value));
 }
 
 void QPinchGesture_SetRotationAngle(void* ptr, double value){
-	static_cast<QPinchGesture*>(ptr)->setRotationAngle(static_cast<qreal>(value));
+	static_cast<QPinchGesture*>(ptr)->setRotationAngle(static_cast<double>(value));
 }
 
 void QPinchGesture_SetScaleFactor(void* ptr, double value){
-	static_cast<QPinchGesture*>(ptr)->setScaleFactor(static_cast<qreal>(value));
+	static_cast<QPinchGesture*>(ptr)->setScaleFactor(static_cast<double>(value));
 }
 
 void QPinchGesture_SetStartCenterPoint(void* ptr, void* value){
@@ -10835,11 +11411,11 @@ void QPinchGesture_SetTotalChangeFlags(void* ptr, int value){
 }
 
 void QPinchGesture_SetTotalRotationAngle(void* ptr, double value){
-	static_cast<QPinchGesture*>(ptr)->setTotalRotationAngle(static_cast<qreal>(value));
+	static_cast<QPinchGesture*>(ptr)->setTotalRotationAngle(static_cast<double>(value));
 }
 
 void QPinchGesture_SetTotalScaleFactor(void* ptr, double value){
-	static_cast<QPinchGesture*>(ptr)->setTotalScaleFactor(static_cast<qreal>(value));
+	static_cast<QPinchGesture*>(ptr)->setTotalScaleFactor(static_cast<double>(value));
 }
 
 int QPinchGesture_TotalChangeFlags(void* ptr){
@@ -10905,6 +11481,7 @@ public:
 	void Signal_SelectionChanged() { callbackQPlainTextEditSelectionChanged(this->objectName().toUtf8().data()); };
 	void Signal_TextChanged() { callbackQPlainTextEditTextChanged(this->objectName().toUtf8().data()); };
 	void Signal_UndoAvailable(bool available) { callbackQPlainTextEditUndoAvailable(this->objectName().toUtf8().data(), available); };
+	void Signal_UpdateRequest(const QRect & rect, int dy) { callbackQPlainTextEditUpdateRequest(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), dy); };
 protected:
 	void contextMenuEvent(QContextMenuEvent * event) { if (!callbackQPlainTextEditContextMenuEvent(this->objectName().toUtf8().data(), event)) { QPlainTextEdit::contextMenuEvent(event); }; };
 	void changeEvent(QEvent * e) { if (!callbackQPlainTextEditChangeEvent(this->objectName().toUtf8().data(), e)) { QPlainTextEdit::changeEvent(e); }; };
@@ -11101,6 +11678,14 @@ void QPlainTextEdit_DisconnectCursorPositionChanged(void* ptr){
 	QObject::disconnect(static_cast<QPlainTextEdit*>(ptr), static_cast<void (QPlainTextEdit::*)()>(&QPlainTextEdit::cursorPositionChanged), static_cast<MyQPlainTextEdit*>(ptr), static_cast<void (MyQPlainTextEdit::*)()>(&MyQPlainTextEdit::Signal_CursorPositionChanged));;
 }
 
+void* QPlainTextEdit_CursorRect2(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QPlainTextEdit*>(ptr)->cursorRect()).x(), static_cast<QRect>(static_cast<QPlainTextEdit*>(ptr)->cursorRect()).y(), static_cast<QRect>(static_cast<QPlainTextEdit*>(ptr)->cursorRect()).width(), static_cast<QRect>(static_cast<QPlainTextEdit*>(ptr)->cursorRect()).height());
+}
+
+void* QPlainTextEdit_CursorRect(void* ptr, void* cursor){
+	return new QRect(static_cast<QRect>(static_cast<QPlainTextEdit*>(ptr)->cursorRect(*static_cast<QTextCursor*>(cursor))).x(), static_cast<QRect>(static_cast<QPlainTextEdit*>(ptr)->cursorRect(*static_cast<QTextCursor*>(cursor))).y(), static_cast<QRect>(static_cast<QPlainTextEdit*>(ptr)->cursorRect(*static_cast<QTextCursor*>(cursor))).width(), static_cast<QRect>(static_cast<QPlainTextEdit*>(ptr)->cursorRect(*static_cast<QTextCursor*>(cursor))).height());
+}
+
 void QPlainTextEdit_Cut(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "cut");
 }
@@ -11233,6 +11818,14 @@ void QPlainTextEdit_DisconnectUndoAvailable(void* ptr){
 	QObject::disconnect(static_cast<QPlainTextEdit*>(ptr), static_cast<void (QPlainTextEdit::*)(bool)>(&QPlainTextEdit::undoAvailable), static_cast<MyQPlainTextEdit*>(ptr), static_cast<void (MyQPlainTextEdit::*)(bool)>(&MyQPlainTextEdit::Signal_UndoAvailable));;
 }
 
+void QPlainTextEdit_ConnectUpdateRequest(void* ptr){
+	QObject::connect(static_cast<QPlainTextEdit*>(ptr), static_cast<void (QPlainTextEdit::*)(const QRect &, int)>(&QPlainTextEdit::updateRequest), static_cast<MyQPlainTextEdit*>(ptr), static_cast<void (MyQPlainTextEdit::*)(const QRect &, int)>(&MyQPlainTextEdit::Signal_UpdateRequest));;
+}
+
+void QPlainTextEdit_DisconnectUpdateRequest(void* ptr){
+	QObject::disconnect(static_cast<QPlainTextEdit*>(ptr), static_cast<void (QPlainTextEdit::*)(const QRect &, int)>(&QPlainTextEdit::updateRequest), static_cast<MyQPlainTextEdit*>(ptr), static_cast<void (MyQPlainTextEdit::*)(const QRect &, int)>(&MyQPlainTextEdit::Signal_UpdateRequest));;
+}
+
 void QPlainTextEdit_DestroyQPlainTextEdit(void* ptr){
 	static_cast<QPlainTextEdit*>(ptr)->~QPlainTextEdit();
 }
@@ -11329,12 +11922,20 @@ void* QProgressBar_NewQProgressBar(void* parent){
 	return new MyQProgressBar(static_cast<QWidget*>(parent));
 }
 
+void* QProgressBar_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QProgressBar*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QProgressBar*>(ptr)->minimumSizeHint()).height());
+}
+
 void QProgressBar_Reset(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "reset");
 }
 
 void QProgressBar_SetRange(void* ptr, int minimum, int maximum){
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "setRange", Q_ARG(int, minimum), Q_ARG(int, maximum));
+}
+
+void* QProgressBar_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QProgressBar*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QProgressBar*>(ptr)->sizeHint()).height());
 }
 
 void QProgressBar_ConnectValueChanged(void* ptr){
@@ -11469,6 +12070,10 @@ void QProgressDialog_SetRange(void* ptr, int minimum, int maximum){
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setRange", Q_ARG(int, minimum), Q_ARG(int, maximum));
 }
 
+void* QProgressDialog_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QProgressDialog*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QProgressDialog*>(ptr)->sizeHint()).height());
+}
+
 void QProgressDialog_DestroyQProgressDialog(void* ptr){
 	static_cast<QProgressDialog*>(ptr)->~QProgressDialog();
 }
@@ -11503,6 +12108,14 @@ int QProxyStyle_HitTestComplexControl(void* ptr, int control, void* option, void
 	return static_cast<QProxyStyle*>(ptr)->hitTestComplexControl(static_cast<QStyle::ComplexControl>(control), static_cast<QStyleOptionComplex*>(option), *static_cast<QPoint*>(pos), static_cast<QWidget*>(widget));
 }
 
+void* QProxyStyle_ItemPixmapRect(void* ptr, void* r, int flags, void* pixmap){
+	return new QRect(static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(r), flags, *static_cast<QPixmap*>(pixmap))).x(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(r), flags, *static_cast<QPixmap*>(pixmap))).y(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(r), flags, *static_cast<QPixmap*>(pixmap))).width(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(r), flags, *static_cast<QPixmap*>(pixmap))).height());
+}
+
+void* QProxyStyle_ItemTextRect(void* ptr, void* fm, void* r, int flags, int enabled, char* text){
+	return new QRect(static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->itemTextRect(*static_cast<QFontMetrics*>(fm), *static_cast<QRect*>(r), flags, enabled != 0, QString(text))).x(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->itemTextRect(*static_cast<QFontMetrics*>(fm), *static_cast<QRect*>(r), flags, enabled != 0, QString(text))).y(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->itemTextRect(*static_cast<QFontMetrics*>(fm), *static_cast<QRect*>(r), flags, enabled != 0, QString(text))).width(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->itemTextRect(*static_cast<QFontMetrics*>(fm), *static_cast<QRect*>(r), flags, enabled != 0, QString(text))).height());
+}
+
 int QProxyStyle_LayoutSpacing(void* ptr, int control1, int control2, int orientation, void* option, void* widget){
 	return static_cast<QProxyStyle*>(ptr)->layoutSpacing(static_cast<QSizePolicy::ControlType>(control1), static_cast<QSizePolicy::ControlType>(control2), static_cast<Qt::Orientation>(orientation), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget));
 }
@@ -11519,8 +12132,24 @@ void QProxyStyle_SetBaseStyle(void* ptr, void* style){
 	static_cast<QProxyStyle*>(ptr)->setBaseStyle(static_cast<QStyle*>(style));
 }
 
+void* QProxyStyle_SizeFromContents(void* ptr, int ty, void* option, void* size, void* widget){
+	return new QSize(static_cast<QSize>(static_cast<QProxyStyle*>(ptr)->sizeFromContents(static_cast<QStyle::ContentsType>(ty), static_cast<QStyleOption*>(option), *static_cast<QSize*>(size), static_cast<QWidget*>(widget))).width(), static_cast<QSize>(static_cast<QProxyStyle*>(ptr)->sizeFromContents(static_cast<QStyle::ContentsType>(ty), static_cast<QStyleOption*>(option), *static_cast<QSize*>(size), static_cast<QWidget*>(widget))).height());
+}
+
+void* QProxyStyle_StandardIcon(void* ptr, int standardIcon, void* option, void* widget){
+	return new QIcon(static_cast<QProxyStyle*>(ptr)->standardIcon(static_cast<QStyle::StandardPixmap>(standardIcon), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget)));
+}
+
 int QProxyStyle_StyleHint(void* ptr, int hint, void* option, void* widget, void* returnData){
 	return static_cast<QProxyStyle*>(ptr)->styleHint(static_cast<QStyle::StyleHint>(hint), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget), static_cast<QStyleHintReturn*>(returnData));
+}
+
+void* QProxyStyle_SubControlRect(void* ptr, int cc, void* option, int sc, void* widget){
+	return new QRect(static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(option), static_cast<QStyle::SubControl>(sc), static_cast<QWidget*>(widget))).x(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(option), static_cast<QStyle::SubControl>(sc), static_cast<QWidget*>(widget))).y(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(option), static_cast<QStyle::SubControl>(sc), static_cast<QWidget*>(widget))).width(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(option), static_cast<QStyle::SubControl>(sc), static_cast<QWidget*>(widget))).height());
+}
+
+void* QProxyStyle_SubElementRect(void* ptr, int element, void* option, void* widget){
+	return new QRect(static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(element), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget))).x(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(element), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget))).y(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(element), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget))).width(), static_cast<QRect>(static_cast<QProxyStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(element), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget))).height());
 }
 
 void QProxyStyle_Unpolish(void* ptr, void* widget){
@@ -11583,12 +12212,20 @@ void* QPushButton_Menu(void* ptr){
 	return static_cast<QPushButton*>(ptr)->menu();
 }
 
+void* QPushButton_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QPushButton*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QPushButton*>(ptr)->minimumSizeHint()).height());
+}
+
 void QPushButton_SetMenu(void* ptr, void* menu){
 	static_cast<QPushButton*>(ptr)->setMenu(static_cast<QMenu*>(menu));
 }
 
 void QPushButton_ShowMenu(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "showMenu");
+}
+
+void* QPushButton_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QPushButton*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QPushButton*>(ptr)->sizeHint()).height());
 }
 
 void QPushButton_DestroyQPushButton(void* ptr){
@@ -11610,6 +12247,14 @@ void* QRadioButton_NewQRadioButton(void* parent){
 
 void* QRadioButton_NewQRadioButton2(char* text, void* parent){
 	return new MyQRadioButton(QString(text), static_cast<QWidget*>(parent));
+}
+
+void* QRadioButton_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QRadioButton*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QRadioButton*>(ptr)->minimumSizeHint()).height());
+}
+
+void* QRadioButton_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QRadioButton*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QRadioButton*>(ptr)->sizeHint()).height());
 }
 
 void QRadioButton_DestroyQRadioButton(void* ptr){
@@ -11707,6 +12352,10 @@ int QScrollArea_FocusNextPrevChild(void* ptr, int next){
 	return static_cast<QScrollArea*>(ptr)->focusNextPrevChild(next != 0);
 }
 
+void* QScrollArea_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QScrollArea*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QScrollArea*>(ptr)->sizeHint()).height());
+}
+
 void* QScrollArea_TakeWidget(void* ptr){
 	return static_cast<QScrollArea*>(ptr)->takeWidget();
 }
@@ -11746,6 +12395,10 @@ int QScrollBar_Event(void* ptr, void* event){
 	return static_cast<QScrollBar*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
+void* QScrollBar_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QScrollBar*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QScrollBar*>(ptr)->sizeHint()).height());
+}
+
 void QScrollBar_DestroyQScrollBar(void* ptr){
 	static_cast<QScrollBar*>(ptr)->~QScrollBar();
 }
@@ -11760,12 +12413,16 @@ void QScroller_SetScrollerProperties(void* ptr, void* prop){
 	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "setScrollerProperties", Q_ARG(QScrollerProperties, *static_cast<QScrollerProperties*>(prop)));
 }
 
+int QScroller_State(void* ptr){
+	return static_cast<QScroller*>(ptr)->state();
+}
+
 void QScroller_EnsureVisible(void* ptr, void* rect, double xmargin, double ymargin){
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, static_cast<qreal>(xmargin)), Q_ARG(qreal, static_cast<qreal>(ymargin)));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, static_cast<double>(xmargin)), Q_ARG(qreal, static_cast<double>(ymargin)));
 }
 
 void QScroller_EnsureVisible2(void* ptr, void* rect, double xmargin, double ymargin, int scrollTime){
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, static_cast<qreal>(xmargin)), Q_ARG(qreal, static_cast<qreal>(ymargin)), Q_ARG(int, scrollTime));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, static_cast<double>(xmargin)), Q_ARG(qreal, static_cast<double>(ymargin)), Q_ARG(int, scrollTime));
 }
 
 int QScroller_QScroller_GrabGesture(void* target, int scrollGestureType){
@@ -11774,6 +12431,10 @@ int QScroller_QScroller_GrabGesture(void* target, int scrollGestureType){
 
 int QScroller_QScroller_GrabbedGesture(void* target){
 	return QScroller::grabbedGesture(static_cast<QObject*>(target));
+}
+
+int QScroller_HandleInput(void* ptr, int input, void* position, long long timestamp){
+	return static_cast<QScroller*>(ptr)->handleInput(static_cast<QScroller::Input>(input), *static_cast<QPointF*>(position), static_cast<long long>(timestamp));
 }
 
 int QScroller_QScroller_HasScroller(void* target){
@@ -11801,11 +12462,11 @@ void* QScroller_QScroller_Scroller2(void* target){
 }
 
 void QScroller_SetSnapPositionsX2(void* ptr, double first, double interval){
-	static_cast<QScroller*>(ptr)->setSnapPositionsX(static_cast<qreal>(first), static_cast<qreal>(interval));
+	static_cast<QScroller*>(ptr)->setSnapPositionsX(static_cast<double>(first), static_cast<double>(interval));
 }
 
 void QScroller_SetSnapPositionsY2(void* ptr, double first, double interval){
-	static_cast<QScroller*>(ptr)->setSnapPositionsY(static_cast<qreal>(first), static_cast<qreal>(interval));
+	static_cast<QScroller*>(ptr)->setSnapPositionsY(static_cast<double>(first), static_cast<double>(interval));
 }
 
 void QScroller_ConnectStateChanged(void* ptr){
@@ -11975,6 +12636,10 @@ void QSizeGrip_SetVisible(void* ptr, int visible){
 	static_cast<QSizeGrip*>(ptr)->setVisible(visible != 0);
 }
 
+void* QSizeGrip_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSizeGrip*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QSizeGrip*>(ptr)->sizeHint()).height());
+}
+
 void QSizeGrip_DestroyQSizeGrip(void* ptr){
 	static_cast<QSizeGrip*>(ptr)->~QSizeGrip();
 }
@@ -12098,6 +12763,14 @@ int QSlider_Event(void* ptr, void* event){
 	return static_cast<QSlider*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
+void* QSlider_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSlider*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QSlider*>(ptr)->minimumSizeHint()).height());
+}
+
+void* QSlider_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSlider*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QSlider*>(ptr)->sizeHint()).height());
+}
+
 void QSlider_DestroyQSlider(void* ptr){
 	static_cast<QSlider*>(ptr)->~QSlider();
 }
@@ -12108,6 +12781,7 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQSpacerItem(int w, int h, QSizePolicy::Policy hPolicy, QSizePolicy::Policy vPolicy) : QSpacerItem(w, h, hPolicy, vPolicy) {};
+	void setGeometry(const QRect & r) { if (!callbackQSpacerItemSetGeometry(this->objectNameAbs().toUtf8().data(), new QRect(static_cast<QRect>(r).x(), static_cast<QRect>(r).y(), static_cast<QRect>(r).width(), static_cast<QRect>(r).height()))) { QSpacerItem::setGeometry(r); }; };
 protected:
 };
 
@@ -12123,8 +12797,28 @@ int QSpacerItem_ExpandingDirections(void* ptr){
 	return static_cast<QSpacerItem*>(ptr)->expandingDirections();
 }
 
+void* QSpacerItem_Geometry(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QSpacerItem*>(ptr)->geometry()).x(), static_cast<QRect>(static_cast<QSpacerItem*>(ptr)->geometry()).y(), static_cast<QRect>(static_cast<QSpacerItem*>(ptr)->geometry()).width(), static_cast<QRect>(static_cast<QSpacerItem*>(ptr)->geometry()).height());
+}
+
 int QSpacerItem_IsEmpty(void* ptr){
 	return static_cast<QSpacerItem*>(ptr)->isEmpty();
+}
+
+void* QSpacerItem_MaximumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSpacerItem*>(ptr)->maximumSize()).width(), static_cast<QSize>(static_cast<QSpacerItem*>(ptr)->maximumSize()).height());
+}
+
+void* QSpacerItem_MinimumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSpacerItem*>(ptr)->minimumSize()).width(), static_cast<QSize>(static_cast<QSpacerItem*>(ptr)->minimumSize()).height());
+}
+
+void QSpacerItem_SetGeometry(void* ptr, void* r){
+	static_cast<QSpacerItem*>(ptr)->setGeometry(*static_cast<QRect*>(r));
+}
+
+void* QSpacerItem_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSpacerItem*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QSpacerItem*>(ptr)->sizeHint()).height());
 }
 
 void* QSpacerItem_SpacerItem(void* ptr){
@@ -12146,6 +12840,7 @@ void QSpacerItem_SetObjectNameAbs(void* ptr, char* name){
 class MyQSpinBox: public QSpinBox {
 public:
 	MyQSpinBox(QWidget *parent) : QSpinBox(parent) {};
+	void Signal_ValueChanged2(const QString & text) { callbackQSpinBoxValueChanged2(this->objectName().toUtf8().data(), text.toUtf8().data()); };
 	void Signal_ValueChanged(int i) { callbackQSpinBoxValueChanged(this->objectName().toUtf8().data(), i); };
 protected:
 };
@@ -12216,6 +12911,14 @@ void* QSpinBox_NewQSpinBox(void* parent){
 
 void QSpinBox_SetRange(void* ptr, int minimum, int maximum){
 	static_cast<QSpinBox*>(ptr)->setRange(minimum, maximum);
+}
+
+void QSpinBox_ConnectValueChanged2(void* ptr){
+	QObject::connect(static_cast<QSpinBox*>(ptr), static_cast<void (QSpinBox::*)(const QString &)>(&QSpinBox::valueChanged), static_cast<MyQSpinBox*>(ptr), static_cast<void (MyQSpinBox::*)(const QString &)>(&MyQSpinBox::Signal_ValueChanged2));;
+}
+
+void QSpinBox_DisconnectValueChanged2(void* ptr){
+	QObject::disconnect(static_cast<QSpinBox*>(ptr), static_cast<void (QSpinBox::*)(const QString &)>(&QSpinBox::valueChanged), static_cast<MyQSpinBox*>(ptr), static_cast<void (MyQSpinBox::*)(const QString &)>(&MyQSpinBox::Signal_ValueChanged2));;
 }
 
 void QSpinBox_ConnectValueChanged(void* ptr){
@@ -12363,6 +13066,10 @@ int QSplitter_IsCollapsible(void* ptr, int index){
 	return static_cast<QSplitter*>(ptr)->isCollapsible(index);
 }
 
+void* QSplitter_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSplitter*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QSplitter*>(ptr)->minimumSizeHint()).height());
+}
+
 void QSplitter_Refresh(void* ptr){
 	static_cast<QSplitter*>(ptr)->refresh();
 }
@@ -12381,6 +13088,10 @@ void QSplitter_SetCollapsible(void* ptr, int index, int collapse){
 
 void QSplitter_SetStretchFactor(void* ptr, int index, int stretch){
 	static_cast<QSplitter*>(ptr)->setStretchFactor(index, stretch);
+}
+
+void* QSplitter_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSplitter*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QSplitter*>(ptr)->sizeHint()).height());
 }
 
 void QSplitter_ConnectSplitterMoved(void* ptr){
@@ -12426,6 +13137,10 @@ void QSplitterHandle_SetOrientation(void* ptr, int orientation){
 	static_cast<QSplitterHandle*>(ptr)->setOrientation(static_cast<Qt::Orientation>(orientation));
 }
 
+void* QSplitterHandle_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSplitterHandle*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QSplitterHandle*>(ptr)->sizeHint()).height());
+}
+
 void* QSplitterHandle_Splitter(void* ptr){
 	return static_cast<QSplitterHandle*>(ptr)->splitter();
 }
@@ -12441,6 +13156,7 @@ public:
 	MyQStackedLayout(QWidget *parent) : QStackedLayout(parent) {};
 	void addItem(QLayoutItem * item) { if (!callbackQStackedLayoutAddItem(this->objectName().toUtf8().data(), item)) { QStackedLayout::addItem(item); }; };
 	void Signal_CurrentChanged(int index) { callbackQStackedLayoutCurrentChanged(this->objectName().toUtf8().data(), index); };
+	void setGeometry(const QRect & rect) { if (!callbackQStackedLayoutSetGeometry(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()))) { QStackedLayout::setGeometry(rect); }; };
 	void Signal_WidgetRemoved(int index) { callbackQStackedLayoutWidgetRemoved(this->objectName().toUtf8().data(), index); };
 protected:
 };
@@ -12515,6 +13231,18 @@ int QStackedLayout_InsertWidget(void* ptr, int index, void* widget){
 
 void* QStackedLayout_ItemAt(void* ptr, int index){
 	return static_cast<QStackedLayout*>(ptr)->itemAt(index);
+}
+
+void* QStackedLayout_MinimumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QStackedLayout*>(ptr)->minimumSize()).width(), static_cast<QSize>(static_cast<QStackedLayout*>(ptr)->minimumSize()).height());
+}
+
+void QStackedLayout_SetGeometry(void* ptr, void* rect){
+	static_cast<QStackedLayout*>(ptr)->setGeometry(*static_cast<QRect*>(rect));
+}
+
+void* QStackedLayout_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QStackedLayout*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QStackedLayout*>(ptr)->sizeHint()).height());
 }
 
 void* QStackedLayout_TakeAt(void* ptr, int index){
@@ -13498,6 +14226,14 @@ int QStyle_SE_ToolBarHandle_Type(){
 	return QStyle::SE_ToolBarHandle;
 }
 
+void* QStyle_ItemPixmapRect(void* ptr, void* rectangle, int alignment, void* pixmap){
+	return new QRect(static_cast<QRect>(static_cast<QStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap))).x(), static_cast<QRect>(static_cast<QStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap))).y(), static_cast<QRect>(static_cast<QStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap))).width(), static_cast<QRect>(static_cast<QStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap))).height());
+}
+
+void* QStyle_ItemTextRect(void* ptr, void* metrics, void* rectangle, int alignment, int enabled, char* text){
+	return new QRect(static_cast<QRect>(static_cast<QStyle*>(ptr)->itemTextRect(*static_cast<QFontMetrics*>(metrics), *static_cast<QRect*>(rectangle), alignment, enabled != 0, QString(text))).x(), static_cast<QRect>(static_cast<QStyle*>(ptr)->itemTextRect(*static_cast<QFontMetrics*>(metrics), *static_cast<QRect*>(rectangle), alignment, enabled != 0, QString(text))).y(), static_cast<QRect>(static_cast<QStyle*>(ptr)->itemTextRect(*static_cast<QFontMetrics*>(metrics), *static_cast<QRect*>(rectangle), alignment, enabled != 0, QString(text))).width(), static_cast<QRect>(static_cast<QStyle*>(ptr)->itemTextRect(*static_cast<QFontMetrics*>(metrics), *static_cast<QRect*>(rectangle), alignment, enabled != 0, QString(text))).height());
+}
+
 void* QStyle_Proxy(void* ptr){
 	return const_cast<QStyle*>(static_cast<QStyle*>(ptr)->proxy());
 }
@@ -13508,6 +14244,14 @@ int QStyle_QStyle_SliderValueFromPosition(int min, int max, int position, int sp
 
 void* QStyle_QStyle_VisualPos(int direction, void* boundingRectangle, void* logicalPosition){
 	return new QPoint(static_cast<QPoint>(QStyle::visualPos(static_cast<Qt::LayoutDirection>(direction), *static_cast<QRect*>(boundingRectangle), *static_cast<QPoint*>(logicalPosition))).x(), static_cast<QPoint>(QStyle::visualPos(static_cast<Qt::LayoutDirection>(direction), *static_cast<QRect*>(boundingRectangle), *static_cast<QPoint*>(logicalPosition))).y());
+}
+
+void* QStyle_QStyle_VisualRect(int direction, void* boundingRectangle, void* logicalRectangle){
+	return new QRect(static_cast<QRect>(QStyle::visualRect(static_cast<Qt::LayoutDirection>(direction), *static_cast<QRect*>(boundingRectangle), *static_cast<QRect*>(logicalRectangle))).x(), static_cast<QRect>(QStyle::visualRect(static_cast<Qt::LayoutDirection>(direction), *static_cast<QRect*>(boundingRectangle), *static_cast<QRect*>(logicalRectangle))).y(), static_cast<QRect>(QStyle::visualRect(static_cast<Qt::LayoutDirection>(direction), *static_cast<QRect*>(boundingRectangle), *static_cast<QRect*>(logicalRectangle))).width(), static_cast<QRect>(QStyle::visualRect(static_cast<Qt::LayoutDirection>(direction), *static_cast<QRect*>(boundingRectangle), *static_cast<QRect*>(logicalRectangle))).height());
+}
+
+void* QStyle_QStyle_AlignedRect(int direction, int alignment, void* size, void* rectangle){
+	return new QRect(static_cast<QRect>(QStyle::alignedRect(static_cast<Qt::LayoutDirection>(direction), static_cast<Qt::AlignmentFlag>(alignment), *static_cast<QSize*>(size), *static_cast<QRect*>(rectangle))).x(), static_cast<QRect>(QStyle::alignedRect(static_cast<Qt::LayoutDirection>(direction), static_cast<Qt::AlignmentFlag>(alignment), *static_cast<QSize*>(size), *static_cast<QRect*>(rectangle))).y(), static_cast<QRect>(QStyle::alignedRect(static_cast<Qt::LayoutDirection>(direction), static_cast<Qt::AlignmentFlag>(alignment), *static_cast<QSize*>(size), *static_cast<QRect*>(rectangle))).width(), static_cast<QRect>(QStyle::alignedRect(static_cast<Qt::LayoutDirection>(direction), static_cast<Qt::AlignmentFlag>(alignment), *static_cast<QSize*>(size), *static_cast<QRect*>(rectangle))).height());
 }
 
 int QStyle_CombinedLayoutSpacing(void* ptr, int controls1, int controls2, int orientation, void* option, void* widget){
@@ -13542,12 +14286,28 @@ void QStyle_Polish(void* ptr, void* widget){
 	static_cast<QStyle*>(ptr)->polish(static_cast<QWidget*>(widget));
 }
 
+void* QStyle_SizeFromContents(void* ptr, int ty, void* option, void* contentsSize, void* widget){
+	return new QSize(static_cast<QSize>(static_cast<QStyle*>(ptr)->sizeFromContents(static_cast<QStyle::ContentsType>(ty), static_cast<QStyleOption*>(option), *static_cast<QSize*>(contentsSize), static_cast<QWidget*>(widget))).width(), static_cast<QSize>(static_cast<QStyle*>(ptr)->sizeFromContents(static_cast<QStyle::ContentsType>(ty), static_cast<QStyleOption*>(option), *static_cast<QSize*>(contentsSize), static_cast<QWidget*>(widget))).height());
+}
+
 int QStyle_QStyle_SliderPositionFromValue(int min, int max, int logicalValue, int span, int upsideDown){
 	return QStyle::sliderPositionFromValue(min, max, logicalValue, span, upsideDown != 0);
 }
 
+void* QStyle_StandardIcon(void* ptr, int standardIcon, void* option, void* widget){
+	return new QIcon(static_cast<QStyle*>(ptr)->standardIcon(static_cast<QStyle::StandardPixmap>(standardIcon), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget)));
+}
+
 int QStyle_StyleHint(void* ptr, int hint, void* option, void* widget, void* returnData){
 	return static_cast<QStyle*>(ptr)->styleHint(static_cast<QStyle::StyleHint>(hint), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget), static_cast<QStyleHintReturn*>(returnData));
+}
+
+void* QStyle_SubControlRect(void* ptr, int control, void* option, int subControl, void* widget){
+	return new QRect(static_cast<QRect>(static_cast<QStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(control), static_cast<QStyleOptionComplex*>(option), static_cast<QStyle::SubControl>(subControl), static_cast<QWidget*>(widget))).x(), static_cast<QRect>(static_cast<QStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(control), static_cast<QStyleOptionComplex*>(option), static_cast<QStyle::SubControl>(subControl), static_cast<QWidget*>(widget))).y(), static_cast<QRect>(static_cast<QStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(control), static_cast<QStyleOptionComplex*>(option), static_cast<QStyle::SubControl>(subControl), static_cast<QWidget*>(widget))).width(), static_cast<QRect>(static_cast<QStyle*>(ptr)->subControlRect(static_cast<QStyle::ComplexControl>(control), static_cast<QStyleOptionComplex*>(option), static_cast<QStyle::SubControl>(subControl), static_cast<QWidget*>(widget))).height());
+}
+
+void* QStyle_SubElementRect(void* ptr, int element, void* option, void* widget){
+	return new QRect(static_cast<QRect>(static_cast<QStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(element), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget))).x(), static_cast<QRect>(static_cast<QStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(element), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget))).y(), static_cast<QRect>(static_cast<QStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(element), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget))).width(), static_cast<QRect>(static_cast<QStyle*>(ptr)->subElementRect(static_cast<QStyle::SubElement>(element), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget))).height());
 }
 
 void QStyle_Unpolish(void* ptr, void* widget){
@@ -13919,6 +14679,10 @@ void QStyledItemDelegate_SetModelData(void* ptr, void* editor, void* model, void
 	static_cast<QStyledItemDelegate*>(ptr)->setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
 }
 
+void* QStyledItemDelegate_SizeHint(void* ptr, void* option, void* index){
+	return new QSize(static_cast<QSize>(static_cast<QStyledItemDelegate*>(ptr)->sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QStyledItemDelegate*>(ptr)->sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index))).height());
+}
+
 void QStyledItemDelegate_DestroyQStyledItemDelegate(void* ptr){
 	static_cast<QStyledItemDelegate*>(ptr)->~QStyledItemDelegate();
 }
@@ -13928,7 +14692,7 @@ int QSwipeGesture_HorizontalDirection(void* ptr){
 }
 
 void QSwipeGesture_SetSwipeAngle(void* ptr, double value){
-	static_cast<QSwipeGesture*>(ptr)->setSwipeAngle(static_cast<qreal>(value));
+	static_cast<QSwipeGesture*>(ptr)->setSwipeAngle(static_cast<double>(value));
 }
 
 double QSwipeGesture_SwipeAngle(void* ptr){
@@ -13951,6 +14715,10 @@ public:
 	void Signal_MessageClicked() { callbackQSystemTrayIconMessageClicked(this->objectName().toUtf8().data()); };
 protected:
 };
+
+void* QSystemTrayIcon_Icon(void* ptr){
+	return new QIcon(static_cast<QSystemTrayIcon*>(ptr)->icon());
+}
 
 int QSystemTrayIcon_IsVisible(void* ptr){
 	return static_cast<QSystemTrayIcon*>(ptr)->isVisible();
@@ -13994,6 +14762,10 @@ void QSystemTrayIcon_DisconnectActivated(void* ptr){
 
 void* QSystemTrayIcon_ContextMenu(void* ptr){
 	return static_cast<QSystemTrayIcon*>(ptr)->contextMenu();
+}
+
+void* QSystemTrayIcon_Geometry(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QSystemTrayIcon*>(ptr)->geometry()).x(), static_cast<QRect>(static_cast<QSystemTrayIcon*>(ptr)->geometry()).y(), static_cast<QRect>(static_cast<QSystemTrayIcon*>(ptr)->geometry()).width(), static_cast<QRect>(static_cast<QSystemTrayIcon*>(ptr)->geometry()).height());
 }
 
 void QSystemTrayIcon_Hide(void* ptr){
@@ -14083,6 +14855,10 @@ int QTabBar_ElideMode(void* ptr){
 
 int QTabBar_Expanding(void* ptr){
 	return static_cast<QTabBar*>(ptr)->expanding();
+}
+
+void* QTabBar_IconSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QTabBar*>(ptr)->iconSize()).width(), static_cast<QSize>(static_cast<QTabBar*>(ptr)->iconSize()).height());
 }
 
 int QTabBar_IsMovable(void* ptr){
@@ -14189,6 +14965,10 @@ int QTabBar_IsTabEnabled(void* ptr, int index){
 	return static_cast<QTabBar*>(ptr)->isTabEnabled(index);
 }
 
+void* QTabBar_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QTabBar*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QTabBar*>(ptr)->minimumSizeHint()).height());
+}
+
 void QTabBar_MoveTab(void* ptr, int from, int to){
 	static_cast<QTabBar*>(ptr)->moveTab(from, to);
 }
@@ -14229,6 +15009,10 @@ void QTabBar_SetTabWhatsThis(void* ptr, int index, char* text){
 	static_cast<QTabBar*>(ptr)->setTabWhatsThis(index, QString(text));
 }
 
+void* QTabBar_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QTabBar*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QTabBar*>(ptr)->sizeHint()).height());
+}
+
 int QTabBar_TabAt(void* ptr, void* position){
 	return static_cast<QTabBar*>(ptr)->tabAt(*static_cast<QPoint*>(position));
 }
@@ -14265,12 +15049,20 @@ void* QTabBar_TabData(void* ptr, int index){
 	return new QVariant(static_cast<QTabBar*>(ptr)->tabData(index));
 }
 
+void* QTabBar_TabIcon(void* ptr, int index){
+	return new QIcon(static_cast<QTabBar*>(ptr)->tabIcon(index));
+}
+
 void QTabBar_ConnectTabMoved(void* ptr){
 	QObject::connect(static_cast<QTabBar*>(ptr), static_cast<void (QTabBar::*)(int, int)>(&QTabBar::tabMoved), static_cast<MyQTabBar*>(ptr), static_cast<void (MyQTabBar::*)(int, int)>(&MyQTabBar::Signal_TabMoved));;
 }
 
 void QTabBar_DisconnectTabMoved(void* ptr){
 	QObject::disconnect(static_cast<QTabBar*>(ptr), static_cast<void (QTabBar::*)(int, int)>(&QTabBar::tabMoved), static_cast<MyQTabBar*>(ptr), static_cast<void (MyQTabBar::*)(int, int)>(&MyQTabBar::Signal_TabMoved));;
+}
+
+void* QTabBar_TabRect(void* ptr, int index){
+	return new QRect(static_cast<QRect>(static_cast<QTabBar*>(ptr)->tabRect(index)).x(), static_cast<QRect>(static_cast<QTabBar*>(ptr)->tabRect(index)).y(), static_cast<QRect>(static_cast<QTabBar*>(ptr)->tabRect(index)).width(), static_cast<QRect>(static_cast<QTabBar*>(ptr)->tabRect(index)).height());
 }
 
 char* QTabBar_TabText(void* ptr, int index){
@@ -14332,6 +15124,10 @@ int QTabWidget_DocumentMode(void* ptr){
 
 int QTabWidget_ElideMode(void* ptr){
 	return static_cast<QTabWidget*>(ptr)->elideMode();
+}
+
+void* QTabWidget_IconSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QTabWidget*>(ptr)->iconSize()).width(), static_cast<QSize>(static_cast<QTabWidget*>(ptr)->iconSize()).height());
 }
 
 int QTabWidget_InsertTab2(void* ptr, int index, void* page, void* icon, char* label){
@@ -14450,6 +15246,10 @@ int QTabWidget_IsTabEnabled(void* ptr, int index){
 	return static_cast<QTabWidget*>(ptr)->isTabEnabled(index);
 }
 
+void* QTabWidget_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QTabWidget*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QTabWidget*>(ptr)->minimumSizeHint()).height());
+}
+
 void QTabWidget_RemoveTab(void* ptr, int index){
 	static_cast<QTabWidget*>(ptr)->removeTab(index);
 }
@@ -14476,6 +15276,10 @@ void QTabWidget_SetTabToolTip(void* ptr, int index, char* tip){
 
 void QTabWidget_SetTabWhatsThis(void* ptr, int index, char* text){
 	static_cast<QTabWidget*>(ptr)->setTabWhatsThis(index, QString(text));
+}
+
+void* QTabWidget_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QTabWidget*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QTabWidget*>(ptr)->sizeHint()).height());
 }
 
 void* QTabWidget_TabBar(void* ptr){
@@ -14506,6 +15310,10 @@ void QTabWidget_DisconnectTabCloseRequested(void* ptr){
 	QObject::disconnect(static_cast<QTabWidget*>(ptr), static_cast<void (QTabWidget::*)(int)>(&QTabWidget::tabCloseRequested), static_cast<MyQTabWidget*>(ptr), static_cast<void (MyQTabWidget::*)(int)>(&MyQTabWidget::Signal_TabCloseRequested));;
 }
 
+void* QTabWidget_TabIcon(void* ptr, int index){
+	return new QIcon(static_cast<QTabWidget*>(ptr)->tabIcon(index));
+}
+
 char* QTabWidget_TabText(void* ptr, int index){
 	return static_cast<QTabWidget*>(ptr)->tabText(index).toUtf8().data();
 }
@@ -14532,6 +15340,7 @@ public:
 	void setRootIndex(const QModelIndex & index) { if (!callbackQTableViewSetRootIndex(this->objectName().toUtf8().data(), index.internalPointer())) { QTableView::setRootIndex(index); }; };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { if (!callbackQTableViewSetSelectionModel(this->objectName().toUtf8().data(), selectionModel)) { QTableView::setSelectionModel(selectionModel); }; };
 protected:
+	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags flags) { if (!callbackQTableViewSetSelection(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), flags)) { QTableView::setSelection(rect, flags); }; };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQTableViewCurrentChanged(this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer())) { QTableView::currentChanged(current, previous); }; };
 	void paintEvent(QPaintEvent * event) { if (!callbackQTableViewPaintEvent(this->objectName().toUtf8().data(), event)) { QTableView::paintEvent(event); }; };
 	void timerEvent(QTimerEvent * event) { if (!callbackQTableViewTimerEvent(this->objectName().toUtf8().data(), event)) { QTableView::timerEvent(event); }; };
@@ -15039,6 +15848,10 @@ int QTableWidget_VisualColumn(void* ptr, int logicalColumn){
 	return static_cast<QTableWidget*>(ptr)->visualColumn(logicalColumn);
 }
 
+void* QTableWidget_VisualItemRect(void* ptr, void* item){
+	return new QRect(static_cast<QRect>(static_cast<QTableWidget*>(ptr)->visualItemRect(static_cast<QTableWidgetItem*>(item))).x(), static_cast<QRect>(static_cast<QTableWidget*>(ptr)->visualItemRect(static_cast<QTableWidgetItem*>(item))).y(), static_cast<QRect>(static_cast<QTableWidget*>(ptr)->visualItemRect(static_cast<QTableWidgetItem*>(item))).width(), static_cast<QRect>(static_cast<QTableWidget*>(ptr)->visualItemRect(static_cast<QTableWidgetItem*>(item))).height());
+}
+
 int QTableWidget_VisualRow(void* ptr, int logicalRow){
 	return static_cast<QTableWidget*>(ptr)->visualRow(logicalRow);
 }
@@ -15108,6 +15921,10 @@ void* QTableWidgetItem_Foreground(void* ptr){
 	return new QBrush(static_cast<QTableWidgetItem*>(ptr)->foreground());
 }
 
+void* QTableWidgetItem_Icon(void* ptr){
+	return new QIcon(static_cast<QTableWidgetItem*>(ptr)->icon());
+}
+
 int QTableWidgetItem_IsSelected(void* ptr){
 	return static_cast<QTableWidgetItem*>(ptr)->isSelected();
 }
@@ -15166,6 +15983,10 @@ void QTableWidgetItem_SetToolTip(void* ptr, char* toolTip){
 
 void QTableWidgetItem_SetWhatsThis(void* ptr, char* whatsThis){
 	static_cast<QTableWidgetItem*>(ptr)->setWhatsThis(QString(whatsThis));
+}
+
+void* QTableWidgetItem_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QTableWidgetItem*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QTableWidgetItem*>(ptr)->sizeHint()).height());
 }
 
 char* QTableWidgetItem_StatusTip(void* ptr){
@@ -15275,13 +16096,18 @@ void QTapGesture_DestroyQTapGesture(void* ptr){
 class MyQTextBrowser: public QTextBrowser {
 public:
 	MyQTextBrowser(QWidget *parent) : QTextBrowser(parent) {};
+	void setSource(const QUrl & name) { if (!callbackQTextBrowserSetSource(this->objectName().toUtf8().data(), new QUrl(name))) { QTextBrowser::setSource(name); }; };
+	void Signal_AnchorClicked(const QUrl & link) { callbackQTextBrowserAnchorClicked(this->objectName().toUtf8().data(), new QUrl(link)); };
 	void backward() { if (!callbackQTextBrowserBackward(this->objectName().toUtf8().data())) { QTextBrowser::backward(); }; };
 	void Signal_BackwardAvailable(bool available) { callbackQTextBrowserBackwardAvailable(this->objectName().toUtf8().data(), available); };
 	void forward() { if (!callbackQTextBrowserForward(this->objectName().toUtf8().data())) { QTextBrowser::forward(); }; };
 	void Signal_ForwardAvailable(bool available) { callbackQTextBrowserForwardAvailable(this->objectName().toUtf8().data(), available); };
+	void Signal_Highlighted2(const QString & link) { callbackQTextBrowserHighlighted2(this->objectName().toUtf8().data(), link.toUtf8().data()); };
+	void Signal_Highlighted(const QUrl & link) { callbackQTextBrowserHighlighted(this->objectName().toUtf8().data(), new QUrl(link)); };
 	void Signal_HistoryChanged() { callbackQTextBrowserHistoryChanged(this->objectName().toUtf8().data()); };
 	void home() { if (!callbackQTextBrowserHome(this->objectName().toUtf8().data())) { QTextBrowser::home(); }; };
 	void reload() { if (!callbackQTextBrowserReload(this->objectName().toUtf8().data())) { QTextBrowser::reload(); }; };
+	void Signal_SourceChanged(const QUrl & src) { callbackQTextBrowserSourceChanged(this->objectName().toUtf8().data(), new QUrl(src)); };
 protected:
 	void focusOutEvent(QFocusEvent * ev) { if (!callbackQTextBrowserFocusOutEvent(this->objectName().toUtf8().data(), ev)) { QTextBrowser::focusOutEvent(ev); }; };
 	void keyPressEvent(QKeyEvent * ev) { if (!callbackQTextBrowserKeyPressEvent(this->objectName().toUtf8().data(), ev)) { QTextBrowser::keyPressEvent(ev); }; };
@@ -15315,8 +16141,24 @@ void QTextBrowser_SetSearchPaths(void* ptr, char* paths){
 	static_cast<QTextBrowser*>(ptr)->setSearchPaths(QString(paths).split(",,,", QString::SkipEmptyParts));
 }
 
+void QTextBrowser_SetSource(void* ptr, void* name){
+	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setSource", Q_ARG(QUrl, *static_cast<QUrl*>(name)));
+}
+
+void* QTextBrowser_Source(void* ptr){
+	return new QUrl(static_cast<QTextBrowser*>(ptr)->source());
+}
+
 void* QTextBrowser_NewQTextBrowser(void* parent){
 	return new MyQTextBrowser(static_cast<QWidget*>(parent));
+}
+
+void QTextBrowser_ConnectAnchorClicked(void* ptr){
+	QObject::connect(static_cast<QTextBrowser*>(ptr), static_cast<void (QTextBrowser::*)(const QUrl &)>(&QTextBrowser::anchorClicked), static_cast<MyQTextBrowser*>(ptr), static_cast<void (MyQTextBrowser::*)(const QUrl &)>(&MyQTextBrowser::Signal_AnchorClicked));;
+}
+
+void QTextBrowser_DisconnectAnchorClicked(void* ptr){
+	QObject::disconnect(static_cast<QTextBrowser*>(ptr), static_cast<void (QTextBrowser::*)(const QUrl &)>(&QTextBrowser::anchorClicked), static_cast<MyQTextBrowser*>(ptr), static_cast<void (MyQTextBrowser::*)(const QUrl &)>(&MyQTextBrowser::Signal_AnchorClicked));;
 }
 
 void QTextBrowser_Backward(void* ptr){
@@ -15355,6 +16197,22 @@ int QTextBrowser_ForwardHistoryCount(void* ptr){
 	return static_cast<QTextBrowser*>(ptr)->forwardHistoryCount();
 }
 
+void QTextBrowser_ConnectHighlighted2(void* ptr){
+	QObject::connect(static_cast<QTextBrowser*>(ptr), static_cast<void (QTextBrowser::*)(const QString &)>(&QTextBrowser::highlighted), static_cast<MyQTextBrowser*>(ptr), static_cast<void (MyQTextBrowser::*)(const QString &)>(&MyQTextBrowser::Signal_Highlighted2));;
+}
+
+void QTextBrowser_DisconnectHighlighted2(void* ptr){
+	QObject::disconnect(static_cast<QTextBrowser*>(ptr), static_cast<void (QTextBrowser::*)(const QString &)>(&QTextBrowser::highlighted), static_cast<MyQTextBrowser*>(ptr), static_cast<void (MyQTextBrowser::*)(const QString &)>(&MyQTextBrowser::Signal_Highlighted2));;
+}
+
+void QTextBrowser_ConnectHighlighted(void* ptr){
+	QObject::connect(static_cast<QTextBrowser*>(ptr), static_cast<void (QTextBrowser::*)(const QUrl &)>(&QTextBrowser::highlighted), static_cast<MyQTextBrowser*>(ptr), static_cast<void (MyQTextBrowser::*)(const QUrl &)>(&MyQTextBrowser::Signal_Highlighted));;
+}
+
+void QTextBrowser_DisconnectHighlighted(void* ptr){
+	QObject::disconnect(static_cast<QTextBrowser*>(ptr), static_cast<void (QTextBrowser::*)(const QUrl &)>(&QTextBrowser::highlighted), static_cast<MyQTextBrowser*>(ptr), static_cast<void (MyQTextBrowser::*)(const QUrl &)>(&MyQTextBrowser::Signal_Highlighted));;
+}
+
 void QTextBrowser_ConnectHistoryChanged(void* ptr){
 	QObject::connect(static_cast<QTextBrowser*>(ptr), static_cast<void (QTextBrowser::*)()>(&QTextBrowser::historyChanged), static_cast<MyQTextBrowser*>(ptr), static_cast<void (MyQTextBrowser::*)()>(&MyQTextBrowser::Signal_HistoryChanged));;
 }
@@ -15365,6 +16223,10 @@ void QTextBrowser_DisconnectHistoryChanged(void* ptr){
 
 char* QTextBrowser_HistoryTitle(void* ptr, int i){
 	return static_cast<QTextBrowser*>(ptr)->historyTitle(i).toUtf8().data();
+}
+
+void* QTextBrowser_HistoryUrl(void* ptr, int i){
+	return new QUrl(static_cast<QTextBrowser*>(ptr)->historyUrl(i));
 }
 
 void QTextBrowser_Home(void* ptr){
@@ -15385,6 +16247,14 @@ void* QTextBrowser_LoadResource(void* ptr, int ty, void* name){
 
 void QTextBrowser_Reload(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "reload");
+}
+
+void QTextBrowser_ConnectSourceChanged(void* ptr){
+	QObject::connect(static_cast<QTextBrowser*>(ptr), static_cast<void (QTextBrowser::*)(const QUrl &)>(&QTextBrowser::sourceChanged), static_cast<MyQTextBrowser*>(ptr), static_cast<void (MyQTextBrowser::*)(const QUrl &)>(&MyQTextBrowser::Signal_SourceChanged));;
+}
+
+void QTextBrowser_DisconnectSourceChanged(void* ptr){
+	QObject::disconnect(static_cast<QTextBrowser*>(ptr), static_cast<void (QTextBrowser::*)(const QUrl &)>(&QTextBrowser::sourceChanged), static_cast<MyQTextBrowser*>(ptr), static_cast<void (MyQTextBrowser::*)(const QUrl &)>(&MyQTextBrowser::Signal_SourceChanged));;
 }
 
 class MyQTextEdit: public QTextEdit {
@@ -15605,6 +16475,14 @@ void QTextEdit_DisconnectCursorPositionChanged(void* ptr){
 	QObject::disconnect(static_cast<QTextEdit*>(ptr), static_cast<void (QTextEdit::*)()>(&QTextEdit::cursorPositionChanged), static_cast<MyQTextEdit*>(ptr), static_cast<void (MyQTextEdit::*)()>(&MyQTextEdit::Signal_CursorPositionChanged));;
 }
 
+void* QTextEdit_CursorRect2(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QTextEdit*>(ptr)->cursorRect()).x(), static_cast<QRect>(static_cast<QTextEdit*>(ptr)->cursorRect()).y(), static_cast<QRect>(static_cast<QTextEdit*>(ptr)->cursorRect()).width(), static_cast<QRect>(static_cast<QTextEdit*>(ptr)->cursorRect()).height());
+}
+
+void* QTextEdit_CursorRect(void* ptr, void* cursor){
+	return new QRect(static_cast<QRect>(static_cast<QTextEdit*>(ptr)->cursorRect(*static_cast<QTextCursor*>(cursor))).x(), static_cast<QRect>(static_cast<QTextEdit*>(ptr)->cursorRect(*static_cast<QTextCursor*>(cursor))).y(), static_cast<QRect>(static_cast<QTextEdit*>(ptr)->cursorRect(*static_cast<QTextCursor*>(cursor))).width(), static_cast<QRect>(static_cast<QTextEdit*>(ptr)->cursorRect(*static_cast<QTextCursor*>(cursor))).height());
+}
+
 void QTextEdit_Cut(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "cut");
 }
@@ -15722,7 +16600,7 @@ void QTextEdit_SetFontItalic(void* ptr, int italic){
 }
 
 void QTextEdit_SetFontPointSize(void* ptr, double s){
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setFontPointSize", Q_ARG(qreal, static_cast<qreal>(s)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setFontPointSize", Q_ARG(qreal, static_cast<double>(s)));
 }
 
 void QTextEdit_SetFontUnderline(void* ptr, int underline){
@@ -15815,6 +16693,7 @@ public:
 	MyQToolBar(const QString &title, QWidget *parent) : QToolBar(title, parent) {};
 	void Signal_ActionTriggered(QAction * action) { callbackQToolBarActionTriggered(this->objectName().toUtf8().data(), action); };
 	void Signal_AllowedAreasChanged(Qt::ToolBarAreas allowedAreas) { callbackQToolBarAllowedAreasChanged(this->objectName().toUtf8().data(), allowedAreas); };
+	void Signal_IconSizeChanged(const QSize & iconSize) { callbackQToolBarIconSizeChanged(this->objectName().toUtf8().data(), new QSize(static_cast<QSize>(iconSize).width(), static_cast<QSize>(iconSize).height())); };
 	void Signal_MovableChanged(bool movable) { callbackQToolBarMovableChanged(this->objectName().toUtf8().data(), movable); };
 	void Signal_OrientationChanged(Qt::Orientation orientation) { callbackQToolBarOrientationChanged(this->objectName().toUtf8().data(), orientation); };
 	void Signal_ToolButtonStyleChanged(Qt::ToolButtonStyle toolButtonStyle) { callbackQToolBarToolButtonStyleChanged(this->objectName().toUtf8().data(), toolButtonStyle); };
@@ -15828,6 +16707,10 @@ protected:
 
 int QToolBar_AllowedAreas(void* ptr){
 	return static_cast<QToolBar*>(ptr)->allowedAreas();
+}
+
+void* QToolBar_IconSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QToolBar*>(ptr)->iconSize()).width(), static_cast<QSize>(static_cast<QToolBar*>(ptr)->iconSize()).height());
 }
 
 int QToolBar_IsFloatable(void* ptr){
@@ -15932,6 +16815,14 @@ void QToolBar_DisconnectAllowedAreasChanged(void* ptr){
 
 void QToolBar_Clear(void* ptr){
 	static_cast<QToolBar*>(ptr)->clear();
+}
+
+void QToolBar_ConnectIconSizeChanged(void* ptr){
+	QObject::connect(static_cast<QToolBar*>(ptr), static_cast<void (QToolBar::*)(const QSize &)>(&QToolBar::iconSizeChanged), static_cast<MyQToolBar*>(ptr), static_cast<void (MyQToolBar::*)(const QSize &)>(&MyQToolBar::Signal_IconSizeChanged));;
+}
+
+void QToolBar_DisconnectIconSizeChanged(void* ptr){
+	QObject::disconnect(static_cast<QToolBar*>(ptr), static_cast<void (QToolBar::*)(const QSize &)>(&QToolBar::iconSizeChanged), static_cast<MyQToolBar*>(ptr), static_cast<void (MyQToolBar::*)(const QSize &)>(&MyQToolBar::Signal_IconSizeChanged));;
 }
 
 void* QToolBar_InsertSeparator(void* ptr, void* before){
@@ -16061,6 +16952,10 @@ int QToolBox_IsItemEnabled(void* ptr, int index){
 	return static_cast<QToolBox*>(ptr)->isItemEnabled(index);
 }
 
+void* QToolBox_ItemIcon(void* ptr, int index){
+	return new QIcon(static_cast<QToolBox*>(ptr)->itemIcon(index));
+}
+
 char* QToolBox_ItemText(void* ptr, int index){
 	return static_cast<QToolBox*>(ptr)->itemText(index).toUtf8().data();
 }
@@ -16157,12 +17052,20 @@ void* QToolButton_Menu(void* ptr){
 	return static_cast<QToolButton*>(ptr)->menu();
 }
 
+void* QToolButton_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QToolButton*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QToolButton*>(ptr)->minimumSizeHint()).height());
+}
+
 void QToolButton_SetMenu(void* ptr, void* menu){
 	static_cast<QToolButton*>(ptr)->setMenu(static_cast<QMenu*>(menu));
 }
 
 void QToolButton_ShowMenu(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "showMenu");
+}
+
+void* QToolButton_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QToolButton*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QToolButton*>(ptr)->sizeHint()).height());
 }
 
 void QToolButton_ConnectTriggered(void* ptr){
@@ -16224,6 +17127,7 @@ public:
 protected:
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQTreeViewCurrentChanged(this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer())) { QTreeView::currentChanged(current, previous); }; };
 	void dragMoveEvent(QDragMoveEvent * event) { if (!callbackQTreeViewDragMoveEvent(this->objectName().toUtf8().data(), event)) { QTreeView::dragMoveEvent(event); }; };
+	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { if (!callbackQTreeViewDrawBranches(this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), index.internalPointer())) { QTreeView::drawBranches(painter, rect, index); }; };
 	void keyPressEvent(QKeyEvent * event) { if (!callbackQTreeViewKeyPressEvent(this->objectName().toUtf8().data(), event)) { QTreeView::keyPressEvent(event); }; };
 	void mouseDoubleClickEvent(QMouseEvent * event) { if (!callbackQTreeViewMouseDoubleClickEvent(this->objectName().toUtf8().data(), event)) { QTreeView::mouseDoubleClickEvent(event); }; };
 	void mouseMoveEvent(QMouseEvent * event) { if (!callbackQTreeViewMouseMoveEvent(this->objectName().toUtf8().data(), event)) { QTreeView::mouseMoveEvent(event); }; };
@@ -16233,6 +17137,7 @@ protected:
 	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQTreeViewRowsAboutToBeRemoved(this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QTreeView::rowsAboutToBeRemoved(parent, start, end); }; };
 	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQTreeViewRowsInserted(this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QTreeView::rowsInserted(parent, start, end); }; };
 	void scrollContentsBy(int dx, int dy) { if (!callbackQTreeViewScrollContentsBy(this->objectName().toUtf8().data(), dx, dy)) { QTreeView::scrollContentsBy(dx, dy); }; };
+	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { if (!callbackQTreeViewSetSelection(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command)) { QTreeView::setSelection(rect, command); }; };
 	void timerEvent(QTimerEvent * event) { if (!callbackQTreeViewTimerEvent(this->objectName().toUtf8().data(), event)) { QTreeView::timerEvent(event); }; };
 	void updateGeometries() { if (!callbackQTreeViewUpdateGeometries(this->objectName().toUtf8().data())) { QTreeView::updateGeometries(); }; };
 };
@@ -16489,6 +17394,10 @@ int QTreeView_TreePosition(void* ptr){
 	return static_cast<QTreeView*>(ptr)->treePosition();
 }
 
+void* QTreeView_VisualRect(void* ptr, void* index){
+	return new QRect(static_cast<QRect>(static_cast<QTreeView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QTreeView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QTreeView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QTreeView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).height());
+}
+
 void QTreeView_DestroyQTreeView(void* ptr){
 	static_cast<QTreeView*>(ptr)->~QTreeView();
 }
@@ -16743,6 +17652,10 @@ void* QTreeWidget_TopLevelItem(void* ptr, int index){
 	return static_cast<QTreeWidget*>(ptr)->topLevelItem(index);
 }
 
+void* QTreeWidget_VisualItemRect(void* ptr, void* item){
+	return new QRect(static_cast<QRect>(static_cast<QTreeWidget*>(ptr)->visualItemRect(static_cast<QTreeWidgetItem*>(item))).x(), static_cast<QRect>(static_cast<QTreeWidget*>(ptr)->visualItemRect(static_cast<QTreeWidgetItem*>(item))).y(), static_cast<QRect>(static_cast<QTreeWidget*>(ptr)->visualItemRect(static_cast<QTreeWidgetItem*>(item))).width(), static_cast<QRect>(static_cast<QTreeWidget*>(ptr)->visualItemRect(static_cast<QTreeWidgetItem*>(item))).height());
+}
+
 void QTreeWidget_DestroyQTreeWidget(void* ptr){
 	static_cast<QTreeWidget*>(ptr)->~QTreeWidget();
 }
@@ -16847,6 +17760,10 @@ void* QTreeWidgetItem_Clone(void* ptr){
 
 void* QTreeWidgetItem_Foreground(void* ptr, int column){
 	return new QBrush(static_cast<QTreeWidgetItem*>(ptr)->foreground(column));
+}
+
+void* QTreeWidgetItem_Icon(void* ptr, int column){
+	return new QIcon(static_cast<QTreeWidgetItem*>(ptr)->icon(column));
 }
 
 int QTreeWidgetItem_IndexOfChild(void* ptr, void* child){
@@ -16955,6 +17872,10 @@ void QTreeWidgetItem_SetToolTip(void* ptr, int column, char* toolTip){
 
 void QTreeWidgetItem_SetWhatsThis(void* ptr, int column, char* whatsThis){
 	static_cast<QTreeWidgetItem*>(ptr)->setWhatsThis(column, QString(whatsThis));
+}
+
+void* QTreeWidgetItem_SizeHint(void* ptr, int column){
+	return new QSize(static_cast<QSize>(static_cast<QTreeWidgetItem*>(ptr)->sizeHint(column)).width(), static_cast<QSize>(static_cast<QTreeWidgetItem*>(ptr)->sizeHint(column)).height());
 }
 
 void QTreeWidgetItem_SortChildren(void* ptr, int column, int order){
@@ -17364,6 +18285,10 @@ void QUndoStack_DestroyQUndoStack(void* ptr){
 	static_cast<QUndoStack*>(ptr)->~QUndoStack();
 }
 
+void* QUndoView_CleanIcon(void* ptr){
+	return new QIcon(static_cast<QUndoView*>(ptr)->cleanIcon());
+}
+
 char* QUndoView_EmptyLabel(void* ptr){
 	return static_cast<QUndoView*>(ptr)->emptyLabel().toUtf8().data();
 }
@@ -17449,6 +18374,7 @@ public:
 	MyQWidget(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f) {};
 	void setVisible(bool visible) { if (!callbackQWidgetSetVisible(this->objectName().toUtf8().data(), visible)) { QWidget::setVisible(visible); }; };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQWidgetCustomContextMenuRequested(this->objectName().toUtf8().data(), new QPoint(static_cast<QPoint>(pos).x(), static_cast<QPoint>(pos).y())); };
+	void Signal_WindowIconChanged(const QIcon & icon) { callbackQWidgetWindowIconChanged(this->objectName().toUtf8().data(), new QIcon(icon)); };
 	void Signal_WindowIconTextChanged(const QString & iconText) { callbackQWidgetWindowIconTextChanged(this->objectName().toUtf8().data(), iconText.toUtf8().data()); };
 	void Signal_WindowTitleChanged(const QString & title) { callbackQWidgetWindowTitleChanged(this->objectName().toUtf8().data(), title.toUtf8().data()); };
 protected:
@@ -17501,6 +18427,14 @@ int QWidget_AutoFillBackground(void* ptr){
 	return static_cast<QWidget*>(ptr)->autoFillBackground();
 }
 
+void* QWidget_BaseSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWidget*>(ptr)->baseSize()).width(), static_cast<QSize>(static_cast<QWidget*>(ptr)->baseSize()).height());
+}
+
+void* QWidget_ChildrenRect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QWidget*>(ptr)->childrenRect()).x(), static_cast<QRect>(static_cast<QWidget*>(ptr)->childrenRect()).y(), static_cast<QRect>(static_cast<QWidget*>(ptr)->childrenRect()).width(), static_cast<QRect>(static_cast<QWidget*>(ptr)->childrenRect()).height());
+}
+
 void* QWidget_ChildrenRegion(void* ptr){
 	return new QRegion(static_cast<QWidget*>(ptr)->childrenRegion());
 }
@@ -17515,6 +18449,14 @@ int QWidget_ContextMenuPolicy(void* ptr){
 
 int QWidget_FocusPolicy(void* ptr){
 	return static_cast<QWidget*>(ptr)->focusPolicy();
+}
+
+void* QWidget_FrameGeometry(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QWidget*>(ptr)->frameGeometry()).x(), static_cast<QRect>(static_cast<QWidget*>(ptr)->frameGeometry()).y(), static_cast<QRect>(static_cast<QWidget*>(ptr)->frameGeometry()).width(), static_cast<QRect>(static_cast<QWidget*>(ptr)->frameGeometry()).height());
+}
+
+void* QWidget_FrameSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWidget*>(ptr)->frameSize()).width(), static_cast<QSize>(static_cast<QWidget*>(ptr)->frameSize()).height());
 }
 
 void QWidget_GrabKeyboard(void* ptr){
@@ -17573,12 +18515,28 @@ void* QWidget_MapToGlobal(void* ptr, void* pos){
 	return new QPoint(static_cast<QPoint>(static_cast<QWidget*>(ptr)->mapToGlobal(*static_cast<QPoint*>(pos))).x(), static_cast<QPoint>(static_cast<QWidget*>(ptr)->mapToGlobal(*static_cast<QPoint*>(pos))).y());
 }
 
+void* QWidget_MaximumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWidget*>(ptr)->maximumSize()).width(), static_cast<QSize>(static_cast<QWidget*>(ptr)->maximumSize()).height());
+}
+
+void* QWidget_MinimumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWidget*>(ptr)->minimumSize()).width(), static_cast<QSize>(static_cast<QWidget*>(ptr)->minimumSize()).height());
+}
+
+void* QWidget_MinimumSizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWidget*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QWidget*>(ptr)->minimumSizeHint()).height());
+}
+
 void* QWidget_QWidget_MouseGrabber(){
 	return QWidget::mouseGrabber();
 }
 
 void QWidget_Move(void* ptr, void* v){
 	static_cast<QWidget*>(ptr)->move(*static_cast<QPoint*>(v));
+}
+
+void* QWidget_NormalGeometry(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QWidget*>(ptr)->normalGeometry()).x(), static_cast<QRect>(static_cast<QWidget*>(ptr)->normalGeometry()).y(), static_cast<QRect>(static_cast<QWidget*>(ptr)->normalGeometry()).width(), static_cast<QRect>(static_cast<QWidget*>(ptr)->normalGeometry()).height());
 }
 
 void* QWidget_PaintEngine(void* ptr){
@@ -17746,7 +18704,7 @@ void QWidget_SetWindowModified(void* ptr, int v){
 }
 
 void QWidget_SetWindowOpacity(void* ptr, double level){
-	static_cast<QWidget*>(ptr)->setWindowOpacity(static_cast<qreal>(level));
+	static_cast<QWidget*>(ptr)->setWindowOpacity(static_cast<double>(level));
 }
 
 void QWidget_SetWindowState(void* ptr, int windowState){
@@ -17755,6 +18713,14 @@ void QWidget_SetWindowState(void* ptr, int windowState){
 
 void QWidget_SetWindowTitle(void* ptr, char* v){
 	QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(v)));
+}
+
+void* QWidget_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWidget*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QWidget*>(ptr)->sizeHint()).height());
+}
+
+void* QWidget_SizeIncrement(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWidget*>(ptr)->sizeIncrement()).width(), static_cast<QSize>(static_cast<QWidget*>(ptr)->sizeIncrement()).height());
 }
 
 char* QWidget_StatusTip(void* ptr){
@@ -17791,6 +18757,10 @@ char* QWidget_WhatsThis(void* ptr){
 
 char* QWidget_WindowFilePath(void* ptr){
 	return static_cast<QWidget*>(ptr)->windowFilePath().toUtf8().data();
+}
+
+void* QWidget_WindowIcon(void* ptr){
+	return new QIcon(static_cast<QWidget*>(ptr)->windowIcon());
 }
 
 char* QWidget_WindowIconText(void* ptr){
@@ -17853,6 +18823,10 @@ int QWidget_Close(void* ptr){
 	return QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "close");
 }
 
+void* QWidget_ContentsRect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QWidget*>(ptr)->contentsRect()).x(), static_cast<QRect>(static_cast<QWidget*>(ptr)->contentsRect()).y(), static_cast<QRect>(static_cast<QWidget*>(ptr)->contentsRect()).width(), static_cast<QRect>(static_cast<QWidget*>(ptr)->contentsRect()).height());
+}
+
 void QWidget_ConnectCustomContextMenuRequested(void* ptr){
 	QObject::connect(static_cast<QWidget*>(ptr), static_cast<void (QWidget::*)(const QPoint &)>(&QWidget::customContextMenuRequested), static_cast<MyQWidget*>(ptr), static_cast<void (MyQWidget::*)(const QPoint &)>(&MyQWidget::Signal_CustomContextMenuRequested));;
 }
@@ -17875,6 +18849,10 @@ void* QWidget_FocusWidget(void* ptr){
 
 int QWidget_ForegroundRole(void* ptr){
 	return static_cast<QWidget*>(ptr)->foregroundRole();
+}
+
+void* QWidget_Geometry(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QWidget*>(ptr)->geometry()).x(), static_cast<QRect>(static_cast<QWidget*>(ptr)->geometry()).y(), static_cast<QRect>(static_cast<QWidget*>(ptr)->geometry()).width(), static_cast<QRect>(static_cast<QWidget*>(ptr)->geometry()).height());
 }
 
 void QWidget_GetContentsMargins(void* ptr, int left, int top, int right, int bottom){
@@ -18027,6 +19005,10 @@ void* QWidget_PreviousInFocusChain(void* ptr){
 
 void QWidget_Raise(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "raise");
+}
+
+void* QWidget_Rect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QWidget*>(ptr)->rect()).x(), static_cast<QRect>(static_cast<QWidget*>(ptr)->rect()).y(), static_cast<QRect>(static_cast<QWidget*>(ptr)->rect()).width(), static_cast<QRect>(static_cast<QWidget*>(ptr)->rect()).height());
 }
 
 void QWidget_ReleaseShortcut(void* ptr, int id){
@@ -18229,6 +19211,10 @@ void QWidget_ShowNormal(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "showNormal");
 }
 
+void* QWidget_Size(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWidget*>(ptr)->size()).width(), static_cast<QSize>(static_cast<QWidget*>(ptr)->size()).height());
+}
+
 void QWidget_StackUnder(void* ptr, void* w){
 	static_cast<QWidget*>(ptr)->stackUnder(static_cast<QWidget*>(w));
 }
@@ -18291,6 +19277,14 @@ int QWidget_WindowFlags(void* ptr){
 
 void* QWidget_WindowHandle(void* ptr){
 	return static_cast<QWidget*>(ptr)->windowHandle();
+}
+
+void QWidget_ConnectWindowIconChanged(void* ptr){
+	QObject::connect(static_cast<QWidget*>(ptr), static_cast<void (QWidget::*)(const QIcon &)>(&QWidget::windowIconChanged), static_cast<MyQWidget*>(ptr), static_cast<void (MyQWidget::*)(const QIcon &)>(&MyQWidget::Signal_WindowIconChanged));;
+}
+
+void QWidget_DisconnectWindowIconChanged(void* ptr){
+	QObject::disconnect(static_cast<QWidget*>(ptr), static_cast<void (QWidget::*)(const QIcon &)>(&QWidget::windowIconChanged), static_cast<MyQWidget*>(ptr), static_cast<void (MyQWidget::*)(const QIcon &)>(&MyQWidget::Signal_WindowIconChanged));;
 }
 
 void QWidget_ConnectWindowIconTextChanged(void* ptr){
@@ -18366,6 +19360,7 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQWidgetItem(QWidget *widget) : QWidgetItem(widget) {};
+	void setGeometry(const QRect & rect) { if (!callbackQWidgetItemSetGeometry(this->objectNameAbs().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()))) { QWidgetItem::setGeometry(rect); }; };
 protected:
 };
 
@@ -18381,6 +19376,10 @@ int QWidgetItem_ExpandingDirections(void* ptr){
 	return static_cast<QWidgetItem*>(ptr)->expandingDirections();
 }
 
+void* QWidgetItem_Geometry(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QWidgetItem*>(ptr)->geometry()).x(), static_cast<QRect>(static_cast<QWidgetItem*>(ptr)->geometry()).y(), static_cast<QRect>(static_cast<QWidgetItem*>(ptr)->geometry()).width(), static_cast<QRect>(static_cast<QWidgetItem*>(ptr)->geometry()).height());
+}
+
 int QWidgetItem_HasHeightForWidth(void* ptr){
 	return static_cast<QWidgetItem*>(ptr)->hasHeightForWidth();
 }
@@ -18391,6 +19390,22 @@ int QWidgetItem_HeightForWidth(void* ptr, int w){
 
 int QWidgetItem_IsEmpty(void* ptr){
 	return static_cast<QWidgetItem*>(ptr)->isEmpty();
+}
+
+void* QWidgetItem_MaximumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWidgetItem*>(ptr)->maximumSize()).width(), static_cast<QSize>(static_cast<QWidgetItem*>(ptr)->maximumSize()).height());
+}
+
+void* QWidgetItem_MinimumSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWidgetItem*>(ptr)->minimumSize()).width(), static_cast<QSize>(static_cast<QWidgetItem*>(ptr)->minimumSize()).height());
+}
+
+void QWidgetItem_SetGeometry(void* ptr, void* rect){
+	static_cast<QWidgetItem*>(ptr)->setGeometry(*static_cast<QRect*>(rect));
+}
+
+void* QWidgetItem_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWidgetItem*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QWidgetItem*>(ptr)->sizeHint()).height());
 }
 
 void* QWidgetItem_Widget(void* ptr){
@@ -18600,6 +19615,10 @@ void QWizard_SetVisible(void* ptr, int visible){
 
 void* QWizard_SideWidget(void* ptr){
 	return static_cast<QWizard*>(ptr)->sideWidget();
+}
+
+void* QWizard_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QWizard*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QWizard*>(ptr)->sizeHint()).height());
 }
 
 int QWizard_TestOption(void* ptr, int option){

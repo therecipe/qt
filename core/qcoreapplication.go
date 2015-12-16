@@ -138,6 +138,12 @@ func QCoreApplication_ApplicationFilePath() string {
 	return C.GoString(C.QCoreApplication_QCoreApplication_ApplicationFilePath())
 }
 
+func QCoreApplication_ApplicationPid() int64 {
+	defer qt.Recovering("QCoreApplication::applicationPid")
+
+	return int64(C.QCoreApplication_QCoreApplication_ApplicationPid())
+}
+
 func QCoreApplication_Arguments() []string {
 	defer qt.Recovering("QCoreApplication::arguments")
 

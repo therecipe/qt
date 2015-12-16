@@ -179,6 +179,15 @@ func (ptr *QRadioTuner) SignalStrength() int {
 	return 0
 }
 
+func (ptr *QRadioTuner) State() QRadioTuner__State {
+	defer qt.Recovering("QRadioTuner::state")
+
+	if ptr.Pointer() != nil {
+		return QRadioTuner__State(C.QRadioTuner_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QRadioTuner) StereoMode() QRadioTuner__StereoMode {
 	defer qt.Recovering("QRadioTuner::stereoMode")
 
@@ -267,6 +276,35 @@ func (ptr *QRadioTuner) CancelSearch() {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_CancelSearch(ptr.Pointer())
 	}
+}
+
+func (ptr *QRadioTuner) ConnectError2(f func(error QRadioTuner__Error)) {
+	defer qt.Recovering("connect QRadioTuner::error")
+
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QRadioTuner) DisconnectError2() {
+	defer qt.Recovering("disconnect QRadioTuner::error")
+
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQRadioTunerError2
+func callbackQRadioTunerError2(ptrName *C.char, error C.int) {
+	defer qt.Recovering("callback QRadioTuner::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QRadioTuner__Error))(QRadioTuner__Error(error))
+	}
+
 }
 
 func (ptr *QRadioTuner) Error() QRadioTuner__Error {

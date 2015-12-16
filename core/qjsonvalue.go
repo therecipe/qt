@@ -107,6 +107,12 @@ func NewQJsonValue12(n int) *QJsonValue {
 	return NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue12(C.int(n)))
 }
 
+func NewQJsonValue13(n int64) *QJsonValue {
+	defer qt.Recovering("QJsonValue::QJsonValue")
+
+	return NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue13(C.longlong(n)))
+}
+
 func (ptr *QJsonValue) IsArray() bool {
 	defer qt.Recovering("QJsonValue::isArray")
 

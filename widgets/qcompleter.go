@@ -227,6 +227,35 @@ func NewQCompleter3(list []string, parent core.QObject_ITF) *QCompleter {
 	return NewQCompleterFromPointer(C.QCompleter_NewQCompleter3(C.CString(strings.Join(list, ",,,")), core.PointerFromQObject(parent)))
 }
 
+func (ptr *QCompleter) ConnectActivated2(f func(index *core.QModelIndex)) {
+	defer qt.Recovering("connect QCompleter::activated")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_ConnectActivated2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "activated", f)
+	}
+}
+
+func (ptr *QCompleter) DisconnectActivated2() {
+	defer qt.Recovering("disconnect QCompleter::activated")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_DisconnectActivated2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "activated")
+	}
+}
+
+//export callbackQCompleterActivated2
+func callbackQCompleterActivated2(ptrName *C.char, index unsafe.Pointer) {
+	defer qt.Recovering("callback QCompleter::activated")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
+	if signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	}
+
+}
+
 func (ptr *QCompleter) ConnectActivated(f func(text string)) {
 	defer qt.Recovering("connect QCompleter::activated")
 
@@ -307,6 +336,35 @@ func (ptr *QCompleter) CurrentRow() int {
 		return int(C.QCompleter_CurrentRow(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QCompleter) ConnectHighlighted2(f func(index *core.QModelIndex)) {
+	defer qt.Recovering("connect QCompleter::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_ConnectHighlighted2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "highlighted", f)
+	}
+}
+
+func (ptr *QCompleter) DisconnectHighlighted2() {
+	defer qt.Recovering("disconnect QCompleter::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_DisconnectHighlighted2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "highlighted")
+	}
+}
+
+//export callbackQCompleterHighlighted2
+func callbackQCompleterHighlighted2(ptrName *C.char, index unsafe.Pointer) {
+	defer qt.Recovering("callback QCompleter::highlighted")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted")
+	if signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	}
+
 }
 
 func (ptr *QCompleter) ConnectHighlighted(f func(text string)) {

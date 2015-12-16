@@ -74,6 +74,35 @@ func QGeoAreaMonitorSource_CreateSource(sourceName string, parent core.QObject_I
 	return NewQGeoAreaMonitorSourceFromPointer(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(C.CString(sourceName), core.PointerFromQObject(parent)))
 }
 
+func (ptr *QGeoAreaMonitorSource) ConnectError2(f func(areaMonitoringError QGeoAreaMonitorSource__Error)) {
+	defer qt.Recovering("connect QGeoAreaMonitorSource::error")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) DisconnectError2() {
+	defer qt.Recovering("disconnect QGeoAreaMonitorSource::error")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQGeoAreaMonitorSourceError2
+func callbackQGeoAreaMonitorSourceError2(ptrName *C.char, areaMonitoringError C.int) {
+	defer qt.Recovering("callback QGeoAreaMonitorSource::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QGeoAreaMonitorSource__Error))(QGeoAreaMonitorSource__Error(areaMonitoringError))
+	}
+
+}
+
 func (ptr *QGeoAreaMonitorSource) Error() QGeoAreaMonitorSource__Error {
 	defer qt.Recovering("QGeoAreaMonitorSource::error")
 

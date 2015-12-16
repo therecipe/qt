@@ -172,6 +172,24 @@ func (ptr *QTextStream) NumberFlags() QTextStream__NumberFlag {
 	return 0
 }
 
+func (ptr *QTextStream) Pos() int64 {
+	defer qt.Recovering("QTextStream::pos")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QTextStream_Pos(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QTextStream) Read(maxlen int64) string {
+	defer qt.Recovering("QTextStream::read")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QTextStream_Read(ptr.Pointer(), C.longlong(maxlen)))
+	}
+	return ""
+}
+
 func (ptr *QTextStream) ReadAll() string {
 	defer qt.Recovering("QTextStream::readAll")
 
@@ -179,6 +197,24 @@ func (ptr *QTextStream) ReadAll() string {
 		return C.GoString(C.QTextStream_ReadAll(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QTextStream) ReadLine(maxlen int64) string {
+	defer qt.Recovering("QTextStream::readLine")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QTextStream_ReadLine(ptr.Pointer(), C.longlong(maxlen)))
+	}
+	return ""
+}
+
+func (ptr *QTextStream) ReadLineInto(line string, maxlen int64) bool {
+	defer qt.Recovering("QTextStream::readLineInto")
+
+	if ptr.Pointer() != nil {
+		return C.QTextStream_ReadLineInto(ptr.Pointer(), C.CString(line), C.longlong(maxlen)) != 0
+	}
+	return false
 }
 
 func (ptr *QTextStream) RealNumberNotation() QTextStream__RealNumberNotation {
@@ -213,6 +249,15 @@ func (ptr *QTextStream) ResetStatus() {
 	if ptr.Pointer() != nil {
 		C.QTextStream_ResetStatus(ptr.Pointer())
 	}
+}
+
+func (ptr *QTextStream) Seek(pos int64) bool {
+	defer qt.Recovering("QTextStream::seek")
+
+	if ptr.Pointer() != nil {
+		return C.QTextStream_Seek(ptr.Pointer(), C.longlong(pos)) != 0
+	}
+	return false
 }
 
 func (ptr *QTextStream) SetAutoDetectUnicode(enabled bool) {

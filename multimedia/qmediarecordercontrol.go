@@ -37,12 +37,79 @@ func (ptr *QMediaRecorderControl) QMediaRecorderControl_PTR() *QMediaRecorderCon
 	return ptr
 }
 
+func (ptr *QMediaRecorderControl) ConnectActualLocationChanged(f func(location *core.QUrl)) {
+	defer qt.Recovering("connect QMediaRecorderControl::actualLocationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_ConnectActualLocationChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "actualLocationChanged", f)
+	}
+}
+
+func (ptr *QMediaRecorderControl) DisconnectActualLocationChanged() {
+	defer qt.Recovering("disconnect QMediaRecorderControl::actualLocationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_DisconnectActualLocationChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "actualLocationChanged")
+	}
+}
+
+//export callbackQMediaRecorderControlActualLocationChanged
+func callbackQMediaRecorderControlActualLocationChanged(ptrName *C.char, location unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaRecorderControl::actualLocationChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "actualLocationChanged")
+	if signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(location))
+	}
+
+}
+
 func (ptr *QMediaRecorderControl) ApplySettings() {
 	defer qt.Recovering("QMediaRecorderControl::applySettings")
 
 	if ptr.Pointer() != nil {
 		C.QMediaRecorderControl_ApplySettings(ptr.Pointer())
 	}
+}
+
+func (ptr *QMediaRecorderControl) Duration() int64 {
+	defer qt.Recovering("QMediaRecorderControl::duration")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QMediaRecorderControl_Duration(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QMediaRecorderControl) ConnectDurationChanged(f func(duration int64)) {
+	defer qt.Recovering("connect QMediaRecorderControl::durationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_ConnectDurationChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "durationChanged", f)
+	}
+}
+
+func (ptr *QMediaRecorderControl) DisconnectDurationChanged() {
+	defer qt.Recovering("disconnect QMediaRecorderControl::durationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_DisconnectDurationChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "durationChanged")
+	}
+}
+
+//export callbackQMediaRecorderControlDurationChanged
+func callbackQMediaRecorderControlDurationChanged(ptrName *C.char, duration C.longlong) {
+	defer qt.Recovering("callback QMediaRecorderControl::durationChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "durationChanged")
+	if signal != nil {
+		signal.(func(int64))(int64(duration))
+	}
+
 }
 
 func (ptr *QMediaRecorderControl) ConnectError(f func(error int, errorString string)) {
@@ -112,6 +179,15 @@ func callbackQMediaRecorderControlMutedChanged(ptrName *C.char, muted C.int) {
 
 }
 
+func (ptr *QMediaRecorderControl) OutputLocation() *core.QUrl {
+	defer qt.Recovering("QMediaRecorderControl::outputLocation")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QMediaRecorderControl_OutputLocation(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMediaRecorderControl) SetMuted(muted bool) {
 	defer qt.Recovering("QMediaRecorderControl::setMuted")
 
@@ -143,6 +219,15 @@ func (ptr *QMediaRecorderControl) SetVolume(gain float64) {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorderControl_SetVolume(ptr.Pointer(), C.double(gain))
 	}
+}
+
+func (ptr *QMediaRecorderControl) State() QMediaRecorder__State {
+	defer qt.Recovering("QMediaRecorderControl::state")
+
+	if ptr.Pointer() != nil {
+		return QMediaRecorder__State(C.QMediaRecorderControl_State(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QMediaRecorderControl) ConnectStateChanged(f func(state QMediaRecorder__State)) {
@@ -219,6 +304,35 @@ func (ptr *QMediaRecorderControl) Volume() float64 {
 		return float64(C.QMediaRecorderControl_Volume(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QMediaRecorderControl) ConnectVolumeChanged(f func(gain float64)) {
+	defer qt.Recovering("connect QMediaRecorderControl::volumeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_ConnectVolumeChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "volumeChanged", f)
+	}
+}
+
+func (ptr *QMediaRecorderControl) DisconnectVolumeChanged() {
+	defer qt.Recovering("disconnect QMediaRecorderControl::volumeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_DisconnectVolumeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "volumeChanged")
+	}
+}
+
+//export callbackQMediaRecorderControlVolumeChanged
+func callbackQMediaRecorderControlVolumeChanged(ptrName *C.char, gain C.double) {
+	defer qt.Recovering("callback QMediaRecorderControl::volumeChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "volumeChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(gain))
+	}
+
 }
 
 func (ptr *QMediaRecorderControl) DestroyQMediaRecorderControl() {

@@ -106,6 +106,35 @@ func QGeoSatelliteInfoSource_CreateSource(sourceName string, parent core.QObject
 	return NewQGeoSatelliteInfoSourceFromPointer(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(C.CString(sourceName), core.PointerFromQObject(parent)))
 }
 
+func (ptr *QGeoSatelliteInfoSource) ConnectError2(f func(satelliteError QGeoSatelliteInfoSource__Error)) {
+	defer qt.Recovering("connect QGeoSatelliteInfoSource::error")
+
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) DisconnectError2() {
+	defer qt.Recovering("disconnect QGeoSatelliteInfoSource::error")
+
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQGeoSatelliteInfoSourceError2
+func callbackQGeoSatelliteInfoSourceError2(ptrName *C.char, satelliteError C.int) {
+	defer qt.Recovering("callback QGeoSatelliteInfoSource::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QGeoSatelliteInfoSource__Error))(QGeoSatelliteInfoSource__Error(satelliteError))
+	}
+
+}
+
 func (ptr *QGeoSatelliteInfoSource) Error() QGeoSatelliteInfoSource__Error {
 	defer qt.Recovering("QGeoSatelliteInfoSource::error")
 

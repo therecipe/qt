@@ -4,6 +4,7 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -52,6 +53,18 @@ func NewQAudioBuffer3(other QAudioBuffer_ITF) *QAudioBuffer {
 	return NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer3(PointerFromQAudioBuffer(other)))
 }
 
+func NewQAudioBuffer4(data core.QByteArray_ITF, format QAudioFormat_ITF, startTime int64) *QAudioBuffer {
+	defer qt.Recovering("QAudioBuffer::QAudioBuffer")
+
+	return NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer4(core.PointerFromQByteArray(data), PointerFromQAudioFormat(format), C.longlong(startTime)))
+}
+
+func NewQAudioBuffer5(numFrames int, format QAudioFormat_ITF, startTime int64) *QAudioBuffer {
+	defer qt.Recovering("QAudioBuffer::QAudioBuffer")
+
+	return NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer5(C.int(numFrames), PointerFromQAudioFormat(format), C.longlong(startTime)))
+}
+
 func (ptr *QAudioBuffer) ByteCount() int {
 	defer qt.Recovering("QAudioBuffer::byteCount")
 
@@ -88,6 +101,15 @@ func (ptr *QAudioBuffer) Data() unsafe.Pointer {
 	return nil
 }
 
+func (ptr *QAudioBuffer) Duration() int64 {
+	defer qt.Recovering("QAudioBuffer::duration")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QAudioBuffer_Duration(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QAudioBuffer) FrameCount() int {
 	defer qt.Recovering("QAudioBuffer::frameCount")
 
@@ -111,6 +133,15 @@ func (ptr *QAudioBuffer) SampleCount() int {
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioBuffer_SampleCount(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAudioBuffer) StartTime() int64 {
+	defer qt.Recovering("QAudioBuffer::startTime")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QAudioBuffer_StartTime(ptr.Pointer()))
 	}
 	return 0
 }

@@ -39,3 +39,21 @@ func NewQResizeEvent(size core.QSize_ITF, oldSize core.QSize_ITF) *QResizeEvent 
 
 	return NewQResizeEventFromPointer(C.QResizeEvent_NewQResizeEvent(core.PointerFromQSize(size), core.PointerFromQSize(oldSize)))
 }
+
+func (ptr *QResizeEvent) OldSize() *core.QSize {
+	defer qt.Recovering("QResizeEvent::oldSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QResizeEvent_OldSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QResizeEvent) Size() *core.QSize {
+	defer qt.Recovering("QResizeEvent::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QResizeEvent_Size(ptr.Pointer()))
+	}
+	return nil
+}

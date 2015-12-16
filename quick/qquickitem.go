@@ -441,6 +441,15 @@ func (ptr *QQuickItem) Smooth() bool {
 	return false
 }
 
+func (ptr *QQuickItem) State() string {
+	defer qt.Recovering("QQuickItem::state")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QQuickItem_State(ptr.Pointer()))
+	}
+	return ""
+}
+
 func (ptr *QQuickItem) TextureProvider() *QSGTextureProvider {
 	defer qt.Recovering("QQuickItem::textureProvider")
 

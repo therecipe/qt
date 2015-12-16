@@ -116,6 +116,15 @@ func (ptr *QComboBox) HasFrame() bool {
 	return false
 }
 
+func (ptr *QComboBox) IconSize() *core.QSize {
+	defer qt.Recovering("QComboBox::iconSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QComboBox_IconSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QComboBox) InsertPolicy() QComboBox__InsertPolicy {
 	defer qt.Recovering("QComboBox::insertPolicy")
 
@@ -297,6 +306,35 @@ func NewQComboBox(parent QWidget_ITF) *QComboBox {
 	return NewQComboBoxFromPointer(C.QComboBox_NewQComboBox(PointerFromQWidget(parent)))
 }
 
+func (ptr *QComboBox) ConnectActivated2(f func(text string)) {
+	defer qt.Recovering("connect QComboBox::activated")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ConnectActivated2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "activated", f)
+	}
+}
+
+func (ptr *QComboBox) DisconnectActivated2() {
+	defer qt.Recovering("disconnect QComboBox::activated")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_DisconnectActivated2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "activated")
+	}
+}
+
+//export callbackQComboBoxActivated2
+func callbackQComboBoxActivated2(ptrName *C.char, text *C.char) {
+	defer qt.Recovering("callback QComboBox::activated")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
+	if signal != nil {
+		signal.(func(string))(C.GoString(text))
+	}
+
+}
+
 func (ptr *QComboBox) ConnectActivated(f func(index int)) {
 	defer qt.Recovering("connect QComboBox::activated")
 
@@ -434,6 +472,35 @@ func callbackQComboBoxContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
 		return true
 	}
 	return false
+
+}
+
+func (ptr *QComboBox) ConnectCurrentIndexChanged2(f func(text string)) {
+	defer qt.Recovering("connect QComboBox::currentIndexChanged")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ConnectCurrentIndexChanged2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "currentIndexChanged", f)
+	}
+}
+
+func (ptr *QComboBox) DisconnectCurrentIndexChanged2() {
+	defer qt.Recovering("disconnect QComboBox::currentIndexChanged")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_DisconnectCurrentIndexChanged2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "currentIndexChanged")
+	}
+}
+
+//export callbackQComboBoxCurrentIndexChanged2
+func callbackQComboBoxCurrentIndexChanged2(ptrName *C.char, text *C.char) {
+	defer qt.Recovering("callback QComboBox::currentIndexChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentIndexChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(text))
+	}
 
 }
 
@@ -675,6 +742,35 @@ func callbackQComboBoxHidePopup(ptrName *C.char) bool {
 
 }
 
+func (ptr *QComboBox) ConnectHighlighted2(f func(text string)) {
+	defer qt.Recovering("connect QComboBox::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ConnectHighlighted2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "highlighted", f)
+	}
+}
+
+func (ptr *QComboBox) DisconnectHighlighted2() {
+	defer qt.Recovering("disconnect QComboBox::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_DisconnectHighlighted2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "highlighted")
+	}
+}
+
+//export callbackQComboBoxHighlighted2
+func callbackQComboBoxHighlighted2(ptrName *C.char, text *C.char) {
+	defer qt.Recovering("callback QComboBox::highlighted")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted")
+	if signal != nil {
+		signal.(func(string))(C.GoString(text))
+	}
+
+}
+
 func (ptr *QComboBox) ConnectHighlighted(f func(index int)) {
 	defer qt.Recovering("connect QComboBox::highlighted")
 
@@ -794,6 +890,15 @@ func (ptr *QComboBox) ItemDelegate() *QAbstractItemDelegate {
 	return nil
 }
 
+func (ptr *QComboBox) ItemIcon(index int) *gui.QIcon {
+	defer qt.Recovering("QComboBox::itemIcon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QComboBox_ItemIcon(ptr.Pointer(), C.int(index)))
+	}
+	return nil
+}
+
 func (ptr *QComboBox) ItemText(index int) string {
 	defer qt.Recovering("QComboBox::itemText")
 
@@ -870,6 +975,15 @@ func (ptr *QComboBox) LineEdit() *QLineEdit {
 
 	if ptr.Pointer() != nil {
 		return NewQLineEditFromPointer(C.QComboBox_LineEdit(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QComboBox) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QComboBox::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QComboBox_MinimumSizeHint(ptr.Pointer()))
 	}
 	return nil
 }
@@ -1156,6 +1270,15 @@ func callbackQComboBoxShowPopup(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QComboBox) SizeHint() *core.QSize {
+	defer qt.Recovering("QComboBox::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QComboBox_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QComboBox) Validator() *gui.QValidator {

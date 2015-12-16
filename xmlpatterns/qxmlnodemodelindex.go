@@ -74,6 +74,24 @@ func NewQXmlNodeModelIndex2(other QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
 	return NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex2(PointerFromQXmlNodeModelIndex(other)))
 }
 
+func (ptr *QXmlNodeModelIndex) AdditionalData() int64 {
+	defer qt.Recovering("QXmlNodeModelIndex::additionalData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QXmlNodeModelIndex_AdditionalData(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QXmlNodeModelIndex) Data() int64 {
+	defer qt.Recovering("QXmlNodeModelIndex::data")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QXmlNodeModelIndex_Data(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QXmlNodeModelIndex) InternalPointer() unsafe.Pointer {
 	defer qt.Recovering("QXmlNodeModelIndex::internalPointer")
 

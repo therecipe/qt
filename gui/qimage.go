@@ -126,6 +126,15 @@ func (ptr *QImage) Offset() *core.QPoint {
 	return nil
 }
 
+func (ptr *QImage) Rect() *core.QRect {
+	defer qt.Recovering("QImage::rect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QImage_Rect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QImage) SetOffset(offset core.QPoint_ITF) {
 	defer qt.Recovering("QImage::setOffset")
 
@@ -140,6 +149,15 @@ func (ptr *QImage) SetText(key string, text string) {
 	if ptr.Pointer() != nil {
 		C.QImage_SetText(ptr.Pointer(), C.CString(key), C.CString(text))
 	}
+}
+
+func (ptr *QImage) Size() *core.QSize {
+	defer qt.Recovering("QImage::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QImage_Size(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QImage) Width() int {
@@ -183,6 +201,15 @@ func (ptr *QImage) BytesPerLine() int {
 
 	if ptr.Pointer() != nil {
 		return int(C.QImage_BytesPerLine(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QImage) CacheKey() int64 {
+	defer qt.Recovering("QImage::cacheKey")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QImage_CacheKey(ptr.Pointer()))
 	}
 	return 0
 }

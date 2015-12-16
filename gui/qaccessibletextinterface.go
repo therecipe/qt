@@ -70,6 +70,15 @@ func (ptr *QAccessibleTextInterface) CharacterCount() int {
 	return 0
 }
 
+func (ptr *QAccessibleTextInterface) CharacterRect(offset int) *core.QRect {
+	defer qt.Recovering("QAccessibleTextInterface::characterRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QAccessibleTextInterface_CharacterRect(ptr.Pointer(), C.int(offset)))
+	}
+	return nil
+}
+
 func (ptr *QAccessibleTextInterface) CursorPosition() int {
 	defer qt.Recovering("QAccessibleTextInterface::cursorPosition")
 

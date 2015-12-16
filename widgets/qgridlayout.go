@@ -123,6 +123,15 @@ func (ptr *QGridLayout) AddWidget(widget QWidget_ITF, row int, column int, align
 	}
 }
 
+func (ptr *QGridLayout) CellRect(row int, column int) *core.QRect {
+	defer qt.Recovering("QGridLayout::cellRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QGridLayout_CellRect(ptr.Pointer(), C.int(row), C.int(column)))
+	}
+	return nil
+}
+
 func (ptr *QGridLayout) ColumnCount() int {
 	defer qt.Recovering("QGridLayout::columnCount")
 
@@ -243,6 +252,15 @@ func (ptr *QGridLayout) ItemAtPosition(row int, column int) *QLayoutItem {
 	return nil
 }
 
+func (ptr *QGridLayout) MaximumSize() *core.QSize {
+	defer qt.Recovering("QGridLayout::maximumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QGridLayout_MaximumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGridLayout) MinimumHeightForWidth(w int) int {
 	defer qt.Recovering("QGridLayout::minimumHeightForWidth")
 
@@ -250,6 +268,15 @@ func (ptr *QGridLayout) MinimumHeightForWidth(w int) int {
 		return int(C.QGridLayout_MinimumHeightForWidth(ptr.Pointer(), C.int(w)))
 	}
 	return 0
+}
+
+func (ptr *QGridLayout) MinimumSize() *core.QSize {
+	defer qt.Recovering("QGridLayout::minimumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QGridLayout_MinimumSize(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QGridLayout) OriginCorner() core.Qt__Corner {
@@ -304,6 +331,37 @@ func (ptr *QGridLayout) SetColumnStretch(column int, stretch int) {
 	}
 }
 
+func (ptr *QGridLayout) ConnectSetGeometry(f func(rect *core.QRect)) {
+	defer qt.Recovering("connect QGridLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setGeometry", f)
+	}
+}
+
+func (ptr *QGridLayout) DisconnectSetGeometry() {
+	defer qt.Recovering("disconnect QGridLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setGeometry")
+	}
+}
+
+//export callbackQGridLayoutSetGeometry
+func callbackQGridLayoutSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGridLayout::setGeometry")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
+	if signal != nil {
+		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QGridLayout) SetOriginCorner(corner core.Qt__Corner) {
 	defer qt.Recovering("QGridLayout::setOriginCorner")
 
@@ -334,6 +392,15 @@ func (ptr *QGridLayout) SetSpacing(spacing int) {
 	if ptr.Pointer() != nil {
 		C.QGridLayout_SetSpacing(ptr.Pointer(), C.int(spacing))
 	}
+}
+
+func (ptr *QGridLayout) SizeHint() *core.QSize {
+	defer qt.Recovering("QGridLayout::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QGridLayout_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QGridLayout) Spacing() int {

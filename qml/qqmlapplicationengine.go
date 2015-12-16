@@ -79,6 +79,35 @@ func (ptr *QQmlApplicationEngine) LoadData(data core.QByteArray_ITF, url core.QU
 	}
 }
 
+func (ptr *QQmlApplicationEngine) ConnectObjectCreated(f func(object *core.QObject, url *core.QUrl)) {
+	defer qt.Recovering("connect QQmlApplicationEngine::objectCreated")
+
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_ConnectObjectCreated(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "objectCreated", f)
+	}
+}
+
+func (ptr *QQmlApplicationEngine) DisconnectObjectCreated() {
+	defer qt.Recovering("disconnect QQmlApplicationEngine::objectCreated")
+
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_DisconnectObjectCreated(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "objectCreated")
+	}
+}
+
+//export callbackQQmlApplicationEngineObjectCreated
+func callbackQQmlApplicationEngineObjectCreated(ptrName *C.char, object unsafe.Pointer, url unsafe.Pointer) {
+	defer qt.Recovering("callback QQmlApplicationEngine::objectCreated")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "objectCreated")
+	if signal != nil {
+		signal.(func(*core.QObject, *core.QUrl))(core.NewQObjectFromPointer(object), core.NewQUrlFromPointer(url))
+	}
+
+}
+
 func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
 	defer qt.Recovering("QQmlApplicationEngine::~QQmlApplicationEngine")
 

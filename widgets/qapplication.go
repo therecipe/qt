@@ -90,6 +90,12 @@ func QApplication_DoubleClickInterval() int {
 	return int(C.QApplication_QApplication_DoubleClickInterval())
 }
 
+func QApplication_GlobalStrut() *core.QSize {
+	defer qt.Recovering("QApplication::globalStrut")
+
+	return core.NewQSizeFromPointer(C.QApplication_QApplication_GlobalStrut())
+}
+
 func QApplication_IsEffectEnabled(effect core.Qt__UIEffect) bool {
 	defer qt.Recovering("QApplication::isEffectEnabled")
 
@@ -223,6 +229,12 @@ func QApplication_WidgetAt(point core.QPoint_ITF) *QWidget {
 	defer qt.Recovering("QApplication::widgetAt")
 
 	return NewQWidgetFromPointer(C.QApplication_QApplication_WidgetAt(core.PointerFromQPoint(point)))
+}
+
+func QApplication_WindowIcon() *gui.QIcon {
+	defer qt.Recovering("QApplication::windowIcon")
+
+	return gui.NewQIconFromPointer(C.QApplication_QApplication_WindowIcon())
 }
 
 func NewQApplication(argc int, argv []string) *QApplication {

@@ -589,6 +589,15 @@ func (ptr *QDateTimeEdit) SetTimeRange(min core.QTime_ITF, max core.QTime_ITF) {
 	}
 }
 
+func (ptr *QDateTimeEdit) SizeHint() *core.QSize {
+	defer qt.Recovering("QDateTimeEdit::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QDateTimeEdit_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDateTimeEdit) ConnectStepBy(f func(steps int)) {
 	defer qt.Recovering("connect QDateTimeEdit::stepBy")
 

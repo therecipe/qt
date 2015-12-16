@@ -40,6 +40,10 @@ public:
 protected:
 };
 
+void* QAbstractUriResolver_Resolve(void* ptr, void* relative, void* baseURI){
+	return new QUrl(static_cast<QAbstractUriResolver*>(ptr)->resolve(*static_cast<QUrl*>(relative), *static_cast<QUrl*>(baseURI)));
+}
+
 void QAbstractUriResolver_DestroyQAbstractUriResolver(void* ptr){
 	static_cast<QAbstractUriResolver*>(ptr)->~QAbstractUriResolver();
 }
@@ -52,8 +56,16 @@ public:
 protected:
 };
 
+void* QAbstractXmlNodeModel_BaseUri(void* ptr, void* n){
+	return new QUrl(static_cast<QAbstractXmlNodeModel*>(ptr)->baseUri(*static_cast<QXmlNodeModelIndex*>(n)));
+}
+
 int QAbstractXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2){
 	return static_cast<QAbstractXmlNodeModel*>(ptr)->compareOrder(*static_cast<QXmlNodeModelIndex*>(ni1), *static_cast<QXmlNodeModelIndex*>(ni2));
+}
+
+void* QAbstractXmlNodeModel_DocumentUri(void* ptr, void* n){
+	return new QUrl(static_cast<QAbstractXmlNodeModel*>(ptr)->documentUri(*static_cast<QXmlNodeModelIndex*>(n)));
 }
 
 int QAbstractXmlNodeModel_Kind(void* ptr, void* ni){
@@ -152,6 +164,10 @@ public:
 protected:
 };
 
+void* QSimpleXmlNodeModel_BaseUri(void* ptr, void* node){
+	return new QUrl(static_cast<QSimpleXmlNodeModel*>(ptr)->baseUri(*static_cast<QXmlNodeModelIndex*>(node)));
+}
+
 char* QSimpleXmlNodeModel_StringValue(void* ptr, void* node){
 	return static_cast<QSimpleXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8().data();
 }
@@ -180,12 +196,32 @@ void* QSourceLocation_NewQSourceLocation3(void* u, int l, int c){
 	return new QSourceLocation(*static_cast<QUrl*>(u), l, c);
 }
 
+long long QSourceLocation_Column(void* ptr){
+	return static_cast<long long>(static_cast<QSourceLocation*>(ptr)->column());
+}
+
 int QSourceLocation_IsNull(void* ptr){
 	return static_cast<QSourceLocation*>(ptr)->isNull();
 }
 
+long long QSourceLocation_Line(void* ptr){
+	return static_cast<long long>(static_cast<QSourceLocation*>(ptr)->line());
+}
+
+void QSourceLocation_SetColumn(void* ptr, long long newColumn){
+	static_cast<QSourceLocation*>(ptr)->setColumn(static_cast<long long>(newColumn));
+}
+
+void QSourceLocation_SetLine(void* ptr, long long newLine){
+	static_cast<QSourceLocation*>(ptr)->setLine(static_cast<long long>(newLine));
+}
+
 void QSourceLocation_SetUri(void* ptr, void* newUri){
 	static_cast<QSourceLocation*>(ptr)->setUri(*static_cast<QUrl*>(newUri));
+}
+
+void* QSourceLocation_Uri(void* ptr){
+	return new QUrl(static_cast<QSourceLocation*>(ptr)->uri());
 }
 
 void QSourceLocation_DestroyQSourceLocation(void* ptr){
@@ -334,6 +370,14 @@ void* QXmlNodeModelIndex_NewQXmlNodeModelIndex(){
 
 void* QXmlNodeModelIndex_NewQXmlNodeModelIndex2(void* other){
 	return new QXmlNodeModelIndex(*static_cast<QXmlNodeModelIndex*>(other));
+}
+
+long long QXmlNodeModelIndex_AdditionalData(void* ptr){
+	return static_cast<long long>(static_cast<QXmlNodeModelIndex*>(ptr)->additionalData());
+}
+
+long long QXmlNodeModelIndex_Data(void* ptr){
+	return static_cast<long long>(static_cast<QXmlNodeModelIndex*>(ptr)->data());
 }
 
 void* QXmlNodeModelIndex_InternalPointer(void* ptr){
@@ -495,6 +539,10 @@ void* QXmlSchema_NewQXmlSchema(){
 
 void* QXmlSchema_NewQXmlSchema2(void* other){
 	return new QXmlSchema(*static_cast<QXmlSchema*>(other));
+}
+
+void* QXmlSchema_DocumentUri(void* ptr){
+	return new QUrl(static_cast<QXmlSchema*>(ptr)->documentUri());
 }
 
 int QXmlSchema_IsValid(void* ptr){

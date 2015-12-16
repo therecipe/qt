@@ -51,3 +51,12 @@ func (ptr *QFileOpenEvent) File() string {
 	}
 	return ""
 }
+
+func (ptr *QFileOpenEvent) Url() *core.QUrl {
+	defer qt.Recovering("QFileOpenEvent::url")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QFileOpenEvent_Url(ptr.Pointer()))
+	}
+	return nil
+}

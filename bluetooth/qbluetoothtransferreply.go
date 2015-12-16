@@ -59,6 +59,35 @@ func (ptr *QBluetoothTransferReply) Abort() {
 	}
 }
 
+func (ptr *QBluetoothTransferReply) ConnectError2(f func(errorType QBluetoothTransferReply__TransferError)) {
+	defer qt.Recovering("connect QBluetoothTransferReply::error")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferReply_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QBluetoothTransferReply) DisconnectError2() {
+	defer qt.Recovering("disconnect QBluetoothTransferReply::error")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferReply_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQBluetoothTransferReplyError2
+func callbackQBluetoothTransferReplyError2(ptrName *C.char, errorType C.int) {
+	defer qt.Recovering("callback QBluetoothTransferReply::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QBluetoothTransferReply__TransferError))(QBluetoothTransferReply__TransferError(errorType))
+	}
+
+}
+
 func (ptr *QBluetoothTransferReply) Error() QBluetoothTransferReply__TransferError {
 	defer qt.Recovering("QBluetoothTransferReply::error")
 
@@ -131,6 +160,35 @@ func (ptr *QBluetoothTransferReply) Manager() *QBluetoothTransferManager {
 		return NewQBluetoothTransferManagerFromPointer(C.QBluetoothTransferReply_Manager(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QBluetoothTransferReply) ConnectTransferProgress(f func(bytesTransferred int64, bytesTotal int64)) {
+	defer qt.Recovering("connect QBluetoothTransferReply::transferProgress")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferReply_ConnectTransferProgress(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "transferProgress", f)
+	}
+}
+
+func (ptr *QBluetoothTransferReply) DisconnectTransferProgress() {
+	defer qt.Recovering("disconnect QBluetoothTransferReply::transferProgress")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferReply_DisconnectTransferProgress(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "transferProgress")
+	}
+}
+
+//export callbackQBluetoothTransferReplyTransferProgress
+func callbackQBluetoothTransferReplyTransferProgress(ptrName *C.char, bytesTransferred C.longlong, bytesTotal C.longlong) {
+	defer qt.Recovering("callback QBluetoothTransferReply::transferProgress")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "transferProgress")
+	if signal != nil {
+		signal.(func(int64, int64))(int64(bytesTransferred), int64(bytesTotal))
+	}
+
 }
 
 func (ptr *QBluetoothTransferReply) DestroyQBluetoothTransferReply() {

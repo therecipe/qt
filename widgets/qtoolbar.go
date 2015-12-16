@@ -47,6 +47,15 @@ func (ptr *QToolBar) AllowedAreas() core.Qt__ToolBarArea {
 	return 0
 }
 
+func (ptr *QToolBar) IconSize() *core.QSize {
+	defer qt.Recovering("QToolBar::iconSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QToolBar_IconSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QToolBar) IsFloatable() bool {
 	defer qt.Recovering("QToolBar::isFloatable")
 
@@ -350,6 +359,35 @@ func (ptr *QToolBar) Clear() {
 	if ptr.Pointer() != nil {
 		C.QToolBar_Clear(ptr.Pointer())
 	}
+}
+
+func (ptr *QToolBar) ConnectIconSizeChanged(f func(iconSize *core.QSize)) {
+	defer qt.Recovering("connect QToolBar::iconSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ConnectIconSizeChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "iconSizeChanged", f)
+	}
+}
+
+func (ptr *QToolBar) DisconnectIconSizeChanged() {
+	defer qt.Recovering("disconnect QToolBar::iconSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_DisconnectIconSizeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "iconSizeChanged")
+	}
+}
+
+//export callbackQToolBarIconSizeChanged
+func callbackQToolBarIconSizeChanged(ptrName *C.char, iconSize unsafe.Pointer) {
+	defer qt.Recovering("callback QToolBar::iconSizeChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "iconSizeChanged")
+	if signal != nil {
+		signal.(func(*core.QSize))(core.NewQSizeFromPointer(iconSize))
+	}
+
 }
 
 func (ptr *QToolBar) InsertSeparator(before QAction_ITF) *QAction {

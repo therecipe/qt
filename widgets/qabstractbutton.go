@@ -74,6 +74,24 @@ func (ptr *QAbstractButton) AutoRepeatInterval() int {
 	return 0
 }
 
+func (ptr *QAbstractButton) Icon() *gui.QIcon {
+	defer qt.Recovering("QAbstractButton::icon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QAbstractButton_Icon(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstractButton) IconSize() *core.QSize {
+	defer qt.Recovering("QAbstractButton::iconSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QAbstractButton_IconSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QAbstractButton) IsCheckable() bool {
 	defer qt.Recovering("QAbstractButton::isCheckable")
 

@@ -78,6 +78,15 @@ func NewQMediaContent2(url core.QUrl_ITF) *QMediaContent {
 	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent2(core.PointerFromQUrl(url)))
 }
 
+func (ptr *QMediaContent) CanonicalUrl() *core.QUrl {
+	defer qt.Recovering("QMediaContent::canonicalUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QMediaContent_CanonicalUrl(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMediaContent) IsNull() bool {
 	defer qt.Recovering("QMediaContent::isNull")
 

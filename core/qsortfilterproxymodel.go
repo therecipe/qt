@@ -511,6 +511,15 @@ func (ptr *QSortFilterProxyModel) SortOrder() Qt__SortOrder {
 	return 0
 }
 
+func (ptr *QSortFilterProxyModel) Span(index QModelIndex_ITF) *QSize {
+	defer qt.Recovering("QSortFilterProxyModel::span")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFromPointer(C.QSortFilterProxyModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
 func (ptr *QSortFilterProxyModel) SupportedDropActions() Qt__DropAction {
 	defer qt.Recovering("QSortFilterProxyModel::supportedDropActions")
 

@@ -158,6 +158,15 @@ func (ptr *QScriptContext) SetThisObject(thisObject QScriptValue_ITF) {
 	}
 }
 
+func (ptr *QScriptContext) State() QScriptContext__ExecutionState {
+	defer qt.Recovering("QScriptContext::state")
+
+	if ptr.Pointer() != nil {
+		return QScriptContext__ExecutionState(C.QScriptContext_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QScriptContext) ThisObject() *QScriptValue {
 	defer qt.Recovering("QScriptContext::thisObject")
 

@@ -222,6 +222,15 @@ func NewQProgressBar(parent QWidget_ITF) *QProgressBar {
 	return NewQProgressBarFromPointer(C.QProgressBar_NewQProgressBar(PointerFromQWidget(parent)))
 }
 
+func (ptr *QProgressBar) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QProgressBar::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QProgressBar_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QProgressBar) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
 	defer qt.Recovering("connect QProgressBar::paintEvent")
 
@@ -267,6 +276,15 @@ func (ptr *QProgressBar) SetRange(minimum int, maximum int) {
 	if ptr.Pointer() != nil {
 		C.QProgressBar_SetRange(ptr.Pointer(), C.int(minimum), C.int(maximum))
 	}
+}
+
+func (ptr *QProgressBar) SizeHint() *core.QSize {
+	defer qt.Recovering("QProgressBar::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QProgressBar_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QProgressBar) ConnectValueChanged(f func(value int)) {

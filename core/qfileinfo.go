@@ -413,6 +413,15 @@ func (ptr *QFileInfo) SetFile(file string) {
 	}
 }
 
+func (ptr *QFileInfo) Size() int64 {
+	defer qt.Recovering("QFileInfo::size")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QFileInfo_Size(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QFileInfo) Suffix() string {
 	defer qt.Recovering("QFileInfo::suffix")
 

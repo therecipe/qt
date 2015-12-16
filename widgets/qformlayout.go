@@ -366,15 +366,6 @@ func callbackQFormLayoutInvalidate(ptrName *C.char) bool {
 
 }
 
-func (ptr *QFormLayout) ItemAt2(index int) *QLayoutItem {
-	defer qt.Recovering("QFormLayout::itemAt")
-
-	if ptr.Pointer() != nil {
-		return NewQLayoutItemFromPointer(C.QFormLayout_ItemAt2(ptr.Pointer(), C.int(index)))
-	}
-	return nil
-}
-
 func (ptr *QFormLayout) ItemAt(row int, role QFormLayout__ItemRole) *QLayoutItem {
 	defer qt.Recovering("QFormLayout::itemAt")
 
@@ -402,6 +393,15 @@ func (ptr *QFormLayout) LabelForField(field QWidget_ITF) *QWidget {
 	return nil
 }
 
+func (ptr *QFormLayout) MinimumSize() *core.QSize {
+	defer qt.Recovering("QFormLayout::minimumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QFormLayout_MinimumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QFormLayout) RowCount() int {
 	defer qt.Recovering("QFormLayout::rowCount")
 
@@ -409,6 +409,37 @@ func (ptr *QFormLayout) RowCount() int {
 		return int(C.QFormLayout_RowCount(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QFormLayout) ConnectSetGeometry(f func(rect *core.QRect)) {
+	defer qt.Recovering("connect QFormLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setGeometry", f)
+	}
+}
+
+func (ptr *QFormLayout) DisconnectSetGeometry() {
+	defer qt.Recovering("disconnect QFormLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setGeometry")
+	}
+}
+
+//export callbackQFormLayoutSetGeometry
+func callbackQFormLayoutSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFormLayout::setGeometry")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
+	if signal != nil {
+		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QFormLayout) SetItem(row int, role QFormLayout__ItemRole, item QLayoutItem_ITF) {
@@ -441,6 +472,15 @@ func (ptr *QFormLayout) SetWidget(row int, role QFormLayout__ItemRole, widget QW
 	if ptr.Pointer() != nil {
 		C.QFormLayout_SetWidget(ptr.Pointer(), C.int(row), C.int(role), PointerFromQWidget(widget))
 	}
+}
+
+func (ptr *QFormLayout) SizeHint() *core.QSize {
+	defer qt.Recovering("QFormLayout::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QFormLayout_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QFormLayout) Spacing() int {

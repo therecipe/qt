@@ -9,12 +9,16 @@ import (
 )
 
 func goFunction(f *parser.Function) string {
-	if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure") && f.Output == "void") && !f.Overload {
+	if f.Meta == "signal" || strings.Contains(f.Virtual, "impure") && f.Output == "void" {
 		var tmp string
 		for _, signalMode := range []string{"Connect", "Disconnect", "callback"} {
 			f.SignalMode = signalMode
 			if signalMode == "callback" {
-				tmp += fmt.Sprintf("//export callback%v%v\n", f.Class(), strings.Replace(strings.Title(f.Name), "~", "Destroy", -1))
+				tmp += fmt.Sprintf("//export callback%v%v", f.Class(), strings.Replace(strings.Title(f.Name), "~", "Destroy", -1))
+				if f.Overload {
+					tmp += f.OverloadNumber
+				}
+				tmp += "\n"
 			}
 			tmp += fmt.Sprintf("%v{\n%v\n}\n\n", goFunctionHeader(f), goFunctionBody(f))
 		}

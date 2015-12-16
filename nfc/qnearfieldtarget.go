@@ -177,6 +177,15 @@ func (ptr *QNearFieldTarget) Uid() *core.QByteArray {
 	return nil
 }
 
+func (ptr *QNearFieldTarget) Url() *core.QUrl {
+	defer qt.Recovering("QNearFieldTarget::url")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QNearFieldTarget_Url(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QNearFieldTarget) DestroyQNearFieldTarget() {
 	defer qt.Recovering("QNearFieldTarget::~QNearFieldTarget")
 

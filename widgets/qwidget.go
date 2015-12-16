@@ -133,6 +133,24 @@ func (ptr *QWidget) AutoFillBackground() bool {
 	return false
 }
 
+func (ptr *QWidget) BaseSize() *core.QSize {
+	defer qt.Recovering("QWidget::baseSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWidget_BaseSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWidget) ChildrenRect() *core.QRect {
+	defer qt.Recovering("QWidget::childrenRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QWidget_ChildrenRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWidget) ChildrenRegion() *gui.QRegion {
 	defer qt.Recovering("QWidget::childrenRegion")
 
@@ -385,6 +403,24 @@ func (ptr *QWidget) FocusPolicy() core.Qt__FocusPolicy {
 	return 0
 }
 
+func (ptr *QWidget) FrameGeometry() *core.QRect {
+	defer qt.Recovering("QWidget::frameGeometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QWidget_FrameGeometry(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWidget) FrameSize() *core.QSize {
+	defer qt.Recovering("QWidget::frameSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWidget_FrameSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWidget) GrabKeyboard() {
 	defer qt.Recovering("QWidget::grabKeyboard")
 
@@ -567,6 +603,33 @@ func (ptr *QWidget) MapToGlobal(pos core.QPoint_ITF) *core.QPoint {
 	return nil
 }
 
+func (ptr *QWidget) MaximumSize() *core.QSize {
+	defer qt.Recovering("QWidget::maximumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWidget_MaximumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWidget) MinimumSize() *core.QSize {
+	defer qt.Recovering("QWidget::minimumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWidget_MinimumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWidget) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QWidget::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWidget_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func QWidget_MouseGrabber() *QWidget {
 	defer qt.Recovering("QWidget::mouseGrabber")
 
@@ -610,6 +673,15 @@ func callbackQWidgetMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QWidget) NormalGeometry() *core.QRect {
+	defer qt.Recovering("QWidget::normalGeometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QWidget_NormalGeometry(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWidget) PaintEngine() *gui.QPaintEngine {
@@ -1051,6 +1123,24 @@ func callbackQWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
 
 }
 
+func (ptr *QWidget) SizeHint() *core.QSize {
+	defer qt.Recovering("QWidget::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWidget_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWidget) SizeIncrement() *core.QSize {
+	defer qt.Recovering("QWidget::sizeIncrement")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWidget_SizeIncrement(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWidget) StatusTip() string {
 	defer qt.Recovering("QWidget::statusTip")
 
@@ -1127,6 +1217,15 @@ func (ptr *QWidget) WindowFilePath() string {
 		return C.GoString(C.QWidget_WindowFilePath(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QWidget) WindowIcon() *gui.QIcon {
+	defer qt.Recovering("QWidget::windowIcon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QWidget_WindowIcon(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWidget) WindowIconText() string {
@@ -1320,6 +1419,15 @@ func callbackQWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
 
 }
 
+func (ptr *QWidget) ContentsRect() *core.QRect {
+	defer qt.Recovering("QWidget::contentsRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QWidget_ContentsRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
 	defer qt.Recovering("connect QWidget::contextMenuEvent")
 
@@ -1413,6 +1521,15 @@ func (ptr *QWidget) ForegroundRole() gui.QPalette__ColorRole {
 		return gui.QPalette__ColorRole(C.QWidget_ForegroundRole(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QWidget) Geometry() *core.QRect {
+	defer qt.Recovering("QWidget::geometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QWidget_Geometry(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWidget) GetContentsMargins(left int, top int, right int, bottom int) {
@@ -1997,6 +2114,15 @@ func (ptr *QWidget) Raise() {
 	}
 }
 
+func (ptr *QWidget) Rect() *core.QRect {
+	defer qt.Recovering("QWidget::rect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QWidget_Rect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWidget) ReleaseShortcut(id int) {
 	defer qt.Recovering("QWidget::releaseShortcut")
 
@@ -2428,6 +2554,15 @@ func (ptr *QWidget) ShowNormal() {
 	}
 }
 
+func (ptr *QWidget) Size() *core.QSize {
+	defer qt.Recovering("QWidget::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWidget_Size(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWidget) StackUnder(w QWidget_ITF) {
 	defer qt.Recovering("QWidget::stackUnder")
 
@@ -2625,6 +2760,35 @@ func (ptr *QWidget) WindowHandle() *gui.QWindow {
 		return gui.NewQWindowFromPointer(C.QWidget_WindowHandle(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QWidget) ConnectWindowIconChanged(f func(icon *gui.QIcon)) {
+	defer qt.Recovering("connect QWidget::windowIconChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWidget_ConnectWindowIconChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "windowIconChanged", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectWindowIconChanged() {
+	defer qt.Recovering("disconnect QWidget::windowIconChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWidget_DisconnectWindowIconChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "windowIconChanged")
+	}
+}
+
+//export callbackQWidgetWindowIconChanged
+func callbackQWidgetWindowIconChanged(ptrName *C.char, icon unsafe.Pointer) {
+	defer qt.Recovering("callback QWidget::windowIconChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "windowIconChanged")
+	if signal != nil {
+		signal.(func(*gui.QIcon))(gui.NewQIconFromPointer(icon))
+	}
+
 }
 
 func (ptr *QWidget) ConnectWindowIconTextChanged(f func(iconText string)) {

@@ -37,6 +37,7 @@ void QVideoWidget_DisconnectHueChanged(void* ptr);
 int QVideoWidget_IsFullScreen(void* ptr);
 void QVideoWidget_ConnectSaturationChanged(void* ptr);
 void QVideoWidget_DisconnectSaturationChanged(void* ptr);
+void* QVideoWidget_SizeHint(void* ptr);
 void QVideoWidget_DestroyQVideoWidget(void* ptr);
 int QVideoWidgetControl_AspectRatioMode(void* ptr);
 int QVideoWidgetControl_Brightness(void* ptr);

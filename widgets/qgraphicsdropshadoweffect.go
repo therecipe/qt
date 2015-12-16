@@ -86,6 +86,35 @@ func NewQGraphicsDropShadowEffect(parent core.QObject_ITF) *QGraphicsDropShadowE
 	return NewQGraphicsDropShadowEffectFromPointer(C.QGraphicsDropShadowEffect_NewQGraphicsDropShadowEffect(core.PointerFromQObject(parent)))
 }
 
+func (ptr *QGraphicsDropShadowEffect) ConnectBlurRadiusChanged(f func(blurRadius float64)) {
+	defer qt.Recovering("connect QGraphicsDropShadowEffect::blurRadiusChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_ConnectBlurRadiusChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "blurRadiusChanged", f)
+	}
+}
+
+func (ptr *QGraphicsDropShadowEffect) DisconnectBlurRadiusChanged() {
+	defer qt.Recovering("disconnect QGraphicsDropShadowEffect::blurRadiusChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_DisconnectBlurRadiusChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "blurRadiusChanged")
+	}
+}
+
+//export callbackQGraphicsDropShadowEffectBlurRadiusChanged
+func callbackQGraphicsDropShadowEffectBlurRadiusChanged(ptrName *C.char, blurRadius C.double) {
+	defer qt.Recovering("callback QGraphicsDropShadowEffect::blurRadiusChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "blurRadiusChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(blurRadius))
+	}
+
+}
+
 func (ptr *QGraphicsDropShadowEffect) ConnectColorChanged(f func(color *gui.QColor)) {
 	defer qt.Recovering("connect QGraphicsDropShadowEffect::colorChanged")
 

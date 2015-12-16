@@ -318,6 +318,15 @@ func (ptr *QWindow) Alert(msec int) {
 	}
 }
 
+func (ptr *QWindow) BaseSize() *core.QSize {
+	defer qt.Recovering("QWindow::baseSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWindow_BaseSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWindow) Close() bool {
 	defer qt.Recovering("QWindow::close")
 
@@ -521,11 +530,29 @@ func callbackQWindowFocusOutEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 
 }
 
+func (ptr *QWindow) FrameGeometry() *core.QRect {
+	defer qt.Recovering("QWindow::frameGeometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QWindow_FrameGeometry(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWindow) FramePosition() *core.QPoint {
 	defer qt.Recovering("QWindow::framePosition")
 
 	if ptr.Pointer() != nil {
 		return core.NewQPointFromPointer(C.QWindow_FramePosition(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWindow) Geometry() *core.QRect {
+	defer qt.Recovering("QWindow::geometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QWindow_Geometry(ptr.Pointer()))
 	}
 	return nil
 }
@@ -605,6 +632,15 @@ func callbackQWindowHideEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QWindow) Icon() *QIcon {
+	defer qt.Recovering("QWindow::icon")
+
+	if ptr.Pointer() != nil {
+		return NewQIconFromPointer(C.QWindow_Icon(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWindow) IsActive() bool {
@@ -769,6 +805,15 @@ func callbackQWindowMaximumHeightChanged(ptrName *C.char, arg C.int) {
 
 }
 
+func (ptr *QWindow) MaximumSize() *core.QSize {
+	defer qt.Recovering("QWindow::maximumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWindow_MaximumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWindow) MaximumWidth() int {
 	defer qt.Recovering("QWindow::maximumWidth")
 
@@ -843,6 +888,15 @@ func callbackQWindowMinimumHeightChanged(ptrName *C.char, arg C.int) {
 		signal.(func(int))(int(arg))
 	}
 
+}
+
+func (ptr *QWindow) MinimumSize() *core.QSize {
+	defer qt.Recovering("QWindow::minimumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWindow_MinimumSize(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWindow) MinimumWidth() int {
@@ -1064,6 +1118,35 @@ func callbackQWindowMoveEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 		return true
 	}
 	return false
+
+}
+
+func (ptr *QWindow) ConnectOpacityChanged(f func(opacity float64)) {
+	defer qt.Recovering("connect QWindow::opacityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWindow_ConnectOpacityChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "opacityChanged", f)
+	}
+}
+
+func (ptr *QWindow) DisconnectOpacityChanged() {
+	defer qt.Recovering("disconnect QWindow::opacityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWindow_DisconnectOpacityChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "opacityChanged")
+	}
+}
+
+//export callbackQWindowOpacityChanged
+func callbackQWindowOpacityChanged(ptrName *C.char, opacity C.double) {
+	defer qt.Recovering("callback QWindow::opacityChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "opacityChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(opacity))
+	}
 
 }
 
@@ -1433,6 +1516,24 @@ func (ptr *QWindow) ShowNormal() {
 	if ptr.Pointer() != nil {
 		C.QWindow_ShowNormal(ptr.Pointer())
 	}
+}
+
+func (ptr *QWindow) Size() *core.QSize {
+	defer qt.Recovering("QWindow::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWindow_Size(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWindow) SizeIncrement() *core.QSize {
+	defer qt.Recovering("QWindow::sizeIncrement")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWindow_SizeIncrement(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWindow) SurfaceType() QSurface__SurfaceType {

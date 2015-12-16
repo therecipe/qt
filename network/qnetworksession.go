@@ -120,6 +120,35 @@ func callbackQNetworkSessionClosed(ptrName *C.char) {
 
 }
 
+func (ptr *QNetworkSession) ConnectError2(f func(error QNetworkSession__SessionError)) {
+	defer qt.Recovering("connect QNetworkSession::error")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QNetworkSession) DisconnectError2() {
+	defer qt.Recovering("disconnect QNetworkSession::error")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQNetworkSessionError2
+func callbackQNetworkSessionError2(ptrName *C.char, error C.int) {
+	defer qt.Recovering("callback QNetworkSession::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QNetworkSession__SessionError))(QNetworkSession__SessionError(error))
+	}
+
+}
+
 func (ptr *QNetworkSession) Error() QNetworkSession__SessionError {
 	defer qt.Recovering("QNetworkSession::error")
 
@@ -252,6 +281,15 @@ func (ptr *QNetworkSession) SetSessionProperty(key string, value core.QVariant_I
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_SetSessionProperty(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(value))
 	}
+}
+
+func (ptr *QNetworkSession) State() QNetworkSession__State {
+	defer qt.Recovering("QNetworkSession::state")
+
+	if ptr.Pointer() != nil {
+		return QNetworkSession__State(C.QNetworkSession_State(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QNetworkSession) ConnectStateChanged(f func(state QNetworkSession__State)) {

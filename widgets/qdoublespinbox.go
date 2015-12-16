@@ -102,6 +102,35 @@ func NewQDoubleSpinBox(parent QWidget_ITF) *QDoubleSpinBox {
 	return NewQDoubleSpinBoxFromPointer(C.QDoubleSpinBox_NewQDoubleSpinBox(PointerFromQWidget(parent)))
 }
 
+func (ptr *QDoubleSpinBox) ConnectValueChanged2(f func(text string)) {
+	defer qt.Recovering("connect QDoubleSpinBox::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QDoubleSpinBox_ConnectValueChanged2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "valueChanged", f)
+	}
+}
+
+func (ptr *QDoubleSpinBox) DisconnectValueChanged2() {
+	defer qt.Recovering("disconnect QDoubleSpinBox::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QDoubleSpinBox_DisconnectValueChanged2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "valueChanged")
+	}
+}
+
+//export callbackQDoubleSpinBoxValueChanged2
+func callbackQDoubleSpinBoxValueChanged2(ptrName *C.char, text *C.char) {
+	defer qt.Recovering("callback QDoubleSpinBox::valueChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(text))
+	}
+
+}
+
 func (ptr *QDoubleSpinBox) DestroyQDoubleSpinBox() {
 	defer qt.Recovering("QDoubleSpinBox::~QDoubleSpinBox")
 

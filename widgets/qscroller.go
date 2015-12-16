@@ -74,6 +74,15 @@ func (ptr *QScroller) SetScrollerProperties(prop QScrollerProperties_ITF) {
 	}
 }
 
+func (ptr *QScroller) State() QScroller__State {
+	defer qt.Recovering("QScroller::state")
+
+	if ptr.Pointer() != nil {
+		return QScroller__State(C.QScroller_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QScroller) EnsureVisible(rect core.QRectF_ITF, xmargin float64, ymargin float64) {
 	defer qt.Recovering("QScroller::ensureVisible")
 
@@ -100,6 +109,15 @@ func QScroller_GrabbedGesture(target core.QObject_ITF) core.Qt__GestureType {
 	defer qt.Recovering("QScroller::grabbedGesture")
 
 	return core.Qt__GestureType(C.QScroller_QScroller_GrabbedGesture(core.PointerFromQObject(target)))
+}
+
+func (ptr *QScroller) HandleInput(input QScroller__Input, position core.QPointF_ITF, timestamp int64) bool {
+	defer qt.Recovering("QScroller::handleInput")
+
+	if ptr.Pointer() != nil {
+		return C.QScroller_HandleInput(ptr.Pointer(), C.int(input), core.PointerFromQPointF(position), C.longlong(timestamp)) != 0
+	}
+	return false
 }
 
 func QScroller_HasScroller(target core.QObject_ITF) bool {

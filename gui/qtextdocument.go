@@ -73,6 +73,15 @@ const (
 	QTextDocument__UndoAndRedoStacks = QTextDocument__Stacks(QTextDocument__UndoStack | QTextDocument__RedoStack)
 )
 
+func (ptr *QTextDocument) BaseUrl() *core.QUrl {
+	defer qt.Recovering("QTextDocument::baseUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QTextDocument_BaseUrl(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QTextDocument) BlockCount() int {
 	defer qt.Recovering("QTextDocument::blockCount")
 
@@ -278,6 +287,35 @@ func (ptr *QTextDocument) AvailableUndoSteps() int {
 		return int(C.QTextDocument_AvailableUndoSteps(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QTextDocument) ConnectBaseUrlChanged(f func(url *core.QUrl)) {
+	defer qt.Recovering("connect QTextDocument::baseUrlChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_ConnectBaseUrlChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "baseUrlChanged", f)
+	}
+}
+
+func (ptr *QTextDocument) DisconnectBaseUrlChanged() {
+	defer qt.Recovering("disconnect QTextDocument::baseUrlChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_DisconnectBaseUrlChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "baseUrlChanged")
+	}
+}
+
+//export callbackQTextDocumentBaseUrlChanged
+func callbackQTextDocumentBaseUrlChanged(ptrName *C.char, url unsafe.Pointer) {
+	defer qt.Recovering("callback QTextDocument::baseUrlChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "baseUrlChanged")
+	if signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
+	}
+
 }
 
 func (ptr *QTextDocument) ConnectBlockCountChanged(f func(newBlockCount int)) {

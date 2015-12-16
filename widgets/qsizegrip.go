@@ -4,6 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
@@ -289,6 +290,15 @@ func callbackQSizeGripShowEvent(ptrName *C.char, showEvent unsafe.Pointer) bool 
 	}
 	return false
 
+}
+
+func (ptr *QSizeGrip) SizeHint() *core.QSize {
+	defer qt.Recovering("QSizeGrip::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSizeGrip_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSizeGrip) DestroyQSizeGrip() {

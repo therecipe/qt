@@ -146,3 +146,12 @@ func (ptr *QQmlError) ToString() string {
 	}
 	return ""
 }
+
+func (ptr *QQmlError) Url() *core.QUrl {
+	defer qt.Recovering("QQmlError::url")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QQmlError_Url(ptr.Pointer()))
+	}
+	return nil
+}

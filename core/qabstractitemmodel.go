@@ -835,6 +835,15 @@ func callbackQAbstractItemModelSort(ptrName *C.char, column C.int, order C.int) 
 
 }
 
+func (ptr *QAbstractItemModel) Span(index QModelIndex_ITF) *QSize {
+	defer qt.Recovering("QAbstractItemModel::span")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFromPointer(C.QAbstractItemModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
 func (ptr *QAbstractItemModel) Submit() bool {
 	defer qt.Recovering("QAbstractItemModel::submit")
 

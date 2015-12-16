@@ -801,6 +801,15 @@ func (ptr *QQuickWindow) RenderTarget() *gui.QOpenGLFramebufferObject {
 	return nil
 }
 
+func (ptr *QQuickWindow) RenderTargetSize() *core.QSize {
+	defer qt.Recovering("QQuickWindow::renderTargetSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QQuickWindow_RenderTargetSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickWindow) ResetOpenGLState() {
 	defer qt.Recovering("QQuickWindow::resetOpenGLState")
 

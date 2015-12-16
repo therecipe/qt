@@ -61,6 +61,15 @@ func (ptr *QWidgetItem) ExpandingDirections() core.Qt__Orientation {
 	return 0
 }
 
+func (ptr *QWidgetItem) Geometry() *core.QRect {
+	defer qt.Recovering("QWidgetItem::geometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QWidgetItem_Geometry(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWidgetItem) HasHeightForWidth() bool {
 	defer qt.Recovering("QWidgetItem::hasHeightForWidth")
 
@@ -86,6 +95,64 @@ func (ptr *QWidgetItem) IsEmpty() bool {
 		return C.QWidgetItem_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QWidgetItem) MaximumSize() *core.QSize {
+	defer qt.Recovering("QWidgetItem::maximumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWidgetItem_MaximumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWidgetItem) MinimumSize() *core.QSize {
+	defer qt.Recovering("QWidgetItem::minimumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWidgetItem_MinimumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWidgetItem) ConnectSetGeometry(f func(rect *core.QRect)) {
+	defer qt.Recovering("connect QWidgetItem::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setGeometry", f)
+	}
+}
+
+func (ptr *QWidgetItem) DisconnectSetGeometry() {
+	defer qt.Recovering("disconnect QWidgetItem::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setGeometry")
+	}
+}
+
+//export callbackQWidgetItemSetGeometry
+func callbackQWidgetItemSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidgetItem::setGeometry")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
+	if signal != nil {
+		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidgetItem) SizeHint() *core.QSize {
+	defer qt.Recovering("QWidgetItem::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWidgetItem_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWidgetItem) Widget() *QWidget {

@@ -651,6 +651,24 @@ var (
 	QStyle__SE_CustomBase                 = QStyle__SubElement(0xf0000000)
 )
 
+func (ptr *QStyle) ItemPixmapRect(rectangle core.QRect_ITF, alignment int, pixmap gui.QPixmap_ITF) *core.QRect {
+	defer qt.Recovering("QStyle::itemPixmapRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QStyle_ItemPixmapRect(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(alignment), gui.PointerFromQPixmap(pixmap)))
+	}
+	return nil
+}
+
+func (ptr *QStyle) ItemTextRect(metrics gui.QFontMetrics_ITF, rectangle core.QRect_ITF, alignment int, enabled bool, text string) *core.QRect {
+	defer qt.Recovering("QStyle::itemTextRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QStyle_ItemTextRect(ptr.Pointer(), gui.PointerFromQFontMetrics(metrics), core.PointerFromQRect(rectangle), C.int(alignment), C.int(qt.GoBoolToInt(enabled)), C.CString(text)))
+	}
+	return nil
+}
+
 func (ptr *QStyle) Proxy() *QStyle {
 	defer qt.Recovering("QStyle::proxy")
 
@@ -670,6 +688,18 @@ func QStyle_VisualPos(direction core.Qt__LayoutDirection, boundingRectangle core
 	defer qt.Recovering("QStyle::visualPos")
 
 	return core.NewQPointFromPointer(C.QStyle_QStyle_VisualPos(C.int(direction), core.PointerFromQRect(boundingRectangle), core.PointerFromQPoint(logicalPosition)))
+}
+
+func QStyle_VisualRect(direction core.Qt__LayoutDirection, boundingRectangle core.QRect_ITF, logicalRectangle core.QRect_ITF) *core.QRect {
+	defer qt.Recovering("QStyle::visualRect")
+
+	return core.NewQRectFromPointer(C.QStyle_QStyle_VisualRect(C.int(direction), core.PointerFromQRect(boundingRectangle), core.PointerFromQRect(logicalRectangle)))
+}
+
+func QStyle_AlignedRect(direction core.Qt__LayoutDirection, alignment core.Qt__AlignmentFlag, size core.QSize_ITF, rectangle core.QRect_ITF) *core.QRect {
+	defer qt.Recovering("QStyle::alignedRect")
+
+	return core.NewQRectFromPointer(C.QStyle_QStyle_AlignedRect(C.int(direction), C.int(alignment), core.PointerFromQSize(size), core.PointerFromQRect(rectangle)))
 }
 
 func (ptr *QStyle) CombinedLayoutSpacing(controls1 QSizePolicy__ControlType, controls2 QSizePolicy__ControlType, orientation core.Qt__Orientation, option QStyleOption_ITF, widget QWidget_ITF) int {
@@ -763,10 +793,28 @@ func callbackQStylePolish(ptrName *C.char, widget unsafe.Pointer) bool {
 
 }
 
+func (ptr *QStyle) SizeFromContents(ty QStyle__ContentsType, option QStyleOption_ITF, contentsSize core.QSize_ITF, widget QWidget_ITF) *core.QSize {
+	defer qt.Recovering("QStyle::sizeFromContents")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QStyle_SizeFromContents(ptr.Pointer(), C.int(ty), PointerFromQStyleOption(option), core.PointerFromQSize(contentsSize), PointerFromQWidget(widget)))
+	}
+	return nil
+}
+
 func QStyle_SliderPositionFromValue(min int, max int, logicalValue int, span int, upsideDown bool) int {
 	defer qt.Recovering("QStyle::sliderPositionFromValue")
 
 	return int(C.QStyle_QStyle_SliderPositionFromValue(C.int(min), C.int(max), C.int(logicalValue), C.int(span), C.int(qt.GoBoolToInt(upsideDown))))
+}
+
+func (ptr *QStyle) StandardIcon(standardIcon QStyle__StandardPixmap, option QStyleOption_ITF, widget QWidget_ITF) *gui.QIcon {
+	defer qt.Recovering("QStyle::standardIcon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QStyle_StandardIcon(ptr.Pointer(), C.int(standardIcon), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
+	}
+	return nil
 }
 
 func (ptr *QStyle) StyleHint(hint QStyle__StyleHint, option QStyleOption_ITF, widget QWidget_ITF, returnData QStyleHintReturn_ITF) int {
@@ -776,6 +824,24 @@ func (ptr *QStyle) StyleHint(hint QStyle__StyleHint, option QStyleOption_ITF, wi
 		return int(C.QStyle_StyleHint(ptr.Pointer(), C.int(hint), PointerFromQStyleOption(option), PointerFromQWidget(widget), PointerFromQStyleHintReturn(returnData)))
 	}
 	return 0
+}
+
+func (ptr *QStyle) SubControlRect(control QStyle__ComplexControl, option QStyleOptionComplex_ITF, subControl QStyle__SubControl, widget QWidget_ITF) *core.QRect {
+	defer qt.Recovering("QStyle::subControlRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QStyle_SubControlRect(ptr.Pointer(), C.int(control), PointerFromQStyleOptionComplex(option), C.int(subControl), PointerFromQWidget(widget)))
+	}
+	return nil
+}
+
+func (ptr *QStyle) SubElementRect(element QStyle__SubElement, option QStyleOption_ITF, widget QWidget_ITF) *core.QRect {
+	defer qt.Recovering("QStyle::subElementRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QStyle_SubElementRect(ptr.Pointer(), C.int(element), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
+	}
+	return nil
 }
 
 func (ptr *QStyle) ConnectUnpolish(f func(widget *QWidget)) {

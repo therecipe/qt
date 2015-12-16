@@ -242,6 +242,15 @@ func (ptr *QNetworkRequest) Swap(other QNetworkRequest_ITF) {
 	}
 }
 
+func (ptr *QNetworkRequest) Url() *core.QUrl {
+	defer qt.Recovering("QNetworkRequest::url")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QNetworkRequest_Url(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QNetworkRequest) DestroyQNetworkRequest() {
 	defer qt.Recovering("QNetworkRequest::~QNetworkRequest")
 

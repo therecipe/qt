@@ -76,6 +76,15 @@ func (ptr *QAudioOutput) Category() string {
 	return ""
 }
 
+func (ptr *QAudioOutput) ElapsedUSecs() int64 {
+	defer qt.Recovering("QAudioOutput::elapsedUSecs")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QAudioOutput_ElapsedUSecs(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QAudioOutput) ConnectNotify(f func()) {
 	defer qt.Recovering("connect QAudioOutput::notify")
 
@@ -119,6 +128,15 @@ func (ptr *QAudioOutput) PeriodSize() int {
 
 	if ptr.Pointer() != nil {
 		return int(C.QAudioOutput_PeriodSize(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAudioOutput) ProcessedUSecs() int64 {
+	defer qt.Recovering("QAudioOutput::processedUSecs")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QAudioOutput_ProcessedUSecs(ptr.Pointer()))
 	}
 	return 0
 }

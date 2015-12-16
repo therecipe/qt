@@ -255,6 +255,15 @@ func (ptr *QWebSocketServer) ServerName() string {
 	return ""
 }
 
+func (ptr *QWebSocketServer) ServerUrl() *core.QUrl {
+	defer qt.Recovering("QWebSocketServer::serverUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QWebSocketServer_ServerUrl(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWebSocketServer) SetMaxPendingConnections(numConnections int) {
 	defer qt.Recovering("QWebSocketServer::setMaxPendingConnections")
 

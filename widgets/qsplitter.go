@@ -240,6 +240,15 @@ func (ptr *QSplitter) IsCollapsible(index int) bool {
 	return false
 }
 
+func (ptr *QSplitter) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QSplitter::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSplitter_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSplitter) Refresh() {
 	defer qt.Recovering("QSplitter::refresh")
 
@@ -311,6 +320,15 @@ func (ptr *QSplitter) SetStretchFactor(index int, stretch int) {
 	if ptr.Pointer() != nil {
 		C.QSplitter_SetStretchFactor(ptr.Pointer(), C.int(index), C.int(stretch))
 	}
+}
+
+func (ptr *QSplitter) SizeHint() *core.QSize {
+	defer qt.Recovering("QSplitter::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSplitter_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSplitter) ConnectSplitterMoved(f func(pos int, index int)) {

@@ -77,6 +77,42 @@ func (ptr *QFontMetrics) AverageCharWidth() int {
 	return 0
 }
 
+func (ptr *QFontMetrics) BoundingRect(ch core.QChar_ITF) *core.QRect {
+	defer qt.Recovering("QFontMetrics::boundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QFontMetrics_BoundingRect(ptr.Pointer(), core.PointerFromQChar(ch)))
+	}
+	return nil
+}
+
+func (ptr *QFontMetrics) BoundingRect4(rect core.QRect_ITF, flags int, text string, tabStops int, tabArray int) *core.QRect {
+	defer qt.Recovering("QFontMetrics::boundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QFontMetrics_BoundingRect4(ptr.Pointer(), core.PointerFromQRect(rect), C.int(flags), C.CString(text), C.int(tabStops), C.int(tabArray)))
+	}
+	return nil
+}
+
+func (ptr *QFontMetrics) BoundingRect2(text string) *core.QRect {
+	defer qt.Recovering("QFontMetrics::boundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QFontMetrics_BoundingRect2(ptr.Pointer(), C.CString(text)))
+	}
+	return nil
+}
+
+func (ptr *QFontMetrics) BoundingRect3(x int, y int, width int, height int, flags int, text string, tabStops int, tabArray int) *core.QRect {
+	defer qt.Recovering("QFontMetrics::boundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QFontMetrics_BoundingRect3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(flags), C.CString(text), C.int(tabStops), C.int(tabArray)))
+	}
+	return nil
+}
+
 func (ptr *QFontMetrics) Descent() int {
 	defer qt.Recovering("QFontMetrics::descent")
 
@@ -194,6 +230,15 @@ func (ptr *QFontMetrics) RightBearing(ch core.QChar_ITF) int {
 	return 0
 }
 
+func (ptr *QFontMetrics) Size(flags int, text string, tabStops int, tabArray int) *core.QSize {
+	defer qt.Recovering("QFontMetrics::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QFontMetrics_Size(ptr.Pointer(), C.int(flags), C.CString(text), C.int(tabStops), C.int(tabArray)))
+	}
+	return nil
+}
+
 func (ptr *QFontMetrics) StrikeOutPos() int {
 	defer qt.Recovering("QFontMetrics::strikeOutPos")
 
@@ -209,6 +254,15 @@ func (ptr *QFontMetrics) Swap(other QFontMetrics_ITF) {
 	if ptr.Pointer() != nil {
 		C.QFontMetrics_Swap(ptr.Pointer(), PointerFromQFontMetrics(other))
 	}
+}
+
+func (ptr *QFontMetrics) TightBoundingRect(text string) *core.QRect {
+	defer qt.Recovering("QFontMetrics::tightBoundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QFontMetrics_TightBoundingRect(ptr.Pointer(), C.CString(text)))
+	}
+	return nil
 }
 
 func (ptr *QFontMetrics) UnderlinePos() int {

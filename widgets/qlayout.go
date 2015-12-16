@@ -150,6 +150,21 @@ func callbackQLayoutChildEvent(ptrName *C.char, e unsafe.Pointer) bool {
 
 }
 
+func QLayout_ClosestAcceptableSize(widget QWidget_ITF, size core.QSize_ITF) *core.QSize {
+	defer qt.Recovering("QLayout::closestAcceptableSize")
+
+	return core.NewQSizeFromPointer(C.QLayout_QLayout_ClosestAcceptableSize(PointerFromQWidget(widget), core.PointerFromQSize(size)))
+}
+
+func (ptr *QLayout) ContentsRect() *core.QRect {
+	defer qt.Recovering("QLayout::contentsRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QLayout_ContentsRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QLayout) ControlTypes() QSizePolicy__ControlType {
 	defer qt.Recovering("QLayout::controlTypes")
 
@@ -175,6 +190,15 @@ func (ptr *QLayout) ExpandingDirections() core.Qt__Orientation {
 		return core.Qt__Orientation(C.QLayout_ExpandingDirections(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QLayout) Geometry() *core.QRect {
+	defer qt.Recovering("QLayout::geometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QLayout_Geometry(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QLayout) GetContentsMargins(left int, top int, right int, bottom int) {
@@ -261,11 +285,29 @@ func (ptr *QLayout) Layout() *QLayout {
 	return nil
 }
 
+func (ptr *QLayout) MaximumSize() *core.QSize {
+	defer qt.Recovering("QLayout::maximumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QLayout_MaximumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QLayout) MenuBar() *QWidget {
 	defer qt.Recovering("QLayout::menuBar")
 
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QLayout_MenuBar(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QLayout) MinimumSize() *core.QSize {
+	defer qt.Recovering("QLayout::minimumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QLayout_MinimumSize(ptr.Pointer()))
 	}
 	return nil
 }
@@ -344,6 +386,37 @@ func (ptr *QLayout) SetEnabled(enable bool) {
 	if ptr.Pointer() != nil {
 		C.QLayout_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
+}
+
+func (ptr *QLayout) ConnectSetGeometry(f func(r *core.QRect)) {
+	defer qt.Recovering("connect QLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setGeometry", f)
+	}
+}
+
+func (ptr *QLayout) DisconnectSetGeometry() {
+	defer qt.Recovering("disconnect QLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setGeometry")
+	}
+}
+
+//export callbackQLayoutSetGeometry
+func callbackQLayoutSetGeometry(ptrName *C.char, r unsafe.Pointer) bool {
+	defer qt.Recovering("callback QLayout::setGeometry")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
+	if signal != nil {
+		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QLayout) SetMenuBar(widget QWidget_ITF) {

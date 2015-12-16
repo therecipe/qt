@@ -121,6 +121,15 @@ func (ptr *QAbstractAnimation) SetLoopCount(loopCount int) {
 	}
 }
 
+func (ptr *QAbstractAnimation) State() QAbstractAnimation__State {
+	defer qt.Recovering("QAbstractAnimation::state")
+
+	if ptr.Pointer() != nil {
+		return QAbstractAnimation__State(C.QAbstractAnimation_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QAbstractAnimation) ConnectCurrentLoopChanged(f func(currentLoop int)) {
 	defer qt.Recovering("connect QAbstractAnimation::currentLoopChanged")
 

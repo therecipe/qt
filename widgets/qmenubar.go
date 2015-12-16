@@ -126,6 +126,15 @@ func callbackQMenuBarActionEvent(ptrName *C.char, e unsafe.Pointer) bool {
 
 }
 
+func (ptr *QMenuBar) ActionGeometry(act QAction_ITF) *core.QRect {
+	defer qt.Recovering("QMenuBar::actionGeometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QMenuBar_ActionGeometry(ptr.Pointer(), PointerFromQAction(act)))
+	}
+	return nil
+}
+
 func (ptr *QMenuBar) ActiveAction() *QAction {
 	defer qt.Recovering("QMenuBar::activeAction")
 
@@ -417,6 +426,15 @@ func callbackQMenuBarLeaveEvent(ptrName *C.char, v unsafe.Pointer) bool {
 
 }
 
+func (ptr *QMenuBar) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QMenuBar::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QMenuBar_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMenuBar) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QMenuBar::mouseMoveEvent")
 
@@ -609,6 +627,15 @@ func callbackQMenuBarSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QMenuBar) SizeHint() *core.QSize {
+	defer qt.Recovering("QMenuBar::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QMenuBar_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMenuBar) ConnectTimerEvent(f func(e *core.QTimerEvent)) {

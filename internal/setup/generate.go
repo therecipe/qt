@@ -7,12 +7,17 @@ import (
 	"strings"
 	"time"
 
+	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 )
 
 func main() {
 	if len(os.Args) == 1 {
 		fmt.Println("________________________Generate________________________")
+
+		for _, module := range templater.GetLibs() {
+			parser.GetModule(strings.ToLower(module))
+		}
 
 		for _, module := range templater.GetLibs() {
 

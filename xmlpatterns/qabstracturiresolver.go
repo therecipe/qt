@@ -37,6 +37,15 @@ func (ptr *QAbstractUriResolver) QAbstractUriResolver_PTR() *QAbstractUriResolve
 	return ptr
 }
 
+func (ptr *QAbstractUriResolver) Resolve(relative core.QUrl_ITF, baseURI core.QUrl_ITF) *core.QUrl {
+	defer qt.Recovering("QAbstractUriResolver::resolve")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QAbstractUriResolver_Resolve(ptr.Pointer(), core.PointerFromQUrl(relative), core.PointerFromQUrl(baseURI)))
+	}
+	return nil
+}
+
 func (ptr *QAbstractUriResolver) DestroyQAbstractUriResolver() {
 	defer qt.Recovering("QAbstractUriResolver::~QAbstractUriResolver")
 

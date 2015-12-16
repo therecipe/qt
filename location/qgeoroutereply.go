@@ -86,6 +86,35 @@ func callbackQGeoRouteReplyAbort(ptrName *C.char) bool {
 
 }
 
+func (ptr *QGeoRouteReply) ConnectError2(f func(error QGeoRouteReply__Error, errorString string)) {
+	defer qt.Recovering("connect QGeoRouteReply::error")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRouteReply_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QGeoRouteReply) DisconnectError2() {
+	defer qt.Recovering("disconnect QGeoRouteReply::error")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRouteReply_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQGeoRouteReplyError2
+func callbackQGeoRouteReplyError2(ptrName *C.char, error C.int, errorString *C.char) {
+	defer qt.Recovering("callback QGeoRouteReply::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QGeoRouteReply__Error, string))(QGeoRouteReply__Error(error), C.GoString(errorString))
+	}
+
+}
+
 func (ptr *QGeoRouteReply) Error() QGeoRouteReply__Error {
 	defer qt.Recovering("QGeoRouteReply::error")
 

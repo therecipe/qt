@@ -110,6 +110,15 @@ func (ptr *QTabWidget) ElideMode() core.Qt__TextElideMode {
 	return 0
 }
 
+func (ptr *QTabWidget) IconSize() *core.QSize {
+	defer qt.Recovering("QTabWidget::iconSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QTabWidget_IconSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QTabWidget) InsertTab2(index int, page QWidget_ITF, icon gui.QIcon_ITF, label string) int {
 	defer qt.Recovering("QTabWidget::insertTab")
 
@@ -460,6 +469,15 @@ func callbackQTabWidgetKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 
 }
 
+func (ptr *QTabWidget) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QTabWidget::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QTabWidget_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QTabWidget) RemoveTab(index int) {
 	defer qt.Recovering("QTabWidget::removeTab")
 
@@ -578,6 +596,15 @@ func callbackQTabWidgetShowEvent(ptrName *C.char, v unsafe.Pointer) bool {
 
 }
 
+func (ptr *QTabWidget) SizeHint() *core.QSize {
+	defer qt.Recovering("QTabWidget::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QTabWidget_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QTabWidget) TabBar() *QTabBar {
 	defer qt.Recovering("QTabWidget::tabBar")
 
@@ -672,6 +699,15 @@ func callbackQTabWidgetTabCloseRequested(ptrName *C.char, index C.int) {
 		signal.(func(int))(int(index))
 	}
 
+}
+
+func (ptr *QTabWidget) TabIcon(index int) *gui.QIcon {
+	defer qt.Recovering("QTabWidget::tabIcon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QTabWidget_TabIcon(ptr.Pointer(), C.int(index)))
+	}
+	return nil
 }
 
 func (ptr *QTabWidget) ConnectTabInserted(f func(index int)) {

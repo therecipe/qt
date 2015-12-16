@@ -710,6 +710,15 @@ func (ptr *QWizard) SideWidget() *QWidget {
 	return nil
 }
 
+func (ptr *QWizard) SizeHint() *core.QSize {
+	defer qt.Recovering("QWizard::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QWizard_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWizard) TestOption(option QWizard__WizardOption) bool {
 	defer qt.Recovering("QWizard::testOption")
 

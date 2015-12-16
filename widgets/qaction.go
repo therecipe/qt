@@ -77,6 +77,15 @@ func (ptr *QAction) AutoRepeat() bool {
 	return false
 }
 
+func (ptr *QAction) Icon() *gui.QIcon {
+	defer qt.Recovering("QAction::icon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QAction_Icon(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QAction) IconText() string {
 	defer qt.Recovering("QAction::iconText")
 

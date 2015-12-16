@@ -79,6 +79,15 @@ func NewQRegion4(r QRegion_ITF) *QRegion {
 	return NewQRegionFromPointer(C.QRegion_NewQRegion4(PointerFromQRegion(r)))
 }
 
+func (ptr *QRegion) BoundingRect() *core.QRect {
+	defer qt.Recovering("QRegion::boundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QRegion_BoundingRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QRegion) Contains(p core.QPoint_ITF) bool {
 	defer qt.Recovering("QRegion::contains")
 

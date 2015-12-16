@@ -60,6 +60,15 @@ func (ptr *QSpacerItem) ExpandingDirections() core.Qt__Orientation {
 	return 0
 }
 
+func (ptr *QSpacerItem) Geometry() *core.QRect {
+	defer qt.Recovering("QSpacerItem::geometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QSpacerItem_Geometry(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSpacerItem) IsEmpty() bool {
 	defer qt.Recovering("QSpacerItem::isEmpty")
 
@@ -67,6 +76,64 @@ func (ptr *QSpacerItem) IsEmpty() bool {
 		return C.QSpacerItem_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QSpacerItem) MaximumSize() *core.QSize {
+	defer qt.Recovering("QSpacerItem::maximumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSpacerItem_MaximumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSpacerItem) MinimumSize() *core.QSize {
+	defer qt.Recovering("QSpacerItem::minimumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSpacerItem_MinimumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSpacerItem) ConnectSetGeometry(f func(r *core.QRect)) {
+	defer qt.Recovering("connect QSpacerItem::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setGeometry", f)
+	}
+}
+
+func (ptr *QSpacerItem) DisconnectSetGeometry() {
+	defer qt.Recovering("disconnect QSpacerItem::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setGeometry")
+	}
+}
+
+//export callbackQSpacerItemSetGeometry
+func callbackQSpacerItemSetGeometry(ptrName *C.char, r unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSpacerItem::setGeometry")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
+	if signal != nil {
+		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSpacerItem) SizeHint() *core.QSize {
+	defer qt.Recovering("QSpacerItem::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSpacerItem_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSpacerItem) SpacerItem() *QSpacerItem {

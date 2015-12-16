@@ -235,6 +235,15 @@ func callbackQAbstractItemDelegateSetModelData(ptrName *C.char, editor unsafe.Po
 
 }
 
+func (ptr *QAbstractItemDelegate) SizeHint(option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
+	defer qt.Recovering("QAbstractItemDelegate::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QAbstractItemDelegate_SizeHint(ptr.Pointer(), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
 func (ptr *QAbstractItemDelegate) ConnectSizeHintChanged(f func(index *core.QModelIndex)) {
 	defer qt.Recovering("connect QAbstractItemDelegate::sizeHintChanged")
 

@@ -173,6 +173,15 @@ func callbackQScrollAreaScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bo
 
 }
 
+func (ptr *QScrollArea) SizeHint() *core.QSize {
+	defer qt.Recovering("QScrollArea::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QScrollArea_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QScrollArea) TakeWidget() *QWidget {
 	defer qt.Recovering("QScrollArea::takeWidget")
 

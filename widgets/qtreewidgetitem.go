@@ -223,6 +223,15 @@ func (ptr *QTreeWidgetItem) Foreground(column int) *gui.QBrush {
 	return nil
 }
 
+func (ptr *QTreeWidgetItem) Icon(column int) *gui.QIcon {
+	defer qt.Recovering("QTreeWidgetItem::icon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QTreeWidgetItem_Icon(ptr.Pointer(), C.int(column)))
+	}
+	return nil
+}
+
 func (ptr *QTreeWidgetItem) IndexOfChild(child QTreeWidgetItem_ITF) int {
 	defer qt.Recovering("QTreeWidgetItem::indexOfChild")
 
@@ -467,6 +476,15 @@ func (ptr *QTreeWidgetItem) SetWhatsThis(column int, whatsThis string) {
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_SetWhatsThis(ptr.Pointer(), C.int(column), C.CString(whatsThis))
 	}
+}
+
+func (ptr *QTreeWidgetItem) SizeHint(column int) *core.QSize {
+	defer qt.Recovering("QTreeWidgetItem::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QTreeWidgetItem_SizeHint(ptr.Pointer(), C.int(column)))
+	}
+	return nil
 }
 
 func (ptr *QTreeWidgetItem) SortChildren(column int, order core.Qt__SortOrder) {

@@ -4,6 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"strings"
 	"unsafe"
@@ -181,6 +182,15 @@ func (ptr *QAccessibleWidget) Parent() *gui.QAccessibleInterface {
 
 	if ptr.Pointer() != nil {
 		return gui.NewQAccessibleInterfaceFromPointer(C.QAccessibleWidget_Parent(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAccessibleWidget) Rect() *core.QRect {
+	defer qt.Recovering("QAccessibleWidget::rect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QAccessibleWidget_Rect(ptr.Pointer()))
 	}
 	return nil
 }

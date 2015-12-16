@@ -71,6 +71,15 @@ func (ptr *QLayoutItem) ExpandingDirections() core.Qt__Orientation {
 	return 0
 }
 
+func (ptr *QLayoutItem) Geometry() *core.QRect {
+	defer qt.Recovering("QLayoutItem::geometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QLayoutItem_Geometry(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QLayoutItem) HasHeightForWidth() bool {
 	defer qt.Recovering("QLayoutItem::hasHeightForWidth")
 
@@ -138,6 +147,15 @@ func (ptr *QLayoutItem) Layout() *QLayout {
 	return nil
 }
 
+func (ptr *QLayoutItem) MaximumSize() *core.QSize {
+	defer qt.Recovering("QLayoutItem::maximumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QLayoutItem_MaximumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QLayoutItem) MinimumHeightForWidth(w int) int {
 	defer qt.Recovering("QLayoutItem::minimumHeightForWidth")
 
@@ -145,6 +163,15 @@ func (ptr *QLayoutItem) MinimumHeightForWidth(w int) int {
 		return int(C.QLayoutItem_MinimumHeightForWidth(ptr.Pointer(), C.int(w)))
 	}
 	return 0
+}
+
+func (ptr *QLayoutItem) MinimumSize() *core.QSize {
+	defer qt.Recovering("QLayoutItem::minimumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QLayoutItem_MinimumSize(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QLayoutItem) SetAlignment(alignment core.Qt__AlignmentFlag) {
@@ -161,6 +188,15 @@ func (ptr *QLayoutItem) SetGeometry(r core.QRect_ITF) {
 	if ptr.Pointer() != nil {
 		C.QLayoutItem_SetGeometry(ptr.Pointer(), core.PointerFromQRect(r))
 	}
+}
+
+func (ptr *QLayoutItem) SizeHint() *core.QSize {
+	defer qt.Recovering("QLayoutItem::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QLayoutItem_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QLayoutItem) SpacerItem() *QSpacerItem {

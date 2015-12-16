@@ -80,6 +80,15 @@ func (ptr *QImageEncoderSettings) IsNull() bool {
 	return false
 }
 
+func (ptr *QImageEncoderSettings) Resolution() *core.QSize {
+	defer qt.Recovering("QImageEncoderSettings::resolution")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QImageEncoderSettings_Resolution(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QImageEncoderSettings) SetCodec(codec string) {
 	defer qt.Recovering("QImageEncoderSettings::setCodec")
 

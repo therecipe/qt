@@ -559,6 +559,24 @@ func callbackQTextEditCursorPositionChanged(ptrName *C.char) {
 
 }
 
+func (ptr *QTextEdit) CursorRect2() *core.QRect {
+	defer qt.Recovering("QTextEdit::cursorRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QTextEdit_CursorRect2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTextEdit) CursorRect(cursor gui.QTextCursor_ITF) *core.QRect {
+	defer qt.Recovering("QTextEdit::cursorRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QTextEdit_CursorRect(ptr.Pointer(), gui.PointerFromQTextCursor(cursor)))
+	}
+	return nil
+}
+
 func (ptr *QTextEdit) Cut() {
 	defer qt.Recovering("QTextEdit::cut")
 

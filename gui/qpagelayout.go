@@ -87,6 +87,24 @@ func NewQPageLayout2(pageSize QPageSize_ITF, orientation QPageLayout__Orientatio
 	return NewQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout2(PointerFromQPageSize(pageSize), C.int(orientation), core.PointerFromQMarginsF(margins), C.int(units), core.PointerFromQMarginsF(minMargins)))
 }
 
+func (ptr *QPageLayout) FullRectPixels(resolution int) *core.QRect {
+	defer qt.Recovering("QPageLayout::fullRectPixels")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPageLayout_FullRectPixels(ptr.Pointer(), C.int(resolution)))
+	}
+	return nil
+}
+
+func (ptr *QPageLayout) FullRectPoints() *core.QRect {
+	defer qt.Recovering("QPageLayout::fullRectPoints")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPageLayout_FullRectPoints(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPageLayout) IsEquivalentTo(other QPageLayout_ITF) bool {
 	defer qt.Recovering("QPageLayout::isEquivalentTo")
 
@@ -121,6 +139,24 @@ func (ptr *QPageLayout) Orientation() QPageLayout__Orientation {
 		return QPageLayout__Orientation(C.QPageLayout_Orientation(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QPageLayout) PaintRectPixels(resolution int) *core.QRect {
+	defer qt.Recovering("QPageLayout::paintRectPixels")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPageLayout_PaintRectPixels(ptr.Pointer(), C.int(resolution)))
+	}
+	return nil
+}
+
+func (ptr *QPageLayout) PaintRectPoints() *core.QRect {
+	defer qt.Recovering("QPageLayout::paintRectPoints")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPageLayout_PaintRectPoints(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QPageLayout) SetBottomMargin(bottomMargin float64) bool {

@@ -37,6 +37,15 @@ func (ptr *QQmlExtensionPlugin) QQmlExtensionPlugin_PTR() *QQmlExtensionPlugin {
 	return ptr
 }
 
+func (ptr *QQmlExtensionPlugin) BaseUrl() *core.QUrl {
+	defer qt.Recovering("QQmlExtensionPlugin::baseUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QQmlExtensionPlugin_BaseUrl(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQmlExtensionPlugin) RegisterTypes(uri string) {
 	defer qt.Recovering("QQmlExtensionPlugin::registerTypes")
 

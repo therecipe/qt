@@ -65,6 +65,10 @@ void* QScriptEngineDebugger_StandardWindow(void* ptr){
 	return static_cast<QScriptEngineDebugger*>(ptr)->standardWindow();
 }
 
+int QScriptEngineDebugger_State(void* ptr){
+	return static_cast<QScriptEngineDebugger*>(ptr)->state();
+}
+
 void* QScriptEngineDebugger_Widget(void* ptr, int widget){
 	return static_cast<QScriptEngineDebugger*>(ptr)->widget(static_cast<QScriptEngineDebugger::DebuggerWidget>(widget));
 }

@@ -184,6 +184,35 @@ func callbackQCameraImageCaptureCaptureDestinationChanged(ptrName *C.char, desti
 
 }
 
+func (ptr *QCameraImageCapture) ConnectError2(f func(id int, error QCameraImageCapture__Error, errorString string)) {
+	defer qt.Recovering("connect QCameraImageCapture::error")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QCameraImageCapture) DisconnectError2() {
+	defer qt.Recovering("disconnect QCameraImageCapture::error")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQCameraImageCaptureError2
+func callbackQCameraImageCaptureError2(ptrName *C.char, id C.int, error C.int, errorString *C.char) {
+	defer qt.Recovering("callback QCameraImageCapture::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(int, QCameraImageCapture__Error, string))(int(id), QCameraImageCapture__Error(error), C.GoString(errorString))
+	}
+
+}
+
 func (ptr *QCameraImageCapture) Error() QCameraImageCapture__Error {
 	defer qt.Recovering("QCameraImageCapture::error")
 

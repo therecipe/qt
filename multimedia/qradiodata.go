@@ -209,6 +209,35 @@ func callbackQRadioDataAlternativeFrequenciesEnabledChanged(ptrName *C.char, ena
 
 }
 
+func (ptr *QRadioData) ConnectError2(f func(error QRadioData__Error)) {
+	defer qt.Recovering("connect QRadioData::error")
+
+	if ptr.Pointer() != nil {
+		C.QRadioData_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QRadioData) DisconnectError2() {
+	defer qt.Recovering("disconnect QRadioData::error")
+
+	if ptr.Pointer() != nil {
+		C.QRadioData_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQRadioDataError2
+func callbackQRadioDataError2(ptrName *C.char, error C.int) {
+	defer qt.Recovering("callback QRadioData::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QRadioData__Error))(QRadioData__Error(error))
+	}
+
+}
+
 func (ptr *QRadioData) Error() QRadioData__Error {
 	defer qt.Recovering("QRadioData::error")
 

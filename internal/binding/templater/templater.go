@@ -8,7 +8,7 @@ import (
 )
 
 func isSupportedFunction(c *parser.Class, f *parser.Function) bool {
-	return (f.Access == "public" || (f.Access == "protected" && strings.Contains(f.Virtual, "impure"))) && f.Status != "obsolete" && isNotAbstractConstructor(c, f) && isNotAtomic(f) && !isBlocked(f) && !((f.Meta == "signal" || strings.Contains(f.Virtual, "impure") && f.Output == "void") && f.Overload)
+	return (f.Access == "public" || (f.Access == "protected" && strings.Contains(f.Virtual, "impure"))) && f.Status != "obsolete" && isNotAbstractConstructor(c, f) && isNotAtomic(f) && !isBlocked(f) && !(strings.Contains(f.Virtual, "impure") && f.Overload)
 }
 
 func isNotAbstractConstructor(c *parser.Class, f *parser.Function) bool {
@@ -60,7 +60,7 @@ func classHasRealFunction(c string, n string) bool {
 }
 
 func isBlocked(f *parser.Function) bool {
-	for _, n := range []string{"relations", "scriptValueFromQMetaObject", "fromScriptValue", "QPlaceProposedSearchResult", "evaluateTo", "detected", "isRecordType", "replace", "insert", "remove", "find", "changedStates", "state", "requestTexture", "draw", "setTabPositions", "setExtraSelections", "disconnect", "QJsonObject", "QJsonArray", "QAccessibleStateChangeEvent", "hitTest", "setupUi", "setEditFocus", "toUnicode", "registerConverter", "registerEqualsComparator", "registerComparators", "hasRegisteredConverterFunction", "hasRegisteredComparators", "setNavigationMode", "navigationMode", "setNativeArguments", "setAlphaChannel", "setDefaultAction", "unregisterEventNotifier", "QXmlStreamWriter", "hasEditFocus", "QTextStream", "QStringRef", "QSignalBlocker", "defaultAction", "canConvert", "queryItemValue", "hasQueryItem", "hasEncodedQueryItem", "hasLocalData", "registerEventNotifier", "registerTimer", "setYMD", "nativeArguments"} {
+	for _, n := range []string{"relations", "scriptValueFromQMetaObject", "fromScriptValue", "QPlaceProposedSearchResult", "evaluateTo", "detected", "isRecordType", "replace", "insert", "remove", "find", "changedStates", "requestTexture", "draw", "setTabPositions", "setExtraSelections", "disconnect", "QJsonObject", "QJsonArray", "QAccessibleStateChangeEvent", "hitTest", "setupUi", "setEditFocus", "toUnicode", "registerConverter", "registerEqualsComparator", "registerComparators", "hasRegisteredConverterFunction", "hasRegisteredComparators", "setNavigationMode", "navigationMode", "setNativeArguments", "setAlphaChannel", "setDefaultAction", "unregisterEventNotifier", "QXmlStreamWriter", "hasEditFocus", "QTextStream", "QStringRef", "QSignalBlocker", "defaultAction", "canConvert", "queryItemValue", "hasQueryItem", "hasEncodedQueryItem", "hasLocalData", "registerEventNotifier", "registerTimer", "setYMD", "nativeArguments"} {
 		if f.Name == n {
 			f.Access = "unsupported_isBlocked"
 			return true
@@ -252,12 +252,12 @@ func GetLibs() []string {
 }
 
 var LibDeps = map[string][]string{
-	"Core":              []string{},
+	"Core":              []string{"Widgets"},
 	"AndroidExtras":     []string{"Core"},
-	"Gui":               []string{"Core"},
+	"Gui":               []string{"Core", "Widgets"},
 	"Network":           []string{"Core"},
 	"Sql":               []string{"Core"},
-	"Xml":               []string{"Core"},
+	"Xml":               []string{"Core", "XmlPatterns"},
 	"DBus":              []string{"Core"},
 	"Nfc":               []string{"Core"},
 	"Script":            []string{"Core"},
@@ -271,7 +271,7 @@ var LibDeps = map[string][]string{
 	"Bluetooth":         []string{"Core", "Concurrent"},
 	"WebChannel":        []string{"Core", "Network", "Qml"},
 	"Svg":               []string{"Core", "Gui", "Widgets"},
-	"Multimedia":        []string{"Core", "Gui", "Network"},
+	"Multimedia":        []string{"Core", "Gui", "Network", "MultimediaWidgets"},
 	"Quick":             []string{"Core", "Gui", "Network", "Widgets", "Qml", "QuickWidgets"},
 	"Help":              []string{"Core", "Gui", "Network", "Sql", "CLucene", "Widgets"},
 	"Location":          []string{"Core", "Gui", "Network", "Positioning", "Qml", "Quick"},

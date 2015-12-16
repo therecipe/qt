@@ -68,6 +68,15 @@ var (
 	QFrame__Shape_Mask  = QFrame__StyleMask(0x000f)
 )
 
+func (ptr *QFrame) FrameRect() *core.QRect {
+	defer qt.Recovering("QFrame::frameRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QFrame_FrameRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QFrame) FrameShadow() QFrame__Shadow {
 	defer qt.Recovering("QFrame::frameShadow")
 
@@ -236,6 +245,15 @@ func (ptr *QFrame) SetFrameStyle(style int) {
 	if ptr.Pointer() != nil {
 		C.QFrame_SetFrameStyle(ptr.Pointer(), C.int(style))
 	}
+}
+
+func (ptr *QFrame) SizeHint() *core.QSize {
+	defer qt.Recovering("QFrame::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QFrame_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QFrame) DestroyQFrame() {

@@ -307,6 +307,15 @@ func callbackQDialogKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 
 }
 
+func (ptr *QDialog) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QDialog::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QDialog_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDialog) ConnectOpen(f func()) {
 	defer qt.Recovering("connect QDialog::open")
 
@@ -498,6 +507,15 @@ func callbackQDialogShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QDialog) SizeHint() *core.QSize {
+	defer qt.Recovering("QDialog::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QDialog_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QDialog) DestroyQDialog() {

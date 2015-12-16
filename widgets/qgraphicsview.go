@@ -979,6 +979,15 @@ func (ptr *QGraphicsView) Rotate(angle float64) {
 	}
 }
 
+func (ptr *QGraphicsView) RubberBandRect() *core.QRect {
+	defer qt.Recovering("QGraphicsView::rubberBandRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QGraphicsView_RubberBandRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsView) Scale(sx float64, sy float64) {
 	defer qt.Recovering("QGraphicsView::scale")
 
@@ -1135,6 +1144,15 @@ func callbackQGraphicsViewShowEvent(ptrName *C.char, event unsafe.Pointer) bool 
 	}
 	return false
 
+}
+
+func (ptr *QGraphicsView) SizeHint() *core.QSize {
+	defer qt.Recovering("QGraphicsView::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QGraphicsView_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QGraphicsView) Translate(dx float64, dy float64) {

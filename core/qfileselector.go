@@ -70,6 +70,15 @@ func (ptr *QFileSelector) Select(filePath string) string {
 	return ""
 }
 
+func (ptr *QFileSelector) Select2(filePath QUrl_ITF) *QUrl {
+	defer qt.Recovering("QFileSelector::select")
+
+	if ptr.Pointer() != nil {
+		return NewQUrlFromPointer(C.QFileSelector_Select2(ptr.Pointer(), PointerFromQUrl(filePath)))
+	}
+	return nil
+}
+
 func (ptr *QFileSelector) SetExtraSelectors(list []string) {
 	defer qt.Recovering("QFileSelector::setExtraSelectors")
 

@@ -85,6 +85,35 @@ func callbackQBluetoothServiceDiscoveryAgentCanceled(ptrName *C.char) {
 
 }
 
+func (ptr *QBluetoothServiceDiscoveryAgent) ConnectError2(f func(error QBluetoothServiceDiscoveryAgent__Error)) {
+	defer qt.Recovering("connect QBluetoothServiceDiscoveryAgent::error")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectError2() {
+	defer qt.Recovering("disconnect QBluetoothServiceDiscoveryAgent::error")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQBluetoothServiceDiscoveryAgentError2
+func callbackQBluetoothServiceDiscoveryAgentError2(ptrName *C.char, error C.int) {
+	defer qt.Recovering("callback QBluetoothServiceDiscoveryAgent::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QBluetoothServiceDiscoveryAgent__Error))(QBluetoothServiceDiscoveryAgent__Error(error))
+	}
+
+}
+
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectFinished(f func()) {
 	defer qt.Recovering("connect QBluetoothServiceDiscoveryAgent::finished")
 

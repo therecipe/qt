@@ -76,6 +76,35 @@ const (
 	QLowEnergyService__WriteWithoutResponse = QLowEnergyService__WriteMode(1)
 )
 
+func (ptr *QLowEnergyService) ConnectError2(f func(newError QLowEnergyService__ServiceError)) {
+	defer qt.Recovering("connect QLowEnergyService::error")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyService_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QLowEnergyService) DisconnectError2() {
+	defer qt.Recovering("disconnect QLowEnergyService::error")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyService_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQLowEnergyServiceError2
+func callbackQLowEnergyServiceError2(ptrName *C.char, newError C.int) {
+	defer qt.Recovering("callback QLowEnergyService::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QLowEnergyService__ServiceError))(QLowEnergyService__ServiceError(newError))
+	}
+
+}
+
 func (ptr *QLowEnergyService) ConnectStateChanged(f func(newState QLowEnergyService__ServiceState)) {
 	defer qt.Recovering("connect QLowEnergyService::stateChanged")
 
@@ -163,6 +192,15 @@ func (ptr *QLowEnergyService) ServiceName() string {
 		return C.GoString(C.QLowEnergyService_ServiceName(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QLowEnergyService) State() QLowEnergyService__ServiceState {
+	defer qt.Recovering("QLowEnergyService::state")
+
+	if ptr.Pointer() != nil {
+		return QLowEnergyService__ServiceState(C.QLowEnergyService_State(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QLowEnergyService) Type() QLowEnergyService__ServiceType {

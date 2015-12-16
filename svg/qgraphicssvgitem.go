@@ -48,6 +48,15 @@ func (ptr *QGraphicsSvgItem) ElementId() string {
 	return ""
 }
 
+func (ptr *QGraphicsSvgItem) MaximumCacheSize() *core.QSize {
+	defer qt.Recovering("QGraphicsSvgItem::maximumCacheSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QGraphicsSvgItem_MaximumCacheSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsSvgItem) ConnectPaint(f func(painter *gui.QPainter, option *widgets.QStyleOptionGraphicsItem, widget *widgets.QWidget)) {
 	defer qt.Recovering("connect QGraphicsSvgItem::paint")
 

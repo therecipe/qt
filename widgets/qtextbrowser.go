@@ -90,10 +90,79 @@ func (ptr *QTextBrowser) SetSearchPaths(paths []string) {
 	}
 }
 
+func (ptr *QTextBrowser) ConnectSetSource(f func(name *core.QUrl)) {
+	defer qt.Recovering("connect QTextBrowser::setSource")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSource", f)
+	}
+}
+
+func (ptr *QTextBrowser) DisconnectSetSource() {
+	defer qt.Recovering("disconnect QTextBrowser::setSource")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSource")
+	}
+}
+
+//export callbackQTextBrowserSetSource
+func callbackQTextBrowserSetSource(ptrName *C.char, name unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTextBrowser::setSource")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setSource")
+	if signal != nil {
+		defer signal.(func(*core.QUrl))(core.NewQUrlFromPointer(name))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QTextBrowser) Source() *core.QUrl {
+	defer qt.Recovering("QTextBrowser::source")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QTextBrowser_Source(ptr.Pointer()))
+	}
+	return nil
+}
+
 func NewQTextBrowser(parent QWidget_ITF) *QTextBrowser {
 	defer qt.Recovering("QTextBrowser::QTextBrowser")
 
 	return NewQTextBrowserFromPointer(C.QTextBrowser_NewQTextBrowser(PointerFromQWidget(parent)))
+}
+
+func (ptr *QTextBrowser) ConnectAnchorClicked(f func(link *core.QUrl)) {
+	defer qt.Recovering("connect QTextBrowser::anchorClicked")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ConnectAnchorClicked(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "anchorClicked", f)
+	}
+}
+
+func (ptr *QTextBrowser) DisconnectAnchorClicked() {
+	defer qt.Recovering("disconnect QTextBrowser::anchorClicked")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DisconnectAnchorClicked(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "anchorClicked")
+	}
+}
+
+//export callbackQTextBrowserAnchorClicked
+func callbackQTextBrowserAnchorClicked(ptrName *C.char, link unsafe.Pointer) {
+	defer qt.Recovering("callback QTextBrowser::anchorClicked")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "anchorClicked")
+	if signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
+	}
+
 }
 
 func (ptr *QTextBrowser) ConnectBackward(f func()) {
@@ -273,6 +342,64 @@ func (ptr *QTextBrowser) ForwardHistoryCount() int {
 	return 0
 }
 
+func (ptr *QTextBrowser) ConnectHighlighted2(f func(link string)) {
+	defer qt.Recovering("connect QTextBrowser::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ConnectHighlighted2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "highlighted", f)
+	}
+}
+
+func (ptr *QTextBrowser) DisconnectHighlighted2() {
+	defer qt.Recovering("disconnect QTextBrowser::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DisconnectHighlighted2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "highlighted")
+	}
+}
+
+//export callbackQTextBrowserHighlighted2
+func callbackQTextBrowserHighlighted2(ptrName *C.char, link *C.char) {
+	defer qt.Recovering("callback QTextBrowser::highlighted")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted")
+	if signal != nil {
+		signal.(func(string))(C.GoString(link))
+	}
+
+}
+
+func (ptr *QTextBrowser) ConnectHighlighted(f func(link *core.QUrl)) {
+	defer qt.Recovering("connect QTextBrowser::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ConnectHighlighted(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "highlighted", f)
+	}
+}
+
+func (ptr *QTextBrowser) DisconnectHighlighted() {
+	defer qt.Recovering("disconnect QTextBrowser::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DisconnectHighlighted(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "highlighted")
+	}
+}
+
+//export callbackQTextBrowserHighlighted
+func callbackQTextBrowserHighlighted(ptrName *C.char, link unsafe.Pointer) {
+	defer qt.Recovering("callback QTextBrowser::highlighted")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted")
+	if signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
+	}
+
+}
+
 func (ptr *QTextBrowser) ConnectHistoryChanged(f func()) {
 	defer qt.Recovering("connect QTextBrowser::historyChanged")
 
@@ -309,6 +436,15 @@ func (ptr *QTextBrowser) HistoryTitle(i int) string {
 		return C.GoString(C.QTextBrowser_HistoryTitle(ptr.Pointer(), C.int(i)))
 	}
 	return ""
+}
+
+func (ptr *QTextBrowser) HistoryUrl(i int) *core.QUrl {
+	defer qt.Recovering("QTextBrowser::historyUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QTextBrowser_HistoryUrl(ptr.Pointer(), C.int(i)))
+	}
+	return nil
 }
 
 func (ptr *QTextBrowser) ConnectHome(f func()) {
@@ -552,5 +688,34 @@ func callbackQTextBrowserReload(ptrName *C.char) bool {
 		return true
 	}
 	return false
+
+}
+
+func (ptr *QTextBrowser) ConnectSourceChanged(f func(src *core.QUrl)) {
+	defer qt.Recovering("connect QTextBrowser::sourceChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ConnectSourceChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "sourceChanged", f)
+	}
+}
+
+func (ptr *QTextBrowser) DisconnectSourceChanged() {
+	defer qt.Recovering("disconnect QTextBrowser::sourceChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DisconnectSourceChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "sourceChanged")
+	}
+}
+
+//export callbackQTextBrowserSourceChanged
+func callbackQTextBrowserSourceChanged(ptrName *C.char, src unsafe.Pointer) {
+	defer qt.Recovering("callback QTextBrowser::sourceChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "sourceChanged")
+	if signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(src))
+	}
 
 }

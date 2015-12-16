@@ -59,6 +59,15 @@ func NewQSourceLocation3(u core.QUrl_ITF, l int, c int) *QSourceLocation {
 	return NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation3(core.PointerFromQUrl(u), C.int(l), C.int(c)))
 }
 
+func (ptr *QSourceLocation) Column() int64 {
+	defer qt.Recovering("QSourceLocation::column")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QSourceLocation_Column(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QSourceLocation) IsNull() bool {
 	defer qt.Recovering("QSourceLocation::isNull")
 
@@ -68,12 +77,46 @@ func (ptr *QSourceLocation) IsNull() bool {
 	return false
 }
 
+func (ptr *QSourceLocation) Line() int64 {
+	defer qt.Recovering("QSourceLocation::line")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QSourceLocation_Line(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSourceLocation) SetColumn(newColumn int64) {
+	defer qt.Recovering("QSourceLocation::setColumn")
+
+	if ptr.Pointer() != nil {
+		C.QSourceLocation_SetColumn(ptr.Pointer(), C.longlong(newColumn))
+	}
+}
+
+func (ptr *QSourceLocation) SetLine(newLine int64) {
+	defer qt.Recovering("QSourceLocation::setLine")
+
+	if ptr.Pointer() != nil {
+		C.QSourceLocation_SetLine(ptr.Pointer(), C.longlong(newLine))
+	}
+}
+
 func (ptr *QSourceLocation) SetUri(newUri core.QUrl_ITF) {
 	defer qt.Recovering("QSourceLocation::setUri")
 
 	if ptr.Pointer() != nil {
 		C.QSourceLocation_SetUri(ptr.Pointer(), core.PointerFromQUrl(newUri))
 	}
+}
+
+func (ptr *QSourceLocation) Uri() *core.QUrl {
+	defer qt.Recovering("QSourceLocation::uri")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QSourceLocation_Uri(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSourceLocation) DestroyQSourceLocation() {

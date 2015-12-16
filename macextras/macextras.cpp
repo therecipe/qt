@@ -101,6 +101,10 @@ void QMacToolBarItem_DestroyQMacToolBarItem(void* ptr){
 	static_cast<QMacToolBarItem*>(ptr)->~QMacToolBarItem();
 }
 
+void* QMacToolBarItem_Icon(void* ptr){
+	return new QIcon(static_cast<QMacToolBarItem*>(ptr)->icon());
+}
+
 int QMacToolBarItem_Selectable(void* ptr){
 	return static_cast<QMacToolBarItem*>(ptr)->selectable();
 }

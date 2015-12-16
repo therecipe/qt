@@ -37,6 +37,15 @@ func (ptr *QAbstractNetworkCache) QAbstractNetworkCache_PTR() *QAbstractNetworkC
 	return ptr
 }
 
+func (ptr *QAbstractNetworkCache) CacheSize() int64 {
+	defer qt.Recovering("QAbstractNetworkCache::cacheSize")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QAbstractNetworkCache_CacheSize(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QAbstractNetworkCache) Clear() {
 	defer qt.Recovering("QAbstractNetworkCache::clear")
 

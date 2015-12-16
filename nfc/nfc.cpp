@@ -157,6 +157,10 @@ void* QNdefNfcSmartPosterRecord_TypeInfo(void* ptr){
 	return new QByteArray(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->typeInfo());
 }
 
+void* QNdefNfcSmartPosterRecord_Uri(void* ptr){
+	return new QUrl(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->uri());
+}
+
 void QNdefNfcSmartPosterRecord_DestroyQNdefNfcSmartPosterRecord(void* ptr){
 	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->~QNdefNfcSmartPosterRecord();
 }
@@ -203,6 +207,10 @@ void* QNdefNfcUriRecord_NewQNdefNfcUriRecord2(void* other){
 
 void QNdefNfcUriRecord_SetUri(void* ptr, void* uri){
 	static_cast<QNdefNfcUriRecord*>(ptr)->setUri(*static_cast<QUrl*>(uri));
+}
+
+void* QNdefNfcUriRecord_Uri(void* ptr){
+	return new QUrl(static_cast<QNdefNfcUriRecord*>(ptr)->uri());
 }
 
 void* QNdefRecord_NewQNdefRecord(){
@@ -464,6 +472,10 @@ int QNearFieldTarget_Type(void* ptr){
 
 void* QNearFieldTarget_Uid(void* ptr){
 	return new QByteArray(static_cast<QNearFieldTarget*>(ptr)->uid());
+}
+
+void* QNearFieldTarget_Url(void* ptr){
+	return new QUrl(static_cast<QNearFieldTarget*>(ptr)->url());
 }
 
 void QNearFieldTarget_DestroyQNearFieldTarget(void* ptr){

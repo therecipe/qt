@@ -73,6 +73,15 @@ func (ptr *QQmlComponent) Status() QQmlComponent__Status {
 	return 0
 }
 
+func (ptr *QQmlComponent) Url() *core.QUrl {
+	defer qt.Recovering("QQmlComponent::url")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QQmlComponent_Url(ptr.Pointer()))
+	}
+	return nil
+}
+
 func NewQQmlComponent(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlComponent {
 	defer qt.Recovering("QQmlComponent::QQmlComponent")
 
@@ -219,6 +228,35 @@ func (ptr *QQmlComponent) LoadUrl2(url core.QUrl_ITF, mode QQmlComponent__Compil
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_LoadUrl2(ptr.Pointer(), core.PointerFromQUrl(url), C.int(mode))
 	}
+}
+
+func (ptr *QQmlComponent) ConnectProgressChanged(f func(progress float64)) {
+	defer qt.Recovering("connect QQmlComponent::progressChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_ConnectProgressChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "progressChanged", f)
+	}
+}
+
+func (ptr *QQmlComponent) DisconnectProgressChanged() {
+	defer qt.Recovering("disconnect QQmlComponent::progressChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_DisconnectProgressChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "progressChanged")
+	}
+}
+
+//export callbackQQmlComponentProgressChanged
+func callbackQQmlComponentProgressChanged(ptrName *C.char, progress C.double) {
+	defer qt.Recovering("callback QQmlComponent::progressChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "progressChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(progress))
+	}
+
 }
 
 func (ptr *QQmlComponent) SetData(data core.QByteArray_ITF, url core.QUrl_ITF) {

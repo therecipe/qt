@@ -49,6 +49,8 @@ int QSqlDriver_IsOpen(void* ptr);
 int QSqlDriver_IsOpenError(void* ptr);
 void QSqlDriver_ConnectNotification(void* ptr);
 void QSqlDriver_DisconnectNotification(void* ptr);
+void QSqlDriver_ConnectNotification2(void* ptr);
+void QSqlDriver_DisconnectNotification2(void* ptr);
 int QSqlDriver_Open(void* ptr, char* db, char* user, char* password, char* host, int port, char* options);
 int QSqlDriver_RollbackTransaction(void* ptr);
 char* QSqlDriver_SqlStatement(void* ptr, int ty, char* tableName, void* rec, int preparedStatement);

@@ -225,6 +225,15 @@ func (ptr *QSplitterHandle) SetOrientation(orientation core.Qt__Orientation) {
 	}
 }
 
+func (ptr *QSplitterHandle) SizeHint() *core.QSize {
+	defer qt.Recovering("QSplitterHandle::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSplitterHandle_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSplitterHandle) Splitter() *QSplitter {
 	defer qt.Recovering("QSplitterHandle::splitter")
 

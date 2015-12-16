@@ -122,6 +122,15 @@ func callbackQVideoWindowControlContrastChanged(ptrName *C.char, contrast C.int)
 
 }
 
+func (ptr *QVideoWindowControl) DisplayRect() *core.QRect {
+	defer qt.Recovering("QVideoWindowControl::displayRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QVideoWindowControl_DisplayRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QVideoWindowControl) ConnectFullScreenChanged(f func(fullScreen bool)) {
 	defer qt.Recovering("connect QVideoWindowControl::fullScreenChanged")
 
@@ -196,6 +205,15 @@ func (ptr *QVideoWindowControl) IsFullScreen() bool {
 		return C.QVideoWindowControl_IsFullScreen(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QVideoWindowControl) NativeSize() *core.QSize {
+	defer qt.Recovering("QVideoWindowControl::nativeSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QVideoWindowControl_NativeSize(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QVideoWindowControl) ConnectNativeSizeChanged(f func()) {

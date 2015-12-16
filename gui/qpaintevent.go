@@ -46,6 +46,15 @@ func NewQPaintEvent(paintRegion QRegion_ITF) *QPaintEvent {
 	return NewQPaintEventFromPointer(C.QPaintEvent_NewQPaintEvent(PointerFromQRegion(paintRegion)))
 }
 
+func (ptr *QPaintEvent) Rect() *core.QRect {
+	defer qt.Recovering("QPaintEvent::rect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPaintEvent_Rect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPaintEvent) Region() *QRegion {
 	defer qt.Recovering("QPaintEvent::region")
 

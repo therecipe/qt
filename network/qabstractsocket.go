@@ -153,6 +153,24 @@ func (ptr *QAbstractSocket) AtEnd() bool {
 	return false
 }
 
+func (ptr *QAbstractSocket) BytesAvailable() int64 {
+	defer qt.Recovering("QAbstractSocket::bytesAvailable")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QAbstractSocket_BytesAvailable(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAbstractSocket) BytesToWrite() int64 {
+	defer qt.Recovering("QAbstractSocket::bytesToWrite")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QAbstractSocket_BytesToWrite(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QAbstractSocket) CanReadLine() bool {
 	defer qt.Recovering("QAbstractSocket::canReadLine")
 
@@ -282,6 +300,35 @@ func callbackQAbstractSocketDisconnected(ptrName *C.char) {
 
 }
 
+func (ptr *QAbstractSocket) ConnectError2(f func(socketError QAbstractSocket__SocketError)) {
+	defer qt.Recovering("connect QAbstractSocket::error")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSocket_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QAbstractSocket) DisconnectError2() {
+	defer qt.Recovering("disconnect QAbstractSocket::error")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSocket_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQAbstractSocketError2
+func callbackQAbstractSocketError2(ptrName *C.char, socketError C.int) {
+	defer qt.Recovering("callback QAbstractSocket::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QAbstractSocket__SocketError))(QAbstractSocket__SocketError(socketError))
+	}
+
+}
+
 func (ptr *QAbstractSocket) Error() QAbstractSocket__SocketError {
 	defer qt.Recovering("QAbstractSocket::error")
 
@@ -365,6 +412,15 @@ func (ptr *QAbstractSocket) PeerName() string {
 	return ""
 }
 
+func (ptr *QAbstractSocket) ReadBufferSize() int64 {
+	defer qt.Recovering("QAbstractSocket::readBufferSize")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QAbstractSocket_ReadBufferSize(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QAbstractSocket) ConnectResume(f func()) {
 	defer qt.Recovering("connect QAbstractSocket::resume")
 
@@ -412,6 +468,37 @@ func (ptr *QAbstractSocket) SetProxy(networkProxy QNetworkProxy_ITF) {
 	}
 }
 
+func (ptr *QAbstractSocket) ConnectSetReadBufferSize(f func(size int64)) {
+	defer qt.Recovering("connect QAbstractSocket::setReadBufferSize")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setReadBufferSize", f)
+	}
+}
+
+func (ptr *QAbstractSocket) DisconnectSetReadBufferSize() {
+	defer qt.Recovering("disconnect QAbstractSocket::setReadBufferSize")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setReadBufferSize")
+	}
+}
+
+//export callbackQAbstractSocketSetReadBufferSize
+func callbackQAbstractSocketSetReadBufferSize(ptrName *C.char, size C.longlong) bool {
+	defer qt.Recovering("callback QAbstractSocket::setReadBufferSize")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setReadBufferSize")
+	if signal != nil {
+		defer signal.(func(int64))(int64(size))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QAbstractSocket) ConnectSetSocketOption(f func(option QAbstractSocket__SocketOption, value *core.QVariant)) {
 	defer qt.Recovering("connect QAbstractSocket::setSocketOption")
 
@@ -457,6 +544,15 @@ func (ptr *QAbstractSocket) SocketType() QAbstractSocket__SocketType {
 
 	if ptr.Pointer() != nil {
 		return QAbstractSocket__SocketType(C.QAbstractSocket_SocketType(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAbstractSocket) State() QAbstractSocket__SocketState {
+	defer qt.Recovering("QAbstractSocket::state")
+
+	if ptr.Pointer() != nil {
+		return QAbstractSocket__SocketState(C.QAbstractSocket_State(ptr.Pointer()))
 	}
 	return 0
 }

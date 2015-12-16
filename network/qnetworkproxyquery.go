@@ -196,6 +196,15 @@ func (ptr *QNetworkProxyQuery) Swap(other QNetworkProxyQuery_ITF) {
 	}
 }
 
+func (ptr *QNetworkProxyQuery) Url() *core.QUrl {
+	defer qt.Recovering("QNetworkProxyQuery::url")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QNetworkProxyQuery_Url(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QNetworkProxyQuery) DestroyQNetworkProxyQuery() {
 	defer qt.Recovering("QNetworkProxyQuery::~QNetworkProxyQuery")
 

@@ -64,6 +64,15 @@ func (ptr *QAccessibleObject) Object() *core.QObject {
 	return nil
 }
 
+func (ptr *QAccessibleObject) Rect() *core.QRect {
+	defer qt.Recovering("QAccessibleObject::rect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QAccessibleObject_Rect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QAccessibleObject) ConnectSetText(f func(t QAccessible__Text, text string)) {
 	defer qt.Recovering("connect QAccessibleObject::setText")
 

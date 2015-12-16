@@ -258,7 +258,7 @@ void QQuickItem_SetAntialiasing(void* ptr, int v){
 }
 
 void QQuickItem_SetBaselineOffset(void* ptr, double v){
-	static_cast<QQuickItem*>(ptr)->setBaselineOffset(static_cast<qreal>(v));
+	static_cast<QQuickItem*>(ptr)->setBaselineOffset(static_cast<double>(v));
 }
 
 void QQuickItem_SetClip(void* ptr, int v){
@@ -278,19 +278,19 @@ void QQuickItem_SetFocus2(void* ptr, int focus, int reason){
 }
 
 void QQuickItem_SetHeight(void* ptr, double v){
-	static_cast<QQuickItem*>(ptr)->setHeight(static_cast<qreal>(v));
+	static_cast<QQuickItem*>(ptr)->setHeight(static_cast<double>(v));
 }
 
 void QQuickItem_SetImplicitHeight(void* ptr, double v){
-	static_cast<QQuickItem*>(ptr)->setImplicitHeight(static_cast<qreal>(v));
+	static_cast<QQuickItem*>(ptr)->setImplicitHeight(static_cast<double>(v));
 }
 
 void QQuickItem_SetImplicitWidth(void* ptr, double v){
-	static_cast<QQuickItem*>(ptr)->setImplicitWidth(static_cast<qreal>(v));
+	static_cast<QQuickItem*>(ptr)->setImplicitWidth(static_cast<double>(v));
 }
 
 void QQuickItem_SetOpacity(void* ptr, double v){
-	static_cast<QQuickItem*>(ptr)->setOpacity(static_cast<qreal>(v));
+	static_cast<QQuickItem*>(ptr)->setOpacity(static_cast<double>(v));
 }
 
 void QQuickItem_SetParentItem(void* ptr, void* parent){
@@ -298,11 +298,11 @@ void QQuickItem_SetParentItem(void* ptr, void* parent){
 }
 
 void QQuickItem_SetRotation(void* ptr, double v){
-	static_cast<QQuickItem*>(ptr)->setRotation(static_cast<qreal>(v));
+	static_cast<QQuickItem*>(ptr)->setRotation(static_cast<double>(v));
 }
 
 void QQuickItem_SetScale(void* ptr, double v){
-	static_cast<QQuickItem*>(ptr)->setScale(static_cast<qreal>(v));
+	static_cast<QQuickItem*>(ptr)->setScale(static_cast<double>(v));
 }
 
 void QQuickItem_SetSmooth(void* ptr, int v){
@@ -322,23 +322,27 @@ void QQuickItem_SetVisible(void* ptr, int v){
 }
 
 void QQuickItem_SetWidth(void* ptr, double v){
-	static_cast<QQuickItem*>(ptr)->setWidth(static_cast<qreal>(v));
+	static_cast<QQuickItem*>(ptr)->setWidth(static_cast<double>(v));
 }
 
 void QQuickItem_SetX(void* ptr, double v){
-	static_cast<QQuickItem*>(ptr)->setX(static_cast<qreal>(v));
+	static_cast<QQuickItem*>(ptr)->setX(static_cast<double>(v));
 }
 
 void QQuickItem_SetY(void* ptr, double v){
-	static_cast<QQuickItem*>(ptr)->setY(static_cast<qreal>(v));
+	static_cast<QQuickItem*>(ptr)->setY(static_cast<double>(v));
 }
 
 void QQuickItem_SetZ(void* ptr, double v){
-	static_cast<QQuickItem*>(ptr)->setZ(static_cast<qreal>(v));
+	static_cast<QQuickItem*>(ptr)->setZ(static_cast<double>(v));
 }
 
 int QQuickItem_Smooth(void* ptr){
 	return static_cast<QQuickItem*>(ptr)->smooth();
+}
+
+char* QQuickItem_State(void* ptr){
+	return static_cast<QQuickItem*>(ptr)->state().toUtf8().data();
 }
 
 void* QQuickItem_TextureProvider(void* ptr){
@@ -374,7 +378,7 @@ int QQuickItem_AcceptedMouseButtons(void* ptr){
 }
 
 void* QQuickItem_ChildAt(void* ptr, double x, double y){
-	return static_cast<QQuickItem*>(ptr)->childAt(static_cast<qreal>(x), static_cast<qreal>(y));
+	return static_cast<QQuickItem*>(ptr)->childAt(static_cast<double>(x), static_cast<double>(y));
 }
 
 int QQuickItem_Contains(void* ptr, void* point){
@@ -511,6 +515,10 @@ public:
 protected:
 };
 
+void* QQuickItemGrabResult_Url(void* ptr){
+	return new QUrl(static_cast<QQuickItemGrabResult*>(ptr)->url());
+}
+
 void QQuickItemGrabResult_ConnectReady(void* ptr){
 	QObject::connect(static_cast<QQuickItemGrabResult*>(ptr), static_cast<void (QQuickItemGrabResult::*)()>(&QQuickItemGrabResult::ready), static_cast<MyQQuickItemGrabResult*>(ptr), static_cast<void (MyQQuickItemGrabResult::*)()>(&MyQQuickItemGrabResult::Signal_Ready));;
 }
@@ -537,6 +545,10 @@ double QQuickPaintedItem_ContentsScale(void* ptr){
 	return static_cast<double>(static_cast<QQuickPaintedItem*>(ptr)->contentsScale());
 }
 
+void* QQuickPaintedItem_ContentsSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QQuickPaintedItem*>(ptr)->contentsSize()).width(), static_cast<QSize>(static_cast<QQuickPaintedItem*>(ptr)->contentsSize()).height());
+}
+
 void* QQuickPaintedItem_FillColor(void* ptr){
 	return new QColor(static_cast<QQuickPaintedItem*>(ptr)->fillColor());
 }
@@ -546,7 +558,7 @@ int QQuickPaintedItem_RenderTarget(void* ptr){
 }
 
 void QQuickPaintedItem_SetContentsScale(void* ptr, double v){
-	static_cast<QQuickPaintedItem*>(ptr)->setContentsScale(static_cast<qreal>(v));
+	static_cast<QQuickPaintedItem*>(ptr)->setContentsScale(static_cast<double>(v));
 }
 
 void QQuickPaintedItem_SetContentsSize(void* ptr, void* v){
@@ -738,6 +750,10 @@ int QQuickTextureFactory_TextureByteCount(void* ptr){
 	return static_cast<QQuickTextureFactory*>(ptr)->textureByteCount();
 }
 
+void* QQuickTextureFactory_TextureSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QQuickTextureFactory*>(ptr)->textureSize()).width(), static_cast<QSize>(static_cast<QQuickTextureFactory*>(ptr)->textureSize()).height());
+}
+
 void QQuickTextureFactory_DestroyQQuickTextureFactory(void* ptr){
 	static_cast<QQuickTextureFactory*>(ptr)->~QQuickTextureFactory();
 }
@@ -784,6 +800,10 @@ void* QQuickView_Engine(void* ptr){
 	return static_cast<QQuickView*>(ptr)->engine();
 }
 
+void* QQuickView_InitialSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QQuickView*>(ptr)->initialSize()).width(), static_cast<QSize>(static_cast<QQuickView*>(ptr)->initialSize()).height());
+}
+
 void* QQuickView_RootContext(void* ptr){
 	return static_cast<QQuickView*>(ptr)->rootContext();
 }
@@ -794,6 +814,10 @@ void* QQuickView_RootObject(void* ptr){
 
 void QQuickView_SetSource(void* ptr, void* url){
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setSource", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+}
+
+void* QQuickView_Source(void* ptr){
+	return new QUrl(static_cast<QQuickView*>(ptr)->source());
 }
 
 void QQuickView_ConnectStatusChanged(void* ptr){
@@ -861,6 +885,10 @@ void* QQuickWidget_Engine(void* ptr){
 	return static_cast<QQuickWidget*>(ptr)->engine();
 }
 
+void* QQuickWidget_InitialSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QQuickWidget*>(ptr)->initialSize()).width(), static_cast<QSize>(static_cast<QQuickWidget*>(ptr)->initialSize()).height());
+}
+
 void* QQuickWidget_QuickWindow(void* ptr){
 	return static_cast<QQuickWidget*>(ptr)->quickWindow();
 }
@@ -899,6 +927,10 @@ void QQuickWidget_ConnectStatusChanged(void* ptr){
 
 void QQuickWidget_DisconnectStatusChanged(void* ptr){
 	QObject::disconnect(static_cast<QQuickWidget*>(ptr), static_cast<void (QQuickWidget::*)(QQuickWidget::Status)>(&QQuickWidget::statusChanged), static_cast<MyQQuickWidget*>(ptr), static_cast<void (MyQQuickWidget::*)(QQuickWidget::Status)>(&MyQQuickWidget::Signal_StatusChanged));;
+}
+
+void* QQuickWidget_Source(void* ptr){
+	return new QUrl(static_cast<QQuickWidget*>(ptr)->source());
 }
 
 void QQuickWidget_DestroyQQuickWidget(void* ptr){
@@ -1085,6 +1117,10 @@ void* QQuickWindow_RenderTarget(void* ptr){
 	return static_cast<QQuickWindow*>(ptr)->renderTarget();
 }
 
+void* QQuickWindow_RenderTargetSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QQuickWindow*>(ptr)->renderTargetSize()).width(), static_cast<QSize>(static_cast<QQuickWindow*>(ptr)->renderTargetSize()).height());
+}
+
 void QQuickWindow_ResetOpenGLState(void* ptr){
 	static_cast<QQuickWindow*>(ptr)->resetOpenGLState();
 }
@@ -1171,6 +1207,10 @@ int QSGAbstractRenderer_ClearMode(void* ptr){
 	return static_cast<QSGAbstractRenderer*>(ptr)->clearMode();
 }
 
+void* QSGAbstractRenderer_DeviceRect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QSGAbstractRenderer*>(ptr)->deviceRect()).x(), static_cast<QRect>(static_cast<QSGAbstractRenderer*>(ptr)->deviceRect()).y(), static_cast<QRect>(static_cast<QSGAbstractRenderer*>(ptr)->deviceRect()).width(), static_cast<QRect>(static_cast<QSGAbstractRenderer*>(ptr)->deviceRect()).height());
+}
+
 void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr){
 	QObject::connect(static_cast<QSGAbstractRenderer*>(ptr), static_cast<void (QSGAbstractRenderer::*)()>(&QSGAbstractRenderer::sceneGraphChanged), static_cast<MyQSGAbstractRenderer*>(ptr), static_cast<void (MyQSGAbstractRenderer::*)()>(&MyQSGAbstractRenderer::Signal_SceneGraphChanged));;
 }
@@ -1209,6 +1249,10 @@ void QSGAbstractRenderer_SetViewportRect(void* ptr, void* rect){
 
 void QSGAbstractRenderer_SetViewportRect2(void* ptr, void* size){
 	static_cast<QSGAbstractRenderer*>(ptr)->setViewportRect(*static_cast<QSize*>(size));
+}
+
+void* QSGAbstractRenderer_ViewportRect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QSGAbstractRenderer*>(ptr)->viewportRect()).x(), static_cast<QRect>(static_cast<QSGAbstractRenderer*>(ptr)->viewportRect()).y(), static_cast<QRect>(static_cast<QSGAbstractRenderer*>(ptr)->viewportRect()).width(), static_cast<QRect>(static_cast<QSGAbstractRenderer*>(ptr)->viewportRect()).height());
 }
 
 void* QSGBasicGeometryNode_Geometry2(void* ptr){
@@ -1586,7 +1630,7 @@ double QSGOpacityNode_Opacity(void* ptr){
 }
 
 void QSGOpacityNode_SetOpacity(void* ptr, double opacity){
-	static_cast<QSGOpacityNode*>(ptr)->setOpacity(static_cast<qreal>(opacity));
+	static_cast<QSGOpacityNode*>(ptr)->setOpacity(static_cast<double>(opacity));
 }
 
 void QSGOpacityNode_DestroyQSGOpacityNode(void* ptr){
@@ -1654,7 +1698,7 @@ void QSGSimpleRectNode_SetRect(void* ptr, void* rect){
 }
 
 void QSGSimpleRectNode_SetRect2(void* ptr, double x, double y, double w, double h){
-	static_cast<QSGSimpleRectNode*>(ptr)->setRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
+	static_cast<QSGSimpleRectNode*>(ptr)->setRect(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h));
 }
 
 void* QSGSimpleTextureNode_NewQSGSimpleTextureNode(){
@@ -1682,7 +1726,7 @@ void QSGSimpleTextureNode_SetRect(void* ptr, void* r){
 }
 
 void QSGSimpleTextureNode_SetRect2(void* ptr, double x, double y, double w, double h){
-	static_cast<QSGSimpleTextureNode*>(ptr)->setRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
+	static_cast<QSGSimpleTextureNode*>(ptr)->setRect(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h));
 }
 
 void QSGSimpleTextureNode_SetSourceRect(void* ptr, void* r){
@@ -1690,7 +1734,7 @@ void QSGSimpleTextureNode_SetSourceRect(void* ptr, void* r){
 }
 
 void QSGSimpleTextureNode_SetSourceRect2(void* ptr, double x, double y, double w, double h){
-	static_cast<QSGSimpleTextureNode*>(ptr)->setSourceRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
+	static_cast<QSGSimpleTextureNode*>(ptr)->setSourceRect(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h));
 }
 
 void QSGSimpleTextureNode_SetTexture(void* ptr, void* texture){
@@ -1768,6 +1812,10 @@ void QSGTexture_SetVerticalWrapMode(void* ptr, int vwrap){
 
 int QSGTexture_TextureId(void* ptr){
 	return static_cast<QSGTexture*>(ptr)->textureId();
+}
+
+void* QSGTexture_TextureSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSGTexture*>(ptr)->textureSize()).width(), static_cast<QSize>(static_cast<QSGTexture*>(ptr)->textureSize()).height());
 }
 
 void QSGTexture_UpdateBindOptions(void* ptr, int force){

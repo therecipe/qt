@@ -608,6 +608,15 @@ func (ptr *QListWidget) TakeItem(row int) *QListWidgetItem {
 	return nil
 }
 
+func (ptr *QListWidget) VisualItemRect(item QListWidgetItem_ITF) *core.QRect {
+	defer qt.Recovering("QListWidget::visualItemRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QListWidget_VisualItemRect(ptr.Pointer(), PointerFromQListWidgetItem(item)))
+	}
+	return nil
+}
+
 func (ptr *QListWidget) DestroyQListWidget() {
 	defer qt.Recovering("QListWidget::~QListWidget")
 

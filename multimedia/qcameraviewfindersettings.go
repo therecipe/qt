@@ -80,6 +80,15 @@ func (ptr *QCameraViewfinderSettings) MinimumFrameRate() float64 {
 	return 0
 }
 
+func (ptr *QCameraViewfinderSettings) PixelAspectRatio() *core.QSize {
+	defer qt.Recovering("QCameraViewfinderSettings::pixelAspectRatio")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QCameraViewfinderSettings_PixelAspectRatio(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QCameraViewfinderSettings) PixelFormat() QVideoFrame__PixelFormat {
 	defer qt.Recovering("QCameraViewfinderSettings::pixelFormat")
 
@@ -87,6 +96,15 @@ func (ptr *QCameraViewfinderSettings) PixelFormat() QVideoFrame__PixelFormat {
 		return QVideoFrame__PixelFormat(C.QCameraViewfinderSettings_PixelFormat(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QCameraViewfinderSettings) Resolution() *core.QSize {
+	defer qt.Recovering("QCameraViewfinderSettings::resolution")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QCameraViewfinderSettings_Resolution(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QCameraViewfinderSettings) SetMaximumFrameRate(rate float64) {

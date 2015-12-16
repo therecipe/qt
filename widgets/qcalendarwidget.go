@@ -290,6 +290,15 @@ func callbackQCalendarWidgetKeyPressEvent(ptrName *C.char, event unsafe.Pointer)
 
 }
 
+func (ptr *QCalendarWidget) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QCalendarWidget::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QCalendarWidget_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QCalendarWidget) MonthShown() int {
 	defer qt.Recovering("QCalendarWidget::monthShown")
 
@@ -476,6 +485,15 @@ func (ptr *QCalendarWidget) ShowToday() {
 	if ptr.Pointer() != nil {
 		C.QCalendarWidget_ShowToday(ptr.Pointer())
 	}
+}
+
+func (ptr *QCalendarWidget) SizeHint() *core.QSize {
+	defer qt.Recovering("QCalendarWidget::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QCalendarWidget_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QCalendarWidget) YearShown() int {

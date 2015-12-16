@@ -152,6 +152,7 @@
 #include <QVariant>
 #include <QVariantAnimation>
 #include <QWaitCondition>
+#include <QWidget>
 #include <QWriteLocker>
 #include <QXmlStreamAttribute>
 #include <QXmlStreamAttributes>
@@ -199,6 +200,10 @@ void QAbstractAnimation_SetDirection(void* ptr, int direction){
 
 void QAbstractAnimation_SetLoopCount(void* ptr, int loopCount){
 	static_cast<QAbstractAnimation*>(ptr)->setLoopCount(loopCount);
+}
+
+int QAbstractAnimation_State(void* ptr){
+	return static_cast<QAbstractAnimation*>(ptr)->state();
 }
 
 void QAbstractAnimation_ConnectCurrentLoopChanged(void* ptr){
@@ -619,6 +624,10 @@ void QAbstractItemModel_Sort(void* ptr, int column, int order){
 	static_cast<QAbstractItemModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
 }
 
+void* QAbstractItemModel_Span(void* ptr, void* index){
+	return new QSize(static_cast<QSize>(static_cast<QAbstractItemModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractItemModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+}
+
 int QAbstractItemModel_Submit(void* ptr){
 	return QMetaObject::invokeMethod(static_cast<QAbstractItemModel*>(ptr), "submit");
 }
@@ -772,6 +781,10 @@ void QAbstractProxyModel_ConnectSourceModelChanged(void* ptr){
 
 void QAbstractProxyModel_DisconnectSourceModelChanged(void* ptr){
 	QObject::disconnect(static_cast<QAbstractProxyModel*>(ptr), &QAbstractProxyModel::sourceModelChanged, static_cast<MyQAbstractProxyModel*>(ptr), static_cast<void (MyQAbstractProxyModel::*)()>(&MyQAbstractProxyModel::Signal_SourceModelChanged));;
+}
+
+void* QAbstractProxyModel_Span(void* ptr, void* index){
+	return new QSize(static_cast<QSize>(static_cast<QAbstractProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
 }
 
 int QAbstractProxyModel_Submit(void* ptr){
@@ -1095,6 +1108,14 @@ int QBuffer_Open(void* ptr, int flags){
 	return static_cast<QBuffer*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(flags));
 }
 
+long long QBuffer_Pos(void* ptr){
+	return static_cast<long long>(static_cast<QBuffer*>(ptr)->pos());
+}
+
+int QBuffer_Seek(void* ptr, long long pos){
+	return static_cast<QBuffer*>(ptr)->seek(static_cast<long long>(pos));
+}
+
 void QBuffer_SetBuffer(void* ptr, void* byteArray){
 	static_cast<QBuffer*>(ptr)->setBuffer(static_cast<QByteArray*>(byteArray));
 }
@@ -1105,6 +1126,10 @@ void QBuffer_SetData(void* ptr, void* data){
 
 void QBuffer_SetData2(void* ptr, char* data, int size){
 	static_cast<QBuffer*>(ptr)->setData(const_cast<const char*>(data), size);
+}
+
+long long QBuffer_Size(void* ptr){
+	return static_cast<long long>(static_cast<QBuffer*>(ptr)->size());
 }
 
 void QBuffer_DestroyQBuffer(void* ptr){
@@ -1924,6 +1949,10 @@ char* QCoreApplication_QCoreApplication_ApplicationFilePath(){
 	return QCoreApplication::applicationFilePath().toUtf8().data();
 }
 
+long long QCoreApplication_QCoreApplication_ApplicationPid(){
+	return static_cast<long long>(QCoreApplication::applicationPid());
+}
+
 char* QCoreApplication_QCoreApplication_Arguments(){
 	return QCoreApplication::arguments().join(",,,").toUtf8().data();
 }
@@ -2200,6 +2229,10 @@ int QDate_DaysInYear(void* ptr){
 	return static_cast<QDate*>(ptr)->daysInYear();
 }
 
+long long QDate_DaysTo(void* ptr, void* d){
+	return static_cast<long long>(static_cast<QDate*>(ptr)->daysTo(*static_cast<QDate*>(d)));
+}
+
 void QDate_GetDate(void* ptr, int year, int month, int day){
 	static_cast<QDate*>(ptr)->getDate(&year, &month, &day);
 }
@@ -2240,6 +2273,10 @@ char* QDate_QDate_ShortMonthName(int month, int ty){
 	return QDate::shortMonthName(month, static_cast<QDate::MonthNameType>(ty)).toUtf8().data();
 }
 
+long long QDate_ToJulianDay(void* ptr){
+	return static_cast<long long>(static_cast<QDate*>(ptr)->toJulianDay());
+}
+
 char* QDate_ToString(void* ptr, char* format){
 	return static_cast<QDate*>(ptr)->toString(QString(format)).toUtf8().data();
 }
@@ -2258,6 +2295,10 @@ void* QDateTime_QDateTime_CurrentDateTime(){
 
 void* QDateTime_QDateTime_CurrentDateTimeUtc(){
 	return new QDateTime(QDateTime::currentDateTimeUtc());
+}
+
+long long QDateTime_QDateTime_CurrentMSecsSinceEpoch(){
+	return static_cast<long long>(QDateTime::currentMSecsSinceEpoch());
 }
 
 void* QDateTime_QDateTime_FromString(char* stri, int format){
@@ -2304,12 +2345,40 @@ void* QDateTime_NewQDateTime6(void* other){
 	return new QDateTime(*static_cast<QDateTime*>(other));
 }
 
+void* QDateTime_AddDays(void* ptr, long long ndays){
+	return new QDateTime(static_cast<QDateTime*>(ptr)->addDays(static_cast<long long>(ndays)));
+}
+
+void* QDateTime_AddMSecs(void* ptr, long long msecs){
+	return new QDateTime(static_cast<QDateTime*>(ptr)->addMSecs(static_cast<long long>(msecs)));
+}
+
 void* QDateTime_AddMonths(void* ptr, int nmonths){
 	return new QDateTime(static_cast<QDateTime*>(ptr)->addMonths(nmonths));
 }
 
+void* QDateTime_AddSecs(void* ptr, long long s){
+	return new QDateTime(static_cast<QDateTime*>(ptr)->addSecs(static_cast<long long>(s)));
+}
+
 void* QDateTime_AddYears(void* ptr, int nyears){
 	return new QDateTime(static_cast<QDateTime*>(ptr)->addYears(nyears));
+}
+
+long long QDateTime_DaysTo(void* ptr, void* other){
+	return static_cast<long long>(static_cast<QDateTime*>(ptr)->daysTo(*static_cast<QDateTime*>(other)));
+}
+
+void* QDateTime_QDateTime_FromMSecsSinceEpoch(long long msecs){
+	return new QDateTime(QDateTime::fromMSecsSinceEpoch(static_cast<long long>(msecs)));
+}
+
+void* QDateTime_QDateTime_FromMSecsSinceEpoch2(long long msecs, int spec, int offsetSeconds){
+	return new QDateTime(QDateTime::fromMSecsSinceEpoch(static_cast<long long>(msecs), static_cast<Qt::TimeSpec>(spec), offsetSeconds));
+}
+
+void* QDateTime_QDateTime_FromMSecsSinceEpoch3(long long msecs, void* timeZone){
+	return new QDateTime(QDateTime::fromMSecsSinceEpoch(static_cast<long long>(msecs), *static_cast<QTimeZone*>(timeZone)));
 }
 
 int QDateTime_IsDaylightTime(void* ptr){
@@ -2324,12 +2393,24 @@ int QDateTime_IsValid(void* ptr){
 	return static_cast<QDateTime*>(ptr)->isValid();
 }
 
+long long QDateTime_MsecsTo(void* ptr, void* other){
+	return static_cast<long long>(static_cast<QDateTime*>(ptr)->msecsTo(*static_cast<QDateTime*>(other)));
+}
+
 int QDateTime_OffsetFromUtc(void* ptr){
 	return static_cast<QDateTime*>(ptr)->offsetFromUtc();
 }
 
+long long QDateTime_SecsTo(void* ptr, void* other){
+	return static_cast<long long>(static_cast<QDateTime*>(ptr)->secsTo(*static_cast<QDateTime*>(other)));
+}
+
 void QDateTime_SetDate(void* ptr, void* date){
 	static_cast<QDateTime*>(ptr)->setDate(*static_cast<QDate*>(date));
+}
+
+void QDateTime_SetMSecsSinceEpoch(void* ptr, long long msecs){
+	static_cast<QDateTime*>(ptr)->setMSecsSinceEpoch(static_cast<long long>(msecs));
 }
 
 void QDateTime_SetOffsetFromUtc(void* ptr, int offsetSeconds){
@@ -2366,6 +2447,10 @@ char* QDateTime_TimeZoneAbbreviation(void* ptr){
 
 void* QDateTime_ToLocalTime(void* ptr){
 	return new QDateTime(static_cast<QDateTime*>(ptr)->toLocalTime());
+}
+
+long long QDateTime_ToMSecsSinceEpoch(void* ptr){
+	return static_cast<long long>(static_cast<QDateTime*>(ptr)->toMSecsSinceEpoch());
 }
 
 char* QDateTime_ToString(void* ptr, char* format){
@@ -2641,7 +2726,7 @@ void QEasingCurve_AddCubicBezierSegment(void* ptr, void* c1, void* c2, void* end
 }
 
 void QEasingCurve_AddTCBSegment(void* ptr, void* nextPoint, double t, double c, double b){
-	static_cast<QEasingCurve*>(ptr)->addTCBSegment(*static_cast<QPointF*>(nextPoint), static_cast<qreal>(t), static_cast<qreal>(c), static_cast<qreal>(b));
+	static_cast<QEasingCurve*>(ptr)->addTCBSegment(*static_cast<QPointF*>(nextPoint), static_cast<double>(t), static_cast<double>(c), static_cast<double>(b));
 }
 
 double QEasingCurve_Amplitude(void* ptr){
@@ -2657,15 +2742,15 @@ double QEasingCurve_Period(void* ptr){
 }
 
 void QEasingCurve_SetAmplitude(void* ptr, double amplitude){
-	static_cast<QEasingCurve*>(ptr)->setAmplitude(static_cast<qreal>(amplitude));
+	static_cast<QEasingCurve*>(ptr)->setAmplitude(static_cast<double>(amplitude));
 }
 
 void QEasingCurve_SetOvershoot(void* ptr, double overshoot){
-	static_cast<QEasingCurve*>(ptr)->setOvershoot(static_cast<qreal>(overshoot));
+	static_cast<QEasingCurve*>(ptr)->setOvershoot(static_cast<double>(overshoot));
 }
 
 void QEasingCurve_SetPeriod(void* ptr, double period){
-	static_cast<QEasingCurve*>(ptr)->setPeriod(static_cast<qreal>(period));
+	static_cast<QEasingCurve*>(ptr)->setPeriod(static_cast<double>(period));
 }
 
 void QEasingCurve_SetType(void* ptr, int ty){
@@ -2681,7 +2766,7 @@ int QEasingCurve_Type(void* ptr){
 }
 
 double QEasingCurve_ValueForProgress(void* ptr, double progress){
-	return static_cast<double>(static_cast<QEasingCurve*>(ptr)->valueForProgress(static_cast<qreal>(progress)));
+	return static_cast<double>(static_cast<QEasingCurve*>(ptr)->valueForProgress(static_cast<double>(progress)));
 }
 
 void QEasingCurve_DestroyQEasingCurve(void* ptr){
@@ -2690,6 +2775,10 @@ void QEasingCurve_DestroyQEasingCurve(void* ptr){
 
 void* QElapsedTimer_NewQElapsedTimer(){
 	return new QElapsedTimer();
+}
+
+int QElapsedTimer_HasExpired(void* ptr, long long timeout){
+	return static_cast<QElapsedTimer*>(ptr)->hasExpired(static_cast<long long>(timeout));
 }
 
 void QElapsedTimer_Invalidate(void* ptr){
@@ -2704,8 +2793,32 @@ int QElapsedTimer_QElapsedTimer_ClockType(){
 	return QElapsedTimer::clockType();
 }
 
+long long QElapsedTimer_Elapsed(void* ptr){
+	return static_cast<long long>(static_cast<QElapsedTimer*>(ptr)->elapsed());
+}
+
 int QElapsedTimer_QElapsedTimer_IsMonotonic(){
 	return QElapsedTimer::isMonotonic();
+}
+
+long long QElapsedTimer_MsecsSinceReference(void* ptr){
+	return static_cast<long long>(static_cast<QElapsedTimer*>(ptr)->msecsSinceReference());
+}
+
+long long QElapsedTimer_MsecsTo(void* ptr, void* other){
+	return static_cast<long long>(static_cast<QElapsedTimer*>(ptr)->msecsTo(*static_cast<QElapsedTimer*>(other)));
+}
+
+long long QElapsedTimer_NsecsElapsed(void* ptr){
+	return static_cast<long long>(static_cast<QElapsedTimer*>(ptr)->nsecsElapsed());
+}
+
+long long QElapsedTimer_Restart(void* ptr){
+	return static_cast<long long>(static_cast<QElapsedTimer*>(ptr)->restart());
+}
+
+long long QElapsedTimer_SecsTo(void* ptr, void* other){
+	return static_cast<long long>(static_cast<QElapsedTimer*>(ptr)->secsTo(*static_cast<QElapsedTimer*>(other)));
 }
 
 void QElapsedTimer_Start(void* ptr){
@@ -2947,6 +3060,14 @@ int QFile_QFile_Rename2(char* oldName, char* newName){
 	return QFile::rename(QString(oldName), QString(newName));
 }
 
+int QFile_QFile_Resize2(char* fileName, long long sz){
+	return QFile::resize(QString(fileName), static_cast<long long>(sz));
+}
+
+int QFile_Resize(void* ptr, long long sz){
+	return static_cast<QFile*>(ptr)->resize(static_cast<long long>(sz));
+}
+
 void QFile_SetFileName(void* ptr, char* name){
 	static_cast<QFile*>(ptr)->setFileName(QString(name));
 }
@@ -2957,6 +3078,10 @@ int QFile_SetPermissions(void* ptr, int permissions){
 
 int QFile_QFile_SetPermissions2(char* fileName, int permissions){
 	return QFile::setPermissions(QString(fileName), static_cast<QFileDevice::Permission>(permissions));
+}
+
+long long QFile_Size(void* ptr){
+	return static_cast<long long>(static_cast<QFile*>(ptr)->size());
 }
 
 char* QFile_QFile_SymLinkTarget(char* fileName){
@@ -2976,6 +3101,10 @@ public:
 	void close() { if (!callbackQFileDeviceClose(this->objectName().toUtf8().data())) { QFileDevice::close(); }; };
 protected:
 };
+
+int QFileDevice_Seek(void* ptr, long long pos){
+	return static_cast<QFileDevice*>(ptr)->seek(static_cast<long long>(pos));
+}
 
 int QFileDevice_AtEnd(void* ptr){
 	return static_cast<QFileDevice*>(ptr)->atEnd();
@@ -3009,8 +3138,20 @@ int QFileDevice_Permissions(void* ptr){
 	return static_cast<QFileDevice*>(ptr)->permissions();
 }
 
+long long QFileDevice_Pos(void* ptr){
+	return static_cast<long long>(static_cast<QFileDevice*>(ptr)->pos());
+}
+
+int QFileDevice_Resize(void* ptr, long long sz){
+	return static_cast<QFileDevice*>(ptr)->resize(static_cast<long long>(sz));
+}
+
 int QFileDevice_SetPermissions(void* ptr, int permissions){
 	return static_cast<QFileDevice*>(ptr)->setPermissions(static_cast<QFileDevice::Permission>(permissions));
+}
+
+long long QFileDevice_Size(void* ptr){
+	return static_cast<long long>(static_cast<QFileDevice*>(ptr)->size());
 }
 
 void QFileDevice_UnsetError(void* ptr){
@@ -3197,6 +3338,10 @@ void QFileInfo_SetFile(void* ptr, char* file){
 	static_cast<QFileInfo*>(ptr)->setFile(QString(file));
 }
 
+long long QFileInfo_Size(void* ptr){
+	return static_cast<long long>(static_cast<QFileInfo*>(ptr)->size());
+}
+
 char* QFileInfo_Suffix(void* ptr){
 	return static_cast<QFileInfo*>(ptr)->suffix().toUtf8().data();
 }
@@ -3227,6 +3372,10 @@ char* QFileSelector_ExtraSelectors(void* ptr){
 
 char* QFileSelector_Select(void* ptr, char* filePath){
 	return static_cast<QFileSelector*>(ptr)->select(QString(filePath)).toUtf8().data();
+}
+
+void* QFileSelector_Select2(void* ptr, void* filePath){
+	return new QUrl(static_cast<QFileSelector*>(ptr)->select(*static_cast<QUrl*>(filePath)));
 }
 
 void QFileSelector_SetExtraSelectors(void* ptr, char* list){
@@ -3378,6 +3527,7 @@ void QHistoryState_DestroyQHistoryState(void* ptr){
 class MyQIODevice: public QIODevice {
 public:
 	void Signal_AboutToClose() { callbackQIODeviceAboutToClose(this->objectName().toUtf8().data()); };
+	void Signal_BytesWritten(qint64 bytes) { callbackQIODeviceBytesWritten(this->objectName().toUtf8().data(), static_cast<long long>(bytes)); };
 	void close() { if (!callbackQIODeviceClose(this->objectName().toUtf8().data())) { QIODevice::close(); }; };
 	void Signal_ReadChannelFinished() { callbackQIODeviceReadChannelFinished(this->objectName().toUtf8().data()); };
 	void Signal_ReadyRead() { callbackQIODeviceReadyRead(this->objectName().toUtf8().data()); };
@@ -3402,6 +3552,22 @@ void QIODevice_DisconnectAboutToClose(void* ptr){
 
 int QIODevice_AtEnd(void* ptr){
 	return static_cast<QIODevice*>(ptr)->atEnd();
+}
+
+long long QIODevice_BytesAvailable(void* ptr){
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->bytesAvailable());
+}
+
+long long QIODevice_BytesToWrite(void* ptr){
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->bytesToWrite());
+}
+
+void QIODevice_ConnectBytesWritten(void* ptr){
+	QObject::connect(static_cast<QIODevice*>(ptr), static_cast<void (QIODevice::*)(qint64)>(&QIODevice::bytesWritten), static_cast<MyQIODevice*>(ptr), static_cast<void (MyQIODevice::*)(qint64)>(&MyQIODevice::Signal_BytesWritten));;
+}
+
+void QIODevice_DisconnectBytesWritten(void* ptr){
+	QObject::disconnect(static_cast<QIODevice*>(ptr), static_cast<void (QIODevice::*)(qint64)>(&QIODevice::bytesWritten), static_cast<MyQIODevice*>(ptr), static_cast<void (MyQIODevice::*)(qint64)>(&MyQIODevice::Signal_BytesWritten));;
 }
 
 int QIODevice_CanReadLine(void* ptr){
@@ -3444,6 +3610,26 @@ int QIODevice_OpenMode(void* ptr){
 	return static_cast<QIODevice*>(ptr)->openMode();
 }
 
+void* QIODevice_Peek2(void* ptr, long long maxSize){
+	return new QByteArray(static_cast<QIODevice*>(ptr)->peek(static_cast<long long>(maxSize)));
+}
+
+long long QIODevice_Peek(void* ptr, char* data, long long maxSize){
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->peek(data, static_cast<long long>(maxSize)));
+}
+
+long long QIODevice_Pos(void* ptr){
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->pos());
+}
+
+void* QIODevice_Read2(void* ptr, long long maxSize){
+	return new QByteArray(static_cast<QIODevice*>(ptr)->read(static_cast<long long>(maxSize)));
+}
+
+long long QIODevice_Read(void* ptr, char* data, long long maxSize){
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->read(data, static_cast<long long>(maxSize)));
+}
+
 void* QIODevice_ReadAll(void* ptr){
 	return new QByteArray(static_cast<QIODevice*>(ptr)->readAll());
 }
@@ -3454,6 +3640,14 @@ void QIODevice_ConnectReadChannelFinished(void* ptr){
 
 void QIODevice_DisconnectReadChannelFinished(void* ptr){
 	QObject::disconnect(static_cast<QIODevice*>(ptr), static_cast<void (QIODevice::*)()>(&QIODevice::readChannelFinished), static_cast<MyQIODevice*>(ptr), static_cast<void (MyQIODevice::*)()>(&MyQIODevice::Signal_ReadChannelFinished));;
+}
+
+void* QIODevice_ReadLine2(void* ptr, long long maxSize){
+	return new QByteArray(static_cast<QIODevice*>(ptr)->readLine(static_cast<long long>(maxSize)));
+}
+
+long long QIODevice_ReadLine(void* ptr, char* data, long long maxSize){
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->readLine(data, static_cast<long long>(maxSize)));
 }
 
 void QIODevice_ConnectReadyRead(void* ptr){
@@ -3468,8 +3662,16 @@ int QIODevice_Reset(void* ptr){
 	return static_cast<QIODevice*>(ptr)->reset();
 }
 
+int QIODevice_Seek(void* ptr, long long pos){
+	return static_cast<QIODevice*>(ptr)->seek(static_cast<long long>(pos));
+}
+
 void QIODevice_SetTextModeEnabled(void* ptr, int enabled){
 	static_cast<QIODevice*>(ptr)->setTextModeEnabled(enabled != 0);
+}
+
+long long QIODevice_Size(void* ptr){
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->size());
 }
 
 void QIODevice_UngetChar(void* ptr, char* c){
@@ -3482,6 +3684,18 @@ int QIODevice_WaitForBytesWritten(void* ptr, int msecs){
 
 int QIODevice_WaitForReadyRead(void* ptr, int msecs){
 	return static_cast<QIODevice*>(ptr)->waitForReadyRead(msecs);
+}
+
+long long QIODevice_Write3(void* ptr, void* byteArray){
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->write(*static_cast<QByteArray*>(byteArray)));
+}
+
+long long QIODevice_Write2(void* ptr, char* data){
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->write(const_cast<const char*>(data)));
+}
+
+long long QIODevice_Write(void* ptr, char* data, long long maxSize){
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->write(const_cast<const char*>(data), static_cast<long long>(maxSize)));
 }
 
 void QIODevice_DestroyQIODevice(void* ptr){
@@ -3991,6 +4205,10 @@ void* QJsonValue_NewQJsonValue12(int n){
 	return new QJsonValue(n);
 }
 
+void* QJsonValue_NewQJsonValue13(long long n){
+	return new QJsonValue(static_cast<long long>(n));
+}
+
 int QJsonValue_IsArray(void* ptr){
 	return static_cast<QJsonValue*>(ptr)->isArray();
 }
@@ -4252,7 +4470,7 @@ void* QLineF_NewQLineF2(void* p1, void* p2){
 }
 
 void* QLineF_NewQLineF3(double x1, double y1, double x2, double y2){
-	return new QLineF(static_cast<qreal>(x1), static_cast<qreal>(y1), static_cast<qreal>(x2), static_cast<qreal>(y2));
+	return new QLineF(static_cast<double>(x1), static_cast<double>(y1), static_cast<double>(x2), static_cast<double>(y2));
 }
 
 double QLineF_Angle(void* ptr){
@@ -4276,15 +4494,15 @@ double QLineF_Length(void* ptr){
 }
 
 void QLineF_SetAngle(void* ptr, double angle){
-	static_cast<QLineF*>(ptr)->setAngle(static_cast<qreal>(angle));
+	static_cast<QLineF*>(ptr)->setAngle(static_cast<double>(angle));
 }
 
 void QLineF_SetLength(void* ptr, double length){
-	static_cast<QLineF*>(ptr)->setLength(static_cast<qreal>(length));
+	static_cast<QLineF*>(ptr)->setLength(static_cast<double>(length));
 }
 
 void QLineF_SetLine(void* ptr, double x1, double y1, double x2, double y2){
-	static_cast<QLineF*>(ptr)->setLine(static_cast<qreal>(x1), static_cast<qreal>(y1), static_cast<qreal>(x2), static_cast<qreal>(y2));
+	static_cast<QLineF*>(ptr)->setLine(static_cast<double>(x1), static_cast<double>(y1), static_cast<double>(x2), static_cast<double>(y2));
 }
 
 void QLineF_SetP1(void* ptr, void* p1){
@@ -4304,7 +4522,7 @@ void QLineF_Translate(void* ptr, void* offset){
 }
 
 void QLineF_Translate2(void* ptr, double dx, double dy){
-	static_cast<QLineF*>(ptr)->translate(static_cast<qreal>(dx), static_cast<qreal>(dy));
+	static_cast<QLineF*>(ptr)->translate(static_cast<double>(dx), static_cast<double>(dy));
 }
 
 double QLineF_X1(void* ptr){
@@ -4648,7 +4866,7 @@ void* QMarginsF_NewQMarginsF3(void* margins){
 }
 
 void* QMarginsF_NewQMarginsF2(double left, double top, double right, double bottom){
-	return new QMarginsF(static_cast<qreal>(left), static_cast<qreal>(top), static_cast<qreal>(right), static_cast<qreal>(bottom));
+	return new QMarginsF(static_cast<double>(left), static_cast<double>(top), static_cast<double>(right), static_cast<double>(bottom));
 }
 
 double QMarginsF_Bottom(void* ptr){
@@ -4668,19 +4886,19 @@ double QMarginsF_Right(void* ptr){
 }
 
 void QMarginsF_SetBottom(void* ptr, double bottom){
-	static_cast<QMarginsF*>(ptr)->setBottom(static_cast<qreal>(bottom));
+	static_cast<QMarginsF*>(ptr)->setBottom(static_cast<double>(bottom));
 }
 
 void QMarginsF_SetLeft(void* ptr, double left){
-	static_cast<QMarginsF*>(ptr)->setLeft(static_cast<qreal>(left));
+	static_cast<QMarginsF*>(ptr)->setLeft(static_cast<double>(left));
 }
 
 void QMarginsF_SetRight(void* ptr, double right){
-	static_cast<QMarginsF*>(ptr)->setRight(static_cast<qreal>(right));
+	static_cast<QMarginsF*>(ptr)->setRight(static_cast<double>(right));
 }
 
 void QMarginsF_SetTop(void* ptr, double Top){
-	static_cast<QMarginsF*>(ptr)->setTop(static_cast<qreal>(Top));
+	static_cast<QMarginsF*>(ptr)->setTop(static_cast<double>(Top));
 }
 
 double QMarginsF_Top(void* ptr){
@@ -5673,7 +5891,7 @@ void* QPointF_NewQPointF2(void* point){
 }
 
 void* QPointF_NewQPointF3(double xpos, double ypos){
-	return new QPointF(static_cast<qreal>(xpos), static_cast<qreal>(ypos));
+	return new QPointF(static_cast<double>(xpos), static_cast<double>(ypos));
 }
 
 double QPointF_QPointF_DotProduct(void* p1, void* p2){
@@ -5697,11 +5915,11 @@ double QPointF_Ry(void* ptr){
 }
 
 void QPointF_SetX(void* ptr, double x){
-	static_cast<QPointF*>(ptr)->setX(static_cast<qreal>(x));
+	static_cast<QPointF*>(ptr)->setX(static_cast<double>(x));
 }
 
 void QPointF_SetY(void* ptr, double y){
-	static_cast<QPointF*>(ptr)->setY(static_cast<qreal>(y));
+	static_cast<QPointF*>(ptr)->setY(static_cast<double>(y));
 }
 
 void* QPointF_ToPoint(void* ptr){
@@ -5720,6 +5938,7 @@ class MyQProcess: public QProcess {
 public:
 	MyQProcess(QObject *parent) : QProcess(parent) {};
 	void close() { if (!callbackQProcessClose(this->objectName().toUtf8().data())) { QProcess::close(); }; };
+	void Signal_Error2(QProcess::ProcessError error) { callbackQProcessError2(this->objectName().toUtf8().data(), error); };
 	void Signal_Finished(int exitCode, QProcess::ExitStatus exitStatus) { callbackQProcessFinished(this->objectName().toUtf8().data(), exitCode, exitStatus); };
 	void Signal_ReadyReadStandardError() { callbackQProcessReadyReadStandardError(this->objectName().toUtf8().data()); };
 	void Signal_ReadyReadStandardOutput() { callbackQProcessReadyReadStandardOutput(this->objectName().toUtf8().data()); };
@@ -5741,6 +5960,14 @@ int QProcess_AtEnd(void* ptr){
 	return static_cast<QProcess*>(ptr)->atEnd();
 }
 
+long long QProcess_BytesAvailable(void* ptr){
+	return static_cast<long long>(static_cast<QProcess*>(ptr)->bytesAvailable());
+}
+
+long long QProcess_BytesToWrite(void* ptr){
+	return static_cast<long long>(static_cast<QProcess*>(ptr)->bytesToWrite());
+}
+
 int QProcess_CanReadLine(void* ptr){
 	return static_cast<QProcess*>(ptr)->canReadLine();
 }
@@ -5755,6 +5982,14 @@ void QProcess_CloseReadChannel(void* ptr, int channel){
 
 void QProcess_CloseWriteChannel(void* ptr){
 	static_cast<QProcess*>(ptr)->closeWriteChannel();
+}
+
+void QProcess_ConnectError2(void* ptr){
+	QObject::connect(static_cast<QProcess*>(ptr), static_cast<void (QProcess::*)(QProcess::ProcessError)>(&QProcess::error), static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(QProcess::ProcessError)>(&MyQProcess::Signal_Error2));;
+}
+
+void QProcess_DisconnectError2(void* ptr){
+	QObject::disconnect(static_cast<QProcess*>(ptr), static_cast<void (QProcess::*)(QProcess::ProcessError)>(&QProcess::error), static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(QProcess::ProcessError)>(&MyQProcess::Signal_Error2));;
 }
 
 int QProcess_Error(void* ptr){
@@ -5807,6 +6042,10 @@ int QProcess_Open(void* ptr, int mode){
 
 int QProcess_ProcessChannelMode(void* ptr){
 	return static_cast<QProcess*>(ptr)->processChannelMode();
+}
+
+long long QProcess_ProcessId(void* ptr){
+	return static_cast<long long>(static_cast<QProcess*>(ptr)->processId());
 }
 
 char* QProcess_Program(void* ptr){
@@ -5907,6 +6146,10 @@ void QProcess_ConnectStarted(void* ptr){
 
 void QProcess_DisconnectStarted(void* ptr){
 	QObject::disconnect(static_cast<QProcess*>(ptr), &QProcess::started, static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)()>(&MyQProcess::Signal_Started));;
+}
+
+int QProcess_State(void* ptr){
+	return static_cast<QProcess*>(ptr)->state();
 }
 
 void QProcess_ConnectStateChanged(void* ptr){
@@ -6114,6 +6357,10 @@ void QRect_Adjust(void* ptr, int dx1, int dy1, int dx2, int dy2){
 	static_cast<QRect*>(ptr)->adjust(dx1, dy1, dx2, dy2);
 }
 
+void* QRect_Adjusted(void* ptr, int dx1, int dy1, int dx2, int dy2){
+	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->adjusted(dx1, dy1, dx2, dy2)).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->adjusted(dx1, dy1, dx2, dy2)).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->adjusted(dx1, dy1, dx2, dy2)).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->adjusted(dx1, dy1, dx2, dy2)).height());
+}
+
 int QRect_Bottom(void* ptr){
 	return static_cast<QRect*>(ptr)->bottom();
 }
@@ -6150,6 +6397,10 @@ int QRect_Height(void* ptr){
 	return static_cast<QRect*>(ptr)->height();
 }
 
+void* QRect_Intersected(void* ptr, void* rectangle){
+	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->intersected(*static_cast<QRect*>(rectangle))).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->intersected(*static_cast<QRect*>(rectangle))).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->intersected(*static_cast<QRect*>(rectangle))).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->intersected(*static_cast<QRect*>(rectangle))).height());
+}
+
 int QRect_IsEmpty(void* ptr){
 	return static_cast<QRect*>(ptr)->isEmpty();
 }
@@ -6164,6 +6415,14 @@ int QRect_IsValid(void* ptr){
 
 int QRect_Left(void* ptr){
 	return static_cast<QRect*>(ptr)->left();
+}
+
+void* QRect_MarginsAdded(void* ptr, void* margins){
+	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->marginsAdded(*static_cast<QMargins*>(margins))).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsAdded(*static_cast<QMargins*>(margins))).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsAdded(*static_cast<QMargins*>(margins))).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsAdded(*static_cast<QMargins*>(margins))).height());
+}
+
+void* QRect_MarginsRemoved(void* ptr, void* margins){
+	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->marginsRemoved(*static_cast<QMargins*>(margins))).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsRemoved(*static_cast<QMargins*>(margins))).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsRemoved(*static_cast<QMargins*>(margins))).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsRemoved(*static_cast<QMargins*>(margins))).height());
 }
 
 void QRect_MoveBottom(void* ptr, int y){
@@ -6208,6 +6467,10 @@ void QRect_MoveTopLeft(void* ptr, void* position){
 
 void QRect_MoveTopRight(void* ptr, void* position){
 	static_cast<QRect*>(ptr)->moveTopRight(*static_cast<QPoint*>(position));
+}
+
+void* QRect_Normalized(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->normalized()).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->normalized()).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->normalized()).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->normalized()).height());
 }
 
 int QRect_Right(void* ptr){
@@ -6274,6 +6537,10 @@ void QRect_SetY(void* ptr, int y){
 	static_cast<QRect*>(ptr)->setY(y);
 }
 
+void* QRect_Size(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QRect*>(ptr)->size()).width(), static_cast<QSize>(static_cast<QRect*>(ptr)->size()).height());
+}
+
 int QRect_Top(void* ptr){
 	return static_cast<QRect*>(ptr)->top();
 }
@@ -6292,6 +6559,18 @@ void QRect_Translate2(void* ptr, void* offset){
 
 void QRect_Translate(void* ptr, int dx, int dy){
 	static_cast<QRect*>(ptr)->translate(dx, dy);
+}
+
+void* QRect_Translated2(void* ptr, void* offset){
+	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->translated(*static_cast<QPoint*>(offset))).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(*static_cast<QPoint*>(offset))).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(*static_cast<QPoint*>(offset))).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(*static_cast<QPoint*>(offset))).height());
+}
+
+void* QRect_Translated(void* ptr, int dx, int dy){
+	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).height());
+}
+
+void* QRect_United(void* ptr, void* rectangle){
+	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).height());
 }
 
 int QRect_Width(void* ptr){
@@ -6318,6 +6597,10 @@ int QRectF_Intersects(void* ptr, void* rectangle){
 	return static_cast<QRectF*>(ptr)->intersects(*static_cast<QRectF*>(rectangle));
 }
 
+void* QRectF_ToAlignedRect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QRectF*>(ptr)->toAlignedRect()).x(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toAlignedRect()).y(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toAlignedRect()).width(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toAlignedRect()).height());
+}
+
 void* QRectF_NewQRectF(){
 	return new QRectF();
 }
@@ -6335,11 +6618,11 @@ void* QRectF_NewQRectF5(void* rectangle){
 }
 
 void* QRectF_NewQRectF4(double x, double y, double width, double height){
-	return new QRectF(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(width), static_cast<qreal>(height));
+	return new QRectF(static_cast<double>(x), static_cast<double>(y), static_cast<double>(width), static_cast<double>(height));
 }
 
 void QRectF_Adjust(void* ptr, double dx1, double dy1, double dx2, double dy2){
-	static_cast<QRectF*>(ptr)->adjust(static_cast<qreal>(dx1), static_cast<qreal>(dy1), static_cast<qreal>(dx2), static_cast<qreal>(dy2));
+	static_cast<QRectF*>(ptr)->adjust(static_cast<double>(dx1), static_cast<double>(dy1), static_cast<double>(dx2), static_cast<double>(dy2));
 }
 
 double QRectF_Bottom(void* ptr){
@@ -6347,7 +6630,7 @@ double QRectF_Bottom(void* ptr){
 }
 
 int QRectF_Contains2(void* ptr, double x, double y){
-	return static_cast<QRectF*>(ptr)->contains(static_cast<qreal>(x), static_cast<qreal>(y));
+	return static_cast<QRectF*>(ptr)->contains(static_cast<double>(x), static_cast<double>(y));
 }
 
 double QRectF_Height(void* ptr){
@@ -6371,7 +6654,7 @@ double QRectF_Left(void* ptr){
 }
 
 void QRectF_MoveBottom(void* ptr, double y){
-	static_cast<QRectF*>(ptr)->moveBottom(static_cast<qreal>(y));
+	static_cast<QRectF*>(ptr)->moveBottom(static_cast<double>(y));
 }
 
 void QRectF_MoveBottomLeft(void* ptr, void* position){
@@ -6387,11 +6670,11 @@ void QRectF_MoveCenter(void* ptr, void* position){
 }
 
 void QRectF_MoveLeft(void* ptr, double x){
-	static_cast<QRectF*>(ptr)->moveLeft(static_cast<qreal>(x));
+	static_cast<QRectF*>(ptr)->moveLeft(static_cast<double>(x));
 }
 
 void QRectF_MoveRight(void* ptr, double x){
-	static_cast<QRectF*>(ptr)->moveRight(static_cast<qreal>(x));
+	static_cast<QRectF*>(ptr)->moveRight(static_cast<double>(x));
 }
 
 void QRectF_MoveTo2(void* ptr, void* position){
@@ -6399,11 +6682,11 @@ void QRectF_MoveTo2(void* ptr, void* position){
 }
 
 void QRectF_MoveTo(void* ptr, double x, double y){
-	static_cast<QRectF*>(ptr)->moveTo(static_cast<qreal>(x), static_cast<qreal>(y));
+	static_cast<QRectF*>(ptr)->moveTo(static_cast<double>(x), static_cast<double>(y));
 }
 
 void QRectF_MoveTop(void* ptr, double y){
-	static_cast<QRectF*>(ptr)->moveTop(static_cast<qreal>(y));
+	static_cast<QRectF*>(ptr)->moveTop(static_cast<double>(y));
 }
 
 void QRectF_MoveTopLeft(void* ptr, void* position){
@@ -6419,7 +6702,7 @@ double QRectF_Right(void* ptr){
 }
 
 void QRectF_SetBottom(void* ptr, double y){
-	static_cast<QRectF*>(ptr)->setBottom(static_cast<qreal>(y));
+	static_cast<QRectF*>(ptr)->setBottom(static_cast<double>(y));
 }
 
 void QRectF_SetBottomLeft(void* ptr, void* position){
@@ -6431,23 +6714,23 @@ void QRectF_SetBottomRight(void* ptr, void* position){
 }
 
 void QRectF_SetCoords(void* ptr, double x1, double y1, double x2, double y2){
-	static_cast<QRectF*>(ptr)->setCoords(static_cast<qreal>(x1), static_cast<qreal>(y1), static_cast<qreal>(x2), static_cast<qreal>(y2));
+	static_cast<QRectF*>(ptr)->setCoords(static_cast<double>(x1), static_cast<double>(y1), static_cast<double>(x2), static_cast<double>(y2));
 }
 
 void QRectF_SetHeight(void* ptr, double height){
-	static_cast<QRectF*>(ptr)->setHeight(static_cast<qreal>(height));
+	static_cast<QRectF*>(ptr)->setHeight(static_cast<double>(height));
 }
 
 void QRectF_SetLeft(void* ptr, double x){
-	static_cast<QRectF*>(ptr)->setLeft(static_cast<qreal>(x));
+	static_cast<QRectF*>(ptr)->setLeft(static_cast<double>(x));
 }
 
 void QRectF_SetRect(void* ptr, double x, double y, double width, double height){
-	static_cast<QRectF*>(ptr)->setRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(width), static_cast<qreal>(height));
+	static_cast<QRectF*>(ptr)->setRect(static_cast<double>(x), static_cast<double>(y), static_cast<double>(width), static_cast<double>(height));
 }
 
 void QRectF_SetRight(void* ptr, double x){
-	static_cast<QRectF*>(ptr)->setRight(static_cast<qreal>(x));
+	static_cast<QRectF*>(ptr)->setRight(static_cast<double>(x));
 }
 
 void QRectF_SetSize(void* ptr, void* size){
@@ -6455,7 +6738,7 @@ void QRectF_SetSize(void* ptr, void* size){
 }
 
 void QRectF_SetTop(void* ptr, double y){
-	static_cast<QRectF*>(ptr)->setTop(static_cast<qreal>(y));
+	static_cast<QRectF*>(ptr)->setTop(static_cast<double>(y));
 }
 
 void QRectF_SetTopLeft(void* ptr, void* position){
@@ -6467,15 +6750,19 @@ void QRectF_SetTopRight(void* ptr, void* position){
 }
 
 void QRectF_SetWidth(void* ptr, double width){
-	static_cast<QRectF*>(ptr)->setWidth(static_cast<qreal>(width));
+	static_cast<QRectF*>(ptr)->setWidth(static_cast<double>(width));
 }
 
 void QRectF_SetX(void* ptr, double x){
-	static_cast<QRectF*>(ptr)->setX(static_cast<qreal>(x));
+	static_cast<QRectF*>(ptr)->setX(static_cast<double>(x));
 }
 
 void QRectF_SetY(void* ptr, double y){
-	static_cast<QRectF*>(ptr)->setY(static_cast<qreal>(y));
+	static_cast<QRectF*>(ptr)->setY(static_cast<double>(y));
+}
+
+void* QRectF_ToRect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).x(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).y(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).width(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).height());
 }
 
 double QRectF_Top(void* ptr){
@@ -6487,7 +6774,7 @@ void QRectF_Translate2(void* ptr, void* offset){
 }
 
 void QRectF_Translate(void* ptr, double dx, double dy){
-	static_cast<QRectF*>(ptr)->translate(static_cast<qreal>(dx), static_cast<qreal>(dy));
+	static_cast<QRectF*>(ptr)->translate(static_cast<double>(dx), static_cast<double>(dy));
 }
 
 double QRectF_Width(void* ptr){
@@ -6804,6 +7091,10 @@ void QResource_SetFileName(void* ptr, char* file){
 
 void QResource_SetLocale(void* ptr, void* locale){
 	static_cast<QResource*>(ptr)->setLocale(*static_cast<QLocale*>(locale));
+}
+
+long long QResource_Size(void* ptr){
+	return static_cast<long long>(static_cast<QResource*>(ptr)->size());
 }
 
 void QResource_DestroyQResource(void* ptr){
@@ -7223,6 +7514,9 @@ void QSignalBlocker_DestroyQSignalBlocker(void* ptr){
 
 class MyQSignalMapper: public QSignalMapper {
 public:
+	void Signal_Mapped4(QObject * object) { callbackQSignalMapperMapped4(this->objectName().toUtf8().data(), object); };
+	void Signal_Mapped3(QWidget * widget) { callbackQSignalMapperMapped3(this->objectName().toUtf8().data(), widget); };
+	void Signal_Mapped2(const QString & text) { callbackQSignalMapperMapped2(this->objectName().toUtf8().data(), text.toUtf8().data()); };
 	void Signal_Mapped(int i) { callbackQSignalMapperMapped(this->objectName().toUtf8().data(), i); };
 protected:
 };
@@ -7239,6 +7533,30 @@ void QSignalMapper_Map2(void* ptr, void* sender){
 	QMetaObject::invokeMethod(static_cast<QSignalMapper*>(ptr), "map", Q_ARG(QObject*, static_cast<QObject*>(sender)));
 }
 
+void QSignalMapper_ConnectMapped4(void* ptr){
+	QObject::connect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(QObject *)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(QObject *)>(&MyQSignalMapper::Signal_Mapped4));;
+}
+
+void QSignalMapper_DisconnectMapped4(void* ptr){
+	QObject::disconnect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(QObject *)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(QObject *)>(&MyQSignalMapper::Signal_Mapped4));;
+}
+
+void QSignalMapper_ConnectMapped3(void* ptr){
+	QObject::connect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(QWidget *)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(QWidget *)>(&MyQSignalMapper::Signal_Mapped3));;
+}
+
+void QSignalMapper_DisconnectMapped3(void* ptr){
+	QObject::disconnect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(QWidget *)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(QWidget *)>(&MyQSignalMapper::Signal_Mapped3));;
+}
+
+void QSignalMapper_ConnectMapped2(void* ptr){
+	QObject::connect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(const QString &)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(const QString &)>(&MyQSignalMapper::Signal_Mapped2));;
+}
+
+void QSignalMapper_DisconnectMapped2(void* ptr){
+	QObject::disconnect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(const QString &)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(const QString &)>(&MyQSignalMapper::Signal_Mapped2));;
+}
+
 void QSignalMapper_ConnectMapped(void* ptr){
 	QObject::connect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(int)>(&MyQSignalMapper::Signal_Mapped));;
 }
@@ -7249,6 +7567,10 @@ void QSignalMapper_DisconnectMapped(void* ptr){
 
 void* QSignalMapper_Mapping4(void* ptr, void* object){
 	return static_cast<QSignalMapper*>(ptr)->mapping(static_cast<QObject*>(object));
+}
+
+void* QSignalMapper_Mapping3(void* ptr, void* widget){
+	return static_cast<QSignalMapper*>(ptr)->mapping(static_cast<QWidget*>(widget));
 }
 
 void* QSignalMapper_Mapping2(void* ptr, char* id){
@@ -7265,6 +7587,10 @@ void QSignalMapper_RemoveMappings(void* ptr, void* sender){
 
 void QSignalMapper_SetMapping4(void* ptr, void* sender, void* object){
 	static_cast<QSignalMapper*>(ptr)->setMapping(static_cast<QObject*>(sender), static_cast<QObject*>(object));
+}
+
+void QSignalMapper_SetMapping3(void* ptr, void* sender, void* widget){
+	static_cast<QSignalMapper*>(ptr)->setMapping(static_cast<QObject*>(sender), static_cast<QWidget*>(widget));
 }
 
 void QSignalMapper_SetMapping2(void* ptr, void* sender, char* text){
@@ -7341,6 +7667,14 @@ void* QSize_NewQSize2(int width, int height){
 	return new QSize(width, height);
 }
 
+void* QSize_BoundedTo(void* ptr, void* otherSize){
+	return new QSize(static_cast<QSize>(static_cast<QSize*>(ptr)->boundedTo(*static_cast<QSize*>(otherSize))).width(), static_cast<QSize>(static_cast<QSize*>(ptr)->boundedTo(*static_cast<QSize*>(otherSize))).height());
+}
+
+void* QSize_ExpandedTo(void* ptr, void* otherSize){
+	return new QSize(static_cast<QSize>(static_cast<QSize*>(ptr)->expandedTo(*static_cast<QSize*>(otherSize))).width(), static_cast<QSize>(static_cast<QSize*>(ptr)->expandedTo(*static_cast<QSize*>(otherSize))).height());
+}
+
 int QSize_Height(void* ptr){
 	return static_cast<QSize*>(ptr)->height();
 }
@@ -7373,6 +7707,14 @@ void QSize_Scale(void* ptr, int width, int height, int mode){
 	static_cast<QSize*>(ptr)->scale(width, height, static_cast<Qt::AspectRatioMode>(mode));
 }
 
+void* QSize_Scaled2(void* ptr, void* s, int mode){
+	return new QSize(static_cast<QSize>(static_cast<QSize*>(ptr)->scaled(*static_cast<QSize*>(s), static_cast<Qt::AspectRatioMode>(mode))).width(), static_cast<QSize>(static_cast<QSize*>(ptr)->scaled(*static_cast<QSize*>(s), static_cast<Qt::AspectRatioMode>(mode))).height());
+}
+
+void* QSize_Scaled(void* ptr, int width, int height, int mode){
+	return new QSize(static_cast<QSize>(static_cast<QSize*>(ptr)->scaled(width, height, static_cast<Qt::AspectRatioMode>(mode))).width(), static_cast<QSize>(static_cast<QSize*>(ptr)->scaled(width, height, static_cast<Qt::AspectRatioMode>(mode))).height());
+}
+
 void QSize_SetHeight(void* ptr, int height){
 	static_cast<QSize*>(ptr)->setHeight(height);
 }
@@ -7383,6 +7725,10 @@ void QSize_SetWidth(void* ptr, int width){
 
 void QSize_Transpose(void* ptr){
 	static_cast<QSize*>(ptr)->transpose();
+}
+
+void* QSize_Transposed(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSize*>(ptr)->transposed()).width(), static_cast<QSize>(static_cast<QSize*>(ptr)->transposed()).height());
 }
 
 int QSize_Width(void* ptr){
@@ -7398,7 +7744,7 @@ void* QSizeF_NewQSizeF2(void* size){
 }
 
 void* QSizeF_NewQSizeF3(double width, double height){
-	return new QSizeF(static_cast<qreal>(width), static_cast<qreal>(height));
+	return new QSizeF(static_cast<double>(width), static_cast<double>(height));
 }
 
 double QSizeF_Height(void* ptr){
@@ -7430,15 +7776,19 @@ void QSizeF_Scale2(void* ptr, void* size, int mode){
 }
 
 void QSizeF_Scale(void* ptr, double width, double height, int mode){
-	static_cast<QSizeF*>(ptr)->scale(static_cast<qreal>(width), static_cast<qreal>(height), static_cast<Qt::AspectRatioMode>(mode));
+	static_cast<QSizeF*>(ptr)->scale(static_cast<double>(width), static_cast<double>(height), static_cast<Qt::AspectRatioMode>(mode));
 }
 
 void QSizeF_SetHeight(void* ptr, double height){
-	static_cast<QSizeF*>(ptr)->setHeight(static_cast<qreal>(height));
+	static_cast<QSizeF*>(ptr)->setHeight(static_cast<double>(height));
 }
 
 void QSizeF_SetWidth(void* ptr, double width){
-	static_cast<QSizeF*>(ptr)->setWidth(static_cast<qreal>(width));
+	static_cast<QSizeF*>(ptr)->setWidth(static_cast<double>(width));
+}
+
+void* QSizeF_ToSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QSizeF*>(ptr)->toSize()).width(), static_cast<QSize>(static_cast<QSizeF*>(ptr)->toSize()).height());
 }
 
 void QSizeF_Transpose(void* ptr){
@@ -7674,6 +8024,10 @@ int QSortFilterProxyModel_SortColumn(void* ptr){
 
 int QSortFilterProxyModel_SortOrder(void* ptr){
 	return static_cast<QSortFilterProxyModel*>(ptr)->sortOrder();
+}
+
+void* QSortFilterProxyModel_Span(void* ptr, void* index){
+	return new QSize(static_cast<QSize>(static_cast<QSortFilterProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QSortFilterProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
 }
 
 int QSortFilterProxyModel_SupportedDropActions(void* ptr){
@@ -7968,6 +8322,18 @@ void* QStorageInfo_NewQStorageInfo4(void* other){
 
 void* QStorageInfo_NewQStorageInfo2(char* path){
 	return new QStorageInfo(QString(path));
+}
+
+long long QStorageInfo_BytesAvailable(void* ptr){
+	return static_cast<long long>(static_cast<QStorageInfo*>(ptr)->bytesAvailable());
+}
+
+long long QStorageInfo_BytesFree(void* ptr){
+	return static_cast<long long>(static_cast<QStorageInfo*>(ptr)->bytesFree());
+}
+
+long long QStorageInfo_BytesTotal(void* ptr){
+	return static_cast<long long>(static_cast<QStorageInfo*>(ptr)->bytesTotal());
 }
 
 void* QStorageInfo_Device(void* ptr){
@@ -8797,8 +9163,24 @@ int QTextStream_NumberFlags(void* ptr){
 	return static_cast<QTextStream*>(ptr)->numberFlags();
 }
 
+long long QTextStream_Pos(void* ptr){
+	return static_cast<long long>(static_cast<QTextStream*>(ptr)->pos());
+}
+
+char* QTextStream_Read(void* ptr, long long maxlen){
+	return static_cast<QTextStream*>(ptr)->read(static_cast<long long>(maxlen)).toUtf8().data();
+}
+
 char* QTextStream_ReadAll(void* ptr){
 	return static_cast<QTextStream*>(ptr)->readAll().toUtf8().data();
+}
+
+char* QTextStream_ReadLine(void* ptr, long long maxlen){
+	return static_cast<QTextStream*>(ptr)->readLine(static_cast<long long>(maxlen)).toUtf8().data();
+}
+
+int QTextStream_ReadLineInto(void* ptr, char* line, long long maxlen){
+	return static_cast<QTextStream*>(ptr)->readLineInto(new QString(line), static_cast<long long>(maxlen));
 }
 
 int QTextStream_RealNumberNotation(void* ptr){
@@ -8815,6 +9197,10 @@ void QTextStream_Reset(void* ptr){
 
 void QTextStream_ResetStatus(void* ptr){
 	static_cast<QTextStream*>(ptr)->resetStatus();
+}
+
+int QTextStream_Seek(void* ptr, long long pos){
+	return static_cast<QTextStream*>(ptr)->seek(static_cast<long long>(pos));
 }
 
 void QTextStream_SetAutoDetectUnicode(void* ptr, int enabled){
@@ -9140,6 +9526,7 @@ public:
 	void Signal_Finished() { callbackQTimeLineFinished(this->objectName().toUtf8().data()); };
 	void Signal_FrameChanged(int frame) { callbackQTimeLineFrameChanged(this->objectName().toUtf8().data(), frame); };
 	void Signal_StateChanged(QTimeLine::State newState) { callbackQTimeLineStateChanged(this->objectName().toUtf8().data(), newState); };
+	void Signal_ValueChanged(qreal value) { callbackQTimeLineValueChanged(this->objectName().toUtf8().data(), static_cast<double>(value)); };
 protected:
 	void timerEvent(QTimerEvent * event) { if (!callbackQTimeLineTimerEvent(this->objectName().toUtf8().data(), event)) { QTimeLine::timerEvent(event); }; };
 };
@@ -9264,6 +9651,10 @@ int QTimeLine_StartFrame(void* ptr){
 	return static_cast<QTimeLine*>(ptr)->startFrame();
 }
 
+int QTimeLine_State(void* ptr){
+	return static_cast<QTimeLine*>(ptr)->state();
+}
+
 void QTimeLine_ConnectStateChanged(void* ptr){
 	QObject::connect(static_cast<QTimeLine*>(ptr), &QTimeLine::stateChanged, static_cast<MyQTimeLine*>(ptr), static_cast<void (MyQTimeLine::*)(QTimeLine::State)>(&MyQTimeLine::Signal_StateChanged));;
 }
@@ -9278,6 +9669,14 @@ void QTimeLine_Stop(void* ptr){
 
 void QTimeLine_ToggleDirection(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QTimeLine*>(ptr), "toggleDirection");
+}
+
+void QTimeLine_ConnectValueChanged(void* ptr){
+	QObject::connect(static_cast<QTimeLine*>(ptr), &QTimeLine::valueChanged, static_cast<MyQTimeLine*>(ptr), static_cast<void (MyQTimeLine::*)(qreal)>(&MyQTimeLine::Signal_ValueChanged));;
+}
+
+void QTimeLine_DisconnectValueChanged(void* ptr){
+	QObject::disconnect(static_cast<QTimeLine*>(ptr), &QTimeLine::valueChanged, static_cast<MyQTimeLine*>(ptr), static_cast<void (MyQTimeLine::*)(qreal)>(&MyQTimeLine::Signal_ValueChanged));;
 }
 
 double QTimeLine_ValueForTime(void* ptr, int msec){
@@ -9514,6 +9913,10 @@ void QTranslator_DestroyQTranslator(void* ptr){
 	static_cast<QTranslator*>(ptr)->~QTranslator();
 }
 
+void* QUrl_QUrl_FromEncoded(void* input, int parsingMode){
+	return new QUrl(QUrl::fromEncoded(*static_cast<QByteArray*>(input), static_cast<QUrl::ParsingMode>(parsingMode)));
+}
+
 void* QUrl_NewQUrl(){
 	return new QUrl();
 }
@@ -9528,6 +9931,10 @@ void* QUrl_NewQUrl3(char* url, int parsingMode){
 
 void* QUrl_NewQUrl2(void* other){
 	return new QUrl(*static_cast<QUrl*>(other));
+}
+
+void* QUrl_Adjusted(void* ptr, int options){
+	return new QUrl(static_cast<QUrl*>(ptr)->adjusted(static_cast<QUrl::UrlFormattingOption>(options)));
 }
 
 char* QUrl_Authority(void* ptr, int options){
@@ -9554,8 +9961,20 @@ char* QUrl_QUrl_FromAce(void* domain){
 	return QUrl::fromAce(*static_cast<QByteArray*>(domain)).toUtf8().data();
 }
 
+void* QUrl_QUrl_FromLocalFile(char* localFile){
+	return new QUrl(QUrl::fromLocalFile(QString(localFile)));
+}
+
 char* QUrl_QUrl_FromPercentEncoding(void* input){
 	return QUrl::fromPercentEncoding(*static_cast<QByteArray*>(input)).toUtf8().data();
+}
+
+void* QUrl_QUrl_FromUserInput(char* userInput){
+	return new QUrl(QUrl::fromUserInput(QString(userInput)));
+}
+
+void* QUrl_QUrl_FromUserInput2(char* userInput, char* workingDirectory, int options){
+	return new QUrl(QUrl::fromUserInput(QString(userInput), QString(workingDirectory), static_cast<QUrl::UserInputResolutionOption>(options)));
 }
 
 int QUrl_HasFragment(void* ptr){
@@ -9612,6 +10031,10 @@ int QUrl_Port(void* ptr, int defaultPort){
 
 char* QUrl_Query(void* ptr, int options){
 	return static_cast<QUrl*>(ptr)->query(static_cast<QUrl::ComponentFormattingOption>(options)).toUtf8().data();
+}
+
+void* QUrl_Resolved(void* ptr, void* relative){
+	return new QUrl(static_cast<QUrl*>(ptr)->resolved(*static_cast<QUrl*>(relative)));
 }
 
 char* QUrl_Scheme(void* ptr){
@@ -9966,6 +10389,10 @@ void* QVariant_ToPoint(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QVariant*>(ptr)->toPoint()).x(), static_cast<QPoint>(static_cast<QVariant*>(ptr)->toPoint()).y());
 }
 
+void* QVariant_ToRect(void* ptr){
+	return new QRect(static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).x(), static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).y(), static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).width(), static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).height());
+}
+
 void* QVariant_ToRegExp(void* ptr){
 	return new QRegExp(static_cast<QVariant*>(ptr)->toRegExp());
 }
@@ -9974,8 +10401,16 @@ void* QVariant_ToRegularExpression(void* ptr){
 	return new QRegularExpression(static_cast<QVariant*>(ptr)->toRegularExpression());
 }
 
+void* QVariant_ToSize(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QVariant*>(ptr)->toSize()).width(), static_cast<QSize>(static_cast<QVariant*>(ptr)->toSize()).height());
+}
+
 char* QVariant_ToStringList(void* ptr){
 	return static_cast<QVariant*>(ptr)->toStringList().join(",,,").toUtf8().data();
+}
+
+void* QVariant_ToUrl(void* ptr){
+	return new QUrl(static_cast<QVariant*>(ptr)->toUrl());
 }
 
 void QVariant_DestroyQVariant(void* ptr){
@@ -10101,11 +10536,11 @@ void* QVariantAnimation_NewQVariantAnimation(void* parent){
 }
 
 void* QVariantAnimation_KeyValueAt(void* ptr, double step){
-	return new QVariant(static_cast<QVariantAnimation*>(ptr)->keyValueAt(static_cast<qreal>(step)));
+	return new QVariant(static_cast<QVariantAnimation*>(ptr)->keyValueAt(static_cast<double>(step)));
 }
 
 void QVariantAnimation_SetKeyValueAt(void* ptr, double step, void* value){
-	static_cast<QVariantAnimation*>(ptr)->setKeyValueAt(static_cast<qreal>(step), *static_cast<QVariant*>(value));
+	static_cast<QVariantAnimation*>(ptr)->setKeyValueAt(static_cast<double>(step), *static_cast<QVariant*>(value));
 }
 
 void QVariantAnimation_ConnectValueChanged(void* ptr){
@@ -10396,8 +10831,16 @@ int QXmlStreamReader_AtEnd(void* ptr){
 	return static_cast<QXmlStreamReader*>(ptr)->atEnd();
 }
 
+long long QXmlStreamReader_CharacterOffset(void* ptr){
+	return static_cast<long long>(static_cast<QXmlStreamReader*>(ptr)->characterOffset());
+}
+
 void QXmlStreamReader_Clear(void* ptr){
 	static_cast<QXmlStreamReader*>(ptr)->clear();
+}
+
+long long QXmlStreamReader_ColumnNumber(void* ptr){
+	return static_cast<long long>(static_cast<QXmlStreamReader*>(ptr)->columnNumber());
 }
 
 void* QXmlStreamReader_Device(void* ptr){
@@ -10486,6 +10929,10 @@ int QXmlStreamReader_IsStartElement(void* ptr){
 
 int QXmlStreamReader_IsWhitespace(void* ptr){
 	return static_cast<QXmlStreamReader*>(ptr)->isWhitespace();
+}
+
+long long QXmlStreamReader_LineNumber(void* ptr){
+	return static_cast<long long>(static_cast<QXmlStreamReader*>(ptr)->lineNumber());
 }
 
 void* QXmlStreamReader_Name(void* ptr){

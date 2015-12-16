@@ -81,6 +81,37 @@ func (ptr *QTableView) SetGridStyle(style core.Qt__PenStyle) {
 	}
 }
 
+func (ptr *QTableView) ConnectSetSelection(f func(rect *core.QRect, flags core.QItemSelectionModel__SelectionFlag)) {
+	defer qt.Recovering("connect QTableView::setSelection")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSelection", f)
+	}
+}
+
+func (ptr *QTableView) DisconnectSetSelection() {
+	defer qt.Recovering("disconnect QTableView::setSelection")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSelection")
+	}
+}
+
+//export callbackQTableViewSetSelection
+func callbackQTableViewSetSelection(ptrName *C.char, rect unsafe.Pointer, flags C.int) bool {
+	defer qt.Recovering("callback QTableView::setSelection")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setSelection")
+	if signal != nil {
+		defer signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTableView) SetShowGrid(show bool) {
 	defer qt.Recovering("QTableView::setShowGrid")
 

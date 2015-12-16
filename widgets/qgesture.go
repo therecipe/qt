@@ -88,6 +88,15 @@ func (ptr *QGesture) SetHotSpot(value core.QPointF_ITF) {
 	}
 }
 
+func (ptr *QGesture) State() core.Qt__GestureState {
+	defer qt.Recovering("QGesture::state")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__GestureState(C.QGesture_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QGesture) UnsetHotSpot() {
 	defer qt.Recovering("QGesture::unsetHotSpot")
 

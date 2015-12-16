@@ -157,6 +157,7 @@ void QSqlDatabase_DestroyQSqlDatabase(void* ptr){
 class MyQSqlDriver: public QSqlDriver {
 public:
 	void Signal_Notification(const QString & name) { callbackQSqlDriverNotification(this->objectName().toUtf8().data(), name.toUtf8().data()); };
+	void Signal_Notification2(const QString & name, QSqlDriver::NotificationSource source, const QVariant & payload) { callbackQSqlDriverNotification2(this->objectName().toUtf8().data(), name.toUtf8().data(), source, new QVariant(payload)); };
 protected:
 	void setOpen(bool open) { if (!callbackQSqlDriverSetOpen(this->objectName().toUtf8().data(), open)) { QSqlDriver::setOpen(open); }; };
 	void setOpenError(bool error) { if (!callbackQSqlDriverSetOpenError(this->objectName().toUtf8().data(), error)) { QSqlDriver::setOpenError(error); }; };
@@ -216,6 +217,14 @@ void QSqlDriver_ConnectNotification(void* ptr){
 
 void QSqlDriver_DisconnectNotification(void* ptr){
 	QObject::disconnect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &)>(&MyQSqlDriver::Signal_Notification));;
+}
+
+void QSqlDriver_ConnectNotification2(void* ptr){
+	QObject::connect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &, QSqlDriver::NotificationSource, const QVariant &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &, QSqlDriver::NotificationSource, const QVariant &)>(&MyQSqlDriver::Signal_Notification2));;
+}
+
+void QSqlDriver_DisconnectNotification2(void* ptr){
+	QObject::disconnect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &, QSqlDriver::NotificationSource, const QVariant &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &, QSqlDriver::NotificationSource, const QVariant &)>(&MyQSqlDriver::Signal_Notification2));;
 }
 
 int QSqlDriver_Open(void* ptr, char* db, char* user, char* password, char* host, int port, char* options){

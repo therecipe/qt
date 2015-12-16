@@ -32,6 +32,8 @@ int QGeoRoute_TravelTime(void* ptr);
 void QGeoRoute_DestroyQGeoRoute(void* ptr);
 void* QGeoRouteReply_NewQGeoRouteReply(int error, char* errorString, void* parent);
 void QGeoRouteReply_Abort(void* ptr);
+void QGeoRouteReply_ConnectError2(void* ptr);
+void QGeoRouteReply_DisconnectError2(void* ptr);
 int QGeoRouteReply_Error(void* ptr);
 char* QGeoRouteReply_ErrorString(void* ptr);
 void QGeoRouteReply_ConnectFinished(void* ptr);

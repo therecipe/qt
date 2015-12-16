@@ -341,6 +341,15 @@ func (ptr *QTimeLine) StartFrame() int {
 	return 0
 }
 
+func (ptr *QTimeLine) State() QTimeLine__State {
+	defer qt.Recovering("QTimeLine::state")
+
+	if ptr.Pointer() != nil {
+		return QTimeLine__State(C.QTimeLine_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QTimeLine) ConnectStateChanged(f func(newState QTimeLine__State)) {
 	defer qt.Recovering("connect QTimeLine::stateChanged")
 
@@ -415,6 +424,35 @@ func (ptr *QTimeLine) ToggleDirection() {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_ToggleDirection(ptr.Pointer())
 	}
+}
+
+func (ptr *QTimeLine) ConnectValueChanged(f func(value float64)) {
+	defer qt.Recovering("connect QTimeLine::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTimeLine_ConnectValueChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "valueChanged", f)
+	}
+}
+
+func (ptr *QTimeLine) DisconnectValueChanged() {
+	defer qt.Recovering("disconnect QTimeLine::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTimeLine_DisconnectValueChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "valueChanged")
+	}
+}
+
+//export callbackQTimeLineValueChanged
+func callbackQTimeLineValueChanged(ptrName *C.char, value C.double) {
+	defer qt.Recovering("callback QTimeLine::valueChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(value))
+	}
+
 }
 
 func (ptr *QTimeLine) ValueForTime(msec int) float64 {

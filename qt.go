@@ -45,11 +45,11 @@ func Identifier() string {
 }
 
 func DumpSignals() {
-	println("##############################\tDUMP_SIGNALTABLE_START\t##############################")
+	log.Println("##############################\tDUMP_SIGNALTABLE_START\t##############################")
 	for entry := range signals {
-		println(entry)
+		log.Println(entry)
 	}
-	println("##############################\tDUMP_SIGNALTABLE_END\t##############################")
+	log.Println("##############################\tDUMP_SIGNALTABLE_END\t##############################")
 }
 
 func GoBoolToInt(b bool) int {
@@ -61,6 +61,6 @@ func GoBoolToInt(b bool) int {
 
 func Recovering(fn string) {
 	if recover() != nil {
-		log.Printf("recovered in: %v", fn)
+		log.Println("recovered in:", fn)
 	}
 }

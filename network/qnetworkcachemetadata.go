@@ -129,6 +129,15 @@ func (ptr *QNetworkCacheMetaData) Swap(other QNetworkCacheMetaData_ITF) {
 	}
 }
 
+func (ptr *QNetworkCacheMetaData) Url() *core.QUrl {
+	defer qt.Recovering("QNetworkCacheMetaData::url")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QNetworkCacheMetaData_Url(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QNetworkCacheMetaData) DestroyQNetworkCacheMetaData() {
 	defer qt.Recovering("QNetworkCacheMetaData::~QNetworkCacheMetaData")
 

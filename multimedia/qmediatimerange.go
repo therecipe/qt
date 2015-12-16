@@ -58,11 +58,25 @@ func NewQMediaTimeRange4(ran QMediaTimeRange_ITF) *QMediaTimeRange {
 	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange4(PointerFromQMediaTimeRange(ran)))
 }
 
+func NewQMediaTimeRange2(start int64, end int64) *QMediaTimeRange {
+	defer qt.Recovering("QMediaTimeRange::QMediaTimeRange")
+
+	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange2(C.longlong(start), C.longlong(end)))
+}
+
 func (ptr *QMediaTimeRange) AddInterval(interval QMediaTimeInterval_ITF) {
 	defer qt.Recovering("QMediaTimeRange::addInterval")
 
 	if ptr.Pointer() != nil {
 		C.QMediaTimeRange_AddInterval(ptr.Pointer(), PointerFromQMediaTimeInterval(interval))
+	}
+}
+
+func (ptr *QMediaTimeRange) AddInterval2(start int64, end int64) {
+	defer qt.Recovering("QMediaTimeRange::addInterval")
+
+	if ptr.Pointer() != nil {
+		C.QMediaTimeRange_AddInterval2(ptr.Pointer(), C.longlong(start), C.longlong(end))
 	}
 }
 
@@ -80,6 +94,24 @@ func (ptr *QMediaTimeRange) Clear() {
 	if ptr.Pointer() != nil {
 		C.QMediaTimeRange_Clear(ptr.Pointer())
 	}
+}
+
+func (ptr *QMediaTimeRange) Contains(time int64) bool {
+	defer qt.Recovering("QMediaTimeRange::contains")
+
+	if ptr.Pointer() != nil {
+		return C.QMediaTimeRange_Contains(ptr.Pointer(), C.longlong(time)) != 0
+	}
+	return false
+}
+
+func (ptr *QMediaTimeRange) EarliestTime() int64 {
+	defer qt.Recovering("QMediaTimeRange::earliestTime")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QMediaTimeRange_EarliestTime(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QMediaTimeRange) IsContinuous() bool {
@@ -100,11 +132,28 @@ func (ptr *QMediaTimeRange) IsEmpty() bool {
 	return false
 }
 
+func (ptr *QMediaTimeRange) LatestTime() int64 {
+	defer qt.Recovering("QMediaTimeRange::latestTime")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QMediaTimeRange_LatestTime(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QMediaTimeRange) RemoveInterval(interval QMediaTimeInterval_ITF) {
 	defer qt.Recovering("QMediaTimeRange::removeInterval")
 
 	if ptr.Pointer() != nil {
 		C.QMediaTimeRange_RemoveInterval(ptr.Pointer(), PointerFromQMediaTimeInterval(interval))
+	}
+}
+
+func (ptr *QMediaTimeRange) RemoveInterval2(start int64, end int64) {
+	defer qt.Recovering("QMediaTimeRange::removeInterval")
+
+	if ptr.Pointer() != nil {
+		C.QMediaTimeRange_RemoveInterval2(ptr.Pointer(), C.longlong(start), C.longlong(end))
 	}
 }
 

@@ -119,6 +119,15 @@ func (ptr *QPainter) Begin(device QPaintDevice_ITF) bool {
 	return false
 }
 
+func (ptr *QPainter) BoundingRect2(rectangle core.QRect_ITF, flags int, text string) *core.QRect {
+	defer qt.Recovering("QPainter::boundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPainter_BoundingRect2(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(flags), C.CString(text)))
+	}
+	return nil
+}
+
 func (ptr *QPainter) DrawArc(rectangle core.QRectF_ITF, startAngle int, spanAngle int) {
 	defer qt.Recovering("QPainter::drawArc")
 
@@ -429,6 +438,15 @@ func (ptr *QPainter) BeginNativePainting() {
 	if ptr.Pointer() != nil {
 		C.QPainter_BeginNativePainting(ptr.Pointer())
 	}
+}
+
+func (ptr *QPainter) BoundingRect3(x int, y int, w int, h int, flags int, text string) *core.QRect {
+	defer qt.Recovering("QPainter::boundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPainter_BoundingRect3(ptr.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h), C.int(flags), C.CString(text)))
+	}
+	return nil
 }
 
 func (ptr *QPainter) Brush() *QBrush {
@@ -1435,6 +1453,24 @@ func (ptr *QPainter) ViewTransformEnabled() bool {
 		return C.QPainter_ViewTransformEnabled(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QPainter) Viewport() *core.QRect {
+	defer qt.Recovering("QPainter::viewport")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPainter_Viewport(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPainter) Window() *core.QRect {
+	defer qt.Recovering("QPainter::window")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPainter_Window(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QPainter) WorldMatrixEnabled() bool {

@@ -56,6 +56,15 @@ func (ptr *QDragMoveEvent) Accept(rectangle core.QRect_ITF) {
 	}
 }
 
+func (ptr *QDragMoveEvent) AnswerRect() *core.QRect {
+	defer qt.Recovering("QDragMoveEvent::answerRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QDragMoveEvent_AnswerRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDragMoveEvent) Ignore2() {
 	defer qt.Recovering("QDragMoveEvent::ignore")
 

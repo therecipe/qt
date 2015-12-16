@@ -187,6 +187,35 @@ func callbackQMediaObjectMetaDataChanged(ptrName *C.char) {
 
 }
 
+func (ptr *QMediaObject) ConnectMetaDataChanged2(f func(key string, value *core.QVariant)) {
+	defer qt.Recovering("connect QMediaObject::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_ConnectMetaDataChanged2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "metaDataChanged", f)
+	}
+}
+
+func (ptr *QMediaObject) DisconnectMetaDataChanged2() {
+	defer qt.Recovering("disconnect QMediaObject::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_DisconnectMetaDataChanged2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "metaDataChanged")
+	}
+}
+
+//export callbackQMediaObjectMetaDataChanged2
+func callbackQMediaObjectMetaDataChanged2(ptrName *C.char, key *C.char, value unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaObject::metaDataChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataChanged")
+	if signal != nil {
+		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
+	}
+
+}
+
 func (ptr *QMediaObject) ConnectNotifyIntervalChanged(f func(milliseconds int)) {
 	defer qt.Recovering("connect QMediaObject::notifyIntervalChanged")
 

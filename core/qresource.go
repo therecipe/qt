@@ -110,6 +110,15 @@ func (ptr *QResource) SetLocale(locale QLocale_ITF) {
 	}
 }
 
+func (ptr *QResource) Size() int64 {
+	defer qt.Recovering("QResource::size")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QResource_Size(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QResource) DestroyQResource() {
 	defer qt.Recovering("QResource::~QResource")
 

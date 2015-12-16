@@ -152,6 +152,12 @@ func QGuiApplication_SetWindowIcon(icon QIcon_ITF) {
 	C.QGuiApplication_QGuiApplication_SetWindowIcon(PointerFromQIcon(icon))
 }
 
+func QGuiApplication_WindowIcon() *QIcon {
+	defer qt.Recovering("QGuiApplication::windowIcon")
+
+	return NewQIconFromPointer(C.QGuiApplication_QGuiApplication_WindowIcon())
+}
+
 func NewQGuiApplication(argc int, argv []string) *QGuiApplication {
 	defer qt.Recovering("QGuiApplication::QGuiApplication")
 

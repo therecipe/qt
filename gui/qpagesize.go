@@ -315,6 +315,54 @@ func (ptr *QPageSize) Name() string {
 	return ""
 }
 
+func (ptr *QPageSize) RectPixels(resolution int) *core.QRect {
+	defer qt.Recovering("QPageSize::rectPixels")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPageSize_RectPixels(ptr.Pointer(), C.int(resolution)))
+	}
+	return nil
+}
+
+func (ptr *QPageSize) RectPoints() *core.QRect {
+	defer qt.Recovering("QPageSize::rectPoints")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPageSize_RectPoints(ptr.Pointer()))
+	}
+	return nil
+}
+
+func QPageSize_SizePixels2(pageSizeId QPageSize__PageSizeId, resolution int) *core.QSize {
+	defer qt.Recovering("QPageSize::sizePixels")
+
+	return core.NewQSizeFromPointer(C.QPageSize_QPageSize_SizePixels2(C.int(pageSizeId), C.int(resolution)))
+}
+
+func (ptr *QPageSize) SizePixels(resolution int) *core.QSize {
+	defer qt.Recovering("QPageSize::sizePixels")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QPageSize_SizePixels(ptr.Pointer(), C.int(resolution)))
+	}
+	return nil
+}
+
+func QPageSize_SizePoints2(pageSizeId QPageSize__PageSizeId) *core.QSize {
+	defer qt.Recovering("QPageSize::sizePoints")
+
+	return core.NewQSizeFromPointer(C.QPageSize_QPageSize_SizePoints2(C.int(pageSizeId)))
+}
+
+func (ptr *QPageSize) SizePoints() *core.QSize {
+	defer qt.Recovering("QPageSize::sizePoints")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QPageSize_SizePoints(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPageSize) Swap(other QPageSize_ITF) {
 	defer qt.Recovering("QPageSize::swap")
 

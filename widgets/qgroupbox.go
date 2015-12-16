@@ -257,6 +257,15 @@ func callbackQGroupBoxFocusInEvent(ptrName *C.char, fe unsafe.Pointer) bool {
 
 }
 
+func (ptr *QGroupBox) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QGroupBox::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QGroupBox_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGroupBox) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QGroupBox::mouseMoveEvent")
 

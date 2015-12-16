@@ -144,6 +144,15 @@ func (ptr *QSizeF) SetWidth(width float64) {
 	}
 }
 
+func (ptr *QSizeF) ToSize() *QSize {
+	defer qt.Recovering("QSizeF::toSize")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFromPointer(C.QSizeF_ToSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSizeF) Transpose() {
 	defer qt.Recovering("QSizeF::transpose")
 

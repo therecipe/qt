@@ -63,6 +63,15 @@ func (ptr *QQuickPaintedItem) ContentsScale() float64 {
 	return 0
 }
 
+func (ptr *QQuickPaintedItem) ContentsSize() *core.QSize {
+	defer qt.Recovering("QQuickPaintedItem::contentsSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QQuickPaintedItem_ContentsSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickPaintedItem) FillColor() *gui.QColor {
 	defer qt.Recovering("QQuickPaintedItem::fillColor")
 

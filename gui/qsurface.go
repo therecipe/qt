@@ -4,6 +4,7 @@ package gui
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -59,6 +60,15 @@ const (
 	QSurface__OpenGLSurface   = QSurface__SurfaceType(1)
 	QSurface__RasterGLSurface = QSurface__SurfaceType(2)
 )
+
+func (ptr *QSurface) Size() *core.QSize {
+	defer qt.Recovering("QSurface::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QSurface_Size(ptr.Pointer()))
+	}
+	return nil
+}
 
 func (ptr *QSurface) SupportsOpenGL() bool {
 	defer qt.Recovering("QSurface::supportsOpenGL")

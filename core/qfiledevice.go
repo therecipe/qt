@@ -91,6 +91,15 @@ const (
 	QFileDevice__ExeOther   = QFileDevice__Permission(0x0001)
 )
 
+func (ptr *QFileDevice) Seek(pos int64) bool {
+	defer qt.Recovering("QFileDevice::seek")
+
+	if ptr.Pointer() != nil {
+		return C.QFileDevice_Seek(ptr.Pointer(), C.longlong(pos)) != 0
+	}
+	return false
+}
+
 func (ptr *QFileDevice) AtEnd() bool {
 	defer qt.Recovering("QFileDevice::atEnd")
 
@@ -185,6 +194,24 @@ func (ptr *QFileDevice) Permissions() QFileDevice__Permission {
 	return 0
 }
 
+func (ptr *QFileDevice) Pos() int64 {
+	defer qt.Recovering("QFileDevice::pos")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QFileDevice_Pos(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QFileDevice) Resize(sz int64) bool {
+	defer qt.Recovering("QFileDevice::resize")
+
+	if ptr.Pointer() != nil {
+		return C.QFileDevice_Resize(ptr.Pointer(), C.longlong(sz)) != 0
+	}
+	return false
+}
+
 func (ptr *QFileDevice) SetPermissions(permissions QFileDevice__Permission) bool {
 	defer qt.Recovering("QFileDevice::setPermissions")
 
@@ -192,6 +219,15 @@ func (ptr *QFileDevice) SetPermissions(permissions QFileDevice__Permission) bool
 		return C.QFileDevice_SetPermissions(ptr.Pointer(), C.int(permissions)) != 0
 	}
 	return false
+}
+
+func (ptr *QFileDevice) Size() int64 {
+	defer qt.Recovering("QFileDevice::size")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QFileDevice_Size(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QFileDevice) UnsetError() {

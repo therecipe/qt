@@ -97,6 +97,15 @@ func (ptr *QListView) Flow() QListView__Flow {
 	return 0
 }
 
+func (ptr *QListView) GridSize() *core.QSize {
+	defer qt.Recovering("QListView::gridSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QListView_GridSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QListView) IsSelectionRectVisible() bool {
 	defer qt.Recovering("QListView::isSelectionRectVisible")
 
@@ -672,6 +681,37 @@ func (ptr *QListView) SetRowHidden(row int, hide bool) {
 	}
 }
 
+func (ptr *QListView) ConnectSetSelection(f func(rect *core.QRect, command core.QItemSelectionModel__SelectionFlag)) {
+	defer qt.Recovering("connect QListView::setSelection")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSelection", f)
+	}
+}
+
+func (ptr *QListView) DisconnectSetSelection() {
+	defer qt.Recovering("disconnect QListView::setSelection")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSelection")
+	}
+}
+
+//export callbackQListViewSetSelection
+func callbackQListViewSetSelection(ptrName *C.char, rect unsafe.Pointer, command C.int) bool {
+	defer qt.Recovering("callback QListView::setSelection")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setSelection")
+	if signal != nil {
+		defer signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QListView) ConnectStartDrag(f func(supportedActions core.Qt__DropAction)) {
 	defer qt.Recovering("connect QListView::startDrag")
 
@@ -763,6 +803,15 @@ func callbackQListViewUpdateGeometries(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QListView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
+	defer qt.Recovering("QListView::visualRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QListView_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
 }
 
 func (ptr *QListView) DestroyQListView() {

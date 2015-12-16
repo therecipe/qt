@@ -148,6 +148,15 @@ func (ptr *QCameraControl) SetState(state QCamera__State) {
 	}
 }
 
+func (ptr *QCameraControl) State() QCamera__State {
+	defer qt.Recovering("QCameraControl::state")
+
+	if ptr.Pointer() != nil {
+		return QCamera__State(C.QCameraControl_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QCameraControl) ConnectStateChanged(f func(state QCamera__State)) {
 	defer qt.Recovering("connect QCameraControl::stateChanged")
 

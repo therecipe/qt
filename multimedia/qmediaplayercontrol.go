@@ -104,6 +104,44 @@ func callbackQMediaPlayerControlBufferStatusChanged(ptrName *C.char, progress C.
 
 }
 
+func (ptr *QMediaPlayerControl) Duration() int64 {
+	defer qt.Recovering("QMediaPlayerControl::duration")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QMediaPlayerControl_Duration(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QMediaPlayerControl) ConnectDurationChanged(f func(duration int64)) {
+	defer qt.Recovering("connect QMediaPlayerControl::durationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_ConnectDurationChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "durationChanged", f)
+	}
+}
+
+func (ptr *QMediaPlayerControl) DisconnectDurationChanged() {
+	defer qt.Recovering("disconnect QMediaPlayerControl::durationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_DisconnectDurationChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "durationChanged")
+	}
+}
+
+//export callbackQMediaPlayerControlDurationChanged
+func callbackQMediaPlayerControlDurationChanged(ptrName *C.char, duration C.longlong) {
+	defer qt.Recovering("callback QMediaPlayerControl::durationChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "durationChanged")
+	if signal != nil {
+		signal.(func(int64))(int64(duration))
+	}
+
+}
+
 func (ptr *QMediaPlayerControl) ConnectError(f func(error int, errorString string)) {
 	defer qt.Recovering("connect QMediaPlayerControl::error")
 
@@ -270,6 +308,73 @@ func (ptr *QMediaPlayerControl) PlaybackRate() float64 {
 	return 0
 }
 
+func (ptr *QMediaPlayerControl) ConnectPlaybackRateChanged(f func(rate float64)) {
+	defer qt.Recovering("connect QMediaPlayerControl::playbackRateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_ConnectPlaybackRateChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "playbackRateChanged", f)
+	}
+}
+
+func (ptr *QMediaPlayerControl) DisconnectPlaybackRateChanged() {
+	defer qt.Recovering("disconnect QMediaPlayerControl::playbackRateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_DisconnectPlaybackRateChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "playbackRateChanged")
+	}
+}
+
+//export callbackQMediaPlayerControlPlaybackRateChanged
+func callbackQMediaPlayerControlPlaybackRateChanged(ptrName *C.char, rate C.double) {
+	defer qt.Recovering("callback QMediaPlayerControl::playbackRateChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "playbackRateChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(rate))
+	}
+
+}
+
+func (ptr *QMediaPlayerControl) Position() int64 {
+	defer qt.Recovering("QMediaPlayerControl::position")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QMediaPlayerControl_Position(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QMediaPlayerControl) ConnectPositionChanged(f func(position int64)) {
+	defer qt.Recovering("connect QMediaPlayerControl::positionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_ConnectPositionChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "positionChanged", f)
+	}
+}
+
+func (ptr *QMediaPlayerControl) DisconnectPositionChanged() {
+	defer qt.Recovering("disconnect QMediaPlayerControl::positionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_DisconnectPositionChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "positionChanged")
+	}
+}
+
+//export callbackQMediaPlayerControlPositionChanged
+func callbackQMediaPlayerControlPositionChanged(ptrName *C.char, position C.longlong) {
+	defer qt.Recovering("callback QMediaPlayerControl::positionChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "positionChanged")
+	if signal != nil {
+		signal.(func(int64))(int64(position))
+	}
+
+}
+
 func (ptr *QMediaPlayerControl) ConnectSeekableChanged(f func(seekable bool)) {
 	defer qt.Recovering("connect QMediaPlayerControl::seekableChanged")
 
@@ -323,12 +428,29 @@ func (ptr *QMediaPlayerControl) SetPlaybackRate(rate float64) {
 	}
 }
 
+func (ptr *QMediaPlayerControl) SetPosition(position int64) {
+	defer qt.Recovering("QMediaPlayerControl::setPosition")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_SetPosition(ptr.Pointer(), C.longlong(position))
+	}
+}
+
 func (ptr *QMediaPlayerControl) SetVolume(volume int) {
 	defer qt.Recovering("QMediaPlayerControl::setVolume")
 
 	if ptr.Pointer() != nil {
 		C.QMediaPlayerControl_SetVolume(ptr.Pointer(), C.int(volume))
 	}
+}
+
+func (ptr *QMediaPlayerControl) State() QMediaPlayer__State {
+	defer qt.Recovering("QMediaPlayerControl::state")
+
+	if ptr.Pointer() != nil {
+		return QMediaPlayer__State(C.QMediaPlayerControl_State(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QMediaPlayerControl) ConnectStateChanged(f func(state QMediaPlayer__State)) {

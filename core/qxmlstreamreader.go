@@ -165,12 +165,30 @@ func (ptr *QXmlStreamReader) AtEnd() bool {
 	return false
 }
 
+func (ptr *QXmlStreamReader) CharacterOffset() int64 {
+	defer qt.Recovering("QXmlStreamReader::characterOffset")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QXmlStreamReader_CharacterOffset(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QXmlStreamReader) Clear() {
 	defer qt.Recovering("QXmlStreamReader::clear")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_Clear(ptr.Pointer())
 	}
+}
+
+func (ptr *QXmlStreamReader) ColumnNumber() int64 {
+	defer qt.Recovering("QXmlStreamReader::columnNumber")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QXmlStreamReader_ColumnNumber(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QXmlStreamReader) Device() *QIODevice {
@@ -369,6 +387,15 @@ func (ptr *QXmlStreamReader) IsWhitespace() bool {
 		return C.QXmlStreamReader_IsWhitespace(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QXmlStreamReader) LineNumber() int64 {
+	defer qt.Recovering("QXmlStreamReader::lineNumber")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QXmlStreamReader_LineNumber(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QXmlStreamReader) Name() *QStringRef {

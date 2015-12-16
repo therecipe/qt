@@ -156,6 +156,35 @@ func callbackQLowEnergyControllerDiscoveryFinished(ptrName *C.char) {
 
 }
 
+func (ptr *QLowEnergyController) ConnectError2(f func(newError QLowEnergyController__Error)) {
+	defer qt.Recovering("connect QLowEnergyController::error")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QLowEnergyController) DisconnectError2() {
+	defer qt.Recovering("disconnect QLowEnergyController::error")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQLowEnergyControllerError2
+func callbackQLowEnergyControllerError2(ptrName *C.char, newError C.int) {
+	defer qt.Recovering("callback QLowEnergyController::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QLowEnergyController__Error))(QLowEnergyController__Error(newError))
+	}
+
+}
+
 func (ptr *QLowEnergyController) ConnectStateChanged(f func(state QLowEnergyController__ControllerState)) {
 	defer qt.Recovering("connect QLowEnergyController::stateChanged")
 
@@ -266,6 +295,15 @@ func (ptr *QLowEnergyController) SetRemoteAddressType(ty QLowEnergyController__R
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_SetRemoteAddressType(ptr.Pointer(), C.int(ty))
 	}
+}
+
+func (ptr *QLowEnergyController) State() QLowEnergyController__ControllerState {
+	defer qt.Recovering("QLowEnergyController::state")
+
+	if ptr.Pointer() != nil {
+		return QLowEnergyController__ControllerState(C.QLowEnergyController_State(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QLowEnergyController) DestroyQLowEnergyController() {

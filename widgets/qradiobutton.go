@@ -4,6 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"unsafe"
 )
@@ -47,6 +48,15 @@ func NewQRadioButton2(text string, parent QWidget_ITF) *QRadioButton {
 	defer qt.Recovering("QRadioButton::QRadioButton")
 
 	return NewQRadioButtonFromPointer(C.QRadioButton_NewQRadioButton2(C.CString(text), PointerFromQWidget(parent)))
+}
+
+func (ptr *QRadioButton) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QRadioButton::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QRadioButton_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QRadioButton) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
@@ -109,6 +119,15 @@ func callbackQRadioButtonPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QRadioButton) SizeHint() *core.QSize {
+	defer qt.Recovering("QRadioButton::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QRadioButton_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QRadioButton) DestroyQRadioButton() {

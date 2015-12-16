@@ -67,6 +67,15 @@ func (ptr *QRectF) Intersects(rectangle QRectF_ITF) bool {
 	return false
 }
 
+func (ptr *QRectF) ToAlignedRect() *QRect {
+	defer qt.Recovering("QRectF::toAlignedRect")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFromPointer(C.QRectF_ToAlignedRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func NewQRectF() *QRectF {
 	defer qt.Recovering("QRectF::QRectF")
 
@@ -383,6 +392,15 @@ func (ptr *QRectF) SetY(y float64) {
 	if ptr.Pointer() != nil {
 		C.QRectF_SetY(ptr.Pointer(), C.double(y))
 	}
+}
+
+func (ptr *QRectF) ToRect() *QRect {
+	defer qt.Recovering("QRectF::toRect")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFromPointer(C.QRectF_ToRect(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QRectF) Top() float64 {

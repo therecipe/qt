@@ -110,6 +110,35 @@ func (ptr *QVideoDeviceSelectorControl) SelectedDevice() int {
 	return 0
 }
 
+func (ptr *QVideoDeviceSelectorControl) ConnectSelectedDeviceChanged2(f func(name string)) {
+	defer qt.Recovering("connect QVideoDeviceSelectorControl::selectedDeviceChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_ConnectSelectedDeviceChanged2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "selectedDeviceChanged", f)
+	}
+}
+
+func (ptr *QVideoDeviceSelectorControl) DisconnectSelectedDeviceChanged2() {
+	defer qt.Recovering("disconnect QVideoDeviceSelectorControl::selectedDeviceChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_DisconnectSelectedDeviceChanged2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "selectedDeviceChanged")
+	}
+}
+
+//export callbackQVideoDeviceSelectorControlSelectedDeviceChanged2
+func callbackQVideoDeviceSelectorControlSelectedDeviceChanged2(ptrName *C.char, name *C.char) {
+	defer qt.Recovering("callback QVideoDeviceSelectorControl::selectedDeviceChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "selectedDeviceChanged")
+	if signal != nil {
+		signal.(func(string))(C.GoString(name))
+	}
+
+}
+
 func (ptr *QVideoDeviceSelectorControl) ConnectSelectedDeviceChanged(f func(index int)) {
 	defer qt.Recovering("connect QVideoDeviceSelectorControl::selectedDeviceChanged")
 

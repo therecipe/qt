@@ -180,15 +180,6 @@ func callbackQGraphicsGridLayoutInvalidate(ptrName *C.char) bool {
 
 }
 
-func (ptr *QGraphicsGridLayout) ItemAt2(index int) *QGraphicsLayoutItem {
-	defer qt.Recovering("QGraphicsGridLayout::itemAt")
-
-	if ptr.Pointer() != nil {
-		return NewQGraphicsLayoutItemFromPointer(C.QGraphicsGridLayout_ItemAt2(ptr.Pointer(), C.int(index)))
-	}
-	return nil
-}
-
 func (ptr *QGraphicsGridLayout) ItemAt(row int, column int) *QGraphicsLayoutItem {
 	defer qt.Recovering("QGraphicsGridLayout::itemAt")
 

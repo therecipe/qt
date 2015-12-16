@@ -173,6 +173,15 @@ func (ptr *QNetworkConfiguration) Purpose() QNetworkConfiguration__Purpose {
 	return 0
 }
 
+func (ptr *QNetworkConfiguration) State() QNetworkConfiguration__StateFlag {
+	defer qt.Recovering("QNetworkConfiguration::state")
+
+	if ptr.Pointer() != nil {
+		return QNetworkConfiguration__StateFlag(C.QNetworkConfiguration_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QNetworkConfiguration) Swap(other QNetworkConfiguration_ITF) {
 	defer qt.Recovering("QNetworkConfiguration::swap")
 

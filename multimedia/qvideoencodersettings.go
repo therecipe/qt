@@ -106,6 +106,15 @@ func (ptr *QVideoEncoderSettings) IsNull() bool {
 	return false
 }
 
+func (ptr *QVideoEncoderSettings) Resolution() *core.QSize {
+	defer qt.Recovering("QVideoEncoderSettings::resolution")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QVideoEncoderSettings_Resolution(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QVideoEncoderSettings) SetBitRate(value int) {
 	defer qt.Recovering("QVideoEncoderSettings::setBitRate")
 

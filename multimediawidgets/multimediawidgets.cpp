@@ -193,6 +193,10 @@ void QVideoWidget_DisconnectSaturationChanged(void* ptr){
 	QObject::disconnect(static_cast<QVideoWidget*>(ptr), static_cast<void (QVideoWidget::*)(int)>(&QVideoWidget::saturationChanged), static_cast<MyQVideoWidget*>(ptr), static_cast<void (MyQVideoWidget::*)(int)>(&MyQVideoWidget::Signal_SaturationChanged));;
 }
 
+void* QVideoWidget_SizeHint(void* ptr){
+	return new QSize(static_cast<QSize>(static_cast<QVideoWidget*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QVideoWidget*>(ptr)->sizeHint()).height());
+}
+
 void QVideoWidget_DestroyQVideoWidget(void* ptr){
 	static_cast<QVideoWidget*>(ptr)->~QVideoWidget();
 }

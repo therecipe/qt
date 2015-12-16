@@ -93,6 +93,24 @@ func (ptr *QSslSocket) AtEnd() bool {
 	return false
 }
 
+func (ptr *QSslSocket) BytesAvailable() int64 {
+	defer qt.Recovering("QSslSocket::bytesAvailable")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QSslSocket_BytesAvailable(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSslSocket) BytesToWrite() int64 {
+	defer qt.Recovering("QSslSocket::bytesToWrite")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QSslSocket_BytesToWrite(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QSslSocket) CanReadLine() bool {
 	defer qt.Recovering("QSslSocket::canReadLine")
 
@@ -158,6 +176,53 @@ func callbackQSslSocketEncrypted(ptrName *C.char) {
 	var signal = qt.GetSignal(C.GoString(ptrName), "encrypted")
 	if signal != nil {
 		signal.(func())()
+	}
+
+}
+
+func (ptr *QSslSocket) EncryptedBytesAvailable() int64 {
+	defer qt.Recovering("QSslSocket::encryptedBytesAvailable")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QSslSocket_EncryptedBytesAvailable(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSslSocket) EncryptedBytesToWrite() int64 {
+	defer qt.Recovering("QSslSocket::encryptedBytesToWrite")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QSslSocket_EncryptedBytesToWrite(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSslSocket) ConnectEncryptedBytesWritten(f func(written int64)) {
+	defer qt.Recovering("connect QSslSocket::encryptedBytesWritten")
+
+	if ptr.Pointer() != nil {
+		C.QSslSocket_ConnectEncryptedBytesWritten(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "encryptedBytesWritten", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectEncryptedBytesWritten() {
+	defer qt.Recovering("disconnect QSslSocket::encryptedBytesWritten")
+
+	if ptr.Pointer() != nil {
+		C.QSslSocket_DisconnectEncryptedBytesWritten(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "encryptedBytesWritten")
+	}
+}
+
+//export callbackQSslSocketEncryptedBytesWritten
+func callbackQSslSocketEncryptedBytesWritten(ptrName *C.char, written C.longlong) {
+	defer qt.Recovering("callback QSslSocket::encryptedBytesWritten")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "encryptedBytesWritten")
+	if signal != nil {
+		signal.(func(int64))(int64(written))
 	}
 
 }
@@ -351,6 +416,37 @@ func (ptr *QSslSocket) SetPrivateKey(key QSslKey_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSslSocket_SetPrivateKey(ptr.Pointer(), PointerFromQSslKey(key))
 	}
+}
+
+func (ptr *QSslSocket) ConnectSetReadBufferSize(f func(size int64)) {
+	defer qt.Recovering("connect QSslSocket::setReadBufferSize")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setReadBufferSize", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectSetReadBufferSize() {
+	defer qt.Recovering("disconnect QSslSocket::setReadBufferSize")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setReadBufferSize")
+	}
+}
+
+//export callbackQSslSocketSetReadBufferSize
+func callbackQSslSocketSetReadBufferSize(ptrName *C.char, size C.longlong) bool {
+	defer qt.Recovering("callback QSslSocket::setReadBufferSize")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setReadBufferSize")
+	if signal != nil {
+		defer signal.(func(int64))(int64(size))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QSslSocket) ConnectSetSocketOption(f func(option QAbstractSocket__SocketOption, value *core.QVariant)) {

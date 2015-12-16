@@ -65,6 +65,15 @@ func (ptr *QSGAbstractRenderer) ClearMode() QSGAbstractRenderer__ClearModeBit {
 	return 0
 }
 
+func (ptr *QSGAbstractRenderer) DeviceRect() *core.QRect {
+	defer qt.Recovering("QSGAbstractRenderer::deviceRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QSGAbstractRenderer_DeviceRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSGAbstractRenderer) ConnectSceneGraphChanged(f func()) {
 	defer qt.Recovering("connect QSGAbstractRenderer::sceneGraphChanged")
 
@@ -156,4 +165,13 @@ func (ptr *QSGAbstractRenderer) SetViewportRect2(size core.QSize_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_SetViewportRect2(ptr.Pointer(), core.PointerFromQSize(size))
 	}
+}
+
+func (ptr *QSGAbstractRenderer) ViewportRect() *core.QRect {
+	defer qt.Recovering("QSGAbstractRenderer::viewportRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QSGAbstractRenderer_ViewportRect(ptr.Pointer()))
+	}
+	return nil
 }

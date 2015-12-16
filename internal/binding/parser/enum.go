@@ -24,6 +24,19 @@ func (e *Enum) register(module string) {
 	if c, exists := ClassMap[e.Class()]; !exists {
 		ClassMap[e.Class()] = &Class{Name: e.Class(), Status: "commendable", Module: module, Access: "public", Enums: []*Enum{e}}
 	} else {
-		c.Enums = append(c.Enums, e)
+		if !e.isRegistered() {
+			c.Enums = append(c.Enums, e)
+		}
 	}
+}
+
+func (e *Enum) isRegistered() bool {
+	for _, c := range ClassMap {
+		for _, ce := range c.Enums {
+			if e.Fullname == ce.Fullname {
+				return true
+			}
+		}
+	}
+	return false
 }

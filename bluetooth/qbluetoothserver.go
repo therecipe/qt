@@ -55,6 +55,35 @@ func NewQBluetoothServer(serverType QBluetoothServiceInfo__Protocol, parent core
 	return NewQBluetoothServerFromPointer(C.QBluetoothServer_NewQBluetoothServer(C.int(serverType), core.PointerFromQObject(parent)))
 }
 
+func (ptr *QBluetoothServer) ConnectError2(f func(error QBluetoothServer__Error)) {
+	defer qt.Recovering("connect QBluetoothServer::error")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServer_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QBluetoothServer) DisconnectError2() {
+	defer qt.Recovering("disconnect QBluetoothServer::error")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServer_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQBluetoothServerError2
+func callbackQBluetoothServerError2(ptrName *C.char, error C.int) {
+	defer qt.Recovering("callback QBluetoothServer::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QBluetoothServer__Error))(QBluetoothServer__Error(error))
+	}
+
+}
+
 func (ptr *QBluetoothServer) ConnectNewConnection(f func()) {
 	defer qt.Recovering("connect QBluetoothServer::newConnection")
 

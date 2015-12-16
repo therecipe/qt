@@ -83,6 +83,15 @@ func (ptr *QTransform) Map8(region QRegion_ITF) *QRegion {
 	return nil
 }
 
+func (ptr *QTransform) MapRect2(rectangle core.QRect_ITF) *core.QRect {
+	defer qt.Recovering("QTransform::mapRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QTransform_MapRect2(ptr.Pointer(), core.PointerFromQRect(rectangle)))
+	}
+	return nil
+}
+
 func QTransform_QuadToSquare(quad QPolygonF_ITF, trans QTransform_ITF) bool {
 	defer qt.Recovering("QTransform::quadToSquare")
 

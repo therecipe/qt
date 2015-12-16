@@ -4,6 +4,7 @@ package help
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -92,6 +93,15 @@ func (ptr *QHelpContentItem) Title() string {
 		return C.GoString(C.QHelpContentItem_Title(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QHelpContentItem) Url() *core.QUrl {
+	defer qt.Recovering("QHelpContentItem::url")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QHelpContentItem_Url(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QHelpContentItem) DestroyQHelpContentItem() {

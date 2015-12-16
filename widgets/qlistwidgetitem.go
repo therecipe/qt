@@ -139,6 +139,15 @@ func (ptr *QListWidgetItem) Foreground() *gui.QBrush {
 	return nil
 }
 
+func (ptr *QListWidgetItem) Icon() *gui.QIcon {
+	defer qt.Recovering("QListWidgetItem::icon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QListWidgetItem_Icon(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QListWidgetItem) IsHidden() bool {
 	defer qt.Recovering("QListWidgetItem::isHidden")
 
@@ -299,6 +308,15 @@ func (ptr *QListWidgetItem) SetWhatsThis(whatsThis string) {
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_SetWhatsThis(ptr.Pointer(), C.CString(whatsThis))
 	}
+}
+
+func (ptr *QListWidgetItem) SizeHint() *core.QSize {
+	defer qt.Recovering("QListWidgetItem::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QListWidgetItem_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QListWidgetItem) StatusTip() string {

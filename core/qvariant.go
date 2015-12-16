@@ -275,6 +275,15 @@ func (ptr *QVariant) ToPoint() *QPoint {
 	return nil
 }
 
+func (ptr *QVariant) ToRect() *QRect {
+	defer qt.Recovering("QVariant::toRect")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFromPointer(C.QVariant_ToRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QVariant) ToRegExp() *QRegExp {
 	defer qt.Recovering("QVariant::toRegExp")
 
@@ -293,6 +302,15 @@ func (ptr *QVariant) ToRegularExpression() *QRegularExpression {
 	return nil
 }
 
+func (ptr *QVariant) ToSize() *QSize {
+	defer qt.Recovering("QVariant::toSize")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFromPointer(C.QVariant_ToSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QVariant) ToStringList() []string {
 	defer qt.Recovering("QVariant::toStringList")
 
@@ -300,6 +318,15 @@ func (ptr *QVariant) ToStringList() []string {
 		return strings.Split(C.GoString(C.QVariant_ToStringList(ptr.Pointer())), ",,,")
 	}
 	return make([]string, 0)
+}
+
+func (ptr *QVariant) ToUrl() *QUrl {
+	defer qt.Recovering("QVariant::toUrl")
+
+	if ptr.Pointer() != nil {
+		return NewQUrlFromPointer(C.QVariant_ToUrl(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QVariant) DestroyQVariant() {

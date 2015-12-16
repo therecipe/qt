@@ -49,6 +49,15 @@ func NewQQmlContext(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlContext
 	return NewQQmlContextFromPointer(C.QQmlContext_NewQQmlContext(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 }
 
+func (ptr *QQmlContext) BaseUrl() *core.QUrl {
+	defer qt.Recovering("QQmlContext::baseUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QQmlContext_BaseUrl(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQmlContext) ContextObject() *core.QObject {
 	defer qt.Recovering("QQmlContext::contextObject")
 
@@ -99,6 +108,15 @@ func (ptr *QQmlContext) ParentContext() *QQmlContext {
 
 	if ptr.Pointer() != nil {
 		return NewQQmlContextFromPointer(C.QQmlContext_ParentContext(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQmlContext) ResolvedUrl(src core.QUrl_ITF) *core.QUrl {
+	defer qt.Recovering("QQmlContext::resolvedUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QQmlContext_ResolvedUrl(ptr.Pointer(), core.PointerFromQUrl(src)))
 	}
 	return nil
 }

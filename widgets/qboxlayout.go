@@ -267,6 +267,15 @@ func (ptr *QBoxLayout) ItemAt(index int) *QLayoutItem {
 	return nil
 }
 
+func (ptr *QBoxLayout) MaximumSize() *core.QSize {
+	defer qt.Recovering("QBoxLayout::maximumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QBoxLayout_MaximumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QBoxLayout) MinimumHeightForWidth(w int) int {
 	defer qt.Recovering("QBoxLayout::minimumHeightForWidth")
 
@@ -276,12 +285,52 @@ func (ptr *QBoxLayout) MinimumHeightForWidth(w int) int {
 	return 0
 }
 
+func (ptr *QBoxLayout) MinimumSize() *core.QSize {
+	defer qt.Recovering("QBoxLayout::minimumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QBoxLayout_MinimumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QBoxLayout) SetDirection(direction QBoxLayout__Direction) {
 	defer qt.Recovering("QBoxLayout::setDirection")
 
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_SetDirection(ptr.Pointer(), C.int(direction))
 	}
+}
+
+func (ptr *QBoxLayout) ConnectSetGeometry(f func(r *core.QRect)) {
+	defer qt.Recovering("connect QBoxLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setGeometry", f)
+	}
+}
+
+func (ptr *QBoxLayout) DisconnectSetGeometry() {
+	defer qt.Recovering("disconnect QBoxLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setGeometry")
+	}
+}
+
+//export callbackQBoxLayoutSetGeometry
+func callbackQBoxLayoutSetGeometry(ptrName *C.char, r unsafe.Pointer) bool {
+	defer qt.Recovering("callback QBoxLayout::setGeometry")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
+	if signal != nil {
+		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
+		return true
+	}
+	return false
+
 }
 
 func (ptr *QBoxLayout) SetSpacing(spacing int) {
@@ -316,6 +365,15 @@ func (ptr *QBoxLayout) SetStretchFactor(widget QWidget_ITF, stretch int) bool {
 		return C.QBoxLayout_SetStretchFactor(ptr.Pointer(), PointerFromQWidget(widget), C.int(stretch)) != 0
 	}
 	return false
+}
+
+func (ptr *QBoxLayout) SizeHint() *core.QSize {
+	defer qt.Recovering("QBoxLayout::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QBoxLayout_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QBoxLayout) Spacing() int {

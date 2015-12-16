@@ -325,6 +325,15 @@ func callbackQAbstractProxyModelSourceModelChanged(ptrName *C.char) {
 
 }
 
+func (ptr *QAbstractProxyModel) Span(index QModelIndex_ITF) *QSize {
+	defer qt.Recovering("QAbstractProxyModel::span")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFromPointer(C.QAbstractProxyModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
 func (ptr *QAbstractProxyModel) Submit() bool {
 	defer qt.Recovering("QAbstractProxyModel::submit")
 

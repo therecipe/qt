@@ -149,6 +149,24 @@ func (ptr *QProxyStyle) HitTestComplexControl(control QStyle__ComplexControl, op
 	return 0
 }
 
+func (ptr *QProxyStyle) ItemPixmapRect(r core.QRect_ITF, flags int, pixmap gui.QPixmap_ITF) *core.QRect {
+	defer qt.Recovering("QProxyStyle::itemPixmapRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QProxyStyle_ItemPixmapRect(ptr.Pointer(), core.PointerFromQRect(r), C.int(flags), gui.PointerFromQPixmap(pixmap)))
+	}
+	return nil
+}
+
+func (ptr *QProxyStyle) ItemTextRect(fm gui.QFontMetrics_ITF, r core.QRect_ITF, flags int, enabled bool, text string) *core.QRect {
+	defer qt.Recovering("QProxyStyle::itemTextRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QProxyStyle_ItemTextRect(ptr.Pointer(), gui.PointerFromQFontMetrics(fm), core.PointerFromQRect(r), C.int(flags), C.int(qt.GoBoolToInt(enabled)), C.CString(text)))
+	}
+	return nil
+}
+
 func (ptr *QProxyStyle) LayoutSpacing(control1 QSizePolicy__ControlType, control2 QSizePolicy__ControlType, orientation core.Qt__Orientation, option QStyleOption_ITF, widget QWidget_ITF) int {
 	defer qt.Recovering("QProxyStyle::layoutSpacing")
 
@@ -206,6 +224,24 @@ func (ptr *QProxyStyle) SetBaseStyle(style QStyle_ITF) {
 	}
 }
 
+func (ptr *QProxyStyle) SizeFromContents(ty QStyle__ContentsType, option QStyleOption_ITF, size core.QSize_ITF, widget QWidget_ITF) *core.QSize {
+	defer qt.Recovering("QProxyStyle::sizeFromContents")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QProxyStyle_SizeFromContents(ptr.Pointer(), C.int(ty), PointerFromQStyleOption(option), core.PointerFromQSize(size), PointerFromQWidget(widget)))
+	}
+	return nil
+}
+
+func (ptr *QProxyStyle) StandardIcon(standardIcon QStyle__StandardPixmap, option QStyleOption_ITF, widget QWidget_ITF) *gui.QIcon {
+	defer qt.Recovering("QProxyStyle::standardIcon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QProxyStyle_StandardIcon(ptr.Pointer(), C.int(standardIcon), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
+	}
+	return nil
+}
+
 func (ptr *QProxyStyle) StyleHint(hint QStyle__StyleHint, option QStyleOption_ITF, widget QWidget_ITF, returnData QStyleHintReturn_ITF) int {
 	defer qt.Recovering("QProxyStyle::styleHint")
 
@@ -213,6 +249,24 @@ func (ptr *QProxyStyle) StyleHint(hint QStyle__StyleHint, option QStyleOption_IT
 		return int(C.QProxyStyle_StyleHint(ptr.Pointer(), C.int(hint), PointerFromQStyleOption(option), PointerFromQWidget(widget), PointerFromQStyleHintReturn(returnData)))
 	}
 	return 0
+}
+
+func (ptr *QProxyStyle) SubControlRect(cc QStyle__ComplexControl, option QStyleOptionComplex_ITF, sc QStyle__SubControl, widget QWidget_ITF) *core.QRect {
+	defer qt.Recovering("QProxyStyle::subControlRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QProxyStyle_SubControlRect(ptr.Pointer(), C.int(cc), PointerFromQStyleOptionComplex(option), C.int(sc), PointerFromQWidget(widget)))
+	}
+	return nil
+}
+
+func (ptr *QProxyStyle) SubElementRect(element QStyle__SubElement, option QStyleOption_ITF, widget QWidget_ITF) *core.QRect {
+	defer qt.Recovering("QProxyStyle::subElementRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QProxyStyle_SubElementRect(ptr.Pointer(), C.int(element), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
+	}
+	return nil
 }
 
 func (ptr *QProxyStyle) ConnectUnpolish(f func(widget *QWidget)) {

@@ -110,6 +110,15 @@ func (ptr *QQuickView) Engine() *qml.QQmlEngine {
 	return nil
 }
 
+func (ptr *QQuickView) InitialSize() *core.QSize {
+	defer qt.Recovering("QQuickView::initialSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QQuickView_InitialSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickView) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
 	defer qt.Recovering("connect QQuickView::keyPressEvent")
 
@@ -289,6 +298,15 @@ func (ptr *QQuickView) SetSource(url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQuickView_SetSource(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
+}
+
+func (ptr *QQuickView) Source() *core.QUrl {
+	defer qt.Recovering("QQuickView::source")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QQuickView_Source(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QQuickView) ConnectStatusChanged(f func(status QQuickView__Status)) {

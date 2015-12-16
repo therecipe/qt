@@ -111,6 +111,35 @@ func (ptr *QRadioTunerControl) CancelSearch() {
 	}
 }
 
+func (ptr *QRadioTunerControl) ConnectError2(f func(error QRadioTuner__Error)) {
+	defer qt.Recovering("connect QRadioTunerControl::error")
+
+	if ptr.Pointer() != nil {
+		C.QRadioTunerControl_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QRadioTunerControl) DisconnectError2() {
+	defer qt.Recovering("disconnect QRadioTunerControl::error")
+
+	if ptr.Pointer() != nil {
+		C.QRadioTunerControl_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQRadioTunerControlError2
+func callbackQRadioTunerControlError2(ptrName *C.char, error C.int) {
+	defer qt.Recovering("callback QRadioTunerControl::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QRadioTuner__Error))(QRadioTuner__Error(error))
+	}
+
+}
+
 func (ptr *QRadioTunerControl) Error() QRadioTuner__Error {
 	defer qt.Recovering("QRadioTunerControl::error")
 
@@ -387,6 +416,15 @@ func (ptr *QRadioTunerControl) Start() {
 	if ptr.Pointer() != nil {
 		C.QRadioTunerControl_Start(ptr.Pointer())
 	}
+}
+
+func (ptr *QRadioTunerControl) State() QRadioTuner__State {
+	defer qt.Recovering("QRadioTunerControl::state")
+
+	if ptr.Pointer() != nil {
+		return QRadioTuner__State(C.QRadioTunerControl_State(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QRadioTunerControl) ConnectStateChanged(f func(state QRadioTuner__State)) {

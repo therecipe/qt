@@ -38,6 +38,24 @@ func (ptr *QDesktopWidget) QDesktopWidget_PTR() *QDesktopWidget {
 	return ptr
 }
 
+func (ptr *QDesktopWidget) AvailableGeometry2(widget QWidget_ITF) *core.QRect {
+	defer qt.Recovering("QDesktopWidget::availableGeometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QDesktopWidget_AvailableGeometry2(ptr.Pointer(), PointerFromQWidget(widget)))
+	}
+	return nil
+}
+
+func (ptr *QDesktopWidget) AvailableGeometry(screen int) *core.QRect {
+	defer qt.Recovering("QDesktopWidget::availableGeometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QDesktopWidget_AvailableGeometry(ptr.Pointer(), C.int(screen)))
+	}
+	return nil
+}
+
 func (ptr *QDesktopWidget) IsVirtualDesktop() bool {
 	defer qt.Recovering("QDesktopWidget::isVirtualDesktop")
 
@@ -96,6 +114,24 @@ func (ptr *QDesktopWidget) Screen(screen int) *QWidget {
 	return nil
 }
 
+func (ptr *QDesktopWidget) ScreenGeometry2(widget QWidget_ITF) *core.QRect {
+	defer qt.Recovering("QDesktopWidget::screenGeometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QDesktopWidget_ScreenGeometry2(ptr.Pointer(), PointerFromQWidget(widget)))
+	}
+	return nil
+}
+
+func (ptr *QDesktopWidget) ScreenGeometry(screen int) *core.QRect {
+	defer qt.Recovering("QDesktopWidget::screenGeometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QDesktopWidget_ScreenGeometry(ptr.Pointer(), C.int(screen)))
+	}
+	return nil
+}
+
 func (ptr *QDesktopWidget) ScreenNumber2(point core.QPoint_ITF) int {
 	defer qt.Recovering("QDesktopWidget::screenNumber")
 
@@ -112,6 +148,15 @@ func (ptr *QDesktopWidget) ScreenNumber(widget QWidget_ITF) int {
 		return int(C.QDesktopWidget_ScreenNumber(ptr.Pointer(), PointerFromQWidget(widget)))
 	}
 	return 0
+}
+
+func (ptr *QDesktopWidget) AvailableGeometry3(p core.QPoint_ITF) *core.QRect {
+	defer qt.Recovering("QDesktopWidget::availableGeometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QDesktopWidget_AvailableGeometry3(ptr.Pointer(), core.PointerFromQPoint(p)))
+	}
+	return nil
 }
 
 func (ptr *QDesktopWidget) ConnectResized(f func(screen int)) {
@@ -179,6 +224,15 @@ func callbackQDesktopWidgetScreenCountChanged(ptrName *C.char, newCount C.int) {
 		signal.(func(int))(int(newCount))
 	}
 
+}
+
+func (ptr *QDesktopWidget) ScreenGeometry3(p core.QPoint_ITF) *core.QRect {
+	defer qt.Recovering("QDesktopWidget::screenGeometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QDesktopWidget_ScreenGeometry3(ptr.Pointer(), core.PointerFromQPoint(p)))
+	}
+	return nil
 }
 
 func (ptr *QDesktopWidget) ConnectWorkAreaResized(f func(screen int)) {

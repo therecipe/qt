@@ -140,6 +140,15 @@ func (ptr *QVideoFrame) BytesPerLine2(plane int) int {
 	return 0
 }
 
+func (ptr *QVideoFrame) EndTime() int64 {
+	defer qt.Recovering("QVideoFrame::endTime")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QVideoFrame_EndTime(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QVideoFrame) FieldType() QVideoFrame__FieldType {
 	defer qt.Recovering("QVideoFrame::fieldType")
 
@@ -278,6 +287,14 @@ func (ptr *QVideoFrame) PlaneCount() int {
 	return 0
 }
 
+func (ptr *QVideoFrame) SetEndTime(time int64) {
+	defer qt.Recovering("QVideoFrame::setEndTime")
+
+	if ptr.Pointer() != nil {
+		C.QVideoFrame_SetEndTime(ptr.Pointer(), C.longlong(time))
+	}
+}
+
 func (ptr *QVideoFrame) SetFieldType(field QVideoFrame__FieldType) {
 	defer qt.Recovering("QVideoFrame::setFieldType")
 
@@ -292,6 +309,32 @@ func (ptr *QVideoFrame) SetMetaData(key string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
 		C.QVideoFrame_SetMetaData(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(value))
 	}
+}
+
+func (ptr *QVideoFrame) SetStartTime(time int64) {
+	defer qt.Recovering("QVideoFrame::setStartTime")
+
+	if ptr.Pointer() != nil {
+		C.QVideoFrame_SetStartTime(ptr.Pointer(), C.longlong(time))
+	}
+}
+
+func (ptr *QVideoFrame) Size() *core.QSize {
+	defer qt.Recovering("QVideoFrame::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QVideoFrame_Size(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QVideoFrame) StartTime() int64 {
+	defer qt.Recovering("QVideoFrame::startTime")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QVideoFrame_StartTime(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QVideoFrame) Unmap() {

@@ -94,6 +94,15 @@ func (ptr *QQmlEngine) AddPluginPath(path string) {
 	}
 }
 
+func (ptr *QQmlEngine) BaseUrl() *core.QUrl {
+	defer qt.Recovering("QQmlEngine::baseUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QQmlEngine_BaseUrl(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQmlEngine) ClearComponentCache() {
 	defer qt.Recovering("QQmlEngine::clearComponentCache")
 

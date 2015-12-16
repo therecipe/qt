@@ -40,6 +40,7 @@ func GenModule(name string) {
 		for _, c := range parser.ClassMap {
 			if moduleT == strings.TrimPrefix(c.Module, "Qt") {
 				AddObjectNameFunctionIfNeeded(c)
+				ManualWeakLink(c)
 				for _, f := range map[string]func(*parser.Class) string{"go": GoTemplate} {
 					f(c)
 				}
@@ -152,10 +153,35 @@ func AddObjectNameFunctionIfNeeded(c *parser.Class) {
 	}
 }
 
-/*
+func ManualWeakLink(c *parser.Class) {
+	for _, subclass := range AllClassesUnderThatPkgDir(c.Module) {
+		if subclass.WeakLink == nil {
+			subclass.WeakLink = make(map[string]bool)
+		}
 
-&{objectName QObject::objectName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.cpp non plain false false  QString QString objectName() const []  }
-&{setObjectName QObject::setObjectName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.cpp non plain false false  void void setObjectName(const QString &name) [0xc820478c40]  }
+		switch c.Module {
+		case "QtCore":
+			{
+				subclass.WeakLink["QtWidgets"] = true
+			}
+		case "QtGui":
+			{
+				subclass.WeakLink["QtWidgets"] = true
+			}
+		case "QtMultimedia":
+			{
+				subclass.WeakLink["QtMultimediaWidgets"] = true
+			}
+		}
+	}
+}
 
-
-*/
+func AllClassesUnderThatPkgDir(pkgdir string) []*parser.Class {
+	var out = make([]*parser.Class, 0)
+	for _, c := range parser.ClassMap {
+		if c.Module == pkgdir {
+			out = append(out, c)
+		}
+	}
+	return out
+}

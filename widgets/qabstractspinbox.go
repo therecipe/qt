@@ -592,6 +592,15 @@ func callbackQAbstractSpinBoxKeyReleaseEvent(ptrName *C.char, event unsafe.Point
 
 }
 
+func (ptr *QAbstractSpinBox) MinimumSizeHint() *core.QSize {
+	defer qt.Recovering("QAbstractSpinBox::minimumSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QAbstractSpinBox_MinimumSizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QAbstractSpinBox) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QAbstractSpinBox::mouseMoveEvent")
 
@@ -784,6 +793,15 @@ func callbackQAbstractSpinBoxShowEvent(ptrName *C.char, event unsafe.Pointer) bo
 	}
 	return false
 
+}
+
+func (ptr *QAbstractSpinBox) SizeHint() *core.QSize {
+	defer qt.Recovering("QAbstractSpinBox::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QAbstractSpinBox_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QAbstractSpinBox) ConnectStepBy(f func(steps int)) {

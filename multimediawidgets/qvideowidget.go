@@ -468,6 +468,15 @@ func callbackQVideoWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
 
 }
 
+func (ptr *QVideoWidget) SizeHint() *core.QSize {
+	defer qt.Recovering("QVideoWidget::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QVideoWidget_SizeHint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QVideoWidget) DestroyQVideoWidget() {
 	defer qt.Recovering("QVideoWidget::~QVideoWidget")
 

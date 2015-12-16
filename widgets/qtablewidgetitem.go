@@ -148,6 +148,15 @@ func (ptr *QTableWidgetItem) Foreground() *gui.QBrush {
 	return nil
 }
 
+func (ptr *QTableWidgetItem) Icon() *gui.QIcon {
+	defer qt.Recovering("QTableWidgetItem::icon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QTableWidgetItem_Icon(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QTableWidgetItem) IsSelected() bool {
 	defer qt.Recovering("QTableWidgetItem::isSelected")
 
@@ -291,6 +300,15 @@ func (ptr *QTableWidgetItem) SetWhatsThis(whatsThis string) {
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_SetWhatsThis(ptr.Pointer(), C.CString(whatsThis))
 	}
+}
+
+func (ptr *QTableWidgetItem) SizeHint() *core.QSize {
+	defer qt.Recovering("QTableWidgetItem::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QTableWidgetItem_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QTableWidgetItem) StatusTip() string {

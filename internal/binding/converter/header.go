@@ -10,7 +10,11 @@ import (
 func GoHeaderName(f *parser.Function) (o string) {
 
 	if f.SignalMode == "callback" {
-		return fmt.Sprintf("callback%v%v", f.Class(), strings.Replace(strings.Title(f.Name), "~", "Destroy", -1))
+		var tmp = fmt.Sprintf("callback%v%v", f.Class(), strings.Replace(strings.Title(f.Name), "~", "Destroy", -1))
+		if f.Overload {
+			tmp += f.OverloadNumber
+		}
+		return tmp
 	}
 
 	if f.Static {

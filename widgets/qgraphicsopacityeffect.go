@@ -78,6 +78,35 @@ func NewQGraphicsOpacityEffect(parent core.QObject_ITF) *QGraphicsOpacityEffect 
 	return NewQGraphicsOpacityEffectFromPointer(C.QGraphicsOpacityEffect_NewQGraphicsOpacityEffect(core.PointerFromQObject(parent)))
 }
 
+func (ptr *QGraphicsOpacityEffect) ConnectOpacityChanged(f func(opacity float64)) {
+	defer qt.Recovering("connect QGraphicsOpacityEffect::opacityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_ConnectOpacityChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "opacityChanged", f)
+	}
+}
+
+func (ptr *QGraphicsOpacityEffect) DisconnectOpacityChanged() {
+	defer qt.Recovering("disconnect QGraphicsOpacityEffect::opacityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_DisconnectOpacityChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "opacityChanged")
+	}
+}
+
+//export callbackQGraphicsOpacityEffectOpacityChanged
+func callbackQGraphicsOpacityEffectOpacityChanged(ptrName *C.char, opacity C.double) {
+	defer qt.Recovering("callback QGraphicsOpacityEffect::opacityChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "opacityChanged")
+	if signal != nil {
+		signal.(func(float64))(float64(opacity))
+	}
+
+}
+
 func (ptr *QGraphicsOpacityEffect) ConnectOpacityMaskChanged(f func(mask *gui.QBrush)) {
 	defer qt.Recovering("connect QGraphicsOpacityEffect::opacityMaskChanged")
 

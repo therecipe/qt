@@ -38,6 +38,15 @@ func (ptr *QMenu) QMenu_PTR() *QMenu {
 	return ptr
 }
 
+func (ptr *QMenu) Icon() *gui.QIcon {
+	defer qt.Recovering("QMenu::icon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QMenu_Icon(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMenu) IsTearOffEnabled() bool {
 	defer qt.Recovering("QMenu::isTearOffEnabled")
 
@@ -222,6 +231,15 @@ func callbackQMenuActionEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QMenu) ActionGeometry(act QAction_ITF) *core.QRect {
+	defer qt.Recovering("QMenu::actionGeometry")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QMenu_ActionGeometry(ptr.Pointer(), PointerFromQAction(act)))
+	}
+	return nil
 }
 
 func (ptr *QMenu) ActiveAction() *QAction {
@@ -742,6 +760,15 @@ func (ptr *QMenu) SetActiveAction(act QAction_ITF) {
 	if ptr.Pointer() != nil {
 		C.QMenu_SetActiveAction(ptr.Pointer(), PointerFromQAction(act))
 	}
+}
+
+func (ptr *QMenu) SizeHint() *core.QSize {
+	defer qt.Recovering("QMenu::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QMenu_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMenu) ConnectTimerEvent(f func(e *core.QTimerEvent)) {

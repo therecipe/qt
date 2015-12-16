@@ -132,24 +132,6 @@ func (ptr *QXmlSimpleReader) Parse(input QXmlInputSource_ITF) bool {
 	return false
 }
 
-func (ptr *QXmlSimpleReader) Parse2(input QXmlInputSource_ITF) bool {
-	defer qt.Recovering("QXmlSimpleReader::parse")
-
-	if ptr.Pointer() != nil {
-		return C.QXmlSimpleReader_Parse2(ptr.Pointer(), PointerFromQXmlInputSource(input)) != 0
-	}
-	return false
-}
-
-func (ptr *QXmlSimpleReader) Parse3(input QXmlInputSource_ITF, incremental bool) bool {
-	defer qt.Recovering("QXmlSimpleReader::parse")
-
-	if ptr.Pointer() != nil {
-		return C.QXmlSimpleReader_Parse3(ptr.Pointer(), PointerFromQXmlInputSource(input), C.int(qt.GoBoolToInt(incremental))) != 0
-	}
-	return false
-}
-
 func (ptr *QXmlSimpleReader) ParseContinue() bool {
 	defer qt.Recovering("QXmlSimpleReader::parseContinue")
 

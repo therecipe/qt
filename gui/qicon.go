@@ -96,6 +96,24 @@ func NewQIcon5(fileName string) *QIcon {
 	return NewQIconFromPointer(C.QIcon_NewQIcon5(C.CString(fileName)))
 }
 
+func (ptr *QIcon) ActualSize2(window QWindow_ITF, size core.QSize_ITF, mode QIcon__Mode, state QIcon__State) *core.QSize {
+	defer qt.Recovering("QIcon::actualSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QIcon_ActualSize2(ptr.Pointer(), PointerFromQWindow(window), core.PointerFromQSize(size), C.int(mode), C.int(state)))
+	}
+	return nil
+}
+
+func (ptr *QIcon) ActualSize(size core.QSize_ITF, mode QIcon__Mode, state QIcon__State) *core.QSize {
+	defer qt.Recovering("QIcon::actualSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QIcon_ActualSize(ptr.Pointer(), core.PointerFromQSize(size), C.int(mode), C.int(state)))
+	}
+	return nil
+}
+
 func (ptr *QIcon) AddFile(fileName string, size core.QSize_ITF, mode QIcon__Mode, state QIcon__State) {
 	defer qt.Recovering("QIcon::addFile")
 
@@ -110,6 +128,21 @@ func (ptr *QIcon) AddPixmap(pixmap QPixmap_ITF, mode QIcon__Mode, state QIcon__S
 	if ptr.Pointer() != nil {
 		C.QIcon_AddPixmap(ptr.Pointer(), PointerFromQPixmap(pixmap), C.int(mode), C.int(state))
 	}
+}
+
+func (ptr *QIcon) CacheKey() int64 {
+	defer qt.Recovering("QIcon::cacheKey")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIcon_CacheKey(ptr.Pointer()))
+	}
+	return 0
+}
+
+func QIcon_FromTheme(name string, fallback QIcon_ITF) *QIcon {
+	defer qt.Recovering("QIcon::fromTheme")
+
+	return NewQIconFromPointer(C.QIcon_QIcon_FromTheme(C.CString(name), PointerFromQIcon(fallback)))
 }
 
 func QIcon_HasThemeIcon(name string) bool {

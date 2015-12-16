@@ -106,6 +106,53 @@ func (ptr *QIODevice) AtEnd() bool {
 	return false
 }
 
+func (ptr *QIODevice) BytesAvailable() int64 {
+	defer qt.Recovering("QIODevice::bytesAvailable")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIODevice_BytesAvailable(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QIODevice) BytesToWrite() int64 {
+	defer qt.Recovering("QIODevice::bytesToWrite")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIODevice_BytesToWrite(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QIODevice) ConnectBytesWritten(f func(bytes int64)) {
+	defer qt.Recovering("connect QIODevice::bytesWritten")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_ConnectBytesWritten(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "bytesWritten", f)
+	}
+}
+
+func (ptr *QIODevice) DisconnectBytesWritten() {
+	defer qt.Recovering("disconnect QIODevice::bytesWritten")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_DisconnectBytesWritten(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "bytesWritten")
+	}
+}
+
+//export callbackQIODeviceBytesWritten
+func callbackQIODeviceBytesWritten(ptrName *C.char, bytes C.longlong) {
+	defer qt.Recovering("callback QIODevice::bytesWritten")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "bytesWritten")
+	if signal != nil {
+		signal.(func(int64))(int64(bytes))
+	}
+
+}
+
 func (ptr *QIODevice) CanReadLine() bool {
 	defer qt.Recovering("QIODevice::canReadLine")
 
@@ -218,6 +265,51 @@ func (ptr *QIODevice) OpenMode() QIODevice__OpenModeFlag {
 	return 0
 }
 
+func (ptr *QIODevice) Peek2(maxSize int64) *QByteArray {
+	defer qt.Recovering("QIODevice::peek")
+
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QIODevice_Peek2(ptr.Pointer(), C.longlong(maxSize)))
+	}
+	return nil
+}
+
+func (ptr *QIODevice) Peek(data string, maxSize int64) int64 {
+	defer qt.Recovering("QIODevice::peek")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIODevice_Peek(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+	}
+	return 0
+}
+
+func (ptr *QIODevice) Pos() int64 {
+	defer qt.Recovering("QIODevice::pos")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIODevice_Pos(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QIODevice) Read2(maxSize int64) *QByteArray {
+	defer qt.Recovering("QIODevice::read")
+
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QIODevice_Read2(ptr.Pointer(), C.longlong(maxSize)))
+	}
+	return nil
+}
+
+func (ptr *QIODevice) Read(data string, maxSize int64) int64 {
+	defer qt.Recovering("QIODevice::read")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIODevice_Read(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+	}
+	return 0
+}
+
 func (ptr *QIODevice) ReadAll() *QByteArray {
 	defer qt.Recovering("QIODevice::readAll")
 
@@ -254,6 +346,24 @@ func callbackQIODeviceReadChannelFinished(ptrName *C.char) {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QIODevice) ReadLine2(maxSize int64) *QByteArray {
+	defer qt.Recovering("QIODevice::readLine")
+
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QIODevice_ReadLine2(ptr.Pointer(), C.longlong(maxSize)))
+	}
+	return nil
+}
+
+func (ptr *QIODevice) ReadLine(data string, maxSize int64) int64 {
+	defer qt.Recovering("QIODevice::readLine")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIODevice_ReadLine(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+	}
+	return 0
 }
 
 func (ptr *QIODevice) ConnectReadyRead(f func()) {
@@ -294,12 +404,30 @@ func (ptr *QIODevice) Reset() bool {
 	return false
 }
 
+func (ptr *QIODevice) Seek(pos int64) bool {
+	defer qt.Recovering("QIODevice::seek")
+
+	if ptr.Pointer() != nil {
+		return C.QIODevice_Seek(ptr.Pointer(), C.longlong(pos)) != 0
+	}
+	return false
+}
+
 func (ptr *QIODevice) SetTextModeEnabled(enabled bool) {
 	defer qt.Recovering("QIODevice::setTextModeEnabled")
 
 	if ptr.Pointer() != nil {
 		C.QIODevice_SetTextModeEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
 	}
+}
+
+func (ptr *QIODevice) Size() int64 {
+	defer qt.Recovering("QIODevice::size")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIODevice_Size(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QIODevice) UngetChar(c string) {
@@ -326,6 +454,33 @@ func (ptr *QIODevice) WaitForReadyRead(msecs int) bool {
 		return C.QIODevice_WaitForReadyRead(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
+}
+
+func (ptr *QIODevice) Write3(byteArray QByteArray_ITF) int64 {
+	defer qt.Recovering("QIODevice::write")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIODevice_Write3(ptr.Pointer(), PointerFromQByteArray(byteArray)))
+	}
+	return 0
+}
+
+func (ptr *QIODevice) Write2(data string) int64 {
+	defer qt.Recovering("QIODevice::write")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIODevice_Write2(ptr.Pointer(), C.CString(data)))
+	}
+	return 0
+}
+
+func (ptr *QIODevice) Write(data string, maxSize int64) int64 {
+	defer qt.Recovering("QIODevice::write")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIODevice_Write(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+	}
+	return 0
 }
 
 func (ptr *QIODevice) DestroyQIODevice() {

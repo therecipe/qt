@@ -538,6 +538,37 @@ func callbackQHeaderViewPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
 
 }
 
+func (ptr *QHeaderView) ConnectPaintSection(f func(painter *gui.QPainter, rect *core.QRect, logicalIndex int)) {
+	defer qt.Recovering("connect QHeaderView::paintSection")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintSection", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectPaintSection() {
+	defer qt.Recovering("disconnect QHeaderView::paintSection")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintSection")
+	}
+}
+
+//export callbackQHeaderViewPaintSection
+func callbackQHeaderViewPaintSection(ptrName *C.char, painter unsafe.Pointer, rect unsafe.Pointer, logicalIndex C.int) bool {
+	defer qt.Recovering("callback QHeaderView::paintSection")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "paintSection")
+	if signal != nil {
+		defer signal.(func(*gui.QPainter, *core.QRect, int))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), int(logicalIndex))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QHeaderView) ConnectReset(f func()) {
 	defer qt.Recovering("connect QHeaderView::reset")
 
@@ -1012,6 +1043,37 @@ func (ptr *QHeaderView) SetSectionsMovable(movable bool) {
 	}
 }
 
+func (ptr *QHeaderView) ConnectSetSelection(f func(rect *core.QRect, flags core.QItemSelectionModel__SelectionFlag)) {
+	defer qt.Recovering("connect QHeaderView::setSelection")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSelection", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectSetSelection() {
+	defer qt.Recovering("disconnect QHeaderView::setSelection")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSelection")
+	}
+}
+
+//export callbackQHeaderViewSetSelection
+func callbackQHeaderViewSetSelection(ptrName *C.char, rect unsafe.Pointer, flags C.int) bool {
+	defer qt.Recovering("callback QHeaderView::setSelection")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setSelection")
+	if signal != nil {
+		defer signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QHeaderView) SetSortIndicator(logicalIndex int, order core.Qt__SortOrder) {
 	defer qt.Recovering("QHeaderView::setSortIndicator")
 
@@ -1057,6 +1119,15 @@ func (ptr *QHeaderView) ShowSection(logicalIndex int) {
 	if ptr.Pointer() != nil {
 		C.QHeaderView_ShowSection(ptr.Pointer(), C.int(logicalIndex))
 	}
+}
+
+func (ptr *QHeaderView) SizeHint() *core.QSize {
+	defer qt.Recovering("QHeaderView::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QHeaderView_SizeHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QHeaderView) ConnectSortIndicatorChanged(f func(logicalIndex int, order core.Qt__SortOrder)) {

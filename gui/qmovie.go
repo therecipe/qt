@@ -247,6 +247,15 @@ func (ptr *QMovie) FrameCount() int {
 	return 0
 }
 
+func (ptr *QMovie) FrameRect() *core.QRect {
+	defer qt.Recovering("QMovie::frameRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QMovie_FrameRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMovie) IsValid() bool {
 	defer qt.Recovering("QMovie::isValid")
 
@@ -290,6 +299,44 @@ func (ptr *QMovie) NextFrameDelay() int {
 		return int(C.QMovie_NextFrameDelay(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QMovie) ConnectResized(f func(size *core.QSize)) {
+	defer qt.Recovering("connect QMovie::resized")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_ConnectResized(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "resized", f)
+	}
+}
+
+func (ptr *QMovie) DisconnectResized() {
+	defer qt.Recovering("disconnect QMovie::resized")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_DisconnectResized(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "resized")
+	}
+}
+
+//export callbackQMovieResized
+func callbackQMovieResized(ptrName *C.char, size unsafe.Pointer) {
+	defer qt.Recovering("callback QMovie::resized")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "resized")
+	if signal != nil {
+		signal.(func(*core.QSize))(core.NewQSizeFromPointer(size))
+	}
+
+}
+
+func (ptr *QMovie) ScaledSize() *core.QSize {
+	defer qt.Recovering("QMovie::scaledSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QMovie_ScaledSize(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMovie) SetBackgroundColor(color QColor_ITF) {
@@ -377,6 +424,15 @@ func callbackQMovieStarted(ptrName *C.char) {
 
 }
 
+func (ptr *QMovie) State() QMovie__MovieState {
+	defer qt.Recovering("QMovie::state")
+
+	if ptr.Pointer() != nil {
+		return QMovie__MovieState(C.QMovie_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QMovie) ConnectStateChanged(f func(state QMovie__MovieState)) {
 	defer qt.Recovering("connect QMovie::stateChanged")
 
@@ -412,6 +468,35 @@ func (ptr *QMovie) Stop() {
 	if ptr.Pointer() != nil {
 		C.QMovie_Stop(ptr.Pointer())
 	}
+}
+
+func (ptr *QMovie) ConnectUpdated(f func(rect *core.QRect)) {
+	defer qt.Recovering("connect QMovie::updated")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_ConnectUpdated(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "updated", f)
+	}
+}
+
+func (ptr *QMovie) DisconnectUpdated() {
+	defer qt.Recovering("disconnect QMovie::updated")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_DisconnectUpdated(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "updated")
+	}
+}
+
+//export callbackQMovieUpdated
+func callbackQMovieUpdated(ptrName *C.char, rect unsafe.Pointer) {
+	defer qt.Recovering("callback QMovie::updated")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "updated")
+	if signal != nil {
+		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+	}
+
 }
 
 func (ptr *QMovie) DestroyQMovie() {

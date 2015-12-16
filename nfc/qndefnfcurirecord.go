@@ -53,3 +53,12 @@ func (ptr *QNdefNfcUriRecord) SetUri(uri core.QUrl_ITF) {
 		C.QNdefNfcUriRecord_SetUri(ptr.Pointer(), core.PointerFromQUrl(uri))
 	}
 }
+
+func (ptr *QNdefNfcUriRecord) Uri() *core.QUrl {
+	defer qt.Recovering("QNdefNfcUriRecord::uri")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QNdefNfcUriRecord_Uri(ptr.Pointer()))
+	}
+	return nil
+}

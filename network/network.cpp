@@ -59,6 +59,10 @@ public:
 protected:
 };
 
+long long QAbstractNetworkCache_CacheSize(void* ptr){
+	return static_cast<long long>(static_cast<QAbstractNetworkCache*>(ptr)->cacheSize());
+}
+
 void QAbstractNetworkCache_Clear(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QAbstractNetworkCache*>(ptr), "clear");
 }
@@ -86,8 +90,10 @@ public:
 	void Signal_Connected() { callbackQAbstractSocketConnected(this->objectName().toUtf8().data()); };
 	void disconnectFromHost() { if (!callbackQAbstractSocketDisconnectFromHost(this->objectName().toUtf8().data())) { QAbstractSocket::disconnectFromHost(); }; };
 	void Signal_Disconnected() { callbackQAbstractSocketDisconnected(this->objectName().toUtf8().data()); };
+	void Signal_Error2(QAbstractSocket::SocketError socketError) { callbackQAbstractSocketError2(this->objectName().toUtf8().data(), socketError); };
 	void Signal_HostFound() { callbackQAbstractSocketHostFound(this->objectName().toUtf8().data()); };
 	void resume() { if (!callbackQAbstractSocketResume(this->objectName().toUtf8().data())) { QAbstractSocket::resume(); }; };
+	void setReadBufferSize(qint64 size) { if (!callbackQAbstractSocketSetReadBufferSize(this->objectName().toUtf8().data(), static_cast<long long>(size))) { QAbstractSocket::setReadBufferSize(size); }; };
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { if (!callbackQAbstractSocketSetSocketOption(this->objectName().toUtf8().data(), option, new QVariant(value))) { QAbstractSocket::setSocketOption(option, value); }; };
 	void Signal_StateChanged(QAbstractSocket::SocketState socketState) { callbackQAbstractSocketStateChanged(this->objectName().toUtf8().data(), socketState); };
 protected:
@@ -103,6 +109,14 @@ void QAbstractSocket_Abort(void* ptr){
 
 int QAbstractSocket_AtEnd(void* ptr){
 	return static_cast<QAbstractSocket*>(ptr)->atEnd();
+}
+
+long long QAbstractSocket_BytesAvailable(void* ptr){
+	return static_cast<long long>(static_cast<QAbstractSocket*>(ptr)->bytesAvailable());
+}
+
+long long QAbstractSocket_BytesToWrite(void* ptr){
+	return static_cast<long long>(static_cast<QAbstractSocket*>(ptr)->bytesToWrite());
 }
 
 int QAbstractSocket_CanReadLine(void* ptr){
@@ -131,6 +145,14 @@ void QAbstractSocket_ConnectDisconnected(void* ptr){
 
 void QAbstractSocket_DisconnectDisconnected(void* ptr){
 	QObject::disconnect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)()>(&QAbstractSocket::disconnected), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)()>(&MyQAbstractSocket::Signal_Disconnected));;
+}
+
+void QAbstractSocket_ConnectError2(void* ptr){
+	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)(QAbstractSocket::SocketError)>(&MyQAbstractSocket::Signal_Error2));;
+}
+
+void QAbstractSocket_DisconnectError2(void* ptr){
+	QObject::disconnect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)(QAbstractSocket::SocketError)>(&MyQAbstractSocket::Signal_Error2));;
 }
 
 int QAbstractSocket_Error(void* ptr){
@@ -165,6 +187,10 @@ char* QAbstractSocket_PeerName(void* ptr){
 	return static_cast<QAbstractSocket*>(ptr)->peerName().toUtf8().data();
 }
 
+long long QAbstractSocket_ReadBufferSize(void* ptr){
+	return static_cast<long long>(static_cast<QAbstractSocket*>(ptr)->readBufferSize());
+}
+
 void QAbstractSocket_Resume(void* ptr){
 	static_cast<QAbstractSocket*>(ptr)->resume();
 }
@@ -177,6 +203,10 @@ void QAbstractSocket_SetProxy(void* ptr, void* networkProxy){
 	static_cast<QAbstractSocket*>(ptr)->setProxy(*static_cast<QNetworkProxy*>(networkProxy));
 }
 
+void QAbstractSocket_SetReadBufferSize(void* ptr, long long size){
+	static_cast<QAbstractSocket*>(ptr)->setReadBufferSize(static_cast<long long>(size));
+}
+
 void QAbstractSocket_SetSocketOption(void* ptr, int option, void* value){
 	static_cast<QAbstractSocket*>(ptr)->setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
 }
@@ -187,6 +217,10 @@ void* QAbstractSocket_SocketOption(void* ptr, int option){
 
 int QAbstractSocket_SocketType(void* ptr){
 	return static_cast<QAbstractSocket*>(ptr)->socketType();
+}
+
+int QAbstractSocket_State(void* ptr){
+	return static_cast<QAbstractSocket*>(ptr)->state();
 }
 
 void QAbstractSocket_ConnectStateChanged(void* ptr){
@@ -725,6 +759,7 @@ public:
 	MyQLocalSocket(QObject *parent) : QLocalSocket(parent) {};
 	void Signal_Connected() { callbackQLocalSocketConnected(this->objectName().toUtf8().data()); };
 	void Signal_Disconnected() { callbackQLocalSocketDisconnected(this->objectName().toUtf8().data()); };
+	void Signal_Error2(QLocalSocket::LocalSocketError socketError) { callbackQLocalSocketError2(this->objectName().toUtf8().data(), socketError); };
 	void Signal_StateChanged(QLocalSocket::LocalSocketState socketState) { callbackQLocalSocketStateChanged(this->objectName().toUtf8().data(), socketState); };
 	void close() { if (!callbackQLocalSocketClose(this->objectName().toUtf8().data())) { QLocalSocket::close(); }; };
 protected:
@@ -758,6 +793,14 @@ void QLocalSocket_DisconnectDisconnected(void* ptr){
 	QObject::disconnect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)()>(&QLocalSocket::disconnected), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)()>(&MyQLocalSocket::Signal_Disconnected));;
 }
 
+void QLocalSocket_ConnectError2(void* ptr){
+	QObject::connect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)(QLocalSocket::LocalSocketError)>(&QLocalSocket::error), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)(QLocalSocket::LocalSocketError)>(&MyQLocalSocket::Signal_Error2));;
+}
+
+void QLocalSocket_DisconnectError2(void* ptr){
+	QObject::disconnect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)(QLocalSocket::LocalSocketError)>(&QLocalSocket::error), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)(QLocalSocket::LocalSocketError)>(&MyQLocalSocket::Signal_Error2));;
+}
+
 char* QLocalSocket_FullServerName(void* ptr){
 	return static_cast<QLocalSocket*>(ptr)->fullServerName().toUtf8().data();
 }
@@ -774,6 +817,10 @@ void QLocalSocket_SetServerName(void* ptr, char* name){
 	static_cast<QLocalSocket*>(ptr)->setServerName(QString(name));
 }
 
+int QLocalSocket_State(void* ptr){
+	return static_cast<QLocalSocket*>(ptr)->state();
+}
+
 void QLocalSocket_ConnectStateChanged(void* ptr){
 	QObject::connect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)(QLocalSocket::LocalSocketState)>(&QLocalSocket::stateChanged), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)(QLocalSocket::LocalSocketState)>(&MyQLocalSocket::Signal_StateChanged));;
 }
@@ -788,6 +835,14 @@ void QLocalSocket_DestroyQLocalSocket(void* ptr){
 
 void QLocalSocket_Abort(void* ptr){
 	static_cast<QLocalSocket*>(ptr)->abort();
+}
+
+long long QLocalSocket_BytesAvailable(void* ptr){
+	return static_cast<long long>(static_cast<QLocalSocket*>(ptr)->bytesAvailable());
+}
+
+long long QLocalSocket_BytesToWrite(void* ptr){
+	return static_cast<long long>(static_cast<QLocalSocket*>(ptr)->bytesToWrite());
 }
 
 int QLocalSocket_CanReadLine(void* ptr){
@@ -816,6 +871,14 @@ int QLocalSocket_Flush(void* ptr){
 
 int QLocalSocket_IsValid(void* ptr){
 	return static_cast<QLocalSocket*>(ptr)->isValid();
+}
+
+long long QLocalSocket_ReadBufferSize(void* ptr){
+	return static_cast<long long>(static_cast<QLocalSocket*>(ptr)->readBufferSize());
+}
+
+void QLocalSocket_SetReadBufferSize(void* ptr, long long size){
+	static_cast<QLocalSocket*>(ptr)->setReadBufferSize(static_cast<long long>(size));
 }
 
 int QLocalSocket_WaitForBytesWritten(void* ptr, int msecs){
@@ -1061,6 +1124,10 @@ void QNetworkCacheMetaData_Swap(void* ptr, void* other){
 	static_cast<QNetworkCacheMetaData*>(ptr)->swap(*static_cast<QNetworkCacheMetaData*>(other));
 }
 
+void* QNetworkCacheMetaData_Url(void* ptr){
+	return new QUrl(static_cast<QNetworkCacheMetaData*>(ptr)->url());
+}
+
 void QNetworkCacheMetaData_DestroyQNetworkCacheMetaData(void* ptr){
 	static_cast<QNetworkCacheMetaData*>(ptr)->~QNetworkCacheMetaData();
 }
@@ -1103,6 +1170,10 @@ char* QNetworkConfiguration_Name(void* ptr){
 
 int QNetworkConfiguration_Purpose(void* ptr){
 	return static_cast<QNetworkConfiguration*>(ptr)->purpose();
+}
+
+int QNetworkConfiguration_State(void* ptr){
+	return static_cast<QNetworkConfiguration*>(ptr)->state();
 }
 
 void QNetworkConfiguration_Swap(void* ptr, void* other){
@@ -1290,6 +1361,10 @@ char* QNetworkDiskCache_CacheDirectory(void* ptr){
 	return static_cast<QNetworkDiskCache*>(ptr)->cacheDirectory().toUtf8().data();
 }
 
+long long QNetworkDiskCache_CacheSize(void* ptr){
+	return static_cast<long long>(static_cast<QNetworkDiskCache*>(ptr)->cacheSize());
+}
+
 void QNetworkDiskCache_Clear(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QNetworkDiskCache*>(ptr), "clear");
 }
@@ -1298,12 +1373,20 @@ void* QNetworkDiskCache_Data(void* ptr, void* url){
 	return static_cast<QNetworkDiskCache*>(ptr)->data(*static_cast<QUrl*>(url));
 }
 
+long long QNetworkDiskCache_MaximumCacheSize(void* ptr){
+	return static_cast<long long>(static_cast<QNetworkDiskCache*>(ptr)->maximumCacheSize());
+}
+
 void* QNetworkDiskCache_Prepare(void* ptr, void* metaData){
 	return static_cast<QNetworkDiskCache*>(ptr)->prepare(*static_cast<QNetworkCacheMetaData*>(metaData));
 }
 
 void QNetworkDiskCache_SetCacheDirectory(void* ptr, char* cacheDir){
 	static_cast<QNetworkDiskCache*>(ptr)->setCacheDirectory(QString(cacheDir));
+}
+
+void QNetworkDiskCache_SetMaximumCacheSize(void* ptr, long long size){
+	static_cast<QNetworkDiskCache*>(ptr)->setMaximumCacheSize(static_cast<long long>(size));
 }
 
 void QNetworkDiskCache_DestroyQNetworkDiskCache(void* ptr){
@@ -1542,6 +1625,10 @@ void QNetworkProxyQuery_Swap(void* ptr, void* other){
 	static_cast<QNetworkProxyQuery*>(ptr)->swap(*static_cast<QNetworkProxyQuery*>(other));
 }
 
+void* QNetworkProxyQuery_Url(void* ptr){
+	return new QUrl(static_cast<QNetworkProxyQuery*>(ptr)->url());
+}
+
 void QNetworkProxyQuery_DestroyQNetworkProxyQuery(void* ptr){
 	static_cast<QNetworkProxyQuery*>(ptr)->~QNetworkProxyQuery();
 }
@@ -1549,11 +1636,15 @@ void QNetworkProxyQuery_DestroyQNetworkProxyQuery(void* ptr){
 class MyQNetworkReply: public QNetworkReply {
 public:
 	void close() { if (!callbackQNetworkReplyClose(this->objectName().toUtf8().data())) { QNetworkReply::close(); }; };
+	void Signal_DownloadProgress(qint64 bytesReceived, qint64 bytesTotal) { callbackQNetworkReplyDownloadProgress(this->objectName().toUtf8().data(), static_cast<long long>(bytesReceived), static_cast<long long>(bytesTotal)); };
 	void Signal_Encrypted() { callbackQNetworkReplyEncrypted(this->objectName().toUtf8().data()); };
+	void Signal_Error2(QNetworkReply::NetworkError code) { callbackQNetworkReplyError2(this->objectName().toUtf8().data(), code); };
 	void Signal_Finished() { callbackQNetworkReplyFinished(this->objectName().toUtf8().data()); };
 	void ignoreSslErrors() { if (!callbackQNetworkReplyIgnoreSslErrors(this->objectName().toUtf8().data())) { QNetworkReply::ignoreSslErrors(); }; };
 	void Signal_MetaDataChanged() { callbackQNetworkReplyMetaDataChanged(this->objectName().toUtf8().data()); };
 	void Signal_PreSharedKeyAuthenticationRequired(QSslPreSharedKeyAuthenticator * authenticator) { callbackQNetworkReplyPreSharedKeyAuthenticationRequired(this->objectName().toUtf8().data(), authenticator); };
+	void setReadBufferSize(qint64 size) { if (!callbackQNetworkReplySetReadBufferSize(this->objectName().toUtf8().data(), static_cast<long long>(size))) { QNetworkReply::setReadBufferSize(size); }; };
+	void Signal_UploadProgress(qint64 bytesSent, qint64 bytesTotal) { callbackQNetworkReplyUploadProgress(this->objectName().toUtf8().data(), static_cast<long long>(bytesSent), static_cast<long long>(bytesTotal)); };
 protected:
 };
 
@@ -1569,12 +1660,28 @@ void QNetworkReply_Close(void* ptr){
 	static_cast<QNetworkReply*>(ptr)->close();
 }
 
+void QNetworkReply_ConnectDownloadProgress(void* ptr){
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(qint64, qint64)>(&QNetworkReply::downloadProgress), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(qint64, qint64)>(&MyQNetworkReply::Signal_DownloadProgress));;
+}
+
+void QNetworkReply_DisconnectDownloadProgress(void* ptr){
+	QObject::disconnect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(qint64, qint64)>(&QNetworkReply::downloadProgress), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(qint64, qint64)>(&MyQNetworkReply::Signal_DownloadProgress));;
+}
+
 void QNetworkReply_ConnectEncrypted(void* ptr){
 	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::encrypted), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_Encrypted));;
 }
 
 void QNetworkReply_DisconnectEncrypted(void* ptr){
 	QObject::disconnect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::encrypted), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_Encrypted));;
+}
+
+void QNetworkReply_ConnectError2(void* ptr){
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(QNetworkReply::NetworkError)>(&MyQNetworkReply::Signal_Error2));;
+}
+
+void QNetworkReply_DisconnectError2(void* ptr){
+	QObject::disconnect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(QNetworkReply::NetworkError)>(&MyQNetworkReply::Signal_Error2));;
 }
 
 int QNetworkReply_Error(void* ptr){
@@ -1637,8 +1744,28 @@ void* QNetworkReply_RawHeader(void* ptr, void* headerName){
 	return new QByteArray(static_cast<QNetworkReply*>(ptr)->rawHeader(*static_cast<QByteArray*>(headerName)));
 }
 
+long long QNetworkReply_ReadBufferSize(void* ptr){
+	return static_cast<long long>(static_cast<QNetworkReply*>(ptr)->readBufferSize());
+}
+
+void QNetworkReply_SetReadBufferSize(void* ptr, long long size){
+	static_cast<QNetworkReply*>(ptr)->setReadBufferSize(static_cast<long long>(size));
+}
+
 void QNetworkReply_SetSslConfiguration(void* ptr, void* config){
 	static_cast<QNetworkReply*>(ptr)->setSslConfiguration(*static_cast<QSslConfiguration*>(config));
+}
+
+void QNetworkReply_ConnectUploadProgress(void* ptr){
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(qint64, qint64)>(&QNetworkReply::uploadProgress), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(qint64, qint64)>(&MyQNetworkReply::Signal_UploadProgress));;
+}
+
+void QNetworkReply_DisconnectUploadProgress(void* ptr){
+	QObject::disconnect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(qint64, qint64)>(&QNetworkReply::uploadProgress), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(qint64, qint64)>(&MyQNetworkReply::Signal_UploadProgress));;
+}
+
+void* QNetworkReply_Url(void* ptr){
+	return new QUrl(static_cast<QNetworkReply*>(ptr)->url());
 }
 
 void QNetworkReply_DestroyQNetworkReply(void* ptr){
@@ -1709,6 +1836,10 @@ void QNetworkRequest_Swap(void* ptr, void* other){
 	static_cast<QNetworkRequest*>(ptr)->swap(*static_cast<QNetworkRequest*>(other));
 }
 
+void* QNetworkRequest_Url(void* ptr){
+	return new QUrl(static_cast<QNetworkRequest*>(ptr)->url());
+}
+
 void QNetworkRequest_DestroyQNetworkRequest(void* ptr){
 	static_cast<QNetworkRequest*>(ptr)->~QNetworkRequest();
 }
@@ -1717,6 +1848,7 @@ class MyQNetworkSession: public QNetworkSession {
 public:
 	MyQNetworkSession(const QNetworkConfiguration &connectionConfig, QObject *parent) : QNetworkSession(connectionConfig, parent) {};
 	void Signal_Closed() { callbackQNetworkSessionClosed(this->objectName().toUtf8().data()); };
+	void Signal_Error2(QNetworkSession::SessionError error) { callbackQNetworkSessionError2(this->objectName().toUtf8().data(), error); };
 	void Signal_NewConfigurationActivated() { callbackQNetworkSessionNewConfigurationActivated(this->objectName().toUtf8().data()); };
 	void Signal_Opened() { callbackQNetworkSessionOpened(this->objectName().toUtf8().data()); };
 	void Signal_StateChanged(QNetworkSession::State state) { callbackQNetworkSessionStateChanged(this->objectName().toUtf8().data(), state); };
@@ -1742,6 +1874,14 @@ void QNetworkSession_ConnectClosed(void* ptr){
 
 void QNetworkSession_DisconnectClosed(void* ptr){
 	QObject::disconnect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)()>(&QNetworkSession::closed), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)()>(&MyQNetworkSession::Signal_Closed));;
+}
+
+void QNetworkSession_ConnectError2(void* ptr){
+	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(QNetworkSession::SessionError)>(&QNetworkSession::error), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(QNetworkSession::SessionError)>(&MyQNetworkSession::Signal_Error2));;
+}
+
+void QNetworkSession_DisconnectError2(void* ptr){
+	QObject::disconnect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(QNetworkSession::SessionError)>(&QNetworkSession::error), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(QNetworkSession::SessionError)>(&MyQNetworkSession::Signal_Error2));;
 }
 
 int QNetworkSession_Error(void* ptr){
@@ -1794,6 +1934,10 @@ void* QNetworkSession_SessionProperty(void* ptr, char* key){
 
 void QNetworkSession_SetSessionProperty(void* ptr, char* key, void* value){
 	static_cast<QNetworkSession*>(ptr)->setSessionProperty(QString(key), *static_cast<QVariant*>(value));
+}
+
+int QNetworkSession_State(void* ptr){
+	return static_cast<QNetworkSession*>(ptr)->state();
 }
 
 void QNetworkSession_ConnectStateChanged(void* ptr){
@@ -2197,9 +2341,11 @@ public:
 	MyQSslSocket(QObject *parent) : QSslSocket(parent) {};
 	void close() { if (!callbackQSslSocketClose(this->objectName().toUtf8().data())) { QSslSocket::close(); }; };
 	void Signal_Encrypted() { callbackQSslSocketEncrypted(this->objectName().toUtf8().data()); };
+	void Signal_EncryptedBytesWritten(qint64 written) { callbackQSslSocketEncryptedBytesWritten(this->objectName().toUtf8().data(), static_cast<long long>(written)); };
 	void Signal_ModeChanged(QSslSocket::SslMode mode) { callbackQSslSocketModeChanged(this->objectName().toUtf8().data(), mode); };
 	void Signal_PreSharedKeyAuthenticationRequired(QSslPreSharedKeyAuthenticator * authenticator) { callbackQSslSocketPreSharedKeyAuthenticationRequired(this->objectName().toUtf8().data(), authenticator); };
 	void resume() { if (!callbackQSslSocketResume(this->objectName().toUtf8().data())) { QSslSocket::resume(); }; };
+	void setReadBufferSize(qint64 size) { if (!callbackQSslSocketSetReadBufferSize(this->objectName().toUtf8().data(), static_cast<long long>(size))) { QSslSocket::setReadBufferSize(size); }; };
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { if (!callbackQSslSocketSetSocketOption(this->objectName().toUtf8().data(), option, new QVariant(value))) { QSslSocket::setSocketOption(option, value); }; };
 protected:
 };
@@ -2224,6 +2370,14 @@ int QSslSocket_AtEnd(void* ptr){
 	return static_cast<QSslSocket*>(ptr)->atEnd();
 }
 
+long long QSslSocket_BytesAvailable(void* ptr){
+	return static_cast<long long>(static_cast<QSslSocket*>(ptr)->bytesAvailable());
+}
+
+long long QSslSocket_BytesToWrite(void* ptr){
+	return static_cast<long long>(static_cast<QSslSocket*>(ptr)->bytesToWrite());
+}
+
 int QSslSocket_CanReadLine(void* ptr){
 	return static_cast<QSslSocket*>(ptr)->canReadLine();
 }
@@ -2238,6 +2392,22 @@ void QSslSocket_ConnectEncrypted(void* ptr){
 
 void QSslSocket_DisconnectEncrypted(void* ptr){
 	QObject::disconnect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)()>(&QSslSocket::encrypted), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)()>(&MyQSslSocket::Signal_Encrypted));;
+}
+
+long long QSslSocket_EncryptedBytesAvailable(void* ptr){
+	return static_cast<long long>(static_cast<QSslSocket*>(ptr)->encryptedBytesAvailable());
+}
+
+long long QSslSocket_EncryptedBytesToWrite(void* ptr){
+	return static_cast<long long>(static_cast<QSslSocket*>(ptr)->encryptedBytesToWrite());
+}
+
+void QSslSocket_ConnectEncryptedBytesWritten(void* ptr){
+	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(qint64)>(&QSslSocket::encryptedBytesWritten), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(qint64)>(&MyQSslSocket::Signal_EncryptedBytesWritten));;
+}
+
+void QSslSocket_DisconnectEncryptedBytesWritten(void* ptr){
+	QObject::disconnect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(qint64)>(&QSslSocket::encryptedBytesWritten), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(qint64)>(&MyQSslSocket::Signal_EncryptedBytesWritten));;
 }
 
 int QSslSocket_Flush(void* ptr){
@@ -2306,6 +2476,10 @@ void QSslSocket_SetPeerVerifyName(void* ptr, char* hostName){
 
 void QSslSocket_SetPrivateKey(void* ptr, void* key){
 	static_cast<QSslSocket*>(ptr)->setPrivateKey(*static_cast<QSslKey*>(key));
+}
+
+void QSslSocket_SetReadBufferSize(void* ptr, long long size){
+	static_cast<QSslSocket*>(ptr)->setReadBufferSize(static_cast<long long>(size));
 }
 
 void QSslSocket_SetSocketOption(void* ptr, int option, void* value){
@@ -2486,6 +2660,10 @@ int QUdpSocket_LeaveMulticastGroup(void* ptr, void* groupAddress){
 
 int QUdpSocket_LeaveMulticastGroup2(void* ptr, void* groupAddress, void* iface){
 	return static_cast<QUdpSocket*>(ptr)->leaveMulticastGroup(*static_cast<QHostAddress*>(groupAddress), *static_cast<QNetworkInterface*>(iface));
+}
+
+long long QUdpSocket_PendingDatagramSize(void* ptr){
+	return static_cast<long long>(static_cast<QUdpSocket*>(ptr)->pendingDatagramSize());
 }
 
 void QUdpSocket_SetMulticastInterface(void* ptr, void* iface){

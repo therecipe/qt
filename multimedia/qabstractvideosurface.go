@@ -48,6 +48,15 @@ const (
 	QAbstractVideoSurface__ResourceError          = QAbstractVideoSurface__Error(4)
 )
 
+func (ptr *QAbstractVideoSurface) NativeResolution() *core.QSize {
+	defer qt.Recovering("QAbstractVideoSurface::nativeResolution")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QAbstractVideoSurface_NativeResolution(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QAbstractVideoSurface) ConnectActiveChanged(f func(active bool)) {
 	defer qt.Recovering("connect QAbstractVideoSurface::activeChanged")
 
@@ -102,6 +111,35 @@ func (ptr *QAbstractVideoSurface) IsFormatSupported(format QVideoSurfaceFormat_I
 		return C.QAbstractVideoSurface_IsFormatSupported(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format)) != 0
 	}
 	return false
+}
+
+func (ptr *QAbstractVideoSurface) ConnectNativeResolutionChanged(f func(resolution *core.QSize)) {
+	defer qt.Recovering("connect QAbstractVideoSurface::nativeResolutionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_ConnectNativeResolutionChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "nativeResolutionChanged", f)
+	}
+}
+
+func (ptr *QAbstractVideoSurface) DisconnectNativeResolutionChanged() {
+	defer qt.Recovering("disconnect QAbstractVideoSurface::nativeResolutionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_DisconnectNativeResolutionChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "nativeResolutionChanged")
+	}
+}
+
+//export callbackQAbstractVideoSurfaceNativeResolutionChanged
+func callbackQAbstractVideoSurfaceNativeResolutionChanged(ptrName *C.char, resolution unsafe.Pointer) {
+	defer qt.Recovering("callback QAbstractVideoSurface::nativeResolutionChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "nativeResolutionChanged")
+	if signal != nil {
+		signal.(func(*core.QSize))(core.NewQSizeFromPointer(resolution))
+	}
+
 }
 
 func (ptr *QAbstractVideoSurface) Present(frame QVideoFrame_ITF) bool {

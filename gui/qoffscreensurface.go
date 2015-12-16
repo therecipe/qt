@@ -133,6 +133,15 @@ func (ptr *QOffscreenSurface) SetScreen(newScreen QScreen_ITF) {
 	}
 }
 
+func (ptr *QOffscreenSurface) Size() *core.QSize {
+	defer qt.Recovering("QOffscreenSurface::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QOffscreenSurface_Size(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QOffscreenSurface) SurfaceType() QSurface__SurfaceType {
 	defer qt.Recovering("QOffscreenSurface::surfaceType")
 

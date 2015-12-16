@@ -117,6 +117,24 @@ func (ptr *QProcess) AtEnd() bool {
 	return false
 }
 
+func (ptr *QProcess) BytesAvailable() int64 {
+	defer qt.Recovering("QProcess::bytesAvailable")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QProcess_BytesAvailable(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QProcess) BytesToWrite() int64 {
+	defer qt.Recovering("QProcess::bytesToWrite")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QProcess_BytesToWrite(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QProcess) CanReadLine() bool {
 	defer qt.Recovering("QProcess::canReadLine")
 
@@ -171,6 +189,35 @@ func (ptr *QProcess) CloseWriteChannel() {
 	if ptr.Pointer() != nil {
 		C.QProcess_CloseWriteChannel(ptr.Pointer())
 	}
+}
+
+func (ptr *QProcess) ConnectError2(f func(error QProcess__ProcessError)) {
+	defer qt.Recovering("connect QProcess::error")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_ConnectError2(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+	}
+}
+
+func (ptr *QProcess) DisconnectError2() {
+	defer qt.Recovering("disconnect QProcess::error")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_DisconnectError2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "error")
+	}
+}
+
+//export callbackQProcessError2
+func callbackQProcessError2(ptrName *C.char, error C.int) {
+	defer qt.Recovering("callback QProcess::error")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	if signal != nil {
+		signal.(func(QProcess__ProcessError))(QProcess__ProcessError(error))
+	}
+
 }
 
 func (ptr *QProcess) Error() QProcess__ProcessError {
@@ -287,6 +334,15 @@ func (ptr *QProcess) ProcessChannelMode() QProcess__ProcessChannelMode {
 
 	if ptr.Pointer() != nil {
 		return QProcess__ProcessChannelMode(C.QProcess_ProcessChannelMode(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QProcess) ProcessId() int64 {
+	defer qt.Recovering("QProcess::processId")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QProcess_ProcessId(ptr.Pointer()))
 	}
 	return 0
 }
@@ -561,6 +617,15 @@ func callbackQProcessStarted(ptrName *C.char) {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QProcess) State() QProcess__ProcessState {
+	defer qt.Recovering("QProcess::state")
+
+	if ptr.Pointer() != nil {
+		return QProcess__ProcessState(C.QProcess_State(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QProcess) ConnectStateChanged(f func(newState QProcess__ProcessState)) {

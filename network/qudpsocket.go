@@ -88,6 +88,15 @@ func (ptr *QUdpSocket) LeaveMulticastGroup2(groupAddress QHostAddress_ITF, iface
 	return false
 }
 
+func (ptr *QUdpSocket) PendingDatagramSize() int64 {
+	defer qt.Recovering("QUdpSocket::pendingDatagramSize")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QUdpSocket_PendingDatagramSize(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QUdpSocket) SetMulticastInterface(iface QNetworkInterface_ITF) {
 	defer qt.Recovering("QUdpSocket::setMulticastInterface")
 

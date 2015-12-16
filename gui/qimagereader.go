@@ -107,6 +107,15 @@ func (ptr *QImageReader) CanRead() bool {
 	return false
 }
 
+func (ptr *QImageReader) ClipRect() *core.QRect {
+	defer qt.Recovering("QImageReader::clipRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QImageReader_ClipRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QImageReader) CurrentImageNumber() int {
 	defer qt.Recovering("QImageReader::currentImageNumber")
 
@@ -114,6 +123,15 @@ func (ptr *QImageReader) CurrentImageNumber() int {
 		return int(C.QImageReader_CurrentImageNumber(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QImageReader) CurrentImageRect() *core.QRect {
+	defer qt.Recovering("QImageReader::currentImageRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QImageReader_CurrentImageRect(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QImageReader) DecideFormatFromContent() bool {
@@ -254,6 +272,24 @@ func (ptr *QImageReader) Read2(image QImage_ITF) bool {
 	return false
 }
 
+func (ptr *QImageReader) ScaledClipRect() *core.QRect {
+	defer qt.Recovering("QImageReader::scaledClipRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QImageReader_ScaledClipRect(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QImageReader) ScaledSize() *core.QSize {
+	defer qt.Recovering("QImageReader::scaledSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QImageReader_ScaledSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QImageReader) SetAutoDetectImageFormat(enabled bool) {
 	defer qt.Recovering("QImageReader::setAutoDetectImageFormat")
 
@@ -340,6 +376,15 @@ func (ptr *QImageReader) SetScaledSize(size core.QSize_ITF) {
 	if ptr.Pointer() != nil {
 		C.QImageReader_SetScaledSize(ptr.Pointer(), core.PointerFromQSize(size))
 	}
+}
+
+func (ptr *QImageReader) Size() *core.QSize {
+	defer qt.Recovering("QImageReader::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QImageReader_Size(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QImageReader) SubType() *core.QByteArray {

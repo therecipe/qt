@@ -67,6 +67,15 @@ func (ptr *QMainWindow) DocumentMode() bool {
 	return false
 }
 
+func (ptr *QMainWindow) IconSize() *core.QSize {
+	defer qt.Recovering("QMainWindow::iconSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QMainWindow_IconSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMainWindow) IsAnimated() bool {
 	defer qt.Recovering("QMainWindow::isAnimated")
 
@@ -312,6 +321,35 @@ func (ptr *QMainWindow) DockWidgetArea(dockwidget QDockWidget_ITF) core.Qt__Dock
 		return core.Qt__DockWidgetArea(C.QMainWindow_DockWidgetArea(ptr.Pointer(), PointerFromQDockWidget(dockwidget)))
 	}
 	return 0
+}
+
+func (ptr *QMainWindow) ConnectIconSizeChanged(f func(iconSize *core.QSize)) {
+	defer qt.Recovering("connect QMainWindow::iconSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMainWindow_ConnectIconSizeChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "iconSizeChanged", f)
+	}
+}
+
+func (ptr *QMainWindow) DisconnectIconSizeChanged() {
+	defer qt.Recovering("disconnect QMainWindow::iconSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMainWindow_DisconnectIconSizeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "iconSizeChanged")
+	}
+}
+
+//export callbackQMainWindowIconSizeChanged
+func callbackQMainWindowIconSizeChanged(ptrName *C.char, iconSize unsafe.Pointer) {
+	defer qt.Recovering("callback QMainWindow::iconSizeChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "iconSizeChanged")
+	if signal != nil {
+		signal.(func(*core.QSize))(core.NewQSizeFromPointer(iconSize))
+	}
+
 }
 
 func (ptr *QMainWindow) InsertToolBar(before QToolBar_ITF, toolbar QToolBar_ITF) {

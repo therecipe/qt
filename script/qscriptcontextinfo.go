@@ -150,6 +150,15 @@ func (ptr *QScriptContextInfo) LineNumber() int {
 	return 0
 }
 
+func (ptr *QScriptContextInfo) ScriptId() int64 {
+	defer qt.Recovering("QScriptContextInfo::scriptId")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QScriptContextInfo_ScriptId(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QScriptContextInfo) DestroyQScriptContextInfo() {
 	defer qt.Recovering("QScriptContextInfo::~QScriptContextInfo")
 

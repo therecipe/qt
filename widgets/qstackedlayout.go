@@ -4,6 +4,7 @@ package widgets
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -223,6 +224,55 @@ func (ptr *QStackedLayout) ItemAt(index int) *QLayoutItem {
 
 	if ptr.Pointer() != nil {
 		return NewQLayoutItemFromPointer(C.QStackedLayout_ItemAt(ptr.Pointer(), C.int(index)))
+	}
+	return nil
+}
+
+func (ptr *QStackedLayout) MinimumSize() *core.QSize {
+	defer qt.Recovering("QStackedLayout::minimumSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QStackedLayout_MinimumSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QStackedLayout) ConnectSetGeometry(f func(rect *core.QRect)) {
+	defer qt.Recovering("connect QStackedLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setGeometry", f)
+	}
+}
+
+func (ptr *QStackedLayout) DisconnectSetGeometry() {
+	defer qt.Recovering("disconnect QStackedLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setGeometry")
+	}
+}
+
+//export callbackQStackedLayoutSetGeometry
+func callbackQStackedLayoutSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStackedLayout::setGeometry")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
+	if signal != nil {
+		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QStackedLayout) SizeHint() *core.QSize {
+	defer qt.Recovering("QStackedLayout::sizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QStackedLayout_SizeHint(ptr.Pointer()))
 	}
 	return nil
 }
