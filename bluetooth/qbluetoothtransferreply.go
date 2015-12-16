@@ -64,7 +64,7 @@ func (ptr *QBluetoothTransferReply) ConnectError2(f func(errorType QBluetoothTra
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferReply_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -73,7 +73,7 @@ func (ptr *QBluetoothTransferReply) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferReply_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -81,7 +81,7 @@ func (ptr *QBluetoothTransferReply) DisconnectError2() {
 func callbackQBluetoothTransferReplyError2(ptrName *C.char, errorType C.int) {
 	defer qt.Recovering("callback QBluetoothTransferReply::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QBluetoothTransferReply__TransferError))(QBluetoothTransferReply__TransferError(errorType))
 	}

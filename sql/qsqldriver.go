@@ -243,7 +243,7 @@ func (ptr *QSqlDriver) ConnectNotification2(f func(name string, source QSqlDrive
 
 	if ptr.Pointer() != nil {
 		C.QSqlDriver_ConnectNotification2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "notification", f)
+		qt.ConnectSignal(ptr.ObjectName(), "notification2", f)
 	}
 }
 
@@ -252,7 +252,7 @@ func (ptr *QSqlDriver) DisconnectNotification2() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlDriver_DisconnectNotification2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "notification")
+		qt.DisconnectSignal(ptr.ObjectName(), "notification2")
 	}
 }
 
@@ -260,7 +260,7 @@ func (ptr *QSqlDriver) DisconnectNotification2() {
 func callbackQSqlDriverNotification2(ptrName *C.char, name *C.char, source C.int, payload unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlDriver::notification")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "notification")
+	var signal = qt.GetSignal(C.GoString(ptrName), "notification2")
 	if signal != nil {
 		signal.(func(string, QSqlDriver__NotificationSource, *core.QVariant))(C.GoString(name), QSqlDriver__NotificationSource(source), core.NewQVariantFromPointer(payload))
 	}

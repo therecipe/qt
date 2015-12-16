@@ -107,7 +107,7 @@ func (ptr *QDoubleSpinBox) ConnectValueChanged2(f func(text string)) {
 
 	if ptr.Pointer() != nil {
 		C.QDoubleSpinBox_ConnectValueChanged2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "valueChanged", f)
+		qt.ConnectSignal(ptr.ObjectName(), "valueChanged2", f)
 	}
 }
 
@@ -116,7 +116,7 @@ func (ptr *QDoubleSpinBox) DisconnectValueChanged2() {
 
 	if ptr.Pointer() != nil {
 		C.QDoubleSpinBox_DisconnectValueChanged2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "valueChanged")
+		qt.DisconnectSignal(ptr.ObjectName(), "valueChanged2")
 	}
 }
 
@@ -124,7 +124,7 @@ func (ptr *QDoubleSpinBox) DisconnectValueChanged2() {
 func callbackQDoubleSpinBoxValueChanged2(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QDoubleSpinBox::valueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
+	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged2")
 	if signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}

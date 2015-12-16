@@ -221,7 +221,7 @@ func (ptr *QCamera) ConnectError2(f func(value QCamera__Error)) {
 
 	if ptr.Pointer() != nil {
 		C.QCamera_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -230,7 +230,7 @@ func (ptr *QCamera) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QCamera_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -238,7 +238,7 @@ func (ptr *QCamera) DisconnectError2() {
 func callbackQCameraError2(ptrName *C.char, value C.int) {
 	defer qt.Recovering("callback QCamera::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QCamera__Error))(QCamera__Error(value))
 	}
@@ -388,7 +388,7 @@ func (ptr *QCamera) ConnectLockStatusChanged2(f func(lock QCamera__LockType, sta
 
 	if ptr.Pointer() != nil {
 		C.QCamera_ConnectLockStatusChanged2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "lockStatusChanged", f)
+		qt.ConnectSignal(ptr.ObjectName(), "lockStatusChanged2", f)
 	}
 }
 
@@ -397,7 +397,7 @@ func (ptr *QCamera) DisconnectLockStatusChanged2() {
 
 	if ptr.Pointer() != nil {
 		C.QCamera_DisconnectLockStatusChanged2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "lockStatusChanged")
+		qt.DisconnectSignal(ptr.ObjectName(), "lockStatusChanged2")
 	}
 }
 
@@ -405,7 +405,7 @@ func (ptr *QCamera) DisconnectLockStatusChanged2() {
 func callbackQCameraLockStatusChanged2(ptrName *C.char, lock C.int, status C.int, reason C.int) {
 	defer qt.Recovering("callback QCamera::lockStatusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "lockStatusChanged")
+	var signal = qt.GetSignal(C.GoString(ptrName), "lockStatusChanged2")
 	if signal != nil {
 		signal.(func(QCamera__LockType, QCamera__LockStatus, QCamera__LockChangeReason))(QCamera__LockType(lock), QCamera__LockStatus(status), QCamera__LockChangeReason(reason))
 	}

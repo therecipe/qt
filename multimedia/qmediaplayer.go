@@ -354,7 +354,7 @@ func (ptr *QMediaPlayer) ConnectError2(f func(error QMediaPlayer__Error)) {
 
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -363,7 +363,7 @@ func (ptr *QMediaPlayer) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -371,7 +371,7 @@ func (ptr *QMediaPlayer) DisconnectError2() {
 func callbackQMediaPlayerError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QMediaPlayer::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QMediaPlayer__Error))(QMediaPlayer__Error(error))
 	}

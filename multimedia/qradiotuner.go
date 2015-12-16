@@ -283,7 +283,7 @@ func (ptr *QRadioTuner) ConnectError2(f func(error QRadioTuner__Error)) {
 
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -292,7 +292,7 @@ func (ptr *QRadioTuner) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -300,7 +300,7 @@ func (ptr *QRadioTuner) DisconnectError2() {
 func callbackQRadioTunerError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QRadioTuner::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QRadioTuner__Error))(QRadioTuner__Error(error))
 	}

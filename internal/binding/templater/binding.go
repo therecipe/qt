@@ -24,8 +24,6 @@ func GenModule(name string) {
 
 	name = strings.ToLower(name)
 
-	parser.GetModule(name)
-
 	if ShouldBuild(moduleT) {
 
 		var suffix string

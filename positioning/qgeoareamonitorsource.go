@@ -79,7 +79,7 @@ func (ptr *QGeoAreaMonitorSource) ConnectError2(f func(areaMonitoringError QGeoA
 
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorSource_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -88,7 +88,7 @@ func (ptr *QGeoAreaMonitorSource) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorSource_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -96,7 +96,7 @@ func (ptr *QGeoAreaMonitorSource) DisconnectError2() {
 func callbackQGeoAreaMonitorSourceError2(ptrName *C.char, areaMonitoringError C.int) {
 	defer qt.Recovering("callback QGeoAreaMonitorSource::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QGeoAreaMonitorSource__Error))(QGeoAreaMonitorSource__Error(areaMonitoringError))
 	}

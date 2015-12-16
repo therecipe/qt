@@ -111,7 +111,7 @@ func (ptr *QGeoSatelliteInfoSource) ConnectError2(f func(satelliteError QGeoSate
 
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -120,7 +120,7 @@ func (ptr *QGeoSatelliteInfoSource) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -128,7 +128,7 @@ func (ptr *QGeoSatelliteInfoSource) DisconnectError2() {
 func callbackQGeoSatelliteInfoSourceError2(ptrName *C.char, satelliteError C.int) {
 	defer qt.Recovering("callback QGeoSatelliteInfoSource::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QGeoSatelliteInfoSource__Error))(QGeoSatelliteInfoSource__Error(satelliteError))
 	}

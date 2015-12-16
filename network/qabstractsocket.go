@@ -305,7 +305,7 @@ func (ptr *QAbstractSocket) ConnectError2(f func(socketError QAbstractSocket__So
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -314,7 +314,7 @@ func (ptr *QAbstractSocket) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -322,7 +322,7 @@ func (ptr *QAbstractSocket) DisconnectError2() {
 func callbackQAbstractSocketError2(ptrName *C.char, socketError C.int) {
 	defer qt.Recovering("callback QAbstractSocket::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QAbstractSocket__SocketError))(QAbstractSocket__SocketError(socketError))
 	}

@@ -311,7 +311,7 @@ func (ptr *QComboBox) ConnectActivated2(f func(text string)) {
 
 	if ptr.Pointer() != nil {
 		C.QComboBox_ConnectActivated2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "activated", f)
+		qt.ConnectSignal(ptr.ObjectName(), "activated2", f)
 	}
 }
 
@@ -320,7 +320,7 @@ func (ptr *QComboBox) DisconnectActivated2() {
 
 	if ptr.Pointer() != nil {
 		C.QComboBox_DisconnectActivated2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "activated")
+		qt.DisconnectSignal(ptr.ObjectName(), "activated2")
 	}
 }
 
@@ -328,7 +328,7 @@ func (ptr *QComboBox) DisconnectActivated2() {
 func callbackQComboBoxActivated2(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::activated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
+	var signal = qt.GetSignal(C.GoString(ptrName), "activated2")
 	if signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
@@ -480,7 +480,7 @@ func (ptr *QComboBox) ConnectCurrentIndexChanged2(f func(text string)) {
 
 	if ptr.Pointer() != nil {
 		C.QComboBox_ConnectCurrentIndexChanged2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "currentIndexChanged", f)
+		qt.ConnectSignal(ptr.ObjectName(), "currentIndexChanged2", f)
 	}
 }
 
@@ -489,7 +489,7 @@ func (ptr *QComboBox) DisconnectCurrentIndexChanged2() {
 
 	if ptr.Pointer() != nil {
 		C.QComboBox_DisconnectCurrentIndexChanged2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "currentIndexChanged")
+		qt.DisconnectSignal(ptr.ObjectName(), "currentIndexChanged2")
 	}
 }
 
@@ -497,7 +497,7 @@ func (ptr *QComboBox) DisconnectCurrentIndexChanged2() {
 func callbackQComboBoxCurrentIndexChanged2(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::currentIndexChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentIndexChanged")
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentIndexChanged2")
 	if signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
@@ -747,7 +747,7 @@ func (ptr *QComboBox) ConnectHighlighted2(f func(text string)) {
 
 	if ptr.Pointer() != nil {
 		C.QComboBox_ConnectHighlighted2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "highlighted", f)
+		qt.ConnectSignal(ptr.ObjectName(), "highlighted2", f)
 	}
 }
 
@@ -756,7 +756,7 @@ func (ptr *QComboBox) DisconnectHighlighted2() {
 
 	if ptr.Pointer() != nil {
 		C.QComboBox_DisconnectHighlighted2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "highlighted")
+		qt.DisconnectSignal(ptr.ObjectName(), "highlighted2")
 	}
 }
 
@@ -764,7 +764,7 @@ func (ptr *QComboBox) DisconnectHighlighted2() {
 func callbackQComboBoxHighlighted2(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::highlighted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted")
+	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted2")
 	if signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}

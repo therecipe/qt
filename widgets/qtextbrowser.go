@@ -347,7 +347,7 @@ func (ptr *QTextBrowser) ConnectHighlighted2(f func(link string)) {
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_ConnectHighlighted2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "highlighted", f)
+		qt.ConnectSignal(ptr.ObjectName(), "highlighted2", f)
 	}
 }
 
@@ -356,7 +356,7 @@ func (ptr *QTextBrowser) DisconnectHighlighted2() {
 
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_DisconnectHighlighted2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "highlighted")
+		qt.DisconnectSignal(ptr.ObjectName(), "highlighted2")
 	}
 }
 
@@ -364,7 +364,7 @@ func (ptr *QTextBrowser) DisconnectHighlighted2() {
 func callbackQTextBrowserHighlighted2(ptrName *C.char, link *C.char) {
 	defer qt.Recovering("callback QTextBrowser::highlighted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted")
+	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted2")
 	if signal != nil {
 		signal.(func(string))(C.GoString(link))
 	}

@@ -190,7 +190,7 @@ func (ptr *QAudioDecoder) ConnectError2(f func(error QAudioDecoder__Error)) {
 
 	if ptr.Pointer() != nil {
 		C.QAudioDecoder_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -199,7 +199,7 @@ func (ptr *QAudioDecoder) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QAudioDecoder_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -207,7 +207,7 @@ func (ptr *QAudioDecoder) DisconnectError2() {
 func callbackQAudioDecoderError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QAudioDecoder::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QAudioDecoder__Error))(QAudioDecoder__Error(error))
 	}

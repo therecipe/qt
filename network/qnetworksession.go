@@ -125,7 +125,7 @@ func (ptr *QNetworkSession) ConnectError2(f func(error QNetworkSession__SessionE
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -134,7 +134,7 @@ func (ptr *QNetworkSession) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -142,7 +142,7 @@ func (ptr *QNetworkSession) DisconnectError2() {
 func callbackQNetworkSessionError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QNetworkSession::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QNetworkSession__SessionError))(QNetworkSession__SessionError(error))
 	}

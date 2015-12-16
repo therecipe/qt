@@ -234,7 +234,7 @@ func (ptr *QWebSocket) ConnectError2(f func(error network.QAbstractSocket__Socke
 
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -243,7 +243,7 @@ func (ptr *QWebSocket) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -251,7 +251,7 @@ func (ptr *QWebSocket) DisconnectError2() {
 func callbackQWebSocketError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QWebSocket::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(network.QAbstractSocket__SocketError))(network.QAbstractSocket__SocketError(error))
 	}

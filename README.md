@@ -17,7 +17,7 @@
 ### Landscape
 ![](internal/screens/android_landscape.png)
 
-[source](https://github.com/therecipe/qt/tree/master/internal/examples/widgets/widgets.go)
+[source](https://github.com/therecipe/qt/blob/master/internal/examples/widgets/line_edits/line_edits.go)
 
 ---
 

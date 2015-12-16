@@ -186,7 +186,7 @@ func (ptr *QNetworkReply) ConnectError2(f func(code QNetworkReply__NetworkError)
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -195,7 +195,7 @@ func (ptr *QNetworkReply) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -203,7 +203,7 @@ func (ptr *QNetworkReply) DisconnectError2() {
 func callbackQNetworkReplyError2(ptrName *C.char, code C.int) {
 	defer qt.Recovering("callback QNetworkReply::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QNetworkReply__NetworkError))(QNetworkReply__NetworkError(code))
 	}

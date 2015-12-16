@@ -81,7 +81,7 @@ func (ptr *QLowEnergyService) ConnectError2(f func(newError QLowEnergyService__S
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -90,7 +90,7 @@ func (ptr *QLowEnergyService) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -98,7 +98,7 @@ func (ptr *QLowEnergyService) DisconnectError2() {
 func callbackQLowEnergyServiceError2(ptrName *C.char, newError C.int) {
 	defer qt.Recovering("callback QLowEnergyService::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QLowEnergyService__ServiceError))(QLowEnergyService__ServiceError(newError))
 	}

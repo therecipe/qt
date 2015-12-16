@@ -90,7 +90,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectError2(f func(error QBluetoot
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -99,7 +99,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -107,7 +107,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectError2() {
 func callbackQBluetoothServiceDiscoveryAgentError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QBluetoothServiceDiscoveryAgent::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QBluetoothServiceDiscoveryAgent__Error))(QBluetoothServiceDiscoveryAgent__Error(error))
 	}

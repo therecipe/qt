@@ -87,7 +87,7 @@ func goFunctionBody(f *parser.Function) (o string) {
 	*/
 
 	if f.SignalMode == "callback" {
-		o += fmt.Sprintf("var signal = qt.GetSignal(C.GoString(ptrName), \"%v\")\n", f.Name)
+		o += fmt.Sprintf("var signal = qt.GetSignal(C.GoString(ptrName), \"%v%v\")\n", f.Name, cppFunctionSignalOverload(f))
 		o += "if signal != nil {\n"
 		if f.Virtual == "impure" {
 			o += fmt.Sprintf("\t defer signal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
@@ -110,17 +110,17 @@ func goFunctionBody(f *parser.Function) (o string) {
 
 	if f.SignalMode == "Connect" {
 		if parser.ClassMap[f.Class()].IsQObjectSubClass() {
-			o += fmt.Sprintf("\nqt.ConnectSignal(ptr.ObjectName(), \"%v\", f)", f.Name)
+			o += fmt.Sprintf("\nqt.ConnectSignal(ptr.ObjectName(), \"%v%v\", f)", f.Name, cppFunctionSignalOverload(f))
 		} else {
-			o += fmt.Sprintf("\nqt.ConnectSignal(ptr.ObjectNameAbs(), \"%v\", f)", f.Name)
+			o += fmt.Sprintf("\nqt.ConnectSignal(ptr.ObjectNameAbs(), \"%v%v\", f)", f.Name, cppFunctionSignalOverload(f))
 		}
 	}
 
 	if f.SignalMode == "Disconnect" {
 		if parser.ClassMap[f.Class()].IsQObjectSubClass() {
-			o += fmt.Sprintf("\nqt.DisconnectSignal(ptr.ObjectName(), \"%v\")", f.Name)
+			o += fmt.Sprintf("\nqt.DisconnectSignal(ptr.ObjectName(), \"%v%v\")", f.Name, cppFunctionSignalOverload(f))
 		} else {
-			o += fmt.Sprintf("\nqt.DisconnectSignal(ptr.ObjectNameAbs(), \"%v\")", f.Name)
+			o += fmt.Sprintf("\nqt.DisconnectSignal(ptr.ObjectNameAbs(), \"%v%v\")", f.Name, cppFunctionSignalOverload(f))
 		}
 	}
 

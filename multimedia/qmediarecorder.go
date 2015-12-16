@@ -304,7 +304,7 @@ func (ptr *QMediaRecorder) ConnectError2(f func(error QMediaRecorder__Error)) {
 
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -313,7 +313,7 @@ func (ptr *QMediaRecorder) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -321,7 +321,7 @@ func (ptr *QMediaRecorder) DisconnectError2() {
 func callbackQMediaRecorderError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QMediaRecorder::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QMediaRecorder__Error))(QMediaRecorder__Error(error))
 	}
@@ -436,7 +436,7 @@ func (ptr *QMediaRecorder) ConnectMetaDataChanged2(f func(key string, value *cor
 
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_ConnectMetaDataChanged2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "metaDataChanged", f)
+		qt.ConnectSignal(ptr.ObjectName(), "metaDataChanged2", f)
 	}
 }
 
@@ -445,7 +445,7 @@ func (ptr *QMediaRecorder) DisconnectMetaDataChanged2() {
 
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_DisconnectMetaDataChanged2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "metaDataChanged")
+		qt.DisconnectSignal(ptr.ObjectName(), "metaDataChanged2")
 	}
 }
 
@@ -453,7 +453,7 @@ func (ptr *QMediaRecorder) DisconnectMetaDataChanged2() {
 func callbackQMediaRecorderMetaDataChanged2(ptrName *C.char, key *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaRecorder::metaDataChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataChanged")
+	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataChanged2")
 	if signal != nil {
 		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
 	}

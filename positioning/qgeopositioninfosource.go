@@ -130,7 +130,7 @@ func (ptr *QGeoPositionInfoSource) ConnectError2(f func(positioningError QGeoPos
 
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -139,7 +139,7 @@ func (ptr *QGeoPositionInfoSource) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -147,7 +147,7 @@ func (ptr *QGeoPositionInfoSource) DisconnectError2() {
 func callbackQGeoPositionInfoSourceError2(ptrName *C.char, positioningError C.int) {
 	defer qt.Recovering("callback QGeoPositionInfoSource::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QGeoPositionInfoSource__Error))(QGeoPositionInfoSource__Error(positioningError))
 	}

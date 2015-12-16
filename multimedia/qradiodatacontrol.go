@@ -70,7 +70,7 @@ func (ptr *QRadioDataControl) ConnectError2(f func(error QRadioData__Error)) {
 
 	if ptr.Pointer() != nil {
 		C.QRadioDataControl_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "error", f)
+		qt.ConnectSignal(ptr.ObjectName(), "error2", f)
 	}
 }
 
@@ -79,7 +79,7 @@ func (ptr *QRadioDataControl) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QRadioDataControl_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "error")
+		qt.DisconnectSignal(ptr.ObjectName(), "error2")
 	}
 }
 
@@ -87,7 +87,7 @@ func (ptr *QRadioDataControl) DisconnectError2() {
 func callbackQRadioDataControlError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QRadioDataControl::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
+	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
 	if signal != nil {
 		signal.(func(QRadioData__Error))(QRadioData__Error(error))
 	}
