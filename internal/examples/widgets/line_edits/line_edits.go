@@ -115,24 +115,43 @@ func main() {
 func echoChanged(echoLineEdit *widgets.QLineEdit, index int) {
 	switch index {
 	case 0:
-		echoLineEdit.SetEchoMode(widgets.QLineEdit__Normal)
+		{
+			echoLineEdit.SetEchoMode(widgets.QLineEdit__Normal)
+		}
+
 	case 1:
-		echoLineEdit.SetEchoMode(widgets.QLineEdit__Password)
+		{
+			echoLineEdit.SetEchoMode(widgets.QLineEdit__Password)
+		}
+
 	case 2:
-		echoLineEdit.SetEchoMode(widgets.QLineEdit__PasswordEchoOnEdit)
+		{
+			echoLineEdit.SetEchoMode(widgets.QLineEdit__PasswordEchoOnEdit)
+		}
+
 	case 3:
-		echoLineEdit.SetEchoMode(widgets.QLineEdit__NoEcho)
+		{
+			echoLineEdit.SetEchoMode(widgets.QLineEdit__NoEcho)
+		}
 	}
 }
 
 func validatorChanged(validatorLineEdit *widgets.QLineEdit, index int) {
 	switch index {
 	case 0:
-		validatorLineEdit.SetValidator(nil)
+		{
+			validatorLineEdit.SetValidator(nil)
+		}
+
 	case 1:
-		validatorLineEdit.SetValidator(gui.NewQIntValidator(validatorLineEdit))
+		{
+			validatorLineEdit.SetValidator(gui.NewQIntValidator(validatorLineEdit))
+		}
+
 	case 2:
-		validatorLineEdit.SetValidator(gui.NewQDoubleValidator(validatorLineEdit)) // TODO: Min/Max
+		{
+			validatorLineEdit.SetValidator(gui.NewQDoubleValidator(validatorLineEdit)) //TODO: gui.NewQDoubleValidator2(-999.0, 999.0, 2, validatorLineEdit)
+		}
 	}
 
 	validatorLineEdit.Clear()
@@ -141,34 +160,58 @@ func validatorChanged(validatorLineEdit *widgets.QLineEdit, index int) {
 func alignmentChanged(alignmentLineEdit *widgets.QLineEdit, index int) {
 	switch index {
 	case 0:
-		alignmentLineEdit.SetAlignment(core.Qt__AlignLeft)
+		{
+			alignmentLineEdit.SetAlignment(core.Qt__AlignLeft)
+		}
+
 	case 1:
-		alignmentLineEdit.SetAlignment(core.Qt__AlignCenter)
+		{
+			alignmentLineEdit.SetAlignment(core.Qt__AlignCenter)
+		}
+
 	case 2:
-		alignmentLineEdit.SetAlignment(core.Qt__AlignRight)
+		{
+			alignmentLineEdit.SetAlignment(core.Qt__AlignRight)
+		}
 	}
 }
 
 func inputMaskChanged(inputMaskLineEdit *widgets.QLineEdit, index int) {
 	switch index {
 	case 0:
-		inputMaskLineEdit.SetInputMask("")
+		{
+			inputMaskLineEdit.SetInputMask("")
+		}
+
 	case 1:
-		inputMaskLineEdit.SetInputMask("+99 99 99 99 99;_")
+		{
+			inputMaskLineEdit.SetInputMask("+99 99 99 99 99;_")
+		}
+
 	case 2:
-		inputMaskLineEdit.SetInputMask("0000-00-00")
-		inputMaskLineEdit.SetText("00000000")
-		inputMaskLineEdit.SetCursorPosition(0)
+		{
+			inputMaskLineEdit.SetInputMask("0000-00-00")
+			inputMaskLineEdit.SetText("00000000")
+			inputMaskLineEdit.SetCursorPosition(0)
+		}
+
 	case 3:
-		inputMaskLineEdit.SetInputMask(">AAAAA-AAAAA-AAAAA-AAAAA-AAAAA;#")
+		{
+			inputMaskLineEdit.SetInputMask(">AAAAA-AAAAA-AAAAA-AAAAA-AAAAA;#")
+		}
 	}
 }
 
 func accessChanged(accessLineEdit *widgets.QLineEdit, index int) {
 	switch index {
 	case 0:
-		accessLineEdit.SetReadOnly(false)
+		{
+			accessLineEdit.SetReadOnly(false)
+		}
+
 	case 1:
-		accessLineEdit.SetReadOnly(true)
+		{
+			accessLineEdit.SetReadOnly(true)
+		}
 	}
 }

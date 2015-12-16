@@ -1,128 +1,63 @@
 package templater
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func terminalSeperator(module string) string {
-	var sep = ""
-	if len(module) < 8 {
-		sep += "\t\t"
-	}
-	if len(module) >= 8 && len(module) < 17 {
-		sep += "\t"
-	}
-	return sep
-}
-
 func GenModule(name string) {
-	var moduleT = name
+	if ShouldBuild(name) {
 
-	name = strings.ToLower(name)
+		var (
+			pkgName = strings.ToLower(name)
+			suffix  string
+		)
 
-	if ShouldBuild(moduleT) {
-
-		var suffix string
-		if strings.TrimPrefix(name, "Qt") == "androidextras" {
+		if name == "AndroidExtras" {
 			suffix = "_android"
 		}
 
-		utils.RemoveAll(utils.GetQtPkgPath(name))
-		utils.RemoveAll(utils.GetQtPkgPath("internal", "binding", "dump", moduleT))
+		//cleanup
+		utils.RemoveAll(utils.GetQtPkgPath(pkgName))
+		utils.RemoveAll(utils.GetQtPkgPath("internal", "binding", "dump", name))
 
-		//Dry Run
+		//prepare
+		utils.MakeFolder(utils.GetQtPkgPath(pkgName))
+		CopyCgo(name)
+		if name == "AndroidExtras" {
+			utils.Save(utils.GetQtPkgPath(pkgName, "androidextras_android.go"), utils.Load(utils.GetQtPkgPath("internal", "binding", "files", "androidextras_android.go")))
+		}
+
+		//dry run
 		for _, c := range parser.ClassMap {
-			if moduleT == strings.TrimPrefix(c.Module, "Qt") {
+			if strings.TrimPrefix(c.Module, "Qt") == name {
 				AddObjectNameFunctionIfNeeded(c)
 				ManualWeakLink(c)
-				for _, f := range map[string]func(*parser.Class) string{"go": GoTemplate} {
-					f(c)
-				}
+				GoTemplate(c)
 			}
 		}
-		CppTemplate("Qt" + moduleT)
-		HTemplate("Qt" + moduleT)
+		CppTemplate("Qt" + name)
+		HTemplate("Qt" + name)
 
-		utils.MakeFolder(utils.GetQtPkgPath(name))
-		utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v%v.cpp", strings.ToLower(moduleT), suffix)), CppTemplate("Qt"+moduleT))
-		utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v%v.h", strings.ToLower(moduleT), suffix)), HTemplate("Qt"+moduleT))
+		//generate
+		utils.Save(utils.GetQtPkgPath(pkgName, pkgName+suffix+".cpp"), CppTemplate("Qt"+name))
+		utils.Save(utils.GetQtPkgPath(pkgName, pkgName+suffix+".h"), HTemplate("Qt"+name))
 
-		var fcount = 0
 		for _, c := range parser.ClassMap {
+			if strings.TrimPrefix(c.Module, "Qt") == name {
 
-			if moduleT == strings.TrimPrefix(c.Module, "Qt") {
-
-				for e, f := range map[string]func(*parser.Class) string{"go": GoTemplate} {
-					CopyCgo(moduleT)
-
-					if moduleT == "AndroidExtras" {
-						utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v_android.%v", strings.ToLower(c.Name), e)), f(c))
-
-						c.Stub = true
-						utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
-						c.Stub = false
-					} else {
-						utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
-					}
-
+				if name == "AndroidExtras" {
+					utils.Save(utils.GetQtPkgPath(pkgName, strings.ToLower(c.Name)+suffix+".go"), GoTemplate(c))
 				}
+
+				c.Stub = (name == "AndroidExtras")
+				utils.Save(utils.GetQtPkgPath(pkgName, strings.ToLower(c.Name)+".go"), GoTemplate(c))
+				c.Stub = false
 
 				//c.Dump()
-
-				fcount += len(c.Functions)
 			}
-
-		}
-
-		fmt.Printf("%v%v\tfunctions:%v", name, terminalSeperator(name), fcount)
-
-		if name == "androidextras" {
-			utils.Save(utils.GetQtPkgPath(name, "androidextras_android.go"), `package androidextras
-
-			import (
-				"C"
-				"strings"
-				"unsafe"
-
-				"github.com/therecipe/qt"
-			)
-
-			func assertion(key int, input ...interface{}) unsafe.Pointer {
-				if len(input) > key {
-					switch input[key].(type) {
-					case string:
-						{
-							return QAndroidJniObject_FromString(input[key].(string)).Object()
-						}
-					case []string:
-						{
-							return QAndroidJniObject_FromString(strings.Join(input[key].([]string), ",,,")).CallObjectMethod2("split", "(Ljava/lang/String;)[Ljava/lang/String;", ",,,").Object()
-						}
-					case int:
-						{
-							return unsafe.Pointer(uintptr(C.int(input[key].(int))))
-						}
-					case bool:
-						{
-							return unsafe.Pointer(uintptr(C.int(qt.GoBoolToInt(input[key].(bool)))))
-						}
-					case unsafe.Pointer:
-						{
-							return input[key].(unsafe.Pointer)
-						}
-					case *QAndroidJniObject:
-						{
-							return input[key].(*QAndroidJniObject).Object()
-						}
-					}
-				}
-				return nil
-			}
-`)
 		}
 
 	}
@@ -162,10 +97,12 @@ func ManualWeakLink(c *parser.Class) {
 			{
 				subclass.WeakLink["QtWidgets"] = true
 			}
+
 		case "QtGui":
 			{
 				subclass.WeakLink["QtWidgets"] = true
 			}
+
 		case "QtMultimedia":
 			{
 				subclass.WeakLink["QtMultimediaWidgets"] = true
