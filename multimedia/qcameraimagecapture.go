@@ -91,6 +91,15 @@ func NewQCameraImageCapture(mediaObject QMediaObject_ITF, parent core.QObject_IT
 	return NewQCameraImageCaptureFromPointer(C.QCameraImageCapture_NewQCameraImageCapture(PointerFromQMediaObject(mediaObject), core.PointerFromQObject(parent)))
 }
 
+func (ptr *QCameraImageCapture) Availability() QMultimedia__AvailabilityStatus {
+	defer qt.Recovering("QCameraImageCapture::availability")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__AvailabilityStatus(C.QCameraImageCapture_Availability(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QCameraImageCapture) BufferFormat() QVideoFrame__PixelFormat {
 	defer qt.Recovering("QCameraImageCapture::bufferFormat")
 

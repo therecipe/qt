@@ -3,6 +3,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/therecipe/qt/core"
@@ -49,6 +50,7 @@ func newVideoPlayer() *widgets.QWidget {
 	positionsSlider.ConnectSliderMoved(setPosition)
 
 	errorLabel = widgets.NewQLabel(nil, 0)
+	errorLabel.SetTextFormat(core.Qt__RichText)
 	errorLabel.SetSizePolicy2(widgets.QSizePolicy__Preferred, widgets.QSizePolicy__Maximum)
 
 	var controlLayout = widgets.NewQHBoxLayout()
@@ -123,7 +125,59 @@ func setPosition(position int) {
 	mediaPlayer.SetPosition(int64(position))
 }
 
-func handleError(_ multimedia.QMediaPlayer__Error) {
+func handleError(err multimedia.QMediaPlayer__Error) {
 	playButton.SetEnabled(false)
-	errorLabel.SetText("Error: " + mediaPlayer.ErrorString())
+
+	var errString = mediaPlayer.ErrorString()
+
+	if errString == "" {
+		switch err {
+		case multimedia.QMediaPlayer__NoError:
+			{
+				errString = "QMediaPlayer::NoError"
+			}
+
+		case multimedia.QMediaPlayer__ResourceError:
+			{
+				errString = "QMediaPlayer::ResourceError"
+			}
+
+		case multimedia.QMediaPlayer__FormatError:
+			{
+				errString = "QMediaPlayer::FormatError"
+			}
+
+		case multimedia.QMediaPlayer__NetworkError:
+			{
+				errString = "QMediaPlayer::NetworkError"
+			}
+
+		case multimedia.QMediaPlayer__AccessDeniedError:
+			{
+				errString = "QMediaPlayer::AccessDeniedError"
+			}
+
+		case multimedia.QMediaPlayer__ServiceMissingError:
+			{
+				errString = "QMediaPlayer::ServiceMissingError"
+			}
+		}
+	}
+
+	errorLabel.SetText(fmt.Sprintf("File: %v<br>Error: %v<br>Supported MIME-Types: %v %v %v %v %v %v",
+		mediaPlayer.CurrentMedia().CanonicalUrl().ToString(0),
+		errString,
+		hasSupport("video/avi"),
+		hasSupport("video/mp4"),
+		hasSupport("video/x-flv"),
+		hasSupport("video/3gpp"),
+		hasSupport("video/x-ms-wmv"),
+		hasSupport("video/x-matroska")))
+}
+
+func hasSupport(mimeType string) string {
+	if multimedia.QMediaPlayer_HasSupport(mimeType, make([]string, 0), 0) >= multimedia.QMultimedia__MaybeSupported {
+		return mimeType + "=<font color=\"green\">true</font>"
+	}
+	return mimeType + "=<font color=\"red\">false</font>"
 }

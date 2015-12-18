@@ -85,6 +85,15 @@ func (ptr *QAudioOutput) ElapsedUSecs() int64 {
 	return 0
 }
 
+func (ptr *QAudioOutput) Error() QAudio__Error {
+	defer qt.Recovering("QAudioOutput::error")
+
+	if ptr.Pointer() != nil {
+		return QAudio__Error(C.QAudioOutput_Error(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QAudioOutput) ConnectNotify(f func()) {
 	defer qt.Recovering("connect QAudioOutput::notify")
 
@@ -204,6 +213,44 @@ func (ptr *QAudioOutput) Start(device core.QIODevice_ITF) {
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_Start(ptr.Pointer(), core.PointerFromQIODevice(device))
 	}
+}
+
+func (ptr *QAudioOutput) State() QAudio__State {
+	defer qt.Recovering("QAudioOutput::state")
+
+	if ptr.Pointer() != nil {
+		return QAudio__State(C.QAudioOutput_State(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAudioOutput) ConnectStateChanged(f func(state QAudio__State)) {
+	defer qt.Recovering("connect QAudioOutput::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioOutput_ConnectStateChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "stateChanged", f)
+	}
+}
+
+func (ptr *QAudioOutput) DisconnectStateChanged() {
+	defer qt.Recovering("disconnect QAudioOutput::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioOutput_DisconnectStateChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "stateChanged")
+	}
+}
+
+//export callbackQAudioOutputStateChanged
+func callbackQAudioOutputStateChanged(ptrName *C.char, state C.int) {
+	defer qt.Recovering("callback QAudioOutput::stateChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
+	if signal != nil {
+		signal.(func(QAudio__State))(QAudio__State(state))
+	}
+
 }
 
 func (ptr *QAudioOutput) Stop() {

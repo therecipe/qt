@@ -5,6 +5,7 @@
 #include <QAbstractVideoBuffer>
 #include <QAbstractVideoFilter>
 #include <QAbstractVideoSurface>
+#include <QAudio>
 #include <QAudioBuffer>
 #include <QAudioDecoder>
 #include <QAudioDecoderControl>
@@ -76,6 +77,7 @@
 #include <QMetaDataReaderControl>
 #include <QMetaDataWriterControl>
 #include <QMetaObject>
+#include <QMultimedia>
 #include <QNetworkRequest>
 #include <QObject>
 #include <QPoint>
@@ -386,6 +388,10 @@ void QAudioDecoder_DisconnectFinished(void* ptr){
 	QObject::disconnect(static_cast<QAudioDecoder*>(ptr), static_cast<void (QAudioDecoder::*)()>(&QAudioDecoder::finished), static_cast<MyQAudioDecoder*>(ptr), static_cast<void (MyQAudioDecoder::*)()>(&MyQAudioDecoder::Signal_Finished));;
 }
 
+int QAudioDecoder_QAudioDecoder_HasSupport(char* mimeType, char* codecs){
+	return QAudioDecoder::hasSupport(QString(mimeType), QString(codecs).split(",,,", QString::SkipEmptyParts));
+}
+
 long long QAudioDecoder_Position(void* ptr){
 	return static_cast<long long>(static_cast<QAudioDecoder*>(ptr)->position());
 }
@@ -619,12 +625,20 @@ char* QAudioEncoderSettings_Codec(void* ptr){
 	return static_cast<QAudioEncoderSettings*>(ptr)->codec().toUtf8().data();
 }
 
+int QAudioEncoderSettings_EncodingMode(void* ptr){
+	return static_cast<QAudioEncoderSettings*>(ptr)->encodingMode();
+}
+
 void* QAudioEncoderSettings_EncodingOption(void* ptr, char* option){
 	return new QVariant(static_cast<QAudioEncoderSettings*>(ptr)->encodingOption(QString(option)));
 }
 
 int QAudioEncoderSettings_IsNull(void* ptr){
 	return static_cast<QAudioEncoderSettings*>(ptr)->isNull();
+}
+
+int QAudioEncoderSettings_Quality(void* ptr){
+	return static_cast<QAudioEncoderSettings*>(ptr)->quality();
 }
 
 int QAudioEncoderSettings_SampleRate(void* ptr){
@@ -643,8 +657,16 @@ void QAudioEncoderSettings_SetCodec(void* ptr, char* codec){
 	static_cast<QAudioEncoderSettings*>(ptr)->setCodec(QString(codec));
 }
 
+void QAudioEncoderSettings_SetEncodingMode(void* ptr, int mode){
+	static_cast<QAudioEncoderSettings*>(ptr)->setEncodingMode(static_cast<QMultimedia::EncodingMode>(mode));
+}
+
 void QAudioEncoderSettings_SetEncodingOption(void* ptr, char* option, void* value){
 	static_cast<QAudioEncoderSettings*>(ptr)->setEncodingOption(QString(option), *static_cast<QVariant*>(value));
+}
+
+void QAudioEncoderSettings_SetQuality(void* ptr, int quality){
+	static_cast<QAudioEncoderSettings*>(ptr)->setQuality(static_cast<QMultimedia::EncodingQuality>(quality));
 }
 
 void QAudioEncoderSettings_SetSampleRate(void* ptr, int rate){
@@ -747,6 +769,7 @@ void QAudioFormat_DestroyQAudioFormat(void* ptr){
 class MyQAudioInput: public QAudioInput {
 public:
 	void Signal_Notify() { callbackQAudioInputNotify(this->objectName().toUtf8().data()); };
+	void Signal_StateChanged(QAudio::State state) { callbackQAudioInputStateChanged(this->objectName().toUtf8().data(), state); };
 protected:
 };
 
@@ -768,6 +791,10 @@ int QAudioInput_BytesReady(void* ptr){
 
 long long QAudioInput_ElapsedUSecs(void* ptr){
 	return static_cast<long long>(static_cast<QAudioInput*>(ptr)->elapsedUSecs());
+}
+
+int QAudioInput_Error(void* ptr){
+	return static_cast<QAudioInput*>(ptr)->error();
 }
 
 void QAudioInput_ConnectNotify(void* ptr){
@@ -816,6 +843,18 @@ void* QAudioInput_Start2(void* ptr){
 
 void QAudioInput_Start(void* ptr, void* device){
 	static_cast<QAudioInput*>(ptr)->start(static_cast<QIODevice*>(device));
+}
+
+int QAudioInput_State(void* ptr){
+	return static_cast<QAudioInput*>(ptr)->state();
+}
+
+void QAudioInput_ConnectStateChanged(void* ptr){
+	QObject::connect(static_cast<QAudioInput*>(ptr), static_cast<void (QAudioInput::*)(QAudio::State)>(&QAudioInput::stateChanged), static_cast<MyQAudioInput*>(ptr), static_cast<void (MyQAudioInput::*)(QAudio::State)>(&MyQAudioInput::Signal_StateChanged));;
+}
+
+void QAudioInput_DisconnectStateChanged(void* ptr){
+	QObject::disconnect(static_cast<QAudioInput*>(ptr), static_cast<void (QAudioInput::*)(QAudio::State)>(&QAudioInput::stateChanged), static_cast<MyQAudioInput*>(ptr), static_cast<void (MyQAudioInput::*)(QAudio::State)>(&MyQAudioInput::Signal_StateChanged));;
 }
 
 void QAudioInput_Stop(void* ptr){
@@ -880,6 +919,7 @@ void QAudioInputSelectorControl_DestroyQAudioInputSelectorControl(void* ptr){
 class MyQAudioOutput: public QAudioOutput {
 public:
 	void Signal_Notify() { callbackQAudioOutputNotify(this->objectName().toUtf8().data()); };
+	void Signal_StateChanged(QAudio::State state) { callbackQAudioOutputStateChanged(this->objectName().toUtf8().data(), state); };
 protected:
 };
 
@@ -905,6 +945,10 @@ char* QAudioOutput_Category(void* ptr){
 
 long long QAudioOutput_ElapsedUSecs(void* ptr){
 	return static_cast<long long>(static_cast<QAudioOutput*>(ptr)->elapsedUSecs());
+}
+
+int QAudioOutput_Error(void* ptr){
+	return static_cast<QAudioOutput*>(ptr)->error();
 }
 
 void QAudioOutput_ConnectNotify(void* ptr){
@@ -957,6 +1001,18 @@ void* QAudioOutput_Start2(void* ptr){
 
 void QAudioOutput_Start(void* ptr, void* device){
 	static_cast<QAudioOutput*>(ptr)->start(static_cast<QIODevice*>(device));
+}
+
+int QAudioOutput_State(void* ptr){
+	return static_cast<QAudioOutput*>(ptr)->state();
+}
+
+void QAudioOutput_ConnectStateChanged(void* ptr){
+	QObject::connect(static_cast<QAudioOutput*>(ptr), static_cast<void (QAudioOutput::*)(QAudio::State)>(&QAudioOutput::stateChanged), static_cast<MyQAudioOutput*>(ptr), static_cast<void (MyQAudioOutput::*)(QAudio::State)>(&MyQAudioOutput::Signal_StateChanged));;
+}
+
+void QAudioOutput_DisconnectStateChanged(void* ptr){
+	QObject::disconnect(static_cast<QAudioOutput*>(ptr), static_cast<void (QAudioOutput::*)(QAudio::State)>(&QAudioOutput::stateChanged), static_cast<MyQAudioOutput*>(ptr), static_cast<void (MyQAudioOutput::*)(QAudio::State)>(&MyQAudioOutput::Signal_StateChanged));;
 }
 
 void QAudioOutput_Stop(void* ptr){
@@ -1154,6 +1210,10 @@ void* QCamera_NewQCamera2(void* deviceName, void* parent){
 
 void* QCamera_NewQCamera3(void* cameraInfo, void* parent){
 	return new MyQCamera(*static_cast<QCameraInfo*>(cameraInfo), static_cast<QObject*>(parent));
+}
+
+int QCamera_Availability(void* ptr){
+	return static_cast<QCamera*>(ptr)->availability();
 }
 
 void QCamera_ConnectCaptureModeChanged(void* ptr){
@@ -1922,6 +1982,10 @@ void* QCameraImageCapture_NewQCameraImageCapture(void* mediaObject, void* parent
 	return new MyQCameraImageCapture(static_cast<QMediaObject*>(mediaObject), static_cast<QObject*>(parent));
 }
 
+int QCameraImageCapture_Availability(void* ptr){
+	return static_cast<QCameraImageCapture*>(ptr)->availability();
+}
+
 int QCameraImageCapture_BufferFormat(void* ptr){
 	return static_cast<QCameraImageCapture*>(ptr)->bufferFormat();
 }
@@ -2516,6 +2580,10 @@ int QImageEncoderSettings_IsNull(void* ptr){
 	return static_cast<QImageEncoderSettings*>(ptr)->isNull();
 }
 
+int QImageEncoderSettings_Quality(void* ptr){
+	return static_cast<QImageEncoderSettings*>(ptr)->quality();
+}
+
 void* QImageEncoderSettings_Resolution(void* ptr){
 	return new QSize(static_cast<QSize>(static_cast<QImageEncoderSettings*>(ptr)->resolution()).width(), static_cast<QSize>(static_cast<QImageEncoderSettings*>(ptr)->resolution()).height());
 }
@@ -2526,6 +2594,10 @@ void QImageEncoderSettings_SetCodec(void* ptr, char* codec){
 
 void QImageEncoderSettings_SetEncodingOption(void* ptr, char* option, void* value){
 	static_cast<QImageEncoderSettings*>(ptr)->setEncodingOption(QString(option), *static_cast<QVariant*>(value));
+}
+
+void QImageEncoderSettings_SetQuality(void* ptr, int quality){
+	static_cast<QImageEncoderSettings*>(ptr)->setQuality(static_cast<QMultimedia::EncodingQuality>(quality));
 }
 
 void QImageEncoderSettings_SetResolution(void* ptr, void* resolution){
@@ -2560,8 +2632,21 @@ void QMediaAudioProbeControl_DestroyQMediaAudioProbeControl(void* ptr){
 
 class MyQMediaAvailabilityControl: public QMediaAvailabilityControl {
 public:
+	void Signal_AvailabilityChanged(QMultimedia::AvailabilityStatus availability) { callbackQMediaAvailabilityControlAvailabilityChanged(this->objectName().toUtf8().data(), availability); };
 protected:
 };
+
+int QMediaAvailabilityControl_Availability(void* ptr){
+	return static_cast<QMediaAvailabilityControl*>(ptr)->availability();
+}
+
+void QMediaAvailabilityControl_ConnectAvailabilityChanged(void* ptr){
+	QObject::connect(static_cast<QMediaAvailabilityControl*>(ptr), static_cast<void (QMediaAvailabilityControl::*)(QMultimedia::AvailabilityStatus)>(&QMediaAvailabilityControl::availabilityChanged), static_cast<MyQMediaAvailabilityControl*>(ptr), static_cast<void (MyQMediaAvailabilityControl::*)(QMultimedia::AvailabilityStatus)>(&MyQMediaAvailabilityControl::Signal_AvailabilityChanged));;
+}
+
+void QMediaAvailabilityControl_DisconnectAvailabilityChanged(void* ptr){
+	QObject::disconnect(static_cast<QMediaAvailabilityControl*>(ptr), static_cast<void (QMediaAvailabilityControl::*)(QMultimedia::AvailabilityStatus)>(&QMediaAvailabilityControl::availabilityChanged), static_cast<MyQMediaAvailabilityControl*>(ptr), static_cast<void (MyQMediaAvailabilityControl::*)(QMultimedia::AvailabilityStatus)>(&MyQMediaAvailabilityControl::Signal_AvailabilityChanged));;
+}
 
 void QMediaAvailabilityControl_DestroyQMediaAvailabilityControl(void* ptr){
 	static_cast<QMediaAvailabilityControl*>(ptr)->~QMediaAvailabilityControl();
@@ -2664,6 +2749,7 @@ class MyQMediaGaplessPlaybackControl: public QMediaGaplessPlaybackControl {
 public:
 	void Signal_AdvancedToNextMedia() { callbackQMediaGaplessPlaybackControlAdvancedToNextMedia(this->objectName().toUtf8().data()); };
 	void Signal_CrossfadeTimeChanged(qreal crossfadeTime) { callbackQMediaGaplessPlaybackControlCrossfadeTimeChanged(this->objectName().toUtf8().data(), static_cast<double>(crossfadeTime)); };
+	void Signal_NextMediaChanged(const QMediaContent & media) { callbackQMediaGaplessPlaybackControlNextMediaChanged(this->objectName().toUtf8().data(), new QMediaContent(media)); };
 protected:
 };
 
@@ -2691,6 +2777,18 @@ int QMediaGaplessPlaybackControl_IsCrossfadeSupported(void* ptr){
 	return static_cast<QMediaGaplessPlaybackControl*>(ptr)->isCrossfadeSupported();
 }
 
+void* QMediaGaplessPlaybackControl_NextMedia(void* ptr){
+	return new QMediaContent(static_cast<QMediaGaplessPlaybackControl*>(ptr)->nextMedia());
+}
+
+void QMediaGaplessPlaybackControl_ConnectNextMediaChanged(void* ptr){
+	QObject::connect(static_cast<QMediaGaplessPlaybackControl*>(ptr), static_cast<void (QMediaGaplessPlaybackControl::*)(const QMediaContent &)>(&QMediaGaplessPlaybackControl::nextMediaChanged), static_cast<MyQMediaGaplessPlaybackControl*>(ptr), static_cast<void (MyQMediaGaplessPlaybackControl::*)(const QMediaContent &)>(&MyQMediaGaplessPlaybackControl::Signal_NextMediaChanged));;
+}
+
+void QMediaGaplessPlaybackControl_DisconnectNextMediaChanged(void* ptr){
+	QObject::disconnect(static_cast<QMediaGaplessPlaybackControl*>(ptr), static_cast<void (QMediaGaplessPlaybackControl::*)(const QMediaContent &)>(&QMediaGaplessPlaybackControl::nextMediaChanged), static_cast<MyQMediaGaplessPlaybackControl*>(ptr), static_cast<void (MyQMediaGaplessPlaybackControl::*)(const QMediaContent &)>(&MyQMediaGaplessPlaybackControl::Signal_NextMediaChanged));;
+}
+
 void QMediaGaplessPlaybackControl_SetCrossfadeTime(void* ptr, double crossfadeTime){
 	static_cast<QMediaGaplessPlaybackControl*>(ptr)->setCrossfadeTime(static_cast<double>(crossfadeTime));
 }
@@ -2714,6 +2812,7 @@ void QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(void* ptr){
 
 class MyQMediaObject: public QMediaObject {
 public:
+	void Signal_AvailabilityChanged2(QMultimedia::AvailabilityStatus availability) { callbackQMediaObjectAvailabilityChanged2(this->objectName().toUtf8().data(), availability); };
 	void Signal_AvailabilityChanged(bool available) { callbackQMediaObjectAvailabilityChanged(this->objectName().toUtf8().data(), available); };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaObjectMetaDataAvailableChanged(this->objectName().toUtf8().data(), available); };
 	void Signal_MetaDataChanged() { callbackQMediaObjectMetaDataChanged(this->objectName().toUtf8().data()); };
@@ -2729,6 +2828,18 @@ int QMediaObject_NotifyInterval(void* ptr){
 
 void QMediaObject_SetNotifyInterval(void* ptr, int milliSeconds){
 	static_cast<QMediaObject*>(ptr)->setNotifyInterval(milliSeconds);
+}
+
+int QMediaObject_Availability(void* ptr){
+	return static_cast<QMediaObject*>(ptr)->availability();
+}
+
+void QMediaObject_ConnectAvailabilityChanged2(void* ptr){
+	QObject::connect(static_cast<QMediaObject*>(ptr), static_cast<void (QMediaObject::*)(QMultimedia::AvailabilityStatus)>(&QMediaObject::availabilityChanged), static_cast<MyQMediaObject*>(ptr), static_cast<void (MyQMediaObject::*)(QMultimedia::AvailabilityStatus)>(&MyQMediaObject::Signal_AvailabilityChanged2));;
+}
+
+void QMediaObject_DisconnectAvailabilityChanged2(void* ptr){
+	QObject::disconnect(static_cast<QMediaObject*>(ptr), static_cast<void (QMediaObject::*)(QMultimedia::AvailabilityStatus)>(&QMediaObject::availabilityChanged), static_cast<MyQMediaObject*>(ptr), static_cast<void (MyQMediaObject::*)(QMultimedia::AvailabilityStatus)>(&MyQMediaObject::Signal_AvailabilityChanged2));;
 }
 
 void QMediaObject_ConnectAvailabilityChanged(void* ptr){
@@ -2808,8 +2919,10 @@ public:
 	MyQMediaPlayer(QObject *parent, Flags flags) : QMediaPlayer(parent, flags) {};
 	void Signal_AudioAvailableChanged(bool available) { callbackQMediaPlayerAudioAvailableChanged(this->objectName().toUtf8().data(), available); };
 	void Signal_BufferStatusChanged(int percentFilled) { callbackQMediaPlayerBufferStatusChanged(this->objectName().toUtf8().data(), percentFilled); };
+	void Signal_CurrentMediaChanged(const QMediaContent & media) { callbackQMediaPlayerCurrentMediaChanged(this->objectName().toUtf8().data(), new QMediaContent(media)); };
 	void Signal_DurationChanged(qint64 duration) { callbackQMediaPlayerDurationChanged(this->objectName().toUtf8().data(), static_cast<long long>(duration)); };
 	void Signal_Error2(QMediaPlayer::Error error) { callbackQMediaPlayerError2(this->objectName().toUtf8().data(), error); };
+	void Signal_MediaChanged(const QMediaContent & media) { callbackQMediaPlayerMediaChanged(this->objectName().toUtf8().data(), new QMediaContent(media)); };
 	void Signal_MediaStatusChanged(QMediaPlayer::MediaStatus status) { callbackQMediaPlayerMediaStatusChanged(this->objectName().toUtf8().data(), status); };
 	void Signal_MutedChanged(bool muted) { callbackQMediaPlayerMutedChanged(this->objectName().toUtf8().data(), muted); };
 	void Signal_PlaybackRateChanged(qreal rate) { callbackQMediaPlayerPlaybackRateChanged(this->objectName().toUtf8().data(), static_cast<double>(rate)); };
@@ -2823,6 +2936,10 @@ protected:
 
 int QMediaPlayer_BufferStatus(void* ptr){
 	return static_cast<QMediaPlayer*>(ptr)->bufferStatus();
+}
+
+void* QMediaPlayer_CurrentMedia(void* ptr){
+	return new QMediaContent(static_cast<QMediaPlayer*>(ptr)->currentMedia());
 }
 
 long long QMediaPlayer_Duration(void* ptr){
@@ -2847,6 +2964,10 @@ int QMediaPlayer_IsSeekable(void* ptr){
 
 int QMediaPlayer_IsVideoAvailable(void* ptr){
 	return static_cast<QMediaPlayer*>(ptr)->isVideoAvailable();
+}
+
+void* QMediaPlayer_Media(void* ptr){
+	return new QMediaContent(static_cast<QMediaPlayer*>(ptr)->media());
 }
 
 int QMediaPlayer_MediaStatus(void* ptr){
@@ -2913,12 +3034,24 @@ void QMediaPlayer_DisconnectAudioAvailableChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(bool)>(&QMediaPlayer::audioAvailableChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(bool)>(&MyQMediaPlayer::Signal_AudioAvailableChanged));;
 }
 
+int QMediaPlayer_Availability(void* ptr){
+	return static_cast<QMediaPlayer*>(ptr)->availability();
+}
+
 void QMediaPlayer_ConnectBufferStatusChanged(void* ptr){
 	QObject::connect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(int)>(&QMediaPlayer::bufferStatusChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(int)>(&MyQMediaPlayer::Signal_BufferStatusChanged));;
 }
 
 void QMediaPlayer_DisconnectBufferStatusChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(int)>(&QMediaPlayer::bufferStatusChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(int)>(&MyQMediaPlayer::Signal_BufferStatusChanged));;
+}
+
+void QMediaPlayer_ConnectCurrentMediaChanged(void* ptr){
+	QObject::connect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(const QMediaContent &)>(&QMediaPlayer::currentMediaChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(const QMediaContent &)>(&MyQMediaPlayer::Signal_CurrentMediaChanged));;
+}
+
+void QMediaPlayer_DisconnectCurrentMediaChanged(void* ptr){
+	QObject::disconnect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(const QMediaContent &)>(&QMediaPlayer::currentMediaChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(const QMediaContent &)>(&MyQMediaPlayer::Signal_CurrentMediaChanged));;
 }
 
 void QMediaPlayer_ConnectDurationChanged(void* ptr){
@@ -2939,6 +3072,18 @@ void QMediaPlayer_DisconnectError2(void* ptr){
 
 int QMediaPlayer_Error(void* ptr){
 	return static_cast<QMediaPlayer*>(ptr)->error();
+}
+
+int QMediaPlayer_QMediaPlayer_HasSupport(char* mimeType, char* codecs, int flags){
+	return QMediaPlayer::hasSupport(QString(mimeType), QString(codecs).split(",,,", QString::SkipEmptyParts), static_cast<QMediaPlayer::Flag>(flags));
+}
+
+void QMediaPlayer_ConnectMediaChanged(void* ptr){
+	QObject::connect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(const QMediaContent &)>(&QMediaPlayer::mediaChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(const QMediaContent &)>(&MyQMediaPlayer::Signal_MediaChanged));;
+}
+
+void QMediaPlayer_DisconnectMediaChanged(void* ptr){
+	QObject::disconnect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(const QMediaContent &)>(&QMediaPlayer::mediaChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(const QMediaContent &)>(&MyQMediaPlayer::Signal_MediaChanged));;
 }
 
 void QMediaPlayer_ConnectMediaStatusChanged(void* ptr){
@@ -3039,6 +3184,7 @@ public:
 	void Signal_BufferStatusChanged(int progress) { callbackQMediaPlayerControlBufferStatusChanged(this->objectName().toUtf8().data(), progress); };
 	void Signal_DurationChanged(qint64 duration) { callbackQMediaPlayerControlDurationChanged(this->objectName().toUtf8().data(), static_cast<long long>(duration)); };
 	void Signal_Error(int error, const QString & errorString) { callbackQMediaPlayerControlError(this->objectName().toUtf8().data(), error, errorString.toUtf8().data()); };
+	void Signal_MediaChanged(const QMediaContent & content) { callbackQMediaPlayerControlMediaChanged(this->objectName().toUtf8().data(), new QMediaContent(content)); };
 	void Signal_MediaStatusChanged(QMediaPlayer::MediaStatus status) { callbackQMediaPlayerControlMediaStatusChanged(this->objectName().toUtf8().data(), status); };
 	void Signal_MutedChanged(bool mute) { callbackQMediaPlayerControlMutedChanged(this->objectName().toUtf8().data(), mute); };
 	void Signal_PlaybackRateChanged(qreal rate) { callbackQMediaPlayerControlPlaybackRateChanged(this->objectName().toUtf8().data(), static_cast<double>(rate)); };
@@ -3104,6 +3250,18 @@ int QMediaPlayerControl_IsSeekable(void* ptr){
 
 int QMediaPlayerControl_IsVideoAvailable(void* ptr){
 	return static_cast<QMediaPlayerControl*>(ptr)->isVideoAvailable();
+}
+
+void* QMediaPlayerControl_Media(void* ptr){
+	return new QMediaContent(static_cast<QMediaPlayerControl*>(ptr)->media());
+}
+
+void QMediaPlayerControl_ConnectMediaChanged(void* ptr){
+	QObject::connect(static_cast<QMediaPlayerControl*>(ptr), static_cast<void (QMediaPlayerControl::*)(const QMediaContent &)>(&QMediaPlayerControl::mediaChanged), static_cast<MyQMediaPlayerControl*>(ptr), static_cast<void (MyQMediaPlayerControl::*)(const QMediaContent &)>(&MyQMediaPlayerControl::Signal_MediaChanged));;
+}
+
+void QMediaPlayerControl_DisconnectMediaChanged(void* ptr){
+	QObject::disconnect(static_cast<QMediaPlayerControl*>(ptr), static_cast<void (QMediaPlayerControl::*)(const QMediaContent &)>(&QMediaPlayerControl::mediaChanged), static_cast<MyQMediaPlayerControl*>(ptr), static_cast<void (MyQMediaPlayerControl::*)(const QMediaContent &)>(&MyQMediaPlayerControl::Signal_MediaChanged));;
 }
 
 int QMediaPlayerControl_MediaStatus(void* ptr){
@@ -3234,6 +3392,7 @@ class MyQMediaPlaylist: public QMediaPlaylist {
 public:
 	MyQMediaPlaylist(QObject *parent) : QMediaPlaylist(parent) {};
 	void Signal_CurrentIndexChanged(int position) { callbackQMediaPlaylistCurrentIndexChanged(this->objectName().toUtf8().data(), position); };
+	void Signal_CurrentMediaChanged(const QMediaContent & content) { callbackQMediaPlaylistCurrentMediaChanged(this->objectName().toUtf8().data(), new QMediaContent(content)); };
 	void Signal_LoadFailed() { callbackQMediaPlaylistLoadFailed(this->objectName().toUtf8().data()); };
 	void Signal_Loaded() { callbackQMediaPlaylistLoaded(this->objectName().toUtf8().data()); };
 	void Signal_MediaAboutToBeInserted(int start, int end) { callbackQMediaPlaylistMediaAboutToBeInserted(this->objectName().toUtf8().data(), start, end); };
@@ -3275,6 +3434,18 @@ void QMediaPlaylist_ConnectCurrentIndexChanged(void* ptr){
 
 void QMediaPlaylist_DisconnectCurrentIndexChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaPlaylist*>(ptr), static_cast<void (QMediaPlaylist::*)(int)>(&QMediaPlaylist::currentIndexChanged), static_cast<MyQMediaPlaylist*>(ptr), static_cast<void (MyQMediaPlaylist::*)(int)>(&MyQMediaPlaylist::Signal_CurrentIndexChanged));;
+}
+
+void* QMediaPlaylist_CurrentMedia(void* ptr){
+	return new QMediaContent(static_cast<QMediaPlaylist*>(ptr)->currentMedia());
+}
+
+void QMediaPlaylist_ConnectCurrentMediaChanged(void* ptr){
+	QObject::connect(static_cast<QMediaPlaylist*>(ptr), static_cast<void (QMediaPlaylist::*)(const QMediaContent &)>(&QMediaPlaylist::currentMediaChanged), static_cast<MyQMediaPlaylist*>(ptr), static_cast<void (MyQMediaPlaylist::*)(const QMediaContent &)>(&MyQMediaPlaylist::Signal_CurrentMediaChanged));;
+}
+
+void QMediaPlaylist_DisconnectCurrentMediaChanged(void* ptr){
+	QObject::disconnect(static_cast<QMediaPlaylist*>(ptr), static_cast<void (QMediaPlaylist::*)(const QMediaContent &)>(&QMediaPlaylist::currentMediaChanged), static_cast<MyQMediaPlaylist*>(ptr), static_cast<void (MyQMediaPlaylist::*)(const QMediaContent &)>(&MyQMediaPlaylist::Signal_CurrentMediaChanged));;
 }
 
 int QMediaPlaylist_Error(void* ptr){
@@ -3323,6 +3494,10 @@ void QMediaPlaylist_ConnectLoaded(void* ptr){
 
 void QMediaPlaylist_DisconnectLoaded(void* ptr){
 	QObject::disconnect(static_cast<QMediaPlaylist*>(ptr), static_cast<void (QMediaPlaylist::*)()>(&QMediaPlaylist::loaded), static_cast<MyQMediaPlaylist*>(ptr), static_cast<void (MyQMediaPlaylist::*)()>(&MyQMediaPlaylist::Signal_Loaded));;
+}
+
+void* QMediaPlaylist_Media(void* ptr, int index){
+	return new QMediaContent(static_cast<QMediaPlaylist*>(ptr)->media(index));
 }
 
 void QMediaPlaylist_ConnectMediaAboutToBeInserted(void* ptr){
@@ -3429,6 +3604,7 @@ class MyQMediaRecorder: public QMediaRecorder {
 public:
 	MyQMediaRecorder(QMediaObject *mediaObject, QObject *parent) : QMediaRecorder(mediaObject, parent) {};
 	void Signal_ActualLocationChanged(const QUrl & location) { callbackQMediaRecorderActualLocationChanged(this->objectName().toUtf8().data(), new QUrl(location)); };
+	void Signal_AvailabilityChanged2(QMultimedia::AvailabilityStatus availability) { callbackQMediaRecorderAvailabilityChanged2(this->objectName().toUtf8().data(), availability); };
 	void Signal_AvailabilityChanged(bool available) { callbackQMediaRecorderAvailabilityChanged(this->objectName().toUtf8().data(), available); };
 	void Signal_DurationChanged(qint64 duration) { callbackQMediaRecorderDurationChanged(this->objectName().toUtf8().data(), static_cast<long long>(duration)); };
 	void Signal_Error2(QMediaRecorder::Error error) { callbackQMediaRecorderError2(this->objectName().toUtf8().data(), error); };
@@ -3497,6 +3673,18 @@ void QMediaRecorder_DisconnectActualLocationChanged(void* ptr){
 
 char* QMediaRecorder_AudioCodecDescription(void* ptr, char* codec){
 	return static_cast<QMediaRecorder*>(ptr)->audioCodecDescription(QString(codec)).toUtf8().data();
+}
+
+int QMediaRecorder_Availability(void* ptr){
+	return static_cast<QMediaRecorder*>(ptr)->availability();
+}
+
+void QMediaRecorder_ConnectAvailabilityChanged2(void* ptr){
+	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(QMultimedia::AvailabilityStatus)>(&QMediaRecorder::availabilityChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(QMultimedia::AvailabilityStatus)>(&MyQMediaRecorder::Signal_AvailabilityChanged2));;
+}
+
+void QMediaRecorder_DisconnectAvailabilityChanged2(void* ptr){
+	QObject::disconnect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(QMultimedia::AvailabilityStatus)>(&QMediaRecorder::availabilityChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(QMultimedia::AvailabilityStatus)>(&MyQMediaRecorder::Signal_AvailabilityChanged2));;
 }
 
 void QMediaRecorder_ConnectAvailabilityChanged(void* ptr){
@@ -4031,6 +4219,10 @@ public:
 protected:
 };
 
+int QMediaServiceSupportedFormatsInterface_HasSupport(void* ptr, char* mimeType, char* codecs){
+	return static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->hasSupport(QString(mimeType), QString(codecs).split(",,,", QString::SkipEmptyParts));
+}
+
 char* QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(void* ptr){
 	return static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->supportedMimeTypes().join(",,,").toUtf8().data();
 }
@@ -4374,6 +4566,10 @@ void QRadioData_DisconnectAlternativeFrequenciesEnabledChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioData*>(ptr), static_cast<void (QRadioData::*)(bool)>(&QRadioData::alternativeFrequenciesEnabledChanged), static_cast<MyQRadioData*>(ptr), static_cast<void (MyQRadioData::*)(bool)>(&MyQRadioData::Signal_AlternativeFrequenciesEnabledChanged));;
 }
 
+int QRadioData_Availability(void* ptr){
+	return static_cast<QRadioData*>(ptr)->availability();
+}
+
 void QRadioData_ConnectError2(void* ptr){
 	QObject::connect(static_cast<QRadioData*>(ptr), static_cast<void (QRadioData::*)(QRadioData::Error)>(&QRadioData::error), static_cast<MyQRadioData*>(ptr), static_cast<void (MyQRadioData::*)(QRadioData::Error)>(&MyQRadioData::Signal_Error2));;
 }
@@ -4629,6 +4825,10 @@ void QRadioTuner_ConnectAntennaConnectedChanged(void* ptr){
 
 void QRadioTuner_DisconnectAntennaConnectedChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioTuner*>(ptr), static_cast<void (QRadioTuner::*)(bool)>(&QRadioTuner::antennaConnectedChanged), static_cast<MyQRadioTuner*>(ptr), static_cast<void (MyQRadioTuner::*)(bool)>(&MyQRadioTuner::Signal_AntennaConnectedChanged));;
+}
+
+int QRadioTuner_Availability(void* ptr){
+	return static_cast<QRadioTuner*>(ptr)->availability();
 }
 
 void QRadioTuner_ConnectBandChanged(void* ptr){
@@ -5253,6 +5453,10 @@ char* QVideoEncoderSettings_Codec(void* ptr){
 	return static_cast<QVideoEncoderSettings*>(ptr)->codec().toUtf8().data();
 }
 
+int QVideoEncoderSettings_EncodingMode(void* ptr){
+	return static_cast<QVideoEncoderSettings*>(ptr)->encodingMode();
+}
+
 void* QVideoEncoderSettings_EncodingOption(void* ptr, char* option){
 	return new QVariant(static_cast<QVideoEncoderSettings*>(ptr)->encodingOption(QString(option)));
 }
@@ -5263,6 +5467,10 @@ double QVideoEncoderSettings_FrameRate(void* ptr){
 
 int QVideoEncoderSettings_IsNull(void* ptr){
 	return static_cast<QVideoEncoderSettings*>(ptr)->isNull();
+}
+
+int QVideoEncoderSettings_Quality(void* ptr){
+	return static_cast<QVideoEncoderSettings*>(ptr)->quality();
 }
 
 void* QVideoEncoderSettings_Resolution(void* ptr){
@@ -5277,8 +5485,16 @@ void QVideoEncoderSettings_SetCodec(void* ptr, char* codec){
 	static_cast<QVideoEncoderSettings*>(ptr)->setCodec(QString(codec));
 }
 
+void QVideoEncoderSettings_SetEncodingMode(void* ptr, int mode){
+	static_cast<QVideoEncoderSettings*>(ptr)->setEncodingMode(static_cast<QMultimedia::EncodingMode>(mode));
+}
+
 void QVideoEncoderSettings_SetEncodingOption(void* ptr, char* option, void* value){
 	static_cast<QVideoEncoderSettings*>(ptr)->setEncodingOption(QString(option), *static_cast<QVariant*>(value));
+}
+
+void QVideoEncoderSettings_SetQuality(void* ptr, int quality){
+	static_cast<QVideoEncoderSettings*>(ptr)->setQuality(static_cast<QMultimedia::EncodingQuality>(quality));
 }
 
 void QVideoEncoderSettings_SetResolution(void* ptr, void* resolution){

@@ -79,6 +79,15 @@ func (ptr *QVideoEncoderSettings) Codec() string {
 	return ""
 }
 
+func (ptr *QVideoEncoderSettings) EncodingMode() QMultimedia__EncodingMode {
+	defer qt.Recovering("QVideoEncoderSettings::encodingMode")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__EncodingMode(C.QVideoEncoderSettings_EncodingMode(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QVideoEncoderSettings) EncodingOption(option string) *core.QVariant {
 	defer qt.Recovering("QVideoEncoderSettings::encodingOption")
 
@@ -106,6 +115,15 @@ func (ptr *QVideoEncoderSettings) IsNull() bool {
 	return false
 }
 
+func (ptr *QVideoEncoderSettings) Quality() QMultimedia__EncodingQuality {
+	defer qt.Recovering("QVideoEncoderSettings::quality")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__EncodingQuality(C.QVideoEncoderSettings_Quality(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QVideoEncoderSettings) Resolution() *core.QSize {
 	defer qt.Recovering("QVideoEncoderSettings::resolution")
 
@@ -131,11 +149,27 @@ func (ptr *QVideoEncoderSettings) SetCodec(codec string) {
 	}
 }
 
+func (ptr *QVideoEncoderSettings) SetEncodingMode(mode QMultimedia__EncodingMode) {
+	defer qt.Recovering("QVideoEncoderSettings::setEncodingMode")
+
+	if ptr.Pointer() != nil {
+		C.QVideoEncoderSettings_SetEncodingMode(ptr.Pointer(), C.int(mode))
+	}
+}
+
 func (ptr *QVideoEncoderSettings) SetEncodingOption(option string, value core.QVariant_ITF) {
 	defer qt.Recovering("QVideoEncoderSettings::setEncodingOption")
 
 	if ptr.Pointer() != nil {
 		C.QVideoEncoderSettings_SetEncodingOption(ptr.Pointer(), C.CString(option), core.PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QVideoEncoderSettings) SetQuality(quality QMultimedia__EncodingQuality) {
+	defer qt.Recovering("QVideoEncoderSettings::setQuality")
+
+	if ptr.Pointer() != nil {
+		C.QVideoEncoderSettings_SetQuality(ptr.Pointer(), C.int(quality))
 	}
 }
 

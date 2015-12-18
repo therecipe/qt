@@ -207,6 +207,44 @@ func (ptr *QMediaPlayerControl) IsVideoAvailable() bool {
 	return false
 }
 
+func (ptr *QMediaPlayerControl) Media() *QMediaContent {
+	defer qt.Recovering("QMediaPlayerControl::media")
+
+	if ptr.Pointer() != nil {
+		return NewQMediaContentFromPointer(C.QMediaPlayerControl_Media(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QMediaPlayerControl) ConnectMediaChanged(f func(content *QMediaContent)) {
+	defer qt.Recovering("connect QMediaPlayerControl::mediaChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_ConnectMediaChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "mediaChanged", f)
+	}
+}
+
+func (ptr *QMediaPlayerControl) DisconnectMediaChanged() {
+	defer qt.Recovering("disconnect QMediaPlayerControl::mediaChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_DisconnectMediaChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "mediaChanged")
+	}
+}
+
+//export callbackQMediaPlayerControlMediaChanged
+func callbackQMediaPlayerControlMediaChanged(ptrName *C.char, content unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaPlayerControl::mediaChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mediaChanged")
+	if signal != nil {
+		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(content))
+	}
+
+}
+
 func (ptr *QMediaPlayerControl) MediaStatus() QMediaPlayer__MediaStatus {
 	defer qt.Recovering("QMediaPlayerControl::mediaStatus")
 

@@ -101,6 +101,7 @@ func ManualWeakLink(c *parser.Class) {
 		case "QtGui":
 			{
 				subclass.WeakLink["QtWidgets"] = true
+				subclass.WeakLink["QtMultimedia"] = true
 			}
 
 		case "QtMultimedia":

@@ -44,6 +44,15 @@ func (ptr *QMediaServiceSupportedFormatsInterface) QMediaServiceSupportedFormats
 	return ptr
 }
 
+func (ptr *QMediaServiceSupportedFormatsInterface) HasSupport(mimeType string, codecs []string) QMultimedia__SupportEstimate {
+	defer qt.Recovering("QMediaServiceSupportedFormatsInterface::hasSupport")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__SupportEstimate(C.QMediaServiceSupportedFormatsInterface_HasSupport(ptr.Pointer(), C.CString(mimeType), C.CString(strings.Join(codecs, ",,,"))))
+	}
+	return 0
+}
+
 func (ptr *QMediaServiceSupportedFormatsInterface) SupportedMimeTypes() []string {
 	defer qt.Recovering("QMediaServiceSupportedFormatsInterface::supportedMimeTypes")
 

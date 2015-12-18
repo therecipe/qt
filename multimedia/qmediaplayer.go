@@ -5,6 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"strings"
 	"unsafe"
 )
 
@@ -92,6 +93,15 @@ func (ptr *QMediaPlayer) BufferStatus() int {
 	return 0
 }
 
+func (ptr *QMediaPlayer) CurrentMedia() *QMediaContent {
+	defer qt.Recovering("QMediaPlayer::currentMedia")
+
+	if ptr.Pointer() != nil {
+		return NewQMediaContentFromPointer(C.QMediaPlayer_CurrentMedia(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMediaPlayer) Duration() int64 {
 	defer qt.Recovering("QMediaPlayer::duration")
 
@@ -144,6 +154,15 @@ func (ptr *QMediaPlayer) IsVideoAvailable() bool {
 		return C.QMediaPlayer_IsVideoAvailable(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QMediaPlayer) Media() *QMediaContent {
+	defer qt.Recovering("QMediaPlayer::media")
+
+	if ptr.Pointer() != nil {
+		return NewQMediaContentFromPointer(C.QMediaPlayer_Media(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMediaPlayer) MediaStatus() QMediaPlayer__MediaStatus {
@@ -291,6 +310,15 @@ func callbackQMediaPlayerAudioAvailableChanged(ptrName *C.char, available C.int)
 
 }
 
+func (ptr *QMediaPlayer) Availability() QMultimedia__AvailabilityStatus {
+	defer qt.Recovering("QMediaPlayer::availability")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__AvailabilityStatus(C.QMediaPlayer_Availability(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QMediaPlayer) ConnectBufferStatusChanged(f func(percentFilled int)) {
 	defer qt.Recovering("connect QMediaPlayer::bufferStatusChanged")
 
@@ -316,6 +344,35 @@ func callbackQMediaPlayerBufferStatusChanged(ptrName *C.char, percentFilled C.in
 	var signal = qt.GetSignal(C.GoString(ptrName), "bufferStatusChanged")
 	if signal != nil {
 		signal.(func(int))(int(percentFilled))
+	}
+
+}
+
+func (ptr *QMediaPlayer) ConnectCurrentMediaChanged(f func(media *QMediaContent)) {
+	defer qt.Recovering("connect QMediaPlayer::currentMediaChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_ConnectCurrentMediaChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "currentMediaChanged", f)
+	}
+}
+
+func (ptr *QMediaPlayer) DisconnectCurrentMediaChanged() {
+	defer qt.Recovering("disconnect QMediaPlayer::currentMediaChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_DisconnectCurrentMediaChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "currentMediaChanged")
+	}
+}
+
+//export callbackQMediaPlayerCurrentMediaChanged
+func callbackQMediaPlayerCurrentMediaChanged(ptrName *C.char, media unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaPlayer::currentMediaChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentMediaChanged")
+	if signal != nil {
+		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(media))
 	}
 
 }
@@ -385,6 +442,41 @@ func (ptr *QMediaPlayer) Error() QMediaPlayer__Error {
 		return QMediaPlayer__Error(C.QMediaPlayer_Error(ptr.Pointer()))
 	}
 	return 0
+}
+
+func QMediaPlayer_HasSupport(mimeType string, codecs []string, flags QMediaPlayer__Flag) QMultimedia__SupportEstimate {
+	defer qt.Recovering("QMediaPlayer::hasSupport")
+
+	return QMultimedia__SupportEstimate(C.QMediaPlayer_QMediaPlayer_HasSupport(C.CString(mimeType), C.CString(strings.Join(codecs, ",,,")), C.int(flags)))
+}
+
+func (ptr *QMediaPlayer) ConnectMediaChanged(f func(media *QMediaContent)) {
+	defer qt.Recovering("connect QMediaPlayer::mediaChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_ConnectMediaChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "mediaChanged", f)
+	}
+}
+
+func (ptr *QMediaPlayer) DisconnectMediaChanged() {
+	defer qt.Recovering("disconnect QMediaPlayer::mediaChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_DisconnectMediaChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "mediaChanged")
+	}
+}
+
+//export callbackQMediaPlayerMediaChanged
+func callbackQMediaPlayerMediaChanged(ptrName *C.char, media unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaPlayer::mediaChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "mediaChanged")
+	if signal != nil {
+		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(media))
+	}
+
 }
 
 func (ptr *QMediaPlayer) ConnectMediaStatusChanged(f func(status QMediaPlayer__MediaStatus)) {

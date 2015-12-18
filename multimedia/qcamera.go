@@ -187,6 +187,15 @@ func NewQCamera3(cameraInfo QCameraInfo_ITF, parent core.QObject_ITF) *QCamera {
 	return NewQCameraFromPointer(C.QCamera_NewQCamera3(PointerFromQCameraInfo(cameraInfo), core.PointerFromQObject(parent)))
 }
 
+func (ptr *QCamera) Availability() QMultimedia__AvailabilityStatus {
+	defer qt.Recovering("QCamera::availability")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__AvailabilityStatus(C.QCamera_Availability(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QCamera) ConnectCaptureModeChanged(f func(mode QCamera__CaptureMode)) {
 	defer qt.Recovering("connect QCamera::captureModeChanged")
 

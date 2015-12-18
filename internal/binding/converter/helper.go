@@ -202,15 +202,15 @@ func goEnum(inter interface{}, value string) string {
 		return strings.Replace(outE, ":", "_", -1)
 	}
 
-	switch inter.(type) {
+	switch deduced := inter.(type) {
 	case *parser.Function:
 		{
-			inter.(*parser.Function).Access = "unsupported_goEnum"
+			deduced.Access = "unsupported_goEnum"
 		}
 
 	case *parser.Enum:
 		{
-			inter.(*parser.Enum).Access = "unsupported_goEnum"
+			deduced.Access = "unsupported_goEnum"
 		}
 	}
 

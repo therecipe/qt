@@ -150,6 +150,44 @@ func callbackQMediaPlaylistCurrentIndexChanged(ptrName *C.char, position C.int) 
 
 }
 
+func (ptr *QMediaPlaylist) CurrentMedia() *QMediaContent {
+	defer qt.Recovering("QMediaPlaylist::currentMedia")
+
+	if ptr.Pointer() != nil {
+		return NewQMediaContentFromPointer(C.QMediaPlaylist_CurrentMedia(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QMediaPlaylist) ConnectCurrentMediaChanged(f func(content *QMediaContent)) {
+	defer qt.Recovering("connect QMediaPlaylist::currentMediaChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist_ConnectCurrentMediaChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "currentMediaChanged", f)
+	}
+}
+
+func (ptr *QMediaPlaylist) DisconnectCurrentMediaChanged() {
+	defer qt.Recovering("disconnect QMediaPlaylist::currentMediaChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist_DisconnectCurrentMediaChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "currentMediaChanged")
+	}
+}
+
+//export callbackQMediaPlaylistCurrentMediaChanged
+func callbackQMediaPlaylistCurrentMediaChanged(ptrName *C.char, content unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaPlaylist::currentMediaChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "currentMediaChanged")
+	if signal != nil {
+		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(content))
+	}
+
+}
+
 func (ptr *QMediaPlaylist) Error() QMediaPlaylist__Error {
 	defer qt.Recovering("QMediaPlaylist::error")
 
@@ -275,6 +313,15 @@ func callbackQMediaPlaylistLoaded(ptrName *C.char) {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QMediaPlaylist) Media(index int) *QMediaContent {
+	defer qt.Recovering("QMediaPlaylist::media")
+
+	if ptr.Pointer() != nil {
+		return NewQMediaContentFromPointer(C.QMediaPlaylist_Media(ptr.Pointer(), C.int(index)))
+	}
+	return nil
 }
 
 func (ptr *QMediaPlaylist) ConnectMediaAboutToBeInserted(f func(start int, end int)) {

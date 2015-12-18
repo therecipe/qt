@@ -209,6 +209,15 @@ func callbackQRadioDataAlternativeFrequenciesEnabledChanged(ptrName *C.char, ena
 
 }
 
+func (ptr *QRadioData) Availability() QMultimedia__AvailabilityStatus {
+	defer qt.Recovering("QRadioData::availability")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__AvailabilityStatus(C.QRadioData_Availability(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QRadioData) ConnectError2(f func(error QRadioData__Error)) {
 	defer qt.Recovering("connect QRadioData::error")
 

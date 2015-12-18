@@ -67,6 +67,13 @@ func isBlocked(f *parser.Function) bool {
 		}
 	}
 
+	for _, n := range []string{"QAccessibleInterface::state", "QAccessibleWidget::state"} {
+		if f.Fullname == n {
+			f.Access = "unsupported_isBlocked"
+			return true
+		}
+	}
+
 	//Android Only
 	for _, blockedAndroid := range []string{"setAsDockMenu", "setSelect"} {
 		if f.Name == blockedAndroid {

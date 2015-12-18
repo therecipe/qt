@@ -80,6 +80,15 @@ func (ptr *QImageEncoderSettings) IsNull() bool {
 	return false
 }
 
+func (ptr *QImageEncoderSettings) Quality() QMultimedia__EncodingQuality {
+	defer qt.Recovering("QImageEncoderSettings::quality")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__EncodingQuality(C.QImageEncoderSettings_Quality(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QImageEncoderSettings) Resolution() *core.QSize {
 	defer qt.Recovering("QImageEncoderSettings::resolution")
 
@@ -102,6 +111,14 @@ func (ptr *QImageEncoderSettings) SetEncodingOption(option string, value core.QV
 
 	if ptr.Pointer() != nil {
 		C.QImageEncoderSettings_SetEncodingOption(ptr.Pointer(), C.CString(option), core.PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QImageEncoderSettings) SetQuality(quality QMultimedia__EncodingQuality) {
+	defer qt.Recovering("QImageEncoderSettings::setQuality")
+
+	if ptr.Pointer() != nil {
+		C.QImageEncoderSettings_SetQuality(ptr.Pointer(), C.int(quality))
 	}
 }
 

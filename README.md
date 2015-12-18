@@ -98,7 +98,7 @@
 	* https://mirror.synyx.de/apache/ant/binaries/apache-ant-1.9.6-bin.tar.bz2
 	* https://mirror.synyx.de/apache/ant/binaries/apache-ant-1.9.6-bin.tar.gz
 
-6. Install Java SE Development Kit (linux only: install in `/opt/jdk/`)
+6. Install Java SE Development Kit (Linux: install in `/opt/jdk/`)
 	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
 7. Install and test
@@ -120,26 +120,26 @@
 package main
 
 import (
-	"os"
+		"os"
 
-	"github.com/therecipe/qt/widgets"
+		"github.com/therecipe/qt/widgets"
 )
 
 func main() {
-	widgets.NewQApplication(len(os.Args), os.Args)
+		widgets.NewQApplication(len(os.Args), os.Args)
 
-	var btn = widgets.NewQPushButton2("Hello World", nil)
-	btn.Resize2(180, 44)
-	btn.ConnectClicked(func(flag bool) {
-		widgets.QMessageBox_Information(nil, "OK", "You Clicked me!", widgets.QMessageBox__Ok, widgets.QMessageBox__Ok)
-	})
+		var btn = widgets.NewQPushButton2("Hello World", nil)
+		btn.Resize2(180, 44)
+		btn.ConnectClicked(func(flag bool) {
+			widgets.QMessageBox_Information(nil, "OK", "You Clicked me!", widgets.QMessageBox__Ok, widgets.QMessageBox__Ok)
+		})
 
-	var window = widgets.NewQMainWindow(nil, 0)
-	window.SetWindowTitle("Hello World Example")
-	window.Layout().AddWidget(btn)
-	window.Show()
+		var window = widgets.NewQMainWindow(nil, 0)
+		window.SetWindowTitle("Hello World Example")
+		window.Layout().AddWidget(btn)
+		window.Show()
 
-	widgets.QApplication_Exec()
+		widgets.QApplication_Exec()
 }
 ```
 

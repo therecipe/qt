@@ -5,6 +5,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"strings"
 	"unsafe"
 )
 
@@ -250,6 +251,12 @@ func callbackQAudioDecoderFinished(ptrName *C.char) {
 		signal.(func())()
 	}
 
+}
+
+func QAudioDecoder_HasSupport(mimeType string, codecs []string) QMultimedia__SupportEstimate {
+	defer qt.Recovering("QAudioDecoder::hasSupport")
+
+	return QMultimedia__SupportEstimate(C.QAudioDecoder_QAudioDecoder_HasSupport(C.CString(mimeType), C.CString(strings.Join(codecs, ",,,"))))
 }
 
 func (ptr *QAudioDecoder) Position() int64 {

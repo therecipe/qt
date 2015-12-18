@@ -241,6 +241,15 @@ func callbackQRadioTunerAntennaConnectedChanged(ptrName *C.char, connectionStatu
 
 }
 
+func (ptr *QRadioTuner) Availability() QMultimedia__AvailabilityStatus {
+	defer qt.Recovering("QRadioTuner::availability")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__AvailabilityStatus(C.QRadioTuner_Availability(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QRadioTuner) ConnectBandChanged(f func(band QRadioTuner__Band)) {
 	defer qt.Recovering("connect QRadioTuner::bandChanged")
 

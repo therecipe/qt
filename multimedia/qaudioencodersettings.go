@@ -80,6 +80,15 @@ func (ptr *QAudioEncoderSettings) Codec() string {
 	return ""
 }
 
+func (ptr *QAudioEncoderSettings) EncodingMode() QMultimedia__EncodingMode {
+	defer qt.Recovering("QAudioEncoderSettings::encodingMode")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__EncodingMode(C.QAudioEncoderSettings_EncodingMode(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QAudioEncoderSettings) EncodingOption(option string) *core.QVariant {
 	defer qt.Recovering("QAudioEncoderSettings::encodingOption")
 
@@ -96,6 +105,15 @@ func (ptr *QAudioEncoderSettings) IsNull() bool {
 		return C.QAudioEncoderSettings_IsNull(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QAudioEncoderSettings) Quality() QMultimedia__EncodingQuality {
+	defer qt.Recovering("QAudioEncoderSettings::quality")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__EncodingQuality(C.QAudioEncoderSettings_Quality(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QAudioEncoderSettings) SampleRate() int {
@@ -131,11 +149,27 @@ func (ptr *QAudioEncoderSettings) SetCodec(codec string) {
 	}
 }
 
+func (ptr *QAudioEncoderSettings) SetEncodingMode(mode QMultimedia__EncodingMode) {
+	defer qt.Recovering("QAudioEncoderSettings::setEncodingMode")
+
+	if ptr.Pointer() != nil {
+		C.QAudioEncoderSettings_SetEncodingMode(ptr.Pointer(), C.int(mode))
+	}
+}
+
 func (ptr *QAudioEncoderSettings) SetEncodingOption(option string, value core.QVariant_ITF) {
 	defer qt.Recovering("QAudioEncoderSettings::setEncodingOption")
 
 	if ptr.Pointer() != nil {
 		C.QAudioEncoderSettings_SetEncodingOption(ptr.Pointer(), C.CString(option), core.PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QAudioEncoderSettings) SetQuality(quality QMultimedia__EncodingQuality) {
+	defer qt.Recovering("QAudioEncoderSettings::setQuality")
+
+	if ptr.Pointer() != nil {
+		C.QAudioEncoderSettings_SetQuality(ptr.Pointer(), C.int(quality))
 	}
 }
 

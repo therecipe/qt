@@ -9,7 +9,7 @@ import (
 
 func GoTemplate(c *parser.Class) (o string) {
 
-	if c.Name != "Qt" {
+	if c.Name != "Qt" && c.Name != "QMultimedia" && c.Name != "QAudio" {
 
 		o += fmt.Sprintf("type %v struct {\n", c.Name)
 		if c.Bases == "" {

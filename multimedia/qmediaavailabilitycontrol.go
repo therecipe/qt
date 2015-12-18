@@ -36,6 +36,44 @@ func (ptr *QMediaAvailabilityControl) QMediaAvailabilityControl_PTR() *QMediaAva
 	return ptr
 }
 
+func (ptr *QMediaAvailabilityControl) Availability() QMultimedia__AvailabilityStatus {
+	defer qt.Recovering("QMediaAvailabilityControl::availability")
+
+	if ptr.Pointer() != nil {
+		return QMultimedia__AvailabilityStatus(C.QMediaAvailabilityControl_Availability(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QMediaAvailabilityControl) ConnectAvailabilityChanged(f func(availability QMultimedia__AvailabilityStatus)) {
+	defer qt.Recovering("connect QMediaAvailabilityControl::availabilityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAvailabilityControl_ConnectAvailabilityChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "availabilityChanged", f)
+	}
+}
+
+func (ptr *QMediaAvailabilityControl) DisconnectAvailabilityChanged() {
+	defer qt.Recovering("disconnect QMediaAvailabilityControl::availabilityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAvailabilityControl_DisconnectAvailabilityChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "availabilityChanged")
+	}
+}
+
+//export callbackQMediaAvailabilityControlAvailabilityChanged
+func callbackQMediaAvailabilityControlAvailabilityChanged(ptrName *C.char, availability C.int) {
+	defer qt.Recovering("callback QMediaAvailabilityControl::availabilityChanged")
+
+	var signal = qt.GetSignal(C.GoString(ptrName), "availabilityChanged")
+	if signal != nil {
+		signal.(func(QMultimedia__AvailabilityStatus))(QMultimedia__AvailabilityStatus(availability))
+	}
+
+}
+
 func (ptr *QMediaAvailabilityControl) DestroyQMediaAvailabilityControl() {
 	defer qt.Recovering("QMediaAvailabilityControl::~QMediaAvailabilityControl")
 

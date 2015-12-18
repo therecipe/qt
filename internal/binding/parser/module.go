@@ -25,7 +25,7 @@ func (m *Module) prepare() {
 	}
 
 	//Register Subnamespace
-	if m.Project == "QtCore" {
+	if m.Project == "QtCore" || m.Project == "QtMultimedia" {
 		if m.Namespace.SubNamespace != nil {
 			for _, e := range m.Namespace.SubNamespace.Enums {
 				e.register(m.Project)
