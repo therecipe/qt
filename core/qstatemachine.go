@@ -175,9 +175,8 @@ func (ptr *QStateMachine) DisconnectOnEntry() {
 func callbackQStateMachineOnEntry(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QStateMachine::onEntry")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onEntry")
-	if signal != nil {
-		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "onEntry"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -206,9 +205,8 @@ func (ptr *QStateMachine) DisconnectOnExit() {
 func callbackQStateMachineOnExit(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QStateMachine::onExit")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onExit")
-	if signal != nil {
-		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "onExit"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -270,8 +268,7 @@ func (ptr *QStateMachine) DisconnectRunningChanged() {
 func callbackQStateMachineRunningChanged(ptrName *C.char, running C.int) {
 	defer qt.Recovering("callback QStateMachine::runningChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "runningChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "runningChanged"); signal != nil {
 		signal.(func(bool))(int(running) != 0)
 	}
 
@@ -331,8 +328,7 @@ func (ptr *QStateMachine) DisconnectStarted() {
 func callbackQStateMachineStarted(ptrName *C.char) {
 	defer qt.Recovering("callback QStateMachine::started")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "started")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "started"); signal != nil {
 		signal.(func())()
 	}
 
@@ -368,8 +364,7 @@ func (ptr *QStateMachine) DisconnectStopped() {
 func callbackQStateMachineStopped(ptrName *C.char) {
 	defer qt.Recovering("callback QStateMachine::stopped")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stopped")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stopped"); signal != nil {
 		signal.(func())()
 	}
 

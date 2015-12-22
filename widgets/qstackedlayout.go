@@ -136,9 +136,8 @@ func (ptr *QStackedLayout) DisconnectAddItem() {
 func callbackQStackedLayoutAddItem(ptrName *C.char, item unsafe.Pointer) bool {
 	defer qt.Recovering("callback QStackedLayout::addItem")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "addItem")
-	if signal != nil {
-		defer signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
+	if signal := qt.GetSignal(C.GoString(ptrName), "addItem"); signal != nil {
+		signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
 		return true
 	}
 	return false
@@ -176,8 +175,7 @@ func (ptr *QStackedLayout) DisconnectCurrentChanged() {
 func callbackQStackedLayoutCurrentChanged(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QStackedLayout::currentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
@@ -259,9 +257,8 @@ func (ptr *QStackedLayout) DisconnectSetGeometry() {
 func callbackQStackedLayoutSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
 	defer qt.Recovering("callback QStackedLayout::setGeometry")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
-	if signal != nil {
-		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
+		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
 		return true
 	}
 	return false
@@ -317,8 +314,7 @@ func (ptr *QStackedLayout) DisconnectWidgetRemoved() {
 func callbackQStackedLayoutWidgetRemoved(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QStackedLayout::widgetRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "widgetRemoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "widgetRemoved"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 

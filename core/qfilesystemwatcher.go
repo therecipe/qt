@@ -107,8 +107,7 @@ func (ptr *QFileSystemWatcher) DisconnectDirectoryChanged() {
 func callbackQFileSystemWatcherDirectoryChanged(ptrName *C.char, path *C.char) {
 	defer qt.Recovering("callback QFileSystemWatcher::directoryChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "directoryChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "directoryChanged"); signal != nil {
 		signal.(func(string))(C.GoString(path))
 	}
 
@@ -136,8 +135,7 @@ func (ptr *QFileSystemWatcher) DisconnectFileChanged() {
 func callbackQFileSystemWatcherFileChanged(ptrName *C.char, path *C.char) {
 	defer qt.Recovering("callback QFileSystemWatcher::fileChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fileChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "fileChanged"); signal != nil {
 		signal.(func(string))(C.GoString(path))
 	}
 

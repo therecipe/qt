@@ -94,9 +94,8 @@ func (ptr *QCommandLinkButton) DisconnectPaintEvent() {
 func callbackQCommandLinkButtonPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QCommandLinkButton::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
 		return true
 	}
 	return false

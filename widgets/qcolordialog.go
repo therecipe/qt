@@ -115,9 +115,8 @@ func (ptr *QColorDialog) DisconnectChangeEvent() {
 func callbackQColorDialogChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QColorDialog::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
 		return true
 	}
 	return false
@@ -146,8 +145,7 @@ func (ptr *QColorDialog) DisconnectColorSelected() {
 func callbackQColorDialogColorSelected(ptrName *C.char, color unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::colorSelected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "colorSelected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "colorSelected"); signal != nil {
 		signal.(func(*gui.QColor))(gui.NewQColorFromPointer(color))
 	}
 
@@ -175,8 +173,7 @@ func (ptr *QColorDialog) DisconnectCurrentColorChanged() {
 func callbackQColorDialogCurrentColorChanged(ptrName *C.char, color unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::currentColorChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentColorChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentColorChanged"); signal != nil {
 		signal.(func(*gui.QColor))(gui.NewQColorFromPointer(color))
 	}
 
@@ -216,9 +213,8 @@ func (ptr *QColorDialog) DisconnectDone() {
 func callbackQColorDialogDone(ptrName *C.char, result C.int) bool {
 	defer qt.Recovering("callback QColorDialog::done")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "done")
-	if signal != nil {
-		defer signal.(func(int))(int(result))
+	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
+		signal.(func(int))(int(result))
 		return true
 	}
 	return false
@@ -290,9 +286,8 @@ func (ptr *QColorDialog) DisconnectSetVisible() {
 func callbackQColorDialogSetVisible(ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QColorDialog::setVisible")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
-	if signal != nil {
-		defer signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
+		signal.(func(bool))(int(visible) != 0)
 		return true
 	}
 	return false

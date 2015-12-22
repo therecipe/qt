@@ -141,8 +141,7 @@ func (ptr *QCameraFocus) DisconnectDigitalZoomChanged() {
 func callbackQCameraFocusDigitalZoomChanged(ptrName *C.char, value C.double) {
 	defer qt.Recovering("callback QCameraFocus::digitalZoomChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "digitalZoomChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "digitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
 
@@ -170,8 +169,7 @@ func (ptr *QCameraFocus) DisconnectFocusZonesChanged() {
 func callbackQCameraFocusFocusZonesChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QCameraFocus::focusZonesChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusZonesChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusZonesChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -235,8 +233,7 @@ func (ptr *QCameraFocus) DisconnectMaximumDigitalZoomChanged() {
 func callbackQCameraFocusMaximumDigitalZoomChanged(ptrName *C.char, zoom C.double) {
 	defer qt.Recovering("callback QCameraFocus::maximumDigitalZoomChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "maximumDigitalZoomChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "maximumDigitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
 
@@ -273,8 +270,7 @@ func (ptr *QCameraFocus) DisconnectMaximumOpticalZoomChanged() {
 func callbackQCameraFocusMaximumOpticalZoomChanged(ptrName *C.char, zoom C.double) {
 	defer qt.Recovering("callback QCameraFocus::maximumOpticalZoomChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "maximumOpticalZoomChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "maximumOpticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
 
@@ -302,8 +298,7 @@ func (ptr *QCameraFocus) DisconnectOpticalZoomChanged() {
 func callbackQCameraFocusOpticalZoomChanged(ptrName *C.char, value C.double) {
 	defer qt.Recovering("callback QCameraFocus::opticalZoomChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "opticalZoomChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "opticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
 

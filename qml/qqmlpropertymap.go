@@ -128,8 +128,7 @@ func (ptr *QQmlPropertyMap) DisconnectValueChanged() {
 func callbackQQmlPropertyMapValueChanged(ptrName *C.char, key *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlPropertyMap::valueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
 	}
 

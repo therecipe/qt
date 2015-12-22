@@ -200,8 +200,7 @@ func (ptr *QScroller) DisconnectStateChanged() {
 func callbackQScrollerStateChanged(ptrName *C.char, newState C.int) {
 	defer qt.Recovering("callback QScroller::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QScroller__State))(QScroller__State(newState))
 	}
 

@@ -65,9 +65,8 @@ func (ptr *QErrorMessage) DisconnectChangeEvent() {
 func callbackQErrorMessageChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QErrorMessage::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
 		return true
 	}
 	return false
@@ -96,9 +95,8 @@ func (ptr *QErrorMessage) DisconnectDone() {
 func callbackQErrorMessageDone(ptrName *C.char, a C.int) bool {
 	defer qt.Recovering("callback QErrorMessage::done")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "done")
-	if signal != nil {
-		defer signal.(func(int))(int(a))
+	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
+		signal.(func(int))(int(a))
 		return true
 	}
 	return false

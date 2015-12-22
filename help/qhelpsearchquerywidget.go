@@ -90,8 +90,7 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSearch() {
 func callbackQHelpSearchQueryWidgetSearch(ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::search")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "search")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "search"); signal != nil {
 		signal.(func())()
 	}
 

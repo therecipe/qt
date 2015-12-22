@@ -120,9 +120,8 @@ func (ptr *QLayoutItem) DisconnectInvalidate() {
 func callbackQLayoutItemInvalidate(ptrName *C.char) bool {
 	defer qt.Recovering("callback QLayoutItem::invalidate")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "invalidate")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

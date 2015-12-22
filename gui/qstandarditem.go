@@ -451,9 +451,8 @@ func (ptr *QStandardItem) DisconnectSetData() {
 func callbackQStandardItemSetData(ptrName *C.char, value unsafe.Pointer, role C.int) bool {
 	defer qt.Recovering("callback QStandardItem::setData")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setData")
-	if signal != nil {
-		defer signal.(func(*core.QVariant, int))(core.NewQVariantFromPointer(value), int(role))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
+		signal.(func(*core.QVariant, int))(core.NewQVariantFromPointer(value), int(role))
 		return true
 	}
 	return false

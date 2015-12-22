@@ -179,8 +179,7 @@ func (ptr *QLCDNumber) DisconnectOverflow() {
 func callbackQLCDNumberOverflow(ptrName *C.char) {
 	defer qt.Recovering("callback QLCDNumber::overflow")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "overflow")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "overflow"); signal != nil {
 		signal.(func())()
 	}
 
@@ -208,9 +207,8 @@ func (ptr *QLCDNumber) DisconnectPaintEvent() {
 func callbackQLCDNumberPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QLCDNumber::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
 		return true
 	}
 	return false

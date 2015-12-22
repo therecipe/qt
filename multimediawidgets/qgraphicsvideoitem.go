@@ -97,9 +97,8 @@ func (ptr *QGraphicsVideoItem) DisconnectPaint() {
 func callbackQGraphicsVideoItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsVideoItem::paint")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paint")
-	if signal != nil {
-		defer signal.(func(*gui.QPainter, *widgets.QStyleOptionGraphicsItem, *widgets.QWidget))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionGraphicsItemFromPointer(option), widgets.NewQWidgetFromPointer(widget))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paint"); signal != nil {
+		signal.(func(*gui.QPainter, *widgets.QStyleOptionGraphicsItem, *widgets.QWidget))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionGraphicsItemFromPointer(option), widgets.NewQWidgetFromPointer(widget))
 		return true
 	}
 	return false

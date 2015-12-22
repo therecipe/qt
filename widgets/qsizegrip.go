@@ -60,9 +60,8 @@ func (ptr *QSizeGrip) DisconnectMouseMoveEvent() {
 func callbackQSizeGripMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSizeGrip::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -91,9 +90,8 @@ func (ptr *QSizeGrip) DisconnectMousePressEvent() {
 func callbackQSizeGripMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSizeGrip::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -128,9 +126,8 @@ func (ptr *QSizeGrip) DisconnectHideEvent() {
 func callbackQSizeGripHideEvent(ptrName *C.char, hideEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSizeGrip::hideEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hideEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(hideEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(hideEvent))
 		return true
 	}
 	return false
@@ -159,9 +156,8 @@ func (ptr *QSizeGrip) DisconnectMouseReleaseEvent() {
 func callbackQSizeGripMouseReleaseEvent(ptrName *C.char, mouseEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSizeGrip::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(mouseEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(mouseEvent))
 		return true
 	}
 	return false
@@ -190,9 +186,8 @@ func (ptr *QSizeGrip) DisconnectMoveEvent() {
 func callbackQSizeGripMoveEvent(ptrName *C.char, moveEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSizeGrip::moveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "moveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(moveEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(moveEvent))
 		return true
 	}
 	return false
@@ -221,9 +216,8 @@ func (ptr *QSizeGrip) DisconnectPaintEvent() {
 func callbackQSizeGripPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSizeGrip::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 		return true
 	}
 	return false
@@ -252,9 +246,8 @@ func (ptr *QSizeGrip) DisconnectSetVisible() {
 func callbackQSizeGripSetVisible(ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QSizeGrip::setVisible")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
-	if signal != nil {
-		defer signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
+		signal.(func(bool))(int(visible) != 0)
 		return true
 	}
 	return false
@@ -283,9 +276,8 @@ func (ptr *QSizeGrip) DisconnectShowEvent() {
 func callbackQSizeGripShowEvent(ptrName *C.char, showEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSizeGrip::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(showEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(showEvent))
 		return true
 	}
 	return false

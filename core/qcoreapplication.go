@@ -113,8 +113,7 @@ func (ptr *QCoreApplication) DisconnectAboutToQuit() {
 func callbackQCoreApplicationAboutToQuit(ptrName *C.char) {
 	defer qt.Recovering("callback QCoreApplication::aboutToQuit")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "aboutToQuit")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "aboutToQuit"); signal != nil {
 		signal.(func())()
 	}
 

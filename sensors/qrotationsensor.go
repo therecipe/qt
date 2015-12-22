@@ -83,8 +83,7 @@ func (ptr *QRotationSensor) DisconnectHasZChanged() {
 func callbackQRotationSensorHasZChanged(ptrName *C.char, hasZ C.int) {
 	defer qt.Recovering("callback QRotationSensor::hasZChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hasZChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "hasZChanged"); signal != nil {
 		signal.(func(bool))(int(hasZ) != 0)
 	}
 

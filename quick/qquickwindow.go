@@ -139,8 +139,7 @@ func (ptr *QQuickWindow) DisconnectActiveFocusItemChanged() {
 func callbackQQuickWindowActiveFocusItemChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::activeFocusItemChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activeFocusItemChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activeFocusItemChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -168,8 +167,7 @@ func (ptr *QQuickWindow) DisconnectAfterAnimating() {
 func callbackQQuickWindowAfterAnimating(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::afterAnimating")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "afterAnimating")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "afterAnimating"); signal != nil {
 		signal.(func())()
 	}
 
@@ -197,8 +195,7 @@ func (ptr *QQuickWindow) DisconnectAfterRendering() {
 func callbackQQuickWindowAfterRendering(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::afterRendering")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "afterRendering")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "afterRendering"); signal != nil {
 		signal.(func())()
 	}
 
@@ -226,8 +223,7 @@ func (ptr *QQuickWindow) DisconnectAfterSynchronizing() {
 func callbackQQuickWindowAfterSynchronizing(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::afterSynchronizing")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "afterSynchronizing")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "afterSynchronizing"); signal != nil {
 		signal.(func())()
 	}
 
@@ -255,8 +251,7 @@ func (ptr *QQuickWindow) DisconnectBeforeRendering() {
 func callbackQQuickWindowBeforeRendering(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::beforeRendering")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "beforeRendering")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "beforeRendering"); signal != nil {
 		signal.(func())()
 	}
 
@@ -284,8 +279,7 @@ func (ptr *QQuickWindow) DisconnectBeforeSynchronizing() {
 func callbackQQuickWindowBeforeSynchronizing(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::beforeSynchronizing")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "beforeSynchronizing")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "beforeSynchronizing"); signal != nil {
 		signal.(func())()
 	}
 
@@ -322,8 +316,7 @@ func (ptr *QQuickWindow) DisconnectColorChanged() {
 func callbackQQuickWindowColorChanged(ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickWindow::colorChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "colorChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "colorChanged"); signal != nil {
 		signal.(func(*gui.QColor))(gui.NewQColorFromPointer(v))
 	}
 
@@ -378,9 +371,8 @@ func (ptr *QQuickWindow) DisconnectExposeEvent() {
 func callbackQQuickWindowExposeEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::exposeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "exposeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QExposeEvent))(gui.NewQExposeEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "exposeEvent"); signal != nil {
+		signal.(func(*gui.QExposeEvent))(gui.NewQExposeEventFromPointer(v))
 		return true
 	}
 	return false
@@ -409,9 +401,8 @@ func (ptr *QQuickWindow) DisconnectFocusInEvent() {
 func callbackQQuickWindowFocusInEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::focusInEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -440,9 +431,8 @@ func (ptr *QQuickWindow) DisconnectFocusOutEvent() {
 func callbackQQuickWindowFocusOutEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::focusOutEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -471,8 +461,7 @@ func (ptr *QQuickWindow) DisconnectFrameSwapped() {
 func callbackQQuickWindowFrameSwapped(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::frameSwapped")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "frameSwapped")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "frameSwapped"); signal != nil {
 		signal.(func())()
 	}
 
@@ -506,9 +495,8 @@ func (ptr *QQuickWindow) DisconnectHideEvent() {
 func callbackQQuickWindowHideEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::hideEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hideEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(v))
 		return true
 	}
 	return false
@@ -573,9 +561,8 @@ func (ptr *QQuickWindow) DisconnectKeyPressEvent() {
 func callbackQQuickWindowKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 		return true
 	}
 	return false
@@ -604,9 +591,8 @@ func (ptr *QQuickWindow) DisconnectKeyReleaseEvent() {
 func callbackQQuickWindowKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::keyReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 		return true
 	}
 	return false
@@ -635,9 +621,8 @@ func (ptr *QQuickWindow) DisconnectMouseDoubleClickEvent() {
 func callbackQQuickWindowMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::mouseDoubleClickEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -675,9 +660,8 @@ func (ptr *QQuickWindow) DisconnectMouseMoveEvent() {
 func callbackQQuickWindowMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -706,9 +690,8 @@ func (ptr *QQuickWindow) DisconnectMousePressEvent() {
 func callbackQQuickWindowMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -737,9 +720,8 @@ func (ptr *QQuickWindow) DisconnectMouseReleaseEvent() {
 func callbackQQuickWindowMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -777,8 +759,7 @@ func (ptr *QQuickWindow) DisconnectOpenglContextCreated() {
 func callbackQQuickWindowOpenglContextCreated(ptrName *C.char, context unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickWindow::openglContextCreated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "openglContextCreated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "openglContextCreated"); signal != nil {
 		signal.(func(*gui.QOpenGLContext))(gui.NewQOpenGLContextFromPointer(context))
 	}
 
@@ -840,9 +821,8 @@ func (ptr *QQuickWindow) DisconnectResizeEvent() {
 func callbackQQuickWindowResizeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -871,8 +851,7 @@ func (ptr *QQuickWindow) DisconnectSceneGraphAboutToStop() {
 func callbackQQuickWindowSceneGraphAboutToStop(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::sceneGraphAboutToStop")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sceneGraphAboutToStop")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sceneGraphAboutToStop"); signal != nil {
 		signal.(func())()
 	}
 
@@ -900,8 +879,7 @@ func (ptr *QQuickWindow) DisconnectSceneGraphError() {
 func callbackQQuickWindowSceneGraphError(ptrName *C.char, error C.int, message *C.char) {
 	defer qt.Recovering("callback QQuickWindow::sceneGraphError")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sceneGraphError")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sceneGraphError"); signal != nil {
 		signal.(func(QQuickWindow__SceneGraphError, string))(QQuickWindow__SceneGraphError(error), C.GoString(message))
 	}
 
@@ -929,8 +907,7 @@ func (ptr *QQuickWindow) DisconnectSceneGraphInitialized() {
 func callbackQQuickWindowSceneGraphInitialized(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::sceneGraphInitialized")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sceneGraphInitialized")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sceneGraphInitialized"); signal != nil {
 		signal.(func())()
 	}
 
@@ -958,8 +935,7 @@ func (ptr *QQuickWindow) DisconnectSceneGraphInvalidated() {
 func callbackQQuickWindowSceneGraphInvalidated(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::sceneGraphInvalidated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sceneGraphInvalidated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sceneGraphInvalidated"); signal != nil {
 		signal.(func())()
 	}
 
@@ -1042,9 +1018,8 @@ func (ptr *QQuickWindow) DisconnectShowEvent() {
 func callbackQQuickWindowShowEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
 		return true
 	}
 	return false
@@ -1081,9 +1056,8 @@ func (ptr *QQuickWindow) DisconnectWheelEvent() {
 func callbackQQuickWindowWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQuickWindow::wheelEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 		return true
 	}
 	return false

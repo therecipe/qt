@@ -164,8 +164,7 @@ func (ptr *QFileSystemModel) DisconnectDirectoryLoaded() {
 func callbackQFileSystemModelDirectoryLoaded(ptrName *C.char, path *C.char) {
 	defer qt.Recovering("callback QFileSystemModel::directoryLoaded")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "directoryLoaded")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "directoryLoaded"); signal != nil {
 		signal.(func(string))(C.GoString(path))
 	}
 
@@ -202,9 +201,8 @@ func (ptr *QFileSystemModel) DisconnectFetchMore() {
 func callbackQFileSystemModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QFileSystemModel::fetchMore")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fetchMore")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
 		return true
 	}
 	return false
@@ -260,8 +258,7 @@ func (ptr *QFileSystemModel) DisconnectFileRenamed() {
 func callbackQFileSystemModelFileRenamed(ptrName *C.char, path *C.char, oldName *C.char, newName *C.char) {
 	defer qt.Recovering("callback QFileSystemModel::fileRenamed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fileRenamed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "fileRenamed"); signal != nil {
 		signal.(func(string, string, string))(C.GoString(path), C.GoString(oldName), C.GoString(newName))
 	}
 
@@ -433,8 +430,7 @@ func (ptr *QFileSystemModel) DisconnectRootPathChanged() {
 func callbackQFileSystemModelRootPathChanged(ptrName *C.char, newPath *C.char) {
 	defer qt.Recovering("callback QFileSystemModel::rootPathChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rootPathChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "rootPathChanged"); signal != nil {
 		signal.(func(string))(C.GoString(newPath))
 	}
 
@@ -522,9 +518,8 @@ func (ptr *QFileSystemModel) DisconnectSort() {
 func callbackQFileSystemModelSort(ptrName *C.char, column C.int, order C.int) bool {
 	defer qt.Recovering("callback QFileSystemModel::sort")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sort")
-	if signal != nil {
-		defer signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
+	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
+		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
 		return true
 	}
 	return false
@@ -562,9 +557,8 @@ func (ptr *QFileSystemModel) DisconnectTimerEvent() {
 func callbackQFileSystemModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QFileSystemModel::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 		return true
 	}
 	return false

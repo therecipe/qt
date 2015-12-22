@@ -83,8 +83,7 @@ func (ptr *QLightSensor) DisconnectFieldOfViewChanged() {
 func callbackQLightSensorFieldOfViewChanged(ptrName *C.char, fieldOfView C.double) {
 	defer qt.Recovering("callback QLightSensor::fieldOfViewChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fieldOfViewChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "fieldOfViewChanged"); signal != nil {
 		signal.(func(float64))(float64(fieldOfView))
 	}
 

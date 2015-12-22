@@ -110,8 +110,7 @@ func (ptr *QMdiSubWindow) DisconnectAboutToActivate() {
 func callbackQMdiSubWindowAboutToActivate(ptrName *C.char) {
 	defer qt.Recovering("callback QMdiSubWindow::aboutToActivate")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "aboutToActivate")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "aboutToActivate"); signal != nil {
 		signal.(func())()
 	}
 
@@ -139,9 +138,8 @@ func (ptr *QMdiSubWindow) DisconnectChangeEvent() {
 func callbackQMdiSubWindowChangeEvent(ptrName *C.char, changeEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(changeEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(changeEvent))
 		return true
 	}
 	return false
@@ -170,9 +168,8 @@ func (ptr *QMdiSubWindow) DisconnectChildEvent() {
 func callbackQMdiSubWindowChildEvent(ptrName *C.char, childEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::childEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "childEvent")
-	if signal != nil {
-		defer signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(childEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(childEvent))
 		return true
 	}
 	return false
@@ -201,9 +198,8 @@ func (ptr *QMdiSubWindow) DisconnectCloseEvent() {
 func callbackQMdiSubWindowCloseEvent(ptrName *C.char, closeEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::closeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "closeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(closeEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(closeEvent))
 		return true
 	}
 	return false
@@ -232,9 +228,8 @@ func (ptr *QMdiSubWindow) DisconnectContextMenuEvent() {
 func callbackQMdiSubWindowContextMenuEvent(ptrName *C.char, contextMenuEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::contextMenuEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contextMenuEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(contextMenuEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(contextMenuEvent))
 		return true
 	}
 	return false
@@ -263,9 +258,8 @@ func (ptr *QMdiSubWindow) DisconnectFocusInEvent() {
 func callbackQMdiSubWindowFocusInEvent(ptrName *C.char, focusInEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::focusInEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(focusInEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(focusInEvent))
 		return true
 	}
 	return false
@@ -294,9 +288,8 @@ func (ptr *QMdiSubWindow) DisconnectFocusOutEvent() {
 func callbackQMdiSubWindowFocusOutEvent(ptrName *C.char, focusOutEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::focusOutEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(focusOutEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(focusOutEvent))
 		return true
 	}
 	return false
@@ -325,9 +318,8 @@ func (ptr *QMdiSubWindow) DisconnectHideEvent() {
 func callbackQMdiSubWindowHideEvent(ptrName *C.char, hideEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::hideEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hideEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(hideEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(hideEvent))
 		return true
 	}
 	return false
@@ -365,9 +357,8 @@ func (ptr *QMdiSubWindow) DisconnectKeyPressEvent() {
 func callbackQMdiSubWindowKeyPressEvent(ptrName *C.char, keyEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(keyEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(keyEvent))
 		return true
 	}
 	return false
@@ -396,9 +387,8 @@ func (ptr *QMdiSubWindow) DisconnectLeaveEvent() {
 func callbackQMdiSubWindowLeaveEvent(ptrName *C.char, leaveEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::leaveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "leaveEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(leaveEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(leaveEvent))
 		return true
 	}
 	return false
@@ -445,9 +435,8 @@ func (ptr *QMdiSubWindow) DisconnectMouseDoubleClickEvent() {
 func callbackQMdiSubWindowMouseDoubleClickEvent(ptrName *C.char, mouseEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::mouseDoubleClickEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(mouseEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(mouseEvent))
 		return true
 	}
 	return false
@@ -476,9 +465,8 @@ func (ptr *QMdiSubWindow) DisconnectMouseMoveEvent() {
 func callbackQMdiSubWindowMouseMoveEvent(ptrName *C.char, mouseEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(mouseEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(mouseEvent))
 		return true
 	}
 	return false
@@ -507,9 +495,8 @@ func (ptr *QMdiSubWindow) DisconnectMousePressEvent() {
 func callbackQMdiSubWindowMousePressEvent(ptrName *C.char, mouseEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(mouseEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(mouseEvent))
 		return true
 	}
 	return false
@@ -538,9 +525,8 @@ func (ptr *QMdiSubWindow) DisconnectMouseReleaseEvent() {
 func callbackQMdiSubWindowMouseReleaseEvent(ptrName *C.char, mouseEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(mouseEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(mouseEvent))
 		return true
 	}
 	return false
@@ -569,9 +555,8 @@ func (ptr *QMdiSubWindow) DisconnectMoveEvent() {
 func callbackQMdiSubWindowMoveEvent(ptrName *C.char, moveEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::moveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "moveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(moveEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(moveEvent))
 		return true
 	}
 	return false
@@ -600,9 +585,8 @@ func (ptr *QMdiSubWindow) DisconnectPaintEvent() {
 func callbackQMdiSubWindowPaintEvent(ptrName *C.char, paintEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(paintEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(paintEvent))
 		return true
 	}
 	return false
@@ -631,9 +615,8 @@ func (ptr *QMdiSubWindow) DisconnectResizeEvent() {
 func callbackQMdiSubWindowResizeEvent(ptrName *C.char, resizeEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(resizeEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(resizeEvent))
 		return true
 	}
 	return false
@@ -686,9 +669,8 @@ func (ptr *QMdiSubWindow) DisconnectShowEvent() {
 func callbackQMdiSubWindowShowEvent(ptrName *C.char, showEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(showEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(showEvent))
 		return true
 	}
 	return false
@@ -760,9 +742,8 @@ func (ptr *QMdiSubWindow) DisconnectTimerEvent() {
 func callbackQMdiSubWindowTimerEvent(ptrName *C.char, timerEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiSubWindow::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(timerEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(timerEvent))
 		return true
 	}
 	return false
@@ -800,8 +781,7 @@ func (ptr *QMdiSubWindow) DisconnectWindowStateChanged() {
 func callbackQMdiSubWindowWindowStateChanged(ptrName *C.char, oldState C.int, newState C.int) {
 	defer qt.Recovering("callback QMdiSubWindow::windowStateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "windowStateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "windowStateChanged"); signal != nil {
 		signal.(func(core.Qt__WindowState, core.Qt__WindowState))(core.Qt__WindowState(oldState), core.Qt__WindowState(newState))
 	}
 

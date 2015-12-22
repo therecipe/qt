@@ -67,8 +67,7 @@ func (ptr *QNearFieldShareTarget) DisconnectError() {
 func callbackQNearFieldShareTargetError(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QNearFieldShareTarget::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(QNearFieldShareManager__ShareError))(QNearFieldShareManager__ShareError(error))
 	}
 
@@ -123,8 +122,7 @@ func (ptr *QNearFieldShareTarget) DisconnectShareFinished() {
 func callbackQNearFieldShareTargetShareFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QNearFieldShareTarget::shareFinished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "shareFinished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "shareFinished"); signal != nil {
 		signal.(func())()
 	}
 

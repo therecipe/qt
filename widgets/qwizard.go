@@ -124,9 +124,8 @@ func (ptr *QWizard) DisconnectCleanupPage() {
 func callbackQWizardCleanupPage(ptrName *C.char, id C.int) bool {
 	defer qt.Recovering("callback QWizard::cleanupPage")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cleanupPage")
-	if signal != nil {
-		defer signal.(func(int))(int(id))
+	if signal := qt.GetSignal(C.GoString(ptrName), "cleanupPage"); signal != nil {
+		signal.(func(int))(int(id))
 		return true
 	}
 	return false
@@ -173,9 +172,8 @@ func (ptr *QWizard) DisconnectInitializePage() {
 func callbackQWizardInitializePage(ptrName *C.char, id C.int) bool {
 	defer qt.Recovering("callback QWizard::initializePage")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "initializePage")
-	if signal != nil {
-		defer signal.(func(int))(int(id))
+	if signal := qt.GetSignal(C.GoString(ptrName), "initializePage"); signal != nil {
+		signal.(func(int))(int(id))
 		return true
 	}
 	return false
@@ -347,8 +345,7 @@ func (ptr *QWizard) DisconnectCurrentIdChanged() {
 func callbackQWizardCurrentIdChanged(ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QWizard::currentIdChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentIdChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentIdChanged"); signal != nil {
 		signal.(func(int))(int(id))
 	}
 
@@ -385,8 +382,7 @@ func (ptr *QWizard) DisconnectCustomButtonClicked() {
 func callbackQWizardCustomButtonClicked(ptrName *C.char, which C.int) {
 	defer qt.Recovering("callback QWizard::customButtonClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "customButtonClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "customButtonClicked"); signal != nil {
 		signal.(func(int))(int(which))
 	}
 
@@ -414,9 +410,8 @@ func (ptr *QWizard) DisconnectDone() {
 func callbackQWizardDone(ptrName *C.char, result C.int) bool {
 	defer qt.Recovering("callback QWizard::done")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "done")
-	if signal != nil {
-		defer signal.(func(int))(int(result))
+	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
+		signal.(func(int))(int(result))
 		return true
 	}
 	return false
@@ -454,8 +449,7 @@ func (ptr *QWizard) DisconnectHelpRequested() {
 func callbackQWizardHelpRequested(ptrName *C.char) {
 	defer qt.Recovering("callback QWizard::helpRequested")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "helpRequested")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "helpRequested"); signal != nil {
 		signal.(func())()
 	}
 
@@ -500,8 +494,7 @@ func (ptr *QWizard) DisconnectPageAdded() {
 func callbackQWizardPageAdded(ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QWizard::pageAdded")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "pageAdded")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "pageAdded"); signal != nil {
 		signal.(func(int))(int(id))
 	}
 
@@ -529,8 +522,7 @@ func (ptr *QWizard) DisconnectPageRemoved() {
 func callbackQWizardPageRemoved(ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QWizard::pageRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "pageRemoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "pageRemoved"); signal != nil {
 		signal.(func(int))(int(id))
 	}
 
@@ -558,9 +550,8 @@ func (ptr *QWizard) DisconnectPaintEvent() {
 func callbackQWizardPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QWizard::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 		return true
 	}
 	return false
@@ -597,9 +588,8 @@ func (ptr *QWizard) DisconnectResizeEvent() {
 func callbackQWizardResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QWizard::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 		return true
 	}
 	return false
@@ -692,9 +682,8 @@ func (ptr *QWizard) DisconnectSetVisible() {
 func callbackQWizardSetVisible(ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QWizard::setVisible")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
-	if signal != nil {
-		defer signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
+		signal.(func(bool))(int(visible) != 0)
 		return true
 	}
 	return false

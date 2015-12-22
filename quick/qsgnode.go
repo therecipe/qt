@@ -219,9 +219,8 @@ func (ptr *QSGNode) DisconnectPreprocess() {
 func callbackQSGNodePreprocess(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSGNode::preprocess")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "preprocess")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

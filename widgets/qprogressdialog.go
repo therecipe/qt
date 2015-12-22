@@ -208,8 +208,7 @@ func (ptr *QProgressDialog) DisconnectCanceled() {
 func callbackQProgressDialogCanceled(ptrName *C.char) {
 	defer qt.Recovering("callback QProgressDialog::canceled")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "canceled")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "canceled"); signal != nil {
 		signal.(func())()
 	}
 
@@ -237,9 +236,8 @@ func (ptr *QProgressDialog) DisconnectChangeEvent() {
 func callbackQProgressDialogChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QProgressDialog::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -268,9 +266,8 @@ func (ptr *QProgressDialog) DisconnectCloseEvent() {
 func callbackQProgressDialogCloseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QProgressDialog::closeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "closeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -315,9 +312,8 @@ func (ptr *QProgressDialog) DisconnectResizeEvent() {
 func callbackQProgressDialogResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QProgressDialog::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 		return true
 	}
 	return false
@@ -386,9 +382,8 @@ func (ptr *QProgressDialog) DisconnectShowEvent() {
 func callbackQProgressDialogShowEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QProgressDialog::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
 		return true
 	}
 	return false

@@ -98,8 +98,7 @@ func (ptr *QLowEnergyService) DisconnectError2() {
 func callbackQLowEnergyServiceError2(ptrName *C.char, newError C.int) {
 	defer qt.Recovering("callback QLowEnergyService::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QLowEnergyService__ServiceError))(QLowEnergyService__ServiceError(newError))
 	}
 
@@ -127,8 +126,7 @@ func (ptr *QLowEnergyService) DisconnectStateChanged() {
 func callbackQLowEnergyServiceStateChanged(ptrName *C.char, newState C.int) {
 	defer qt.Recovering("callback QLowEnergyService::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QLowEnergyService__ServiceState))(QLowEnergyService__ServiceState(newState))
 	}
 

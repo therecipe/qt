@@ -70,8 +70,7 @@ func (ptr *QTableWidget) DisconnectCellActivated() {
 func callbackQTableWidgetCellActivated(ptrName *C.char, row C.int, column C.int) {
 	defer qt.Recovering("callback QTableWidget::cellActivated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cellActivated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "cellActivated"); signal != nil {
 		signal.(func(int, int))(int(row), int(column))
 	}
 
@@ -99,8 +98,7 @@ func (ptr *QTableWidget) DisconnectCellChanged() {
 func callbackQTableWidgetCellChanged(ptrName *C.char, row C.int, column C.int) {
 	defer qt.Recovering("callback QTableWidget::cellChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cellChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "cellChanged"); signal != nil {
 		signal.(func(int, int))(int(row), int(column))
 	}
 
@@ -128,8 +126,7 @@ func (ptr *QTableWidget) DisconnectCellClicked() {
 func callbackQTableWidgetCellClicked(ptrName *C.char, row C.int, column C.int) {
 	defer qt.Recovering("callback QTableWidget::cellClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cellClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "cellClicked"); signal != nil {
 		signal.(func(int, int))(int(row), int(column))
 	}
 
@@ -157,8 +154,7 @@ func (ptr *QTableWidget) DisconnectCellDoubleClicked() {
 func callbackQTableWidgetCellDoubleClicked(ptrName *C.char, row C.int, column C.int) {
 	defer qt.Recovering("callback QTableWidget::cellDoubleClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cellDoubleClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "cellDoubleClicked"); signal != nil {
 		signal.(func(int, int))(int(row), int(column))
 	}
 
@@ -186,8 +182,7 @@ func (ptr *QTableWidget) DisconnectCellEntered() {
 func callbackQTableWidgetCellEntered(ptrName *C.char, row C.int, column C.int) {
 	defer qt.Recovering("callback QTableWidget::cellEntered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cellEntered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "cellEntered"); signal != nil {
 		signal.(func(int, int))(int(row), int(column))
 	}
 
@@ -215,8 +210,7 @@ func (ptr *QTableWidget) DisconnectCellPressed() {
 func callbackQTableWidgetCellPressed(ptrName *C.char, row C.int, column C.int) {
 	defer qt.Recovering("callback QTableWidget::cellPressed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cellPressed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "cellPressed"); signal != nil {
 		signal.(func(int, int))(int(row), int(column))
 	}
 
@@ -295,8 +289,7 @@ func (ptr *QTableWidget) DisconnectCurrentCellChanged() {
 func callbackQTableWidgetCurrentCellChanged(ptrName *C.char, currentRow C.int, currentColumn C.int, previousRow C.int, previousColumn C.int) {
 	defer qt.Recovering("callback QTableWidget::currentCellChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentCellChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentCellChanged"); signal != nil {
 		signal.(func(int, int, int, int))(int(currentRow), int(currentColumn), int(previousRow), int(previousColumn))
 	}
 
@@ -342,8 +335,7 @@ func (ptr *QTableWidget) DisconnectCurrentItemChanged() {
 func callbackQTableWidgetCurrentItemChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
 	defer qt.Recovering("callback QTableWidget::currentItemChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentItemChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentItemChanged"); signal != nil {
 		signal.(func(*QTableWidgetItem, *QTableWidgetItem))(NewQTableWidgetItemFromPointer(current), NewQTableWidgetItemFromPointer(previous))
 	}
 
@@ -380,9 +372,8 @@ func (ptr *QTableWidget) DisconnectDropEvent() {
 func callbackQTableWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableWidget::dropEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 		return true
 	}
 	return false
@@ -453,8 +444,7 @@ func (ptr *QTableWidget) DisconnectItemActivated() {
 func callbackQTableWidgetItemActivated(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QTableWidget::itemActivated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemActivated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemActivated"); signal != nil {
 		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
 	}
 
@@ -491,8 +481,7 @@ func (ptr *QTableWidget) DisconnectItemChanged() {
 func callbackQTableWidgetItemChanged(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QTableWidget::itemChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemChanged"); signal != nil {
 		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
 	}
 
@@ -520,8 +509,7 @@ func (ptr *QTableWidget) DisconnectItemClicked() {
 func callbackQTableWidgetItemClicked(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QTableWidget::itemClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemClicked"); signal != nil {
 		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
 	}
 
@@ -549,8 +537,7 @@ func (ptr *QTableWidget) DisconnectItemDoubleClicked() {
 func callbackQTableWidgetItemDoubleClicked(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QTableWidget::itemDoubleClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked"); signal != nil {
 		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
 	}
 
@@ -578,8 +565,7 @@ func (ptr *QTableWidget) DisconnectItemEntered() {
 func callbackQTableWidgetItemEntered(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QTableWidget::itemEntered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemEntered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemEntered"); signal != nil {
 		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
 	}
 
@@ -607,8 +593,7 @@ func (ptr *QTableWidget) DisconnectItemPressed() {
 func callbackQTableWidgetItemPressed(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QTableWidget::itemPressed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemPressed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemPressed"); signal != nil {
 		signal.(func(*QTableWidgetItem))(NewQTableWidgetItemFromPointer(item))
 	}
 
@@ -645,8 +630,7 @@ func (ptr *QTableWidget) DisconnectItemSelectionChanged() {
 func callbackQTableWidgetItemSelectionChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QTableWidget::itemSelectionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged"); signal != nil {
 		signal.(func())()
 	}
 

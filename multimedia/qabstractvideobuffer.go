@@ -116,9 +116,8 @@ func (ptr *QAbstractVideoBuffer) DisconnectRelease() {
 func callbackQAbstractVideoBufferRelease(ptrName *C.char) bool {
 	defer qt.Recovering("callback QAbstractVideoBuffer::release")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "release")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "release"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

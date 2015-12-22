@@ -113,8 +113,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsAboutToBeInserted() {
 func callbackQAbstractItemModelColumnsAboutToBeInserted(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsAboutToBeInserted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "columnsAboutToBeInserted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "columnsAboutToBeInserted"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(first), int(last))
 	}
 
@@ -142,8 +141,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsAboutToBeMoved() {
 func callbackQAbstractItemModelColumnsAboutToBeMoved(ptrName *C.char, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsAboutToBeMoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "columnsAboutToBeMoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "columnsAboutToBeMoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int, *QModelIndex, int))(NewQModelIndexFromPointer(sourceParent), int(sourceStart), int(sourceEnd), NewQModelIndexFromPointer(destinationParent), int(destinationColumn))
 	}
 
@@ -171,8 +169,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsAboutToBeRemoved() {
 func callbackQAbstractItemModelColumnsAboutToBeRemoved(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsAboutToBeRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "columnsAboutToBeRemoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "columnsAboutToBeRemoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(first), int(last))
 	}
 
@@ -200,8 +197,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsInserted() {
 func callbackQAbstractItemModelColumnsInserted(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsInserted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "columnsInserted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "columnsInserted"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(first), int(last))
 	}
 
@@ -229,8 +225,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsMoved() {
 func callbackQAbstractItemModelColumnsMoved(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsMoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "columnsMoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "columnsMoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int, *QModelIndex, int))(NewQModelIndexFromPointer(parent), int(start), int(end), NewQModelIndexFromPointer(destination), int(column))
 	}
 
@@ -258,8 +253,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsRemoved() {
 func callbackQAbstractItemModelColumnsRemoved(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "columnsRemoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "columnsRemoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(first), int(last))
 	}
 
@@ -305,9 +299,8 @@ func (ptr *QAbstractItemModel) DisconnectFetchMore() {
 func callbackQAbstractItemModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QAbstractItemModel::fetchMore")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fetchMore")
-	if signal != nil {
-		defer signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
 		return true
 	}
 	return false
@@ -372,8 +365,7 @@ func (ptr *QAbstractItemModel) DisconnectHeaderDataChanged() {
 func callbackQAbstractItemModelHeaderDataChanged(ptrName *C.char, orientation C.int, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::headerDataChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "headerDataChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "headerDataChanged"); signal != nil {
 		signal.(func(Qt__Orientation, int, int))(Qt__Orientation(orientation), int(first), int(last))
 	}
 
@@ -455,8 +447,7 @@ func (ptr *QAbstractItemModel) DisconnectModelAboutToBeReset() {
 func callbackQAbstractItemModelModelAboutToBeReset(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractItemModel::modelAboutToBeReset")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "modelAboutToBeReset")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "modelAboutToBeReset"); signal != nil {
 		signal.(func())()
 	}
 
@@ -484,8 +475,7 @@ func (ptr *QAbstractItemModel) DisconnectModelReset() {
 func callbackQAbstractItemModelModelReset(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractItemModel::modelReset")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "modelReset")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "modelReset"); signal != nil {
 		signal.(func())()
 	}
 
@@ -594,9 +584,8 @@ func (ptr *QAbstractItemModel) DisconnectRevert() {
 func callbackQAbstractItemModelRevert(ptrName *C.char) bool {
 	defer qt.Recovering("callback QAbstractItemModel::revert")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "revert")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -634,8 +623,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsAboutToBeInserted() {
 func callbackQAbstractItemModelRowsAboutToBeInserted(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsAboutToBeInserted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeInserted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeInserted"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(start), int(end))
 	}
 
@@ -663,8 +651,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsAboutToBeMoved() {
 func callbackQAbstractItemModelRowsAboutToBeMoved(ptrName *C.char, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsAboutToBeMoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeMoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeMoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int, *QModelIndex, int))(NewQModelIndexFromPointer(sourceParent), int(sourceStart), int(sourceEnd), NewQModelIndexFromPointer(destinationParent), int(destinationRow))
 	}
 
@@ -692,8 +679,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsAboutToBeRemoved() {
 func callbackQAbstractItemModelRowsAboutToBeRemoved(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsAboutToBeRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(first), int(last))
 	}
 
@@ -721,8 +707,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsInserted() {
 func callbackQAbstractItemModelRowsInserted(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsInserted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rowsInserted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(first), int(last))
 	}
 
@@ -750,8 +735,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsMoved() {
 func callbackQAbstractItemModelRowsMoved(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsMoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rowsMoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsMoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int, *QModelIndex, int))(NewQModelIndexFromPointer(parent), int(start), int(end), NewQModelIndexFromPointer(destination), int(row))
 	}
 
@@ -779,8 +763,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsRemoved() {
 func callbackQAbstractItemModelRowsRemoved(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rowsRemoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsRemoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(first), int(last))
 	}
 
@@ -826,9 +809,8 @@ func (ptr *QAbstractItemModel) DisconnectSort() {
 func callbackQAbstractItemModelSort(ptrName *C.char, column C.int, order C.int) bool {
 	defer qt.Recovering("callback QAbstractItemModel::sort")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sort")
-	if signal != nil {
-		defer signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
+	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
+		signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
 		return true
 	}
 	return false

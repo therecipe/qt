@@ -96,9 +96,8 @@ func (ptr *QDesktopWidget) DisconnectResizeEvent() {
 func callbackQDesktopWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDesktopWidget::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 		return true
 	}
 	return false
@@ -181,8 +180,7 @@ func (ptr *QDesktopWidget) DisconnectResized() {
 func callbackQDesktopWidgetResized(ptrName *C.char, screen C.int) {
 	defer qt.Recovering("callback QDesktopWidget::resized")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resized")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "resized"); signal != nil {
 		signal.(func(int))(int(screen))
 	}
 
@@ -219,8 +217,7 @@ func (ptr *QDesktopWidget) DisconnectScreenCountChanged() {
 func callbackQDesktopWidgetScreenCountChanged(ptrName *C.char, newCount C.int) {
 	defer qt.Recovering("callback QDesktopWidget::screenCountChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "screenCountChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "screenCountChanged"); signal != nil {
 		signal.(func(int))(int(newCount))
 	}
 
@@ -257,8 +254,7 @@ func (ptr *QDesktopWidget) DisconnectWorkAreaResized() {
 func callbackQDesktopWidgetWorkAreaResized(ptrName *C.char, screen C.int) {
 	defer qt.Recovering("callback QDesktopWidget::workAreaResized")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "workAreaResized")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "workAreaResized"); signal != nil {
 		signal.(func(int))(int(screen))
 	}
 

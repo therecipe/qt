@@ -107,9 +107,8 @@ func (ptr *QDialog) DisconnectAccept() {
 func callbackQDialogAccept(ptrName *C.char) bool {
 	defer qt.Recovering("callback QDialog::accept")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "accept")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "accept"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -138,8 +137,7 @@ func (ptr *QDialog) DisconnectAccepted() {
 func callbackQDialogAccepted(ptrName *C.char) {
 	defer qt.Recovering("callback QDialog::accepted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "accepted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "accepted"); signal != nil {
 		signal.(func())()
 	}
 
@@ -167,9 +165,8 @@ func (ptr *QDialog) DisconnectCloseEvent() {
 func callbackQDialogCloseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDialog::closeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "closeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -198,9 +195,8 @@ func (ptr *QDialog) DisconnectContextMenuEvent() {
 func callbackQDialogContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDialog::contextMenuEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contextMenuEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
 		return true
 	}
 	return false
@@ -229,9 +225,8 @@ func (ptr *QDialog) DisconnectDone() {
 func callbackQDialogDone(ptrName *C.char, r C.int) bool {
 	defer qt.Recovering("callback QDialog::done")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "done")
-	if signal != nil {
-		defer signal.(func(int))(int(r))
+	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
+		signal.(func(int))(int(r))
 		return true
 	}
 	return false
@@ -269,8 +264,7 @@ func (ptr *QDialog) DisconnectFinished() {
 func callbackQDialogFinished(ptrName *C.char, result C.int) {
 	defer qt.Recovering("callback QDialog::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(int))(int(result))
 	}
 
@@ -298,9 +292,8 @@ func (ptr *QDialog) DisconnectKeyPressEvent() {
 func callbackQDialogKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDialog::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 		return true
 	}
 	return false
@@ -338,9 +331,8 @@ func (ptr *QDialog) DisconnectOpen() {
 func callbackQDialogOpen(ptrName *C.char) bool {
 	defer qt.Recovering("callback QDialog::open")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "open")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "open"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -369,9 +361,8 @@ func (ptr *QDialog) DisconnectReject() {
 func callbackQDialogReject(ptrName *C.char) bool {
 	defer qt.Recovering("callback QDialog::reject")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "reject")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "reject"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -400,8 +391,7 @@ func (ptr *QDialog) DisconnectRejected() {
 func callbackQDialogRejected(ptrName *C.char) {
 	defer qt.Recovering("callback QDialog::rejected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rejected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "rejected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -429,9 +419,8 @@ func (ptr *QDialog) DisconnectResizeEvent() {
 func callbackQDialogResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDialog::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
 		return true
 	}
 	return false
@@ -469,9 +458,8 @@ func (ptr *QDialog) DisconnectSetVisible() {
 func callbackQDialogSetVisible(ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QDialog::setVisible")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
-	if signal != nil {
-		defer signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
+		signal.(func(bool))(int(visible) != 0)
 		return true
 	}
 	return false
@@ -500,9 +488,8 @@ func (ptr *QDialog) DisconnectShowEvent() {
 func callbackQDialogShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDialog::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 		return true
 	}
 	return false

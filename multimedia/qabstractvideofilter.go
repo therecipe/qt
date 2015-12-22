@@ -76,8 +76,7 @@ func (ptr *QAbstractVideoFilter) DisconnectActiveChanged() {
 func callbackQAbstractVideoFilterActiveChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractVideoFilter::activeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activeChanged"); signal != nil {
 		signal.(func())()
 	}
 

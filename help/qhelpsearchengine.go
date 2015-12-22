@@ -90,8 +90,7 @@ func (ptr *QHelpSearchEngine) DisconnectIndexingFinished() {
 func callbackQHelpSearchEngineIndexingFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchEngine::indexingFinished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "indexingFinished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "indexingFinished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -119,8 +118,7 @@ func (ptr *QHelpSearchEngine) DisconnectIndexingStarted() {
 func callbackQHelpSearchEngineIndexingStarted(ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchEngine::indexingStarted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "indexingStarted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "indexingStarted"); signal != nil {
 		signal.(func())()
 	}
 
@@ -174,8 +172,7 @@ func (ptr *QHelpSearchEngine) DisconnectSearchingFinished() {
 func callbackQHelpSearchEngineSearchingFinished(ptrName *C.char, hits C.int) {
 	defer qt.Recovering("callback QHelpSearchEngine::searchingFinished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "searchingFinished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "searchingFinished"); signal != nil {
 		signal.(func(int))(int(hits))
 	}
 
@@ -203,8 +200,7 @@ func (ptr *QHelpSearchEngine) DisconnectSearchingStarted() {
 func callbackQHelpSearchEngineSearchingStarted(ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchEngine::searchingStarted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "searchingStarted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "searchingStarted"); signal != nil {
 		signal.(func())()
 	}
 

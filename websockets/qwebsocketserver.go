@@ -74,8 +74,7 @@ func (ptr *QWebSocketServer) DisconnectAcceptError() {
 func callbackQWebSocketServerAcceptError(ptrName *C.char, socketError C.int) {
 	defer qt.Recovering("callback QWebSocketServer::acceptError")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "acceptError")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "acceptError"); signal != nil {
 		signal.(func(network.QAbstractSocket__SocketError))(network.QAbstractSocket__SocketError(socketError))
 	}
 
@@ -111,8 +110,7 @@ func (ptr *QWebSocketServer) DisconnectClosed() {
 func callbackQWebSocketServerClosed(ptrName *C.char) {
 	defer qt.Recovering("callback QWebSocketServer::closed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "closed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "closed"); signal != nil {
 		signal.(func())()
 	}
 
@@ -176,8 +174,7 @@ func (ptr *QWebSocketServer) DisconnectNewConnection() {
 func callbackQWebSocketServerNewConnection(ptrName *C.char) {
 	defer qt.Recovering("callback QWebSocketServer::newConnection")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "newConnection")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "newConnection"); signal != nil {
 		signal.(func())()
 	}
 
@@ -214,8 +211,7 @@ func (ptr *QWebSocketServer) DisconnectOriginAuthenticationRequired() {
 func callbackQWebSocketServerOriginAuthenticationRequired(ptrName *C.char, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QWebSocketServer::originAuthenticationRequired")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "originAuthenticationRequired")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "originAuthenticationRequired"); signal != nil {
 		signal.(func(*QWebSocketCorsAuthenticator))(NewQWebSocketCorsAuthenticatorFromPointer(authenticator))
 	}
 

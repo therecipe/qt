@@ -68,9 +68,8 @@ func (ptr *QStatusBar) DisconnectPaintEvent() {
 func callbackQStatusBarPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QStatusBar::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 		return true
 	}
 	return false
@@ -164,8 +163,7 @@ func (ptr *QStatusBar) DisconnectMessageChanged() {
 func callbackQStatusBarMessageChanged(ptrName *C.char, message *C.char) {
 	defer qt.Recovering("callback QStatusBar::messageChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "messageChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "messageChanged"); signal != nil {
 		signal.(func(string))(C.GoString(message))
 	}
 
@@ -201,9 +199,8 @@ func (ptr *QStatusBar) DisconnectResizeEvent() {
 func callbackQStatusBarResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QStatusBar::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
 		return true
 	}
 	return false
@@ -232,9 +229,8 @@ func (ptr *QStatusBar) DisconnectShowEvent() {
 func callbackQStatusBarShowEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QStatusBar::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
 		return true
 	}
 	return false

@@ -91,8 +91,7 @@ func (ptr *QMagnetometer) DisconnectReturnGeoValuesChanged() {
 func callbackQMagnetometerReturnGeoValuesChanged(ptrName *C.char, returnGeoValues C.int) {
 	defer qt.Recovering("callback QMagnetometer::returnGeoValuesChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "returnGeoValuesChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "returnGeoValuesChanged"); signal != nil {
 		signal.(func(bool))(int(returnGeoValues) != 0)
 	}
 

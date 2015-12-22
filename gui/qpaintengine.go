@@ -148,9 +148,8 @@ func (ptr *QPaintEngine) DisconnectDrawPolygon() {
 func callbackQPaintEngineDrawPolygon(ptrName *C.char, points unsafe.Pointer, pointCount C.int, mode C.int) bool {
 	defer qt.Recovering("callback QPaintEngine::drawPolygon")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "drawPolygon")
-	if signal != nil {
-		defer signal.(func(*core.QPointF, int, QPaintEngine__PolygonDrawMode))(core.NewQPointFFromPointer(points), int(pointCount), QPaintEngine__PolygonDrawMode(mode))
+	if signal := qt.GetSignal(C.GoString(ptrName), "drawPolygon"); signal != nil {
+		signal.(func(*core.QPointF, int, QPaintEngine__PolygonDrawMode))(core.NewQPointFFromPointer(points), int(pointCount), QPaintEngine__PolygonDrawMode(mode))
 		return true
 	}
 	return false
@@ -188,9 +187,8 @@ func (ptr *QPaintEngine) DisconnectDrawLines() {
 func callbackQPaintEngineDrawLines(ptrName *C.char, lines unsafe.Pointer, lineCount C.int) bool {
 	defer qt.Recovering("callback QPaintEngine::drawLines")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "drawLines")
-	if signal != nil {
-		defer signal.(func(*core.QLineF, int))(core.NewQLineFFromPointer(lines), int(lineCount))
+	if signal := qt.GetSignal(C.GoString(ptrName), "drawLines"); signal != nil {
+		signal.(func(*core.QLineF, int))(core.NewQLineFFromPointer(lines), int(lineCount))
 		return true
 	}
 	return false
@@ -227,9 +225,8 @@ func (ptr *QPaintEngine) DisconnectDrawPoints() {
 func callbackQPaintEngineDrawPoints(ptrName *C.char, points unsafe.Pointer, pointCount C.int) bool {
 	defer qt.Recovering("callback QPaintEngine::drawPoints")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "drawPoints")
-	if signal != nil {
-		defer signal.(func(*core.QPointF, int))(core.NewQPointFFromPointer(points), int(pointCount))
+	if signal := qt.GetSignal(C.GoString(ptrName), "drawPoints"); signal != nil {
+		signal.(func(*core.QPointF, int))(core.NewQPointFFromPointer(points), int(pointCount))
 		return true
 	}
 	return false
@@ -258,9 +255,8 @@ func (ptr *QPaintEngine) DisconnectDrawRects() {
 func callbackQPaintEngineDrawRects(ptrName *C.char, rects unsafe.Pointer, rectCount C.int) bool {
 	defer qt.Recovering("callback QPaintEngine::drawRects")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "drawRects")
-	if signal != nil {
-		defer signal.(func(*core.QRectF, int))(core.NewQRectFFromPointer(rects), int(rectCount))
+	if signal := qt.GetSignal(C.GoString(ptrName), "drawRects"); signal != nil {
+		signal.(func(*core.QRectF, int))(core.NewQRectFFromPointer(rects), int(rectCount))
 		return true
 	}
 	return false

@@ -70,8 +70,7 @@ func (ptr *QGraphicsObject) DisconnectEnabledChanged() {
 func callbackQGraphicsObjectEnabledChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::enabledChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "enabledChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "enabledChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -107,8 +106,7 @@ func (ptr *QGraphicsObject) DisconnectOpacityChanged() {
 func callbackQGraphicsObjectOpacityChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::opacityChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "opacityChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "opacityChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -136,8 +134,7 @@ func (ptr *QGraphicsObject) DisconnectParentChanged() {
 func callbackQGraphicsObjectParentChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::parentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "parentChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "parentChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -165,8 +162,7 @@ func (ptr *QGraphicsObject) DisconnectRotationChanged() {
 func callbackQGraphicsObjectRotationChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::rotationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rotationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "rotationChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -194,8 +190,7 @@ func (ptr *QGraphicsObject) DisconnectScaleChanged() {
 func callbackQGraphicsObjectScaleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::scaleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scaleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "scaleChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -231,8 +226,7 @@ func (ptr *QGraphicsObject) DisconnectVisibleChanged() {
 func callbackQGraphicsObjectVisibleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::visibleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "visibleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "visibleChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -260,8 +254,7 @@ func (ptr *QGraphicsObject) DisconnectXChanged() {
 func callbackQGraphicsObjectXChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::xChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "xChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "xChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -289,8 +282,7 @@ func (ptr *QGraphicsObject) DisconnectYChanged() {
 func callbackQGraphicsObjectYChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::yChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "yChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "yChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -318,8 +310,7 @@ func (ptr *QGraphicsObject) DisconnectZChanged() {
 func callbackQGraphicsObjectZChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::zChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "zChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "zChanged"); signal != nil {
 		signal.(func())()
 	}
 

@@ -118,9 +118,8 @@ func (ptr *QSpacerItem) DisconnectSetGeometry() {
 func callbackQSpacerItemSetGeometry(ptrName *C.char, r unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSpacerItem::setGeometry")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
-	if signal != nil {
-		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
+		signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
 		return true
 	}
 	return false

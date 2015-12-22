@@ -252,8 +252,7 @@ func (ptr *QCalendarWidget) DisconnectCurrentPageChanged() {
 func callbackQCalendarWidgetCurrentPageChanged(ptrName *C.char, year C.int, month C.int) {
 	defer qt.Recovering("callback QCalendarWidget::currentPageChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentPageChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentPageChanged"); signal != nil {
 		signal.(func(int, int))(int(year), int(month))
 	}
 
@@ -281,9 +280,8 @@ func (ptr *QCalendarWidget) DisconnectKeyPressEvent() {
 func callbackQCalendarWidgetKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QCalendarWidget::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 		return true
 	}
 	return false
@@ -330,9 +328,8 @@ func (ptr *QCalendarWidget) DisconnectMousePressEvent() {
 func callbackQCalendarWidgetMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QCalendarWidget::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -361,9 +358,8 @@ func (ptr *QCalendarWidget) DisconnectResizeEvent() {
 func callbackQCalendarWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QCalendarWidget::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 		return true
 	}
 	return false
@@ -392,8 +388,7 @@ func (ptr *QCalendarWidget) DisconnectSelectionChanged() {
 func callbackQCalendarWidgetSelectionChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QCalendarWidget::selectionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "selectionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "selectionChanged"); signal != nil {
 		signal.(func())()
 	}
 

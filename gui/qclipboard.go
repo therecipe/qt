@@ -94,8 +94,7 @@ func (ptr *QClipboard) DisconnectChanged() {
 func callbackQClipboardChanged(ptrName *C.char, mode C.int) {
 	defer qt.Recovering("callback QClipboard::changed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "changed"); signal != nil {
 		signal.(func(QClipboard__Mode))(QClipboard__Mode(mode))
 	}
 
@@ -123,8 +122,7 @@ func (ptr *QClipboard) DisconnectDataChanged() {
 func callbackQClipboardDataChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QClipboard::dataChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dataChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "dataChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -152,8 +150,7 @@ func (ptr *QClipboard) DisconnectFindBufferChanged() {
 func callbackQClipboardFindBufferChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QClipboard::findBufferChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "findBufferChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "findBufferChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -208,8 +205,7 @@ func (ptr *QClipboard) DisconnectSelectionChanged() {
 func callbackQClipboardSelectionChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QClipboard::selectionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "selectionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "selectionChanged"); signal != nil {
 		signal.(func())()
 	}
 

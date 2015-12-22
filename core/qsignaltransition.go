@@ -70,9 +70,8 @@ func (ptr *QSignalTransition) DisconnectOnTransition() {
 func callbackQSignalTransitionOnTransition(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSignalTransition::onTransition")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onTransition")
-	if signal != nil {
-		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "onTransition"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -110,8 +109,7 @@ func (ptr *QSignalTransition) DisconnectSenderObjectChanged() {
 func callbackQSignalTransitionSenderObjectChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSignalTransition::senderObjectChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "senderObjectChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "senderObjectChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -164,8 +162,7 @@ func (ptr *QSignalTransition) DisconnectSignalChanged() {
 func callbackQSignalTransitionSignalChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSignalTransition::signalChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "signalChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "signalChanged"); signal != nil {
 		signal.(func())()
 	}
 

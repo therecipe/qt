@@ -81,8 +81,7 @@ func (ptr *QBluetoothTransferReply) DisconnectError2() {
 func callbackQBluetoothTransferReplyError2(ptrName *C.char, errorType C.int) {
 	defer qt.Recovering("callback QBluetoothTransferReply::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QBluetoothTransferReply__TransferError))(QBluetoothTransferReply__TransferError(errorType))
 	}
 
@@ -128,8 +127,7 @@ func (ptr *QBluetoothTransferReply) DisconnectFinished() {
 func callbackQBluetoothTransferReplyFinished(ptrName *C.char, reply unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothTransferReply::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(*QBluetoothTransferReply))(NewQBluetoothTransferReplyFromPointer(reply))
 	}
 
@@ -184,8 +182,7 @@ func (ptr *QBluetoothTransferReply) DisconnectTransferProgress() {
 func callbackQBluetoothTransferReplyTransferProgress(ptrName *C.char, bytesTransferred C.longlong, bytesTotal C.longlong) {
 	defer qt.Recovering("callback QBluetoothTransferReply::transferProgress")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "transferProgress")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "transferProgress"); signal != nil {
 		signal.(func(int64, int64))(int64(bytesTransferred), int64(bytesTotal))
 	}
 

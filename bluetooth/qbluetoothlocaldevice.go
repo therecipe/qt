@@ -87,8 +87,7 @@ func (ptr *QBluetoothLocalDevice) DisconnectError() {
 func callbackQBluetoothLocalDeviceError(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QBluetoothLocalDevice::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(QBluetoothLocalDevice__Error))(QBluetoothLocalDevice__Error(error))
 	}
 
@@ -116,8 +115,7 @@ func (ptr *QBluetoothLocalDevice) DisconnectHostModeStateChanged() {
 func callbackQBluetoothLocalDeviceHostModeStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QBluetoothLocalDevice::hostModeStateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hostModeStateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "hostModeStateChanged"); signal != nil {
 		signal.(func(QBluetoothLocalDevice__HostMode))(QBluetoothLocalDevice__HostMode(state))
 	}
 

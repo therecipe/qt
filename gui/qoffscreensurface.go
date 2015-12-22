@@ -110,8 +110,7 @@ func (ptr *QOffscreenSurface) DisconnectScreenChanged() {
 func callbackQOffscreenSurfaceScreenChanged(ptrName *C.char, screen unsafe.Pointer) {
 	defer qt.Recovering("callback QOffscreenSurface::screenChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "screenChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "screenChanged"); signal != nil {
 		signal.(func(*QScreen))(NewQScreenFromPointer(screen))
 	}
 

@@ -148,8 +148,7 @@ func (ptr *QShortcut) DisconnectActivated() {
 func callbackQShortcutActivated(ptrName *C.char) {
 	defer qt.Recovering("callback QShortcut::activated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func())()
 	}
 
@@ -177,8 +176,7 @@ func (ptr *QShortcut) DisconnectActivatedAmbiguously() {
 func callbackQShortcutActivatedAmbiguously(ptrName *C.char) {
 	defer qt.Recovering("callback QShortcut::activatedAmbiguously")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activatedAmbiguously")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activatedAmbiguously"); signal != nil {
 		signal.(func())()
 	}
 

@@ -106,9 +106,8 @@ func (ptr *QBuffer) DisconnectClose() {
 func callbackQBufferClose(ptrName *C.char) bool {
 	defer qt.Recovering("callback QBuffer::close")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "close")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

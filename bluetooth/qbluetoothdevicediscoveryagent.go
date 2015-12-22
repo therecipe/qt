@@ -79,8 +79,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DisconnectCanceled() {
 func callbackQBluetoothDeviceDiscoveryAgentCanceled(ptrName *C.char) {
 	defer qt.Recovering("callback QBluetoothDeviceDiscoveryAgent::canceled")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "canceled")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "canceled"); signal != nil {
 		signal.(func())()
 	}
 
@@ -108,8 +107,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DisconnectError2() {
 func callbackQBluetoothDeviceDiscoveryAgentError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QBluetoothDeviceDiscoveryAgent::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QBluetoothDeviceDiscoveryAgent__Error))(QBluetoothDeviceDiscoveryAgent__Error(error))
 	}
 
@@ -137,8 +135,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DisconnectFinished() {
 func callbackQBluetoothDeviceDiscoveryAgentFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QBluetoothDeviceDiscoveryAgent::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 

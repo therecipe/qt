@@ -67,8 +67,7 @@ func (ptr *QMediaAvailabilityControl) DisconnectAvailabilityChanged() {
 func callbackQMediaAvailabilityControlAvailabilityChanged(ptrName *C.char, availability C.int) {
 	defer qt.Recovering("callback QMediaAvailabilityControl::availabilityChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "availabilityChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "availabilityChanged"); signal != nil {
 		signal.(func(QMultimedia__AvailabilityStatus))(QMultimedia__AvailabilityStatus(availability))
 	}
 

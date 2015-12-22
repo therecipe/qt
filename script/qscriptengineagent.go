@@ -79,9 +79,8 @@ func (ptr *QScriptEngineAgent) DisconnectContextPop() {
 func callbackQScriptEngineAgentContextPop(ptrName *C.char) bool {
 	defer qt.Recovering("callback QScriptEngineAgent::contextPop")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contextPop")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextPop"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -110,9 +109,8 @@ func (ptr *QScriptEngineAgent) DisconnectContextPush() {
 func callbackQScriptEngineAgentContextPush(ptrName *C.char) bool {
 	defer qt.Recovering("callback QScriptEngineAgent::contextPush")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contextPush")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextPush"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -150,9 +148,8 @@ func (ptr *QScriptEngineAgent) DisconnectExceptionCatch() {
 func callbackQScriptEngineAgentExceptionCatch(ptrName *C.char, scriptId C.longlong, exception unsafe.Pointer) bool {
 	defer qt.Recovering("callback QScriptEngineAgent::exceptionCatch")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "exceptionCatch")
-	if signal != nil {
-		defer signal.(func(int64, *QScriptValue))(int64(scriptId), NewQScriptValueFromPointer(exception))
+	if signal := qt.GetSignal(C.GoString(ptrName), "exceptionCatch"); signal != nil {
+		signal.(func(int64, *QScriptValue))(int64(scriptId), NewQScriptValueFromPointer(exception))
 		return true
 	}
 	return false
@@ -181,9 +178,8 @@ func (ptr *QScriptEngineAgent) DisconnectExceptionThrow() {
 func callbackQScriptEngineAgentExceptionThrow(ptrName *C.char, scriptId C.longlong, exception unsafe.Pointer, hasHandler C.int) bool {
 	defer qt.Recovering("callback QScriptEngineAgent::exceptionThrow")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "exceptionThrow")
-	if signal != nil {
-		defer signal.(func(int64, *QScriptValue, bool))(int64(scriptId), NewQScriptValueFromPointer(exception), int(hasHandler) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "exceptionThrow"); signal != nil {
+		signal.(func(int64, *QScriptValue, bool))(int64(scriptId), NewQScriptValueFromPointer(exception), int(hasHandler) != 0)
 		return true
 	}
 	return false
@@ -221,9 +217,8 @@ func (ptr *QScriptEngineAgent) DisconnectFunctionEntry() {
 func callbackQScriptEngineAgentFunctionEntry(ptrName *C.char, scriptId C.longlong) bool {
 	defer qt.Recovering("callback QScriptEngineAgent::functionEntry")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "functionEntry")
-	if signal != nil {
-		defer signal.(func(int64))(int64(scriptId))
+	if signal := qt.GetSignal(C.GoString(ptrName), "functionEntry"); signal != nil {
+		signal.(func(int64))(int64(scriptId))
 		return true
 	}
 	return false
@@ -252,9 +247,8 @@ func (ptr *QScriptEngineAgent) DisconnectFunctionExit() {
 func callbackQScriptEngineAgentFunctionExit(ptrName *C.char, scriptId C.longlong, returnValue unsafe.Pointer) bool {
 	defer qt.Recovering("callback QScriptEngineAgent::functionExit")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "functionExit")
-	if signal != nil {
-		defer signal.(func(int64, *QScriptValue))(int64(scriptId), NewQScriptValueFromPointer(returnValue))
+	if signal := qt.GetSignal(C.GoString(ptrName), "functionExit"); signal != nil {
+		signal.(func(int64, *QScriptValue))(int64(scriptId), NewQScriptValueFromPointer(returnValue))
 		return true
 	}
 	return false
@@ -283,9 +277,8 @@ func (ptr *QScriptEngineAgent) DisconnectPositionChange() {
 func callbackQScriptEngineAgentPositionChange(ptrName *C.char, scriptId C.longlong, lineNumber C.int, columnNumber C.int) bool {
 	defer qt.Recovering("callback QScriptEngineAgent::positionChange")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "positionChange")
-	if signal != nil {
-		defer signal.(func(int64, int, int))(int64(scriptId), int(lineNumber), int(columnNumber))
+	if signal := qt.GetSignal(C.GoString(ptrName), "positionChange"); signal != nil {
+		signal.(func(int64, int, int))(int64(scriptId), int(lineNumber), int(columnNumber))
 		return true
 	}
 	return false
@@ -314,9 +307,8 @@ func (ptr *QScriptEngineAgent) DisconnectScriptLoad() {
 func callbackQScriptEngineAgentScriptLoad(ptrName *C.char, id C.longlong, program *C.char, fileName *C.char, baseLineNumber C.int) bool {
 	defer qt.Recovering("callback QScriptEngineAgent::scriptLoad")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scriptLoad")
-	if signal != nil {
-		defer signal.(func(int64, string, string, int))(int64(id), C.GoString(program), C.GoString(fileName), int(baseLineNumber))
+	if signal := qt.GetSignal(C.GoString(ptrName), "scriptLoad"); signal != nil {
+		signal.(func(int64, string, string, int))(int64(id), C.GoString(program), C.GoString(fileName), int(baseLineNumber))
 		return true
 	}
 	return false
@@ -345,9 +337,8 @@ func (ptr *QScriptEngineAgent) DisconnectScriptUnload() {
 func callbackQScriptEngineAgentScriptUnload(ptrName *C.char, id C.longlong) bool {
 	defer qt.Recovering("callback QScriptEngineAgent::scriptUnload")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scriptUnload")
-	if signal != nil {
-		defer signal.(func(int64))(int64(id))
+	if signal := qt.GetSignal(C.GoString(ptrName), "scriptUnload"); signal != nil {
+		signal.(func(int64))(int64(id))
 		return true
 	}
 	return false

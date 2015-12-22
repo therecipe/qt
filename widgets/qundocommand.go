@@ -122,9 +122,8 @@ func (ptr *QUndoCommand) DisconnectRedo() {
 func callbackQUndoCommandRedo(ptrName *C.char) bool {
 	defer qt.Recovering("callback QUndoCommand::redo")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "redo")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "redo"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -170,9 +169,8 @@ func (ptr *QUndoCommand) DisconnectUndo() {
 func callbackQUndoCommandUndo(ptrName *C.char) bool {
 	defer qt.Recovering("callback QUndoCommand::undo")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "undo")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "undo"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

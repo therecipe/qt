@@ -68,8 +68,7 @@ func (ptr *QWebSocket) DisconnectAboutToClose() {
 func callbackQWebSocketAboutToClose(ptrName *C.char) {
 	defer qt.Recovering("callback QWebSocket::aboutToClose")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "aboutToClose")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "aboutToClose"); signal != nil {
 		signal.(func())()
 	}
 
@@ -97,8 +96,7 @@ func (ptr *QWebSocket) DisconnectBinaryFrameReceived() {
 func callbackQWebSocketBinaryFrameReceived(ptrName *C.char, frame unsafe.Pointer, isLastFrame C.int) {
 	defer qt.Recovering("callback QWebSocket::binaryFrameReceived")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "binaryFrameReceived")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "binaryFrameReceived"); signal != nil {
 		signal.(func(*core.QByteArray, bool))(core.NewQByteArrayFromPointer(frame), int(isLastFrame) != 0)
 	}
 
@@ -126,8 +124,7 @@ func (ptr *QWebSocket) DisconnectBinaryMessageReceived() {
 func callbackQWebSocketBinaryMessageReceived(ptrName *C.char, message unsafe.Pointer) {
 	defer qt.Recovering("callback QWebSocket::binaryMessageReceived")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "binaryMessageReceived")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "binaryMessageReceived"); signal != nil {
 		signal.(func(*core.QByteArray))(core.NewQByteArrayFromPointer(message))
 	}
 
@@ -155,8 +152,7 @@ func (ptr *QWebSocket) DisconnectBytesWritten() {
 func callbackQWebSocketBytesWritten(ptrName *C.char, bytes C.longlong) {
 	defer qt.Recovering("callback QWebSocket::bytesWritten")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "bytesWritten")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "bytesWritten"); signal != nil {
 		signal.(func(int64))(int64(bytes))
 	}
 
@@ -193,8 +189,7 @@ func (ptr *QWebSocket) DisconnectConnected() {
 func callbackQWebSocketConnected(ptrName *C.char) {
 	defer qt.Recovering("callback QWebSocket::connected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "connected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "connected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -222,8 +217,7 @@ func (ptr *QWebSocket) DisconnectDisconnected() {
 func callbackQWebSocketDisconnected(ptrName *C.char) {
 	defer qt.Recovering("callback QWebSocket::disconnected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "disconnected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "disconnected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -251,8 +245,7 @@ func (ptr *QWebSocket) DisconnectError2() {
 func callbackQWebSocketError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QWebSocket::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(network.QAbstractSocket__SocketError))(network.QAbstractSocket__SocketError(error))
 	}
 
@@ -385,8 +378,7 @@ func (ptr *QWebSocket) DisconnectReadChannelFinished() {
 func callbackQWebSocketReadChannelFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QWebSocket::readChannelFinished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "readChannelFinished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "readChannelFinished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -507,8 +499,7 @@ func (ptr *QWebSocket) DisconnectStateChanged() {
 func callbackQWebSocketStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QWebSocket::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(network.QAbstractSocket__SocketState))(network.QAbstractSocket__SocketState(state))
 	}
 
@@ -536,8 +527,7 @@ func (ptr *QWebSocket) DisconnectTextFrameReceived() {
 func callbackQWebSocketTextFrameReceived(ptrName *C.char, frame *C.char, isLastFrame C.int) {
 	defer qt.Recovering("callback QWebSocket::textFrameReceived")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "textFrameReceived")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "textFrameReceived"); signal != nil {
 		signal.(func(string, bool))(C.GoString(frame), int(isLastFrame) != 0)
 	}
 
@@ -565,8 +555,7 @@ func (ptr *QWebSocket) DisconnectTextMessageReceived() {
 func callbackQWebSocketTextMessageReceived(ptrName *C.char, message *C.char) {
 	defer qt.Recovering("callback QWebSocket::textMessageReceived")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "textMessageReceived")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "textMessageReceived"); signal != nil {
 		signal.(func(string))(C.GoString(message))
 	}
 

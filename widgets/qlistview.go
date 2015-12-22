@@ -336,9 +336,8 @@ func (ptr *QListView) DisconnectCurrentChanged() {
 func callbackQListViewCurrentChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
 	defer qt.Recovering("callback QListView::currentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
+		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
 		return true
 	}
 	return false
@@ -367,9 +366,8 @@ func (ptr *QListView) DisconnectDragLeaveEvent() {
 func callbackQListViewDragLeaveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QListView::dragLeaveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(e))
 		return true
 	}
 	return false
@@ -398,9 +396,8 @@ func (ptr *QListView) DisconnectDragMoveEvent() {
 func callbackQListViewDragMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QListView::dragMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(e))
 		return true
 	}
 	return false
@@ -429,9 +426,8 @@ func (ptr *QListView) DisconnectDropEvent() {
 func callbackQListViewDropEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QListView::dropEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(e))
 		return true
 	}
 	return false
@@ -478,9 +474,8 @@ func (ptr *QListView) DisconnectMouseMoveEvent() {
 func callbackQListViewMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QListView::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -509,9 +504,8 @@ func (ptr *QListView) DisconnectMouseReleaseEvent() {
 func callbackQListViewMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QListView::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -540,9 +534,8 @@ func (ptr *QListView) DisconnectPaintEvent() {
 func callbackQListViewPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QListView::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
 		return true
 	}
 	return false
@@ -571,9 +564,8 @@ func (ptr *QListView) DisconnectResizeEvent() {
 func callbackQListViewResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QListView::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
 		return true
 	}
 	return false
@@ -602,9 +594,8 @@ func (ptr *QListView) DisconnectRowsAboutToBeRemoved() {
 func callbackQListViewRowsAboutToBeRemoved(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QListView::rowsAboutToBeRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
 		return true
 	}
 	return false
@@ -633,9 +624,8 @@ func (ptr *QListView) DisconnectRowsInserted() {
 func callbackQListViewRowsInserted(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QListView::rowsInserted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rowsInserted")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
 		return true
 	}
 	return false
@@ -664,9 +654,8 @@ func (ptr *QListView) DisconnectScrollTo() {
 func callbackQListViewScrollTo(ptrName *C.char, index unsafe.Pointer, hint C.int) bool {
 	defer qt.Recovering("callback QListView::scrollTo")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scrollTo")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
+	if signal := qt.GetSignal(C.GoString(ptrName), "scrollTo"); signal != nil {
+		signal.(func(*core.QModelIndex, QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
 		return true
 	}
 	return false
@@ -703,9 +692,8 @@ func (ptr *QListView) DisconnectSetSelection() {
 func callbackQListViewSetSelection(ptrName *C.char, rect unsafe.Pointer, command C.int) bool {
 	defer qt.Recovering("callback QListView::setSelection")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSelection")
-	if signal != nil {
-		defer signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
+		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
 		return true
 	}
 	return false
@@ -734,9 +722,8 @@ func (ptr *QListView) DisconnectStartDrag() {
 func callbackQListViewStartDrag(ptrName *C.char, supportedActions C.int) bool {
 	defer qt.Recovering("callback QListView::startDrag")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "startDrag")
-	if signal != nil {
-		defer signal.(func(core.Qt__DropAction))(core.Qt__DropAction(supportedActions))
+	if signal := qt.GetSignal(C.GoString(ptrName), "startDrag"); signal != nil {
+		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(supportedActions))
 		return true
 	}
 	return false
@@ -765,9 +752,8 @@ func (ptr *QListView) DisconnectTimerEvent() {
 func callbackQListViewTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QListView::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
 		return true
 	}
 	return false
@@ -796,9 +782,8 @@ func (ptr *QListView) DisconnectUpdateGeometries() {
 func callbackQListViewUpdateGeometries(ptrName *C.char) bool {
 	defer qt.Recovering("callback QListView::updateGeometries")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateGeometries")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

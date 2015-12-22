@@ -129,8 +129,7 @@ func (ptr *QState) DisconnectChildModeChanged() {
 func callbackQStateChildModeChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QState::childModeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "childModeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "childModeChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -167,8 +166,7 @@ func (ptr *QState) DisconnectErrorStateChanged() {
 func callbackQStateErrorStateChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QState::errorStateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "errorStateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "errorStateChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -196,8 +194,7 @@ func (ptr *QState) DisconnectFinished() {
 func callbackQStateFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QState::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -234,8 +231,7 @@ func (ptr *QState) DisconnectInitialStateChanged() {
 func callbackQStateInitialStateChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QState::initialStateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "initialStateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "initialStateChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -263,9 +259,8 @@ func (ptr *QState) DisconnectOnEntry() {
 func callbackQStateOnEntry(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QState::onEntry")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onEntry")
-	if signal != nil {
-		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "onEntry"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -294,9 +289,8 @@ func (ptr *QState) DisconnectOnExit() {
 func callbackQStateOnExit(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QState::onExit")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onExit")
-	if signal != nil {
-		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "onExit"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -325,8 +319,7 @@ func (ptr *QState) DisconnectPropertiesAssigned() {
 func callbackQStatePropertiesAssigned(ptrName *C.char) {
 	defer qt.Recovering("callback QState::propertiesAssigned")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "propertiesAssigned")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "propertiesAssigned"); signal != nil {
 		signal.(func())()
 	}
 

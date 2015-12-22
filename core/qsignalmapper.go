@@ -80,8 +80,7 @@ func (ptr *QSignalMapper) DisconnectMapped4() {
 func callbackQSignalMapperMapped4(ptrName *C.char, object unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalMapper::mapped")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mapped4")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mapped4"); signal != nil {
 		signal.(func(*QObject))(NewQObjectFromPointer(object))
 	}
 
@@ -109,8 +108,7 @@ func (ptr *QSignalMapper) DisconnectMapped3() {
 func callbackQSignalMapperMapped3(ptrName *C.char, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalMapper::mapped")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mapped3")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mapped3"); signal != nil {
 		signal.(func(unsafe.Pointer))(unsafe.Pointer(widget))
 	}
 
@@ -138,8 +136,7 @@ func (ptr *QSignalMapper) DisconnectMapped2() {
 func callbackQSignalMapperMapped2(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QSignalMapper::mapped")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mapped2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mapped2"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
@@ -167,8 +164,7 @@ func (ptr *QSignalMapper) DisconnectMapped() {
 func callbackQSignalMapperMapped(ptrName *C.char, i C.int) {
 	defer qt.Recovering("callback QSignalMapper::mapped")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mapped")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mapped"); signal != nil {
 		signal.(func(int))(int(i))
 	}
 

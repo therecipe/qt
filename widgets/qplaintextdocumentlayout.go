@@ -82,9 +82,8 @@ func (ptr *QPlainTextDocumentLayout) DisconnectDocumentChanged() {
 func callbackQPlainTextDocumentLayoutDocumentChanged(ptrName *C.char, from C.int, charsRemoved C.int, charsAdded C.int) bool {
 	defer qt.Recovering("callback QPlainTextDocumentLayout::documentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "documentChanged")
-	if signal != nil {
-		defer signal.(func(int, int, int))(int(from), int(charsRemoved), int(charsAdded))
+	if signal := qt.GetSignal(C.GoString(ptrName), "documentChanged"); signal != nil {
+		signal.(func(int, int, int))(int(from), int(charsRemoved), int(charsAdded))
 		return true
 	}
 	return false

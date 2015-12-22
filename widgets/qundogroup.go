@@ -74,8 +74,7 @@ func (ptr *QUndoGroup) DisconnectActiveStackChanged() {
 func callbackQUndoGroupActiveStackChanged(ptrName *C.char, stack unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoGroup::activeStackChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activeStackChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activeStackChanged"); signal != nil {
 		signal.(func(*QUndoStack))(NewQUndoStackFromPointer(stack))
 	}
 
@@ -120,8 +119,7 @@ func (ptr *QUndoGroup) DisconnectCanRedoChanged() {
 func callbackQUndoGroupCanRedoChanged(ptrName *C.char, canRedo C.int) {
 	defer qt.Recovering("callback QUndoGroup::canRedoChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "canRedoChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "canRedoChanged"); signal != nil {
 		signal.(func(bool))(int(canRedo) != 0)
 	}
 
@@ -158,8 +156,7 @@ func (ptr *QUndoGroup) DisconnectCanUndoChanged() {
 func callbackQUndoGroupCanUndoChanged(ptrName *C.char, canUndo C.int) {
 	defer qt.Recovering("callback QUndoGroup::canUndoChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "canUndoChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "canUndoChanged"); signal != nil {
 		signal.(func(bool))(int(canUndo) != 0)
 	}
 
@@ -187,8 +184,7 @@ func (ptr *QUndoGroup) DisconnectCleanChanged() {
 func callbackQUndoGroupCleanChanged(ptrName *C.char, clean C.int) {
 	defer qt.Recovering("callback QUndoGroup::cleanChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cleanChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "cleanChanged"); signal != nil {
 		signal.(func(bool))(int(clean) != 0)
 	}
 
@@ -234,8 +230,7 @@ func (ptr *QUndoGroup) DisconnectIndexChanged() {
 func callbackQUndoGroupIndexChanged(ptrName *C.char, idx C.int) {
 	defer qt.Recovering("callback QUndoGroup::indexChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "indexChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "indexChanged"); signal != nil {
 		signal.(func(int))(int(idx))
 	}
 
@@ -289,8 +284,7 @@ func (ptr *QUndoGroup) DisconnectRedoTextChanged() {
 func callbackQUndoGroupRedoTextChanged(ptrName *C.char, redoText *C.char) {
 	defer qt.Recovering("callback QUndoGroup::redoTextChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "redoTextChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "redoTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(redoText))
 	}
 
@@ -351,8 +345,7 @@ func (ptr *QUndoGroup) DisconnectUndoTextChanged() {
 func callbackQUndoGroupUndoTextChanged(ptrName *C.char, undoText *C.char) {
 	defer qt.Recovering("callback QUndoGroup::undoTextChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "undoTextChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "undoTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(undoText))
 	}
 

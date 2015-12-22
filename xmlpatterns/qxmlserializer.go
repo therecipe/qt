@@ -65,9 +65,8 @@ func (ptr *QXmlSerializer) DisconnectCharacters() {
 func callbackQXmlSerializerCharacters(ptrName *C.char, value unsafe.Pointer) bool {
 	defer qt.Recovering("callback QXmlSerializer::characters")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "characters")
-	if signal != nil {
-		defer signal.(func(*core.QStringRef))(core.NewQStringRefFromPointer(value))
+	if signal := qt.GetSignal(C.GoString(ptrName), "characters"); signal != nil {
+		signal.(func(*core.QStringRef))(core.NewQStringRefFromPointer(value))
 		return true
 	}
 	return false
@@ -96,9 +95,8 @@ func (ptr *QXmlSerializer) DisconnectComment() {
 func callbackQXmlSerializerComment(ptrName *C.char, value *C.char) bool {
 	defer qt.Recovering("callback QXmlSerializer::comment")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "comment")
-	if signal != nil {
-		defer signal.(func(string))(C.GoString(value))
+	if signal := qt.GetSignal(C.GoString(ptrName), "comment"); signal != nil {
+		signal.(func(string))(C.GoString(value))
 		return true
 	}
 	return false
@@ -127,9 +125,8 @@ func (ptr *QXmlSerializer) DisconnectEndDocument() {
 func callbackQXmlSerializerEndDocument(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlSerializer::endDocument")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "endDocument")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "endDocument"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -158,9 +155,8 @@ func (ptr *QXmlSerializer) DisconnectEndElement() {
 func callbackQXmlSerializerEndElement(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlSerializer::endElement")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "endElement")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "endElement"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -198,9 +194,8 @@ func (ptr *QXmlSerializer) DisconnectEndOfSequence() {
 func callbackQXmlSerializerEndOfSequence(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlSerializer::endOfSequence")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "endOfSequence")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "endOfSequence"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -246,9 +241,8 @@ func (ptr *QXmlSerializer) DisconnectStartDocument() {
 func callbackQXmlSerializerStartDocument(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlSerializer::startDocument")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "startDocument")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "startDocument"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -277,9 +271,8 @@ func (ptr *QXmlSerializer) DisconnectStartOfSequence() {
 func callbackQXmlSerializerStartOfSequence(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlSerializer::startOfSequence")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "startOfSequence")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "startOfSequence"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

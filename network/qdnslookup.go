@@ -174,8 +174,7 @@ func (ptr *QDnsLookup) DisconnectFinished() {
 func callbackQDnsLookupFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QDnsLookup::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -220,8 +219,7 @@ func (ptr *QDnsLookup) DisconnectNameChanged() {
 func callbackQDnsLookupNameChanged(ptrName *C.char, name *C.char) {
 	defer qt.Recovering("callback QDnsLookup::nameChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "nameChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "nameChanged"); signal != nil {
 		signal.(func(string))(C.GoString(name))
 	}
 
@@ -249,8 +247,7 @@ func (ptr *QDnsLookup) DisconnectTypeChanged() {
 func callbackQDnsLookupTypeChanged(ptrName *C.char, ty C.int) {
 	defer qt.Recovering("callback QDnsLookup::typeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "typeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "typeChanged"); signal != nil {
 		signal.(func(QDnsLookup__Type))(QDnsLookup__Type(ty))
 	}
 

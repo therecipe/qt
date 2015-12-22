@@ -129,9 +129,8 @@ func (ptr *QPushButton) DisconnectFocusInEvent() {
 func callbackQPushButtonFocusInEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPushButton::focusInEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
 		return true
 	}
 	return false
@@ -160,9 +159,8 @@ func (ptr *QPushButton) DisconnectFocusOutEvent() {
 func callbackQPushButtonFocusOutEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPushButton::focusOutEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
 		return true
 	}
 	return false
@@ -191,9 +189,8 @@ func (ptr *QPushButton) DisconnectKeyPressEvent() {
 func callbackQPushButtonKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPushButton::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 		return true
 	}
 	return false
@@ -240,9 +237,8 @@ func (ptr *QPushButton) DisconnectPaintEvent() {
 func callbackQPushButtonPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPushButton::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
 		return true
 	}
 	return false

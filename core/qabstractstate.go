@@ -67,8 +67,7 @@ func (ptr *QAbstractState) DisconnectActiveChanged() {
 func callbackQAbstractStateActiveChanged(ptrName *C.char, active C.int) {
 	defer qt.Recovering("callback QAbstractState::activeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activeChanged"); signal != nil {
 		signal.(func(bool))(int(active) != 0)
 	}
 
@@ -96,8 +95,7 @@ func (ptr *QAbstractState) DisconnectEntered() {
 func callbackQAbstractStateEntered(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractState::entered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "entered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "entered"); signal != nil {
 		signal.(func())()
 	}
 
@@ -125,8 +123,7 @@ func (ptr *QAbstractState) DisconnectExited() {
 func callbackQAbstractStateExited(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractState::exited")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "exited")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "exited"); signal != nil {
 		signal.(func())()
 	}
 

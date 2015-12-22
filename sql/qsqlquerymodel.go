@@ -86,9 +86,8 @@ func (ptr *QSqlQueryModel) DisconnectClear() {
 func callbackQSqlQueryModelClear(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSqlQueryModel::clear")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "clear")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -126,9 +125,8 @@ func (ptr *QSqlQueryModel) DisconnectFetchMore() {
 func callbackQSqlQueryModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSqlQueryModel::fetchMore")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fetchMore")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
 		return true
 	}
 	return false
@@ -175,9 +173,8 @@ func (ptr *QSqlQueryModel) DisconnectQueryChange() {
 func callbackQSqlQueryModelQueryChange(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSqlQueryModel::queryChange")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "queryChange")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "queryChange"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

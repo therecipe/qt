@@ -90,9 +90,8 @@ func (ptr *QObject) DisconnectTimerEvent() {
 func callbackQObjectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QObject::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 		return true
 	}
 	return false
@@ -136,9 +135,8 @@ func (ptr *QObject) DisconnectChildEvent() {
 func callbackQObjectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QObject::childEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "childEvent")
-	if signal != nil {
-		defer signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 		return true
 	}
 	return false
@@ -167,9 +165,8 @@ func (ptr *QObject) DisconnectCustomEvent() {
 func callbackQObjectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QObject::customEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "customEvent")
-	if signal != nil {
-		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -207,8 +204,7 @@ func (ptr *QObject) DisconnectDestroyed() {
 func callbackQObjectDestroyed(ptrName *C.char, obj unsafe.Pointer) {
 	defer qt.Recovering("callback QObject::destroyed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "destroyed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "destroyed"); signal != nil {
 		signal.(func(*QObject))(NewQObjectFromPointer(obj))
 	}
 
@@ -331,8 +327,7 @@ func (ptr *QObject) DisconnectObjectNameChanged() {
 func callbackQObjectObjectNameChanged(ptrName *C.char, objectName *C.char) {
 	defer qt.Recovering("callback QObject::objectNameChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "objectNameChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "objectNameChanged"); signal != nil {
 		signal.(func(string))(C.GoString(objectName))
 	}
 

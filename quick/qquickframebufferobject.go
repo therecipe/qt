@@ -84,9 +84,8 @@ func (ptr *QQuickFramebufferObject) DisconnectReleaseResources() {
 func callbackQQuickFramebufferObjectReleaseResources(ptrName *C.char) bool {
 	defer qt.Recovering("callback QQuickFramebufferObject::releaseResources")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "releaseResources")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "releaseResources"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -115,8 +114,7 @@ func (ptr *QQuickFramebufferObject) DisconnectTextureFollowsItemSizeChanged() {
 func callbackQQuickFramebufferObjectTextureFollowsItemSizeChanged(ptrName *C.char, v C.int) {
 	defer qt.Recovering("callback QQuickFramebufferObject::textureFollowsItemSizeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "textureFollowsItemSizeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "textureFollowsItemSizeChanged"); signal != nil {
 		signal.(func(bool))(int(v) != 0)
 	}
 

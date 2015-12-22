@@ -106,8 +106,7 @@ func (ptr *QQuickRenderControl) DisconnectRenderRequested() {
 func callbackQQuickRenderControlRenderRequested(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickRenderControl::renderRequested")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "renderRequested")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "renderRequested"); signal != nil {
 		signal.(func())()
 	}
 
@@ -150,8 +149,7 @@ func (ptr *QQuickRenderControl) DisconnectSceneChanged() {
 func callbackQQuickRenderControlSceneChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickRenderControl::sceneChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sceneChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sceneChanged"); signal != nil {
 		signal.(func())()
 	}
 

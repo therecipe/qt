@@ -83,9 +83,8 @@ func (ptr *QSqlResult) DisconnectSetActive() {
 func callbackQSqlResultSetActive(ptrName *C.char, active C.int) bool {
 	defer qt.Recovering("callback QSqlResult::setActive")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setActive")
-	if signal != nil {
-		defer signal.(func(bool))(int(active) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setActive"); signal != nil {
+		signal.(func(bool))(int(active) != 0)
 		return true
 	}
 	return false
@@ -114,9 +113,8 @@ func (ptr *QSqlResult) DisconnectSetAt() {
 func callbackQSqlResultSetAt(ptrName *C.char, index C.int) bool {
 	defer qt.Recovering("callback QSqlResult::setAt")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setAt")
-	if signal != nil {
-		defer signal.(func(int))(int(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setAt"); signal != nil {
+		signal.(func(int))(int(index))
 		return true
 	}
 	return false
@@ -145,9 +143,8 @@ func (ptr *QSqlResult) DisconnectSetForwardOnly() {
 func callbackQSqlResultSetForwardOnly(ptrName *C.char, forward C.int) bool {
 	defer qt.Recovering("callback QSqlResult::setForwardOnly")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setForwardOnly")
-	if signal != nil {
-		defer signal.(func(bool))(int(forward) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setForwardOnly"); signal != nil {
+		signal.(func(bool))(int(forward) != 0)
 		return true
 	}
 	return false
@@ -176,9 +173,8 @@ func (ptr *QSqlResult) DisconnectSetQuery() {
 func callbackQSqlResultSetQuery(ptrName *C.char, query *C.char) bool {
 	defer qt.Recovering("callback QSqlResult::setQuery")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setQuery")
-	if signal != nil {
-		defer signal.(func(string))(C.GoString(query))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setQuery"); signal != nil {
+		signal.(func(string))(C.GoString(query))
 		return true
 	}
 	return false

@@ -97,9 +97,8 @@ func (ptr *QQmlIncubationController) DisconnectIncubatingObjectCountChanged() {
 func callbackQQmlIncubationControllerIncubatingObjectCountChanged(ptrName *C.char, incubatingObjectCount C.int) bool {
 	defer qt.Recovering("callback QQmlIncubationController::incubatingObjectCountChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "incubatingObjectCountChanged")
-	if signal != nil {
-		defer signal.(func(int))(int(incubatingObjectCount))
+	if signal := qt.GetSignal(C.GoString(ptrName), "incubatingObjectCountChanged"); signal != nil {
+		signal.(func(int))(int(incubatingObjectCount))
 		return true
 	}
 	return false

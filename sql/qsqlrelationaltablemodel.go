@@ -67,9 +67,8 @@ func (ptr *QSqlRelationalTableModel) DisconnectClear() {
 func callbackQSqlRelationalTableModelClear(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSqlRelationalTableModel::clear")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "clear")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -125,9 +124,8 @@ func (ptr *QSqlRelationalTableModel) DisconnectRevertRow() {
 func callbackQSqlRelationalTableModelRevertRow(ptrName *C.char, row C.int) bool {
 	defer qt.Recovering("callback QSqlRelationalTableModel::revertRow")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "revertRow")
-	if signal != nil {
-		defer signal.(func(int))(int(row))
+	if signal := qt.GetSignal(C.GoString(ptrName), "revertRow"); signal != nil {
+		signal.(func(int))(int(row))
 		return true
 	}
 	return false
@@ -182,9 +180,8 @@ func (ptr *QSqlRelationalTableModel) DisconnectSetTable() {
 func callbackQSqlRelationalTableModelSetTable(ptrName *C.char, table *C.char) bool {
 	defer qt.Recovering("callback QSqlRelationalTableModel::setTable")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setTable")
-	if signal != nil {
-		defer signal.(func(string))(C.GoString(table))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setTable"); signal != nil {
+		signal.(func(string))(C.GoString(table))
 		return true
 	}
 	return false

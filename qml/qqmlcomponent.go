@@ -143,9 +143,8 @@ func (ptr *QQmlComponent) DisconnectCompleteCreate() {
 func callbackQQmlComponentCompleteCreate(ptrName *C.char) bool {
 	defer qt.Recovering("callback QQmlComponent::completeCreate")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "completeCreate")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "completeCreate"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -252,8 +251,7 @@ func (ptr *QQmlComponent) DisconnectProgressChanged() {
 func callbackQQmlComponentProgressChanged(ptrName *C.char, progress C.double) {
 	defer qt.Recovering("callback QQmlComponent::progressChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "progressChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "progressChanged"); signal != nil {
 		signal.(func(float64))(float64(progress))
 	}
 
@@ -289,8 +287,7 @@ func (ptr *QQmlComponent) DisconnectStatusChanged() {
 func callbackQQmlComponentStatusChanged(ptrName *C.char, status C.int) {
 	defer qt.Recovering("callback QQmlComponent::statusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "statusChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "statusChanged"); signal != nil {
 		signal.(func(QQmlComponent__Status))(QQmlComponent__Status(status))
 	}
 

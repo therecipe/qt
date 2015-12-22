@@ -68,8 +68,7 @@ func (ptr *QQuickItemGrabResult) DisconnectReady() {
 func callbackQQuickItemGrabResultReady(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickItemGrabResult::ready")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "ready")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "ready"); signal != nil {
 		signal.(func())()
 	}
 

@@ -83,9 +83,8 @@ func (ptr *QNetworkDiskCache) DisconnectClear() {
 func callbackQNetworkDiskCacheClear(ptrName *C.char) bool {
 	defer qt.Recovering("callback QNetworkDiskCache::clear")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "clear")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

@@ -108,9 +108,8 @@ func (ptr *QWizardPage) DisconnectCleanupPage() {
 func callbackQWizardPageCleanupPage(ptrName *C.char) bool {
 	defer qt.Recovering("callback QWizardPage::cleanupPage")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cleanupPage")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "cleanupPage"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -139,8 +138,7 @@ func (ptr *QWizardPage) DisconnectCompleteChanged() {
 func callbackQWizardPageCompleteChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QWizardPage::completeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "completeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "completeChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -168,9 +166,8 @@ func (ptr *QWizardPage) DisconnectInitializePage() {
 func callbackQWizardPageInitializePage(ptrName *C.char) bool {
 	defer qt.Recovering("callback QWizardPage::initializePage")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "initializePage")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "initializePage"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

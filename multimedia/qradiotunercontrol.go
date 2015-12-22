@@ -58,8 +58,7 @@ func (ptr *QRadioTunerControl) DisconnectAntennaConnectedChanged() {
 func callbackQRadioTunerControlAntennaConnectedChanged(ptrName *C.char, connectionStatus C.int) {
 	defer qt.Recovering("callback QRadioTunerControl::antennaConnectedChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "antennaConnectedChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "antennaConnectedChanged"); signal != nil {
 		signal.(func(bool))(int(connectionStatus) != 0)
 	}
 
@@ -96,8 +95,7 @@ func (ptr *QRadioTunerControl) DisconnectBandChanged() {
 func callbackQRadioTunerControlBandChanged(ptrName *C.char, band C.int) {
 	defer qt.Recovering("callback QRadioTunerControl::bandChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "bandChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "bandChanged"); signal != nil {
 		signal.(func(QRadioTuner__Band))(QRadioTuner__Band(band))
 	}
 
@@ -133,8 +131,7 @@ func (ptr *QRadioTunerControl) DisconnectError2() {
 func callbackQRadioTunerControlError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QRadioTunerControl::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QRadioTuner__Error))(QRadioTuner__Error(error))
 	}
 
@@ -189,8 +186,7 @@ func (ptr *QRadioTunerControl) DisconnectFrequencyChanged() {
 func callbackQRadioTunerControlFrequencyChanged(ptrName *C.char, frequency C.int) {
 	defer qt.Recovering("callback QRadioTunerControl::frequencyChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "frequencyChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "frequencyChanged"); signal != nil {
 		signal.(func(int))(int(frequency))
 	}
 
@@ -272,8 +268,7 @@ func (ptr *QRadioTunerControl) DisconnectMutedChanged() {
 func callbackQRadioTunerControlMutedChanged(ptrName *C.char, muted C.int) {
 	defer qt.Recovering("callback QRadioTunerControl::mutedChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mutedChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mutedChanged"); signal != nil {
 		signal.(func(bool))(int(muted) != 0)
 	}
 
@@ -325,8 +320,7 @@ func (ptr *QRadioTunerControl) DisconnectSearchingChanged() {
 func callbackQRadioTunerControlSearchingChanged(ptrName *C.char, searching C.int) {
 	defer qt.Recovering("callback QRadioTunerControl::searchingChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "searchingChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "searchingChanged"); signal != nil {
 		signal.(func(bool))(int(searching) != 0)
 	}
 
@@ -403,8 +397,7 @@ func (ptr *QRadioTunerControl) DisconnectSignalStrengthChanged() {
 func callbackQRadioTunerControlSignalStrengthChanged(ptrName *C.char, strength C.int) {
 	defer qt.Recovering("callback QRadioTunerControl::signalStrengthChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "signalStrengthChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "signalStrengthChanged"); signal != nil {
 		signal.(func(int))(int(strength))
 	}
 
@@ -449,8 +442,7 @@ func (ptr *QRadioTunerControl) DisconnectStateChanged() {
 func callbackQRadioTunerControlStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QRadioTunerControl::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QRadioTuner__State))(QRadioTuner__State(state))
 	}
 
@@ -478,8 +470,7 @@ func (ptr *QRadioTunerControl) DisconnectStationFound() {
 func callbackQRadioTunerControlStationFound(ptrName *C.char, frequency C.int, stationId *C.char) {
 	defer qt.Recovering("callback QRadioTunerControl::stationFound")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stationFound")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stationFound"); signal != nil {
 		signal.(func(int, string))(int(frequency), C.GoString(stationId))
 	}
 
@@ -516,8 +507,7 @@ func (ptr *QRadioTunerControl) DisconnectStereoStatusChanged() {
 func callbackQRadioTunerControlStereoStatusChanged(ptrName *C.char, stereo C.int) {
 	defer qt.Recovering("callback QRadioTunerControl::stereoStatusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stereoStatusChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stereoStatusChanged"); signal != nil {
 		signal.(func(bool))(int(stereo) != 0)
 	}
 
@@ -562,8 +552,7 @@ func (ptr *QRadioTunerControl) DisconnectVolumeChanged() {
 func callbackQRadioTunerControlVolumeChanged(ptrName *C.char, volume C.int) {
 	defer qt.Recovering("callback QRadioTunerControl::volumeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "volumeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "volumeChanged"); signal != nil {
 		signal.(func(int))(int(volume))
 	}
 

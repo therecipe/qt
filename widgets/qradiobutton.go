@@ -81,9 +81,8 @@ func (ptr *QRadioButton) DisconnectMouseMoveEvent() {
 func callbackQRadioButtonMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QRadioButton::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -112,9 +111,8 @@ func (ptr *QRadioButton) DisconnectPaintEvent() {
 func callbackQRadioButtonPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QRadioButton::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
 		return true
 	}
 	return false

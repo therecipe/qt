@@ -357,9 +357,8 @@ func (ptr *QTreeWidgetItem) DisconnectSetData() {
 func callbackQTreeWidgetItemSetData(ptrName *C.char, column C.int, role C.int, value unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeWidgetItem::setData")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setData")
-	if signal != nil {
-		defer signal.(func(int, int, *core.QVariant))(int(column), int(role), core.NewQVariantFromPointer(value))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
+		signal.(func(int, int, *core.QVariant))(int(column), int(role), core.NewQVariantFromPointer(value))
 		return true
 	}
 	return false

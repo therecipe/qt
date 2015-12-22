@@ -97,8 +97,7 @@ func (ptr *QNetworkAccessManager) DisconnectAuthenticationRequired() {
 func callbackQNetworkAccessManagerAuthenticationRequired(ptrName *C.char, reply unsafe.Pointer, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::authenticationRequired")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "authenticationRequired")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "authenticationRequired"); signal != nil {
 		signal.(func(*QNetworkReply, *QAuthenticator))(NewQNetworkReplyFromPointer(reply), NewQAuthenticatorFromPointer(authenticator))
 	}
 
@@ -161,8 +160,7 @@ func (ptr *QNetworkAccessManager) DisconnectEncrypted() {
 func callbackQNetworkAccessManagerEncrypted(ptrName *C.char, reply unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::encrypted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "encrypted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "encrypted"); signal != nil {
 		signal.(func(*QNetworkReply))(NewQNetworkReplyFromPointer(reply))
 	}
 
@@ -190,8 +188,7 @@ func (ptr *QNetworkAccessManager) DisconnectFinished() {
 func callbackQNetworkAccessManagerFinished(ptrName *C.char, reply unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(*QNetworkReply))(NewQNetworkReplyFromPointer(reply))
 	}
 
@@ -246,8 +243,7 @@ func (ptr *QNetworkAccessManager) DisconnectNetworkAccessibleChanged() {
 func callbackQNetworkAccessManagerNetworkAccessibleChanged(ptrName *C.char, accessible C.int) {
 	defer qt.Recovering("callback QNetworkAccessManager::networkAccessibleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "networkAccessibleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "networkAccessibleChanged"); signal != nil {
 		signal.(func(QNetworkAccessManager__NetworkAccessibility))(QNetworkAccessManager__NetworkAccessibility(accessible))
 	}
 
@@ -302,8 +298,7 @@ func (ptr *QNetworkAccessManager) DisconnectPreSharedKeyAuthenticationRequired()
 func callbackQNetworkAccessManagerPreSharedKeyAuthenticationRequired(ptrName *C.char, reply unsafe.Pointer, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::preSharedKeyAuthenticationRequired")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired"); signal != nil {
 		signal.(func(*QNetworkReply, *QSslPreSharedKeyAuthenticator))(NewQNetworkReplyFromPointer(reply), NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
 	}
 

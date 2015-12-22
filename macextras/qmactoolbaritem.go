@@ -75,8 +75,7 @@ func (ptr *QMacToolBarItem) DisconnectActivated() {
 func callbackQMacToolBarItemActivated(ptrName *C.char) {
 	defer qt.Recovering("callback QMacToolBarItem::activated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func())()
 	}
 

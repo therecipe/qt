@@ -95,8 +95,7 @@ func (ptr *QAbstractTextDocumentLayout) DisconnectPageCountChanged() {
 func callbackQAbstractTextDocumentLayoutPageCountChanged(ptrName *C.char, newPages C.int) {
 	defer qt.Recovering("callback QAbstractTextDocumentLayout::pageCountChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "pageCountChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "pageCountChanged"); signal != nil {
 		signal.(func(int))(int(newPages))
 	}
 

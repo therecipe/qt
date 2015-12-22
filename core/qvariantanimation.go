@@ -158,9 +158,8 @@ func (ptr *QVariantAnimation) DisconnectUpdateCurrentTime() {
 func callbackQVariantAnimationUpdateCurrentTime(ptrName *C.char, v C.int) bool {
 	defer qt.Recovering("callback QVariantAnimation::updateCurrentTime")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateCurrentTime")
-	if signal != nil {
-		defer signal.(func(int))(int(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
+		signal.(func(int))(int(v))
 		return true
 	}
 	return false
@@ -189,9 +188,8 @@ func (ptr *QVariantAnimation) DisconnectUpdateCurrentValue() {
 func callbackQVariantAnimationUpdateCurrentValue(ptrName *C.char, value unsafe.Pointer) bool {
 	defer qt.Recovering("callback QVariantAnimation::updateCurrentValue")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateCurrentValue")
-	if signal != nil {
-		defer signal.(func(*QVariant))(NewQVariantFromPointer(value))
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentValue"); signal != nil {
+		signal.(func(*QVariant))(NewQVariantFromPointer(value))
 		return true
 	}
 	return false
@@ -220,9 +218,8 @@ func (ptr *QVariantAnimation) DisconnectUpdateState() {
 func callbackQVariantAnimationUpdateState(ptrName *C.char, newState C.int, oldState C.int) bool {
 	defer qt.Recovering("callback QVariantAnimation::updateState")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateState")
-	if signal != nil {
-		defer signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateState"); signal != nil {
+		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 		return true
 	}
 	return false
@@ -251,8 +248,7 @@ func (ptr *QVariantAnimation) DisconnectValueChanged() {
 func callbackQVariantAnimationValueChanged(ptrName *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QVariantAnimation::valueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func(*QVariant))(NewQVariantFromPointer(value))
 	}
 

@@ -65,8 +65,7 @@ func (ptr *QVideoProbe) DisconnectFlush() {
 func callbackQVideoProbeFlush(ptrName *C.char) {
 	defer qt.Recovering("callback QVideoProbe::flush")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "flush")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "flush"); signal != nil {
 		signal.(func())()
 	}
 

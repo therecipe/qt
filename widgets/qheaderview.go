@@ -240,9 +240,8 @@ func (ptr *QHeaderView) DisconnectCurrentChanged() {
 func callbackQHeaderViewCurrentChanged(ptrName *C.char, current unsafe.Pointer, old unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHeaderView::currentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(old))
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
+		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(old))
 		return true
 	}
 	return false
@@ -271,8 +270,7 @@ func (ptr *QHeaderView) DisconnectGeometriesChanged() {
 func callbackQHeaderViewGeometriesChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QHeaderView::geometriesChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "geometriesChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "geometriesChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -379,9 +377,8 @@ func (ptr *QHeaderView) DisconnectMouseDoubleClickEvent() {
 func callbackQHeaderViewMouseDoubleClickEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHeaderView::mouseDoubleClickEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -410,9 +407,8 @@ func (ptr *QHeaderView) DisconnectMouseMoveEvent() {
 func callbackQHeaderViewMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHeaderView::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -441,9 +437,8 @@ func (ptr *QHeaderView) DisconnectMousePressEvent() {
 func callbackQHeaderViewMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHeaderView::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -472,9 +467,8 @@ func (ptr *QHeaderView) DisconnectMouseReleaseEvent() {
 func callbackQHeaderViewMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHeaderView::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -529,9 +523,8 @@ func (ptr *QHeaderView) DisconnectPaintEvent() {
 func callbackQHeaderViewPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHeaderView::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
 		return true
 	}
 	return false
@@ -560,9 +553,8 @@ func (ptr *QHeaderView) DisconnectPaintSection() {
 func callbackQHeaderViewPaintSection(ptrName *C.char, painter unsafe.Pointer, rect unsafe.Pointer, logicalIndex C.int) bool {
 	defer qt.Recovering("callback QHeaderView::paintSection")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintSection")
-	if signal != nil {
-		defer signal.(func(*gui.QPainter, *core.QRect, int))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), int(logicalIndex))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintSection"); signal != nil {
+		signal.(func(*gui.QPainter, *core.QRect, int))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), int(logicalIndex))
 		return true
 	}
 	return false
@@ -591,9 +583,8 @@ func (ptr *QHeaderView) DisconnectReset() {
 func callbackQHeaderViewReset(ptrName *C.char) bool {
 	defer qt.Recovering("callback QHeaderView::reset")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "reset")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -657,8 +648,7 @@ func (ptr *QHeaderView) DisconnectSectionClicked() {
 func callbackQHeaderViewSectionClicked(ptrName *C.char, logicalIndex C.int) {
 	defer qt.Recovering("callback QHeaderView::sectionClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sectionClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sectionClicked"); signal != nil {
 		signal.(func(int))(int(logicalIndex))
 	}
 
@@ -686,8 +676,7 @@ func (ptr *QHeaderView) DisconnectSectionCountChanged() {
 func callbackQHeaderViewSectionCountChanged(ptrName *C.char, oldCount C.int, newCount C.int) {
 	defer qt.Recovering("callback QHeaderView::sectionCountChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sectionCountChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sectionCountChanged"); signal != nil {
 		signal.(func(int, int))(int(oldCount), int(newCount))
 	}
 
@@ -715,8 +704,7 @@ func (ptr *QHeaderView) DisconnectSectionDoubleClicked() {
 func callbackQHeaderViewSectionDoubleClicked(ptrName *C.char, logicalIndex C.int) {
 	defer qt.Recovering("callback QHeaderView::sectionDoubleClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sectionDoubleClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sectionDoubleClicked"); signal != nil {
 		signal.(func(int))(int(logicalIndex))
 	}
 
@@ -744,8 +732,7 @@ func (ptr *QHeaderView) DisconnectSectionEntered() {
 func callbackQHeaderViewSectionEntered(ptrName *C.char, logicalIndex C.int) {
 	defer qt.Recovering("callback QHeaderView::sectionEntered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sectionEntered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sectionEntered"); signal != nil {
 		signal.(func(int))(int(logicalIndex))
 	}
 
@@ -773,8 +760,7 @@ func (ptr *QHeaderView) DisconnectSectionHandleDoubleClicked() {
 func callbackQHeaderViewSectionHandleDoubleClicked(ptrName *C.char, logicalIndex C.int) {
 	defer qt.Recovering("callback QHeaderView::sectionHandleDoubleClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sectionHandleDoubleClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sectionHandleDoubleClicked"); signal != nil {
 		signal.(func(int))(int(logicalIndex))
 	}
 
@@ -802,8 +788,7 @@ func (ptr *QHeaderView) DisconnectSectionMoved() {
 func callbackQHeaderViewSectionMoved(ptrName *C.char, logicalIndex C.int, oldVisualIndex C.int, newVisualIndex C.int) {
 	defer qt.Recovering("callback QHeaderView::sectionMoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sectionMoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sectionMoved"); signal != nil {
 		signal.(func(int, int, int))(int(logicalIndex), int(oldVisualIndex), int(newVisualIndex))
 	}
 
@@ -840,8 +825,7 @@ func (ptr *QHeaderView) DisconnectSectionPressed() {
 func callbackQHeaderViewSectionPressed(ptrName *C.char, logicalIndex C.int) {
 	defer qt.Recovering("callback QHeaderView::sectionPressed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sectionPressed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sectionPressed"); signal != nil {
 		signal.(func(int))(int(logicalIndex))
 	}
 
@@ -878,8 +862,7 @@ func (ptr *QHeaderView) DisconnectSectionResized() {
 func callbackQHeaderViewSectionResized(ptrName *C.char, logicalIndex C.int, oldSize C.int, newSize C.int) {
 	defer qt.Recovering("callback QHeaderView::sectionResized")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sectionResized")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sectionResized"); signal != nil {
 		signal.(func(int, int, int))(int(logicalIndex), int(oldSize), int(newSize))
 	}
 
@@ -970,9 +953,8 @@ func (ptr *QHeaderView) DisconnectSetModel() {
 func callbackQHeaderViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHeaderView::setModel")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setModel")
-	if signal != nil {
-		defer signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
+		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
 		return true
 	}
 	return false
@@ -1065,9 +1047,8 @@ func (ptr *QHeaderView) DisconnectSetSelection() {
 func callbackQHeaderViewSetSelection(ptrName *C.char, rect unsafe.Pointer, flags C.int) bool {
 	defer qt.Recovering("callback QHeaderView::setSelection")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSelection")
-	if signal != nil {
-		defer signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
+		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
 		return true
 	}
 	return false
@@ -1104,9 +1085,8 @@ func (ptr *QHeaderView) DisconnectSetVisible() {
 func callbackQHeaderViewSetVisible(ptrName *C.char, v C.int) bool {
 	defer qt.Recovering("callback QHeaderView::setVisible")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
-	if signal != nil {
-		defer signal.(func(bool))(int(v) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
+		signal.(func(bool))(int(v) != 0)
 		return true
 	}
 	return false
@@ -1152,8 +1132,7 @@ func (ptr *QHeaderView) DisconnectSortIndicatorChanged() {
 func callbackQHeaderViewSortIndicatorChanged(ptrName *C.char, logicalIndex C.int, order C.int) {
 	defer qt.Recovering("callback QHeaderView::sortIndicatorChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sortIndicatorChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sortIndicatorChanged"); signal != nil {
 		signal.(func(int, core.Qt__SortOrder))(int(logicalIndex), core.Qt__SortOrder(order))
 	}
 

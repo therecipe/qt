@@ -160,8 +160,7 @@ func (ptr *QTimer) DisconnectTimeout() {
 func callbackQTimerTimeout(ptrName *C.char) {
 	defer qt.Recovering("callback QTimer::timeout")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timeout")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "timeout"); signal != nil {
 		signal.(func())()
 	}
 
@@ -189,9 +188,8 @@ func (ptr *QTimer) DisconnectTimerEvent() {
 func callbackQTimerTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTimer::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(e))
 		return true
 	}
 	return false

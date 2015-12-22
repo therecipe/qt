@@ -110,9 +110,8 @@ func (ptr *QToolBox) DisconnectChangeEvent() {
 func callbackQToolBoxChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolBox::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -141,8 +140,7 @@ func (ptr *QToolBox) DisconnectCurrentChanged() {
 func callbackQToolBoxCurrentChanged(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QToolBox::currentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
@@ -224,9 +222,8 @@ func (ptr *QToolBox) DisconnectItemInserted() {
 func callbackQToolBoxItemInserted(ptrName *C.char, index C.int) bool {
 	defer qt.Recovering("callback QToolBox::itemInserted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemInserted")
-	if signal != nil {
-		defer signal.(func(int))(int(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemInserted"); signal != nil {
+		signal.(func(int))(int(index))
 		return true
 	}
 	return false
@@ -255,9 +252,8 @@ func (ptr *QToolBox) DisconnectItemRemoved() {
 func callbackQToolBoxItemRemoved(ptrName *C.char, index C.int) bool {
 	defer qt.Recovering("callback QToolBox::itemRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemRemoved")
-	if signal != nil {
-		defer signal.(func(int))(int(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemRemoved"); signal != nil {
+		signal.(func(int))(int(index))
 		return true
 	}
 	return false
@@ -352,9 +348,8 @@ func (ptr *QToolBox) DisconnectShowEvent() {
 func callbackQToolBoxShowEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolBox::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
 		return true
 	}
 	return false

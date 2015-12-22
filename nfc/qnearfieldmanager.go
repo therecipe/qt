@@ -145,8 +145,7 @@ func (ptr *QNearFieldManager) DisconnectTargetDetected() {
 func callbackQNearFieldManagerTargetDetected(ptrName *C.char, target unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldManager::targetDetected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "targetDetected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "targetDetected"); signal != nil {
 		signal.(func(*QNearFieldTarget))(NewQNearFieldTargetFromPointer(target))
 	}
 
@@ -174,8 +173,7 @@ func (ptr *QNearFieldManager) DisconnectTargetLost() {
 func callbackQNearFieldManagerTargetLost(ptrName *C.char, target unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldManager::targetLost")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "targetLost")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "targetLost"); signal != nil {
 		signal.(func(*QNearFieldTarget))(NewQNearFieldTargetFromPointer(target))
 	}
 

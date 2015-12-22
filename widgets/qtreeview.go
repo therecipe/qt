@@ -294,8 +294,7 @@ func (ptr *QTreeView) DisconnectCollapsed() {
 func callbackQTreeViewCollapsed(ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeView::collapsed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "collapsed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "collapsed"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	}
 
@@ -350,9 +349,8 @@ func (ptr *QTreeView) DisconnectCurrentChanged() {
 func callbackQTreeViewCurrentChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::currentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
+		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
 		return true
 	}
 	return false
@@ -381,9 +379,8 @@ func (ptr *QTreeView) DisconnectDragMoveEvent() {
 func callbackQTreeViewDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::dragMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 		return true
 	}
 	return false
@@ -412,9 +409,8 @@ func (ptr *QTreeView) DisconnectDrawBranches() {
 func callbackQTreeViewDrawBranches(ptrName *C.char, painter unsafe.Pointer, rect unsafe.Pointer, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::drawBranches")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "drawBranches")
-	if signal != nil {
-		defer signal.(func(*gui.QPainter, *core.QRect, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), core.NewQModelIndexFromPointer(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "drawBranches"); signal != nil {
+		signal.(func(*gui.QPainter, *core.QRect, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), core.NewQModelIndexFromPointer(index))
 		return true
 	}
 	return false
@@ -459,8 +455,7 @@ func (ptr *QTreeView) DisconnectExpanded() {
 func callbackQTreeViewExpanded(ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeView::expanded")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "expanded")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "expanded"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	}
 
@@ -559,9 +554,8 @@ func (ptr *QTreeView) DisconnectKeyPressEvent() {
 func callbackQTreeViewKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 		return true
 	}
 	return false
@@ -590,9 +584,8 @@ func (ptr *QTreeView) DisconnectKeyboardSearch() {
 func callbackQTreeViewKeyboardSearch(ptrName *C.char, search *C.char) bool {
 	defer qt.Recovering("callback QTreeView::keyboardSearch")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyboardSearch")
-	if signal != nil {
-		defer signal.(func(string))(C.GoString(search))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyboardSearch"); signal != nil {
+		signal.(func(string))(C.GoString(search))
 		return true
 	}
 	return false
@@ -621,9 +614,8 @@ func (ptr *QTreeView) DisconnectMouseDoubleClickEvent() {
 func callbackQTreeViewMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::mouseDoubleClickEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -652,9 +644,8 @@ func (ptr *QTreeView) DisconnectMouseMoveEvent() {
 func callbackQTreeViewMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -683,9 +674,8 @@ func (ptr *QTreeView) DisconnectMousePressEvent() {
 func callbackQTreeViewMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -714,9 +704,8 @@ func (ptr *QTreeView) DisconnectMouseReleaseEvent() {
 func callbackQTreeViewMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -745,9 +734,8 @@ func (ptr *QTreeView) DisconnectPaintEvent() {
 func callbackQTreeViewPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 		return true
 	}
 	return false
@@ -776,9 +764,8 @@ func (ptr *QTreeView) DisconnectReset() {
 func callbackQTreeViewReset(ptrName *C.char) bool {
 	defer qt.Recovering("callback QTreeView::reset")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "reset")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -815,9 +802,8 @@ func (ptr *QTreeView) DisconnectRowsAboutToBeRemoved() {
 func callbackQTreeViewRowsAboutToBeRemoved(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QTreeView::rowsAboutToBeRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
 		return true
 	}
 	return false
@@ -846,9 +832,8 @@ func (ptr *QTreeView) DisconnectRowsInserted() {
 func callbackQTreeViewRowsInserted(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QTreeView::rowsInserted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rowsInserted")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
 		return true
 	}
 	return false
@@ -877,9 +862,8 @@ func (ptr *QTreeView) DisconnectScrollContentsBy() {
 func callbackQTreeViewScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
 	defer qt.Recovering("callback QTreeView::scrollContentsBy")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scrollContentsBy")
-	if signal != nil {
-		defer signal.(func(int, int))(int(dx), int(dy))
+	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
+		signal.(func(int, int))(int(dx), int(dy))
 		return true
 	}
 	return false
@@ -908,9 +892,8 @@ func (ptr *QTreeView) DisconnectScrollTo() {
 func callbackQTreeViewScrollTo(ptrName *C.char, index unsafe.Pointer, hint C.int) bool {
 	defer qt.Recovering("callback QTreeView::scrollTo")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scrollTo")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
+	if signal := qt.GetSignal(C.GoString(ptrName), "scrollTo"); signal != nil {
+		signal.(func(*core.QModelIndex, QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
 		return true
 	}
 	return false
@@ -939,9 +922,8 @@ func (ptr *QTreeView) DisconnectSelectAll() {
 func callbackQTreeViewSelectAll(ptrName *C.char) bool {
 	defer qt.Recovering("callback QTreeView::selectAll")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "selectAll")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "selectAll"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -1010,9 +992,8 @@ func (ptr *QTreeView) DisconnectSetModel() {
 func callbackQTreeViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::setModel")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setModel")
-	if signal != nil {
-		defer signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
+		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
 		return true
 	}
 	return false
@@ -1041,9 +1022,8 @@ func (ptr *QTreeView) DisconnectSetRootIndex() {
 func callbackQTreeViewSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::setRootIndex")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setRootIndex")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 		return true
 	}
 	return false
@@ -1080,9 +1060,8 @@ func (ptr *QTreeView) DisconnectSetSelection() {
 func callbackQTreeViewSetSelection(ptrName *C.char, rect unsafe.Pointer, command C.int) bool {
 	defer qt.Recovering("callback QTreeView::setSelection")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSelection")
-	if signal != nil {
-		defer signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
+		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
 		return true
 	}
 	return false
@@ -1111,9 +1090,8 @@ func (ptr *QTreeView) DisconnectSetSelectionModel() {
 func callbackQTreeViewSetSelectionModel(ptrName *C.char, selectionModel unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::setSelectionModel")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSelectionModel")
-	if signal != nil {
-		defer signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSelectionModel"); signal != nil {
+		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
 		return true
 	}
 	return false
@@ -1166,9 +1144,8 @@ func (ptr *QTreeView) DisconnectTimerEvent() {
 func callbackQTreeViewTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeView::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 		return true
 	}
 	return false
@@ -1206,9 +1183,8 @@ func (ptr *QTreeView) DisconnectUpdateGeometries() {
 func callbackQTreeViewUpdateGeometries(ptrName *C.char) bool {
 	defer qt.Recovering("callback QTreeView::updateGeometries")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateGeometries")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

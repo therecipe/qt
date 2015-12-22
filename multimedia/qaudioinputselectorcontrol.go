@@ -67,8 +67,7 @@ func (ptr *QAudioInputSelectorControl) DisconnectActiveInputChanged() {
 func callbackQAudioInputSelectorControlActiveInputChanged(ptrName *C.char, name *C.char) {
 	defer qt.Recovering("callback QAudioInputSelectorControl::activeInputChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activeInputChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activeInputChanged"); signal != nil {
 		signal.(func(string))(C.GoString(name))
 	}
 
@@ -96,8 +95,7 @@ func (ptr *QAudioInputSelectorControl) DisconnectAvailableInputsChanged() {
 func callbackQAudioInputSelectorControlAvailableInputsChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QAudioInputSelectorControl::availableInputsChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "availableInputsChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "availableInputsChanged"); signal != nil {
 		signal.(func())()
 	}
 

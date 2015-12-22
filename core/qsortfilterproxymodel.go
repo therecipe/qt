@@ -246,9 +246,8 @@ func (ptr *QSortFilterProxyModel) DisconnectFetchMore() {
 func callbackQSortFilterProxyModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSortFilterProxyModel::fetchMore")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fetchMore")
-	if signal != nil {
-		defer signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
 		return true
 	}
 	return false
@@ -444,9 +443,8 @@ func (ptr *QSortFilterProxyModel) DisconnectSetSourceModel() {
 func callbackQSortFilterProxyModelSetSourceModel(ptrName *C.char, sourceModel unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSortFilterProxyModel::setSourceModel")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSourceModel")
-	if signal != nil {
-		defer signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(sourceModel))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSourceModel"); signal != nil {
+		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(sourceModel))
 		return true
 	}
 	return false
@@ -484,9 +482,8 @@ func (ptr *QSortFilterProxyModel) DisconnectSort() {
 func callbackQSortFilterProxyModelSort(ptrName *C.char, column C.int, order C.int) bool {
 	defer qt.Recovering("callback QSortFilterProxyModel::sort")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sort")
-	if signal != nil {
-		defer signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
+	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
+		signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
 		return true
 	}
 	return false

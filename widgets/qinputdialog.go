@@ -322,9 +322,8 @@ func (ptr *QInputDialog) DisconnectDone() {
 func callbackQInputDialogDone(ptrName *C.char, result C.int) bool {
 	defer qt.Recovering("callback QInputDialog::done")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "done")
-	if signal != nil {
-		defer signal.(func(int))(int(result))
+	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
+		signal.(func(int))(int(result))
 		return true
 	}
 	return false
@@ -377,8 +376,7 @@ func (ptr *QInputDialog) DisconnectIntValueChanged() {
 func callbackQInputDialogIntValueChanged(ptrName *C.char, value C.int) {
 	defer qt.Recovering("callback QInputDialog::intValueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "intValueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "intValueChanged"); signal != nil {
 		signal.(func(int))(int(value))
 	}
 
@@ -406,8 +404,7 @@ func (ptr *QInputDialog) DisconnectIntValueSelected() {
 func callbackQInputDialogIntValueSelected(ptrName *C.char, value C.int) {
 	defer qt.Recovering("callback QInputDialog::intValueSelected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "intValueSelected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "intValueSelected"); signal != nil {
 		signal.(func(int))(int(value))
 	}
 
@@ -468,9 +465,8 @@ func (ptr *QInputDialog) DisconnectSetVisible() {
 func callbackQInputDialogSetVisible(ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QInputDialog::setVisible")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
-	if signal != nil {
-		defer signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
+		signal.(func(bool))(int(visible) != 0)
 		return true
 	}
 	return false
@@ -517,8 +513,7 @@ func (ptr *QInputDialog) DisconnectTextValueChanged() {
 func callbackQInputDialogTextValueChanged(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QInputDialog::textValueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "textValueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "textValueChanged"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
@@ -546,8 +541,7 @@ func (ptr *QInputDialog) DisconnectTextValueSelected() {
 func callbackQInputDialogTextValueSelected(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QInputDialog::textValueSelected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "textValueSelected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "textValueSelected"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 

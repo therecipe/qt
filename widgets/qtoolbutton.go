@@ -87,9 +87,8 @@ func (ptr *QToolButton) DisconnectPaintEvent() {
 func callbackQToolButtonPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolButton::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 		return true
 	}
 	return false
@@ -174,9 +173,8 @@ func (ptr *QToolButton) DisconnectActionEvent() {
 func callbackQToolButtonActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolButton::actionEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "actionEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
+		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 		return true
 	}
 	return false
@@ -205,9 +203,8 @@ func (ptr *QToolButton) DisconnectChangeEvent() {
 func callbackQToolButtonChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolButton::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
 		return true
 	}
 	return false
@@ -236,9 +233,8 @@ func (ptr *QToolButton) DisconnectEnterEvent() {
 func callbackQToolButtonEnterEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolButton::enterEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "enterEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
 		return true
 	}
 	return false
@@ -267,9 +263,8 @@ func (ptr *QToolButton) DisconnectLeaveEvent() {
 func callbackQToolButtonLeaveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolButton::leaveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "leaveEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
 		return true
 	}
 	return false
@@ -316,9 +311,8 @@ func (ptr *QToolButton) DisconnectMousePressEvent() {
 func callbackQToolButtonMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolButton::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -347,9 +341,8 @@ func (ptr *QToolButton) DisconnectMouseReleaseEvent() {
 func callbackQToolButtonMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolButton::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -378,9 +371,8 @@ func (ptr *QToolButton) DisconnectNextCheckState() {
 func callbackQToolButtonNextCheckState(ptrName *C.char) bool {
 	defer qt.Recovering("callback QToolButton::nextCheckState")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "nextCheckState")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "nextCheckState"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -434,9 +426,8 @@ func (ptr *QToolButton) DisconnectTimerEvent() {
 func callbackQToolButtonTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolButton::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
 		return true
 	}
 	return false
@@ -465,8 +456,7 @@ func (ptr *QToolButton) DisconnectTriggered() {
 func callbackQToolButtonTriggered(ptrName *C.char, action unsafe.Pointer) {
 	defer qt.Recovering("callback QToolButton::triggered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "triggered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "triggered"); signal != nil {
 		signal.(func(*QAction))(NewQActionFromPointer(action))
 	}
 

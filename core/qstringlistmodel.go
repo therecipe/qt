@@ -130,9 +130,8 @@ func (ptr *QStringListModel) DisconnectSort() {
 func callbackQStringListModelSort(ptrName *C.char, column C.int, order C.int) bool {
 	defer qt.Recovering("callback QStringListModel::sort")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sort")
-	if signal != nil {
-		defer signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
+	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
+		signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
 		return true
 	}
 	return false

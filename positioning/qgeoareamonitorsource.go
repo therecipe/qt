@@ -96,8 +96,7 @@ func (ptr *QGeoAreaMonitorSource) DisconnectError2() {
 func callbackQGeoAreaMonitorSourceError2(ptrName *C.char, areaMonitoringError C.int) {
 	defer qt.Recovering("callback QGeoAreaMonitorSource::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QGeoAreaMonitorSource__Error))(QGeoAreaMonitorSource__Error(areaMonitoringError))
 	}
 
@@ -152,9 +151,8 @@ func (ptr *QGeoAreaMonitorSource) DisconnectSetPositionInfoSource() {
 func callbackQGeoAreaMonitorSourceSetPositionInfoSource(ptrName *C.char, newSource unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGeoAreaMonitorSource::setPositionInfoSource")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setPositionInfoSource")
-	if signal != nil {
-		defer signal.(func(*QGeoPositionInfoSource))(NewQGeoPositionInfoSourceFromPointer(newSource))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setPositionInfoSource"); signal != nil {
+		signal.(func(*QGeoPositionInfoSource))(NewQGeoPositionInfoSourceFromPointer(newSource))
 		return true
 	}
 	return false

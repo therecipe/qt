@@ -137,9 +137,8 @@ func (ptr *QWidgetItem) DisconnectSetGeometry() {
 func callbackQWidgetItemSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
 	defer qt.Recovering("callback QWidgetItem::setGeometry")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
-	if signal != nil {
-		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
+		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
 		return true
 	}
 	return false

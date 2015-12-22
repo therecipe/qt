@@ -68,8 +68,7 @@ func (ptr *QValidator) DisconnectChanged() {
 func callbackQValidatorChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QValidator::changed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "changed"); signal != nil {
 		signal.(func())()
 	}
 

@@ -132,8 +132,7 @@ func (ptr *QSoundEffect) DisconnectCategoryChanged() {
 func callbackQSoundEffectCategoryChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::categoryChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "categoryChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "categoryChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -179,8 +178,7 @@ func (ptr *QSoundEffect) DisconnectLoadedChanged() {
 func callbackQSoundEffectLoadedChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::loadedChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "loadedChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "loadedChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -217,8 +215,7 @@ func (ptr *QSoundEffect) DisconnectLoopCountChanged() {
 func callbackQSoundEffectLoopCountChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::loopCountChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "loopCountChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "loopCountChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -246,8 +243,7 @@ func (ptr *QSoundEffect) DisconnectLoopsRemainingChanged() {
 func callbackQSoundEffectLoopsRemainingChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::loopsRemainingChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "loopsRemainingChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "loopsRemainingChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -275,8 +271,7 @@ func (ptr *QSoundEffect) DisconnectMutedChanged() {
 func callbackQSoundEffectMutedChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::mutedChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mutedChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mutedChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -304,8 +299,7 @@ func (ptr *QSoundEffect) DisconnectPlayingChanged() {
 func callbackQSoundEffectPlayingChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::playingChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "playingChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "playingChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -382,8 +376,7 @@ func (ptr *QSoundEffect) DisconnectSourceChanged() {
 func callbackQSoundEffectSourceChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::sourceChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sourceChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sourceChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -420,8 +413,7 @@ func (ptr *QSoundEffect) DisconnectStatusChanged() {
 func callbackQSoundEffectStatusChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::statusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "statusChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "statusChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -458,8 +450,7 @@ func (ptr *QSoundEffect) DisconnectVolumeChanged() {
 func callbackQSoundEffectVolumeChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::volumeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "volumeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "volumeChanged"); signal != nil {
 		signal.(func())()
 	}
 

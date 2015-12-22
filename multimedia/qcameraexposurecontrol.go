@@ -85,8 +85,7 @@ func (ptr *QCameraExposureControl) DisconnectActualValueChanged() {
 func callbackQCameraExposureControlActualValueChanged(ptrName *C.char, parameter C.int) {
 	defer qt.Recovering("callback QCameraExposureControl::actualValueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "actualValueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "actualValueChanged"); signal != nil {
 		signal.(func(int))(int(parameter))
 	}
 
@@ -123,8 +122,7 @@ func (ptr *QCameraExposureControl) DisconnectParameterRangeChanged() {
 func callbackQCameraExposureControlParameterRangeChanged(ptrName *C.char, parameter C.int) {
 	defer qt.Recovering("callback QCameraExposureControl::parameterRangeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "parameterRangeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "parameterRangeChanged"); signal != nil {
 		signal.(func(int))(int(parameter))
 	}
 
@@ -161,8 +159,7 @@ func (ptr *QCameraExposureControl) DisconnectRequestedValueChanged() {
 func callbackQCameraExposureControlRequestedValueChanged(ptrName *C.char, parameter C.int) {
 	defer qt.Recovering("callback QCameraExposureControl::requestedValueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "requestedValueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestedValueChanged"); signal != nil {
 		signal.(func(int))(int(parameter))
 	}
 

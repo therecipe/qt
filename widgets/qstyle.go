@@ -784,9 +784,8 @@ func (ptr *QStyle) DisconnectPolish() {
 func callbackQStylePolish(ptrName *C.char, widget unsafe.Pointer) bool {
 	defer qt.Recovering("callback QStyle::polish")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "polish")
-	if signal != nil {
-		defer signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
+	if signal := qt.GetSignal(C.GoString(ptrName), "polish"); signal != nil {
+		signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
 		return true
 	}
 	return false
@@ -866,9 +865,8 @@ func (ptr *QStyle) DisconnectUnpolish() {
 func callbackQStyleUnpolish(ptrName *C.char, widget unsafe.Pointer) bool {
 	defer qt.Recovering("callback QStyle::unpolish")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "unpolish")
-	if signal != nil {
-		defer signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
+	if signal := qt.GetSignal(C.GoString(ptrName), "unpolish"); signal != nil {
+		signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
 		return true
 	}
 	return false

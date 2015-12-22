@@ -100,8 +100,7 @@ func (ptr *QGraphicsColorizeEffect) DisconnectColorChanged() {
 func callbackQGraphicsColorizeEffectColorChanged(ptrName *C.char, color unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsColorizeEffect::colorChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "colorChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "colorChanged"); signal != nil {
 		signal.(func(*gui.QColor))(gui.NewQColorFromPointer(color))
 	}
 
@@ -129,8 +128,7 @@ func (ptr *QGraphicsColorizeEffect) DisconnectStrengthChanged() {
 func callbackQGraphicsColorizeEffectStrengthChanged(ptrName *C.char, strength C.double) {
 	defer qt.Recovering("callback QGraphicsColorizeEffect::strengthChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "strengthChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "strengthChanged"); signal != nil {
 		signal.(func(float64))(float64(strength))
 	}
 

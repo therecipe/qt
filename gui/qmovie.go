@@ -155,8 +155,7 @@ func (ptr *QMovie) DisconnectError() {
 func callbackQMovieError(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QMovie::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(QImageReader__ImageReaderError))(QImageReader__ImageReaderError(error))
 	}
 
@@ -193,8 +192,7 @@ func (ptr *QMovie) DisconnectFinished() {
 func callbackQMovieFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QMovie::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -231,8 +229,7 @@ func (ptr *QMovie) DisconnectFrameChanged() {
 func callbackQMovieFrameChanged(ptrName *C.char, frameNumber C.int) {
 	defer qt.Recovering("callback QMovie::frameChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "frameChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "frameChanged"); signal != nil {
 		signal.(func(int))(int(frameNumber))
 	}
 
@@ -323,8 +320,7 @@ func (ptr *QMovie) DisconnectResized() {
 func callbackQMovieResized(ptrName *C.char, size unsafe.Pointer) {
 	defer qt.Recovering("callback QMovie::resized")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resized")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "resized"); signal != nil {
 		signal.(func(*core.QSize))(core.NewQSizeFromPointer(size))
 	}
 
@@ -417,8 +413,7 @@ func (ptr *QMovie) DisconnectStarted() {
 func callbackQMovieStarted(ptrName *C.char) {
 	defer qt.Recovering("callback QMovie::started")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "started")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "started"); signal != nil {
 		signal.(func())()
 	}
 
@@ -455,8 +450,7 @@ func (ptr *QMovie) DisconnectStateChanged() {
 func callbackQMovieStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QMovie::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QMovie__MovieState))(QMovie__MovieState(state))
 	}
 
@@ -492,8 +486,7 @@ func (ptr *QMovie) DisconnectUpdated() {
 func callbackQMovieUpdated(ptrName *C.char, rect unsafe.Pointer) {
 	defer qt.Recovering("callback QMovie::updated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "updated"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
 	}
 

@@ -104,9 +104,8 @@ func (ptr *QPropertyAnimation) DisconnectUpdateCurrentValue() {
 func callbackQPropertyAnimationUpdateCurrentValue(ptrName *C.char, value unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPropertyAnimation::updateCurrentValue")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateCurrentValue")
-	if signal != nil {
-		defer signal.(func(*QVariant))(NewQVariantFromPointer(value))
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentValue"); signal != nil {
+		signal.(func(*QVariant))(NewQVariantFromPointer(value))
 		return true
 	}
 	return false
@@ -135,9 +134,8 @@ func (ptr *QPropertyAnimation) DisconnectUpdateState() {
 func callbackQPropertyAnimationUpdateState(ptrName *C.char, newState C.int, oldState C.int) bool {
 	defer qt.Recovering("callback QPropertyAnimation::updateState")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateState")
-	if signal != nil {
-		defer signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateState"); signal != nil {
+		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 		return true
 	}
 	return false

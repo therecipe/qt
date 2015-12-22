@@ -83,9 +83,8 @@ func (ptr *QColumnView) DisconnectCurrentChanged() {
 func callbackQColumnViewCurrentChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
 	defer qt.Recovering("callback QColumnView::currentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
+		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
 		return true
 	}
 	return false
@@ -132,9 +131,8 @@ func (ptr *QColumnView) DisconnectResizeEvent() {
 func callbackQColumnViewResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QColumnView::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 		return true
 	}
 	return false
@@ -163,9 +161,8 @@ func (ptr *QColumnView) DisconnectRowsInserted() {
 func callbackQColumnViewRowsInserted(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QColumnView::rowsInserted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rowsInserted")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
 		return true
 	}
 	return false
@@ -194,9 +191,8 @@ func (ptr *QColumnView) DisconnectScrollContentsBy() {
 func callbackQColumnViewScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
 	defer qt.Recovering("callback QColumnView::scrollContentsBy")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scrollContentsBy")
-	if signal != nil {
-		defer signal.(func(int, int))(int(dx), int(dy))
+	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
+		signal.(func(int, int))(int(dx), int(dy))
 		return true
 	}
 	return false
@@ -225,9 +221,8 @@ func (ptr *QColumnView) DisconnectScrollTo() {
 func callbackQColumnViewScrollTo(ptrName *C.char, index unsafe.Pointer, hint C.int) bool {
 	defer qt.Recovering("callback QColumnView::scrollTo")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scrollTo")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
+	if signal := qt.GetSignal(C.GoString(ptrName), "scrollTo"); signal != nil {
+		signal.(func(*core.QModelIndex, QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
 		return true
 	}
 	return false
@@ -256,9 +251,8 @@ func (ptr *QColumnView) DisconnectSelectAll() {
 func callbackQColumnViewSelectAll(ptrName *C.char) bool {
 	defer qt.Recovering("callback QColumnView::selectAll")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "selectAll")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "selectAll"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -287,9 +281,8 @@ func (ptr *QColumnView) DisconnectSetModel() {
 func callbackQColumnViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
 	defer qt.Recovering("callback QColumnView::setModel")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setModel")
-	if signal != nil {
-		defer signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
+		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
 		return true
 	}
 	return false
@@ -326,9 +319,8 @@ func (ptr *QColumnView) DisconnectSetRootIndex() {
 func callbackQColumnViewSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QColumnView::setRootIndex")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setRootIndex")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 		return true
 	}
 	return false
@@ -357,9 +349,8 @@ func (ptr *QColumnView) DisconnectSetSelection() {
 func callbackQColumnViewSetSelection(ptrName *C.char, rect unsafe.Pointer, command C.int) bool {
 	defer qt.Recovering("callback QColumnView::setSelection")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSelection")
-	if signal != nil {
-		defer signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
+		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
 		return true
 	}
 	return false
@@ -388,9 +379,8 @@ func (ptr *QColumnView) DisconnectSetSelectionModel() {
 func callbackQColumnViewSetSelectionModel(ptrName *C.char, newSelectionModel unsafe.Pointer) bool {
 	defer qt.Recovering("callback QColumnView::setSelectionModel")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSelectionModel")
-	if signal != nil {
-		defer signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(newSelectionModel))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSelectionModel"); signal != nil {
+		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(newSelectionModel))
 		return true
 	}
 	return false
@@ -428,8 +418,7 @@ func (ptr *QColumnView) DisconnectUpdatePreviewWidget() {
 func callbackQColumnViewUpdatePreviewWidget(ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::updatePreviewWidget")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updatePreviewWidget")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "updatePreviewWidget"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	}
 

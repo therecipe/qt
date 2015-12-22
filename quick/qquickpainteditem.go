@@ -153,8 +153,7 @@ func (ptr *QQuickPaintedItem) DisconnectContentsScaleChanged() {
 func callbackQQuickPaintedItemContentsScaleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickPaintedItem::contentsScaleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contentsScaleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "contentsScaleChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -182,8 +181,7 @@ func (ptr *QQuickPaintedItem) DisconnectContentsSizeChanged() {
 func callbackQQuickPaintedItemContentsSizeChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickPaintedItem::contentsSizeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contentsSizeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "contentsSizeChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -211,8 +209,7 @@ func (ptr *QQuickPaintedItem) DisconnectFillColorChanged() {
 func callbackQQuickPaintedItemFillColorChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickPaintedItem::fillColorChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fillColorChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "fillColorChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -284,9 +281,8 @@ func (ptr *QQuickPaintedItem) DisconnectReleaseResources() {
 func callbackQQuickPaintedItemReleaseResources(ptrName *C.char) bool {
 	defer qt.Recovering("callback QQuickPaintedItem::releaseResources")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "releaseResources")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "releaseResources"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -315,8 +311,7 @@ func (ptr *QQuickPaintedItem) DisconnectRenderTargetChanged() {
 func callbackQQuickPaintedItemRenderTargetChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QQuickPaintedItem::renderTargetChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "renderTargetChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "renderTargetChanged"); signal != nil {
 		signal.(func())()
 	}
 

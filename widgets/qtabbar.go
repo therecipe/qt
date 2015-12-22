@@ -345,9 +345,8 @@ func (ptr *QTabBar) DisconnectChangeEvent() {
 func callbackQTabBarChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTabBar::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -376,8 +375,7 @@ func (ptr *QTabBar) DisconnectCurrentChanged() {
 func callbackQTabBarCurrentChanged(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QTabBar::currentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
@@ -405,9 +403,8 @@ func (ptr *QTabBar) DisconnectHideEvent() {
 func callbackQTabBarHideEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTabBar::hideEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hideEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(v))
 		return true
 	}
 	return false
@@ -463,9 +460,8 @@ func (ptr *QTabBar) DisconnectKeyPressEvent() {
 func callbackQTabBarKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTabBar::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 		return true
 	}
 	return false
@@ -503,9 +499,8 @@ func (ptr *QTabBar) DisconnectMouseMoveEvent() {
 func callbackQTabBarMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTabBar::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -534,9 +529,8 @@ func (ptr *QTabBar) DisconnectMousePressEvent() {
 func callbackQTabBarMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTabBar::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -565,9 +559,8 @@ func (ptr *QTabBar) DisconnectMouseReleaseEvent() {
 func callbackQTabBarMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTabBar::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -604,9 +597,8 @@ func (ptr *QTabBar) DisconnectPaintEvent() {
 func callbackQTabBarPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTabBar::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
 		return true
 	}
 	return false
@@ -643,9 +635,8 @@ func (ptr *QTabBar) DisconnectResizeEvent() {
 func callbackQTabBarResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTabBar::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
 		return true
 	}
 	return false
@@ -738,9 +729,8 @@ func (ptr *QTabBar) DisconnectShowEvent() {
 func callbackQTabBarShowEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTabBar::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
 		return true
 	}
 	return false
@@ -787,8 +777,7 @@ func (ptr *QTabBar) DisconnectTabBarClicked() {
 func callbackQTabBarTabBarClicked(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QTabBar::tabBarClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "tabBarClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabBarClicked"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
@@ -816,8 +805,7 @@ func (ptr *QTabBar) DisconnectTabBarDoubleClicked() {
 func callbackQTabBarTabBarDoubleClicked(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QTabBar::tabBarDoubleClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "tabBarDoubleClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabBarDoubleClicked"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
@@ -854,8 +842,7 @@ func (ptr *QTabBar) DisconnectTabCloseRequested() {
 func callbackQTabBarTabCloseRequested(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QTabBar::tabCloseRequested")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "tabCloseRequested")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabCloseRequested"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
@@ -901,9 +888,8 @@ func (ptr *QTabBar) DisconnectTabInserted() {
 func callbackQTabBarTabInserted(ptrName *C.char, index C.int) bool {
 	defer qt.Recovering("callback QTabBar::tabInserted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "tabInserted")
-	if signal != nil {
-		defer signal.(func(int))(int(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabInserted"); signal != nil {
+		signal.(func(int))(int(index))
 		return true
 	}
 	return false
@@ -932,9 +918,8 @@ func (ptr *QTabBar) DisconnectTabLayoutChange() {
 func callbackQTabBarTabLayoutChange(ptrName *C.char) bool {
 	defer qt.Recovering("callback QTabBar::tabLayoutChange")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "tabLayoutChange")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabLayoutChange"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -963,8 +948,7 @@ func (ptr *QTabBar) DisconnectTabMoved() {
 func callbackQTabBarTabMoved(ptrName *C.char, from C.int, to C.int) {
 	defer qt.Recovering("callback QTabBar::tabMoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "tabMoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabMoved"); signal != nil {
 		signal.(func(int, int))(int(from), int(to))
 	}
 
@@ -1001,9 +985,8 @@ func (ptr *QTabBar) DisconnectTabRemoved() {
 func callbackQTabBarTabRemoved(ptrName *C.char, index C.int) bool {
 	defer qt.Recovering("callback QTabBar::tabRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "tabRemoved")
-	if signal != nil {
-		defer signal.(func(int))(int(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabRemoved"); signal != nil {
+		signal.(func(int))(int(index))
 		return true
 	}
 	return false
@@ -1068,9 +1051,8 @@ func (ptr *QTabBar) DisconnectTimerEvent() {
 func callbackQTabBarTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTabBar::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 		return true
 	}
 	return false
@@ -1099,9 +1081,8 @@ func (ptr *QTabBar) DisconnectWheelEvent() {
 func callbackQTabBarWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTabBar::wheelEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 		return true
 	}
 	return false

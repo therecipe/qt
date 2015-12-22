@@ -213,9 +213,8 @@ func (ptr *QTableWidgetItem) DisconnectSetData() {
 func callbackQTableWidgetItemSetData(ptrName *C.char, role C.int, value unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableWidgetItem::setData")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setData")
-	if signal != nil {
-		defer signal.(func(int, *core.QVariant))(int(role), core.NewQVariantFromPointer(value))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
+		signal.(func(int, *core.QVariant))(int(role), core.NewQVariantFromPointer(value))
 		return true
 	}
 	return false

@@ -108,8 +108,7 @@ func (ptr *QGraphicsBlurEffect) DisconnectBlurHintsChanged() {
 func callbackQGraphicsBlurEffectBlurHintsChanged(ptrName *C.char, hints C.int) {
 	defer qt.Recovering("callback QGraphicsBlurEffect::blurHintsChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "blurHintsChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "blurHintsChanged"); signal != nil {
 		signal.(func(QGraphicsBlurEffect__BlurHint))(QGraphicsBlurEffect__BlurHint(hints))
 	}
 
@@ -137,8 +136,7 @@ func (ptr *QGraphicsBlurEffect) DisconnectBlurRadiusChanged() {
 func callbackQGraphicsBlurEffectBlurRadiusChanged(ptrName *C.char, radius C.double) {
 	defer qt.Recovering("callback QGraphicsBlurEffect::blurRadiusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "blurRadiusChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "blurRadiusChanged"); signal != nil {
 		signal.(func(float64))(float64(radius))
 	}
 

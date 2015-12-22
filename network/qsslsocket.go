@@ -142,9 +142,8 @@ func (ptr *QSslSocket) DisconnectClose() {
 func callbackQSslSocketClose(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSslSocket::close")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "close")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -173,8 +172,7 @@ func (ptr *QSslSocket) DisconnectEncrypted() {
 func callbackQSslSocketEncrypted(ptrName *C.char) {
 	defer qt.Recovering("callback QSslSocket::encrypted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "encrypted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "encrypted"); signal != nil {
 		signal.(func())()
 	}
 
@@ -220,8 +218,7 @@ func (ptr *QSslSocket) DisconnectEncryptedBytesWritten() {
 func callbackQSslSocketEncryptedBytesWritten(ptrName *C.char, written C.longlong) {
 	defer qt.Recovering("callback QSslSocket::encryptedBytesWritten")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "encryptedBytesWritten")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "encryptedBytesWritten"); signal != nil {
 		signal.(func(int64))(int64(written))
 	}
 
@@ -284,8 +281,7 @@ func (ptr *QSslSocket) DisconnectModeChanged() {
 func callbackQSslSocketModeChanged(ptrName *C.char, mode C.int) {
 	defer qt.Recovering("callback QSslSocket::modeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "modeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "modeChanged"); signal != nil {
 		signal.(func(QSslSocket__SslMode))(QSslSocket__SslMode(mode))
 	}
 
@@ -340,8 +336,7 @@ func (ptr *QSslSocket) DisconnectPreSharedKeyAuthenticationRequired() {
 func callbackQSslSocketPreSharedKeyAuthenticationRequired(ptrName *C.char, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::preSharedKeyAuthenticationRequired")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired"); signal != nil {
 		signal.(func(*QSslPreSharedKeyAuthenticator))(NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
 	}
 
@@ -369,9 +364,8 @@ func (ptr *QSslSocket) DisconnectResume() {
 func callbackQSslSocketResume(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSslSocket::resume")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resume")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "resume"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -440,9 +434,8 @@ func (ptr *QSslSocket) DisconnectSetReadBufferSize() {
 func callbackQSslSocketSetReadBufferSize(ptrName *C.char, size C.longlong) bool {
 	defer qt.Recovering("callback QSslSocket::setReadBufferSize")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setReadBufferSize")
-	if signal != nil {
-		defer signal.(func(int64))(int64(size))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setReadBufferSize"); signal != nil {
+		signal.(func(int64))(int64(size))
 		return true
 	}
 	return false
@@ -471,9 +464,8 @@ func (ptr *QSslSocket) DisconnectSetSocketOption() {
 func callbackQSslSocketSetSocketOption(ptrName *C.char, option C.int, value unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSslSocket::setSocketOption")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSocketOption")
-	if signal != nil {
-		defer signal.(func(QAbstractSocket__SocketOption, *core.QVariant))(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSocketOption"); signal != nil {
+		signal.(func(QAbstractSocket__SocketOption, *core.QVariant))(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
 		return true
 	}
 	return false

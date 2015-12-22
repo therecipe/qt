@@ -116,8 +116,7 @@ func (ptr *QUndoStack) DisconnectCanRedoChanged() {
 func callbackQUndoStackCanRedoChanged(ptrName *C.char, canRedo C.int) {
 	defer qt.Recovering("callback QUndoStack::canRedoChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "canRedoChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "canRedoChanged"); signal != nil {
 		signal.(func(bool))(int(canRedo) != 0)
 	}
 
@@ -154,8 +153,7 @@ func (ptr *QUndoStack) DisconnectCanUndoChanged() {
 func callbackQUndoStackCanUndoChanged(ptrName *C.char, canUndo C.int) {
 	defer qt.Recovering("callback QUndoStack::canUndoChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "canUndoChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "canUndoChanged"); signal != nil {
 		signal.(func(bool))(int(canUndo) != 0)
 	}
 
@@ -183,8 +181,7 @@ func (ptr *QUndoStack) DisconnectCleanChanged() {
 func callbackQUndoStackCleanChanged(ptrName *C.char, clean C.int) {
 	defer qt.Recovering("callback QUndoStack::cleanChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cleanChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "cleanChanged"); signal != nil {
 		signal.(func(bool))(int(clean) != 0)
 	}
 
@@ -282,8 +279,7 @@ func (ptr *QUndoStack) DisconnectIndexChanged() {
 func callbackQUndoStackIndexChanged(ptrName *C.char, idx C.int) {
 	defer qt.Recovering("callback QUndoStack::indexChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "indexChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "indexChanged"); signal != nil {
 		signal.(func(int))(int(idx))
 	}
 
@@ -345,8 +341,7 @@ func (ptr *QUndoStack) DisconnectRedoTextChanged() {
 func callbackQUndoStackRedoTextChanged(ptrName *C.char, redoText *C.char) {
 	defer qt.Recovering("callback QUndoStack::redoTextChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "redoTextChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "redoTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(redoText))
 	}
 
@@ -416,8 +411,7 @@ func (ptr *QUndoStack) DisconnectUndoTextChanged() {
 func callbackQUndoStackUndoTextChanged(ptrName *C.char, undoText *C.char) {
 	defer qt.Recovering("callback QUndoStack::undoTextChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "undoTextChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "undoTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(undoText))
 	}
 

@@ -125,8 +125,7 @@ func (ptr *QAbstractTransition) DisconnectTargetStateChanged() {
 func callbackQAbstractTransitionTargetStateChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractTransition::targetStateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "targetStateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "targetStateChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -154,8 +153,7 @@ func (ptr *QAbstractTransition) DisconnectTargetStatesChanged() {
 func callbackQAbstractTransitionTargetStatesChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractTransition::targetStatesChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "targetStatesChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "targetStatesChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -192,8 +190,7 @@ func (ptr *QAbstractTransition) DisconnectTriggered() {
 func callbackQAbstractTransitionTriggered(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractTransition::triggered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "triggered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "triggered"); signal != nil {
 		signal.(func())()
 	}
 

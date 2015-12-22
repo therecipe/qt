@@ -77,8 +77,7 @@ func (ptr *QHelpContentModel) DisconnectContentsCreated() {
 func callbackQHelpContentModelContentsCreated(ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentModel::contentsCreated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contentsCreated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "contentsCreated"); signal != nil {
 		signal.(func())()
 	}
 
@@ -106,8 +105,7 @@ func (ptr *QHelpContentModel) DisconnectContentsCreationStarted() {
 func callbackQHelpContentModelContentsCreationStarted(ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentModel::contentsCreationStarted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contentsCreationStarted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "contentsCreationStarted"); signal != nil {
 		signal.(func())()
 	}
 

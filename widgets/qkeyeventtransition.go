@@ -89,9 +89,8 @@ func (ptr *QKeyEventTransition) DisconnectOnTransition() {
 func callbackQKeyEventTransitionOnTransition(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QKeyEventTransition::onTransition")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onTransition")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "onTransition"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}
 	return false

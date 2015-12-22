@@ -152,8 +152,7 @@ func (ptr *QAbstractAnimation) DisconnectCurrentLoopChanged() {
 func callbackQAbstractAnimationCurrentLoopChanged(ptrName *C.char, currentLoop C.int) {
 	defer qt.Recovering("callback QAbstractAnimation::currentLoopChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentLoopChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentLoopChanged"); signal != nil {
 		signal.(func(int))(int(currentLoop))
 	}
 
@@ -190,8 +189,7 @@ func (ptr *QAbstractAnimation) DisconnectDirectionChanged() {
 func callbackQAbstractAnimationDirectionChanged(ptrName *C.char, newDirection C.int) {
 	defer qt.Recovering("callback QAbstractAnimation::directionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "directionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "directionChanged"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(newDirection))
 	}
 
@@ -228,8 +226,7 @@ func (ptr *QAbstractAnimation) DisconnectFinished() {
 func callbackQAbstractAnimationFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractAnimation::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -298,8 +295,7 @@ func (ptr *QAbstractAnimation) DisconnectStateChanged() {
 func callbackQAbstractAnimationStateChanged(ptrName *C.char, newState C.int, oldState C.int) {
 	defer qt.Recovering("callback QAbstractAnimation::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	}
 
@@ -344,9 +340,8 @@ func (ptr *QAbstractAnimation) DisconnectUpdateDirection() {
 func callbackQAbstractAnimationUpdateDirection(ptrName *C.char, direction C.int) bool {
 	defer qt.Recovering("callback QAbstractAnimation::updateDirection")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateDirection")
-	if signal != nil {
-		defer signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateDirection"); signal != nil {
+		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
 		return true
 	}
 	return false
@@ -375,9 +370,8 @@ func (ptr *QAbstractAnimation) DisconnectUpdateState() {
 func callbackQAbstractAnimationUpdateState(ptrName *C.char, newState C.int, oldState C.int) bool {
 	defer qt.Recovering("callback QAbstractAnimation::updateState")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateState")
-	if signal != nil {
-		defer signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateState"); signal != nil {
+		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 		return true
 	}
 	return false

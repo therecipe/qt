@@ -188,8 +188,7 @@ func (ptr *QDialogButtonBox) DisconnectAccepted() {
 func callbackQDialogButtonBoxAccepted(ptrName *C.char) {
 	defer qt.Recovering("callback QDialogButtonBox::accepted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "accepted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "accepted"); signal != nil {
 		signal.(func())()
 	}
 
@@ -261,9 +260,8 @@ func (ptr *QDialogButtonBox) DisconnectChangeEvent() {
 func callbackQDialogButtonBoxChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDialogButtonBox::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -300,8 +298,7 @@ func (ptr *QDialogButtonBox) DisconnectClicked() {
 func callbackQDialogButtonBoxClicked(ptrName *C.char, button unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::clicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "clicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "clicked"); signal != nil {
 		signal.(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
 	}
 
@@ -329,8 +326,7 @@ func (ptr *QDialogButtonBox) DisconnectHelpRequested() {
 func callbackQDialogButtonBoxHelpRequested(ptrName *C.char) {
 	defer qt.Recovering("callback QDialogButtonBox::helpRequested")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "helpRequested")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "helpRequested"); signal != nil {
 		signal.(func())()
 	}
 
@@ -358,8 +354,7 @@ func (ptr *QDialogButtonBox) DisconnectRejected() {
 func callbackQDialogButtonBoxRejected(ptrName *C.char) {
 	defer qt.Recovering("callback QDialogButtonBox::rejected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rejected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "rejected"); signal != nil {
 		signal.(func())()
 	}
 

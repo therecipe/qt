@@ -70,8 +70,7 @@ func (ptr *QMediaStreamsControl) DisconnectActiveStreamsChanged() {
 func callbackQMediaStreamsControlActiveStreamsChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QMediaStreamsControl::activeStreamsChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activeStreamsChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activeStreamsChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -143,8 +142,7 @@ func (ptr *QMediaStreamsControl) DisconnectStreamsChanged() {
 func callbackQMediaStreamsControlStreamsChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QMediaStreamsControl::streamsChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "streamsChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "streamsChanged"); signal != nil {
 		signal.(func())()
 	}
 

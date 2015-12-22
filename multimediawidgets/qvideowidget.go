@@ -181,8 +181,7 @@ func (ptr *QVideoWidget) DisconnectBrightnessChanged() {
 func callbackQVideoWidgetBrightnessChanged(ptrName *C.char, brightness C.int) {
 	defer qt.Recovering("callback QVideoWidget::brightnessChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "brightnessChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "brightnessChanged"); signal != nil {
 		signal.(func(int))(int(brightness))
 	}
 
@@ -210,8 +209,7 @@ func (ptr *QVideoWidget) DisconnectContrastChanged() {
 func callbackQVideoWidgetContrastChanged(ptrName *C.char, contrast C.int) {
 	defer qt.Recovering("callback QVideoWidget::contrastChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contrastChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "contrastChanged"); signal != nil {
 		signal.(func(int))(int(contrast))
 	}
 
@@ -239,8 +237,7 @@ func (ptr *QVideoWidget) DisconnectFullScreenChanged() {
 func callbackQVideoWidgetFullScreenChanged(ptrName *C.char, fullScreen C.int) {
 	defer qt.Recovering("callback QVideoWidget::fullScreenChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fullScreenChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "fullScreenChanged"); signal != nil {
 		signal.(func(bool))(int(fullScreen) != 0)
 	}
 
@@ -268,9 +265,8 @@ func (ptr *QVideoWidget) DisconnectHideEvent() {
 func callbackQVideoWidgetHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QVideoWidget::hideEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hideEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 		return true
 	}
 	return false
@@ -299,8 +295,7 @@ func (ptr *QVideoWidget) DisconnectHueChanged() {
 func callbackQVideoWidgetHueChanged(ptrName *C.char, hue C.int) {
 	defer qt.Recovering("callback QVideoWidget::hueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "hueChanged"); signal != nil {
 		signal.(func(int))(int(hue))
 	}
 
@@ -337,9 +332,8 @@ func (ptr *QVideoWidget) DisconnectMoveEvent() {
 func callbackQVideoWidgetMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QVideoWidget::moveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "moveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 		return true
 	}
 	return false
@@ -368,9 +362,8 @@ func (ptr *QVideoWidget) DisconnectPaintEvent() {
 func callbackQVideoWidgetPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QVideoWidget::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 		return true
 	}
 	return false
@@ -399,9 +392,8 @@ func (ptr *QVideoWidget) DisconnectResizeEvent() {
 func callbackQVideoWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QVideoWidget::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 		return true
 	}
 	return false
@@ -430,8 +422,7 @@ func (ptr *QVideoWidget) DisconnectSaturationChanged() {
 func callbackQVideoWidgetSaturationChanged(ptrName *C.char, saturation C.int) {
 	defer qt.Recovering("callback QVideoWidget::saturationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "saturationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "saturationChanged"); signal != nil {
 		signal.(func(int))(int(saturation))
 	}
 
@@ -459,9 +450,8 @@ func (ptr *QVideoWidget) DisconnectShowEvent() {
 func callbackQVideoWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QVideoWidget::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 		return true
 	}
 	return false

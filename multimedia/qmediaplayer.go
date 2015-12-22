@@ -303,8 +303,7 @@ func (ptr *QMediaPlayer) DisconnectAudioAvailableChanged() {
 func callbackQMediaPlayerAudioAvailableChanged(ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QMediaPlayer::audioAvailableChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "audioAvailableChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "audioAvailableChanged"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
@@ -341,8 +340,7 @@ func (ptr *QMediaPlayer) DisconnectBufferStatusChanged() {
 func callbackQMediaPlayerBufferStatusChanged(ptrName *C.char, percentFilled C.int) {
 	defer qt.Recovering("callback QMediaPlayer::bufferStatusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "bufferStatusChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "bufferStatusChanged"); signal != nil {
 		signal.(func(int))(int(percentFilled))
 	}
 
@@ -370,8 +368,7 @@ func (ptr *QMediaPlayer) DisconnectCurrentMediaChanged() {
 func callbackQMediaPlayerCurrentMediaChanged(ptrName *C.char, media unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaPlayer::currentMediaChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentMediaChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentMediaChanged"); signal != nil {
 		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(media))
 	}
 
@@ -399,8 +396,7 @@ func (ptr *QMediaPlayer) DisconnectDurationChanged() {
 func callbackQMediaPlayerDurationChanged(ptrName *C.char, duration C.longlong) {
 	defer qt.Recovering("callback QMediaPlayer::durationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "durationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "durationChanged"); signal != nil {
 		signal.(func(int64))(int64(duration))
 	}
 
@@ -428,8 +424,7 @@ func (ptr *QMediaPlayer) DisconnectError2() {
 func callbackQMediaPlayerError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QMediaPlayer::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QMediaPlayer__Error))(QMediaPlayer__Error(error))
 	}
 
@@ -472,8 +467,7 @@ func (ptr *QMediaPlayer) DisconnectMediaChanged() {
 func callbackQMediaPlayerMediaChanged(ptrName *C.char, media unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaPlayer::mediaChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mediaChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mediaChanged"); signal != nil {
 		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(media))
 	}
 
@@ -501,8 +495,7 @@ func (ptr *QMediaPlayer) DisconnectMediaStatusChanged() {
 func callbackQMediaPlayerMediaStatusChanged(ptrName *C.char, status C.int) {
 	defer qt.Recovering("callback QMediaPlayer::mediaStatusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mediaStatusChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mediaStatusChanged"); signal != nil {
 		signal.(func(QMediaPlayer__MediaStatus))(QMediaPlayer__MediaStatus(status))
 	}
 
@@ -539,8 +532,7 @@ func (ptr *QMediaPlayer) DisconnectMutedChanged() {
 func callbackQMediaPlayerMutedChanged(ptrName *C.char, muted C.int) {
 	defer qt.Recovering("callback QMediaPlayer::mutedChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mutedChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mutedChanged"); signal != nil {
 		signal.(func(bool))(int(muted) != 0)
 	}
 
@@ -584,8 +576,7 @@ func (ptr *QMediaPlayer) DisconnectPlaybackRateChanged() {
 func callbackQMediaPlayerPlaybackRateChanged(ptrName *C.char, rate C.double) {
 	defer qt.Recovering("callback QMediaPlayer::playbackRateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "playbackRateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "playbackRateChanged"); signal != nil {
 		signal.(func(float64))(float64(rate))
 	}
 
@@ -613,8 +604,7 @@ func (ptr *QMediaPlayer) DisconnectPositionChanged() {
 func callbackQMediaPlayerPositionChanged(ptrName *C.char, position C.longlong) {
 	defer qt.Recovering("callback QMediaPlayer::positionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "positionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "positionChanged"); signal != nil {
 		signal.(func(int64))(int64(position))
 	}
 
@@ -642,8 +632,7 @@ func (ptr *QMediaPlayer) DisconnectSeekableChanged() {
 func callbackQMediaPlayerSeekableChanged(ptrName *C.char, seekable C.int) {
 	defer qt.Recovering("callback QMediaPlayer::seekableChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "seekableChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "seekableChanged"); signal != nil {
 		signal.(func(bool))(int(seekable) != 0)
 	}
 
@@ -687,8 +676,7 @@ func (ptr *QMediaPlayer) DisconnectStateChanged() {
 func callbackQMediaPlayerStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QMediaPlayer::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QMediaPlayer__State))(QMediaPlayer__State(state))
 	}
 
@@ -724,8 +712,7 @@ func (ptr *QMediaPlayer) DisconnectVideoAvailableChanged() {
 func callbackQMediaPlayerVideoAvailableChanged(ptrName *C.char, videoAvailable C.int) {
 	defer qt.Recovering("callback QMediaPlayer::videoAvailableChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "videoAvailableChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "videoAvailableChanged"); signal != nil {
 		signal.(func(bool))(int(videoAvailable) != 0)
 	}
 
@@ -753,8 +740,7 @@ func (ptr *QMediaPlayer) DisconnectVolumeChanged() {
 func callbackQMediaPlayerVolumeChanged(ptrName *C.char, volume C.int) {
 	defer qt.Recovering("callback QMediaPlayer::volumeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "volumeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "volumeChanged"); signal != nil {
 		signal.(func(int))(int(volume))
 	}
 

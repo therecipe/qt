@@ -68,8 +68,7 @@ func (ptr *QSqlTableModel) DisconnectBeforeDelete() {
 func callbackQSqlTableModelBeforeDelete(ptrName *C.char, row C.int) {
 	defer qt.Recovering("callback QSqlTableModel::beforeDelete")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "beforeDelete")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "beforeDelete"); signal != nil {
 		signal.(func(int))(int(row))
 	}
 
@@ -97,9 +96,8 @@ func (ptr *QSqlTableModel) DisconnectClear() {
 func callbackQSqlTableModelClear(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSqlTableModel::clear")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "clear")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -236,9 +234,8 @@ func (ptr *QSqlTableModel) DisconnectRevert() {
 func callbackQSqlTableModelRevert(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSqlTableModel::revert")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "revert")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -275,9 +272,8 @@ func (ptr *QSqlTableModel) DisconnectRevertRow() {
 func callbackQSqlTableModelRevertRow(ptrName *C.char, row C.int) bool {
 	defer qt.Recovering("callback QSqlTableModel::revertRow")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "revertRow")
-	if signal != nil {
-		defer signal.(func(int))(int(row))
+	if signal := qt.GetSignal(C.GoString(ptrName), "revertRow"); signal != nil {
+		signal.(func(int))(int(row))
 		return true
 	}
 	return false
@@ -342,9 +338,8 @@ func (ptr *QSqlTableModel) DisconnectSetEditStrategy() {
 func callbackQSqlTableModelSetEditStrategy(ptrName *C.char, strategy C.int) bool {
 	defer qt.Recovering("callback QSqlTableModel::setEditStrategy")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setEditStrategy")
-	if signal != nil {
-		defer signal.(func(QSqlTableModel__EditStrategy))(QSqlTableModel__EditStrategy(strategy))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setEditStrategy"); signal != nil {
+		signal.(func(QSqlTableModel__EditStrategy))(QSqlTableModel__EditStrategy(strategy))
 		return true
 	}
 	return false
@@ -373,9 +368,8 @@ func (ptr *QSqlTableModel) DisconnectSetFilter() {
 func callbackQSqlTableModelSetFilter(ptrName *C.char, filter *C.char) bool {
 	defer qt.Recovering("callback QSqlTableModel::setFilter")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setFilter")
-	if signal != nil {
-		defer signal.(func(string))(C.GoString(filter))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setFilter"); signal != nil {
+		signal.(func(string))(C.GoString(filter))
 		return true
 	}
 	return false
@@ -413,9 +407,8 @@ func (ptr *QSqlTableModel) DisconnectSetSort() {
 func callbackQSqlTableModelSetSort(ptrName *C.char, column C.int, order C.int) bool {
 	defer qt.Recovering("callback QSqlTableModel::setSort")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSort")
-	if signal != nil {
-		defer signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSort"); signal != nil {
+		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
 		return true
 	}
 	return false
@@ -444,9 +437,8 @@ func (ptr *QSqlTableModel) DisconnectSetTable() {
 func callbackQSqlTableModelSetTable(ptrName *C.char, tableName *C.char) bool {
 	defer qt.Recovering("callback QSqlTableModel::setTable")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setTable")
-	if signal != nil {
-		defer signal.(func(string))(C.GoString(tableName))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setTable"); signal != nil {
+		signal.(func(string))(C.GoString(tableName))
 		return true
 	}
 	return false
@@ -475,9 +467,8 @@ func (ptr *QSqlTableModel) DisconnectSort() {
 func callbackQSqlTableModelSort(ptrName *C.char, column C.int, order C.int) bool {
 	defer qt.Recovering("callback QSqlTableModel::sort")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sort")
-	if signal != nil {
-		defer signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
+	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
+		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
 		return true
 	}
 	return false

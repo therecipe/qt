@@ -118,8 +118,7 @@ func (ptr *QThread) DisconnectFinished() {
 func callbackQThreadFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QThread::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -208,9 +207,8 @@ func (ptr *QThread) DisconnectRun() {
 func callbackQThreadRun(ptrName *C.char) bool {
 	defer qt.Recovering("callback QThread::run")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "run")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "run"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -247,8 +245,7 @@ func (ptr *QThread) DisconnectStarted() {
 func callbackQThreadStarted(ptrName *C.char) {
 	defer qt.Recovering("callback QThread::started")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "started")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "started"); signal != nil {
 		signal.(func())()
 	}
 

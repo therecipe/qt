@@ -75,8 +75,7 @@ func (ptr *QSensorGestureManager) DisconnectNewSensorGestureAvailable() {
 func callbackQSensorGestureManagerNewSensorGestureAvailable(ptrName *C.char) {
 	defer qt.Recovering("callback QSensorGestureManager::newSensorGestureAvailable")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "newSensorGestureAvailable")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "newSensorGestureAvailable"); signal != nil {
 		signal.(func())()
 	}
 

@@ -108,8 +108,7 @@ func (ptr *QGraphicsDropShadowEffect) DisconnectBlurRadiusChanged() {
 func callbackQGraphicsDropShadowEffectBlurRadiusChanged(ptrName *C.char, blurRadius C.double) {
 	defer qt.Recovering("callback QGraphicsDropShadowEffect::blurRadiusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "blurRadiusChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "blurRadiusChanged"); signal != nil {
 		signal.(func(float64))(float64(blurRadius))
 	}
 
@@ -137,8 +136,7 @@ func (ptr *QGraphicsDropShadowEffect) DisconnectColorChanged() {
 func callbackQGraphicsDropShadowEffectColorChanged(ptrName *C.char, color unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsDropShadowEffect::colorChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "colorChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "colorChanged"); signal != nil {
 		signal.(func(*gui.QColor))(gui.NewQColorFromPointer(color))
 	}
 

@@ -231,8 +231,7 @@ func (ptr *QSqlDriver) DisconnectNotification() {
 func callbackQSqlDriverNotification(ptrName *C.char, name *C.char) {
 	defer qt.Recovering("callback QSqlDriver::notification")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "notification")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "notification"); signal != nil {
 		signal.(func(string))(C.GoString(name))
 	}
 
@@ -260,8 +259,7 @@ func (ptr *QSqlDriver) DisconnectNotification2() {
 func callbackQSqlDriverNotification2(ptrName *C.char, name *C.char, source C.int, payload unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlDriver::notification")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "notification2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "notification2"); signal != nil {
 		signal.(func(string, QSqlDriver__NotificationSource, *core.QVariant))(C.GoString(name), QSqlDriver__NotificationSource(source), core.NewQVariantFromPointer(payload))
 	}
 
@@ -307,9 +305,8 @@ func (ptr *QSqlDriver) DisconnectSetOpen() {
 func callbackQSqlDriverSetOpen(ptrName *C.char, open C.int) bool {
 	defer qt.Recovering("callback QSqlDriver::setOpen")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setOpen")
-	if signal != nil {
-		defer signal.(func(bool))(int(open) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setOpen"); signal != nil {
+		signal.(func(bool))(int(open) != 0)
 		return true
 	}
 	return false
@@ -338,9 +335,8 @@ func (ptr *QSqlDriver) DisconnectSetOpenError() {
 func callbackQSqlDriverSetOpenError(ptrName *C.char, error C.int) bool {
 	defer qt.Recovering("callback QSqlDriver::setOpenError")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setOpenError")
-	if signal != nil {
-		defer signal.(func(bool))(int(error) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setOpenError"); signal != nil {
+		signal.(func(bool))(int(error) != 0)
 		return true
 	}
 	return false

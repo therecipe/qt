@@ -307,8 +307,7 @@ func (ptr *QMessageBox) DisconnectButtonClicked() {
 func callbackQMessageBoxButtonClicked(ptrName *C.char, button unsafe.Pointer) {
 	defer qt.Recovering("callback QMessageBox::buttonClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "buttonClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "buttonClicked"); signal != nil {
 		signal.(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
 	}
 
@@ -345,9 +344,8 @@ func (ptr *QMessageBox) DisconnectChangeEvent() {
 func callbackQMessageBoxChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMessageBox::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -394,9 +392,8 @@ func (ptr *QMessageBox) DisconnectCloseEvent() {
 func callbackQMessageBoxCloseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMessageBox::closeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "closeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -464,9 +461,8 @@ func (ptr *QMessageBox) DisconnectKeyPressEvent() {
 func callbackQMessageBoxKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMessageBox::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 		return true
 	}
 	return false
@@ -517,9 +513,8 @@ func (ptr *QMessageBox) DisconnectResizeEvent() {
 func callbackQMessageBoxResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMessageBox::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 		return true
 	}
 	return false
@@ -588,9 +583,8 @@ func (ptr *QMessageBox) DisconnectSetVisible() {
 func callbackQMessageBoxSetVisible(ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QMessageBox::setVisible")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
-	if signal != nil {
-		defer signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
+		signal.(func(bool))(int(visible) != 0)
 		return true
 	}
 	return false
@@ -635,9 +629,8 @@ func (ptr *QMessageBox) DisconnectShowEvent() {
 func callbackQMessageBoxShowEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMessageBox::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
 		return true
 	}
 	return false

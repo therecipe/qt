@@ -114,9 +114,8 @@ func (ptr *QAccessibleWidget) DisconnectDoAction() {
 func callbackQAccessibleWidgetDoAction(ptrName *C.char, actionName *C.char) bool {
 	defer qt.Recovering("callback QAccessibleWidget::doAction")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "doAction")
-	if signal != nil {
-		defer signal.(func(string))(C.GoString(actionName))
+	if signal := qt.GetSignal(C.GoString(ptrName), "doAction"); signal != nil {
+		signal.(func(string))(C.GoString(actionName))
 		return true
 	}
 	return false

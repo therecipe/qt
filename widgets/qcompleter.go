@@ -249,8 +249,7 @@ func (ptr *QCompleter) DisconnectActivated2() {
 func callbackQCompleterActivated2(ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QCompleter::activated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activated2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activated2"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	}
 
@@ -278,8 +277,7 @@ func (ptr *QCompleter) DisconnectActivated() {
 func callbackQCompleterActivated(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QCompleter::activated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
@@ -360,8 +358,7 @@ func (ptr *QCompleter) DisconnectHighlighted2() {
 func callbackQCompleterHighlighted2(ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QCompleter::highlighted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted2"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	}
 
@@ -389,8 +386,7 @@ func (ptr *QCompleter) DisconnectHighlighted() {
 func callbackQCompleterHighlighted(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QCompleter::highlighted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 

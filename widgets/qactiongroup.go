@@ -153,8 +153,7 @@ func (ptr *QActionGroup) DisconnectHovered() {
 func callbackQActionGroupHovered(ptrName *C.char, action unsafe.Pointer) {
 	defer qt.Recovering("callback QActionGroup::hovered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hovered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "hovered"); signal != nil {
 		signal.(func(*QAction))(NewQActionFromPointer(action))
 	}
 
@@ -198,8 +197,7 @@ func (ptr *QActionGroup) DisconnectTriggered() {
 func callbackQActionGroupTriggered(ptrName *C.char, action unsafe.Pointer) {
 	defer qt.Recovering("callback QActionGroup::triggered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "triggered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "triggered"); signal != nil {
 		signal.(func(*QAction))(NewQActionFromPointer(action))
 	}
 

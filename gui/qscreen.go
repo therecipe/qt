@@ -257,8 +257,7 @@ func (ptr *QScreen) DisconnectAvailableGeometryChanged() {
 func callbackQScreenAvailableGeometryChanged(ptrName *C.char, geometry unsafe.Pointer) {
 	defer qt.Recovering("callback QScreen::availableGeometryChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "availableGeometryChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "availableGeometryChanged"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(geometry))
 	}
 
@@ -286,8 +285,7 @@ func (ptr *QScreen) DisconnectGeometryChanged() {
 func callbackQScreenGeometryChanged(ptrName *C.char, geometry unsafe.Pointer) {
 	defer qt.Recovering("callback QScreen::geometryChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "geometryChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "geometryChanged"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(geometry))
 	}
 
@@ -333,8 +331,7 @@ func (ptr *QScreen) DisconnectLogicalDotsPerInchChanged() {
 func callbackQScreenLogicalDotsPerInchChanged(ptrName *C.char, dpi C.double) {
 	defer qt.Recovering("callback QScreen::logicalDotsPerInchChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "logicalDotsPerInchChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "logicalDotsPerInchChanged"); signal != nil {
 		signal.(func(float64))(float64(dpi))
 	}
 
@@ -371,8 +368,7 @@ func (ptr *QScreen) DisconnectOrientationChanged() {
 func callbackQScreenOrientationChanged(ptrName *C.char, orientation C.int) {
 	defer qt.Recovering("callback QScreen::orientationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "orientationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "orientationChanged"); signal != nil {
 		signal.(func(core.Qt__ScreenOrientation))(core.Qt__ScreenOrientation(orientation))
 	}
 
@@ -409,8 +405,7 @@ func (ptr *QScreen) DisconnectPhysicalDotsPerInchChanged() {
 func callbackQScreenPhysicalDotsPerInchChanged(ptrName *C.char, dpi C.double) {
 	defer qt.Recovering("callback QScreen::physicalDotsPerInchChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "physicalDotsPerInchChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "physicalDotsPerInchChanged"); signal != nil {
 		signal.(func(float64))(float64(dpi))
 	}
 
@@ -438,8 +433,7 @@ func (ptr *QScreen) DisconnectPrimaryOrientationChanged() {
 func callbackQScreenPrimaryOrientationChanged(ptrName *C.char, orientation C.int) {
 	defer qt.Recovering("callback QScreen::primaryOrientationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "primaryOrientationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "primaryOrientationChanged"); signal != nil {
 		signal.(func(core.Qt__ScreenOrientation))(core.Qt__ScreenOrientation(orientation))
 	}
 
@@ -467,8 +461,7 @@ func (ptr *QScreen) DisconnectRefreshRateChanged() {
 func callbackQScreenRefreshRateChanged(ptrName *C.char, refreshRate C.double) {
 	defer qt.Recovering("callback QScreen::refreshRateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "refreshRateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "refreshRateChanged"); signal != nil {
 		signal.(func(float64))(float64(refreshRate))
 	}
 
@@ -504,8 +497,7 @@ func (ptr *QScreen) DisconnectVirtualGeometryChanged() {
 func callbackQScreenVirtualGeometryChanged(ptrName *C.char, rect unsafe.Pointer) {
 	defer qt.Recovering("callback QScreen::virtualGeometryChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "virtualGeometryChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "virtualGeometryChanged"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
 	}
 

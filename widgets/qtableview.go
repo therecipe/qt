@@ -103,9 +103,8 @@ func (ptr *QTableView) DisconnectSetSelection() {
 func callbackQTableViewSetSelection(ptrName *C.char, rect unsafe.Pointer, flags C.int) bool {
 	defer qt.Recovering("callback QTableView::setSelection")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSelection")
-	if signal != nil {
-		defer signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
+		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
 		return true
 	}
 	return false
@@ -220,9 +219,8 @@ func (ptr *QTableView) DisconnectCurrentChanged() {
 func callbackQTableViewCurrentChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableView::currentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
+		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
 		return true
 	}
 	return false
@@ -303,9 +301,8 @@ func (ptr *QTableView) DisconnectPaintEvent() {
 func callbackQTableViewPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableView::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 		return true
 	}
 	return false
@@ -442,9 +439,8 @@ func (ptr *QTableView) DisconnectSetModel() {
 func callbackQTableViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableView::setModel")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setModel")
-	if signal != nil {
-		defer signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
+		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
 		return true
 	}
 	return false
@@ -473,9 +469,8 @@ func (ptr *QTableView) DisconnectSetRootIndex() {
 func callbackQTableViewSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableView::setRootIndex")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setRootIndex")
-	if signal != nil {
-		defer signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 		return true
 	}
 	return false
@@ -520,9 +515,8 @@ func (ptr *QTableView) DisconnectSetSelectionModel() {
 func callbackQTableViewSetSelectionModel(ptrName *C.char, selectionModel unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableView::setSelectionModel")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSelectionModel")
-	if signal != nil {
-		defer signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSelectionModel"); signal != nil {
+		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
 		return true
 	}
 	return false
@@ -591,9 +585,8 @@ func (ptr *QTableView) DisconnectTimerEvent() {
 func callbackQTableViewTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableView::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 		return true
 	}
 	return false
@@ -622,9 +615,8 @@ func (ptr *QTableView) DisconnectUpdateGeometries() {
 func callbackQTableViewUpdateGeometries(ptrName *C.char) bool {
 	defer qt.Recovering("callback QTableView::updateGeometries")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateGeometries")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

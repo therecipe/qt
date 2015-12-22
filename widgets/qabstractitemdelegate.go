@@ -71,8 +71,7 @@ func (ptr *QAbstractItemDelegate) DisconnectCloseEditor() {
 func callbackQAbstractItemDelegateCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint C.int) {
 	defer qt.Recovering("callback QAbstractItemDelegate::closeEditor")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "closeEditor")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEditor"); signal != nil {
 		signal.(func(*QWidget, QAbstractItemDelegate__EndEditHint))(NewQWidgetFromPointer(editor), QAbstractItemDelegate__EndEditHint(hint))
 	}
 
@@ -100,8 +99,7 @@ func (ptr *QAbstractItemDelegate) DisconnectCommitData() {
 func callbackQAbstractItemDelegateCommitData(ptrName *C.char, editor unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractItemDelegate::commitData")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "commitData")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "commitData"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(editor))
 	}
 
@@ -138,9 +136,8 @@ func (ptr *QAbstractItemDelegate) DisconnectDestroyEditor() {
 func callbackQAbstractItemDelegateDestroyEditor(ptrName *C.char, editor unsafe.Pointer, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QAbstractItemDelegate::destroyEditor")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "destroyEditor")
-	if signal != nil {
-		defer signal.(func(*QWidget, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "destroyEditor"); signal != nil {
+		signal.(func(*QWidget, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
 		return true
 	}
 	return false
@@ -195,9 +192,8 @@ func (ptr *QAbstractItemDelegate) DisconnectSetEditorData() {
 func callbackQAbstractItemDelegateSetEditorData(ptrName *C.char, editor unsafe.Pointer, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QAbstractItemDelegate::setEditorData")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setEditorData")
-	if signal != nil {
-		defer signal.(func(*QWidget, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setEditorData"); signal != nil {
+		signal.(func(*QWidget, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
 		return true
 	}
 	return false
@@ -226,9 +222,8 @@ func (ptr *QAbstractItemDelegate) DisconnectSetModelData() {
 func callbackQAbstractItemDelegateSetModelData(ptrName *C.char, editor unsafe.Pointer, model unsafe.Pointer, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QAbstractItemDelegate::setModelData")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setModelData")
-	if signal != nil {
-		defer signal.(func(*QWidget, *core.QAbstractItemModel, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setModelData"); signal != nil {
+		signal.(func(*QWidget, *core.QAbstractItemModel, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
 		return true
 	}
 	return false
@@ -266,8 +261,7 @@ func (ptr *QAbstractItemDelegate) DisconnectSizeHintChanged() {
 func callbackQAbstractItemDelegateSizeHintChanged(ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractItemDelegate::sizeHintChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sizeHintChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sizeHintChanged"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	}
 

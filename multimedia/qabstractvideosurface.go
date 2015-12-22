@@ -79,8 +79,7 @@ func (ptr *QAbstractVideoSurface) DisconnectActiveChanged() {
 func callbackQAbstractVideoSurfaceActiveChanged(ptrName *C.char, active C.int) {
 	defer qt.Recovering("callback QAbstractVideoSurface::activeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activeChanged"); signal != nil {
 		signal.(func(bool))(int(active) != 0)
 	}
 
@@ -135,8 +134,7 @@ func (ptr *QAbstractVideoSurface) DisconnectNativeResolutionChanged() {
 func callbackQAbstractVideoSurfaceNativeResolutionChanged(ptrName *C.char, resolution unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractVideoSurface::nativeResolutionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "nativeResolutionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "nativeResolutionChanged"); signal != nil {
 		signal.(func(*core.QSize))(core.NewQSizeFromPointer(resolution))
 	}
 
@@ -182,9 +180,8 @@ func (ptr *QAbstractVideoSurface) DisconnectStop() {
 func callbackQAbstractVideoSurfaceStop(ptrName *C.char) bool {
 	defer qt.Recovering("callback QAbstractVideoSurface::stop")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stop")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -213,8 +210,7 @@ func (ptr *QAbstractVideoSurface) DisconnectSupportedFormatsChanged() {
 func callbackQAbstractVideoSurfaceSupportedFormatsChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractVideoSurface::supportedFormatsChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "supportedFormatsChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "supportedFormatsChanged"); signal != nil {
 		signal.(func())()
 	}
 

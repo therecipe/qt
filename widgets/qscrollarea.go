@@ -133,9 +133,8 @@ func (ptr *QScrollArea) DisconnectResizeEvent() {
 func callbackQScrollAreaResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QScrollArea::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
 		return true
 	}
 	return false
@@ -164,9 +163,8 @@ func (ptr *QScrollArea) DisconnectScrollContentsBy() {
 func callbackQScrollAreaScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
 	defer qt.Recovering("callback QScrollArea::scrollContentsBy")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scrollContentsBy")
-	if signal != nil {
-		defer signal.(func(int, int))(int(dx), int(dy))
+	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
+		signal.(func(int, int))(int(dx), int(dy))
 		return true
 	}
 	return false

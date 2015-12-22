@@ -84,8 +84,7 @@ func (ptr *QDBusConnectionInterface) DisconnectServiceRegistered() {
 func callbackQDBusConnectionInterfaceServiceRegistered(ptrName *C.char, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusConnectionInterface::serviceRegistered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "serviceRegistered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "serviceRegistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 
@@ -113,8 +112,7 @@ func (ptr *QDBusConnectionInterface) DisconnectServiceUnregistered() {
 func callbackQDBusConnectionInterfaceServiceUnregistered(ptrName *C.char, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusConnectionInterface::serviceUnregistered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "serviceUnregistered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "serviceUnregistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 

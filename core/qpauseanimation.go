@@ -87,9 +87,8 @@ func (ptr *QPauseAnimation) DisconnectUpdateCurrentTime() {
 func callbackQPauseAnimationUpdateCurrentTime(ptrName *C.char, v C.int) bool {
 	defer qt.Recovering("callback QPauseAnimation::updateCurrentTime")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateCurrentTime")
-	if signal != nil {
-		defer signal.(func(int))(int(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
+		signal.(func(int))(int(v))
 		return true
 	}
 	return false

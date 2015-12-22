@@ -311,8 +311,7 @@ func (ptr *QTextDocument) DisconnectBaseUrlChanged() {
 func callbackQTextDocumentBaseUrlChanged(ptrName *C.char, url unsafe.Pointer) {
 	defer qt.Recovering("callback QTextDocument::baseUrlChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "baseUrlChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "baseUrlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
 
@@ -340,8 +339,7 @@ func (ptr *QTextDocument) DisconnectBlockCountChanged() {
 func callbackQTextDocumentBlockCountChanged(ptrName *C.char, newBlockCount C.int) {
 	defer qt.Recovering("callback QTextDocument::blockCountChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "blockCountChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "blockCountChanged"); signal != nil {
 		signal.(func(int))(int(newBlockCount))
 	}
 
@@ -378,9 +376,8 @@ func (ptr *QTextDocument) DisconnectClear() {
 func callbackQTextDocumentClear(ptrName *C.char) bool {
 	defer qt.Recovering("callback QTextDocument::clear")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "clear")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -426,8 +423,7 @@ func (ptr *QTextDocument) DisconnectContentsChange() {
 func callbackQTextDocumentContentsChange(ptrName *C.char, position C.int, charsRemoved C.int, charsAdded C.int) {
 	defer qt.Recovering("callback QTextDocument::contentsChange")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contentsChange")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "contentsChange"); signal != nil {
 		signal.(func(int, int, int))(int(position), int(charsRemoved), int(charsAdded))
 	}
 
@@ -455,8 +451,7 @@ func (ptr *QTextDocument) DisconnectContentsChanged() {
 func callbackQTextDocumentContentsChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QTextDocument::contentsChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contentsChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "contentsChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -502,8 +497,7 @@ func (ptr *QTextDocument) DisconnectDocumentLayoutChanged() {
 func callbackQTextDocumentDocumentLayoutChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QTextDocument::documentLayoutChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "documentLayoutChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "documentLayoutChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -593,8 +587,7 @@ func (ptr *QTextDocument) DisconnectModificationChanged() {
 func callbackQTextDocumentModificationChanged(ptrName *C.char, changed C.int) {
 	defer qt.Recovering("callback QTextDocument::modificationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "modificationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "modificationChanged"); signal != nil {
 		signal.(func(bool))(int(changed) != 0)
 	}
 
@@ -673,8 +666,7 @@ func (ptr *QTextDocument) DisconnectRedoAvailable() {
 func callbackQTextDocumentRedoAvailable(ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QTextDocument::redoAvailable")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "redoAvailable")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "redoAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
@@ -827,8 +819,7 @@ func (ptr *QTextDocument) DisconnectUndoAvailable() {
 func callbackQTextDocumentUndoAvailable(ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QTextDocument::undoAvailable")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "undoAvailable")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "undoAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
@@ -856,8 +847,7 @@ func (ptr *QTextDocument) DisconnectUndoCommandAdded() {
 func callbackQTextDocumentUndoCommandAdded(ptrName *C.char) {
 	defer qt.Recovering("callback QTextDocument::undoCommandAdded")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "undoCommandAdded")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "undoCommandAdded"); signal != nil {
 		signal.(func())()
 	}
 

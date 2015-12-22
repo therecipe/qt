@@ -287,9 +287,8 @@ func (ptr *QMainWindow) DisconnectContextMenuEvent() {
 func callbackQMainWindowContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMainWindow::contextMenuEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contextMenuEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 		return true
 	}
 	return false
@@ -345,8 +344,7 @@ func (ptr *QMainWindow) DisconnectIconSizeChanged() {
 func callbackQMainWindowIconSizeChanged(ptrName *C.char, iconSize unsafe.Pointer) {
 	defer qt.Recovering("callback QMainWindow::iconSizeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "iconSizeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "iconSizeChanged"); signal != nil {
 		signal.(func(*core.QSize))(core.NewQSizeFromPointer(iconSize))
 	}
 
@@ -552,8 +550,7 @@ func (ptr *QMainWindow) DisconnectToolButtonStyleChanged() {
 func callbackQMainWindowToolButtonStyleChanged(ptrName *C.char, toolButtonStyle C.int) {
 	defer qt.Recovering("callback QMainWindow::toolButtonStyleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "toolButtonStyleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "toolButtonStyleChanged"); signal != nil {
 		signal.(func(core.Qt__ToolButtonStyle))(core.Qt__ToolButtonStyle(toolButtonStyle))
 	}
 

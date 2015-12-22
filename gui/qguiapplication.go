@@ -186,8 +186,7 @@ func (ptr *QGuiApplication) DisconnectApplicationStateChanged() {
 func callbackQGuiApplicationApplicationStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QGuiApplication::applicationStateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "applicationStateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "applicationStateChanged"); signal != nil {
 		signal.(func(core.Qt__ApplicationState))(core.Qt__ApplicationState(state))
 	}
 
@@ -254,8 +253,7 @@ func (ptr *QGuiApplication) DisconnectFocusObjectChanged() {
 func callbackQGuiApplicationFocusObjectChanged(ptrName *C.char, focusObject unsafe.Pointer) {
 	defer qt.Recovering("callback QGuiApplication::focusObjectChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusObjectChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusObjectChanged"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(focusObject))
 	}
 
@@ -289,8 +287,7 @@ func (ptr *QGuiApplication) DisconnectFocusWindowChanged() {
 func callbackQGuiApplicationFocusWindowChanged(ptrName *C.char, focusWindow unsafe.Pointer) {
 	defer qt.Recovering("callback QGuiApplication::focusWindowChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusWindowChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusWindowChanged"); signal != nil {
 		signal.(func(*QWindow))(NewQWindowFromPointer(focusWindow))
 	}
 
@@ -318,8 +315,7 @@ func (ptr *QGuiApplication) DisconnectFontDatabaseChanged() {
 func callbackQGuiApplicationFontDatabaseChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGuiApplication::fontDatabaseChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fontDatabaseChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "fontDatabaseChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -371,8 +367,7 @@ func (ptr *QGuiApplication) DisconnectLastWindowClosed() {
 func callbackQGuiApplicationLastWindowClosed(ptrName *C.char) {
 	defer qt.Recovering("callback QGuiApplication::lastWindowClosed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "lastWindowClosed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "lastWindowClosed"); signal != nil {
 		signal.(func())()
 	}
 
@@ -400,8 +395,7 @@ func (ptr *QGuiApplication) DisconnectLayoutDirectionChanged() {
 func callbackQGuiApplicationLayoutDirectionChanged(ptrName *C.char, direction C.int) {
 	defer qt.Recovering("callback QGuiApplication::layoutDirectionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "layoutDirectionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "layoutDirectionChanged"); signal != nil {
 		signal.(func(core.Qt__LayoutDirection))(core.Qt__LayoutDirection(direction))
 	}
 
@@ -456,8 +450,7 @@ func (ptr *QGuiApplication) DisconnectScreenAdded() {
 func callbackQGuiApplicationScreenAdded(ptrName *C.char, screen unsafe.Pointer) {
 	defer qt.Recovering("callback QGuiApplication::screenAdded")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "screenAdded")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "screenAdded"); signal != nil {
 		signal.(func(*QScreen))(NewQScreenFromPointer(screen))
 	}
 
@@ -485,8 +478,7 @@ func (ptr *QGuiApplication) DisconnectScreenRemoved() {
 func callbackQGuiApplicationScreenRemoved(ptrName *C.char, screen unsafe.Pointer) {
 	defer qt.Recovering("callback QGuiApplication::screenRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "screenRemoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "screenRemoved"); signal != nil {
 		signal.(func(*QScreen))(NewQScreenFromPointer(screen))
 	}
 

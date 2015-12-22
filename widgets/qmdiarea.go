@@ -268,9 +268,8 @@ func (ptr *QMdiArea) DisconnectChildEvent() {
 func callbackQMdiAreaChildEvent(ptrName *C.char, childEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiArea::childEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "childEvent")
-	if signal != nil {
-		defer signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(childEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(childEvent))
 		return true
 	}
 	return false
@@ -333,9 +332,8 @@ func (ptr *QMdiArea) DisconnectPaintEvent() {
 func callbackQMdiAreaPaintEvent(ptrName *C.char, paintEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiArea::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(paintEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(paintEvent))
 		return true
 	}
 	return false
@@ -372,9 +370,8 @@ func (ptr *QMdiArea) DisconnectResizeEvent() {
 func callbackQMdiAreaResizeEvent(ptrName *C.char, resizeEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiArea::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(resizeEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(resizeEvent))
 		return true
 	}
 	return false
@@ -403,9 +400,8 @@ func (ptr *QMdiArea) DisconnectScrollContentsBy() {
 func callbackQMdiAreaScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
 	defer qt.Recovering("callback QMdiArea::scrollContentsBy")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scrollContentsBy")
-	if signal != nil {
-		defer signal.(func(int, int))(int(dx), int(dy))
+	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
+		signal.(func(int, int))(int(dx), int(dy))
 		return true
 	}
 	return false
@@ -450,9 +446,8 @@ func (ptr *QMdiArea) DisconnectSetupViewport() {
 func callbackQMdiAreaSetupViewport(ptrName *C.char, viewport unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiArea::setupViewport")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setupViewport")
-	if signal != nil {
-		defer signal.(func(*QWidget))(NewQWidgetFromPointer(viewport))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setupViewport"); signal != nil {
+		signal.(func(*QWidget))(NewQWidgetFromPointer(viewport))
 		return true
 	}
 	return false
@@ -481,9 +476,8 @@ func (ptr *QMdiArea) DisconnectShowEvent() {
 func callbackQMdiAreaShowEvent(ptrName *C.char, showEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiArea::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(showEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(showEvent))
 		return true
 	}
 	return false
@@ -521,8 +515,7 @@ func (ptr *QMdiArea) DisconnectSubWindowActivated() {
 func callbackQMdiAreaSubWindowActivated(ptrName *C.char, window unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::subWindowActivated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "subWindowActivated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "subWindowActivated"); signal != nil {
 		signal.(func(*QMdiSubWindow))(NewQMdiSubWindowFromPointer(window))
 	}
 
@@ -567,9 +560,8 @@ func (ptr *QMdiArea) DisconnectTimerEvent() {
 func callbackQMdiAreaTimerEvent(ptrName *C.char, timerEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiArea::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(timerEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(timerEvent))
 		return true
 	}
 	return false

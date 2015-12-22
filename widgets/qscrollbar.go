@@ -72,9 +72,8 @@ func (ptr *QScrollBar) DisconnectContextMenuEvent() {
 func callbackQScrollBarContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QScrollBar::contextMenuEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contextMenuEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 		return true
 	}
 	return false
@@ -112,9 +111,8 @@ func (ptr *QScrollBar) DisconnectHideEvent() {
 func callbackQScrollBarHideEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QScrollBar::hideEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hideEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(v))
 		return true
 	}
 	return false
@@ -143,9 +141,8 @@ func (ptr *QScrollBar) DisconnectMouseMoveEvent() {
 func callbackQScrollBarMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QScrollBar::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -174,9 +171,8 @@ func (ptr *QScrollBar) DisconnectMousePressEvent() {
 func callbackQScrollBarMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QScrollBar::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -205,9 +201,8 @@ func (ptr *QScrollBar) DisconnectMouseReleaseEvent() {
 func callbackQScrollBarMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QScrollBar::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -236,9 +231,8 @@ func (ptr *QScrollBar) DisconnectPaintEvent() {
 func callbackQScrollBarPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QScrollBar::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
 		return true
 	}
 	return false
@@ -276,9 +270,8 @@ func (ptr *QScrollBar) DisconnectSliderChange() {
 func callbackQScrollBarSliderChange(ptrName *C.char, change C.int) bool {
 	defer qt.Recovering("callback QScrollBar::sliderChange")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sliderChange")
-	if signal != nil {
-		defer signal.(func(QAbstractSlider__SliderChange))(QAbstractSlider__SliderChange(change))
+	if signal := qt.GetSignal(C.GoString(ptrName), "sliderChange"); signal != nil {
+		signal.(func(QAbstractSlider__SliderChange))(QAbstractSlider__SliderChange(change))
 		return true
 	}
 	return false
@@ -307,9 +300,8 @@ func (ptr *QScrollBar) DisconnectWheelEvent() {
 func callbackQScrollBarWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QScrollBar::wheelEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 		return true
 	}
 	return false

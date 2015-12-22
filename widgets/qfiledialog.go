@@ -277,9 +277,8 @@ func (ptr *QFileDialog) DisconnectAccept() {
 func callbackQFileDialogAccept(ptrName *C.char) bool {
 	defer qt.Recovering("callback QFileDialog::accept")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "accept")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "accept"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -308,9 +307,8 @@ func (ptr *QFileDialog) DisconnectChangeEvent() {
 func callbackQFileDialogChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QFileDialog::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
 		return true
 	}
 	return false
@@ -339,8 +337,7 @@ func (ptr *QFileDialog) DisconnectCurrentChanged() {
 func callbackQFileDialogCurrentChanged(ptrName *C.char, path *C.char) {
 	defer qt.Recovering("callback QFileDialog::currentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(string))(C.GoString(path))
 	}
 
@@ -368,8 +365,7 @@ func (ptr *QFileDialog) DisconnectCurrentUrlChanged() {
 func callbackQFileDialogCurrentUrlChanged(ptrName *C.char, url unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::currentUrlChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentUrlChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentUrlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
 
@@ -406,8 +402,7 @@ func (ptr *QFileDialog) DisconnectDirectoryEntered() {
 func callbackQFileDialogDirectoryEntered(ptrName *C.char, directory *C.char) {
 	defer qt.Recovering("callback QFileDialog::directoryEntered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "directoryEntered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "directoryEntered"); signal != nil {
 		signal.(func(string))(C.GoString(directory))
 	}
 
@@ -444,8 +439,7 @@ func (ptr *QFileDialog) DisconnectDirectoryUrlEntered() {
 func callbackQFileDialogDirectoryUrlEntered(ptrName *C.char, directory unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::directoryUrlEntered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "directoryUrlEntered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "directoryUrlEntered"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(directory))
 	}
 
@@ -473,9 +467,8 @@ func (ptr *QFileDialog) DisconnectDone() {
 func callbackQFileDialogDone(ptrName *C.char, result C.int) bool {
 	defer qt.Recovering("callback QFileDialog::done")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "done")
-	if signal != nil {
-		defer signal.(func(int))(int(result))
+	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
+		signal.(func(int))(int(result))
 		return true
 	}
 	return false
@@ -504,8 +497,7 @@ func (ptr *QFileDialog) DisconnectFileSelected() {
 func callbackQFileDialogFileSelected(ptrName *C.char, file *C.char) {
 	defer qt.Recovering("callback QFileDialog::fileSelected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fileSelected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "fileSelected"); signal != nil {
 		signal.(func(string))(C.GoString(file))
 	}
 
@@ -533,8 +525,7 @@ func (ptr *QFileDialog) DisconnectFilesSelected() {
 func callbackQFileDialogFilesSelected(ptrName *C.char, selected *C.char) {
 	defer qt.Recovering("callback QFileDialog::filesSelected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "filesSelected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "filesSelected"); signal != nil {
 		signal.(func([]string))(strings.Split(C.GoString(selected), ",,,"))
 	}
 
@@ -571,8 +562,7 @@ func (ptr *QFileDialog) DisconnectFilterSelected() {
 func callbackQFileDialogFilterSelected(ptrName *C.char, filter *C.char) {
 	defer qt.Recovering("callback QFileDialog::filterSelected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "filterSelected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "filterSelected"); signal != nil {
 		signal.(func(string))(C.GoString(filter))
 	}
 
@@ -885,9 +875,8 @@ func (ptr *QFileDialog) DisconnectSetVisible() {
 func callbackQFileDialogSetVisible(ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QFileDialog::setVisible")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
-	if signal != nil {
-		defer signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
+		signal.(func(bool))(int(visible) != 0)
 		return true
 	}
 	return false
@@ -925,8 +914,7 @@ func (ptr *QFileDialog) DisconnectUrlSelected() {
 func callbackQFileDialogUrlSelected(ptrName *C.char, url unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::urlSelected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "urlSelected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "urlSelected"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
 

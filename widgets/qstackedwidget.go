@@ -107,8 +107,7 @@ func (ptr *QStackedWidget) DisconnectCurrentChanged() {
 func callbackQStackedWidgetCurrentChanged(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QStackedWidget::currentChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
@@ -180,8 +179,7 @@ func (ptr *QStackedWidget) DisconnectWidgetRemoved() {
 func callbackQStackedWidgetWidgetRemoved(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QStackedWidget::widgetRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "widgetRemoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "widgetRemoved"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 

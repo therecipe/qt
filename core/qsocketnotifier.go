@@ -67,8 +67,7 @@ func (ptr *QSocketNotifier) DisconnectActivated() {
 func callbackQSocketNotifierActivated(ptrName *C.char, socket C.int) {
 	defer qt.Recovering("callback QSocketNotifier::activated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func(int))(int(socket))
 	}
 

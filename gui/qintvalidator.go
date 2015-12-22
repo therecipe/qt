@@ -96,9 +96,8 @@ func (ptr *QIntValidator) DisconnectSetRange() {
 func callbackQIntValidatorSetRange(ptrName *C.char, bottom C.int, top C.int) bool {
 	defer qt.Recovering("callback QIntValidator::setRange")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setRange")
-	if signal != nil {
-		defer signal.(func(int, int))(int(bottom), int(top))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setRange"); signal != nil {
+		signal.(func(int, int))(int(bottom), int(top))
 		return true
 	}
 	return false

@@ -70,9 +70,8 @@ func (ptr *QGeoSatelliteInfoSource) DisconnectSetUpdateInterval() {
 func callbackQGeoSatelliteInfoSourceSetUpdateInterval(ptrName *C.char, msec C.int) bool {
 	defer qt.Recovering("callback QGeoSatelliteInfoSource::setUpdateInterval")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setUpdateInterval")
-	if signal != nil {
-		defer signal.(func(int))(int(msec))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setUpdateInterval"); signal != nil {
+		signal.(func(int))(int(msec))
 		return true
 	}
 	return false
@@ -128,8 +127,7 @@ func (ptr *QGeoSatelliteInfoSource) DisconnectError2() {
 func callbackQGeoSatelliteInfoSourceError2(ptrName *C.char, satelliteError C.int) {
 	defer qt.Recovering("callback QGeoSatelliteInfoSource::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QGeoSatelliteInfoSource__Error))(QGeoSatelliteInfoSource__Error(satelliteError))
 	}
 
@@ -175,8 +173,7 @@ func (ptr *QGeoSatelliteInfoSource) DisconnectRequestTimeout() {
 func callbackQGeoSatelliteInfoSourceRequestTimeout(ptrName *C.char) {
 	defer qt.Recovering("callback QGeoSatelliteInfoSource::requestTimeout")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "requestTimeout")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestTimeout"); signal != nil {
 		signal.(func())()
 	}
 

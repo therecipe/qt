@@ -413,9 +413,8 @@ func (ptr *QGraphicsScene) DisconnectContextMenuEvent() {
 func callbackQGraphicsSceneContextMenuEvent(ptrName *C.char, contextMenuEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::contextMenuEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contextMenuEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneContextMenuEvent))(NewQGraphicsSceneContextMenuEventFromPointer(contextMenuEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneContextMenuEvent))(NewQGraphicsSceneContextMenuEventFromPointer(contextMenuEvent))
 		return true
 	}
 	return false
@@ -452,9 +451,8 @@ func (ptr *QGraphicsScene) DisconnectDragEnterEvent() {
 func callbackQGraphicsSceneDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::dragEnterEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragEnterEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
 		return true
 	}
 	return false
@@ -483,9 +481,8 @@ func (ptr *QGraphicsScene) DisconnectDragLeaveEvent() {
 func callbackQGraphicsSceneDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::dragLeaveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
 		return true
 	}
 	return false
@@ -514,9 +511,8 @@ func (ptr *QGraphicsScene) DisconnectDragMoveEvent() {
 func callbackQGraphicsSceneDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::dragMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragMoveEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
 		return true
 	}
 	return false
@@ -545,9 +541,8 @@ func (ptr *QGraphicsScene) DisconnectDropEvent() {
 func callbackQGraphicsSceneDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::dropEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
 		return true
 	}
 	return false
@@ -576,9 +571,8 @@ func (ptr *QGraphicsScene) DisconnectFocusInEvent() {
 func callbackQGraphicsSceneFocusInEvent(ptrName *C.char, focusEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::focusInEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(focusEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(focusEvent))
 		return true
 	}
 	return false
@@ -616,8 +610,7 @@ func (ptr *QGraphicsScene) DisconnectFocusItemChanged() {
 func callbackQGraphicsSceneFocusItemChanged(ptrName *C.char, newFocusItem unsafe.Pointer, oldFocusItem unsafe.Pointer, reason C.int) {
 	defer qt.Recovering("callback QGraphicsScene::focusItemChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusItemChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusItemChanged"); signal != nil {
 		signal.(func(*QGraphicsItem, *QGraphicsItem, core.Qt__FocusReason))(NewQGraphicsItemFromPointer(newFocusItem), NewQGraphicsItemFromPointer(oldFocusItem), core.Qt__FocusReason(reason))
 	}
 
@@ -645,9 +638,8 @@ func (ptr *QGraphicsScene) DisconnectFocusOutEvent() {
 func callbackQGraphicsSceneFocusOutEvent(ptrName *C.char, focusEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::focusOutEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(focusEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(focusEvent))
 		return true
 	}
 	return false
@@ -694,9 +686,8 @@ func (ptr *QGraphicsScene) DisconnectHelpEvent() {
 func callbackQGraphicsSceneHelpEvent(ptrName *C.char, helpEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::helpEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "helpEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneHelpEvent))(NewQGraphicsSceneHelpEventFromPointer(helpEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "helpEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneHelpEvent))(NewQGraphicsSceneHelpEventFromPointer(helpEvent))
 		return true
 	}
 	return false
@@ -725,9 +716,8 @@ func (ptr *QGraphicsScene) DisconnectInputMethodEvent() {
 func callbackQGraphicsSceneInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::inputMethodEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "inputMethodEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 		return true
 	}
 	return false
@@ -808,9 +798,8 @@ func (ptr *QGraphicsScene) DisconnectKeyPressEvent() {
 func callbackQGraphicsSceneKeyPressEvent(ptrName *C.char, keyEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(keyEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(keyEvent))
 		return true
 	}
 	return false
@@ -839,9 +828,8 @@ func (ptr *QGraphicsScene) DisconnectKeyReleaseEvent() {
 func callbackQGraphicsSceneKeyReleaseEvent(ptrName *C.char, keyEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::keyReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(keyEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(keyEvent))
 		return true
 	}
 	return false
@@ -870,9 +858,8 @@ func (ptr *QGraphicsScene) DisconnectMouseDoubleClickEvent() {
 func callbackQGraphicsSceneMouseDoubleClickEvent(ptrName *C.char, mouseEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::mouseDoubleClickEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(mouseEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(mouseEvent))
 		return true
 	}
 	return false
@@ -910,9 +897,8 @@ func (ptr *QGraphicsScene) DisconnectMouseMoveEvent() {
 func callbackQGraphicsSceneMouseMoveEvent(ptrName *C.char, mouseEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(mouseEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(mouseEvent))
 		return true
 	}
 	return false
@@ -941,9 +927,8 @@ func (ptr *QGraphicsScene) DisconnectMousePressEvent() {
 func callbackQGraphicsSceneMousePressEvent(ptrName *C.char, mouseEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(mouseEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(mouseEvent))
 		return true
 	}
 	return false
@@ -972,9 +957,8 @@ func (ptr *QGraphicsScene) DisconnectMouseReleaseEvent() {
 func callbackQGraphicsSceneMouseReleaseEvent(ptrName *C.char, mouseEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(mouseEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(mouseEvent))
 		return true
 	}
 	return false
@@ -1019,8 +1003,7 @@ func (ptr *QGraphicsScene) DisconnectSelectionChanged() {
 func callbackQGraphicsSceneSelectionChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsScene::selectionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "selectionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "selectionChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -1146,9 +1129,8 @@ func (ptr *QGraphicsScene) DisconnectWheelEvent() {
 func callbackQGraphicsSceneWheelEvent(ptrName *C.char, wheelEvent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScene::wheelEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneWheelEvent))(NewQGraphicsSceneWheelEventFromPointer(wheelEvent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneWheelEvent))(NewQGraphicsSceneWheelEventFromPointer(wheelEvent))
 		return true
 	}
 	return false

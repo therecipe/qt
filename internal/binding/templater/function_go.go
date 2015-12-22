@@ -87,18 +87,15 @@ func goFunctionBody(f *parser.Function) (o string) {
 	*/
 
 	if f.SignalMode == "callback" {
-		o += fmt.Sprintf("var signal = qt.GetSignal(C.GoString(ptrName), \"%v%v\")\n", f.Name, cppFunctionSignalOverload(f))
-		o += "if signal != nil {\n"
-		if f.Virtual == "impure" {
-			o += fmt.Sprintf("\t defer signal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
-			o += fmt.Sprintf("\t return true\n")
-		} else {
-			o += fmt.Sprintf("\tsignal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
-		}
-		o += "}\n"
+
+		o += fmt.Sprintf("if signal := qt.GetSignal(C.GoString(ptrName), \"%v%v\"); signal != nil {\n", f.Name, cppFunctionSignalOverload(f))
+
+		o += fmt.Sprintf("\tsignal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
 
 		if f.Virtual == "impure" {
-			o += fmt.Sprintf("return false\n")
+			o += fmt.Sprintf("\treturn true\n}\nreturn false\n")
+		} else {
+			o += "}\n"
 		}
 
 	} else {

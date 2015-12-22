@@ -92,8 +92,7 @@ func (ptr *QQmlNdefRecord) DisconnectRecordChanged() {
 func callbackQQmlNdefRecordRecordChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QQmlNdefRecord::recordChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "recordChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "recordChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -154,8 +153,7 @@ func (ptr *QQmlNdefRecord) DisconnectTypeChanged() {
 func callbackQQmlNdefRecordTypeChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QQmlNdefRecord::typeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "typeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "typeChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -183,8 +181,7 @@ func (ptr *QQmlNdefRecord) DisconnectTypeNameFormatChanged() {
 func callbackQQmlNdefRecordTypeNameFormatChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QQmlNdefRecord::typeNameFormatChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "typeNameFormatChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "typeNameFormatChanged"); signal != nil {
 		signal.(func())()
 	}
 

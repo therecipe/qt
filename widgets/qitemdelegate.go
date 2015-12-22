@@ -100,9 +100,8 @@ func (ptr *QItemDelegate) DisconnectSetEditorData() {
 func callbackQItemDelegateSetEditorData(ptrName *C.char, editor unsafe.Pointer, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QItemDelegate::setEditorData")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setEditorData")
-	if signal != nil {
-		defer signal.(func(*QWidget, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setEditorData"); signal != nil {
+		signal.(func(*QWidget, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
 		return true
 	}
 	return false
@@ -139,9 +138,8 @@ func (ptr *QItemDelegate) DisconnectSetModelData() {
 func callbackQItemDelegateSetModelData(ptrName *C.char, editor unsafe.Pointer, model unsafe.Pointer, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QItemDelegate::setModelData")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setModelData")
-	if signal != nil {
-		defer signal.(func(*QWidget, *core.QAbstractItemModel, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setModelData"); signal != nil {
+		signal.(func(*QWidget, *core.QAbstractItemModel, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
 		return true
 	}
 	return false

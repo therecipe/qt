@@ -172,9 +172,8 @@ func (ptr *QXmlSimpleReader) DisconnectSetContentHandler() {
 func callbackQXmlSimpleReaderSetContentHandler(ptrName *C.char, handler unsafe.Pointer) bool {
 	defer qt.Recovering("callback QXmlSimpleReader::setContentHandler")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setContentHandler")
-	if signal != nil {
-		defer signal.(func(*QXmlContentHandler))(NewQXmlContentHandlerFromPointer(handler))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setContentHandler"); signal != nil {
+		signal.(func(*QXmlContentHandler))(NewQXmlContentHandlerFromPointer(handler))
 		return true
 	}
 	return false
@@ -203,9 +202,8 @@ func (ptr *QXmlSimpleReader) DisconnectSetDTDHandler() {
 func callbackQXmlSimpleReaderSetDTDHandler(ptrName *C.char, handler unsafe.Pointer) bool {
 	defer qt.Recovering("callback QXmlSimpleReader::setDTDHandler")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setDTDHandler")
-	if signal != nil {
-		defer signal.(func(*QXmlDTDHandler))(NewQXmlDTDHandlerFromPointer(handler))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setDTDHandler"); signal != nil {
+		signal.(func(*QXmlDTDHandler))(NewQXmlDTDHandlerFromPointer(handler))
 		return true
 	}
 	return false
@@ -234,9 +232,8 @@ func (ptr *QXmlSimpleReader) DisconnectSetDeclHandler() {
 func callbackQXmlSimpleReaderSetDeclHandler(ptrName *C.char, handler unsafe.Pointer) bool {
 	defer qt.Recovering("callback QXmlSimpleReader::setDeclHandler")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setDeclHandler")
-	if signal != nil {
-		defer signal.(func(*QXmlDeclHandler))(NewQXmlDeclHandlerFromPointer(handler))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setDeclHandler"); signal != nil {
+		signal.(func(*QXmlDeclHandler))(NewQXmlDeclHandlerFromPointer(handler))
 		return true
 	}
 	return false
@@ -265,9 +262,8 @@ func (ptr *QXmlSimpleReader) DisconnectSetEntityResolver() {
 func callbackQXmlSimpleReaderSetEntityResolver(ptrName *C.char, handler unsafe.Pointer) bool {
 	defer qt.Recovering("callback QXmlSimpleReader::setEntityResolver")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setEntityResolver")
-	if signal != nil {
-		defer signal.(func(*QXmlEntityResolver))(NewQXmlEntityResolverFromPointer(handler))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setEntityResolver"); signal != nil {
+		signal.(func(*QXmlEntityResolver))(NewQXmlEntityResolverFromPointer(handler))
 		return true
 	}
 	return false
@@ -296,9 +292,8 @@ func (ptr *QXmlSimpleReader) DisconnectSetErrorHandler() {
 func callbackQXmlSimpleReaderSetErrorHandler(ptrName *C.char, handler unsafe.Pointer) bool {
 	defer qt.Recovering("callback QXmlSimpleReader::setErrorHandler")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setErrorHandler")
-	if signal != nil {
-		defer signal.(func(*QXmlErrorHandler))(NewQXmlErrorHandlerFromPointer(handler))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setErrorHandler"); signal != nil {
+		signal.(func(*QXmlErrorHandler))(NewQXmlErrorHandlerFromPointer(handler))
 		return true
 	}
 	return false
@@ -327,9 +322,8 @@ func (ptr *QXmlSimpleReader) DisconnectSetFeature() {
 func callbackQXmlSimpleReaderSetFeature(ptrName *C.char, name *C.char, enable C.int) bool {
 	defer qt.Recovering("callback QXmlSimpleReader::setFeature")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setFeature")
-	if signal != nil {
-		defer signal.(func(string, bool))(C.GoString(name), int(enable) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setFeature"); signal != nil {
+		signal.(func(string, bool))(C.GoString(name), int(enable) != 0)
 		return true
 	}
 	return false
@@ -358,9 +352,8 @@ func (ptr *QXmlSimpleReader) DisconnectSetLexicalHandler() {
 func callbackQXmlSimpleReaderSetLexicalHandler(ptrName *C.char, handler unsafe.Pointer) bool {
 	defer qt.Recovering("callback QXmlSimpleReader::setLexicalHandler")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setLexicalHandler")
-	if signal != nil {
-		defer signal.(func(*QXmlLexicalHandler))(NewQXmlLexicalHandlerFromPointer(handler))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setLexicalHandler"); signal != nil {
+		signal.(func(*QXmlLexicalHandler))(NewQXmlLexicalHandlerFromPointer(handler))
 		return true
 	}
 	return false

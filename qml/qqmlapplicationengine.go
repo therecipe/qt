@@ -101,8 +101,7 @@ func (ptr *QQmlApplicationEngine) DisconnectObjectCreated() {
 func callbackQQmlApplicationEngineObjectCreated(ptrName *C.char, object unsafe.Pointer, url unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlApplicationEngine::objectCreated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "objectCreated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "objectCreated"); signal != nil {
 		signal.(func(*core.QObject, *core.QUrl))(core.NewQObjectFromPointer(object), core.NewQUrlFromPointer(url))
 	}
 

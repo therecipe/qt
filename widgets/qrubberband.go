@@ -82,9 +82,8 @@ func (ptr *QRubberBand) DisconnectChangeEvent() {
 func callbackQRubberBandChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QRubberBand::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
 		return true
 	}
 	return false
@@ -129,9 +128,8 @@ func (ptr *QRubberBand) DisconnectMoveEvent() {
 func callbackQRubberBandMoveEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QRubberBand::moveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "moveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(v))
 		return true
 	}
 	return false
@@ -160,9 +158,8 @@ func (ptr *QRubberBand) DisconnectPaintEvent() {
 func callbackQRubberBandPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QRubberBand::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
 		return true
 	}
 	return false
@@ -207,9 +204,8 @@ func (ptr *QRubberBand) DisconnectResizeEvent() {
 func callbackQRubberBandResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QRubberBand::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
 		return true
 	}
 	return false
@@ -255,9 +251,8 @@ func (ptr *QRubberBand) DisconnectShowEvent() {
 func callbackQRubberBandShowEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QRubberBand::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
 		return true
 	}
 	return false

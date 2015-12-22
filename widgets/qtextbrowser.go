@@ -112,9 +112,8 @@ func (ptr *QTextBrowser) DisconnectSetSource() {
 func callbackQTextBrowserSetSource(ptrName *C.char, name unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTextBrowser::setSource")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSource")
-	if signal != nil {
-		defer signal.(func(*core.QUrl))(core.NewQUrlFromPointer(name))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSource"); signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(name))
 		return true
 	}
 	return false
@@ -158,8 +157,7 @@ func (ptr *QTextBrowser) DisconnectAnchorClicked() {
 func callbackQTextBrowserAnchorClicked(ptrName *C.char, link unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::anchorClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "anchorClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "anchorClicked"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
 	}
 
@@ -187,9 +185,8 @@ func (ptr *QTextBrowser) DisconnectBackward() {
 func callbackQTextBrowserBackward(ptrName *C.char) bool {
 	defer qt.Recovering("callback QTextBrowser::backward")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "backward")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "backward"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -218,8 +215,7 @@ func (ptr *QTextBrowser) DisconnectBackwardAvailable() {
 func callbackQTextBrowserBackwardAvailable(ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QTextBrowser::backwardAvailable")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "backwardAvailable")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "backwardAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
@@ -264,9 +260,8 @@ func (ptr *QTextBrowser) DisconnectFocusOutEvent() {
 func callbackQTextBrowserFocusOutEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTextBrowser::focusOutEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -295,9 +290,8 @@ func (ptr *QTextBrowser) DisconnectForward() {
 func callbackQTextBrowserForward(ptrName *C.char) bool {
 	defer qt.Recovering("callback QTextBrowser::forward")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "forward")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "forward"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -326,8 +320,7 @@ func (ptr *QTextBrowser) DisconnectForwardAvailable() {
 func callbackQTextBrowserForwardAvailable(ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QTextBrowser::forwardAvailable")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "forwardAvailable")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "forwardAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
@@ -364,8 +357,7 @@ func (ptr *QTextBrowser) DisconnectHighlighted2() {
 func callbackQTextBrowserHighlighted2(ptrName *C.char, link *C.char) {
 	defer qt.Recovering("callback QTextBrowser::highlighted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted2"); signal != nil {
 		signal.(func(string))(C.GoString(link))
 	}
 
@@ -393,8 +385,7 @@ func (ptr *QTextBrowser) DisconnectHighlighted() {
 func callbackQTextBrowserHighlighted(ptrName *C.char, link unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::highlighted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
 	}
 
@@ -422,8 +413,7 @@ func (ptr *QTextBrowser) DisconnectHistoryChanged() {
 func callbackQTextBrowserHistoryChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QTextBrowser::historyChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "historyChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "historyChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -469,9 +459,8 @@ func (ptr *QTextBrowser) DisconnectHome() {
 func callbackQTextBrowserHome(ptrName *C.char) bool {
 	defer qt.Recovering("callback QTextBrowser::home")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "home")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "home"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -518,9 +507,8 @@ func (ptr *QTextBrowser) DisconnectKeyPressEvent() {
 func callbackQTextBrowserKeyPressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTextBrowser::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -558,9 +546,8 @@ func (ptr *QTextBrowser) DisconnectMouseMoveEvent() {
 func callbackQTextBrowserMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTextBrowser::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -589,9 +576,8 @@ func (ptr *QTextBrowser) DisconnectMousePressEvent() {
 func callbackQTextBrowserMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTextBrowser::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -620,9 +606,8 @@ func (ptr *QTextBrowser) DisconnectMouseReleaseEvent() {
 func callbackQTextBrowserMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTextBrowser::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -651,9 +636,8 @@ func (ptr *QTextBrowser) DisconnectPaintEvent() {
 func callbackQTextBrowserPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTextBrowser::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
 		return true
 	}
 	return false
@@ -682,9 +666,8 @@ func (ptr *QTextBrowser) DisconnectReload() {
 func callbackQTextBrowserReload(ptrName *C.char) bool {
 	defer qt.Recovering("callback QTextBrowser::reload")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "reload")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "reload"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -713,8 +696,7 @@ func (ptr *QTextBrowser) DisconnectSourceChanged() {
 func callbackQTextBrowserSourceChanged(ptrName *C.char, src unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::sourceChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sourceChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sourceChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(src))
 	}
 

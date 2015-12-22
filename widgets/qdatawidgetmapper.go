@@ -85,9 +85,8 @@ func (ptr *QDataWidgetMapper) DisconnectSetCurrentIndex() {
 func callbackQDataWidgetMapperSetCurrentIndex(ptrName *C.char, index C.int) bool {
 	defer qt.Recovering("callback QDataWidgetMapper::setCurrentIndex")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setCurrentIndex")
-	if signal != nil {
-		defer signal.(func(int))(int(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setCurrentIndex"); signal != nil {
+		signal.(func(int))(int(index))
 		return true
 	}
 	return false
@@ -171,8 +170,7 @@ func (ptr *QDataWidgetMapper) DisconnectCurrentIndexChanged() {
 func callbackQDataWidgetMapperCurrentIndexChanged(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QDataWidgetMapper::currentIndexChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentIndexChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentIndexChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 

@@ -238,8 +238,7 @@ func (ptr *QCameraExposure) DisconnectApertureChanged() {
 func callbackQCameraExposureApertureChanged(ptrName *C.char, value C.double) {
 	defer qt.Recovering("callback QCameraExposure::apertureChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "apertureChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "apertureChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
 
@@ -267,8 +266,7 @@ func (ptr *QCameraExposure) DisconnectApertureRangeChanged() {
 func callbackQCameraExposureApertureRangeChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QCameraExposure::apertureRangeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "apertureRangeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "apertureRangeChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -296,8 +294,7 @@ func (ptr *QCameraExposure) DisconnectExposureCompensationChanged() {
 func callbackQCameraExposureExposureCompensationChanged(ptrName *C.char, value C.double) {
 	defer qt.Recovering("callback QCameraExposure::exposureCompensationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "exposureCompensationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "exposureCompensationChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
 
@@ -325,8 +322,7 @@ func (ptr *QCameraExposure) DisconnectFlashReady() {
 func callbackQCameraExposureFlashReady(ptrName *C.char, ready C.int) {
 	defer qt.Recovering("callback QCameraExposure::flashReady")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "flashReady")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "flashReady"); signal != nil {
 		signal.(func(bool))(int(ready) != 0)
 	}
 
@@ -399,8 +395,7 @@ func (ptr *QCameraExposure) DisconnectIsoSensitivityChanged() {
 func callbackQCameraExposureIsoSensitivityChanged(ptrName *C.char, value C.int) {
 	defer qt.Recovering("callback QCameraExposure::isoSensitivityChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "isoSensitivityChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "isoSensitivityChanged"); signal != nil {
 		signal.(func(int))(int(value))
 	}
 
@@ -480,8 +475,7 @@ func (ptr *QCameraExposure) DisconnectShutterSpeedChanged() {
 func callbackQCameraExposureShutterSpeedChanged(ptrName *C.char, speed C.double) {
 	defer qt.Recovering("callback QCameraExposure::shutterSpeedChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "shutterSpeedChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "shutterSpeedChanged"); signal != nil {
 		signal.(func(float64))(float64(speed))
 	}
 
@@ -509,8 +503,7 @@ func (ptr *QCameraExposure) DisconnectShutterSpeedRangeChanged() {
 func callbackQCameraExposureShutterSpeedRangeChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QCameraExposure::shutterSpeedRangeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "shutterSpeedRangeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "shutterSpeedRangeChanged"); signal != nil {
 		signal.(func())()
 	}
 

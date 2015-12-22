@@ -77,8 +77,7 @@ func (ptr *QVideoWindowControl) DisconnectBrightnessChanged() {
 func callbackQVideoWindowControlBrightnessChanged(ptrName *C.char, brightness C.int) {
 	defer qt.Recovering("callback QVideoWindowControl::brightnessChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "brightnessChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "brightnessChanged"); signal != nil {
 		signal.(func(int))(int(brightness))
 	}
 
@@ -115,8 +114,7 @@ func (ptr *QVideoWindowControl) DisconnectContrastChanged() {
 func callbackQVideoWindowControlContrastChanged(ptrName *C.char, contrast C.int) {
 	defer qt.Recovering("callback QVideoWindowControl::contrastChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contrastChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "contrastChanged"); signal != nil {
 		signal.(func(int))(int(contrast))
 	}
 
@@ -153,8 +151,7 @@ func (ptr *QVideoWindowControl) DisconnectFullScreenChanged() {
 func callbackQVideoWindowControlFullScreenChanged(ptrName *C.char, fullScreen C.int) {
 	defer qt.Recovering("callback QVideoWindowControl::fullScreenChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fullScreenChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "fullScreenChanged"); signal != nil {
 		signal.(func(bool))(int(fullScreen) != 0)
 	}
 
@@ -191,8 +188,7 @@ func (ptr *QVideoWindowControl) DisconnectHueChanged() {
 func callbackQVideoWindowControlHueChanged(ptrName *C.char, hue C.int) {
 	defer qt.Recovering("callback QVideoWindowControl::hueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "hueChanged"); signal != nil {
 		signal.(func(int))(int(hue))
 	}
 
@@ -238,8 +234,7 @@ func (ptr *QVideoWindowControl) DisconnectNativeSizeChanged() {
 func callbackQVideoWindowControlNativeSizeChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QVideoWindowControl::nativeSizeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "nativeSizeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "nativeSizeChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -284,8 +279,7 @@ func (ptr *QVideoWindowControl) DisconnectSaturationChanged() {
 func callbackQVideoWindowControlSaturationChanged(ptrName *C.char, saturation C.int) {
 	defer qt.Recovering("callback QVideoWindowControl::saturationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "saturationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "saturationChanged"); signal != nil {
 		signal.(func(int))(int(saturation))
 	}
 

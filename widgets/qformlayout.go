@@ -194,9 +194,8 @@ func (ptr *QFormLayout) DisconnectAddItem() {
 func callbackQFormLayoutAddItem(ptrName *C.char, item unsafe.Pointer) bool {
 	defer qt.Recovering("callback QFormLayout::addItem")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "addItem")
-	if signal != nil {
-		defer signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
+	if signal := qt.GetSignal(C.GoString(ptrName), "addItem"); signal != nil {
+		signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
 		return true
 	}
 	return false
@@ -357,9 +356,8 @@ func (ptr *QFormLayout) DisconnectInvalidate() {
 func callbackQFormLayoutInvalidate(ptrName *C.char) bool {
 	defer qt.Recovering("callback QFormLayout::invalidate")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "invalidate")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -433,9 +431,8 @@ func (ptr *QFormLayout) DisconnectSetGeometry() {
 func callbackQFormLayoutSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
 	defer qt.Recovering("callback QFormLayout::setGeometry")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
-	if signal != nil {
-		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
+		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
 		return true
 	}
 	return false

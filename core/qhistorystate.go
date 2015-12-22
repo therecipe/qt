@@ -87,8 +87,7 @@ func (ptr *QHistoryState) DisconnectDefaultStateChanged() {
 func callbackQHistoryStateDefaultStateChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QHistoryState::defaultStateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "defaultStateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "defaultStateChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -125,8 +124,7 @@ func (ptr *QHistoryState) DisconnectHistoryTypeChanged() {
 func callbackQHistoryStateHistoryTypeChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QHistoryState::historyTypeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "historyTypeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "historyTypeChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -154,9 +152,8 @@ func (ptr *QHistoryState) DisconnectOnEntry() {
 func callbackQHistoryStateOnEntry(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHistoryState::onEntry")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onEntry")
-	if signal != nil {
-		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "onEntry"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -185,9 +182,8 @@ func (ptr *QHistoryState) DisconnectOnExit() {
 func callbackQHistoryStateOnExit(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHistoryState::onExit")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onExit")
-	if signal != nil {
-		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "onExit"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
 		return true
 	}
 	return false

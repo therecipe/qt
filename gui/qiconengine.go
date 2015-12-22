@@ -83,9 +83,8 @@ func (ptr *QIconEngine) DisconnectAddFile() {
 func callbackQIconEngineAddFile(ptrName *C.char, fileName *C.char, size unsafe.Pointer, mode C.int, state C.int) bool {
 	defer qt.Recovering("callback QIconEngine::addFile")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "addFile")
-	if signal != nil {
-		defer signal.(func(string, *core.QSize, QIcon__Mode, QIcon__State))(C.GoString(fileName), core.NewQSizeFromPointer(size), QIcon__Mode(mode), QIcon__State(state))
+	if signal := qt.GetSignal(C.GoString(ptrName), "addFile"); signal != nil {
+		signal.(func(string, *core.QSize, QIcon__Mode, QIcon__State))(C.GoString(fileName), core.NewQSizeFromPointer(size), QIcon__Mode(mode), QIcon__State(state))
 		return true
 	}
 	return false

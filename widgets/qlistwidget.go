@@ -159,8 +159,7 @@ func (ptr *QListWidget) DisconnectCurrentItemChanged() {
 func callbackQListWidgetCurrentItemChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
 	defer qt.Recovering("callback QListWidget::currentItemChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentItemChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentItemChanged"); signal != nil {
 		signal.(func(*QListWidgetItem, *QListWidgetItem))(NewQListWidgetItemFromPointer(current), NewQListWidgetItemFromPointer(previous))
 	}
 
@@ -188,8 +187,7 @@ func (ptr *QListWidget) DisconnectCurrentRowChanged() {
 func callbackQListWidgetCurrentRowChanged(ptrName *C.char, currentRow C.int) {
 	defer qt.Recovering("callback QListWidget::currentRowChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentRowChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentRowChanged"); signal != nil {
 		signal.(func(int))(int(currentRow))
 	}
 
@@ -217,8 +215,7 @@ func (ptr *QListWidget) DisconnectCurrentTextChanged() {
 func callbackQListWidgetCurrentTextChanged(ptrName *C.char, currentText *C.char) {
 	defer qt.Recovering("callback QListWidget::currentTextChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentTextChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(currentText))
 	}
 
@@ -246,9 +243,8 @@ func (ptr *QListWidget) DisconnectDropEvent() {
 func callbackQListWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QListWidget::dropEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 		return true
 	}
 	return false
@@ -318,8 +314,7 @@ func (ptr *QListWidget) DisconnectItemActivated() {
 func callbackQListWidgetItemActivated(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QListWidget::itemActivated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemActivated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemActivated"); signal != nil {
 		signal.(func(*QListWidgetItem))(NewQListWidgetItemFromPointer(item))
 	}
 
@@ -365,8 +360,7 @@ func (ptr *QListWidget) DisconnectItemChanged() {
 func callbackQListWidgetItemChanged(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QListWidget::itemChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemChanged"); signal != nil {
 		signal.(func(*QListWidgetItem))(NewQListWidgetItemFromPointer(item))
 	}
 
@@ -394,8 +388,7 @@ func (ptr *QListWidget) DisconnectItemClicked() {
 func callbackQListWidgetItemClicked(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QListWidget::itemClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemClicked"); signal != nil {
 		signal.(func(*QListWidgetItem))(NewQListWidgetItemFromPointer(item))
 	}
 
@@ -423,8 +416,7 @@ func (ptr *QListWidget) DisconnectItemDoubleClicked() {
 func callbackQListWidgetItemDoubleClicked(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QListWidget::itemDoubleClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked"); signal != nil {
 		signal.(func(*QListWidgetItem))(NewQListWidgetItemFromPointer(item))
 	}
 
@@ -452,8 +444,7 @@ func (ptr *QListWidget) DisconnectItemEntered() {
 func callbackQListWidgetItemEntered(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QListWidget::itemEntered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemEntered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemEntered"); signal != nil {
 		signal.(func(*QListWidgetItem))(NewQListWidgetItemFromPointer(item))
 	}
 
@@ -481,8 +472,7 @@ func (ptr *QListWidget) DisconnectItemPressed() {
 func callbackQListWidgetItemPressed(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QListWidget::itemPressed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemPressed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemPressed"); signal != nil {
 		signal.(func(*QListWidgetItem))(NewQListWidgetItemFromPointer(item))
 	}
 
@@ -510,8 +500,7 @@ func (ptr *QListWidget) DisconnectItemSelectionChanged() {
 func callbackQListWidgetItemSelectionChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QListWidget::itemSelectionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged"); signal != nil {
 		signal.(func())()
 	}
 

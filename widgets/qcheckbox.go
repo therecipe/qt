@@ -98,9 +98,8 @@ func (ptr *QCheckBox) DisconnectCheckStateSet() {
 func callbackQCheckBoxCheckStateSet(ptrName *C.char) bool {
 	defer qt.Recovering("callback QCheckBox::checkStateSet")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "checkStateSet")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "checkStateSet"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -138,9 +137,8 @@ func (ptr *QCheckBox) DisconnectMouseMoveEvent() {
 func callbackQCheckBoxMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QCheckBox::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -169,9 +167,8 @@ func (ptr *QCheckBox) DisconnectNextCheckState() {
 func callbackQCheckBoxNextCheckState(ptrName *C.char) bool {
 	defer qt.Recovering("callback QCheckBox::nextCheckState")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "nextCheckState")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "nextCheckState"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -200,9 +197,8 @@ func (ptr *QCheckBox) DisconnectPaintEvent() {
 func callbackQCheckBoxPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QCheckBox::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
 		return true
 	}
 	return false
@@ -248,8 +244,7 @@ func (ptr *QCheckBox) DisconnectStateChanged() {
 func callbackQCheckBoxStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QCheckBox::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(int))(int(state))
 	}
 

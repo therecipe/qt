@@ -90,9 +90,8 @@ func (ptr *QMouseEventTransition) DisconnectOnTransition() {
 func callbackQMouseEventTransitionOnTransition(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMouseEventTransition::onTransition")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onTransition")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "onTransition"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}
 	return false

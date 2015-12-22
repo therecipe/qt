@@ -201,9 +201,8 @@ func (ptr *QToolBar) DisconnectActionEvent() {
 func callbackQToolBarActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolBar::actionEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "actionEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
+		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 		return true
 	}
 	return false
@@ -232,8 +231,7 @@ func (ptr *QToolBar) DisconnectActionTriggered() {
 func callbackQToolBarActionTriggered(ptrName *C.char, action unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::actionTriggered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "actionTriggered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "actionTriggered"); signal != nil {
 		signal.(func(*QAction))(NewQActionFromPointer(action))
 	}
 
@@ -315,8 +313,7 @@ func (ptr *QToolBar) DisconnectAllowedAreasChanged() {
 func callbackQToolBarAllowedAreasChanged(ptrName *C.char, allowedAreas C.int) {
 	defer qt.Recovering("callback QToolBar::allowedAreasChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "allowedAreasChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "allowedAreasChanged"); signal != nil {
 		signal.(func(core.Qt__ToolBarArea))(core.Qt__ToolBarArea(allowedAreas))
 	}
 
@@ -344,9 +341,8 @@ func (ptr *QToolBar) DisconnectChangeEvent() {
 func callbackQToolBarChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolBar::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -383,8 +379,7 @@ func (ptr *QToolBar) DisconnectIconSizeChanged() {
 func callbackQToolBarIconSizeChanged(ptrName *C.char, iconSize unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::iconSizeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "iconSizeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "iconSizeChanged"); signal != nil {
 		signal.(func(*core.QSize))(core.NewQSizeFromPointer(iconSize))
 	}
 
@@ -439,8 +434,7 @@ func (ptr *QToolBar) DisconnectMovableChanged() {
 func callbackQToolBarMovableChanged(ptrName *C.char, movable C.int) {
 	defer qt.Recovering("callback QToolBar::movableChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "movableChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "movableChanged"); signal != nil {
 		signal.(func(bool))(int(movable) != 0)
 	}
 
@@ -468,8 +462,7 @@ func (ptr *QToolBar) DisconnectOrientationChanged() {
 func callbackQToolBarOrientationChanged(ptrName *C.char, orientation C.int) {
 	defer qt.Recovering("callback QToolBar::orientationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "orientationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "orientationChanged"); signal != nil {
 		signal.(func(core.Qt__Orientation))(core.Qt__Orientation(orientation))
 	}
 
@@ -497,9 +490,8 @@ func (ptr *QToolBar) DisconnectPaintEvent() {
 func callbackQToolBarPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QToolBar::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 		return true
 	}
 	return false
@@ -537,8 +529,7 @@ func (ptr *QToolBar) DisconnectToolButtonStyleChanged() {
 func callbackQToolBarToolButtonStyleChanged(ptrName *C.char, toolButtonStyle C.int) {
 	defer qt.Recovering("callback QToolBar::toolButtonStyleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "toolButtonStyleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "toolButtonStyleChanged"); signal != nil {
 		signal.(func(core.Qt__ToolButtonStyle))(core.Qt__ToolButtonStyle(toolButtonStyle))
 	}
 
@@ -566,8 +557,7 @@ func (ptr *QToolBar) DisconnectTopLevelChanged() {
 func callbackQToolBarTopLevelChanged(ptrName *C.char, topLevel C.int) {
 	defer qt.Recovering("callback QToolBar::topLevelChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "topLevelChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "topLevelChanged"); signal != nil {
 		signal.(func(bool))(int(topLevel) != 0)
 	}
 
@@ -595,8 +585,7 @@ func (ptr *QToolBar) DisconnectVisibilityChanged() {
 func callbackQToolBarVisibilityChanged(ptrName *C.char, visible C.int) {
 	defer qt.Recovering("callback QToolBar::visibilityChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "visibilityChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "visibilityChanged"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
 	}
 

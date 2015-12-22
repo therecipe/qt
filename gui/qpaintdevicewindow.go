@@ -70,9 +70,8 @@ func (ptr *QPaintDeviceWindow) DisconnectPaintEvent() {
 func callbackQPaintDeviceWindowPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPaintDeviceWindow::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*QPaintEvent))(NewQPaintEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*QPaintEvent))(NewQPaintEventFromPointer(event))
 		return true
 	}
 	return false

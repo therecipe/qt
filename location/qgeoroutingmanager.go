@@ -69,8 +69,7 @@ func (ptr *QGeoRoutingManager) DisconnectError() {
 func callbackQGeoRoutingManagerError(ptrName *C.char, reply unsafe.Pointer, error C.int, errorString *C.char) {
 	defer qt.Recovering("callback QGeoRoutingManager::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(*QGeoRouteReply, QGeoRouteReply__Error, string))(NewQGeoRouteReplyFromPointer(reply), QGeoRouteReply__Error(error), C.GoString(errorString))
 	}
 
@@ -98,8 +97,7 @@ func (ptr *QGeoRoutingManager) DisconnectFinished() {
 func callbackQGeoRoutingManagerFinished(ptrName *C.char, reply unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoRoutingManager::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(*QGeoRouteReply))(NewQGeoRouteReplyFromPointer(reply))
 	}
 

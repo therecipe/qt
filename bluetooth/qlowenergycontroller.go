@@ -91,8 +91,7 @@ func (ptr *QLowEnergyController) DisconnectConnected() {
 func callbackQLowEnergyControllerConnected(ptrName *C.char) {
 	defer qt.Recovering("callback QLowEnergyController::connected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "connected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "connected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -120,8 +119,7 @@ func (ptr *QLowEnergyController) DisconnectDisconnected() {
 func callbackQLowEnergyControllerDisconnected(ptrName *C.char) {
 	defer qt.Recovering("callback QLowEnergyController::disconnected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "disconnected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "disconnected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -149,8 +147,7 @@ func (ptr *QLowEnergyController) DisconnectDiscoveryFinished() {
 func callbackQLowEnergyControllerDiscoveryFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QLowEnergyController::discoveryFinished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "discoveryFinished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "discoveryFinished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -178,8 +175,7 @@ func (ptr *QLowEnergyController) DisconnectError2() {
 func callbackQLowEnergyControllerError2(ptrName *C.char, newError C.int) {
 	defer qt.Recovering("callback QLowEnergyController::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QLowEnergyController__Error))(QLowEnergyController__Error(newError))
 	}
 
@@ -207,8 +203,7 @@ func (ptr *QLowEnergyController) DisconnectStateChanged() {
 func callbackQLowEnergyControllerStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QLowEnergyController::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QLowEnergyController__ControllerState))(QLowEnergyController__ControllerState(state))
 	}
 

@@ -76,8 +76,7 @@ func (ptr *QHelpIndexModel) DisconnectIndexCreated() {
 func callbackQHelpIndexModelIndexCreated(ptrName *C.char) {
 	defer qt.Recovering("callback QHelpIndexModel::indexCreated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "indexCreated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "indexCreated"); signal != nil {
 		signal.(func())()
 	}
 
@@ -105,8 +104,7 @@ func (ptr *QHelpIndexModel) DisconnectIndexCreationStarted() {
 func callbackQHelpIndexModelIndexCreationStarted(ptrName *C.char) {
 	defer qt.Recovering("callback QHelpIndexModel::indexCreationStarted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "indexCreationStarted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "indexCreationStarted"); signal != nil {
 		signal.(func())()
 	}
 

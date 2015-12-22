@@ -69,8 +69,7 @@ func (ptr *QHelpSearchResultWidget) DisconnectRequestShowLink() {
 func callbackQHelpSearchResultWidgetRequestShowLink(ptrName *C.char, link unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::requestShowLink")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "requestShowLink")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestShowLink"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
 	}
 

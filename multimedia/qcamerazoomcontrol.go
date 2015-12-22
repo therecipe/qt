@@ -67,8 +67,7 @@ func (ptr *QCameraZoomControl) DisconnectCurrentDigitalZoomChanged() {
 func callbackQCameraZoomControlCurrentDigitalZoomChanged(ptrName *C.char, zoom C.double) {
 	defer qt.Recovering("callback QCameraZoomControl::currentDigitalZoomChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentDigitalZoomChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentDigitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
 
@@ -105,8 +104,7 @@ func (ptr *QCameraZoomControl) DisconnectCurrentOpticalZoomChanged() {
 func callbackQCameraZoomControlCurrentOpticalZoomChanged(ptrName *C.char, zoom C.double) {
 	defer qt.Recovering("callback QCameraZoomControl::currentOpticalZoomChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentOpticalZoomChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentOpticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
 
@@ -143,8 +141,7 @@ func (ptr *QCameraZoomControl) DisconnectMaximumDigitalZoomChanged() {
 func callbackQCameraZoomControlMaximumDigitalZoomChanged(ptrName *C.char, zoom C.double) {
 	defer qt.Recovering("callback QCameraZoomControl::maximumDigitalZoomChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "maximumDigitalZoomChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "maximumDigitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
 
@@ -181,8 +178,7 @@ func (ptr *QCameraZoomControl) DisconnectMaximumOpticalZoomChanged() {
 func callbackQCameraZoomControlMaximumOpticalZoomChanged(ptrName *C.char, zoom C.double) {
 	defer qt.Recovering("callback QCameraZoomControl::maximumOpticalZoomChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "maximumOpticalZoomChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "maximumOpticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
 
@@ -219,8 +215,7 @@ func (ptr *QCameraZoomControl) DisconnectRequestedDigitalZoomChanged() {
 func callbackQCameraZoomControlRequestedDigitalZoomChanged(ptrName *C.char, zoom C.double) {
 	defer qt.Recovering("callback QCameraZoomControl::requestedDigitalZoomChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "requestedDigitalZoomChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestedDigitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
 
@@ -257,8 +252,7 @@ func (ptr *QCameraZoomControl) DisconnectRequestedOpticalZoomChanged() {
 func callbackQCameraZoomControlRequestedOpticalZoomChanged(ptrName *C.char, zoom C.double) {
 	defer qt.Recovering("callback QCameraZoomControl::requestedOpticalZoomChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "requestedOpticalZoomChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestedOpticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
 

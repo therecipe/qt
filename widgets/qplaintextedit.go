@@ -95,9 +95,8 @@ func (ptr *QPlainTextEdit) DisconnectContextMenuEvent() {
 func callbackQPlainTextEditContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::contextMenuEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contextMenuEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 		return true
 	}
 	return false
@@ -364,8 +363,7 @@ func (ptr *QPlainTextEdit) DisconnectBlockCountChanged() {
 func callbackQPlainTextEditBlockCountChanged(ptrName *C.char, newBlockCount C.int) {
 	defer qt.Recovering("callback QPlainTextEdit::blockCountChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "blockCountChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "blockCountChanged"); signal != nil {
 		signal.(func(int))(int(newBlockCount))
 	}
 
@@ -402,9 +400,8 @@ func (ptr *QPlainTextEdit) DisconnectChangeEvent() {
 func callbackQPlainTextEditChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
 		return true
 	}
 	return false
@@ -449,8 +446,7 @@ func (ptr *QPlainTextEdit) DisconnectCopyAvailable() {
 func callbackQPlainTextEditCopyAvailable(ptrName *C.char, yes C.int) {
 	defer qt.Recovering("callback QPlainTextEdit::copyAvailable")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "copyAvailable")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "copyAvailable"); signal != nil {
 		signal.(func(bool))(int(yes) != 0)
 	}
 
@@ -496,8 +492,7 @@ func (ptr *QPlainTextEdit) DisconnectCursorPositionChanged() {
 func callbackQPlainTextEditCursorPositionChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QPlainTextEdit::cursorPositionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cursorPositionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "cursorPositionChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -569,9 +564,8 @@ func (ptr *QPlainTextEdit) DisconnectDragEnterEvent() {
 func callbackQPlainTextEditDragEnterEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::dragEnterEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragEnterEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(e))
 		return true
 	}
 	return false
@@ -600,9 +594,8 @@ func (ptr *QPlainTextEdit) DisconnectDragLeaveEvent() {
 func callbackQPlainTextEditDragLeaveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::dragLeaveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(e))
 		return true
 	}
 	return false
@@ -631,9 +624,8 @@ func (ptr *QPlainTextEdit) DisconnectDragMoveEvent() {
 func callbackQPlainTextEditDragMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::dragMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(e))
 		return true
 	}
 	return false
@@ -662,9 +654,8 @@ func (ptr *QPlainTextEdit) DisconnectDropEvent() {
 func callbackQPlainTextEditDropEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::dropEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(e))
 		return true
 	}
 	return false
@@ -701,9 +692,8 @@ func (ptr *QPlainTextEdit) DisconnectFocusInEvent() {
 func callbackQPlainTextEditFocusInEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::focusInEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
 		return true
 	}
 	return false
@@ -732,9 +722,8 @@ func (ptr *QPlainTextEdit) DisconnectFocusOutEvent() {
 func callbackQPlainTextEditFocusOutEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::focusOutEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
 		return true
 	}
 	return false
@@ -763,9 +752,8 @@ func (ptr *QPlainTextEdit) DisconnectInputMethodEvent() {
 func callbackQPlainTextEditInputMethodEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::inputMethodEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "inputMethodEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(e))
 		return true
 	}
 	return false
@@ -803,9 +791,8 @@ func (ptr *QPlainTextEdit) DisconnectInsertFromMimeData() {
 func callbackQPlainTextEditInsertFromMimeData(ptrName *C.char, source unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::insertFromMimeData")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "insertFromMimeData")
-	if signal != nil {
-		defer signal.(func(*core.QMimeData))(core.NewQMimeDataFromPointer(source))
+	if signal := qt.GetSignal(C.GoString(ptrName), "insertFromMimeData"); signal != nil {
+		signal.(func(*core.QMimeData))(core.NewQMimeDataFromPointer(source))
 		return true
 	}
 	return false
@@ -851,9 +838,8 @@ func (ptr *QPlainTextEdit) DisconnectKeyPressEvent() {
 func callbackQPlainTextEditKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 		return true
 	}
 	return false
@@ -882,9 +868,8 @@ func (ptr *QPlainTextEdit) DisconnectKeyReleaseEvent() {
 func callbackQPlainTextEditKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::keyReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 		return true
 	}
 	return false
@@ -939,8 +924,7 @@ func (ptr *QPlainTextEdit) DisconnectModificationChanged() {
 func callbackQPlainTextEditModificationChanged(ptrName *C.char, changed C.int) {
 	defer qt.Recovering("callback QPlainTextEdit::modificationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "modificationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "modificationChanged"); signal != nil {
 		signal.(func(bool))(int(changed) != 0)
 	}
 
@@ -968,9 +952,8 @@ func (ptr *QPlainTextEdit) DisconnectMouseDoubleClickEvent() {
 func callbackQPlainTextEditMouseDoubleClickEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::mouseDoubleClickEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -999,9 +982,8 @@ func (ptr *QPlainTextEdit) DisconnectMouseMoveEvent() {
 func callbackQPlainTextEditMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -1030,9 +1012,8 @@ func (ptr *QPlainTextEdit) DisconnectMousePressEvent() {
 func callbackQPlainTextEditMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -1061,9 +1042,8 @@ func (ptr *QPlainTextEdit) DisconnectMouseReleaseEvent() {
 func callbackQPlainTextEditMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -1100,9 +1080,8 @@ func (ptr *QPlainTextEdit) DisconnectPaintEvent() {
 func callbackQPlainTextEditPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
 		return true
 	}
 	return false
@@ -1147,8 +1126,7 @@ func (ptr *QPlainTextEdit) DisconnectRedoAvailable() {
 func callbackQPlainTextEditRedoAvailable(ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QPlainTextEdit::redoAvailable")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "redoAvailable")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "redoAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
@@ -1176,9 +1154,8 @@ func (ptr *QPlainTextEdit) DisconnectResizeEvent() {
 func callbackQPlainTextEditResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
 		return true
 	}
 	return false
@@ -1207,9 +1184,8 @@ func (ptr *QPlainTextEdit) DisconnectScrollContentsBy() {
 func callbackQPlainTextEditScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
 	defer qt.Recovering("callback QPlainTextEdit::scrollContentsBy")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scrollContentsBy")
-	if signal != nil {
-		defer signal.(func(int, int))(int(dx), int(dy))
+	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
+		signal.(func(int, int))(int(dx), int(dy))
 		return true
 	}
 	return false
@@ -1246,8 +1222,7 @@ func (ptr *QPlainTextEdit) DisconnectSelectionChanged() {
 func callbackQPlainTextEditSelectionChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QPlainTextEdit::selectionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "selectionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "selectionChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -1331,9 +1306,8 @@ func (ptr *QPlainTextEdit) DisconnectShowEvent() {
 func callbackQPlainTextEditShowEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
 		return true
 	}
 	return false
@@ -1362,8 +1336,7 @@ func (ptr *QPlainTextEdit) DisconnectTextChanged() {
 func callbackQPlainTextEditTextChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QPlainTextEdit::textChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "textChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "textChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -1408,8 +1381,7 @@ func (ptr *QPlainTextEdit) DisconnectUndoAvailable() {
 func callbackQPlainTextEditUndoAvailable(ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QPlainTextEdit::undoAvailable")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "undoAvailable")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "undoAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
@@ -1437,8 +1409,7 @@ func (ptr *QPlainTextEdit) DisconnectUpdateRequest() {
 func callbackQPlainTextEditUpdateRequest(ptrName *C.char, rect unsafe.Pointer, dy C.int) {
 	defer qt.Recovering("callback QPlainTextEdit::updateRequest")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateRequest")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateRequest"); signal != nil {
 		signal.(func(*core.QRect, int))(core.NewQRectFromPointer(rect), int(dy))
 	}
 
@@ -1466,9 +1437,8 @@ func (ptr *QPlainTextEdit) DisconnectWheelEvent() {
 func callbackQPlainTextEditWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QPlainTextEdit::wheelEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
 		return true
 	}
 	return false

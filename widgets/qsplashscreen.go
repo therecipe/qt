@@ -80,9 +80,8 @@ func (ptr *QSplashScreen) DisconnectDrawContents() {
 func callbackQSplashScreenDrawContents(ptrName *C.char, painter unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSplashScreen::drawContents")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "drawContents")
-	if signal != nil {
-		defer signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	if signal := qt.GetSignal(C.GoString(ptrName), "drawContents"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
 		return true
 	}
 	return false
@@ -128,8 +127,7 @@ func (ptr *QSplashScreen) DisconnectMessageChanged() {
 func callbackQSplashScreenMessageChanged(ptrName *C.char, message *C.char) {
 	defer qt.Recovering("callback QSplashScreen::messageChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "messageChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "messageChanged"); signal != nil {
 		signal.(func(string))(C.GoString(message))
 	}
 
@@ -157,9 +155,8 @@ func (ptr *QSplashScreen) DisconnectMousePressEvent() {
 func callbackQSplashScreenMousePressEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSplashScreen::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(v))
 		return true
 	}
 	return false

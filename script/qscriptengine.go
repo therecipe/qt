@@ -392,8 +392,7 @@ func (ptr *QScriptEngine) DisconnectSignalHandlerException() {
 func callbackQScriptEngineSignalHandlerException(ptrName *C.char, exception unsafe.Pointer) {
 	defer qt.Recovering("callback QScriptEngine::signalHandlerException")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "signalHandlerException")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "signalHandlerException"); signal != nil {
 		signal.(func(*QScriptValue))(NewQScriptValueFromPointer(exception))
 	}
 

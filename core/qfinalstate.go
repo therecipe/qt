@@ -64,9 +64,8 @@ func (ptr *QFinalState) DisconnectOnEntry() {
 func callbackQFinalStateOnEntry(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QFinalState::onEntry")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onEntry")
-	if signal != nil {
-		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "onEntry"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -95,9 +94,8 @@ func (ptr *QFinalState) DisconnectOnExit() {
 func callbackQFinalStateOnExit(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QFinalState::onExit")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onExit")
-	if signal != nil {
-		defer signal.(func(*QEvent))(NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "onExit"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
 		return true
 	}
 	return false

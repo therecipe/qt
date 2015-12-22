@@ -80,9 +80,8 @@ func (ptr *QGeoPositionInfoSource) DisconnectSetUpdateInterval() {
 func callbackQGeoPositionInfoSourceSetUpdateInterval(ptrName *C.char, msec C.int) bool {
 	defer qt.Recovering("callback QGeoPositionInfoSource::setUpdateInterval")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setUpdateInterval")
-	if signal != nil {
-		defer signal.(func(int))(int(msec))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setUpdateInterval"); signal != nil {
+		signal.(func(int))(int(msec))
 		return true
 	}
 	return false
@@ -147,8 +146,7 @@ func (ptr *QGeoPositionInfoSource) DisconnectError2() {
 func callbackQGeoPositionInfoSourceError2(ptrName *C.char, positioningError C.int) {
 	defer qt.Recovering("callback QGeoPositionInfoSource::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QGeoPositionInfoSource__Error))(QGeoPositionInfoSource__Error(positioningError))
 	}
 
@@ -211,9 +209,8 @@ func (ptr *QGeoPositionInfoSource) DisconnectSetPreferredPositioningMethods() {
 func callbackQGeoPositionInfoSourceSetPreferredPositioningMethods(ptrName *C.char, methods C.int) bool {
 	defer qt.Recovering("callback QGeoPositionInfoSource::setPreferredPositioningMethods")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setPreferredPositioningMethods")
-	if signal != nil {
-		defer signal.(func(QGeoPositionInfoSource__PositioningMethod))(QGeoPositionInfoSource__PositioningMethod(methods))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setPreferredPositioningMethods"); signal != nil {
+		signal.(func(QGeoPositionInfoSource__PositioningMethod))(QGeoPositionInfoSource__PositioningMethod(methods))
 		return true
 	}
 	return false
@@ -267,8 +264,7 @@ func (ptr *QGeoPositionInfoSource) DisconnectUpdateTimeout() {
 func callbackQGeoPositionInfoSourceUpdateTimeout(ptrName *C.char) {
 	defer qt.Recovering("callback QGeoPositionInfoSource::updateTimeout")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateTimeout")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateTimeout"); signal != nil {
 		signal.(func())()
 	}
 

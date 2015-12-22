@@ -88,8 +88,7 @@ func (ptr *QRegularExpressionValidator) DisconnectRegularExpressionChanged() {
 func callbackQRegularExpressionValidatorRegularExpressionChanged(ptrName *C.char, re unsafe.Pointer) {
 	defer qt.Recovering("callback QRegularExpressionValidator::regularExpressionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "regularExpressionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "regularExpressionChanged"); signal != nil {
 		signal.(func(*core.QRegularExpression))(core.NewQRegularExpressionFromPointer(re))
 	}
 

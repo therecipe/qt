@@ -96,8 +96,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectOnlineStateChanged() {
 func callbackQNetworkConfigurationManagerOnlineStateChanged(ptrName *C.char, isOnline C.int) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::onlineStateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "onlineStateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "onlineStateChanged"); signal != nil {
 		signal.(func(bool))(int(isOnline) != 0)
 	}
 
@@ -125,8 +124,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectUpdateCompleted() {
 func callbackQNetworkConfigurationManagerUpdateCompleted(ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::updateCompleted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateCompleted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateCompleted"); signal != nil {
 		signal.(func())()
 	}
 

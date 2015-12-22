@@ -218,8 +218,7 @@ func (ptr *QCamera) DisconnectCaptureModeChanged() {
 func callbackQCameraCaptureModeChanged(ptrName *C.char, mode C.int) {
 	defer qt.Recovering("callback QCamera::captureModeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "captureModeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "captureModeChanged"); signal != nil {
 		signal.(func(QCamera__CaptureMode))(QCamera__CaptureMode(mode))
 	}
 
@@ -247,8 +246,7 @@ func (ptr *QCamera) DisconnectError2() {
 func callbackQCameraError2(ptrName *C.char, value C.int) {
 	defer qt.Recovering("callback QCamera::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QCamera__Error))(QCamera__Error(value))
 	}
 
@@ -338,8 +336,7 @@ func (ptr *QCamera) DisconnectLockFailed() {
 func callbackQCameraLockFailed(ptrName *C.char) {
 	defer qt.Recovering("callback QCamera::lockFailed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "lockFailed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "lockFailed"); signal != nil {
 		signal.(func())()
 	}
 
@@ -385,8 +382,7 @@ func (ptr *QCamera) DisconnectLockStatusChanged() {
 func callbackQCameraLockStatusChanged(ptrName *C.char, status C.int, reason C.int) {
 	defer qt.Recovering("callback QCamera::lockStatusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "lockStatusChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "lockStatusChanged"); signal != nil {
 		signal.(func(QCamera__LockStatus, QCamera__LockChangeReason))(QCamera__LockStatus(status), QCamera__LockChangeReason(reason))
 	}
 
@@ -414,8 +410,7 @@ func (ptr *QCamera) DisconnectLockStatusChanged2() {
 func callbackQCameraLockStatusChanged2(ptrName *C.char, lock C.int, status C.int, reason C.int) {
 	defer qt.Recovering("callback QCamera::lockStatusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "lockStatusChanged2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "lockStatusChanged2"); signal != nil {
 		signal.(func(QCamera__LockType, QCamera__LockStatus, QCamera__LockChangeReason))(QCamera__LockType(lock), QCamera__LockStatus(status), QCamera__LockChangeReason(reason))
 	}
 
@@ -443,8 +438,7 @@ func (ptr *QCamera) DisconnectLocked() {
 func callbackQCameraLocked(ptrName *C.char) {
 	defer qt.Recovering("callback QCamera::locked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "locked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "locked"); signal != nil {
 		signal.(func())()
 	}
 
@@ -529,8 +523,7 @@ func (ptr *QCamera) DisconnectStateChanged() {
 func callbackQCameraStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QCamera::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QCamera__State))(QCamera__State(state))
 	}
 
@@ -558,8 +551,7 @@ func (ptr *QCamera) DisconnectStatusChanged() {
 func callbackQCameraStatusChanged(ptrName *C.char, status C.int) {
 	defer qt.Recovering("callback QCamera::statusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "statusChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "statusChanged"); signal != nil {
 		signal.(func(QCamera__Status))(QCamera__Status(status))
 	}
 

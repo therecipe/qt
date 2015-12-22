@@ -208,8 +208,7 @@ func (ptr *QQmlEngine) DisconnectQuit() {
 func callbackQQmlEngineQuit(ptrName *C.char) {
 	defer qt.Recovering("callback QQmlEngine::quit")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "quit")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "quit"); signal != nil {
 		signal.(func())()
 	}
 

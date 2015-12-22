@@ -96,8 +96,7 @@ func (ptr *QSGAbstractRenderer) DisconnectSceneGraphChanged() {
 func callbackQSGAbstractRendererSceneGraphChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSGAbstractRenderer::sceneGraphChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sceneGraphChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sceneGraphChanged"); signal != nil {
 		signal.(func())()
 	}
 

@@ -59,8 +59,7 @@ func (ptr *QWebChannelAbstractTransport) DisconnectMessageReceived() {
 func callbackQWebChannelAbstractTransportMessageReceived(ptrName *C.char, message unsafe.Pointer, transport unsafe.Pointer) {
 	defer qt.Recovering("callback QWebChannelAbstractTransport::messageReceived")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "messageReceived")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "messageReceived"); signal != nil {
 		signal.(func(*core.QJsonObject, *QWebChannelAbstractTransport))(core.NewQJsonObjectFromPointer(message), NewQWebChannelAbstractTransportFromPointer(transport))
 	}
 

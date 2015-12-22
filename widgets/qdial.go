@@ -127,9 +127,8 @@ func (ptr *QDial) DisconnectMouseMoveEvent() {
 func callbackQDialMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDial::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -158,9 +157,8 @@ func (ptr *QDial) DisconnectMousePressEvent() {
 func callbackQDialMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDial::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -189,9 +187,8 @@ func (ptr *QDial) DisconnectMouseReleaseEvent() {
 func callbackQDialMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDial::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -220,9 +217,8 @@ func (ptr *QDial) DisconnectPaintEvent() {
 func callbackQDialPaintEvent(ptrName *C.char, pe unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDial::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(pe))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(pe))
 		return true
 	}
 	return false
@@ -251,9 +247,8 @@ func (ptr *QDial) DisconnectResizeEvent() {
 func callbackQDialResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDial::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
 		return true
 	}
 	return false
@@ -291,9 +286,8 @@ func (ptr *QDial) DisconnectSliderChange() {
 func callbackQDialSliderChange(ptrName *C.char, change C.int) bool {
 	defer qt.Recovering("callback QDial::sliderChange")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sliderChange")
-	if signal != nil {
-		defer signal.(func(QAbstractSlider__SliderChange))(QAbstractSlider__SliderChange(change))
+	if signal := qt.GetSignal(C.GoString(ptrName), "sliderChange"); signal != nil {
+		signal.(func(QAbstractSlider__SliderChange))(QAbstractSlider__SliderChange(change))
 		return true
 	}
 	return false

@@ -67,8 +67,7 @@ func (ptr *QAudioOutputSelectorControl) DisconnectActiveOutputChanged() {
 func callbackQAudioOutputSelectorControlActiveOutputChanged(ptrName *C.char, name *C.char) {
 	defer qt.Recovering("callback QAudioOutputSelectorControl::activeOutputChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activeOutputChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activeOutputChanged"); signal != nil {
 		signal.(func(string))(C.GoString(name))
 	}
 
@@ -96,8 +95,7 @@ func (ptr *QAudioOutputSelectorControl) DisconnectAvailableOutputsChanged() {
 func callbackQAudioOutputSelectorControlAvailableOutputsChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QAudioOutputSelectorControl::availableOutputsChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "availableOutputsChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "availableOutputsChanged"); signal != nil {
 		signal.(func())()
 	}
 

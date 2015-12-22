@@ -91,8 +91,7 @@ func (ptr *QTapSensor) DisconnectReturnDoubleTapEventsChanged() {
 func callbackQTapSensorReturnDoubleTapEventsChanged(ptrName *C.char, returnDoubleTapEvents C.int) {
 	defer qt.Recovering("callback QTapSensor::returnDoubleTapEventsChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "returnDoubleTapEventsChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "returnDoubleTapEventsChanged"); signal != nil {
 		signal.(func(bool))(int(returnDoubleTapEvents) != 0)
 	}
 

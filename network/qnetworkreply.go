@@ -114,9 +114,8 @@ func (ptr *QNetworkReply) DisconnectClose() {
 func callbackQNetworkReplyClose(ptrName *C.char) bool {
 	defer qt.Recovering("callback QNetworkReply::close")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "close")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -145,8 +144,7 @@ func (ptr *QNetworkReply) DisconnectDownloadProgress() {
 func callbackQNetworkReplyDownloadProgress(ptrName *C.char, bytesReceived C.longlong, bytesTotal C.longlong) {
 	defer qt.Recovering("callback QNetworkReply::downloadProgress")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "downloadProgress")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "downloadProgress"); signal != nil {
 		signal.(func(int64, int64))(int64(bytesReceived), int64(bytesTotal))
 	}
 
@@ -174,8 +172,7 @@ func (ptr *QNetworkReply) DisconnectEncrypted() {
 func callbackQNetworkReplyEncrypted(ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkReply::encrypted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "encrypted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "encrypted"); signal != nil {
 		signal.(func())()
 	}
 
@@ -203,8 +200,7 @@ func (ptr *QNetworkReply) DisconnectError2() {
 func callbackQNetworkReplyError2(ptrName *C.char, code C.int) {
 	defer qt.Recovering("callback QNetworkReply::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QNetworkReply__NetworkError))(QNetworkReply__NetworkError(code))
 	}
 
@@ -241,8 +237,7 @@ func (ptr *QNetworkReply) DisconnectFinished() {
 func callbackQNetworkReplyFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkReply::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -288,9 +283,8 @@ func (ptr *QNetworkReply) DisconnectIgnoreSslErrors() {
 func callbackQNetworkReplyIgnoreSslErrors(ptrName *C.char) bool {
 	defer qt.Recovering("callback QNetworkReply::ignoreSslErrors")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "ignoreSslErrors")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "ignoreSslErrors"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -346,8 +340,7 @@ func (ptr *QNetworkReply) DisconnectMetaDataChanged() {
 func callbackQNetworkReplyMetaDataChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkReply::metaDataChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -384,8 +377,7 @@ func (ptr *QNetworkReply) DisconnectPreSharedKeyAuthenticationRequired() {
 func callbackQNetworkReplyPreSharedKeyAuthenticationRequired(ptrName *C.char, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::preSharedKeyAuthenticationRequired")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired"); signal != nil {
 		signal.(func(*QSslPreSharedKeyAuthenticator))(NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
 	}
 
@@ -431,9 +423,8 @@ func (ptr *QNetworkReply) DisconnectSetReadBufferSize() {
 func callbackQNetworkReplySetReadBufferSize(ptrName *C.char, size C.longlong) bool {
 	defer qt.Recovering("callback QNetworkReply::setReadBufferSize")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setReadBufferSize")
-	if signal != nil {
-		defer signal.(func(int64))(int64(size))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setReadBufferSize"); signal != nil {
+		signal.(func(int64))(int64(size))
 		return true
 	}
 	return false
@@ -470,8 +461,7 @@ func (ptr *QNetworkReply) DisconnectUploadProgress() {
 func callbackQNetworkReplyUploadProgress(ptrName *C.char, bytesSent C.longlong, bytesTotal C.longlong) {
 	defer qt.Recovering("callback QNetworkReply::uploadProgress")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "uploadProgress")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "uploadProgress"); signal != nil {
 		signal.(func(int64, int64))(int64(bytesSent), int64(bytesTotal))
 	}
 

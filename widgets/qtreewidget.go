@@ -143,8 +143,7 @@ func (ptr *QTreeWidget) DisconnectCurrentItemChanged() {
 func callbackQTreeWidgetCurrentItemChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::currentItemChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentItemChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentItemChanged"); signal != nil {
 		signal.(func(*QTreeWidgetItem, *QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(current), NewQTreeWidgetItemFromPointer(previous))
 	}
 
@@ -172,9 +171,8 @@ func (ptr *QTreeWidget) DisconnectDropEvent() {
 func callbackQTreeWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeWidget::dropEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 		return true
 	}
 	return false
@@ -272,8 +270,7 @@ func (ptr *QTreeWidget) DisconnectItemActivated() {
 func callbackQTreeWidgetItemActivated(ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemActivated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemActivated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemActivated"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
@@ -328,8 +325,7 @@ func (ptr *QTreeWidget) DisconnectItemChanged() {
 func callbackQTreeWidgetItemChanged(ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemChanged"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
@@ -357,8 +353,7 @@ func (ptr *QTreeWidget) DisconnectItemClicked() {
 func callbackQTreeWidgetItemClicked(ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemClicked"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
@@ -386,8 +381,7 @@ func (ptr *QTreeWidget) DisconnectItemCollapsed() {
 func callbackQTreeWidgetItemCollapsed(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::itemCollapsed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemCollapsed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemCollapsed"); signal != nil {
 		signal.(func(*QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(item))
 	}
 
@@ -415,8 +409,7 @@ func (ptr *QTreeWidget) DisconnectItemDoubleClicked() {
 func callbackQTreeWidgetItemDoubleClicked(ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemDoubleClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
@@ -444,8 +437,7 @@ func (ptr *QTreeWidget) DisconnectItemEntered() {
 func callbackQTreeWidgetItemEntered(ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemEntered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemEntered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemEntered"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
@@ -473,8 +465,7 @@ func (ptr *QTreeWidget) DisconnectItemExpanded() {
 func callbackQTreeWidgetItemExpanded(ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::itemExpanded")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemExpanded")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemExpanded"); signal != nil {
 		signal.(func(*QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(item))
 	}
 
@@ -502,8 +493,7 @@ func (ptr *QTreeWidget) DisconnectItemPressed() {
 func callbackQTreeWidgetItemPressed(ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemPressed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemPressed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemPressed"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
@@ -531,8 +521,7 @@ func (ptr *QTreeWidget) DisconnectItemSelectionChanged() {
 func callbackQTreeWidgetItemSelectionChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QTreeWidget::itemSelectionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -657,9 +646,8 @@ func (ptr *QTreeWidget) DisconnectSetSelectionModel() {
 func callbackQTreeWidgetSetSelectionModel(ptrName *C.char, selectionModel unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeWidget::setSelectionModel")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSelectionModel")
-	if signal != nil {
-		defer signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSelectionModel"); signal != nil {
+		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
 		return true
 	}
 	return false

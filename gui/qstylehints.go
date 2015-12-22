@@ -194,8 +194,7 @@ func (ptr *QStyleHints) DisconnectCursorFlashTimeChanged() {
 func callbackQStyleHintsCursorFlashTimeChanged(ptrName *C.char, cursorFlashTime C.int) {
 	defer qt.Recovering("callback QStyleHints::cursorFlashTimeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cursorFlashTimeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "cursorFlashTimeChanged"); signal != nil {
 		signal.(func(int))(int(cursorFlashTime))
 	}
 
@@ -223,8 +222,7 @@ func (ptr *QStyleHints) DisconnectKeyboardInputIntervalChanged() {
 func callbackQStyleHintsKeyboardInputIntervalChanged(ptrName *C.char, keyboardInputInterval C.int) {
 	defer qt.Recovering("callback QStyleHints::keyboardInputIntervalChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyboardInputIntervalChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyboardInputIntervalChanged"); signal != nil {
 		signal.(func(int))(int(keyboardInputInterval))
 	}
 
@@ -252,8 +250,7 @@ func (ptr *QStyleHints) DisconnectMouseDoubleClickIntervalChanged() {
 func callbackQStyleHintsMouseDoubleClickIntervalChanged(ptrName *C.char, mouseDoubleClickInterval C.int) {
 	defer qt.Recovering("callback QStyleHints::mouseDoubleClickIntervalChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickIntervalChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickIntervalChanged"); signal != nil {
 		signal.(func(int))(int(mouseDoubleClickInterval))
 	}
 
@@ -281,8 +278,7 @@ func (ptr *QStyleHints) DisconnectStartDragDistanceChanged() {
 func callbackQStyleHintsStartDragDistanceChanged(ptrName *C.char, startDragDistance C.int) {
 	defer qt.Recovering("callback QStyleHints::startDragDistanceChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "startDragDistanceChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "startDragDistanceChanged"); signal != nil {
 		signal.(func(int))(int(startDragDistance))
 	}
 
@@ -310,8 +306,7 @@ func (ptr *QStyleHints) DisconnectStartDragTimeChanged() {
 func callbackQStyleHintsStartDragTimeChanged(ptrName *C.char, startDragTime C.int) {
 	defer qt.Recovering("callback QStyleHints::startDragTimeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "startDragTimeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "startDragTimeChanged"); signal != nil {
 		signal.(func(int))(int(startDragTime))
 	}
 

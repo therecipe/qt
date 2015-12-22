@@ -328,8 +328,7 @@ func (ptr *QComboBox) DisconnectActivated2() {
 func callbackQComboBoxActivated2(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::activated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activated2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activated2"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
@@ -357,8 +356,7 @@ func (ptr *QComboBox) DisconnectActivated() {
 func callbackQComboBoxActivated(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QComboBox::activated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
@@ -410,9 +408,8 @@ func (ptr *QComboBox) DisconnectChangeEvent() {
 func callbackQComboBoxChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
 		return true
 	}
 	return false
@@ -466,9 +463,8 @@ func (ptr *QComboBox) DisconnectContextMenuEvent() {
 func callbackQComboBoxContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::contextMenuEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contextMenuEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
 		return true
 	}
 	return false
@@ -497,8 +493,7 @@ func (ptr *QComboBox) DisconnectCurrentIndexChanged2() {
 func callbackQComboBoxCurrentIndexChanged2(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::currentIndexChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentIndexChanged2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentIndexChanged2"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
@@ -526,8 +521,7 @@ func (ptr *QComboBox) DisconnectCurrentIndexChanged() {
 func callbackQComboBoxCurrentIndexChanged(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QComboBox::currentIndexChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentIndexChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentIndexChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
@@ -555,8 +549,7 @@ func (ptr *QComboBox) DisconnectCurrentTextChanged() {
 func callbackQComboBoxCurrentTextChanged(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::currentTextChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentTextChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
@@ -584,8 +577,7 @@ func (ptr *QComboBox) DisconnectEditTextChanged() {
 func callbackQComboBoxEditTextChanged(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::editTextChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "editTextChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "editTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
@@ -640,9 +632,8 @@ func (ptr *QComboBox) DisconnectFocusInEvent() {
 func callbackQComboBoxFocusInEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::focusInEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
 		return true
 	}
 	return false
@@ -671,9 +662,8 @@ func (ptr *QComboBox) DisconnectFocusOutEvent() {
 func callbackQComboBoxFocusOutEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::focusOutEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
 		return true
 	}
 	return false
@@ -702,9 +692,8 @@ func (ptr *QComboBox) DisconnectHideEvent() {
 func callbackQComboBoxHideEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::hideEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hideEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(e))
 		return true
 	}
 	return false
@@ -733,9 +722,8 @@ func (ptr *QComboBox) DisconnectHidePopup() {
 func callbackQComboBoxHidePopup(ptrName *C.char) bool {
 	defer qt.Recovering("callback QComboBox::hidePopup")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hidePopup")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "hidePopup"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -764,8 +752,7 @@ func (ptr *QComboBox) DisconnectHighlighted2() {
 func callbackQComboBoxHighlighted2(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::highlighted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted2"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
@@ -793,8 +780,7 @@ func (ptr *QComboBox) DisconnectHighlighted() {
 func callbackQComboBoxHighlighted(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QComboBox::highlighted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "highlighted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
@@ -822,9 +808,8 @@ func (ptr *QComboBox) DisconnectInputMethodEvent() {
 func callbackQComboBoxInputMethodEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::inputMethodEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "inputMethodEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(e))
 		return true
 	}
 	return false
@@ -930,9 +915,8 @@ func (ptr *QComboBox) DisconnectKeyPressEvent() {
 func callbackQComboBoxKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 		return true
 	}
 	return false
@@ -961,9 +945,8 @@ func (ptr *QComboBox) DisconnectKeyReleaseEvent() {
 func callbackQComboBoxKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::keyReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 		return true
 	}
 	return false
@@ -1019,9 +1002,8 @@ func (ptr *QComboBox) DisconnectMousePressEvent() {
 func callbackQComboBoxMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -1050,9 +1032,8 @@ func (ptr *QComboBox) DisconnectMouseReleaseEvent() {
 func callbackQComboBoxMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 		return true
 	}
 	return false
@@ -1081,9 +1062,8 @@ func (ptr *QComboBox) DisconnectPaintEvent() {
 func callbackQComboBoxPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
 		return true
 	}
 	return false
@@ -1120,9 +1100,8 @@ func (ptr *QComboBox) DisconnectResizeEvent() {
 func callbackQComboBoxResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
 		return true
 	}
 	return false
@@ -1232,9 +1211,8 @@ func (ptr *QComboBox) DisconnectShowEvent() {
 func callbackQComboBoxShowEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
 		return true
 	}
 	return false
@@ -1263,9 +1241,8 @@ func (ptr *QComboBox) DisconnectShowPopup() {
 func callbackQComboBoxShowPopup(ptrName *C.char) bool {
 	defer qt.Recovering("callback QComboBox::showPopup")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showPopup")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "showPopup"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -1321,9 +1298,8 @@ func (ptr *QComboBox) DisconnectWheelEvent() {
 func callbackQComboBoxWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QComboBox::wheelEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
 		return true
 	}
 	return false

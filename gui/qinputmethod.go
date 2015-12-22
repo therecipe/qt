@@ -94,8 +94,7 @@ func (ptr *QInputMethod) DisconnectAnimatingChanged() {
 func callbackQInputMethodAnimatingChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QInputMethod::animatingChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "animatingChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "animatingChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -131,8 +130,7 @@ func (ptr *QInputMethod) DisconnectCursorRectangleChanged() {
 func callbackQInputMethodCursorRectangleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QInputMethod::cursorRectangleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "cursorRectangleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "cursorRectangleChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -168,8 +166,7 @@ func (ptr *QInputMethod) DisconnectInputDirectionChanged() {
 func callbackQInputMethodInputDirectionChanged(ptrName *C.char, newDirection C.int) {
 	defer qt.Recovering("callback QInputMethod::inputDirectionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "inputDirectionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputDirectionChanged"); signal != nil {
 		signal.(func(core.Qt__LayoutDirection))(core.Qt__LayoutDirection(newDirection))
 	}
 
@@ -205,8 +202,7 @@ func (ptr *QInputMethod) DisconnectKeyboardRectangleChanged() {
 func callbackQInputMethodKeyboardRectangleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QInputMethod::keyboardRectangleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyboardRectangleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyboardRectangleChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -234,8 +230,7 @@ func (ptr *QInputMethod) DisconnectLocaleChanged() {
 func callbackQInputMethodLocaleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QInputMethod::localeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "localeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "localeChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -317,8 +312,7 @@ func (ptr *QInputMethod) DisconnectVisibleChanged() {
 func callbackQInputMethodVisibleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QInputMethod::visibleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "visibleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "visibleChanged"); signal != nil {
 		signal.(func())()
 	}
 

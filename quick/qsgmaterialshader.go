@@ -66,9 +66,8 @@ func (ptr *QSGMaterialShader) DisconnectActivate() {
 func callbackQSGMaterialShaderActivate(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSGMaterialShader::activate")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activate")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "activate"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -97,9 +96,8 @@ func (ptr *QSGMaterialShader) DisconnectCompile() {
 func callbackQSGMaterialShaderCompile(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSGMaterialShader::compile")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "compile")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "compile"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -128,9 +126,8 @@ func (ptr *QSGMaterialShader) DisconnectDeactivate() {
 func callbackQSGMaterialShaderDeactivate(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSGMaterialShader::deactivate")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "deactivate")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "deactivate"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -159,9 +156,8 @@ func (ptr *QSGMaterialShader) DisconnectInitialize() {
 func callbackQSGMaterialShaderInitialize(ptrName *C.char) bool {
 	defer qt.Recovering("callback QSGMaterialShader::initialize")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "initialize")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "initialize"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

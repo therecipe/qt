@@ -128,8 +128,7 @@ func (ptr *QDockWidget) DisconnectAllowedAreasChanged() {
 func callbackQDockWidgetAllowedAreasChanged(ptrName *C.char, allowedAreas C.int) {
 	defer qt.Recovering("callback QDockWidget::allowedAreasChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "allowedAreasChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "allowedAreasChanged"); signal != nil {
 		signal.(func(core.Qt__DockWidgetArea))(core.Qt__DockWidgetArea(allowedAreas))
 	}
 
@@ -157,9 +156,8 @@ func (ptr *QDockWidget) DisconnectChangeEvent() {
 func callbackQDockWidgetChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDockWidget::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -188,9 +186,8 @@ func (ptr *QDockWidget) DisconnectCloseEvent() {
 func callbackQDockWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDockWidget::closeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "closeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -219,8 +216,7 @@ func (ptr *QDockWidget) DisconnectDockLocationChanged() {
 func callbackQDockWidgetDockLocationChanged(ptrName *C.char, area C.int) {
 	defer qt.Recovering("callback QDockWidget::dockLocationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dockLocationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "dockLocationChanged"); signal != nil {
 		signal.(func(core.Qt__DockWidgetArea))(core.Qt__DockWidgetArea(area))
 	}
 
@@ -248,8 +244,7 @@ func (ptr *QDockWidget) DisconnectFeaturesChanged() {
 func callbackQDockWidgetFeaturesChanged(ptrName *C.char, features C.int) {
 	defer qt.Recovering("callback QDockWidget::featuresChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "featuresChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "featuresChanged"); signal != nil {
 		signal.(func(QDockWidget__DockWidgetFeature))(QDockWidget__DockWidgetFeature(features))
 	}
 
@@ -295,9 +290,8 @@ func (ptr *QDockWidget) DisconnectPaintEvent() {
 func callbackQDockWidgetPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDockWidget::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 		return true
 	}
 	return false
@@ -360,8 +354,7 @@ func (ptr *QDockWidget) DisconnectTopLevelChanged() {
 func callbackQDockWidgetTopLevelChanged(ptrName *C.char, topLevel C.int) {
 	defer qt.Recovering("callback QDockWidget::topLevelChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "topLevelChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "topLevelChanged"); signal != nil {
 		signal.(func(bool))(int(topLevel) != 0)
 	}
 
@@ -389,8 +382,7 @@ func (ptr *QDockWidget) DisconnectVisibilityChanged() {
 func callbackQDockWidgetVisibilityChanged(ptrName *C.char, visible C.int) {
 	defer qt.Recovering("callback QDockWidget::visibilityChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "visibilityChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "visibilityChanged"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
 	}
 

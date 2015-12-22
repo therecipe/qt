@@ -84,8 +84,7 @@ func (ptr *QDBusPendingCallWatcher) DisconnectFinished() {
 func callbackQDBusPendingCallWatcherFinished(ptrName *C.char, self unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(*QDBusPendingCallWatcher))(NewQDBusPendingCallWatcherFromPointer(self))
 	}
 

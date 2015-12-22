@@ -67,8 +67,7 @@ func (ptr *QCameraLocksControl) DisconnectLockStatusChanged() {
 func callbackQCameraLocksControlLockStatusChanged(ptrName *C.char, lock C.int, status C.int, reason C.int) {
 	defer qt.Recovering("callback QCameraLocksControl::lockStatusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "lockStatusChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "lockStatusChanged"); signal != nil {
 		signal.(func(QCamera__LockType, QCamera__LockStatus, QCamera__LockChangeReason))(QCamera__LockType(lock), QCamera__LockStatus(status), QCamera__LockChangeReason(reason))
 	}
 

@@ -101,9 +101,8 @@ func (ptr *QFontDialog) DisconnectChangeEvent() {
 func callbackQFontDialogChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QFontDialog::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
 		return true
 	}
 	return false
@@ -132,9 +131,8 @@ func (ptr *QFontDialog) DisconnectDone() {
 func callbackQFontDialogDone(ptrName *C.char, result C.int) bool {
 	defer qt.Recovering("callback QFontDialog::done")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "done")
-	if signal != nil {
-		defer signal.(func(int))(int(result))
+	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
+		signal.(func(int))(int(result))
 		return true
 	}
 	return false
@@ -187,9 +185,8 @@ func (ptr *QFontDialog) DisconnectSetVisible() {
 func callbackQFontDialogSetVisible(ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QFontDialog::setVisible")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setVisible")
-	if signal != nil {
-		defer signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
+		signal.(func(bool))(int(visible) != 0)
 		return true
 	}
 	return false

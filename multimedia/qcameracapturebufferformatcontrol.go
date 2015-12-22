@@ -67,8 +67,7 @@ func (ptr *QCameraCaptureBufferFormatControl) DisconnectBufferFormatChanged() {
 func callbackQCameraCaptureBufferFormatControlBufferFormatChanged(ptrName *C.char, format C.int) {
 	defer qt.Recovering("callback QCameraCaptureBufferFormatControl::bufferFormatChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "bufferFormatChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "bufferFormatChanged"); signal != nil {
 		signal.(func(QVideoFrame__PixelFormat))(QVideoFrame__PixelFormat(format))
 	}
 

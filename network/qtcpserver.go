@@ -65,8 +65,7 @@ func (ptr *QTcpServer) DisconnectAcceptError() {
 func callbackQTcpServerAcceptError(ptrName *C.char, socketError C.int) {
 	defer qt.Recovering("callback QTcpServer::acceptError")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "acceptError")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "acceptError"); signal != nil {
 		signal.(func(QAbstractSocket__SocketError))(QAbstractSocket__SocketError(socketError))
 	}
 
@@ -138,8 +137,7 @@ func (ptr *QTcpServer) DisconnectNewConnection() {
 func callbackQTcpServerNewConnection(ptrName *C.char) {
 	defer qt.Recovering("callback QTcpServer::newConnection")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "newConnection")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "newConnection"); signal != nil {
 		signal.(func())()
 	}
 

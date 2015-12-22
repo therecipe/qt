@@ -117,9 +117,8 @@ func (ptr *QGraphicsAnchorLayout) DisconnectInvalidate() {
 func callbackQGraphicsAnchorLayoutInvalidate(ptrName *C.char) bool {
 	defer qt.Recovering("callback QGraphicsAnchorLayout::invalidate")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "invalidate")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -157,9 +156,8 @@ func (ptr *QGraphicsAnchorLayout) DisconnectRemoveAt() {
 func callbackQGraphicsAnchorLayoutRemoveAt(ptrName *C.char, index C.int) bool {
 	defer qt.Recovering("callback QGraphicsAnchorLayout::removeAt")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "removeAt")
-	if signal != nil {
-		defer signal.(func(int))(int(index))
+	if signal := qt.GetSignal(C.GoString(ptrName), "removeAt"); signal != nil {
+		signal.(func(int))(int(index))
 		return true
 	}
 	return false

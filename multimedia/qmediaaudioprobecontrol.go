@@ -58,8 +58,7 @@ func (ptr *QMediaAudioProbeControl) DisconnectFlush() {
 func callbackQMediaAudioProbeControlFlush(ptrName *C.char) {
 	defer qt.Recovering("callback QMediaAudioProbeControl::flush")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "flush")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "flush"); signal != nil {
 		signal.(func())()
 	}
 

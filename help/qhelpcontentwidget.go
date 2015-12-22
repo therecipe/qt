@@ -69,8 +69,7 @@ func (ptr *QHelpContentWidget) DisconnectLinkActivated() {
 func callbackQHelpContentWidgetLinkActivated(ptrName *C.char, link unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpContentWidget::linkActivated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "linkActivated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "linkActivated"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
 	}
 

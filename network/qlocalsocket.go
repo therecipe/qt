@@ -109,8 +109,7 @@ func (ptr *QLocalSocket) DisconnectConnected() {
 func callbackQLocalSocketConnected(ptrName *C.char) {
 	defer qt.Recovering("callback QLocalSocket::connected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "connected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "connected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -138,8 +137,7 @@ func (ptr *QLocalSocket) DisconnectDisconnected() {
 func callbackQLocalSocketDisconnected(ptrName *C.char) {
 	defer qt.Recovering("callback QLocalSocket::disconnected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "disconnected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "disconnected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -167,8 +165,7 @@ func (ptr *QLocalSocket) DisconnectError2() {
 func callbackQLocalSocketError2(ptrName *C.char, socketError C.int) {
 	defer qt.Recovering("callback QLocalSocket::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QLocalSocket__LocalSocketError))(QLocalSocket__LocalSocketError(socketError))
 	}
 
@@ -240,8 +237,7 @@ func (ptr *QLocalSocket) DisconnectStateChanged() {
 func callbackQLocalSocketStateChanged(ptrName *C.char, socketState C.int) {
 	defer qt.Recovering("callback QLocalSocket::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QLocalSocket__LocalSocketState))(QLocalSocket__LocalSocketState(socketState))
 	}
 
@@ -313,9 +309,8 @@ func (ptr *QLocalSocket) DisconnectClose() {
 func callbackQLocalSocketClose(ptrName *C.char) bool {
 	defer qt.Recovering("callback QLocalSocket::close")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "close")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

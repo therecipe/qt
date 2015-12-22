@@ -86,8 +86,7 @@ func (ptr *QBluetoothSocket) DisconnectConnected() {
 func callbackQBluetoothSocketConnected(ptrName *C.char) {
 	defer qt.Recovering("callback QBluetoothSocket::connected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "connected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "connected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -115,8 +114,7 @@ func (ptr *QBluetoothSocket) DisconnectDisconnected() {
 func callbackQBluetoothSocketDisconnected(ptrName *C.char) {
 	defer qt.Recovering("callback QBluetoothSocket::disconnected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "disconnected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "disconnected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -144,8 +142,7 @@ func (ptr *QBluetoothSocket) DisconnectError2() {
 func callbackQBluetoothSocketError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QBluetoothSocket::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QBluetoothSocket__SocketError))(QBluetoothSocket__SocketError(error))
 	}
 
@@ -173,8 +170,7 @@ func (ptr *QBluetoothSocket) DisconnectStateChanged() {
 func callbackQBluetoothSocketStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QBluetoothSocket::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QBluetoothSocket__SocketState))(QBluetoothSocket__SocketState(state))
 	}
 
@@ -249,9 +245,8 @@ func (ptr *QBluetoothSocket) DisconnectClose() {
 func callbackQBluetoothSocketClose(ptrName *C.char) bool {
 	defer qt.Recovering("callback QBluetoothSocket::close")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "close")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

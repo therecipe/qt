@@ -136,9 +136,8 @@ func (ptr *QSlider) DisconnectMouseMoveEvent() {
 func callbackQSliderMouseMoveEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSlider::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -167,9 +166,8 @@ func (ptr *QSlider) DisconnectMousePressEvent() {
 func callbackQSliderMousePressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSlider::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -198,9 +196,8 @@ func (ptr *QSlider) DisconnectMouseReleaseEvent() {
 func callbackQSliderMouseReleaseEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSlider::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -229,9 +226,8 @@ func (ptr *QSlider) DisconnectPaintEvent() {
 func callbackQSliderPaintEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSlider::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(ev))
 		return true
 	}
 	return false

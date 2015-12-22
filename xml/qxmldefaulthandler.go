@@ -248,9 +248,8 @@ func (ptr *QXmlDefaultHandler) DisconnectSetDocumentLocator() {
 func callbackQXmlDefaultHandlerSetDocumentLocator(ptrName *C.char, locator unsafe.Pointer) bool {
 	defer qt.Recovering("callback QXmlDefaultHandler::setDocumentLocator")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setDocumentLocator")
-	if signal != nil {
-		defer signal.(func(*QXmlLocator))(NewQXmlLocatorFromPointer(locator))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setDocumentLocator"); signal != nil {
+		signal.(func(*QXmlLocator))(NewQXmlLocatorFromPointer(locator))
 		return true
 	}
 	return false

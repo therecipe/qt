@@ -161,9 +161,8 @@ func (ptr *QQmlIncubator) DisconnectSetInitialState() {
 func callbackQQmlIncubatorSetInitialState(ptrName *C.char, object unsafe.Pointer) bool {
 	defer qt.Recovering("callback QQmlIncubator::setInitialState")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setInitialState")
-	if signal != nil {
-		defer signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setInitialState"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
 		return true
 	}
 	return false
@@ -201,9 +200,8 @@ func (ptr *QQmlIncubator) DisconnectStatusChanged() {
 func callbackQQmlIncubatorStatusChanged(ptrName *C.char, status C.int) bool {
 	defer qt.Recovering("callback QQmlIncubator::statusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "statusChanged")
-	if signal != nil {
-		defer signal.(func(QQmlIncubator__Status))(QQmlIncubator__Status(status))
+	if signal := qt.GetSignal(C.GoString(ptrName), "statusChanged"); signal != nil {
+		signal.(func(QQmlIncubator__Status))(QQmlIncubator__Status(status))
 		return true
 	}
 	return false

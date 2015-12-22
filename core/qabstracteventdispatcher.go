@@ -58,8 +58,7 @@ func (ptr *QAbstractEventDispatcher) DisconnectAboutToBlock() {
 func callbackQAbstractEventDispatcherAboutToBlock(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractEventDispatcher::aboutToBlock")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "aboutToBlock")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "aboutToBlock"); signal != nil {
 		signal.(func())()
 	}
 
@@ -87,8 +86,7 @@ func (ptr *QAbstractEventDispatcher) DisconnectAwake() {
 func callbackQAbstractEventDispatcherAwake(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractEventDispatcher::awake")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "awake")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "awake"); signal != nil {
 		signal.(func())()
 	}
 

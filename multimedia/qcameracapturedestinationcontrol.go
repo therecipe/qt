@@ -67,8 +67,7 @@ func (ptr *QCameraCaptureDestinationControl) DisconnectCaptureDestinationChanged
 func callbackQCameraCaptureDestinationControlCaptureDestinationChanged(ptrName *C.char, destination C.int) {
 	defer qt.Recovering("callback QCameraCaptureDestinationControl::captureDestinationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "captureDestinationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "captureDestinationChanged"); signal != nil {
 		signal.(func(QCameraImageCapture__CaptureDestination))(QCameraImageCapture__CaptureDestination(destination))
 	}
 

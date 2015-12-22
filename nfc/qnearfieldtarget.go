@@ -105,8 +105,7 @@ func (ptr *QNearFieldTarget) DisconnectDisconnected() {
 func callbackQNearFieldTargetDisconnected(ptrName *C.char) {
 	defer qt.Recovering("callback QNearFieldTarget::disconnected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "disconnected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "disconnected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -152,8 +151,7 @@ func (ptr *QNearFieldTarget) DisconnectNdefMessagesWritten() {
 func callbackQNearFieldTargetNdefMessagesWritten(ptrName *C.char) {
 	defer qt.Recovering("callback QNearFieldTarget::ndefMessagesWritten")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "ndefMessagesWritten")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "ndefMessagesWritten"); signal != nil {
 		signal.(func())()
 	}
 

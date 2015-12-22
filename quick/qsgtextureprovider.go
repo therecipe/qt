@@ -68,8 +68,7 @@ func (ptr *QSGTextureProvider) DisconnectTextureChanged() {
 func callbackQSGTextureProviderTextureChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QSGTextureProvider::textureChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "textureChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "textureChanged"); signal != nil {
 		signal.(func())()
 	}
 

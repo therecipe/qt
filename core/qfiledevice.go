@@ -131,9 +131,8 @@ func (ptr *QFileDevice) DisconnectClose() {
 func callbackQFileDeviceClose(ptrName *C.char) bool {
 	defer qt.Recovering("callback QFileDevice::close")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "close")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

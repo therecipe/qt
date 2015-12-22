@@ -100,9 +100,8 @@ func (ptr *QNmeaPositionInfoSource) DisconnectRequestUpdate() {
 func callbackQNmeaPositionInfoSourceRequestUpdate(ptrName *C.char, msec C.int) bool {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::requestUpdate")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "requestUpdate")
-	if signal != nil {
-		defer signal.(func(int))(int(msec))
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestUpdate"); signal != nil {
+		signal.(func(int))(int(msec))
 		return true
 	}
 	return false
@@ -139,9 +138,8 @@ func (ptr *QNmeaPositionInfoSource) DisconnectSetUpdateInterval() {
 func callbackQNmeaPositionInfoSourceSetUpdateInterval(ptrName *C.char, msec C.int) bool {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::setUpdateInterval")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setUpdateInterval")
-	if signal != nil {
-		defer signal.(func(int))(int(msec))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setUpdateInterval"); signal != nil {
+		signal.(func(int))(int(msec))
 		return true
 	}
 	return false
@@ -170,9 +168,8 @@ func (ptr *QNmeaPositionInfoSource) DisconnectStartUpdates() {
 func callbackQNmeaPositionInfoSourceStartUpdates(ptrName *C.char) bool {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::startUpdates")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "startUpdates")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "startUpdates"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -201,9 +198,8 @@ func (ptr *QNmeaPositionInfoSource) DisconnectStopUpdates() {
 func callbackQNmeaPositionInfoSourceStopUpdates(ptrName *C.char) bool {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::stopUpdates")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stopUpdates")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "stopUpdates"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

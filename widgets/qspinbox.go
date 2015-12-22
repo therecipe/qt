@@ -200,8 +200,7 @@ func (ptr *QSpinBox) DisconnectValueChanged2() {
 func callbackQSpinBoxValueChanged2(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QSpinBox::valueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged2"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
@@ -229,8 +228,7 @@ func (ptr *QSpinBox) DisconnectValueChanged() {
 func callbackQSpinBoxValueChanged(ptrName *C.char, i C.int) {
 	defer qt.Recovering("callback QSpinBox::valueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func(int))(int(i))
 	}
 

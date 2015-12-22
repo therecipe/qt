@@ -107,8 +107,7 @@ func (ptr *QGraphicsRotation) DisconnectAngleChanged() {
 func callbackQGraphicsRotationAngleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsRotation::angleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "angleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "angleChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -136,9 +135,8 @@ func (ptr *QGraphicsRotation) DisconnectApplyTo() {
 func callbackQGraphicsRotationApplyTo(ptrName *C.char, matrix unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsRotation::applyTo")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "applyTo")
-	if signal != nil {
-		defer signal.(func(*gui.QMatrix4x4))(gui.NewQMatrix4x4FromPointer(matrix))
+	if signal := qt.GetSignal(C.GoString(ptrName), "applyTo"); signal != nil {
+		signal.(func(*gui.QMatrix4x4))(gui.NewQMatrix4x4FromPointer(matrix))
 		return true
 	}
 	return false
@@ -167,8 +165,7 @@ func (ptr *QGraphicsRotation) DisconnectAxisChanged() {
 func callbackQGraphicsRotationAxisChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsRotation::axisChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "axisChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "axisChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -196,8 +193,7 @@ func (ptr *QGraphicsRotation) DisconnectOriginChanged() {
 func callbackQGraphicsRotationOriginChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsRotation::originChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "originChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "originChanged"); signal != nil {
 		signal.(func())()
 	}
 

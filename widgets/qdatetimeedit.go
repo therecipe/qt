@@ -369,9 +369,8 @@ func (ptr *QDateTimeEdit) DisconnectClear() {
 func callbackQDateTimeEditClear(ptrName *C.char) bool {
 	defer qt.Recovering("callback QDateTimeEdit::clear")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "clear")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -400,8 +399,7 @@ func (ptr *QDateTimeEdit) DisconnectDateTimeChanged() {
 func callbackQDateTimeEditDateTimeChanged(ptrName *C.char, datetime unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::dateTimeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dateTimeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "dateTimeChanged"); signal != nil {
 		signal.(func(*core.QDateTime))(core.NewQDateTimeFromPointer(datetime))
 	}
 
@@ -438,9 +436,8 @@ func (ptr *QDateTimeEdit) DisconnectFocusInEvent() {
 func callbackQDateTimeEditFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDateTimeEdit::focusInEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 		return true
 	}
 	return false
@@ -469,9 +466,8 @@ func (ptr *QDateTimeEdit) DisconnectKeyPressEvent() {
 func callbackQDateTimeEditKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDateTimeEdit::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 		return true
 	}
 	return false
@@ -500,9 +496,8 @@ func (ptr *QDateTimeEdit) DisconnectMousePressEvent() {
 func callbackQDateTimeEditMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDateTimeEdit::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -531,9 +526,8 @@ func (ptr *QDateTimeEdit) DisconnectPaintEvent() {
 func callbackQDateTimeEditPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDateTimeEdit::paintEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paintEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 		return true
 	}
 	return false
@@ -620,9 +614,8 @@ func (ptr *QDateTimeEdit) DisconnectStepBy() {
 func callbackQDateTimeEditStepBy(ptrName *C.char, steps C.int) bool {
 	defer qt.Recovering("callback QDateTimeEdit::stepBy")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stepBy")
-	if signal != nil {
-		defer signal.(func(int))(int(steps))
+	if signal := qt.GetSignal(C.GoString(ptrName), "stepBy"); signal != nil {
+		signal.(func(int))(int(steps))
 		return true
 	}
 	return false
@@ -651,9 +644,8 @@ func (ptr *QDateTimeEdit) DisconnectWheelEvent() {
 func callbackQDateTimeEditWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QDateTimeEdit::wheelEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 		return true
 	}
 	return false

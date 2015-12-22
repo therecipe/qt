@@ -124,8 +124,7 @@ func (ptr *QDoubleSpinBox) DisconnectValueChanged2() {
 func callbackQDoubleSpinBoxValueChanged2(ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QDoubleSpinBox::valueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged2"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 

@@ -412,8 +412,7 @@ func (ptr *QAction) DisconnectChanged() {
 func callbackQActionChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QAction::changed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "changed"); signal != nil {
 		signal.(func())()
 	}
 
@@ -458,8 +457,7 @@ func (ptr *QAction) DisconnectHovered() {
 func callbackQActionHovered(ptrName *C.char) {
 	defer qt.Recovering("callback QAction::hovered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hovered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "hovered"); signal != nil {
 		signal.(func())()
 	}
 
@@ -563,8 +561,7 @@ func (ptr *QAction) DisconnectToggled() {
 func callbackQActionToggled(ptrName *C.char, checked C.int) {
 	defer qt.Recovering("callback QAction::toggled")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "toggled")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "toggled"); signal != nil {
 		signal.(func(bool))(int(checked) != 0)
 	}
 
@@ -600,8 +597,7 @@ func (ptr *QAction) DisconnectTriggered() {
 func callbackQActionTriggered(ptrName *C.char, checked C.int) {
 	defer qt.Recovering("callback QAction::triggered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "triggered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "triggered"); signal != nil {
 		signal.(func(bool))(int(checked) != 0)
 	}
 

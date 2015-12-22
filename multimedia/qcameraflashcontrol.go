@@ -67,8 +67,7 @@ func (ptr *QCameraFlashControl) DisconnectFlashReady() {
 func callbackQCameraFlashControlFlashReady(ptrName *C.char, ready C.int) {
 	defer qt.Recovering("callback QCameraFlashControl::flashReady")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "flashReady")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "flashReady"); signal != nil {
 		signal.(func(bool))(int(ready) != 0)
 	}
 

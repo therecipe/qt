@@ -277,8 +277,7 @@ func (ptr *QAbstractSlider) DisconnectActionTriggered() {
 func callbackQAbstractSliderActionTriggered(ptrName *C.char, action C.int) {
 	defer qt.Recovering("callback QAbstractSlider::actionTriggered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "actionTriggered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "actionTriggered"); signal != nil {
 		signal.(func(int))(int(action))
 	}
 
@@ -306,9 +305,8 @@ func (ptr *QAbstractSlider) DisconnectChangeEvent() {
 func callbackQAbstractSliderChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QAbstractSlider::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -337,9 +335,8 @@ func (ptr *QAbstractSlider) DisconnectKeyPressEvent() {
 func callbackQAbstractSliderKeyPressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QAbstractSlider::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -368,8 +365,7 @@ func (ptr *QAbstractSlider) DisconnectRangeChanged() {
 func callbackQAbstractSliderRangeChanged(ptrName *C.char, min C.int, max C.int) {
 	defer qt.Recovering("callback QAbstractSlider::rangeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "rangeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "rangeChanged"); signal != nil {
 		signal.(func(int, int))(int(min), int(max))
 	}
 
@@ -405,9 +401,8 @@ func (ptr *QAbstractSlider) DisconnectSliderChange() {
 func callbackQAbstractSliderSliderChange(ptrName *C.char, change C.int) bool {
 	defer qt.Recovering("callback QAbstractSlider::sliderChange")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sliderChange")
-	if signal != nil {
-		defer signal.(func(QAbstractSlider__SliderChange))(QAbstractSlider__SliderChange(change))
+	if signal := qt.GetSignal(C.GoString(ptrName), "sliderChange"); signal != nil {
+		signal.(func(QAbstractSlider__SliderChange))(QAbstractSlider__SliderChange(change))
 		return true
 	}
 	return false
@@ -436,8 +431,7 @@ func (ptr *QAbstractSlider) DisconnectSliderMoved() {
 func callbackQAbstractSliderSliderMoved(ptrName *C.char, value C.int) {
 	defer qt.Recovering("callback QAbstractSlider::sliderMoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sliderMoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sliderMoved"); signal != nil {
 		signal.(func(int))(int(value))
 	}
 
@@ -465,8 +459,7 @@ func (ptr *QAbstractSlider) DisconnectSliderPressed() {
 func callbackQAbstractSliderSliderPressed(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractSlider::sliderPressed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sliderPressed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sliderPressed"); signal != nil {
 		signal.(func())()
 	}
 
@@ -494,8 +487,7 @@ func (ptr *QAbstractSlider) DisconnectSliderReleased() {
 func callbackQAbstractSliderSliderReleased(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractSlider::sliderReleased")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sliderReleased")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sliderReleased"); signal != nil {
 		signal.(func())()
 	}
 
@@ -523,9 +515,8 @@ func (ptr *QAbstractSlider) DisconnectTimerEvent() {
 func callbackQAbstractSliderTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QAbstractSlider::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
 		return true
 	}
 	return false
@@ -562,8 +553,7 @@ func (ptr *QAbstractSlider) DisconnectValueChanged() {
 func callbackQAbstractSliderValueChanged(ptrName *C.char, value C.int) {
 	defer qt.Recovering("callback QAbstractSlider::valueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func(int))(int(value))
 	}
 
@@ -591,9 +581,8 @@ func (ptr *QAbstractSlider) DisconnectWheelEvent() {
 func callbackQAbstractSliderWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QAbstractSlider::wheelEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
 		return true
 	}
 	return false

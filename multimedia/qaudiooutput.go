@@ -116,8 +116,7 @@ func (ptr *QAudioOutput) DisconnectNotify() {
 func callbackQAudioOutputNotify(ptrName *C.char) {
 	defer qt.Recovering("callback QAudioOutput::notify")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "notify")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "notify"); signal != nil {
 		signal.(func())()
 	}
 
@@ -246,8 +245,7 @@ func (ptr *QAudioOutput) DisconnectStateChanged() {
 func callbackQAudioOutputStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QAudioOutput::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QAudio__State))(QAudio__State(state))
 	}
 

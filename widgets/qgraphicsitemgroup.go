@@ -82,9 +82,8 @@ func (ptr *QGraphicsItemGroup) DisconnectPaint() {
 func callbackQGraphicsItemGroupPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsItemGroup::paint")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paint")
-	if signal != nil {
-		defer signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paint"); signal != nil {
+		signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
 		return true
 	}
 	return false

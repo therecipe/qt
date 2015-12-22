@@ -85,8 +85,7 @@ func (ptr *QCameraImageCaptureControl) DisconnectError() {
 func callbackQCameraImageCaptureControlError(ptrName *C.char, id C.int, error C.int, errorString *C.char) {
 	defer qt.Recovering("callback QCameraImageCaptureControl::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(int, int, string))(int(id), int(error), C.GoString(errorString))
 	}
 
@@ -114,8 +113,7 @@ func (ptr *QCameraImageCaptureControl) DisconnectImageExposed() {
 func callbackQCameraImageCaptureControlImageExposed(ptrName *C.char, requestId C.int) {
 	defer qt.Recovering("callback QCameraImageCaptureControl::imageExposed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "imageExposed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "imageExposed"); signal != nil {
 		signal.(func(int))(int(requestId))
 	}
 
@@ -143,8 +141,7 @@ func (ptr *QCameraImageCaptureControl) DisconnectImageMetadataAvailable() {
 func callbackQCameraImageCaptureControlImageMetadataAvailable(ptrName *C.char, id C.int, key *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraImageCaptureControl::imageMetadataAvailable")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "imageMetadataAvailable")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "imageMetadataAvailable"); signal != nil {
 		signal.(func(int, string, *core.QVariant))(int(id), C.GoString(key), core.NewQVariantFromPointer(value))
 	}
 
@@ -172,8 +169,7 @@ func (ptr *QCameraImageCaptureControl) DisconnectImageSaved() {
 func callbackQCameraImageCaptureControlImageSaved(ptrName *C.char, requestId C.int, fileName *C.char) {
 	defer qt.Recovering("callback QCameraImageCaptureControl::imageSaved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "imageSaved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "imageSaved"); signal != nil {
 		signal.(func(int, string))(int(requestId), C.GoString(fileName))
 	}
 
@@ -210,8 +206,7 @@ func (ptr *QCameraImageCaptureControl) DisconnectReadyForCaptureChanged() {
 func callbackQCameraImageCaptureControlReadyForCaptureChanged(ptrName *C.char, ready C.int) {
 	defer qt.Recovering("callback QCameraImageCaptureControl::readyForCaptureChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "readyForCaptureChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "readyForCaptureChanged"); signal != nil {
 		signal.(func(bool))(int(ready) != 0)
 	}
 

@@ -66,9 +66,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectContextMenuEvent() {
 func callbackQGraphicsProxyWidgetContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::contextMenuEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contextMenuEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneContextMenuEvent))(NewQGraphicsSceneContextMenuEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneContextMenuEvent))(NewQGraphicsSceneContextMenuEventFromPointer(event))
 		return true
 	}
 	return false
@@ -106,9 +105,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectDragEnterEvent() {
 func callbackQGraphicsProxyWidgetDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::dragEnterEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragEnterEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
 		return true
 	}
 	return false
@@ -137,9 +135,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectDragLeaveEvent() {
 func callbackQGraphicsProxyWidgetDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::dragLeaveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
 		return true
 	}
 	return false
@@ -168,9 +165,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectDragMoveEvent() {
 func callbackQGraphicsProxyWidgetDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::dragMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dragMoveEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
 		return true
 	}
 	return false
@@ -199,9 +195,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectDropEvent() {
 func callbackQGraphicsProxyWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::dropEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "dropEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
 		return true
 	}
 	return false
@@ -230,9 +225,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectFocusInEvent() {
 func callbackQGraphicsProxyWidgetFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::focusInEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusInEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 		return true
 	}
 	return false
@@ -261,9 +255,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectFocusOutEvent() {
 func callbackQGraphicsProxyWidgetFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::focusOutEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusOutEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 		return true
 	}
 	return false
@@ -292,9 +285,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectGrabMouseEvent() {
 func callbackQGraphicsProxyWidgetGrabMouseEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::grabMouseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "grabMouseEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "grabMouseEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -323,9 +315,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectHideEvent() {
 func callbackQGraphicsProxyWidgetHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::hideEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hideEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 		return true
 	}
 	return false
@@ -354,9 +345,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectHoverEnterEvent() {
 func callbackQGraphicsProxyWidgetHoverEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::hoverEnterEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hoverEnterEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneHoverEvent))(NewQGraphicsSceneHoverEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverEnterEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneHoverEvent))(NewQGraphicsSceneHoverEventFromPointer(event))
 		return true
 	}
 	return false
@@ -385,9 +375,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectHoverLeaveEvent() {
 func callbackQGraphicsProxyWidgetHoverLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::hoverLeaveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hoverLeaveEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneHoverEvent))(NewQGraphicsSceneHoverEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverLeaveEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneHoverEvent))(NewQGraphicsSceneHoverEventFromPointer(event))
 		return true
 	}
 	return false
@@ -416,9 +405,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectHoverMoveEvent() {
 func callbackQGraphicsProxyWidgetHoverMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::hoverMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hoverMoveEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneHoverEvent))(NewQGraphicsSceneHoverEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverMoveEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneHoverEvent))(NewQGraphicsSceneHoverEventFromPointer(event))
 		return true
 	}
 	return false
@@ -447,9 +435,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectInputMethodEvent() {
 func callbackQGraphicsProxyWidgetInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::inputMethodEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "inputMethodEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 		return true
 	}
 	return false
@@ -478,9 +465,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectKeyPressEvent() {
 func callbackQGraphicsProxyWidgetKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 		return true
 	}
 	return false
@@ -509,9 +495,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectKeyReleaseEvent() {
 func callbackQGraphicsProxyWidgetKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::keyReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 		return true
 	}
 	return false
@@ -540,9 +525,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectMouseDoubleClickEvent() {
 func callbackQGraphicsProxyWidgetMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::mouseDoubleClickEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -571,9 +555,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectMouseMoveEvent() {
 func callbackQGraphicsProxyWidgetMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::mouseMoveEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -602,9 +585,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectMousePressEvent() {
 func callbackQGraphicsProxyWidgetMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::mousePressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mousePressEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -633,9 +615,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectMouseReleaseEvent() {
 func callbackQGraphicsProxyWidgetMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::mouseReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
 		return true
 	}
 	return false
@@ -664,9 +645,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectPaint() {
 func callbackQGraphicsProxyWidgetPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::paint")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "paint")
-	if signal != nil {
-		defer signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
+	if signal := qt.GetSignal(C.GoString(ptrName), "paint"); signal != nil {
+		signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
 		return true
 	}
 	return false
@@ -695,9 +675,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectResizeEvent() {
 func callbackQGraphicsProxyWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneResizeEvent))(NewQGraphicsSceneResizeEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneResizeEvent))(NewQGraphicsSceneResizeEventFromPointer(event))
 		return true
 	}
 	return false
@@ -734,9 +713,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectShowEvent() {
 func callbackQGraphicsProxyWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::showEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "showEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 		return true
 	}
 	return false
@@ -774,9 +752,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectUngrabMouseEvent() {
 func callbackQGraphicsProxyWidgetUngrabMouseEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::ungrabMouseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "ungrabMouseEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "ungrabMouseEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}
 	return false
@@ -805,9 +782,8 @@ func (ptr *QGraphicsProxyWidget) DisconnectWheelEvent() {
 func callbackQGraphicsProxyWidgetWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsProxyWidget::wheelEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "wheelEvent")
-	if signal != nil {
-		defer signal.(func(*QGraphicsSceneWheelEvent))(NewQGraphicsSceneWheelEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneWheelEvent))(NewQGraphicsSceneWheelEventFromPointer(event))
 		return true
 	}
 	return false

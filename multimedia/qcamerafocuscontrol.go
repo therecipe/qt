@@ -68,8 +68,7 @@ func (ptr *QCameraFocusControl) DisconnectFocusModeChanged() {
 func callbackQCameraFocusControlFocusModeChanged(ptrName *C.char, mode C.int) {
 	defer qt.Recovering("callback QCameraFocusControl::focusModeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusModeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusModeChanged"); signal != nil {
 		signal.(func(QCameraFocus__FocusMode))(QCameraFocus__FocusMode(mode))
 	}
 
@@ -106,8 +105,7 @@ func (ptr *QCameraFocusControl) DisconnectFocusPointModeChanged() {
 func callbackQCameraFocusControlFocusPointModeChanged(ptrName *C.char, mode C.int) {
 	defer qt.Recovering("callback QCameraFocusControl::focusPointModeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusPointModeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusPointModeChanged"); signal != nil {
 		signal.(func(QCameraFocus__FocusPointMode))(QCameraFocus__FocusPointMode(mode))
 	}
 
@@ -135,8 +133,7 @@ func (ptr *QCameraFocusControl) DisconnectFocusZonesChanged() {
 func callbackQCameraFocusControlFocusZonesChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QCameraFocusControl::focusZonesChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusZonesChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusZonesChanged"); signal != nil {
 		signal.(func())()
 	}
 

@@ -125,9 +125,8 @@ func (ptr *QGraphicsScale) DisconnectApplyTo() {
 func callbackQGraphicsScaleApplyTo(ptrName *C.char, matrix unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGraphicsScale::applyTo")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "applyTo")
-	if signal != nil {
-		defer signal.(func(*gui.QMatrix4x4))(gui.NewQMatrix4x4FromPointer(matrix))
+	if signal := qt.GetSignal(C.GoString(ptrName), "applyTo"); signal != nil {
+		signal.(func(*gui.QMatrix4x4))(gui.NewQMatrix4x4FromPointer(matrix))
 		return true
 	}
 	return false
@@ -156,8 +155,7 @@ func (ptr *QGraphicsScale) DisconnectOriginChanged() {
 func callbackQGraphicsScaleOriginChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsScale::originChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "originChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "originChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -185,8 +183,7 @@ func (ptr *QGraphicsScale) DisconnectScaleChanged() {
 func callbackQGraphicsScaleScaleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsScale::scaleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "scaleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "scaleChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -214,8 +211,7 @@ func (ptr *QGraphicsScale) DisconnectXScaleChanged() {
 func callbackQGraphicsScaleXScaleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsScale::xScaleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "xScaleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "xScaleChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -243,8 +239,7 @@ func (ptr *QGraphicsScale) DisconnectYScaleChanged() {
 func callbackQGraphicsScaleYScaleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsScale::yScaleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "yScaleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "yScaleChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -272,8 +267,7 @@ func (ptr *QGraphicsScale) DisconnectZScaleChanged() {
 func callbackQGraphicsScaleZScaleChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsScale::zScaleChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "zScaleChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "zScaleChanged"); signal != nil {
 		signal.(func())()
 	}
 

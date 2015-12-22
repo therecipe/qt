@@ -202,9 +202,8 @@ func (ptr *QAbstractSocket) DisconnectClose() {
 func callbackQAbstractSocketClose(ptrName *C.char) bool {
 	defer qt.Recovering("callback QAbstractSocket::close")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "close")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -233,8 +232,7 @@ func (ptr *QAbstractSocket) DisconnectConnected() {
 func callbackQAbstractSocketConnected(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractSocket::connected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "connected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "connected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -262,9 +260,8 @@ func (ptr *QAbstractSocket) DisconnectDisconnectFromHost() {
 func callbackQAbstractSocketDisconnectFromHost(ptrName *C.char) bool {
 	defer qt.Recovering("callback QAbstractSocket::disconnectFromHost")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "disconnectFromHost")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectFromHost"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -293,8 +290,7 @@ func (ptr *QAbstractSocket) DisconnectDisconnected() {
 func callbackQAbstractSocketDisconnected(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractSocket::disconnected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "disconnected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "disconnected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -322,8 +318,7 @@ func (ptr *QAbstractSocket) DisconnectError2() {
 func callbackQAbstractSocketError2(ptrName *C.char, socketError C.int) {
 	defer qt.Recovering("callback QAbstractSocket::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QAbstractSocket__SocketError))(QAbstractSocket__SocketError(socketError))
 	}
 
@@ -369,8 +364,7 @@ func (ptr *QAbstractSocket) DisconnectHostFound() {
 func callbackQAbstractSocketHostFound(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractSocket::hostFound")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hostFound")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "hostFound"); signal != nil {
 		signal.(func())()
 	}
 
@@ -443,9 +437,8 @@ func (ptr *QAbstractSocket) DisconnectResume() {
 func callbackQAbstractSocketResume(ptrName *C.char) bool {
 	defer qt.Recovering("callback QAbstractSocket::resume")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resume")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "resume"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -490,9 +483,8 @@ func (ptr *QAbstractSocket) DisconnectSetReadBufferSize() {
 func callbackQAbstractSocketSetReadBufferSize(ptrName *C.char, size C.longlong) bool {
 	defer qt.Recovering("callback QAbstractSocket::setReadBufferSize")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setReadBufferSize")
-	if signal != nil {
-		defer signal.(func(int64))(int64(size))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setReadBufferSize"); signal != nil {
+		signal.(func(int64))(int64(size))
 		return true
 	}
 	return false
@@ -521,9 +513,8 @@ func (ptr *QAbstractSocket) DisconnectSetSocketOption() {
 func callbackQAbstractSocketSetSocketOption(ptrName *C.char, option C.int, value unsafe.Pointer) bool {
 	defer qt.Recovering("callback QAbstractSocket::setSocketOption")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSocketOption")
-	if signal != nil {
-		defer signal.(func(QAbstractSocket__SocketOption, *core.QVariant))(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSocketOption"); signal != nil {
+		signal.(func(QAbstractSocket__SocketOption, *core.QVariant))(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
 		return true
 	}
 	return false
@@ -579,8 +570,7 @@ func (ptr *QAbstractSocket) DisconnectStateChanged() {
 func callbackQAbstractSocketStateChanged(ptrName *C.char, socketState C.int) {
 	defer qt.Recovering("callback QAbstractSocket::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QAbstractSocket__SocketState))(QAbstractSocket__SocketState(socketState))
 	}
 

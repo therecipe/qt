@@ -77,9 +77,8 @@ func (ptr *QGeoRouteReply) DisconnectAbort() {
 func callbackQGeoRouteReplyAbort(ptrName *C.char) bool {
 	defer qt.Recovering("callback QGeoRouteReply::abort")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "abort")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "abort"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -108,8 +107,7 @@ func (ptr *QGeoRouteReply) DisconnectError2() {
 func callbackQGeoRouteReplyError2(ptrName *C.char, error C.int, errorString *C.char) {
 	defer qt.Recovering("callback QGeoRouteReply::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QGeoRouteReply__Error, string))(QGeoRouteReply__Error(error), C.GoString(errorString))
 	}
 
@@ -155,8 +153,7 @@ func (ptr *QGeoRouteReply) DisconnectFinished() {
 func callbackQGeoRouteReplyFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QGeoRouteReply::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 

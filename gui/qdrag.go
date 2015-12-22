@@ -65,8 +65,7 @@ func (ptr *QDrag) DisconnectActionChanged() {
 func callbackQDragActionChanged(ptrName *C.char, action C.int) {
 	defer qt.Recovering("callback QDrag::actionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "actionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "actionChanged"); signal != nil {
 		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(action))
 	}
 
@@ -189,8 +188,7 @@ func (ptr *QDrag) DisconnectTargetChanged() {
 func callbackQDragTargetChanged(ptrName *C.char, newTarget unsafe.Pointer) {
 	defer qt.Recovering("callback QDrag::targetChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "targetChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "targetChanged"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(newTarget))
 	}
 

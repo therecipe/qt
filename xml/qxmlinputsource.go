@@ -87,9 +87,8 @@ func (ptr *QXmlInputSource) DisconnectFetchData() {
 func callbackQXmlInputSourceFetchData(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlInputSource::fetchData")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fetchData")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchData"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -118,9 +117,8 @@ func (ptr *QXmlInputSource) DisconnectReset() {
 func callbackQXmlInputSourceReset(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlInputSource::reset")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "reset")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -149,9 +147,8 @@ func (ptr *QXmlInputSource) DisconnectSetData() {
 func callbackQXmlInputSourceSetData(ptrName *C.char, dat *C.char) bool {
 	defer qt.Recovering("callback QXmlInputSource::setData")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setData")
-	if signal != nil {
-		defer signal.(func(string))(C.GoString(dat))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
+		signal.(func(string))(C.GoString(dat))
 		return true
 	}
 	return false

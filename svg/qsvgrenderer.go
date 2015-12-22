@@ -204,8 +204,7 @@ func (ptr *QSvgRenderer) DisconnectRepaintNeeded() {
 func callbackQSvgRendererRepaintNeeded(ptrName *C.char) {
 	defer qt.Recovering("callback QSvgRenderer::repaintNeeded")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "repaintNeeded")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "repaintNeeded"); signal != nil {
 		signal.(func())()
 	}
 

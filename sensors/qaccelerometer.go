@@ -92,8 +92,7 @@ func (ptr *QAccelerometer) DisconnectAccelerationModeChanged() {
 func callbackQAccelerometerAccelerationModeChanged(ptrName *C.char, accelerationMode C.int) {
 	defer qt.Recovering("callback QAccelerometer::accelerationModeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "accelerationModeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "accelerationModeChanged"); signal != nil {
 		signal.(func(QAccelerometer__AccelerationMode))(QAccelerometer__AccelerationMode(accelerationMode))
 	}
 

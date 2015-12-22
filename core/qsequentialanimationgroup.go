@@ -76,8 +76,7 @@ func (ptr *QSequentialAnimationGroup) DisconnectCurrentAnimationChanged() {
 func callbackQSequentialAnimationGroupCurrentAnimationChanged(ptrName *C.char, current unsafe.Pointer) {
 	defer qt.Recovering("callback QSequentialAnimationGroup::currentAnimationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentAnimationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentAnimationChanged"); signal != nil {
 		signal.(func(*QAbstractAnimation))(NewQAbstractAnimationFromPointer(current))
 	}
 
@@ -123,9 +122,8 @@ func (ptr *QSequentialAnimationGroup) DisconnectUpdateCurrentTime() {
 func callbackQSequentialAnimationGroupUpdateCurrentTime(ptrName *C.char, currentTime C.int) bool {
 	defer qt.Recovering("callback QSequentialAnimationGroup::updateCurrentTime")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateCurrentTime")
-	if signal != nil {
-		defer signal.(func(int))(int(currentTime))
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
+		signal.(func(int))(int(currentTime))
 		return true
 	}
 	return false
@@ -154,9 +152,8 @@ func (ptr *QSequentialAnimationGroup) DisconnectUpdateDirection() {
 func callbackQSequentialAnimationGroupUpdateDirection(ptrName *C.char, direction C.int) bool {
 	defer qt.Recovering("callback QSequentialAnimationGroup::updateDirection")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateDirection")
-	if signal != nil {
-		defer signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateDirection"); signal != nil {
+		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
 		return true
 	}
 	return false
@@ -185,9 +182,8 @@ func (ptr *QSequentialAnimationGroup) DisconnectUpdateState() {
 func callbackQSequentialAnimationGroupUpdateState(ptrName *C.char, newState C.int, oldState C.int) bool {
 	defer qt.Recovering("callback QSequentialAnimationGroup::updateState")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "updateState")
-	if signal != nil {
-		defer signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateState"); signal != nil {
+		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 		return true
 	}
 	return false

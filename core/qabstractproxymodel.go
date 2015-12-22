@@ -104,9 +104,8 @@ func (ptr *QAbstractProxyModel) DisconnectFetchMore() {
 func callbackQAbstractProxyModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
 	defer qt.Recovering("callback QAbstractProxyModel::fetchMore")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fetchMore")
-	if signal != nil {
-		defer signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
 		return true
 	}
 	return false
@@ -189,9 +188,8 @@ func (ptr *QAbstractProxyModel) DisconnectRevert() {
 func callbackQAbstractProxyModelRevert(ptrName *C.char) bool {
 	defer qt.Recovering("callback QAbstractProxyModel::revert")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "revert")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -238,9 +236,8 @@ func (ptr *QAbstractProxyModel) DisconnectSetSourceModel() {
 func callbackQAbstractProxyModelSetSourceModel(ptrName *C.char, sourceModel unsafe.Pointer) bool {
 	defer qt.Recovering("callback QAbstractProxyModel::setSourceModel")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSourceModel")
-	if signal != nil {
-		defer signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(sourceModel))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSourceModel"); signal != nil {
+		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(sourceModel))
 		return true
 	}
 	return false
@@ -278,9 +275,8 @@ func (ptr *QAbstractProxyModel) DisconnectSort() {
 func callbackQAbstractProxyModelSort(ptrName *C.char, column C.int, order C.int) bool {
 	defer qt.Recovering("callback QAbstractProxyModel::sort")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sort")
-	if signal != nil {
-		defer signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
+	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
+		signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
 		return true
 	}
 	return false
@@ -318,8 +314,7 @@ func (ptr *QAbstractProxyModel) DisconnectSourceModelChanged() {
 func callbackQAbstractProxyModelSourceModelChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractProxyModel::sourceModelChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sourceModelChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sourceModelChanged"); signal != nil {
 		signal.(func())()
 	}
 

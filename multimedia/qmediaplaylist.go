@@ -143,8 +143,7 @@ func (ptr *QMediaPlaylist) DisconnectCurrentIndexChanged() {
 func callbackQMediaPlaylistCurrentIndexChanged(ptrName *C.char, position C.int) {
 	defer qt.Recovering("callback QMediaPlaylist::currentIndexChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentIndexChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentIndexChanged"); signal != nil {
 		signal.(func(int))(int(position))
 	}
 
@@ -181,8 +180,7 @@ func (ptr *QMediaPlaylist) DisconnectCurrentMediaChanged() {
 func callbackQMediaPlaylistCurrentMediaChanged(ptrName *C.char, content unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaPlaylist::currentMediaChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentMediaChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentMediaChanged"); signal != nil {
 		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(content))
 	}
 
@@ -279,8 +277,7 @@ func (ptr *QMediaPlaylist) DisconnectLoadFailed() {
 func callbackQMediaPlaylistLoadFailed(ptrName *C.char) {
 	defer qt.Recovering("callback QMediaPlaylist::loadFailed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "loadFailed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "loadFailed"); signal != nil {
 		signal.(func())()
 	}
 
@@ -308,8 +305,7 @@ func (ptr *QMediaPlaylist) DisconnectLoaded() {
 func callbackQMediaPlaylistLoaded(ptrName *C.char) {
 	defer qt.Recovering("callback QMediaPlaylist::loaded")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "loaded")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "loaded"); signal != nil {
 		signal.(func())()
 	}
 
@@ -346,8 +342,7 @@ func (ptr *QMediaPlaylist) DisconnectMediaAboutToBeInserted() {
 func callbackQMediaPlaylistMediaAboutToBeInserted(ptrName *C.char, start C.int, end C.int) {
 	defer qt.Recovering("callback QMediaPlaylist::mediaAboutToBeInserted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mediaAboutToBeInserted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mediaAboutToBeInserted"); signal != nil {
 		signal.(func(int, int))(int(start), int(end))
 	}
 
@@ -375,8 +370,7 @@ func (ptr *QMediaPlaylist) DisconnectMediaAboutToBeRemoved() {
 func callbackQMediaPlaylistMediaAboutToBeRemoved(ptrName *C.char, start C.int, end C.int) {
 	defer qt.Recovering("callback QMediaPlaylist::mediaAboutToBeRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mediaAboutToBeRemoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mediaAboutToBeRemoved"); signal != nil {
 		signal.(func(int, int))(int(start), int(end))
 	}
 
@@ -404,8 +398,7 @@ func (ptr *QMediaPlaylist) DisconnectMediaChanged() {
 func callbackQMediaPlaylistMediaChanged(ptrName *C.char, start C.int, end C.int) {
 	defer qt.Recovering("callback QMediaPlaylist::mediaChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mediaChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mediaChanged"); signal != nil {
 		signal.(func(int, int))(int(start), int(end))
 	}
 
@@ -442,8 +435,7 @@ func (ptr *QMediaPlaylist) DisconnectMediaInserted() {
 func callbackQMediaPlaylistMediaInserted(ptrName *C.char, start C.int, end C.int) {
 	defer qt.Recovering("callback QMediaPlaylist::mediaInserted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mediaInserted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mediaInserted"); signal != nil {
 		signal.(func(int, int))(int(start), int(end))
 	}
 
@@ -480,8 +472,7 @@ func (ptr *QMediaPlaylist) DisconnectMediaRemoved() {
 func callbackQMediaPlaylistMediaRemoved(ptrName *C.char, start C.int, end C.int) {
 	defer qt.Recovering("callback QMediaPlaylist::mediaRemoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "mediaRemoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "mediaRemoved"); signal != nil {
 		signal.(func(int, int))(int(start), int(end))
 	}
 
@@ -526,8 +517,7 @@ func (ptr *QMediaPlaylist) DisconnectPlaybackModeChanged() {
 func callbackQMediaPlaylistPlaybackModeChanged(ptrName *C.char, mode C.int) {
 	defer qt.Recovering("callback QMediaPlaylist::playbackModeChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "playbackModeChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "playbackModeChanged"); signal != nil {
 		signal.(func(QMediaPlaylist__PlaybackMode))(QMediaPlaylist__PlaybackMode(mode))
 	}
 

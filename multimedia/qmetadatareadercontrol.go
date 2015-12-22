@@ -87,8 +87,7 @@ func (ptr *QMetaDataReaderControl) DisconnectMetaDataAvailableChanged() {
 func callbackQMetaDataReaderControlMetaDataAvailableChanged(ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QMetaDataReaderControl::metaDataAvailableChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataAvailableChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataAvailableChanged"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
@@ -116,8 +115,7 @@ func (ptr *QMetaDataReaderControl) DisconnectMetaDataChanged() {
 func callbackQMetaDataReaderControlMetaDataChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QMetaDataReaderControl::metaDataChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -145,8 +143,7 @@ func (ptr *QMetaDataReaderControl) DisconnectMetaDataChanged2() {
 func callbackQMetaDataReaderControlMetaDataChanged2(ptrName *C.char, key *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QMetaDataReaderControl::metaDataChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "metaDataChanged2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataChanged2"); signal != nil {
 		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
 	}
 

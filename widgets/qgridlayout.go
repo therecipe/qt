@@ -225,9 +225,8 @@ func (ptr *QGridLayout) DisconnectInvalidate() {
 func callbackQGridLayoutInvalidate(ptrName *C.char) bool {
 	defer qt.Recovering("callback QGridLayout::invalidate")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "invalidate")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -353,9 +352,8 @@ func (ptr *QGridLayout) DisconnectSetGeometry() {
 func callbackQGridLayoutSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
 	defer qt.Recovering("callback QGridLayout::setGeometry")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setGeometry")
-	if signal != nil {
-		defer signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
+		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
 		return true
 	}
 	return false

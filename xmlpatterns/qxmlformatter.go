@@ -65,9 +65,8 @@ func (ptr *QXmlFormatter) DisconnectCharacters() {
 func callbackQXmlFormatterCharacters(ptrName *C.char, value unsafe.Pointer) bool {
 	defer qt.Recovering("callback QXmlFormatter::characters")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "characters")
-	if signal != nil {
-		defer signal.(func(*core.QStringRef))(core.NewQStringRefFromPointer(value))
+	if signal := qt.GetSignal(C.GoString(ptrName), "characters"); signal != nil {
+		signal.(func(*core.QStringRef))(core.NewQStringRefFromPointer(value))
 		return true
 	}
 	return false
@@ -96,9 +95,8 @@ func (ptr *QXmlFormatter) DisconnectComment() {
 func callbackQXmlFormatterComment(ptrName *C.char, value *C.char) bool {
 	defer qt.Recovering("callback QXmlFormatter::comment")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "comment")
-	if signal != nil {
-		defer signal.(func(string))(C.GoString(value))
+	if signal := qt.GetSignal(C.GoString(ptrName), "comment"); signal != nil {
+		signal.(func(string))(C.GoString(value))
 		return true
 	}
 	return false
@@ -127,9 +125,8 @@ func (ptr *QXmlFormatter) DisconnectEndDocument() {
 func callbackQXmlFormatterEndDocument(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlFormatter::endDocument")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "endDocument")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "endDocument"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -158,9 +155,8 @@ func (ptr *QXmlFormatter) DisconnectEndElement() {
 func callbackQXmlFormatterEndElement(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlFormatter::endElement")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "endElement")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "endElement"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -189,9 +185,8 @@ func (ptr *QXmlFormatter) DisconnectEndOfSequence() {
 func callbackQXmlFormatterEndOfSequence(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlFormatter::endOfSequence")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "endOfSequence")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "endOfSequence"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -237,9 +232,8 @@ func (ptr *QXmlFormatter) DisconnectStartDocument() {
 func callbackQXmlFormatterStartDocument(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlFormatter::startDocument")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "startDocument")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "startDocument"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -268,9 +262,8 @@ func (ptr *QXmlFormatter) DisconnectStartOfSequence() {
 func callbackQXmlFormatterStartOfSequence(ptrName *C.char) bool {
 	defer qt.Recovering("callback QXmlFormatter::startOfSequence")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "startOfSequence")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "startOfSequence"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false

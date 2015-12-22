@@ -157,9 +157,8 @@ func (ptr *QSplitter) DisconnectChangeEvent() {
 func callbackQSplitterChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSplitter::changeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "changeEvent")
-	if signal != nil {
-		defer signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
 		return true
 	}
 	return false
@@ -188,9 +187,8 @@ func (ptr *QSplitter) DisconnectChildEvent() {
 func callbackQSplitterChildEvent(ptrName *C.char, c unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSplitter::childEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "childEvent")
-	if signal != nil {
-		defer signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(c))
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(c))
 		return true
 	}
 	return false
@@ -279,9 +277,8 @@ func (ptr *QSplitter) DisconnectResizeEvent() {
 func callbackQSplitterResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSplitter::resizeEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "resizeEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
 		return true
 	}
 	return false
@@ -353,8 +350,7 @@ func (ptr *QSplitter) DisconnectSplitterMoved() {
 func callbackQSplitterSplitterMoved(ptrName *C.char, pos C.int, index C.int) {
 	defer qt.Recovering("callback QSplitter::splitterMoved")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "splitterMoved")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "splitterMoved"); signal != nil {
 		signal.(func(int, int))(int(pos), int(index))
 	}
 

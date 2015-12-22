@@ -239,8 +239,7 @@ func (ptr *QTimeLine) DisconnectFinished() {
 func callbackQTimeLineFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QTimeLine::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -268,8 +267,7 @@ func (ptr *QTimeLine) DisconnectFrameChanged() {
 func callbackQTimeLineFrameChanged(ptrName *C.char, frame C.int) {
 	defer qt.Recovering("callback QTimeLine::frameChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "frameChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "frameChanged"); signal != nil {
 		signal.(func(int))(int(frame))
 	}
 
@@ -372,8 +370,7 @@ func (ptr *QTimeLine) DisconnectStateChanged() {
 func callbackQTimeLineStateChanged(ptrName *C.char, newState C.int) {
 	defer qt.Recovering("callback QTimeLine::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QTimeLine__State))(QTimeLine__State(newState))
 	}
 
@@ -409,9 +406,8 @@ func (ptr *QTimeLine) DisconnectTimerEvent() {
 func callbackQTimeLineTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTimeLine::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 		return true
 	}
 	return false
@@ -448,8 +444,7 @@ func (ptr *QTimeLine) DisconnectValueChanged() {
 func callbackQTimeLineValueChanged(ptrName *C.char, value C.double) {
 	defer qt.Recovering("callback QTimeLine::valueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
 

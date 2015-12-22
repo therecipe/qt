@@ -88,8 +88,7 @@ func (ptr *QKeySequenceEdit) DisconnectEditingFinished() {
 func callbackQKeySequenceEditEditingFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QKeySequenceEdit::editingFinished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "editingFinished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "editingFinished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -117,9 +116,8 @@ func (ptr *QKeySequenceEdit) DisconnectKeyPressEvent() {
 func callbackQKeySequenceEditKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QKeySequenceEdit::keyPressEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyPressEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 		return true
 	}
 	return false
@@ -148,9 +146,8 @@ func (ptr *QKeySequenceEdit) DisconnectKeyReleaseEvent() {
 func callbackQKeySequenceEditKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QKeySequenceEdit::keyReleaseEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent")
-	if signal != nil {
-		defer signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 		return true
 	}
 	return false
@@ -179,9 +176,8 @@ func (ptr *QKeySequenceEdit) DisconnectTimerEvent() {
 func callbackQKeySequenceEditTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
 	defer qt.Recovering("callback QKeySequenceEdit::timerEvent")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "timerEvent")
-	if signal != nil {
-		defer signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
 		return true
 	}
 	return false

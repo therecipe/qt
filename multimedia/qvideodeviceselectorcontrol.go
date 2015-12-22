@@ -94,8 +94,7 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectDevicesChanged() {
 func callbackQVideoDeviceSelectorControlDevicesChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QVideoDeviceSelectorControl::devicesChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "devicesChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "devicesChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -132,8 +131,7 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectSelectedDeviceChanged2() {
 func callbackQVideoDeviceSelectorControlSelectedDeviceChanged2(ptrName *C.char, name *C.char) {
 	defer qt.Recovering("callback QVideoDeviceSelectorControl::selectedDeviceChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "selectedDeviceChanged2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "selectedDeviceChanged2"); signal != nil {
 		signal.(func(string))(C.GoString(name))
 	}
 
@@ -161,8 +159,7 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectSelectedDeviceChanged() {
 func callbackQVideoDeviceSelectorControlSelectedDeviceChanged(ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QVideoDeviceSelectorControl::selectedDeviceChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "selectedDeviceChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "selectedDeviceChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 

@@ -163,8 +163,7 @@ func (ptr *QScriptEngineDebugger) DisconnectEvaluationResumed() {
 func callbackQScriptEngineDebuggerEvaluationResumed(ptrName *C.char) {
 	defer qt.Recovering("callback QScriptEngineDebugger::evaluationResumed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "evaluationResumed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "evaluationResumed"); signal != nil {
 		signal.(func())()
 	}
 
@@ -192,8 +191,7 @@ func (ptr *QScriptEngineDebugger) DisconnectEvaluationSuspended() {
 func callbackQScriptEngineDebuggerEvaluationSuspended(ptrName *C.char) {
 	defer qt.Recovering("callback QScriptEngineDebugger::evaluationSuspended")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "evaluationSuspended")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "evaluationSuspended"); signal != nil {
 		signal.(func())()
 	}
 

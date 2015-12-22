@@ -79,8 +79,7 @@ func (ptr *QVideoWidgetControl) DisconnectBrightnessChanged() {
 func callbackQVideoWidgetControlBrightnessChanged(ptrName *C.char, brightness C.int) {
 	defer qt.Recovering("callback QVideoWidgetControl::brightnessChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "brightnessChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "brightnessChanged"); signal != nil {
 		signal.(func(int))(int(brightness))
 	}
 
@@ -117,8 +116,7 @@ func (ptr *QVideoWidgetControl) DisconnectContrastChanged() {
 func callbackQVideoWidgetControlContrastChanged(ptrName *C.char, contrast C.int) {
 	defer qt.Recovering("callback QVideoWidgetControl::contrastChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "contrastChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "contrastChanged"); signal != nil {
 		signal.(func(int))(int(contrast))
 	}
 
@@ -146,8 +144,7 @@ func (ptr *QVideoWidgetControl) DisconnectFullScreenChanged() {
 func callbackQVideoWidgetControlFullScreenChanged(ptrName *C.char, fullScreen C.int) {
 	defer qt.Recovering("callback QVideoWidgetControl::fullScreenChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "fullScreenChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "fullScreenChanged"); signal != nil {
 		signal.(func(bool))(int(fullScreen) != 0)
 	}
 
@@ -184,8 +181,7 @@ func (ptr *QVideoWidgetControl) DisconnectHueChanged() {
 func callbackQVideoWidgetControlHueChanged(ptrName *C.char, hue C.int) {
 	defer qt.Recovering("callback QVideoWidgetControl::hueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "hueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "hueChanged"); signal != nil {
 		signal.(func(int))(int(hue))
 	}
 
@@ -231,8 +227,7 @@ func (ptr *QVideoWidgetControl) DisconnectSaturationChanged() {
 func callbackQVideoWidgetControlSaturationChanged(ptrName *C.char, saturation C.int) {
 	defer qt.Recovering("callback QVideoWidgetControl::saturationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "saturationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "saturationChanged"); signal != nil {
 		signal.(func(int))(int(saturation))
 	}
 

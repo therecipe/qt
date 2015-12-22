@@ -199,8 +199,7 @@ func (ptr *QQmlExpression) DisconnectValueChanged() {
 func callbackQQmlExpressionValueChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QQmlExpression::valueChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "valueChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func())()
 	}
 

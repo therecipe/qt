@@ -166,9 +166,8 @@ func (ptr *QProcess) DisconnectClose() {
 func callbackQProcessClose(ptrName *C.char) bool {
 	defer qt.Recovering("callback QProcess::close")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "close")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -213,8 +212,7 @@ func (ptr *QProcess) DisconnectError2() {
 func callbackQProcessError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QProcess::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QProcess__ProcessError))(QProcess__ProcessError(error))
 	}
 
@@ -281,8 +279,7 @@ func (ptr *QProcess) DisconnectFinished() {
 func callbackQProcessFinished(ptrName *C.char, exitCode C.int, exitStatus C.int) {
 	defer qt.Recovering("callback QProcess::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(int, QProcess__ExitStatus))(int(exitCode), QProcess__ExitStatus(exitStatus))
 	}
 
@@ -405,8 +402,7 @@ func (ptr *QProcess) DisconnectReadyReadStandardError() {
 func callbackQProcessReadyReadStandardError(ptrName *C.char) {
 	defer qt.Recovering("callback QProcess::readyReadStandardError")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "readyReadStandardError")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "readyReadStandardError"); signal != nil {
 		signal.(func())()
 	}
 
@@ -434,8 +430,7 @@ func (ptr *QProcess) DisconnectReadyReadStandardOutput() {
 func callbackQProcessReadyReadStandardOutput(ptrName *C.char) {
 	defer qt.Recovering("callback QProcess::readyReadStandardOutput")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "readyReadStandardOutput")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "readyReadStandardOutput"); signal != nil {
 		signal.(func())()
 	}
 
@@ -551,9 +546,8 @@ func (ptr *QProcess) DisconnectSetupChildProcess() {
 func callbackQProcessSetupChildProcess(ptrName *C.char) bool {
 	defer qt.Recovering("callback QProcess::setupChildProcess")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setupChildProcess")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "setupChildProcess"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -612,8 +606,7 @@ func (ptr *QProcess) DisconnectStarted() {
 func callbackQProcessStarted(ptrName *C.char) {
 	defer qt.Recovering("callback QProcess::started")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "started")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "started"); signal != nil {
 		signal.(func())()
 	}
 
@@ -650,8 +643,7 @@ func (ptr *QProcess) DisconnectStateChanged() {
 func callbackQProcessStateChanged(ptrName *C.char, newState C.int) {
 	defer qt.Recovering("callback QProcess::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QProcess__ProcessState))(QProcess__ProcessState(newState))
 	}
 

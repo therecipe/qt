@@ -172,9 +172,8 @@ func (ptr *QIdentityProxyModel) DisconnectSetSourceModel() {
 func callbackQIdentityProxyModelSetSourceModel(ptrName *C.char, newSourceModel unsafe.Pointer) bool {
 	defer qt.Recovering("callback QIdentityProxyModel::setSourceModel")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setSourceModel")
-	if signal != nil {
-		defer signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(newSourceModel))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSourceModel"); signal != nil {
+		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(newSourceModel))
 		return true
 	}
 	return false

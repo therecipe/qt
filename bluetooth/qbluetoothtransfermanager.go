@@ -74,8 +74,7 @@ func (ptr *QBluetoothTransferManager) DisconnectFinished() {
 func callbackQBluetoothTransferManagerFinished(ptrName *C.char, reply unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothTransferManager::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(*QBluetoothTransferReply))(NewQBluetoothTransferReplyFromPointer(reply))
 	}
 

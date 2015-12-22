@@ -90,8 +90,7 @@ func (ptr *QIODevice) DisconnectAboutToClose() {
 func callbackQIODeviceAboutToClose(ptrName *C.char) {
 	defer qt.Recovering("callback QIODevice::aboutToClose")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "aboutToClose")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "aboutToClose"); signal != nil {
 		signal.(func())()
 	}
 
@@ -146,8 +145,7 @@ func (ptr *QIODevice) DisconnectBytesWritten() {
 func callbackQIODeviceBytesWritten(ptrName *C.char, bytes C.longlong) {
 	defer qt.Recovering("callback QIODevice::bytesWritten")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "bytesWritten")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "bytesWritten"); signal != nil {
 		signal.(func(int64))(int64(bytes))
 	}
 
@@ -184,9 +182,8 @@ func (ptr *QIODevice) DisconnectClose() {
 func callbackQIODeviceClose(ptrName *C.char) bool {
 	defer qt.Recovering("callback QIODevice::close")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "close")
-	if signal != nil {
-		defer signal.(func())()
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
 		return true
 	}
 	return false
@@ -341,8 +338,7 @@ func (ptr *QIODevice) DisconnectReadChannelFinished() {
 func callbackQIODeviceReadChannelFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QIODevice::readChannelFinished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "readChannelFinished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "readChannelFinished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -388,8 +384,7 @@ func (ptr *QIODevice) DisconnectReadyRead() {
 func callbackQIODeviceReadyRead(ptrName *C.char) {
 	defer qt.Recovering("callback QIODevice::readyRead")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "readyRead")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "readyRead"); signal != nil {
 		signal.(func())()
 	}
 

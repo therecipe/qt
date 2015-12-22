@@ -115,8 +115,7 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceOwnerChanged() {
 func callbackQDBusServiceWatcherServiceOwnerChanged(ptrName *C.char, serviceName *C.char, oldOwner *C.char, newOwner *C.char) {
 	defer qt.Recovering("callback QDBusServiceWatcher::serviceOwnerChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "serviceOwnerChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "serviceOwnerChanged"); signal != nil {
 		signal.(func(string, string, string))(C.GoString(serviceName), C.GoString(oldOwner), C.GoString(newOwner))
 	}
 
@@ -144,8 +143,7 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceRegistered() {
 func callbackQDBusServiceWatcherServiceRegistered(ptrName *C.char, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusServiceWatcher::serviceRegistered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "serviceRegistered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "serviceRegistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 
@@ -173,8 +171,7 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceUnregistered() {
 func callbackQDBusServiceWatcherServiceUnregistered(ptrName *C.char, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusServiceWatcher::serviceUnregistered")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "serviceUnregistered")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "serviceUnregistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 

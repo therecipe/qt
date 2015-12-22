@@ -95,9 +95,8 @@ func (ptr *QAccessibleObject) DisconnectSetText() {
 func callbackQAccessibleObjectSetText(ptrName *C.char, t C.int, text *C.char) bool {
 	defer qt.Recovering("callback QAccessibleObject::setText")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setText")
-	if signal != nil {
-		defer signal.(func(QAccessible__Text, string))(QAccessible__Text(t), C.GoString(text))
+	if signal := qt.GetSignal(C.GoString(ptrName), "setText"); signal != nil {
+		signal.(func(QAccessible__Text, string))(QAccessible__Text(t), C.GoString(text))
 		return true
 	}
 	return false

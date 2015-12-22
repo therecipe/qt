@@ -82,8 +82,7 @@ func (ptr *QWebChannel) DisconnectBlockUpdatesChanged() {
 func callbackQWebChannelBlockUpdatesChanged(ptrName *C.char, block C.int) {
 	defer qt.Recovering("callback QWebChannel::blockUpdatesChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "blockUpdatesChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "blockUpdatesChanged"); signal != nil {
 		signal.(func(bool))(int(block) != 0)
 	}
 

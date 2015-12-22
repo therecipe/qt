@@ -313,8 +313,7 @@ func (ptr *QApplication) DisconnectFocusChanged() {
 func callbackQApplicationFocusChanged(ptrName *C.char, old unsafe.Pointer, now unsafe.Pointer) {
 	defer qt.Recovering("callback QApplication::focusChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "focusChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusChanged"); signal != nil {
 		signal.(func(*QWidget, *QWidget))(NewQWidgetFromPointer(old), NewQWidgetFromPointer(now))
 	}
 

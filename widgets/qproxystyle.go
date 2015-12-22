@@ -69,9 +69,8 @@ func (ptr *QProxyStyle) DisconnectDrawComplexControl() {
 func callbackQProxyStyleDrawComplexControl(ptrName *C.char, control C.int, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) bool {
 	defer qt.Recovering("callback QProxyStyle::drawComplexControl")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "drawComplexControl")
-	if signal != nil {
-		defer signal.(func(QStyle__ComplexControl, *QStyleOptionComplex, *gui.QPainter, *QWidget))(QStyle__ComplexControl(control), NewQStyleOptionComplexFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
+	if signal := qt.GetSignal(C.GoString(ptrName), "drawComplexControl"); signal != nil {
+		signal.(func(QStyle__ComplexControl, *QStyleOptionComplex, *gui.QPainter, *QWidget))(QStyle__ComplexControl(control), NewQStyleOptionComplexFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
 		return true
 	}
 	return false
@@ -100,9 +99,8 @@ func (ptr *QProxyStyle) DisconnectDrawControl() {
 func callbackQProxyStyleDrawControl(ptrName *C.char, element C.int, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) bool {
 	defer qt.Recovering("callback QProxyStyle::drawControl")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "drawControl")
-	if signal != nil {
-		defer signal.(func(QStyle__ControlElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__ControlElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
+	if signal := qt.GetSignal(C.GoString(ptrName), "drawControl"); signal != nil {
+		signal.(func(QStyle__ControlElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__ControlElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
 		return true
 	}
 	return false
@@ -131,9 +129,8 @@ func (ptr *QProxyStyle) DisconnectDrawPrimitive() {
 func callbackQProxyStyleDrawPrimitive(ptrName *C.char, element C.int, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) bool {
 	defer qt.Recovering("callback QProxyStyle::drawPrimitive")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "drawPrimitive")
-	if signal != nil {
-		defer signal.(func(QStyle__PrimitiveElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__PrimitiveElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
+	if signal := qt.GetSignal(C.GoString(ptrName), "drawPrimitive"); signal != nil {
+		signal.(func(QStyle__PrimitiveElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__PrimitiveElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
 		return true
 	}
 	return false
@@ -207,9 +204,8 @@ func (ptr *QProxyStyle) DisconnectPolish() {
 func callbackQProxyStylePolish(ptrName *C.char, widget unsafe.Pointer) bool {
 	defer qt.Recovering("callback QProxyStyle::polish")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "polish")
-	if signal != nil {
-		defer signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
+	if signal := qt.GetSignal(C.GoString(ptrName), "polish"); signal != nil {
+		signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
 		return true
 	}
 	return false
@@ -291,9 +287,8 @@ func (ptr *QProxyStyle) DisconnectUnpolish() {
 func callbackQProxyStyleUnpolish(ptrName *C.char, widget unsafe.Pointer) bool {
 	defer qt.Recovering("callback QProxyStyle::unpolish")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "unpolish")
-	if signal != nil {
-		defer signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
+	if signal := qt.GetSignal(C.GoString(ptrName), "unpolish"); signal != nil {
+		signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
 		return true
 	}
 	return false

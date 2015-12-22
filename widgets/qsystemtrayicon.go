@@ -152,8 +152,7 @@ func (ptr *QSystemTrayIcon) DisconnectActivated() {
 func callbackQSystemTrayIconActivated(ptrName *C.char, reason C.int) {
 	defer qt.Recovering("callback QSystemTrayIcon::activated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "activated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func(QSystemTrayIcon__ActivationReason))(QSystemTrayIcon__ActivationReason(reason))
 	}
 
@@ -213,8 +212,7 @@ func (ptr *QSystemTrayIcon) DisconnectMessageClicked() {
 func callbackQSystemTrayIconMessageClicked(ptrName *C.char) {
 	defer qt.Recovering("callback QSystemTrayIcon::messageClicked")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "messageClicked")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "messageClicked"); signal != nil {
 		signal.(func())()
 	}
 

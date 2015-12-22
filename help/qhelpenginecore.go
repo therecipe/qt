@@ -135,8 +135,7 @@ func (ptr *QHelpEngineCore) DisconnectCurrentFilterChanged() {
 func callbackQHelpEngineCoreCurrentFilterChanged(ptrName *C.char, newFilter *C.char) {
 	defer qt.Recovering("callback QHelpEngineCore::currentFilterChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "currentFilterChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "currentFilterChanged"); signal != nil {
 		signal.(func(string))(C.GoString(newFilter))
 	}
 
@@ -248,8 +247,7 @@ func (ptr *QHelpEngineCore) DisconnectReadersAboutToBeInvalidated() {
 func callbackQHelpEngineCoreReadersAboutToBeInvalidated(ptrName *C.char) {
 	defer qt.Recovering("callback QHelpEngineCore::readersAboutToBeInvalidated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "readersAboutToBeInvalidated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "readersAboutToBeInvalidated"); signal != nil {
 		signal.(func())()
 	}
 
@@ -331,8 +329,7 @@ func (ptr *QHelpEngineCore) DisconnectSetupFinished() {
 func callbackQHelpEngineCoreSetupFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QHelpEngineCore::setupFinished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setupFinished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "setupFinished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -360,8 +357,7 @@ func (ptr *QHelpEngineCore) DisconnectSetupStarted() {
 func callbackQHelpEngineCoreSetupStarted(ptrName *C.char) {
 	defer qt.Recovering("callback QHelpEngineCore::setupStarted")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "setupStarted")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "setupStarted"); signal != nil {
 		signal.(func())()
 	}
 
@@ -398,8 +394,7 @@ func (ptr *QHelpEngineCore) DisconnectWarning() {
 func callbackQHelpEngineCoreWarning(ptrName *C.char, msg *C.char) {
 	defer qt.Recovering("callback QHelpEngineCore::warning")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "warning")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "warning"); signal != nil {
 		signal.(func(string))(C.GoString(msg))
 	}
 

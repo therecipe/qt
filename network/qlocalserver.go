@@ -146,8 +146,7 @@ func (ptr *QLocalServer) DisconnectNewConnection() {
 func callbackQLocalServerNewConnection(ptrName *C.char) {
 	defer qt.Recovering("callback QLocalServer::newConnection")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "newConnection")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "newConnection"); signal != nil {
 		signal.(func())()
 	}
 

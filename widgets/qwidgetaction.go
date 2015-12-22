@@ -74,9 +74,8 @@ func (ptr *QWidgetAction) DisconnectDeleteWidget() {
 func callbackQWidgetActionDeleteWidget(ptrName *C.char, widget unsafe.Pointer) bool {
 	defer qt.Recovering("callback QWidgetAction::deleteWidget")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "deleteWidget")
-	if signal != nil {
-		defer signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
+	if signal := qt.GetSignal(C.GoString(ptrName), "deleteWidget"); signal != nil {
+		signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
 		return true
 	}
 	return false

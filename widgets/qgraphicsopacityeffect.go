@@ -100,8 +100,7 @@ func (ptr *QGraphicsOpacityEffect) DisconnectOpacityChanged() {
 func callbackQGraphicsOpacityEffectOpacityChanged(ptrName *C.char, opacity C.double) {
 	defer qt.Recovering("callback QGraphicsOpacityEffect::opacityChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "opacityChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "opacityChanged"); signal != nil {
 		signal.(func(float64))(float64(opacity))
 	}
 
@@ -129,8 +128,7 @@ func (ptr *QGraphicsOpacityEffect) DisconnectOpacityMaskChanged() {
 func callbackQGraphicsOpacityEffectOpacityMaskChanged(ptrName *C.char, mask unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsOpacityEffect::opacityMaskChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "opacityMaskChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "opacityMaskChanged"); signal != nil {
 		signal.(func(*gui.QBrush))(gui.NewQBrushFromPointer(mask))
 	}
 

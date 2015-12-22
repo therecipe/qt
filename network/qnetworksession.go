@@ -113,8 +113,7 @@ func (ptr *QNetworkSession) DisconnectClosed() {
 func callbackQNetworkSessionClosed(ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkSession::closed")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "closed")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "closed"); signal != nil {
 		signal.(func())()
 	}
 
@@ -142,8 +141,7 @@ func (ptr *QNetworkSession) DisconnectError2() {
 func callbackQNetworkSessionError2(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QNetworkSession::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error2")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QNetworkSession__SessionError))(QNetworkSession__SessionError(error))
 	}
 
@@ -214,8 +212,7 @@ func (ptr *QNetworkSession) DisconnectNewConfigurationActivated() {
 func callbackQNetworkSessionNewConfigurationActivated(ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkSession::newConfigurationActivated")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "newConfigurationActivated")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "newConfigurationActivated"); signal != nil {
 		signal.(func())()
 	}
 
@@ -251,8 +248,7 @@ func (ptr *QNetworkSession) DisconnectOpened() {
 func callbackQNetworkSessionOpened(ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkSession::opened")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "opened")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "opened"); signal != nil {
 		signal.(func())()
 	}
 
@@ -314,8 +310,7 @@ func (ptr *QNetworkSession) DisconnectStateChanged() {
 func callbackQNetworkSessionStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QNetworkSession::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QNetworkSession__State))(QNetworkSession__State(state))
 	}
 
@@ -360,8 +355,7 @@ func (ptr *QNetworkSession) DisconnectUsagePoliciesChanged() {
 func callbackQNetworkSessionUsagePoliciesChanged(ptrName *C.char, usagePolicies C.int) {
 	defer qt.Recovering("callback QNetworkSession::usagePoliciesChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "usagePoliciesChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "usagePoliciesChanged"); signal != nil {
 		signal.(func(QNetworkSession__UsagePolicy))(QNetworkSession__UsagePolicy(usagePolicies))
 	}
 

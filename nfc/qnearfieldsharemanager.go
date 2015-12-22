@@ -89,8 +89,7 @@ func (ptr *QNearFieldShareManager) DisconnectError() {
 func callbackQNearFieldShareManagerError(ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QNearFieldShareManager::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(QNearFieldShareManager__ShareError))(QNearFieldShareManager__ShareError(error))
 	}
 
@@ -144,8 +143,7 @@ func (ptr *QNearFieldShareManager) DisconnectShareModesChanged() {
 func callbackQNearFieldShareManagerShareModesChanged(ptrName *C.char, modes C.int) {
 	defer qt.Recovering("callback QNearFieldShareManager::shareModesChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "shareModesChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "shareModesChanged"); signal != nil {
 		signal.(func(QNearFieldShareManager__ShareMode))(QNearFieldShareManager__ShareMode(modes))
 	}
 
@@ -179,8 +177,7 @@ func (ptr *QNearFieldShareManager) DisconnectTargetDetected() {
 func callbackQNearFieldShareManagerTargetDetected(ptrName *C.char, shareTarget unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldShareManager::targetDetected")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "targetDetected")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "targetDetected"); signal != nil {
 		signal.(func(*QNearFieldShareTarget))(NewQNearFieldShareTargetFromPointer(shareTarget))
 	}
 

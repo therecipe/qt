@@ -68,8 +68,7 @@ func (ptr *QAudioDecoderControl) DisconnectBufferAvailableChanged() {
 func callbackQAudioDecoderControlBufferAvailableChanged(ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QAudioDecoderControl::bufferAvailableChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "bufferAvailableChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "bufferAvailableChanged"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
@@ -97,8 +96,7 @@ func (ptr *QAudioDecoderControl) DisconnectBufferReady() {
 func callbackQAudioDecoderControlBufferReady(ptrName *C.char) {
 	defer qt.Recovering("callback QAudioDecoderControl::bufferReady")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "bufferReady")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "bufferReady"); signal != nil {
 		signal.(func())()
 	}
 
@@ -135,8 +133,7 @@ func (ptr *QAudioDecoderControl) DisconnectDurationChanged() {
 func callbackQAudioDecoderControlDurationChanged(ptrName *C.char, duration C.longlong) {
 	defer qt.Recovering("callback QAudioDecoderControl::durationChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "durationChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "durationChanged"); signal != nil {
 		signal.(func(int64))(int64(duration))
 	}
 
@@ -164,8 +161,7 @@ func (ptr *QAudioDecoderControl) DisconnectError() {
 func callbackQAudioDecoderControlError(ptrName *C.char, error C.int, errorString *C.char) {
 	defer qt.Recovering("callback QAudioDecoderControl::error")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "error")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(int, string))(int(error), C.GoString(errorString))
 	}
 
@@ -193,8 +189,7 @@ func (ptr *QAudioDecoderControl) DisconnectFinished() {
 func callbackQAudioDecoderControlFinished(ptrName *C.char) {
 	defer qt.Recovering("callback QAudioDecoderControl::finished")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "finished")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -231,8 +226,7 @@ func (ptr *QAudioDecoderControl) DisconnectPositionChanged() {
 func callbackQAudioDecoderControlPositionChanged(ptrName *C.char, position C.longlong) {
 	defer qt.Recovering("callback QAudioDecoderControl::positionChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "positionChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "positionChanged"); signal != nil {
 		signal.(func(int64))(int64(position))
 	}
 
@@ -284,8 +278,7 @@ func (ptr *QAudioDecoderControl) DisconnectSourceChanged() {
 func callbackQAudioDecoderControlSourceChanged(ptrName *C.char) {
 	defer qt.Recovering("callback QAudioDecoderControl::sourceChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "sourceChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "sourceChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -348,8 +341,7 @@ func (ptr *QAudioDecoderControl) DisconnectStateChanged() {
 func callbackQAudioDecoderControlStateChanged(ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QAudioDecoderControl::stateChanged")
 
-	var signal = qt.GetSignal(C.GoString(ptrName), "stateChanged")
-	if signal != nil {
+	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QAudioDecoder__State))(QAudioDecoder__State(state))
 	}
 
