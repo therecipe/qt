@@ -567,6 +567,36 @@ func callbackQDialogButtonBoxEnterEvent(ptrName *C.char, event unsafe.Pointer) b
 
 }
 
+func (ptr *QDialogButtonBox) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QDialogButtonBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QDialogButtonBox) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QDialogButtonBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQDialogButtonBoxFocusInEvent
+func callbackQDialogButtonBoxFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDialogButtonBox::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QDialogButtonBox) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
 	defer qt.Recovering("connect QDialogButtonBox::focusOutEvent")
 

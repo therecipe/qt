@@ -656,6 +656,36 @@ func callbackQVideoWidgetEnterEvent(ptrName *C.char, event unsafe.Pointer) bool 
 
 }
 
+func (ptr *QVideoWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QVideoWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QVideoWidget) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QVideoWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQVideoWidgetFocusInEvent
+func callbackQVideoWidgetFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QVideoWidget::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QVideoWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
 	defer qt.Recovering("connect QVideoWidget::focusOutEvent")
 
@@ -740,6 +770,36 @@ func callbackQVideoWidgetSetVisible(ptrName *C.char, visible C.int) bool {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QVideoWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QVideoWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QVideoWidget) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QVideoWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQVideoWidgetChangeEvent
+func callbackQVideoWidgetChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QVideoWidget::changeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}
 	return false

@@ -973,6 +973,36 @@ func callbackQUndoViewSelectAll(ptrName *C.char) bool {
 
 }
 
+func (ptr *QUndoView) ConnectSetModel(f func(model *core.QAbstractItemModel)) {
+	defer qt.Recovering("connect QUndoView::setModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setModel", f)
+	}
+}
+
+func (ptr *QUndoView) DisconnectSetModel() {
+	defer qt.Recovering("disconnect QUndoView::setModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setModel")
+	}
+}
+
+//export callbackQUndoViewSetModel
+func callbackQUndoViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
+	defer qt.Recovering("callback QUndoView::setModel")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
+		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QUndoView) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
 	defer qt.Recovering("connect QUndoView::setRootIndex")
 

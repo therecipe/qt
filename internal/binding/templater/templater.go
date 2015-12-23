@@ -99,14 +99,33 @@ func isBlocked(f *parser.Function) bool {
 	return false
 }
 
-func isBlockedVirtual(fn string) bool {
+func isBlockedVirtual(fn string, cn string) bool {
+	switch cn {
+	case "QSaveFile":
+		{
+			return fn == "close"
+		}
 
-	switch fn {
-	case "QFileDevice::close", "QListWidget::setModel", "QTableWidget::setModel", "QTreeWidget::setModel", "QAbstractItemView::setModel", "QTableView::setModel", "QTreeView::setModel", "QWidget::focusInEvent", "QWidget::changeEvent":
-		return true
+	case "QListWidget", "QTableWidget", "QTreeWidget":
+		{
+			return fn == "setModel"
+		}
+
+	case "QHelpSearchQueryWidget":
+		{
+			return fn == "focusInEvent" || fn == "changeEvent"
+		}
+
+	case "QHelpSearchResultWidget":
+		{
+			return fn == "changeEvent"
+		}
+
+	default:
+		{
+			return false
+		}
 	}
-
-	return false
 }
 
 func isObjectSubClass(b string) bool {

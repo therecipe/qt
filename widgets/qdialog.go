@@ -694,6 +694,36 @@ func callbackQDialogEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
 
 }
 
+func (ptr *QDialog) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QDialog::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QDialog) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QDialog::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQDialogFocusInEvent
+func callbackQDialogFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDialog::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QDialog) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
 	defer qt.Recovering("connect QDialog::focusOutEvent")
 
@@ -838,6 +868,36 @@ func callbackQDialogPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QDialog) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQDialogChangeEvent
+func callbackQDialogChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDialog::changeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}
 	return false

@@ -585,6 +585,36 @@ func callbackQErrorMessageEnterEvent(ptrName *C.char, event unsafe.Pointer) bool
 
 }
 
+func (ptr *QErrorMessage) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QErrorMessage::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QErrorMessage) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QErrorMessage::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQErrorMessageFocusInEvent
+func callbackQErrorMessageFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QErrorMessage::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QErrorMessage) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
 	defer qt.Recovering("connect QErrorMessage::focusOutEvent")
 

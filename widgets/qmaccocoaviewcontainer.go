@@ -227,6 +227,36 @@ func callbackQMacCocoaViewContainerEnterEvent(ptrName *C.char, event unsafe.Poin
 
 }
 
+func (ptr *QMacCocoaViewContainer) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QMacCocoaViewContainer::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QMacCocoaViewContainer::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQMacCocoaViewContainerFocusInEvent
+func callbackQMacCocoaViewContainerFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMacCocoaViewContainer::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QMacCocoaViewContainer) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
 	defer qt.Recovering("connect QMacCocoaViewContainer::focusOutEvent")
 
@@ -431,6 +461,36 @@ func callbackQMacCocoaViewContainerShowEvent(ptrName *C.char, event unsafe.Point
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QMacCocoaViewContainer) ConnectChangeEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QMacCocoaViewContainer::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QMacCocoaViewContainer::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQMacCocoaViewContainerChangeEvent
+func callbackQMacCocoaViewContainerChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMacCocoaViewContainer::changeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}
 	return false

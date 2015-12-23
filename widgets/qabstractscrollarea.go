@@ -756,6 +756,36 @@ func callbackQAbstractScrollAreaEnterEvent(ptrName *C.char, event unsafe.Pointer
 
 }
 
+func (ptr *QAbstractScrollArea) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QAbstractScrollArea::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QAbstractScrollArea) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QAbstractScrollArea::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQAbstractScrollAreaFocusInEvent
+func callbackQAbstractScrollAreaFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAbstractScrollArea::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QAbstractScrollArea) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
 	defer qt.Recovering("connect QAbstractScrollArea::focusOutEvent")
 

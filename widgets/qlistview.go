@@ -1198,6 +1198,36 @@ func callbackQListViewSelectAll(ptrName *C.char) bool {
 
 }
 
+func (ptr *QListView) ConnectSetModel(f func(model *core.QAbstractItemModel)) {
+	defer qt.Recovering("connect QListView::setModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setModel", f)
+	}
+}
+
+func (ptr *QListView) DisconnectSetModel() {
+	defer qt.Recovering("disconnect QListView::setModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setModel")
+	}
+}
+
+//export callbackQListViewSetModel
+func callbackQListViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::setModel")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
+		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QListView) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
 	defer qt.Recovering("connect QListView::setRootIndex")
 

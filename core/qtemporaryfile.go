@@ -133,6 +133,36 @@ func (ptr *QTemporaryFile) DestroyQTemporaryFile() {
 	}
 }
 
+func (ptr *QTemporaryFile) ConnectClose(f func()) {
+	defer qt.Recovering("connect QTemporaryFile::close")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "close", f)
+	}
+}
+
+func (ptr *QTemporaryFile) DisconnectClose() {
+	defer qt.Recovering("disconnect QTemporaryFile::close")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "close")
+	}
+}
+
+//export callbackQTemporaryFileClose
+func callbackQTemporaryFileClose(ptrName *C.char) bool {
+	defer qt.Recovering("callback QTemporaryFile::close")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTemporaryFile) ConnectTimerEvent(f func(event *QTimerEvent)) {
 	defer qt.Recovering("connect QTemporaryFile::timerEvent")
 

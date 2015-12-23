@@ -923,6 +923,36 @@ func callbackQHelpIndexWidgetSelectAll(ptrName *C.char) bool {
 
 }
 
+func (ptr *QHelpIndexWidget) ConnectSetModel(f func(model *core.QAbstractItemModel)) {
+	defer qt.Recovering("connect QHelpIndexWidget::setModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setModel", f)
+	}
+}
+
+func (ptr *QHelpIndexWidget) DisconnectSetModel() {
+	defer qt.Recovering("disconnect QHelpIndexWidget::setModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setModel")
+	}
+}
+
+//export callbackQHelpIndexWidgetSetModel
+func callbackQHelpIndexWidgetSetModel(ptrName *C.char, model unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHelpIndexWidget::setModel")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
+		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QHelpIndexWidget) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
 	defer qt.Recovering("connect QHelpIndexWidget::setRootIndex")
 

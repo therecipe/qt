@@ -436,6 +436,36 @@ func callbackQStackedWidgetEnterEvent(ptrName *C.char, event unsafe.Pointer) boo
 
 }
 
+func (ptr *QStackedWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QStackedWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QStackedWidget) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QStackedWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQStackedWidgetFocusInEvent
+func callbackQStackedWidgetFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStackedWidget::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QStackedWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
 	defer qt.Recovering("connect QStackedWidget::focusOutEvent")
 

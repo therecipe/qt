@@ -282,11 +282,13 @@ protected:
 	void dragMoveEvent(QDragMoveEvent * event) { if (!callbackQSvgWidgetDragMoveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::dragMoveEvent(event); }; };
 	void dropEvent(QDropEvent * event) { if (!callbackQSvgWidgetDropEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::dropEvent(event); }; };
 	void enterEvent(QEvent * event) { if (!callbackQSvgWidgetEnterEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::enterEvent(event); }; };
+	void focusInEvent(QFocusEvent * event) { if (!callbackQSvgWidgetFocusInEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::focusInEvent(event); }; };
 	void focusOutEvent(QFocusEvent * event) { if (!callbackQSvgWidgetFocusOutEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::focusOutEvent(event); }; };
 	void hideEvent(QHideEvent * event) { if (!callbackQSvgWidgetHideEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::hideEvent(event); }; };
 	void leaveEvent(QEvent * event) { if (!callbackQSvgWidgetLeaveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::leaveEvent(event); }; };
 	void moveEvent(QMoveEvent * event) { if (!callbackQSvgWidgetMoveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::moveEvent(event); }; };
 	void showEvent(QShowEvent * event) { if (!callbackQSvgWidgetShowEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::showEvent(event); }; };
+	void changeEvent(QEvent * event) { if (!callbackQSvgWidgetChangeEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::changeEvent(event); }; };
 	void closeEvent(QCloseEvent * event) { if (!callbackQSvgWidgetCloseEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::closeEvent(event); }; };
 	void contextMenuEvent(QContextMenuEvent * event) { if (!callbackQSvgWidgetContextMenuEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::contextMenuEvent(event); }; };
 	void initPainter(QPainter * painter) const { if (!callbackQSvgWidgetInitPainter(this->objectName().toUtf8().data(), painter)) { QSvgWidget::initPainter(painter); }; };

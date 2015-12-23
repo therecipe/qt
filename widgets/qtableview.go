@@ -417,6 +417,36 @@ func (ptr *QTableView) SetHorizontalHeader(header QHeaderView_ITF) {
 	}
 }
 
+func (ptr *QTableView) ConnectSetModel(f func(model *core.QAbstractItemModel)) {
+	defer qt.Recovering("connect QTableView::setModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setModel", f)
+	}
+}
+
+func (ptr *QTableView) DisconnectSetModel() {
+	defer qt.Recovering("disconnect QTableView::setModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setModel")
+	}
+}
+
+//export callbackQTableViewSetModel
+func callbackQTableViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
+	defer qt.Recovering("callback QTableView::setModel")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
+		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QTableView) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
 	defer qt.Recovering("connect QTableView::setRootIndex")
 

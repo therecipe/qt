@@ -3023,6 +3023,7 @@ public:
 	MyQFile(QObject *parent) : QFile(parent) {};
 	MyQFile(const QString &name) : QFile(name) {};
 	MyQFile(const QString &name, QObject *parent) : QFile(name, parent) {};
+	void close() { if (!callbackQFileClose(this->objectName().toUtf8().data())) { QFile::close(); }; };
 protected:
 	void timerEvent(QTimerEvent * event) { if (!callbackQFileTimerEvent(this->objectName().toUtf8().data(), event)) { QFile::timerEvent(event); }; };
 	void childEvent(QChildEvent * event) { if (!callbackQFileChildEvent(this->objectName().toUtf8().data(), event)) { QFile::childEvent(event); }; };
@@ -3143,6 +3144,7 @@ void QFile_DestroyQFile(void* ptr){
 
 class MyQFileDevice: public QFileDevice {
 public:
+	void close() { if (!callbackQFileDeviceClose(this->objectName().toUtf8().data())) { QFileDevice::close(); }; };
 protected:
 	void timerEvent(QTimerEvent * event) { if (!callbackQFileDeviceTimerEvent(this->objectName().toUtf8().data(), event)) { QFileDevice::timerEvent(event); }; };
 	void childEvent(QChildEvent * event) { if (!callbackQFileDeviceChildEvent(this->objectName().toUtf8().data(), event)) { QFileDevice::childEvent(event); }; };
@@ -9008,6 +9010,7 @@ public:
 	MyQTemporaryFile(QObject *parent) : QTemporaryFile(parent) {};
 	MyQTemporaryFile(const QString &templateName) : QTemporaryFile(templateName) {};
 	MyQTemporaryFile(const QString &templateName, QObject *parent) : QTemporaryFile(templateName, parent) {};
+	void close() { if (!callbackQTemporaryFileClose(this->objectName().toUtf8().data())) { QTemporaryFile::close(); }; };
 protected:
 	void timerEvent(QTimerEvent * event) { if (!callbackQTemporaryFileTimerEvent(this->objectName().toUtf8().data(), event)) { QTemporaryFile::timerEvent(event); }; };
 	void childEvent(QChildEvent * event) { if (!callbackQTemporaryFileChildEvent(this->objectName().toUtf8().data(), event)) { QTemporaryFile::childEvent(event); }; };

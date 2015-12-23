@@ -482,6 +482,36 @@ func callbackQSizeGripEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
 
 }
 
+func (ptr *QSizeGrip) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QSizeGrip::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QSizeGrip) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QSizeGrip::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQSizeGripFocusInEvent
+func callbackQSizeGripFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSizeGrip::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QSizeGrip) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
 	defer qt.Recovering("connect QSizeGrip::focusOutEvent")
 
@@ -535,6 +565,36 @@ func callbackQSizeGripLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
 	defer qt.Recovering("callback QSizeGrip::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSizeGrip) ConnectChangeEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QSizeGrip::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QSizeGrip) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QSizeGrip::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQSizeGripChangeEvent
+func callbackQSizeGripChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSizeGrip::changeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 		return true
 	}

@@ -130,7 +130,7 @@ func CppTemplate(m string) (o string) {
 									if strings.Contains(f.Virtual, "impure") {
 										if _, exists := virtuals[f.Name]; !exists {
 											virtuals[f.Name] = true
-											if !isBlockedVirtual(f.Fullname) {
+											if !isBlockedVirtual(f.Name, c.Name) {
 												o += fmt.Sprintf("\t%v;\n", i)
 											}
 										}
@@ -150,7 +150,7 @@ func CppTemplate(m string) (o string) {
 										if i := cppFunctionSignal(f); isSupportedFunction(bc, f) && isSupportedClass(bc) {
 											if _, exists := virtuals[f.Name]; !exists {
 												virtuals[f.Name] = true
-												if !isBlockedVirtual(f.Fullname) {
+												if !isBlockedVirtual(f.Name, c.Name) {
 													o += strings.Replace(fmt.Sprintf("\t%v;\n", i), bc.Name, c.Name, -1)
 												}
 											}

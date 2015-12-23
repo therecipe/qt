@@ -245,6 +245,36 @@ func (ptr *QFile) DestroyQFile() {
 	}
 }
 
+func (ptr *QFile) ConnectClose(f func()) {
+	defer qt.Recovering("connect QFile::close")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "close", f)
+	}
+}
+
+func (ptr *QFile) DisconnectClose() {
+	defer qt.Recovering("disconnect QFile::close")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "close")
+	}
+}
+
+//export callbackQFileClose
+func callbackQFileClose(ptrName *C.char) bool {
+	defer qt.Recovering("callback QFile::close")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QFile) ConnectTimerEvent(f func(event *QTimerEvent)) {
 	defer qt.Recovering("connect QFile::timerEvent")
 

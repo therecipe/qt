@@ -109,6 +109,36 @@ func (ptr *QFileDevice) AtEnd() bool {
 	return false
 }
 
+func (ptr *QFileDevice) ConnectClose(f func()) {
+	defer qt.Recovering("connect QFileDevice::close")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "close", f)
+	}
+}
+
+func (ptr *QFileDevice) DisconnectClose() {
+	defer qt.Recovering("disconnect QFileDevice::close")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "close")
+	}
+}
+
+//export callbackQFileDeviceClose
+func callbackQFileDeviceClose(ptrName *C.char) bool {
+	defer qt.Recovering("callback QFileDevice::close")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QFileDevice) Error() QFileDevice__FileError {
 	defer qt.Recovering("QFileDevice::error")
 

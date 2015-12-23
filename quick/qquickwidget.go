@@ -875,6 +875,36 @@ func callbackQQuickWidgetSetVisible(ptrName *C.char, visible C.int) bool {
 
 }
 
+func (ptr *QQuickWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QQuickWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QQuickWidget) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QQuickWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQQuickWidgetChangeEvent
+func callbackQQuickWidgetChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickWidget::changeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QQuickWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
 	defer qt.Recovering("connect QQuickWidget::closeEvent")
 

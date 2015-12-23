@@ -950,6 +950,7 @@ protected:
 	void leaveEvent(QEvent * event) { if (!callbackQQuickWidgetLeaveEvent(this->objectName().toUtf8().data(), event)) { QQuickWidget::leaveEvent(event); }; };
 	void moveEvent(QMoveEvent * event) { if (!callbackQQuickWidgetMoveEvent(this->objectName().toUtf8().data(), event)) { QQuickWidget::moveEvent(event); }; };
 	void paintEvent(QPaintEvent * event) { if (!callbackQQuickWidgetPaintEvent(this->objectName().toUtf8().data(), event)) { QQuickWidget::paintEvent(event); }; };
+	void changeEvent(QEvent * event) { if (!callbackQQuickWidgetChangeEvent(this->objectName().toUtf8().data(), event)) { QQuickWidget::changeEvent(event); }; };
 	void closeEvent(QCloseEvent * event) { if (!callbackQQuickWidgetCloseEvent(this->objectName().toUtf8().data(), event)) { QQuickWidget::closeEvent(event); }; };
 	void contextMenuEvent(QContextMenuEvent * event) { if (!callbackQQuickWidgetContextMenuEvent(this->objectName().toUtf8().data(), event)) { QQuickWidget::contextMenuEvent(event); }; };
 	void initPainter(QPainter * painter) const { if (!callbackQQuickWidgetInitPainter(this->objectName().toUtf8().data(), painter)) { QQuickWidget::initPainter(painter); }; };

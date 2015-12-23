@@ -61,8 +61,10 @@ protected:
 	void dragMoveEvent(QDragMoveEvent * event) { if (!callbackQCameraViewfinderDragMoveEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinder::dragMoveEvent(event); }; };
 	void dropEvent(QDropEvent * event) { if (!callbackQCameraViewfinderDropEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinder::dropEvent(event); }; };
 	void enterEvent(QEvent * event) { if (!callbackQCameraViewfinderEnterEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinder::enterEvent(event); }; };
+	void focusInEvent(QFocusEvent * event) { if (!callbackQCameraViewfinderFocusInEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinder::focusInEvent(event); }; };
 	void focusOutEvent(QFocusEvent * event) { if (!callbackQCameraViewfinderFocusOutEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinder::focusOutEvent(event); }; };
 	void leaveEvent(QEvent * event) { if (!callbackQCameraViewfinderLeaveEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinder::leaveEvent(event); }; };
+	void changeEvent(QEvent * event) { if (!callbackQCameraViewfinderChangeEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinder::changeEvent(event); }; };
 	void closeEvent(QCloseEvent * event) { if (!callbackQCameraViewfinderCloseEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinder::closeEvent(event); }; };
 	void contextMenuEvent(QContextMenuEvent * event) { if (!callbackQCameraViewfinderContextMenuEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinder::contextMenuEvent(event); }; };
 	void initPainter(QPainter * painter) const { if (!callbackQCameraViewfinderInitPainter(this->objectName().toUtf8().data(), painter)) { QCameraViewfinder::initPainter(painter); }; };
@@ -155,8 +157,10 @@ protected:
 	void dragMoveEvent(QDragMoveEvent * event) { if (!callbackQVideoWidgetDragMoveEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::dragMoveEvent(event); }; };
 	void dropEvent(QDropEvent * event) { if (!callbackQVideoWidgetDropEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::dropEvent(event); }; };
 	void enterEvent(QEvent * event) { if (!callbackQVideoWidgetEnterEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::enterEvent(event); }; };
+	void focusInEvent(QFocusEvent * event) { if (!callbackQVideoWidgetFocusInEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::focusInEvent(event); }; };
 	void focusOutEvent(QFocusEvent * event) { if (!callbackQVideoWidgetFocusOutEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::focusOutEvent(event); }; };
 	void leaveEvent(QEvent * event) { if (!callbackQVideoWidgetLeaveEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::leaveEvent(event); }; };
+	void changeEvent(QEvent * event) { if (!callbackQVideoWidgetChangeEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::changeEvent(event); }; };
 	void closeEvent(QCloseEvent * event) { if (!callbackQVideoWidgetCloseEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::closeEvent(event); }; };
 	void contextMenuEvent(QContextMenuEvent * event) { if (!callbackQVideoWidgetContextMenuEvent(this->objectName().toUtf8().data(), event)) { QVideoWidget::contextMenuEvent(event); }; };
 	void initPainter(QPainter * painter) const { if (!callbackQVideoWidgetInitPainter(this->objectName().toUtf8().data(), painter)) { QVideoWidget::initPainter(painter); }; };

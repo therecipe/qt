@@ -2,6 +2,7 @@
 #include "_cgo_export.h"
 
 #include <QAbstractItemDelegate>
+#include <QAbstractItemModel>
 #include <QAbstractItemView>
 #include <QAction>
 #include <QActionEvent>
@@ -158,6 +159,7 @@ public:
 	void reset() { if (!callbackQHelpContentWidgetReset(this->objectName().toUtf8().data())) { QHelpContentWidget::reset(); }; };
 	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { if (!callbackQHelpContentWidgetScrollTo(this->objectName().toUtf8().data(), index.internalPointer(), hint)) { QHelpContentWidget::scrollTo(index, hint); }; };
 	void selectAll() { if (!callbackQHelpContentWidgetSelectAll(this->objectName().toUtf8().data())) { QHelpContentWidget::selectAll(); }; };
+	void setModel(QAbstractItemModel * model) { if (!callbackQHelpContentWidgetSetModel(this->objectName().toUtf8().data(), model)) { QHelpContentWidget::setModel(model); }; };
 	void setRootIndex(const QModelIndex & index) { if (!callbackQHelpContentWidgetSetRootIndex(this->objectName().toUtf8().data(), index.internalPointer())) { QHelpContentWidget::setRootIndex(index); }; };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { if (!callbackQHelpContentWidgetSetSelectionModel(this->objectName().toUtf8().data(), selectionModel)) { QHelpContentWidget::setSelectionModel(selectionModel); }; };
 	void setupViewport(QWidget * viewport) { if (!callbackQHelpContentWidgetSetupViewport(this->objectName().toUtf8().data(), viewport)) { QHelpContentWidget::setupViewport(viewport); }; };
@@ -456,6 +458,7 @@ public:
 	void keyboardSearch(const QString & search) { if (!callbackQHelpIndexWidgetKeyboardSearch(this->objectName().toUtf8().data(), search.toUtf8().data())) { QHelpIndexWidget::keyboardSearch(search); }; };
 	void reset() { if (!callbackQHelpIndexWidgetReset(this->objectName().toUtf8().data())) { QHelpIndexWidget::reset(); }; };
 	void selectAll() { if (!callbackQHelpIndexWidgetSelectAll(this->objectName().toUtf8().data())) { QHelpIndexWidget::selectAll(); }; };
+	void setModel(QAbstractItemModel * model) { if (!callbackQHelpIndexWidgetSetModel(this->objectName().toUtf8().data(), model)) { QHelpIndexWidget::setModel(model); }; };
 	void setRootIndex(const QModelIndex & index) { if (!callbackQHelpIndexWidgetSetRootIndex(this->objectName().toUtf8().data(), index.internalPointer())) { QHelpIndexWidget::setRootIndex(index); }; };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { if (!callbackQHelpIndexWidgetSetSelectionModel(this->objectName().toUtf8().data(), selectionModel)) { QHelpIndexWidget::setSelectionModel(selectionModel); }; };
 	void setupViewport(QWidget * viewport) { if (!callbackQHelpIndexWidgetSetupViewport(this->objectName().toUtf8().data(), viewport)) { QHelpIndexWidget::setupViewport(viewport); }; };
@@ -677,6 +680,7 @@ protected:
 	void dragMoveEvent(QDragMoveEvent * event) { if (!callbackQHelpSearchResultWidgetDragMoveEvent(this->objectName().toUtf8().data(), event)) { QHelpSearchResultWidget::dragMoveEvent(event); }; };
 	void dropEvent(QDropEvent * event) { if (!callbackQHelpSearchResultWidgetDropEvent(this->objectName().toUtf8().data(), event)) { QHelpSearchResultWidget::dropEvent(event); }; };
 	void enterEvent(QEvent * event) { if (!callbackQHelpSearchResultWidgetEnterEvent(this->objectName().toUtf8().data(), event)) { QHelpSearchResultWidget::enterEvent(event); }; };
+	void focusInEvent(QFocusEvent * event) { if (!callbackQHelpSearchResultWidgetFocusInEvent(this->objectName().toUtf8().data(), event)) { QHelpSearchResultWidget::focusInEvent(event); }; };
 	void focusOutEvent(QFocusEvent * event) { if (!callbackQHelpSearchResultWidgetFocusOutEvent(this->objectName().toUtf8().data(), event)) { QHelpSearchResultWidget::focusOutEvent(event); }; };
 	void hideEvent(QHideEvent * event) { if (!callbackQHelpSearchResultWidgetHideEvent(this->objectName().toUtf8().data(), event)) { QHelpSearchResultWidget::hideEvent(event); }; };
 	void leaveEvent(QEvent * event) { if (!callbackQHelpSearchResultWidgetLeaveEvent(this->objectName().toUtf8().data(), event)) { QHelpSearchResultWidget::leaveEvent(event); }; };

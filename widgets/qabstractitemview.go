@@ -1434,6 +1434,36 @@ func (ptr *QAbstractItemView) SetItemDelegateForRow(row int, delegate QAbstractI
 	}
 }
 
+func (ptr *QAbstractItemView) ConnectSetModel(f func(model *core.QAbstractItemModel)) {
+	defer qt.Recovering("connect QAbstractItemView::setModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setModel", f)
+	}
+}
+
+func (ptr *QAbstractItemView) DisconnectSetModel() {
+	defer qt.Recovering("disconnect QAbstractItemView::setModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setModel")
+	}
+}
+
+//export callbackQAbstractItemViewSetModel
+func callbackQAbstractItemViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAbstractItemView::setModel")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
+		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
+		return true
+	}
+	return false
+
+}
+
 func (ptr *QAbstractItemView) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
 	defer qt.Recovering("connect QAbstractItemView::setRootIndex")
 
