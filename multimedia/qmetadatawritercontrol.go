@@ -202,3 +202,93 @@ func (ptr *QMetaDataWriterControl) DestroyQMetaDataWriterControl() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QMetaDataWriterControl) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QMetaDataWriterControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QMetaDataWriterControl) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QMetaDataWriterControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQMetaDataWriterControlTimerEvent
+func callbackQMetaDataWriterControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMetaDataWriterControl::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QMetaDataWriterControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QMetaDataWriterControl::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QMetaDataWriterControl) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QMetaDataWriterControl::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQMetaDataWriterControlChildEvent
+func callbackQMetaDataWriterControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMetaDataWriterControl::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QMetaDataWriterControl) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QMetaDataWriterControl::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QMetaDataWriterControl) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QMetaDataWriterControl::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQMetaDataWriterControlCustomEvent
+func callbackQMetaDataWriterControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMetaDataWriterControl::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

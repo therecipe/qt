@@ -2,8 +2,10 @@
 #include "_cgo_export.h"
 
 #include <QByteArray>
+#include <QChildEvent>
 #include <QDate>
 #include <QDateTime>
+#include <QEvent>
 #include <QFile>
 #include <QFileSelector>
 #include <QJSEngine>
@@ -31,6 +33,9 @@
 #include <QQmlPropertyValueSource>
 #include <QQmlScriptString>
 #include <QString>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QUrl>
 #include <QVariant>
 
@@ -39,6 +44,9 @@ public:
 	MyQJSEngine() : QJSEngine() {};
 	MyQJSEngine(QObject *parent) : QJSEngine(parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQJSEngineTimerEvent(this->objectName().toUtf8().data(), event)) { QJSEngine::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQJSEngineChildEvent(this->objectName().toUtf8().data(), event)) { QJSEngine::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQJSEngineCustomEvent(this->objectName().toUtf8().data(), event)) { QJSEngine::customEvent(event); }; };
 };
 
 void* QJSEngine_NewQJSEngine(){
@@ -249,6 +257,9 @@ class MyQQmlApplicationEngine: public QQmlApplicationEngine {
 public:
 	void Signal_ObjectCreated(QObject * object, const QUrl & url) { callbackQQmlApplicationEngineObjectCreated(this->objectName().toUtf8().data(), object, new QUrl(url)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQQmlApplicationEngineTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlApplicationEngine::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQQmlApplicationEngineChildEvent(this->objectName().toUtf8().data(), event)) { QQmlApplicationEngine::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQQmlApplicationEngineCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlApplicationEngine::customEvent(event); }; };
 };
 
 void* QQmlApplicationEngine_NewQQmlApplicationEngine(void* parent){
@@ -298,6 +309,9 @@ public:
 	void Signal_ProgressChanged(qreal progress) { callbackQQmlComponentProgressChanged(this->objectName().toUtf8().data(), static_cast<double>(progress)); };
 	void Signal_StatusChanged(QQmlComponent::Status status) { callbackQQmlComponentStatusChanged(this->objectName().toUtf8().data(), status); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQQmlComponentTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlComponent::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQQmlComponentChildEvent(this->objectName().toUtf8().data(), event)) { QQmlComponent::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQQmlComponentCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlComponent::customEvent(event); }; };
 };
 
 double QQmlComponent_Progress(void* ptr){
@@ -405,6 +419,9 @@ public:
 	MyQQmlContext(QQmlContext *parentContext, QObject *parent) : QQmlContext(parentContext, parent) {};
 	MyQQmlContext(QQmlEngine *engine, QObject *parent) : QQmlContext(engine, parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQQmlContextTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlContext::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQQmlContextChildEvent(this->objectName().toUtf8().data(), event)) { QQmlContext::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQQmlContextCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlContext::customEvent(event); }; };
 };
 
 void* QQmlContext_NewQQmlContext2(void* parentContext, void* parent){
@@ -472,6 +489,9 @@ public:
 	MyQQmlEngine(QObject *parent) : QQmlEngine(parent) {};
 	void Signal_Quit() { callbackQQmlEngineQuit(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQQmlEngineTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlEngine::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQQmlEngineChildEvent(this->objectName().toUtf8().data(), event)) { QQmlEngine::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQQmlEngineCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlEngine::customEvent(event); }; };
 };
 
 char* QQmlEngine_OfflineStoragePath(void* ptr){
@@ -661,6 +681,9 @@ public:
 	MyQQmlExpression(const QQmlScriptString &script, QQmlContext *ctxt, QObject *scope, QObject *parent) : QQmlExpression(script, ctxt, scope, parent) {};
 	void Signal_ValueChanged() { callbackQQmlExpressionValueChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQQmlExpressionTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlExpression::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQQmlExpressionChildEvent(this->objectName().toUtf8().data(), event)) { QQmlExpression::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQQmlExpressionCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlExpression::customEvent(event); }; };
 };
 
 void* QQmlExpression_NewQQmlExpression(){
@@ -746,6 +769,9 @@ void QQmlExpression_DestroyQQmlExpression(void* ptr){
 class MyQQmlExtensionPlugin: public QQmlExtensionPlugin {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQQmlExtensionPluginTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlExtensionPlugin::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQQmlExtensionPluginChildEvent(this->objectName().toUtf8().data(), event)) { QQmlExtensionPlugin::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQQmlExtensionPluginCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlExtensionPlugin::customEvent(event); }; };
 };
 
 void* QQmlExtensionPlugin_BaseUrl(void* ptr){
@@ -1110,6 +1136,9 @@ public:
 	MyQQmlPropertyMap(QObject *parent) : QQmlPropertyMap(parent) {};
 	void Signal_ValueChanged(const QString & key, const QVariant & value) { callbackQQmlPropertyMapValueChanged(this->objectName().toUtf8().data(), key.toUtf8().data(), new QVariant(value)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQQmlPropertyMapTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlPropertyMap::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQQmlPropertyMapChildEvent(this->objectName().toUtf8().data(), event)) { QQmlPropertyMap::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQQmlPropertyMapCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlPropertyMap::customEvent(event); }; };
 };
 
 void* QQmlPropertyMap_NewQQmlPropertyMap(void* parent){

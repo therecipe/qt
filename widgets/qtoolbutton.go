@@ -470,3 +470,723 @@ func (ptr *QToolButton) DestroyQToolButton() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QToolButton) ConnectCheckStateSet(f func()) {
+	defer qt.Recovering("connect QToolButton::checkStateSet")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "checkStateSet", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectCheckStateSet() {
+	defer qt.Recovering("disconnect QToolButton::checkStateSet")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "checkStateSet")
+	}
+}
+
+//export callbackQToolButtonCheckStateSet
+func callbackQToolButtonCheckStateSet(ptrName *C.char) bool {
+	defer qt.Recovering("callback QToolButton::checkStateSet")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "checkStateSet"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectFocusInEvent(f func(e *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QToolButton::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QToolButton::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQToolButtonFocusInEvent
+func callbackQToolButtonFocusInEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectFocusOutEvent(f func(e *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QToolButton::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QToolButton::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+//export callbackQToolButtonFocusOutEvent
+func callbackQToolButtonFocusOutEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::focusOutEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QToolButton::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QToolButton::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQToolButtonKeyPressEvent
+func callbackQToolButtonKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::keyPressEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectKeyReleaseEvent(f func(e *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QToolButton::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectKeyReleaseEvent() {
+	defer qt.Recovering("disconnect QToolButton::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+	}
+}
+
+//export callbackQToolButtonKeyReleaseEvent
+func callbackQToolButtonKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::keyReleaseEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QToolButton::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectMouseMoveEvent() {
+	defer qt.Recovering("disconnect QToolButton::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+	}
+}
+
+//export callbackQToolButtonMouseMoveEvent
+func callbackQToolButtonMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::mouseMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
+	defer qt.Recovering("connect QToolButton::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectDragEnterEvent() {
+	defer qt.Recovering("disconnect QToolButton::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+	}
+}
+
+//export callbackQToolButtonDragEnterEvent
+func callbackQToolButtonDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::dragEnterEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
+	defer qt.Recovering("connect QToolButton::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectDragLeaveEvent() {
+	defer qt.Recovering("disconnect QToolButton::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+	}
+}
+
+//export callbackQToolButtonDragLeaveEvent
+func callbackQToolButtonDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::dragLeaveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
+	defer qt.Recovering("connect QToolButton::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectDragMoveEvent() {
+	defer qt.Recovering("disconnect QToolButton::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+	}
+}
+
+//export callbackQToolButtonDragMoveEvent
+func callbackQToolButtonDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::dragMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectDropEvent(f func(event *gui.QDropEvent)) {
+	defer qt.Recovering("connect QToolButton::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectDropEvent() {
+	defer qt.Recovering("disconnect QToolButton::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+	}
+}
+
+//export callbackQToolButtonDropEvent
+func callbackQToolButtonDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::dropEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectHideEvent(f func(event *gui.QHideEvent)) {
+	defer qt.Recovering("connect QToolButton::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectHideEvent() {
+	defer qt.Recovering("disconnect QToolButton::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+	}
+}
+
+//export callbackQToolButtonHideEvent
+func callbackQToolButtonHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::hideEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
+	defer qt.Recovering("connect QToolButton::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "moveEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectMoveEvent() {
+	defer qt.Recovering("disconnect QToolButton::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "moveEvent")
+	}
+}
+
+//export callbackQToolButtonMoveEvent
+func callbackQToolButtonMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::moveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectSetVisible(f func(visible bool)) {
+	defer qt.Recovering("connect QToolButton::setVisible")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectSetVisible() {
+	defer qt.Recovering("disconnect QToolButton::setVisible")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+	}
+}
+
+//export callbackQToolButtonSetVisible
+func callbackQToolButtonSetVisible(ptrName *C.char, visible C.int) bool {
+	defer qt.Recovering("callback QToolButton::setVisible")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
+		signal.(func(bool))(int(visible) != 0)
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectShowEvent(f func(event *gui.QShowEvent)) {
+	defer qt.Recovering("connect QToolButton::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectShowEvent() {
+	defer qt.Recovering("disconnect QToolButton::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+	}
+}
+
+//export callbackQToolButtonShowEvent
+func callbackQToolButtonShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::showEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
+	defer qt.Recovering("connect QToolButton::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectCloseEvent() {
+	defer qt.Recovering("disconnect QToolButton::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+	}
+}
+
+//export callbackQToolButtonCloseEvent
+func callbackQToolButtonCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::closeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
+	defer qt.Recovering("connect QToolButton::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectContextMenuEvent() {
+	defer qt.Recovering("disconnect QToolButton::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+	}
+}
+
+//export callbackQToolButtonContextMenuEvent
+func callbackQToolButtonContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::contextMenuEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectInitPainter(f func(painter *gui.QPainter)) {
+	defer qt.Recovering("connect QToolButton::initPainter")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "initPainter", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectInitPainter() {
+	defer qt.Recovering("disconnect QToolButton::initPainter")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "initPainter")
+	}
+}
+
+//export callbackQToolButtonInitPainter
+func callbackQToolButtonInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::initPainter")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
+	defer qt.Recovering("connect QToolButton::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectInputMethodEvent() {
+	defer qt.Recovering("disconnect QToolButton::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+	}
+}
+
+//export callbackQToolButtonInputMethodEvent
+func callbackQToolButtonInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::inputMethodEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QToolButton::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectMouseDoubleClickEvent() {
+	defer qt.Recovering("disconnect QToolButton::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+	}
+}
+
+//export callbackQToolButtonMouseDoubleClickEvent
+func callbackQToolButtonMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::mouseDoubleClickEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
+	defer qt.Recovering("connect QToolButton::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectResizeEvent() {
+	defer qt.Recovering("disconnect QToolButton::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+	}
+}
+
+//export callbackQToolButtonResizeEvent
+func callbackQToolButtonResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::resizeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
+	defer qt.Recovering("connect QToolButton::tabletEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "tabletEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectTabletEvent() {
+	defer qt.Recovering("disconnect QToolButton::tabletEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "tabletEvent")
+	}
+}
+
+//export callbackQToolButtonTabletEvent
+func callbackQToolButtonTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::tabletEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
+		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
+	defer qt.Recovering("connect QToolButton::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QToolButton::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQToolButtonWheelEvent
+func callbackQToolButtonWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::wheelEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QToolButton::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QToolButton::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQToolButtonChildEvent
+func callbackQToolButtonChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QToolButton) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QToolButton::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QToolButton) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QToolButton::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQToolButtonCustomEvent
+func callbackQToolButtonCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QToolButton::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

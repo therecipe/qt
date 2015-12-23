@@ -4,6 +4,7 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -85,4 +86,94 @@ func (ptr *QAccelerometerReading) SetZ(z float64) {
 	if ptr.Pointer() != nil {
 		C.QAccelerometerReading_SetZ(ptr.Pointer(), C.double(z))
 	}
+}
+
+func (ptr *QAccelerometerReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QAccelerometerReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QAccelerometerReading) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QAccelerometerReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQAccelerometerReadingTimerEvent
+func callbackQAccelerometerReadingTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAccelerometerReading::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QAccelerometerReading) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QAccelerometerReading::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QAccelerometerReading) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QAccelerometerReading::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQAccelerometerReadingChildEvent
+func callbackQAccelerometerReadingChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAccelerometerReading::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QAccelerometerReading) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QAccelerometerReading::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QAccelerometerReading) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QAccelerometerReading::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQAccelerometerReadingCustomEvent
+func callbackQAccelerometerReadingCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAccelerometerReading::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
 }

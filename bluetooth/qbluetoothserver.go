@@ -189,3 +189,93 @@ func (ptr *QBluetoothServer) SetMaxPendingConnections(numConnections int) {
 		C.QBluetoothServer_SetMaxPendingConnections(ptr.Pointer(), C.int(numConnections))
 	}
 }
+
+func (ptr *QBluetoothServer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QBluetoothServer::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QBluetoothServer) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QBluetoothServer::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQBluetoothServerTimerEvent
+func callbackQBluetoothServerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QBluetoothServer::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QBluetoothServer) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QBluetoothServer::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QBluetoothServer) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QBluetoothServer::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQBluetoothServerChildEvent
+func callbackQBluetoothServerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QBluetoothServer::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QBluetoothServer) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QBluetoothServer::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QBluetoothServer) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QBluetoothServer::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQBluetoothServerCustomEvent
+func callbackQBluetoothServerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QBluetoothServer::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

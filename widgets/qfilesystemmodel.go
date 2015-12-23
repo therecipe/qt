@@ -582,3 +582,93 @@ func (ptr *QFileSystemModel) DestroyQFileSystemModel() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QFileSystemModel) ConnectRevert(f func()) {
+	defer qt.Recovering("connect QFileSystemModel::revert")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "revert", f)
+	}
+}
+
+func (ptr *QFileSystemModel) DisconnectRevert() {
+	defer qt.Recovering("disconnect QFileSystemModel::revert")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "revert")
+	}
+}
+
+//export callbackQFileSystemModelRevert
+func callbackQFileSystemModelRevert(ptrName *C.char) bool {
+	defer qt.Recovering("callback QFileSystemModel::revert")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QFileSystemModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QFileSystemModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QFileSystemModel) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QFileSystemModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQFileSystemModelChildEvent
+func callbackQFileSystemModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFileSystemModel::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QFileSystemModel) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QFileSystemModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QFileSystemModel) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QFileSystemModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQFileSystemModelCustomEvent
+func callbackQFileSystemModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFileSystemModel::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

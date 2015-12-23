@@ -4,6 +4,7 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -97,4 +98,94 @@ func (ptr *QCameraCaptureDestinationControl) DestroyQCameraCaptureDestinationCon
 		C.QCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QCameraCaptureDestinationControl) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QCameraCaptureDestinationControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QCameraCaptureDestinationControl) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QCameraCaptureDestinationControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQCameraCaptureDestinationControlTimerEvent
+func callbackQCameraCaptureDestinationControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QCameraCaptureDestinationControl::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QCameraCaptureDestinationControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QCameraCaptureDestinationControl::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QCameraCaptureDestinationControl) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QCameraCaptureDestinationControl::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQCameraCaptureDestinationControlChildEvent
+func callbackQCameraCaptureDestinationControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QCameraCaptureDestinationControl::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QCameraCaptureDestinationControl) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QCameraCaptureDestinationControl::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QCameraCaptureDestinationControl) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QCameraCaptureDestinationControl::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQCameraCaptureDestinationControlCustomEvent
+func callbackQCameraCaptureDestinationControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QCameraCaptureDestinationControl::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
 }

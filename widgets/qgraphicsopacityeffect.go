@@ -142,3 +142,93 @@ func (ptr *QGraphicsOpacityEffect) DestroyQGraphicsOpacityEffect() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QGraphicsOpacityEffect) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QGraphicsOpacityEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QGraphicsOpacityEffect) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QGraphicsOpacityEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQGraphicsOpacityEffectTimerEvent
+func callbackQGraphicsOpacityEffectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsOpacityEffect::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsOpacityEffect) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QGraphicsOpacityEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QGraphicsOpacityEffect) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QGraphicsOpacityEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQGraphicsOpacityEffectChildEvent
+func callbackQGraphicsOpacityEffectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsOpacityEffect::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsOpacityEffect) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QGraphicsOpacityEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QGraphicsOpacityEffect) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QGraphicsOpacityEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQGraphicsOpacityEffectCustomEvent
+func callbackQGraphicsOpacityEffectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsOpacityEffect::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

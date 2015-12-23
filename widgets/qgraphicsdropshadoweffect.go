@@ -200,3 +200,93 @@ func (ptr *QGraphicsDropShadowEffect) DestroyQGraphicsDropShadowEffect() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QGraphicsDropShadowEffect) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QGraphicsDropShadowEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QGraphicsDropShadowEffect) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QGraphicsDropShadowEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQGraphicsDropShadowEffectTimerEvent
+func callbackQGraphicsDropShadowEffectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsDropShadowEffect::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsDropShadowEffect) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QGraphicsDropShadowEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QGraphicsDropShadowEffect) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QGraphicsDropShadowEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQGraphicsDropShadowEffectChildEvent
+func callbackQGraphicsDropShadowEffectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsDropShadowEffect::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsDropShadowEffect) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QGraphicsDropShadowEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QGraphicsDropShadowEffect) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QGraphicsDropShadowEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQGraphicsDropShadowEffectCustomEvent
+func callbackQGraphicsDropShadowEffectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsDropShadowEffect::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

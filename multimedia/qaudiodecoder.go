@@ -413,3 +413,123 @@ func (ptr *QAudioDecoder) DestroyQAudioDecoder() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QAudioDecoder) ConnectUnbind(f func(object *core.QObject)) {
+	defer qt.Recovering("connect QAudioDecoder::unbind")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "unbind", f)
+	}
+}
+
+func (ptr *QAudioDecoder) DisconnectUnbind() {
+	defer qt.Recovering("disconnect QAudioDecoder::unbind")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "unbind")
+	}
+}
+
+//export callbackQAudioDecoderUnbind
+func callbackQAudioDecoderUnbind(ptrName *C.char, object unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAudioDecoder::unbind")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "unbind"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QAudioDecoder) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QAudioDecoder::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QAudioDecoder) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QAudioDecoder::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQAudioDecoderTimerEvent
+func callbackQAudioDecoderTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAudioDecoder::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QAudioDecoder) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QAudioDecoder::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QAudioDecoder) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QAudioDecoder::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQAudioDecoderChildEvent
+func callbackQAudioDecoderChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAudioDecoder::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QAudioDecoder) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QAudioDecoder::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QAudioDecoder) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QAudioDecoder::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQAudioDecoderCustomEvent
+func callbackQAudioDecoderCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAudioDecoder::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

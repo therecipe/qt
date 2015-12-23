@@ -204,3 +204,93 @@ func (ptr *QAbstractTransition) DestroyQAbstractTransition() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QAbstractTransition) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QAbstractTransition::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QAbstractTransition) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QAbstractTransition::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQAbstractTransitionTimerEvent
+func callbackQAbstractTransitionTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAbstractTransition::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QAbstractTransition) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QAbstractTransition::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QAbstractTransition) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QAbstractTransition::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQAbstractTransitionChildEvent
+func callbackQAbstractTransitionChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAbstractTransition::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QAbstractTransition) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QAbstractTransition::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QAbstractTransition) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QAbstractTransition::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQAbstractTransitionCustomEvent
+func callbackQAbstractTransitionCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAbstractTransition::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

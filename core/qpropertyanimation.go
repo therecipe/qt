@@ -150,3 +150,153 @@ func (ptr *QPropertyAnimation) DestroyQPropertyAnimation() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QPropertyAnimation) ConnectUpdateCurrentTime(f func(v int)) {
+	defer qt.Recovering("connect QPropertyAnimation::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateCurrentTime", f)
+	}
+}
+
+func (ptr *QPropertyAnimation) DisconnectUpdateCurrentTime() {
+	defer qt.Recovering("disconnect QPropertyAnimation::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateCurrentTime")
+	}
+}
+
+//export callbackQPropertyAnimationUpdateCurrentTime
+func callbackQPropertyAnimationUpdateCurrentTime(ptrName *C.char, v C.int) bool {
+	defer qt.Recovering("callback QPropertyAnimation::updateCurrentTime")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
+		signal.(func(int))(int(v))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QPropertyAnimation) ConnectUpdateDirection(f func(direction QAbstractAnimation__Direction)) {
+	defer qt.Recovering("connect QPropertyAnimation::updateDirection")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateDirection", f)
+	}
+}
+
+func (ptr *QPropertyAnimation) DisconnectUpdateDirection() {
+	defer qt.Recovering("disconnect QPropertyAnimation::updateDirection")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateDirection")
+	}
+}
+
+//export callbackQPropertyAnimationUpdateDirection
+func callbackQPropertyAnimationUpdateDirection(ptrName *C.char, direction C.int) bool {
+	defer qt.Recovering("callback QPropertyAnimation::updateDirection")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateDirection"); signal != nil {
+		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QPropertyAnimation) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QPropertyAnimation::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QPropertyAnimation) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QPropertyAnimation::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQPropertyAnimationTimerEvent
+func callbackQPropertyAnimationTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPropertyAnimation::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QPropertyAnimation) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QPropertyAnimation::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QPropertyAnimation) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QPropertyAnimation::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQPropertyAnimationChildEvent
+func callbackQPropertyAnimationChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPropertyAnimation::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QPropertyAnimation) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QPropertyAnimation::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QPropertyAnimation) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QPropertyAnimation::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQPropertyAnimationCustomEvent
+func callbackQPropertyAnimationCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPropertyAnimation::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

@@ -66,3 +66,33 @@ func (ptr *QSGBasicGeometryNode) DestroyQSGBasicGeometryNode() {
 		C.QSGBasicGeometryNode_DestroyQSGBasicGeometryNode(ptr.Pointer())
 	}
 }
+
+func (ptr *QSGBasicGeometryNode) ConnectPreprocess(f func()) {
+	defer qt.Recovering("connect QSGBasicGeometryNode::preprocess")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "preprocess", f)
+	}
+}
+
+func (ptr *QSGBasicGeometryNode) DisconnectPreprocess() {
+	defer qt.Recovering("disconnect QSGBasicGeometryNode::preprocess")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "preprocess")
+	}
+}
+
+//export callbackQSGBasicGeometryNodePreprocess
+func callbackQSGBasicGeometryNodePreprocess(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSGBasicGeometryNode::preprocess")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}

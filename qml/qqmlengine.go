@@ -307,3 +307,93 @@ func (ptr *QQmlEngine) DestroyQQmlEngine() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QQmlEngine) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QQmlEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QQmlEngine) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QQmlEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQQmlEngineTimerEvent
+func callbackQQmlEngineTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQmlEngine::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQmlEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QQmlEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QQmlEngine) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QQmlEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQQmlEngineChildEvent
+func callbackQQmlEngineChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQmlEngine::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQmlEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QQmlEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QQmlEngine) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QQmlEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQQmlEngineCustomEvent
+func callbackQQmlEngineCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQmlEngine::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

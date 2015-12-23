@@ -168,3 +168,33 @@ func (ptr *QSpacerItem) SetObjectNameAbs(name string) {
 		C.QSpacerItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }
+
+func (ptr *QSpacerItem) ConnectInvalidate(f func()) {
+	defer qt.Recovering("connect QSpacerItem::invalidate")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "invalidate", f)
+	}
+}
+
+func (ptr *QSpacerItem) DisconnectInvalidate() {
+	defer qt.Recovering("disconnect QSpacerItem::invalidate")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "invalidate")
+	}
+}
+
+//export callbackQSpacerItemInvalidate
+func callbackQSpacerItemInvalidate(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSpacerItem::invalidate")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}

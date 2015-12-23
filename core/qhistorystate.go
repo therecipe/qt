@@ -214,3 +214,93 @@ func (ptr *QHistoryState) DestroyQHistoryState() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QHistoryState) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QHistoryState::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QHistoryState) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QHistoryState::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQHistoryStateTimerEvent
+func callbackQHistoryStateTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHistoryState::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHistoryState) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QHistoryState::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QHistoryState) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QHistoryState::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQHistoryStateChildEvent
+func callbackQHistoryStateChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHistoryState::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHistoryState) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QHistoryState::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QHistoryState) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QHistoryState::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQHistoryStateCustomEvent
+func callbackQHistoryStateCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHistoryState::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

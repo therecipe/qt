@@ -156,3 +156,33 @@ func (ptr *QSGSimpleTextureNode) DestroyQSGSimpleTextureNode() {
 		C.QSGSimpleTextureNode_DestroyQSGSimpleTextureNode(ptr.Pointer())
 	}
 }
+
+func (ptr *QSGSimpleTextureNode) ConnectPreprocess(f func()) {
+	defer qt.Recovering("connect QSGSimpleTextureNode::preprocess")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "preprocess", f)
+	}
+}
+
+func (ptr *QSGSimpleTextureNode) DisconnectPreprocess() {
+	defer qt.Recovering("disconnect QSGSimpleTextureNode::preprocess")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "preprocess")
+	}
+}
+
+//export callbackQSGSimpleTextureNodePreprocess
+func callbackQSGSimpleTextureNodePreprocess(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSGSimpleTextureNode::preprocess")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}

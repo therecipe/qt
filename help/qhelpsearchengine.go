@@ -214,3 +214,93 @@ func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QHelpSearchEngine) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QHelpSearchEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QHelpSearchEngine) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QHelpSearchEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQHelpSearchEngineTimerEvent
+func callbackQHelpSearchEngineTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHelpSearchEngine::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHelpSearchEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QHelpSearchEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QHelpSearchEngine) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QHelpSearchEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQHelpSearchEngineChildEvent
+func callbackQHelpSearchEngineChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHelpSearchEngine::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHelpSearchEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QHelpSearchEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QHelpSearchEngine) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QHelpSearchEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQHelpSearchEngineCustomEvent
+func callbackQHelpSearchEngineCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHelpSearchEngine::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

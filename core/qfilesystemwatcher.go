@@ -167,3 +167,93 @@ func (ptr *QFileSystemWatcher) DestroyQFileSystemWatcher() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QFileSystemWatcher) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QFileSystemWatcher::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QFileSystemWatcher) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QFileSystemWatcher::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQFileSystemWatcherTimerEvent
+func callbackQFileSystemWatcherTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFileSystemWatcher::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QFileSystemWatcher) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QFileSystemWatcher::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QFileSystemWatcher) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QFileSystemWatcher::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQFileSystemWatcherChildEvent
+func callbackQFileSystemWatcherChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFileSystemWatcher::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QFileSystemWatcher) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QFileSystemWatcher::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QFileSystemWatcher) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QFileSystemWatcher::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQFileSystemWatcherCustomEvent
+func callbackQFileSystemWatcherCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFileSystemWatcher::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

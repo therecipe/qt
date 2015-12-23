@@ -6,6 +6,8 @@
 #include <QAbstractXmlNodeModel>
 #include <QAbstractXmlReceiver>
 #include <QByteArray>
+#include <QChildEvent>
+#include <QEvent>
 #include <QIODevice>
 #include <QNetworkAccessManager>
 #include <QSimpleXmlNodeModel>
@@ -13,6 +15,9 @@
 #include <QString>
 #include <QStringRef>
 #include <QTextCodec>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QUrl>
 #include <QVariant>
 #include <QXmlFormatter>
@@ -29,6 +34,9 @@
 class MyQAbstractMessageHandler: public QAbstractMessageHandler {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractMessageHandlerTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractMessageHandler::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractMessageHandlerChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractMessageHandler::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractMessageHandlerCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractMessageHandler::customEvent(event); }; };
 };
 
 void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr){
@@ -38,6 +46,9 @@ void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr){
 class MyQAbstractUriResolver: public QAbstractUriResolver {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractUriResolverTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractUriResolver::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractUriResolverChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractUriResolver::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractUriResolverCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractUriResolver::customEvent(event); }; };
 };
 
 void* QAbstractUriResolver_Resolve(void* ptr, void* relative, void* baseURI){

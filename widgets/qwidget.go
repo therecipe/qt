@@ -326,36 +326,6 @@ func callbackQWidgetEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
 
 }
 
-func (ptr *QWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QWidget::focusInEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
-	}
-}
-
-func (ptr *QWidget) DisconnectFocusInEvent() {
-	defer qt.Recovering("disconnect QWidget::focusInEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
-	}
-}
-
-//export callbackQWidgetFocusInEvent
-func callbackQWidgetFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
-	defer qt.Recovering("callback QWidget::focusInEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
-		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
-	}
-	return false
-
-}
-
 func (ptr *QWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
 	defer qt.Recovering("connect QWidget::focusOutEvent")
 
@@ -1306,36 +1276,6 @@ func (ptr *QWidget) BackingStore() *gui.QBackingStore {
 		return gui.NewQBackingStoreFromPointer(C.QWidget_BackingStore(ptr.Pointer()))
 	}
 	return nil
-}
-
-func (ptr *QWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWidget::changeEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
-	}
-}
-
-func (ptr *QWidget) DisconnectChangeEvent() {
-	defer qt.Recovering("disconnect QWidget::changeEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
-	}
-}
-
-//export callbackQWidgetChangeEvent
-func callbackQWidgetChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
-	defer qt.Recovering("callback QWidget::changeEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
-	}
-	return false
-
 }
 
 func (ptr *QWidget) ChildAt2(p core.QPoint_ITF) *QWidget {
@@ -2857,4 +2797,94 @@ func QWidget_CreateWindowContainer(window gui.QWindow_ITF, parent QWidget_ITF, f
 	defer qt.Recovering("QWidget::createWindowContainer")
 
 	return NewQWidgetFromPointer(C.QWidget_QWidget_CreateWindowContainer(gui.PointerFromQWindow(window), PointerFromQWidget(parent), C.int(flags)))
+}
+
+func (ptr *QWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQWidgetTimerEvent
+func callbackQWidgetTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQWidgetChildEvent
+func callbackQWidgetChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QWidget) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQWidgetCustomEvent
+func callbackQWidgetCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWidget::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
 }

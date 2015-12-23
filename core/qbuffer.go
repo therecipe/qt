@@ -191,3 +191,93 @@ func (ptr *QBuffer) DestroyQBuffer() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QBuffer) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QBuffer::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QBuffer) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QBuffer::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQBufferTimerEvent
+func callbackQBufferTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QBuffer::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QBuffer) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QBuffer::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QBuffer) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QBuffer::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQBufferChildEvent
+func callbackQBufferChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QBuffer::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QBuffer) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QBuffer::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QBuffer) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QBuffer::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQBufferCustomEvent
+func callbackQBufferCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QBuffer::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

@@ -4,6 +4,7 @@ package sensors
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -85,4 +86,94 @@ func (ptr *QGyroscopeReading) SetZ(z float64) {
 	if ptr.Pointer() != nil {
 		C.QGyroscopeReading_SetZ(ptr.Pointer(), C.double(z))
 	}
+}
+
+func (ptr *QGyroscopeReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QGyroscopeReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QGyroscopeReading) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QGyroscopeReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQGyroscopeReadingTimerEvent
+func callbackQGyroscopeReadingTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGyroscopeReading::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGyroscopeReading) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QGyroscopeReading::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QGyroscopeReading) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QGyroscopeReading::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQGyroscopeReadingChildEvent
+func callbackQGyroscopeReadingChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGyroscopeReading::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGyroscopeReading) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QGyroscopeReading::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QGyroscopeReading) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QGyroscopeReading::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQGyroscopeReadingCustomEvent
+func callbackQGyroscopeReadingCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGyroscopeReading::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
 }

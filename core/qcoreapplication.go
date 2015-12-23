@@ -344,3 +344,93 @@ func (ptr *QCoreApplication) DestroyQCoreApplication() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QCoreApplication) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QCoreApplication::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QCoreApplication) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QCoreApplication::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQCoreApplicationTimerEvent
+func callbackQCoreApplicationTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QCoreApplication::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QCoreApplication) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QCoreApplication::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QCoreApplication) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QCoreApplication::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQCoreApplicationChildEvent
+func callbackQCoreApplicationChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QCoreApplication::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QCoreApplication) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QCoreApplication::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QCoreApplication) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QCoreApplication::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQCoreApplicationCustomEvent
+func callbackQCoreApplicationCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QCoreApplication::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

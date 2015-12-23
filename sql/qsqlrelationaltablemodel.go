@@ -196,3 +196,303 @@ func (ptr *QSqlRelationalTableModel) DestroyQSqlRelationalTableModel() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QSqlRelationalTableModel) ConnectRevert(f func()) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::revert")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "revert", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectRevert() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::revert")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "revert")
+	}
+}
+
+//export callbackQSqlRelationalTableModelRevert
+func callbackQSqlRelationalTableModelRevert(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::revert")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectSetEditStrategy(f func(strategy QSqlTableModel__EditStrategy)) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::setEditStrategy")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setEditStrategy", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectSetEditStrategy() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::setEditStrategy")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setEditStrategy")
+	}
+}
+
+//export callbackQSqlRelationalTableModelSetEditStrategy
+func callbackQSqlRelationalTableModelSetEditStrategy(ptrName *C.char, strategy C.int) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::setEditStrategy")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setEditStrategy"); signal != nil {
+		signal.(func(QSqlTableModel__EditStrategy))(QSqlTableModel__EditStrategy(strategy))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectSetFilter(f func(filter string)) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::setFilter")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setFilter", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectSetFilter() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::setFilter")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setFilter")
+	}
+}
+
+//export callbackQSqlRelationalTableModelSetFilter
+func callbackQSqlRelationalTableModelSetFilter(ptrName *C.char, filter *C.char) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::setFilter")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setFilter"); signal != nil {
+		signal.(func(string))(C.GoString(filter))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectSetSort(f func(column int, order core.Qt__SortOrder)) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::setSort")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSort", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectSetSort() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::setSort")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSort")
+	}
+}
+
+//export callbackQSqlRelationalTableModelSetSort
+func callbackQSqlRelationalTableModelSetSort(ptrName *C.char, column C.int, order C.int) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::setSort")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSort"); signal != nil {
+		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::sort")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "sort", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectSort() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::sort")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "sort")
+	}
+}
+
+//export callbackQSqlRelationalTableModelSort
+func callbackQSqlRelationalTableModelSort(ptrName *C.char, column C.int, order C.int) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::sort")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
+		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "fetchMore", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectFetchMore() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "fetchMore")
+	}
+}
+
+//export callbackQSqlRelationalTableModelFetchMore
+func callbackQSqlRelationalTableModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::fetchMore")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectQueryChange(f func()) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::queryChange")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "queryChange", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectQueryChange() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::queryChange")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "queryChange")
+	}
+}
+
+//export callbackQSqlRelationalTableModelQueryChange
+func callbackQSqlRelationalTableModelQueryChange(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::queryChange")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "queryChange"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQSqlRelationalTableModelTimerEvent
+func callbackQSqlRelationalTableModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQSqlRelationalTableModelChildEvent
+func callbackQSqlRelationalTableModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQSqlRelationalTableModelCustomEvent
+func callbackQSqlRelationalTableModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlRelationalTableModel::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

@@ -328,3 +328,123 @@ func (ptr *QStackedLayout) DestroyQStackedLayout() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QStackedLayout) ConnectChildEvent(f func(e *core.QChildEvent)) {
+	defer qt.Recovering("connect QStackedLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QStackedLayout) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QStackedLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQStackedLayoutChildEvent
+func callbackQStackedLayoutChildEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStackedLayout::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QStackedLayout) ConnectInvalidate(f func()) {
+	defer qt.Recovering("connect QStackedLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "invalidate", f)
+	}
+}
+
+func (ptr *QStackedLayout) DisconnectInvalidate() {
+	defer qt.Recovering("disconnect QStackedLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "invalidate")
+	}
+}
+
+//export callbackQStackedLayoutInvalidate
+func callbackQStackedLayoutInvalidate(ptrName *C.char) bool {
+	defer qt.Recovering("callback QStackedLayout::invalidate")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QStackedLayout) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QStackedLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QStackedLayout) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QStackedLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQStackedLayoutTimerEvent
+func callbackQStackedLayoutTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStackedLayout::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QStackedLayout) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QStackedLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QStackedLayout) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QStackedLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQStackedLayoutCustomEvent
+func callbackQStackedLayoutCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStackedLayout::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

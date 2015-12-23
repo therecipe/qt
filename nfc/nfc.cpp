@@ -2,6 +2,8 @@
 #include "_cgo_export.h"
 
 #include <QByteArray>
+#include <QChildEvent>
+#include <QEvent>
 #include <QNdefFilter>
 #include <QNdefMessage>
 #include <QNdefNfcSmartPosterRecord>
@@ -15,6 +17,9 @@
 #include <QObject>
 #include <QQmlNdefRecord>
 #include <QString>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QUrl>
 
 void* QNdefFilter_NewQNdefFilter(){
@@ -266,6 +271,9 @@ public:
 	void Signal_TargetDetected(QNearFieldTarget * target) { callbackQNearFieldManagerTargetDetected(this->objectName().toUtf8().data(), target); };
 	void Signal_TargetLost(QNearFieldTarget * target) { callbackQNearFieldManagerTargetLost(this->objectName().toUtf8().data(), target); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQNearFieldManagerTimerEvent(this->objectName().toUtf8().data(), event)) { QNearFieldManager::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQNearFieldManagerChildEvent(this->objectName().toUtf8().data(), event)) { QNearFieldManager::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQNearFieldManagerCustomEvent(this->objectName().toUtf8().data(), event)) { QNearFieldManager::customEvent(event); }; };
 };
 
 int QNearFieldManager_RegisterNdefMessageHandler(void* ptr, void* object, char* method){
@@ -334,6 +342,9 @@ public:
 	void Signal_ShareModesChanged(QNearFieldShareManager::ShareModes modes) { callbackQNearFieldShareManagerShareModesChanged(this->objectName().toUtf8().data(), modes); };
 	void Signal_TargetDetected(QNearFieldShareTarget * shareTarget) { callbackQNearFieldShareManagerTargetDetected(this->objectName().toUtf8().data(), shareTarget); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQNearFieldShareManagerTimerEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareManager::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQNearFieldShareManagerChildEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareManager::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQNearFieldShareManagerCustomEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareManager::customEvent(event); }; };
 };
 
 void* QNearFieldShareManager_NewQNearFieldShareManager(void* parent){
@@ -389,6 +400,9 @@ public:
 	void Signal_Error(QNearFieldShareManager::ShareError error) { callbackQNearFieldShareTargetError(this->objectName().toUtf8().data(), error); };
 	void Signal_ShareFinished() { callbackQNearFieldShareTargetShareFinished(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQNearFieldShareTargetTimerEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareTarget::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQNearFieldShareTargetChildEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareTarget::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQNearFieldShareTargetCustomEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareTarget::customEvent(event); }; };
 };
 
 void QNearFieldShareTarget_Cancel(void* ptr){
@@ -436,6 +450,9 @@ public:
 	void Signal_Disconnected() { callbackQNearFieldTargetDisconnected(this->objectName().toUtf8().data()); };
 	void Signal_NdefMessagesWritten() { callbackQNearFieldTargetNdefMessagesWritten(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQNearFieldTargetTimerEvent(this->objectName().toUtf8().data(), event)) { QNearFieldTarget::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQNearFieldTargetChildEvent(this->objectName().toUtf8().data(), event)) { QNearFieldTarget::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQNearFieldTargetCustomEvent(this->objectName().toUtf8().data(), event)) { QNearFieldTarget::customEvent(event); }; };
 };
 
 int QNearFieldTarget_AccessMethods(void* ptr){
@@ -488,6 +505,9 @@ public:
 	void Signal_TypeChanged() { callbackQQmlNdefRecordTypeChanged(this->objectName().toUtf8().data()); };
 	void Signal_TypeNameFormatChanged() { callbackQQmlNdefRecordTypeNameFormatChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQQmlNdefRecordTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlNdefRecord::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQQmlNdefRecordChildEvent(this->objectName().toUtf8().data(), event)) { QQmlNdefRecord::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQQmlNdefRecordCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlNdefRecord::customEvent(event); }; };
 };
 
 int QQmlNdefRecord_TypeNameFormat(void* ptr){

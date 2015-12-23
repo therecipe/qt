@@ -157,3 +157,93 @@ func (ptr *QThreadPool) DestroyQThreadPool() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QThreadPool) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QThreadPool::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QThreadPool) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QThreadPool::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQThreadPoolTimerEvent
+func callbackQThreadPoolTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QThreadPool::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QThreadPool) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QThreadPool::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QThreadPool) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QThreadPool::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQThreadPoolChildEvent
+func callbackQThreadPoolChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QThreadPool::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QThreadPool) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QThreadPool::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QThreadPool) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QThreadPool::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQThreadPoolCustomEvent
+func callbackQThreadPoolCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QThreadPool::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

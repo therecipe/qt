@@ -198,3 +198,93 @@ func (ptr *QSequentialAnimationGroup) DestroyQSequentialAnimationGroup() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QSequentialAnimationGroup) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QSequentialAnimationGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QSequentialAnimationGroup) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QSequentialAnimationGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQSequentialAnimationGroupTimerEvent
+func callbackQSequentialAnimationGroupTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSequentialAnimationGroup::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSequentialAnimationGroup) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QSequentialAnimationGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QSequentialAnimationGroup) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QSequentialAnimationGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQSequentialAnimationGroupChildEvent
+func callbackQSequentialAnimationGroupChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSequentialAnimationGroup::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSequentialAnimationGroup) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QSequentialAnimationGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QSequentialAnimationGroup) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QSequentialAnimationGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQSequentialAnimationGroupCustomEvent
+func callbackQSequentialAnimationGroupCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSequentialAnimationGroup::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

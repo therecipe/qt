@@ -223,3 +223,153 @@ func (ptr *QSqlQueryModel) DestroyQSqlQueryModel() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QSqlQueryModel) ConnectRevert(f func()) {
+	defer qt.Recovering("connect QSqlQueryModel::revert")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "revert", f)
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectRevert() {
+	defer qt.Recovering("disconnect QSqlQueryModel::revert")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "revert")
+	}
+}
+
+//export callbackQSqlQueryModelRevert
+func callbackQSqlQueryModelRevert(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSqlQueryModel::revert")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlQueryModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {
+	defer qt.Recovering("connect QSqlQueryModel::sort")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "sort", f)
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectSort() {
+	defer qt.Recovering("disconnect QSqlQueryModel::sort")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "sort")
+	}
+}
+
+//export callbackQSqlQueryModelSort
+func callbackQSqlQueryModelSort(ptrName *C.char, column C.int, order C.int) bool {
+	defer qt.Recovering("callback QSqlQueryModel::sort")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
+		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlQueryModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QSqlQueryModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QSqlQueryModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQSqlQueryModelTimerEvent
+func callbackQSqlQueryModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlQueryModel::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlQueryModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QSqlQueryModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QSqlQueryModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQSqlQueryModelChildEvent
+func callbackQSqlQueryModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlQueryModel::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlQueryModel) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QSqlQueryModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QSqlQueryModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQSqlQueryModelCustomEvent
+func callbackQSqlQueryModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlQueryModel::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

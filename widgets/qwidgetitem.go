@@ -187,3 +187,33 @@ func (ptr *QWidgetItem) SetObjectNameAbs(name string) {
 		C.QWidgetItem_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }
+
+func (ptr *QWidgetItem) ConnectInvalidate(f func()) {
+	defer qt.Recovering("connect QWidgetItem::invalidate")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "invalidate", f)
+	}
+}
+
+func (ptr *QWidgetItem) DisconnectInvalidate() {
+	defer qt.Recovering("disconnect QWidgetItem::invalidate")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "invalidate")
+	}
+}
+
+//export callbackQWidgetItemInvalidate
+func callbackQWidgetItemInvalidate(ptrName *C.char) bool {
+	defer qt.Recovering("callback QWidgetItem::invalidate")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}

@@ -486,3 +486,93 @@ func (ptr *QIODevice) DestroyQIODevice() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QIODevice) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QIODevice::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QIODevice) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QIODevice::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQIODeviceTimerEvent
+func callbackQIODeviceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QIODevice::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QIODevice) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QIODevice::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QIODevice) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QIODevice::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQIODeviceChildEvent
+func callbackQIODeviceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QIODevice::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QIODevice) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QIODevice::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QIODevice) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QIODevice::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQIODeviceCustomEvent
+func callbackQIODeviceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QIODevice::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

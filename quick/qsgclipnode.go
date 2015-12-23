@@ -72,3 +72,33 @@ func (ptr *QSGClipNode) DestroyQSGClipNode() {
 		C.QSGClipNode_DestroyQSGClipNode(ptr.Pointer())
 	}
 }
+
+func (ptr *QSGClipNode) ConnectPreprocess(f func()) {
+	defer qt.Recovering("connect QSGClipNode::preprocess")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "preprocess", f)
+	}
+}
+
+func (ptr *QSGClipNode) DisconnectPreprocess() {
+	defer qt.Recovering("disconnect QSGClipNode::preprocess")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "preprocess")
+	}
+}
+
+//export callbackQSGClipNodePreprocess
+func callbackQSGClipNodePreprocess(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSGClipNode::preprocess")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}

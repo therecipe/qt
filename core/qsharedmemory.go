@@ -221,3 +221,93 @@ func (ptr *QSharedMemory) DestroyQSharedMemory() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QSharedMemory) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QSharedMemory::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QSharedMemory) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QSharedMemory::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQSharedMemoryTimerEvent
+func callbackQSharedMemoryTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSharedMemory::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSharedMemory) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QSharedMemory::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QSharedMemory) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QSharedMemory::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQSharedMemoryChildEvent
+func callbackQSharedMemoryChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSharedMemory::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSharedMemory) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QSharedMemory::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QSharedMemory) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QSharedMemory::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQSharedMemoryCustomEvent
+func callbackQSharedMemoryCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSharedMemory::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

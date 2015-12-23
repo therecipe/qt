@@ -1199,3 +1199,1143 @@ func (ptr *QHeaderView) DestroyQHeaderView() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QHeaderView) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
+	defer qt.Recovering("connect QHeaderView::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectDragLeaveEvent() {
+	defer qt.Recovering("disconnect QHeaderView::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+	}
+}
+
+//export callbackQHeaderViewDragLeaveEvent
+func callbackQHeaderViewDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::dragLeaveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectCloseEditor(f func(editor *QWidget, hint QAbstractItemDelegate__EndEditHint)) {
+	defer qt.Recovering("connect QHeaderView::closeEditor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "closeEditor", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectCloseEditor() {
+	defer qt.Recovering("disconnect QHeaderView::closeEditor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "closeEditor")
+	}
+}
+
+//export callbackQHeaderViewCloseEditor
+func callbackQHeaderViewCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint C.int) bool {
+	defer qt.Recovering("callback QHeaderView::closeEditor")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEditor"); signal != nil {
+		signal.(func(*QWidget, QAbstractItemDelegate__EndEditHint))(NewQWidgetFromPointer(editor), QAbstractItemDelegate__EndEditHint(hint))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectCommitData(f func(editor *QWidget)) {
+	defer qt.Recovering("connect QHeaderView::commitData")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "commitData", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectCommitData() {
+	defer qt.Recovering("disconnect QHeaderView::commitData")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "commitData")
+	}
+}
+
+//export callbackQHeaderViewCommitData
+func callbackQHeaderViewCommitData(ptrName *C.char, editor unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::commitData")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "commitData"); signal != nil {
+		signal.(func(*QWidget))(NewQWidgetFromPointer(editor))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
+	defer qt.Recovering("connect QHeaderView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectDragEnterEvent() {
+	defer qt.Recovering("disconnect QHeaderView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+	}
+}
+
+//export callbackQHeaderViewDragEnterEvent
+func callbackQHeaderViewDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::dragEnterEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
+	defer qt.Recovering("connect QHeaderView::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectDragMoveEvent() {
+	defer qt.Recovering("disconnect QHeaderView::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+	}
+}
+
+//export callbackQHeaderViewDragMoveEvent
+func callbackQHeaderViewDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::dragMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectDropEvent(f func(event *gui.QDropEvent)) {
+	defer qt.Recovering("connect QHeaderView::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectDropEvent() {
+	defer qt.Recovering("disconnect QHeaderView::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+	}
+}
+
+//export callbackQHeaderViewDropEvent
+func callbackQHeaderViewDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::dropEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectEditorDestroyed(f func(editor *core.QObject)) {
+	defer qt.Recovering("connect QHeaderView::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "editorDestroyed", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectEditorDestroyed() {
+	defer qt.Recovering("disconnect QHeaderView::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "editorDestroyed")
+	}
+}
+
+//export callbackQHeaderViewEditorDestroyed
+func callbackQHeaderViewEditorDestroyed(ptrName *C.char, editor unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::editorDestroyed")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "editorDestroyed"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(editor))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QHeaderView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QHeaderView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQHeaderViewFocusInEvent
+func callbackQHeaderViewFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QHeaderView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QHeaderView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+//export callbackQHeaderViewFocusOutEvent
+func callbackQHeaderViewFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::focusOutEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
+	defer qt.Recovering("connect QHeaderView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectInputMethodEvent() {
+	defer qt.Recovering("disconnect QHeaderView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+	}
+}
+
+//export callbackQHeaderViewInputMethodEvent
+func callbackQHeaderViewInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::inputMethodEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QHeaderView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QHeaderView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQHeaderViewKeyPressEvent
+func callbackQHeaderViewKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::keyPressEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectKeyboardSearch(f func(search string)) {
+	defer qt.Recovering("connect QHeaderView::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyboardSearch", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectKeyboardSearch() {
+	defer qt.Recovering("disconnect QHeaderView::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyboardSearch")
+	}
+}
+
+//export callbackQHeaderViewKeyboardSearch
+func callbackQHeaderViewKeyboardSearch(ptrName *C.char, search *C.char) bool {
+	defer qt.Recovering("callback QHeaderView::keyboardSearch")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyboardSearch"); signal != nil {
+		signal.(func(string))(C.GoString(search))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
+	defer qt.Recovering("connect QHeaderView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectResizeEvent() {
+	defer qt.Recovering("disconnect QHeaderView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+	}
+}
+
+//export callbackQHeaderViewResizeEvent
+func callbackQHeaderViewResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::resizeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectRowsAboutToBeRemoved(f func(parent *core.QModelIndex, start int, end int)) {
+	defer qt.Recovering("connect QHeaderView::rowsAboutToBeRemoved")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "rowsAboutToBeRemoved", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectRowsAboutToBeRemoved() {
+	defer qt.Recovering("disconnect QHeaderView::rowsAboutToBeRemoved")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "rowsAboutToBeRemoved")
+	}
+}
+
+//export callbackQHeaderViewRowsAboutToBeRemoved
+func callbackQHeaderViewRowsAboutToBeRemoved(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
+	defer qt.Recovering("callback QHeaderView::rowsAboutToBeRemoved")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectRowsInserted(f func(parent *core.QModelIndex, start int, end int)) {
+	defer qt.Recovering("connect QHeaderView::rowsInserted")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "rowsInserted", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectRowsInserted() {
+	defer qt.Recovering("disconnect QHeaderView::rowsInserted")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "rowsInserted")
+	}
+}
+
+//export callbackQHeaderViewRowsInserted
+func callbackQHeaderViewRowsInserted(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
+	defer qt.Recovering("callback QHeaderView::rowsInserted")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectSelectAll(f func()) {
+	defer qt.Recovering("connect QHeaderView::selectAll")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "selectAll", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectSelectAll() {
+	defer qt.Recovering("disconnect QHeaderView::selectAll")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "selectAll")
+	}
+}
+
+//export callbackQHeaderViewSelectAll
+func callbackQHeaderViewSelectAll(ptrName *C.char) bool {
+	defer qt.Recovering("callback QHeaderView::selectAll")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "selectAll"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
+	defer qt.Recovering("connect QHeaderView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setRootIndex", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectSetRootIndex() {
+	defer qt.Recovering("disconnect QHeaderView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setRootIndex")
+	}
+}
+
+//export callbackQHeaderViewSetRootIndex
+func callbackQHeaderViewSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::setRootIndex")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectSetSelectionModel(f func(selectionModel *core.QItemSelectionModel)) {
+	defer qt.Recovering("connect QHeaderView::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSelectionModel", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectSetSelectionModel() {
+	defer qt.Recovering("disconnect QHeaderView::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSelectionModel")
+	}
+}
+
+//export callbackQHeaderViewSetSelectionModel
+func callbackQHeaderViewSetSelectionModel(ptrName *C.char, selectionModel unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::setSelectionModel")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSelectionModel"); signal != nil {
+		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectStartDrag(f func(supportedActions core.Qt__DropAction)) {
+	defer qt.Recovering("connect QHeaderView::startDrag")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "startDrag", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectStartDrag() {
+	defer qt.Recovering("disconnect QHeaderView::startDrag")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "startDrag")
+	}
+}
+
+//export callbackQHeaderViewStartDrag
+func callbackQHeaderViewStartDrag(ptrName *C.char, supportedActions C.int) bool {
+	defer qt.Recovering("callback QHeaderView::startDrag")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "startDrag"); signal != nil {
+		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(supportedActions))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QHeaderView::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QHeaderView::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQHeaderViewTimerEvent
+func callbackQHeaderViewTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectUpdateGeometries(f func()) {
+	defer qt.Recovering("connect QHeaderView::updateGeometries")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateGeometries", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectUpdateGeometries() {
+	defer qt.Recovering("disconnect QHeaderView::updateGeometries")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateGeometries")
+	}
+}
+
+//export callbackQHeaderViewUpdateGeometries
+func callbackQHeaderViewUpdateGeometries(ptrName *C.char) bool {
+	defer qt.Recovering("callback QHeaderView::updateGeometries")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
+	defer qt.Recovering("connect QHeaderView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectContextMenuEvent() {
+	defer qt.Recovering("disconnect QHeaderView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+	}
+}
+
+//export callbackQHeaderViewContextMenuEvent
+func callbackQHeaderViewContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::contextMenuEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectScrollContentsBy(f func(dx int, dy int)) {
+	defer qt.Recovering("connect QHeaderView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "scrollContentsBy", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectScrollContentsBy() {
+	defer qt.Recovering("disconnect QHeaderView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "scrollContentsBy")
+	}
+}
+
+//export callbackQHeaderViewScrollContentsBy
+func callbackQHeaderViewScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
+	defer qt.Recovering("callback QHeaderView::scrollContentsBy")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
+		signal.(func(int, int))(int(dx), int(dy))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectSetupViewport(f func(viewport *QWidget)) {
+	defer qt.Recovering("connect QHeaderView::setupViewport")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setupViewport", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectSetupViewport() {
+	defer qt.Recovering("disconnect QHeaderView::setupViewport")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setupViewport")
+	}
+}
+
+//export callbackQHeaderViewSetupViewport
+func callbackQHeaderViewSetupViewport(ptrName *C.char, viewport unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::setupViewport")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setupViewport"); signal != nil {
+		signal.(func(*QWidget))(NewQWidgetFromPointer(viewport))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
+	defer qt.Recovering("connect QHeaderView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QHeaderView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQHeaderViewWheelEvent
+func callbackQHeaderViewWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::wheelEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectChangeEvent(f func(ev *core.QEvent)) {
+	defer qt.Recovering("connect QHeaderView::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QHeaderView::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQHeaderViewChangeEvent
+func callbackQHeaderViewChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::changeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectActionEvent(f func(event *gui.QActionEvent)) {
+	defer qt.Recovering("connect QHeaderView::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "actionEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectActionEvent() {
+	defer qt.Recovering("disconnect QHeaderView::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "actionEvent")
+	}
+}
+
+//export callbackQHeaderViewActionEvent
+func callbackQHeaderViewActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::actionEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
+		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectEnterEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QHeaderView::enterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "enterEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectEnterEvent() {
+	defer qt.Recovering("disconnect QHeaderView::enterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "enterEvent")
+	}
+}
+
+//export callbackQHeaderViewEnterEvent
+func callbackQHeaderViewEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::enterEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectHideEvent(f func(event *gui.QHideEvent)) {
+	defer qt.Recovering("connect QHeaderView::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectHideEvent() {
+	defer qt.Recovering("disconnect QHeaderView::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+	}
+}
+
+//export callbackQHeaderViewHideEvent
+func callbackQHeaderViewHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::hideEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectLeaveEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QHeaderView::leaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "leaveEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectLeaveEvent() {
+	defer qt.Recovering("disconnect QHeaderView::leaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "leaveEvent")
+	}
+}
+
+//export callbackQHeaderViewLeaveEvent
+func callbackQHeaderViewLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::leaveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
+	defer qt.Recovering("connect QHeaderView::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "moveEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectMoveEvent() {
+	defer qt.Recovering("disconnect QHeaderView::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "moveEvent")
+	}
+}
+
+//export callbackQHeaderViewMoveEvent
+func callbackQHeaderViewMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::moveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectShowEvent(f func(event *gui.QShowEvent)) {
+	defer qt.Recovering("connect QHeaderView::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectShowEvent() {
+	defer qt.Recovering("disconnect QHeaderView::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+	}
+}
+
+//export callbackQHeaderViewShowEvent
+func callbackQHeaderViewShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::showEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
+	defer qt.Recovering("connect QHeaderView::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectCloseEvent() {
+	defer qt.Recovering("disconnect QHeaderView::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+	}
+}
+
+//export callbackQHeaderViewCloseEvent
+func callbackQHeaderViewCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::closeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectInitPainter(f func(painter *gui.QPainter)) {
+	defer qt.Recovering("connect QHeaderView::initPainter")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "initPainter", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectInitPainter() {
+	defer qt.Recovering("disconnect QHeaderView::initPainter")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "initPainter")
+	}
+}
+
+//export callbackQHeaderViewInitPainter
+func callbackQHeaderViewInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::initPainter")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QHeaderView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectKeyReleaseEvent() {
+	defer qt.Recovering("disconnect QHeaderView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+	}
+}
+
+//export callbackQHeaderViewKeyReleaseEvent
+func callbackQHeaderViewKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::keyReleaseEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
+	defer qt.Recovering("connect QHeaderView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "tabletEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectTabletEvent() {
+	defer qt.Recovering("disconnect QHeaderView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "tabletEvent")
+	}
+}
+
+//export callbackQHeaderViewTabletEvent
+func callbackQHeaderViewTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::tabletEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
+		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QHeaderView::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QHeaderView::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQHeaderViewChildEvent
+func callbackQHeaderViewChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHeaderView) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QHeaderView::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QHeaderView) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QHeaderView::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQHeaderViewCustomEvent
+func callbackQHeaderViewCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHeaderView::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

@@ -637,3 +637,123 @@ func (ptr *QRadioTuner) DestroyQRadioTuner() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QRadioTuner) ConnectUnbind(f func(object *core.QObject)) {
+	defer qt.Recovering("connect QRadioTuner::unbind")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "unbind", f)
+	}
+}
+
+func (ptr *QRadioTuner) DisconnectUnbind() {
+	defer qt.Recovering("disconnect QRadioTuner::unbind")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "unbind")
+	}
+}
+
+//export callbackQRadioTunerUnbind
+func callbackQRadioTunerUnbind(ptrName *C.char, object unsafe.Pointer) bool {
+	defer qt.Recovering("callback QRadioTuner::unbind")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "unbind"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QRadioTuner) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QRadioTuner::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QRadioTuner) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QRadioTuner::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQRadioTunerTimerEvent
+func callbackQRadioTunerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QRadioTuner::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QRadioTuner) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QRadioTuner::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QRadioTuner) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QRadioTuner::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQRadioTunerChildEvent
+func callbackQRadioTunerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QRadioTuner::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QRadioTuner) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QRadioTuner::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QRadioTuner) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QRadioTuner::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQRadioTunerCustomEvent
+func callbackQRadioTunerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QRadioTuner::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

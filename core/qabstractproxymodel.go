@@ -364,3 +364,93 @@ func (ptr *QAbstractProxyModel) DestroyQAbstractProxyModel() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QAbstractProxyModel) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QAbstractProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QAbstractProxyModel) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QAbstractProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQAbstractProxyModelTimerEvent
+func callbackQAbstractProxyModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAbstractProxyModel::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QAbstractProxyModel) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QAbstractProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QAbstractProxyModel) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QAbstractProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQAbstractProxyModelChildEvent
+func callbackQAbstractProxyModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAbstractProxyModel::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QAbstractProxyModel) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QAbstractProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QAbstractProxyModel) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QAbstractProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQAbstractProxyModelCustomEvent
+func callbackQAbstractProxyModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QAbstractProxyModel::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

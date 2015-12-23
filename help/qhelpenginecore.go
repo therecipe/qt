@@ -408,3 +408,93 @@ func (ptr *QHelpEngineCore) DestroyQHelpEngineCore() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QHelpEngineCore) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QHelpEngineCore::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QHelpEngineCore) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QHelpEngineCore::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQHelpEngineCoreTimerEvent
+func callbackQHelpEngineCoreTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHelpEngineCore::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHelpEngineCore) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QHelpEngineCore::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QHelpEngineCore) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QHelpEngineCore::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQHelpEngineCoreChildEvent
+func callbackQHelpEngineCoreChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHelpEngineCore::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHelpEngineCore) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QHelpEngineCore::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QHelpEngineCore) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QHelpEngineCore::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQHelpEngineCoreCustomEvent
+func callbackQHelpEngineCoreCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHelpEngineCore::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

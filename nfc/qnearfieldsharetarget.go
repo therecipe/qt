@@ -145,3 +145,93 @@ func (ptr *QNearFieldShareTarget) DestroyQNearFieldShareTarget() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QNearFieldShareTarget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QNearFieldShareTarget::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QNearFieldShareTarget) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QNearFieldShareTarget::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQNearFieldShareTargetTimerEvent
+func callbackQNearFieldShareTargetTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNearFieldShareTarget::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QNearFieldShareTarget) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QNearFieldShareTarget::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QNearFieldShareTarget) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QNearFieldShareTarget::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQNearFieldShareTargetChildEvent
+func callbackQNearFieldShareTargetChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNearFieldShareTarget::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QNearFieldShareTarget) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QNearFieldShareTarget::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QNearFieldShareTarget) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QNearFieldShareTarget::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQNearFieldShareTargetCustomEvent
+func callbackQNearFieldShareTargetCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNearFieldShareTarget::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

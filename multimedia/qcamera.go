@@ -606,3 +606,123 @@ func (ptr *QCamera) DestroyQCamera() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QCamera) ConnectUnbind(f func(object *core.QObject)) {
+	defer qt.Recovering("connect QCamera::unbind")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "unbind", f)
+	}
+}
+
+func (ptr *QCamera) DisconnectUnbind() {
+	defer qt.Recovering("disconnect QCamera::unbind")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "unbind")
+	}
+}
+
+//export callbackQCameraUnbind
+func callbackQCameraUnbind(ptrName *C.char, object unsafe.Pointer) bool {
+	defer qt.Recovering("callback QCamera::unbind")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "unbind"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QCamera) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QCamera::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QCamera) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QCamera::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQCameraTimerEvent
+func callbackQCameraTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QCamera::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QCamera) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QCamera::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QCamera) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QCamera::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQCameraChildEvent
+func callbackQCameraChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QCamera::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QCamera) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QCamera::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QCamera) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QCamera::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQCameraCustomEvent
+func callbackQCameraCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QCamera::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

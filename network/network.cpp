@@ -5,6 +5,7 @@
 #include <QAbstractSocket>
 #include <QAuthenticator>
 #include <QByteArray>
+#include <QChildEvent>
 #include <QCryptographicHash>
 #include <QDate>
 #include <QDateTime>
@@ -14,6 +15,7 @@
 #include <QDnsMailExchangeRecord>
 #include <QDnsServiceRecord>
 #include <QDnsTextRecord>
+#include <QEvent>
 #include <QHostAddress>
 #include <QHostInfo>
 #include <QHttpMultiPart>
@@ -50,6 +52,9 @@
 #include <QString>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QUdpSocket>
 #include <QUrl>
 #include <QVariant>
@@ -57,6 +62,9 @@
 class MyQAbstractNetworkCache: public QAbstractNetworkCache {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractNetworkCacheTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractNetworkCache::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractNetworkCacheChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractNetworkCache::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractNetworkCacheCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractNetworkCache::customEvent(event); }; };
 };
 
 long long QAbstractNetworkCache_CacheSize(void* ptr){
@@ -97,6 +105,9 @@ public:
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { if (!callbackQAbstractSocketSetSocketOption(this->objectName().toUtf8().data(), option, new QVariant(value))) { QAbstractSocket::setSocketOption(option, value); }; };
 	void Signal_StateChanged(QAbstractSocket::SocketState socketState) { callbackQAbstractSocketStateChanged(this->objectName().toUtf8().data(), socketState); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractSocketTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractSocket::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractSocketChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractSocket::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractSocketCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractSocket::customEvent(event); }; };
 };
 
 void* QAbstractSocket_NewQAbstractSocket(int socketType, void* parent){
@@ -345,6 +356,9 @@ public:
 	void Signal_NameChanged(const QString & name) { callbackQDnsLookupNameChanged(this->objectName().toUtf8().data(), name.toUtf8().data()); };
 	void Signal_TypeChanged(QDnsLookup::Type ty) { callbackQDnsLookupTypeChanged(this->objectName().toUtf8().data(), ty); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQDnsLookupTimerEvent(this->objectName().toUtf8().data(), event)) { QDnsLookup::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQDnsLookupChildEvent(this->objectName().toUtf8().data(), event)) { QDnsLookup::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQDnsLookupCustomEvent(this->objectName().toUtf8().data(), event)) { QDnsLookup::customEvent(event); }; };
 };
 
 void* QDnsLookup_NewQDnsLookup3(int ty, char* name, void* nameserver, void* parent){
@@ -676,6 +690,9 @@ public:
 	MyQLocalServer(QObject *parent) : QLocalServer(parent) {};
 	void Signal_NewConnection() { callbackQLocalServerNewConnection(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQLocalServerTimerEvent(this->objectName().toUtf8().data(), event)) { QLocalServer::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQLocalServerChildEvent(this->objectName().toUtf8().data(), event)) { QLocalServer::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQLocalServerCustomEvent(this->objectName().toUtf8().data(), event)) { QLocalServer::customEvent(event); }; };
 };
 
 void QLocalServer_SetSocketOptions(void* ptr, int options){
@@ -763,6 +780,9 @@ public:
 	void Signal_StateChanged(QLocalSocket::LocalSocketState socketState) { callbackQLocalSocketStateChanged(this->objectName().toUtf8().data(), socketState); };
 	void close() { if (!callbackQLocalSocketClose(this->objectName().toUtf8().data())) { QLocalSocket::close(); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQLocalSocketTimerEvent(this->objectName().toUtf8().data(), event)) { QLocalSocket::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQLocalSocketChildEvent(this->objectName().toUtf8().data(), event)) { QLocalSocket::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQLocalSocketCustomEvent(this->objectName().toUtf8().data(), event)) { QLocalSocket::customEvent(event); }; };
 };
 
 int QLocalSocket_Open(void* ptr, int openMode){
@@ -906,6 +926,9 @@ public:
 	void Signal_NetworkAccessibleChanged(QNetworkAccessManager::NetworkAccessibility accessible) { callbackQNetworkAccessManagerNetworkAccessibleChanged(this->objectName().toUtf8().data(), accessible); };
 	void Signal_PreSharedKeyAuthenticationRequired(QNetworkReply * reply, QSslPreSharedKeyAuthenticator * authenticator) { callbackQNetworkAccessManagerPreSharedKeyAuthenticationRequired(this->objectName().toUtf8().data(), reply, authenticator); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQNetworkAccessManagerTimerEvent(this->objectName().toUtf8().data(), event)) { QNetworkAccessManager::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQNetworkAccessManagerChildEvent(this->objectName().toUtf8().data(), event)) { QNetworkAccessManager::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQNetworkAccessManagerCustomEvent(this->objectName().toUtf8().data(), event)) { QNetworkAccessManager::customEvent(event); }; };
 };
 
 void* QNetworkAccessManager_ProxyFactory(void* ptr){
@@ -1194,6 +1217,9 @@ public:
 	void Signal_OnlineStateChanged(bool isOnline) { callbackQNetworkConfigurationManagerOnlineStateChanged(this->objectName().toUtf8().data(), isOnline); };
 	void Signal_UpdateCompleted() { callbackQNetworkConfigurationManagerUpdateCompleted(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQNetworkConfigurationManagerTimerEvent(this->objectName().toUtf8().data(), event)) { QNetworkConfigurationManager::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQNetworkConfigurationManagerChildEvent(this->objectName().toUtf8().data(), event)) { QNetworkConfigurationManager::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQNetworkConfigurationManagerCustomEvent(this->objectName().toUtf8().data(), event)) { QNetworkConfigurationManager::customEvent(event); }; };
 };
 
 void* QNetworkConfigurationManager_NewQNetworkConfigurationManager(void* parent){
@@ -1324,6 +1350,9 @@ class MyQNetworkCookieJar: public QNetworkCookieJar {
 public:
 	MyQNetworkCookieJar(QObject *parent) : QNetworkCookieJar(parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQNetworkCookieJarTimerEvent(this->objectName().toUtf8().data(), event)) { QNetworkCookieJar::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQNetworkCookieJarChildEvent(this->objectName().toUtf8().data(), event)) { QNetworkCookieJar::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQNetworkCookieJarCustomEvent(this->objectName().toUtf8().data(), event)) { QNetworkCookieJar::customEvent(event); }; };
 };
 
 void* QNetworkCookieJar_NewQNetworkCookieJar(void* parent){
@@ -1351,6 +1380,9 @@ public:
 	MyQNetworkDiskCache(QObject *parent) : QNetworkDiskCache(parent) {};
 	void clear() { if (!callbackQNetworkDiskCacheClear(this->objectName().toUtf8().data())) { QNetworkDiskCache::clear(); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQNetworkDiskCacheTimerEvent(this->objectName().toUtf8().data(), event)) { QNetworkDiskCache::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQNetworkDiskCacheChildEvent(this->objectName().toUtf8().data(), event)) { QNetworkDiskCache::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQNetworkDiskCacheCustomEvent(this->objectName().toUtf8().data(), event)) { QNetworkDiskCache::customEvent(event); }; };
 };
 
 void* QNetworkDiskCache_NewQNetworkDiskCache(void* parent){
@@ -1646,6 +1678,9 @@ public:
 	void setReadBufferSize(qint64 size) { if (!callbackQNetworkReplySetReadBufferSize(this->objectName().toUtf8().data(), static_cast<long long>(size))) { QNetworkReply::setReadBufferSize(size); }; };
 	void Signal_UploadProgress(qint64 bytesSent, qint64 bytesTotal) { callbackQNetworkReplyUploadProgress(this->objectName().toUtf8().data(), static_cast<long long>(bytesSent), static_cast<long long>(bytesTotal)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQNetworkReplyTimerEvent(this->objectName().toUtf8().data(), event)) { QNetworkReply::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQNetworkReplyChildEvent(this->objectName().toUtf8().data(), event)) { QNetworkReply::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQNetworkReplyCustomEvent(this->objectName().toUtf8().data(), event)) { QNetworkReply::customEvent(event); }; };
 };
 
 void QNetworkReply_Abort(void* ptr){
@@ -1854,6 +1889,9 @@ public:
 	void Signal_StateChanged(QNetworkSession::State state) { callbackQNetworkSessionStateChanged(this->objectName().toUtf8().data(), state); };
 	void Signal_UsagePoliciesChanged(QNetworkSession::UsagePolicies usagePolicies) { callbackQNetworkSessionUsagePoliciesChanged(this->objectName().toUtf8().data(), usagePolicies); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQNetworkSessionTimerEvent(this->objectName().toUtf8().data(), event)) { QNetworkSession::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQNetworkSessionChildEvent(this->objectName().toUtf8().data(), event)) { QNetworkSession::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQNetworkSessionCustomEvent(this->objectName().toUtf8().data(), event)) { QNetworkSession::customEvent(event); }; };
 };
 
 void* QNetworkSession_NewQNetworkSession(void* connectionConfig, void* parent){
@@ -2347,7 +2385,11 @@ public:
 	void resume() { if (!callbackQSslSocketResume(this->objectName().toUtf8().data())) { QSslSocket::resume(); }; };
 	void setReadBufferSize(qint64 size) { if (!callbackQSslSocketSetReadBufferSize(this->objectName().toUtf8().data(), static_cast<long long>(size))) { QSslSocket::setReadBufferSize(size); }; };
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { if (!callbackQSslSocketSetSocketOption(this->objectName().toUtf8().data(), option, new QVariant(value))) { QSslSocket::setSocketOption(option, value); }; };
+	void disconnectFromHost() { if (!callbackQSslSocketDisconnectFromHost(this->objectName().toUtf8().data())) { QSslSocket::disconnectFromHost(); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSslSocketTimerEvent(this->objectName().toUtf8().data(), event)) { QSslSocket::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSslSocketChildEvent(this->objectName().toUtf8().data(), event)) { QSslSocket::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSslSocketCustomEvent(this->objectName().toUtf8().data(), event)) { QSslSocket::customEvent(event); }; };
 };
 
 void* QSslSocket_NewQSslSocket(void* parent){
@@ -2544,6 +2586,9 @@ public:
 	void Signal_AcceptError(QAbstractSocket::SocketError socketError) { callbackQTcpServerAcceptError(this->objectName().toUtf8().data(), socketError); };
 	void Signal_NewConnection() { callbackQTcpServerNewConnection(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQTcpServerTimerEvent(this->objectName().toUtf8().data(), event)) { QTcpServer::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQTcpServerChildEvent(this->objectName().toUtf8().data(), event)) { QTcpServer::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQTcpServerCustomEvent(this->objectName().toUtf8().data(), event)) { QTcpServer::customEvent(event); }; };
 };
 
 void* QTcpServer_NewQTcpServer(void* parent){
@@ -2621,7 +2666,15 @@ void QTcpServer_DestroyQTcpServer(void* ptr){
 class MyQTcpSocket: public QTcpSocket {
 public:
 	MyQTcpSocket(QObject *parent) : QTcpSocket(parent) {};
+	void close() { if (!callbackQTcpSocketClose(this->objectName().toUtf8().data())) { QTcpSocket::close(); }; };
+	void disconnectFromHost() { if (!callbackQTcpSocketDisconnectFromHost(this->objectName().toUtf8().data())) { QTcpSocket::disconnectFromHost(); }; };
+	void resume() { if (!callbackQTcpSocketResume(this->objectName().toUtf8().data())) { QTcpSocket::resume(); }; };
+	void setReadBufferSize(qint64 size) { if (!callbackQTcpSocketSetReadBufferSize(this->objectName().toUtf8().data(), static_cast<long long>(size))) { QTcpSocket::setReadBufferSize(size); }; };
+	void setSocketOption(QTcpSocket::SocketOption option, const QVariant & value) { if (!callbackQTcpSocketSetSocketOption(this->objectName().toUtf8().data(), option, new QVariant(value))) { QTcpSocket::setSocketOption(option, value); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQTcpSocketTimerEvent(this->objectName().toUtf8().data(), event)) { QTcpSocket::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQTcpSocketChildEvent(this->objectName().toUtf8().data(), event)) { QTcpSocket::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQTcpSocketCustomEvent(this->objectName().toUtf8().data(), event)) { QTcpSocket::customEvent(event); }; };
 };
 
 void* QTcpSocket_NewQTcpSocket(void* parent){
@@ -2635,7 +2688,15 @@ void QTcpSocket_DestroyQTcpSocket(void* ptr){
 class MyQUdpSocket: public QUdpSocket {
 public:
 	MyQUdpSocket(QObject *parent) : QUdpSocket(parent) {};
+	void close() { if (!callbackQUdpSocketClose(this->objectName().toUtf8().data())) { QUdpSocket::close(); }; };
+	void disconnectFromHost() { if (!callbackQUdpSocketDisconnectFromHost(this->objectName().toUtf8().data())) { QUdpSocket::disconnectFromHost(); }; };
+	void resume() { if (!callbackQUdpSocketResume(this->objectName().toUtf8().data())) { QUdpSocket::resume(); }; };
+	void setReadBufferSize(qint64 size) { if (!callbackQUdpSocketSetReadBufferSize(this->objectName().toUtf8().data(), static_cast<long long>(size))) { QUdpSocket::setReadBufferSize(size); }; };
+	void setSocketOption(QUdpSocket::SocketOption option, const QVariant & value) { if (!callbackQUdpSocketSetSocketOption(this->objectName().toUtf8().data(), option, new QVariant(value))) { QUdpSocket::setSocketOption(option, value); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQUdpSocketTimerEvent(this->objectName().toUtf8().data(), event)) { QUdpSocket::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQUdpSocketChildEvent(this->objectName().toUtf8().data(), event)) { QUdpSocket::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQUdpSocketCustomEvent(this->objectName().toUtf8().data(), event)) { QUdpSocket::customEvent(event); }; };
 };
 
 void* QUdpSocket_NewQUdpSocket(void* parent){

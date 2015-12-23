@@ -1,15 +1,35 @@
 #include "svg.h"
 #include "_cgo_export.h"
 
+#include <QAction>
+#include <QActionEvent>
 #include <QByteArray>
+#include <QChildEvent>
+#include <QCloseEvent>
+#include <QContextMenuEvent>
+#include <QDrag>
+#include <QDragEnterEvent>
+#include <QDragLeaveEvent>
+#include <QDragMoveEvent>
+#include <QDropEvent>
+#include <QEvent>
+#include <QFocusEvent>
 #include <QGraphicsSvgItem>
+#include <QHideEvent>
 #include <QIODevice>
+#include <QInputMethod>
+#include <QInputMethodEvent>
+#include <QKeyEvent>
 #include <QMetaObject>
+#include <QMouseEvent>
+#include <QMoveEvent>
 #include <QObject>
 #include <QPaintEvent>
 #include <QPainter>
 #include <QRect>
 #include <QRectF>
+#include <QResizeEvent>
+#include <QShowEvent>
 #include <QSize>
 #include <QString>
 #include <QStyle>
@@ -18,6 +38,11 @@
 #include <QSvgGenerator>
 #include <QSvgRenderer>
 #include <QSvgWidget>
+#include <QTabletEvent>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
+#include <QWheelEvent>
 #include <QWidget>
 #include <QXmlStreamReader>
 
@@ -25,6 +50,9 @@ class MyQGraphicsSvgItem: public QGraphicsSvgItem {
 public:
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { if (!callbackQGraphicsSvgItemPaint(this->objectName().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget)) { QGraphicsSvgItem::paint(painter, option, widget); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQGraphicsSvgItemTimerEvent(this->objectName().toUtf8().data(), event)) { QGraphicsSvgItem::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQGraphicsSvgItemChildEvent(this->objectName().toUtf8().data(), event)) { QGraphicsSvgItem::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQGraphicsSvgItemCustomEvent(this->objectName().toUtf8().data(), event)) { QGraphicsSvgItem::customEvent(event); }; };
 };
 
 char* QGraphicsSvgItem_ElementId(void* ptr){
@@ -148,6 +176,9 @@ class MyQSvgRenderer: public QSvgRenderer {
 public:
 	void Signal_RepaintNeeded() { callbackQSvgRendererRepaintNeeded(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSvgRendererTimerEvent(this->objectName().toUtf8().data(), event)) { QSvgRenderer::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSvgRendererChildEvent(this->objectName().toUtf8().data(), event)) { QSvgRenderer::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSvgRendererCustomEvent(this->objectName().toUtf8().data(), event)) { QSvgRenderer::customEvent(event); }; };
 };
 
 int QSvgRenderer_FramesPerSecond(void* ptr){
@@ -242,8 +273,36 @@ class MyQSvgWidget: public QSvgWidget {
 public:
 	MyQSvgWidget(QWidget *parent) : QSvgWidget(parent) {};
 	MyQSvgWidget(const QString &file, QWidget *parent) : QSvgWidget(file, parent) {};
+	void setVisible(bool visible) { if (!callbackQSvgWidgetSetVisible(this->objectName().toUtf8().data(), visible)) { QSvgWidget::setVisible(visible); }; };
 protected:
 	void paintEvent(QPaintEvent * event) { if (!callbackQSvgWidgetPaintEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::paintEvent(event); }; };
+	void actionEvent(QActionEvent * event) { if (!callbackQSvgWidgetActionEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::actionEvent(event); }; };
+	void dragEnterEvent(QDragEnterEvent * event) { if (!callbackQSvgWidgetDragEnterEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::dragEnterEvent(event); }; };
+	void dragLeaveEvent(QDragLeaveEvent * event) { if (!callbackQSvgWidgetDragLeaveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::dragLeaveEvent(event); }; };
+	void dragMoveEvent(QDragMoveEvent * event) { if (!callbackQSvgWidgetDragMoveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::dragMoveEvent(event); }; };
+	void dropEvent(QDropEvent * event) { if (!callbackQSvgWidgetDropEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::dropEvent(event); }; };
+	void enterEvent(QEvent * event) { if (!callbackQSvgWidgetEnterEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::enterEvent(event); }; };
+	void focusOutEvent(QFocusEvent * event) { if (!callbackQSvgWidgetFocusOutEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::focusOutEvent(event); }; };
+	void hideEvent(QHideEvent * event) { if (!callbackQSvgWidgetHideEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::hideEvent(event); }; };
+	void leaveEvent(QEvent * event) { if (!callbackQSvgWidgetLeaveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::leaveEvent(event); }; };
+	void moveEvent(QMoveEvent * event) { if (!callbackQSvgWidgetMoveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::moveEvent(event); }; };
+	void showEvent(QShowEvent * event) { if (!callbackQSvgWidgetShowEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::showEvent(event); }; };
+	void closeEvent(QCloseEvent * event) { if (!callbackQSvgWidgetCloseEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::closeEvent(event); }; };
+	void contextMenuEvent(QContextMenuEvent * event) { if (!callbackQSvgWidgetContextMenuEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::contextMenuEvent(event); }; };
+	void initPainter(QPainter * painter) const { if (!callbackQSvgWidgetInitPainter(this->objectName().toUtf8().data(), painter)) { QSvgWidget::initPainter(painter); }; };
+	void inputMethodEvent(QInputMethodEvent * event) { if (!callbackQSvgWidgetInputMethodEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::inputMethodEvent(event); }; };
+	void keyPressEvent(QKeyEvent * event) { if (!callbackQSvgWidgetKeyPressEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::keyPressEvent(event); }; };
+	void keyReleaseEvent(QKeyEvent * event) { if (!callbackQSvgWidgetKeyReleaseEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::keyReleaseEvent(event); }; };
+	void mouseDoubleClickEvent(QMouseEvent * event) { if (!callbackQSvgWidgetMouseDoubleClickEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::mouseDoubleClickEvent(event); }; };
+	void mouseMoveEvent(QMouseEvent * event) { if (!callbackQSvgWidgetMouseMoveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::mouseMoveEvent(event); }; };
+	void mousePressEvent(QMouseEvent * event) { if (!callbackQSvgWidgetMousePressEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::mousePressEvent(event); }; };
+	void mouseReleaseEvent(QMouseEvent * event) { if (!callbackQSvgWidgetMouseReleaseEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::mouseReleaseEvent(event); }; };
+	void resizeEvent(QResizeEvent * event) { if (!callbackQSvgWidgetResizeEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::resizeEvent(event); }; };
+	void tabletEvent(QTabletEvent * event) { if (!callbackQSvgWidgetTabletEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::tabletEvent(event); }; };
+	void wheelEvent(QWheelEvent * event) { if (!callbackQSvgWidgetWheelEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::wheelEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQSvgWidgetTimerEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSvgWidgetChildEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSvgWidgetCustomEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::customEvent(event); }; };
 };
 
 void* QSvgWidget_NewQSvgWidget(void* parent){

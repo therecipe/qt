@@ -359,3 +359,93 @@ func (ptr *QUndoGroup) DestroyQUndoGroup() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QUndoGroup) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QUndoGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QUndoGroup) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QUndoGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQUndoGroupTimerEvent
+func callbackQUndoGroupTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QUndoGroup::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QUndoGroup) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QUndoGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QUndoGroup) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QUndoGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQUndoGroupChildEvent
+func callbackQUndoGroupChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QUndoGroup::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QUndoGroup) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QUndoGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QUndoGroup) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QUndoGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQUndoGroupCustomEvent
+func callbackQUndoGroupCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QUndoGroup::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

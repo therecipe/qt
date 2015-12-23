@@ -807,3 +807,993 @@ func (ptr *QListView) DestroyQListView() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QListView) ConnectCloseEditor(f func(editor *QWidget, hint QAbstractItemDelegate__EndEditHint)) {
+	defer qt.Recovering("connect QListView::closeEditor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "closeEditor", f)
+	}
+}
+
+func (ptr *QListView) DisconnectCloseEditor() {
+	defer qt.Recovering("disconnect QListView::closeEditor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "closeEditor")
+	}
+}
+
+//export callbackQListViewCloseEditor
+func callbackQListViewCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint C.int) bool {
+	defer qt.Recovering("callback QListView::closeEditor")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEditor"); signal != nil {
+		signal.(func(*QWidget, QAbstractItemDelegate__EndEditHint))(NewQWidgetFromPointer(editor), QAbstractItemDelegate__EndEditHint(hint))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectCommitData(f func(editor *QWidget)) {
+	defer qt.Recovering("connect QListView::commitData")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "commitData", f)
+	}
+}
+
+func (ptr *QListView) DisconnectCommitData() {
+	defer qt.Recovering("disconnect QListView::commitData")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "commitData")
+	}
+}
+
+//export callbackQListViewCommitData
+func callbackQListViewCommitData(ptrName *C.char, editor unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::commitData")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "commitData"); signal != nil {
+		signal.(func(*QWidget))(NewQWidgetFromPointer(editor))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
+	defer qt.Recovering("connect QListView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectDragEnterEvent() {
+	defer qt.Recovering("disconnect QListView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+	}
+}
+
+//export callbackQListViewDragEnterEvent
+func callbackQListViewDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::dragEnterEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectEditorDestroyed(f func(editor *core.QObject)) {
+	defer qt.Recovering("connect QListView::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "editorDestroyed", f)
+	}
+}
+
+func (ptr *QListView) DisconnectEditorDestroyed() {
+	defer qt.Recovering("disconnect QListView::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "editorDestroyed")
+	}
+}
+
+//export callbackQListViewEditorDestroyed
+func callbackQListViewEditorDestroyed(ptrName *C.char, editor unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::editorDestroyed")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "editorDestroyed"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(editor))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QListView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QListView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQListViewFocusInEvent
+func callbackQListViewFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QListView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QListView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+//export callbackQListViewFocusOutEvent
+func callbackQListViewFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::focusOutEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
+	defer qt.Recovering("connect QListView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectInputMethodEvent() {
+	defer qt.Recovering("disconnect QListView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+	}
+}
+
+//export callbackQListViewInputMethodEvent
+func callbackQListViewInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::inputMethodEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QListView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QListView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQListViewKeyPressEvent
+func callbackQListViewKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::keyPressEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectKeyboardSearch(f func(search string)) {
+	defer qt.Recovering("connect QListView::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyboardSearch", f)
+	}
+}
+
+func (ptr *QListView) DisconnectKeyboardSearch() {
+	defer qt.Recovering("disconnect QListView::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyboardSearch")
+	}
+}
+
+//export callbackQListViewKeyboardSearch
+func callbackQListViewKeyboardSearch(ptrName *C.char, search *C.char) bool {
+	defer qt.Recovering("callback QListView::keyboardSearch")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyboardSearch"); signal != nil {
+		signal.(func(string))(C.GoString(search))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QListView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectMouseDoubleClickEvent() {
+	defer qt.Recovering("disconnect QListView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+	}
+}
+
+//export callbackQListViewMouseDoubleClickEvent
+func callbackQListViewMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::mouseDoubleClickEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QListView::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QListView::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQListViewMousePressEvent
+func callbackQListViewMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::mousePressEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectReset(f func()) {
+	defer qt.Recovering("connect QListView::reset")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "reset", f)
+	}
+}
+
+func (ptr *QListView) DisconnectReset() {
+	defer qt.Recovering("disconnect QListView::reset")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "reset")
+	}
+}
+
+//export callbackQListViewReset
+func callbackQListViewReset(ptrName *C.char) bool {
+	defer qt.Recovering("callback QListView::reset")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectSelectAll(f func()) {
+	defer qt.Recovering("connect QListView::selectAll")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "selectAll", f)
+	}
+}
+
+func (ptr *QListView) DisconnectSelectAll() {
+	defer qt.Recovering("disconnect QListView::selectAll")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "selectAll")
+	}
+}
+
+//export callbackQListViewSelectAll
+func callbackQListViewSelectAll(ptrName *C.char) bool {
+	defer qt.Recovering("callback QListView::selectAll")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "selectAll"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
+	defer qt.Recovering("connect QListView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setRootIndex", f)
+	}
+}
+
+func (ptr *QListView) DisconnectSetRootIndex() {
+	defer qt.Recovering("disconnect QListView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setRootIndex")
+	}
+}
+
+//export callbackQListViewSetRootIndex
+func callbackQListViewSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::setRootIndex")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectSetSelectionModel(f func(selectionModel *core.QItemSelectionModel)) {
+	defer qt.Recovering("connect QListView::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setSelectionModel", f)
+	}
+}
+
+func (ptr *QListView) DisconnectSetSelectionModel() {
+	defer qt.Recovering("disconnect QListView::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setSelectionModel")
+	}
+}
+
+//export callbackQListViewSetSelectionModel
+func callbackQListViewSetSelectionModel(ptrName *C.char, selectionModel unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::setSelectionModel")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setSelectionModel"); signal != nil {
+		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
+	defer qt.Recovering("connect QListView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectContextMenuEvent() {
+	defer qt.Recovering("disconnect QListView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+	}
+}
+
+//export callbackQListViewContextMenuEvent
+func callbackQListViewContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::contextMenuEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectScrollContentsBy(f func(dx int, dy int)) {
+	defer qt.Recovering("connect QListView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "scrollContentsBy", f)
+	}
+}
+
+func (ptr *QListView) DisconnectScrollContentsBy() {
+	defer qt.Recovering("disconnect QListView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "scrollContentsBy")
+	}
+}
+
+//export callbackQListViewScrollContentsBy
+func callbackQListViewScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
+	defer qt.Recovering("callback QListView::scrollContentsBy")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
+		signal.(func(int, int))(int(dx), int(dy))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectSetupViewport(f func(viewport *QWidget)) {
+	defer qt.Recovering("connect QListView::setupViewport")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setupViewport", f)
+	}
+}
+
+func (ptr *QListView) DisconnectSetupViewport() {
+	defer qt.Recovering("disconnect QListView::setupViewport")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setupViewport")
+	}
+}
+
+//export callbackQListViewSetupViewport
+func callbackQListViewSetupViewport(ptrName *C.char, viewport unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::setupViewport")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setupViewport"); signal != nil {
+		signal.(func(*QWidget))(NewQWidgetFromPointer(viewport))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
+	defer qt.Recovering("connect QListView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QListView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQListViewWheelEvent
+func callbackQListViewWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::wheelEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectChangeEvent(f func(ev *core.QEvent)) {
+	defer qt.Recovering("connect QListView::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QListView::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQListViewChangeEvent
+func callbackQListViewChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::changeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectActionEvent(f func(event *gui.QActionEvent)) {
+	defer qt.Recovering("connect QListView::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "actionEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectActionEvent() {
+	defer qt.Recovering("disconnect QListView::actionEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "actionEvent")
+	}
+}
+
+//export callbackQListViewActionEvent
+func callbackQListViewActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::actionEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
+		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectEnterEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QListView::enterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "enterEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectEnterEvent() {
+	defer qt.Recovering("disconnect QListView::enterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "enterEvent")
+	}
+}
+
+//export callbackQListViewEnterEvent
+func callbackQListViewEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::enterEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectHideEvent(f func(event *gui.QHideEvent)) {
+	defer qt.Recovering("connect QListView::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectHideEvent() {
+	defer qt.Recovering("disconnect QListView::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+	}
+}
+
+//export callbackQListViewHideEvent
+func callbackQListViewHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::hideEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectLeaveEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QListView::leaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "leaveEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectLeaveEvent() {
+	defer qt.Recovering("disconnect QListView::leaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "leaveEvent")
+	}
+}
+
+//export callbackQListViewLeaveEvent
+func callbackQListViewLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::leaveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
+	defer qt.Recovering("connect QListView::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "moveEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectMoveEvent() {
+	defer qt.Recovering("disconnect QListView::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "moveEvent")
+	}
+}
+
+//export callbackQListViewMoveEvent
+func callbackQListViewMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::moveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectSetVisible(f func(visible bool)) {
+	defer qt.Recovering("connect QListView::setVisible")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
+	}
+}
+
+func (ptr *QListView) DisconnectSetVisible() {
+	defer qt.Recovering("disconnect QListView::setVisible")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+	}
+}
+
+//export callbackQListViewSetVisible
+func callbackQListViewSetVisible(ptrName *C.char, visible C.int) bool {
+	defer qt.Recovering("callback QListView::setVisible")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
+		signal.(func(bool))(int(visible) != 0)
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectShowEvent(f func(event *gui.QShowEvent)) {
+	defer qt.Recovering("connect QListView::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectShowEvent() {
+	defer qt.Recovering("disconnect QListView::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+	}
+}
+
+//export callbackQListViewShowEvent
+func callbackQListViewShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::showEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
+	defer qt.Recovering("connect QListView::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectCloseEvent() {
+	defer qt.Recovering("disconnect QListView::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+	}
+}
+
+//export callbackQListViewCloseEvent
+func callbackQListViewCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::closeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectInitPainter(f func(painter *gui.QPainter)) {
+	defer qt.Recovering("connect QListView::initPainter")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "initPainter", f)
+	}
+}
+
+func (ptr *QListView) DisconnectInitPainter() {
+	defer qt.Recovering("disconnect QListView::initPainter")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "initPainter")
+	}
+}
+
+//export callbackQListViewInitPainter
+func callbackQListViewInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::initPainter")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QListView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectKeyReleaseEvent() {
+	defer qt.Recovering("disconnect QListView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+	}
+}
+
+//export callbackQListViewKeyReleaseEvent
+func callbackQListViewKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::keyReleaseEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
+	defer qt.Recovering("connect QListView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "tabletEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectTabletEvent() {
+	defer qt.Recovering("disconnect QListView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "tabletEvent")
+	}
+}
+
+//export callbackQListViewTabletEvent
+func callbackQListViewTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::tabletEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
+		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QListView::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QListView::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQListViewChildEvent
+func callbackQListViewChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QListView) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QListView::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QListView) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QListView::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQListViewCustomEvent
+func callbackQListViewCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QListView::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

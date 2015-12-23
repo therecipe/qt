@@ -405,3 +405,93 @@ func (ptr *QNetworkAccessManager) DestroyQNetworkAccessManager() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QNetworkAccessManager) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QNetworkAccessManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QNetworkAccessManager) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QNetworkAccessManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQNetworkAccessManagerTimerEvent
+func callbackQNetworkAccessManagerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNetworkAccessManager::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QNetworkAccessManager) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QNetworkAccessManager::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QNetworkAccessManager) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QNetworkAccessManager::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQNetworkAccessManagerChildEvent
+func callbackQNetworkAccessManagerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNetworkAccessManager::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QNetworkAccessManager) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QNetworkAccessManager::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QNetworkAccessManager) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QNetworkAccessManager::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQNetworkAccessManagerCustomEvent
+func callbackQNetworkAccessManagerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNetworkAccessManager::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

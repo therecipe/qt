@@ -60,3 +60,33 @@ func (ptr *QAbstractPlanarVideoBuffer) SetObjectNameAbs(name string) {
 		C.QAbstractPlanarVideoBuffer_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }
+
+func (ptr *QAbstractPlanarVideoBuffer) ConnectRelease(f func()) {
+	defer qt.Recovering("connect QAbstractPlanarVideoBuffer::release")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "release", f)
+	}
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) DisconnectRelease() {
+	defer qt.Recovering("disconnect QAbstractPlanarVideoBuffer::release")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "release")
+	}
+}
+
+//export callbackQAbstractPlanarVideoBufferRelease
+func callbackQAbstractPlanarVideoBufferRelease(ptrName *C.char) bool {
+	defer qt.Recovering("callback QAbstractPlanarVideoBuffer::release")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "release"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}

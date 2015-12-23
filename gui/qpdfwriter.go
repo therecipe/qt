@@ -173,3 +173,93 @@ func (ptr *QPdfWriter) DestroyQPdfWriter() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QPdfWriter) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QPdfWriter::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QPdfWriter) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QPdfWriter::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQPdfWriterTimerEvent
+func callbackQPdfWriterTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPdfWriter::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QPdfWriter) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QPdfWriter::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QPdfWriter) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QPdfWriter::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQPdfWriterChildEvent
+func callbackQPdfWriterChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPdfWriter::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QPdfWriter) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QPdfWriter::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QPdfWriter) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QPdfWriter::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQPdfWriterCustomEvent
+func callbackQPdfWriterCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPdfWriter::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

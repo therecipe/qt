@@ -88,6 +88,8 @@ func CppTemplate(m string) (o string) {
 		if isSupportedClass(c) && (hasVirtualFunction(c) || hasSignalFunction(c)) {
 			if !strings.Contains(c.Name, "tomic") {
 				o += fmt.Sprintf("class My%v: public %v {\n", c.Name, c.Name)
+				var virtuals = make(map[string]bool)
+
 				for _, m := range []string{"public", "protected"} {
 					o += m + ":\n"
 					if m == "public" {
@@ -125,7 +127,35 @@ func CppTemplate(m string) (o string) {
 						if f.Access == m {
 							if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.Output == "void" {
 								if i := cppFunctionSignal(f); isSupportedFunction(c, f) {
-									o += fmt.Sprintf("\t%v;\n", i)
+									if strings.Contains(f.Virtual, "impure") {
+										if _, exists := virtuals[f.Name]; !exists {
+											virtuals[f.Name] = true
+											if !isBlockedVirtual(f.Fullname) {
+												o += fmt.Sprintf("\t%v;\n", i)
+											}
+										}
+									} else {
+										o += fmt.Sprintf("\t%v;\n", i)
+									}
+								}
+							}
+						}
+					}
+
+					for _, bcName := range c.GetAllBases([]string{}) {
+						if bc, exists := parser.ClassMap[bcName]; exists {
+							for _, f := range bc.Functions {
+								if f.Access == m {
+									if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
+										if i := cppFunctionSignal(f); isSupportedFunction(bc, f) && isSupportedClass(bc) {
+											if _, exists := virtuals[f.Name]; !exists {
+												virtuals[f.Name] = true
+												if !isBlockedVirtual(f.Fullname) {
+													o += strings.Replace(fmt.Sprintf("\t%v;\n", i), bc.Name, c.Name, -1)
+												}
+											}
+										}
+									}
 								}
 							}
 						}

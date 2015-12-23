@@ -60,3 +60,93 @@ func (ptr *QDistanceSensor) DestroyQDistanceSensor() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QDistanceSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QDistanceSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QDistanceSensor) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QDistanceSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQDistanceSensorTimerEvent
+func callbackQDistanceSensorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDistanceSensor::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QDistanceSensor) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QDistanceSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QDistanceSensor) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QDistanceSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQDistanceSensorChildEvent
+func callbackQDistanceSensorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDistanceSensor::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QDistanceSensor) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QDistanceSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QDistanceSensor) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QDistanceSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQDistanceSensorCustomEvent
+func callbackQDistanceSensorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDistanceSensor::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

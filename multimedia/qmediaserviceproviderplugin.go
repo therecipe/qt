@@ -53,3 +53,93 @@ func (ptr *QMediaServiceProviderPlugin) Release(service QMediaService_ITF) {
 		C.QMediaServiceProviderPlugin_Release(ptr.Pointer(), PointerFromQMediaService(service))
 	}
 }
+
+func (ptr *QMediaServiceProviderPlugin) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QMediaServiceProviderPlugin::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QMediaServiceProviderPlugin) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QMediaServiceProviderPlugin::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQMediaServiceProviderPluginTimerEvent
+func callbackQMediaServiceProviderPluginTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMediaServiceProviderPlugin::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QMediaServiceProviderPlugin) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QMediaServiceProviderPlugin::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QMediaServiceProviderPlugin) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QMediaServiceProviderPlugin::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQMediaServiceProviderPluginChildEvent
+func callbackQMediaServiceProviderPluginChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMediaServiceProviderPlugin::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QMediaServiceProviderPlugin) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QMediaServiceProviderPlugin::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QMediaServiceProviderPlugin) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QMediaServiceProviderPlugin::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQMediaServiceProviderPluginCustomEvent
+func callbackQMediaServiceProviderPluginCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QMediaServiceProviderPlugin::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

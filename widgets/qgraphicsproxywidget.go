@@ -807,3 +807,363 @@ func (ptr *QGraphicsProxyWidget) DestroyQGraphicsProxyWidget() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QGraphicsProxyWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectChangeEvent() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetChangeEvent
+func callbackQGraphicsProxyWidgetChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::changeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsProxyWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectCloseEvent() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetCloseEvent
+func callbackQGraphicsProxyWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::closeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsProxyWidget) ConnectGrabKeyboardEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::grabKeyboardEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "grabKeyboardEvent", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectGrabKeyboardEvent() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::grabKeyboardEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "grabKeyboardEvent")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetGrabKeyboardEvent
+func callbackQGraphicsProxyWidgetGrabKeyboardEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::grabKeyboardEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "grabKeyboardEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsProxyWidget) ConnectInitStyleOption(f func(option *QStyleOption)) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::initStyleOption")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "initStyleOption", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectInitStyleOption() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::initStyleOption")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "initStyleOption")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetInitStyleOption
+func callbackQGraphicsProxyWidgetInitStyleOption(ptrName *C.char, option unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::initStyleOption")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "initStyleOption"); signal != nil {
+		signal.(func(*QStyleOption))(NewQStyleOptionFromPointer(option))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsProxyWidget) ConnectMoveEvent(f func(event *QGraphicsSceneMoveEvent)) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "moveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectMoveEvent() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "moveEvent")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetMoveEvent
+func callbackQGraphicsProxyWidgetMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::moveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+		signal.(func(*QGraphicsSceneMoveEvent))(NewQGraphicsSceneMoveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsProxyWidget) ConnectPaintWindowFrame(f func(painter *gui.QPainter, option *QStyleOptionGraphicsItem, widget *QWidget)) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::paintWindowFrame")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "paintWindowFrame", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectPaintWindowFrame() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::paintWindowFrame")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "paintWindowFrame")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetPaintWindowFrame
+func callbackQGraphicsProxyWidgetPaintWindowFrame(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::paintWindowFrame")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "paintWindowFrame"); signal != nil {
+		signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsProxyWidget) ConnectPolishEvent(f func()) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::polishEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "polishEvent", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectPolishEvent() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::polishEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "polishEvent")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetPolishEvent
+func callbackQGraphicsProxyWidgetPolishEvent(ptrName *C.char) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::polishEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "polishEvent"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsProxyWidget) ConnectUngrabKeyboardEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::ungrabKeyboardEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "ungrabKeyboardEvent", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectUngrabKeyboardEvent() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::ungrabKeyboardEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "ungrabKeyboardEvent")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetUngrabKeyboardEvent
+func callbackQGraphicsProxyWidgetUngrabKeyboardEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::ungrabKeyboardEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "ungrabKeyboardEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsProxyWidget) ConnectUpdateGeometry(f func()) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::updateGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateGeometry", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectUpdateGeometry() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::updateGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateGeometry")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetUpdateGeometry
+func callbackQGraphicsProxyWidgetUpdateGeometry(ptrName *C.char) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::updateGeometry")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometry"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsProxyWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetTimerEvent
+func callbackQGraphicsProxyWidgetTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsProxyWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetChildEvent
+func callbackQGraphicsProxyWidgetChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGraphicsProxyWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QGraphicsProxyWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QGraphicsProxyWidget) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QGraphicsProxyWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQGraphicsProxyWidgetCustomEvent
+func callbackQGraphicsProxyWidgetCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGraphicsProxyWidget::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

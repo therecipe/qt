@@ -60,3 +60,93 @@ func (ptr *QOrientationSensor) DestroyQOrientationSensor() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QOrientationSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QOrientationSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QOrientationSensor) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QOrientationSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQOrientationSensorTimerEvent
+func callbackQOrientationSensorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QOrientationSensor::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QOrientationSensor) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QOrientationSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QOrientationSensor) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QOrientationSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQOrientationSensorChildEvent
+func callbackQOrientationSensorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QOrientationSensor::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QOrientationSensor) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QOrientationSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QOrientationSensor) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QOrientationSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQOrientationSensorCustomEvent
+func callbackQOrientationSensorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QOrientationSensor::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

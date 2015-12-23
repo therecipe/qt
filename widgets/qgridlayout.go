@@ -427,3 +427,93 @@ func (ptr *QGridLayout) DestroyQGridLayout() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QGridLayout) ConnectChildEvent(f func(e *core.QChildEvent)) {
+	defer qt.Recovering("connect QGridLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QGridLayout) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QGridLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQGridLayoutChildEvent
+func callbackQGridLayoutChildEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGridLayout::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGridLayout) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QGridLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QGridLayout) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QGridLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQGridLayoutTimerEvent
+func callbackQGridLayoutTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGridLayout::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGridLayout) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QGridLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QGridLayout) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QGridLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQGridLayoutCustomEvent
+func callbackQGridLayoutCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGridLayout::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

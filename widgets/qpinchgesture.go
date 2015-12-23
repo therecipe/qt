@@ -214,3 +214,93 @@ func (ptr *QPinchGesture) DestroyQPinchGesture() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QPinchGesture) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QPinchGesture::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QPinchGesture) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QPinchGesture::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQPinchGestureTimerEvent
+func callbackQPinchGestureTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPinchGesture::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QPinchGesture) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QPinchGesture::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QPinchGesture) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QPinchGesture::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQPinchGestureChildEvent
+func callbackQPinchGestureChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPinchGesture::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QPinchGesture) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QPinchGesture::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QPinchGesture) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QPinchGesture::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQPinchGestureCustomEvent
+func callbackQPinchGestureCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPinchGesture::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

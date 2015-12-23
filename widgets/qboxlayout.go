@@ -408,3 +408,93 @@ func (ptr *QBoxLayout) DestroyQBoxLayout() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QBoxLayout) ConnectChildEvent(f func(e *core.QChildEvent)) {
+	defer qt.Recovering("connect QBoxLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QBoxLayout) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QBoxLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQBoxLayoutChildEvent
+func callbackQBoxLayoutChildEvent(ptrName *C.char, e unsafe.Pointer) bool {
+	defer qt.Recovering("callback QBoxLayout::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(e))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QBoxLayout) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QBoxLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QBoxLayout) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QBoxLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQBoxLayoutTimerEvent
+func callbackQBoxLayoutTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QBoxLayout::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QBoxLayout) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QBoxLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QBoxLayout) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QBoxLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQBoxLayoutCustomEvent
+func callbackQBoxLayoutCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QBoxLayout::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

@@ -576,3 +576,123 @@ func (ptr *QSslSocket) DestroyQSslSocket() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QSslSocket) ConnectDisconnectFromHost(f func()) {
+	defer qt.Recovering("connect QSslSocket::disconnectFromHost")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "disconnectFromHost", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectDisconnectFromHost() {
+	defer qt.Recovering("disconnect QSslSocket::disconnectFromHost")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "disconnectFromHost")
+	}
+}
+
+//export callbackQSslSocketDisconnectFromHost
+func callbackQSslSocketDisconnectFromHost(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSslSocket::disconnectFromHost")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectFromHost"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSslSocket) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QSslSocket::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QSslSocket::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQSslSocketTimerEvent
+func callbackQSslSocketTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSslSocket::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSslSocket) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QSslSocket::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QSslSocket::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQSslSocketChildEvent
+func callbackQSslSocketChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSslSocket::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSslSocket) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QSslSocket::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QSslSocket::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQSslSocketCustomEvent
+func callbackQSslSocketCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSslSocket::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

@@ -102,3 +102,93 @@ func (ptr *QRegularExpressionValidator) DestroyQRegularExpressionValidator() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QRegularExpressionValidator) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QRegularExpressionValidator::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QRegularExpressionValidator) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QRegularExpressionValidator::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQRegularExpressionValidatorTimerEvent
+func callbackQRegularExpressionValidatorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QRegularExpressionValidator::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QRegularExpressionValidator) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QRegularExpressionValidator::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QRegularExpressionValidator) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QRegularExpressionValidator::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQRegularExpressionValidatorChildEvent
+func callbackQRegularExpressionValidatorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QRegularExpressionValidator::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QRegularExpressionValidator) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QRegularExpressionValidator::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QRegularExpressionValidator) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QRegularExpressionValidator::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQRegularExpressionValidatorCustomEvent
+func callbackQRegularExpressionValidatorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QRegularExpressionValidator::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

@@ -26,6 +26,7 @@
 #include <QBrush>
 #include <QByteArray>
 #include <QChar>
+#include <QChildEvent>
 #include <QClipboard>
 #include <QCloseEvent>
 #include <QColor>
@@ -175,6 +176,9 @@
 #include <QTextTableCell>
 #include <QTextTableCellFormat>
 #include <QTextTableFormat>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QTouchDevice>
 #include <QTouchEvent>
 #include <QTransform>
@@ -195,6 +199,9 @@ class MyQAbstractTextDocumentLayout: public QAbstractTextDocumentLayout {
 public:
 	void Signal_PageCountChanged(int newPages) { callbackQAbstractTextDocumentLayoutPageCountChanged(this->objectName().toUtf8().data(), newPages); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractTextDocumentLayoutTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractTextDocumentLayout::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractTextDocumentLayoutChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractTextDocumentLayout::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractTextDocumentLayoutCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractTextDocumentLayout::customEvent(event); }; };
 };
 
 char* QAbstractTextDocumentLayout_AnchorAt(void* ptr, void* position){
@@ -1143,6 +1150,9 @@ public:
 	void Signal_FindBufferChanged() { callbackQClipboardFindBufferChanged(this->objectName().toUtf8().data()); };
 	void Signal_SelectionChanged() { callbackQClipboardSelectionChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQClipboardTimerEvent(this->objectName().toUtf8().data(), event)) { QClipboard::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQClipboardChildEvent(this->objectName().toUtf8().data(), event)) { QClipboard::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQClipboardCustomEvent(this->objectName().toUtf8().data(), event)) { QClipboard::customEvent(event); }; };
 };
 
 void QClipboard_Clear(void* ptr, int mode){
@@ -1705,6 +1715,9 @@ class MyQDoubleValidator: public QDoubleValidator {
 public:
 	MyQDoubleValidator(QObject *parent) : QDoubleValidator(parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQDoubleValidatorTimerEvent(this->objectName().toUtf8().data(), event)) { QDoubleValidator::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQDoubleValidatorChildEvent(this->objectName().toUtf8().data(), event)) { QDoubleValidator::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQDoubleValidatorCustomEvent(this->objectName().toUtf8().data(), event)) { QDoubleValidator::customEvent(event); }; };
 };
 
 int QDoubleValidator_Notation(void* ptr){
@@ -1736,6 +1749,9 @@ public:
 	void Signal_ActionChanged(Qt::DropAction action) { callbackQDragActionChanged(this->objectName().toUtf8().data(), action); };
 	void Signal_TargetChanged(QObject * newTarget) { callbackQDragTargetChanged(this->objectName().toUtf8().data(), newTarget); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQDragTimerEvent(this->objectName().toUtf8().data(), event)) { QDrag::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQDragChildEvent(this->objectName().toUtf8().data(), event)) { QDrag::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQDragCustomEvent(this->objectName().toUtf8().data(), event)) { QDrag::customEvent(event); }; };
 };
 
 void* QDrag_NewQDrag(void* dragSource){
@@ -2742,6 +2758,9 @@ public:
 	void Signal_ScreenAdded(QScreen * screen) { callbackQGuiApplicationScreenAdded(this->objectName().toUtf8().data(), screen); };
 	void Signal_ScreenRemoved(QScreen * screen) { callbackQGuiApplicationScreenRemoved(this->objectName().toUtf8().data(), screen); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQGuiApplicationTimerEvent(this->objectName().toUtf8().data(), event)) { QGuiApplication::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQGuiApplicationChildEvent(this->objectName().toUtf8().data(), event)) { QGuiApplication::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQGuiApplicationCustomEvent(this->objectName().toUtf8().data(), event)) { QGuiApplication::customEvent(event); }; };
 };
 
 char* QGuiApplication_QGuiApplication_ApplicationDisplayName(){
@@ -3652,6 +3671,9 @@ public:
 	void Signal_LocaleChanged() { callbackQInputMethodLocaleChanged(this->objectName().toUtf8().data()); };
 	void Signal_VisibleChanged() { callbackQInputMethodVisibleChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQInputMethodTimerEvent(this->objectName().toUtf8().data(), event)) { QInputMethod::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQInputMethodChildEvent(this->objectName().toUtf8().data(), event)) { QInputMethod::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQInputMethodCustomEvent(this->objectName().toUtf8().data(), event)) { QInputMethod::customEvent(event); }; };
 };
 
 int QInputMethod_InputDirection(void* ptr){
@@ -3804,6 +3826,9 @@ public:
 	MyQIntValidator(int minimum, int maximum, QObject *parent) : QIntValidator(minimum, maximum, parent) {};
 	void setRange(int bottom, int top) { if (!callbackQIntValidatorSetRange(this->objectName().toUtf8().data(), bottom, top)) { QIntValidator::setRange(bottom, top); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQIntValidatorTimerEvent(this->objectName().toUtf8().data(), event)) { QIntValidator::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQIntValidatorChildEvent(this->objectName().toUtf8().data(), event)) { QIntValidator::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQIntValidatorCustomEvent(this->objectName().toUtf8().data(), event)) { QIntValidator::customEvent(event); }; };
 };
 
 void QIntValidator_SetBottom(void* ptr, int v){
@@ -4076,6 +4101,9 @@ public:
 	void Signal_StateChanged(QMovie::MovieState state) { callbackQMovieStateChanged(this->objectName().toUtf8().data(), state); };
 	void Signal_Updated(const QRect & rect) { callbackQMovieUpdated(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height())); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMovieTimerEvent(this->objectName().toUtf8().data(), event)) { QMovie::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMovieChildEvent(this->objectName().toUtf8().data(), event)) { QMovie::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMovieCustomEvent(this->objectName().toUtf8().data(), event)) { QMovie::customEvent(event); }; };
 };
 
 int QMovie_CacheMode(void* ptr){
@@ -4275,6 +4303,9 @@ public:
 	MyQOffscreenSurface(QScreen *targetScreen) : QOffscreenSurface(targetScreen) {};
 	void Signal_ScreenChanged(QScreen * screen) { callbackQOffscreenSurfaceScreenChanged(this->objectName().toUtf8().data(), screen); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQOffscreenSurfaceTimerEvent(this->objectName().toUtf8().data(), event)) { QOffscreenSurface::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQOffscreenSurfaceChildEvent(this->objectName().toUtf8().data(), event)) { QOffscreenSurface::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQOffscreenSurfaceCustomEvent(this->objectName().toUtf8().data(), event)) { QOffscreenSurface::customEvent(event); }; };
 };
 
 void* QOffscreenSurface_NewQOffscreenSurface(void* targetScreen){
@@ -4653,6 +4684,25 @@ class MyQPaintDeviceWindow: public QPaintDeviceWindow {
 public:
 protected:
 	void paintEvent(QPaintEvent * event) { if (!callbackQPaintDeviceWindowPaintEvent(this->objectName().toUtf8().data(), event)) { QPaintDeviceWindow::paintEvent(event); }; };
+	void exposeEvent(QExposeEvent * ev) { if (!callbackQPaintDeviceWindowExposeEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::exposeEvent(ev); }; };
+	void focusInEvent(QFocusEvent * ev) { if (!callbackQPaintDeviceWindowFocusInEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::focusInEvent(ev); }; };
+	void focusOutEvent(QFocusEvent * ev) { if (!callbackQPaintDeviceWindowFocusOutEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::focusOutEvent(ev); }; };
+	void hideEvent(QHideEvent * ev) { if (!callbackQPaintDeviceWindowHideEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::hideEvent(ev); }; };
+	void keyPressEvent(QKeyEvent * ev) { if (!callbackQPaintDeviceWindowKeyPressEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::keyPressEvent(ev); }; };
+	void keyReleaseEvent(QKeyEvent * ev) { if (!callbackQPaintDeviceWindowKeyReleaseEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::keyReleaseEvent(ev); }; };
+	void mouseDoubleClickEvent(QMouseEvent * ev) { if (!callbackQPaintDeviceWindowMouseDoubleClickEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::mouseDoubleClickEvent(ev); }; };
+	void mouseMoveEvent(QMouseEvent * ev) { if (!callbackQPaintDeviceWindowMouseMoveEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::mouseMoveEvent(ev); }; };
+	void mousePressEvent(QMouseEvent * ev) { if (!callbackQPaintDeviceWindowMousePressEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::mousePressEvent(ev); }; };
+	void mouseReleaseEvent(QMouseEvent * ev) { if (!callbackQPaintDeviceWindowMouseReleaseEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::mouseReleaseEvent(ev); }; };
+	void moveEvent(QMoveEvent * ev) { if (!callbackQPaintDeviceWindowMoveEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::moveEvent(ev); }; };
+	void resizeEvent(QResizeEvent * ev) { if (!callbackQPaintDeviceWindowResizeEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::resizeEvent(ev); }; };
+	void showEvent(QShowEvent * ev) { if (!callbackQPaintDeviceWindowShowEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::showEvent(ev); }; };
+	void tabletEvent(QTabletEvent * ev) { if (!callbackQPaintDeviceWindowTabletEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::tabletEvent(ev); }; };
+	void touchEvent(QTouchEvent * ev) { if (!callbackQPaintDeviceWindowTouchEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::touchEvent(ev); }; };
+	void wheelEvent(QWheelEvent * ev) { if (!callbackQPaintDeviceWindowWheelEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::wheelEvent(ev); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQPaintDeviceWindowTimerEvent(this->objectName().toUtf8().data(), event)) { QPaintDeviceWindow::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQPaintDeviceWindowChildEvent(this->objectName().toUtf8().data(), event)) { QPaintDeviceWindow::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQPaintDeviceWindowCustomEvent(this->objectName().toUtf8().data(), event)) { QPaintDeviceWindow::customEvent(event); }; };
 };
 
 void QPaintDeviceWindow_Update3(void* ptr){
@@ -5932,6 +5982,9 @@ public:
 	MyQPdfWriter(QIODevice *device) : QPdfWriter(device) {};
 	MyQPdfWriter(const QString &filename) : QPdfWriter(filename) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQPdfWriterTimerEvent(this->objectName().toUtf8().data(), event)) { QPdfWriter::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQPdfWriterChildEvent(this->objectName().toUtf8().data(), event)) { QPdfWriter::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQPdfWriterCustomEvent(this->objectName().toUtf8().data(), event)) { QPdfWriter::customEvent(event); }; };
 };
 
 void* QPdfWriter_NewQPdfWriter2(void* device){
@@ -6639,6 +6692,9 @@ public:
 	MyQRegExpValidator(QObject *parent) : QRegExpValidator(parent) {};
 	MyQRegExpValidator(const QRegExp &rx, QObject *parent) : QRegExpValidator(rx, parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQRegExpValidatorTimerEvent(this->objectName().toUtf8().data(), event)) { QRegExpValidator::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQRegExpValidatorChildEvent(this->objectName().toUtf8().data(), event)) { QRegExpValidator::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQRegExpValidatorCustomEvent(this->objectName().toUtf8().data(), event)) { QRegExpValidator::customEvent(event); }; };
 };
 
 void QRegExpValidator_SetRegExp(void* ptr, void* rx){
@@ -6771,6 +6827,9 @@ public:
 	MyQRegularExpressionValidator(const QRegularExpression &re, QObject *parent) : QRegularExpressionValidator(re, parent) {};
 	void Signal_RegularExpressionChanged(const QRegularExpression & re) { callbackQRegularExpressionValidatorRegularExpressionChanged(this->objectName().toUtf8().data(), new QRegularExpression(re)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQRegularExpressionValidatorTimerEvent(this->objectName().toUtf8().data(), event)) { QRegularExpressionValidator::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQRegularExpressionValidatorChildEvent(this->objectName().toUtf8().data(), event)) { QRegularExpressionValidator::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQRegularExpressionValidatorCustomEvent(this->objectName().toUtf8().data(), event)) { QRegularExpressionValidator::customEvent(event); }; };
 };
 
 void* QRegularExpressionValidator_RegularExpression(void* ptr){
@@ -6824,6 +6883,9 @@ public:
 	void Signal_RefreshRateChanged(qreal refreshRate) { callbackQScreenRefreshRateChanged(this->objectName().toUtf8().data(), static_cast<double>(refreshRate)); };
 	void Signal_VirtualGeometryChanged(const QRect & rect) { callbackQScreenVirtualGeometryChanged(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height())); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQScreenTimerEvent(this->objectName().toUtf8().data(), event)) { QScreen::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQScreenChildEvent(this->objectName().toUtf8().data(), event)) { QScreen::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQScreenCustomEvent(this->objectName().toUtf8().data(), event)) { QScreen::customEvent(event); }; };
 };
 
 void* QScreen_AvailableGeometry(void* ptr){
@@ -7437,7 +7499,12 @@ public:
 	MyQStandardItemModel(int rows, int columns, QObject *parent) : QStandardItemModel(rows, columns, parent) {};
 	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModelItemChanged(this->objectName().toUtf8().data(), item); };
 	void sort(int column, Qt::SortOrder order) { if (!callbackQStandardItemModelSort(this->objectName().toUtf8().data(), column, order)) { QStandardItemModel::sort(column, order); }; };
+	void fetchMore(const QModelIndex & parent) { if (!callbackQStandardItemModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QStandardItemModel::fetchMore(parent); }; };
+	void revert() { if (!callbackQStandardItemModelRevert(this->objectName().toUtf8().data())) { QStandardItemModel::revert(); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQStandardItemModelTimerEvent(this->objectName().toUtf8().data(), event)) { QStandardItemModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQStandardItemModelChildEvent(this->objectName().toUtf8().data(), event)) { QStandardItemModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQStandardItemModelCustomEvent(this->objectName().toUtf8().data(), event)) { QStandardItemModel::customEvent(event); }; };
 };
 
 void QStandardItemModel_SetSortRole(void* ptr, int role){
@@ -7716,6 +7783,9 @@ public:
 	void Signal_StartDragDistanceChanged(int startDragDistance) { callbackQStyleHintsStartDragDistanceChanged(this->objectName().toUtf8().data(), startDragDistance); };
 	void Signal_StartDragTimeChanged(int startDragTime) { callbackQStyleHintsStartDragTimeChanged(this->objectName().toUtf8().data(), startDragTime); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQStyleHintsTimerEvent(this->objectName().toUtf8().data(), event)) { QStyleHints::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQStyleHintsChildEvent(this->objectName().toUtf8().data(), event)) { QStyleHints::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQStyleHintsCustomEvent(this->objectName().toUtf8().data(), event)) { QStyleHints::customEvent(event); }; };
 };
 
 int QStyleHints_CursorFlashTime(void* ptr){
@@ -8013,6 +8083,9 @@ void QSurfaceFormat_DestroyQSurfaceFormat(void* ptr){
 class MyQSyntaxHighlighter: public QSyntaxHighlighter {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSyntaxHighlighterTimerEvent(this->objectName().toUtf8().data(), event)) { QSyntaxHighlighter::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSyntaxHighlighterChildEvent(this->objectName().toUtf8().data(), event)) { QSyntaxHighlighter::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSyntaxHighlighterCustomEvent(this->objectName().toUtf8().data(), event)) { QSyntaxHighlighter::customEvent(event); }; };
 };
 
 void* QSyntaxHighlighter_Document(void* ptr){
@@ -8314,6 +8387,9 @@ double QTextBlockFormat_TopMargin(void* ptr){
 class MyQTextBlockGroup: public QTextBlockGroup {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQTextBlockGroupTimerEvent(this->objectName().toUtf8().data(), event)) { QTextBlockGroup::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQTextBlockGroupChildEvent(this->objectName().toUtf8().data(), event)) { QTextBlockGroup::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQTextBlockGroupCustomEvent(this->objectName().toUtf8().data(), event)) { QTextBlockGroup::customEvent(event); }; };
 };
 
 class MyQTextBlockUserData: public QTextBlockUserData {
@@ -8835,6 +8911,9 @@ public:
 	void Signal_UndoAvailable(bool available) { callbackQTextDocumentUndoAvailable(this->objectName().toUtf8().data(), available); };
 	void Signal_UndoCommandAdded() { callbackQTextDocumentUndoCommandAdded(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQTextDocumentTimerEvent(this->objectName().toUtf8().data(), event)) { QTextDocument::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQTextDocumentChildEvent(this->objectName().toUtf8().data(), event)) { QTextDocument::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQTextDocumentCustomEvent(this->objectName().toUtf8().data(), event)) { QTextDocument::customEvent(event); }; };
 };
 
 void* QTextDocument_BaseUrl(void* ptr){
@@ -10429,6 +10508,9 @@ class MyQValidator: public QValidator {
 public:
 	void Signal_Changed() { callbackQValidatorChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQValidatorTimerEvent(this->objectName().toUtf8().data(), event)) { QValidator::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQValidatorChildEvent(this->objectName().toUtf8().data(), event)) { QValidator::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQValidatorCustomEvent(this->objectName().toUtf8().data(), event)) { QValidator::customEvent(event); }; };
 };
 
 void QValidator_ConnectChanged(void* ptr){
@@ -10646,6 +10728,9 @@ protected:
 	void tabletEvent(QTabletEvent * ev) { if (!callbackQWindowTabletEvent(this->objectName().toUtf8().data(), ev)) { QWindow::tabletEvent(ev); }; };
 	void touchEvent(QTouchEvent * ev) { if (!callbackQWindowTouchEvent(this->objectName().toUtf8().data(), ev)) { QWindow::touchEvent(ev); }; };
 	void wheelEvent(QWheelEvent * ev) { if (!callbackQWindowWheelEvent(this->objectName().toUtf8().data(), ev)) { QWindow::wheelEvent(ev); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQWindowTimerEvent(this->objectName().toUtf8().data(), event)) { QWindow::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQWindowChildEvent(this->objectName().toUtf8().data(), event)) { QWindow::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQWindowCustomEvent(this->objectName().toUtf8().data(), event)) { QWindow::customEvent(event); }; };
 };
 
 int QWindow_ContentOrientation(void* ptr){

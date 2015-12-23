@@ -63,3 +63,33 @@ func (ptr *QSGOpacityNode) DestroyQSGOpacityNode() {
 		C.QSGOpacityNode_DestroyQSGOpacityNode(ptr.Pointer())
 	}
 }
+
+func (ptr *QSGOpacityNode) ConnectPreprocess(f func()) {
+	defer qt.Recovering("connect QSGOpacityNode::preprocess")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "preprocess", f)
+	}
+}
+
+func (ptr *QSGOpacityNode) DisconnectPreprocess() {
+	defer qt.Recovering("disconnect QSGOpacityNode::preprocess")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "preprocess")
+	}
+}
+
+//export callbackQSGOpacityNodePreprocess
+func callbackQSGOpacityNodePreprocess(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSGOpacityNode::preprocess")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}

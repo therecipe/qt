@@ -1,6 +1,8 @@
 #include "location.h"
 #include "_cgo_export.h"
 
+#include <QChildEvent>
+#include <QEvent>
 #include <QGeoCoordinate>
 #include <QGeoManeuver>
 #include <QGeoRectangle>
@@ -15,6 +17,9 @@
 #include <QLocale>
 #include <QObject>
 #include <QString>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 
 void* QGeoManeuver_NewQGeoManeuver(){
 	return new QGeoManeuver();
@@ -135,6 +140,9 @@ public:
 	void Signal_Error2(QGeoRouteReply::Error error, const QString & errorString) { callbackQGeoRouteReplyError2(this->objectName().toUtf8().data(), error, errorString.toUtf8().data()); };
 	void Signal_Finished() { callbackQGeoRouteReplyFinished(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQGeoRouteReplyTimerEvent(this->objectName().toUtf8().data(), event)) { QGeoRouteReply::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQGeoRouteReplyChildEvent(this->objectName().toUtf8().data(), event)) { QGeoRouteReply::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQGeoRouteReplyCustomEvent(this->objectName().toUtf8().data(), event)) { QGeoRouteReply::customEvent(event); }; };
 };
 
 void* QGeoRouteReply_NewQGeoRouteReply(int error, char* errorString, void* parent){
@@ -282,6 +290,9 @@ public:
 	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { callbackQGeoRoutingManagerError(this->objectName().toUtf8().data(), reply, error, errorString.toUtf8().data()); };
 	void Signal_Finished(QGeoRouteReply * reply) { callbackQGeoRoutingManagerFinished(this->objectName().toUtf8().data(), reply); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQGeoRoutingManagerTimerEvent(this->objectName().toUtf8().data(), event)) { QGeoRoutingManager::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQGeoRoutingManagerChildEvent(this->objectName().toUtf8().data(), event)) { QGeoRoutingManager::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQGeoRoutingManagerCustomEvent(this->objectName().toUtf8().data(), event)) { QGeoRoutingManager::customEvent(event); }; };
 };
 
 void* QGeoRoutingManager_CalculateRoute(void* ptr, void* request){
@@ -361,6 +372,9 @@ public:
 	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { callbackQGeoRoutingManagerEngineError(this->objectName().toUtf8().data(), reply, error, errorString.toUtf8().data()); };
 	void Signal_Finished(QGeoRouteReply * reply) { callbackQGeoRoutingManagerEngineFinished(this->objectName().toUtf8().data(), reply); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQGeoRoutingManagerEngineTimerEvent(this->objectName().toUtf8().data(), event)) { QGeoRoutingManagerEngine::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQGeoRoutingManagerEngineChildEvent(this->objectName().toUtf8().data(), event)) { QGeoRoutingManagerEngine::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQGeoRoutingManagerEngineCustomEvent(this->objectName().toUtf8().data(), event)) { QGeoRoutingManagerEngine::customEvent(event); }; };
 };
 
 void* QGeoRoutingManagerEngine_CalculateRoute(void* ptr, void* request){

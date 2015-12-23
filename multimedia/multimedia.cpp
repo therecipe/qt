@@ -43,6 +43,8 @@
 #include <QCameraViewfinderSettingsControl>
 #include <QCameraViewfinderSettingsControl2>
 #include <QCameraZoomControl>
+#include <QChildEvent>
+#include <QEvent>
 #include <QGraphicsVideoItem>
 #include <QIODevice>
 #include <QImage>
@@ -91,6 +93,9 @@
 #include <QSound>
 #include <QSoundEffect>
 #include <QString>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QUrl>
 #include <QVariant>
 #include <QVideoDeviceSelectorControl>
@@ -108,6 +113,7 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	void release() { if (!callbackQAbstractPlanarVideoBufferRelease(this->objectNameAbs().toUtf8().data())) { QAbstractPlanarVideoBuffer::release(); }; };
 protected:
 };
 
@@ -168,6 +174,9 @@ class MyQAbstractVideoFilter: public QAbstractVideoFilter {
 public:
 	void Signal_ActiveChanged() { callbackQAbstractVideoFilterActiveChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractVideoFilterTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractVideoFilter::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractVideoFilterChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractVideoFilter::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractVideoFilterCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractVideoFilter::customEvent(event); }; };
 };
 
 int QAbstractVideoFilter_IsActive(void* ptr){
@@ -197,6 +206,9 @@ public:
 	void stop() { if (!callbackQAbstractVideoSurfaceStop(this->objectName().toUtf8().data())) { QAbstractVideoSurface::stop(); }; };
 	void Signal_SupportedFormatsChanged() { callbackQAbstractVideoSurfaceSupportedFormatsChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractVideoSurfaceTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractVideoSurface::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractVideoSurfaceChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractVideoSurface::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractVideoSurfaceCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractVideoSurface::customEvent(event); }; };
 };
 
 void* QAbstractVideoSurface_NativeResolution(void* ptr){
@@ -321,7 +333,11 @@ public:
 	void Signal_PositionChanged(qint64 position) { callbackQAudioDecoderPositionChanged(this->objectName().toUtf8().data(), static_cast<long long>(position)); };
 	void Signal_SourceChanged() { callbackQAudioDecoderSourceChanged(this->objectName().toUtf8().data()); };
 	void Signal_StateChanged(QAudioDecoder::State state) { callbackQAudioDecoderStateChanged(this->objectName().toUtf8().data(), state); };
+	void unbind(QObject * object) { if (!callbackQAudioDecoderUnbind(this->objectName().toUtf8().data(), object)) { QAudioDecoder::unbind(object); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAudioDecoderTimerEvent(this->objectName().toUtf8().data(), event)) { QAudioDecoder::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAudioDecoderChildEvent(this->objectName().toUtf8().data(), event)) { QAudioDecoder::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAudioDecoderCustomEvent(this->objectName().toUtf8().data(), event)) { QAudioDecoder::customEvent(event); }; };
 };
 
 char* QAudioDecoder_ErrorString(void* ptr){
@@ -463,6 +479,9 @@ public:
 	void Signal_SourceChanged() { callbackQAudioDecoderControlSourceChanged(this->objectName().toUtf8().data()); };
 	void Signal_StateChanged(QAudioDecoder::State state) { callbackQAudioDecoderControlStateChanged(this->objectName().toUtf8().data(), state); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAudioDecoderControlTimerEvent(this->objectName().toUtf8().data(), event)) { QAudioDecoderControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAudioDecoderControlChildEvent(this->objectName().toUtf8().data(), event)) { QAudioDecoderControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAudioDecoderControlCustomEvent(this->objectName().toUtf8().data(), event)) { QAudioDecoderControl::customEvent(event); }; };
 };
 
 int QAudioDecoderControl_BufferAvailable(void* ptr){
@@ -680,6 +699,9 @@ void QAudioEncoderSettings_DestroyQAudioEncoderSettings(void* ptr){
 class MyQAudioEncoderSettingsControl: public QAudioEncoderSettingsControl {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAudioEncoderSettingsControlTimerEvent(this->objectName().toUtf8().data(), event)) { QAudioEncoderSettingsControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAudioEncoderSettingsControlChildEvent(this->objectName().toUtf8().data(), event)) { QAudioEncoderSettingsControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAudioEncoderSettingsControlCustomEvent(this->objectName().toUtf8().data(), event)) { QAudioEncoderSettingsControl::customEvent(event); }; };
 };
 
 char* QAudioEncoderSettingsControl_CodecDescription(void* ptr, char* codec){
@@ -771,6 +793,9 @@ public:
 	void Signal_Notify() { callbackQAudioInputNotify(this->objectName().toUtf8().data()); };
 	void Signal_StateChanged(QAudio::State state) { callbackQAudioInputStateChanged(this->objectName().toUtf8().data(), state); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAudioInputTimerEvent(this->objectName().toUtf8().data(), event)) { QAudioInput::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAudioInputChildEvent(this->objectName().toUtf8().data(), event)) { QAudioInput::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAudioInputCustomEvent(this->objectName().toUtf8().data(), event)) { QAudioInput::customEvent(event); }; };
 };
 
 void* QAudioInput_NewQAudioInput2(void* audioDevice, void* format, void* parent){
@@ -878,6 +903,9 @@ public:
 	void Signal_ActiveInputChanged(const QString & name) { callbackQAudioInputSelectorControlActiveInputChanged(this->objectName().toUtf8().data(), name.toUtf8().data()); };
 	void Signal_AvailableInputsChanged() { callbackQAudioInputSelectorControlAvailableInputsChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAudioInputSelectorControlTimerEvent(this->objectName().toUtf8().data(), event)) { QAudioInputSelectorControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAudioInputSelectorControlChildEvent(this->objectName().toUtf8().data(), event)) { QAudioInputSelectorControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAudioInputSelectorControlCustomEvent(this->objectName().toUtf8().data(), event)) { QAudioInputSelectorControl::customEvent(event); }; };
 };
 
 char* QAudioInputSelectorControl_ActiveInput(void* ptr){
@@ -921,6 +949,9 @@ public:
 	void Signal_Notify() { callbackQAudioOutputNotify(this->objectName().toUtf8().data()); };
 	void Signal_StateChanged(QAudio::State state) { callbackQAudioOutputStateChanged(this->objectName().toUtf8().data(), state); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAudioOutputTimerEvent(this->objectName().toUtf8().data(), event)) { QAudioOutput::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAudioOutputChildEvent(this->objectName().toUtf8().data(), event)) { QAudioOutput::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAudioOutputCustomEvent(this->objectName().toUtf8().data(), event)) { QAudioOutput::customEvent(event); }; };
 };
 
 void* QAudioOutput_NewQAudioOutput2(void* audioDevice, void* format, void* parent){
@@ -1036,6 +1067,9 @@ public:
 	void Signal_ActiveOutputChanged(const QString & name) { callbackQAudioOutputSelectorControlActiveOutputChanged(this->objectName().toUtf8().data(), name.toUtf8().data()); };
 	void Signal_AvailableOutputsChanged() { callbackQAudioOutputSelectorControlAvailableOutputsChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAudioOutputSelectorControlTimerEvent(this->objectName().toUtf8().data(), event)) { QAudioOutputSelectorControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAudioOutputSelectorControlChildEvent(this->objectName().toUtf8().data(), event)) { QAudioOutputSelectorControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAudioOutputSelectorControlCustomEvent(this->objectName().toUtf8().data(), event)) { QAudioOutputSelectorControl::customEvent(event); }; };
 };
 
 char* QAudioOutputSelectorControl_ActiveOutput(void* ptr){
@@ -1078,6 +1112,9 @@ class MyQAudioProbe: public QAudioProbe {
 public:
 	void Signal_Flush() { callbackQAudioProbeFlush(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAudioProbeTimerEvent(this->objectName().toUtf8().data(), event)) { QAudioProbe::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAudioProbeChildEvent(this->objectName().toUtf8().data(), event)) { QAudioProbe::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAudioProbeCustomEvent(this->objectName().toUtf8().data(), event)) { QAudioProbe::customEvent(event); }; };
 };
 
 void* QAudioProbe_NewQAudioProbe(void* parent){
@@ -1113,6 +1150,9 @@ public:
 	void Signal_AudioInputChanged(const QString & name) { callbackQAudioRecorderAudioInputChanged(this->objectName().toUtf8().data(), name.toUtf8().data()); };
 	void Signal_AvailableAudioInputsChanged() { callbackQAudioRecorderAvailableAudioInputsChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAudioRecorderTimerEvent(this->objectName().toUtf8().data(), event)) { QAudioRecorder::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAudioRecorderChildEvent(this->objectName().toUtf8().data(), event)) { QAudioRecorder::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAudioRecorderCustomEvent(this->objectName().toUtf8().data(), event)) { QAudioRecorder::customEvent(event); }; };
 };
 
 void* QAudioRecorder_NewQAudioRecorder(void* parent){
@@ -1173,7 +1213,11 @@ public:
 	void Signal_Locked() { callbackQCameraLocked(this->objectName().toUtf8().data()); };
 	void Signal_StateChanged(QCamera::State state) { callbackQCameraStateChanged(this->objectName().toUtf8().data(), state); };
 	void Signal_StatusChanged(QCamera::Status status) { callbackQCameraStatusChanged(this->objectName().toUtf8().data(), status); };
+	void unbind(QObject * object) { if (!callbackQCameraUnbind(this->objectName().toUtf8().data(), object)) { QCamera::unbind(object); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraTimerEvent(this->objectName().toUtf8().data(), event)) { QCamera::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraChildEvent(this->objectName().toUtf8().data(), event)) { QCamera::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraCustomEvent(this->objectName().toUtf8().data(), event)) { QCamera::customEvent(event); }; };
 };
 
 int QCamera_CaptureMode(void* ptr){
@@ -1372,6 +1416,9 @@ class MyQCameraCaptureBufferFormatControl: public QCameraCaptureBufferFormatCont
 public:
 	void Signal_BufferFormatChanged(QVideoFrame::PixelFormat format) { callbackQCameraCaptureBufferFormatControlBufferFormatChanged(this->objectName().toUtf8().data(), format); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraCaptureBufferFormatControlTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraCaptureBufferFormatControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraCaptureBufferFormatControlChildEvent(this->objectName().toUtf8().data(), event)) { QCameraCaptureBufferFormatControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraCaptureBufferFormatControlCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraCaptureBufferFormatControl::customEvent(event); }; };
 };
 
 int QCameraCaptureBufferFormatControl_BufferFormat(void* ptr){
@@ -1398,6 +1445,9 @@ class MyQCameraCaptureDestinationControl: public QCameraCaptureDestinationContro
 public:
 	void Signal_CaptureDestinationChanged(QCameraImageCapture::CaptureDestinations destination) { callbackQCameraCaptureDestinationControlCaptureDestinationChanged(this->objectName().toUtf8().data(), destination); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraCaptureDestinationControlTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraCaptureDestinationControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraCaptureDestinationControlChildEvent(this->objectName().toUtf8().data(), event)) { QCameraCaptureDestinationControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraCaptureDestinationControlCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraCaptureDestinationControl::customEvent(event); }; };
 };
 
 int QCameraCaptureDestinationControl_CaptureDestination(void* ptr){
@@ -1431,6 +1481,9 @@ public:
 	void Signal_StateChanged(QCamera::State state) { callbackQCameraControlStateChanged(this->objectName().toUtf8().data(), state); };
 	void Signal_StatusChanged(QCamera::Status status) { callbackQCameraControlStatusChanged(this->objectName().toUtf8().data(), status); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraControlTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraControlChildEvent(this->objectName().toUtf8().data(), event)) { QCameraControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraControlCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraControl::customEvent(event); }; };
 };
 
 int QCameraControl_CanChangeProperty(void* ptr, int changeType, int status){
@@ -1507,6 +1560,9 @@ public:
 	void Signal_ShutterSpeedChanged(qreal speed) { callbackQCameraExposureShutterSpeedChanged(this->objectName().toUtf8().data(), static_cast<double>(speed)); };
 	void Signal_ShutterSpeedRangeChanged() { callbackQCameraExposureShutterSpeedRangeChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraExposureTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraExposure::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraExposureChildEvent(this->objectName().toUtf8().data(), event)) { QCameraExposure::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraExposureCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraExposure::customEvent(event); }; };
 };
 
 double QCameraExposure_Aperture(void* ptr){
@@ -1675,6 +1731,9 @@ public:
 	void Signal_ParameterRangeChanged(int parameter) { callbackQCameraExposureControlParameterRangeChanged(this->objectName().toUtf8().data(), parameter); };
 	void Signal_RequestedValueChanged(int parameter) { callbackQCameraExposureControlRequestedValueChanged(this->objectName().toUtf8().data(), parameter); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraExposureControlTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraExposureControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraExposureControlChildEvent(this->objectName().toUtf8().data(), event)) { QCameraExposureControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraExposureControlCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraExposureControl::customEvent(event); }; };
 };
 
 void* QCameraExposureControl_ActualValue(void* ptr, int parameter){
@@ -1749,6 +1808,9 @@ class MyQCameraFlashControl: public QCameraFlashControl {
 public:
 	void Signal_FlashReady(bool ready) { callbackQCameraFlashControlFlashReady(this->objectName().toUtf8().data(), ready); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraFlashControlTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraFlashControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraFlashControlChildEvent(this->objectName().toUtf8().data(), event)) { QCameraFlashControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraFlashControlCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraFlashControl::customEvent(event); }; };
 };
 
 int QCameraFlashControl_FlashMode(void* ptr){
@@ -1787,6 +1849,9 @@ public:
 	void Signal_MaximumOpticalZoomChanged(qreal zoom) { callbackQCameraFocusMaximumOpticalZoomChanged(this->objectName().toUtf8().data(), static_cast<double>(zoom)); };
 	void Signal_OpticalZoomChanged(qreal value) { callbackQCameraFocusOpticalZoomChanged(this->objectName().toUtf8().data(), static_cast<double>(value)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraFocusTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraFocus::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraFocusChildEvent(this->objectName().toUtf8().data(), event)) { QCameraFocus::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraFocusCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraFocus::customEvent(event); }; };
 };
 
 double QCameraFocus_DigitalZoom(void* ptr){
@@ -1887,6 +1952,9 @@ public:
 	void Signal_FocusPointModeChanged(QCameraFocus::FocusPointMode mode) { callbackQCameraFocusControlFocusPointModeChanged(this->objectName().toUtf8().data(), mode); };
 	void Signal_FocusZonesChanged() { callbackQCameraFocusControlFocusZonesChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraFocusControlTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraFocusControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraFocusControlChildEvent(this->objectName().toUtf8().data(), event)) { QCameraFocusControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraFocusControlCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraFocusControl::customEvent(event); }; };
 };
 
 int QCameraFocusControl_FocusMode(void* ptr){
@@ -1972,6 +2040,9 @@ public:
 	void Signal_ImageSaved(int id, const QString & fileName) { callbackQCameraImageCaptureImageSaved(this->objectName().toUtf8().data(), id, fileName.toUtf8().data()); };
 	void Signal_ReadyForCaptureChanged(bool ready) { callbackQCameraImageCaptureReadyForCaptureChanged(this->objectName().toUtf8().data(), ready); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraImageCaptureTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraImageCapture::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraImageCaptureChildEvent(this->objectName().toUtf8().data(), event)) { QCameraImageCapture::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraImageCaptureCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraImageCapture::customEvent(event); }; };
 };
 
 int QCameraImageCapture_IsReadyForCapture(void* ptr){
@@ -2110,6 +2181,9 @@ public:
 	void Signal_ImageSaved(int requestId, const QString & fileName) { callbackQCameraImageCaptureControlImageSaved(this->objectName().toUtf8().data(), requestId, fileName.toUtf8().data()); };
 	void Signal_ReadyForCaptureChanged(bool ready) { callbackQCameraImageCaptureControlReadyForCaptureChanged(this->objectName().toUtf8().data(), ready); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraImageCaptureControlTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraImageCaptureControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraImageCaptureControlChildEvent(this->objectName().toUtf8().data(), event)) { QCameraImageCaptureControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraImageCaptureControlCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraImageCaptureControl::customEvent(event); }; };
 };
 
 void QCameraImageCaptureControl_CancelCapture(void* ptr){
@@ -2303,6 +2377,9 @@ void QCameraInfo_DestroyQCameraInfo(void* ptr){
 class MyQCameraInfoControl: public QCameraInfoControl {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraInfoControlTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraInfoControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraInfoControlChildEvent(this->objectName().toUtf8().data(), event)) { QCameraInfoControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraInfoControlCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraInfoControl::customEvent(event); }; };
 };
 
 int QCameraInfoControl_CameraOrientation(void* ptr, char* deviceName){
@@ -2321,6 +2398,9 @@ class MyQCameraLocksControl: public QCameraLocksControl {
 public:
 	void Signal_LockStatusChanged(QCamera::LockType lock, QCamera::LockStatus status, QCamera::LockChangeReason reason) { callbackQCameraLocksControlLockStatusChanged(this->objectName().toUtf8().data(), lock, status, reason); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraLocksControlTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraLocksControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraLocksControlChildEvent(this->objectName().toUtf8().data(), event)) { QCameraLocksControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraLocksControlCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraLocksControl::customEvent(event); }; };
 };
 
 int QCameraLocksControl_LockStatus(void* ptr, int lock){
@@ -2438,6 +2518,9 @@ void QCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControl(vo
 class MyQCameraViewfinderSettingsControl2: public QCameraViewfinderSettingsControl2 {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraViewfinderSettingsControl2TimerEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinderSettingsControl2::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraViewfinderSettingsControl2ChildEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinderSettingsControl2::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraViewfinderSettingsControl2CustomEvent(this->objectName().toUtf8().data(), event)) { QCameraViewfinderSettingsControl2::customEvent(event); }; };
 };
 
 void QCameraViewfinderSettingsControl2_SetViewfinderSettings(void* ptr, void* settings){
@@ -2457,6 +2540,9 @@ public:
 	void Signal_RequestedDigitalZoomChanged(qreal zoom) { callbackQCameraZoomControlRequestedDigitalZoomChanged(this->objectName().toUtf8().data(), static_cast<double>(zoom)); };
 	void Signal_RequestedOpticalZoomChanged(qreal zoom) { callbackQCameraZoomControlRequestedOpticalZoomChanged(this->objectName().toUtf8().data(), static_cast<double>(zoom)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCameraZoomControlTimerEvent(this->objectName().toUtf8().data(), event)) { QCameraZoomControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCameraZoomControlChildEvent(this->objectName().toUtf8().data(), event)) { QCameraZoomControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCameraZoomControlCustomEvent(this->objectName().toUtf8().data(), event)) { QCameraZoomControl::customEvent(event); }; };
 };
 
 double QCameraZoomControl_CurrentDigitalZoom(void* ptr){
@@ -2542,6 +2628,9 @@ void QCameraZoomControl_DestroyQCameraZoomControl(void* ptr){
 class MyQImageEncoderControl: public QImageEncoderControl {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQImageEncoderControlTimerEvent(this->objectName().toUtf8().data(), event)) { QImageEncoderControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQImageEncoderControlChildEvent(this->objectName().toUtf8().data(), event)) { QImageEncoderControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQImageEncoderControlCustomEvent(this->objectName().toUtf8().data(), event)) { QImageEncoderControl::customEvent(event); }; };
 };
 
 char* QImageEncoderControl_ImageCodecDescription(void* ptr, char* codec){
@@ -2616,6 +2705,9 @@ class MyQMediaAudioProbeControl: public QMediaAudioProbeControl {
 public:
 	void Signal_Flush() { callbackQMediaAudioProbeControlFlush(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaAudioProbeControlTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaAudioProbeControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaAudioProbeControlChildEvent(this->objectName().toUtf8().data(), event)) { QMediaAudioProbeControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaAudioProbeControlCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaAudioProbeControl::customEvent(event); }; };
 };
 
 void QMediaAudioProbeControl_ConnectFlush(void* ptr){
@@ -2634,6 +2726,9 @@ class MyQMediaAvailabilityControl: public QMediaAvailabilityControl {
 public:
 	void Signal_AvailabilityChanged(QMultimedia::AvailabilityStatus availability) { callbackQMediaAvailabilityControlAvailabilityChanged(this->objectName().toUtf8().data(), availability); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaAvailabilityControlTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaAvailabilityControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaAvailabilityControlChildEvent(this->objectName().toUtf8().data(), event)) { QMediaAvailabilityControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaAvailabilityControlCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaAvailabilityControl::customEvent(event); }; };
 };
 
 int QMediaAvailabilityControl_Availability(void* ptr){
@@ -2679,6 +2774,9 @@ void QMediaBindableInterface_SetObjectNameAbs(void* ptr, char* name){
 class MyQMediaContainerControl: public QMediaContainerControl {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaContainerControlTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaContainerControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaContainerControlChildEvent(this->objectName().toUtf8().data(), event)) { QMediaContainerControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaContainerControlCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaContainerControl::customEvent(event); }; };
 };
 
 char* QMediaContainerControl_ContainerDescription(void* ptr, char* format){
@@ -2751,6 +2849,9 @@ public:
 	void Signal_CrossfadeTimeChanged(qreal crossfadeTime) { callbackQMediaGaplessPlaybackControlCrossfadeTimeChanged(this->objectName().toUtf8().data(), static_cast<double>(crossfadeTime)); };
 	void Signal_NextMediaChanged(const QMediaContent & media) { callbackQMediaGaplessPlaybackControlNextMediaChanged(this->objectName().toUtf8().data(), new QMediaContent(media)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaGaplessPlaybackControlTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaGaplessPlaybackControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaGaplessPlaybackControlChildEvent(this->objectName().toUtf8().data(), event)) { QMediaGaplessPlaybackControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaGaplessPlaybackControlCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaGaplessPlaybackControl::customEvent(event); }; };
 };
 
 void QMediaGaplessPlaybackControl_ConnectAdvancedToNextMedia(void* ptr){
@@ -2804,6 +2905,9 @@ void QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(void* ptr)
 class MyQMediaNetworkAccessControl: public QMediaNetworkAccessControl {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaNetworkAccessControlTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaNetworkAccessControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaNetworkAccessControlChildEvent(this->objectName().toUtf8().data(), event)) { QMediaNetworkAccessControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaNetworkAccessControlCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaNetworkAccessControl::customEvent(event); }; };
 };
 
 void QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(void* ptr){
@@ -2820,6 +2924,9 @@ public:
 	void Signal_NotifyIntervalChanged(int milliseconds) { callbackQMediaObjectNotifyIntervalChanged(this->objectName().toUtf8().data(), milliseconds); };
 	void unbind(QObject * object) { if (!callbackQMediaObjectUnbind(this->objectName().toUtf8().data(), object)) { QMediaObject::unbind(object); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaObjectTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaObject::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaObjectChildEvent(this->objectName().toUtf8().data(), event)) { QMediaObject::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaObjectCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaObject::customEvent(event); }; };
 };
 
 int QMediaObject_NotifyInterval(void* ptr){
@@ -2931,7 +3038,11 @@ public:
 	void Signal_StateChanged(QMediaPlayer::State state) { callbackQMediaPlayerStateChanged(this->objectName().toUtf8().data(), state); };
 	void Signal_VideoAvailableChanged(bool videoAvailable) { callbackQMediaPlayerVideoAvailableChanged(this->objectName().toUtf8().data(), videoAvailable); };
 	void Signal_VolumeChanged(int volume) { callbackQMediaPlayerVolumeChanged(this->objectName().toUtf8().data(), volume); };
+	void unbind(QObject * object) { if (!callbackQMediaPlayerUnbind(this->objectName().toUtf8().data(), object)) { QMediaPlayer::unbind(object); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaPlayerTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaPlayer::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaPlayerChildEvent(this->objectName().toUtf8().data(), event)) { QMediaPlayer::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaPlayerCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaPlayer::customEvent(event); }; };
 };
 
 int QMediaPlayer_BufferStatus(void* ptr){
@@ -3194,6 +3305,9 @@ public:
 	void Signal_VideoAvailableChanged(bool video) { callbackQMediaPlayerControlVideoAvailableChanged(this->objectName().toUtf8().data(), video); };
 	void Signal_VolumeChanged(int volume) { callbackQMediaPlayerControlVolumeChanged(this->objectName().toUtf8().data(), volume); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaPlayerControlTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaPlayerControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaPlayerControlChildEvent(this->objectName().toUtf8().data(), event)) { QMediaPlayerControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaPlayerControlCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaPlayerControl::customEvent(event); }; };
 };
 
 void QMediaPlayerControl_ConnectAudioAvailableChanged(void* ptr){
@@ -3402,6 +3516,9 @@ public:
 	void Signal_MediaRemoved(int start, int end) { callbackQMediaPlaylistMediaRemoved(this->objectName().toUtf8().data(), start, end); };
 	void Signal_PlaybackModeChanged(QMediaPlaylist::PlaybackMode mode) { callbackQMediaPlaylistPlaybackModeChanged(this->objectName().toUtf8().data(), mode); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaPlaylistTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaPlaylist::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaPlaylistChildEvent(this->objectName().toUtf8().data(), event)) { QMediaPlaylist::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaPlaylistCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaPlaylist::customEvent(event); }; };
 };
 
 int QMediaPlaylist_PlaybackMode(void* ptr){
@@ -3617,6 +3734,9 @@ public:
 	void Signal_StatusChanged(QMediaRecorder::Status status) { callbackQMediaRecorderStatusChanged(this->objectName().toUtf8().data(), status); };
 	void Signal_VolumeChanged(qreal volume) { callbackQMediaRecorderVolumeChanged(this->objectName().toUtf8().data(), static_cast<double>(volume)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaRecorderTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaRecorder::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaRecorderChildEvent(this->objectName().toUtf8().data(), event)) { QMediaRecorder::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaRecorderCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaRecorder::customEvent(event); }; };
 };
 
 void* QMediaRecorder_ActualLocation(void* ptr){
@@ -3877,6 +3997,9 @@ public:
 	void Signal_StatusChanged(QMediaRecorder::Status status) { callbackQMediaRecorderControlStatusChanged(this->objectName().toUtf8().data(), status); };
 	void Signal_VolumeChanged(qreal gain) { callbackQMediaRecorderControlVolumeChanged(this->objectName().toUtf8().data(), static_cast<double>(gain)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaRecorderControlTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaRecorderControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaRecorderControlChildEvent(this->objectName().toUtf8().data(), event)) { QMediaRecorderControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaRecorderControlCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaRecorderControl::customEvent(event); }; };
 };
 
 void QMediaRecorderControl_ConnectActualLocationChanged(void* ptr){
@@ -4244,6 +4367,9 @@ public:
 	void Signal_ActiveStreamsChanged() { callbackQMediaStreamsControlActiveStreamsChanged(this->objectName().toUtf8().data()); };
 	void Signal_StreamsChanged() { callbackQMediaStreamsControlStreamsChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaStreamsControlTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaStreamsControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaStreamsControlChildEvent(this->objectName().toUtf8().data(), event)) { QMediaStreamsControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaStreamsControlCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaStreamsControl::customEvent(event); }; };
 };
 
 void QMediaStreamsControl_ConnectActiveStreamsChanged(void* ptr){
@@ -4386,6 +4512,9 @@ class MyQMediaVideoProbeControl: public QMediaVideoProbeControl {
 public:
 	void Signal_Flush() { callbackQMediaVideoProbeControlFlush(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMediaVideoProbeControlTimerEvent(this->objectName().toUtf8().data(), event)) { QMediaVideoProbeControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMediaVideoProbeControlChildEvent(this->objectName().toUtf8().data(), event)) { QMediaVideoProbeControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMediaVideoProbeControlCustomEvent(this->objectName().toUtf8().data(), event)) { QMediaVideoProbeControl::customEvent(event); }; };
 };
 
 void QMediaVideoProbeControl_ConnectFlush(void* ptr){
@@ -4406,6 +4535,9 @@ public:
 	void Signal_MetaDataChanged() { callbackQMetaDataReaderControlMetaDataChanged(this->objectName().toUtf8().data()); };
 	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { callbackQMetaDataReaderControlMetaDataChanged2(this->objectName().toUtf8().data(), key.toUtf8().data(), new QVariant(value)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMetaDataReaderControlTimerEvent(this->objectName().toUtf8().data(), event)) { QMetaDataReaderControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMetaDataReaderControlChildEvent(this->objectName().toUtf8().data(), event)) { QMetaDataReaderControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMetaDataReaderControlCustomEvent(this->objectName().toUtf8().data(), event)) { QMetaDataReaderControl::customEvent(event); }; };
 };
 
 char* QMetaDataReaderControl_AvailableMetaData(void* ptr){
@@ -4455,6 +4587,9 @@ public:
 	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { callbackQMetaDataWriterControlMetaDataChanged2(this->objectName().toUtf8().data(), key.toUtf8().data(), new QVariant(value)); };
 	void Signal_WritableChanged(bool writable) { callbackQMetaDataWriterControlWritableChanged(this->objectName().toUtf8().data(), writable); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMetaDataWriterControlTimerEvent(this->objectName().toUtf8().data(), event)) { QMetaDataWriterControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMetaDataWriterControlChildEvent(this->objectName().toUtf8().data(), event)) { QMetaDataWriterControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMetaDataWriterControlCustomEvent(this->objectName().toUtf8().data(), event)) { QMetaDataWriterControl::customEvent(event); }; };
 };
 
 char* QMetaDataWriterControl_AvailableMetaData(void* ptr){
@@ -4524,6 +4659,9 @@ public:
 	void Signal_StationIdChanged(QString stationId) { callbackQRadioDataStationIdChanged(this->objectName().toUtf8().data(), stationId.toUtf8().data()); };
 	void Signal_StationNameChanged(QString stationName) { callbackQRadioDataStationNameChanged(this->objectName().toUtf8().data(), stationName.toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQRadioDataTimerEvent(this->objectName().toUtf8().data(), event)) { QRadioData::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQRadioDataChildEvent(this->objectName().toUtf8().data(), event)) { QRadioData::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQRadioDataCustomEvent(this->objectName().toUtf8().data(), event)) { QRadioData::customEvent(event); }; };
 };
 
 int QRadioData_IsAlternativeFrequenciesEnabled(void* ptr){
@@ -4644,6 +4782,9 @@ public:
 	void Signal_StationIdChanged(QString stationId) { callbackQRadioDataControlStationIdChanged(this->objectName().toUtf8().data(), stationId.toUtf8().data()); };
 	void Signal_StationNameChanged(QString stationName) { callbackQRadioDataControlStationNameChanged(this->objectName().toUtf8().data(), stationName.toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQRadioDataControlTimerEvent(this->objectName().toUtf8().data(), event)) { QRadioDataControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQRadioDataControlChildEvent(this->objectName().toUtf8().data(), event)) { QRadioDataControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQRadioDataControlCustomEvent(this->objectName().toUtf8().data(), event)) { QRadioDataControl::customEvent(event); }; };
 };
 
 void QRadioDataControl_ConnectAlternativeFrequenciesEnabledChanged(void* ptr){
@@ -4756,7 +4897,11 @@ public:
 	void Signal_StationFound(int frequency, QString stationId) { callbackQRadioTunerStationFound(this->objectName().toUtf8().data(), frequency, stationId.toUtf8().data()); };
 	void Signal_StereoStatusChanged(bool stereo) { callbackQRadioTunerStereoStatusChanged(this->objectName().toUtf8().data(), stereo); };
 	void Signal_VolumeChanged(int volume) { callbackQRadioTunerVolumeChanged(this->objectName().toUtf8().data(), volume); };
+	void unbind(QObject * object) { if (!callbackQRadioTunerUnbind(this->objectName().toUtf8().data(), object)) { QRadioTuner::unbind(object); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQRadioTunerTimerEvent(this->objectName().toUtf8().data(), event)) { QRadioTuner::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQRadioTunerChildEvent(this->objectName().toUtf8().data(), event)) { QRadioTuner::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQRadioTunerCustomEvent(this->objectName().toUtf8().data(), event)) { QRadioTuner::customEvent(event); }; };
 };
 
 int QRadioTuner_Band(void* ptr){
@@ -4977,6 +5122,9 @@ public:
 	void Signal_StereoStatusChanged(bool stereo) { callbackQRadioTunerControlStereoStatusChanged(this->objectName().toUtf8().data(), stereo); };
 	void Signal_VolumeChanged(int volume) { callbackQRadioTunerControlVolumeChanged(this->objectName().toUtf8().data(), volume); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQRadioTunerControlTimerEvent(this->objectName().toUtf8().data(), event)) { QRadioTunerControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQRadioTunerControlChildEvent(this->objectName().toUtf8().data(), event)) { QRadioTunerControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQRadioTunerControlCustomEvent(this->objectName().toUtf8().data(), event)) { QRadioTunerControl::customEvent(event); }; };
 };
 
 void QRadioTunerControl_ConnectAntennaConnectedChanged(void* ptr){
@@ -5223,6 +5371,9 @@ public:
 	void Signal_StatusChanged() { callbackQSoundEffectStatusChanged(this->objectName().toUtf8().data()); };
 	void Signal_VolumeChanged() { callbackQSoundEffectVolumeChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSoundEffectTimerEvent(this->objectName().toUtf8().data(), event)) { QSoundEffect::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSoundEffectChildEvent(this->objectName().toUtf8().data(), event)) { QSoundEffect::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSoundEffectCustomEvent(this->objectName().toUtf8().data(), event)) { QSoundEffect::customEvent(event); }; };
 };
 
 int QSoundEffect_IsLoaded(void* ptr){
@@ -5379,6 +5530,9 @@ public:
 	void Signal_SelectedDeviceChanged2(const QString & name) { callbackQVideoDeviceSelectorControlSelectedDeviceChanged2(this->objectName().toUtf8().data(), name.toUtf8().data()); };
 	void Signal_SelectedDeviceChanged(int index) { callbackQVideoDeviceSelectorControlSelectedDeviceChanged(this->objectName().toUtf8().data(), index); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQVideoDeviceSelectorControlTimerEvent(this->objectName().toUtf8().data(), event)) { QVideoDeviceSelectorControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQVideoDeviceSelectorControlChildEvent(this->objectName().toUtf8().data(), event)) { QVideoDeviceSelectorControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQVideoDeviceSelectorControlCustomEvent(this->objectName().toUtf8().data(), event)) { QVideoDeviceSelectorControl::customEvent(event); }; };
 };
 
 int QVideoDeviceSelectorControl_DefaultDevice(void* ptr){
@@ -5512,6 +5666,9 @@ void QVideoEncoderSettings_DestroyQVideoEncoderSettings(void* ptr){
 class MyQVideoEncoderSettingsControl: public QVideoEncoderSettingsControl {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQVideoEncoderSettingsControlTimerEvent(this->objectName().toUtf8().data(), event)) { QVideoEncoderSettingsControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQVideoEncoderSettingsControlChildEvent(this->objectName().toUtf8().data(), event)) { QVideoEncoderSettingsControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQVideoEncoderSettingsControlCustomEvent(this->objectName().toUtf8().data(), event)) { QVideoEncoderSettingsControl::customEvent(event); }; };
 };
 
 void QVideoEncoderSettingsControl_SetVideoSettings(void* ptr, void* settings){
@@ -5666,6 +5823,9 @@ class MyQVideoProbe: public QVideoProbe {
 public:
 	void Signal_Flush() { callbackQVideoProbeFlush(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQVideoProbeTimerEvent(this->objectName().toUtf8().data(), event)) { QVideoProbe::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQVideoProbeChildEvent(this->objectName().toUtf8().data(), event)) { QVideoProbe::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQVideoProbeCustomEvent(this->objectName().toUtf8().data(), event)) { QVideoProbe::customEvent(event); }; };
 };
 
 void* QVideoProbe_NewQVideoProbe(void* parent){
@@ -5821,6 +5981,9 @@ public:
 	void Signal_NativeSizeChanged() { callbackQVideoWindowControlNativeSizeChanged(this->objectName().toUtf8().data()); };
 	void Signal_SaturationChanged(int saturation) { callbackQVideoWindowControlSaturationChanged(this->objectName().toUtf8().data(), saturation); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQVideoWindowControlTimerEvent(this->objectName().toUtf8().data(), event)) { QVideoWindowControl::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQVideoWindowControlChildEvent(this->objectName().toUtf8().data(), event)) { QVideoWindowControl::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQVideoWindowControlCustomEvent(this->objectName().toUtf8().data(), event)) { QVideoWindowControl::customEvent(event); }; };
 };
 
 int QVideoWindowControl_AspectRatioMode(void* ptr){

@@ -99,6 +99,16 @@ func isBlocked(f *parser.Function) bool {
 	return false
 }
 
+func isBlockedVirtual(fn string) bool {
+
+	switch fn {
+	case "QFileDevice::close", "QListWidget::setModel", "QTableWidget::setModel", "QTreeWidget::setModel", "QAbstractItemView::setModel", "QTableView::setModel", "QTreeView::setModel", "QWidget::focusInEvent", "QWidget::changeEvent":
+		return true
+	}
+
+	return false
+}
+
 func isObjectSubClass(b string) bool {
 	if bl, exists := parser.ClassMap[b]; exists {
 		return bl.IsQObjectSubClass()

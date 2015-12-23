@@ -1,8 +1,10 @@
 #include "script.h"
 #include "_cgo_export.h"
 
+#include <QChildEvent>
 #include <QDate>
 #include <QDateTime>
+#include <QEvent>
 #include <QLatin1String>
 #include <QMetaObject>
 #include <QObject>
@@ -19,6 +21,9 @@
 #include <QScriptValue>
 #include <QScriptable>
 #include <QString>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QVariant>
 
 class MyQScriptClass: public QScriptClass {
@@ -204,6 +209,9 @@ public:
 	MyQScriptEngine(QObject *parent) : QScriptEngine(parent) {};
 	void Signal_SignalHandlerException(const QScriptValue & exception) { callbackQScriptEngineSignalHandlerException(this->objectName().toUtf8().data(), new QScriptValue(exception)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQScriptEngineTimerEvent(this->objectName().toUtf8().data(), event)) { QScriptEngine::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQScriptEngineChildEvent(this->objectName().toUtf8().data(), event)) { QScriptEngine::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQScriptEngineCustomEvent(this->objectName().toUtf8().data(), event)) { QScriptEngine::customEvent(event); }; };
 };
 
 void* QScriptEngine_NewQScriptEngine(){

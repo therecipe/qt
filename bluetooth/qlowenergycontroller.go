@@ -309,3 +309,93 @@ func (ptr *QLowEnergyController) DestroyQLowEnergyController() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QLowEnergyController) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QLowEnergyController::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QLowEnergyController) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QLowEnergyController::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQLowEnergyControllerTimerEvent
+func callbackQLowEnergyControllerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QLowEnergyController::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QLowEnergyController) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QLowEnergyController::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QLowEnergyController) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QLowEnergyController::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQLowEnergyControllerChildEvent
+func callbackQLowEnergyControllerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QLowEnergyController::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QLowEnergyController) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QLowEnergyController::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QLowEnergyController) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QLowEnergyController::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQLowEnergyControllerCustomEvent
+func callbackQLowEnergyControllerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QLowEnergyController::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

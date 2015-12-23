@@ -327,3 +327,93 @@ func (ptr *QDataWidgetMapper) DestroyQDataWidgetMapper() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QDataWidgetMapper) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QDataWidgetMapper::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QDataWidgetMapper) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QDataWidgetMapper::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQDataWidgetMapperTimerEvent
+func callbackQDataWidgetMapperTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDataWidgetMapper::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QDataWidgetMapper) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QDataWidgetMapper::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QDataWidgetMapper) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QDataWidgetMapper::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQDataWidgetMapperChildEvent
+func callbackQDataWidgetMapperChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDataWidgetMapper::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QDataWidgetMapper) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QDataWidgetMapper::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QDataWidgetMapper) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QDataWidgetMapper::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQDataWidgetMapperCustomEvent
+func callbackQDataWidgetMapperCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QDataWidgetMapper::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

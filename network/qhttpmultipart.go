@@ -100,3 +100,93 @@ func (ptr *QHttpMultiPart) DestroyQHttpMultiPart() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QHttpMultiPart) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QHttpMultiPart::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QHttpMultiPart) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QHttpMultiPart::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQHttpMultiPartTimerEvent
+func callbackQHttpMultiPartTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHttpMultiPart::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHttpMultiPart) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QHttpMultiPart::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QHttpMultiPart) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QHttpMultiPart::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQHttpMultiPartChildEvent
+func callbackQHttpMultiPartChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHttpMultiPart::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QHttpMultiPart) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QHttpMultiPart::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QHttpMultiPart) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QHttpMultiPart::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQHttpMultiPartCustomEvent
+func callbackQHttpMultiPartCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QHttpMultiPart::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

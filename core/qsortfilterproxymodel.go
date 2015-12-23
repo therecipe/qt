@@ -534,3 +534,123 @@ func (ptr *QSortFilterProxyModel) DestroyQSortFilterProxyModel() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QSortFilterProxyModel) ConnectRevert(f func()) {
+	defer qt.Recovering("connect QSortFilterProxyModel::revert")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "revert", f)
+	}
+}
+
+func (ptr *QSortFilterProxyModel) DisconnectRevert() {
+	defer qt.Recovering("disconnect QSortFilterProxyModel::revert")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "revert")
+	}
+}
+
+//export callbackQSortFilterProxyModelRevert
+func callbackQSortFilterProxyModelRevert(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSortFilterProxyModel::revert")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSortFilterProxyModel) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QSortFilterProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QSortFilterProxyModel) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QSortFilterProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQSortFilterProxyModelTimerEvent
+func callbackQSortFilterProxyModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSortFilterProxyModel::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSortFilterProxyModel) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QSortFilterProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QSortFilterProxyModel) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QSortFilterProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQSortFilterProxyModelChildEvent
+func callbackQSortFilterProxyModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSortFilterProxyModel::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSortFilterProxyModel) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QSortFilterProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QSortFilterProxyModel) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QSortFilterProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQSortFilterProxyModelCustomEvent
+func callbackQSortFilterProxyModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSortFilterProxyModel::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

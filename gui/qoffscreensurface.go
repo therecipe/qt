@@ -158,3 +158,93 @@ func (ptr *QOffscreenSurface) DestroyQOffscreenSurface() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QOffscreenSurface) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QOffscreenSurface::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QOffscreenSurface) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QOffscreenSurface::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQOffscreenSurfaceTimerEvent
+func callbackQOffscreenSurfaceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QOffscreenSurface::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QOffscreenSurface) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QOffscreenSurface::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QOffscreenSurface) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QOffscreenSurface::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQOffscreenSurfaceChildEvent
+func callbackQOffscreenSurfaceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QOffscreenSurface::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QOffscreenSurface) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QOffscreenSurface::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QOffscreenSurface) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QOffscreenSurface::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQOffscreenSurfaceCustomEvent
+func callbackQOffscreenSurfaceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QOffscreenSurface::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

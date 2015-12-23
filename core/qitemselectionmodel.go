@@ -432,3 +432,93 @@ func (ptr *QItemSelectionModel) DestroyQItemSelectionModel() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QItemSelectionModel) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QItemSelectionModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QItemSelectionModel) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QItemSelectionModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQItemSelectionModelTimerEvent
+func callbackQItemSelectionModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QItemSelectionModel::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QItemSelectionModel) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QItemSelectionModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QItemSelectionModel) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QItemSelectionModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQItemSelectionModelChildEvent
+func callbackQItemSelectionModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QItemSelectionModel::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QItemSelectionModel) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QItemSelectionModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QItemSelectionModel) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QItemSelectionModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQItemSelectionModelCustomEvent
+func callbackQItemSelectionModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QItemSelectionModel::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

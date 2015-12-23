@@ -1,9 +1,14 @@
 #include "scripttools.h"
 #include "_cgo_export.h"
 
+#include <QChildEvent>
+#include <QEvent>
 #include <QObject>
 #include <QScriptEngine>
 #include <QScriptEngineDebugger>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QWidget>
 
 class MyQScriptEngineDebugger: public QScriptEngineDebugger {
@@ -11,6 +16,9 @@ public:
 	void Signal_EvaluationResumed() { callbackQScriptEngineDebuggerEvaluationResumed(this->objectName().toUtf8().data()); };
 	void Signal_EvaluationSuspended() { callbackQScriptEngineDebuggerEvaluationSuspended(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQScriptEngineDebuggerTimerEvent(this->objectName().toUtf8().data(), event)) { QScriptEngineDebugger::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQScriptEngineDebuggerChildEvent(this->objectName().toUtf8().data(), event)) { QScriptEngineDebugger::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQScriptEngineDebuggerCustomEvent(this->objectName().toUtf8().data(), event)) { QScriptEngineDebugger::customEvent(event); }; };
 };
 
 void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent){

@@ -510,3 +510,153 @@ func (ptr *QSqlTableModel) DestroyQSqlTableModel() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QSqlTableModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
+	defer qt.Recovering("connect QSqlTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "fetchMore", f)
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectFetchMore() {
+	defer qt.Recovering("disconnect QSqlTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "fetchMore")
+	}
+}
+
+//export callbackQSqlTableModelFetchMore
+func callbackQSqlTableModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlTableModel::fetchMore")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlTableModel) ConnectQueryChange(f func()) {
+	defer qt.Recovering("connect QSqlTableModel::queryChange")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "queryChange", f)
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectQueryChange() {
+	defer qt.Recovering("disconnect QSqlTableModel::queryChange")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "queryChange")
+	}
+}
+
+//export callbackQSqlTableModelQueryChange
+func callbackQSqlTableModelQueryChange(ptrName *C.char) bool {
+	defer qt.Recovering("callback QSqlTableModel::queryChange")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "queryChange"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlTableModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QSqlTableModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QSqlTableModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQSqlTableModelTimerEvent
+func callbackQSqlTableModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlTableModel::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlTableModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QSqlTableModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QSqlTableModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQSqlTableModelChildEvent
+func callbackQSqlTableModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlTableModel::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSqlTableModel) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QSqlTableModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QSqlTableModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQSqlTableModelCustomEvent
+func callbackQSqlTableModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSqlTableModel::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

@@ -3,12 +3,17 @@
 
 #include <QAbstractSocket>
 #include <QByteArray>
+#include <QChildEvent>
+#include <QEvent>
 #include <QMaskGenerator>
 #include <QMetaObject>
 #include <QNetworkProxy>
 #include <QObject>
 #include <QSslConfiguration>
 #include <QString>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QUrl>
 #include <QWebSocket>
 #include <QWebSocketCorsAuthenticator>
@@ -17,6 +22,9 @@
 class MyQMaskGenerator: public QMaskGenerator {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMaskGeneratorTimerEvent(this->objectName().toUtf8().data(), event)) { QMaskGenerator::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMaskGeneratorChildEvent(this->objectName().toUtf8().data(), event)) { QMaskGenerator::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMaskGeneratorCustomEvent(this->objectName().toUtf8().data(), event)) { QMaskGenerator::customEvent(event); }; };
 };
 
 int QMaskGenerator_Seed(void* ptr){
@@ -41,6 +49,9 @@ public:
 	void Signal_TextFrameReceived(const QString & frame, bool isLastFrame) { callbackQWebSocketTextFrameReceived(this->objectName().toUtf8().data(), frame.toUtf8().data(), isLastFrame); };
 	void Signal_TextMessageReceived(const QString & message) { callbackQWebSocketTextMessageReceived(this->objectName().toUtf8().data(), message.toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQWebSocketTimerEvent(this->objectName().toUtf8().data(), event)) { QWebSocket::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQWebSocketChildEvent(this->objectName().toUtf8().data(), event)) { QWebSocket::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQWebSocketCustomEvent(this->objectName().toUtf8().data(), event)) { QWebSocket::customEvent(event); }; };
 };
 
 void QWebSocket_Abort(void* ptr){
@@ -275,6 +286,9 @@ public:
 	void Signal_NewConnection() { callbackQWebSocketServerNewConnection(this->objectName().toUtf8().data()); };
 	void Signal_OriginAuthenticationRequired(QWebSocketCorsAuthenticator * authenticator) { callbackQWebSocketServerOriginAuthenticationRequired(this->objectName().toUtf8().data(), authenticator); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQWebSocketServerTimerEvent(this->objectName().toUtf8().data(), event)) { QWebSocketServer::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQWebSocketServerChildEvent(this->objectName().toUtf8().data(), event)) { QWebSocketServer::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQWebSocketServerCustomEvent(this->objectName().toUtf8().data(), event)) { QWebSocketServer::customEvent(event); }; };
 };
 
 void* QWebSocketServer_NewQWebSocketServer(char* serverName, int secureMode, void* parent){

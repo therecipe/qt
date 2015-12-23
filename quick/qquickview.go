@@ -340,3 +340,423 @@ func (ptr *QQuickView) DestroyQQuickView() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QQuickView) ConnectExposeEvent(f func(v *gui.QExposeEvent)) {
+	defer qt.Recovering("connect QQuickView::exposeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "exposeEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectExposeEvent() {
+	defer qt.Recovering("disconnect QQuickView::exposeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "exposeEvent")
+	}
+}
+
+//export callbackQQuickViewExposeEvent
+func callbackQQuickViewExposeEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::exposeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "exposeEvent"); signal != nil {
+		signal.(func(*gui.QExposeEvent))(gui.NewQExposeEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectFocusInEvent(f func(ev *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QQuickView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QQuickView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQQuickViewFocusInEvent
+func callbackQQuickViewFocusInEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectFocusOutEvent(f func(ev *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QQuickView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QQuickView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+//export callbackQQuickViewFocusOutEvent
+func callbackQQuickViewFocusOutEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::focusOutEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectHideEvent(f func(v *gui.QHideEvent)) {
+	defer qt.Recovering("connect QQuickView::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectHideEvent() {
+	defer qt.Recovering("disconnect QQuickView::hideEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+	}
+}
+
+//export callbackQQuickViewHideEvent
+func callbackQQuickViewHideEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::hideEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QQuickView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectMouseDoubleClickEvent() {
+	defer qt.Recovering("disconnect QQuickView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+	}
+}
+
+//export callbackQQuickViewMouseDoubleClickEvent
+func callbackQQuickViewMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::mouseDoubleClickEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectResizeEvent(f func(ev *gui.QResizeEvent)) {
+	defer qt.Recovering("connect QQuickView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectResizeEvent() {
+	defer qt.Recovering("disconnect QQuickView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+	}
+}
+
+//export callbackQQuickViewResizeEvent
+func callbackQQuickViewResizeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::resizeEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectShowEvent(f func(v *gui.QShowEvent)) {
+	defer qt.Recovering("connect QQuickView::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectShowEvent() {
+	defer qt.Recovering("disconnect QQuickView::showEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+	}
+}
+
+//export callbackQQuickViewShowEvent
+func callbackQQuickViewShowEvent(ptrName *C.char, v unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::showEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
+	defer qt.Recovering("connect QQuickView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QQuickView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQQuickViewWheelEvent
+func callbackQQuickViewWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::wheelEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectMoveEvent(f func(ev *gui.QMoveEvent)) {
+	defer qt.Recovering("connect QQuickView::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "moveEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectMoveEvent() {
+	defer qt.Recovering("disconnect QQuickView::moveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "moveEvent")
+	}
+}
+
+//export callbackQQuickViewMoveEvent
+func callbackQQuickViewMoveEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::moveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectTabletEvent(f func(ev *gui.QTabletEvent)) {
+	defer qt.Recovering("connect QQuickView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "tabletEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectTabletEvent() {
+	defer qt.Recovering("disconnect QQuickView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "tabletEvent")
+	}
+}
+
+//export callbackQQuickViewTabletEvent
+func callbackQQuickViewTabletEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::tabletEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
+		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectTouchEvent(f func(ev *gui.QTouchEvent)) {
+	defer qt.Recovering("connect QQuickView::touchEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "touchEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectTouchEvent() {
+	defer qt.Recovering("disconnect QQuickView::touchEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "touchEvent")
+	}
+}
+
+//export callbackQQuickViewTouchEvent
+func callbackQQuickViewTouchEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::touchEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "touchEvent"); signal != nil {
+		signal.(func(*gui.QTouchEvent))(gui.NewQTouchEventFromPointer(ev))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QQuickView::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QQuickView::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQQuickViewTimerEvent
+func callbackQQuickViewTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QQuickView::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QQuickView::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQQuickViewChildEvent
+func callbackQQuickViewChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickView) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QQuickView::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QQuickView) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QQuickView::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQQuickViewCustomEvent
+func callbackQQuickViewCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickView::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

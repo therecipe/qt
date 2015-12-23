@@ -1,10 +1,15 @@
 #include "webchannel.h"
 #include "_cgo_export.h"
 
+#include <QChildEvent>
+#include <QEvent>
 #include <QJsonObject>
 #include <QMetaObject>
 #include <QObject>
 #include <QString>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QWebChannel>
 #include <QWebChannelAbstractTransport>
 
@@ -12,6 +17,9 @@ class MyQWebChannel: public QWebChannel {
 public:
 	void Signal_BlockUpdatesChanged(bool block) { callbackQWebChannelBlockUpdatesChanged(this->objectName().toUtf8().data(), block); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQWebChannelTimerEvent(this->objectName().toUtf8().data(), event)) { QWebChannel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQWebChannelChildEvent(this->objectName().toUtf8().data(), event)) { QWebChannel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQWebChannelCustomEvent(this->objectName().toUtf8().data(), event)) { QWebChannel::customEvent(event); }; };
 };
 
 int QWebChannel_BlockUpdates(void* ptr){
@@ -58,6 +66,9 @@ class MyQWebChannelAbstractTransport: public QWebChannelAbstractTransport {
 public:
 	void Signal_MessageReceived(const QJsonObject & message, QWebChannelAbstractTransport * transport) { callbackQWebChannelAbstractTransportMessageReceived(this->objectName().toUtf8().data(), new QJsonObject(message), transport); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQWebChannelAbstractTransportTimerEvent(this->objectName().toUtf8().data(), event)) { QWebChannelAbstractTransport::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQWebChannelAbstractTransportChildEvent(this->objectName().toUtf8().data(), event)) { QWebChannelAbstractTransport::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQWebChannelAbstractTransportCustomEvent(this->objectName().toUtf8().data(), event)) { QWebChannelAbstractTransport::customEvent(event); }; };
 };
 
 void QWebChannelAbstractTransport_ConnectMessageReceived(void* ptr){

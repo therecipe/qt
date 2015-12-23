@@ -262,3 +262,123 @@ func (ptr *QVariantAnimation) DestroyQVariantAnimation() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QVariantAnimation) ConnectUpdateDirection(f func(direction QAbstractAnimation__Direction)) {
+	defer qt.Recovering("connect QVariantAnimation::updateDirection")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updateDirection", f)
+	}
+}
+
+func (ptr *QVariantAnimation) DisconnectUpdateDirection() {
+	defer qt.Recovering("disconnect QVariantAnimation::updateDirection")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updateDirection")
+	}
+}
+
+//export callbackQVariantAnimationUpdateDirection
+func callbackQVariantAnimationUpdateDirection(ptrName *C.char, direction C.int) bool {
+	defer qt.Recovering("callback QVariantAnimation::updateDirection")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "updateDirection"); signal != nil {
+		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QVariantAnimation) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QVariantAnimation::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QVariantAnimation) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QVariantAnimation::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQVariantAnimationTimerEvent
+func callbackQVariantAnimationTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QVariantAnimation::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QVariantAnimation) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QVariantAnimation::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QVariantAnimation) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QVariantAnimation::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQVariantAnimationChildEvent
+func callbackQVariantAnimationChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QVariantAnimation::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QVariantAnimation) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QVariantAnimation::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QVariantAnimation) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QVariantAnimation::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQVariantAnimationCustomEvent
+func callbackQVariantAnimationCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QVariantAnimation::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

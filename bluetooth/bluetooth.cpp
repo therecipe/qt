@@ -15,6 +15,8 @@
 #include <QBluetoothTransferRequest>
 #include <QBluetoothUuid>
 #include <QByteArray>
+#include <QChildEvent>
+#include <QEvent>
 #include <QIODevice>
 #include <QLowEnergyCharacteristic>
 #include <QLowEnergyController>
@@ -23,6 +25,9 @@
 #include <QMetaObject>
 #include <QObject>
 #include <QString>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QUuid>
 #include <QVariant>
 
@@ -60,6 +65,9 @@ public:
 	void Signal_Error2(QBluetoothDeviceDiscoveryAgent::Error error) { callbackQBluetoothDeviceDiscoveryAgentError2(this->objectName().toUtf8().data(), error); };
 	void Signal_Finished() { callbackQBluetoothDeviceDiscoveryAgentFinished(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothDeviceDiscoveryAgentTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothDeviceDiscoveryAgent::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQBluetoothDeviceDiscoveryAgentChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothDeviceDiscoveryAgent::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQBluetoothDeviceDiscoveryAgentCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothDeviceDiscoveryAgent::customEvent(event); }; };
 };
 
 void QBluetoothDeviceDiscoveryAgent_ConnectCanceled(void* ptr){
@@ -209,6 +217,9 @@ public:
 	void Signal_Error(QBluetoothLocalDevice::Error error) { callbackQBluetoothLocalDeviceError(this->objectName().toUtf8().data(), error); };
 	void Signal_HostModeStateChanged(QBluetoothLocalDevice::HostMode state) { callbackQBluetoothLocalDeviceHostModeStateChanged(this->objectName().toUtf8().data(), state); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothLocalDeviceTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothLocalDevice::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQBluetoothLocalDeviceChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothLocalDevice::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQBluetoothLocalDeviceCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothLocalDevice::customEvent(event); }; };
 };
 
 void QBluetoothLocalDevice_ConnectError(void* ptr){
@@ -276,6 +287,9 @@ public:
 	void Signal_Error2(QBluetoothServer::Error error) { callbackQBluetoothServerError2(this->objectName().toUtf8().data(), error); };
 	void Signal_NewConnection() { callbackQBluetoothServerNewConnection(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothServerTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServer::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQBluetoothServerChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServer::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQBluetoothServerCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServer::customEvent(event); }; };
 };
 
 void* QBluetoothServer_NewQBluetoothServer(int serverType, void* parent){
@@ -340,6 +354,9 @@ public:
 	void Signal_Error2(QBluetoothServiceDiscoveryAgent::Error error) { callbackQBluetoothServiceDiscoveryAgentError2(this->objectName().toUtf8().data(), error); };
 	void Signal_Finished() { callbackQBluetoothServiceDiscoveryAgentFinished(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothServiceDiscoveryAgentTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServiceDiscoveryAgent::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQBluetoothServiceDiscoveryAgentChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServiceDiscoveryAgent::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQBluetoothServiceDiscoveryAgentCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServiceDiscoveryAgent::customEvent(event); }; };
 };
 
 void QBluetoothServiceDiscoveryAgent_ConnectCanceled(void* ptr){
@@ -508,6 +525,9 @@ public:
 	void Signal_StateChanged(QBluetoothSocket::SocketState state) { callbackQBluetoothSocketStateChanged(this->objectName().toUtf8().data(), state); };
 	void close() { if (!callbackQBluetoothSocketClose(this->objectName().toUtf8().data())) { QBluetoothSocket::close(); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothSocketTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothSocket::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQBluetoothSocketChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothSocket::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQBluetoothSocketCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothSocket::customEvent(event); }; };
 };
 
 void QBluetoothSocket_ConnectConnected(void* ptr){
@@ -626,6 +646,9 @@ class MyQBluetoothTransferManager: public QBluetoothTransferManager {
 public:
 	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferManagerFinished(this->objectName().toUtf8().data(), reply); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothTransferManagerTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferManager::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQBluetoothTransferManagerChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferManager::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQBluetoothTransferManagerCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferManager::customEvent(event); }; };
 };
 
 void* QBluetoothTransferManager_Put(void* ptr, void* request, void* data){
@@ -654,6 +677,9 @@ public:
 	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferReplyFinished(this->objectName().toUtf8().data(), reply); };
 	void Signal_TransferProgress(qint64 bytesTransferred, qint64 bytesTotal) { callbackQBluetoothTransferReplyTransferProgress(this->objectName().toUtf8().data(), static_cast<long long>(bytesTransferred), static_cast<long long>(bytesTotal)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothTransferReplyTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferReply::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQBluetoothTransferReplyChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferReply::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQBluetoothTransferReplyCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferReply::customEvent(event); }; };
 };
 
 void QBluetoothTransferReply_Abort(void* ptr){
@@ -820,6 +846,9 @@ public:
 	void Signal_Error2(QLowEnergyController::Error newError) { callbackQLowEnergyControllerError2(this->objectName().toUtf8().data(), newError); };
 	void Signal_StateChanged(QLowEnergyController::ControllerState state) { callbackQLowEnergyControllerStateChanged(this->objectName().toUtf8().data(), state); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQLowEnergyControllerTimerEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyController::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQLowEnergyControllerChildEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyController::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQLowEnergyControllerCustomEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyController::customEvent(event); }; };
 };
 
 void QLowEnergyController_ConnectConnected(void* ptr){
@@ -943,6 +972,9 @@ public:
 	void Signal_Error2(QLowEnergyService::ServiceError newError) { callbackQLowEnergyServiceError2(this->objectName().toUtf8().data(), newError); };
 	void Signal_StateChanged(QLowEnergyService::ServiceState newState) { callbackQLowEnergyServiceStateChanged(this->objectName().toUtf8().data(), newState); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQLowEnergyServiceTimerEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyService::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQLowEnergyServiceChildEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyService::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQLowEnergyServiceCustomEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyService::customEvent(event); }; };
 };
 
 void QLowEnergyService_ConnectError2(void* ptr){

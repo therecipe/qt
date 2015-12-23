@@ -144,3 +144,93 @@ func (ptr *QPluginLoader) DestroyQPluginLoader() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QPluginLoader) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QPluginLoader::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QPluginLoader) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QPluginLoader::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQPluginLoaderTimerEvent
+func callbackQPluginLoaderTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPluginLoader::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QPluginLoader) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QPluginLoader::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QPluginLoader) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QPluginLoader::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQPluginLoaderChildEvent
+func callbackQPluginLoaderChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPluginLoader::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QPluginLoader) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QPluginLoader::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QPluginLoader) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QPluginLoader::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQPluginLoaderCustomEvent
+func callbackQPluginLoaderCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QPluginLoader::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

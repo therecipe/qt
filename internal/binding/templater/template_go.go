@@ -89,11 +89,46 @@ func GoTemplate(c *parser.Class) (o string) {
 	}
 
 	if isSupportedClass(c) {
+		var virtuals = make(map[string]bool)
+
 		for _, f := range c.Functions {
 			if i := goFunction(f); isSupportedFunction(c, f) {
-				o += fmt.Sprintf("%v\n\n", i)
+				if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
+					virtuals[f.Name] = true
+				}
+				if !isBlockedVirtual(f.Fullname) {
+					o += fmt.Sprintf("%v\n\n", i)
+				}
 			}
 		}
+
+		for _, bcName := range c.GetAllBases([]string{}) {
+			if bc, exists := parser.ClassMap[bcName]; exists {
+				for _, f := range bc.Functions {
+					if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
+						var tmpF = *f
+						tmpF.Fullname = strings.Replace(tmpF.Fullname, bc.Name, c.Name, -1)
+
+						if i := goFunction(&tmpF); isSupportedFunction(bc, &tmpF) && isSupportedClass(bc) {
+							if _, exists := virtuals[f.Name]; !exists {
+								virtuals[f.Name] = true
+								if !isBlockedVirtual(f.Fullname) {
+									var tmp = strings.Replace(fmt.Sprintf("%v\n\n", i), bc.Name+"::", c.Name+"::", -1)
+
+									if c.IsQObjectSubClass() {
+										tmp = strings.Replace(tmp, "ObjectNameAbs", "ObjectName", -1)
+									}
+
+									o += tmp
+								}
+							}
+						}
+
+					}
+				}
+			}
+		}
+
 	}
 
 	return preambleGo(c.Name, o)

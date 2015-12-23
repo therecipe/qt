@@ -1,6 +1,8 @@
 #include "sql.h"
 #include "_cgo_export.h"
 
+#include <QChildEvent>
+#include <QEvent>
 #include <QMetaObject>
 #include <QModelIndex>
 #include <QObject>
@@ -20,6 +22,9 @@
 #include <QSqlResult>
 #include <QSqlTableModel>
 #include <QString>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QVariant>
 
 void* QSqlDatabase_NewQSqlDatabase(){
@@ -161,6 +166,9 @@ public:
 protected:
 	void setOpen(bool open) { if (!callbackQSqlDriverSetOpen(this->objectName().toUtf8().data(), open)) { QSqlDriver::setOpen(open); }; };
 	void setOpenError(bool error) { if (!callbackQSqlDriverSetOpenError(this->objectName().toUtf8().data(), error)) { QSqlDriver::setOpenError(error); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQSqlDriverTimerEvent(this->objectName().toUtf8().data(), event)) { QSqlDriver::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSqlDriverChildEvent(this->objectName().toUtf8().data(), event)) { QSqlDriver::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSqlDriverCustomEvent(this->objectName().toUtf8().data(), event)) { QSqlDriver::customEvent(event); }; };
 };
 
 int QSqlDriver_BeginTransaction(void* ptr){
@@ -615,8 +623,13 @@ class MyQSqlQueryModel: public QSqlQueryModel {
 public:
 	void clear() { if (!callbackQSqlQueryModelClear(this->objectName().toUtf8().data())) { QSqlQueryModel::clear(); }; };
 	void fetchMore(const QModelIndex & parent) { if (!callbackQSqlQueryModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QSqlQueryModel::fetchMore(parent); }; };
+	void revert() { if (!callbackQSqlQueryModelRevert(this->objectName().toUtf8().data())) { QSqlQueryModel::revert(); }; };
+	void sort(int column, Qt::SortOrder order) { if (!callbackQSqlQueryModelSort(this->objectName().toUtf8().data(), column, order)) { QSqlQueryModel::sort(column, order); }; };
 protected:
 	void queryChange() { if (!callbackQSqlQueryModelQueryChange(this->objectName().toUtf8().data())) { QSqlQueryModel::queryChange(); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQSqlQueryModelTimerEvent(this->objectName().toUtf8().data(), event)) { QSqlQueryModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSqlQueryModelChildEvent(this->objectName().toUtf8().data(), event)) { QSqlQueryModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSqlQueryModelCustomEvent(this->objectName().toUtf8().data(), event)) { QSqlQueryModel::customEvent(event); }; };
 };
 
 int QSqlQueryModel_RowCount(void* ptr, void* parent){
@@ -792,7 +805,17 @@ public:
 	void clear() { if (!callbackQSqlRelationalTableModelClear(this->objectName().toUtf8().data())) { QSqlRelationalTableModel::clear(); }; };
 	void revertRow(int row) { if (!callbackQSqlRelationalTableModelRevertRow(this->objectName().toUtf8().data(), row)) { QSqlRelationalTableModel::revertRow(row); }; };
 	void setTable(const QString & table) { if (!callbackQSqlRelationalTableModelSetTable(this->objectName().toUtf8().data(), table.toUtf8().data())) { QSqlRelationalTableModel::setTable(table); }; };
+	void revert() { if (!callbackQSqlRelationalTableModelRevert(this->objectName().toUtf8().data())) { QSqlRelationalTableModel::revert(); }; };
+	void setEditStrategy(QSqlRelationalTableModel::EditStrategy strategy) { if (!callbackQSqlRelationalTableModelSetEditStrategy(this->objectName().toUtf8().data(), strategy)) { QSqlRelationalTableModel::setEditStrategy(strategy); }; };
+	void setFilter(const QString & filter) { if (!callbackQSqlRelationalTableModelSetFilter(this->objectName().toUtf8().data(), filter.toUtf8().data())) { QSqlRelationalTableModel::setFilter(filter); }; };
+	void setSort(int column, Qt::SortOrder order) { if (!callbackQSqlRelationalTableModelSetSort(this->objectName().toUtf8().data(), column, order)) { QSqlRelationalTableModel::setSort(column, order); }; };
+	void sort(int column, Qt::SortOrder order) { if (!callbackQSqlRelationalTableModelSort(this->objectName().toUtf8().data(), column, order)) { QSqlRelationalTableModel::sort(column, order); }; };
+	void fetchMore(const QModelIndex & parent) { if (!callbackQSqlRelationalTableModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QSqlRelationalTableModel::fetchMore(parent); }; };
 protected:
+	void queryChange() { if (!callbackQSqlRelationalTableModelQueryChange(this->objectName().toUtf8().data())) { QSqlRelationalTableModel::queryChange(); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQSqlRelationalTableModelTimerEvent(this->objectName().toUtf8().data(), event)) { QSqlRelationalTableModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSqlRelationalTableModelChildEvent(this->objectName().toUtf8().data(), event)) { QSqlRelationalTableModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSqlRelationalTableModelCustomEvent(this->objectName().toUtf8().data(), event)) { QSqlRelationalTableModel::customEvent(event); }; };
 };
 
 void QSqlRelationalTableModel_Clear(void* ptr){
@@ -874,7 +897,12 @@ public:
 	void setSort(int column, Qt::SortOrder order) { if (!callbackQSqlTableModelSetSort(this->objectName().toUtf8().data(), column, order)) { QSqlTableModel::setSort(column, order); }; };
 	void setTable(const QString & tableName) { if (!callbackQSqlTableModelSetTable(this->objectName().toUtf8().data(), tableName.toUtf8().data())) { QSqlTableModel::setTable(tableName); }; };
 	void sort(int column, Qt::SortOrder order) { if (!callbackQSqlTableModelSort(this->objectName().toUtf8().data(), column, order)) { QSqlTableModel::sort(column, order); }; };
+	void fetchMore(const QModelIndex & parent) { if (!callbackQSqlTableModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QSqlTableModel::fetchMore(parent); }; };
 protected:
+	void queryChange() { if (!callbackQSqlTableModelQueryChange(this->objectName().toUtf8().data())) { QSqlTableModel::queryChange(); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQSqlTableModelTimerEvent(this->objectName().toUtf8().data(), event)) { QSqlTableModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSqlTableModelChildEvent(this->objectName().toUtf8().data(), event)) { QSqlTableModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSqlTableModelCustomEvent(this->objectName().toUtf8().data(), event)) { QSqlTableModel::customEvent(event); }; };
 };
 
 void QSqlTableModel_ConnectBeforeDelete(void* ptr){

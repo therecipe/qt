@@ -197,3 +197,183 @@ func (ptr *QIdentityProxyModel) DestroyQIdentityProxyModel() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QIdentityProxyModel) ConnectFetchMore(f func(parent *QModelIndex)) {
+	defer qt.Recovering("connect QIdentityProxyModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "fetchMore", f)
+	}
+}
+
+func (ptr *QIdentityProxyModel) DisconnectFetchMore() {
+	defer qt.Recovering("disconnect QIdentityProxyModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "fetchMore")
+	}
+}
+
+//export callbackQIdentityProxyModelFetchMore
+func callbackQIdentityProxyModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+	defer qt.Recovering("callback QIdentityProxyModel::fetchMore")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QIdentityProxyModel) ConnectRevert(f func()) {
+	defer qt.Recovering("connect QIdentityProxyModel::revert")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "revert", f)
+	}
+}
+
+func (ptr *QIdentityProxyModel) DisconnectRevert() {
+	defer qt.Recovering("disconnect QIdentityProxyModel::revert")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "revert")
+	}
+}
+
+//export callbackQIdentityProxyModelRevert
+func callbackQIdentityProxyModelRevert(ptrName *C.char) bool {
+	defer qt.Recovering("callback QIdentityProxyModel::revert")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QIdentityProxyModel) ConnectSort(f func(column int, order Qt__SortOrder)) {
+	defer qt.Recovering("connect QIdentityProxyModel::sort")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "sort", f)
+	}
+}
+
+func (ptr *QIdentityProxyModel) DisconnectSort() {
+	defer qt.Recovering("disconnect QIdentityProxyModel::sort")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "sort")
+	}
+}
+
+//export callbackQIdentityProxyModelSort
+func callbackQIdentityProxyModelSort(ptrName *C.char, column C.int, order C.int) bool {
+	defer qt.Recovering("callback QIdentityProxyModel::sort")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
+		signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QIdentityProxyModel) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QIdentityProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QIdentityProxyModel) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QIdentityProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQIdentityProxyModelTimerEvent
+func callbackQIdentityProxyModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QIdentityProxyModel::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QIdentityProxyModel) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QIdentityProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QIdentityProxyModel) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QIdentityProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQIdentityProxyModelChildEvent
+func callbackQIdentityProxyModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QIdentityProxyModel::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QIdentityProxyModel) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QIdentityProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QIdentityProxyModel) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QIdentityProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQIdentityProxyModelCustomEvent
+func callbackQIdentityProxyModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QIdentityProxyModel::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

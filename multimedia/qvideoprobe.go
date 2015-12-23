@@ -106,3 +106,93 @@ func (ptr *QVideoProbe) DestroyQVideoProbe() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QVideoProbe) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QVideoProbe::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QVideoProbe) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QVideoProbe::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQVideoProbeTimerEvent
+func callbackQVideoProbeTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QVideoProbe::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QVideoProbe) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QVideoProbe::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QVideoProbe) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QVideoProbe::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQVideoProbeChildEvent
+func callbackQVideoProbeChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QVideoProbe::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QVideoProbe) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QVideoProbe::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QVideoProbe) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QVideoProbe::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQVideoProbeCustomEvent
+func callbackQVideoProbeCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QVideoProbe::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

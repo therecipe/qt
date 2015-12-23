@@ -237,3 +237,33 @@ func (ptr *QAccessibleWidget) SetObjectNameAbs(name string) {
 		C.QAccessibleWidget_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
 	}
 }
+
+func (ptr *QAccessibleWidget) ConnectSetText(f func(t gui.QAccessible__Text, text string)) {
+	defer qt.Recovering("connect QAccessibleWidget::setText")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setText", f)
+	}
+}
+
+func (ptr *QAccessibleWidget) DisconnectSetText() {
+	defer qt.Recovering("disconnect QAccessibleWidget::setText")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setText")
+	}
+}
+
+//export callbackQAccessibleWidgetSetText
+func callbackQAccessibleWidgetSetText(ptrName *C.char, t C.int, text *C.char) bool {
+	defer qt.Recovering("callback QAccessibleWidget::setText")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setText"); signal != nil {
+		signal.(func(gui.QAccessible__Text, string))(gui.QAccessible__Text(t), C.GoString(text))
+		return true
+	}
+	return false
+
+}

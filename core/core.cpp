@@ -172,6 +172,9 @@ public:
 protected:
 	void updateDirection(QAbstractAnimation::Direction direction) { if (!callbackQAbstractAnimationUpdateDirection(this->objectName().toUtf8().data(), direction)) { QAbstractAnimation::updateDirection(direction); }; };
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { if (!callbackQAbstractAnimationUpdateState(this->objectName().toUtf8().data(), newState, oldState)) { QAbstractAnimation::updateState(newState, oldState); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractAnimationTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractAnimation::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractAnimationChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractAnimation::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractAnimationCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractAnimation::customEvent(event); }; };
 };
 
 int QAbstractAnimation_CurrentLoop(void* ptr){
@@ -283,6 +286,9 @@ public:
 	void Signal_AboutToBlock() { callbackQAbstractEventDispatcherAboutToBlock(this->objectName().toUtf8().data()); };
 	void Signal_Awake() { callbackQAbstractEventDispatcherAwake(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractEventDispatcherTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractEventDispatcher::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractEventDispatcherChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractEventDispatcher::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractEventDispatcherCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractEventDispatcher::customEvent(event); }; };
 };
 
 void QAbstractEventDispatcher_ConnectAboutToBlock(void* ptr){
@@ -374,6 +380,9 @@ public:
 	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsRemoved(this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
 	void sort(int column, Qt::SortOrder order) { if (!callbackQAbstractItemModelSort(this->objectName().toUtf8().data(), column, order)) { QAbstractItemModel::sort(column, order); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractItemModelTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractItemModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractItemModelChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractItemModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractItemModelCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractItemModel::customEvent(event); }; };
 };
 
 void* QAbstractItemModel_Sibling(void* ptr, int row, int column, void* index){
@@ -646,7 +655,13 @@ void QAbstractItemModel_DestroyQAbstractItemModel(void* ptr){
 
 class MyQAbstractListModel: public QAbstractListModel {
 public:
+	void fetchMore(const QModelIndex & parent) { if (!callbackQAbstractListModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QAbstractListModel::fetchMore(parent); }; };
+	void revert() { if (!callbackQAbstractListModelRevert(this->objectName().toUtf8().data())) { QAbstractListModel::revert(); }; };
+	void sort(int column, Qt::SortOrder order) { if (!callbackQAbstractListModelSort(this->objectName().toUtf8().data(), column, order)) { QAbstractListModel::sort(column, order); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractListModelTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractListModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractListModelChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractListModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractListModelCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractListModel::customEvent(event); }; };
 };
 
 void* QAbstractListModel_Index(void* ptr, int row, int column, void* parent){
@@ -697,6 +712,9 @@ public:
 	void sort(int column, Qt::SortOrder order) { if (!callbackQAbstractProxyModelSort(this->objectName().toUtf8().data(), column, order)) { QAbstractProxyModel::sort(column, order); }; };
 	void Signal_SourceModelChanged() { callbackQAbstractProxyModelSourceModelChanged(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractProxyModelTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractProxyModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractProxyModelChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractProxyModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractProxyModelCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractProxyModel::customEvent(event); }; };
 };
 
 void* QAbstractProxyModel_Buddy(void* ptr, void* index){
@@ -809,6 +827,9 @@ public:
 	void Signal_Entered() { callbackQAbstractStateEntered(this->objectName().toUtf8().data()); };
 	void Signal_Exited() { callbackQAbstractStateExited(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractStateTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractState::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractStateChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractState::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractStateCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractState::customEvent(event); }; };
 };
 
 int QAbstractState_Active(void* ptr){
@@ -853,7 +874,13 @@ void QAbstractState_DestroyQAbstractState(void* ptr){
 
 class MyQAbstractTableModel: public QAbstractTableModel {
 public:
+	void fetchMore(const QModelIndex & parent) { if (!callbackQAbstractTableModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QAbstractTableModel::fetchMore(parent); }; };
+	void revert() { if (!callbackQAbstractTableModelRevert(this->objectName().toUtf8().data())) { QAbstractTableModel::revert(); }; };
+	void sort(int column, Qt::SortOrder order) { if (!callbackQAbstractTableModelSort(this->objectName().toUtf8().data(), column, order)) { QAbstractTableModel::sort(column, order); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractTableModelTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractTableModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractTableModelChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractTableModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractTableModelCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractTableModel::customEvent(event); }; };
 };
 
 void* QAbstractTableModel_Index(void* ptr, int row, int column, void* parent){
@@ -882,6 +909,9 @@ public:
 	void Signal_TargetStatesChanged() { callbackQAbstractTransitionTargetStatesChanged(this->objectName().toUtf8().data()); };
 	void Signal_Triggered() { callbackQAbstractTransitionTriggered(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractTransitionTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractTransition::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAbstractTransitionChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractTransition::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAbstractTransitionCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractTransition::customEvent(event); }; };
 };
 
 void QAbstractTransition_AddAnimation(void* ptr, void* animation){
@@ -1070,6 +1100,9 @@ public:
 	MyQBuffer(QObject *parent) : QBuffer(parent) {};
 	void close() { if (!callbackQBufferClose(this->objectName().toUtf8().data())) { QBuffer::close(); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQBufferTimerEvent(this->objectName().toUtf8().data(), event)) { QBuffer::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQBufferChildEvent(this->objectName().toUtf8().data(), event)) { QBuffer::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQBufferCustomEvent(this->objectName().toUtf8().data(), event)) { QBuffer::customEvent(event); }; };
 };
 
 void* QBuffer_NewQBuffer2(void* byteArray, void* parent){
@@ -1885,6 +1918,9 @@ public:
 	MyQCoreApplication(int &argc, char **argv) : QCoreApplication(argc, argv) {};
 	void Signal_AboutToQuit() { callbackQCoreApplicationAboutToQuit(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCoreApplicationTimerEvent(this->objectName().toUtf8().data(), event)) { QCoreApplication::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCoreApplicationChildEvent(this->objectName().toUtf8().data(), event)) { QCoreApplication::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCoreApplicationCustomEvent(this->objectName().toUtf8().data(), event)) { QCoreApplication::customEvent(event); }; };
 };
 
 char* QCoreApplication_QCoreApplication_ApplicationName(){
@@ -2882,6 +2918,9 @@ class MyQEventLoop: public QEventLoop {
 public:
 	MyQEventLoop(QObject *parent) : QEventLoop(parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQEventLoopTimerEvent(this->objectName().toUtf8().data(), event)) { QEventLoop::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQEventLoopChildEvent(this->objectName().toUtf8().data(), event)) { QEventLoop::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQEventLoopCustomEvent(this->objectName().toUtf8().data(), event)) { QEventLoop::customEvent(event); }; };
 };
 
 void* QEventLoop_NewQEventLoop(void* parent){
@@ -2946,6 +2985,9 @@ public:
 	MyQEventTransition(QState *sourceState) : QEventTransition(sourceState) {};
 protected:
 	void onTransition(QEvent * event) { if (!callbackQEventTransitionOnTransition(this->objectName().toUtf8().data(), event)) { QEventTransition::onTransition(event); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQEventTransitionTimerEvent(this->objectName().toUtf8().data(), event)) { QEventTransition::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQEventTransitionChildEvent(this->objectName().toUtf8().data(), event)) { QEventTransition::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQEventTransitionCustomEvent(this->objectName().toUtf8().data(), event)) { QEventTransition::customEvent(event); }; };
 };
 
 void* QEventTransition_NewQEventTransition2(void* object, int ty, void* sourceState){
@@ -2982,6 +3024,9 @@ public:
 	MyQFile(const QString &name) : QFile(name) {};
 	MyQFile(const QString &name, QObject *parent) : QFile(name, parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQFileTimerEvent(this->objectName().toUtf8().data(), event)) { QFile::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQFileChildEvent(this->objectName().toUtf8().data(), event)) { QFile::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQFileCustomEvent(this->objectName().toUtf8().data(), event)) { QFile::customEvent(event); }; };
 };
 
 void* QFile_NewQFile3(void* parent){
@@ -3098,8 +3143,10 @@ void QFile_DestroyQFile(void* ptr){
 
 class MyQFileDevice: public QFileDevice {
 public:
-	void close() { if (!callbackQFileDeviceClose(this->objectName().toUtf8().data())) { QFileDevice::close(); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQFileDeviceTimerEvent(this->objectName().toUtf8().data(), event)) { QFileDevice::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQFileDeviceChildEvent(this->objectName().toUtf8().data(), event)) { QFileDevice::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQFileDeviceCustomEvent(this->objectName().toUtf8().data(), event)) { QFileDevice::customEvent(event); }; };
 };
 
 int QFileDevice_Seek(void* ptr, long long pos){
@@ -3391,6 +3438,9 @@ public:
 	void Signal_DirectoryChanged(const QString & path) { callbackQFileSystemWatcherDirectoryChanged(this->objectName().toUtf8().data(), path.toUtf8().data()); };
 	void Signal_FileChanged(const QString & path) { callbackQFileSystemWatcherFileChanged(this->objectName().toUtf8().data(), path.toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQFileSystemWatcherTimerEvent(this->objectName().toUtf8().data(), event)) { QFileSystemWatcher::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQFileSystemWatcherChildEvent(this->objectName().toUtf8().data(), event)) { QFileSystemWatcher::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQFileSystemWatcherCustomEvent(this->objectName().toUtf8().data(), event)) { QFileSystemWatcher::customEvent(event); }; };
 };
 
 char* QFileSystemWatcher_Directories(void* ptr){
@@ -3451,6 +3501,9 @@ public:
 protected:
 	void onEntry(QEvent * event) { if (!callbackQFinalStateOnEntry(this->objectName().toUtf8().data(), event)) { QFinalState::onEntry(event); }; };
 	void onExit(QEvent * event) { if (!callbackQFinalStateOnExit(this->objectName().toUtf8().data(), event)) { QFinalState::onExit(event); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQFinalStateTimerEvent(this->objectName().toUtf8().data(), event)) { QFinalState::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQFinalStateChildEvent(this->objectName().toUtf8().data(), event)) { QFinalState::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQFinalStateCustomEvent(this->objectName().toUtf8().data(), event)) { QFinalState::customEvent(event); }; };
 };
 
 void* QFinalState_NewQFinalState(void* parent){
@@ -3478,6 +3531,9 @@ public:
 protected:
 	void onEntry(QEvent * event) { if (!callbackQHistoryStateOnEntry(this->objectName().toUtf8().data(), event)) { QHistoryState::onEntry(event); }; };
 	void onExit(QEvent * event) { if (!callbackQHistoryStateOnExit(this->objectName().toUtf8().data(), event)) { QHistoryState::onExit(event); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQHistoryStateTimerEvent(this->objectName().toUtf8().data(), event)) { QHistoryState::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQHistoryStateChildEvent(this->objectName().toUtf8().data(), event)) { QHistoryState::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQHistoryStateCustomEvent(this->objectName().toUtf8().data(), event)) { QHistoryState::customEvent(event); }; };
 };
 
 void* QHistoryState_NewQHistoryState2(int ty, void* parent){
@@ -3532,6 +3588,9 @@ public:
 	void Signal_ReadChannelFinished() { callbackQIODeviceReadChannelFinished(this->objectName().toUtf8().data()); };
 	void Signal_ReadyRead() { callbackQIODeviceReadyRead(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQIODeviceTimerEvent(this->objectName().toUtf8().data(), event)) { QIODevice::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQIODeviceChildEvent(this->objectName().toUtf8().data(), event)) { QIODevice::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQIODeviceCustomEvent(this->objectName().toUtf8().data(), event)) { QIODevice::customEvent(event); }; };
 };
 
 int QIODevice_GetChar(void* ptr, char* c){
@@ -3706,7 +3765,13 @@ class MyQIdentityProxyModel: public QIdentityProxyModel {
 public:
 	MyQIdentityProxyModel(QObject *parent) : QIdentityProxyModel(parent) {};
 	void setSourceModel(QAbstractItemModel * newSourceModel) { if (!callbackQIdentityProxyModelSetSourceModel(this->objectName().toUtf8().data(), newSourceModel)) { QIdentityProxyModel::setSourceModel(newSourceModel); }; };
+	void fetchMore(const QModelIndex & parent) { if (!callbackQIdentityProxyModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QIdentityProxyModel::fetchMore(parent); }; };
+	void revert() { if (!callbackQIdentityProxyModelRevert(this->objectName().toUtf8().data())) { QIdentityProxyModel::revert(); }; };
+	void sort(int column, Qt::SortOrder order) { if (!callbackQIdentityProxyModelSort(this->objectName().toUtf8().data(), column, order)) { QIdentityProxyModel::sort(column, order); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQIdentityProxyModelTimerEvent(this->objectName().toUtf8().data(), event)) { QIdentityProxyModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQIdentityProxyModelChildEvent(this->objectName().toUtf8().data(), event)) { QIdentityProxyModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQIdentityProxyModelCustomEvent(this->objectName().toUtf8().data(), event)) { QIdentityProxyModel::customEvent(event); }; };
 };
 
 void* QIdentityProxyModel_NewQIdentityProxyModel(void* parent){
@@ -3811,6 +3876,9 @@ public:
 	void select(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { if (!callbackQItemSelectionModelSelect(this->objectName().toUtf8().data(), index.internalPointer(), command)) { QItemSelectionModel::select(index, command); }; };
 	void setCurrentIndex(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { if (!callbackQItemSelectionModelSetCurrentIndex(this->objectName().toUtf8().data(), index.internalPointer(), command)) { QItemSelectionModel::setCurrentIndex(index, command); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQItemSelectionModelTimerEvent(this->objectName().toUtf8().data(), event)) { QItemSelectionModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQItemSelectionModelChildEvent(this->objectName().toUtf8().data(), event)) { QItemSelectionModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQItemSelectionModelCustomEvent(this->objectName().toUtf8().data(), event)) { QItemSelectionModel::customEvent(event); }; };
 };
 
 void* QItemSelectionModel_NewQItemSelectionModel(void* model){
@@ -5281,6 +5349,9 @@ class MyQMimeData: public QMimeData {
 public:
 	MyQMimeData() : QMimeData() {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMimeDataTimerEvent(this->objectName().toUtf8().data(), event)) { QMimeData::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMimeDataChildEvent(this->objectName().toUtf8().data(), event)) { QMimeData::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMimeDataCustomEvent(this->objectName().toUtf8().data(), event)) { QMimeData::customEvent(event); }; };
 };
 
 void* QMimeData_NewQMimeData(){
@@ -5696,6 +5767,9 @@ protected:
 	void updateCurrentTime(int currentTime) { if (!callbackQParallelAnimationGroupUpdateCurrentTime(this->objectName().toUtf8().data(), currentTime)) { QParallelAnimationGroup::updateCurrentTime(currentTime); }; };
 	void updateDirection(QAbstractAnimation::Direction direction) { if (!callbackQParallelAnimationGroupUpdateDirection(this->objectName().toUtf8().data(), direction)) { QParallelAnimationGroup::updateDirection(direction); }; };
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { if (!callbackQParallelAnimationGroupUpdateState(this->objectName().toUtf8().data(), newState, oldState)) { QParallelAnimationGroup::updateState(newState, oldState); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQParallelAnimationGroupTimerEvent(this->objectName().toUtf8().data(), event)) { QParallelAnimationGroup::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQParallelAnimationGroupChildEvent(this->objectName().toUtf8().data(), event)) { QParallelAnimationGroup::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQParallelAnimationGroupCustomEvent(this->objectName().toUtf8().data(), event)) { QParallelAnimationGroup::customEvent(event); }; };
 };
 
 int QParallelAnimationGroup_Duration(void* ptr){
@@ -5712,6 +5786,11 @@ public:
 	MyQPauseAnimation(int msecs, QObject *parent) : QPauseAnimation(msecs, parent) {};
 protected:
 	void updateCurrentTime(int v) { if (!callbackQPauseAnimationUpdateCurrentTime(this->objectName().toUtf8().data(), v)) { QPauseAnimation::updateCurrentTime(v); }; };
+	void updateDirection(QPauseAnimation::Direction direction) { if (!callbackQPauseAnimationUpdateDirection(this->objectName().toUtf8().data(), direction)) { QPauseAnimation::updateDirection(direction); }; };
+	void updateState(QPauseAnimation::State newState, QPauseAnimation::State oldState) { if (!callbackQPauseAnimationUpdateState(this->objectName().toUtf8().data(), newState, oldState)) { QPauseAnimation::updateState(newState, oldState); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQPauseAnimationTimerEvent(this->objectName().toUtf8().data(), event)) { QPauseAnimation::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQPauseAnimationChildEvent(this->objectName().toUtf8().data(), event)) { QPauseAnimation::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQPauseAnimationCustomEvent(this->objectName().toUtf8().data(), event)) { QPauseAnimation::customEvent(event); }; };
 };
 
 int QPauseAnimation_Duration(void* ptr){
@@ -5946,6 +6025,9 @@ public:
 	void Signal_StateChanged(QProcess::ProcessState newState) { callbackQProcessStateChanged(this->objectName().toUtf8().data(), newState); };
 protected:
 	void setupChildProcess() { if (!callbackQProcessSetupChildProcess(this->objectName().toUtf8().data())) { QProcess::setupChildProcess(); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQProcessTimerEvent(this->objectName().toUtf8().data(), event)) { QProcess::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQProcessChildEvent(this->objectName().toUtf8().data(), event)) { QProcess::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQProcessCustomEvent(this->objectName().toUtf8().data(), event)) { QProcess::customEvent(event); }; };
 };
 
 void* QProcess_NewQProcess(void* parent){
@@ -6239,6 +6321,11 @@ public:
 protected:
 	void updateCurrentValue(const QVariant & value) { if (!callbackQPropertyAnimationUpdateCurrentValue(this->objectName().toUtf8().data(), new QVariant(value))) { QPropertyAnimation::updateCurrentValue(value); }; };
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { if (!callbackQPropertyAnimationUpdateState(this->objectName().toUtf8().data(), newState, oldState)) { QPropertyAnimation::updateState(newState, oldState); }; };
+	void updateCurrentTime(int v) { if (!callbackQPropertyAnimationUpdateCurrentTime(this->objectName().toUtf8().data(), v)) { QPropertyAnimation::updateCurrentTime(v); }; };
+	void updateDirection(QPropertyAnimation::Direction direction) { if (!callbackQPropertyAnimationUpdateDirection(this->objectName().toUtf8().data(), direction)) { QPropertyAnimation::updateDirection(direction); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQPropertyAnimationTimerEvent(this->objectName().toUtf8().data(), event)) { QPropertyAnimation::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQPropertyAnimationChildEvent(this->objectName().toUtf8().data(), event)) { QPropertyAnimation::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQPropertyAnimationCustomEvent(this->objectName().toUtf8().data(), event)) { QPropertyAnimation::customEvent(event); }; };
 };
 
 void* QPropertyAnimation_PropertyName(void* ptr){
@@ -7139,6 +7226,9 @@ public:
 	MyQSaveFile(const QString &name) : QSaveFile(name) {};
 	MyQSaveFile(const QString &name, QObject *parent) : QSaveFile(name, parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSaveFileTimerEvent(this->objectName().toUtf8().data(), event)) { QSaveFile::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSaveFileChildEvent(this->objectName().toUtf8().data(), event)) { QSaveFile::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSaveFileCustomEvent(this->objectName().toUtf8().data(), event)) { QSaveFile::customEvent(event); }; };
 };
 
 void* QSaveFile_NewQSaveFile2(void* parent){
@@ -7220,6 +7310,9 @@ protected:
 	void updateCurrentTime(int currentTime) { if (!callbackQSequentialAnimationGroupUpdateCurrentTime(this->objectName().toUtf8().data(), currentTime)) { QSequentialAnimationGroup::updateCurrentTime(currentTime); }; };
 	void updateDirection(QAbstractAnimation::Direction direction) { if (!callbackQSequentialAnimationGroupUpdateDirection(this->objectName().toUtf8().data(), direction)) { QSequentialAnimationGroup::updateDirection(direction); }; };
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { if (!callbackQSequentialAnimationGroupUpdateState(this->objectName().toUtf8().data(), newState, oldState)) { QSequentialAnimationGroup::updateState(newState, oldState); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQSequentialAnimationGroupTimerEvent(this->objectName().toUtf8().data(), event)) { QSequentialAnimationGroup::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSequentialAnimationGroupChildEvent(this->objectName().toUtf8().data(), event)) { QSequentialAnimationGroup::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSequentialAnimationGroupCustomEvent(this->objectName().toUtf8().data(), event)) { QSequentialAnimationGroup::customEvent(event); }; };
 };
 
 void* QSequentialAnimationGroup_CurrentAnimation(void* ptr){
@@ -7270,6 +7363,9 @@ public:
 	MyQSettings(const QString &fileName, Format format, QObject *parent) : QSettings(fileName, format, parent) {};
 	MyQSettings(const QString &organization, const QString &application, QObject *parent) : QSettings(organization, application, parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSettingsTimerEvent(this->objectName().toUtf8().data(), event)) { QSettings::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSettingsChildEvent(this->objectName().toUtf8().data(), event)) { QSettings::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSettingsCustomEvent(this->objectName().toUtf8().data(), event)) { QSettings::customEvent(event); }; };
 };
 
 void* QSettings_NewQSettings3(int format, int scope, char* organization, char* application, void* parent){
@@ -7519,6 +7615,9 @@ public:
 	void Signal_Mapped2(const QString & text) { callbackQSignalMapperMapped2(this->objectName().toUtf8().data(), text.toUtf8().data()); };
 	void Signal_Mapped(int i) { callbackQSignalMapperMapped(this->objectName().toUtf8().data(), i); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSignalMapperTimerEvent(this->objectName().toUtf8().data(), event)) { QSignalMapper::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSignalMapperChildEvent(this->objectName().toUtf8().data(), event)) { QSignalMapper::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSignalMapperCustomEvent(this->objectName().toUtf8().data(), event)) { QSignalMapper::customEvent(event); }; };
 };
 
 void* QSignalMapper_NewQSignalMapper(void* parent){
@@ -7613,6 +7712,9 @@ public:
 	void Signal_SignalChanged() { callbackQSignalTransitionSignalChanged(this->objectName().toUtf8().data()); };
 protected:
 	void onTransition(QEvent * event) { if (!callbackQSignalTransitionOnTransition(this->objectName().toUtf8().data(), event)) { QSignalTransition::onTransition(event); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQSignalTransitionTimerEvent(this->objectName().toUtf8().data(), event)) { QSignalTransition::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSignalTransitionChildEvent(this->objectName().toUtf8().data(), event)) { QSignalTransition::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSignalTransitionCustomEvent(this->objectName().toUtf8().data(), event)) { QSignalTransition::customEvent(event); }; };
 };
 
 void* QSignalTransition_NewQSignalTransition(void* sourceState){
@@ -7803,6 +7905,9 @@ class MyQSocketNotifier: public QSocketNotifier {
 public:
 	void Signal_Activated(int socket) { callbackQSocketNotifierActivated(this->objectName().toUtf8().data(), socket); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSocketNotifierTimerEvent(this->objectName().toUtf8().data(), event)) { QSocketNotifier::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSocketNotifierChildEvent(this->objectName().toUtf8().data(), event)) { QSocketNotifier::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSocketNotifierCustomEvent(this->objectName().toUtf8().data(), event)) { QSocketNotifier::customEvent(event); }; };
 };
 
 void QSocketNotifier_ConnectActivated(void* ptr){
@@ -7835,7 +7940,11 @@ public:
 	void fetchMore(const QModelIndex & parent) { if (!callbackQSortFilterProxyModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QSortFilterProxyModel::fetchMore(parent); }; };
 	void setSourceModel(QAbstractItemModel * sourceModel) { if (!callbackQSortFilterProxyModelSetSourceModel(this->objectName().toUtf8().data(), sourceModel)) { QSortFilterProxyModel::setSourceModel(sourceModel); }; };
 	void sort(int column, Qt::SortOrder order) { if (!callbackQSortFilterProxyModelSort(this->objectName().toUtf8().data(), column, order)) { QSortFilterProxyModel::sort(column, order); }; };
+	void revert() { if (!callbackQSortFilterProxyModelRevert(this->objectName().toUtf8().data())) { QSortFilterProxyModel::revert(); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSortFilterProxyModelTimerEvent(this->objectName().toUtf8().data(), event)) { QSortFilterProxyModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSortFilterProxyModelChildEvent(this->objectName().toUtf8().data(), event)) { QSortFilterProxyModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSortFilterProxyModelCustomEvent(this->objectName().toUtf8().data(), event)) { QSortFilterProxyModel::customEvent(event); }; };
 };
 
 int QSortFilterProxyModel_DynamicSortFilter(void* ptr){
@@ -8078,6 +8187,9 @@ public:
 protected:
 	void onEntry(QEvent * event) { if (!callbackQStateOnEntry(this->objectName().toUtf8().data(), event)) { QState::onEntry(event); }; };
 	void onExit(QEvent * event) { if (!callbackQStateOnExit(this->objectName().toUtf8().data(), event)) { QState::onExit(event); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQStateTimerEvent(this->objectName().toUtf8().data(), event)) { QState::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQStateChildEvent(this->objectName().toUtf8().data(), event)) { QState::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQStateCustomEvent(this->objectName().toUtf8().data(), event)) { QState::customEvent(event); }; };
 };
 
 void* QState_NewQState2(int childMode, void* parent){
@@ -8186,6 +8298,9 @@ public:
 protected:
 	void onEntry(QEvent * event) { if (!callbackQStateMachineOnEntry(this->objectName().toUtf8().data(), event)) { QStateMachine::onEntry(event); }; };
 	void onExit(QEvent * event) { if (!callbackQStateMachineOnExit(this->objectName().toUtf8().data(), event)) { QStateMachine::onExit(event); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQStateMachineTimerEvent(this->objectName().toUtf8().data(), event)) { QStateMachine::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQStateMachineChildEvent(this->objectName().toUtf8().data(), event)) { QStateMachine::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQStateMachineCustomEvent(this->objectName().toUtf8().data(), event)) { QStateMachine::customEvent(event); }; };
 };
 
 void* QStateMachine_NewQStateMachine(void* parent){
@@ -8391,7 +8506,12 @@ void QStorageInfo_DestroyQStorageInfo(void* ptr){
 class MyQStringListModel: public QStringListModel {
 public:
 	void sort(int column, Qt::SortOrder order) { if (!callbackQStringListModelSort(this->objectName().toUtf8().data(), column, order)) { QStringListModel::sort(column, order); }; };
+	void fetchMore(const QModelIndex & parent) { if (!callbackQStringListModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QStringListModel::fetchMore(parent); }; };
+	void revert() { if (!callbackQStringListModelRevert(this->objectName().toUtf8().data())) { QStringListModel::revert(); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQStringListModelTimerEvent(this->objectName().toUtf8().data(), event)) { QStringListModel::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQStringListModelChildEvent(this->objectName().toUtf8().data(), event)) { QStringListModel::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQStringListModelCustomEvent(this->objectName().toUtf8().data(), event)) { QStringListModel::customEvent(event); }; };
 };
 
 void* QStringListModel_Data(void* ptr, void* index, int role){
@@ -8889,6 +9009,9 @@ public:
 	MyQTemporaryFile(const QString &templateName) : QTemporaryFile(templateName) {};
 	MyQTemporaryFile(const QString &templateName, QObject *parent) : QTemporaryFile(templateName, parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQTemporaryFileTimerEvent(this->objectName().toUtf8().data(), event)) { QTemporaryFile::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQTemporaryFileChildEvent(this->objectName().toUtf8().data(), event)) { QTemporaryFile::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQTemporaryFileCustomEvent(this->objectName().toUtf8().data(), event)) { QTemporaryFile::customEvent(event); }; };
 };
 
 void* QTemporaryFile_NewQTemporaryFile(){
@@ -9294,6 +9417,9 @@ public:
 	void Signal_Started() { callbackQThreadStarted(this->objectName().toUtf8().data()); };
 protected:
 	void run() { if (!callbackQThreadRun(this->objectName().toUtf8().data())) { QThread::run(); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQThreadTimerEvent(this->objectName().toUtf8().data(), event)) { QThread::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQThreadChildEvent(this->objectName().toUtf8().data(), event)) { QThread::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQThreadCustomEvent(this->objectName().toUtf8().data(), event)) { QThread::customEvent(event); }; };
 };
 
 void QThread_SetPriority(void* ptr, int priority){
@@ -9529,6 +9655,8 @@ public:
 	void Signal_ValueChanged(qreal value) { callbackQTimeLineValueChanged(this->objectName().toUtf8().data(), static_cast<double>(value)); };
 protected:
 	void timerEvent(QTimerEvent * event) { if (!callbackQTimeLineTimerEvent(this->objectName().toUtf8().data(), event)) { QTimeLine::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQTimeLineChildEvent(this->objectName().toUtf8().data(), event)) { QTimeLine::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQTimeLineCustomEvent(this->objectName().toUtf8().data(), event)) { QTimeLine::customEvent(event); }; };
 };
 
 int QTimeLine_CurrentTime(void* ptr){
@@ -9801,6 +9929,8 @@ public:
 	void Signal_Timeout() { callbackQTimerTimeout(this->objectName().toUtf8().data()); };
 protected:
 	void timerEvent(QTimerEvent * e) { if (!callbackQTimerTimerEvent(this->objectName().toUtf8().data(), e)) { QTimer::timerEvent(e); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQTimerChildEvent(this->objectName().toUtf8().data(), event)) { QTimer::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQTimerCustomEvent(this->objectName().toUtf8().data(), event)) { QTimer::customEvent(event); }; };
 };
 
 int QTimer_RemainingTime(void* ptr){
@@ -9887,6 +10017,9 @@ class MyQTranslator: public QTranslator {
 public:
 	MyQTranslator(QObject *parent) : QTranslator(parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQTranslatorTimerEvent(this->objectName().toUtf8().data(), event)) { QTranslator::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQTranslatorChildEvent(this->objectName().toUtf8().data(), event)) { QTranslator::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQTranslatorCustomEvent(this->objectName().toUtf8().data(), event)) { QTranslator::customEvent(event); }; };
 };
 
 void* QTranslator_NewQTranslator(void* parent){
@@ -10493,6 +10626,10 @@ protected:
 	void updateCurrentTime(int v) { if (!callbackQVariantAnimationUpdateCurrentTime(this->objectName().toUtf8().data(), v)) { QVariantAnimation::updateCurrentTime(v); }; };
 	void updateCurrentValue(const QVariant & value) { if (!callbackQVariantAnimationUpdateCurrentValue(this->objectName().toUtf8().data(), new QVariant(value))) { QVariantAnimation::updateCurrentValue(value); }; };
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { if (!callbackQVariantAnimationUpdateState(this->objectName().toUtf8().data(), newState, oldState)) { QVariantAnimation::updateState(newState, oldState); }; };
+	void updateDirection(QVariantAnimation::Direction direction) { if (!callbackQVariantAnimationUpdateDirection(this->objectName().toUtf8().data(), direction)) { QVariantAnimation::updateDirection(direction); }; };
+	void timerEvent(QTimerEvent * event) { if (!callbackQVariantAnimationTimerEvent(this->objectName().toUtf8().data(), event)) { QVariantAnimation::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQVariantAnimationChildEvent(this->objectName().toUtf8().data(), event)) { QVariantAnimation::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQVariantAnimationCustomEvent(this->objectName().toUtf8().data(), event)) { QVariantAnimation::customEvent(event); }; };
 };
 
 void* QVariantAnimation_CurrentValue(void* ptr){

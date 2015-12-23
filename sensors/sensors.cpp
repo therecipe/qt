@@ -14,12 +14,14 @@
 #include <QAmbientTemperatureReading>
 #include <QAmbientTemperatureSensor>
 #include <QByteArray>
+#include <QChildEvent>
 #include <QCompass>
 #include <QCompassFilter>
 #include <QCompassReading>
 #include <QDistanceFilter>
 #include <QDistanceReading>
 #include <QDistanceSensor>
+#include <QEvent>
 #include <QGyroscope>
 #include <QGyroscopeFilter>
 #include <QGyroscopeReading>
@@ -68,6 +70,9 @@
 #include <QTiltFilter>
 #include <QTiltReading>
 #include <QTiltSensor>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QVariant>
 
 class MyQAccelerometer: public QAccelerometer {
@@ -75,6 +80,9 @@ public:
 	MyQAccelerometer(QObject *parent) : QAccelerometer(parent) {};
 	void Signal_AccelerationModeChanged(QAccelerometer::AccelerationMode accelerationMode) { callbackQAccelerometerAccelerationModeChanged(this->objectName().toUtf8().data(), accelerationMode); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAccelerometerTimerEvent(this->objectName().toUtf8().data(), event)) { QAccelerometer::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAccelerometerChildEvent(this->objectName().toUtf8().data(), event)) { QAccelerometer::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAccelerometerCustomEvent(this->objectName().toUtf8().data(), event)) { QAccelerometer::customEvent(event); }; };
 };
 
 int QAccelerometer_AccelerationMode(void* ptr){
@@ -173,6 +181,9 @@ class MyQAmbientLightSensor: public QAmbientLightSensor {
 public:
 	MyQAmbientLightSensor(QObject *parent) : QAmbientLightSensor(parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQAmbientLightSensorTimerEvent(this->objectName().toUtf8().data(), event)) { QAmbientLightSensor::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQAmbientLightSensorChildEvent(this->objectName().toUtf8().data(), event)) { QAmbientLightSensor::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQAmbientLightSensorCustomEvent(this->objectName().toUtf8().data(), event)) { QAmbientLightSensor::customEvent(event); }; };
 };
 
 void* QAmbientLightSensor_Reading(void* ptr){
@@ -215,6 +226,9 @@ class MyQCompass: public QCompass {
 public:
 	MyQCompass(QObject *parent) : QCompass(parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQCompassTimerEvent(this->objectName().toUtf8().data(), event)) { QCompass::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQCompassChildEvent(this->objectName().toUtf8().data(), event)) { QCompass::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQCompassCustomEvent(this->objectName().toUtf8().data(), event)) { QCompass::customEvent(event); }; };
 };
 
 void* QCompass_Reading(void* ptr){
@@ -277,6 +291,9 @@ class MyQGyroscope: public QGyroscope {
 public:
 	MyQGyroscope(QObject *parent) : QGyroscope(parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQGyroscopeTimerEvent(this->objectName().toUtf8().data(), event)) { QGyroscope::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQGyroscopeChildEvent(this->objectName().toUtf8().data(), event)) { QGyroscope::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQGyroscopeCustomEvent(this->objectName().toUtf8().data(), event)) { QGyroscope::customEvent(event); }; };
 };
 
 void* QGyroscope_Reading(void* ptr){
@@ -359,6 +376,9 @@ class MyQIRProximitySensor: public QIRProximitySensor {
 public:
 	MyQIRProximitySensor(QObject *parent) : QIRProximitySensor(parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQIRProximitySensorTimerEvent(this->objectName().toUtf8().data(), event)) { QIRProximitySensor::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQIRProximitySensorChildEvent(this->objectName().toUtf8().data(), event)) { QIRProximitySensor::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQIRProximitySensorCustomEvent(this->objectName().toUtf8().data(), event)) { QIRProximitySensor::customEvent(event); }; };
 };
 
 void* QIRProximitySensor_Reading(void* ptr){
@@ -390,6 +410,9 @@ public:
 	MyQLightSensor(QObject *parent) : QLightSensor(parent) {};
 	void Signal_FieldOfViewChanged(qreal fieldOfView) { callbackQLightSensorFieldOfViewChanged(this->objectName().toUtf8().data(), static_cast<double>(fieldOfView)); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQLightSensorTimerEvent(this->objectName().toUtf8().data(), event)) { QLightSensor::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQLightSensorChildEvent(this->objectName().toUtf8().data(), event)) { QLightSensor::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQLightSensorCustomEvent(this->objectName().toUtf8().data(), event)) { QLightSensor::customEvent(event); }; };
 };
 
 double QLightSensor_FieldOfView(void* ptr){
@@ -425,6 +448,9 @@ public:
 	MyQMagnetometer(QObject *parent) : QMagnetometer(parent) {};
 	void Signal_ReturnGeoValuesChanged(bool returnGeoValues) { callbackQMagnetometerReturnGeoValuesChanged(this->objectName().toUtf8().data(), returnGeoValues); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMagnetometerTimerEvent(this->objectName().toUtf8().data(), event)) { QMagnetometer::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMagnetometerChildEvent(this->objectName().toUtf8().data(), event)) { QMagnetometer::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMagnetometerCustomEvent(this->objectName().toUtf8().data(), event)) { QMagnetometer::customEvent(event); }; };
 };
 
 void* QMagnetometer_Reading(void* ptr){
@@ -507,6 +533,9 @@ class MyQOrientationSensor: public QOrientationSensor {
 public:
 	MyQOrientationSensor(QObject *parent) : QOrientationSensor(parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQOrientationSensorTimerEvent(this->objectName().toUtf8().data(), event)) { QOrientationSensor::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQOrientationSensorChildEvent(this->objectName().toUtf8().data(), event)) { QOrientationSensor::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQOrientationSensorCustomEvent(this->objectName().toUtf8().data(), event)) { QOrientationSensor::customEvent(event); }; };
 };
 
 void* QOrientationSensor_Reading(void* ptr){
@@ -569,6 +598,9 @@ class MyQProximitySensor: public QProximitySensor {
 public:
 	MyQProximitySensor(QObject *parent) : QProximitySensor(parent) {};
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQProximitySensorTimerEvent(this->objectName().toUtf8().data(), event)) { QProximitySensor::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQProximitySensorChildEvent(this->objectName().toUtf8().data(), event)) { QProximitySensor::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQProximitySensorCustomEvent(this->objectName().toUtf8().data(), event)) { QProximitySensor::customEvent(event); }; };
 };
 
 void* QProximitySensor_Reading(void* ptr){
@@ -608,6 +640,9 @@ public:
 	MyQRotationSensor(QObject *parent) : QRotationSensor(parent) {};
 	void Signal_HasZChanged(bool hasZ) { callbackQRotationSensorHasZChanged(this->objectName().toUtf8().data(), hasZ); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQRotationSensorTimerEvent(this->objectName().toUtf8().data(), event)) { QRotationSensor::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQRotationSensorChildEvent(this->objectName().toUtf8().data(), event)) { QRotationSensor::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQRotationSensorCustomEvent(this->objectName().toUtf8().data(), event)) { QRotationSensor::customEvent(event); }; };
 };
 
 int QRotationSensor_HasZ(void* ptr){
@@ -656,6 +691,9 @@ public:
 	void Signal_SkipDuplicatesChanged(bool skipDuplicates) { callbackQSensorSkipDuplicatesChanged(this->objectName().toUtf8().data(), skipDuplicates); };
 	void Signal_UserOrientationChanged(int userOrientation) { callbackQSensorUserOrientationChanged(this->objectName().toUtf8().data(), userOrientation); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSensorTimerEvent(this->objectName().toUtf8().data(), event)) { QSensor::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSensorChildEvent(this->objectName().toUtf8().data(), event)) { QSensor::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSensorCustomEvent(this->objectName().toUtf8().data(), event)) { QSensor::customEvent(event); }; };
 };
 
 int QSensor_AxesOrientationMode(void* ptr){
@@ -929,6 +967,9 @@ void QSensor_DestroyQSensor(void* ptr){
 class MyQSensorBackend: public QSensorBackend {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSensorBackendTimerEvent(this->objectName().toUtf8().data(), event)) { QSensorBackend::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSensorBackendChildEvent(this->objectName().toUtf8().data(), event)) { QSensorBackend::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSensorBackendCustomEvent(this->objectName().toUtf8().data(), event)) { QSensorBackend::customEvent(event); }; };
 };
 
 void QSensorBackend_AddDataRate(void* ptr, double min, double max){
@@ -1014,6 +1055,9 @@ void QSensorFilter_SetObjectNameAbs(void* ptr, char* name){
 class MyQSensorGesture: public QSensorGesture {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSensorGestureTimerEvent(this->objectName().toUtf8().data(), event)) { QSensorGesture::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSensorGestureChildEvent(this->objectName().toUtf8().data(), event)) { QSensorGesture::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSensorGestureCustomEvent(this->objectName().toUtf8().data(), event)) { QSensorGesture::customEvent(event); }; };
 };
 
 void* QSensorGesture_NewQSensorGesture(char* ids, void* parent){
@@ -1052,6 +1096,9 @@ class MyQSensorGestureManager: public QSensorGestureManager {
 public:
 	void Signal_NewSensorGestureAvailable() { callbackQSensorGestureManagerNewSensorGestureAvailable(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSensorGestureManagerTimerEvent(this->objectName().toUtf8().data(), event)) { QSensorGestureManager::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSensorGestureManagerChildEvent(this->objectName().toUtf8().data(), event)) { QSensorGestureManager::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSensorGestureManagerCustomEvent(this->objectName().toUtf8().data(), event)) { QSensorGestureManager::customEvent(event); }; };
 };
 
 void* QSensorGestureManager_NewQSensorGestureManager(void* parent){
@@ -1117,6 +1164,9 @@ void QSensorGesturePluginInterface_SetObjectNameAbs(void* ptr, char* name){
 class MyQSensorGestureRecognizer: public QSensorGestureRecognizer {
 public:
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQSensorGestureRecognizerTimerEvent(this->objectName().toUtf8().data(), event)) { QSensorGestureRecognizer::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQSensorGestureRecognizerChildEvent(this->objectName().toUtf8().data(), event)) { QSensorGestureRecognizer::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQSensorGestureRecognizerCustomEvent(this->objectName().toUtf8().data(), event)) { QSensorGestureRecognizer::customEvent(event); }; };
 };
 
 void QSensorGestureRecognizer_CreateBackend(void* ptr){
@@ -1204,6 +1254,9 @@ public:
 	MyQTapSensor(QObject *parent) : QTapSensor(parent) {};
 	void Signal_ReturnDoubleTapEventsChanged(bool returnDoubleTapEvents) { callbackQTapSensorReturnDoubleTapEventsChanged(this->objectName().toUtf8().data(), returnDoubleTapEvents); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQTapSensorTimerEvent(this->objectName().toUtf8().data(), event)) { QTapSensor::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQTapSensorChildEvent(this->objectName().toUtf8().data(), event)) { QTapSensor::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQTapSensorCustomEvent(this->objectName().toUtf8().data(), event)) { QTapSensor::customEvent(event); }; };
 };
 
 void* QTapSensor_Reading(void* ptr){

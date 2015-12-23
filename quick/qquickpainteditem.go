@@ -390,3 +390,783 @@ func (ptr *QQuickPaintedItem) DestroyQQuickPaintedItem() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QQuickPaintedItem) ConnectClassBegin(f func()) {
+	defer qt.Recovering("connect QQuickPaintedItem::classBegin")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "classBegin", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectClassBegin() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::classBegin")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "classBegin")
+	}
+}
+
+//export callbackQQuickPaintedItemClassBegin
+func callbackQQuickPaintedItemClassBegin(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::classBegin")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "classBegin"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectComponentComplete(f func()) {
+	defer qt.Recovering("connect QQuickPaintedItem::componentComplete")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "componentComplete", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectComponentComplete() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::componentComplete")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "componentComplete")
+	}
+}
+
+//export callbackQQuickPaintedItemComponentComplete
+func callbackQQuickPaintedItemComponentComplete(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::componentComplete")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "componentComplete"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectDragEnterEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemDragEnterEvent
+func callbackQQuickPaintedItemDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::dragEnterEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectDragLeaveEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemDragLeaveEvent
+func callbackQQuickPaintedItemDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::dragLeaveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectDragMoveEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemDragMoveEvent
+func callbackQQuickPaintedItemDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::dragMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectDropEvent(f func(event *gui.QDropEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectDropEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemDropEvent
+func callbackQQuickPaintedItemDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::dropEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemFocusInEvent
+func callbackQQuickPaintedItemFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemFocusOutEvent
+func callbackQQuickPaintedItemFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::focusOutEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectHoverEnterEvent(f func(event *gui.QHoverEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverEnterEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectHoverEnterEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverEnterEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemHoverEnterEvent
+func callbackQQuickPaintedItemHoverEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::hoverEnterEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverEnterEvent"); signal != nil {
+		signal.(func(*gui.QHoverEvent))(gui.NewQHoverEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectHoverLeaveEvent(f func(event *gui.QHoverEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverLeaveEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectHoverLeaveEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverLeaveEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemHoverLeaveEvent
+func callbackQQuickPaintedItemHoverLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::hoverLeaveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverLeaveEvent"); signal != nil {
+		signal.(func(*gui.QHoverEvent))(gui.NewQHoverEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectHoverMoveEvent(f func(event *gui.QHoverEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverMoveEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectHoverMoveEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverMoveEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemHoverMoveEvent
+func callbackQQuickPaintedItemHoverMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::hoverMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverMoveEvent"); signal != nil {
+		signal.(func(*gui.QHoverEvent))(gui.NewQHoverEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectInputMethodEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemInputMethodEvent
+func callbackQQuickPaintedItemInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::inputMethodEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemKeyPressEvent
+func callbackQQuickPaintedItemKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::keyPressEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectKeyReleaseEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemKeyReleaseEvent
+func callbackQQuickPaintedItemKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::keyReleaseEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectMouseDoubleClickEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemMouseDoubleClickEvent
+func callbackQQuickPaintedItemMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::mouseDoubleClickEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectMouseMoveEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemMouseMoveEvent
+func callbackQQuickPaintedItemMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::mouseMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemMousePressEvent
+func callbackQQuickPaintedItemMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::mousePressEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectMouseReleaseEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemMouseReleaseEvent
+func callbackQQuickPaintedItemMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::mouseReleaseEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectMouseUngrabEvent(f func()) {
+	defer qt.Recovering("connect QQuickPaintedItem::mouseUngrabEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseUngrabEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectMouseUngrabEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::mouseUngrabEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseUngrabEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemMouseUngrabEvent
+func callbackQQuickPaintedItemMouseUngrabEvent(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::mouseUngrabEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseUngrabEvent"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectTouchEvent(f func(event *gui.QTouchEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::touchEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "touchEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectTouchEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::touchEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "touchEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemTouchEvent
+func callbackQQuickPaintedItemTouchEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::touchEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "touchEvent"); signal != nil {
+		signal.(func(*gui.QTouchEvent))(gui.NewQTouchEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectTouchUngrabEvent(f func()) {
+	defer qt.Recovering("connect QQuickPaintedItem::touchUngrabEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "touchUngrabEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectTouchUngrabEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::touchUngrabEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "touchUngrabEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemTouchUngrabEvent
+func callbackQQuickPaintedItemTouchUngrabEvent(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::touchUngrabEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "touchUngrabEvent"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectUpdatePolish(f func()) {
+	defer qt.Recovering("connect QQuickPaintedItem::updatePolish")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "updatePolish", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectUpdatePolish() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::updatePolish")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "updatePolish")
+	}
+}
+
+//export callbackQQuickPaintedItemUpdatePolish
+func callbackQQuickPaintedItemUpdatePolish(ptrName *C.char) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::updatePolish")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "updatePolish"); signal != nil {
+		signal.(func())()
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemWheelEvent
+func callbackQQuickPaintedItemWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::wheelEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemTimerEvent
+func callbackQQuickPaintedItemTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemChildEvent
+func callbackQQuickPaintedItemChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QQuickPaintedItem::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQQuickPaintedItemCustomEvent
+func callbackQQuickPaintedItemCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQuickPaintedItem::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

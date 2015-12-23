@@ -82,3 +82,93 @@ func (ptr *QQmlFileSelector) DestroyQQmlFileSelector() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QQmlFileSelector) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QQmlFileSelector::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QQmlFileSelector) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QQmlFileSelector::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQQmlFileSelectorTimerEvent
+func callbackQQmlFileSelectorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQmlFileSelector::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQmlFileSelector) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QQmlFileSelector::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QQmlFileSelector) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QQmlFileSelector::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQQmlFileSelectorChildEvent
+func callbackQQmlFileSelectorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQmlFileSelector::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QQmlFileSelector) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QQmlFileSelector::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QQmlFileSelector) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QQmlFileSelector::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQQmlFileSelectorCustomEvent
+func callbackQQmlFileSelectorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QQmlFileSelector::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

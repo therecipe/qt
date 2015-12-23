@@ -216,3 +216,93 @@ func (ptr *QGeoServiceProvider) DestroyQGeoServiceProvider() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QGeoServiceProvider) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QGeoServiceProvider::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QGeoServiceProvider) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QGeoServiceProvider::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQGeoServiceProviderTimerEvent
+func callbackQGeoServiceProviderTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGeoServiceProvider::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGeoServiceProvider) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QGeoServiceProvider::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QGeoServiceProvider) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QGeoServiceProvider::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQGeoServiceProviderChildEvent
+func callbackQGeoServiceProviderChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGeoServiceProvider::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QGeoServiceProvider) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QGeoServiceProvider::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QGeoServiceProvider) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QGeoServiceProvider::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQGeoServiceProviderCustomEvent
+func callbackQGeoServiceProviderCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QGeoServiceProvider::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

@@ -185,3 +185,123 @@ func (ptr *QStyledItemDelegate) DestroyQStyledItemDelegate() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QStyledItemDelegate) ConnectDestroyEditor(f func(editor *QWidget, index *core.QModelIndex)) {
+	defer qt.Recovering("connect QStyledItemDelegate::destroyEditor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "destroyEditor", f)
+	}
+}
+
+func (ptr *QStyledItemDelegate) DisconnectDestroyEditor() {
+	defer qt.Recovering("disconnect QStyledItemDelegate::destroyEditor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "destroyEditor")
+	}
+}
+
+//export callbackQStyledItemDelegateDestroyEditor
+func callbackQStyledItemDelegateDestroyEditor(ptrName *C.char, editor unsafe.Pointer, index unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStyledItemDelegate::destroyEditor")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "destroyEditor"); signal != nil {
+		signal.(func(*QWidget, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QStyledItemDelegate) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QStyledItemDelegate::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QStyledItemDelegate) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QStyledItemDelegate::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQStyledItemDelegateTimerEvent
+func callbackQStyledItemDelegateTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStyledItemDelegate::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QStyledItemDelegate) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QStyledItemDelegate::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QStyledItemDelegate) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QStyledItemDelegate::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQStyledItemDelegateChildEvent
+func callbackQStyledItemDelegateChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStyledItemDelegate::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QStyledItemDelegate) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QStyledItemDelegate::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QStyledItemDelegate) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QStyledItemDelegate::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQStyledItemDelegateCustomEvent
+func callbackQStyledItemDelegateCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QStyledItemDelegate::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

@@ -196,3 +196,93 @@ func (ptr *QNearFieldManager) DestroyQNearFieldManager() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QNearFieldManager) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QNearFieldManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QNearFieldManager) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QNearFieldManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQNearFieldManagerTimerEvent
+func callbackQNearFieldManagerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNearFieldManager::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QNearFieldManager) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QNearFieldManager::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QNearFieldManager) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QNearFieldManager::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQNearFieldManagerChildEvent
+func callbackQNearFieldManagerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNearFieldManager::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QNearFieldManager) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QNearFieldManager::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QNearFieldManager) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QNearFieldManager::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQNearFieldManagerCustomEvent
+func callbackQNearFieldManagerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNearFieldManager::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

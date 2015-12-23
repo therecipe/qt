@@ -1,8 +1,10 @@
 #include "positioning.h"
 #include "_cgo_export.h"
 
+#include <QChildEvent>
 #include <QDate>
 #include <QDateTime>
+#include <QEvent>
 #include <QGeoAddress>
 #include <QGeoAreaMonitorInfo>
 #include <QGeoAreaMonitorSource>
@@ -20,6 +22,9 @@
 #include <QNmeaPositionInfoSource>
 #include <QObject>
 #include <QString>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 
 void* QGeoAddress_NewQGeoAddress(){
 	return new QGeoAddress();
@@ -170,6 +175,9 @@ public:
 	void Signal_Error2(QGeoAreaMonitorSource::Error areaMonitoringError) { callbackQGeoAreaMonitorSourceError2(this->objectName().toUtf8().data(), areaMonitoringError); };
 	void setPositionInfoSource(QGeoPositionInfoSource * newSource) { if (!callbackQGeoAreaMonitorSourceSetPositionInfoSource(this->objectName().toUtf8().data(), newSource)) { QGeoAreaMonitorSource::setPositionInfoSource(newSource); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQGeoAreaMonitorSourceTimerEvent(this->objectName().toUtf8().data(), event)) { QGeoAreaMonitorSource::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQGeoAreaMonitorSourceChildEvent(this->objectName().toUtf8().data(), event)) { QGeoAreaMonitorSource::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQGeoAreaMonitorSourceCustomEvent(this->objectName().toUtf8().data(), event)) { QGeoAreaMonitorSource::customEvent(event); }; };
 };
 
 char* QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources(){
@@ -351,6 +359,9 @@ public:
 	void setPreferredPositioningMethods(QGeoPositionInfoSource::PositioningMethods methods) { if (!callbackQGeoPositionInfoSourceSetPreferredPositioningMethods(this->objectName().toUtf8().data(), methods)) { QGeoPositionInfoSource::setPreferredPositioningMethods(methods); }; };
 	void Signal_UpdateTimeout() { callbackQGeoPositionInfoSourceUpdateTimeout(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQGeoPositionInfoSourceTimerEvent(this->objectName().toUtf8().data(), event)) { QGeoPositionInfoSource::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQGeoPositionInfoSourceChildEvent(this->objectName().toUtf8().data(), event)) { QGeoPositionInfoSource::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQGeoPositionInfoSourceCustomEvent(this->objectName().toUtf8().data(), event)) { QGeoPositionInfoSource::customEvent(event); }; };
 };
 
 void QGeoPositionInfoSource_SetUpdateInterval(void* ptr, int msec){
@@ -571,6 +582,9 @@ public:
 	void Signal_Error2(QGeoSatelliteInfoSource::Error satelliteError) { callbackQGeoSatelliteInfoSourceError2(this->objectName().toUtf8().data(), satelliteError); };
 	void Signal_RequestTimeout() { callbackQGeoSatelliteInfoSourceRequestTimeout(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQGeoSatelliteInfoSourceTimerEvent(this->objectName().toUtf8().data(), event)) { QGeoSatelliteInfoSource::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQGeoSatelliteInfoSourceChildEvent(this->objectName().toUtf8().data(), event)) { QGeoSatelliteInfoSource::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQGeoSatelliteInfoSourceCustomEvent(this->objectName().toUtf8().data(), event)) { QGeoSatelliteInfoSource::customEvent(event); }; };
 };
 
 void QGeoSatelliteInfoSource_SetUpdateInterval(void* ptr, int msec){
@@ -680,7 +694,11 @@ public:
 	void setUpdateInterval(int msec) { if (!callbackQNmeaPositionInfoSourceSetUpdateInterval(this->objectName().toUtf8().data(), msec)) { QNmeaPositionInfoSource::setUpdateInterval(msec); }; };
 	void startUpdates() { if (!callbackQNmeaPositionInfoSourceStartUpdates(this->objectName().toUtf8().data())) { QNmeaPositionInfoSource::startUpdates(); }; };
 	void stopUpdates() { if (!callbackQNmeaPositionInfoSourceStopUpdates(this->objectName().toUtf8().data())) { QNmeaPositionInfoSource::stopUpdates(); }; };
+	void setPreferredPositioningMethods(QNmeaPositionInfoSource::PositioningMethods methods) { if (!callbackQNmeaPositionInfoSourceSetPreferredPositioningMethods(this->objectName().toUtf8().data(), methods)) { QNmeaPositionInfoSource::setPreferredPositioningMethods(methods); }; };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQNmeaPositionInfoSourceTimerEvent(this->objectName().toUtf8().data(), event)) { QNmeaPositionInfoSource::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQNmeaPositionInfoSourceChildEvent(this->objectName().toUtf8().data(), event)) { QNmeaPositionInfoSource::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQNmeaPositionInfoSourceCustomEvent(this->objectName().toUtf8().data(), event)) { QNmeaPositionInfoSource::customEvent(event); }; };
 };
 
 void* QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(int updateMode, void* parent){

@@ -232,3 +232,123 @@ func (ptr *QNmeaPositionInfoSource) DestroyQNmeaPositionInfoSource() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QNmeaPositionInfoSource) ConnectSetPreferredPositioningMethods(f func(methods QGeoPositionInfoSource__PositioningMethod)) {
+	defer qt.Recovering("connect QNmeaPositionInfoSource::setPreferredPositioningMethods")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "setPreferredPositioningMethods", f)
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) DisconnectSetPreferredPositioningMethods() {
+	defer qt.Recovering("disconnect QNmeaPositionInfoSource::setPreferredPositioningMethods")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "setPreferredPositioningMethods")
+	}
+}
+
+//export callbackQNmeaPositionInfoSourceSetPreferredPositioningMethods
+func callbackQNmeaPositionInfoSourceSetPreferredPositioningMethods(ptrName *C.char, methods C.int) bool {
+	defer qt.Recovering("callback QNmeaPositionInfoSource::setPreferredPositioningMethods")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setPreferredPositioningMethods"); signal != nil {
+		signal.(func(QGeoPositionInfoSource__PositioningMethod))(QGeoPositionInfoSource__PositioningMethod(methods))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QNmeaPositionInfoSource) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QNmeaPositionInfoSource::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QNmeaPositionInfoSource::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQNmeaPositionInfoSourceTimerEvent
+func callbackQNmeaPositionInfoSourceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNmeaPositionInfoSource::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QNmeaPositionInfoSource) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QNmeaPositionInfoSource::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QNmeaPositionInfoSource::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQNmeaPositionInfoSourceChildEvent
+func callbackQNmeaPositionInfoSourceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNmeaPositionInfoSource::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QNmeaPositionInfoSource) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QNmeaPositionInfoSource::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QNmeaPositionInfoSource::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQNmeaPositionInfoSourceCustomEvent
+func callbackQNmeaPositionInfoSourceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QNmeaPositionInfoSource::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

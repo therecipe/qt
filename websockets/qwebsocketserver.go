@@ -318,3 +318,93 @@ func (ptr *QWebSocketServer) DestroyQWebSocketServer() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QWebSocketServer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QWebSocketServer::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QWebSocketServer) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QWebSocketServer::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQWebSocketServerTimerEvent
+func callbackQWebSocketServerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWebSocketServer::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWebSocketServer) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QWebSocketServer::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QWebSocketServer) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QWebSocketServer::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQWebSocketServerChildEvent
+func callbackQWebSocketServerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWebSocketServer::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QWebSocketServer) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QWebSocketServer::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QWebSocketServer) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QWebSocketServer::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQWebSocketServerCustomEvent
+func callbackQWebSocketServerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QWebSocketServer::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}

@@ -4,6 +4,7 @@ package quick
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -43,4 +44,94 @@ func (ptr *QSGDynamicTexture) UpdateTexture() bool {
 		return C.QSGDynamicTexture_UpdateTexture(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QSGDynamicTexture) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QSGDynamicTexture::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QSGDynamicTexture) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QSGDynamicTexture::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQSGDynamicTextureTimerEvent
+func callbackQSGDynamicTextureTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSGDynamicTexture::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSGDynamicTexture) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QSGDynamicTexture::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QSGDynamicTexture) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QSGDynamicTexture::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQSGDynamicTextureChildEvent
+func callbackQSGDynamicTextureChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSGDynamicTexture::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QSGDynamicTexture) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QSGDynamicTexture::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QSGDynamicTexture) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QSGDynamicTexture::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQSGDynamicTextureCustomEvent
+func callbackQSGDynamicTextureCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QSGDynamicTexture::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
 }

@@ -1,6 +1,8 @@
 #include "macextras.h"
 #include "_cgo_export.h"
 
+#include <QChildEvent>
+#include <QEvent>
 #include <QIcon>
 #include <QMacPasteboardMime>
 #include <QMacToolBar>
@@ -8,6 +10,9 @@
 #include <QMimeData>
 #include <QObject>
 #include <QString>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QWindow>
 
 class MyQMacPasteboardMime: public QMacPasteboardMime {
@@ -83,6 +88,9 @@ public:
 	MyQMacToolBarItem(QObject *parent) : QMacToolBarItem(parent) {};
 	void Signal_Activated() { callbackQMacToolBarItemActivated(this->objectName().toUtf8().data()); };
 protected:
+	void timerEvent(QTimerEvent * event) { if (!callbackQMacToolBarItemTimerEvent(this->objectName().toUtf8().data(), event)) { QMacToolBarItem::timerEvent(event); }; };
+	void childEvent(QChildEvent * event) { if (!callbackQMacToolBarItemChildEvent(this->objectName().toUtf8().data(), event)) { QMacToolBarItem::childEvent(event); }; };
+	void customEvent(QEvent * event) { if (!callbackQMacToolBarItemCustomEvent(this->objectName().toUtf8().data(), event)) { QMacToolBarItem::customEvent(event); }; };
 };
 
 void* QMacToolBarItem_NewQMacToolBarItem(void* parent){

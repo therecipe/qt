@@ -95,3 +95,93 @@ func (ptr *QFileSelector) DestroyQFileSelector() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func (ptr *QFileSelector) ConnectTimerEvent(f func(event *QTimerEvent)) {
+	defer qt.Recovering("connect QFileSelector::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QFileSelector) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QFileSelector::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+//export callbackQFileSelectorTimerEvent
+func callbackQFileSelectorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFileSelector::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QFileSelector) ConnectChildEvent(f func(event *QChildEvent)) {
+	defer qt.Recovering("connect QFileSelector::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QFileSelector) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QFileSelector::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+//export callbackQFileSelectorChildEvent
+func callbackQFileSelectorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFileSelector::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
+
+func (ptr *QFileSelector) ConnectCustomEvent(f func(event *QEvent)) {
+	defer qt.Recovering("connect QFileSelector::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QFileSelector) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QFileSelector::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+//export callbackQFileSelectorCustomEvent
+func callbackQFileSelectorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+	defer qt.Recovering("callback QFileSelector::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*QEvent))(NewQEventFromPointer(event))
+		return true
+	}
+	return false
+
+}
