@@ -626,10 +626,15 @@ void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr){
 }
 
 char* QGeoServiceProviderFactory_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGeoServiceProviderFactory*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGeoServiceProviderFactory*>(static_cast<QGeoServiceProviderFactory*>(ptr))) {
+		return static_cast<MyQGeoServiceProviderFactory*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGeoServiceProviderFactory_BASE").toUtf8().data();
 }
 
 void QGeoServiceProviderFactory_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGeoServiceProviderFactory*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGeoServiceProviderFactory*>(static_cast<QGeoServiceProviderFactory*>(ptr))) {
+		static_cast<MyQGeoServiceProviderFactory*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 

@@ -1574,11 +1574,16 @@ void QNetworkProxyFactory_DestroyQNetworkProxyFactory(void* ptr){
 }
 
 char* QNetworkProxyFactory_ObjectNameAbs(void* ptr){
-	return static_cast<MyQNetworkProxyFactory*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQNetworkProxyFactory*>(static_cast<QNetworkProxyFactory*>(ptr))) {
+		return static_cast<MyQNetworkProxyFactory*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QNetworkProxyFactory_BASE").toUtf8().data();
 }
 
 void QNetworkProxyFactory_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQNetworkProxyFactory*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQNetworkProxyFactory*>(static_cast<QNetworkProxyFactory*>(ptr))) {
+		static_cast<MyQNetworkProxyFactory*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QNetworkProxyQuery_NewQNetworkProxyQuery(){

@@ -697,11 +697,16 @@ void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(void* ptr){
 }
 
 char* QAbstractNativeEventFilter_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAbstractNativeEventFilter*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAbstractNativeEventFilter*>(static_cast<QAbstractNativeEventFilter*>(ptr))) {
+		return static_cast<MyQAbstractNativeEventFilter*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAbstractNativeEventFilter_BASE").toUtf8().data();
 }
 
 void QAbstractNativeEventFilter_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAbstractNativeEventFilter*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAbstractNativeEventFilter*>(static_cast<QAbstractNativeEventFilter*>(ptr))) {
+		static_cast<MyQAbstractNativeEventFilter*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAbstractProxyModel: public QAbstractProxyModel {
@@ -2907,11 +2912,16 @@ void QEvent_DestroyQEvent(void* ptr){
 }
 
 char* QEvent_ObjectNameAbs(void* ptr){
-	return static_cast<MyQEvent*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQEvent*>(static_cast<QEvent*>(ptr))) {
+		return static_cast<MyQEvent*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QEvent_BASE").toUtf8().data();
 }
 
 void QEvent_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQEvent*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQEvent*>(static_cast<QEvent*>(ptr))) {
+		static_cast<MyQEvent*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQEventLoop: public QEventLoop {
@@ -7215,11 +7225,16 @@ void QRunnable_DestroyQRunnable(void* ptr){
 }
 
 char* QRunnable_ObjectNameAbs(void* ptr){
-	return static_cast<MyQRunnable*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQRunnable*>(static_cast<QRunnable*>(ptr))) {
+		return static_cast<MyQRunnable*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QRunnable_BASE").toUtf8().data();
 }
 
 void QRunnable_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQRunnable*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQRunnable*>(static_cast<QRunnable*>(ptr))) {
+		static_cast<MyQRunnable*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQSaveFile: public QSaveFile {
@@ -9202,11 +9217,16 @@ void QTextCodec_QTextCodec_SetCodecForLocale(void* c){
 }
 
 char* QTextCodec_ObjectNameAbs(void* ptr){
-	return static_cast<MyQTextCodec*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQTextCodec*>(static_cast<QTextCodec*>(ptr))) {
+		return static_cast<MyQTextCodec*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QTextCodec_BASE").toUtf8().data();
 }
 
 void QTextCodec_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQTextCodec*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQTextCodec*>(static_cast<QTextCodec*>(ptr))) {
+		static_cast<MyQTextCodec*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QTextDecoder_NewQTextDecoder(void* codec){
@@ -9406,11 +9426,16 @@ void QTextStream_DestroyQTextStream(void* ptr){
 }
 
 char* QTextStream_ObjectNameAbs(void* ptr){
-	return static_cast<MyQTextStream*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQTextStream*>(static_cast<QTextStream*>(ptr))) {
+		return static_cast<MyQTextStream*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QTextStream_BASE").toUtf8().data();
 }
 
 void QTextStream_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQTextStream*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQTextStream*>(static_cast<QTextStream*>(ptr))) {
+		static_cast<MyQTextStream*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQThread: public QThread {
@@ -10868,11 +10893,16 @@ void QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(void* ptr){
 }
 
 char* QXmlStreamEntityResolver_ObjectNameAbs(void* ptr){
-	return static_cast<MyQXmlStreamEntityResolver*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQXmlStreamEntityResolver*>(static_cast<QXmlStreamEntityResolver*>(ptr))) {
+		return static_cast<MyQXmlStreamEntityResolver*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QXmlStreamEntityResolver_BASE").toUtf8().data();
 }
 
 void QXmlStreamEntityResolver_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQXmlStreamEntityResolver*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQXmlStreamEntityResolver*>(static_cast<QXmlStreamEntityResolver*>(ptr))) {
+		static_cast<MyQXmlStreamEntityResolver*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration(){

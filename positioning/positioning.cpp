@@ -465,11 +465,16 @@ void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(void* pt
 }
 
 char* QGeoPositionInfoSourceFactory_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGeoPositionInfoSourceFactory*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGeoPositionInfoSourceFactory*>(static_cast<QGeoPositionInfoSourceFactory*>(ptr))) {
+		return static_cast<MyQGeoPositionInfoSourceFactory*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGeoPositionInfoSourceFactory_BASE").toUtf8().data();
 }
 
 void QGeoPositionInfoSourceFactory_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGeoPositionInfoSourceFactory*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGeoPositionInfoSourceFactory*>(static_cast<QGeoPositionInfoSourceFactory*>(ptr))) {
+		static_cast<MyQGeoPositionInfoSourceFactory*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QGeoRectangle_NewQGeoRectangle(){

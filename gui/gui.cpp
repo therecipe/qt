@@ -345,11 +345,16 @@ void QAccessibleActionInterface_DestroyQAccessibleActionInterface(void* ptr){
 }
 
 char* QAccessibleActionInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAccessibleActionInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAccessibleActionInterface*>(static_cast<QAccessibleActionInterface*>(ptr))) {
+		return static_cast<MyQAccessibleActionInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAccessibleActionInterface_BASE").toUtf8().data();
 }
 
 void QAccessibleActionInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAccessibleActionInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAccessibleActionInterface*>(static_cast<QAccessibleActionInterface*>(ptr))) {
+		static_cast<MyQAccessibleActionInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAccessibleEditableTextInterface: public QAccessibleEditableTextInterface {
@@ -377,11 +382,16 @@ void QAccessibleEditableTextInterface_DestroyQAccessibleEditableTextInterface(vo
 }
 
 char* QAccessibleEditableTextInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAccessibleEditableTextInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAccessibleEditableTextInterface*>(static_cast<QAccessibleEditableTextInterface*>(ptr))) {
+		return static_cast<MyQAccessibleEditableTextInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAccessibleEditableTextInterface_BASE").toUtf8().data();
 }
 
 void QAccessibleEditableTextInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAccessibleEditableTextInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAccessibleEditableTextInterface*>(static_cast<QAccessibleEditableTextInterface*>(ptr))) {
+		static_cast<MyQAccessibleEditableTextInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAccessibleEvent: public QAccessibleEvent {
@@ -427,11 +437,16 @@ void QAccessibleEvent_DestroyQAccessibleEvent(void* ptr){
 }
 
 char* QAccessibleEvent_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAccessibleEvent*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAccessibleEvent*>(static_cast<QAccessibleEvent*>(ptr))) {
+		return static_cast<MyQAccessibleEvent*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAccessibleEvent_BASE").toUtf8().data();
 }
 
 void QAccessibleEvent_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAccessibleEvent*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAccessibleEvent*>(static_cast<QAccessibleEvent*>(ptr))) {
+		static_cast<MyQAccessibleEvent*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAccessibleInterface: public QAccessibleInterface {
@@ -527,11 +542,16 @@ void* QAccessibleInterface_Window(void* ptr){
 }
 
 char* QAccessibleInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAccessibleInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAccessibleInterface*>(static_cast<QAccessibleInterface*>(ptr))) {
+		return static_cast<MyQAccessibleInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAccessibleInterface_BASE").toUtf8().data();
 }
 
 void QAccessibleInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAccessibleInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAccessibleInterface*>(static_cast<QAccessibleInterface*>(ptr))) {
+		static_cast<MyQAccessibleInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAccessibleObject: public QAccessibleObject {
@@ -564,11 +584,16 @@ void QAccessibleObject_SetText(void* ptr, int t, char* text){
 }
 
 char* QAccessibleObject_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAccessibleObject*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAccessibleObject*>(static_cast<QAccessibleObject*>(ptr))) {
+		return static_cast<MyQAccessibleObject*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAccessibleObject_BASE").toUtf8().data();
 }
 
 void QAccessibleObject_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAccessibleObject*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAccessibleObject*>(static_cast<QAccessibleObject*>(ptr))) {
+		static_cast<MyQAccessibleObject*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAccessibleTableCellInterface: public QAccessibleTableCellInterface {
@@ -608,11 +633,16 @@ void QAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(void* pt
 }
 
 char* QAccessibleTableCellInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAccessibleTableCellInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAccessibleTableCellInterface*>(static_cast<QAccessibleTableCellInterface*>(ptr))) {
+		return static_cast<MyQAccessibleTableCellInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAccessibleTableCellInterface_BASE").toUtf8().data();
 }
 
 void QAccessibleTableCellInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAccessibleTableCellInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAccessibleTableCellInterface*>(static_cast<QAccessibleTableCellInterface*>(ptr))) {
+		static_cast<MyQAccessibleTableCellInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAccessibleTableInterface: public QAccessibleTableInterface {
@@ -696,11 +726,16 @@ void QAccessibleTableInterface_DestroyQAccessibleTableInterface(void* ptr){
 }
 
 char* QAccessibleTableInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAccessibleTableInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAccessibleTableInterface*>(static_cast<QAccessibleTableInterface*>(ptr))) {
+		return static_cast<MyQAccessibleTableInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAccessibleTableInterface_BASE").toUtf8().data();
 }
 
 void QAccessibleTableInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAccessibleTableInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAccessibleTableInterface*>(static_cast<QAccessibleTableInterface*>(ptr))) {
+		static_cast<MyQAccessibleTableInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QAccessibleTableModelChangeEvent_NewQAccessibleTableModelChangeEvent2(void* iface, int changeType){
@@ -860,11 +895,16 @@ void QAccessibleTextInterface_DestroyQAccessibleTextInterface(void* ptr){
 }
 
 char* QAccessibleTextInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAccessibleTextInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAccessibleTextInterface*>(static_cast<QAccessibleTextInterface*>(ptr))) {
+		return static_cast<MyQAccessibleTextInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAccessibleTextInterface_BASE").toUtf8().data();
 }
 
 void QAccessibleTextInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAccessibleTextInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAccessibleTextInterface*>(static_cast<QAccessibleTextInterface*>(ptr))) {
+		static_cast<MyQAccessibleTextInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent2(void* iface, int position, char* text){
@@ -972,11 +1012,16 @@ void QAccessibleValueInterface_DestroyQAccessibleValueInterface(void* ptr){
 }
 
 char* QAccessibleValueInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAccessibleValueInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAccessibleValueInterface*>(static_cast<QAccessibleValueInterface*>(ptr))) {
+		return static_cast<MyQAccessibleValueInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAccessibleValueInterface_BASE").toUtf8().data();
 }
 
 void QAccessibleValueInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAccessibleValueInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAccessibleValueInterface*>(static_cast<QAccessibleValueInterface*>(ptr))) {
+		static_cast<MyQAccessibleValueInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QActionEvent_NewQActionEvent(int ty, void* action, void* before){
@@ -3183,11 +3228,16 @@ void QIconEngine_DestroyQIconEngine(void* ptr){
 }
 
 char* QIconEngine_ObjectNameAbs(void* ptr){
-	return static_cast<MyQIconEngine*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQIconEngine*>(static_cast<QIconEngine*>(ptr))) {
+		return static_cast<MyQIconEngine*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QIconEngine_BASE").toUtf8().data();
 }
 
 void QIconEngine_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQIconEngine*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQIconEngine*>(static_cast<QIconEngine*>(ptr))) {
+		static_cast<MyQIconEngine*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 int QImage_ColorCount(void* ptr){
@@ -4601,11 +4651,16 @@ void QPagedPaintDevice_DestroyQPagedPaintDevice(void* ptr){
 }
 
 char* QPagedPaintDevice_ObjectNameAbs(void* ptr){
-	return static_cast<MyQPagedPaintDevice*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQPagedPaintDevice*>(static_cast<QPagedPaintDevice*>(ptr))) {
+		return static_cast<MyQPagedPaintDevice*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QPagedPaintDevice_BASE").toUtf8().data();
 }
 
 void QPagedPaintDevice_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQPagedPaintDevice*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQPagedPaintDevice*>(static_cast<QPagedPaintDevice*>(ptr))) {
+		static_cast<MyQPagedPaintDevice*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQPaintDevice: public QPaintDevice {
@@ -4673,11 +4728,16 @@ int QPaintDevice_WidthMM(void* ptr){
 }
 
 char* QPaintDevice_ObjectNameAbs(void* ptr){
-	return static_cast<MyQPaintDevice*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQPaintDevice*>(static_cast<QPaintDevice*>(ptr))) {
+		return static_cast<MyQPaintDevice*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QPaintDevice_BASE").toUtf8().data();
 }
 
 void QPaintDevice_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQPaintDevice*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQPaintDevice*>(static_cast<QPaintDevice*>(ptr))) {
+		static_cast<MyQPaintDevice*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQPaintDeviceWindow: public QPaintDeviceWindow {
@@ -4790,11 +4850,16 @@ void QPaintEngine_DestroyQPaintEngine(void* ptr){
 }
 
 char* QPaintEngine_ObjectNameAbs(void* ptr){
-	return static_cast<MyQPaintEngine*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQPaintEngine*>(static_cast<QPaintEngine*>(ptr))) {
+		return static_cast<MyQPaintEngine*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QPaintEngine_BASE").toUtf8().data();
 }
 
 void QPaintEngine_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQPaintEngine*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQPaintEngine*>(static_cast<QPaintEngine*>(ptr))) {
+		static_cast<MyQPaintEngine*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QPaintEngineState_BackgroundBrush(void* ptr){
@@ -6212,11 +6277,16 @@ void QPicture_DestroyQPicture(void* ptr){
 }
 
 char* QPicture_ObjectNameAbs(void* ptr){
-	return static_cast<MyQPicture*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQPicture*>(static_cast<QPicture*>(ptr))) {
+		return static_cast<MyQPicture*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QPicture_BASE").toUtf8().data();
 }
 
 void QPicture_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQPicture*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQPicture*>(static_cast<QPicture*>(ptr))) {
+		static_cast<MyQPicture*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QPixelFormat_NewQPixelFormat(){
@@ -7486,11 +7556,16 @@ void QStandardItem_DestroyQStandardItem(void* ptr){
 }
 
 char* QStandardItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQStandardItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQStandardItem*>(static_cast<QStandardItem*>(ptr))) {
+		return static_cast<MyQStandardItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QStandardItem_BASE").toUtf8().data();
 }
 
 void QStandardItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQStandardItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQStandardItem*>(static_cast<QStandardItem*>(ptr))) {
+		static_cast<MyQStandardItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQStandardItemModel: public QStandardItemModel {
@@ -7917,11 +7992,16 @@ void QSurface_DestroyQSurface(void* ptr){
 }
 
 char* QSurface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSurface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSurface*>(static_cast<QSurface*>(ptr))) {
+		return static_cast<MyQSurface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSurface_BASE").toUtf8().data();
 }
 
 void QSurface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSurface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSurface*>(static_cast<QSurface*>(ptr))) {
+		static_cast<MyQSurface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QSurfaceFormat_NewQSurfaceFormat(){
@@ -8405,11 +8485,16 @@ void QTextBlockUserData_DestroyQTextBlockUserData(void* ptr){
 }
 
 char* QTextBlockUserData_ObjectNameAbs(void* ptr){
-	return static_cast<MyQTextBlockUserData*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQTextBlockUserData*>(static_cast<QTextBlockUserData*>(ptr))) {
+		return static_cast<MyQTextBlockUserData*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QTextBlockUserData_BASE").toUtf8().data();
 }
 
 void QTextBlockUserData_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQTextBlockUserData*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQTextBlockUserData*>(static_cast<QTextBlockUserData*>(ptr))) {
+		static_cast<MyQTextBlockUserData*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QTextCharFormat_NewQTextCharFormat(){
@@ -10065,11 +10150,16 @@ void QTextObjectInterface_DestroyQTextObjectInterface(void* ptr){
 }
 
 char* QTextObjectInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQTextObjectInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQTextObjectInterface*>(static_cast<QTextObjectInterface*>(ptr))) {
+		return static_cast<MyQTextObjectInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QTextObjectInterface_BASE").toUtf8().data();
 }
 
 void QTextObjectInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQTextObjectInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQTextObjectInterface*>(static_cast<QTextObjectInterface*>(ptr))) {
+		static_cast<MyQTextObjectInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QTextOption_NewQTextOption3(void* other){

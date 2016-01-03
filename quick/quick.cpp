@@ -172,11 +172,16 @@ void QQuickImageProvider_DestroyQQuickImageProvider(void* ptr){
 }
 
 char* QQuickImageProvider_ObjectNameAbs(void* ptr){
-	return static_cast<MyQQuickImageProvider*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQQuickImageProvider*>(static_cast<QQuickImageProvider*>(ptr))) {
+		return static_cast<MyQQuickImageProvider*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QQuickImageProvider_BASE").toUtf8().data();
 }
 
 void QQuickImageProvider_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQQuickImageProvider*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQQuickImageProvider*>(static_cast<QQuickImageProvider*>(ptr))) {
+		static_cast<MyQQuickImageProvider*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQQuickItem: public QQuickItem {
@@ -1530,11 +1535,16 @@ void QSGGeometry_DestroyQSGGeometry(void* ptr){
 }
 
 char* QSGGeometry_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSGGeometry*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSGGeometry*>(static_cast<QSGGeometry*>(ptr))) {
+		return static_cast<MyQSGGeometry*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSGGeometry_BASE").toUtf8().data();
 }
 
 void QSGGeometry_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSGGeometry*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSGGeometry*>(static_cast<QSGGeometry*>(ptr))) {
+		static_cast<MyQSGGeometry*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QSGGeometryNode_NewQSGGeometryNode(){
@@ -1590,11 +1600,16 @@ void* QSGMaterial_Type(void* ptr){
 }
 
 char* QSGMaterial_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSGMaterial*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSGMaterial*>(static_cast<QSGMaterial*>(ptr))) {
+		return static_cast<MyQSGMaterial*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSGMaterial_BASE").toUtf8().data();
 }
 
 void QSGMaterial_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSGMaterial*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSGMaterial*>(static_cast<QSGMaterial*>(ptr))) {
+		static_cast<MyQSGMaterial*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQSGMaterialShader: public QSGMaterialShader {
@@ -1622,11 +1637,16 @@ void* QSGMaterialShader_Program(void* ptr){
 }
 
 char* QSGMaterialShader_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSGMaterialShader*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSGMaterialShader*>(static_cast<QSGMaterialShader*>(ptr))) {
+		return static_cast<MyQSGMaterialShader*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSGMaterialShader_BASE").toUtf8().data();
 }
 
 void QSGMaterialShader_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSGMaterialShader*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSGMaterialShader*>(static_cast<QSGMaterialShader*>(ptr))) {
+		static_cast<MyQSGMaterialShader*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQSGNode: public QSGNode {
@@ -1728,11 +1748,16 @@ void QSGNode_DestroyQSGNode(void* ptr){
 }
 
 char* QSGNode_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSGNode*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSGNode*>(static_cast<QSGNode*>(ptr))) {
+		return static_cast<MyQSGNode*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSGNode_BASE").toUtf8().data();
 }
 
 void QSGNode_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSGNode*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSGNode*>(static_cast<QSGNode*>(ptr))) {
+		static_cast<MyQSGNode*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QSGOpacityNode_NewQSGOpacityNode(){

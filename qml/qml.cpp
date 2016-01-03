@@ -246,11 +246,16 @@ void QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(void* ptr){
 }
 
 char* QQmlAbstractUrlInterceptor_ObjectNameAbs(void* ptr){
-	return static_cast<MyQQmlAbstractUrlInterceptor*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQQmlAbstractUrlInterceptor*>(static_cast<QQmlAbstractUrlInterceptor*>(ptr))) {
+		return static_cast<MyQQmlAbstractUrlInterceptor*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QQmlAbstractUrlInterceptor_BASE").toUtf8().data();
 }
 
 void QQmlAbstractUrlInterceptor_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQQmlAbstractUrlInterceptor*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQQmlAbstractUrlInterceptor*>(static_cast<QQmlAbstractUrlInterceptor*>(ptr))) {
+		static_cast<MyQQmlAbstractUrlInterceptor*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQQmlApplicationEngine: public QQmlApplicationEngine {
@@ -841,11 +846,16 @@ int QQmlIncubationController_IncubatingObjectCount(void* ptr){
 }
 
 char* QQmlIncubationController_ObjectNameAbs(void* ptr){
-	return static_cast<MyQQmlIncubationController*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQQmlIncubationController*>(static_cast<QQmlIncubationController*>(ptr))) {
+		return static_cast<MyQQmlIncubationController*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QQmlIncubationController_BASE").toUtf8().data();
 }
 
 void QQmlIncubationController_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQQmlIncubationController*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQQmlIncubationController*>(static_cast<QQmlIncubationController*>(ptr))) {
+		static_cast<MyQQmlIncubationController*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQQmlIncubator: public QQmlIncubator {
@@ -900,11 +910,16 @@ int QQmlIncubator_Status(void* ptr){
 }
 
 char* QQmlIncubator_ObjectNameAbs(void* ptr){
-	return static_cast<MyQQmlIncubator*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQQmlIncubator*>(static_cast<QQmlIncubator*>(ptr))) {
+		return static_cast<MyQQmlIncubator*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QQmlIncubator_BASE").toUtf8().data();
 }
 
 void QQmlIncubator_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQQmlIncubator*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQQmlIncubator*>(static_cast<QQmlIncubator*>(ptr))) {
+		static_cast<MyQQmlIncubator*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QQmlListReference_NewQQmlListReference(){
@@ -984,11 +999,16 @@ void QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(void
 }
 
 char* QQmlNetworkAccessManagerFactory_ObjectNameAbs(void* ptr){
-	return static_cast<MyQQmlNetworkAccessManagerFactory*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQQmlNetworkAccessManagerFactory*>(static_cast<QQmlNetworkAccessManagerFactory*>(ptr))) {
+		return static_cast<MyQQmlNetworkAccessManagerFactory*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QQmlNetworkAccessManagerFactory_BASE").toUtf8().data();
 }
 
 void QQmlNetworkAccessManagerFactory_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQQmlNetworkAccessManagerFactory*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQQmlNetworkAccessManagerFactory*>(static_cast<QQmlNetworkAccessManagerFactory*>(ptr))) {
+		static_cast<MyQQmlNetworkAccessManagerFactory*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void QQmlParserStatus_ClassBegin(void* ptr){
@@ -1202,11 +1222,16 @@ void QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(void* ptr){
 }
 
 char* QQmlPropertyValueSource_ObjectNameAbs(void* ptr){
-	return static_cast<MyQQmlPropertyValueSource*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQQmlPropertyValueSource*>(static_cast<QQmlPropertyValueSource*>(ptr))) {
+		return static_cast<MyQQmlPropertyValueSource*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QQmlPropertyValueSource_BASE").toUtf8().data();
 }
 
 void QQmlPropertyValueSource_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQQmlPropertyValueSource*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQQmlPropertyValueSource*>(static_cast<QQmlPropertyValueSource*>(ptr))) {
+		static_cast<MyQQmlPropertyValueSource*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QQmlScriptString_NewQQmlScriptString(){

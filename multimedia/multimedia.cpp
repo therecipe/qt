@@ -122,11 +122,16 @@ void QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(void* ptr){
 }
 
 char* QAbstractPlanarVideoBuffer_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAbstractPlanarVideoBuffer*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAbstractPlanarVideoBuffer*>(static_cast<QAbstractPlanarVideoBuffer*>(ptr))) {
+		return static_cast<MyQAbstractPlanarVideoBuffer*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAbstractPlanarVideoBuffer_BASE").toUtf8().data();
 }
 
 void QAbstractPlanarVideoBuffer_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAbstractPlanarVideoBuffer*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAbstractPlanarVideoBuffer*>(static_cast<QAbstractPlanarVideoBuffer*>(ptr))) {
+		static_cast<MyQAbstractPlanarVideoBuffer*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAbstractVideoBuffer: public QAbstractVideoBuffer {
@@ -163,11 +168,16 @@ void QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(void* ptr){
 }
 
 char* QAbstractVideoBuffer_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAbstractVideoBuffer*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAbstractVideoBuffer*>(static_cast<QAbstractVideoBuffer*>(ptr))) {
+		return static_cast<MyQAbstractVideoBuffer*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAbstractVideoBuffer_BASE").toUtf8().data();
 }
 
 void QAbstractVideoBuffer_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAbstractVideoBuffer*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAbstractVideoBuffer*>(static_cast<QAbstractVideoBuffer*>(ptr))) {
+		static_cast<MyQAbstractVideoBuffer*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAbstractVideoFilter: public QAbstractVideoFilter {
@@ -2764,11 +2774,16 @@ void QMediaBindableInterface_DestroyQMediaBindableInterface(void* ptr){
 }
 
 char* QMediaBindableInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQMediaBindableInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQMediaBindableInterface*>(static_cast<QMediaBindableInterface*>(ptr))) {
+		return static_cast<MyQMediaBindableInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QMediaBindableInterface_BASE").toUtf8().data();
 }
 
 void QMediaBindableInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQMediaBindableInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQMediaBindableInterface*>(static_cast<QMediaBindableInterface*>(ptr))) {
+		static_cast<MyQMediaBindableInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQMediaContainerControl: public QMediaContainerControl {
@@ -4251,11 +4266,16 @@ void QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(vo
 }
 
 char* QMediaServiceCameraInfoInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQMediaServiceCameraInfoInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQMediaServiceCameraInfoInterface*>(static_cast<QMediaServiceCameraInfoInterface*>(ptr))) {
+		return static_cast<MyQMediaServiceCameraInfoInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QMediaServiceCameraInfoInterface_BASE").toUtf8().data();
 }
 
 void QMediaServiceCameraInfoInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQMediaServiceCameraInfoInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQMediaServiceCameraInfoInterface*>(static_cast<QMediaServiceCameraInfoInterface*>(ptr))) {
+		static_cast<MyQMediaServiceCameraInfoInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQMediaServiceDefaultDeviceInterface: public QMediaServiceDefaultDeviceInterface {
@@ -4275,11 +4295,16 @@ void QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterf
 }
 
 char* QMediaServiceDefaultDeviceInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQMediaServiceDefaultDeviceInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQMediaServiceDefaultDeviceInterface*>(static_cast<QMediaServiceDefaultDeviceInterface*>(ptr))) {
+		return static_cast<MyQMediaServiceDefaultDeviceInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QMediaServiceDefaultDeviceInterface_BASE").toUtf8().data();
 }
 
 void QMediaServiceDefaultDeviceInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQMediaServiceDefaultDeviceInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQMediaServiceDefaultDeviceInterface*>(static_cast<QMediaServiceDefaultDeviceInterface*>(ptr))) {
+		static_cast<MyQMediaServiceDefaultDeviceInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQMediaServiceFeaturesInterface: public QMediaServiceFeaturesInterface {
@@ -4295,11 +4320,16 @@ void QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(void* 
 }
 
 char* QMediaServiceFeaturesInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQMediaServiceFeaturesInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQMediaServiceFeaturesInterface*>(static_cast<QMediaServiceFeaturesInterface*>(ptr))) {
+		return static_cast<MyQMediaServiceFeaturesInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QMediaServiceFeaturesInterface_BASE").toUtf8().data();
 }
 
 void QMediaServiceFeaturesInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQMediaServiceFeaturesInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQMediaServiceFeaturesInterface*>(static_cast<QMediaServiceFeaturesInterface*>(ptr))) {
+		static_cast<MyQMediaServiceFeaturesInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QMediaServiceProviderPlugin_Create(void* ptr, char* key){
@@ -4327,11 +4357,16 @@ void QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevices
 }
 
 char* QMediaServiceSupportedDevicesInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQMediaServiceSupportedDevicesInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQMediaServiceSupportedDevicesInterface*>(static_cast<QMediaServiceSupportedDevicesInterface*>(ptr))) {
+		return static_cast<MyQMediaServiceSupportedDevicesInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QMediaServiceSupportedDevicesInterface_BASE").toUtf8().data();
 }
 
 void QMediaServiceSupportedDevicesInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQMediaServiceSupportedDevicesInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQMediaServiceSupportedDevicesInterface*>(static_cast<QMediaServiceSupportedDevicesInterface*>(ptr))) {
+		static_cast<MyQMediaServiceSupportedDevicesInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQMediaServiceSupportedFormatsInterface: public QMediaServiceSupportedFormatsInterface {
@@ -4355,11 +4390,16 @@ void QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormats
 }
 
 char* QMediaServiceSupportedFormatsInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQMediaServiceSupportedFormatsInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQMediaServiceSupportedFormatsInterface*>(static_cast<QMediaServiceSupportedFormatsInterface*>(ptr))) {
+		return static_cast<MyQMediaServiceSupportedFormatsInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QMediaServiceSupportedFormatsInterface_BASE").toUtf8().data();
 }
 
 void QMediaServiceSupportedFormatsInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQMediaServiceSupportedFormatsInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQMediaServiceSupportedFormatsInterface*>(static_cast<QMediaServiceSupportedFormatsInterface*>(ptr))) {
+		static_cast<MyQMediaServiceSupportedFormatsInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQMediaStreamsControl: public QMediaStreamsControl {

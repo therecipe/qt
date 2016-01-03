@@ -165,11 +165,16 @@ void QSvgGenerator_DestroyQSvgGenerator(void* ptr){
 }
 
 char* QSvgGenerator_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSvgGenerator*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSvgGenerator*>(static_cast<QSvgGenerator*>(ptr))) {
+		return static_cast<MyQSvgGenerator*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSvgGenerator_BASE").toUtf8().data();
 }
 
 void QSvgGenerator_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSvgGenerator*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSvgGenerator*>(static_cast<QSvgGenerator*>(ptr))) {
+		static_cast<MyQSvgGenerator*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQSvgRenderer: public QSvgRenderer {

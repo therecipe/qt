@@ -1045,11 +1045,16 @@ int QSensorFilter_Filter(void* ptr, void* reading){
 }
 
 char* QSensorFilter_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSensorFilter*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSensorFilter*>(static_cast<QSensorFilter*>(ptr))) {
+		return static_cast<MyQSensorFilter*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSensorFilter_BASE").toUtf8().data();
 }
 
 void QSensorFilter_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSensorFilter*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSensorFilter*>(static_cast<QSensorFilter*>(ptr))) {
+		static_cast<MyQSensorFilter*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQSensorGesture: public QSensorGesture {
@@ -1154,11 +1159,16 @@ void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(void* pt
 }
 
 char* QSensorGesturePluginInterface_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSensorGesturePluginInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSensorGesturePluginInterface*>(static_cast<QSensorGesturePluginInterface*>(ptr))) {
+		return static_cast<MyQSensorGesturePluginInterface*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSensorGesturePluginInterface_BASE").toUtf8().data();
 }
 
 void QSensorGesturePluginInterface_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSensorGesturePluginInterface*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSensorGesturePluginInterface*>(static_cast<QSensorGesturePluginInterface*>(ptr))) {
+		static_cast<MyQSensorGesturePluginInterface*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQSensorGestureRecognizer: public QSensorGestureRecognizer {

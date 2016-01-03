@@ -96,11 +96,16 @@ void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(void* ptr){
 }
 
 char* QAbstractXmlNodeModel_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAbstractXmlNodeModel*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAbstractXmlNodeModel*>(static_cast<QAbstractXmlNodeModel*>(ptr))) {
+		return static_cast<MyQAbstractXmlNodeModel*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAbstractXmlNodeModel_BASE").toUtf8().data();
 }
 
 void QAbstractXmlNodeModel_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAbstractXmlNodeModel*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAbstractXmlNodeModel*>(static_cast<QAbstractXmlNodeModel*>(ptr))) {
+		static_cast<MyQAbstractXmlNodeModel*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAbstractXmlReceiver: public QAbstractXmlReceiver {
@@ -160,11 +165,16 @@ void QAbstractXmlReceiver_DestroyQAbstractXmlReceiver(void* ptr){
 }
 
 char* QAbstractXmlReceiver_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAbstractXmlReceiver*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAbstractXmlReceiver*>(static_cast<QAbstractXmlReceiver*>(ptr))) {
+		return static_cast<MyQAbstractXmlReceiver*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAbstractXmlReceiver_BASE").toUtf8().data();
 }
 
 void QAbstractXmlReceiver_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAbstractXmlReceiver*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAbstractXmlReceiver*>(static_cast<QAbstractXmlReceiver*>(ptr))) {
+		static_cast<MyQAbstractXmlReceiver*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQSimpleXmlNodeModel: public QSimpleXmlNodeModel {
@@ -188,11 +198,16 @@ void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(void* ptr){
 }
 
 char* QSimpleXmlNodeModel_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSimpleXmlNodeModel*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSimpleXmlNodeModel*>(static_cast<QSimpleXmlNodeModel*>(ptr))) {
+		return static_cast<MyQSimpleXmlNodeModel*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSimpleXmlNodeModel_BASE").toUtf8().data();
 }
 
 void QSimpleXmlNodeModel_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSimpleXmlNodeModel*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSimpleXmlNodeModel*>(static_cast<QSimpleXmlNodeModel*>(ptr))) {
+		static_cast<MyQSimpleXmlNodeModel*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QSourceLocation_NewQSourceLocation(){
@@ -296,11 +311,16 @@ void QXmlFormatter_StartOfSequence(void* ptr){
 }
 
 char* QXmlFormatter_ObjectNameAbs(void* ptr){
-	return static_cast<MyQXmlFormatter*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQXmlFormatter*>(static_cast<QXmlFormatter*>(ptr))) {
+		return static_cast<MyQXmlFormatter*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QXmlFormatter_BASE").toUtf8().data();
 }
 
 void QXmlFormatter_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQXmlFormatter*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQXmlFormatter*>(static_cast<QXmlFormatter*>(ptr))) {
+		static_cast<MyQXmlFormatter*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QXmlItem_NewQXmlItem(){
@@ -537,11 +557,16 @@ void QXmlResultItems_DestroyQXmlResultItems(void* ptr){
 }
 
 char* QXmlResultItems_ObjectNameAbs(void* ptr){
-	return static_cast<MyQXmlResultItems*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQXmlResultItems*>(static_cast<QXmlResultItems*>(ptr))) {
+		return static_cast<MyQXmlResultItems*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QXmlResultItems_BASE").toUtf8().data();
 }
 
 void QXmlResultItems_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQXmlResultItems*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQXmlResultItems*>(static_cast<QXmlResultItems*>(ptr))) {
+		static_cast<MyQXmlResultItems*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QXmlSchema_NewQXmlSchema(){
@@ -713,10 +738,15 @@ void QXmlSerializer_StartOfSequence(void* ptr){
 }
 
 char* QXmlSerializer_ObjectNameAbs(void* ptr){
-	return static_cast<MyQXmlSerializer*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQXmlSerializer*>(static_cast<QXmlSerializer*>(ptr))) {
+		return static_cast<MyQXmlSerializer*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QXmlSerializer_BASE").toUtf8().data();
 }
 
 void QXmlSerializer_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQXmlSerializer*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQXmlSerializer*>(static_cast<QXmlSerializer*>(ptr))) {
+		static_cast<MyQXmlSerializer*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 

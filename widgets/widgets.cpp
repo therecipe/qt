@@ -497,11 +497,16 @@ void QAbstractGraphicsShapeItem_DestroyQAbstractGraphicsShapeItem(void* ptr){
 }
 
 char* QAbstractGraphicsShapeItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAbstractGraphicsShapeItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
+		return static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAbstractGraphicsShapeItem_BASE").toUtf8().data();
 }
 
 void QAbstractGraphicsShapeItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAbstractGraphicsShapeItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
+		static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAbstractItemDelegate: public QAbstractItemDelegate {
@@ -1544,11 +1549,16 @@ void* QAccessibleWidget_Window(void* ptr){
 }
 
 char* QAccessibleWidget_ObjectNameAbs(void* ptr){
-	return static_cast<MyQAccessibleWidget*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQAccessibleWidget*>(static_cast<QAccessibleWidget*>(ptr))) {
+		return static_cast<MyQAccessibleWidget*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QAccessibleWidget_BASE").toUtf8().data();
 }
 
 void QAccessibleWidget_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQAccessibleWidget*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQAccessibleWidget*>(static_cast<QAccessibleWidget*>(ptr))) {
+		static_cast<MyQAccessibleWidget*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQAction: public QAction {
@@ -5175,11 +5185,16 @@ void QFileIconProvider_DestroyQFileIconProvider(void* ptr){
 }
 
 char* QFileIconProvider_ObjectNameAbs(void* ptr){
-	return static_cast<MyQFileIconProvider*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQFileIconProvider*>(static_cast<QFileIconProvider*>(ptr))) {
+		return static_cast<MyQFileIconProvider*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QFileIconProvider_BASE").toUtf8().data();
 }
 
 void QFileIconProvider_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQFileIconProvider*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQFileIconProvider*>(static_cast<QFileIconProvider*>(ptr))) {
+		static_cast<MyQFileIconProvider*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQFileSystemModel: public QFileSystemModel {
@@ -6076,11 +6091,16 @@ void QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayout(void* ptr){
 }
 
 char* QGraphicsAnchorLayout_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGraphicsAnchorLayout*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGraphicsAnchorLayout*>(static_cast<QGraphicsAnchorLayout*>(ptr))) {
+		return static_cast<MyQGraphicsAnchorLayout*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsAnchorLayout_BASE").toUtf8().data();
 }
 
 void QGraphicsAnchorLayout_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGraphicsAnchorLayout*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGraphicsAnchorLayout*>(static_cast<QGraphicsAnchorLayout*>(ptr))) {
+		static_cast<MyQGraphicsAnchorLayout*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQGraphicsBlurEffect: public QGraphicsBlurEffect {
@@ -6318,11 +6338,16 @@ void QGraphicsEllipseItem_DestroyQGraphicsEllipseItem(void* ptr){
 }
 
 char* QGraphicsEllipseItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGraphicsEllipseItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGraphicsEllipseItem*>(static_cast<QGraphicsEllipseItem*>(ptr))) {
+		return static_cast<MyQGraphicsEllipseItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsEllipseItem_BASE").toUtf8().data();
 }
 
 void QGraphicsEllipseItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGraphicsEllipseItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGraphicsEllipseItem*>(static_cast<QGraphicsEllipseItem*>(ptr))) {
+		static_cast<MyQGraphicsEllipseItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQGraphicsGridLayout: public QGraphicsGridLayout {
@@ -6513,11 +6538,16 @@ void QGraphicsGridLayout_DestroyQGraphicsGridLayout(void* ptr){
 }
 
 char* QGraphicsGridLayout_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGraphicsGridLayout*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGraphicsGridLayout*>(static_cast<QGraphicsGridLayout*>(ptr))) {
+		return static_cast<MyQGraphicsGridLayout*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsGridLayout_BASE").toUtf8().data();
 }
 
 void QGraphicsGridLayout_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGraphicsGridLayout*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGraphicsGridLayout*>(static_cast<QGraphicsGridLayout*>(ptr))) {
+		static_cast<MyQGraphicsGridLayout*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQGraphicsItemGroup: public QGraphicsItemGroup {
@@ -6559,11 +6589,16 @@ void QGraphicsItemGroup_DestroyQGraphicsItemGroup(void* ptr){
 }
 
 char* QGraphicsItemGroup_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGraphicsItemGroup*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGraphicsItemGroup*>(static_cast<QGraphicsItemGroup*>(ptr))) {
+		return static_cast<MyQGraphicsItemGroup*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsItemGroup_BASE").toUtf8().data();
 }
 
 void QGraphicsItemGroup_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGraphicsItemGroup*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGraphicsItemGroup*>(static_cast<QGraphicsItemGroup*>(ptr))) {
+		static_cast<MyQGraphicsItemGroup*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQGraphicsLineItem: public QGraphicsLineItem {
@@ -6623,11 +6658,16 @@ void QGraphicsLineItem_DestroyQGraphicsLineItem(void* ptr){
 }
 
 char* QGraphicsLineItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGraphicsLineItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGraphicsLineItem*>(static_cast<QGraphicsLineItem*>(ptr))) {
+		return static_cast<MyQGraphicsLineItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsLineItem_BASE").toUtf8().data();
 }
 
 void QGraphicsLineItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGraphicsLineItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGraphicsLineItem*>(static_cast<QGraphicsLineItem*>(ptr))) {
+		static_cast<MyQGraphicsLineItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQGraphicsLinearLayout: public QGraphicsLinearLayout {
@@ -6731,11 +6771,16 @@ void QGraphicsLinearLayout_DestroyQGraphicsLinearLayout(void* ptr){
 }
 
 char* QGraphicsLinearLayout_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGraphicsLinearLayout*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGraphicsLinearLayout*>(static_cast<QGraphicsLinearLayout*>(ptr))) {
+		return static_cast<MyQGraphicsLinearLayout*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsLinearLayout_BASE").toUtf8().data();
 }
 
 void QGraphicsLinearLayout_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGraphicsLinearLayout*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGraphicsLinearLayout*>(static_cast<QGraphicsLinearLayout*>(ptr))) {
+		static_cast<MyQGraphicsLinearLayout*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQGraphicsObject: public QGraphicsObject {
@@ -6924,11 +6969,16 @@ void QGraphicsPathItem_DestroyQGraphicsPathItem(void* ptr){
 }
 
 char* QGraphicsPathItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGraphicsPathItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGraphicsPathItem*>(static_cast<QGraphicsPathItem*>(ptr))) {
+		return static_cast<MyQGraphicsPathItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsPathItem_BASE").toUtf8().data();
 }
 
 void QGraphicsPathItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGraphicsPathItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGraphicsPathItem*>(static_cast<QGraphicsPathItem*>(ptr))) {
+		static_cast<MyQGraphicsPathItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQGraphicsPixmapItem: public QGraphicsPixmapItem {
@@ -6999,11 +7049,16 @@ void QGraphicsPixmapItem_DestroyQGraphicsPixmapItem(void* ptr){
 }
 
 char* QGraphicsPixmapItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGraphicsPixmapItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGraphicsPixmapItem*>(static_cast<QGraphicsPixmapItem*>(ptr))) {
+		return static_cast<MyQGraphicsPixmapItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsPixmapItem_BASE").toUtf8().data();
 }
 
 void QGraphicsPixmapItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGraphicsPixmapItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGraphicsPixmapItem*>(static_cast<QGraphicsPixmapItem*>(ptr))) {
+		static_cast<MyQGraphicsPixmapItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQGraphicsPolygonItem: public QGraphicsPolygonItem {
@@ -7048,11 +7103,16 @@ void QGraphicsPolygonItem_DestroyQGraphicsPolygonItem(void* ptr){
 }
 
 char* QGraphicsPolygonItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGraphicsPolygonItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGraphicsPolygonItem*>(static_cast<QGraphicsPolygonItem*>(ptr))) {
+		return static_cast<MyQGraphicsPolygonItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsPolygonItem_BASE").toUtf8().data();
 }
 
 void QGraphicsPolygonItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGraphicsPolygonItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGraphicsPolygonItem*>(static_cast<QGraphicsPolygonItem*>(ptr))) {
+		static_cast<MyQGraphicsPolygonItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQGraphicsProxyWidget: public QGraphicsProxyWidget {
@@ -7163,11 +7223,16 @@ void QGraphicsRectItem_DestroyQGraphicsRectItem(void* ptr){
 }
 
 char* QGraphicsRectItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGraphicsRectItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGraphicsRectItem*>(static_cast<QGraphicsRectItem*>(ptr))) {
+		return static_cast<MyQGraphicsRectItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsRectItem_BASE").toUtf8().data();
 }
 
 void QGraphicsRectItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGraphicsRectItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGraphicsRectItem*>(static_cast<QGraphicsRectItem*>(ptr))) {
+		static_cast<MyQGraphicsRectItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQGraphicsRotation: public QGraphicsRotation {
@@ -7857,11 +7922,16 @@ void QGraphicsSimpleTextItem_DestroyQGraphicsSimpleTextItem(void* ptr){
 }
 
 char* QGraphicsSimpleTextItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQGraphicsSimpleTextItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQGraphicsSimpleTextItem*>(static_cast<QGraphicsSimpleTextItem*>(ptr))) {
+		return static_cast<MyQGraphicsSimpleTextItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsSimpleTextItem_BASE").toUtf8().data();
 }
 
 void QGraphicsSimpleTextItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQGraphicsSimpleTextItem*>(static_cast<QGraphicsSimpleTextItem*>(ptr))) {
+		static_cast<MyQGraphicsSimpleTextItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQGraphicsTextItem: public QGraphicsTextItem {
@@ -9523,11 +9593,16 @@ void* QItemEditorCreatorBase_ValuePropertyName(void* ptr){
 }
 
 char* QItemEditorCreatorBase_ObjectNameAbs(void* ptr){
-	return static_cast<MyQItemEditorCreatorBase*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQItemEditorCreatorBase*>(static_cast<QItemEditorCreatorBase*>(ptr))) {
+		return static_cast<MyQItemEditorCreatorBase*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QItemEditorCreatorBase_BASE").toUtf8().data();
 }
 
 void QItemEditorCreatorBase_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQItemEditorCreatorBase*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQItemEditorCreatorBase*>(static_cast<QItemEditorCreatorBase*>(ptr))) {
+		static_cast<MyQItemEditorCreatorBase*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQItemEditorFactory: public QItemEditorFactory {
@@ -9568,11 +9643,16 @@ void QItemEditorFactory_DestroyQItemEditorFactory(void* ptr){
 }
 
 char* QItemEditorFactory_ObjectNameAbs(void* ptr){
-	return static_cast<MyQItemEditorFactory*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQItemEditorFactory*>(static_cast<QItemEditorFactory*>(ptr))) {
+		return static_cast<MyQItemEditorFactory*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QItemEditorFactory_BASE").toUtf8().data();
 }
 
 void QItemEditorFactory_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQItemEditorFactory*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQItemEditorFactory*>(static_cast<QItemEditorFactory*>(ptr))) {
+		static_cast<MyQItemEditorFactory*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQKeyEventTransition: public QKeyEventTransition {
@@ -10247,11 +10327,16 @@ void QLayoutItem_DestroyQLayoutItem(void* ptr){
 }
 
 char* QLayoutItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQLayoutItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQLayoutItem*>(static_cast<QLayoutItem*>(ptr))) {
+		return static_cast<MyQLayoutItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QLayoutItem_BASE").toUtf8().data();
 }
 
 void QLayoutItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQLayoutItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQLayoutItem*>(static_cast<QLayoutItem*>(ptr))) {
+		static_cast<MyQLayoutItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQLineEdit: public QLineEdit {
@@ -11247,11 +11332,16 @@ void QListWidgetItem_DestroyQListWidgetItem(void* ptr){
 }
 
 char* QListWidgetItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQListWidgetItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQListWidgetItem*>(static_cast<QListWidgetItem*>(ptr))) {
+		return static_cast<MyQListWidgetItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QListWidgetItem_BASE").toUtf8().data();
 }
 
 void QListWidgetItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQListWidgetItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQListWidgetItem*>(static_cast<QListWidgetItem*>(ptr))) {
+		static_cast<MyQListWidgetItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQMacCocoaViewContainer: public QMacCocoaViewContainer {
@@ -13989,11 +14079,16 @@ void QScrollerProperties_DestroyQScrollerProperties(void* ptr){
 }
 
 char* QScrollerProperties_ObjectNameAbs(void* ptr){
-	return static_cast<MyQScrollerProperties*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQScrollerProperties*>(static_cast<QScrollerProperties*>(ptr))) {
+		return static_cast<MyQScrollerProperties*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QScrollerProperties_BASE").toUtf8().data();
 }
 
 void QScrollerProperties_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQScrollerProperties*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQScrollerProperties*>(static_cast<QScrollerProperties*>(ptr))) {
+		static_cast<MyQScrollerProperties*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQShortcut: public QShortcut {
@@ -14346,11 +14441,16 @@ void QSpacerItem_DestroyQSpacerItem(void* ptr){
 }
 
 char* QSpacerItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSpacerItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSpacerItem*>(static_cast<QSpacerItem*>(ptr))) {
+		return static_cast<MyQSpacerItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSpacerItem_BASE").toUtf8().data();
 }
 
 void QSpacerItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSpacerItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSpacerItem*>(static_cast<QSpacerItem*>(ptr))) {
+		static_cast<MyQSpacerItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQSpinBox: public QSpinBox {
@@ -17860,11 +17960,16 @@ void QTableWidgetItem_DestroyQTableWidgetItem(void* ptr){
 }
 
 char* QTableWidgetItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQTableWidgetItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQTableWidgetItem*>(static_cast<QTableWidgetItem*>(ptr))) {
+		return static_cast<MyQTableWidgetItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QTableWidgetItem_BASE").toUtf8().data();
 }
 
 void QTableWidgetItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQTableWidgetItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQTableWidgetItem*>(static_cast<QTableWidgetItem*>(ptr))) {
+		static_cast<MyQTableWidgetItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QTableWidgetSelectionRange_NewQTableWidgetSelectionRange(){
@@ -19954,11 +20059,16 @@ void QTreeWidgetItem_DestroyQTreeWidgetItem(void* ptr){
 }
 
 char* QTreeWidgetItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQTreeWidgetItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQTreeWidgetItem*>(static_cast<QTreeWidgetItem*>(ptr))) {
+		return static_cast<MyQTreeWidgetItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QTreeWidgetItem_BASE").toUtf8().data();
 }
 
 void QTreeWidgetItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQTreeWidgetItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQTreeWidgetItem*>(static_cast<QTreeWidgetItem*>(ptr))) {
+		static_cast<MyQTreeWidgetItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQUndoCommand: public QUndoCommand {
@@ -20022,11 +20132,16 @@ void QUndoCommand_DestroyQUndoCommand(void* ptr){
 }
 
 char* QUndoCommand_ObjectNameAbs(void* ptr){
-	return static_cast<MyQUndoCommand*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQUndoCommand*>(static_cast<QUndoCommand*>(ptr))) {
+		return static_cast<MyQUndoCommand*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QUndoCommand_BASE").toUtf8().data();
 }
 
 void QUndoCommand_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQUndoCommand*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQUndoCommand*>(static_cast<QUndoCommand*>(ptr))) {
+		static_cast<MyQUndoCommand*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQUndoGroup: public QUndoGroup {
@@ -21465,11 +21580,16 @@ void QWidgetItem_DestroyQWidgetItem(void* ptr){
 }
 
 char* QWidgetItem_ObjectNameAbs(void* ptr){
-	return static_cast<MyQWidgetItem*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQWidgetItem*>(static_cast<QWidgetItem*>(ptr))) {
+		return static_cast<MyQWidgetItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QWidgetItem_BASE").toUtf8().data();
 }
 
 void QWidgetItem_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQWidgetItem*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQWidgetItem*>(static_cast<QWidgetItem*>(ptr))) {
+		static_cast<MyQWidgetItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQWizard: public QWizard {

@@ -68,11 +68,16 @@ void QScriptClass_DestroyQScriptClass(void* ptr){
 }
 
 char* QScriptClass_ObjectNameAbs(void* ptr){
-	return static_cast<MyQScriptClass*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQScriptClass*>(static_cast<QScriptClass*>(ptr))) {
+		return static_cast<MyQScriptClass*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QScriptClass_BASE").toUtf8().data();
 }
 
 void QScriptClass_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQScriptClass*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQScriptClass*>(static_cast<QScriptClass*>(ptr))) {
+		static_cast<MyQScriptClass*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QScriptContext_ActivationObject(void* ptr){
@@ -465,11 +470,16 @@ void QScriptEngineAgent_DestroyQScriptEngineAgent(void* ptr){
 }
 
 char* QScriptEngineAgent_ObjectNameAbs(void* ptr){
-	return static_cast<MyQScriptEngineAgent*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQScriptEngineAgent*>(static_cast<QScriptEngineAgent*>(ptr))) {
+		return static_cast<MyQScriptEngineAgent*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QScriptEngineAgent_BASE").toUtf8().data();
 }
 
 void QScriptEngineAgent_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQScriptEngineAgent*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQScriptEngineAgent*>(static_cast<QScriptEngineAgent*>(ptr))) {
+		static_cast<MyQScriptEngineAgent*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void QScriptExtensionPlugin_Initialize(void* ptr, char* key, void* engine){

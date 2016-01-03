@@ -284,11 +284,16 @@ void QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(void* ptr){
 }
 
 char* QSqlDriverCreatorBase_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSqlDriverCreatorBase*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSqlDriverCreatorBase*>(static_cast<QSqlDriverCreatorBase*>(ptr))) {
+		return static_cast<MyQSqlDriverCreatorBase*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSqlDriverCreatorBase_BASE").toUtf8().data();
 }
 
 void QSqlDriverCreatorBase_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSqlDriverCreatorBase*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSqlDriverCreatorBase*>(static_cast<QSqlDriverCreatorBase*>(ptr))) {
+		static_cast<MyQSqlDriverCreatorBase*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QSqlDriverPlugin_Create(void* ptr, char* key){
@@ -879,11 +884,16 @@ void QSqlResult_DestroyQSqlResult(void* ptr){
 }
 
 char* QSqlResult_ObjectNameAbs(void* ptr){
-	return static_cast<MyQSqlResult*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQSqlResult*>(static_cast<QSqlResult*>(ptr))) {
+		return static_cast<MyQSqlResult*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QSqlResult_BASE").toUtf8().data();
 }
 
 void QSqlResult_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQSqlResult*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQSqlResult*>(static_cast<QSqlResult*>(ptr))) {
+		static_cast<MyQSqlResult*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 class MyQSqlTableModel: public QSqlTableModel {

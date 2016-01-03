@@ -44,11 +44,16 @@ void QMacPasteboardMime_DestroyQMacPasteboardMime(void* ptr){
 }
 
 char* QMacPasteboardMime_ObjectNameAbs(void* ptr){
-	return static_cast<MyQMacPasteboardMime*>(ptr)->objectNameAbs().toUtf8().data();
+	if (dynamic_cast<MyQMacPasteboardMime*>(static_cast<QMacPasteboardMime*>(ptr))) {
+		return static_cast<MyQMacPasteboardMime*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QMacPasteboardMime_BASE").toUtf8().data();
 }
 
 void QMacPasteboardMime_SetObjectNameAbs(void* ptr, char* name){
-	static_cast<MyQMacPasteboardMime*>(ptr)->setObjectNameAbs(QString(name));
+	if (dynamic_cast<MyQMacPasteboardMime*>(static_cast<QMacPasteboardMime*>(ptr))) {
+		static_cast<MyQMacPasteboardMime*>(ptr)->setObjectNameAbs(QString(name));
+	}
 }
 
 void* QMacToolBar_NewQMacToolBar(void* parent){

@@ -82,6 +82,10 @@ func cppFunctionBody(f *parser.Function) (o string) {
 		}
 	}
 
+	if f.Name == "objectNameAbs" || f.Name == "setObjectNameAbs" {
+		o += fmt.Sprintf("if (dynamic_cast<My%v*>(static_cast<%v*>(ptr))) {\n\t\t", f.Class(), f.Class())
+	}
+
 	if converter.CppHeaderOutput(f) != "void" {
 		o += "return "
 	}
@@ -132,5 +136,11 @@ func cppFunctionBody(f *parser.Function) (o string) {
 		return f.Access
 	}
 
-	return fmt.Sprintf("%v;", o)
+	if f.Name == "objectNameAbs" {
+		o += fmt.Sprintf(";\n\t}\n\treturn QString(\"%v_BASE\").toUtf8().data()", f.Class())
+	} else if f.Name == "setObjectNameAbs" {
+		return o + ";\n\t}"
+	}
+
+	return o + ";"
 }
