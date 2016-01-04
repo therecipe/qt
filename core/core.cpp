@@ -889,7 +889,7 @@ void QAbstractNativeEventFilter_SetObjectNameAbs(void* ptr, char* name){
 class MyQAbstractProxyModel: public QAbstractProxyModel {
 public:
 	void fetchMore(const QModelIndex & parent) { callbackQAbstractProxyModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
-	void revert() { callbackQAbstractProxyModelRevert(this, this->objectName().toUtf8().data()); };
+	void revert() { if (!callbackQAbstractProxyModelRevert(this, this->objectName().toUtf8().data())) { QAbstractProxyModel::revert(); }; };
 	void setSourceModel(QAbstractItemModel * sourceModel) { callbackQAbstractProxyModelSetSourceModel(this, this->objectName().toUtf8().data(), sourceModel); };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractProxyModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void Signal_SourceModelChanged() { callbackQAbstractProxyModelSourceModelChanged(this, this->objectName().toUtf8().data()); };
@@ -951,11 +951,11 @@ char* QAbstractProxyModel_MimeTypes(void* ptr){
 }
 
 void QAbstractProxyModel_Revert(void* ptr){
-	static_cast<MyQAbstractProxyModel*>(ptr)->revert();
+	QMetaObject::invokeMethod(static_cast<MyQAbstractProxyModel*>(ptr), "revert");
 }
 
 void QAbstractProxyModel_RevertDefault(void* ptr){
-	static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::revert();
+	QMetaObject::invokeMethod(static_cast<QAbstractProxyModel*>(ptr), "revert");
 }
 
 int QAbstractProxyModel_SetData(void* ptr, void* index, void* value, int role){
@@ -4472,7 +4472,7 @@ public:
 	MyQIdentityProxyModel(QObject *parent) : QIdentityProxyModel(parent) {};
 	void setSourceModel(QAbstractItemModel * newSourceModel) { callbackQIdentityProxyModelSetSourceModel(this, this->objectName().toUtf8().data(), newSourceModel); };
 	void fetchMore(const QModelIndex & parent) { callbackQIdentityProxyModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
-	void revert() { callbackQIdentityProxyModelRevert(this, this->objectName().toUtf8().data()); };
+	void revert() { if (!callbackQIdentityProxyModelRevert(this, this->objectName().toUtf8().data())) { QIdentityProxyModel::revert(); }; };
 	void sort(int column, Qt::SortOrder order) { callbackQIdentityProxyModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void timerEvent(QTimerEvent * event) { callbackQIdentityProxyModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQIdentityProxyModelChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -4556,11 +4556,11 @@ void QIdentityProxyModel_FetchMoreDefault(void* ptr, void* parent){
 }
 
 void QIdentityProxyModel_Revert(void* ptr){
-	static_cast<MyQIdentityProxyModel*>(ptr)->revert();
+	QMetaObject::invokeMethod(static_cast<MyQIdentityProxyModel*>(ptr), "revert");
 }
 
 void QIdentityProxyModel_RevertDefault(void* ptr){
-	static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::revert();
+	QMetaObject::invokeMethod(static_cast<QIdentityProxyModel*>(ptr), "revert");
 }
 
 void QIdentityProxyModel_Sort(void* ptr, int column, int order){
@@ -9332,7 +9332,7 @@ public:
 	void fetchMore(const QModelIndex & parent) { callbackQSortFilterProxyModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
 	void setSourceModel(QAbstractItemModel * sourceModel) { callbackQSortFilterProxyModelSetSourceModel(this, this->objectName().toUtf8().data(), sourceModel); };
 	void sort(int column, Qt::SortOrder order) { callbackQSortFilterProxyModelSort(this, this->objectName().toUtf8().data(), column, order); };
-	void revert() { callbackQSortFilterProxyModelRevert(this, this->objectName().toUtf8().data()); };
+	void revert() { if (!callbackQSortFilterProxyModelRevert(this, this->objectName().toUtf8().data())) { QSortFilterProxyModel::revert(); }; };
 	void timerEvent(QTimerEvent * event) { callbackQSortFilterProxyModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSortFilterProxyModelChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQSortFilterProxyModelCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -9563,11 +9563,11 @@ void QSortFilterProxyModel_DestroyQSortFilterProxyModel(void* ptr){
 }
 
 void QSortFilterProxyModel_Revert(void* ptr){
-	static_cast<MyQSortFilterProxyModel*>(ptr)->revert();
+	QMetaObject::invokeMethod(static_cast<MyQSortFilterProxyModel*>(ptr), "revert");
 }
 
 void QSortFilterProxyModel_RevertDefault(void* ptr){
-	static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::revert();
+	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "revert");
 }
 
 void QSortFilterProxyModel_TimerEvent(void* ptr, void* event){

@@ -621,14 +621,15 @@ func (ptr *QDialog) DisconnectSetVisible() {
 }
 
 //export callbackQDialogSetVisible
-func callbackQDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QDialog::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-	} else {
-		NewQDialogFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QDialog) SetVisible(visible bool) {

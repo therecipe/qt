@@ -240,14 +240,15 @@ func (ptr *QTableView) DisconnectCurrentChanged() {
 }
 
 //export callbackQTableViewCurrentChanged
-func callbackQTableViewCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
+func callbackQTableViewCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableView::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
-	} else {
-		NewQTableViewFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTableView) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
@@ -553,14 +554,15 @@ func (ptr *QTableView) DisconnectSetRootIndex() {
 }
 
 //export callbackQTableViewSetRootIndex
-func callbackQTableViewSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
+func callbackQTableViewSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableView::setRootIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
-	} else {
-		NewQTableViewFromPointer(ptr).SetRootIndexDefault(core.NewQModelIndexFromPointer(index))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTableView) SetRootIndex(index core.QModelIndex_ITF) {
@@ -762,14 +764,15 @@ func (ptr *QTableView) DisconnectUpdateGeometries() {
 }
 
 //export callbackQTableViewUpdateGeometries
-func callbackQTableViewUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQTableViewUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QTableView::updateGeometries")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQTableViewFromPointer(ptr).UpdateGeometriesDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTableView) UpdateGeometries() {

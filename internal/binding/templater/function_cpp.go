@@ -27,7 +27,7 @@ func cppFunctionSignal(f *parser.Function) string {
 	originalInput = strings.TrimSuffix(originalInput, ", ")
 
 	if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
-		if f.Meta == "slot" {
+		if f.Meta == "slot" || isDerivedFromSlot(f) {
 			return fmt.Sprintf("void %v(%v)%v { if (!callback%v%v%v(%v)) { %v::%v(%v); }; }", f.Name, converter.CppBodyInputCallback(f), constP, f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f), f.Class(), f.Name, originalInput)
 		} else {
 			return fmt.Sprintf("void %v(%v)%v { callback%v%v%v(%v); }", f.Name, converter.CppBodyInputCallback(f), constP, f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f))
@@ -94,50 +94,71 @@ func cppFunctionBody(f *parser.Function) (o string) {
 		o += "return "
 	}
 
+	var tmpMeta string
+	if strings.Contains(f.Virtual, "impure") {
+		if isDerivedFromSlot(f) {
+			tmpMeta = f.Meta
+			f.Meta = "slot"
+		}
+	}
+
 	switch f.Meta {
 	case "constructor":
-		if hasVirtualFunction(parser.ClassMap[f.Class()]) {
-			o += fmt.Sprintf("new My%v(%v)", f.Class(), converter.CppBodyInput(f))
-		} else {
-			o += fmt.Sprintf("new %v(%v)", f.Class(), converter.CppBodyInput(f))
+		{
+			if hasVirtualFunction(parser.ClassMap[f.Class()]) {
+				o += fmt.Sprintf("new My%v(%v)", f.Class(), converter.CppBodyInput(f))
+			} else {
+				o += fmt.Sprintf("new %v(%v)", f.Class(), converter.CppBodyInput(f))
+			}
 		}
 	case "slot":
-		if f.Static {
-			o += fmt.Sprintf("QMetaObject::invokeMethod(%v::instance(), \"%v\"%v)", f.Class(), f.Name, converter.CppBodyInput(f))
-		} else {
-			o += fmt.Sprintf("QMetaObject::invokeMethod(static_cast<%v*>(ptr), \"%v\"%v)", f.Class(), f.Name, converter.CppBodyInput(f))
-		}
-
-	case "plain", "destructor":
-		if f.Static {
-			o += converter.CppBodyOutput(f, fmt.Sprintf("%v::%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
-		} else {
-			if f.Output == "T" && f.Class() == "QObject" {
-				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v<QObject*>(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
-			} else if f.Output == "T" && f.Class() == "QMediaService" {
-				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v<QMediaControl*>(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
+		{
+			if f.Static {
+				o += fmt.Sprintf("QMetaObject::invokeMethod(%v::instance(), \"%v\"%v)", f.Class(), f.Name, converter.CppBodyInput(f))
 			} else {
-				if parser.ClassMap[f.Class()].IsQObjectSubClass() {
-					o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
+				o += fmt.Sprintf("QMetaObject::invokeMethod(static_cast<%v*>(ptr), \"%v\"%v)", f.Class(), f.Name, converter.CppBodyInput(f))
+			}
+		}
+	case "plain", "destructor":
+		{
+			if f.Static {
+				o += converter.CppBodyOutput(f, fmt.Sprintf("%v::%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
+			} else {
+				if f.Output == "T" && f.Class() == "QObject" {
+					o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v<QObject*>(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
+				} else if f.Output == "T" && f.Class() == "QMediaService" {
+					o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v<QMediaControl*>(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
 				} else {
-					if f.Name == "objectNameAbs" || f.Name == "setObjectNameAbs" {
-						o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<My%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
-					} else {
+					if parser.ClassMap[f.Class()].IsQObjectSubClass() {
 						o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
+					} else {
+						if f.Name == "objectNameAbs" || f.Name == "setObjectNameAbs" {
+							o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<My%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
+						} else {
+							o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
+						}
 					}
 				}
 			}
 		}
-
 	case "signal":
-		if converter.IsPrivateSignal(f) {
-			o += fmt.Sprintf("QObject::%v(%v, &%v::%v, static_cast<My%v*>(ptr), static_cast<%v (My%v::*)(%v)>(&My%v::Signal_%v%v));", strings.ToLower(f.SignalMode), fmt.Sprintf("static_cast<%v*>(%v)", f.Class(), "ptr"), f.Class(), f.Name, f.Class(), f.Output, f.Class(), converter.CppBodyInput(f), f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f))
-		} else {
-			o += fmt.Sprintf("QObject::%v(%v, static_cast<void (%v::*)(%v)>(&%v::%v), static_cast<My%v*>(ptr), static_cast<%v (My%v::*)(%v)>(&My%v::Signal_%v%v));", strings.ToLower(f.SignalMode), fmt.Sprintf("static_cast<%v*>(%v)", f.Class(), "ptr"), f.Class(), converter.CppBodyInput(f), f.Class(), f.Name, f.Class(), f.Output, f.Class(), converter.CppBodyInput(f), f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f))
+		{
+			if converter.IsPrivateSignal(f) {
+				o += fmt.Sprintf("QObject::%v(%v, &%v::%v, static_cast<My%v*>(ptr), static_cast<%v (My%v::*)(%v)>(&My%v::Signal_%v%v));", strings.ToLower(f.SignalMode), fmt.Sprintf("static_cast<%v*>(%v)", f.Class(), "ptr"), f.Class(), f.Name, f.Class(), f.Output, f.Class(), converter.CppBodyInput(f), f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f))
+			} else {
+				o += fmt.Sprintf("QObject::%v(%v, static_cast<void (%v::*)(%v)>(&%v::%v), static_cast<My%v*>(ptr), static_cast<%v (My%v::*)(%v)>(&My%v::Signal_%v%v));", strings.ToLower(f.SignalMode), fmt.Sprintf("static_cast<%v*>(%v)", f.Class(), "ptr"), f.Class(), converter.CppBodyInput(f), f.Class(), f.Name, f.Class(), f.Output, f.Class(), converter.CppBodyInput(f), f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f))
+			}
 		}
+
 	default:
-		f.Access = "unsupported_CppFunctionBody"
-		return f.Access
+		{
+			f.Access = "unsupported_CppFunctionBody"
+			return f.Access
+		}
+	}
+
+	if tmpMeta != "" {
+		f.Meta = tmpMeta
 	}
 
 	if f.Name == "objectNameAbs" {

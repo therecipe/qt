@@ -765,14 +765,15 @@ func (ptr *QListWidget) DisconnectCurrentChanged() {
 }
 
 //export callbackQListWidgetCurrentChanged
-func callbackQListWidgetCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
+func callbackQListWidgetCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
 	defer qt.Recovering("callback QListWidget::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
-	} else {
-		NewQListWidgetFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QListWidget) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
@@ -1080,14 +1081,15 @@ func (ptr *QListWidget) DisconnectRowsAboutToBeRemoved() {
 }
 
 //export callbackQListWidgetRowsAboutToBeRemoved
-func callbackQListWidgetRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
+func callbackQListWidgetRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QListWidget::rowsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-	} else {
-		NewQListWidgetFromPointer(ptr).RowsAboutToBeRemovedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QListWidget) RowsAboutToBeRemoved(parent core.QModelIndex_ITF, start int, end int) {
@@ -1125,14 +1127,15 @@ func (ptr *QListWidget) DisconnectRowsInserted() {
 }
 
 //export callbackQListWidgetRowsInserted
-func callbackQListWidgetRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
+func callbackQListWidgetRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QListWidget::rowsInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-	} else {
-		NewQListWidgetFromPointer(ptr).RowsInsertedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QListWidget) RowsInserted(parent core.QModelIndex_ITF, start int, end int) {
@@ -1350,14 +1353,15 @@ func (ptr *QListWidget) DisconnectUpdateGeometries() {
 }
 
 //export callbackQListWidgetUpdateGeometries
-func callbackQListWidgetUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQListWidgetUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QListWidget::updateGeometries")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQListWidgetFromPointer(ptr).UpdateGeometriesDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QListWidget) UpdateGeometries() {

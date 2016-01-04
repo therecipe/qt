@@ -453,14 +453,15 @@ func (ptr *QWizard) DisconnectDone() {
 }
 
 //export callbackQWizardDone
-func callbackQWizardDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) {
+func callbackQWizardDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) bool {
 	defer qt.Recovering("callback QWizard::done")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
 		signal.(func(int))(int(result))
-	} else {
-		NewQWizardFromPointer(ptr).DoneDefault(int(result))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QWizard) Done(result int) {
@@ -803,14 +804,15 @@ func (ptr *QWizard) DisconnectSetVisible() {
 }
 
 //export callbackQWizardSetVisible
-func callbackQWizardSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQWizardSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QWizard::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-	} else {
-		NewQWizardFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QWizard) SetVisible(visible bool) {

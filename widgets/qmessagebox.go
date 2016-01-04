@@ -657,14 +657,15 @@ func (ptr *QMessageBox) DisconnectSetVisible() {
 }
 
 //export callbackQMessageBoxSetVisible
-func callbackQMessageBoxSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQMessageBoxSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QMessageBox::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-	} else {
-		NewQMessageBoxFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QMessageBox) SetVisible(visible bool) {

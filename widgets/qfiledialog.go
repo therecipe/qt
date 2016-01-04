@@ -275,14 +275,15 @@ func (ptr *QFileDialog) DisconnectAccept() {
 }
 
 //export callbackQFileDialogAccept
-func callbackQFileDialogAccept(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQFileDialogAccept(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QFileDialog::accept")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "accept"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQFileDialogFromPointer(ptr).AcceptDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QFileDialog) Accept() {
@@ -527,14 +528,15 @@ func (ptr *QFileDialog) DisconnectDone() {
 }
 
 //export callbackQFileDialogDone
-func callbackQFileDialogDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) {
+func callbackQFileDialogDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) bool {
 	defer qt.Recovering("callback QFileDialog::done")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
 		signal.(func(int))(int(result))
-	} else {
-		NewQFileDialogFromPointer(ptr).DoneDefault(int(result))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QFileDialog) Done(result int) {
@@ -974,14 +976,15 @@ func (ptr *QFileDialog) DisconnectSetVisible() {
 }
 
 //export callbackQFileDialogSetVisible
-func callbackQFileDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQFileDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QFileDialog::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-	} else {
-		NewQFileDialogFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QFileDialog) SetVisible(visible bool) {

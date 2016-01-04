@@ -4971,8 +4971,8 @@ public:
 	void changeEvent(QEvent * e) { callbackQColorDialogChangeEvent(this, this->objectName().toUtf8().data(), e); };
 	void Signal_ColorSelected(const QColor & color) { callbackQColorDialogColorSelected(this, this->objectName().toUtf8().data(), new QColor(color)); };
 	void Signal_CurrentColorChanged(const QColor & color) { callbackQColorDialogCurrentColorChanged(this, this->objectName().toUtf8().data(), new QColor(color)); };
-	void done(int result) { callbackQColorDialogDone(this, this->objectName().toUtf8().data(), result); };
-	void setVisible(bool visible) { callbackQColorDialogSetVisible(this, this->objectName().toUtf8().data(), visible); };
+	void done(int result) { if (!callbackQColorDialogDone(this, this->objectName().toUtf8().data(), result)) { QColorDialog::done(result); }; };
+	void setVisible(bool visible) { if (!callbackQColorDialogSetVisible(this, this->objectName().toUtf8().data(), visible)) { QColorDialog::setVisible(visible); }; };
 	void accept() { if (!callbackQColorDialogAccept(this, this->objectName().toUtf8().data())) { QColorDialog::accept(); }; };
 	void closeEvent(QCloseEvent * e) { callbackQColorDialogCloseEvent(this, this->objectName().toUtf8().data(), e); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQColorDialogContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
@@ -5071,11 +5071,11 @@ int QColorDialog_QColorDialog_CustomCount(){
 }
 
 void QColorDialog_Done(void* ptr, int result){
-	static_cast<MyQColorDialog*>(ptr)->done(result);
+	QMetaObject::invokeMethod(static_cast<MyQColorDialog*>(ptr), "done", Q_ARG(int, result));
 }
 
 void QColorDialog_DoneDefault(void* ptr, int result){
-	static_cast<QColorDialog*>(ptr)->QColorDialog::done(result);
+	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "done", Q_ARG(int, result));
 }
 
 void* QColorDialog_QColorDialog_GetColor(void* initial, void* parent, char* title, int options){
@@ -5103,11 +5103,11 @@ void QColorDialog_QColorDialog_SetStandardColor(int index, void* color){
 }
 
 void QColorDialog_SetVisible(void* ptr, int visible){
-	static_cast<MyQColorDialog*>(ptr)->setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<MyQColorDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QColorDialog_SetVisibleDefault(void* ptr, int visible){
-	static_cast<QColorDialog*>(ptr)->QColorDialog::setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void* QColorDialog_QColorDialog_StandardColor(int index){
@@ -5393,14 +5393,14 @@ void QColormap_DestroyQColormap(void* ptr){
 class MyQColumnView: public QColumnView {
 public:
 	MyQColumnView(QWidget *parent) : QColumnView(parent) {};
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQColumnViewCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
+	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQColumnViewCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer())) { QColumnView::currentChanged(current, previous); }; };
 	void resizeEvent(QResizeEvent * event) { callbackQColumnViewResizeEvent(this, this->objectName().toUtf8().data(), event); };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { callbackQColumnViewRowsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end); };
+	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQColumnViewRowsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QColumnView::rowsInserted(parent, start, end); }; };
 	void scrollContentsBy(int dx, int dy) { callbackQColumnViewScrollContentsBy(this, this->objectName().toUtf8().data(), dx, dy); };
 	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQColumnViewScrollTo(this, this->objectName().toUtf8().data(), index.internalPointer(), hint); };
-	void selectAll() { callbackQColumnViewSelectAll(this, this->objectName().toUtf8().data()); };
+	void selectAll() { if (!callbackQColumnViewSelectAll(this, this->objectName().toUtf8().data())) { QColumnView::selectAll(); }; };
 	void setModel(QAbstractItemModel * model) { callbackQColumnViewSetModel(this, this->objectName().toUtf8().data(), model); };
-	void setRootIndex(const QModelIndex & index) { callbackQColumnViewSetRootIndex(this, this->objectName().toUtf8().data(), index.internalPointer()); };
+	void setRootIndex(const QModelIndex & index) { if (!callbackQColumnViewSetRootIndex(this, this->objectName().toUtf8().data(), index.internalPointer())) { QColumnView::setRootIndex(index); }; };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQColumnViewSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
 	void setSelectionModel(QItemSelectionModel * newSelectionModel) { callbackQColumnViewSetSelectionModel(this, this->objectName().toUtf8().data(), newSelectionModel); };
 	void Signal_UpdatePreviewWidget(const QModelIndex & index) { callbackQColumnViewUpdatePreviewWidget(this, this->objectName().toUtf8().data(), index.internalPointer()); };
@@ -5462,11 +5462,11 @@ void* QColumnView_CreateColumn(void* ptr, void* index){
 }
 
 void QColumnView_CurrentChanged(void* ptr, void* current, void* previous){
-	static_cast<MyQColumnView*>(ptr)->currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<MyQColumnView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QColumnView_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	static_cast<QColumnView*>(ptr)->QColumnView::currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 int QColumnView_HorizontalOffset(void* ptr){
@@ -5498,11 +5498,11 @@ void QColumnView_ResizeEventDefault(void* ptr, void* event){
 }
 
 void QColumnView_RowsInserted(void* ptr, void* parent, int start, int end){
-	static_cast<MyQColumnView*>(ptr)->rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<MyQColumnView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QColumnView_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	static_cast<QColumnView*>(ptr)->QColumnView::rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QColumnView_ScrollContentsBy(void* ptr, int dx, int dy){
@@ -5522,11 +5522,11 @@ void QColumnView_ScrollToDefault(void* ptr, void* index, int hint){
 }
 
 void QColumnView_SelectAll(void* ptr){
-	static_cast<MyQColumnView*>(ptr)->selectAll();
+	QMetaObject::invokeMethod(static_cast<MyQColumnView*>(ptr), "selectAll");
 }
 
 void QColumnView_SelectAllDefault(void* ptr){
-	static_cast<QColumnView*>(ptr)->QColumnView::selectAll();
+	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "selectAll");
 }
 
 void QColumnView_SetModel(void* ptr, void* model){
@@ -5542,11 +5542,11 @@ void QColumnView_SetPreviewWidget(void* ptr, void* widget){
 }
 
 void QColumnView_SetRootIndex(void* ptr, void* index){
-	static_cast<MyQColumnView*>(ptr)->setRootIndex(*static_cast<QModelIndex*>(index));
+	QMetaObject::invokeMethod(static_cast<MyQColumnView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QColumnView_SetRootIndexDefault(void* ptr, void* index){
-	static_cast<QColumnView*>(ptr)->QColumnView::setRootIndex(*static_cast<QModelIndex*>(index));
+	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QColumnView_SetSelection(void* ptr, void* rect, int command){
@@ -7444,11 +7444,11 @@ void QDateEdit_DestroyQDateEdit(void* ptr){
 }
 
 void QDateEdit_Clear(void* ptr){
-	static_cast<QDateEdit*>(ptr)->clear();
+	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "clear");
 }
 
 void QDateEdit_ClearDefault(void* ptr){
-	static_cast<QDateEdit*>(ptr)->QDateEdit::clear();
+	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "clear");
 }
 
 void QDateEdit_FocusInEvent(void* ptr, void* event){
@@ -7713,7 +7713,7 @@ public:
 	MyQDateTimeEdit(const QTime &time, QWidget *parent) : QDateTimeEdit(time, parent) {};
 	MyQDateTimeEdit(QWidget *parent) : QDateTimeEdit(parent) {};
 	MyQDateTimeEdit(const QDateTime &datetime, QWidget *parent) : QDateTimeEdit(datetime, parent) {};
-	void clear() { callbackQDateTimeEditClear(this, this->objectName().toUtf8().data()); };
+	void clear() { if (!callbackQDateTimeEditClear(this, this->objectName().toUtf8().data())) { QDateTimeEdit::clear(); }; };
 	void Signal_DateTimeChanged(const QDateTime & datetime) { callbackQDateTimeEditDateTimeChanged(this, this->objectName().toUtf8().data(), new QDateTime(datetime)); };
 	void focusInEvent(QFocusEvent * event) { callbackQDateTimeEditFocusInEvent(this, this->objectName().toUtf8().data(), event); };
 	void keyPressEvent(QKeyEvent * event) { callbackQDateTimeEditKeyPressEvent(this, this->objectName().toUtf8().data(), event); };
@@ -7894,11 +7894,11 @@ void* QDateTimeEdit_CalendarWidget(void* ptr){
 }
 
 void QDateTimeEdit_Clear(void* ptr){
-	static_cast<MyQDateTimeEdit*>(ptr)->clear();
+	QMetaObject::invokeMethod(static_cast<MyQDateTimeEdit*>(ptr), "clear");
 }
 
 void QDateTimeEdit_ClearDefault(void* ptr){
-	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::clear();
+	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "clear");
 }
 
 void QDateTimeEdit_ConnectDateTimeChanged(void* ptr){
@@ -8942,7 +8942,7 @@ public:
 	void reject() { if (!callbackQDialogReject(this, this->objectName().toUtf8().data())) { QDialog::reject(); }; };
 	void Signal_Rejected() { callbackQDialogRejected(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * v) { callbackQDialogResizeEvent(this, this->objectName().toUtf8().data(), v); };
-	void setVisible(bool visible) { callbackQDialogSetVisible(this, this->objectName().toUtf8().data(), visible); };
+	void setVisible(bool visible) { if (!callbackQDialogSetVisible(this, this->objectName().toUtf8().data(), visible)) { QDialog::setVisible(visible); }; };
 	void showEvent(QShowEvent * event) { callbackQDialogShowEvent(this, this->objectName().toUtf8().data(), event); };
 	void actionEvent(QActionEvent * event) { callbackQDialogActionEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQDialogDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
@@ -9112,11 +9112,11 @@ int QDialog_Result(void* ptr){
 }
 
 void QDialog_SetVisible(void* ptr, int visible){
-	static_cast<MyQDialog*>(ptr)->setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<MyQDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QDialog_SetVisibleDefault(void* ptr, int visible){
-	static_cast<QDialog*>(ptr)->QDialog::setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QDialog_ShowEvent(void* ptr, void* event){
@@ -10523,7 +10523,7 @@ class MyQErrorMessage: public QErrorMessage {
 public:
 	MyQErrorMessage(QWidget *parent) : QErrorMessage(parent) {};
 	void changeEvent(QEvent * e) { callbackQErrorMessageChangeEvent(this, this->objectName().toUtf8().data(), e); };
-	void done(int a) { callbackQErrorMessageDone(this, this->objectName().toUtf8().data(), a); };
+	void done(int a) { if (!callbackQErrorMessageDone(this, this->objectName().toUtf8().data(), a)) { QErrorMessage::done(a); }; };
 	void accept() { if (!callbackQErrorMessageAccept(this, this->objectName().toUtf8().data())) { QErrorMessage::accept(); }; };
 	void closeEvent(QCloseEvent * e) { callbackQErrorMessageCloseEvent(this, this->objectName().toUtf8().data(), e); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQErrorMessageContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
@@ -10531,7 +10531,7 @@ public:
 	void open() { if (!callbackQErrorMessageOpen(this, this->objectName().toUtf8().data())) { QErrorMessage::open(); }; };
 	void reject() { if (!callbackQErrorMessageReject(this, this->objectName().toUtf8().data())) { QErrorMessage::reject(); }; };
 	void resizeEvent(QResizeEvent * v) { callbackQErrorMessageResizeEvent(this, this->objectName().toUtf8().data(), v); };
-	void setVisible(bool visible) { callbackQErrorMessageSetVisible(this, this->objectName().toUtf8().data(), visible); };
+	void setVisible(bool visible) { if (!callbackQErrorMessageSetVisible(this, this->objectName().toUtf8().data(), visible)) { QErrorMessage::setVisible(visible); }; };
 	void showEvent(QShowEvent * event) { callbackQErrorMessageShowEvent(this, this->objectName().toUtf8().data(), event); };
 	void actionEvent(QActionEvent * event) { callbackQErrorMessageActionEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQErrorMessageDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
@@ -10572,11 +10572,11 @@ void QErrorMessage_ChangeEventDefault(void* ptr, void* e){
 }
 
 void QErrorMessage_Done(void* ptr, int a){
-	static_cast<MyQErrorMessage*>(ptr)->done(a);
+	QMetaObject::invokeMethod(static_cast<MyQErrorMessage*>(ptr), "done", Q_ARG(int, a));
 }
 
 void QErrorMessage_DoneDefault(void* ptr, int a){
-	static_cast<QErrorMessage*>(ptr)->QErrorMessage::done(a);
+	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "done", Q_ARG(int, a));
 }
 
 void* QErrorMessage_QErrorMessage_QtHandler(){
@@ -10652,11 +10652,11 @@ void QErrorMessage_ResizeEventDefault(void* ptr, void* v){
 }
 
 void QErrorMessage_SetVisible(void* ptr, int visible){
-	static_cast<MyQErrorMessage*>(ptr)->setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<MyQErrorMessage*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QErrorMessage_SetVisibleDefault(void* ptr, int visible){
-	static_cast<QErrorMessage*>(ptr)->QErrorMessage::setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QErrorMessage_ShowEvent(void* ptr, void* event){
@@ -10863,17 +10863,17 @@ class MyQFileDialog: public QFileDialog {
 public:
 	MyQFileDialog(QWidget *parent, Qt::WindowFlags flags) : QFileDialog(parent, flags) {};
 	MyQFileDialog(QWidget *parent, const QString &caption, const QString &directory, const QString &filter) : QFileDialog(parent, caption, directory, filter) {};
-	void accept() { callbackQFileDialogAccept(this, this->objectName().toUtf8().data()); };
+	void accept() { if (!callbackQFileDialogAccept(this, this->objectName().toUtf8().data())) { QFileDialog::accept(); }; };
 	void changeEvent(QEvent * e) { callbackQFileDialogChangeEvent(this, this->objectName().toUtf8().data(), e); };
 	void Signal_CurrentChanged(const QString & path) { callbackQFileDialogCurrentChanged(this, this->objectName().toUtf8().data(), path.toUtf8().data()); };
 	void Signal_CurrentUrlChanged(const QUrl & url) { callbackQFileDialogCurrentUrlChanged(this, this->objectName().toUtf8().data(), new QUrl(url)); };
 	void Signal_DirectoryEntered(const QString & directory) { callbackQFileDialogDirectoryEntered(this, this->objectName().toUtf8().data(), directory.toUtf8().data()); };
 	void Signal_DirectoryUrlEntered(const QUrl & directory) { callbackQFileDialogDirectoryUrlEntered(this, this->objectName().toUtf8().data(), new QUrl(directory)); };
-	void done(int result) { callbackQFileDialogDone(this, this->objectName().toUtf8().data(), result); };
+	void done(int result) { if (!callbackQFileDialogDone(this, this->objectName().toUtf8().data(), result)) { QFileDialog::done(result); }; };
 	void Signal_FileSelected(const QString & file) { callbackQFileDialogFileSelected(this, this->objectName().toUtf8().data(), file.toUtf8().data()); };
 	void Signal_FilesSelected(const QStringList & selected) { callbackQFileDialogFilesSelected(this, this->objectName().toUtf8().data(), selected.join(",,,").toUtf8().data()); };
 	void Signal_FilterSelected(const QString & filter) { callbackQFileDialogFilterSelected(this, this->objectName().toUtf8().data(), filter.toUtf8().data()); };
-	void setVisible(bool visible) { callbackQFileDialogSetVisible(this, this->objectName().toUtf8().data(), visible); };
+	void setVisible(bool visible) { if (!callbackQFileDialogSetVisible(this, this->objectName().toUtf8().data(), visible)) { QFileDialog::setVisible(visible); }; };
 	void Signal_UrlSelected(const QUrl & url) { callbackQFileDialogUrlSelected(this, this->objectName().toUtf8().data(), new QUrl(url)); };
 	void closeEvent(QCloseEvent * e) { callbackQFileDialogCloseEvent(this, this->objectName().toUtf8().data(), e); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQFileDialogContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
@@ -10988,11 +10988,11 @@ void* QFileDialog_NewQFileDialog2(void* parent, char* caption, char* directory, 
 }
 
 void QFileDialog_Accept(void* ptr){
-	static_cast<MyQFileDialog*>(ptr)->accept();
+	QMetaObject::invokeMethod(static_cast<MyQFileDialog*>(ptr), "accept");
 }
 
 void QFileDialog_AcceptDefault(void* ptr){
-	static_cast<QFileDialog*>(ptr)->QFileDialog::accept();
+	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "accept");
 }
 
 void QFileDialog_ChangeEvent(void* ptr, void* e){
@@ -11060,11 +11060,11 @@ void QFileDialog_DirectoryUrlEntered(void* ptr, void* directory){
 }
 
 void QFileDialog_Done(void* ptr, int result){
-	static_cast<MyQFileDialog*>(ptr)->done(result);
+	QMetaObject::invokeMethod(static_cast<MyQFileDialog*>(ptr), "done", Q_ARG(int, result));
 }
 
 void QFileDialog_DoneDefault(void* ptr, int result){
-	static_cast<QFileDialog*>(ptr)->QFileDialog::done(result);
+	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "done", Q_ARG(int, result));
 }
 
 void QFileDialog_ConnectFileSelected(void* ptr){
@@ -11252,11 +11252,11 @@ void QFileDialog_SetProxyModel(void* ptr, void* proxyModel){
 }
 
 void QFileDialog_SetVisible(void* ptr, int visible){
-	static_cast<MyQFileDialog*>(ptr)->setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<MyQFileDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QFileDialog_SetVisibleDefault(void* ptr, int visible){
-	static_cast<QFileDialog*>(ptr)->QFileDialog::setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 int QFileDialog_TestOption(void* ptr, int option){
@@ -12493,8 +12493,8 @@ public:
 	MyQFontDialog(QWidget *parent) : QFontDialog(parent) {};
 	MyQFontDialog(const QFont &initial, QWidget *parent) : QFontDialog(initial, parent) {};
 	void changeEvent(QEvent * e) { callbackQFontDialogChangeEvent(this, this->objectName().toUtf8().data(), e); };
-	void done(int result) { callbackQFontDialogDone(this, this->objectName().toUtf8().data(), result); };
-	void setVisible(bool visible) { callbackQFontDialogSetVisible(this, this->objectName().toUtf8().data(), visible); };
+	void done(int result) { if (!callbackQFontDialogDone(this, this->objectName().toUtf8().data(), result)) { QFontDialog::done(result); }; };
+	void setVisible(bool visible) { if (!callbackQFontDialogSetVisible(this, this->objectName().toUtf8().data(), visible)) { QFontDialog::setVisible(visible); }; };
 	void accept() { if (!callbackQFontDialogAccept(this, this->objectName().toUtf8().data())) { QFontDialog::accept(); }; };
 	void closeEvent(QCloseEvent * e) { callbackQFontDialogCloseEvent(this, this->objectName().toUtf8().data(), e); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQFontDialogContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
@@ -12553,11 +12553,11 @@ void QFontDialog_ChangeEventDefault(void* ptr, void* e){
 }
 
 void QFontDialog_Done(void* ptr, int result){
-	static_cast<MyQFontDialog*>(ptr)->done(result);
+	QMetaObject::invokeMethod(static_cast<MyQFontDialog*>(ptr), "done", Q_ARG(int, result));
 }
 
 void QFontDialog_DoneDefault(void* ptr, int result){
-	static_cast<QFontDialog*>(ptr)->QFontDialog::done(result);
+	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "done", Q_ARG(int, result));
 }
 
 void QFontDialog_Open(void* ptr, void* receiver, char* member){
@@ -12573,11 +12573,11 @@ void QFontDialog_SetOption(void* ptr, int option, int on){
 }
 
 void QFontDialog_SetVisible(void* ptr, int visible){
-	static_cast<MyQFontDialog*>(ptr)->setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<MyQFontDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QFontDialog_SetVisibleDefault(void* ptr, int visible){
-	static_cast<QFontDialog*>(ptr)->QFontDialog::setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 int QFontDialog_TestOption(void* ptr, int option){
@@ -18192,7 +18192,7 @@ void QHBoxLayout_CustomEventDefault(void* ptr, void* event){
 
 class MyQHeaderView: public QHeaderView {
 public:
-	void currentChanged(const QModelIndex & current, const QModelIndex & old) { callbackQHeaderViewCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), old.internalPointer()); };
+	void currentChanged(const QModelIndex & current, const QModelIndex & old) { if (!callbackQHeaderViewCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), old.internalPointer())) { QHeaderView::currentChanged(current, old); }; };
 	void Signal_GeometriesChanged() { callbackQHeaderViewGeometriesChanged(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * e) { callbackQHeaderViewMouseDoubleClickEvent(this, this->objectName().toUtf8().data(), e); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQHeaderViewMouseMoveEvent(this, this->objectName().toUtf8().data(), e); };
@@ -18200,7 +18200,7 @@ public:
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQHeaderViewMouseReleaseEvent(this, this->objectName().toUtf8().data(), e); };
 	void paintEvent(QPaintEvent * e) { callbackQHeaderViewPaintEvent(this, this->objectName().toUtf8().data(), e); };
 	void paintSection(QPainter * painter, const QRect & rect, int logicalIndex) const { callbackQHeaderViewPaintSection(const_cast<MyQHeaderView*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), logicalIndex); };
-	void reset() { callbackQHeaderViewReset(this, this->objectName().toUtf8().data()); };
+	void reset() { if (!callbackQHeaderViewReset(this, this->objectName().toUtf8().data())) { QHeaderView::reset(); }; };
 	void Signal_SectionClicked(int logicalIndex) { callbackQHeaderViewSectionClicked(this, this->objectName().toUtf8().data(), logicalIndex); };
 	void Signal_SectionCountChanged(int oldCount, int newCount) { callbackQHeaderViewSectionCountChanged(this, this->objectName().toUtf8().data(), oldCount, newCount); };
 	void Signal_SectionDoubleClicked(int logicalIndex) { callbackQHeaderViewSectionDoubleClicked(this, this->objectName().toUtf8().data(), logicalIndex); };
@@ -18211,7 +18211,7 @@ public:
 	void Signal_SectionResized(int logicalIndex, int oldSize, int newSize) { callbackQHeaderViewSectionResized(this, this->objectName().toUtf8().data(), logicalIndex, oldSize, newSize); };
 	void setModel(QAbstractItemModel * model) { callbackQHeaderViewSetModel(this, this->objectName().toUtf8().data(), model); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags flags) { callbackQHeaderViewSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), flags); };
-	void setVisible(bool v) { callbackQHeaderViewSetVisible(this, this->objectName().toUtf8().data(), v); };
+	void setVisible(bool v) { if (!callbackQHeaderViewSetVisible(this, this->objectName().toUtf8().data(), v)) { QHeaderView::setVisible(v); }; };
 	void Signal_SortIndicatorChanged(int logicalIndex, Qt::SortOrder order) { callbackQHeaderViewSortIndicatorChanged(this, this->objectName().toUtf8().data(), logicalIndex, order); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQHeaderViewDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { if (!callbackQHeaderViewCloseEditor(this, this->objectName().toUtf8().data(), editor, hint)) { QHeaderView::closeEditor(editor, hint); }; };
@@ -18334,11 +18334,11 @@ int QHeaderView_Count(void* ptr){
 }
 
 void QHeaderView_CurrentChanged(void* ptr, void* current, void* old){
-	static_cast<MyQHeaderView*>(ptr)->currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(old));
+	QMetaObject::invokeMethod(static_cast<MyQHeaderView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(old)));
 }
 
 void QHeaderView_CurrentChangedDefault(void* ptr, void* current, void* old){
-	static_cast<QHeaderView*>(ptr)->QHeaderView::currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(old));
+	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(old)));
 }
 
 int QHeaderView_Event(void* ptr, void* e){
@@ -18458,11 +18458,11 @@ void QHeaderView_PaintSectionDefault(void* ptr, void* painter, void* rect, int l
 }
 
 void QHeaderView_Reset(void* ptr){
-	static_cast<MyQHeaderView*>(ptr)->reset();
+	QMetaObject::invokeMethod(static_cast<MyQHeaderView*>(ptr), "reset");
 }
 
 void QHeaderView_ResetDefault(void* ptr){
-	static_cast<QHeaderView*>(ptr)->QHeaderView::reset();
+	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "reset");
 }
 
 int QHeaderView_ResizeContentsPrecision(void* ptr){
@@ -18670,11 +18670,11 @@ void QHeaderView_SetSortIndicator(void* ptr, int logicalIndex, int order){
 }
 
 void QHeaderView_SetVisible(void* ptr, int v){
-	static_cast<MyQHeaderView*>(ptr)->setVisible(v != 0);
+	QMetaObject::invokeMethod(static_cast<MyQHeaderView*>(ptr), "setVisible", Q_ARG(bool, v != 0));
 }
 
 void QHeaderView_SetVisibleDefault(void* ptr, int v){
-	static_cast<QHeaderView*>(ptr)->QHeaderView::setVisible(v != 0);
+	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "setVisible", Q_ARG(bool, v != 0));
 }
 
 void QHeaderView_ShowSection(void* ptr, int logicalIndex){
@@ -19040,10 +19040,10 @@ void QHeaderView_CustomEventDefault(void* ptr, void* event){
 class MyQInputDialog: public QInputDialog {
 public:
 	MyQInputDialog(QWidget *parent, Qt::WindowFlags flags) : QInputDialog(parent, flags) {};
-	void done(int result) { callbackQInputDialogDone(this, this->objectName().toUtf8().data(), result); };
+	void done(int result) { if (!callbackQInputDialogDone(this, this->objectName().toUtf8().data(), result)) { QInputDialog::done(result); }; };
 	void Signal_IntValueChanged(int value) { callbackQInputDialogIntValueChanged(this, this->objectName().toUtf8().data(), value); };
 	void Signal_IntValueSelected(int value) { callbackQInputDialogIntValueSelected(this, this->objectName().toUtf8().data(), value); };
-	void setVisible(bool visible) { callbackQInputDialogSetVisible(this, this->objectName().toUtf8().data(), visible); };
+	void setVisible(bool visible) { if (!callbackQInputDialogSetVisible(this, this->objectName().toUtf8().data(), visible)) { QInputDialog::setVisible(visible); }; };
 	void Signal_TextValueChanged(const QString & text) { callbackQInputDialogTextValueChanged(this, this->objectName().toUtf8().data(), text.toUtf8().data()); };
 	void Signal_TextValueSelected(const QString & text) { callbackQInputDialogTextValueSelected(this, this->objectName().toUtf8().data(), text.toUtf8().data()); };
 	void accept() { if (!callbackQInputDialogAccept(this, this->objectName().toUtf8().data())) { QInputDialog::accept(); }; };
@@ -19197,11 +19197,11 @@ void* QInputDialog_NewQInputDialog(void* parent, int flags){
 }
 
 void QInputDialog_Done(void* ptr, int result){
-	static_cast<MyQInputDialog*>(ptr)->done(result);
+	QMetaObject::invokeMethod(static_cast<MyQInputDialog*>(ptr), "done", Q_ARG(int, result));
 }
 
 void QInputDialog_DoneDefault(void* ptr, int result){
-	static_cast<QInputDialog*>(ptr)->QInputDialog::done(result);
+	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "done", Q_ARG(int, result));
 }
 
 int QInputDialog_QInputDialog_GetInt(void* parent, char* title, char* label, int value, int min, int max, int step, int ok, int flags){
@@ -19261,11 +19261,11 @@ void QInputDialog_SetOption(void* ptr, int option, int on){
 }
 
 void QInputDialog_SetVisible(void* ptr, int visible){
-	static_cast<MyQInputDialog*>(ptr)->setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<MyQInputDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QInputDialog_SetVisibleDefault(void* ptr, int visible){
-	static_cast<QInputDialog*>(ptr)->QInputDialog::setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void* QInputDialog_SizeHint(void* ptr){
@@ -21904,7 +21904,7 @@ void QLineEdit_CustomEventDefault(void* ptr, void* event){
 class MyQListView: public QListView {
 public:
 	MyQListView(QWidget *parent) : QListView(parent) {};
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQListViewCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
+	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQListViewCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer())) { QListView::currentChanged(current, previous); }; };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQListViewDragLeaveEvent(this, this->objectName().toUtf8().data(), e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQListViewDragMoveEvent(this, this->objectName().toUtf8().data(), e); };
 	void dropEvent(QDropEvent * e) { callbackQListViewDropEvent(this, this->objectName().toUtf8().data(), e); };
@@ -21912,13 +21912,13 @@ public:
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQListViewMouseReleaseEvent(this, this->objectName().toUtf8().data(), e); };
 	void paintEvent(QPaintEvent * e) { callbackQListViewPaintEvent(this, this->objectName().toUtf8().data(), e); };
 	void resizeEvent(QResizeEvent * e) { callbackQListViewResizeEvent(this, this->objectName().toUtf8().data(), e); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { callbackQListViewRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end); };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { callbackQListViewRowsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end); };
+	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQListViewRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QListView::rowsAboutToBeRemoved(parent, start, end); }; };
+	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQListViewRowsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QListView::rowsInserted(parent, start, end); }; };
 	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQListViewScrollTo(this, this->objectName().toUtf8().data(), index.internalPointer(), hint); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQListViewSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQListViewStartDrag(this, this->objectName().toUtf8().data(), supportedActions); };
 	void timerEvent(QTimerEvent * e) { callbackQListViewTimerEvent(this, this->objectName().toUtf8().data(), e); };
-	void updateGeometries() { callbackQListViewUpdateGeometries(this, this->objectName().toUtf8().data()); };
+	void updateGeometries() { if (!callbackQListViewUpdateGeometries(this, this->objectName().toUtf8().data())) { QListView::updateGeometries(); }; };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { if (!callbackQListViewCloseEditor(this, this->objectName().toUtf8().data(), editor, hint)) { QListView::closeEditor(editor, hint); }; };
 	void commitData(QWidget * editor) { if (!callbackQListViewCommitData(this, this->objectName().toUtf8().data(), editor)) { QListView::commitData(editor); }; };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQListViewDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
@@ -22068,11 +22068,11 @@ void QListView_ClearPropertyFlags(void* ptr){
 }
 
 void QListView_CurrentChanged(void* ptr, void* current, void* previous){
-	static_cast<MyQListView*>(ptr)->currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<MyQListView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QListView_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	static_cast<QListView*>(ptr)->QListView::currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QListView_DragLeaveEvent(void* ptr, void* e){
@@ -22156,19 +22156,19 @@ void QListView_ResizeEventDefault(void* ptr, void* e){
 }
 
 void QListView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	static_cast<MyQListView*>(ptr)->rowsAboutToBeRemoved(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<MyQListView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QListView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	static_cast<QListView*>(ptr)->QListView::rowsAboutToBeRemoved(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QListView_RowsInserted(void* ptr, void* parent, int start, int end){
-	static_cast<MyQListView*>(ptr)->rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<MyQListView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QListView_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	static_cast<QListView*>(ptr)->QListView::rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QListView_ScrollTo(void* ptr, void* index, int hint){
@@ -22208,11 +22208,11 @@ void QListView_TimerEventDefault(void* ptr, void* e){
 }
 
 void QListView_UpdateGeometries(void* ptr){
-	static_cast<MyQListView*>(ptr)->updateGeometries();
+	QMetaObject::invokeMethod(static_cast<MyQListView*>(ptr), "updateGeometries");
 }
 
 void QListView_UpdateGeometriesDefault(void* ptr){
-	static_cast<QListView*>(ptr)->QListView::updateGeometries();
+	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "updateGeometries");
 }
 
 int QListView_VerticalOffset(void* ptr){
@@ -22521,20 +22521,20 @@ public:
 	void Signal_ItemEntered(QListWidgetItem * item) { callbackQListWidgetItemEntered(this, this->objectName().toUtf8().data(), item); };
 	void Signal_ItemPressed(QListWidgetItem * item) { callbackQListWidgetItemPressed(this, this->objectName().toUtf8().data(), item); };
 	void Signal_ItemSelectionChanged() { callbackQListWidgetItemSelectionChanged(this, this->objectName().toUtf8().data()); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQListWidgetCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
+	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQListWidgetCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer())) { QListWidget::currentChanged(current, previous); }; };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQListWidgetDragLeaveEvent(this, this->objectName().toUtf8().data(), e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQListWidgetDragMoveEvent(this, this->objectName().toUtf8().data(), e); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQListWidgetMouseMoveEvent(this, this->objectName().toUtf8().data(), e); };
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQListWidgetMouseReleaseEvent(this, this->objectName().toUtf8().data(), e); };
 	void paintEvent(QPaintEvent * e) { callbackQListWidgetPaintEvent(this, this->objectName().toUtf8().data(), e); };
 	void resizeEvent(QResizeEvent * e) { callbackQListWidgetResizeEvent(this, this->objectName().toUtf8().data(), e); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { callbackQListWidgetRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end); };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { callbackQListWidgetRowsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end); };
+	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQListWidgetRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QListWidget::rowsAboutToBeRemoved(parent, start, end); }; };
+	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQListWidgetRowsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QListWidget::rowsInserted(parent, start, end); }; };
 	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQListWidgetScrollTo(this, this->objectName().toUtf8().data(), index.internalPointer(), hint); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQListWidgetSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQListWidgetStartDrag(this, this->objectName().toUtf8().data(), supportedActions); };
 	void timerEvent(QTimerEvent * e) { callbackQListWidgetTimerEvent(this, this->objectName().toUtf8().data(), e); };
-	void updateGeometries() { callbackQListWidgetUpdateGeometries(this, this->objectName().toUtf8().data()); };
+	void updateGeometries() { if (!callbackQListWidgetUpdateGeometries(this, this->objectName().toUtf8().data())) { QListWidget::updateGeometries(); }; };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { if (!callbackQListWidgetCloseEditor(this, this->objectName().toUtf8().data(), editor, hint)) { QListWidget::closeEditor(editor, hint); }; };
 	void commitData(QWidget * editor) { if (!callbackQListWidgetCommitData(this, this->objectName().toUtf8().data(), editor)) { QListWidget::commitData(editor); }; };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQListWidgetDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
@@ -22843,11 +22843,11 @@ void QListWidget_DestroyQListWidget(void* ptr){
 }
 
 void QListWidget_CurrentChanged(void* ptr, void* current, void* previous){
-	static_cast<MyQListWidget*>(ptr)->currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<MyQListWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QListWidget_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	static_cast<QListWidget*>(ptr)->QListWidget::currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QListWidget_DragLeaveEvent(void* ptr, void* e){
@@ -22899,19 +22899,19 @@ void QListWidget_ResizeEventDefault(void* ptr, void* e){
 }
 
 void QListWidget_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	static_cast<MyQListWidget*>(ptr)->rowsAboutToBeRemoved(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<MyQListWidget*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QListWidget_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	static_cast<QListWidget*>(ptr)->QListWidget::rowsAboutToBeRemoved(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QListWidget_RowsInserted(void* ptr, void* parent, int start, int end){
-	static_cast<MyQListWidget*>(ptr)->rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<MyQListWidget*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QListWidget_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	static_cast<QListWidget*>(ptr)->QListWidget::rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QListWidget_ScrollTo(void* ptr, void* index, int hint){
@@ -22947,11 +22947,11 @@ void QListWidget_TimerEventDefault(void* ptr, void* e){
 }
 
 void QListWidget_UpdateGeometries(void* ptr){
-	static_cast<MyQListWidget*>(ptr)->updateGeometries();
+	QMetaObject::invokeMethod(static_cast<MyQListWidget*>(ptr), "updateGeometries");
 }
 
 void QListWidget_UpdateGeometriesDefault(void* ptr){
-	static_cast<QListWidget*>(ptr)->QListWidget::updateGeometries();
+	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "updateGeometries");
 }
 
 void QListWidget_CloseEditor(void* ptr, void* editor, int hint){
@@ -26272,7 +26272,7 @@ public:
 	void closeEvent(QCloseEvent * e) { callbackQMessageBoxCloseEvent(this, this->objectName().toUtf8().data(), e); };
 	void keyPressEvent(QKeyEvent * e) { callbackQMessageBoxKeyPressEvent(this, this->objectName().toUtf8().data(), e); };
 	void resizeEvent(QResizeEvent * event) { callbackQMessageBoxResizeEvent(this, this->objectName().toUtf8().data(), event); };
-	void setVisible(bool visible) { callbackQMessageBoxSetVisible(this, this->objectName().toUtf8().data(), visible); };
+	void setVisible(bool visible) { if (!callbackQMessageBoxSetVisible(this, this->objectName().toUtf8().data(), visible)) { QMessageBox::setVisible(visible); }; };
 	void showEvent(QShowEvent * e) { callbackQMessageBoxShowEvent(this, this->objectName().toUtf8().data(), e); };
 	void accept() { if (!callbackQMessageBoxAccept(this, this->objectName().toUtf8().data())) { QMessageBox::accept(); }; };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQMessageBoxContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
@@ -26513,11 +26513,11 @@ void QMessageBox_SetEscapeButton2(void* ptr, int button){
 }
 
 void QMessageBox_SetVisible(void* ptr, int visible){
-	static_cast<MyQMessageBox*>(ptr)->setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<MyQMessageBox*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QMessageBox_SetVisibleDefault(void* ptr, int visible){
-	static_cast<QMessageBox*>(ptr)->QMessageBox::setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QMessageBox_SetWindowModality(void* ptr, int windowModality){
@@ -28179,7 +28179,7 @@ public:
 	void done(int r) { if (!callbackQProgressDialogDone(this, this->objectName().toUtf8().data(), r)) { QProgressDialog::done(r); }; };
 	void keyPressEvent(QKeyEvent * e) { callbackQProgressDialogKeyPressEvent(this, this->objectName().toUtf8().data(), e); };
 	void reject() { if (!callbackQProgressDialogReject(this, this->objectName().toUtf8().data())) { QProgressDialog::reject(); }; };
-	void setVisible(bool visible) { callbackQProgressDialogSetVisible(this, this->objectName().toUtf8().data(), visible); };
+	void setVisible(bool visible) { if (!callbackQProgressDialogSetVisible(this, this->objectName().toUtf8().data(), visible)) { QProgressDialog::setVisible(visible); }; };
 	void actionEvent(QActionEvent * event) { callbackQProgressDialogActionEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQProgressDialogDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQProgressDialogDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
@@ -28399,11 +28399,11 @@ void QProgressDialog_RejectDefault(void* ptr){
 }
 
 void QProgressDialog_SetVisible(void* ptr, int visible){
-	static_cast<MyQProgressDialog*>(ptr)->setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<MyQProgressDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QProgressDialog_SetVisibleDefault(void* ptr, int visible){
-	static_cast<QProgressDialog*>(ptr)->QProgressDialog::setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QProgressDialog_ActionEvent(void* ptr, void* event){
@@ -30725,7 +30725,7 @@ public:
 	void mouseReleaseEvent(QMouseEvent * mouseEvent) { callbackQSizeGripMouseReleaseEvent(this, this->objectName().toUtf8().data(), mouseEvent); };
 	void moveEvent(QMoveEvent * moveEvent) { callbackQSizeGripMoveEvent(this, this->objectName().toUtf8().data(), moveEvent); };
 	void paintEvent(QPaintEvent * event) { callbackQSizeGripPaintEvent(this, this->objectName().toUtf8().data(), event); };
-	void setVisible(bool visible) { callbackQSizeGripSetVisible(this, this->objectName().toUtf8().data(), visible); };
+	void setVisible(bool visible) { if (!callbackQSizeGripSetVisible(this, this->objectName().toUtf8().data(), visible)) { QSizeGrip::setVisible(visible); }; };
 	void showEvent(QShowEvent * showEvent) { callbackQSizeGripShowEvent(this, this->objectName().toUtf8().data(), showEvent); };
 	void actionEvent(QActionEvent * event) { callbackQSizeGripActionEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQSizeGripDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
@@ -30813,11 +30813,11 @@ void QSizeGrip_PaintEventDefault(void* ptr, void* event){
 }
 
 void QSizeGrip_SetVisible(void* ptr, int visible){
-	static_cast<MyQSizeGrip*>(ptr)->setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<MyQSizeGrip*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QSizeGrip_SetVisibleDefault(void* ptr, int visible){
-	static_cast<QSizeGrip*>(ptr)->QSizeGrip::setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QSizeGrip_ShowEvent(void* ptr, void* showEvent){
@@ -36621,13 +36621,13 @@ void QTabWidget_CustomEventDefault(void* ptr, void* event){
 class MyQTableView: public QTableView {
 public:
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags flags) { callbackQTableViewSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), flags); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQTableViewCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
+	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQTableViewCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer())) { QTableView::currentChanged(current, previous); }; };
 	void paintEvent(QPaintEvent * event) { callbackQTableViewPaintEvent(this, this->objectName().toUtf8().data(), event); };
 	void setModel(QAbstractItemModel * model) { callbackQTableViewSetModel(this, this->objectName().toUtf8().data(), model); };
-	void setRootIndex(const QModelIndex & index) { callbackQTableViewSetRootIndex(this, this->objectName().toUtf8().data(), index.internalPointer()); };
+	void setRootIndex(const QModelIndex & index) { if (!callbackQTableViewSetRootIndex(this, this->objectName().toUtf8().data(), index.internalPointer())) { QTableView::setRootIndex(index); }; };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQTableViewSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	void timerEvent(QTimerEvent * event) { callbackQTableViewTimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void updateGeometries() { callbackQTableViewUpdateGeometries(this, this->objectName().toUtf8().data()); };
+	void updateGeometries() { if (!callbackQTableViewUpdateGeometries(this, this->objectName().toUtf8().data())) { QTableView::updateGeometries(); }; };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQTableViewDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { if (!callbackQTableViewCloseEditor(this, this->objectName().toUtf8().data(), editor, hint)) { QTableView::closeEditor(editor, hint); }; };
 	void commitData(QWidget * editor) { if (!callbackQTableViewCommitData(this, this->objectName().toUtf8().data(), editor)) { QTableView::commitData(editor); }; };
@@ -36743,11 +36743,11 @@ int QTableView_ColumnWidth(void* ptr, int column){
 }
 
 void QTableView_CurrentChanged(void* ptr, void* current, void* previous){
-	static_cast<MyQTableView*>(ptr)->currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<MyQTableView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QTableView_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	static_cast<QTableView*>(ptr)->QTableView::currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QTableView_HideColumn(void* ptr, int column){
@@ -36851,11 +36851,11 @@ void QTableView_SetModelDefault(void* ptr, void* model){
 }
 
 void QTableView_SetRootIndex(void* ptr, void* index){
-	static_cast<MyQTableView*>(ptr)->setRootIndex(*static_cast<QModelIndex*>(index));
+	QMetaObject::invokeMethod(static_cast<MyQTableView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTableView_SetRootIndexDefault(void* ptr, void* index){
-	static_cast<QTableView*>(ptr)->QTableView::setRootIndex(*static_cast<QModelIndex*>(index));
+	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTableView_SetRowHeight(void* ptr, int row, int height){
@@ -36911,11 +36911,11 @@ void QTableView_TimerEventDefault(void* ptr, void* event){
 }
 
 void QTableView_UpdateGeometries(void* ptr){
-	static_cast<MyQTableView*>(ptr)->updateGeometries();
+	QMetaObject::invokeMethod(static_cast<MyQTableView*>(ptr), "updateGeometries");
 }
 
 void QTableView_UpdateGeometriesDefault(void* ptr){
-	static_cast<QTableView*>(ptr)->QTableView::updateGeometries();
+	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "updateGeometries");
 }
 
 void* QTableView_VerticalHeader(void* ptr){
@@ -37273,12 +37273,12 @@ public:
 	void Signal_ItemPressed(QTableWidgetItem * item) { callbackQTableWidgetItemPressed(this, this->objectName().toUtf8().data(), item); };
 	void Signal_ItemSelectionChanged() { callbackQTableWidgetItemSelectionChanged(this, this->objectName().toUtf8().data()); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags flags) { callbackQTableWidgetSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), flags); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQTableWidgetCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
+	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQTableWidgetCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer())) { QTableWidget::currentChanged(current, previous); }; };
 	void paintEvent(QPaintEvent * event) { callbackQTableWidgetPaintEvent(this, this->objectName().toUtf8().data(), event); };
-	void setRootIndex(const QModelIndex & index) { callbackQTableWidgetSetRootIndex(this, this->objectName().toUtf8().data(), index.internalPointer()); };
+	void setRootIndex(const QModelIndex & index) { if (!callbackQTableWidgetSetRootIndex(this, this->objectName().toUtf8().data(), index.internalPointer())) { QTableWidget::setRootIndex(index); }; };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQTableWidgetSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	void timerEvent(QTimerEvent * event) { callbackQTableWidgetTimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void updateGeometries() { callbackQTableWidgetUpdateGeometries(this, this->objectName().toUtf8().data()); };
+	void updateGeometries() { if (!callbackQTableWidgetUpdateGeometries(this, this->objectName().toUtf8().data())) { QTableWidget::updateGeometries(); }; };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQTableWidgetDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { if (!callbackQTableWidgetCloseEditor(this, this->objectName().toUtf8().data(), editor, hint)) { QTableWidget::closeEditor(editor, hint); }; };
 	void commitData(QWidget * editor) { if (!callbackQTableWidgetCommitData(this, this->objectName().toUtf8().data(), editor)) { QTableWidget::commitData(editor); }; };
@@ -37721,11 +37721,11 @@ void QTableWidget_SetSelectionDefault(void* ptr, void* rect, int flags){
 }
 
 void QTableWidget_CurrentChanged(void* ptr, void* current, void* previous){
-	static_cast<MyQTableWidget*>(ptr)->currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<MyQTableWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QTableWidget_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	static_cast<QTableWidget*>(ptr)->QTableWidget::currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QTableWidget_PaintEvent(void* ptr, void* event){
@@ -37737,11 +37737,11 @@ void QTableWidget_PaintEventDefault(void* ptr, void* event){
 }
 
 void QTableWidget_SetRootIndex(void* ptr, void* index){
-	static_cast<MyQTableWidget*>(ptr)->setRootIndex(*static_cast<QModelIndex*>(index));
+	QMetaObject::invokeMethod(static_cast<MyQTableWidget*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTableWidget_SetRootIndexDefault(void* ptr, void* index){
-	static_cast<QTableWidget*>(ptr)->QTableWidget::setRootIndex(*static_cast<QModelIndex*>(index));
+	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTableWidget_SetSelectionModel(void* ptr, void* selectionModel){
@@ -37761,11 +37761,11 @@ void QTableWidget_TimerEventDefault(void* ptr, void* event){
 }
 
 void QTableWidget_UpdateGeometries(void* ptr){
-	static_cast<MyQTableWidget*>(ptr)->updateGeometries();
+	QMetaObject::invokeMethod(static_cast<MyQTableWidget*>(ptr), "updateGeometries");
 }
 
 void QTableWidget_UpdateGeometriesDefault(void* ptr){
-	static_cast<QTableWidget*>(ptr)->QTableWidget::updateGeometries();
+	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "updateGeometries");
 }
 
 void QTableWidget_DragLeaveEvent(void* ptr, void* event){
@@ -39639,11 +39639,11 @@ void QTimeEdit_DestroyQTimeEdit(void* ptr){
 }
 
 void QTimeEdit_Clear(void* ptr){
-	static_cast<QTimeEdit*>(ptr)->clear();
+	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "clear");
 }
 
 void QTimeEdit_ClearDefault(void* ptr){
-	static_cast<QTimeEdit*>(ptr)->QTimeEdit::clear();
+	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "clear");
 }
 
 void QTimeEdit_FocusInEvent(void* ptr, void* event){
@@ -41241,7 +41241,7 @@ class MyQTreeView: public QTreeView {
 public:
 	MyQTreeView(QWidget *parent) : QTreeView(parent) {};
 	void Signal_Collapsed(const QModelIndex & index) { callbackQTreeViewCollapsed(this, this->objectName().toUtf8().data(), index.internalPointer()); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQTreeViewCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
+	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQTreeViewCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer())) { QTreeView::currentChanged(current, previous); }; };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQTreeViewDragMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQTreeViewDrawBranches(const_cast<MyQTreeView*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), index.internalPointer()); };
 	void Signal_Expanded(const QModelIndex & index) { callbackQTreeViewExpanded(this, this->objectName().toUtf8().data(), index.internalPointer()); };
@@ -41252,18 +41252,18 @@ public:
 	void mousePressEvent(QMouseEvent * event) { callbackQTreeViewMousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQTreeViewMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void paintEvent(QPaintEvent * event) { callbackQTreeViewPaintEvent(this, this->objectName().toUtf8().data(), event); };
-	void reset() { callbackQTreeViewReset(this, this->objectName().toUtf8().data()); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { callbackQTreeViewRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end); };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { callbackQTreeViewRowsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end); };
+	void reset() { if (!callbackQTreeViewReset(this, this->objectName().toUtf8().data())) { QTreeView::reset(); }; };
+	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQTreeViewRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QTreeView::rowsAboutToBeRemoved(parent, start, end); }; };
+	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQTreeViewRowsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QTreeView::rowsInserted(parent, start, end); }; };
 	void scrollContentsBy(int dx, int dy) { callbackQTreeViewScrollContentsBy(this, this->objectName().toUtf8().data(), dx, dy); };
 	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQTreeViewScrollTo(this, this->objectName().toUtf8().data(), index.internalPointer(), hint); };
-	void selectAll() { callbackQTreeViewSelectAll(this, this->objectName().toUtf8().data()); };
+	void selectAll() { if (!callbackQTreeViewSelectAll(this, this->objectName().toUtf8().data())) { QTreeView::selectAll(); }; };
 	void setModel(QAbstractItemModel * model) { callbackQTreeViewSetModel(this, this->objectName().toUtf8().data(), model); };
-	void setRootIndex(const QModelIndex & index) { callbackQTreeViewSetRootIndex(this, this->objectName().toUtf8().data(), index.internalPointer()); };
+	void setRootIndex(const QModelIndex & index) { if (!callbackQTreeViewSetRootIndex(this, this->objectName().toUtf8().data(), index.internalPointer())) { QTreeView::setRootIndex(index); }; };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQTreeViewSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQTreeViewSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	void timerEvent(QTimerEvent * event) { callbackQTreeViewTimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void updateGeometries() { callbackQTreeViewUpdateGeometries(this, this->objectName().toUtf8().data()); };
+	void updateGeometries() { if (!callbackQTreeViewUpdateGeometries(this, this->objectName().toUtf8().data())) { QTreeView::updateGeometries(); }; };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQTreeViewDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { if (!callbackQTreeViewCloseEditor(this, this->objectName().toUtf8().data(), editor, hint)) { QTreeView::closeEditor(editor, hint); }; };
 	void commitData(QWidget * editor) { if (!callbackQTreeViewCommitData(this, this->objectName().toUtf8().data(), editor)) { QTreeView::commitData(editor); }; };
@@ -41431,11 +41431,11 @@ int QTreeView_ColumnWidth(void* ptr, int column){
 }
 
 void QTreeView_CurrentChanged(void* ptr, void* current, void* previous){
-	static_cast<MyQTreeView*>(ptr)->currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<MyQTreeView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QTreeView_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	static_cast<QTreeView*>(ptr)->QTreeView::currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QTreeView_DragMoveEvent(void* ptr, void* event){
@@ -41575,11 +41575,11 @@ void QTreeView_PaintEventDefault(void* ptr, void* event){
 }
 
 void QTreeView_Reset(void* ptr){
-	static_cast<MyQTreeView*>(ptr)->reset();
+	QMetaObject::invokeMethod(static_cast<MyQTreeView*>(ptr), "reset");
 }
 
 void QTreeView_ResetDefault(void* ptr){
-	static_cast<QTreeView*>(ptr)->QTreeView::reset();
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "reset");
 }
 
 void QTreeView_ResizeColumnToContents(void* ptr, int column){
@@ -41587,19 +41587,19 @@ void QTreeView_ResizeColumnToContents(void* ptr, int column){
 }
 
 void QTreeView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	static_cast<MyQTreeView*>(ptr)->rowsAboutToBeRemoved(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<MyQTreeView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTreeView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	static_cast<QTreeView*>(ptr)->QTreeView::rowsAboutToBeRemoved(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTreeView_RowsInserted(void* ptr, void* parent, int start, int end){
-	static_cast<MyQTreeView*>(ptr)->rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<MyQTreeView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTreeView_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	static_cast<QTreeView*>(ptr)->QTreeView::rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTreeView_ScrollContentsBy(void* ptr, int dx, int dy){
@@ -41619,11 +41619,11 @@ void QTreeView_ScrollToDefault(void* ptr, void* index, int hint){
 }
 
 void QTreeView_SelectAll(void* ptr){
-	static_cast<MyQTreeView*>(ptr)->selectAll();
+	QMetaObject::invokeMethod(static_cast<MyQTreeView*>(ptr), "selectAll");
 }
 
 void QTreeView_SelectAllDefault(void* ptr){
-	static_cast<QTreeView*>(ptr)->QTreeView::selectAll();
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "selectAll");
 }
 
 void QTreeView_SetColumnHidden(void* ptr, int column, int hide){
@@ -41655,11 +41655,11 @@ void QTreeView_SetModelDefault(void* ptr, void* model){
 }
 
 void QTreeView_SetRootIndex(void* ptr, void* index){
-	static_cast<MyQTreeView*>(ptr)->setRootIndex(*static_cast<QModelIndex*>(index));
+	QMetaObject::invokeMethod(static_cast<MyQTreeView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTreeView_SetRootIndexDefault(void* ptr, void* index){
-	static_cast<QTreeView*>(ptr)->QTreeView::setRootIndex(*static_cast<QModelIndex*>(index));
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTreeView_SetRowHidden(void* ptr, int row, void* parent, int hide){
@@ -41711,11 +41711,11 @@ int QTreeView_TreePosition(void* ptr){
 }
 
 void QTreeView_UpdateGeometries(void* ptr){
-	static_cast<MyQTreeView*>(ptr)->updateGeometries();
+	QMetaObject::invokeMethod(static_cast<MyQTreeView*>(ptr), "updateGeometries");
 }
 
 void QTreeView_UpdateGeometriesDefault(void* ptr){
-	static_cast<QTreeView*>(ptr)->QTreeView::updateGeometries();
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "updateGeometries");
 }
 
 int QTreeView_VerticalOffset(void* ptr){
@@ -41981,7 +41981,7 @@ public:
 	void Signal_ItemPressed(QTreeWidgetItem * item, int column) { callbackQTreeWidgetItemPressed(this, this->objectName().toUtf8().data(), item, column); };
 	void Signal_ItemSelectionChanged() { callbackQTreeWidgetItemSelectionChanged(this, this->objectName().toUtf8().data()); };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQTreeWidgetSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQTreeWidgetCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
+	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQTreeWidgetCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer())) { QTreeWidget::currentChanged(current, previous); }; };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQTreeWidgetDragMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQTreeWidgetDrawBranches(const_cast<MyQTreeWidget*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), index.internalPointer()); };
 	void keyPressEvent(QKeyEvent * event) { callbackQTreeWidgetKeyPressEvent(this, this->objectName().toUtf8().data(), event); };
@@ -41991,16 +41991,16 @@ public:
 	void mousePressEvent(QMouseEvent * event) { callbackQTreeWidgetMousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQTreeWidgetMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void paintEvent(QPaintEvent * event) { callbackQTreeWidgetPaintEvent(this, this->objectName().toUtf8().data(), event); };
-	void reset() { callbackQTreeWidgetReset(this, this->objectName().toUtf8().data()); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { callbackQTreeWidgetRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end); };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { callbackQTreeWidgetRowsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end); };
+	void reset() { if (!callbackQTreeWidgetReset(this, this->objectName().toUtf8().data())) { QTreeWidget::reset(); }; };
+	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQTreeWidgetRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QTreeWidget::rowsAboutToBeRemoved(parent, start, end); }; };
+	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQTreeWidgetRowsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end)) { QTreeWidget::rowsInserted(parent, start, end); }; };
 	void scrollContentsBy(int dx, int dy) { callbackQTreeWidgetScrollContentsBy(this, this->objectName().toUtf8().data(), dx, dy); };
 	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQTreeWidgetScrollTo(this, this->objectName().toUtf8().data(), index.internalPointer(), hint); };
-	void selectAll() { callbackQTreeWidgetSelectAll(this, this->objectName().toUtf8().data()); };
-	void setRootIndex(const QModelIndex & index) { callbackQTreeWidgetSetRootIndex(this, this->objectName().toUtf8().data(), index.internalPointer()); };
+	void selectAll() { if (!callbackQTreeWidgetSelectAll(this, this->objectName().toUtf8().data())) { QTreeWidget::selectAll(); }; };
+	void setRootIndex(const QModelIndex & index) { if (!callbackQTreeWidgetSetRootIndex(this, this->objectName().toUtf8().data(), index.internalPointer())) { QTreeWidget::setRootIndex(index); }; };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQTreeWidgetSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
 	void timerEvent(QTimerEvent * event) { callbackQTreeWidgetTimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void updateGeometries() { callbackQTreeWidgetUpdateGeometries(this, this->objectName().toUtf8().data()); };
+	void updateGeometries() { if (!callbackQTreeWidgetUpdateGeometries(this, this->objectName().toUtf8().data())) { QTreeWidget::updateGeometries(); }; };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQTreeWidgetDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { if (!callbackQTreeWidgetCloseEditor(this, this->objectName().toUtf8().data(), editor, hint)) { QTreeWidget::closeEditor(editor, hint); }; };
 	void commitData(QWidget * editor) { if (!callbackQTreeWidgetCommitData(this, this->objectName().toUtf8().data(), editor)) { QTreeWidget::commitData(editor); }; };
@@ -42339,11 +42339,11 @@ void QTreeWidget_DestroyQTreeWidget(void* ptr){
 }
 
 void QTreeWidget_CurrentChanged(void* ptr, void* current, void* previous){
-	static_cast<MyQTreeWidget*>(ptr)->currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QTreeWidget_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	static_cast<QTreeWidget*>(ptr)->QTreeWidget::currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QTreeWidget_DragMoveEvent(void* ptr, void* event){
@@ -42419,27 +42419,27 @@ void QTreeWidget_PaintEventDefault(void* ptr, void* event){
 }
 
 void QTreeWidget_Reset(void* ptr){
-	static_cast<MyQTreeWidget*>(ptr)->reset();
+	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "reset");
 }
 
 void QTreeWidget_ResetDefault(void* ptr){
-	static_cast<QTreeWidget*>(ptr)->QTreeWidget::reset();
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "reset");
 }
 
 void QTreeWidget_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	static_cast<MyQTreeWidget*>(ptr)->rowsAboutToBeRemoved(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTreeWidget_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	static_cast<QTreeWidget*>(ptr)->QTreeWidget::rowsAboutToBeRemoved(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTreeWidget_RowsInserted(void* ptr, void* parent, int start, int end){
-	static_cast<MyQTreeWidget*>(ptr)->rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTreeWidget_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	static_cast<QTreeWidget*>(ptr)->QTreeWidget::rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTreeWidget_ScrollContentsBy(void* ptr, int dx, int dy){
@@ -42459,19 +42459,19 @@ void QTreeWidget_ScrollToDefault(void* ptr, void* index, int hint){
 }
 
 void QTreeWidget_SelectAll(void* ptr){
-	static_cast<MyQTreeWidget*>(ptr)->selectAll();
+	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "selectAll");
 }
 
 void QTreeWidget_SelectAllDefault(void* ptr){
-	static_cast<QTreeWidget*>(ptr)->QTreeWidget::selectAll();
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "selectAll");
 }
 
 void QTreeWidget_SetRootIndex(void* ptr, void* index){
-	static_cast<MyQTreeWidget*>(ptr)->setRootIndex(*static_cast<QModelIndex*>(index));
+	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTreeWidget_SetRootIndexDefault(void* ptr, void* index){
-	static_cast<QTreeWidget*>(ptr)->QTreeWidget::setRootIndex(*static_cast<QModelIndex*>(index));
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTreeWidget_SetSelection(void* ptr, void* rect, int command){
@@ -42491,11 +42491,11 @@ void QTreeWidget_TimerEventDefault(void* ptr, void* event){
 }
 
 void QTreeWidget_UpdateGeometries(void* ptr){
-	static_cast<MyQTreeWidget*>(ptr)->updateGeometries();
+	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "updateGeometries");
 }
 
 void QTreeWidget_UpdateGeometriesDefault(void* ptr){
-	static_cast<QTreeWidget*>(ptr)->QTreeWidget::updateGeometries();
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "updateGeometries");
 }
 
 void QTreeWidget_DragLeaveEvent(void* ptr, void* event){
@@ -43512,11 +43512,11 @@ void QUndoView_DestroyQUndoView(void* ptr){
 }
 
 void QUndoView_CurrentChanged(void* ptr, void* current, void* previous){
-	static_cast<QUndoView*>(ptr)->currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QUndoView_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	static_cast<QUndoView*>(ptr)->QUndoView::currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
+	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QUndoView_DragLeaveEvent(void* ptr, void* e){
@@ -43576,19 +43576,19 @@ void QUndoView_ResizeEventDefault(void* ptr, void* e){
 }
 
 void QUndoView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	static_cast<QUndoView*>(ptr)->rowsAboutToBeRemoved(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QUndoView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	static_cast<QUndoView*>(ptr)->QUndoView::rowsAboutToBeRemoved(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QUndoView_RowsInserted(void* ptr, void* parent, int start, int end){
-	static_cast<QUndoView*>(ptr)->rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QUndoView_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	static_cast<QUndoView*>(ptr)->QUndoView::rowsInserted(*static_cast<QModelIndex*>(parent), start, end);
+	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QUndoView_ScrollTo(void* ptr, void* index, int hint){
@@ -43624,11 +43624,11 @@ void QUndoView_TimerEventDefault(void* ptr, void* e){
 }
 
 void QUndoView_UpdateGeometries(void* ptr){
-	static_cast<QUndoView*>(ptr)->updateGeometries();
+	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "updateGeometries");
 }
 
 void QUndoView_UpdateGeometriesDefault(void* ptr){
-	static_cast<QUndoView*>(ptr)->QUndoView::updateGeometries();
+	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "updateGeometries");
 }
 
 void QUndoView_CloseEditor(void* ptr, void* editor, int hint){
@@ -45386,13 +45386,13 @@ public:
 	void initializePage(int id) { callbackQWizardInitializePage(this, this->objectName().toUtf8().data(), id); };
 	void Signal_CurrentIdChanged(int id) { callbackQWizardCurrentIdChanged(this, this->objectName().toUtf8().data(), id); };
 	void Signal_CustomButtonClicked(int which) { callbackQWizardCustomButtonClicked(this, this->objectName().toUtf8().data(), which); };
-	void done(int result) { callbackQWizardDone(this, this->objectName().toUtf8().data(), result); };
+	void done(int result) { if (!callbackQWizardDone(this, this->objectName().toUtf8().data(), result)) { QWizard::done(result); }; };
 	void Signal_HelpRequested() { callbackQWizardHelpRequested(this, this->objectName().toUtf8().data()); };
 	void Signal_PageAdded(int id) { callbackQWizardPageAdded(this, this->objectName().toUtf8().data(), id); };
 	void Signal_PageRemoved(int id) { callbackQWizardPageRemoved(this, this->objectName().toUtf8().data(), id); };
 	void paintEvent(QPaintEvent * event) { callbackQWizardPaintEvent(this, this->objectName().toUtf8().data(), event); };
 	void resizeEvent(QResizeEvent * event) { callbackQWizardResizeEvent(this, this->objectName().toUtf8().data(), event); };
-	void setVisible(bool visible) { callbackQWizardSetVisible(this, this->objectName().toUtf8().data(), visible); };
+	void setVisible(bool visible) { if (!callbackQWizardSetVisible(this, this->objectName().toUtf8().data(), visible)) { QWizard::setVisible(visible); }; };
 	void accept() { if (!callbackQWizardAccept(this, this->objectName().toUtf8().data())) { QWizard::accept(); }; };
 	void closeEvent(QCloseEvent * e) { callbackQWizardCloseEvent(this, this->objectName().toUtf8().data(), e); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQWizardContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
@@ -45547,11 +45547,11 @@ void QWizard_CustomButtonClicked(void* ptr, int which){
 }
 
 void QWizard_Done(void* ptr, int result){
-	static_cast<MyQWizard*>(ptr)->done(result);
+	QMetaObject::invokeMethod(static_cast<MyQWizard*>(ptr), "done", Q_ARG(int, result));
 }
 
 void QWizard_DoneDefault(void* ptr, int result){
-	static_cast<QWizard*>(ptr)->QWizard::done(result);
+	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "done", Q_ARG(int, result));
 }
 
 int QWizard_Event(void* ptr, void* event){
@@ -45659,11 +45659,11 @@ void QWizard_SetSideWidget(void* ptr, void* widget){
 }
 
 void QWizard_SetVisible(void* ptr, int visible){
-	static_cast<MyQWizard*>(ptr)->setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<MyQWizard*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QWizard_SetVisibleDefault(void* ptr, int visible){
-	static_cast<QWizard*>(ptr)->QWizard::setVisible(visible != 0);
+	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void* QWizard_SideWidget(void* ptr){

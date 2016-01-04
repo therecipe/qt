@@ -143,14 +143,15 @@ func (ptr *QFontDialog) DisconnectDone() {
 }
 
 //export callbackQFontDialogDone
-func callbackQFontDialogDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) {
+func callbackQFontDialogDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) bool {
 	defer qt.Recovering("callback QFontDialog::done")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
 		signal.(func(int))(int(result))
-	} else {
-		NewQFontDialogFromPointer(ptr).DoneDefault(int(result))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QFontDialog) Done(result int) {
@@ -212,14 +213,15 @@ func (ptr *QFontDialog) DisconnectSetVisible() {
 }
 
 //export callbackQFontDialogSetVisible
-func callbackQFontDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQFontDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QFontDialog::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-	} else {
-		NewQFontDialogFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QFontDialog) SetVisible(visible bool) {

@@ -382,3 +382,22 @@ func hasSignalFunction(c *parser.Class) bool {
 
 	return false
 }
+
+func isDerivedFromSlot(of *parser.Function) bool {
+
+	var c = parser.ClassMap[of.Class()]
+
+	for _, bcName := range c.GetAllBases([]string{}) {
+		if bc, exists := parser.ClassMap[bcName]; exists {
+			for _, f := range bc.Functions {
+				if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
+					if of.Name == f.Name && (of.Meta == "slot" || f.Meta == "slot") {
+						return true
+					}
+				}
+			}
+		}
+	}
+
+	return false
+}

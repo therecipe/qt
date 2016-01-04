@@ -872,14 +872,15 @@ func (ptr *QTreeWidget) DisconnectCurrentChanged() {
 }
 
 //export callbackQTreeWidgetCurrentChanged
-func callbackQTreeWidgetCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
+func callbackQTreeWidgetCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeWidget::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
-	} else {
-		NewQTreeWidgetFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTreeWidget) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
@@ -1322,14 +1323,15 @@ func (ptr *QTreeWidget) DisconnectReset() {
 }
 
 //export callbackQTreeWidgetReset
-func callbackQTreeWidgetReset(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQTreeWidgetReset(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QTreeWidget::reset")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQTreeWidgetFromPointer(ptr).ResetDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTreeWidget) Reset() {
@@ -1367,14 +1369,15 @@ func (ptr *QTreeWidget) DisconnectRowsAboutToBeRemoved() {
 }
 
 //export callbackQTreeWidgetRowsAboutToBeRemoved
-func callbackQTreeWidgetRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
+func callbackQTreeWidgetRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QTreeWidget::rowsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-	} else {
-		NewQTreeWidgetFromPointer(ptr).RowsAboutToBeRemovedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTreeWidget) RowsAboutToBeRemoved(parent core.QModelIndex_ITF, start int, end int) {
@@ -1412,14 +1415,15 @@ func (ptr *QTreeWidget) DisconnectRowsInserted() {
 }
 
 //export callbackQTreeWidgetRowsInserted
-func callbackQTreeWidgetRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
+func callbackQTreeWidgetRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QTreeWidget::rowsInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-	} else {
-		NewQTreeWidgetFromPointer(ptr).RowsInsertedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTreeWidget) RowsInserted(parent core.QModelIndex_ITF, start int, end int) {
@@ -1547,14 +1551,15 @@ func (ptr *QTreeWidget) DisconnectSelectAll() {
 }
 
 //export callbackQTreeWidgetSelectAll
-func callbackQTreeWidgetSelectAll(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQTreeWidgetSelectAll(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QTreeWidget::selectAll")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectAll"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQTreeWidgetFromPointer(ptr).SelectAllDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTreeWidget) SelectAll() {
@@ -1592,14 +1597,15 @@ func (ptr *QTreeWidget) DisconnectSetRootIndex() {
 }
 
 //export callbackQTreeWidgetSetRootIndex
-func callbackQTreeWidgetSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
+func callbackQTreeWidgetSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeWidget::setRootIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
-	} else {
-		NewQTreeWidgetFromPointer(ptr).SetRootIndexDefault(core.NewQModelIndexFromPointer(index))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTreeWidget) SetRootIndex(index core.QModelIndex_ITF) {
@@ -1727,14 +1733,15 @@ func (ptr *QTreeWidget) DisconnectUpdateGeometries() {
 }
 
 //export callbackQTreeWidgetUpdateGeometries
-func callbackQTreeWidgetUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQTreeWidgetUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QTreeWidget::updateGeometries")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQTreeWidgetFromPointer(ptr).UpdateGeometriesDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTreeWidget) UpdateGeometries() {

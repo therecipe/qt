@@ -723,14 +723,15 @@ func (ptr *QProgressDialog) DisconnectSetVisible() {
 }
 
 //export callbackQProgressDialogSetVisible
-func callbackQProgressDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQProgressDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QProgressDialog::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-	} else {
-		NewQProgressDialogFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QProgressDialog) SetVisible(visible bool) {

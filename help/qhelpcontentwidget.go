@@ -103,14 +103,15 @@ func (ptr *QHelpContentWidget) DisconnectCurrentChanged() {
 }
 
 //export callbackQHelpContentWidgetCurrentChanged
-func callbackQHelpContentWidgetCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
+func callbackQHelpContentWidgetCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHelpContentWidget::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
-	} else {
-		NewQHelpContentWidgetFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QHelpContentWidget) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
@@ -553,14 +554,15 @@ func (ptr *QHelpContentWidget) DisconnectReset() {
 }
 
 //export callbackQHelpContentWidgetReset
-func callbackQHelpContentWidgetReset(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQHelpContentWidgetReset(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QHelpContentWidget::reset")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQHelpContentWidgetFromPointer(ptr).ResetDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QHelpContentWidget) Reset() {
@@ -598,14 +600,15 @@ func (ptr *QHelpContentWidget) DisconnectRowsAboutToBeRemoved() {
 }
 
 //export callbackQHelpContentWidgetRowsAboutToBeRemoved
-func callbackQHelpContentWidgetRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
+func callbackQHelpContentWidgetRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QHelpContentWidget::rowsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-	} else {
-		NewQHelpContentWidgetFromPointer(ptr).RowsAboutToBeRemovedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QHelpContentWidget) RowsAboutToBeRemoved(parent core.QModelIndex_ITF, start int, end int) {
@@ -643,14 +646,15 @@ func (ptr *QHelpContentWidget) DisconnectRowsInserted() {
 }
 
 //export callbackQHelpContentWidgetRowsInserted
-func callbackQHelpContentWidgetRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
+func callbackQHelpContentWidgetRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QHelpContentWidget::rowsInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-	} else {
-		NewQHelpContentWidgetFromPointer(ptr).RowsInsertedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QHelpContentWidget) RowsInserted(parent core.QModelIndex_ITF, start int, end int) {
@@ -778,14 +782,15 @@ func (ptr *QHelpContentWidget) DisconnectSelectAll() {
 }
 
 //export callbackQHelpContentWidgetSelectAll
-func callbackQHelpContentWidgetSelectAll(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQHelpContentWidgetSelectAll(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QHelpContentWidget::selectAll")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectAll"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQHelpContentWidgetFromPointer(ptr).SelectAllDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QHelpContentWidget) SelectAll() {
@@ -868,14 +873,15 @@ func (ptr *QHelpContentWidget) DisconnectSetRootIndex() {
 }
 
 //export callbackQHelpContentWidgetSetRootIndex
-func callbackQHelpContentWidgetSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
+func callbackQHelpContentWidgetSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHelpContentWidget::setRootIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
-	} else {
-		NewQHelpContentWidgetFromPointer(ptr).SetRootIndexDefault(core.NewQModelIndexFromPointer(index))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QHelpContentWidget) SetRootIndex(index core.QModelIndex_ITF) {
@@ -1048,14 +1054,15 @@ func (ptr *QHelpContentWidget) DisconnectUpdateGeometries() {
 }
 
 //export callbackQHelpContentWidgetUpdateGeometries
-func callbackQHelpContentWidgetUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQHelpContentWidgetUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QHelpContentWidget::updateGeometries")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQHelpContentWidgetFromPointer(ptr).UpdateGeometriesDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QHelpContentWidget) UpdateGeometries() {

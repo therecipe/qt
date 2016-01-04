@@ -320,14 +320,15 @@ func (ptr *QInputDialog) DisconnectDone() {
 }
 
 //export callbackQInputDialogDone
-func callbackQInputDialogDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) {
+func callbackQInputDialogDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) bool {
 	defer qt.Recovering("callback QInputDialog::done")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
 		signal.(func(int))(int(result))
-	} else {
-		NewQInputDialogFromPointer(ptr).DoneDefault(int(result))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QInputDialog) Done(result int) {
@@ -494,14 +495,15 @@ func (ptr *QInputDialog) DisconnectSetVisible() {
 }
 
 //export callbackQInputDialogSetVisible
-func callbackQInputDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQInputDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QInputDialog::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-	} else {
-		NewQInputDialogFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QInputDialog) SetVisible(visible bool) {

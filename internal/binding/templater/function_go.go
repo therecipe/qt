@@ -65,7 +65,7 @@ func goFunctionHeader(f *parser.Function) string {
 
 func goInterface(f *parser.Function) string {
 	if f.Virtual == "impure" && f.SignalMode == "callback" {
-		if f.Meta == "slot" {
+		if f.Meta == "slot" || isDerivedFromSlot(f) {
 			return fmt.Sprintf("%v(%v)%v", converter.GoHeaderName(f), converter.GoHeaderInput(f), "bool")
 		} else {
 			return fmt.Sprintf("%v(%v)", converter.GoHeaderName(f), converter.GoHeaderInput(f))
@@ -89,6 +89,8 @@ func goFunctionBody(f *parser.Function) (o string) {
 		o += fmt.Sprintf("defer qt.Recovering(\"%v\")\n\n", f.Fullname)
 	}
 
+	//o += fmt.Sprintf("println(\"%v\")\n\n", f.Fullname)
+
 	if !f.Static && f.Meta != "constructor" && f.SignalMode != "callback" {
 		o += fmt.Sprintf("if ptr.Pointer() != nil {\n")
 	}
@@ -110,7 +112,7 @@ func goFunctionBody(f *parser.Function) (o string) {
 		o += fmt.Sprintf("\tsignal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
 
 		if f.Virtual == "impure" {
-			if f.Meta == "slot" {
+			if f.Meta == "slot" || isDerivedFromSlot(f) {
 				o += fmt.Sprintf("\treturn true\n}\nreturn false\n")
 			} else {
 				o += fmt.Sprintf("} else {\n\tNew%vFromPointer(ptr).%vDefault(%v)\n}", f.Class(), strings.Title(f.Name), converter.GoBodyInputSignalValues(f))

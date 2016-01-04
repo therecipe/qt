@@ -152,14 +152,15 @@ func (ptr *QUndoView) DisconnectCurrentChanged() {
 }
 
 //export callbackQUndoViewCurrentChanged
-func callbackQUndoViewCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
+func callbackQUndoViewCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
 	defer qt.Recovering("callback QUndoView::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
-	} else {
-		NewQUndoViewFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QUndoView) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
@@ -512,14 +513,15 @@ func (ptr *QUndoView) DisconnectRowsAboutToBeRemoved() {
 }
 
 //export callbackQUndoViewRowsAboutToBeRemoved
-func callbackQUndoViewRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
+func callbackQUndoViewRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QUndoView::rowsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-	} else {
-		NewQUndoViewFromPointer(ptr).RowsAboutToBeRemovedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QUndoView) RowsAboutToBeRemoved(parent core.QModelIndex_ITF, start int, end int) {
@@ -557,14 +559,15 @@ func (ptr *QUndoView) DisconnectRowsInserted() {
 }
 
 //export callbackQUndoViewRowsInserted
-func callbackQUndoViewRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
+func callbackQUndoViewRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QUndoView::rowsInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-	} else {
-		NewQUndoViewFromPointer(ptr).RowsInsertedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QUndoView) RowsInserted(parent core.QModelIndex_ITF, start int, end int) {
@@ -782,14 +785,15 @@ func (ptr *QUndoView) DisconnectUpdateGeometries() {
 }
 
 //export callbackQUndoViewUpdateGeometries
-func callbackQUndoViewUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQUndoViewUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QUndoView::updateGeometries")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQUndoViewFromPointer(ptr).UpdateGeometriesDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QUndoView) UpdateGeometries() {

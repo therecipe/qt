@@ -200,14 +200,15 @@ func (ptr *QAbstractProxyModel) DisconnectRevert() {
 }
 
 //export callbackQAbstractProxyModelRevert
-func callbackQAbstractProxyModelRevert(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQAbstractProxyModelRevert(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QAbstractProxyModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQAbstractProxyModelFromPointer(ptr).RevertDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QAbstractProxyModel) Revert() {

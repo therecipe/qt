@@ -626,14 +626,15 @@ func (ptr *QSortFilterProxyModel) DisconnectRevert() {
 }
 
 //export callbackQSortFilterProxyModelRevert
-func callbackQSortFilterProxyModelRevert(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQSortFilterProxyModelRevert(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QSortFilterProxyModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQSortFilterProxyModelFromPointer(ptr).RevertDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QSortFilterProxyModel) Revert() {

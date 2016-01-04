@@ -241,14 +241,15 @@ func (ptr *QColorDialog) DisconnectDone() {
 }
 
 //export callbackQColorDialogDone
-func callbackQColorDialogDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) {
+func callbackQColorDialogDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) bool {
 	defer qt.Recovering("callback QColorDialog::done")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
 		signal.(func(int))(int(result))
-	} else {
-		NewQColorDialogFromPointer(ptr).DoneDefault(int(result))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QColorDialog) Done(result int) {
@@ -329,14 +330,15 @@ func (ptr *QColorDialog) DisconnectSetVisible() {
 }
 
 //export callbackQColorDialogSetVisible
-func callbackQColorDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQColorDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QColorDialog::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-	} else {
-		NewQColorDialogFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QColorDialog) SetVisible(visible bool) {

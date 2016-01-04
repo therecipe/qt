@@ -1121,14 +1121,15 @@ func (ptr *QTableWidget) DisconnectCurrentChanged() {
 }
 
 //export callbackQTableWidgetCurrentChanged
-func callbackQTableWidgetCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
+func callbackQTableWidgetCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableWidget::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
-	} else {
-		NewQTableWidgetFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTableWidget) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
@@ -1211,14 +1212,15 @@ func (ptr *QTableWidget) DisconnectSetRootIndex() {
 }
 
 //export callbackQTableWidgetSetRootIndex
-func callbackQTableWidgetSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
+func callbackQTableWidgetSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableWidget::setRootIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
-	} else {
-		NewQTableWidgetFromPointer(ptr).SetRootIndexDefault(core.NewQModelIndexFromPointer(index))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTableWidget) SetRootIndex(index core.QModelIndex_ITF) {
@@ -1346,14 +1348,15 @@ func (ptr *QTableWidget) DisconnectUpdateGeometries() {
 }
 
 //export callbackQTableWidgetUpdateGeometries
-func callbackQTableWidgetUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQTableWidgetUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QTableWidget::updateGeometries")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQTableWidgetFromPointer(ptr).UpdateGeometriesDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QTableWidget) UpdateGeometries() {

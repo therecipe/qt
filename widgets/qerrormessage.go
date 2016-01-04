@@ -108,14 +108,15 @@ func (ptr *QErrorMessage) DisconnectDone() {
 }
 
 //export callbackQErrorMessageDone
-func callbackQErrorMessageDone(ptr unsafe.Pointer, ptrName *C.char, a C.int) {
+func callbackQErrorMessageDone(ptr unsafe.Pointer, ptrName *C.char, a C.int) bool {
 	defer qt.Recovering("callback QErrorMessage::done")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
 		signal.(func(int))(int(a))
-	} else {
-		NewQErrorMessageFromPointer(ptr).DoneDefault(int(a))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QErrorMessage) Done(a int) {
@@ -502,14 +503,15 @@ func (ptr *QErrorMessage) DisconnectSetVisible() {
 }
 
 //export callbackQErrorMessageSetVisible
-func callbackQErrorMessageSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQErrorMessageSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QErrorMessage::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-	} else {
-		NewQErrorMessageFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QErrorMessage) SetVisible(visible bool) {

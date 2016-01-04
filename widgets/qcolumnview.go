@@ -89,14 +89,15 @@ func (ptr *QColumnView) DisconnectCurrentChanged() {
 }
 
 //export callbackQColumnViewCurrentChanged
-func callbackQColumnViewCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
+func callbackQColumnViewCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
 	defer qt.Recovering("callback QColumnView::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
-	} else {
-		NewQColumnViewFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QColumnView) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
@@ -224,14 +225,15 @@ func (ptr *QColumnView) DisconnectRowsInserted() {
 }
 
 //export callbackQColumnViewRowsInserted
-func callbackQColumnViewRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
+func callbackQColumnViewRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QColumnView::rowsInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-	} else {
-		NewQColumnViewFromPointer(ptr).RowsInsertedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QColumnView) RowsInserted(parent core.QModelIndex_ITF, start int, end int) {
@@ -359,14 +361,15 @@ func (ptr *QColumnView) DisconnectSelectAll() {
 }
 
 //export callbackQColumnViewSelectAll
-func callbackQColumnViewSelectAll(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQColumnViewSelectAll(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QColumnView::selectAll")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectAll"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQColumnViewFromPointer(ptr).SelectAllDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QColumnView) SelectAll() {
@@ -457,14 +460,15 @@ func (ptr *QColumnView) DisconnectSetRootIndex() {
 }
 
 //export callbackQColumnViewSetRootIndex
-func callbackQColumnViewSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
+func callbackQColumnViewSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QColumnView::setRootIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
-	} else {
-		NewQColumnViewFromPointer(ptr).SetRootIndexDefault(core.NewQModelIndexFromPointer(index))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QColumnView) SetRootIndex(index core.QModelIndex_ITF) {

@@ -277,14 +277,15 @@ func (ptr *QIdentityProxyModel) DisconnectRevert() {
 }
 
 //export callbackQIdentityProxyModelRevert
-func callbackQIdentityProxyModelRevert(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQIdentityProxyModelRevert(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QIdentityProxyModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQIdentityProxyModelFromPointer(ptr).RevertDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QIdentityProxyModel) Revert() {

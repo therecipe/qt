@@ -237,14 +237,15 @@ func (ptr *QHeaderView) DisconnectCurrentChanged() {
 }
 
 //export callbackQHeaderViewCurrentChanged
-func callbackQHeaderViewCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, old unsafe.Pointer) {
+func callbackQHeaderViewCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, old unsafe.Pointer) bool {
 	defer qt.Recovering("callback QHeaderView::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(old))
-	} else {
-		NewQHeaderViewFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(old))
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QHeaderView) CurrentChanged(current core.QModelIndex_ITF, old core.QModelIndex_ITF) {
@@ -711,14 +712,15 @@ func (ptr *QHeaderView) DisconnectReset() {
 }
 
 //export callbackQHeaderViewReset
-func callbackQHeaderViewReset(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQHeaderViewReset(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QHeaderView::reset")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQHeaderViewFromPointer(ptr).ResetDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QHeaderView) Reset() {
@@ -1331,14 +1333,15 @@ func (ptr *QHeaderView) DisconnectSetVisible() {
 }
 
 //export callbackQHeaderViewSetVisible
-func callbackQHeaderViewSetVisible(ptr unsafe.Pointer, ptrName *C.char, v C.int) {
+func callbackQHeaderViewSetVisible(ptr unsafe.Pointer, ptrName *C.char, v C.int) bool {
 	defer qt.Recovering("callback QHeaderView::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(v) != 0)
-	} else {
-		NewQHeaderViewFromPointer(ptr).SetVisibleDefault(int(v) != 0)
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QHeaderView) SetVisible(v bool) {

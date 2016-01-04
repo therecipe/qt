@@ -78,14 +78,15 @@ func (ptr *QDateEdit) DisconnectClear() {
 }
 
 //export callbackQDateEditClear
-func callbackQDateEditClear(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDateEditClear(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QDateEdit::clear")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQDateEditFromPointer(ptr).ClearDefault()
+		return true
 	}
+	return false
+
 }
 
 func (ptr *QDateEdit) Clear() {
