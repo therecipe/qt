@@ -67,9 +67,8 @@ func callbackQXmlFormatterCharacters(ptr unsafe.Pointer, ptrName *C.char, value 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "characters"); signal != nil {
 		signal.(func(*core.QStringRef))(core.NewQStringRefFromPointer(value))
-	} else {
-		NewQXmlFormatterFromPointer(ptr).CharactersDefault(core.NewQStringRefFromPointer(value))
 	}
+
 }
 
 func (ptr *QXmlFormatter) Characters(value core.QStringRef_ITF) {
@@ -112,9 +111,8 @@ func callbackQXmlFormatterComment(ptr unsafe.Pointer, ptrName *C.char, value *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "comment"); signal != nil {
 		signal.(func(string))(C.GoString(value))
-	} else {
-		NewQXmlFormatterFromPointer(ptr).CommentDefault(C.GoString(value))
 	}
+
 }
 
 func (ptr *QXmlFormatter) Comment(value string) {
@@ -157,9 +155,8 @@ func callbackQXmlFormatterEndDocument(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "endDocument"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQXmlFormatterFromPointer(ptr).EndDocumentDefault()
 	}
+
 }
 
 func (ptr *QXmlFormatter) EndDocument() {
@@ -202,9 +199,8 @@ func callbackQXmlFormatterEndElement(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "endElement"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQXmlFormatterFromPointer(ptr).EndElementDefault()
 	}
+
 }
 
 func (ptr *QXmlFormatter) EndElement() {
@@ -247,9 +243,8 @@ func callbackQXmlFormatterEndOfSequence(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "endOfSequence"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQXmlFormatterFromPointer(ptr).EndOfSequenceDefault()
 	}
+
 }
 
 func (ptr *QXmlFormatter) EndOfSequence() {
@@ -309,9 +304,8 @@ func callbackQXmlFormatterStartDocument(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startDocument"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQXmlFormatterFromPointer(ptr).StartDocumentDefault()
 	}
+
 }
 
 func (ptr *QXmlFormatter) StartDocument() {
@@ -354,9 +348,8 @@ func callbackQXmlFormatterStartOfSequence(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startOfSequence"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQXmlFormatterFromPointer(ptr).StartOfSequenceDefault()
 	}
+
 }
 
 func (ptr *QXmlFormatter) StartOfSequence() {

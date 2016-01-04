@@ -262,9 +262,8 @@ func callbackQCheckBoxPaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.P
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-	} else {
-		NewQCheckBoxFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
+
 }
 
 func (ptr *QCheckBox) PaintEvent(v gui.QPaintEvent_ITF) {

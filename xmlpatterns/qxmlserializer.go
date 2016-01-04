@@ -67,9 +67,8 @@ func callbackQXmlSerializerCharacters(ptr unsafe.Pointer, ptrName *C.char, value
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "characters"); signal != nil {
 		signal.(func(*core.QStringRef))(core.NewQStringRefFromPointer(value))
-	} else {
-		NewQXmlSerializerFromPointer(ptr).CharactersDefault(core.NewQStringRefFromPointer(value))
 	}
+
 }
 
 func (ptr *QXmlSerializer) Characters(value core.QStringRef_ITF) {
@@ -112,9 +111,8 @@ func callbackQXmlSerializerComment(ptr unsafe.Pointer, ptrName *C.char, value *C
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "comment"); signal != nil {
 		signal.(func(string))(C.GoString(value))
-	} else {
-		NewQXmlSerializerFromPointer(ptr).CommentDefault(C.GoString(value))
 	}
+
 }
 
 func (ptr *QXmlSerializer) Comment(value string) {
@@ -157,9 +155,8 @@ func callbackQXmlSerializerEndDocument(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "endDocument"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQXmlSerializerFromPointer(ptr).EndDocumentDefault()
 	}
+
 }
 
 func (ptr *QXmlSerializer) EndDocument() {
@@ -202,9 +199,8 @@ func callbackQXmlSerializerEndElement(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "endElement"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQXmlSerializerFromPointer(ptr).EndElementDefault()
 	}
+
 }
 
 func (ptr *QXmlSerializer) EndElement() {
@@ -256,9 +252,8 @@ func callbackQXmlSerializerEndOfSequence(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "endOfSequence"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQXmlSerializerFromPointer(ptr).EndOfSequenceDefault()
 	}
+
 }
 
 func (ptr *QXmlSerializer) EndOfSequence() {
@@ -318,9 +313,8 @@ func callbackQXmlSerializerStartDocument(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startDocument"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQXmlSerializerFromPointer(ptr).StartDocumentDefault()
 	}
+
 }
 
 func (ptr *QXmlSerializer) StartDocument() {
@@ -363,9 +357,8 @@ func callbackQXmlSerializerStartOfSequence(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startOfSequence"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQXmlSerializerFromPointer(ptr).StartOfSequenceDefault()
 	}
+
 }
 
 func (ptr *QXmlSerializer) StartOfSequence() {

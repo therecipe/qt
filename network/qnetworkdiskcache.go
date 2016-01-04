@@ -80,14 +80,12 @@ func (ptr *QNetworkDiskCache) DisconnectClear() {
 }
 
 //export callbackQNetworkDiskCacheClear
-func callbackQNetworkDiskCacheClear(ptr unsafe.Pointer, ptrName *C.char) bool {
+func callbackQNetworkDiskCacheClear(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkDiskCache::clear")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
 		signal.(func())()
-		return true
 	}
-	return false
 
 }
 

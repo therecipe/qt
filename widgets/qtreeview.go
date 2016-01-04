@@ -1151,9 +1151,8 @@ func callbackQTreeViewScrollTo(ptr unsafe.Pointer, ptrName *C.char, index unsafe
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollTo"); signal != nil {
 		signal.(func(*core.QModelIndex, QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
-	} else {
-		NewQTreeViewFromPointer(ptr).ScrollToDefault(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
 	}
+
 }
 
 func (ptr *QTreeView) ScrollTo(index core.QModelIndex_ITF, hint QAbstractItemView__ScrollHint) {
@@ -1381,9 +1380,8 @@ func callbackQTreeViewSetSelection(ptr unsafe.Pointer, ptrName *C.char, rect uns
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
-	} else {
-		NewQTreeViewFromPointer(ptr).SetSelectionDefault(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
 	}
+
 }
 
 func (ptr *QTreeView) SetSelection(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {

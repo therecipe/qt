@@ -85,9 +85,8 @@ func callbackQPlainTextDocumentLayoutDocumentChanged(ptr unsafe.Pointer, ptrName
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "documentChanged"); signal != nil {
 		signal.(func(int, int, int))(int(from), int(charsRemoved), int(charsAdded))
-	} else {
-		NewQPlainTextDocumentLayoutFromPointer(ptr).DocumentChangedDefault(int(from), int(charsRemoved), int(charsAdded))
 	}
+
 }
 
 func (ptr *QPlainTextDocumentLayout) DocumentChanged(from int, charsRemoved int, charsAdded int) {

@@ -369,9 +369,8 @@ func callbackQGridLayoutSetGeometry(ptr unsafe.Pointer, ptrName *C.char, rect un
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
-	} else {
-		NewQGridLayoutFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(rect))
 	}
+
 }
 
 func (ptr *QGridLayout) SetGeometry(rect core.QRect_ITF) {

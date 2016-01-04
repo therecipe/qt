@@ -174,9 +174,8 @@ func callbackQXmlSimpleReaderSetContentHandler(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setContentHandler"); signal != nil {
 		signal.(func(*QXmlContentHandler))(NewQXmlContentHandlerFromPointer(handler))
-	} else {
-		NewQXmlSimpleReaderFromPointer(ptr).SetContentHandlerDefault(NewQXmlContentHandlerFromPointer(handler))
 	}
+
 }
 
 func (ptr *QXmlSimpleReader) SetContentHandler(handler QXmlContentHandler_ITF) {
@@ -219,9 +218,8 @@ func callbackQXmlSimpleReaderSetDTDHandler(ptr unsafe.Pointer, ptrName *C.char, 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDTDHandler"); signal != nil {
 		signal.(func(*QXmlDTDHandler))(NewQXmlDTDHandlerFromPointer(handler))
-	} else {
-		NewQXmlSimpleReaderFromPointer(ptr).SetDTDHandlerDefault(NewQXmlDTDHandlerFromPointer(handler))
 	}
+
 }
 
 func (ptr *QXmlSimpleReader) SetDTDHandler(handler QXmlDTDHandler_ITF) {
@@ -264,9 +262,8 @@ func callbackQXmlSimpleReaderSetDeclHandler(ptr unsafe.Pointer, ptrName *C.char,
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDeclHandler"); signal != nil {
 		signal.(func(*QXmlDeclHandler))(NewQXmlDeclHandlerFromPointer(handler))
-	} else {
-		NewQXmlSimpleReaderFromPointer(ptr).SetDeclHandlerDefault(NewQXmlDeclHandlerFromPointer(handler))
 	}
+
 }
 
 func (ptr *QXmlSimpleReader) SetDeclHandler(handler QXmlDeclHandler_ITF) {
@@ -309,9 +306,8 @@ func callbackQXmlSimpleReaderSetEntityResolver(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setEntityResolver"); signal != nil {
 		signal.(func(*QXmlEntityResolver))(NewQXmlEntityResolverFromPointer(handler))
-	} else {
-		NewQXmlSimpleReaderFromPointer(ptr).SetEntityResolverDefault(NewQXmlEntityResolverFromPointer(handler))
 	}
+
 }
 
 func (ptr *QXmlSimpleReader) SetEntityResolver(handler QXmlEntityResolver_ITF) {
@@ -354,9 +350,8 @@ func callbackQXmlSimpleReaderSetErrorHandler(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setErrorHandler"); signal != nil {
 		signal.(func(*QXmlErrorHandler))(NewQXmlErrorHandlerFromPointer(handler))
-	} else {
-		NewQXmlSimpleReaderFromPointer(ptr).SetErrorHandlerDefault(NewQXmlErrorHandlerFromPointer(handler))
 	}
+
 }
 
 func (ptr *QXmlSimpleReader) SetErrorHandler(handler QXmlErrorHandler_ITF) {
@@ -399,9 +394,8 @@ func callbackQXmlSimpleReaderSetFeature(ptr unsafe.Pointer, ptrName *C.char, nam
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setFeature"); signal != nil {
 		signal.(func(string, bool))(C.GoString(name), int(enable) != 0)
-	} else {
-		NewQXmlSimpleReaderFromPointer(ptr).SetFeatureDefault(C.GoString(name), int(enable) != 0)
 	}
+
 }
 
 func (ptr *QXmlSimpleReader) SetFeature(name string, enable bool) {
@@ -444,9 +438,8 @@ func callbackQXmlSimpleReaderSetLexicalHandler(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setLexicalHandler"); signal != nil {
 		signal.(func(*QXmlLexicalHandler))(NewQXmlLexicalHandlerFromPointer(handler))
-	} else {
-		NewQXmlSimpleReaderFromPointer(ptr).SetLexicalHandlerDefault(NewQXmlLexicalHandlerFromPointer(handler))
 	}
+
 }
 
 func (ptr *QXmlSimpleReader) SetLexicalHandler(handler QXmlLexicalHandler_ITF) {

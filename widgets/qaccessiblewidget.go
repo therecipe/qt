@@ -116,9 +116,8 @@ func callbackQAccessibleWidgetDoAction(ptr unsafe.Pointer, ptrName *C.char, acti
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "doAction"); signal != nil {
 		signal.(func(string))(C.GoString(actionName))
-	} else {
-		NewQAccessibleWidgetFromPointer(ptr).DoActionDefault(C.GoString(actionName))
 	}
+
 }
 
 func (ptr *QAccessibleWidget) DoAction(actionName string) {
@@ -277,9 +276,8 @@ func callbackQAccessibleWidgetSetText(ptr unsafe.Pointer, ptrName *C.char, t C.i
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setText"); signal != nil {
 		signal.(func(gui.QAccessible__Text, string))(gui.QAccessible__Text(t), C.GoString(text))
-	} else {
-		NewQAccessibleWidgetFromPointer(ptr).SetTextDefault(gui.QAccessible__Text(t), C.GoString(text))
 	}
+
 }
 
 func (ptr *QAccessibleWidget) SetText(t gui.QAccessible__Text, text string) {

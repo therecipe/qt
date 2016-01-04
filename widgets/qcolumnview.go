@@ -321,9 +321,8 @@ func callbackQColumnViewScrollTo(ptr unsafe.Pointer, ptrName *C.char, index unsa
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollTo"); signal != nil {
 		signal.(func(*core.QModelIndex, QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
-	} else {
-		NewQColumnViewFromPointer(ptr).ScrollToDefault(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
 	}
+
 }
 
 func (ptr *QColumnView) ScrollTo(index core.QModelIndex_ITF, hint QAbstractItemView__ScrollHint) {
@@ -511,9 +510,8 @@ func callbackQColumnViewSetSelection(ptr unsafe.Pointer, ptrName *C.char, rect u
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
-	} else {
-		NewQColumnViewFromPointer(ptr).SetSelectionDefault(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
 	}
+
 }
 
 func (ptr *QColumnView) SetSelection(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {

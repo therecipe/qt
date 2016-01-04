@@ -62,9 +62,8 @@ func callbackQCommonStyleDrawControl(ptr unsafe.Pointer, ptrName *C.char, elemen
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawControl"); signal != nil {
 		signal.(func(QStyle__ControlElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__ControlElement(element), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
-	} else {
-		NewQCommonStyleFromPointer(ptr).DrawControlDefault(QStyle__ControlElement(element), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
 	}
+
 }
 
 func (ptr *QCommonStyle) DrawControl(element QStyle__ControlElement, opt QStyleOption_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
@@ -107,9 +106,8 @@ func callbackQCommonStyleDrawPrimitive(ptr unsafe.Pointer, ptrName *C.char, pe C
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawPrimitive"); signal != nil {
 		signal.(func(QStyle__PrimitiveElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__PrimitiveElement(pe), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
-	} else {
-		NewQCommonStyleFromPointer(ptr).DrawPrimitiveDefault(QStyle__PrimitiveElement(pe), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
 	}
+
 }
 
 func (ptr *QCommonStyle) DrawPrimitive(pe QStyle__PrimitiveElement, opt QStyleOption_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
@@ -152,9 +150,8 @@ func callbackQCommonStyleDrawComplexControl(ptr unsafe.Pointer, ptrName *C.char,
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawComplexControl"); signal != nil {
 		signal.(func(QStyle__ComplexControl, *QStyleOptionComplex, *gui.QPainter, *QWidget))(QStyle__ComplexControl(cc), NewQStyleOptionComplexFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
-	} else {
-		NewQCommonStyleFromPointer(ptr).DrawComplexControlDefault(QStyle__ComplexControl(cc), NewQStyleOptionComplexFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
 	}
+
 }
 
 func (ptr *QCommonStyle) DrawComplexControl(cc QStyle__ComplexControl, opt QStyleOptionComplex_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {

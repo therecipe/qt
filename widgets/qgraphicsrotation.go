@@ -145,9 +145,8 @@ func callbackQGraphicsRotationApplyTo(ptr unsafe.Pointer, ptrName *C.char, matri
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "applyTo"); signal != nil {
 		signal.(func(*gui.QMatrix4x4))(gui.NewQMatrix4x4FromPointer(matrix))
-	} else {
-		NewQGraphicsRotationFromPointer(ptr).ApplyToDefault(gui.NewQMatrix4x4FromPointer(matrix))
 	}
+
 }
 
 func (ptr *QGraphicsRotation) ApplyTo(matrix gui.QMatrix4x4_ITF) {

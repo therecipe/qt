@@ -401,3 +401,22 @@ func isDerivedFromSlot(of *parser.Function) bool {
 
 	return false
 }
+
+func isDerivedFromPure(of *parser.Function) bool {
+
+	var c = parser.ClassMap[of.Class()]
+
+	for _, bcName := range c.GetAllBases([]string{}) {
+		if bc, exists := parser.ClassMap[bcName]; exists {
+			for _, f := range bc.Functions {
+				if f.Virtual == "pure" && f.Output == "void" {
+					if of.Name == f.Name {
+						return true
+					}
+				}
+			}
+		}
+	}
+
+	return false
+}

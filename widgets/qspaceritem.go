@@ -120,9 +120,8 @@ func callbackQSpacerItemSetGeometry(ptr unsafe.Pointer, ptrName *C.char, r unsaf
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
-	} else {
-		NewQSpacerItemFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(r))
 	}
+
 }
 
 func (ptr *QSpacerItem) SetGeometry(r core.QRect_ITF) {

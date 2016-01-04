@@ -302,9 +302,8 @@ func callbackQPushButtonPaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-	} else {
-		NewQPushButtonFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
+
 }
 
 func (ptr *QPushButton) PaintEvent(v gui.QPaintEvent_ITF) {

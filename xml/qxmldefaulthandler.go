@@ -250,9 +250,8 @@ func callbackQXmlDefaultHandlerSetDocumentLocator(ptr unsafe.Pointer, ptrName *C
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDocumentLocator"); signal != nil {
 		signal.(func(*QXmlLocator))(NewQXmlLocatorFromPointer(locator))
-	} else {
-		NewQXmlDefaultHandlerFromPointer(ptr).SetDocumentLocatorDefault(NewQXmlLocatorFromPointer(locator))
 	}
+
 }
 
 func (ptr *QXmlDefaultHandler) SetDocumentLocator(locator QXmlLocator_ITF) {

@@ -108,9 +108,8 @@ func callbackQEventTransitionOnTransition(ptr unsafe.Pointer, ptrName *C.char, e
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "onTransition"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-	} else {
-		NewQEventTransitionFromPointer(ptr).OnTransitionDefault(NewQEventFromPointer(event))
 	}
+
 }
 
 func (ptr *QEventTransition) OnTransition(event QEvent_ITF) {

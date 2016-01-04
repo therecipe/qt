@@ -27,10 +27,14 @@ func cppFunctionSignal(f *parser.Function) string {
 	originalInput = strings.TrimSuffix(originalInput, ", ")
 
 	if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
-		if f.Meta == "slot" || isDerivedFromSlot(f) {
-			return fmt.Sprintf("void %v(%v)%v { if (!callback%v%v%v(%v)) { %v::%v(%v); }; }", f.Name, converter.CppBodyInputCallback(f), constP, f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f), f.Class(), f.Name, originalInput)
-		} else {
+		if isDerivedFromPure(f) {
 			return fmt.Sprintf("void %v(%v)%v { callback%v%v%v(%v); }", f.Name, converter.CppBodyInputCallback(f), constP, f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f))
+		} else {
+			if f.Meta == "slot" || isDerivedFromSlot(f) {
+				return fmt.Sprintf("void %v(%v)%v { if (!callback%v%v%v(%v)) { %v::%v(%v); }; }", f.Name, converter.CppBodyInputCallback(f), constP, f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f), f.Class(), f.Name, originalInput)
+			} else {
+				return fmt.Sprintf("void %v(%v)%v { callback%v%v%v(%v); }", f.Name, converter.CppBodyInputCallback(f), constP, f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f))
+			}
 		}
 	}
 	return fmt.Sprintf("void Signal_%v%v(%v) { callback%v%v%v(%v); }", strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyInputCallback(f), f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f))
@@ -149,7 +153,6 @@ func cppFunctionBody(f *parser.Function) (o string) {
 				o += fmt.Sprintf("QObject::%v(%v, static_cast<void (%v::*)(%v)>(&%v::%v), static_cast<My%v*>(ptr), static_cast<%v (My%v::*)(%v)>(&My%v::Signal_%v%v));", strings.ToLower(f.SignalMode), fmt.Sprintf("static_cast<%v*>(%v)", f.Class(), "ptr"), f.Class(), converter.CppBodyInput(f), f.Class(), f.Name, f.Class(), f.Output, f.Class(), converter.CppBodyInput(f), f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f))
 			}
 		}
-
 	default:
 		{
 			f.Access = "unsupported_CppFunctionBody"

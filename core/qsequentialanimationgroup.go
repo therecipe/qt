@@ -141,9 +141,8 @@ func callbackQSequentialAnimationGroupUpdateCurrentTime(ptr unsafe.Pointer, ptrN
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(currentTime))
-	} else {
-		NewQSequentialAnimationGroupFromPointer(ptr).UpdateCurrentTimeDefault(int(currentTime))
 	}
+
 }
 
 func (ptr *QSequentialAnimationGroup) UpdateCurrentTime(currentTime int) {

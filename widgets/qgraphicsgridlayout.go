@@ -227,9 +227,8 @@ func callbackQGraphicsGridLayoutRemoveAt(ptr unsafe.Pointer, ptrName *C.char, in
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "removeAt"); signal != nil {
 		signal.(func(int))(int(index))
-	} else {
-		NewQGraphicsGridLayoutFromPointer(ptr).RemoveAtDefault(int(index))
 	}
+
 }
 
 func (ptr *QGraphicsGridLayout) RemoveAt(index int) {

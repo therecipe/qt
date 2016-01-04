@@ -127,9 +127,8 @@ func callbackQGraphicsScaleApplyTo(ptr unsafe.Pointer, ptrName *C.char, matrix u
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "applyTo"); signal != nil {
 		signal.(func(*gui.QMatrix4x4))(gui.NewQMatrix4x4FromPointer(matrix))
-	} else {
-		NewQGraphicsScaleFromPointer(ptr).ApplyToDefault(gui.NewQMatrix4x4FromPointer(matrix))
 	}
+
 }
 
 func (ptr *QGraphicsScale) ApplyTo(matrix gui.QMatrix4x4_ITF) {

@@ -196,9 +196,8 @@ func callbackQFormLayoutAddItem(ptr unsafe.Pointer, ptrName *C.char, item unsafe
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "addItem"); signal != nil {
 		signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
-	} else {
-		NewQFormLayoutFromPointer(ptr).AddItemDefault(NewQLayoutItemFromPointer(item))
 	}
+
 }
 
 func (ptr *QFormLayout) AddItem(item QLayoutItem_ITF) {
@@ -463,9 +462,8 @@ func callbackQFormLayoutSetGeometry(ptr unsafe.Pointer, ptrName *C.char, rect un
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
-	} else {
-		NewQFormLayoutFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(rect))
 	}
+
 }
 
 func (ptr *QFormLayout) SetGeometry(rect core.QRect_ITF) {

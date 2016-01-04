@@ -89,9 +89,8 @@ func callbackQToolButtonPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event un
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-	} else {
-		NewQToolButtonFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
+
 }
 
 func (ptr *QToolButton) PaintEvent(event gui.QPaintEvent_ITF) {

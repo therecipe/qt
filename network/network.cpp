@@ -1720,7 +1720,7 @@ void QNetworkCookieJar_CustomEventDefault(void* ptr, void* event){
 class MyQNetworkDiskCache: public QNetworkDiskCache {
 public:
 	MyQNetworkDiskCache(QObject *parent) : QNetworkDiskCache(parent) {};
-	void clear() { if (!callbackQNetworkDiskCacheClear(this, this->objectName().toUtf8().data())) { QNetworkDiskCache::clear(); }; };
+	void clear() { callbackQNetworkDiskCacheClear(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQNetworkDiskCacheTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQNetworkDiskCacheChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQNetworkDiskCacheCustomEvent(this, this->objectName().toUtf8().data(), event); };

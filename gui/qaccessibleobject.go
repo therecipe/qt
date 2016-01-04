@@ -97,9 +97,8 @@ func callbackQAccessibleObjectSetText(ptr unsafe.Pointer, ptrName *C.char, t C.i
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setText"); signal != nil {
 		signal.(func(QAccessible__Text, string))(QAccessible__Text(t), C.GoString(text))
-	} else {
-		NewQAccessibleObjectFromPointer(ptr).SetTextDefault(QAccessible__Text(t), C.GoString(text))
 	}
+
 }
 
 func (ptr *QAccessibleObject) SetText(t QAccessible__Text, text string) {

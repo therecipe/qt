@@ -98,9 +98,8 @@ func callbackQPauseAnimationUpdateCurrentTime(ptr unsafe.Pointer, ptrName *C.cha
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(v))
-	} else {
-		NewQPauseAnimationFromPointer(ptr).UpdateCurrentTimeDefault(int(v))
 	}
+
 }
 
 func (ptr *QPauseAnimation) UpdateCurrentTime(v int) {

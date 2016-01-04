@@ -173,9 +173,8 @@ func callbackQGraphicsAnchorLayoutRemoveAt(ptr unsafe.Pointer, ptrName *C.char, 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "removeAt"); signal != nil {
 		signal.(func(int))(int(index))
-	} else {
-		NewQGraphicsAnchorLayoutFromPointer(ptr).RemoveAtDefault(int(index))
 	}
+
 }
 
 func (ptr *QGraphicsAnchorLayout) RemoveAt(index int) {

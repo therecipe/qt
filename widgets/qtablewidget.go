@@ -1081,9 +1081,8 @@ func callbackQTableWidgetSetSelection(ptr unsafe.Pointer, ptrName *C.char, rect 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
-	} else {
-		NewQTableWidgetFromPointer(ptr).SetSelectionDefault(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
 	}
+
 }
 
 func (ptr *QTableWidget) SetSelection(rect core.QRect_ITF, flags core.QItemSelectionModel__SelectionFlag) {

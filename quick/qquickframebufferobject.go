@@ -178,9 +178,8 @@ func callbackQQuickFramebufferObjectClassBegin(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "classBegin"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQQuickFramebufferObjectFromPointer(ptr).ClassBeginDefault()
 	}
+
 }
 
 func (ptr *QQuickFramebufferObject) ClassBegin() {
@@ -223,9 +222,8 @@ func callbackQQuickFramebufferObjectComponentComplete(ptr unsafe.Pointer, ptrNam
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "componentComplete"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQQuickFramebufferObjectFromPointer(ptr).ComponentCompleteDefault()
 	}
+
 }
 
 func (ptr *QQuickFramebufferObject) ComponentComplete() {
