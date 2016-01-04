@@ -45,6 +45,15 @@ func (ptr *QParallelAnimationGroup) Duration() int {
 	return 0
 }
 
+func (ptr *QParallelAnimationGroup) Event(event QEvent_ITF) bool {
+	defer qt.Recovering("QParallelAnimationGroup::event")
+
+	if ptr.Pointer() != nil {
+		return C.QParallelAnimationGroup_Event(ptr.Pointer(), PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
 func (ptr *QParallelAnimationGroup) ConnectUpdateCurrentTime(f func(currentTime int)) {
 	defer qt.Recovering("connect QParallelAnimationGroup::updateCurrentTime")
 
@@ -64,15 +73,30 @@ func (ptr *QParallelAnimationGroup) DisconnectUpdateCurrentTime() {
 }
 
 //export callbackQParallelAnimationGroupUpdateCurrentTime
-func callbackQParallelAnimationGroupUpdateCurrentTime(ptrName *C.char, currentTime C.int) bool {
+func callbackQParallelAnimationGroupUpdateCurrentTime(ptr unsafe.Pointer, ptrName *C.char, currentTime C.int) {
 	defer qt.Recovering("callback QParallelAnimationGroup::updateCurrentTime")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(currentTime))
-		return true
+	} else {
+		NewQParallelAnimationGroupFromPointer(ptr).UpdateCurrentTimeDefault(int(currentTime))
 	}
-	return false
+}
 
+func (ptr *QParallelAnimationGroup) UpdateCurrentTime(currentTime int) {
+	defer qt.Recovering("QParallelAnimationGroup::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_UpdateCurrentTime(ptr.Pointer(), C.int(currentTime))
+	}
+}
+
+func (ptr *QParallelAnimationGroup) UpdateCurrentTimeDefault(currentTime int) {
+	defer qt.Recovering("QParallelAnimationGroup::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_UpdateCurrentTimeDefault(ptr.Pointer(), C.int(currentTime))
+	}
 }
 
 func (ptr *QParallelAnimationGroup) ConnectUpdateDirection(f func(direction QAbstractAnimation__Direction)) {
@@ -94,15 +118,30 @@ func (ptr *QParallelAnimationGroup) DisconnectUpdateDirection() {
 }
 
 //export callbackQParallelAnimationGroupUpdateDirection
-func callbackQParallelAnimationGroupUpdateDirection(ptrName *C.char, direction C.int) bool {
+func callbackQParallelAnimationGroupUpdateDirection(ptr unsafe.Pointer, ptrName *C.char, direction C.int) {
 	defer qt.Recovering("callback QParallelAnimationGroup::updateDirection")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateDirection"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
-		return true
+	} else {
+		NewQParallelAnimationGroupFromPointer(ptr).UpdateDirectionDefault(QAbstractAnimation__Direction(direction))
 	}
-	return false
+}
 
+func (ptr *QParallelAnimationGroup) UpdateDirection(direction QAbstractAnimation__Direction) {
+	defer qt.Recovering("QParallelAnimationGroup::updateDirection")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_UpdateDirection(ptr.Pointer(), C.int(direction))
+	}
+}
+
+func (ptr *QParallelAnimationGroup) UpdateDirectionDefault(direction QAbstractAnimation__Direction) {
+	defer qt.Recovering("QParallelAnimationGroup::updateDirection")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_UpdateDirectionDefault(ptr.Pointer(), C.int(direction))
+	}
 }
 
 func (ptr *QParallelAnimationGroup) ConnectUpdateState(f func(newState QAbstractAnimation__State, oldState QAbstractAnimation__State)) {
@@ -124,15 +163,30 @@ func (ptr *QParallelAnimationGroup) DisconnectUpdateState() {
 }
 
 //export callbackQParallelAnimationGroupUpdateState
-func callbackQParallelAnimationGroupUpdateState(ptrName *C.char, newState C.int, oldState C.int) bool {
+func callbackQParallelAnimationGroupUpdateState(ptr unsafe.Pointer, ptrName *C.char, newState C.int, oldState C.int) {
 	defer qt.Recovering("callback QParallelAnimationGroup::updateState")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateState"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
-		return true
+	} else {
+		NewQParallelAnimationGroupFromPointer(ptr).UpdateStateDefault(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	}
-	return false
+}
 
+func (ptr *QParallelAnimationGroup) UpdateState(newState QAbstractAnimation__State, oldState QAbstractAnimation__State) {
+	defer qt.Recovering("QParallelAnimationGroup::updateState")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_UpdateState(ptr.Pointer(), C.int(newState), C.int(oldState))
+	}
+}
+
+func (ptr *QParallelAnimationGroup) UpdateStateDefault(newState QAbstractAnimation__State, oldState QAbstractAnimation__State) {
+	defer qt.Recovering("QParallelAnimationGroup::updateState")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_UpdateStateDefault(ptr.Pointer(), C.int(newState), C.int(oldState))
+	}
 }
 
 func (ptr *QParallelAnimationGroup) DestroyQParallelAnimationGroup() {
@@ -163,15 +217,30 @@ func (ptr *QParallelAnimationGroup) DisconnectTimerEvent() {
 }
 
 //export callbackQParallelAnimationGroupTimerEvent
-func callbackQParallelAnimationGroupTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQParallelAnimationGroupTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QParallelAnimationGroup::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQParallelAnimationGroupFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QParallelAnimationGroup) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QParallelAnimationGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QParallelAnimationGroup) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QParallelAnimationGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QParallelAnimationGroup) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -193,15 +262,30 @@ func (ptr *QParallelAnimationGroup) DisconnectChildEvent() {
 }
 
 //export callbackQParallelAnimationGroupChildEvent
-func callbackQParallelAnimationGroupChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQParallelAnimationGroupChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QParallelAnimationGroup::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQParallelAnimationGroupFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QParallelAnimationGroup) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QParallelAnimationGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QParallelAnimationGroup) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QParallelAnimationGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QParallelAnimationGroup) ConnectCustomEvent(f func(event *QEvent)) {
@@ -223,13 +307,28 @@ func (ptr *QParallelAnimationGroup) DisconnectCustomEvent() {
 }
 
 //export callbackQParallelAnimationGroupCustomEvent
-func callbackQParallelAnimationGroupCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQParallelAnimationGroupCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QParallelAnimationGroup::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQParallelAnimationGroupFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QParallelAnimationGroup) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QParallelAnimationGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QParallelAnimationGroup) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QParallelAnimationGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QParallelAnimationGroup_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

@@ -83,15 +83,30 @@ func (ptr *QGraphicsRectItem) DisconnectPaint() {
 }
 
 //export callbackQGraphicsRectItemPaint
-func callbackQGraphicsRectItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQGraphicsRectItemPaint(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsRectItem::paint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paint"); signal != nil {
 		signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQGraphicsRectItemFromPointer(ptr).PaintDefault(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QGraphicsRectItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QGraphicsRectItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRectItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QGraphicsRectItem) PaintDefault(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QGraphicsRectItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRectItem_PaintDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QGraphicsRectItem) SetRect2(x float64, y float64, width float64, height float64) {

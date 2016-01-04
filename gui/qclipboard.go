@@ -91,13 +91,21 @@ func (ptr *QClipboard) DisconnectChanged() {
 }
 
 //export callbackQClipboardChanged
-func callbackQClipboardChanged(ptrName *C.char, mode C.int) {
+func callbackQClipboardChanged(ptr unsafe.Pointer, ptrName *C.char, mode C.int) {
 	defer qt.Recovering("callback QClipboard::changed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changed"); signal != nil {
 		signal.(func(QClipboard__Mode))(QClipboard__Mode(mode))
 	}
 
+}
+
+func (ptr *QClipboard) Changed(mode QClipboard__Mode) {
+	defer qt.Recovering("QClipboard::changed")
+
+	if ptr.Pointer() != nil {
+		C.QClipboard_Changed(ptr.Pointer(), C.int(mode))
+	}
 }
 
 func (ptr *QClipboard) ConnectDataChanged(f func()) {
@@ -119,13 +127,21 @@ func (ptr *QClipboard) DisconnectDataChanged() {
 }
 
 //export callbackQClipboardDataChanged
-func callbackQClipboardDataChanged(ptrName *C.char) {
+func callbackQClipboardDataChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QClipboard::dataChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dataChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QClipboard) DataChanged() {
+	defer qt.Recovering("QClipboard::dataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QClipboard_DataChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QClipboard) ConnectFindBufferChanged(f func()) {
@@ -147,13 +163,21 @@ func (ptr *QClipboard) DisconnectFindBufferChanged() {
 }
 
 //export callbackQClipboardFindBufferChanged
-func callbackQClipboardFindBufferChanged(ptrName *C.char) {
+func callbackQClipboardFindBufferChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QClipboard::findBufferChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "findBufferChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QClipboard) FindBufferChanged() {
+	defer qt.Recovering("QClipboard::findBufferChanged")
+
+	if ptr.Pointer() != nil {
+		C.QClipboard_FindBufferChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QClipboard) OwnsClipboard() bool {
@@ -202,13 +226,21 @@ func (ptr *QClipboard) DisconnectSelectionChanged() {
 }
 
 //export callbackQClipboardSelectionChanged
-func callbackQClipboardSelectionChanged(ptrName *C.char) {
+func callbackQClipboardSelectionChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QClipboard::selectionChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectionChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QClipboard) SelectionChanged() {
+	defer qt.Recovering("QClipboard::selectionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QClipboard_SelectionChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QClipboard) SetImage(image QImage_ITF, mode QClipboard__Mode) {
@@ -281,15 +313,30 @@ func (ptr *QClipboard) DisconnectTimerEvent() {
 }
 
 //export callbackQClipboardTimerEvent
-func callbackQClipboardTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQClipboardTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QClipboard::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQClipboardFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QClipboard) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QClipboard::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QClipboard_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QClipboard) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QClipboard::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QClipboard_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QClipboard) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -311,15 +358,30 @@ func (ptr *QClipboard) DisconnectChildEvent() {
 }
 
 //export callbackQClipboardChildEvent
-func callbackQClipboardChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQClipboardChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QClipboard::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQClipboardFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QClipboard) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QClipboard::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QClipboard_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QClipboard) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QClipboard::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QClipboard_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QClipboard) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -341,13 +403,28 @@ func (ptr *QClipboard) DisconnectCustomEvent() {
 }
 
 //export callbackQClipboardCustomEvent
-func callbackQClipboardCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQClipboardCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QClipboard::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQClipboardFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QClipboard) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QClipboard::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QClipboard_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QClipboard) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QClipboard::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QClipboard_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

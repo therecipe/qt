@@ -96,15 +96,30 @@ func (ptr *QObjectCleanupHandler) DisconnectTimerEvent() {
 }
 
 //export callbackQObjectCleanupHandlerTimerEvent
-func callbackQObjectCleanupHandlerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQObjectCleanupHandlerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QObjectCleanupHandler::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQObjectCleanupHandlerFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QObjectCleanupHandler) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QObjectCleanupHandler::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QObjectCleanupHandler_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QObjectCleanupHandler) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QObjectCleanupHandler::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QObjectCleanupHandler_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QObjectCleanupHandler) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -126,15 +141,30 @@ func (ptr *QObjectCleanupHandler) DisconnectChildEvent() {
 }
 
 //export callbackQObjectCleanupHandlerChildEvent
-func callbackQObjectCleanupHandlerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQObjectCleanupHandlerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QObjectCleanupHandler::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQObjectCleanupHandlerFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QObjectCleanupHandler) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QObjectCleanupHandler::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QObjectCleanupHandler_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QObjectCleanupHandler) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QObjectCleanupHandler::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QObjectCleanupHandler_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QObjectCleanupHandler) ConnectCustomEvent(f func(event *QEvent)) {
@@ -156,13 +186,28 @@ func (ptr *QObjectCleanupHandler) DisconnectCustomEvent() {
 }
 
 //export callbackQObjectCleanupHandlerCustomEvent
-func callbackQObjectCleanupHandlerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQObjectCleanupHandlerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QObjectCleanupHandler::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQObjectCleanupHandlerFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QObjectCleanupHandler) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QObjectCleanupHandler::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QObjectCleanupHandler_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QObjectCleanupHandler) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QObjectCleanupHandler::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QObjectCleanupHandler_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

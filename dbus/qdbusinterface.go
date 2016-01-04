@@ -71,15 +71,30 @@ func (ptr *QDBusInterface) DisconnectTimerEvent() {
 }
 
 //export callbackQDBusInterfaceTimerEvent
-func callbackQDBusInterfaceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusInterfaceTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusInterface::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusInterface) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDBusInterface::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusInterface_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDBusInterface) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDBusInterface::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusInterface_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDBusInterface) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -101,15 +116,30 @@ func (ptr *QDBusInterface) DisconnectChildEvent() {
 }
 
 //export callbackQDBusInterfaceChildEvent
-func callbackQDBusInterfaceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusInterfaceChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusInterface::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusInterface) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDBusInterface::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusInterface_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDBusInterface) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDBusInterface::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusInterface_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDBusInterface) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -131,13 +161,28 @@ func (ptr *QDBusInterface) DisconnectCustomEvent() {
 }
 
 //export callbackQDBusInterfaceCustomEvent
-func callbackQDBusInterfaceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusInterfaceCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusInterface::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusInterface) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDBusInterface::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusInterface_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDBusInterface) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDBusInterface::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusInterface_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

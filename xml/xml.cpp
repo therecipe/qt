@@ -1,3 +1,5 @@
+#define protected public
+
 #include "xml.h"
 #include "_cgo_export.h"
 
@@ -605,7 +607,6 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQXmlAttributes() : QXmlAttributes() {};
-protected:
 };
 
 void* QXmlAttributes_NewQXmlAttributes(){
@@ -702,7 +703,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 int QXmlContentHandler_Characters(void* ptr, char* ch){
@@ -775,7 +775,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 char* QXmlDTDHandler_ErrorString(void* ptr){
@@ -812,7 +811,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 int QXmlDeclHandler_AttributeDecl(void* ptr, char* eName, char* aName, char* ty, char* valueDefault, char* value){
@@ -854,8 +852,7 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQXmlDefaultHandler() : QXmlDefaultHandler() {};
-	void setDocumentLocator(QXmlLocator * locator) { if (!callbackQXmlDefaultHandlerSetDocumentLocator(this->objectNameAbs().toUtf8().data(), locator)) { QXmlDefaultHandler::setDocumentLocator(locator); }; };
-protected:
+	void setDocumentLocator(QXmlLocator * locator) { callbackQXmlDefaultHandlerSetDocumentLocator(this, this->objectNameAbs().toUtf8().data(), locator); };
 };
 
 void* QXmlDefaultHandler_NewQXmlDefaultHandler(){
@@ -935,7 +932,11 @@ int QXmlDefaultHandler_ProcessingInstruction(void* ptr, char* target, char* data
 }
 
 void QXmlDefaultHandler_SetDocumentLocator(void* ptr, void* locator){
-	static_cast<QXmlDefaultHandler*>(ptr)->setDocumentLocator(static_cast<QXmlLocator*>(locator));
+	static_cast<MyQXmlDefaultHandler*>(ptr)->setDocumentLocator(static_cast<QXmlLocator*>(locator));
+}
+
+void QXmlDefaultHandler_SetDocumentLocatorDefault(void* ptr, void* locator){
+	static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::setDocumentLocator(static_cast<QXmlLocator*>(locator));
 }
 
 int QXmlDefaultHandler_SkippedEntity(void* ptr, char* name){
@@ -992,7 +993,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 char* QXmlEntityResolver_ErrorString(void* ptr){
@@ -1021,7 +1021,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 int QXmlErrorHandler_Error(void* ptr, void* exception){
@@ -1064,10 +1063,9 @@ public:
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQXmlInputSource() : QXmlInputSource() {};
 	MyQXmlInputSource(QIODevice *dev) : QXmlInputSource(dev) {};
-	void fetchData() { if (!callbackQXmlInputSourceFetchData(this->objectNameAbs().toUtf8().data())) { QXmlInputSource::fetchData(); }; };
-	void reset() { if (!callbackQXmlInputSourceReset(this->objectNameAbs().toUtf8().data())) { QXmlInputSource::reset(); }; };
-	void setData(const QString & dat) { if (!callbackQXmlInputSourceSetData(this->objectNameAbs().toUtf8().data(), dat.toUtf8().data())) { QXmlInputSource::setData(dat); }; };
-protected:
+	void fetchData() { callbackQXmlInputSourceFetchData(this, this->objectNameAbs().toUtf8().data()); };
+	void reset() { callbackQXmlInputSourceReset(this, this->objectNameAbs().toUtf8().data()); };
+	void setData(const QString & dat) { callbackQXmlInputSourceSetData(this, this->objectNameAbs().toUtf8().data(), dat.toUtf8().data()); };
 };
 
 void* QXmlInputSource_NewQXmlInputSource(){
@@ -1083,15 +1081,31 @@ char* QXmlInputSource_Data(void* ptr){
 }
 
 void QXmlInputSource_FetchData(void* ptr){
-	static_cast<QXmlInputSource*>(ptr)->fetchData();
+	static_cast<MyQXmlInputSource*>(ptr)->fetchData();
+}
+
+void QXmlInputSource_FetchDataDefault(void* ptr){
+	static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::fetchData();
+}
+
+char* QXmlInputSource_FromRawData(void* ptr, void* data, int beginning){
+	return static_cast<QXmlInputSource*>(ptr)->fromRawData(*static_cast<QByteArray*>(data), beginning != 0).toUtf8().data();
 }
 
 void QXmlInputSource_Reset(void* ptr){
-	static_cast<QXmlInputSource*>(ptr)->reset();
+	static_cast<MyQXmlInputSource*>(ptr)->reset();
+}
+
+void QXmlInputSource_ResetDefault(void* ptr){
+	static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::reset();
 }
 
 void QXmlInputSource_SetData(void* ptr, char* dat){
-	static_cast<QXmlInputSource*>(ptr)->setData(QString(dat));
+	static_cast<MyQXmlInputSource*>(ptr)->setData(QString(dat));
+}
+
+void QXmlInputSource_SetDataDefault(void* ptr, char* dat){
+	static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::setData(QString(dat));
 }
 
 void QXmlInputSource_DestroyQXmlInputSource(void* ptr){
@@ -1116,7 +1130,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 int QXmlLexicalHandler_Comment(void* ptr, char* ch){
@@ -1173,7 +1186,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 int QXmlLocator_ColumnNumber(void* ptr){
@@ -1278,7 +1290,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 void* QXmlReader_DTDHandler(void* ptr){
@@ -1376,14 +1387,13 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQXmlSimpleReader() : QXmlSimpleReader() {};
-	void setContentHandler(QXmlContentHandler * handler) { if (!callbackQXmlSimpleReaderSetContentHandler(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setContentHandler(handler); }; };
-	void setDTDHandler(QXmlDTDHandler * handler) { if (!callbackQXmlSimpleReaderSetDTDHandler(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setDTDHandler(handler); }; };
-	void setDeclHandler(QXmlDeclHandler * handler) { if (!callbackQXmlSimpleReaderSetDeclHandler(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setDeclHandler(handler); }; };
-	void setEntityResolver(QXmlEntityResolver * handler) { if (!callbackQXmlSimpleReaderSetEntityResolver(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setEntityResolver(handler); }; };
-	void setErrorHandler(QXmlErrorHandler * handler) { if (!callbackQXmlSimpleReaderSetErrorHandler(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setErrorHandler(handler); }; };
-	void setFeature(const QString & name, bool enable) { if (!callbackQXmlSimpleReaderSetFeature(this->objectNameAbs().toUtf8().data(), name.toUtf8().data(), enable)) { QXmlSimpleReader::setFeature(name, enable); }; };
-	void setLexicalHandler(QXmlLexicalHandler * handler) { if (!callbackQXmlSimpleReaderSetLexicalHandler(this->objectNameAbs().toUtf8().data(), handler)) { QXmlSimpleReader::setLexicalHandler(handler); }; };
-protected:
+	void setContentHandler(QXmlContentHandler * handler) { callbackQXmlSimpleReaderSetContentHandler(this, this->objectNameAbs().toUtf8().data(), handler); };
+	void setDTDHandler(QXmlDTDHandler * handler) { callbackQXmlSimpleReaderSetDTDHandler(this, this->objectNameAbs().toUtf8().data(), handler); };
+	void setDeclHandler(QXmlDeclHandler * handler) { callbackQXmlSimpleReaderSetDeclHandler(this, this->objectNameAbs().toUtf8().data(), handler); };
+	void setEntityResolver(QXmlEntityResolver * handler) { callbackQXmlSimpleReaderSetEntityResolver(this, this->objectNameAbs().toUtf8().data(), handler); };
+	void setErrorHandler(QXmlErrorHandler * handler) { callbackQXmlSimpleReaderSetErrorHandler(this, this->objectNameAbs().toUtf8().data(), handler); };
+	void setFeature(const QString & name, bool enable) { callbackQXmlSimpleReaderSetFeature(this, this->objectNameAbs().toUtf8().data(), name.toUtf8().data(), enable); };
+	void setLexicalHandler(QXmlLexicalHandler * handler) { callbackQXmlSimpleReaderSetLexicalHandler(this, this->objectNameAbs().toUtf8().data(), handler); };
 };
 
 void* QXmlSimpleReader_DTDHandler(void* ptr){
@@ -1439,31 +1449,59 @@ void* QXmlSimpleReader_Property(void* ptr, char* name, int ok){
 }
 
 void QXmlSimpleReader_SetContentHandler(void* ptr, void* handler){
-	static_cast<QXmlSimpleReader*>(ptr)->setContentHandler(static_cast<QXmlContentHandler*>(handler));
+	static_cast<MyQXmlSimpleReader*>(ptr)->setContentHandler(static_cast<QXmlContentHandler*>(handler));
+}
+
+void QXmlSimpleReader_SetContentHandlerDefault(void* ptr, void* handler){
+	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setContentHandler(static_cast<QXmlContentHandler*>(handler));
 }
 
 void QXmlSimpleReader_SetDTDHandler(void* ptr, void* handler){
-	static_cast<QXmlSimpleReader*>(ptr)->setDTDHandler(static_cast<QXmlDTDHandler*>(handler));
+	static_cast<MyQXmlSimpleReader*>(ptr)->setDTDHandler(static_cast<QXmlDTDHandler*>(handler));
+}
+
+void QXmlSimpleReader_SetDTDHandlerDefault(void* ptr, void* handler){
+	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setDTDHandler(static_cast<QXmlDTDHandler*>(handler));
 }
 
 void QXmlSimpleReader_SetDeclHandler(void* ptr, void* handler){
-	static_cast<QXmlSimpleReader*>(ptr)->setDeclHandler(static_cast<QXmlDeclHandler*>(handler));
+	static_cast<MyQXmlSimpleReader*>(ptr)->setDeclHandler(static_cast<QXmlDeclHandler*>(handler));
+}
+
+void QXmlSimpleReader_SetDeclHandlerDefault(void* ptr, void* handler){
+	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setDeclHandler(static_cast<QXmlDeclHandler*>(handler));
 }
 
 void QXmlSimpleReader_SetEntityResolver(void* ptr, void* handler){
-	static_cast<QXmlSimpleReader*>(ptr)->setEntityResolver(static_cast<QXmlEntityResolver*>(handler));
+	static_cast<MyQXmlSimpleReader*>(ptr)->setEntityResolver(static_cast<QXmlEntityResolver*>(handler));
+}
+
+void QXmlSimpleReader_SetEntityResolverDefault(void* ptr, void* handler){
+	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setEntityResolver(static_cast<QXmlEntityResolver*>(handler));
 }
 
 void QXmlSimpleReader_SetErrorHandler(void* ptr, void* handler){
-	static_cast<QXmlSimpleReader*>(ptr)->setErrorHandler(static_cast<QXmlErrorHandler*>(handler));
+	static_cast<MyQXmlSimpleReader*>(ptr)->setErrorHandler(static_cast<QXmlErrorHandler*>(handler));
+}
+
+void QXmlSimpleReader_SetErrorHandlerDefault(void* ptr, void* handler){
+	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setErrorHandler(static_cast<QXmlErrorHandler*>(handler));
 }
 
 void QXmlSimpleReader_SetFeature(void* ptr, char* name, int enable){
-	static_cast<QXmlSimpleReader*>(ptr)->setFeature(QString(name), enable != 0);
+	static_cast<MyQXmlSimpleReader*>(ptr)->setFeature(QString(name), enable != 0);
+}
+
+void QXmlSimpleReader_SetFeatureDefault(void* ptr, char* name, int enable){
+	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setFeature(QString(name), enable != 0);
 }
 
 void QXmlSimpleReader_SetLexicalHandler(void* ptr, void* handler){
-	static_cast<QXmlSimpleReader*>(ptr)->setLexicalHandler(static_cast<QXmlLexicalHandler*>(handler));
+	static_cast<MyQXmlSimpleReader*>(ptr)->setLexicalHandler(static_cast<QXmlLexicalHandler*>(handler));
+}
+
+void QXmlSimpleReader_SetLexicalHandlerDefault(void* ptr, void* handler){
+	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setLexicalHandler(static_cast<QXmlLexicalHandler*>(handler));
 }
 
 void QXmlSimpleReader_DestroyQXmlSimpleReader(void* ptr){

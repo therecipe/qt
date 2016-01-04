@@ -170,6 +170,14 @@ func QTextCodec_SetCodecForLocale(c QTextCodec_ITF) {
 	C.QTextCodec_QTextCodec_SetCodecForLocale(PointerFromQTextCodec(c))
 }
 
+func (ptr *QTextCodec) DestroyQTextCodec() {
+	defer qt.Recovering("QTextCodec::~QTextCodec")
+
+	if ptr.Pointer() != nil {
+		C.QTextCodec_DestroyQTextCodec(ptr.Pointer())
+	}
+}
+
 func (ptr *QTextCodec) ObjectNameAbs() string {
 	defer qt.Recovering("QTextCodec::objectNameAbs")
 

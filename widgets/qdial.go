@@ -96,6 +96,15 @@ func NewQDial(parent QWidget_ITF) *QDial {
 	return NewQDialFromPointer(C.QDial_NewQDial(PointerFromQWidget(parent)))
 }
 
+func (ptr *QDial) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QDial::event")
+
+	if ptr.Pointer() != nil {
+		return C.QDial_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
 func (ptr *QDial) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QDial::minimumSizeHint")
 
@@ -124,15 +133,30 @@ func (ptr *QDial) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQDialMouseMoveEvent
-func callbackQDialMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQDialMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QDial) MouseMoveEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDial::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QDial) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDial::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QDial) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
@@ -154,15 +178,30 @@ func (ptr *QDial) DisconnectMousePressEvent() {
 }
 
 //export callbackQDialMousePressEvent
-func callbackQDialMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQDialMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QDial) MousePressEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDial::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QDial) MousePressEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDial::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QDial) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -184,15 +223,30 @@ func (ptr *QDial) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQDialMouseReleaseEvent
-func callbackQDialMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQDialMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QDial) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDial::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QDial) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDial::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QDial) ConnectPaintEvent(f func(pe *gui.QPaintEvent)) {
@@ -214,15 +268,30 @@ func (ptr *QDial) DisconnectPaintEvent() {
 }
 
 //export callbackQDialPaintEvent
-func callbackQDialPaintEvent(ptrName *C.char, pe unsafe.Pointer) bool {
+func callbackQDialPaintEvent(ptr unsafe.Pointer, ptrName *C.char, pe unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(pe))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(pe))
 	}
-	return false
+}
 
+func (ptr *QDial) PaintEvent(pe gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QDial::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(pe))
+	}
+}
+
+func (ptr *QDial) PaintEventDefault(pe gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QDial::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(pe))
+	}
 }
 
 func (ptr *QDial) ConnectResizeEvent(f func(e *gui.QResizeEvent)) {
@@ -244,15 +313,30 @@ func (ptr *QDial) DisconnectResizeEvent() {
 }
 
 //export callbackQDialResizeEvent
-func callbackQDialResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQDialResizeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QDial) ResizeEvent(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QDial::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
+}
+
+func (ptr *QDial) ResizeEventDefault(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QDial::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
 }
 
 func (ptr *QDial) SizeHint() *core.QSize {
@@ -283,15 +367,30 @@ func (ptr *QDial) DisconnectSliderChange() {
 }
 
 //export callbackQDialSliderChange
-func callbackQDialSliderChange(ptrName *C.char, change C.int) bool {
+func callbackQDialSliderChange(ptr unsafe.Pointer, ptrName *C.char, change C.int) {
 	defer qt.Recovering("callback QDial::sliderChange")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sliderChange"); signal != nil {
 		signal.(func(QAbstractSlider__SliderChange))(QAbstractSlider__SliderChange(change))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).SliderChangeDefault(QAbstractSlider__SliderChange(change))
 	}
-	return false
+}
 
+func (ptr *QDial) SliderChange(change QAbstractSlider__SliderChange) {
+	defer qt.Recovering("QDial::sliderChange")
+
+	if ptr.Pointer() != nil {
+		C.QDial_SliderChange(ptr.Pointer(), C.int(change))
+	}
+}
+
+func (ptr *QDial) SliderChangeDefault(change QAbstractSlider__SliderChange) {
+	defer qt.Recovering("QDial::sliderChange")
+
+	if ptr.Pointer() != nil {
+		C.QDial_SliderChangeDefault(ptr.Pointer(), C.int(change))
+	}
 }
 
 func (ptr *QDial) DestroyQDial() {
@@ -322,15 +421,30 @@ func (ptr *QDial) DisconnectChangeEvent() {
 }
 
 //export callbackQDialChangeEvent
-func callbackQDialChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQDialChangeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QDial) ChangeEvent(ev core.QEvent_ITF) {
+	defer qt.Recovering("QDial::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QDial) ChangeEventDefault(ev core.QEvent_ITF) {
+	defer qt.Recovering("QDial::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
 }
 
 func (ptr *QDial) ConnectKeyPressEvent(f func(ev *gui.QKeyEvent)) {
@@ -352,15 +466,30 @@ func (ptr *QDial) DisconnectKeyPressEvent() {
 }
 
 //export callbackQDialKeyPressEvent
-func callbackQDialKeyPressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQDialKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(ev))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QDial) KeyPressEvent(ev gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDial::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(ev))
+	}
+}
+
+func (ptr *QDial) KeyPressEventDefault(ev gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDial::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(ev))
+	}
 }
 
 func (ptr *QDial) ConnectTimerEvent(f func(e *core.QTimerEvent)) {
@@ -382,15 +511,30 @@ func (ptr *QDial) DisconnectTimerEvent() {
 }
 
 //export callbackQDialTimerEvent
-func callbackQDialTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQDialTimerEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QDial) TimerEvent(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDial::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
+}
+
+func (ptr *QDial) TimerEventDefault(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDial::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
 }
 
 func (ptr *QDial) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
@@ -412,15 +556,30 @@ func (ptr *QDial) DisconnectWheelEvent() {
 }
 
 //export callbackQDialWheelEvent
-func callbackQDialWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQDialWheelEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QDial) WheelEvent(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QDial::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
+}
+
+func (ptr *QDial) WheelEventDefault(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QDial::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
 }
 
 func (ptr *QDial) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -442,15 +601,30 @@ func (ptr *QDial) DisconnectActionEvent() {
 }
 
 //export callbackQDialActionEvent
-func callbackQDialActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QDial::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QDial) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QDial::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -472,15 +646,30 @@ func (ptr *QDial) DisconnectDragEnterEvent() {
 }
 
 //export callbackQDialDragEnterEvent
-func callbackQDialDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QDial::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QDial) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QDial::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -502,15 +691,30 @@ func (ptr *QDial) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQDialDragLeaveEvent
-func callbackQDialDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QDial::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QDial) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QDial::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -532,15 +736,30 @@ func (ptr *QDial) DisconnectDragMoveEvent() {
 }
 
 //export callbackQDialDragMoveEvent
-func callbackQDialDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QDial::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QDial) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QDial::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -562,15 +781,30 @@ func (ptr *QDial) DisconnectDropEvent() {
 }
 
 //export callbackQDialDropEvent
-func callbackQDialDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QDial::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QDial) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QDial::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -592,15 +826,30 @@ func (ptr *QDial) DisconnectEnterEvent() {
 }
 
 //export callbackQDialEnterEvent
-func callbackQDialEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDial::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDial) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDial::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -622,15 +871,30 @@ func (ptr *QDial) DisconnectFocusInEvent() {
 }
 
 //export callbackQDialFocusInEvent
-func callbackQDialFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDial::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QDial) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDial::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -652,15 +916,30 @@ func (ptr *QDial) DisconnectFocusOutEvent() {
 }
 
 //export callbackQDialFocusOutEvent
-func callbackQDialFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDial::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QDial) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDial::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -682,15 +961,30 @@ func (ptr *QDial) DisconnectHideEvent() {
 }
 
 //export callbackQDialHideEvent
-func callbackQDialHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QDial::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QDial) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QDial::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -712,15 +1006,30 @@ func (ptr *QDial) DisconnectLeaveEvent() {
 }
 
 //export callbackQDialLeaveEvent
-func callbackQDialLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDial::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDial) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDial::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -742,15 +1051,30 @@ func (ptr *QDial) DisconnectMoveEvent() {
 }
 
 //export callbackQDialMoveEvent
-func callbackQDialMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QDial::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QDial) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QDial::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectSetVisible(f func(visible bool)) {
@@ -772,7 +1096,7 @@ func (ptr *QDial) DisconnectSetVisible() {
 }
 
 //export callbackQDialSetVisible
-func callbackQDialSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQDialSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QDial::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -781,6 +1105,22 @@ func callbackQDialSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QDial) SetVisible(visible bool) {
+	defer qt.Recovering("QDial::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QDial_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QDial) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QDial::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QDial_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QDial) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -802,15 +1142,30 @@ func (ptr *QDial) DisconnectShowEvent() {
 }
 
 //export callbackQDialShowEvent
-func callbackQDialShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QDial::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QDial) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QDial::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -832,15 +1187,30 @@ func (ptr *QDial) DisconnectCloseEvent() {
 }
 
 //export callbackQDialCloseEvent
-func callbackQDialCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QDial::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QDial) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QDial::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -862,15 +1232,30 @@ func (ptr *QDial) DisconnectContextMenuEvent() {
 }
 
 //export callbackQDialContextMenuEvent
-func callbackQDialContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QDial::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QDial) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QDial::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -892,15 +1277,30 @@ func (ptr *QDial) DisconnectInitPainter() {
 }
 
 //export callbackQDialInitPainter
-func callbackQDialInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQDialInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QDial) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QDial::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QDial_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QDial) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QDial::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QDial_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QDial) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -922,15 +1322,30 @@ func (ptr *QDial) DisconnectInputMethodEvent() {
 }
 
 //export callbackQDialInputMethodEvent
-func callbackQDialInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QDial::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QDial) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QDial::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -952,15 +1367,30 @@ func (ptr *QDial) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQDialKeyReleaseEvent
-func callbackQDialKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDial::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QDial) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDial::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -982,15 +1412,30 @@ func (ptr *QDial) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQDialMouseDoubleClickEvent
-func callbackQDialMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDial::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDial) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDial::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1012,15 +1457,30 @@ func (ptr *QDial) DisconnectTabletEvent() {
 }
 
 //export callbackQDialTabletEvent
-func callbackQDialTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QDial::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QDial) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QDial::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1042,15 +1502,30 @@ func (ptr *QDial) DisconnectChildEvent() {
 }
 
 //export callbackQDialChildEvent
-func callbackQDialChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDial::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDial) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDial::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDial) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1072,13 +1547,28 @@ func (ptr *QDial) DisconnectCustomEvent() {
 }
 
 //export callbackQDialCustomEvent
-func callbackQDialCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDial::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDialFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDial) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDial::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDial) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDial::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDial_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

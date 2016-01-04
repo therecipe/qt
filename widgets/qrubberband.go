@@ -79,15 +79,39 @@ func (ptr *QRubberBand) DisconnectChangeEvent() {
 }
 
 //export callbackQRubberBandChangeEvent
-func callbackQRubberBandChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQRubberBandChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
+	}
+}
+
+func (ptr *QRubberBand) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QRubberBand::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QRubberBand) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QRubberBand::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QRubberBand) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QRubberBand::event")
+
+	if ptr.Pointer() != nil {
+		return C.QRubberBand_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
 	return false
-
 }
 
 func (ptr *QRubberBand) Move2(p core.QPoint_ITF) {
@@ -125,15 +149,30 @@ func (ptr *QRubberBand) DisconnectMoveEvent() {
 }
 
 //export callbackQRubberBandMoveEvent
-func callbackQRubberBandMoveEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQRubberBandMoveEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(v))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) MoveEvent(v gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QRubberBand::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(v))
+	}
+}
+
+func (ptr *QRubberBand) MoveEventDefault(v gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QRubberBand::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(v))
+	}
 }
 
 func (ptr *QRubberBand) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
@@ -155,15 +194,30 @@ func (ptr *QRubberBand) DisconnectPaintEvent() {
 }
 
 //export callbackQRubberBandPaintEvent
-func callbackQRubberBandPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQRubberBandPaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) PaintEvent(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QRubberBand::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
+}
+
+func (ptr *QRubberBand) PaintEventDefault(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QRubberBand::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
 }
 
 func (ptr *QRubberBand) Resize2(size core.QSize_ITF) {
@@ -201,15 +255,30 @@ func (ptr *QRubberBand) DisconnectResizeEvent() {
 }
 
 //export callbackQRubberBandResizeEvent
-func callbackQRubberBandResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQRubberBandResizeEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) ResizeEvent(v gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QRubberBand::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(v))
+	}
+}
+
+func (ptr *QRubberBand) ResizeEventDefault(v gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QRubberBand::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(v))
+	}
 }
 
 func (ptr *QRubberBand) SetGeometry2(x int, y int, width int, height int) {
@@ -248,15 +317,30 @@ func (ptr *QRubberBand) DisconnectShowEvent() {
 }
 
 //export callbackQRubberBandShowEvent
-func callbackQRubberBandShowEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQRubberBandShowEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) ShowEvent(e gui.QShowEvent_ITF) {
+	defer qt.Recovering("QRubberBand::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(e))
+	}
+}
+
+func (ptr *QRubberBand) ShowEventDefault(e gui.QShowEvent_ITF) {
+	defer qt.Recovering("QRubberBand::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(e))
+	}
 }
 
 func (ptr *QRubberBand) DestroyQRubberBand() {
@@ -287,15 +371,30 @@ func (ptr *QRubberBand) DisconnectActionEvent() {
 }
 
 //export callbackQRubberBandActionEvent
-func callbackQRubberBandActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QRubberBand::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QRubberBand::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -317,15 +416,30 @@ func (ptr *QRubberBand) DisconnectDragEnterEvent() {
 }
 
 //export callbackQRubberBandDragEnterEvent
-func callbackQRubberBandDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QRubberBand::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QRubberBand::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -347,15 +461,30 @@ func (ptr *QRubberBand) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQRubberBandDragLeaveEvent
-func callbackQRubberBandDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QRubberBand::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QRubberBand::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -377,15 +506,30 @@ func (ptr *QRubberBand) DisconnectDragMoveEvent() {
 }
 
 //export callbackQRubberBandDragMoveEvent
-func callbackQRubberBandDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QRubberBand::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QRubberBand::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -407,15 +551,30 @@ func (ptr *QRubberBand) DisconnectDropEvent() {
 }
 
 //export callbackQRubberBandDropEvent
-func callbackQRubberBandDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QRubberBand::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QRubberBand::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -437,15 +596,30 @@ func (ptr *QRubberBand) DisconnectEnterEvent() {
 }
 
 //export callbackQRubberBandEnterEvent
-func callbackQRubberBandEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QRubberBand::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QRubberBand::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -467,15 +641,30 @@ func (ptr *QRubberBand) DisconnectFocusInEvent() {
 }
 
 //export callbackQRubberBandFocusInEvent
-func callbackQRubberBandFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QRubberBand::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QRubberBand::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -497,15 +686,30 @@ func (ptr *QRubberBand) DisconnectFocusOutEvent() {
 }
 
 //export callbackQRubberBandFocusOutEvent
-func callbackQRubberBandFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QRubberBand::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QRubberBand::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -527,15 +731,30 @@ func (ptr *QRubberBand) DisconnectHideEvent() {
 }
 
 //export callbackQRubberBandHideEvent
-func callbackQRubberBandHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QRubberBand::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QRubberBand::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -557,15 +776,30 @@ func (ptr *QRubberBand) DisconnectLeaveEvent() {
 }
 
 //export callbackQRubberBandLeaveEvent
-func callbackQRubberBandLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QRubberBand::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QRubberBand::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectSetVisible(f func(visible bool)) {
@@ -587,7 +821,7 @@ func (ptr *QRubberBand) DisconnectSetVisible() {
 }
 
 //export callbackQRubberBandSetVisible
-func callbackQRubberBandSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQRubberBandSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QRubberBand::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -596,6 +830,22 @@ func callbackQRubberBandSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QRubberBand) SetVisible(visible bool) {
+	defer qt.Recovering("QRubberBand::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QRubberBand) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QRubberBand::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QRubberBand) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -617,15 +867,30 @@ func (ptr *QRubberBand) DisconnectCloseEvent() {
 }
 
 //export callbackQRubberBandCloseEvent
-func callbackQRubberBandCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QRubberBand::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QRubberBand::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -647,15 +912,30 @@ func (ptr *QRubberBand) DisconnectContextMenuEvent() {
 }
 
 //export callbackQRubberBandContextMenuEvent
-func callbackQRubberBandContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QRubberBand::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QRubberBand::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -677,15 +957,30 @@ func (ptr *QRubberBand) DisconnectInitPainter() {
 }
 
 //export callbackQRubberBandInitPainter
-func callbackQRubberBandInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQRubberBandInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QRubberBand::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QRubberBand) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QRubberBand::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QRubberBand) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -707,15 +1002,30 @@ func (ptr *QRubberBand) DisconnectInputMethodEvent() {
 }
 
 //export callbackQRubberBandInputMethodEvent
-func callbackQRubberBandInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QRubberBand::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QRubberBand::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -737,15 +1047,30 @@ func (ptr *QRubberBand) DisconnectKeyPressEvent() {
 }
 
 //export callbackQRubberBandKeyPressEvent
-func callbackQRubberBandKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QRubberBand::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QRubberBand::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -767,15 +1092,30 @@ func (ptr *QRubberBand) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQRubberBandKeyReleaseEvent
-func callbackQRubberBandKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QRubberBand::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QRubberBand::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -797,15 +1137,30 @@ func (ptr *QRubberBand) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQRubberBandMouseDoubleClickEvent
-func callbackQRubberBandMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRubberBand::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRubberBand::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -827,15 +1182,30 @@ func (ptr *QRubberBand) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQRubberBandMouseMoveEvent
-func callbackQRubberBandMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRubberBand::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRubberBand::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -857,15 +1227,30 @@ func (ptr *QRubberBand) DisconnectMousePressEvent() {
 }
 
 //export callbackQRubberBandMousePressEvent
-func callbackQRubberBandMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRubberBand::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRubberBand::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -887,15 +1272,30 @@ func (ptr *QRubberBand) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQRubberBandMouseReleaseEvent
-func callbackQRubberBandMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRubberBand::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRubberBand::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -917,15 +1317,30 @@ func (ptr *QRubberBand) DisconnectTabletEvent() {
 }
 
 //export callbackQRubberBandTabletEvent
-func callbackQRubberBandTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QRubberBand::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QRubberBand::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -947,15 +1362,30 @@ func (ptr *QRubberBand) DisconnectWheelEvent() {
 }
 
 //export callbackQRubberBandWheelEvent
-func callbackQRubberBandWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QRubberBand::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QRubberBand::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -977,15 +1407,30 @@ func (ptr *QRubberBand) DisconnectTimerEvent() {
 }
 
 //export callbackQRubberBandTimerEvent
-func callbackQRubberBandTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRubberBand::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRubberBand::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1007,15 +1452,30 @@ func (ptr *QRubberBand) DisconnectChildEvent() {
 }
 
 //export callbackQRubberBandChildEvent
-func callbackQRubberBandChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRubberBand::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRubberBand::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QRubberBand) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1037,13 +1497,28 @@ func (ptr *QRubberBand) DisconnectCustomEvent() {
 }
 
 //export callbackQRubberBandCustomEvent
-func callbackQRubberBandCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRubberBandCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRubberBand::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQRubberBandFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRubberBand) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QRubberBand::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QRubberBand) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QRubberBand::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRubberBand_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

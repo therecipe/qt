@@ -101,15 +101,30 @@ func (ptr *QMediaContainerControl) DisconnectTimerEvent() {
 }
 
 //export callbackQMediaContainerControlTimerEvent
-func callbackQMediaContainerControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaContainerControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaContainerControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaContainerControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaContainerControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaContainerControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaContainerControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMediaContainerControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaContainerControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaContainerControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMediaContainerControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -131,15 +146,30 @@ func (ptr *QMediaContainerControl) DisconnectChildEvent() {
 }
 
 //export callbackQMediaContainerControlChildEvent
-func callbackQMediaContainerControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaContainerControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaContainerControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaContainerControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaContainerControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaContainerControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaContainerControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMediaContainerControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaContainerControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaContainerControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMediaContainerControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -161,13 +191,28 @@ func (ptr *QMediaContainerControl) DisconnectCustomEvent() {
 }
 
 //export callbackQMediaContainerControlCustomEvent
-func callbackQMediaContainerControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaContainerControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaContainerControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaContainerControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaContainerControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaContainerControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaContainerControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMediaContainerControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaContainerControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaContainerControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

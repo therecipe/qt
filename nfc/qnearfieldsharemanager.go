@@ -86,13 +86,21 @@ func (ptr *QNearFieldShareManager) DisconnectError() {
 }
 
 //export callbackQNearFieldShareManagerError
-func callbackQNearFieldShareManagerError(ptrName *C.char, error C.int) {
+func callbackQNearFieldShareManagerError(ptr unsafe.Pointer, ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QNearFieldShareManager::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(QNearFieldShareManager__ShareError))(QNearFieldShareManager__ShareError(error))
 	}
 
+}
+
+func (ptr *QNearFieldShareManager) Error(error QNearFieldShareManager__ShareError) {
+	defer qt.Recovering("QNearFieldShareManager::error")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareManager_Error(ptr.Pointer(), C.int(error))
+	}
 }
 
 func (ptr *QNearFieldShareManager) SetShareModes(mode QNearFieldShareManager__ShareMode) {
@@ -140,13 +148,21 @@ func (ptr *QNearFieldShareManager) DisconnectShareModesChanged() {
 }
 
 //export callbackQNearFieldShareManagerShareModesChanged
-func callbackQNearFieldShareManagerShareModesChanged(ptrName *C.char, modes C.int) {
+func callbackQNearFieldShareManagerShareModesChanged(ptr unsafe.Pointer, ptrName *C.char, modes C.int) {
 	defer qt.Recovering("callback QNearFieldShareManager::shareModesChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "shareModesChanged"); signal != nil {
 		signal.(func(QNearFieldShareManager__ShareMode))(QNearFieldShareManager__ShareMode(modes))
 	}
 
+}
+
+func (ptr *QNearFieldShareManager) ShareModesChanged(modes QNearFieldShareManager__ShareMode) {
+	defer qt.Recovering("QNearFieldShareManager::shareModesChanged")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareManager_ShareModesChanged(ptr.Pointer(), C.int(modes))
+	}
 }
 
 func QNearFieldShareManager_SupportedShareModes() QNearFieldShareManager__ShareMode {
@@ -174,13 +190,21 @@ func (ptr *QNearFieldShareManager) DisconnectTargetDetected() {
 }
 
 //export callbackQNearFieldShareManagerTargetDetected
-func callbackQNearFieldShareManagerTargetDetected(ptrName *C.char, shareTarget unsafe.Pointer) {
+func callbackQNearFieldShareManagerTargetDetected(ptr unsafe.Pointer, ptrName *C.char, shareTarget unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldShareManager::targetDetected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "targetDetected"); signal != nil {
 		signal.(func(*QNearFieldShareTarget))(NewQNearFieldShareTargetFromPointer(shareTarget))
 	}
 
+}
+
+func (ptr *QNearFieldShareManager) TargetDetected(shareTarget QNearFieldShareTarget_ITF) {
+	defer qt.Recovering("QNearFieldShareManager::targetDetected")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareManager_TargetDetected(ptr.Pointer(), PointerFromQNearFieldShareTarget(shareTarget))
+	}
 }
 
 func (ptr *QNearFieldShareManager) DestroyQNearFieldShareManager() {
@@ -211,15 +235,30 @@ func (ptr *QNearFieldShareManager) DisconnectTimerEvent() {
 }
 
 //export callbackQNearFieldShareManagerTimerEvent
-func callbackQNearFieldShareManagerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNearFieldShareManagerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldShareManager::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQNearFieldShareManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNearFieldShareManager) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNearFieldShareManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareManager_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QNearFieldShareManager) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNearFieldShareManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QNearFieldShareManager) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -241,15 +280,30 @@ func (ptr *QNearFieldShareManager) DisconnectChildEvent() {
 }
 
 //export callbackQNearFieldShareManagerChildEvent
-func callbackQNearFieldShareManagerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNearFieldShareManagerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldShareManager::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQNearFieldShareManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNearFieldShareManager) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNearFieldShareManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareManager_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QNearFieldShareManager) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNearFieldShareManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareManager_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QNearFieldShareManager) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -271,13 +325,28 @@ func (ptr *QNearFieldShareManager) DisconnectCustomEvent() {
 }
 
 //export callbackQNearFieldShareManagerCustomEvent
-func callbackQNearFieldShareManagerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNearFieldShareManagerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldShareManager::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQNearFieldShareManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNearFieldShareManager) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QNearFieldShareManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareManager_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QNearFieldShareManager) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QNearFieldShareManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareManager_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

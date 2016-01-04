@@ -115,15 +115,30 @@ func (ptr *QFileSelector) DisconnectTimerEvent() {
 }
 
 //export callbackQFileSelectorTimerEvent
-func callbackQFileSelectorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileSelectorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileSelector::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQFileSelectorFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileSelector) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QFileSelector::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSelector_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QFileSelector) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QFileSelector::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSelector_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QFileSelector) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -145,15 +160,30 @@ func (ptr *QFileSelector) DisconnectChildEvent() {
 }
 
 //export callbackQFileSelectorChildEvent
-func callbackQFileSelectorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileSelectorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileSelector::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQFileSelectorFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileSelector) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QFileSelector::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSelector_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QFileSelector) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QFileSelector::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSelector_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QFileSelector) ConnectCustomEvent(f func(event *QEvent)) {
@@ -175,13 +205,28 @@ func (ptr *QFileSelector) DisconnectCustomEvent() {
 }
 
 //export callbackQFileSelectorCustomEvent
-func callbackQFileSelectorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileSelectorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileSelector::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFileSelectorFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileSelector) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QFileSelector::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSelector_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFileSelector) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QFileSelector::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSelector_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

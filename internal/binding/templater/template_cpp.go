@@ -5,6 +5,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
 )
 
@@ -21,6 +22,7 @@ func HTemplate(m string) (o string) {
 
 	for _, cName := range tmpArray {
 		var c = parser.ClassMap[cName]
+		var virtuals = make(map[string]bool)
 
 		for _, e := range c.Enums {
 			if isSupportedEnum(e) {
@@ -34,16 +36,40 @@ func HTemplate(m string) (o string) {
 
 		if isSupportedClass(c) {
 			for _, f := range c.Functions {
+
 				switch {
 				case f.Meta == "signal":
 					{
 						for _, signalMode := range []string{"Connect", "Disconnect"} {
 							f.SignalMode = signalMode
 							if i := cppFunctionHeader(f); isSupportedFunction(c, f) {
+								virtuals[f.Name+f.OverloadNumber] = true
 								o += fmt.Sprintf("%v;\n", i)
 							}
 						}
 						f.SignalMode = ""
+					}
+
+					var tmpMeta = f.Meta
+					f.Meta = "plain"
+					if i := cppFunctionHeader(f); isSupportedFunction(c, f) && !converter.IsPrivateSignal(f) {
+						o += fmt.Sprintf("%v;\n", i)
+					}
+					f.Meta = tmpMeta
+
+				case strings.Contains(f.Virtual, "impure") && !strings.Contains(f.Meta, "structor"):
+					{
+						if _, exists := virtuals[f.Name+f.OverloadNumber]; !exists {
+
+							var tmpMeta = f.Meta
+							f.Meta = "plain"
+							if i := cppFunctionHeader(f); isSupportedFunction(c, f) {
+								virtuals[f.Name+f.OverloadNumber] = true
+								o += fmt.Sprintf("%v;\n", i)
+								o += strings.Replace(fmt.Sprintf("%v;\n", i), "_"+strings.Title(f.Name), "_"+strings.Title(f.Name)+"Default", -1)
+							}
+							f.Meta = tmpMeta
+						}
 					}
 
 				case isGeneric(f):
@@ -59,24 +85,50 @@ func HTemplate(m string) (o string) {
 
 				default:
 					{
-						if i := cppFunctionHeader(f); isSupportedFunction(c, f) && f.Access == "public" {
+						if i := cppFunctionHeader(f); isSupportedFunction(c, f) {
+							virtuals[f.Name+f.OverloadNumber] = true
 							o += fmt.Sprintf("%v;\n", i)
 						}
 					}
 				}
 			}
 		}
+
+		for _, bcName := range c.GetAllBases([]string{}) {
+			if bc, exists := parser.ClassMap[bcName]; exists {
+				for _, f := range bc.Functions {
+
+					if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
+
+						var tmpMeta = f.Meta
+						f.Meta = "plain"
+						if i := cppFunctionHeader(f); isSupportedFunction(bc, f) && isSupportedClass(bc) {
+							if _, exists := virtuals[f.Name+f.OverloadNumber]; !exists {
+								virtuals[f.Name+f.OverloadNumber] = true
+								if !isBlockedVirtual(f.Name, c.Name) {
+									o += strings.Replace(fmt.Sprintf("%v;\n", i), bc.Name, c.Name, -1)
+									o += strings.Replace(strings.Replace(fmt.Sprintf("%v;\n", i), bc.Name, c.Name, -1), "_"+strings.Title(f.Name), "_"+strings.Title(f.Name)+"Default", -1)
+								}
+							}
+						}
+						f.Meta = tmpMeta
+					}
+
+				}
+			}
+		}
+
 	}
 
 	o += "\n#ifdef __cplusplus\n}\n#endif"
 	return
 }
 
-func CppTemplate(m string) (o string) {
+func CppTemplate(module string) (o string) {
 
 	var tmpArray = make([]string, 0)
 	for _, c := range parser.ClassMap {
-		if c.Module == m {
+		if c.Module == module {
 			tmpArray = append(tmpArray, c.Name)
 		}
 	}
@@ -84,76 +136,70 @@ func CppTemplate(m string) (o string) {
 
 	for _, cName := range tmpArray {
 		var c = parser.ClassMap[cName]
+		var virtuals = make(map[string]bool)
 
 		if isSupportedClass(c) && (hasVirtualFunction(c) || hasSignalFunction(c)) {
 			if !strings.Contains(c.Name, "tomic") {
 				o += fmt.Sprintf("class My%v: public %v {\n", c.Name, c.Name)
-				var virtuals = make(map[string]bool)
 
-				for _, m := range []string{"public", "protected"} {
-					o += m + ":\n"
-					if m == "public" {
-						if !c.IsQObjectSubClass() {
-							if c.Name != "QMetaType" {
-								if hasVirtualFunction(c) {
-									o += "\tQString _objectName;\n"
-									o += "\tQString objectNameAbs() const { return this->_objectName; };\n"
-									o += "\tvoid setObjectNameAbs(const QString &name) { this->_objectName = name; };\n"
-								}
-							}
-						}
-
+				o += "public:\n"
+				if !c.IsQObjectSubClass() {
+					if c.Name != "QMetaType" {
 						if hasVirtualFunction(c) {
-							for _, f := range c.Functions {
-								if f.Meta == "constructor" && isSupportedFunction(c, f) {
-
-									var originalInput string
-									for _, p := range f.Parameters {
-										if p.Name == "" {
-											originalInput += "v, "
-										} else {
-											originalInput += fmt.Sprintf("%v, ", p.Name)
-										}
-									}
-									originalInput = strings.TrimSuffix(originalInput, ", ")
-
-									o += fmt.Sprintf("\tMy%v(%v) : %v(%v) {};\n", f.Class(), strings.Split(strings.Split(f.Signature, "(")[1], ")")[0], f.Class(), originalInput)
-								}
-							}
+							o += "\tQString _objectName;\n"
+							o += "\tQString objectNameAbs() const { return this->_objectName; };\n"
+							o += "\tvoid setObjectNameAbs(const QString &name) { this->_objectName = name; };\n"
 						}
 					}
+				}
 
+				if hasVirtualFunction(c) {
 					for _, f := range c.Functions {
-						if f.Access == m {
-							if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.Output == "void" {
-								if i := cppFunctionSignal(f); isSupportedFunction(c, f) {
-									if strings.Contains(f.Virtual, "impure") {
-										if _, exists := virtuals[f.Name]; !exists {
-											virtuals[f.Name] = true
-											if !isBlockedVirtual(f.Name, c.Name) {
-												o += fmt.Sprintf("\t%v;\n", i)
-											}
-										}
-									} else {
+						if f.Meta == "constructor" && isSupportedFunction(c, f) {
+
+							var originalInput string
+							for _, p := range f.Parameters {
+								if p.Name == "" {
+									originalInput += "v, "
+								} else {
+									originalInput += fmt.Sprintf("%v, ", p.Name)
+								}
+							}
+							originalInput = strings.TrimSuffix(originalInput, ", ")
+
+							o += fmt.Sprintf("\tMy%v(%v) : %v(%v) {};\n", f.Class(), strings.Split(strings.Split(f.Signature, "(")[1], ")")[0], f.Class(), originalInput)
+						}
+					}
+				}
+
+				for _, f := range c.Functions {
+					if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.Output == "void" {
+						if i := cppFunctionSignal(f); isSupportedFunction(c, f) {
+							if strings.Contains(f.Virtual, "impure") {
+								if _, exists := virtuals[f.Name+f.OverloadNumber]; !exists {
+									virtuals[f.Name+f.OverloadNumber] = true
+									if !isBlockedVirtual(f.Name, c.Name) {
 										o += fmt.Sprintf("\t%v;\n", i)
 									}
 								}
+							} else {
+								o += fmt.Sprintf("\t%v;\n", i)
 							}
 						}
+					} else {
+						virtuals[f.Name+f.OverloadNumber] = true
 					}
+				}
 
-					for _, bcName := range c.GetAllBases([]string{}) {
-						if bc, exists := parser.ClassMap[bcName]; exists {
-							for _, f := range bc.Functions {
-								if f.Access == m {
-									if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
-										if i := cppFunctionSignal(f); isSupportedFunction(bc, f) && isSupportedClass(bc) {
-											if _, exists := virtuals[f.Name]; !exists {
-												virtuals[f.Name] = true
-												if !isBlockedVirtual(f.Name, c.Name) {
-													o += strings.Replace(fmt.Sprintf("\t%v;\n", i), bc.Name, c.Name, -1)
-												}
-											}
+				for _, bcName := range c.GetAllBases([]string{}) {
+					if bc, exists := parser.ClassMap[bcName]; exists {
+						for _, f := range bc.Functions {
+							if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
+								if i := cppFunctionSignal(f); isSupportedFunction(bc, f) && isSupportedClass(bc) {
+									if _, exists := virtuals[f.Name+f.OverloadNumber]; !exists {
+										virtuals[f.Name+f.OverloadNumber] = true
+										if !isBlockedVirtual(f.Name, c.Name) {
+											o += strings.Replace(fmt.Sprintf("\t%v;\n", i), bc.Name, c.Name, -1)
 										}
 									}
 								}
@@ -161,6 +207,7 @@ func CppTemplate(m string) (o string) {
 						}
 					}
 				}
+
 				o += "};\n\n"
 			}
 		}
@@ -175,27 +222,89 @@ func CppTemplate(m string) (o string) {
 			}
 		}
 
+		virtuals = make(map[string]bool)
 		if isSupportedClass(c) {
 			for _, f := range c.Functions {
-				if f.Meta == "signal" {
-					for _, signalMode := range []string{"Connect", "Disconnect"} {
-						f.SignalMode = signalMode
-						if i := cppFunction(f); isSupportedFunction(c, f) {
+
+				switch {
+				case f.Meta == "signal":
+					{
+						for _, signalMode := range []string{"Connect", "Disconnect"} {
+							f.SignalMode = signalMode
+							if i := cppFunction(f); isSupportedFunction(c, f) {
+								virtuals[f.Name+f.OverloadNumber] = true
+								o += fmt.Sprintf("%v\n\n", i)
+							}
+						}
+						f.SignalMode = ""
+
+						var tmpMeta = f.Meta
+						f.Meta = "plain"
+						if i := cppFunction(f); isSupportedFunction(c, f) && !converter.IsPrivateSignal(f) {
 							o += fmt.Sprintf("%v\n\n", i)
 						}
+						f.Meta = tmpMeta
 					}
-					f.SignalMode = ""
-				} else {
-					if i := cppFunction(f); isSupportedFunction(c, f) && f.Access == "public" {
-						o += fmt.Sprintf("%v\n\n", i)
+
+				default:
+					{
+						if i := cppFunction(f); isSupportedFunction(c, f) {
+							if _, exists := virtuals[f.Name+f.OverloadNumber]; !exists {
+								virtuals[f.Name+f.OverloadNumber] = true
+
+								var normal = fmt.Sprintf("%v\n\n", i)
+
+								if strings.Contains(f.Virtual, "impure") && f.Output == "void" && (hasVirtualFunction(c) || hasSignalFunction(c)) {
+									normal = strings.Replace(normal, "static_cast<"+c.Name+"*>(ptr)", "static_cast<My"+c.Name+"*>(ptr)", -1)
+								}
+
+								o += normal
+
+								if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
+									var tmp = strings.Replace(fmt.Sprintf("%v\n\n", i), "_"+strings.Title(f.Name), "_"+strings.Title(f.Name)+"Default", -1)
+									tmp = strings.Replace(tmp, "->"+f.Name, "->"+c.Name+"::"+f.Name, -1)
+
+									o += tmp
+								}
+							}
+						}
+					}
+				}
+			}
+
+			for _, bcName := range c.GetAllBases([]string{}) {
+				if bc, exists := parser.ClassMap[bcName]; exists {
+					for _, f := range bc.Functions {
+
+						if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
+
+							if i := cppFunction(f); isSupportedFunction(bc, f) && isSupportedClass(bc) {
+								if _, exists := virtuals[f.Name+f.OverloadNumber]; !exists {
+									virtuals[f.Name+f.OverloadNumber] = true
+									if !isBlockedVirtual(f.Name, c.Name) {
+
+										var normal = strings.Replace(fmt.Sprintf("%v\n\n", i), bc.Name, c.Name, -1)
+										if strings.Contains(f.Virtual, "impure") && f.Output == "void" && (hasVirtualFunction(c) || hasSignalFunction(c)) {
+											normal = strings.Replace(normal, "static_cast<"+c.Name+"*>(ptr)", "static_cast<My"+c.Name+"*>(ptr)", -1)
+										}
+
+										o += normal
+
+										var tmp = strings.Replace(strings.Replace(fmt.Sprintf("%v\n\n", i), bc.Name, c.Name, -1), "_"+strings.Title(f.Name), "_"+strings.Title(f.Name)+"Default", -1)
+										tmp = strings.Replace(tmp, "->"+f.Name, "->"+c.Name+"::"+f.Name, -1)
+
+										o += tmp
+									}
+								}
+							}
+						}
 					}
 				}
 			}
 		}
-
 	}
 
-	return managedImportsCpp(m, o)
+	return managedImportsCpp(module, o)
 }
 
 func managedImportsCpp(module, input string) string {
@@ -210,6 +319,8 @@ func managedImportsCpp(module, input string) string {
 	sort.Stable(sort.StringSlice(tmpIM))
 
 	var tmpI string
+
+	tmpI += "#define protected public\n\n"
 
 	if strings.Contains(module, "droid") {
 		tmpI += fmt.Sprintf("#include \"%v_android.h\"\n", shortModule(module))

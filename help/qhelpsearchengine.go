@@ -87,13 +87,21 @@ func (ptr *QHelpSearchEngine) DisconnectIndexingFinished() {
 }
 
 //export callbackQHelpSearchEngineIndexingFinished
-func callbackQHelpSearchEngineIndexingFinished(ptrName *C.char) {
+func callbackQHelpSearchEngineIndexingFinished(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchEngine::indexingFinished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "indexingFinished"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QHelpSearchEngine) IndexingFinished() {
+	defer qt.Recovering("QHelpSearchEngine::indexingFinished")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_IndexingFinished(ptr.Pointer())
+	}
 }
 
 func (ptr *QHelpSearchEngine) ConnectIndexingStarted(f func()) {
@@ -115,13 +123,21 @@ func (ptr *QHelpSearchEngine) DisconnectIndexingStarted() {
 }
 
 //export callbackQHelpSearchEngineIndexingStarted
-func callbackQHelpSearchEngineIndexingStarted(ptrName *C.char) {
+func callbackQHelpSearchEngineIndexingStarted(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchEngine::indexingStarted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "indexingStarted"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QHelpSearchEngine) IndexingStarted() {
+	defer qt.Recovering("QHelpSearchEngine::indexingStarted")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_IndexingStarted(ptr.Pointer())
+	}
 }
 
 func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
@@ -169,13 +185,21 @@ func (ptr *QHelpSearchEngine) DisconnectSearchingFinished() {
 }
 
 //export callbackQHelpSearchEngineSearchingFinished
-func callbackQHelpSearchEngineSearchingFinished(ptrName *C.char, hits C.int) {
+func callbackQHelpSearchEngineSearchingFinished(ptr unsafe.Pointer, ptrName *C.char, hits C.int) {
 	defer qt.Recovering("callback QHelpSearchEngine::searchingFinished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "searchingFinished"); signal != nil {
 		signal.(func(int))(int(hits))
 	}
 
+}
+
+func (ptr *QHelpSearchEngine) SearchingFinished(hits int) {
+	defer qt.Recovering("QHelpSearchEngine::searchingFinished")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_SearchingFinished(ptr.Pointer(), C.int(hits))
+	}
 }
 
 func (ptr *QHelpSearchEngine) ConnectSearchingStarted(f func()) {
@@ -197,13 +221,21 @@ func (ptr *QHelpSearchEngine) DisconnectSearchingStarted() {
 }
 
 //export callbackQHelpSearchEngineSearchingStarted
-func callbackQHelpSearchEngineSearchingStarted(ptrName *C.char) {
+func callbackQHelpSearchEngineSearchingStarted(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchEngine::searchingStarted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "searchingStarted"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QHelpSearchEngine) SearchingStarted() {
+	defer qt.Recovering("QHelpSearchEngine::searchingStarted")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_SearchingStarted(ptr.Pointer())
+	}
 }
 
 func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
@@ -234,15 +266,30 @@ func (ptr *QHelpSearchEngine) DisconnectTimerEvent() {
 }
 
 //export callbackQHelpSearchEngineTimerEvent
-func callbackQHelpSearchEngineTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchEngineTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchEngine::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchEngineFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchEngine) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHelpSearchEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHelpSearchEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -264,15 +311,30 @@ func (ptr *QHelpSearchEngine) DisconnectChildEvent() {
 }
 
 //export callbackQHelpSearchEngineChildEvent
-func callbackQHelpSearchEngineChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchEngineChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchEngine::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchEngineFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchEngine) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHelpSearchEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchEngine) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHelpSearchEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -294,13 +356,28 @@ func (ptr *QHelpSearchEngine) DisconnectCustomEvent() {
 }
 
 //export callbackQHelpSearchEngineCustomEvent
-func callbackQHelpSearchEngineCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchEngineCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchEngine::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchEngineFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchEngine) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpSearchEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchEngine) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpSearchEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

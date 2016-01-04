@@ -162,6 +162,24 @@ func NewQSvgGenerator() *QSvgGenerator {
 	return NewQSvgGeneratorFromPointer(C.QSvgGenerator_NewQSvgGenerator())
 }
 
+func (ptr *QSvgGenerator) Metric(metric gui.QPaintDevice__PaintDeviceMetric) int {
+	defer qt.Recovering("QSvgGenerator::metric")
+
+	if ptr.Pointer() != nil {
+		return int(C.QSvgGenerator_Metric(ptr.Pointer(), C.int(metric)))
+	}
+	return 0
+}
+
+func (ptr *QSvgGenerator) PaintEngine() *gui.QPaintEngine {
+	defer qt.Recovering("QSvgGenerator::paintEngine")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QSvgGenerator_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSvgGenerator) ViewBox() *core.QRect {
 	defer qt.Recovering("QSvgGenerator::viewBox")
 

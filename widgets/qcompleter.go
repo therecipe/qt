@@ -246,13 +246,21 @@ func (ptr *QCompleter) DisconnectActivated2() {
 }
 
 //export callbackQCompleterActivated2
-func callbackQCompleterActivated2(ptrName *C.char, index unsafe.Pointer) {
+func callbackQCompleterActivated2(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QCompleter::activated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activated2"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	}
 
+}
+
+func (ptr *QCompleter) Activated2(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QCompleter::activated")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_Activated2(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
 }
 
 func (ptr *QCompleter) ConnectActivated(f func(text string)) {
@@ -274,13 +282,21 @@ func (ptr *QCompleter) DisconnectActivated() {
 }
 
 //export callbackQCompleterActivated
-func callbackQCompleterActivated(ptrName *C.char, text *C.char) {
+func callbackQCompleterActivated(ptr unsafe.Pointer, ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QCompleter::activated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
+}
+
+func (ptr *QCompleter) Activated(text string) {
+	defer qt.Recovering("QCompleter::activated")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_Activated(ptr.Pointer(), C.CString(text))
+	}
 }
 
 func (ptr *QCompleter) Complete(rect core.QRect_ITF) {
@@ -336,6 +352,24 @@ func (ptr *QCompleter) CurrentRow() int {
 	return 0
 }
 
+func (ptr *QCompleter) Event(ev core.QEvent_ITF) bool {
+	defer qt.Recovering("QCompleter::event")
+
+	if ptr.Pointer() != nil {
+		return C.QCompleter_Event(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
+	}
+	return false
+}
+
+func (ptr *QCompleter) EventFilter(o core.QObject_ITF, e core.QEvent_ITF) bool {
+	defer qt.Recovering("QCompleter::eventFilter")
+
+	if ptr.Pointer() != nil {
+		return C.QCompleter_EventFilter(ptr.Pointer(), core.PointerFromQObject(o), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
 func (ptr *QCompleter) ConnectHighlighted2(f func(index *core.QModelIndex)) {
 	defer qt.Recovering("connect QCompleter::highlighted")
 
@@ -355,13 +389,21 @@ func (ptr *QCompleter) DisconnectHighlighted2() {
 }
 
 //export callbackQCompleterHighlighted2
-func callbackQCompleterHighlighted2(ptrName *C.char, index unsafe.Pointer) {
+func callbackQCompleterHighlighted2(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QCompleter::highlighted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted2"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	}
 
+}
+
+func (ptr *QCompleter) Highlighted2(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QCompleter::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_Highlighted2(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
 }
 
 func (ptr *QCompleter) ConnectHighlighted(f func(text string)) {
@@ -383,13 +425,21 @@ func (ptr *QCompleter) DisconnectHighlighted() {
 }
 
 //export callbackQCompleterHighlighted
-func callbackQCompleterHighlighted(ptrName *C.char, text *C.char) {
+func callbackQCompleterHighlighted(ptr unsafe.Pointer, ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QCompleter::highlighted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
+}
+
+func (ptr *QCompleter) Highlighted(text string) {
+	defer qt.Recovering("QCompleter::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_Highlighted(ptr.Pointer(), C.CString(text))
+	}
 }
 
 func (ptr *QCompleter) Model() *core.QAbstractItemModel {
@@ -498,15 +548,30 @@ func (ptr *QCompleter) DisconnectTimerEvent() {
 }
 
 //export callbackQCompleterTimerEvent
-func callbackQCompleterTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCompleterTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCompleter::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCompleterFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCompleter) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCompleter::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCompleter) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCompleter::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCompleter) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -528,15 +593,30 @@ func (ptr *QCompleter) DisconnectChildEvent() {
 }
 
 //export callbackQCompleterChildEvent
-func callbackQCompleterChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCompleterChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCompleter::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCompleterFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCompleter) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCompleter::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCompleter) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCompleter::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCompleter) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -558,13 +638,28 @@ func (ptr *QCompleter) DisconnectCustomEvent() {
 }
 
 //export callbackQCompleterCustomEvent
-func callbackQCompleterCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCompleterCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCompleter::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCompleterFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCompleter) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCompleter::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCompleter) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCompleter::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompleter_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

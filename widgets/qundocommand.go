@@ -119,15 +119,30 @@ func (ptr *QUndoCommand) DisconnectRedo() {
 }
 
 //export callbackQUndoCommandRedo
-func callbackQUndoCommandRedo(ptrName *C.char) bool {
+func callbackQUndoCommandRedo(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QUndoCommand::redo")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "redo"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQUndoCommandFromPointer(ptr).RedoDefault()
 	}
-	return false
+}
 
+func (ptr *QUndoCommand) Redo() {
+	defer qt.Recovering("QUndoCommand::redo")
+
+	if ptr.Pointer() != nil {
+		C.QUndoCommand_Redo(ptr.Pointer())
+	}
+}
+
+func (ptr *QUndoCommand) RedoDefault() {
+	defer qt.Recovering("QUndoCommand::redo")
+
+	if ptr.Pointer() != nil {
+		C.QUndoCommand_RedoDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QUndoCommand) SetText(text string) {
@@ -166,15 +181,30 @@ func (ptr *QUndoCommand) DisconnectUndo() {
 }
 
 //export callbackQUndoCommandUndo
-func callbackQUndoCommandUndo(ptrName *C.char) bool {
+func callbackQUndoCommandUndo(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QUndoCommand::undo")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "undo"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQUndoCommandFromPointer(ptr).UndoDefault()
 	}
-	return false
+}
 
+func (ptr *QUndoCommand) Undo() {
+	defer qt.Recovering("QUndoCommand::undo")
+
+	if ptr.Pointer() != nil {
+		C.QUndoCommand_Undo(ptr.Pointer())
+	}
+}
+
+func (ptr *QUndoCommand) UndoDefault() {
+	defer qt.Recovering("QUndoCommand::undo")
+
+	if ptr.Pointer() != nil {
+		C.QUndoCommand_UndoDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QUndoCommand) DestroyQUndoCommand() {

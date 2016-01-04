@@ -97,13 +97,21 @@ func (ptr *QGraphicsColorizeEffect) DisconnectColorChanged() {
 }
 
 //export callbackQGraphicsColorizeEffectColorChanged
-func callbackQGraphicsColorizeEffectColorChanged(ptrName *C.char, color unsafe.Pointer) {
+func callbackQGraphicsColorizeEffectColorChanged(ptr unsafe.Pointer, ptrName *C.char, color unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsColorizeEffect::colorChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "colorChanged"); signal != nil {
 		signal.(func(*gui.QColor))(gui.NewQColorFromPointer(color))
 	}
 
+}
+
+func (ptr *QGraphicsColorizeEffect) ColorChanged(color gui.QColor_ITF) {
+	defer qt.Recovering("QGraphicsColorizeEffect::colorChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsColorizeEffect_ColorChanged(ptr.Pointer(), gui.PointerFromQColor(color))
+	}
 }
 
 func (ptr *QGraphicsColorizeEffect) ConnectStrengthChanged(f func(strength float64)) {
@@ -125,13 +133,21 @@ func (ptr *QGraphicsColorizeEffect) DisconnectStrengthChanged() {
 }
 
 //export callbackQGraphicsColorizeEffectStrengthChanged
-func callbackQGraphicsColorizeEffectStrengthChanged(ptrName *C.char, strength C.double) {
+func callbackQGraphicsColorizeEffectStrengthChanged(ptr unsafe.Pointer, ptrName *C.char, strength C.double) {
 	defer qt.Recovering("callback QGraphicsColorizeEffect::strengthChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "strengthChanged"); signal != nil {
 		signal.(func(float64))(float64(strength))
 	}
 
+}
+
+func (ptr *QGraphicsColorizeEffect) StrengthChanged(strength float64) {
+	defer qt.Recovering("QGraphicsColorizeEffect::strengthChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsColorizeEffect_StrengthChanged(ptr.Pointer(), C.double(strength))
+	}
 }
 
 func (ptr *QGraphicsColorizeEffect) DestroyQGraphicsColorizeEffect() {
@@ -162,15 +178,30 @@ func (ptr *QGraphicsColorizeEffect) DisconnectTimerEvent() {
 }
 
 //export callbackQGraphicsColorizeEffectTimerEvent
-func callbackQGraphicsColorizeEffectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsColorizeEffectTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsColorizeEffect::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsColorizeEffectFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsColorizeEffect) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsColorizeEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsColorizeEffect_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGraphicsColorizeEffect) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsColorizeEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsColorizeEffect_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGraphicsColorizeEffect) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -192,15 +223,30 @@ func (ptr *QGraphicsColorizeEffect) DisconnectChildEvent() {
 }
 
 //export callbackQGraphicsColorizeEffectChildEvent
-func callbackQGraphicsColorizeEffectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsColorizeEffectChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsColorizeEffect::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsColorizeEffectFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsColorizeEffect) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsColorizeEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsColorizeEffect_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGraphicsColorizeEffect) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsColorizeEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsColorizeEffect_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGraphicsColorizeEffect) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -222,13 +268,28 @@ func (ptr *QGraphicsColorizeEffect) DisconnectCustomEvent() {
 }
 
 //export callbackQGraphicsColorizeEffectCustomEvent
-func callbackQGraphicsColorizeEffectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsColorizeEffectCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsColorizeEffect::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsColorizeEffectFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsColorizeEffect) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsColorizeEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsColorizeEffect_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGraphicsColorizeEffect) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsColorizeEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsColorizeEffect_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -84,15 +84,39 @@ func (ptr *QXmlInputSource) DisconnectFetchData() {
 }
 
 //export callbackQXmlInputSourceFetchData
-func callbackQXmlInputSourceFetchData(ptrName *C.char) bool {
+func callbackQXmlInputSourceFetchData(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QXmlInputSource::fetchData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fetchData"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQXmlInputSourceFromPointer(ptr).FetchDataDefault()
 	}
-	return false
+}
 
+func (ptr *QXmlInputSource) FetchData() {
+	defer qt.Recovering("QXmlInputSource::fetchData")
+
+	if ptr.Pointer() != nil {
+		C.QXmlInputSource_FetchData(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlInputSource) FetchDataDefault() {
+	defer qt.Recovering("QXmlInputSource::fetchData")
+
+	if ptr.Pointer() != nil {
+		C.QXmlInputSource_FetchDataDefault(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlInputSource) FromRawData(data core.QByteArray_ITF, beginning bool) string {
+	defer qt.Recovering("QXmlInputSource::fromRawData")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QXmlInputSource_FromRawData(ptr.Pointer(), core.PointerFromQByteArray(data), C.int(qt.GoBoolToInt(beginning))))
+	}
+	return ""
 }
 
 func (ptr *QXmlInputSource) ConnectReset(f func()) {
@@ -114,15 +138,30 @@ func (ptr *QXmlInputSource) DisconnectReset() {
 }
 
 //export callbackQXmlInputSourceReset
-func callbackQXmlInputSourceReset(ptrName *C.char) bool {
+func callbackQXmlInputSourceReset(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QXmlInputSource::reset")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQXmlInputSourceFromPointer(ptr).ResetDefault()
 	}
-	return false
+}
 
+func (ptr *QXmlInputSource) Reset() {
+	defer qt.Recovering("QXmlInputSource::reset")
+
+	if ptr.Pointer() != nil {
+		C.QXmlInputSource_Reset(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlInputSource) ResetDefault() {
+	defer qt.Recovering("QXmlInputSource::reset")
+
+	if ptr.Pointer() != nil {
+		C.QXmlInputSource_ResetDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QXmlInputSource) ConnectSetData(f func(dat string)) {
@@ -144,15 +183,30 @@ func (ptr *QXmlInputSource) DisconnectSetData() {
 }
 
 //export callbackQXmlInputSourceSetData
-func callbackQXmlInputSourceSetData(ptrName *C.char, dat *C.char) bool {
+func callbackQXmlInputSourceSetData(ptr unsafe.Pointer, ptrName *C.char, dat *C.char) {
 	defer qt.Recovering("callback QXmlInputSource::setData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
 		signal.(func(string))(C.GoString(dat))
-		return true
+	} else {
+		NewQXmlInputSourceFromPointer(ptr).SetDataDefault(C.GoString(dat))
 	}
-	return false
+}
 
+func (ptr *QXmlInputSource) SetData(dat string) {
+	defer qt.Recovering("QXmlInputSource::setData")
+
+	if ptr.Pointer() != nil {
+		C.QXmlInputSource_SetData(ptr.Pointer(), C.CString(dat))
+	}
+}
+
+func (ptr *QXmlInputSource) SetDataDefault(dat string) {
+	defer qt.Recovering("QXmlInputSource::setData")
+
+	if ptr.Pointer() != nil {
+		C.QXmlInputSource_SetDataDefault(ptr.Pointer(), C.CString(dat))
+	}
 }
 
 func (ptr *QXmlInputSource) DestroyQXmlInputSource() {

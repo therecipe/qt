@@ -117,15 +117,30 @@ func (ptr *QLayoutItem) DisconnectInvalidate() {
 }
 
 //export callbackQLayoutItemInvalidate
-func callbackQLayoutItemInvalidate(ptrName *C.char) bool {
+func callbackQLayoutItemInvalidate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QLayoutItem::invalidate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQLayoutItemFromPointer(ptr).InvalidateDefault()
 	}
-	return false
+}
 
+func (ptr *QLayoutItem) Invalidate() {
+	defer qt.Recovering("QLayoutItem::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QLayoutItem_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QLayoutItem) InvalidateDefault() {
+	defer qt.Recovering("QLayoutItem::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QLayoutItem_InvalidateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QLayoutItem) IsEmpty() bool {

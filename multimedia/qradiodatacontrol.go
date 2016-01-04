@@ -56,13 +56,21 @@ func (ptr *QRadioDataControl) DisconnectAlternativeFrequenciesEnabledChanged() {
 }
 
 //export callbackQRadioDataControlAlternativeFrequenciesEnabledChanged
-func callbackQRadioDataControlAlternativeFrequenciesEnabledChanged(ptrName *C.char, enabled C.int) {
+func callbackQRadioDataControlAlternativeFrequenciesEnabledChanged(ptr unsafe.Pointer, ptrName *C.char, enabled C.int) {
 	defer qt.Recovering("callback QRadioDataControl::alternativeFrequenciesEnabledChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "alternativeFrequenciesEnabledChanged"); signal != nil {
 		signal.(func(bool))(int(enabled) != 0)
 	}
 
+}
+
+func (ptr *QRadioDataControl) AlternativeFrequenciesEnabledChanged(enabled bool) {
+	defer qt.Recovering("QRadioDataControl::alternativeFrequenciesEnabledChanged")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_AlternativeFrequenciesEnabledChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
+	}
 }
 
 func (ptr *QRadioDataControl) ConnectError2(f func(error QRadioData__Error)) {
@@ -84,13 +92,21 @@ func (ptr *QRadioDataControl) DisconnectError2() {
 }
 
 //export callbackQRadioDataControlError2
-func callbackQRadioDataControlError2(ptrName *C.char, error C.int) {
+func callbackQRadioDataControlError2(ptr unsafe.Pointer, ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QRadioDataControl::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QRadioData__Error))(QRadioData__Error(error))
 	}
 
+}
+
+func (ptr *QRadioDataControl) Error2(error QRadioData__Error) {
+	defer qt.Recovering("QRadioDataControl::error")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_Error2(ptr.Pointer(), C.int(error))
+	}
 }
 
 func (ptr *QRadioDataControl) Error() QRadioData__Error {
@@ -148,13 +164,21 @@ func (ptr *QRadioDataControl) DisconnectProgramTypeChanged() {
 }
 
 //export callbackQRadioDataControlProgramTypeChanged
-func callbackQRadioDataControlProgramTypeChanged(ptrName *C.char, programType C.int) {
+func callbackQRadioDataControlProgramTypeChanged(ptr unsafe.Pointer, ptrName *C.char, programType C.int) {
 	defer qt.Recovering("callback QRadioDataControl::programTypeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "programTypeChanged"); signal != nil {
 		signal.(func(QRadioData__ProgramType))(QRadioData__ProgramType(programType))
 	}
 
+}
+
+func (ptr *QRadioDataControl) ProgramTypeChanged(programType QRadioData__ProgramType) {
+	defer qt.Recovering("QRadioDataControl::programTypeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_ProgramTypeChanged(ptr.Pointer(), C.int(programType))
+	}
 }
 
 func (ptr *QRadioDataControl) ProgramTypeName() string {
@@ -185,13 +209,21 @@ func (ptr *QRadioDataControl) DisconnectProgramTypeNameChanged() {
 }
 
 //export callbackQRadioDataControlProgramTypeNameChanged
-func callbackQRadioDataControlProgramTypeNameChanged(ptrName *C.char, programTypeName *C.char) {
+func callbackQRadioDataControlProgramTypeNameChanged(ptr unsafe.Pointer, ptrName *C.char, programTypeName *C.char) {
 	defer qt.Recovering("callback QRadioDataControl::programTypeNameChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "programTypeNameChanged"); signal != nil {
 		signal.(func(string))(C.GoString(programTypeName))
 	}
 
+}
+
+func (ptr *QRadioDataControl) ProgramTypeNameChanged(programTypeName string) {
+	defer qt.Recovering("QRadioDataControl::programTypeNameChanged")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_ProgramTypeNameChanged(ptr.Pointer(), C.CString(programTypeName))
+	}
 }
 
 func (ptr *QRadioDataControl) RadioText() string {
@@ -222,13 +254,21 @@ func (ptr *QRadioDataControl) DisconnectRadioTextChanged() {
 }
 
 //export callbackQRadioDataControlRadioTextChanged
-func callbackQRadioDataControlRadioTextChanged(ptrName *C.char, radioText *C.char) {
+func callbackQRadioDataControlRadioTextChanged(ptr unsafe.Pointer, ptrName *C.char, radioText *C.char) {
 	defer qt.Recovering("callback QRadioDataControl::radioTextChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "radioTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(radioText))
 	}
 
+}
+
+func (ptr *QRadioDataControl) RadioTextChanged(radioText string) {
+	defer qt.Recovering("QRadioDataControl::radioTextChanged")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_RadioTextChanged(ptr.Pointer(), C.CString(radioText))
+	}
 }
 
 func (ptr *QRadioDataControl) SetAlternativeFrequenciesEnabled(enabled bool) {
@@ -267,13 +307,21 @@ func (ptr *QRadioDataControl) DisconnectStationIdChanged() {
 }
 
 //export callbackQRadioDataControlStationIdChanged
-func callbackQRadioDataControlStationIdChanged(ptrName *C.char, stationId *C.char) {
+func callbackQRadioDataControlStationIdChanged(ptr unsafe.Pointer, ptrName *C.char, stationId *C.char) {
 	defer qt.Recovering("callback QRadioDataControl::stationIdChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stationIdChanged"); signal != nil {
 		signal.(func(string))(C.GoString(stationId))
 	}
 
+}
+
+func (ptr *QRadioDataControl) StationIdChanged(stationId string) {
+	defer qt.Recovering("QRadioDataControl::stationIdChanged")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_StationIdChanged(ptr.Pointer(), C.CString(stationId))
+	}
 }
 
 func (ptr *QRadioDataControl) StationName() string {
@@ -304,13 +352,21 @@ func (ptr *QRadioDataControl) DisconnectStationNameChanged() {
 }
 
 //export callbackQRadioDataControlStationNameChanged
-func callbackQRadioDataControlStationNameChanged(ptrName *C.char, stationName *C.char) {
+func callbackQRadioDataControlStationNameChanged(ptr unsafe.Pointer, ptrName *C.char, stationName *C.char) {
 	defer qt.Recovering("callback QRadioDataControl::stationNameChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stationNameChanged"); signal != nil {
 		signal.(func(string))(C.GoString(stationName))
 	}
 
+}
+
+func (ptr *QRadioDataControl) StationNameChanged(stationName string) {
+	defer qt.Recovering("QRadioDataControl::stationNameChanged")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_StationNameChanged(ptr.Pointer(), C.CString(stationName))
+	}
 }
 
 func (ptr *QRadioDataControl) DestroyQRadioDataControl() {
@@ -341,15 +397,30 @@ func (ptr *QRadioDataControl) DisconnectTimerEvent() {
 }
 
 //export callbackQRadioDataControlTimerEvent
-func callbackQRadioDataControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioDataControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioDataControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioDataControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioDataControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRadioDataControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QRadioDataControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRadioDataControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QRadioDataControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -371,15 +442,30 @@ func (ptr *QRadioDataControl) DisconnectChildEvent() {
 }
 
 //export callbackQRadioDataControlChildEvent
-func callbackQRadioDataControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioDataControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioDataControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioDataControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioDataControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRadioDataControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QRadioDataControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRadioDataControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QRadioDataControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -401,13 +487,28 @@ func (ptr *QRadioDataControl) DisconnectCustomEvent() {
 }
 
 //export callbackQRadioDataControlCustomEvent
-func callbackQRadioDataControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioDataControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioDataControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioDataControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioDataControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QRadioDataControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QRadioDataControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QRadioDataControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioDataControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

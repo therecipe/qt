@@ -1,3 +1,5 @@
+#define protected public
+
 #include "qml.h"
 #include "_cgo_export.h"
 
@@ -43,10 +45,9 @@ class MyQJSEngine: public QJSEngine {
 public:
 	MyQJSEngine() : QJSEngine() {};
 	MyQJSEngine(QObject *parent) : QJSEngine(parent) {};
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQJSEngineTimerEvent(this->objectName().toUtf8().data(), event)) { QJSEngine::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQJSEngineChildEvent(this->objectName().toUtf8().data(), event)) { QJSEngine::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQJSEngineCustomEvent(this->objectName().toUtf8().data(), event)) { QJSEngine::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQJSEngineTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQJSEngineChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQJSEngineCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QJSEngine_NewQJSEngine(){
@@ -83,6 +84,30 @@ void* QJSEngine_NewQObject(void* ptr, void* object){
 
 void QJSEngine_DestroyQJSEngine(void* ptr){
 	static_cast<QJSEngine*>(ptr)->~QJSEngine();
+}
+
+void QJSEngine_TimerEvent(void* ptr, void* event){
+	static_cast<MyQJSEngine*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QJSEngine_TimerEventDefault(void* ptr, void* event){
+	static_cast<QJSEngine*>(ptr)->QJSEngine::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QJSEngine_ChildEvent(void* ptr, void* event){
+	static_cast<MyQJSEngine*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QJSEngine_ChildEventDefault(void* ptr, void* event){
+	static_cast<QJSEngine*>(ptr)->QJSEngine::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QJSEngine_CustomEvent(void* ptr, void* event){
+	static_cast<MyQJSEngine*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QJSEngine_CustomEventDefault(void* ptr, void* event){
+	static_cast<QJSEngine*>(ptr)->QJSEngine::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QJSValue_NewQJSValue3(void* other){
@@ -234,7 +259,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 void* QQmlAbstractUrlInterceptor_Intercept(void* ptr, void* url, int ty){
@@ -260,11 +284,10 @@ void QQmlAbstractUrlInterceptor_SetObjectNameAbs(void* ptr, char* name){
 
 class MyQQmlApplicationEngine: public QQmlApplicationEngine {
 public:
-	void Signal_ObjectCreated(QObject * object, const QUrl & url) { callbackQQmlApplicationEngineObjectCreated(this->objectName().toUtf8().data(), object, new QUrl(url)); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQQmlApplicationEngineTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlApplicationEngine::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQQmlApplicationEngineChildEvent(this->objectName().toUtf8().data(), event)) { QQmlApplicationEngine::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQQmlApplicationEngineCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlApplicationEngine::customEvent(event); }; };
+	void Signal_ObjectCreated(QObject * object, const QUrl & url) { callbackQQmlApplicationEngineObjectCreated(this, this->objectName().toUtf8().data(), object, new QUrl(url)); };
+	void timerEvent(QTimerEvent * event) { callbackQQmlApplicationEngineTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQQmlApplicationEngineChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQQmlApplicationEngineCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QQmlApplicationEngine_NewQQmlApplicationEngine(void* parent){
@@ -299,8 +322,36 @@ void QQmlApplicationEngine_DisconnectObjectCreated(void* ptr){
 	QObject::disconnect(static_cast<QQmlApplicationEngine*>(ptr), static_cast<void (QQmlApplicationEngine::*)(QObject *, const QUrl &)>(&QQmlApplicationEngine::objectCreated), static_cast<MyQQmlApplicationEngine*>(ptr), static_cast<void (MyQQmlApplicationEngine::*)(QObject *, const QUrl &)>(&MyQQmlApplicationEngine::Signal_ObjectCreated));;
 }
 
+void QQmlApplicationEngine_ObjectCreated(void* ptr, void* object, void* url){
+	static_cast<QQmlApplicationEngine*>(ptr)->objectCreated(static_cast<QObject*>(object), *static_cast<QUrl*>(url));
+}
+
 void QQmlApplicationEngine_DestroyQQmlApplicationEngine(void* ptr){
 	static_cast<QQmlApplicationEngine*>(ptr)->~QQmlApplicationEngine();
+}
+
+void QQmlApplicationEngine_TimerEvent(void* ptr, void* event){
+	static_cast<MyQQmlApplicationEngine*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlApplicationEngine_TimerEventDefault(void* ptr, void* event){
+	static_cast<QQmlApplicationEngine*>(ptr)->QQmlApplicationEngine::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlApplicationEngine_ChildEvent(void* ptr, void* event){
+	static_cast<MyQQmlApplicationEngine*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlApplicationEngine_ChildEventDefault(void* ptr, void* event){
+	static_cast<QQmlApplicationEngine*>(ptr)->QQmlApplicationEngine::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlApplicationEngine_CustomEvent(void* ptr, void* event){
+	static_cast<MyQQmlApplicationEngine*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QQmlApplicationEngine_CustomEventDefault(void* ptr, void* event){
+	static_cast<QQmlApplicationEngine*>(ptr)->QQmlApplicationEngine::customEvent(static_cast<QEvent*>(event));
 }
 
 class MyQQmlComponent: public QQmlComponent {
@@ -310,13 +361,12 @@ public:
 	MyQQmlComponent(QQmlEngine *engine, const QString &fileName, QObject *parent) : QQmlComponent(engine, fileName, parent) {};
 	MyQQmlComponent(QQmlEngine *engine, const QUrl &url, CompilationMode mode, QObject *parent) : QQmlComponent(engine, url, mode, parent) {};
 	MyQQmlComponent(QQmlEngine *engine, const QUrl &url, QObject *parent) : QQmlComponent(engine, url, parent) {};
-	void completeCreate() { if (!callbackQQmlComponentCompleteCreate(this->objectName().toUtf8().data())) { QQmlComponent::completeCreate(); }; };
-	void Signal_ProgressChanged(qreal progress) { callbackQQmlComponentProgressChanged(this->objectName().toUtf8().data(), static_cast<double>(progress)); };
-	void Signal_StatusChanged(QQmlComponent::Status status) { callbackQQmlComponentStatusChanged(this->objectName().toUtf8().data(), status); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQQmlComponentTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlComponent::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQQmlComponentChildEvent(this->objectName().toUtf8().data(), event)) { QQmlComponent::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQQmlComponentCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlComponent::customEvent(event); }; };
+	void completeCreate() { callbackQQmlComponentCompleteCreate(this, this->objectName().toUtf8().data()); };
+	void Signal_ProgressChanged(qreal progress) { callbackQQmlComponentProgressChanged(this, this->objectName().toUtf8().data(), static_cast<double>(progress)); };
+	void Signal_StatusChanged(QQmlComponent::Status status) { callbackQQmlComponentStatusChanged(this, this->objectName().toUtf8().data(), status); };
+	void timerEvent(QTimerEvent * event) { callbackQQmlComponentTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQQmlComponentChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQQmlComponentCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 double QQmlComponent_Progress(void* ptr){
@@ -356,7 +406,11 @@ void* QQmlComponent_BeginCreate(void* ptr, void* publicContext){
 }
 
 void QQmlComponent_CompleteCreate(void* ptr){
-	static_cast<QQmlComponent*>(ptr)->completeCreate();
+	static_cast<MyQQmlComponent*>(ptr)->completeCreate();
+}
+
+void QQmlComponent_CompleteCreateDefault(void* ptr){
+	static_cast<QQmlComponent*>(ptr)->QQmlComponent::completeCreate();
 }
 
 void* QQmlComponent_Create(void* ptr, void* context){
@@ -403,6 +457,10 @@ void QQmlComponent_DisconnectProgressChanged(void* ptr){
 	QObject::disconnect(static_cast<QQmlComponent*>(ptr), static_cast<void (QQmlComponent::*)(qreal)>(&QQmlComponent::progressChanged), static_cast<MyQQmlComponent*>(ptr), static_cast<void (MyQQmlComponent::*)(qreal)>(&MyQQmlComponent::Signal_ProgressChanged));;
 }
 
+void QQmlComponent_ProgressChanged(void* ptr, double progress){
+	static_cast<QQmlComponent*>(ptr)->progressChanged(static_cast<double>(progress));
+}
+
 void QQmlComponent_SetData(void* ptr, void* data, void* url){
 	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "setData", Q_ARG(QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
@@ -415,18 +473,45 @@ void QQmlComponent_DisconnectStatusChanged(void* ptr){
 	QObject::disconnect(static_cast<QQmlComponent*>(ptr), static_cast<void (QQmlComponent::*)(QQmlComponent::Status)>(&QQmlComponent::statusChanged), static_cast<MyQQmlComponent*>(ptr), static_cast<void (MyQQmlComponent::*)(QQmlComponent::Status)>(&MyQQmlComponent::Signal_StatusChanged));;
 }
 
+void QQmlComponent_StatusChanged(void* ptr, int status){
+	static_cast<QQmlComponent*>(ptr)->statusChanged(static_cast<QQmlComponent::Status>(status));
+}
+
 void QQmlComponent_DestroyQQmlComponent(void* ptr){
 	static_cast<QQmlComponent*>(ptr)->~QQmlComponent();
+}
+
+void QQmlComponent_TimerEvent(void* ptr, void* event){
+	static_cast<MyQQmlComponent*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlComponent_TimerEventDefault(void* ptr, void* event){
+	static_cast<QQmlComponent*>(ptr)->QQmlComponent::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlComponent_ChildEvent(void* ptr, void* event){
+	static_cast<MyQQmlComponent*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlComponent_ChildEventDefault(void* ptr, void* event){
+	static_cast<QQmlComponent*>(ptr)->QQmlComponent::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlComponent_CustomEvent(void* ptr, void* event){
+	static_cast<MyQQmlComponent*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QQmlComponent_CustomEventDefault(void* ptr, void* event){
+	static_cast<QQmlComponent*>(ptr)->QQmlComponent::customEvent(static_cast<QEvent*>(event));
 }
 
 class MyQQmlContext: public QQmlContext {
 public:
 	MyQQmlContext(QQmlContext *parentContext, QObject *parent) : QQmlContext(parentContext, parent) {};
 	MyQQmlContext(QQmlEngine *engine, QObject *parent) : QQmlContext(engine, parent) {};
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQQmlContextTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlContext::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQQmlContextChildEvent(this->objectName().toUtf8().data(), event)) { QQmlContext::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQQmlContextCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlContext::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQQmlContextTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQQmlContextChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQQmlContextCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QQmlContext_NewQQmlContext2(void* parentContext, void* parent){
@@ -489,14 +574,37 @@ void QQmlContext_DestroyQQmlContext(void* ptr){
 	static_cast<QQmlContext*>(ptr)->~QQmlContext();
 }
 
+void QQmlContext_TimerEvent(void* ptr, void* event){
+	static_cast<MyQQmlContext*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlContext_TimerEventDefault(void* ptr, void* event){
+	static_cast<QQmlContext*>(ptr)->QQmlContext::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlContext_ChildEvent(void* ptr, void* event){
+	static_cast<MyQQmlContext*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlContext_ChildEventDefault(void* ptr, void* event){
+	static_cast<QQmlContext*>(ptr)->QQmlContext::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlContext_CustomEvent(void* ptr, void* event){
+	static_cast<MyQQmlContext*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QQmlContext_CustomEventDefault(void* ptr, void* event){
+	static_cast<QQmlContext*>(ptr)->QQmlContext::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQQmlEngine: public QQmlEngine {
 public:
 	MyQQmlEngine(QObject *parent) : QQmlEngine(parent) {};
-	void Signal_Quit() { callbackQQmlEngineQuit(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQQmlEngineTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlEngine::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQQmlEngineChildEvent(this->objectName().toUtf8().data(), event)) { QQmlEngine::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQQmlEngineCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlEngine::customEvent(event); }; };
+	void Signal_Quit() { callbackQQmlEngineQuit(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQQmlEngineTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQQmlEngineChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQQmlEngineCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 char* QQmlEngine_OfflineStoragePath(void* ptr){
@@ -533,6 +641,10 @@ void QQmlEngine_ClearComponentCache(void* ptr){
 
 void* QQmlEngine_QQmlEngine_ContextForObject(void* object){
 	return QQmlEngine::contextForObject(static_cast<QObject*>(object));
+}
+
+int QQmlEngine_Event(void* ptr, void* e){
+	return static_cast<QQmlEngine*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
 void* QQmlEngine_ImageProvider(void* ptr, char* providerId){
@@ -573,6 +685,10 @@ void QQmlEngine_ConnectQuit(void* ptr){
 
 void QQmlEngine_DisconnectQuit(void* ptr){
 	QObject::disconnect(static_cast<QQmlEngine*>(ptr), static_cast<void (QQmlEngine::*)()>(&QQmlEngine::quit), static_cast<MyQQmlEngine*>(ptr), static_cast<void (MyQQmlEngine::*)()>(&MyQQmlEngine::Signal_Quit));;
+}
+
+void QQmlEngine_Quit(void* ptr){
+	static_cast<QQmlEngine*>(ptr)->quit();
 }
 
 void QQmlEngine_RemoveImageProvider(void* ptr, char* providerId){
@@ -621,6 +737,30 @@ void QQmlEngine_TrimComponentCache(void* ptr){
 
 void QQmlEngine_DestroyQQmlEngine(void* ptr){
 	static_cast<QQmlEngine*>(ptr)->~QQmlEngine();
+}
+
+void QQmlEngine_TimerEvent(void* ptr, void* event){
+	static_cast<MyQQmlEngine*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlEngine_TimerEventDefault(void* ptr, void* event){
+	static_cast<QQmlEngine*>(ptr)->QQmlEngine::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlEngine_ChildEvent(void* ptr, void* event){
+	static_cast<MyQQmlEngine*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlEngine_ChildEventDefault(void* ptr, void* event){
+	static_cast<QQmlEngine*>(ptr)->QQmlEngine::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlEngine_CustomEvent(void* ptr, void* event){
+	static_cast<MyQQmlEngine*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QQmlEngine_CustomEventDefault(void* ptr, void* event){
+	static_cast<QQmlEngine*>(ptr)->QQmlEngine::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QQmlError_NewQQmlError(){
@@ -684,11 +824,10 @@ public:
 	MyQQmlExpression() : QQmlExpression() {};
 	MyQQmlExpression(QQmlContext *ctxt, QObject *scope, const QString &expression, QObject *parent) : QQmlExpression(ctxt, scope, expression, parent) {};
 	MyQQmlExpression(const QQmlScriptString &script, QQmlContext *ctxt, QObject *scope, QObject *parent) : QQmlExpression(script, ctxt, scope, parent) {};
-	void Signal_ValueChanged() { callbackQQmlExpressionValueChanged(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQQmlExpressionTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlExpression::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQQmlExpressionChildEvent(this->objectName().toUtf8().data(), event)) { QQmlExpression::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQQmlExpressionCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlExpression::customEvent(event); }; };
+	void Signal_ValueChanged() { callbackQQmlExpressionValueChanged(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQQmlExpressionTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQQmlExpressionChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQQmlExpressionCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QQmlExpression_NewQQmlExpression(){
@@ -767,16 +906,43 @@ void QQmlExpression_DisconnectValueChanged(void* ptr){
 	QObject::disconnect(static_cast<QQmlExpression*>(ptr), static_cast<void (QQmlExpression::*)()>(&QQmlExpression::valueChanged), static_cast<MyQQmlExpression*>(ptr), static_cast<void (MyQQmlExpression::*)()>(&MyQQmlExpression::Signal_ValueChanged));;
 }
 
+void QQmlExpression_ValueChanged(void* ptr){
+	static_cast<QQmlExpression*>(ptr)->valueChanged();
+}
+
 void QQmlExpression_DestroyQQmlExpression(void* ptr){
 	static_cast<QQmlExpression*>(ptr)->~QQmlExpression();
 }
 
+void QQmlExpression_TimerEvent(void* ptr, void* event){
+	static_cast<MyQQmlExpression*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlExpression_TimerEventDefault(void* ptr, void* event){
+	static_cast<QQmlExpression*>(ptr)->QQmlExpression::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlExpression_ChildEvent(void* ptr, void* event){
+	static_cast<MyQQmlExpression*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlExpression_ChildEventDefault(void* ptr, void* event){
+	static_cast<QQmlExpression*>(ptr)->QQmlExpression::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlExpression_CustomEvent(void* ptr, void* event){
+	static_cast<MyQQmlExpression*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QQmlExpression_CustomEventDefault(void* ptr, void* event){
+	static_cast<QQmlExpression*>(ptr)->QQmlExpression::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQQmlExtensionPlugin: public QQmlExtensionPlugin {
 public:
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQQmlExtensionPluginTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlExtensionPlugin::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQQmlExtensionPluginChildEvent(this->objectName().toUtf8().data(), event)) { QQmlExtensionPlugin::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQQmlExtensionPluginCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlExtensionPlugin::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQQmlExtensionPluginTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQQmlExtensionPluginChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQQmlExtensionPluginCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QQmlExtensionPlugin_BaseUrl(void* ptr){
@@ -785,6 +951,30 @@ void* QQmlExtensionPlugin_BaseUrl(void* ptr){
 
 void QQmlExtensionPlugin_RegisterTypes(void* ptr, char* uri){
 	static_cast<QQmlExtensionPlugin*>(ptr)->registerTypes(const_cast<const char*>(uri));
+}
+
+void QQmlExtensionPlugin_TimerEvent(void* ptr, void* event){
+	static_cast<MyQQmlExtensionPlugin*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlExtensionPlugin_TimerEventDefault(void* ptr, void* event){
+	static_cast<QQmlExtensionPlugin*>(ptr)->QQmlExtensionPlugin::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlExtensionPlugin_ChildEvent(void* ptr, void* event){
+	static_cast<MyQQmlExtensionPlugin*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlExtensionPlugin_ChildEventDefault(void* ptr, void* event){
+	static_cast<QQmlExtensionPlugin*>(ptr)->QQmlExtensionPlugin::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlExtensionPlugin_CustomEvent(void* ptr, void* event){
+	static_cast<MyQQmlExtensionPlugin*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QQmlExtensionPlugin_CustomEventDefault(void* ptr, void* event){
+	static_cast<QQmlExtensionPlugin*>(ptr)->QQmlExtensionPlugin::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QQmlFileSelector_NewQQmlFileSelector(void* engine, void* parent){
@@ -811,6 +1001,30 @@ void QQmlFileSelector_DestroyQQmlFileSelector(void* ptr){
 	static_cast<QQmlFileSelector*>(ptr)->~QQmlFileSelector();
 }
 
+void QQmlFileSelector_TimerEvent(void* ptr, void* event){
+	static_cast<QQmlFileSelector*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlFileSelector_TimerEventDefault(void* ptr, void* event){
+	static_cast<QQmlFileSelector*>(ptr)->QQmlFileSelector::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlFileSelector_ChildEvent(void* ptr, void* event){
+	static_cast<QQmlFileSelector*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlFileSelector_ChildEventDefault(void* ptr, void* event){
+	static_cast<QQmlFileSelector*>(ptr)->QQmlFileSelector::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlFileSelector_CustomEvent(void* ptr, void* event){
+	static_cast<QQmlFileSelector*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QQmlFileSelector_CustomEventDefault(void* ptr, void* event){
+	static_cast<QQmlFileSelector*>(ptr)->QQmlFileSelector::customEvent(static_cast<QEvent*>(event));
+}
+
 int QQmlImageProviderBase_Flags(void* ptr){
 	return static_cast<QQmlImageProviderBase*>(ptr)->flags();
 }
@@ -825,8 +1039,7 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQQmlIncubationController() : QQmlIncubationController() {};
-protected:
-	void incubatingObjectCountChanged(int incubatingObjectCount) { if (!callbackQQmlIncubationControllerIncubatingObjectCountChanged(this->objectNameAbs().toUtf8().data(), incubatingObjectCount)) { QQmlIncubationController::incubatingObjectCountChanged(incubatingObjectCount); }; };
+	void incubatingObjectCountChanged(int incubatingObjectCount) { callbackQQmlIncubationControllerIncubatingObjectCountChanged(this, this->objectNameAbs().toUtf8().data(), incubatingObjectCount); };
 };
 
 void* QQmlIncubationController_NewQQmlIncubationController(){
@@ -843,6 +1056,14 @@ void QQmlIncubationController_IncubateFor(void* ptr, int msecs){
 
 int QQmlIncubationController_IncubatingObjectCount(void* ptr){
 	return static_cast<QQmlIncubationController*>(ptr)->incubatingObjectCount();
+}
+
+void QQmlIncubationController_IncubatingObjectCountChanged(void* ptr, int incubatingObjectCount){
+	static_cast<MyQQmlIncubationController*>(ptr)->incubatingObjectCountChanged(incubatingObjectCount);
+}
+
+void QQmlIncubationController_IncubatingObjectCountChangedDefault(void* ptr, int incubatingObjectCount){
+	static_cast<QQmlIncubationController*>(ptr)->QQmlIncubationController::incubatingObjectCountChanged(incubatingObjectCount);
 }
 
 char* QQmlIncubationController_ObjectNameAbs(void* ptr){
@@ -864,9 +1085,8 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQQmlIncubator(IncubationMode mode) : QQmlIncubator(mode) {};
-protected:
-	void setInitialState(QObject * object) { if (!callbackQQmlIncubatorSetInitialState(this->objectNameAbs().toUtf8().data(), object)) { QQmlIncubator::setInitialState(object); }; };
-	void statusChanged(QQmlIncubator::Status status) { if (!callbackQQmlIncubatorStatusChanged(this->objectNameAbs().toUtf8().data(), status)) { QQmlIncubator::statusChanged(status); }; };
+	void setInitialState(QObject * object) { callbackQQmlIncubatorSetInitialState(this, this->objectNameAbs().toUtf8().data(), object); };
+	void statusChanged(QQmlIncubator::Status status) { callbackQQmlIncubatorStatusChanged(this, this->objectNameAbs().toUtf8().data(), status); };
 };
 
 void* QQmlIncubator_NewQQmlIncubator(int mode){
@@ -905,8 +1125,24 @@ void* QQmlIncubator_Object(void* ptr){
 	return static_cast<QQmlIncubator*>(ptr)->object();
 }
 
+void QQmlIncubator_SetInitialState(void* ptr, void* object){
+	static_cast<MyQQmlIncubator*>(ptr)->setInitialState(static_cast<QObject*>(object));
+}
+
+void QQmlIncubator_SetInitialStateDefault(void* ptr, void* object){
+	static_cast<QQmlIncubator*>(ptr)->QQmlIncubator::setInitialState(static_cast<QObject*>(object));
+}
+
 int QQmlIncubator_Status(void* ptr){
 	return static_cast<QQmlIncubator*>(ptr)->status();
+}
+
+void QQmlIncubator_StatusChanged(void* ptr, int status){
+	static_cast<MyQQmlIncubator*>(ptr)->statusChanged(static_cast<QQmlIncubator::Status>(status));
+}
+
+void QQmlIncubator_StatusChangedDefault(void* ptr, int status){
+	static_cast<QQmlIncubator*>(ptr)->QQmlIncubator::statusChanged(static_cast<QQmlIncubator::Status>(status));
 }
 
 char* QQmlIncubator_ObjectNameAbs(void* ptr){
@@ -987,7 +1223,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 void* QQmlNetworkAccessManagerFactory_Create(void* ptr, void* parent){
@@ -1154,11 +1389,10 @@ int QQmlProperty_Write(void* ptr, void* value){
 class MyQQmlPropertyMap: public QQmlPropertyMap {
 public:
 	MyQQmlPropertyMap(QObject *parent) : QQmlPropertyMap(parent) {};
-	void Signal_ValueChanged(const QString & key, const QVariant & value) { callbackQQmlPropertyMapValueChanged(this->objectName().toUtf8().data(), key.toUtf8().data(), new QVariant(value)); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQQmlPropertyMapTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlPropertyMap::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQQmlPropertyMapChildEvent(this->objectName().toUtf8().data(), event)) { QQmlPropertyMap::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQQmlPropertyMapCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlPropertyMap::customEvent(event); }; };
+	void Signal_ValueChanged(const QString & key, const QVariant & value) { callbackQQmlPropertyMapValueChanged(this, this->objectName().toUtf8().data(), key.toUtf8().data(), new QVariant(value)); };
+	void timerEvent(QTimerEvent * event) { callbackQQmlPropertyMapTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQQmlPropertyMapChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQQmlPropertyMapCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QQmlPropertyMap_NewQQmlPropertyMap(void* parent){
@@ -1189,6 +1423,10 @@ int QQmlPropertyMap_Size(void* ptr){
 	return static_cast<QQmlPropertyMap*>(ptr)->size();
 }
 
+void* QQmlPropertyMap_UpdateValue(void* ptr, char* key, void* input){
+	return new QVariant(static_cast<QQmlPropertyMap*>(ptr)->updateValue(QString(key), *static_cast<QVariant*>(input)));
+}
+
 void* QQmlPropertyMap_Value(void* ptr, char* key){
 	return new QVariant(static_cast<QQmlPropertyMap*>(ptr)->value(QString(key)));
 }
@@ -1201,8 +1439,36 @@ void QQmlPropertyMap_DisconnectValueChanged(void* ptr){
 	QObject::disconnect(static_cast<QQmlPropertyMap*>(ptr), static_cast<void (QQmlPropertyMap::*)(const QString &, const QVariant &)>(&QQmlPropertyMap::valueChanged), static_cast<MyQQmlPropertyMap*>(ptr), static_cast<void (MyQQmlPropertyMap::*)(const QString &, const QVariant &)>(&MyQQmlPropertyMap::Signal_ValueChanged));;
 }
 
+void QQmlPropertyMap_ValueChanged(void* ptr, char* key, void* value){
+	static_cast<QQmlPropertyMap*>(ptr)->valueChanged(QString(key), *static_cast<QVariant*>(value));
+}
+
 void QQmlPropertyMap_DestroyQQmlPropertyMap(void* ptr){
 	static_cast<QQmlPropertyMap*>(ptr)->~QQmlPropertyMap();
+}
+
+void QQmlPropertyMap_TimerEvent(void* ptr, void* event){
+	static_cast<MyQQmlPropertyMap*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlPropertyMap_TimerEventDefault(void* ptr, void* event){
+	static_cast<QQmlPropertyMap*>(ptr)->QQmlPropertyMap::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlPropertyMap_ChildEvent(void* ptr, void* event){
+	static_cast<MyQQmlPropertyMap*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlPropertyMap_ChildEventDefault(void* ptr, void* event){
+	static_cast<QQmlPropertyMap*>(ptr)->QQmlPropertyMap::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlPropertyMap_CustomEvent(void* ptr, void* event){
+	static_cast<MyQQmlPropertyMap*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QQmlPropertyMap_CustomEventDefault(void* ptr, void* event){
+	static_cast<QQmlPropertyMap*>(ptr)->QQmlPropertyMap::customEvent(static_cast<QEvent*>(event));
 }
 
 class MyQQmlPropertyValueSource: public QQmlPropertyValueSource {
@@ -1210,7 +1476,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 void QQmlPropertyValueSource_SetTarget(void* ptr, void* property){

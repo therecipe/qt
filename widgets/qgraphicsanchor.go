@@ -107,15 +107,30 @@ func (ptr *QGraphicsAnchor) DisconnectTimerEvent() {
 }
 
 //export callbackQGraphicsAnchorTimerEvent
-func callbackQGraphicsAnchorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsAnchorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsAnchor::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsAnchorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsAnchor) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsAnchor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGraphicsAnchor) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsAnchor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGraphicsAnchor) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -137,15 +152,30 @@ func (ptr *QGraphicsAnchor) DisconnectChildEvent() {
 }
 
 //export callbackQGraphicsAnchorChildEvent
-func callbackQGraphicsAnchorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsAnchorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsAnchor::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsAnchorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsAnchor) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsAnchor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGraphicsAnchor) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsAnchor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGraphicsAnchor) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -167,13 +197,28 @@ func (ptr *QGraphicsAnchor) DisconnectCustomEvent() {
 }
 
 //export callbackQGraphicsAnchorCustomEvent
-func callbackQGraphicsAnchorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsAnchorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsAnchor::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsAnchorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsAnchor) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsAnchor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGraphicsAnchor) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsAnchor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

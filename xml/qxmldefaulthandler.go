@@ -245,15 +245,30 @@ func (ptr *QXmlDefaultHandler) DisconnectSetDocumentLocator() {
 }
 
 //export callbackQXmlDefaultHandlerSetDocumentLocator
-func callbackQXmlDefaultHandlerSetDocumentLocator(ptrName *C.char, locator unsafe.Pointer) bool {
+func callbackQXmlDefaultHandlerSetDocumentLocator(ptr unsafe.Pointer, ptrName *C.char, locator unsafe.Pointer) {
 	defer qt.Recovering("callback QXmlDefaultHandler::setDocumentLocator")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDocumentLocator"); signal != nil {
 		signal.(func(*QXmlLocator))(NewQXmlLocatorFromPointer(locator))
-		return true
+	} else {
+		NewQXmlDefaultHandlerFromPointer(ptr).SetDocumentLocatorDefault(NewQXmlLocatorFromPointer(locator))
 	}
-	return false
+}
 
+func (ptr *QXmlDefaultHandler) SetDocumentLocator(locator QXmlLocator_ITF) {
+	defer qt.Recovering("QXmlDefaultHandler::setDocumentLocator")
+
+	if ptr.Pointer() != nil {
+		C.QXmlDefaultHandler_SetDocumentLocator(ptr.Pointer(), PointerFromQXmlLocator(locator))
+	}
+}
+
+func (ptr *QXmlDefaultHandler) SetDocumentLocatorDefault(locator QXmlLocator_ITF) {
+	defer qt.Recovering("QXmlDefaultHandler::setDocumentLocator")
+
+	if ptr.Pointer() != nil {
+		C.QXmlDefaultHandler_SetDocumentLocatorDefault(ptr.Pointer(), PointerFromQXmlLocator(locator))
+	}
 }
 
 func (ptr *QXmlDefaultHandler) SkippedEntity(name string) bool {

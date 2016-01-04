@@ -79,13 +79,21 @@ func (ptr *QWebChannel) DisconnectBlockUpdatesChanged() {
 }
 
 //export callbackQWebChannelBlockUpdatesChanged
-func callbackQWebChannelBlockUpdatesChanged(ptrName *C.char, block C.int) {
+func callbackQWebChannelBlockUpdatesChanged(ptr unsafe.Pointer, ptrName *C.char, block C.int) {
 	defer qt.Recovering("callback QWebChannel::blockUpdatesChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "blockUpdatesChanged"); signal != nil {
 		signal.(func(bool))(int(block) != 0)
 	}
 
+}
+
+func (ptr *QWebChannel) BlockUpdatesChanged(block bool) {
+	defer qt.Recovering("QWebChannel::blockUpdatesChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebChannel_BlockUpdatesChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(block)))
+	}
 }
 
 func (ptr *QWebChannel) ConnectTo(transport QWebChannelAbstractTransport_ITF) {
@@ -148,15 +156,30 @@ func (ptr *QWebChannel) DisconnectTimerEvent() {
 }
 
 //export callbackQWebChannelTimerEvent
-func callbackQWebChannelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWebChannelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWebChannel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQWebChannelFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWebChannel) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QWebChannel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWebChannel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QWebChannel) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QWebChannel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWebChannel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QWebChannel) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -178,15 +201,30 @@ func (ptr *QWebChannel) DisconnectChildEvent() {
 }
 
 //export callbackQWebChannelChildEvent
-func callbackQWebChannelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWebChannelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWebChannel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQWebChannelFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWebChannel) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QWebChannel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWebChannel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QWebChannel) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QWebChannel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWebChannel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QWebChannel) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -208,13 +246,28 @@ func (ptr *QWebChannel) DisconnectCustomEvent() {
 }
 
 //export callbackQWebChannelCustomEvent
-func callbackQWebChannelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWebChannelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWebChannel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQWebChannelFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWebChannel) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QWebChannel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWebChannel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QWebChannel) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QWebChannel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWebChannel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -89,13 +89,21 @@ func (ptr *QAccelerometer) DisconnectAccelerationModeChanged() {
 }
 
 //export callbackQAccelerometerAccelerationModeChanged
-func callbackQAccelerometerAccelerationModeChanged(ptrName *C.char, accelerationMode C.int) {
+func callbackQAccelerometerAccelerationModeChanged(ptr unsafe.Pointer, ptrName *C.char, accelerationMode C.int) {
 	defer qt.Recovering("callback QAccelerometer::accelerationModeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "accelerationModeChanged"); signal != nil {
 		signal.(func(QAccelerometer__AccelerationMode))(QAccelerometer__AccelerationMode(accelerationMode))
 	}
 
+}
+
+func (ptr *QAccelerometer) AccelerationModeChanged(accelerationMode QAccelerometer__AccelerationMode) {
+	defer qt.Recovering("QAccelerometer::accelerationModeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAccelerometer_AccelerationModeChanged(ptr.Pointer(), C.int(accelerationMode))
+	}
 }
 
 func (ptr *QAccelerometer) SetAccelerationMode(accelerationMode QAccelerometer__AccelerationMode) {
@@ -134,15 +142,30 @@ func (ptr *QAccelerometer) DisconnectTimerEvent() {
 }
 
 //export callbackQAccelerometerTimerEvent
-func callbackQAccelerometerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAccelerometerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAccelerometer::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAccelerometerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAccelerometer) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAccelerometer::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAccelerometer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAccelerometer) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAccelerometer::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAccelerometer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAccelerometer) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -164,15 +187,30 @@ func (ptr *QAccelerometer) DisconnectChildEvent() {
 }
 
 //export callbackQAccelerometerChildEvent
-func callbackQAccelerometerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAccelerometerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAccelerometer::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAccelerometerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAccelerometer) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAccelerometer::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAccelerometer_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAccelerometer) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAccelerometer::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAccelerometer_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAccelerometer) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -194,13 +232,28 @@ func (ptr *QAccelerometer) DisconnectCustomEvent() {
 }
 
 //export callbackQAccelerometerCustomEvent
-func callbackQAccelerometerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAccelerometerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAccelerometer::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAccelerometerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAccelerometer) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAccelerometer::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAccelerometer_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAccelerometer) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAccelerometer::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAccelerometer_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -1,3 +1,5 @@
+#define protected public
+
 #include "gui.h"
 #include "_cgo_export.h"
 
@@ -197,11 +199,10 @@
 
 class MyQAbstractTextDocumentLayout: public QAbstractTextDocumentLayout {
 public:
-	void Signal_PageCountChanged(int newPages) { callbackQAbstractTextDocumentLayoutPageCountChanged(this->objectName().toUtf8().data(), newPages); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQAbstractTextDocumentLayoutTimerEvent(this->objectName().toUtf8().data(), event)) { QAbstractTextDocumentLayout::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQAbstractTextDocumentLayoutChildEvent(this->objectName().toUtf8().data(), event)) { QAbstractTextDocumentLayout::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQAbstractTextDocumentLayoutCustomEvent(this->objectName().toUtf8().data(), event)) { QAbstractTextDocumentLayout::customEvent(event); }; };
+	void Signal_PageCountChanged(int newPages) { callbackQAbstractTextDocumentLayoutPageCountChanged(this, this->objectName().toUtf8().data(), newPages); };
+	void timerEvent(QTimerEvent * event) { callbackQAbstractTextDocumentLayoutTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQAbstractTextDocumentLayoutChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQAbstractTextDocumentLayoutCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 char* QAbstractTextDocumentLayout_AnchorAt(void* ptr, void* position){
@@ -228,6 +229,10 @@ void QAbstractTextDocumentLayout_DisconnectPageCountChanged(void* ptr){
 	QObject::disconnect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(int)>(&QAbstractTextDocumentLayout::pageCountChanged), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(int)>(&MyQAbstractTextDocumentLayout::Signal_PageCountChanged));;
 }
 
+void QAbstractTextDocumentLayout_PageCountChanged(void* ptr, int newPages){
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->pageCountChanged(newPages);
+}
+
 void* QAbstractTextDocumentLayout_PaintDevice(void* ptr){
 	return static_cast<QAbstractTextDocumentLayout*>(ptr)->paintDevice();
 }
@@ -242,6 +247,30 @@ void QAbstractTextDocumentLayout_SetPaintDevice(void* ptr, void* device){
 
 void QAbstractTextDocumentLayout_UnregisterHandler(void* ptr, int objectType, void* component){
 	static_cast<QAbstractTextDocumentLayout*>(ptr)->unregisterHandler(objectType, static_cast<QObject*>(component));
+}
+
+void QAbstractTextDocumentLayout_TimerEvent(void* ptr, void* event){
+	static_cast<MyQAbstractTextDocumentLayout*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QAbstractTextDocumentLayout_TimerEventDefault(void* ptr, void* event){
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QAbstractTextDocumentLayout_ChildEvent(void* ptr, void* event){
+	static_cast<MyQAbstractTextDocumentLayout*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QAbstractTextDocumentLayout_ChildEventDefault(void* ptr, void* event){
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QAbstractTextDocumentLayout_CustomEvent(void* ptr, void* event){
+	static_cast<MyQAbstractTextDocumentLayout*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QAbstractTextDocumentLayout_CustomEventDefault(void* ptr, void* event){
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::customEvent(static_cast<QEvent*>(event));
 }
 
 int QAccessible_InvalidEvent_Type(){
@@ -269,7 +298,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 char* QAccessibleActionInterface_LocalizedActionDescription(void* ptr, char* actionName){
@@ -362,7 +390,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 void QAccessibleEditableTextInterface_DeleteText(void* ptr, int startOffset, int endOffset){
@@ -401,7 +428,6 @@ public:
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQAccessibleEvent(QAccessibleInterface *interface, QAccessible::Event type) : QAccessibleEvent(interface, type) {};
 	MyQAccessibleEvent(QObject *object, QAccessible::Event type) : QAccessibleEvent(object, type) {};
-protected:
 };
 
 void* QAccessibleEvent_NewQAccessibleEvent2(void* interfa, int ty){
@@ -454,8 +480,11 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
+
+void QAccessibleInterface_DestroyQAccessibleInterface(void* ptr){
+	static_cast<QAccessibleInterface*>(ptr)->~QAccessibleInterface();
+}
 
 void* QAccessibleInterface_ActionInterface(void* ptr){
 	return static_cast<QAccessibleInterface*>(ptr)->actionInterface();
@@ -559,8 +588,7 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	void setText(QAccessible::Text t, const QString & text) { if (!callbackQAccessibleObjectSetText(this->objectNameAbs().toUtf8().data(), t, text.toUtf8().data())) { QAccessibleObject::setText(t, text); }; };
-protected:
+	void setText(QAccessible::Text t, const QString & text) { callbackQAccessibleObjectSetText(this, this->objectNameAbs().toUtf8().data(), t, text.toUtf8().data()); };
 };
 
 void* QAccessibleObject_ChildAt(void* ptr, int x, int y){
@@ -580,7 +608,15 @@ void* QAccessibleObject_Rect(void* ptr){
 }
 
 void QAccessibleObject_SetText(void* ptr, int t, char* text){
-	static_cast<QAccessibleObject*>(ptr)->setText(static_cast<QAccessible::Text>(t), QString(text));
+	static_cast<MyQAccessibleObject*>(ptr)->setText(static_cast<QAccessible::Text>(t), QString(text));
+}
+
+void QAccessibleObject_SetTextDefault(void* ptr, int t, char* text){
+	static_cast<QAccessibleObject*>(ptr)->QAccessibleObject::setText(static_cast<QAccessible::Text>(t), QString(text));
+}
+
+void QAccessibleObject_DestroyQAccessibleObject(void* ptr){
+	static_cast<QAccessibleObject*>(ptr)->~QAccessibleObject();
 }
 
 char* QAccessibleObject_ObjectNameAbs(void* ptr){
@@ -601,7 +637,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 int QAccessibleTableCellInterface_ColumnExtent(void* ptr){
@@ -650,7 +685,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 void* QAccessibleTableInterface_Caption(void* ptr){
@@ -823,7 +857,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 void QAccessibleTextInterface_AddSelection(void* ptr, int startOffset, int endOffset){
@@ -984,7 +1017,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 void* QAccessibleValueInterface_CurrentValue(void* ptr){
@@ -1190,14 +1222,13 @@ void QBrush_DestroyQBrush(void* ptr){
 
 class MyQClipboard: public QClipboard {
 public:
-	void Signal_Changed(QClipboard::Mode mode) { callbackQClipboardChanged(this->objectName().toUtf8().data(), mode); };
-	void Signal_DataChanged() { callbackQClipboardDataChanged(this->objectName().toUtf8().data()); };
-	void Signal_FindBufferChanged() { callbackQClipboardFindBufferChanged(this->objectName().toUtf8().data()); };
-	void Signal_SelectionChanged() { callbackQClipboardSelectionChanged(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQClipboardTimerEvent(this->objectName().toUtf8().data(), event)) { QClipboard::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQClipboardChildEvent(this->objectName().toUtf8().data(), event)) { QClipboard::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQClipboardCustomEvent(this->objectName().toUtf8().data(), event)) { QClipboard::customEvent(event); }; };
+	void Signal_Changed(QClipboard::Mode mode) { callbackQClipboardChanged(this, this->objectName().toUtf8().data(), mode); };
+	void Signal_DataChanged() { callbackQClipboardDataChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_FindBufferChanged() { callbackQClipboardFindBufferChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_SelectionChanged() { callbackQClipboardSelectionChanged(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQClipboardTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQClipboardChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQClipboardCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QClipboard_Clear(void* ptr, int mode){
@@ -1220,6 +1251,10 @@ void QClipboard_DisconnectChanged(void* ptr){
 	QObject::disconnect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)(QClipboard::Mode)>(&QClipboard::changed), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)(QClipboard::Mode)>(&MyQClipboard::Signal_Changed));;
 }
 
+void QClipboard_Changed(void* ptr, int mode){
+	static_cast<QClipboard*>(ptr)->changed(static_cast<QClipboard::Mode>(mode));
+}
+
 void QClipboard_ConnectDataChanged(void* ptr){
 	QObject::connect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)()>(&QClipboard::dataChanged), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)()>(&MyQClipboard::Signal_DataChanged));;
 }
@@ -1228,12 +1263,20 @@ void QClipboard_DisconnectDataChanged(void* ptr){
 	QObject::disconnect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)()>(&QClipboard::dataChanged), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)()>(&MyQClipboard::Signal_DataChanged));;
 }
 
+void QClipboard_DataChanged(void* ptr){
+	static_cast<QClipboard*>(ptr)->dataChanged();
+}
+
 void QClipboard_ConnectFindBufferChanged(void* ptr){
 	QObject::connect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)()>(&QClipboard::findBufferChanged), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)()>(&MyQClipboard::Signal_FindBufferChanged));;
 }
 
 void QClipboard_DisconnectFindBufferChanged(void* ptr){
 	QObject::disconnect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)()>(&QClipboard::findBufferChanged), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)()>(&MyQClipboard::Signal_FindBufferChanged));;
+}
+
+void QClipboard_FindBufferChanged(void* ptr){
+	static_cast<QClipboard*>(ptr)->findBufferChanged();
 }
 
 int QClipboard_OwnsClipboard(void* ptr){
@@ -1254,6 +1297,10 @@ void QClipboard_ConnectSelectionChanged(void* ptr){
 
 void QClipboard_DisconnectSelectionChanged(void* ptr){
 	QObject::disconnect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)()>(&QClipboard::selectionChanged), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)()>(&MyQClipboard::Signal_SelectionChanged));;
+}
+
+void QClipboard_SelectionChanged(void* ptr){
+	static_cast<QClipboard*>(ptr)->selectionChanged();
 }
 
 void QClipboard_SetImage(void* ptr, void* image, int mode){
@@ -1278,6 +1325,30 @@ int QClipboard_SupportsSelection(void* ptr){
 
 char* QClipboard_Text(void* ptr, int mode){
 	return static_cast<QClipboard*>(ptr)->text(static_cast<QClipboard::Mode>(mode)).toUtf8().data();
+}
+
+void QClipboard_TimerEvent(void* ptr, void* event){
+	static_cast<MyQClipboard*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QClipboard_TimerEventDefault(void* ptr, void* event){
+	static_cast<QClipboard*>(ptr)->QClipboard::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QClipboard_ChildEvent(void* ptr, void* event){
+	static_cast<MyQClipboard*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QClipboard_ChildEventDefault(void* ptr, void* event){
+	static_cast<QClipboard*>(ptr)->QClipboard::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QClipboard_CustomEvent(void* ptr, void* event){
+	static_cast<MyQClipboard*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QClipboard_CustomEventDefault(void* ptr, void* event){
+	static_cast<QClipboard*>(ptr)->QClipboard::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QCloseEvent_NewQCloseEvent(){
@@ -1759,10 +1830,9 @@ void QDesktopServices_QDesktopServices_UnsetUrlHandler(char* scheme){
 class MyQDoubleValidator: public QDoubleValidator {
 public:
 	MyQDoubleValidator(QObject *parent) : QDoubleValidator(parent) {};
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQDoubleValidatorTimerEvent(this->objectName().toUtf8().data(), event)) { QDoubleValidator::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQDoubleValidatorChildEvent(this->objectName().toUtf8().data(), event)) { QDoubleValidator::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQDoubleValidatorCustomEvent(this->objectName().toUtf8().data(), event)) { QDoubleValidator::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQDoubleValidatorTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQDoubleValidatorChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQDoubleValidatorCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 int QDoubleValidator_Notation(void* ptr){
@@ -1789,14 +1859,37 @@ void QDoubleValidator_DestroyQDoubleValidator(void* ptr){
 	static_cast<QDoubleValidator*>(ptr)->~QDoubleValidator();
 }
 
+void QDoubleValidator_TimerEvent(void* ptr, void* event){
+	static_cast<MyQDoubleValidator*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDoubleValidator_TimerEventDefault(void* ptr, void* event){
+	static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDoubleValidator_ChildEvent(void* ptr, void* event){
+	static_cast<MyQDoubleValidator*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDoubleValidator_ChildEventDefault(void* ptr, void* event){
+	static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDoubleValidator_CustomEvent(void* ptr, void* event){
+	static_cast<MyQDoubleValidator*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QDoubleValidator_CustomEventDefault(void* ptr, void* event){
+	static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQDrag: public QDrag {
 public:
-	void Signal_ActionChanged(Qt::DropAction action) { callbackQDragActionChanged(this->objectName().toUtf8().data(), action); };
-	void Signal_TargetChanged(QObject * newTarget) { callbackQDragTargetChanged(this->objectName().toUtf8().data(), newTarget); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQDragTimerEvent(this->objectName().toUtf8().data(), event)) { QDrag::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQDragChildEvent(this->objectName().toUtf8().data(), event)) { QDrag::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQDragCustomEvent(this->objectName().toUtf8().data(), event)) { QDrag::customEvent(event); }; };
+	void Signal_ActionChanged(Qt::DropAction action) { callbackQDragActionChanged(this, this->objectName().toUtf8().data(), action); };
+	void Signal_TargetChanged(QObject * newTarget) { callbackQDragTargetChanged(this, this->objectName().toUtf8().data(), newTarget); };
+	void timerEvent(QTimerEvent * event) { callbackQDragTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQDragChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQDragCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QDrag_NewQDrag(void* dragSource){
@@ -1809,6 +1902,10 @@ void QDrag_ConnectActionChanged(void* ptr){
 
 void QDrag_DisconnectActionChanged(void* ptr){
 	QObject::disconnect(static_cast<QDrag*>(ptr), static_cast<void (QDrag::*)(Qt::DropAction)>(&QDrag::actionChanged), static_cast<MyQDrag*>(ptr), static_cast<void (MyQDrag::*)(Qt::DropAction)>(&MyQDrag::Signal_ActionChanged));;
+}
+
+void QDrag_ActionChanged(void* ptr, int action){
+	static_cast<QDrag*>(ptr)->actionChanged(static_cast<Qt::DropAction>(action));
 }
 
 int QDrag_Exec(void* ptr, int supportedActions){
@@ -1863,8 +1960,36 @@ void QDrag_DisconnectTargetChanged(void* ptr){
 	QObject::disconnect(static_cast<QDrag*>(ptr), static_cast<void (QDrag::*)(QObject *)>(&QDrag::targetChanged), static_cast<MyQDrag*>(ptr), static_cast<void (MyQDrag::*)(QObject *)>(&MyQDrag::Signal_TargetChanged));;
 }
 
+void QDrag_TargetChanged(void* ptr, void* newTarget){
+	static_cast<QDrag*>(ptr)->targetChanged(static_cast<QObject*>(newTarget));
+}
+
 void QDrag_DestroyQDrag(void* ptr){
 	static_cast<QDrag*>(ptr)->~QDrag();
+}
+
+void QDrag_TimerEvent(void* ptr, void* event){
+	static_cast<MyQDrag*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDrag_TimerEventDefault(void* ptr, void* event){
+	static_cast<QDrag*>(ptr)->QDrag::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDrag_ChildEvent(void* ptr, void* event){
+	static_cast<MyQDrag*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDrag_ChildEventDefault(void* ptr, void* event){
+	static_cast<QDrag*>(ptr)->QDrag::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDrag_CustomEvent(void* ptr, void* event){
+	static_cast<MyQDrag*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QDrag_CustomEventDefault(void* ptr, void* event){
+	static_cast<QDrag*>(ptr)->QDrag::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QDragEnterEvent_NewQDragEnterEvent(void* point, int actions, void* data, int buttons, int modifiers){
@@ -2794,18 +2919,17 @@ int QGradient_Type(void* ptr){
 class MyQGuiApplication: public QGuiApplication {
 public:
 	MyQGuiApplication(int &argc, char **argv) : QGuiApplication(argc, argv) {};
-	void Signal_ApplicationStateChanged(Qt::ApplicationState state) { callbackQGuiApplicationApplicationStateChanged(this->objectName().toUtf8().data(), state); };
-	void Signal_FocusObjectChanged(QObject * focusObject) { callbackQGuiApplicationFocusObjectChanged(this->objectName().toUtf8().data(), focusObject); };
-	void Signal_FocusWindowChanged(QWindow * focusWindow) { callbackQGuiApplicationFocusWindowChanged(this->objectName().toUtf8().data(), focusWindow); };
-	void Signal_FontDatabaseChanged() { callbackQGuiApplicationFontDatabaseChanged(this->objectName().toUtf8().data()); };
-	void Signal_LastWindowClosed() { callbackQGuiApplicationLastWindowClosed(this->objectName().toUtf8().data()); };
-	void Signal_LayoutDirectionChanged(Qt::LayoutDirection direction) { callbackQGuiApplicationLayoutDirectionChanged(this->objectName().toUtf8().data(), direction); };
-	void Signal_ScreenAdded(QScreen * screen) { callbackQGuiApplicationScreenAdded(this->objectName().toUtf8().data(), screen); };
-	void Signal_ScreenRemoved(QScreen * screen) { callbackQGuiApplicationScreenRemoved(this->objectName().toUtf8().data(), screen); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQGuiApplicationTimerEvent(this->objectName().toUtf8().data(), event)) { QGuiApplication::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQGuiApplicationChildEvent(this->objectName().toUtf8().data(), event)) { QGuiApplication::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQGuiApplicationCustomEvent(this->objectName().toUtf8().data(), event)) { QGuiApplication::customEvent(event); }; };
+	void Signal_ApplicationStateChanged(Qt::ApplicationState state) { callbackQGuiApplicationApplicationStateChanged(this, this->objectName().toUtf8().data(), state); };
+	void Signal_FocusObjectChanged(QObject * focusObject) { callbackQGuiApplicationFocusObjectChanged(this, this->objectName().toUtf8().data(), focusObject); };
+	void Signal_FocusWindowChanged(QWindow * focusWindow) { callbackQGuiApplicationFocusWindowChanged(this, this->objectName().toUtf8().data(), focusWindow); };
+	void Signal_FontDatabaseChanged() { callbackQGuiApplicationFontDatabaseChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_LastWindowClosed() { callbackQGuiApplicationLastWindowClosed(this, this->objectName().toUtf8().data()); };
+	void Signal_LayoutDirectionChanged(Qt::LayoutDirection direction) { callbackQGuiApplicationLayoutDirectionChanged(this, this->objectName().toUtf8().data(), direction); };
+	void Signal_ScreenAdded(QScreen * screen) { callbackQGuiApplicationScreenAdded(this, this->objectName().toUtf8().data(), screen); };
+	void Signal_ScreenRemoved(QScreen * screen) { callbackQGuiApplicationScreenRemoved(this, this->objectName().toUtf8().data(), screen); };
+	void timerEvent(QTimerEvent * event) { callbackQGuiApplicationTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQGuiApplicationChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQGuiApplicationCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 char* QGuiApplication_QGuiApplication_ApplicationDisplayName(){
@@ -2898,6 +3022,10 @@ void QGuiApplication_DisconnectApplicationStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::ApplicationState)>(&QGuiApplication::applicationStateChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::ApplicationState)>(&MyQGuiApplication::Signal_ApplicationStateChanged));;
 }
 
+void QGuiApplication_ApplicationStateChanged(void* ptr, int state){
+	static_cast<QGuiApplication*>(ptr)->applicationStateChanged(static_cast<Qt::ApplicationState>(state));
+}
+
 void QGuiApplication_QGuiApplication_ChangeOverrideCursor(void* cursor){
 	QGuiApplication::changeOverrideCursor(*static_cast<QCursor*>(cursor));
 }
@@ -2912,6 +3040,10 @@ int QGuiApplication_QGuiApplication_DesktopSettingsAware(){
 
 double QGuiApplication_DevicePixelRatio(void* ptr){
 	return static_cast<double>(static_cast<QGuiApplication*>(ptr)->devicePixelRatio());
+}
+
+int QGuiApplication_Event(void* ptr, void* e){
+	return static_cast<QGuiApplication*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
 int QGuiApplication_QGuiApplication_Exec(){
@@ -2930,6 +3062,10 @@ void QGuiApplication_DisconnectFocusObjectChanged(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QObject *)>(&QGuiApplication::focusObjectChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QObject *)>(&MyQGuiApplication::Signal_FocusObjectChanged));;
 }
 
+void QGuiApplication_FocusObjectChanged(void* ptr, void* focusObject){
+	static_cast<QGuiApplication*>(ptr)->focusObjectChanged(static_cast<QObject*>(focusObject));
+}
+
 void* QGuiApplication_QGuiApplication_FocusWindow(){
 	return QGuiApplication::focusWindow();
 }
@@ -2942,12 +3078,20 @@ void QGuiApplication_DisconnectFocusWindowChanged(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QWindow *)>(&QGuiApplication::focusWindowChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QWindow *)>(&MyQGuiApplication::Signal_FocusWindowChanged));;
 }
 
+void QGuiApplication_FocusWindowChanged(void* ptr, void* focusWindow){
+	static_cast<QGuiApplication*>(ptr)->focusWindowChanged(static_cast<QWindow*>(focusWindow));
+}
+
 void QGuiApplication_ConnectFontDatabaseChanged(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::fontDatabaseChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_FontDatabaseChanged));;
 }
 
 void QGuiApplication_DisconnectFontDatabaseChanged(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::fontDatabaseChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_FontDatabaseChanged));;
+}
+
+void QGuiApplication_FontDatabaseChanged(void* ptr){
+	static_cast<QGuiApplication*>(ptr)->fontDatabaseChanged();
 }
 
 void* QGuiApplication_QGuiApplication_InputMethod(){
@@ -2974,12 +3118,20 @@ void QGuiApplication_DisconnectLastWindowClosed(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::lastWindowClosed), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_LastWindowClosed));;
 }
 
+void QGuiApplication_LastWindowClosed(void* ptr){
+	static_cast<QGuiApplication*>(ptr)->lastWindowClosed();
+}
+
 void QGuiApplication_ConnectLayoutDirectionChanged(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::LayoutDirection)>(&QGuiApplication::layoutDirectionChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::LayoutDirection)>(&MyQGuiApplication::Signal_LayoutDirectionChanged));;
 }
 
 void QGuiApplication_DisconnectLayoutDirectionChanged(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::LayoutDirection)>(&QGuiApplication::layoutDirectionChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::LayoutDirection)>(&MyQGuiApplication::Signal_LayoutDirectionChanged));;
+}
+
+void QGuiApplication_LayoutDirectionChanged(void* ptr, int direction){
+	static_cast<QGuiApplication*>(ptr)->layoutDirectionChanged(static_cast<Qt::LayoutDirection>(direction));
 }
 
 void* QGuiApplication_QGuiApplication_ModalWindow(){
@@ -3006,12 +3158,20 @@ void QGuiApplication_DisconnectScreenAdded(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::screenAdded), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_ScreenAdded));;
 }
 
+void QGuiApplication_ScreenAdded(void* ptr, void* screen){
+	static_cast<QGuiApplication*>(ptr)->screenAdded(static_cast<QScreen*>(screen));
+}
+
 void QGuiApplication_ConnectScreenRemoved(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::screenRemoved), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_ScreenRemoved));;
 }
 
 void QGuiApplication_DisconnectScreenRemoved(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::screenRemoved), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_ScreenRemoved));;
+}
+
+void QGuiApplication_ScreenRemoved(void* ptr, void* screen){
+	static_cast<QGuiApplication*>(ptr)->screenRemoved(static_cast<QScreen*>(screen));
 }
 
 void QGuiApplication_QGuiApplication_SetDesktopSettingsAware(int on){
@@ -3040,6 +3200,30 @@ void* QGuiApplication_QGuiApplication_TopLevelAt(void* pos){
 
 void QGuiApplication_DestroyQGuiApplication(void* ptr){
 	static_cast<QGuiApplication*>(ptr)->~QGuiApplication();
+}
+
+void QGuiApplication_TimerEvent(void* ptr, void* event){
+	static_cast<MyQGuiApplication*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QGuiApplication_TimerEventDefault(void* ptr, void* event){
+	static_cast<QGuiApplication*>(ptr)->QGuiApplication::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QGuiApplication_ChildEvent(void* ptr, void* event){
+	static_cast<MyQGuiApplication*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QGuiApplication_ChildEventDefault(void* ptr, void* event){
+	static_cast<QGuiApplication*>(ptr)->QGuiApplication::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QGuiApplication_CustomEvent(void* ptr, void* event){
+	static_cast<MyQGuiApplication*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QGuiApplication_CustomEventDefault(void* ptr, void* event){
+	static_cast<QGuiApplication*>(ptr)->QGuiApplication::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QHelpEvent_NewQHelpEvent(int ty, void* pos, void* globalPos){
@@ -3187,8 +3371,7 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	void addFile(const QString & fileName, const QSize & size, QIcon::Mode mode, QIcon::State state) { if (!callbackQIconEngineAddFile(this->objectNameAbs().toUtf8().data(), fileName.toUtf8().data(), new QSize(static_cast<QSize>(size).width(), static_cast<QSize>(size).height()), mode, state)) { QIconEngine::addFile(fileName, size, mode, state); }; };
-protected:
+	void addFile(const QString & fileName, const QSize & size, QIcon::Mode mode, QIcon::State state) { callbackQIconEngineAddFile(this, this->objectNameAbs().toUtf8().data(), fileName.toUtf8().data(), new QSize(static_cast<QSize>(size).width(), static_cast<QSize>(size).height()), mode, state); };
 };
 
 void* QIconEngine_ActualSize(void* ptr, void* size, int mode, int state){
@@ -3196,7 +3379,11 @@ void* QIconEngine_ActualSize(void* ptr, void* size, int mode, int state){
 }
 
 void QIconEngine_AddFile(void* ptr, char* fileName, void* size, int mode, int state){
-	static_cast<QIconEngine*>(ptr)->addFile(QString(fileName), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
+	static_cast<MyQIconEngine*>(ptr)->addFile(QString(fileName), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
+}
+
+void QIconEngine_AddFileDefault(void* ptr, char* fileName, void* size, int mode, int state){
+	static_cast<QIconEngine*>(ptr)->QIconEngine::addFile(QString(fileName), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 }
 
 void* QIconEngine_Clone(void* ptr){
@@ -3714,16 +3901,15 @@ int QInputEvent_Modifiers(void* ptr){
 
 class MyQInputMethod: public QInputMethod {
 public:
-	void Signal_AnimatingChanged() { callbackQInputMethodAnimatingChanged(this->objectName().toUtf8().data()); };
-	void Signal_CursorRectangleChanged() { callbackQInputMethodCursorRectangleChanged(this->objectName().toUtf8().data()); };
-	void Signal_InputDirectionChanged(Qt::LayoutDirection newDirection) { callbackQInputMethodInputDirectionChanged(this->objectName().toUtf8().data(), newDirection); };
-	void Signal_KeyboardRectangleChanged() { callbackQInputMethodKeyboardRectangleChanged(this->objectName().toUtf8().data()); };
-	void Signal_LocaleChanged() { callbackQInputMethodLocaleChanged(this->objectName().toUtf8().data()); };
-	void Signal_VisibleChanged() { callbackQInputMethodVisibleChanged(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQInputMethodTimerEvent(this->objectName().toUtf8().data(), event)) { QInputMethod::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQInputMethodChildEvent(this->objectName().toUtf8().data(), event)) { QInputMethod::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQInputMethodCustomEvent(this->objectName().toUtf8().data(), event)) { QInputMethod::customEvent(event); }; };
+	void Signal_AnimatingChanged() { callbackQInputMethodAnimatingChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_CursorRectangleChanged() { callbackQInputMethodCursorRectangleChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_InputDirectionChanged(Qt::LayoutDirection newDirection) { callbackQInputMethodInputDirectionChanged(this, this->objectName().toUtf8().data(), newDirection); };
+	void Signal_KeyboardRectangleChanged() { callbackQInputMethodKeyboardRectangleChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_LocaleChanged() { callbackQInputMethodLocaleChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_VisibleChanged() { callbackQInputMethodVisibleChanged(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQInputMethodTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQInputMethodChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQInputMethodCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 int QInputMethod_InputDirection(void* ptr){
@@ -3746,6 +3932,10 @@ void QInputMethod_DisconnectAnimatingChanged(void* ptr){
 	QObject::disconnect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::animatingChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_AnimatingChanged));;
 }
 
+void QInputMethod_AnimatingChanged(void* ptr){
+	static_cast<QInputMethod*>(ptr)->animatingChanged();
+}
+
 void QInputMethod_Commit(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "commit");
 }
@@ -3756,6 +3946,10 @@ void QInputMethod_ConnectCursorRectangleChanged(void* ptr){
 
 void QInputMethod_DisconnectCursorRectangleChanged(void* ptr){
 	QObject::disconnect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::cursorRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_CursorRectangleChanged));;
+}
+
+void QInputMethod_CursorRectangleChanged(void* ptr){
+	static_cast<QInputMethod*>(ptr)->cursorRectangleChanged();
 }
 
 void QInputMethod_Hide(void* ptr){
@@ -3770,6 +3964,10 @@ void QInputMethod_DisconnectInputDirectionChanged(void* ptr){
 	QObject::disconnect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)(Qt::LayoutDirection)>(&QInputMethod::inputDirectionChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)(Qt::LayoutDirection)>(&MyQInputMethod::Signal_InputDirectionChanged));;
 }
 
+void QInputMethod_InputDirectionChanged(void* ptr, int newDirection){
+	static_cast<QInputMethod*>(ptr)->inputDirectionChanged(static_cast<Qt::LayoutDirection>(newDirection));
+}
+
 void QInputMethod_InvokeAction(void* ptr, int a, int cursorPosition){
 	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "invokeAction", Q_ARG(QInputMethod::Action, static_cast<QInputMethod::Action>(a)), Q_ARG(int, cursorPosition));
 }
@@ -3782,12 +3980,20 @@ void QInputMethod_DisconnectKeyboardRectangleChanged(void* ptr){
 	QObject::disconnect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::keyboardRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_KeyboardRectangleChanged));;
 }
 
+void QInputMethod_KeyboardRectangleChanged(void* ptr){
+	static_cast<QInputMethod*>(ptr)->keyboardRectangleChanged();
+}
+
 void QInputMethod_ConnectLocaleChanged(void* ptr){
 	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::localeChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_LocaleChanged));;
 }
 
 void QInputMethod_DisconnectLocaleChanged(void* ptr){
 	QObject::disconnect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::localeChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_LocaleChanged));;
+}
+
+void QInputMethod_LocaleChanged(void* ptr){
+	static_cast<QInputMethod*>(ptr)->localeChanged();
 }
 
 void* QInputMethod_QInputMethod_QueryFocusObject(int query, void* argument){
@@ -3824,6 +4030,34 @@ void QInputMethod_ConnectVisibleChanged(void* ptr){
 
 void QInputMethod_DisconnectVisibleChanged(void* ptr){
 	QObject::disconnect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::visibleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_VisibleChanged));;
+}
+
+void QInputMethod_VisibleChanged(void* ptr){
+	static_cast<QInputMethod*>(ptr)->visibleChanged();
+}
+
+void QInputMethod_TimerEvent(void* ptr, void* event){
+	static_cast<MyQInputMethod*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QInputMethod_TimerEventDefault(void* ptr, void* event){
+	static_cast<QInputMethod*>(ptr)->QInputMethod::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QInputMethod_ChildEvent(void* ptr, void* event){
+	static_cast<MyQInputMethod*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QInputMethod_ChildEventDefault(void* ptr, void* event){
+	static_cast<QInputMethod*>(ptr)->QInputMethod::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QInputMethod_CustomEvent(void* ptr, void* event){
+	static_cast<MyQInputMethod*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QInputMethod_CustomEventDefault(void* ptr, void* event){
+	static_cast<QInputMethod*>(ptr)->QInputMethod::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QInputMethodEvent_NewQInputMethodEvent(){
@@ -3874,11 +4108,10 @@ class MyQIntValidator: public QIntValidator {
 public:
 	MyQIntValidator(QObject *parent) : QIntValidator(parent) {};
 	MyQIntValidator(int minimum, int maximum, QObject *parent) : QIntValidator(minimum, maximum, parent) {};
-	void setRange(int bottom, int top) { if (!callbackQIntValidatorSetRange(this->objectName().toUtf8().data(), bottom, top)) { QIntValidator::setRange(bottom, top); }; };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQIntValidatorTimerEvent(this->objectName().toUtf8().data(), event)) { QIntValidator::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQIntValidatorChildEvent(this->objectName().toUtf8().data(), event)) { QIntValidator::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQIntValidatorCustomEvent(this->objectName().toUtf8().data(), event)) { QIntValidator::customEvent(event); }; };
+	void setRange(int bottom, int top) { callbackQIntValidatorSetRange(this, this->objectName().toUtf8().data(), bottom, top); };
+	void timerEvent(QTimerEvent * event) { callbackQIntValidatorTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQIntValidatorChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQIntValidatorCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QIntValidator_SetBottom(void* ptr, int v){
@@ -3902,7 +4135,11 @@ int QIntValidator_Bottom(void* ptr){
 }
 
 void QIntValidator_SetRange(void* ptr, int bottom, int top){
-	static_cast<QIntValidator*>(ptr)->setRange(bottom, top);
+	static_cast<MyQIntValidator*>(ptr)->setRange(bottom, top);
+}
+
+void QIntValidator_SetRangeDefault(void* ptr, int bottom, int top){
+	static_cast<QIntValidator*>(ptr)->QIntValidator::setRange(bottom, top);
 }
 
 int QIntValidator_Top(void* ptr){
@@ -3911,6 +4148,30 @@ int QIntValidator_Top(void* ptr){
 
 void QIntValidator_DestroyQIntValidator(void* ptr){
 	static_cast<QIntValidator*>(ptr)->~QIntValidator();
+}
+
+void QIntValidator_TimerEvent(void* ptr, void* event){
+	static_cast<MyQIntValidator*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QIntValidator_TimerEventDefault(void* ptr, void* event){
+	static_cast<QIntValidator*>(ptr)->QIntValidator::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QIntValidator_ChildEvent(void* ptr, void* event){
+	static_cast<MyQIntValidator*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QIntValidator_ChildEventDefault(void* ptr, void* event){
+	static_cast<QIntValidator*>(ptr)->QIntValidator::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QIntValidator_CustomEvent(void* ptr, void* event){
+	static_cast<MyQIntValidator*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QIntValidator_CustomEventDefault(void* ptr, void* event){
+	static_cast<QIntValidator*>(ptr)->QIntValidator::customEvent(static_cast<QEvent*>(event));
 }
 
 int QKeyEvent_Matches(void* ptr, int key){
@@ -4143,17 +4404,16 @@ void* QMoveEvent_Pos(void* ptr){
 
 class MyQMovie: public QMovie {
 public:
-	void Signal_Error(QImageReader::ImageReaderError error) { callbackQMovieError(this->objectName().toUtf8().data(), error); };
-	void Signal_Finished() { callbackQMovieFinished(this->objectName().toUtf8().data()); };
-	void Signal_FrameChanged(int frameNumber) { callbackQMovieFrameChanged(this->objectName().toUtf8().data(), frameNumber); };
-	void Signal_Resized(const QSize & size) { callbackQMovieResized(this->objectName().toUtf8().data(), new QSize(static_cast<QSize>(size).width(), static_cast<QSize>(size).height())); };
-	void Signal_Started() { callbackQMovieStarted(this->objectName().toUtf8().data()); };
-	void Signal_StateChanged(QMovie::MovieState state) { callbackQMovieStateChanged(this->objectName().toUtf8().data(), state); };
-	void Signal_Updated(const QRect & rect) { callbackQMovieUpdated(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height())); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQMovieTimerEvent(this->objectName().toUtf8().data(), event)) { QMovie::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQMovieChildEvent(this->objectName().toUtf8().data(), event)) { QMovie::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQMovieCustomEvent(this->objectName().toUtf8().data(), event)) { QMovie::customEvent(event); }; };
+	void Signal_Error(QImageReader::ImageReaderError error) { callbackQMovieError(this, this->objectName().toUtf8().data(), error); };
+	void Signal_Finished() { callbackQMovieFinished(this, this->objectName().toUtf8().data()); };
+	void Signal_FrameChanged(int frameNumber) { callbackQMovieFrameChanged(this, this->objectName().toUtf8().data(), frameNumber); };
+	void Signal_Resized(const QSize & size) { callbackQMovieResized(this, this->objectName().toUtf8().data(), new QSize(static_cast<QSize>(size).width(), static_cast<QSize>(size).height())); };
+	void Signal_Started() { callbackQMovieStarted(this, this->objectName().toUtf8().data()); };
+	void Signal_StateChanged(QMovie::MovieState state) { callbackQMovieStateChanged(this, this->objectName().toUtf8().data(), state); };
+	void Signal_Updated(const QRect & rect) { callbackQMovieUpdated(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height())); };
+	void timerEvent(QTimerEvent * event) { callbackQMovieTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQMovieChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQMovieCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 int QMovie_CacheMode(void* ptr){
@@ -4204,6 +4464,10 @@ void QMovie_DisconnectError(void* ptr){
 	QObject::disconnect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(QImageReader::ImageReaderError)>(&QMovie::error), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(QImageReader::ImageReaderError)>(&MyQMovie::Signal_Error));;
 }
 
+void QMovie_Error(void* ptr, int error){
+	static_cast<QMovie*>(ptr)->error(static_cast<QImageReader::ImageReaderError>(error));
+}
+
 char* QMovie_FileName(void* ptr){
 	return static_cast<QMovie*>(ptr)->fileName().toUtf8().data();
 }
@@ -4216,6 +4480,10 @@ void QMovie_DisconnectFinished(void* ptr){
 	QObject::disconnect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)()>(&QMovie::finished), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)()>(&MyQMovie::Signal_Finished));;
 }
 
+void QMovie_Finished(void* ptr){
+	static_cast<QMovie*>(ptr)->finished();
+}
+
 void* QMovie_Format(void* ptr){
 	return new QByteArray(static_cast<QMovie*>(ptr)->format());
 }
@@ -4226,6 +4494,10 @@ void QMovie_ConnectFrameChanged(void* ptr){
 
 void QMovie_DisconnectFrameChanged(void* ptr){
 	QObject::disconnect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(int)>(&QMovie::frameChanged), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(int)>(&MyQMovie::Signal_FrameChanged));;
+}
+
+void QMovie_FrameChanged(void* ptr, int frameNumber){
+	static_cast<QMovie*>(ptr)->frameChanged(frameNumber);
 }
 
 int QMovie_FrameCount(void* ptr){
@@ -4262,6 +4534,10 @@ void QMovie_ConnectResized(void* ptr){
 
 void QMovie_DisconnectResized(void* ptr){
 	QObject::disconnect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(const QSize &)>(&QMovie::resized), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(const QSize &)>(&MyQMovie::Signal_Resized));;
+}
+
+void QMovie_Resized(void* ptr, void* size){
+	static_cast<QMovie*>(ptr)->resized(*static_cast<QSize*>(size));
 }
 
 void* QMovie_ScaledSize(void* ptr){
@@ -4304,6 +4580,10 @@ void QMovie_DisconnectStarted(void* ptr){
 	QObject::disconnect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)()>(&QMovie::started), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)()>(&MyQMovie::Signal_Started));;
 }
 
+void QMovie_Started(void* ptr){
+	static_cast<QMovie*>(ptr)->started();
+}
+
 int QMovie_State(void* ptr){
 	return static_cast<QMovie*>(ptr)->state();
 }
@@ -4314,6 +4594,10 @@ void QMovie_ConnectStateChanged(void* ptr){
 
 void QMovie_DisconnectStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(QMovie::MovieState)>(&QMovie::stateChanged), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(QMovie::MovieState)>(&MyQMovie::Signal_StateChanged));;
+}
+
+void QMovie_StateChanged(void* ptr, int state){
+	static_cast<QMovie*>(ptr)->stateChanged(static_cast<QMovie::MovieState>(state));
 }
 
 void QMovie_Stop(void* ptr){
@@ -4328,8 +4612,36 @@ void QMovie_DisconnectUpdated(void* ptr){
 	QObject::disconnect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(const QRect &)>(&QMovie::updated), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(const QRect &)>(&MyQMovie::Signal_Updated));;
 }
 
+void QMovie_Updated(void* ptr, void* rect){
+	static_cast<QMovie*>(ptr)->updated(*static_cast<QRect*>(rect));
+}
+
 void QMovie_DestroyQMovie(void* ptr){
 	static_cast<QMovie*>(ptr)->~QMovie();
+}
+
+void QMovie_TimerEvent(void* ptr, void* event){
+	static_cast<MyQMovie*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QMovie_TimerEventDefault(void* ptr, void* event){
+	static_cast<QMovie*>(ptr)->QMovie::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QMovie_ChildEvent(void* ptr, void* event){
+	static_cast<MyQMovie*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QMovie_ChildEventDefault(void* ptr, void* event){
+	static_cast<QMovie*>(ptr)->QMovie::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QMovie_CustomEvent(void* ptr, void* event){
+	static_cast<MyQMovie*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QMovie_CustomEventDefault(void* ptr, void* event){
+	static_cast<QMovie*>(ptr)->QMovie::customEvent(static_cast<QEvent*>(event));
 }
 
 int QNativeGestureEvent_GestureType(void* ptr){
@@ -4351,11 +4663,10 @@ double QNativeGestureEvent_Value(void* ptr){
 class MyQOffscreenSurface: public QOffscreenSurface {
 public:
 	MyQOffscreenSurface(QScreen *targetScreen) : QOffscreenSurface(targetScreen) {};
-	void Signal_ScreenChanged(QScreen * screen) { callbackQOffscreenSurfaceScreenChanged(this->objectName().toUtf8().data(), screen); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQOffscreenSurfaceTimerEvent(this->objectName().toUtf8().data(), event)) { QOffscreenSurface::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQOffscreenSurfaceChildEvent(this->objectName().toUtf8().data(), event)) { QOffscreenSurface::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQOffscreenSurfaceCustomEvent(this->objectName().toUtf8().data(), event)) { QOffscreenSurface::customEvent(event); }; };
+	void Signal_ScreenChanged(QScreen * screen) { callbackQOffscreenSurfaceScreenChanged(this, this->objectName().toUtf8().data(), screen); };
+	void timerEvent(QTimerEvent * event) { callbackQOffscreenSurfaceTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQOffscreenSurfaceChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQOffscreenSurfaceCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QOffscreenSurface_NewQOffscreenSurface(void* targetScreen){
@@ -4386,6 +4697,10 @@ void QOffscreenSurface_DisconnectScreenChanged(void* ptr){
 	QObject::disconnect(static_cast<QOffscreenSurface*>(ptr), static_cast<void (QOffscreenSurface::*)(QScreen *)>(&QOffscreenSurface::screenChanged), static_cast<MyQOffscreenSurface*>(ptr), static_cast<void (MyQOffscreenSurface::*)(QScreen *)>(&MyQOffscreenSurface::Signal_ScreenChanged));;
 }
 
+void QOffscreenSurface_ScreenChanged(void* ptr, void* screen){
+	static_cast<QOffscreenSurface*>(ptr)->screenChanged(static_cast<QScreen*>(screen));
+}
+
 void QOffscreenSurface_SetFormat(void* ptr, void* format){
 	static_cast<QOffscreenSurface*>(ptr)->setFormat(*static_cast<QSurfaceFormat*>(format));
 }
@@ -4404,6 +4719,30 @@ int QOffscreenSurface_SurfaceType(void* ptr){
 
 void QOffscreenSurface_DestroyQOffscreenSurface(void* ptr){
 	static_cast<QOffscreenSurface*>(ptr)->~QOffscreenSurface();
+}
+
+void QOffscreenSurface_TimerEvent(void* ptr, void* event){
+	static_cast<MyQOffscreenSurface*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QOffscreenSurface_TimerEventDefault(void* ptr, void* event){
+	static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QOffscreenSurface_ChildEvent(void* ptr, void* event){
+	static_cast<MyQOffscreenSurface*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QOffscreenSurface_ChildEventDefault(void* ptr, void* event){
+	static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QOffscreenSurface_CustomEvent(void* ptr, void* event){
+	static_cast<MyQOffscreenSurface*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QOffscreenSurface_CustomEventDefault(void* ptr, void* event){
+	static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QPageLayout_NewQPageLayout(){
@@ -4615,7 +4954,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 int QPagedPaintDevice_NewPage(void* ptr){
@@ -4668,8 +5006,11 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
+
+int QPaintDevice_Metric(void* ptr, int metric){
+	return static_cast<QPaintDevice*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
 
 void QPaintDevice_DestroyQPaintDevice(void* ptr){
 	static_cast<QPaintDevice*>(ptr)->~QPaintDevice();
@@ -4742,28 +5083,35 @@ void QPaintDevice_SetObjectNameAbs(void* ptr, char* name){
 
 class MyQPaintDeviceWindow: public QPaintDeviceWindow {
 public:
-protected:
-	void paintEvent(QPaintEvent * event) { if (!callbackQPaintDeviceWindowPaintEvent(this->objectName().toUtf8().data(), event)) { QPaintDeviceWindow::paintEvent(event); }; };
-	void exposeEvent(QExposeEvent * ev) { if (!callbackQPaintDeviceWindowExposeEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::exposeEvent(ev); }; };
-	void focusInEvent(QFocusEvent * ev) { if (!callbackQPaintDeviceWindowFocusInEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::focusInEvent(ev); }; };
-	void focusOutEvent(QFocusEvent * ev) { if (!callbackQPaintDeviceWindowFocusOutEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::focusOutEvent(ev); }; };
-	void hideEvent(QHideEvent * ev) { if (!callbackQPaintDeviceWindowHideEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::hideEvent(ev); }; };
-	void keyPressEvent(QKeyEvent * ev) { if (!callbackQPaintDeviceWindowKeyPressEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::keyPressEvent(ev); }; };
-	void keyReleaseEvent(QKeyEvent * ev) { if (!callbackQPaintDeviceWindowKeyReleaseEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::keyReleaseEvent(ev); }; };
-	void mouseDoubleClickEvent(QMouseEvent * ev) { if (!callbackQPaintDeviceWindowMouseDoubleClickEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::mouseDoubleClickEvent(ev); }; };
-	void mouseMoveEvent(QMouseEvent * ev) { if (!callbackQPaintDeviceWindowMouseMoveEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::mouseMoveEvent(ev); }; };
-	void mousePressEvent(QMouseEvent * ev) { if (!callbackQPaintDeviceWindowMousePressEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::mousePressEvent(ev); }; };
-	void mouseReleaseEvent(QMouseEvent * ev) { if (!callbackQPaintDeviceWindowMouseReleaseEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::mouseReleaseEvent(ev); }; };
-	void moveEvent(QMoveEvent * ev) { if (!callbackQPaintDeviceWindowMoveEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::moveEvent(ev); }; };
-	void resizeEvent(QResizeEvent * ev) { if (!callbackQPaintDeviceWindowResizeEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::resizeEvent(ev); }; };
-	void showEvent(QShowEvent * ev) { if (!callbackQPaintDeviceWindowShowEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::showEvent(ev); }; };
-	void tabletEvent(QTabletEvent * ev) { if (!callbackQPaintDeviceWindowTabletEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::tabletEvent(ev); }; };
-	void touchEvent(QTouchEvent * ev) { if (!callbackQPaintDeviceWindowTouchEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::touchEvent(ev); }; };
-	void wheelEvent(QWheelEvent * ev) { if (!callbackQPaintDeviceWindowWheelEvent(this->objectName().toUtf8().data(), ev)) { QPaintDeviceWindow::wheelEvent(ev); }; };
-	void timerEvent(QTimerEvent * event) { if (!callbackQPaintDeviceWindowTimerEvent(this->objectName().toUtf8().data(), event)) { QPaintDeviceWindow::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQPaintDeviceWindowChildEvent(this->objectName().toUtf8().data(), event)) { QPaintDeviceWindow::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQPaintDeviceWindowCustomEvent(this->objectName().toUtf8().data(), event)) { QPaintDeviceWindow::customEvent(event); }; };
+	void paintEvent(QPaintEvent * event) { callbackQPaintDeviceWindowPaintEvent(this, this->objectName().toUtf8().data(), event); };
+	void exposeEvent(QExposeEvent * ev) { callbackQPaintDeviceWindowExposeEvent(this, this->objectName().toUtf8().data(), ev); };
+	void focusInEvent(QFocusEvent * ev) { callbackQPaintDeviceWindowFocusInEvent(this, this->objectName().toUtf8().data(), ev); };
+	void focusOutEvent(QFocusEvent * ev) { callbackQPaintDeviceWindowFocusOutEvent(this, this->objectName().toUtf8().data(), ev); };
+	void hideEvent(QHideEvent * ev) { callbackQPaintDeviceWindowHideEvent(this, this->objectName().toUtf8().data(), ev); };
+	void keyPressEvent(QKeyEvent * ev) { callbackQPaintDeviceWindowKeyPressEvent(this, this->objectName().toUtf8().data(), ev); };
+	void keyReleaseEvent(QKeyEvent * ev) { callbackQPaintDeviceWindowKeyReleaseEvent(this, this->objectName().toUtf8().data(), ev); };
+	void mouseDoubleClickEvent(QMouseEvent * ev) { callbackQPaintDeviceWindowMouseDoubleClickEvent(this, this->objectName().toUtf8().data(), ev); };
+	void mouseMoveEvent(QMouseEvent * ev) { callbackQPaintDeviceWindowMouseMoveEvent(this, this->objectName().toUtf8().data(), ev); };
+	void mousePressEvent(QMouseEvent * ev) { callbackQPaintDeviceWindowMousePressEvent(this, this->objectName().toUtf8().data(), ev); };
+	void mouseReleaseEvent(QMouseEvent * ev) { callbackQPaintDeviceWindowMouseReleaseEvent(this, this->objectName().toUtf8().data(), ev); };
+	void moveEvent(QMoveEvent * ev) { callbackQPaintDeviceWindowMoveEvent(this, this->objectName().toUtf8().data(), ev); };
+	void resizeEvent(QResizeEvent * ev) { callbackQPaintDeviceWindowResizeEvent(this, this->objectName().toUtf8().data(), ev); };
+	void showEvent(QShowEvent * ev) { callbackQPaintDeviceWindowShowEvent(this, this->objectName().toUtf8().data(), ev); };
+	void tabletEvent(QTabletEvent * ev) { callbackQPaintDeviceWindowTabletEvent(this, this->objectName().toUtf8().data(), ev); };
+	void touchEvent(QTouchEvent * ev) { callbackQPaintDeviceWindowTouchEvent(this, this->objectName().toUtf8().data(), ev); };
+	void wheelEvent(QWheelEvent * ev) { callbackQPaintDeviceWindowWheelEvent(this, this->objectName().toUtf8().data(), ev); };
+	void timerEvent(QTimerEvent * event) { callbackQPaintDeviceWindowTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQPaintDeviceWindowChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQPaintDeviceWindowCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
+
+void QPaintDeviceWindow_PaintEvent(void* ptr, void* event){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
+}
+
+void QPaintDeviceWindow_PaintEventDefault(void* ptr, void* event){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::paintEvent(static_cast<QPaintEvent*>(event));
+}
 
 void QPaintDeviceWindow_Update3(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "update");
@@ -4777,20 +5125,175 @@ void QPaintDeviceWindow_Update2(void* ptr, void* region){
 	static_cast<QPaintDeviceWindow*>(ptr)->update(*static_cast<QRegion*>(region));
 }
 
+void QPaintDeviceWindow_ExposeEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->exposeEvent(static_cast<QExposeEvent*>(ev));
+}
+
+void QPaintDeviceWindow_ExposeEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::exposeEvent(static_cast<QExposeEvent*>(ev));
+}
+
+void QPaintDeviceWindow_FocusInEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(ev));
+}
+
+void QPaintDeviceWindow_FocusInEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::focusInEvent(static_cast<QFocusEvent*>(ev));
+}
+
+void QPaintDeviceWindow_FocusOutEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(ev));
+}
+
+void QPaintDeviceWindow_FocusOutEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::focusOutEvent(static_cast<QFocusEvent*>(ev));
+}
+
+void QPaintDeviceWindow_HideEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(ev));
+}
+
+void QPaintDeviceWindow_HideEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::hideEvent(static_cast<QHideEvent*>(ev));
+}
+
+void QPaintDeviceWindow_KeyPressEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(ev));
+}
+
+void QPaintDeviceWindow_KeyPressEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::keyPressEvent(static_cast<QKeyEvent*>(ev));
+}
+
+void QPaintDeviceWindow_KeyReleaseEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+}
+
+void QPaintDeviceWindow_KeyReleaseEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+}
+
+void QPaintDeviceWindow_MouseDoubleClickEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QPaintDeviceWindow_MouseDoubleClickEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QPaintDeviceWindow_MouseMoveEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QPaintDeviceWindow_MouseMoveEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QPaintDeviceWindow_MousePressEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QPaintDeviceWindow_MousePressEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mousePressEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QPaintDeviceWindow_MouseReleaseEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QPaintDeviceWindow_MouseReleaseEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QPaintDeviceWindow_MoveEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->moveEvent(static_cast<QMoveEvent*>(ev));
+}
+
+void QPaintDeviceWindow_MoveEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::moveEvent(static_cast<QMoveEvent*>(ev));
+}
+
+void QPaintDeviceWindow_ResizeEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(ev));
+}
+
+void QPaintDeviceWindow_ResizeEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::resizeEvent(static_cast<QResizeEvent*>(ev));
+}
+
+void QPaintDeviceWindow_ShowEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(ev));
+}
+
+void QPaintDeviceWindow_ShowEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showEvent(static_cast<QShowEvent*>(ev));
+}
+
+void QPaintDeviceWindow_TabletEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->tabletEvent(static_cast<QTabletEvent*>(ev));
+}
+
+void QPaintDeviceWindow_TabletEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::tabletEvent(static_cast<QTabletEvent*>(ev));
+}
+
+void QPaintDeviceWindow_TouchEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->touchEvent(static_cast<QTouchEvent*>(ev));
+}
+
+void QPaintDeviceWindow_TouchEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::touchEvent(static_cast<QTouchEvent*>(ev));
+}
+
+void QPaintDeviceWindow_WheelEvent(void* ptr, void* ev){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(ev));
+}
+
+void QPaintDeviceWindow_WheelEventDefault(void* ptr, void* ev){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::wheelEvent(static_cast<QWheelEvent*>(ev));
+}
+
+void QPaintDeviceWindow_TimerEvent(void* ptr, void* event){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QPaintDeviceWindow_TimerEventDefault(void* ptr, void* event){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QPaintDeviceWindow_ChildEvent(void* ptr, void* event){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QPaintDeviceWindow_ChildEventDefault(void* ptr, void* event){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QPaintDeviceWindow_CustomEvent(void* ptr, void* event){
+	static_cast<MyQPaintDeviceWindow*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QPaintDeviceWindow_CustomEventDefault(void* ptr, void* event){
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQPaintEngine: public QPaintEngine {
 public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	void drawPolygon(const QPointF * points, int pointCount, QPaintEngine::PolygonDrawMode mode) { if (!callbackQPaintEngineDrawPolygon(this->objectNameAbs().toUtf8().data(), const_cast<QPointF*>(points), pointCount, mode)) { QPaintEngine::drawPolygon(points, pointCount, mode); }; };
-	void drawLines(const QLineF * lines, int lineCount) { if (!callbackQPaintEngineDrawLines(this->objectNameAbs().toUtf8().data(), const_cast<QLineF*>(lines), lineCount)) { QPaintEngine::drawLines(lines, lineCount); }; };
-	void drawPoints(const QPointF * points, int pointCount) { if (!callbackQPaintEngineDrawPoints(this->objectNameAbs().toUtf8().data(), const_cast<QPointF*>(points), pointCount)) { QPaintEngine::drawPoints(points, pointCount); }; };
-	void drawRects(const QRectF * rects, int rectCount) { if (!callbackQPaintEngineDrawRects(this->objectNameAbs().toUtf8().data(), const_cast<QRectF*>(rects), rectCount)) { QPaintEngine::drawRects(rects, rectCount); }; };
-protected:
+	void drawPolygon(const QPointF * points, int pointCount, QPaintEngine::PolygonDrawMode mode) { callbackQPaintEngineDrawPolygon(this, this->objectNameAbs().toUtf8().data(), const_cast<QPointF*>(points), pointCount, mode); };
+	void drawLines(const QLineF * lines, int lineCount) { callbackQPaintEngineDrawLines(this, this->objectNameAbs().toUtf8().data(), const_cast<QLineF*>(lines), lineCount); };
+	void drawPoints(const QPointF * points, int pointCount) { callbackQPaintEngineDrawPoints(this, this->objectNameAbs().toUtf8().data(), const_cast<QPointF*>(points), pointCount); };
+	void drawRects(const QRectF * rects, int rectCount) { callbackQPaintEngineDrawRects(this, this->objectNameAbs().toUtf8().data(), const_cast<QRectF*>(rects), rectCount); };
 };
 
 void QPaintEngine_DrawPolygon(void* ptr, void* points, int pointCount, int mode){
-	static_cast<QPaintEngine*>(ptr)->drawPolygon(static_cast<QPointF*>(points), pointCount, static_cast<QPaintEngine::PolygonDrawMode>(mode));
+	static_cast<MyQPaintEngine*>(ptr)->drawPolygon(static_cast<QPointF*>(points), pointCount, static_cast<QPaintEngine::PolygonDrawMode>(mode));
+}
+
+void QPaintEngine_DrawPolygonDefault(void* ptr, void* points, int pointCount, int mode){
+	static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawPolygon(static_cast<QPointF*>(points), pointCount, static_cast<QPaintEngine::PolygonDrawMode>(mode));
 }
 
 int QPaintEngine_Begin(void* ptr, void* pdev){
@@ -4798,7 +5301,11 @@ int QPaintEngine_Begin(void* ptr, void* pdev){
 }
 
 void QPaintEngine_DrawLines(void* ptr, void* lines, int lineCount){
-	static_cast<QPaintEngine*>(ptr)->drawLines(static_cast<QLineF*>(lines), lineCount);
+	static_cast<MyQPaintEngine*>(ptr)->drawLines(static_cast<QLineF*>(lines), lineCount);
+}
+
+void QPaintEngine_DrawLinesDefault(void* ptr, void* lines, int lineCount){
+	static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawLines(static_cast<QLineF*>(lines), lineCount);
 }
 
 void QPaintEngine_DrawPixmap(void* ptr, void* r, void* pm, void* sr){
@@ -4806,11 +5313,19 @@ void QPaintEngine_DrawPixmap(void* ptr, void* r, void* pm, void* sr){
 }
 
 void QPaintEngine_DrawPoints(void* ptr, void* points, int pointCount){
-	static_cast<QPaintEngine*>(ptr)->drawPoints(static_cast<QPointF*>(points), pointCount);
+	static_cast<MyQPaintEngine*>(ptr)->drawPoints(static_cast<QPointF*>(points), pointCount);
+}
+
+void QPaintEngine_DrawPointsDefault(void* ptr, void* points, int pointCount){
+	static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawPoints(static_cast<QPointF*>(points), pointCount);
 }
 
 void QPaintEngine_DrawRects(void* ptr, void* rects, int rectCount){
-	static_cast<QPaintEngine*>(ptr)->drawRects(static_cast<QRectF*>(rects), rectCount);
+	static_cast<MyQPaintEngine*>(ptr)->drawRects(static_cast<QRectF*>(rects), rectCount);
+}
+
+void QPaintEngine_DrawRectsDefault(void* ptr, void* rects, int rectCount){
+	static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawRects(static_cast<QRectF*>(rects), rectCount);
 }
 
 int QPaintEngine_End(void* ptr){
@@ -6046,10 +6561,9 @@ class MyQPdfWriter: public QPdfWriter {
 public:
 	MyQPdfWriter(QIODevice *device) : QPdfWriter(device) {};
 	MyQPdfWriter(const QString &filename) : QPdfWriter(filename) {};
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQPdfWriterTimerEvent(this->objectName().toUtf8().data(), event)) { QPdfWriter::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQPdfWriterChildEvent(this->objectName().toUtf8().data(), event)) { QPdfWriter::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQPdfWriterCustomEvent(this->objectName().toUtf8().data(), event)) { QPdfWriter::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQPdfWriterTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQPdfWriterChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQPdfWriterCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QPdfWriter_NewQPdfWriter2(void* device){
@@ -6066,6 +6580,10 @@ char* QPdfWriter_Creator(void* ptr){
 
 int QPdfWriter_NewPage(void* ptr){
 	return static_cast<QPdfWriter*>(ptr)->newPage();
+}
+
+void* QPdfWriter_PaintEngine(void* ptr){
+	return static_cast<QPdfWriter*>(ptr)->paintEngine();
 }
 
 int QPdfWriter_Resolution(void* ptr){
@@ -6110,6 +6628,30 @@ char* QPdfWriter_Title(void* ptr){
 
 void QPdfWriter_DestroyQPdfWriter(void* ptr){
 	static_cast<QPdfWriter*>(ptr)->~QPdfWriter();
+}
+
+void QPdfWriter_TimerEvent(void* ptr, void* event){
+	static_cast<MyQPdfWriter*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QPdfWriter_TimerEventDefault(void* ptr, void* event){
+	static_cast<QPdfWriter*>(ptr)->QPdfWriter::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QPdfWriter_ChildEvent(void* ptr, void* event){
+	static_cast<MyQPdfWriter*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QPdfWriter_ChildEventDefault(void* ptr, void* event){
+	static_cast<QPdfWriter*>(ptr)->QPdfWriter::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QPdfWriter_CustomEvent(void* ptr, void* event){
+	static_cast<MyQPdfWriter*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QPdfWriter_CustomEventDefault(void* ptr, void* event){
+	static_cast<QPdfWriter*>(ptr)->QPdfWriter::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QPen_NewQPen4(void* brush, double width, int style, int cap, int join){
@@ -6233,7 +6775,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 int QPicture_IsNull(void* ptr){
@@ -6649,6 +7190,166 @@ void* QRasterWindow_NewQRasterWindow(void* parent){
 	return new QRasterWindow(static_cast<QWindow*>(parent));
 }
 
+void QRasterWindow_PaintEvent(void* ptr, void* event){
+	static_cast<QRasterWindow*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
+}
+
+void QRasterWindow_PaintEventDefault(void* ptr, void* event){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::paintEvent(static_cast<QPaintEvent*>(event));
+}
+
+void QRasterWindow_ExposeEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->exposeEvent(static_cast<QExposeEvent*>(ev));
+}
+
+void QRasterWindow_ExposeEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::exposeEvent(static_cast<QExposeEvent*>(ev));
+}
+
+void QRasterWindow_FocusInEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(ev));
+}
+
+void QRasterWindow_FocusInEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::focusInEvent(static_cast<QFocusEvent*>(ev));
+}
+
+void QRasterWindow_FocusOutEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(ev));
+}
+
+void QRasterWindow_FocusOutEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::focusOutEvent(static_cast<QFocusEvent*>(ev));
+}
+
+void QRasterWindow_HideEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(ev));
+}
+
+void QRasterWindow_HideEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::hideEvent(static_cast<QHideEvent*>(ev));
+}
+
+void QRasterWindow_KeyPressEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(ev));
+}
+
+void QRasterWindow_KeyPressEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::keyPressEvent(static_cast<QKeyEvent*>(ev));
+}
+
+void QRasterWindow_KeyReleaseEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+}
+
+void QRasterWindow_KeyReleaseEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+}
+
+void QRasterWindow_MouseDoubleClickEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QRasterWindow_MouseDoubleClickEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QRasterWindow_MouseMoveEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QRasterWindow_MouseMoveEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QRasterWindow_MousePressEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QRasterWindow_MousePressEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::mousePressEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QRasterWindow_MouseReleaseEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QRasterWindow_MouseReleaseEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QRasterWindow_MoveEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->moveEvent(static_cast<QMoveEvent*>(ev));
+}
+
+void QRasterWindow_MoveEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::moveEvent(static_cast<QMoveEvent*>(ev));
+}
+
+void QRasterWindow_ResizeEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(ev));
+}
+
+void QRasterWindow_ResizeEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::resizeEvent(static_cast<QResizeEvent*>(ev));
+}
+
+void QRasterWindow_ShowEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(ev));
+}
+
+void QRasterWindow_ShowEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::showEvent(static_cast<QShowEvent*>(ev));
+}
+
+void QRasterWindow_TabletEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->tabletEvent(static_cast<QTabletEvent*>(ev));
+}
+
+void QRasterWindow_TabletEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::tabletEvent(static_cast<QTabletEvent*>(ev));
+}
+
+void QRasterWindow_TouchEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->touchEvent(static_cast<QTouchEvent*>(ev));
+}
+
+void QRasterWindow_TouchEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::touchEvent(static_cast<QTouchEvent*>(ev));
+}
+
+void QRasterWindow_WheelEvent(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(ev));
+}
+
+void QRasterWindow_WheelEventDefault(void* ptr, void* ev){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::wheelEvent(static_cast<QWheelEvent*>(ev));
+}
+
+void QRasterWindow_TimerEvent(void* ptr, void* event){
+	static_cast<QRasterWindow*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QRasterWindow_TimerEventDefault(void* ptr, void* event){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QRasterWindow_ChildEvent(void* ptr, void* event){
+	static_cast<QRasterWindow*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QRasterWindow_ChildEventDefault(void* ptr, void* event){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QRasterWindow_CustomEvent(void* ptr, void* event){
+	static_cast<QRasterWindow*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QRasterWindow_CustomEventDefault(void* ptr, void* event){
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::customEvent(static_cast<QEvent*>(event));
+}
+
 void* QRawFont_NewQRawFont(){
 	return new QRawFont();
 }
@@ -6761,10 +7462,9 @@ class MyQRegExpValidator: public QRegExpValidator {
 public:
 	MyQRegExpValidator(QObject *parent) : QRegExpValidator(parent) {};
 	MyQRegExpValidator(const QRegExp &rx, QObject *parent) : QRegExpValidator(rx, parent) {};
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQRegExpValidatorTimerEvent(this->objectName().toUtf8().data(), event)) { QRegExpValidator::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQRegExpValidatorChildEvent(this->objectName().toUtf8().data(), event)) { QRegExpValidator::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQRegExpValidatorCustomEvent(this->objectName().toUtf8().data(), event)) { QRegExpValidator::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQRegExpValidatorTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQRegExpValidatorChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQRegExpValidatorCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QRegExpValidator_SetRegExp(void* ptr, void* rx){
@@ -6785,6 +7485,30 @@ void* QRegExpValidator_RegExp(void* ptr){
 
 void QRegExpValidator_DestroyQRegExpValidator(void* ptr){
 	static_cast<QRegExpValidator*>(ptr)->~QRegExpValidator();
+}
+
+void QRegExpValidator_TimerEvent(void* ptr, void* event){
+	static_cast<MyQRegExpValidator*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QRegExpValidator_TimerEventDefault(void* ptr, void* event){
+	static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QRegExpValidator_ChildEvent(void* ptr, void* event){
+	static_cast<MyQRegExpValidator*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QRegExpValidator_ChildEventDefault(void* ptr, void* event){
+	static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QRegExpValidator_CustomEvent(void* ptr, void* event){
+	static_cast<MyQRegExpValidator*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QRegExpValidator_CustomEventDefault(void* ptr, void* event){
+	static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QRegion_NewQRegion(){
@@ -6895,11 +7619,10 @@ class MyQRegularExpressionValidator: public QRegularExpressionValidator {
 public:
 	MyQRegularExpressionValidator(QObject *parent) : QRegularExpressionValidator(parent) {};
 	MyQRegularExpressionValidator(const QRegularExpression &re, QObject *parent) : QRegularExpressionValidator(re, parent) {};
-	void Signal_RegularExpressionChanged(const QRegularExpression & re) { callbackQRegularExpressionValidatorRegularExpressionChanged(this->objectName().toUtf8().data(), new QRegularExpression(re)); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQRegularExpressionValidatorTimerEvent(this->objectName().toUtf8().data(), event)) { QRegularExpressionValidator::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQRegularExpressionValidatorChildEvent(this->objectName().toUtf8().data(), event)) { QRegularExpressionValidator::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQRegularExpressionValidatorCustomEvent(this->objectName().toUtf8().data(), event)) { QRegularExpressionValidator::customEvent(event); }; };
+	void Signal_RegularExpressionChanged(const QRegularExpression & re) { callbackQRegularExpressionValidatorRegularExpressionChanged(this, this->objectName().toUtf8().data(), new QRegularExpression(re)); };
+	void timerEvent(QTimerEvent * event) { callbackQRegularExpressionValidatorTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQRegularExpressionValidatorChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQRegularExpressionValidatorCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QRegularExpressionValidator_RegularExpression(void* ptr){
@@ -6926,8 +7649,36 @@ void QRegularExpressionValidator_DisconnectRegularExpressionChanged(void* ptr){
 	QObject::disconnect(static_cast<QRegularExpressionValidator*>(ptr), static_cast<void (QRegularExpressionValidator::*)(const QRegularExpression &)>(&QRegularExpressionValidator::regularExpressionChanged), static_cast<MyQRegularExpressionValidator*>(ptr), static_cast<void (MyQRegularExpressionValidator::*)(const QRegularExpression &)>(&MyQRegularExpressionValidator::Signal_RegularExpressionChanged));;
 }
 
+void QRegularExpressionValidator_RegularExpressionChanged(void* ptr, void* re){
+	static_cast<QRegularExpressionValidator*>(ptr)->regularExpressionChanged(*static_cast<QRegularExpression*>(re));
+}
+
 void QRegularExpressionValidator_DestroyQRegularExpressionValidator(void* ptr){
 	static_cast<QRegularExpressionValidator*>(ptr)->~QRegularExpressionValidator();
+}
+
+void QRegularExpressionValidator_TimerEvent(void* ptr, void* event){
+	static_cast<MyQRegularExpressionValidator*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QRegularExpressionValidator_TimerEventDefault(void* ptr, void* event){
+	static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QRegularExpressionValidator_ChildEvent(void* ptr, void* event){
+	static_cast<MyQRegularExpressionValidator*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QRegularExpressionValidator_ChildEventDefault(void* ptr, void* event){
+	static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QRegularExpressionValidator_CustomEvent(void* ptr, void* event){
+	static_cast<MyQRegularExpressionValidator*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QRegularExpressionValidator_CustomEventDefault(void* ptr, void* event){
+	static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QResizeEvent_NewQResizeEvent(void* size, void* oldSize){
@@ -6944,18 +7695,17 @@ void* QResizeEvent_Size(void* ptr){
 
 class MyQScreen: public QScreen {
 public:
-	void Signal_AvailableGeometryChanged(const QRect & geometry) { callbackQScreenAvailableGeometryChanged(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(geometry).x(), static_cast<QRect>(geometry).y(), static_cast<QRect>(geometry).width(), static_cast<QRect>(geometry).height())); };
-	void Signal_GeometryChanged(const QRect & geometry) { callbackQScreenGeometryChanged(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(geometry).x(), static_cast<QRect>(geometry).y(), static_cast<QRect>(geometry).width(), static_cast<QRect>(geometry).height())); };
-	void Signal_LogicalDotsPerInchChanged(qreal dpi) { callbackQScreenLogicalDotsPerInchChanged(this->objectName().toUtf8().data(), static_cast<double>(dpi)); };
-	void Signal_OrientationChanged(Qt::ScreenOrientation orientation) { callbackQScreenOrientationChanged(this->objectName().toUtf8().data(), orientation); };
-	void Signal_PhysicalDotsPerInchChanged(qreal dpi) { callbackQScreenPhysicalDotsPerInchChanged(this->objectName().toUtf8().data(), static_cast<double>(dpi)); };
-	void Signal_PrimaryOrientationChanged(Qt::ScreenOrientation orientation) { callbackQScreenPrimaryOrientationChanged(this->objectName().toUtf8().data(), orientation); };
-	void Signal_RefreshRateChanged(qreal refreshRate) { callbackQScreenRefreshRateChanged(this->objectName().toUtf8().data(), static_cast<double>(refreshRate)); };
-	void Signal_VirtualGeometryChanged(const QRect & rect) { callbackQScreenVirtualGeometryChanged(this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height())); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQScreenTimerEvent(this->objectName().toUtf8().data(), event)) { QScreen::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQScreenChildEvent(this->objectName().toUtf8().data(), event)) { QScreen::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQScreenCustomEvent(this->objectName().toUtf8().data(), event)) { QScreen::customEvent(event); }; };
+	void Signal_AvailableGeometryChanged(const QRect & geometry) { callbackQScreenAvailableGeometryChanged(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(geometry).x(), static_cast<QRect>(geometry).y(), static_cast<QRect>(geometry).width(), static_cast<QRect>(geometry).height())); };
+	void Signal_GeometryChanged(const QRect & geometry) { callbackQScreenGeometryChanged(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(geometry).x(), static_cast<QRect>(geometry).y(), static_cast<QRect>(geometry).width(), static_cast<QRect>(geometry).height())); };
+	void Signal_LogicalDotsPerInchChanged(qreal dpi) { callbackQScreenLogicalDotsPerInchChanged(this, this->objectName().toUtf8().data(), static_cast<double>(dpi)); };
+	void Signal_OrientationChanged(Qt::ScreenOrientation orientation) { callbackQScreenOrientationChanged(this, this->objectName().toUtf8().data(), orientation); };
+	void Signal_PhysicalDotsPerInchChanged(qreal dpi) { callbackQScreenPhysicalDotsPerInchChanged(this, this->objectName().toUtf8().data(), static_cast<double>(dpi)); };
+	void Signal_PrimaryOrientationChanged(Qt::ScreenOrientation orientation) { callbackQScreenPrimaryOrientationChanged(this, this->objectName().toUtf8().data(), orientation); };
+	void Signal_RefreshRateChanged(qreal refreshRate) { callbackQScreenRefreshRateChanged(this, this->objectName().toUtf8().data(), static_cast<double>(refreshRate)); };
+	void Signal_VirtualGeometryChanged(const QRect & rect) { callbackQScreenVirtualGeometryChanged(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height())); };
+	void timerEvent(QTimerEvent * event) { callbackQScreenTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQScreenChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQScreenCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QScreen_AvailableGeometry(void* ptr){
@@ -7054,12 +7804,20 @@ void QScreen_DisconnectAvailableGeometryChanged(void* ptr){
 	QObject::disconnect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QRect &)>(&QScreen::availableGeometryChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QRect &)>(&MyQScreen::Signal_AvailableGeometryChanged));;
 }
 
+void QScreen_AvailableGeometryChanged(void* ptr, void* geometry){
+	static_cast<QScreen*>(ptr)->availableGeometryChanged(*static_cast<QRect*>(geometry));
+}
+
 void QScreen_ConnectGeometryChanged(void* ptr){
 	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QRect &)>(&QScreen::geometryChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QRect &)>(&MyQScreen::Signal_GeometryChanged));;
 }
 
 void QScreen_DisconnectGeometryChanged(void* ptr){
 	QObject::disconnect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QRect &)>(&QScreen::geometryChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QRect &)>(&MyQScreen::Signal_GeometryChanged));;
+}
+
+void QScreen_GeometryChanged(void* ptr, void* geometry){
+	static_cast<QScreen*>(ptr)->geometryChanged(*static_cast<QRect*>(geometry));
 }
 
 int QScreen_IsLandscape(void* ptr, int o){
@@ -7078,6 +7836,10 @@ void QScreen_DisconnectLogicalDotsPerInchChanged(void* ptr){
 	QObject::disconnect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(qreal)>(&QScreen::logicalDotsPerInchChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(qreal)>(&MyQScreen::Signal_LogicalDotsPerInchChanged));;
 }
 
+void QScreen_LogicalDotsPerInchChanged(void* ptr, double dpi){
+	static_cast<QScreen*>(ptr)->logicalDotsPerInchChanged(static_cast<double>(dpi));
+}
+
 void* QScreen_MapBetween(void* ptr, int a, int b, void* rect){
 	return new QRect(static_cast<QRect>(static_cast<QScreen*>(ptr)->mapBetween(static_cast<Qt::ScreenOrientation>(a), static_cast<Qt::ScreenOrientation>(b), *static_cast<QRect*>(rect))).x(), static_cast<QRect>(static_cast<QScreen*>(ptr)->mapBetween(static_cast<Qt::ScreenOrientation>(a), static_cast<Qt::ScreenOrientation>(b), *static_cast<QRect*>(rect))).y(), static_cast<QRect>(static_cast<QScreen*>(ptr)->mapBetween(static_cast<Qt::ScreenOrientation>(a), static_cast<Qt::ScreenOrientation>(b), *static_cast<QRect*>(rect))).width(), static_cast<QRect>(static_cast<QScreen*>(ptr)->mapBetween(static_cast<Qt::ScreenOrientation>(a), static_cast<Qt::ScreenOrientation>(b), *static_cast<QRect*>(rect))).height());
 }
@@ -7088,6 +7850,10 @@ void QScreen_ConnectOrientationChanged(void* ptr){
 
 void QScreen_DisconnectOrientationChanged(void* ptr){
 	QObject::disconnect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(Qt::ScreenOrientation)>(&QScreen::orientationChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(Qt::ScreenOrientation)>(&MyQScreen::Signal_OrientationChanged));;
+}
+
+void QScreen_OrientationChanged(void* ptr, int orientation){
+	static_cast<QScreen*>(ptr)->orientationChanged(static_cast<Qt::ScreenOrientation>(orientation));
 }
 
 int QScreen_OrientationUpdateMask(void* ptr){
@@ -7102,6 +7868,10 @@ void QScreen_DisconnectPhysicalDotsPerInchChanged(void* ptr){
 	QObject::disconnect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(qreal)>(&QScreen::physicalDotsPerInchChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(qreal)>(&MyQScreen::Signal_PhysicalDotsPerInchChanged));;
 }
 
+void QScreen_PhysicalDotsPerInchChanged(void* ptr, double dpi){
+	static_cast<QScreen*>(ptr)->physicalDotsPerInchChanged(static_cast<double>(dpi));
+}
+
 void QScreen_ConnectPrimaryOrientationChanged(void* ptr){
 	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(Qt::ScreenOrientation)>(&QScreen::primaryOrientationChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(Qt::ScreenOrientation)>(&MyQScreen::Signal_PrimaryOrientationChanged));;
 }
@@ -7110,12 +7880,20 @@ void QScreen_DisconnectPrimaryOrientationChanged(void* ptr){
 	QObject::disconnect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(Qt::ScreenOrientation)>(&QScreen::primaryOrientationChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(Qt::ScreenOrientation)>(&MyQScreen::Signal_PrimaryOrientationChanged));;
 }
 
+void QScreen_PrimaryOrientationChanged(void* ptr, int orientation){
+	static_cast<QScreen*>(ptr)->primaryOrientationChanged(static_cast<Qt::ScreenOrientation>(orientation));
+}
+
 void QScreen_ConnectRefreshRateChanged(void* ptr){
 	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(qreal)>(&QScreen::refreshRateChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(qreal)>(&MyQScreen::Signal_RefreshRateChanged));;
 }
 
 void QScreen_DisconnectRefreshRateChanged(void* ptr){
 	QObject::disconnect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(qreal)>(&QScreen::refreshRateChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(qreal)>(&MyQScreen::Signal_RefreshRateChanged));;
+}
+
+void QScreen_RefreshRateChanged(void* ptr, double refreshRate){
+	static_cast<QScreen*>(ptr)->refreshRateChanged(static_cast<double>(refreshRate));
 }
 
 void QScreen_SetOrientationUpdateMask(void* ptr, int mask){
@@ -7130,8 +7908,36 @@ void QScreen_DisconnectVirtualGeometryChanged(void* ptr){
 	QObject::disconnect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QRect &)>(&QScreen::virtualGeometryChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QRect &)>(&MyQScreen::Signal_VirtualGeometryChanged));;
 }
 
+void QScreen_VirtualGeometryChanged(void* ptr, void* rect){
+	static_cast<QScreen*>(ptr)->virtualGeometryChanged(*static_cast<QRect*>(rect));
+}
+
 void QScreen_DestroyQScreen(void* ptr){
 	static_cast<QScreen*>(ptr)->~QScreen();
+}
+
+void QScreen_TimerEvent(void* ptr, void* event){
+	static_cast<MyQScreen*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QScreen_TimerEventDefault(void* ptr, void* event){
+	static_cast<QScreen*>(ptr)->QScreen::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QScreen_ChildEvent(void* ptr, void* event){
+	static_cast<MyQScreen*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QScreen_ChildEventDefault(void* ptr, void* event){
+	static_cast<QScreen*>(ptr)->QScreen::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QScreen_CustomEvent(void* ptr, void* event){
+	static_cast<MyQScreen*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QScreen_CustomEventDefault(void* ptr, void* event){
+	static_cast<QScreen*>(ptr)->QScreen::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QScrollEvent_NewQScrollEvent(void* contentPos, void* overshootDistance, int scrollState){
@@ -7230,6 +8036,30 @@ void QSessionManager_SetRestartHint(void* ptr, int hint){
 	static_cast<QSessionManager*>(ptr)->setRestartHint(static_cast<QSessionManager::RestartHint>(hint));
 }
 
+void QSessionManager_TimerEvent(void* ptr, void* event){
+	static_cast<QSessionManager*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSessionManager_TimerEventDefault(void* ptr, void* event){
+	static_cast<QSessionManager*>(ptr)->QSessionManager::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSessionManager_ChildEvent(void* ptr, void* event){
+	static_cast<QSessionManager*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QSessionManager_ChildEventDefault(void* ptr, void* event){
+	static_cast<QSessionManager*>(ptr)->QSessionManager::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QSessionManager_CustomEvent(void* ptr, void* event){
+	static_cast<QSessionManager*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QSessionManager_CustomEventDefault(void* ptr, void* event){
+	static_cast<QSessionManager*>(ptr)->QSessionManager::customEvent(static_cast<QEvent*>(event));
+}
+
 void* QShortcutEvent_NewQShortcutEvent(void* key, int id, int ambiguous){
 	return new QShortcutEvent(*static_cast<QKeySequence*>(key), id, ambiguous != 0);
 }
@@ -7259,8 +8089,7 @@ public:
 	MyQStandardItem(const QIcon &icon, const QString &text) : QStandardItem(icon, text) {};
 	MyQStandardItem(const QString &text) : QStandardItem(text) {};
 	MyQStandardItem(int rows, int columns) : QStandardItem(rows, columns) {};
-	void setData(const QVariant & value, int role) { if (!callbackQStandardItemSetData(this->objectNameAbs().toUtf8().data(), new QVariant(value), role)) { QStandardItem::setData(value, role); }; };
-protected:
+	void setData(const QVariant & value, int role) { callbackQStandardItemSetData(this, this->objectNameAbs().toUtf8().data(), new QVariant(value), role); };
 };
 
 void* QStandardItem_NewQStandardItem(){
@@ -7444,7 +8273,11 @@ void QStandardItem_SetColumnCount(void* ptr, int columns){
 }
 
 void QStandardItem_SetData(void* ptr, void* value, int role){
-	static_cast<QStandardItem*>(ptr)->setData(*static_cast<QVariant*>(value), role);
+	static_cast<MyQStandardItem*>(ptr)->setData(*static_cast<QVariant*>(value), role);
+}
+
+void QStandardItem_SetDataDefault(void* ptr, void* value, int role){
+	static_cast<QStandardItem*>(ptr)->QStandardItem::setData(*static_cast<QVariant*>(value), role);
 }
 
 void QStandardItem_SetDragEnabled(void* ptr, int dragEnabled){
@@ -7572,14 +8405,13 @@ class MyQStandardItemModel: public QStandardItemModel {
 public:
 	MyQStandardItemModel(QObject *parent) : QStandardItemModel(parent) {};
 	MyQStandardItemModel(int rows, int columns, QObject *parent) : QStandardItemModel(rows, columns, parent) {};
-	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModelItemChanged(this->objectName().toUtf8().data(), item); };
-	void sort(int column, Qt::SortOrder order) { if (!callbackQStandardItemModelSort(this->objectName().toUtf8().data(), column, order)) { QStandardItemModel::sort(column, order); }; };
-	void fetchMore(const QModelIndex & parent) { if (!callbackQStandardItemModelFetchMore(this->objectName().toUtf8().data(), parent.internalPointer())) { QStandardItemModel::fetchMore(parent); }; };
-	void revert() { if (!callbackQStandardItemModelRevert(this->objectName().toUtf8().data())) { QStandardItemModel::revert(); }; };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQStandardItemModelTimerEvent(this->objectName().toUtf8().data(), event)) { QStandardItemModel::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQStandardItemModelChildEvent(this->objectName().toUtf8().data(), event)) { QStandardItemModel::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQStandardItemModelCustomEvent(this->objectName().toUtf8().data(), event)) { QStandardItemModel::customEvent(event); }; };
+	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModelItemChanged(this, this->objectName().toUtf8().data(), item); };
+	void sort(int column, Qt::SortOrder order) { callbackQStandardItemModelSort(this, this->objectName().toUtf8().data(), column, order); };
+	void fetchMore(const QModelIndex & parent) { callbackQStandardItemModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
+	void revert() { if (!callbackQStandardItemModelRevert(this, this->objectName().toUtf8().data())) { QStandardItemModel::revert(); }; };
+	void timerEvent(QTimerEvent * event) { callbackQStandardItemModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQStandardItemModelChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQStandardItemModelCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QStandardItemModel_SetSortRole(void* ptr, int role){
@@ -7678,6 +8510,10 @@ void QStandardItemModel_DisconnectItemChanged(void* ptr){
 	QObject::disconnect(static_cast<QStandardItemModel*>(ptr), static_cast<void (QStandardItemModel::*)(QStandardItem *)>(&QStandardItemModel::itemChanged), static_cast<MyQStandardItemModel*>(ptr), static_cast<void (MyQStandardItemModel::*)(QStandardItem *)>(&MyQStandardItemModel::Signal_ItemChanged));;
 }
 
+void QStandardItemModel_ItemChanged(void* ptr, void* item){
+	static_cast<QStandardItemModel*>(ptr)->itemChanged(static_cast<QStandardItem*>(item));
+}
+
 void* QStandardItemModel_ItemFromIndex(void* ptr, void* index){
 	return static_cast<QStandardItemModel*>(ptr)->itemFromIndex(*static_cast<QModelIndex*>(index));
 }
@@ -7755,7 +8591,11 @@ void* QStandardItemModel_Sibling(void* ptr, int row, int column, void* idx){
 }
 
 void QStandardItemModel_Sort(void* ptr, int column, int order){
-	static_cast<QStandardItemModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
+	static_cast<MyQStandardItemModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
+}
+
+void QStandardItemModel_SortDefault(void* ptr, int column, int order){
+	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::sort(column, static_cast<Qt::SortOrder>(order));
 }
 
 int QStandardItemModel_SupportedDropActions(void* ptr){
@@ -7780,6 +8620,46 @@ void* QStandardItemModel_VerticalHeaderItem(void* ptr, int row){
 
 void QStandardItemModel_DestroyQStandardItemModel(void* ptr){
 	static_cast<QStandardItemModel*>(ptr)->~QStandardItemModel();
+}
+
+void QStandardItemModel_FetchMore(void* ptr, void* parent){
+	static_cast<MyQStandardItemModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+void QStandardItemModel_FetchMoreDefault(void* ptr, void* parent){
+	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+void QStandardItemModel_Revert(void* ptr){
+	QMetaObject::invokeMethod(static_cast<MyQStandardItemModel*>(ptr), "revert");
+}
+
+void QStandardItemModel_RevertDefault(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QStandardItemModel*>(ptr), "revert");
+}
+
+void QStandardItemModel_TimerEvent(void* ptr, void* event){
+	static_cast<MyQStandardItemModel*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QStandardItemModel_TimerEventDefault(void* ptr, void* event){
+	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QStandardItemModel_ChildEvent(void* ptr, void* event){
+	static_cast<MyQStandardItemModel*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QStandardItemModel_ChildEventDefault(void* ptr, void* event){
+	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QStandardItemModel_CustomEvent(void* ptr, void* event){
+	static_cast<MyQStandardItemModel*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QStandardItemModel_CustomEventDefault(void* ptr, void* event){
+	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QStaticText_NewQStaticText(){
@@ -7852,15 +8732,14 @@ char* QStatusTipEvent_Tip(void* ptr){
 
 class MyQStyleHints: public QStyleHints {
 public:
-	void Signal_CursorFlashTimeChanged(int cursorFlashTime) { callbackQStyleHintsCursorFlashTimeChanged(this->objectName().toUtf8().data(), cursorFlashTime); };
-	void Signal_KeyboardInputIntervalChanged(int keyboardInputInterval) { callbackQStyleHintsKeyboardInputIntervalChanged(this->objectName().toUtf8().data(), keyboardInputInterval); };
-	void Signal_MouseDoubleClickIntervalChanged(int mouseDoubleClickInterval) { callbackQStyleHintsMouseDoubleClickIntervalChanged(this->objectName().toUtf8().data(), mouseDoubleClickInterval); };
-	void Signal_StartDragDistanceChanged(int startDragDistance) { callbackQStyleHintsStartDragDistanceChanged(this->objectName().toUtf8().data(), startDragDistance); };
-	void Signal_StartDragTimeChanged(int startDragTime) { callbackQStyleHintsStartDragTimeChanged(this->objectName().toUtf8().data(), startDragTime); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQStyleHintsTimerEvent(this->objectName().toUtf8().data(), event)) { QStyleHints::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQStyleHintsChildEvent(this->objectName().toUtf8().data(), event)) { QStyleHints::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQStyleHintsCustomEvent(this->objectName().toUtf8().data(), event)) { QStyleHints::customEvent(event); }; };
+	void Signal_CursorFlashTimeChanged(int cursorFlashTime) { callbackQStyleHintsCursorFlashTimeChanged(this, this->objectName().toUtf8().data(), cursorFlashTime); };
+	void Signal_KeyboardInputIntervalChanged(int keyboardInputInterval) { callbackQStyleHintsKeyboardInputIntervalChanged(this, this->objectName().toUtf8().data(), keyboardInputInterval); };
+	void Signal_MouseDoubleClickIntervalChanged(int mouseDoubleClickInterval) { callbackQStyleHintsMouseDoubleClickIntervalChanged(this, this->objectName().toUtf8().data(), mouseDoubleClickInterval); };
+	void Signal_StartDragDistanceChanged(int startDragDistance) { callbackQStyleHintsStartDragDistanceChanged(this, this->objectName().toUtf8().data(), startDragDistance); };
+	void Signal_StartDragTimeChanged(int startDragTime) { callbackQStyleHintsStartDragTimeChanged(this, this->objectName().toUtf8().data(), startDragTime); };
+	void timerEvent(QTimerEvent * event) { callbackQStyleHintsTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQStyleHintsChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQStyleHintsCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 int QStyleHints_CursorFlashTime(void* ptr){
@@ -7931,12 +8810,20 @@ void QStyleHints_DisconnectCursorFlashTimeChanged(void* ptr){
 	QObject::disconnect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::cursorFlashTimeChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_CursorFlashTimeChanged));;
 }
 
+void QStyleHints_CursorFlashTimeChanged(void* ptr, int cursorFlashTime){
+	static_cast<QStyleHints*>(ptr)->cursorFlashTimeChanged(cursorFlashTime);
+}
+
 void QStyleHints_ConnectKeyboardInputIntervalChanged(void* ptr){
 	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::keyboardInputIntervalChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_KeyboardInputIntervalChanged));;
 }
 
 void QStyleHints_DisconnectKeyboardInputIntervalChanged(void* ptr){
 	QObject::disconnect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::keyboardInputIntervalChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_KeyboardInputIntervalChanged));;
+}
+
+void QStyleHints_KeyboardInputIntervalChanged(void* ptr, int keyboardInputInterval){
+	static_cast<QStyleHints*>(ptr)->keyboardInputIntervalChanged(keyboardInputInterval);
 }
 
 void QStyleHints_ConnectMouseDoubleClickIntervalChanged(void* ptr){
@@ -7947,12 +8834,20 @@ void QStyleHints_DisconnectMouseDoubleClickIntervalChanged(void* ptr){
 	QObject::disconnect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::mouseDoubleClickIntervalChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_MouseDoubleClickIntervalChanged));;
 }
 
+void QStyleHints_MouseDoubleClickIntervalChanged(void* ptr, int mouseDoubleClickInterval){
+	static_cast<QStyleHints*>(ptr)->mouseDoubleClickIntervalChanged(mouseDoubleClickInterval);
+}
+
 void QStyleHints_ConnectStartDragDistanceChanged(void* ptr){
 	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::startDragDistanceChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_StartDragDistanceChanged));;
 }
 
 void QStyleHints_DisconnectStartDragDistanceChanged(void* ptr){
 	QObject::disconnect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::startDragDistanceChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_StartDragDistanceChanged));;
+}
+
+void QStyleHints_StartDragDistanceChanged(void* ptr, int startDragDistance){
+	static_cast<QStyleHints*>(ptr)->startDragDistanceChanged(startDragDistance);
 }
 
 void QStyleHints_ConnectStartDragTimeChanged(void* ptr){
@@ -7963,12 +8858,39 @@ void QStyleHints_DisconnectStartDragTimeChanged(void* ptr){
 	QObject::disconnect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::startDragTimeChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_StartDragTimeChanged));;
 }
 
+void QStyleHints_StartDragTimeChanged(void* ptr, int startDragTime){
+	static_cast<QStyleHints*>(ptr)->startDragTimeChanged(startDragTime);
+}
+
+void QStyleHints_TimerEvent(void* ptr, void* event){
+	static_cast<MyQStyleHints*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QStyleHints_TimerEventDefault(void* ptr, void* event){
+	static_cast<QStyleHints*>(ptr)->QStyleHints::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QStyleHints_ChildEvent(void* ptr, void* event){
+	static_cast<MyQStyleHints*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QStyleHints_ChildEventDefault(void* ptr, void* event){
+	static_cast<QStyleHints*>(ptr)->QStyleHints::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QStyleHints_CustomEvent(void* ptr, void* event){
+	static_cast<MyQStyleHints*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QStyleHints_CustomEventDefault(void* ptr, void* event){
+	static_cast<QStyleHints*>(ptr)->QStyleHints::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQSurface: public QSurface {
 public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 void* QSurface_Size(void* ptr){
@@ -8162,10 +9084,9 @@ void QSurfaceFormat_DestroyQSurfaceFormat(void* ptr){
 
 class MyQSyntaxHighlighter: public QSyntaxHighlighter {
 public:
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQSyntaxHighlighterTimerEvent(this->objectName().toUtf8().data(), event)) { QSyntaxHighlighter::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQSyntaxHighlighterChildEvent(this->objectName().toUtf8().data(), event)) { QSyntaxHighlighter::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQSyntaxHighlighterCustomEvent(this->objectName().toUtf8().data(), event)) { QSyntaxHighlighter::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQSyntaxHighlighterTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQSyntaxHighlighterChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQSyntaxHighlighterCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QSyntaxHighlighter_Document(void* ptr){
@@ -8186,6 +9107,30 @@ void QSyntaxHighlighter_SetDocument(void* ptr, void* doc){
 
 void QSyntaxHighlighter_DestroyQSyntaxHighlighter(void* ptr){
 	static_cast<QSyntaxHighlighter*>(ptr)->~QSyntaxHighlighter();
+}
+
+void QSyntaxHighlighter_TimerEvent(void* ptr, void* event){
+	static_cast<MyQSyntaxHighlighter*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSyntaxHighlighter_TimerEventDefault(void* ptr, void* event){
+	static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSyntaxHighlighter_ChildEvent(void* ptr, void* event){
+	static_cast<MyQSyntaxHighlighter*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QSyntaxHighlighter_ChildEventDefault(void* ptr, void* event){
+	static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QSyntaxHighlighter_CustomEvent(void* ptr, void* event){
+	static_cast<MyQSyntaxHighlighter*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QSyntaxHighlighter_CustomEventDefault(void* ptr, void* event){
+	static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QTabletEvent_NewQTabletEvent(int ty, void* pos, void* globalPos, int device, int pointerType, double pressure, int xTilt, int yTilt, double tangentialPressure, double rotation, int z, int keyState, long long uniqueID, int button, int buttons){
@@ -8466,18 +9411,40 @@ double QTextBlockFormat_TopMargin(void* ptr){
 
 class MyQTextBlockGroup: public QTextBlockGroup {
 public:
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQTextBlockGroupTimerEvent(this->objectName().toUtf8().data(), event)) { QTextBlockGroup::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQTextBlockGroupChildEvent(this->objectName().toUtf8().data(), event)) { QTextBlockGroup::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQTextBlockGroupCustomEvent(this->objectName().toUtf8().data(), event)) { QTextBlockGroup::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQTextBlockGroupTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQTextBlockGroupChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQTextBlockGroupCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
+
+void QTextBlockGroup_TimerEvent(void* ptr, void* event){
+	static_cast<MyQTextBlockGroup*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextBlockGroup_TimerEventDefault(void* ptr, void* event){
+	static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextBlockGroup_ChildEvent(void* ptr, void* event){
+	static_cast<MyQTextBlockGroup*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextBlockGroup_ChildEventDefault(void* ptr, void* event){
+	static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextBlockGroup_CustomEvent(void* ptr, void* event){
+	static_cast<MyQTextBlockGroup*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QTextBlockGroup_CustomEventDefault(void* ptr, void* event){
+	static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::customEvent(static_cast<QEvent*>(event));
+}
 
 class MyQTextBlockUserData: public QTextBlockUserData {
 public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 void QTextBlockUserData_DestroyQTextBlockUserData(void* ptr){
@@ -8985,20 +9952,19 @@ class MyQTextDocument: public QTextDocument {
 public:
 	MyQTextDocument(QObject *parent) : QTextDocument(parent) {};
 	MyQTextDocument(const QString &text, QObject *parent) : QTextDocument(text, parent) {};
-	void Signal_BaseUrlChanged(const QUrl & url) { callbackQTextDocumentBaseUrlChanged(this->objectName().toUtf8().data(), new QUrl(url)); };
-	void Signal_BlockCountChanged(int newBlockCount) { callbackQTextDocumentBlockCountChanged(this->objectName().toUtf8().data(), newBlockCount); };
-	void clear() { if (!callbackQTextDocumentClear(this->objectName().toUtf8().data())) { QTextDocument::clear(); }; };
-	void Signal_ContentsChange(int position, int charsRemoved, int charsAdded) { callbackQTextDocumentContentsChange(this->objectName().toUtf8().data(), position, charsRemoved, charsAdded); };
-	void Signal_ContentsChanged() { callbackQTextDocumentContentsChanged(this->objectName().toUtf8().data()); };
-	void Signal_DocumentLayoutChanged() { callbackQTextDocumentDocumentLayoutChanged(this->objectName().toUtf8().data()); };
-	void Signal_ModificationChanged(bool changed) { callbackQTextDocumentModificationChanged(this->objectName().toUtf8().data(), changed); };
-	void Signal_RedoAvailable(bool available) { callbackQTextDocumentRedoAvailable(this->objectName().toUtf8().data(), available); };
-	void Signal_UndoAvailable(bool available) { callbackQTextDocumentUndoAvailable(this->objectName().toUtf8().data(), available); };
-	void Signal_UndoCommandAdded() { callbackQTextDocumentUndoCommandAdded(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQTextDocumentTimerEvent(this->objectName().toUtf8().data(), event)) { QTextDocument::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQTextDocumentChildEvent(this->objectName().toUtf8().data(), event)) { QTextDocument::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQTextDocumentCustomEvent(this->objectName().toUtf8().data(), event)) { QTextDocument::customEvent(event); }; };
+	void Signal_BaseUrlChanged(const QUrl & url) { callbackQTextDocumentBaseUrlChanged(this, this->objectName().toUtf8().data(), new QUrl(url)); };
+	void Signal_BlockCountChanged(int newBlockCount) { callbackQTextDocumentBlockCountChanged(this, this->objectName().toUtf8().data(), newBlockCount); };
+	void clear() { callbackQTextDocumentClear(this, this->objectName().toUtf8().data()); };
+	void Signal_ContentsChange(int position, int charsRemoved, int charsAdded) { callbackQTextDocumentContentsChange(this, this->objectName().toUtf8().data(), position, charsRemoved, charsAdded); };
+	void Signal_ContentsChanged() { callbackQTextDocumentContentsChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_DocumentLayoutChanged() { callbackQTextDocumentDocumentLayoutChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_ModificationChanged(bool changed) { callbackQTextDocumentModificationChanged(this, this->objectName().toUtf8().data(), changed); };
+	void Signal_RedoAvailable(bool available) { callbackQTextDocumentRedoAvailable(this, this->objectName().toUtf8().data(), available); };
+	void Signal_UndoAvailable(bool available) { callbackQTextDocumentUndoAvailable(this, this->objectName().toUtf8().data(), available); };
+	void Signal_UndoCommandAdded() { callbackQTextDocumentUndoCommandAdded(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQTextDocumentTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQTextDocumentChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQTextDocumentCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QTextDocument_BaseUrl(void* ptr){
@@ -9007,6 +9973,10 @@ void* QTextDocument_BaseUrl(void* ptr){
 
 int QTextDocument_BlockCount(void* ptr){
 	return static_cast<QTextDocument*>(ptr)->blockCount();
+}
+
+void* QTextDocument_CreateObject(void* ptr, void* format){
+	return static_cast<QTextDocument*>(ptr)->createObject(*static_cast<QTextFormat*>(format));
 }
 
 char* QTextDocument_DefaultStyleSheet(void* ptr){
@@ -9113,6 +10083,10 @@ void QTextDocument_DisconnectBaseUrlChanged(void* ptr){
 	QObject::disconnect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(const QUrl &)>(&QTextDocument::baseUrlChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(const QUrl &)>(&MyQTextDocument::Signal_BaseUrlChanged));;
 }
 
+void QTextDocument_BaseUrlChanged(void* ptr, void* url){
+	static_cast<QTextDocument*>(ptr)->baseUrlChanged(*static_cast<QUrl*>(url));
+}
+
 void QTextDocument_ConnectBlockCountChanged(void* ptr){
 	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(int)>(&QTextDocument::blockCountChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(int)>(&MyQTextDocument::Signal_BlockCountChanged));;
 }
@@ -9121,12 +10095,20 @@ void QTextDocument_DisconnectBlockCountChanged(void* ptr){
 	QObject::disconnect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(int)>(&QTextDocument::blockCountChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(int)>(&MyQTextDocument::Signal_BlockCountChanged));;
 }
 
+void QTextDocument_BlockCountChanged(void* ptr, int newBlockCount){
+	static_cast<QTextDocument*>(ptr)->blockCountChanged(newBlockCount);
+}
+
 int QTextDocument_CharacterCount(void* ptr){
 	return static_cast<QTextDocument*>(ptr)->characterCount();
 }
 
 void QTextDocument_Clear(void* ptr){
-	static_cast<QTextDocument*>(ptr)->clear();
+	static_cast<MyQTextDocument*>(ptr)->clear();
+}
+
+void QTextDocument_ClearDefault(void* ptr){
+	static_cast<QTextDocument*>(ptr)->QTextDocument::clear();
 }
 
 void QTextDocument_ClearUndoRedoStacks(void* ptr, int stacksToClear){
@@ -9145,12 +10127,20 @@ void QTextDocument_DisconnectContentsChange(void* ptr){
 	QObject::disconnect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(int, int, int)>(&QTextDocument::contentsChange), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(int, int, int)>(&MyQTextDocument::Signal_ContentsChange));;
 }
 
+void QTextDocument_ContentsChange(void* ptr, int position, int charsRemoved, int charsAdded){
+	static_cast<QTextDocument*>(ptr)->contentsChange(position, charsRemoved, charsAdded);
+}
+
 void QTextDocument_ConnectContentsChanged(void* ptr){
 	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)()>(&QTextDocument::contentsChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)()>(&MyQTextDocument::Signal_ContentsChanged));;
 }
 
 void QTextDocument_DisconnectContentsChanged(void* ptr){
 	QObject::disconnect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)()>(&QTextDocument::contentsChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)()>(&MyQTextDocument::Signal_ContentsChanged));;
+}
+
+void QTextDocument_ContentsChanged(void* ptr){
+	static_cast<QTextDocument*>(ptr)->contentsChanged();
 }
 
 int QTextDocument_DefaultCursorMoveStyle(void* ptr){
@@ -9167,6 +10157,10 @@ void QTextDocument_ConnectDocumentLayoutChanged(void* ptr){
 
 void QTextDocument_DisconnectDocumentLayoutChanged(void* ptr){
 	QObject::disconnect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)()>(&QTextDocument::documentLayoutChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)()>(&MyQTextDocument::Signal_DocumentLayoutChanged));;
+}
+
+void QTextDocument_DocumentLayoutChanged(void* ptr){
+	static_cast<QTextDocument*>(ptr)->documentLayoutChanged();
 }
 
 void QTextDocument_DrawContents(void* ptr, void* p, void* rect){
@@ -9193,6 +10187,10 @@ int QTextDocument_LineCount(void* ptr){
 	return static_cast<QTextDocument*>(ptr)->lineCount();
 }
 
+void* QTextDocument_LoadResource(void* ptr, int ty, void* name){
+	return new QVariant(static_cast<QTextDocument*>(ptr)->loadResource(ty, *static_cast<QUrl*>(name)));
+}
+
 char* QTextDocument_MetaInformation(void* ptr, int info){
 	return static_cast<QTextDocument*>(ptr)->metaInformation(static_cast<QTextDocument::MetaInformation>(info)).toUtf8().data();
 }
@@ -9203,6 +10201,10 @@ void QTextDocument_ConnectModificationChanged(void* ptr){
 
 void QTextDocument_DisconnectModificationChanged(void* ptr){
 	QObject::disconnect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(bool)>(&QTextDocument::modificationChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(bool)>(&MyQTextDocument::Signal_ModificationChanged));;
+}
+
+void QTextDocument_ModificationChanged(void* ptr, int changed){
+	static_cast<QTextDocument*>(ptr)->modificationChanged(changed != 0);
 }
 
 void* QTextDocument_Object(void* ptr, int objectIndex){
@@ -9235,6 +10237,10 @@ void QTextDocument_ConnectRedoAvailable(void* ptr){
 
 void QTextDocument_DisconnectRedoAvailable(void* ptr){
 	QObject::disconnect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(bool)>(&QTextDocument::redoAvailable), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(bool)>(&MyQTextDocument::Signal_RedoAvailable));;
+}
+
+void QTextDocument_RedoAvailable(void* ptr, int available){
+	static_cast<QTextDocument*>(ptr)->redoAvailable(available != 0);
 }
 
 void* QTextDocument_Resource(void* ptr, int ty, void* name){
@@ -9305,6 +10311,10 @@ void QTextDocument_DisconnectUndoAvailable(void* ptr){
 	QObject::disconnect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(bool)>(&QTextDocument::undoAvailable), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(bool)>(&MyQTextDocument::Signal_UndoAvailable));;
 }
 
+void QTextDocument_UndoAvailable(void* ptr, int available){
+	static_cast<QTextDocument*>(ptr)->undoAvailable(available != 0);
+}
+
 void QTextDocument_ConnectUndoCommandAdded(void* ptr){
 	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)()>(&QTextDocument::undoCommandAdded), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)()>(&MyQTextDocument::Signal_UndoCommandAdded));;
 }
@@ -9313,8 +10323,36 @@ void QTextDocument_DisconnectUndoCommandAdded(void* ptr){
 	QObject::disconnect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)()>(&QTextDocument::undoCommandAdded), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)()>(&MyQTextDocument::Signal_UndoCommandAdded));;
 }
 
+void QTextDocument_UndoCommandAdded(void* ptr){
+	static_cast<QTextDocument*>(ptr)->undoCommandAdded();
+}
+
 void QTextDocument_DestroyQTextDocument(void* ptr){
 	static_cast<QTextDocument*>(ptr)->~QTextDocument();
+}
+
+void QTextDocument_TimerEvent(void* ptr, void* event){
+	static_cast<MyQTextDocument*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextDocument_TimerEventDefault(void* ptr, void* event){
+	static_cast<QTextDocument*>(ptr)->QTextDocument::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextDocument_ChildEvent(void* ptr, void* event){
+	static_cast<MyQTextDocument*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextDocument_ChildEventDefault(void* ptr, void* event){
+	static_cast<QTextDocument*>(ptr)->QTextDocument::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextDocument_CustomEvent(void* ptr, void* event){
+	static_cast<MyQTextDocument*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QTextDocument_CustomEventDefault(void* ptr, void* event){
+	static_cast<QTextDocument*>(ptr)->QTextDocument::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QTextDocumentFragment_NewQTextDocumentFragment4(void* other){
@@ -9615,6 +10653,30 @@ void QTextFrame_SetFrameFormat(void* ptr, void* format){
 
 void QTextFrame_DestroyQTextFrame(void* ptr){
 	static_cast<QTextFrame*>(ptr)->~QTextFrame();
+}
+
+void QTextFrame_TimerEvent(void* ptr, void* event){
+	static_cast<QTextFrame*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextFrame_TimerEventDefault(void* ptr, void* event){
+	static_cast<QTextFrame*>(ptr)->QTextFrame::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextFrame_ChildEvent(void* ptr, void* event){
+	static_cast<QTextFrame*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextFrame_ChildEventDefault(void* ptr, void* event){
+	static_cast<QTextFrame*>(ptr)->QTextFrame::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextFrame_CustomEvent(void* ptr, void* event){
+	static_cast<QTextFrame*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QTextFrame_CustomEventDefault(void* ptr, void* event){
+	static_cast<QTextFrame*>(ptr)->QTextFrame::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QTextFrameFormat_NewQTextFrameFormat(){
@@ -10081,6 +11143,30 @@ void QTextList_SetFormat(void* ptr, void* format){
 	static_cast<QTextList*>(ptr)->setFormat(*static_cast<QTextListFormat*>(format));
 }
 
+void QTextList_TimerEvent(void* ptr, void* event){
+	static_cast<QTextList*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextList_TimerEventDefault(void* ptr, void* event){
+	static_cast<QTextList*>(ptr)->QTextList::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextList_ChildEvent(void* ptr, void* event){
+	static_cast<QTextList*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextList_ChildEventDefault(void* ptr, void* event){
+	static_cast<QTextList*>(ptr)->QTextList::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextList_CustomEvent(void* ptr, void* event){
+	static_cast<QTextList*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QTextList_CustomEventDefault(void* ptr, void* event){
+	static_cast<QTextList*>(ptr)->QTextList::customEvent(static_cast<QEvent*>(event));
+}
+
 void* QTextListFormat_NewQTextListFormat(){
 	return new QTextListFormat();
 }
@@ -10133,12 +11219,35 @@ int QTextObject_ObjectIndex(void* ptr){
 	return static_cast<QTextObject*>(ptr)->objectIndex();
 }
 
+void QTextObject_TimerEvent(void* ptr, void* event){
+	static_cast<QTextObject*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextObject_TimerEventDefault(void* ptr, void* event){
+	static_cast<QTextObject*>(ptr)->QTextObject::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextObject_ChildEvent(void* ptr, void* event){
+	static_cast<QTextObject*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextObject_ChildEventDefault(void* ptr, void* event){
+	static_cast<QTextObject*>(ptr)->QTextObject::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextObject_CustomEvent(void* ptr, void* event){
+	static_cast<QTextObject*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QTextObject_CustomEventDefault(void* ptr, void* event){
+	static_cast<QTextObject*>(ptr)->QTextObject::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQTextObjectInterface: public QTextObjectInterface {
 public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 void QTextObjectInterface_DrawObject(void* ptr, void* painter, void* rect, void* doc, int posInDocument, void* format){
@@ -10276,6 +11385,30 @@ int QTextTable_Rows(void* ptr){
 
 void QTextTable_SplitCell(void* ptr, int row, int column, int numRows, int numCols){
 	static_cast<QTextTable*>(ptr)->splitCell(row, column, numRows, numCols);
+}
+
+void QTextTable_TimerEvent(void* ptr, void* event){
+	static_cast<QTextTable*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextTable_TimerEventDefault(void* ptr, void* event){
+	static_cast<QTextTable*>(ptr)->QTextTable::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTextTable_ChildEvent(void* ptr, void* event){
+	static_cast<QTextTable*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextTable_ChildEventDefault(void* ptr, void* event){
+	static_cast<QTextTable*>(ptr)->QTextTable::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QTextTable_CustomEvent(void* ptr, void* event){
+	static_cast<QTextTable*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QTextTable_CustomEventDefault(void* ptr, void* event){
+	static_cast<QTextTable*>(ptr)->QTextTable::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QTextTableCell_NewQTextTableCell(){
@@ -10596,11 +11729,10 @@ int QTransform_Type(void* ptr){
 
 class MyQValidator: public QValidator {
 public:
-	void Signal_Changed() { callbackQValidatorChanged(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQValidatorTimerEvent(this->objectName().toUtf8().data(), event)) { QValidator::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQValidatorChildEvent(this->objectName().toUtf8().data(), event)) { QValidator::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQValidatorCustomEvent(this->objectName().toUtf8().data(), event)) { QValidator::customEvent(event); }; };
+	void Signal_Changed() { callbackQValidatorChanged(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQValidatorTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQValidatorChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQValidatorCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QValidator_ConnectChanged(void* ptr){
@@ -10611,12 +11743,40 @@ void QValidator_DisconnectChanged(void* ptr){
 	QObject::disconnect(static_cast<QValidator*>(ptr), static_cast<void (QValidator::*)()>(&QValidator::changed), static_cast<MyQValidator*>(ptr), static_cast<void (MyQValidator::*)()>(&MyQValidator::Signal_Changed));;
 }
 
+void QValidator_Changed(void* ptr){
+	static_cast<QValidator*>(ptr)->changed();
+}
+
 void QValidator_SetLocale(void* ptr, void* locale){
 	static_cast<QValidator*>(ptr)->setLocale(*static_cast<QLocale*>(locale));
 }
 
 void QValidator_DestroyQValidator(void* ptr){
 	static_cast<QValidator*>(ptr)->~QValidator();
+}
+
+void QValidator_TimerEvent(void* ptr, void* event){
+	static_cast<MyQValidator*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QValidator_TimerEventDefault(void* ptr, void* event){
+	static_cast<QValidator*>(ptr)->QValidator::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QValidator_ChildEvent(void* ptr, void* event){
+	static_cast<MyQValidator*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QValidator_ChildEventDefault(void* ptr, void* event){
+	static_cast<QValidator*>(ptr)->QValidator::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QValidator_CustomEvent(void* ptr, void* event){
+	static_cast<MyQValidator*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QValidator_CustomEventDefault(void* ptr, void* event){
+	static_cast<QValidator*>(ptr)->QValidator::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QVector2D_NewQVector2D(){
@@ -10783,44 +11943,43 @@ class MyQWindow: public QWindow {
 public:
 	MyQWindow(QScreen *targetScreen) : QWindow(targetScreen) {};
 	MyQWindow(QWindow *parent) : QWindow(parent) {};
-	void Signal_ActiveChanged() { callbackQWindowActiveChanged(this->objectName().toUtf8().data()); };
-	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindowContentOrientationChanged(this->objectName().toUtf8().data(), orientation); };
-	void Signal_FocusObjectChanged(QObject * object) { callbackQWindowFocusObjectChanged(this->objectName().toUtf8().data(), object); };
-	void Signal_HeightChanged(int arg) { callbackQWindowHeightChanged(this->objectName().toUtf8().data(), arg); };
-	void Signal_MaximumHeightChanged(int arg) { callbackQWindowMaximumHeightChanged(this->objectName().toUtf8().data(), arg); };
-	void Signal_MaximumWidthChanged(int arg) { callbackQWindowMaximumWidthChanged(this->objectName().toUtf8().data(), arg); };
-	void Signal_MinimumHeightChanged(int arg) { callbackQWindowMinimumHeightChanged(this->objectName().toUtf8().data(), arg); };
-	void Signal_MinimumWidthChanged(int arg) { callbackQWindowMinimumWidthChanged(this->objectName().toUtf8().data(), arg); };
-	void Signal_ModalityChanged(Qt::WindowModality modality) { callbackQWindowModalityChanged(this->objectName().toUtf8().data(), modality); };
-	void Signal_OpacityChanged(qreal opacity) { callbackQWindowOpacityChanged(this->objectName().toUtf8().data(), static_cast<double>(opacity)); };
-	void Signal_ScreenChanged(QScreen * screen) { callbackQWindowScreenChanged(this->objectName().toUtf8().data(), screen); };
-	void Signal_VisibilityChanged(QWindow::Visibility visibility) { callbackQWindowVisibilityChanged(this->objectName().toUtf8().data(), visibility); };
-	void Signal_VisibleChanged(bool arg) { callbackQWindowVisibleChanged(this->objectName().toUtf8().data(), arg); };
-	void Signal_WidthChanged(int arg) { callbackQWindowWidthChanged(this->objectName().toUtf8().data(), arg); };
-	void Signal_WindowStateChanged(Qt::WindowState windowState) { callbackQWindowWindowStateChanged(this->objectName().toUtf8().data(), windowState); };
-	void Signal_WindowTitleChanged(const QString & title) { callbackQWindowWindowTitleChanged(this->objectName().toUtf8().data(), title.toUtf8().data()); };
-	void Signal_XChanged(int arg) { callbackQWindowXChanged(this->objectName().toUtf8().data(), arg); };
-	void Signal_YChanged(int arg) { callbackQWindowYChanged(this->objectName().toUtf8().data(), arg); };
-protected:
-	void exposeEvent(QExposeEvent * ev) { if (!callbackQWindowExposeEvent(this->objectName().toUtf8().data(), ev)) { QWindow::exposeEvent(ev); }; };
-	void focusInEvent(QFocusEvent * ev) { if (!callbackQWindowFocusInEvent(this->objectName().toUtf8().data(), ev)) { QWindow::focusInEvent(ev); }; };
-	void focusOutEvent(QFocusEvent * ev) { if (!callbackQWindowFocusOutEvent(this->objectName().toUtf8().data(), ev)) { QWindow::focusOutEvent(ev); }; };
-	void hideEvent(QHideEvent * ev) { if (!callbackQWindowHideEvent(this->objectName().toUtf8().data(), ev)) { QWindow::hideEvent(ev); }; };
-	void keyPressEvent(QKeyEvent * ev) { if (!callbackQWindowKeyPressEvent(this->objectName().toUtf8().data(), ev)) { QWindow::keyPressEvent(ev); }; };
-	void keyReleaseEvent(QKeyEvent * ev) { if (!callbackQWindowKeyReleaseEvent(this->objectName().toUtf8().data(), ev)) { QWindow::keyReleaseEvent(ev); }; };
-	void mouseDoubleClickEvent(QMouseEvent * ev) { if (!callbackQWindowMouseDoubleClickEvent(this->objectName().toUtf8().data(), ev)) { QWindow::mouseDoubleClickEvent(ev); }; };
-	void mouseMoveEvent(QMouseEvent * ev) { if (!callbackQWindowMouseMoveEvent(this->objectName().toUtf8().data(), ev)) { QWindow::mouseMoveEvent(ev); }; };
-	void mousePressEvent(QMouseEvent * ev) { if (!callbackQWindowMousePressEvent(this->objectName().toUtf8().data(), ev)) { QWindow::mousePressEvent(ev); }; };
-	void mouseReleaseEvent(QMouseEvent * ev) { if (!callbackQWindowMouseReleaseEvent(this->objectName().toUtf8().data(), ev)) { QWindow::mouseReleaseEvent(ev); }; };
-	void moveEvent(QMoveEvent * ev) { if (!callbackQWindowMoveEvent(this->objectName().toUtf8().data(), ev)) { QWindow::moveEvent(ev); }; };
-	void resizeEvent(QResizeEvent * ev) { if (!callbackQWindowResizeEvent(this->objectName().toUtf8().data(), ev)) { QWindow::resizeEvent(ev); }; };
-	void showEvent(QShowEvent * ev) { if (!callbackQWindowShowEvent(this->objectName().toUtf8().data(), ev)) { QWindow::showEvent(ev); }; };
-	void tabletEvent(QTabletEvent * ev) { if (!callbackQWindowTabletEvent(this->objectName().toUtf8().data(), ev)) { QWindow::tabletEvent(ev); }; };
-	void touchEvent(QTouchEvent * ev) { if (!callbackQWindowTouchEvent(this->objectName().toUtf8().data(), ev)) { QWindow::touchEvent(ev); }; };
-	void wheelEvent(QWheelEvent * ev) { if (!callbackQWindowWheelEvent(this->objectName().toUtf8().data(), ev)) { QWindow::wheelEvent(ev); }; };
-	void timerEvent(QTimerEvent * event) { if (!callbackQWindowTimerEvent(this->objectName().toUtf8().data(), event)) { QWindow::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQWindowChildEvent(this->objectName().toUtf8().data(), event)) { QWindow::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQWindowCustomEvent(this->objectName().toUtf8().data(), event)) { QWindow::customEvent(event); }; };
+	void Signal_ActiveChanged() { callbackQWindowActiveChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindowContentOrientationChanged(this, this->objectName().toUtf8().data(), orientation); };
+	void exposeEvent(QExposeEvent * ev) { callbackQWindowExposeEvent(this, this->objectName().toUtf8().data(), ev); };
+	void focusInEvent(QFocusEvent * ev) { callbackQWindowFocusInEvent(this, this->objectName().toUtf8().data(), ev); };
+	void Signal_FocusObjectChanged(QObject * object) { callbackQWindowFocusObjectChanged(this, this->objectName().toUtf8().data(), object); };
+	void focusOutEvent(QFocusEvent * ev) { callbackQWindowFocusOutEvent(this, this->objectName().toUtf8().data(), ev); };
+	void Signal_HeightChanged(int arg) { callbackQWindowHeightChanged(this, this->objectName().toUtf8().data(), arg); };
+	void hideEvent(QHideEvent * ev) { callbackQWindowHideEvent(this, this->objectName().toUtf8().data(), ev); };
+	void keyPressEvent(QKeyEvent * ev) { callbackQWindowKeyPressEvent(this, this->objectName().toUtf8().data(), ev); };
+	void keyReleaseEvent(QKeyEvent * ev) { callbackQWindowKeyReleaseEvent(this, this->objectName().toUtf8().data(), ev); };
+	void Signal_MaximumHeightChanged(int arg) { callbackQWindowMaximumHeightChanged(this, this->objectName().toUtf8().data(), arg); };
+	void Signal_MaximumWidthChanged(int arg) { callbackQWindowMaximumWidthChanged(this, this->objectName().toUtf8().data(), arg); };
+	void Signal_MinimumHeightChanged(int arg) { callbackQWindowMinimumHeightChanged(this, this->objectName().toUtf8().data(), arg); };
+	void Signal_MinimumWidthChanged(int arg) { callbackQWindowMinimumWidthChanged(this, this->objectName().toUtf8().data(), arg); };
+	void Signal_ModalityChanged(Qt::WindowModality modality) { callbackQWindowModalityChanged(this, this->objectName().toUtf8().data(), modality); };
+	void mouseDoubleClickEvent(QMouseEvent * ev) { callbackQWindowMouseDoubleClickEvent(this, this->objectName().toUtf8().data(), ev); };
+	void mouseMoveEvent(QMouseEvent * ev) { callbackQWindowMouseMoveEvent(this, this->objectName().toUtf8().data(), ev); };
+	void mousePressEvent(QMouseEvent * ev) { callbackQWindowMousePressEvent(this, this->objectName().toUtf8().data(), ev); };
+	void mouseReleaseEvent(QMouseEvent * ev) { callbackQWindowMouseReleaseEvent(this, this->objectName().toUtf8().data(), ev); };
+	void moveEvent(QMoveEvent * ev) { callbackQWindowMoveEvent(this, this->objectName().toUtf8().data(), ev); };
+	void Signal_OpacityChanged(qreal opacity) { callbackQWindowOpacityChanged(this, this->objectName().toUtf8().data(), static_cast<double>(opacity)); };
+	void resizeEvent(QResizeEvent * ev) { callbackQWindowResizeEvent(this, this->objectName().toUtf8().data(), ev); };
+	void Signal_ScreenChanged(QScreen * screen) { callbackQWindowScreenChanged(this, this->objectName().toUtf8().data(), screen); };
+	void showEvent(QShowEvent * ev) { callbackQWindowShowEvent(this, this->objectName().toUtf8().data(), ev); };
+	void tabletEvent(QTabletEvent * ev) { callbackQWindowTabletEvent(this, this->objectName().toUtf8().data(), ev); };
+	void touchEvent(QTouchEvent * ev) { callbackQWindowTouchEvent(this, this->objectName().toUtf8().data(), ev); };
+	void Signal_VisibilityChanged(QWindow::Visibility visibility) { callbackQWindowVisibilityChanged(this, this->objectName().toUtf8().data(), visibility); };
+	void Signal_VisibleChanged(bool arg) { callbackQWindowVisibleChanged(this, this->objectName().toUtf8().data(), arg); };
+	void wheelEvent(QWheelEvent * ev) { callbackQWindowWheelEvent(this, this->objectName().toUtf8().data(), ev); };
+	void Signal_WidthChanged(int arg) { callbackQWindowWidthChanged(this, this->objectName().toUtf8().data(), arg); };
+	void Signal_WindowStateChanged(Qt::WindowState windowState) { callbackQWindowWindowStateChanged(this, this->objectName().toUtf8().data(), windowState); };
+	void Signal_WindowTitleChanged(const QString & title) { callbackQWindowWindowTitleChanged(this, this->objectName().toUtf8().data(), title.toUtf8().data()); };
+	void Signal_XChanged(int arg) { callbackQWindowXChanged(this, this->objectName().toUtf8().data(), arg); };
+	void Signal_YChanged(int arg) { callbackQWindowYChanged(this, this->objectName().toUtf8().data(), arg); };
+	void timerEvent(QTimerEvent * event) { callbackQWindowTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQWindowChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQWindowCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 int QWindow_ContentOrientation(void* ptr){
@@ -10935,6 +12094,10 @@ void QWindow_DisconnectActiveChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)()>(&QWindow::activeChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)()>(&MyQWindow::Signal_ActiveChanged));;
 }
 
+void QWindow_ActiveChanged(void* ptr){
+	static_cast<QWindow*>(ptr)->activeChanged();
+}
+
 void QWindow_Alert(void* ptr, int msec){
 	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "alert", Q_ARG(int, msec));
 }
@@ -10955,6 +12118,10 @@ void QWindow_DisconnectContentOrientationChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::ScreenOrientation)>(&QWindow::contentOrientationChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::ScreenOrientation)>(&MyQWindow::Signal_ContentOrientationChanged));;
 }
 
+void QWindow_ContentOrientationChanged(void* ptr, int orientation){
+	static_cast<QWindow*>(ptr)->contentOrientationChanged(static_cast<Qt::ScreenOrientation>(orientation));
+}
+
 void QWindow_Create(void* ptr){
 	static_cast<QWindow*>(ptr)->create();
 }
@@ -10967,8 +12134,28 @@ double QWindow_DevicePixelRatio(void* ptr){
 	return static_cast<double>(static_cast<QWindow*>(ptr)->devicePixelRatio());
 }
 
+int QWindow_Event(void* ptr, void* ev){
+	return static_cast<QWindow*>(ptr)->event(static_cast<QEvent*>(ev));
+}
+
+void QWindow_ExposeEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->exposeEvent(static_cast<QExposeEvent*>(ev));
+}
+
+void QWindow_ExposeEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::exposeEvent(static_cast<QExposeEvent*>(ev));
+}
+
 char* QWindow_FilePath(void* ptr){
 	return static_cast<QWindow*>(ptr)->filePath().toUtf8().data();
+}
+
+void QWindow_FocusInEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(ev));
+}
+
+void QWindow_FocusInEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::focusInEvent(static_cast<QFocusEvent*>(ev));
 }
 
 void* QWindow_FocusObject(void* ptr){
@@ -10981,6 +12168,18 @@ void QWindow_ConnectFocusObjectChanged(void* ptr){
 
 void QWindow_DisconnectFocusObjectChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(QObject *)>(&QWindow::focusObjectChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(QObject *)>(&MyQWindow::Signal_FocusObjectChanged));;
+}
+
+void QWindow_FocusObjectChanged(void* ptr, void* object){
+	static_cast<QWindow*>(ptr)->focusObjectChanged(static_cast<QObject*>(object));
+}
+
+void QWindow_FocusOutEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(ev));
+}
+
+void QWindow_FocusOutEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::focusOutEvent(static_cast<QFocusEvent*>(ev));
 }
 
 void* QWindow_FrameGeometry(void* ptr){
@@ -11007,8 +12206,20 @@ void QWindow_DisconnectHeightChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::heightChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_HeightChanged));;
 }
 
+void QWindow_HeightChanged(void* ptr, int arg){
+	static_cast<QWindow*>(ptr)->heightChanged(arg);
+}
+
 void QWindow_Hide(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "hide");
+}
+
+void QWindow_HideEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(ev));
+}
+
+void QWindow_HideEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::hideEvent(static_cast<QHideEvent*>(ev));
 }
 
 void* QWindow_Icon(void* ptr){
@@ -11035,6 +12246,22 @@ int QWindow_IsTopLevel(void* ptr){
 	return static_cast<QWindow*>(ptr)->isTopLevel();
 }
 
+void QWindow_KeyPressEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(ev));
+}
+
+void QWindow_KeyPressEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::keyPressEvent(static_cast<QKeyEvent*>(ev));
+}
+
+void QWindow_KeyReleaseEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+}
+
+void QWindow_KeyReleaseEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+}
+
 void QWindow_Lower(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "lower");
 }
@@ -11055,6 +12282,10 @@ void QWindow_DisconnectMaximumHeightChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::maximumHeightChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MaximumHeightChanged));;
 }
 
+void QWindow_MaximumHeightChanged(void* ptr, int arg){
+	static_cast<QWindow*>(ptr)->maximumHeightChanged(arg);
+}
+
 void* QWindow_MaximumSize(void* ptr){
 	return new QSize(static_cast<QSize>(static_cast<QWindow*>(ptr)->maximumSize()).width(), static_cast<QSize>(static_cast<QWindow*>(ptr)->maximumSize()).height());
 }
@@ -11071,6 +12302,10 @@ void QWindow_DisconnectMaximumWidthChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::maximumWidthChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MaximumWidthChanged));;
 }
 
+void QWindow_MaximumWidthChanged(void* ptr, int arg){
+	static_cast<QWindow*>(ptr)->maximumWidthChanged(arg);
+}
+
 int QWindow_MinimumHeight(void* ptr){
 	return static_cast<QWindow*>(ptr)->minimumHeight();
 }
@@ -11081,6 +12316,10 @@ void QWindow_ConnectMinimumHeightChanged(void* ptr){
 
 void QWindow_DisconnectMinimumHeightChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::minimumHeightChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MinimumHeightChanged));;
+}
+
+void QWindow_MinimumHeightChanged(void* ptr, int arg){
+	static_cast<QWindow*>(ptr)->minimumHeightChanged(arg);
 }
 
 void* QWindow_MinimumSize(void* ptr){
@@ -11099,6 +12338,10 @@ void QWindow_DisconnectMinimumWidthChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::minimumWidthChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MinimumWidthChanged));;
 }
 
+void QWindow_MinimumWidthChanged(void* ptr, int arg){
+	static_cast<QWindow*>(ptr)->minimumWidthChanged(arg);
+}
+
 void QWindow_ConnectModalityChanged(void* ptr){
 	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::WindowModality)>(&QWindow::modalityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::WindowModality)>(&MyQWindow::Signal_ModalityChanged));;
 }
@@ -11107,12 +12350,60 @@ void QWindow_DisconnectModalityChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::WindowModality)>(&QWindow::modalityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::WindowModality)>(&MyQWindow::Signal_ModalityChanged));;
 }
 
+void QWindow_ModalityChanged(void* ptr, int modality){
+	static_cast<QWindow*>(ptr)->modalityChanged(static_cast<Qt::WindowModality>(modality));
+}
+
+void QWindow_MouseDoubleClickEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QWindow_MouseDoubleClickEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QWindow_MouseMoveEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QWindow_MouseMoveEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QWindow_MousePressEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QWindow_MousePressEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::mousePressEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QWindow_MouseReleaseEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QWindow_MouseReleaseEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+}
+
+void QWindow_MoveEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->moveEvent(static_cast<QMoveEvent*>(ev));
+}
+
+void QWindow_MoveEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::moveEvent(static_cast<QMoveEvent*>(ev));
+}
+
 void QWindow_ConnectOpacityChanged(void* ptr){
 	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(qreal)>(&QWindow::opacityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(qreal)>(&MyQWindow::Signal_OpacityChanged));;
 }
 
 void QWindow_DisconnectOpacityChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(qreal)>(&QWindow::opacityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(qreal)>(&MyQWindow::Signal_OpacityChanged));;
+}
+
+void QWindow_OpacityChanged(void* ptr, double opacity){
+	static_cast<QWindow*>(ptr)->opacityChanged(static_cast<double>(opacity));
 }
 
 void* QWindow_Parent(void* ptr){
@@ -11143,6 +12434,14 @@ void QWindow_Resize2(void* ptr, int w, int h){
 	static_cast<QWindow*>(ptr)->resize(w, h);
 }
 
+void QWindow_ResizeEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(ev));
+}
+
+void QWindow_ResizeEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::resizeEvent(static_cast<QResizeEvent*>(ev));
+}
+
 void* QWindow_Screen(void* ptr){
 	return static_cast<QWindow*>(ptr)->screen();
 }
@@ -11153,6 +12452,10 @@ void QWindow_ConnectScreenChanged(void* ptr){
 
 void QWindow_DisconnectScreenChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(QScreen *)>(&QWindow::screenChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(QScreen *)>(&MyQWindow::Signal_ScreenChanged));;
+}
+
+void QWindow_ScreenChanged(void* ptr, void* screen){
+	static_cast<QWindow*>(ptr)->screenChanged(static_cast<QScreen*>(screen));
 }
 
 void QWindow_SetBaseSize(void* ptr, void* size){
@@ -11243,6 +12546,14 @@ void QWindow_Show(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "show");
 }
 
+void QWindow_ShowEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(ev));
+}
+
+void QWindow_ShowEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::showEvent(static_cast<QShowEvent*>(ev));
+}
+
 void QWindow_ShowFullScreen(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "showFullScreen");
 }
@@ -11271,6 +12582,22 @@ int QWindow_SurfaceType(void* ptr){
 	return static_cast<QWindow*>(ptr)->surfaceType();
 }
 
+void QWindow_TabletEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->tabletEvent(static_cast<QTabletEvent*>(ev));
+}
+
+void QWindow_TabletEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::tabletEvent(static_cast<QTabletEvent*>(ev));
+}
+
+void QWindow_TouchEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->touchEvent(static_cast<QTouchEvent*>(ev));
+}
+
+void QWindow_TouchEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::touchEvent(static_cast<QTouchEvent*>(ev));
+}
+
 void* QWindow_TransientParent(void* ptr){
 	return static_cast<QWindow*>(ptr)->transientParent();
 }
@@ -11291,12 +12618,28 @@ void QWindow_DisconnectVisibilityChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(QWindow::Visibility)>(&QWindow::visibilityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(QWindow::Visibility)>(&MyQWindow::Signal_VisibilityChanged));;
 }
 
+void QWindow_VisibilityChanged(void* ptr, int visibility){
+	static_cast<QWindow*>(ptr)->visibilityChanged(static_cast<QWindow::Visibility>(visibility));
+}
+
 void QWindow_ConnectVisibleChanged(void* ptr){
 	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(bool)>(&QWindow::visibleChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(bool)>(&MyQWindow::Signal_VisibleChanged));;
 }
 
 void QWindow_DisconnectVisibleChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(bool)>(&QWindow::visibleChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(bool)>(&MyQWindow::Signal_VisibleChanged));;
+}
+
+void QWindow_VisibleChanged(void* ptr, int arg){
+	static_cast<QWindow*>(ptr)->visibleChanged(arg != 0);
+}
+
+void QWindow_WheelEvent(void* ptr, void* ev){
+	static_cast<MyQWindow*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(ev));
+}
+
+void QWindow_WheelEventDefault(void* ptr, void* ev){
+	static_cast<QWindow*>(ptr)->QWindow::wheelEvent(static_cast<QWheelEvent*>(ev));
 }
 
 int QWindow_Width(void* ptr){
@@ -11311,6 +12654,10 @@ void QWindow_DisconnectWidthChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::widthChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_WidthChanged));;
 }
 
+void QWindow_WidthChanged(void* ptr, int arg){
+	static_cast<QWindow*>(ptr)->widthChanged(arg);
+}
+
 int QWindow_WindowState(void* ptr){
 	return static_cast<QWindow*>(ptr)->windowState();
 }
@@ -11323,12 +12670,20 @@ void QWindow_DisconnectWindowStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::WindowState)>(&QWindow::windowStateChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::WindowState)>(&MyQWindow::Signal_WindowStateChanged));;
 }
 
+void QWindow_WindowStateChanged(void* ptr, int windowState){
+	static_cast<QWindow*>(ptr)->windowStateChanged(static_cast<Qt::WindowState>(windowState));
+}
+
 void QWindow_ConnectWindowTitleChanged(void* ptr){
 	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(const QString &)>(&QWindow::windowTitleChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(const QString &)>(&MyQWindow::Signal_WindowTitleChanged));;
 }
 
 void QWindow_DisconnectWindowTitleChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(const QString &)>(&QWindow::windowTitleChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(const QString &)>(&MyQWindow::Signal_WindowTitleChanged));;
+}
+
+void QWindow_WindowTitleChanged(void* ptr, char* title){
+	static_cast<QWindow*>(ptr)->windowTitleChanged(QString(title));
 }
 
 int QWindow_X(void* ptr){
@@ -11343,6 +12698,10 @@ void QWindow_DisconnectXChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::xChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_XChanged));;
 }
 
+void QWindow_XChanged(void* ptr, int arg){
+	static_cast<QWindow*>(ptr)->xChanged(arg);
+}
+
 int QWindow_Y(void* ptr){
 	return static_cast<QWindow*>(ptr)->y();
 }
@@ -11355,8 +12714,36 @@ void QWindow_DisconnectYChanged(void* ptr){
 	QObject::disconnect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::yChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_YChanged));;
 }
 
+void QWindow_YChanged(void* ptr, int arg){
+	static_cast<QWindow*>(ptr)->yChanged(arg);
+}
+
 void QWindow_DestroyQWindow(void* ptr){
 	static_cast<QWindow*>(ptr)->~QWindow();
+}
+
+void QWindow_TimerEvent(void* ptr, void* event){
+	static_cast<MyQWindow*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QWindow_TimerEventDefault(void* ptr, void* event){
+	static_cast<QWindow*>(ptr)->QWindow::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QWindow_ChildEvent(void* ptr, void* event){
+	static_cast<MyQWindow*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QWindow_ChildEventDefault(void* ptr, void* event){
+	static_cast<QWindow*>(ptr)->QWindow::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QWindow_CustomEvent(void* ptr, void* event){
+	static_cast<MyQWindow*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QWindow_CustomEventDefault(void* ptr, void* event){
+	static_cast<QWindow*>(ptr)->QWindow::customEvent(static_cast<QEvent*>(event));
 }
 
 int QWindowStateChangeEvent_OldState(void* ptr){

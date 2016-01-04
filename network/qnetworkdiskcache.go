@@ -80,7 +80,7 @@ func (ptr *QNetworkDiskCache) DisconnectClear() {
 }
 
 //export callbackQNetworkDiskCacheClear
-func callbackQNetworkDiskCacheClear(ptrName *C.char) bool {
+func callbackQNetworkDiskCacheClear(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QNetworkDiskCache::clear")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
@@ -91,6 +91,22 @@ func callbackQNetworkDiskCacheClear(ptrName *C.char) bool {
 
 }
 
+func (ptr *QNetworkDiskCache) Clear() {
+	defer qt.Recovering("QNetworkDiskCache::clear")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkDiskCache_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QNetworkDiskCache) ClearDefault() {
+	defer qt.Recovering("QNetworkDiskCache::clear")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkDiskCache_ClearDefault(ptr.Pointer())
+	}
+}
+
 func (ptr *QNetworkDiskCache) Data(url core.QUrl_ITF) *core.QIODevice {
 	defer qt.Recovering("QNetworkDiskCache::data")
 
@@ -98,6 +114,15 @@ func (ptr *QNetworkDiskCache) Data(url core.QUrl_ITF) *core.QIODevice {
 		return core.NewQIODeviceFromPointer(C.QNetworkDiskCache_Data(ptr.Pointer(), core.PointerFromQUrl(url)))
 	}
 	return nil
+}
+
+func (ptr *QNetworkDiskCache) Expire() int64 {
+	defer qt.Recovering("QNetworkDiskCache::expire")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QNetworkDiskCache_Expire(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QNetworkDiskCache) MaximumCacheSize() int64 {
@@ -162,15 +187,30 @@ func (ptr *QNetworkDiskCache) DisconnectTimerEvent() {
 }
 
 //export callbackQNetworkDiskCacheTimerEvent
-func callbackQNetworkDiskCacheTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkDiskCacheTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkDiskCacheFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkDiskCache) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNetworkDiskCache::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkDiskCache_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QNetworkDiskCache) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNetworkDiskCache::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkDiskCache_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QNetworkDiskCache) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -192,15 +232,30 @@ func (ptr *QNetworkDiskCache) DisconnectChildEvent() {
 }
 
 //export callbackQNetworkDiskCacheChildEvent
-func callbackQNetworkDiskCacheChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkDiskCacheChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkDiskCacheFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkDiskCache) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNetworkDiskCache::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkDiskCache_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QNetworkDiskCache) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNetworkDiskCache::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkDiskCache_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QNetworkDiskCache) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -222,13 +277,28 @@ func (ptr *QNetworkDiskCache) DisconnectCustomEvent() {
 }
 
 //export callbackQNetworkDiskCacheCustomEvent
-func callbackQNetworkDiskCacheCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkDiskCacheCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkDiskCacheFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkDiskCache) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QNetworkDiskCache::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkDiskCache_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QNetworkDiskCache) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QNetworkDiskCache::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkDiskCache_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

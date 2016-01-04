@@ -38,6 +38,15 @@ func (ptr *QMacNativeWidget) QMacNativeWidget_PTR() *QMacNativeWidget {
 	return ptr
 }
 
+func (ptr *QMacNativeWidget) Event(ev core.QEvent_ITF) bool {
+	defer qt.Recovering("QMacNativeWidget::event")
+
+	if ptr.Pointer() != nil {
+		return C.QMacNativeWidget_Event(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
+	}
+	return false
+}
+
 func (ptr *QMacNativeWidget) SizeHint() *core.QSize {
 	defer qt.Recovering("QMacNativeWidget::sizeHint")
 
@@ -75,15 +84,30 @@ func (ptr *QMacNativeWidget) DisconnectActionEvent() {
 }
 
 //export callbackQMacNativeWidgetActionEvent
-func callbackQMacNativeWidgetActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -105,15 +129,30 @@ func (ptr *QMacNativeWidget) DisconnectDragEnterEvent() {
 }
 
 //export callbackQMacNativeWidgetDragEnterEvent
-func callbackQMacNativeWidgetDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -135,15 +174,30 @@ func (ptr *QMacNativeWidget) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQMacNativeWidgetDragLeaveEvent
-func callbackQMacNativeWidgetDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -165,15 +219,30 @@ func (ptr *QMacNativeWidget) DisconnectDragMoveEvent() {
 }
 
 //export callbackQMacNativeWidgetDragMoveEvent
-func callbackQMacNativeWidgetDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -195,15 +264,30 @@ func (ptr *QMacNativeWidget) DisconnectDropEvent() {
 }
 
 //export callbackQMacNativeWidgetDropEvent
-func callbackQMacNativeWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -225,15 +309,30 @@ func (ptr *QMacNativeWidget) DisconnectEnterEvent() {
 }
 
 //export callbackQMacNativeWidgetEnterEvent
-func callbackQMacNativeWidgetEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -255,15 +354,30 @@ func (ptr *QMacNativeWidget) DisconnectFocusInEvent() {
 }
 
 //export callbackQMacNativeWidgetFocusInEvent
-func callbackQMacNativeWidgetFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -285,15 +399,30 @@ func (ptr *QMacNativeWidget) DisconnectFocusOutEvent() {
 }
 
 //export callbackQMacNativeWidgetFocusOutEvent
-func callbackQMacNativeWidgetFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -315,15 +444,30 @@ func (ptr *QMacNativeWidget) DisconnectHideEvent() {
 }
 
 //export callbackQMacNativeWidgetHideEvent
-func callbackQMacNativeWidgetHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -345,15 +489,30 @@ func (ptr *QMacNativeWidget) DisconnectLeaveEvent() {
 }
 
 //export callbackQMacNativeWidgetLeaveEvent
-func callbackQMacNativeWidgetLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -375,15 +534,30 @@ func (ptr *QMacNativeWidget) DisconnectMoveEvent() {
 }
 
 //export callbackQMacNativeWidgetMoveEvent
-func callbackQMacNativeWidgetMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -405,15 +579,30 @@ func (ptr *QMacNativeWidget) DisconnectPaintEvent() {
 }
 
 //export callbackQMacNativeWidgetPaintEvent
-func callbackQMacNativeWidgetPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectSetVisible(f func(visible bool)) {
@@ -435,7 +624,7 @@ func (ptr *QMacNativeWidget) DisconnectSetVisible() {
 }
 
 //export callbackQMacNativeWidgetSetVisible
-func callbackQMacNativeWidgetSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQMacNativeWidgetSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QMacNativeWidget::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -444,6 +633,22 @@ func callbackQMacNativeWidgetSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QMacNativeWidget) SetVisible(visible bool) {
+	defer qt.Recovering("QMacNativeWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QMacNativeWidget) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QMacNativeWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -465,15 +670,30 @@ func (ptr *QMacNativeWidget) DisconnectShowEvent() {
 }
 
 //export callbackQMacNativeWidgetShowEvent
-func callbackQMacNativeWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -495,15 +715,30 @@ func (ptr *QMacNativeWidget) DisconnectChangeEvent() {
 }
 
 //export callbackQMacNativeWidgetChangeEvent
-func callbackQMacNativeWidgetChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -525,15 +760,30 @@ func (ptr *QMacNativeWidget) DisconnectCloseEvent() {
 }
 
 //export callbackQMacNativeWidgetCloseEvent
-func callbackQMacNativeWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -555,15 +805,30 @@ func (ptr *QMacNativeWidget) DisconnectContextMenuEvent() {
 }
 
 //export callbackQMacNativeWidgetContextMenuEvent
-func callbackQMacNativeWidgetContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -585,15 +850,30 @@ func (ptr *QMacNativeWidget) DisconnectInitPainter() {
 }
 
 //export callbackQMacNativeWidgetInitPainter
-func callbackQMacNativeWidgetInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQMacNativeWidgetInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QMacNativeWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QMacNativeWidget) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QMacNativeWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -615,15 +895,30 @@ func (ptr *QMacNativeWidget) DisconnectInputMethodEvent() {
 }
 
 //export callbackQMacNativeWidgetInputMethodEvent
-func callbackQMacNativeWidgetInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -645,15 +940,30 @@ func (ptr *QMacNativeWidget) DisconnectKeyPressEvent() {
 }
 
 //export callbackQMacNativeWidgetKeyPressEvent
-func callbackQMacNativeWidgetKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -675,15 +985,30 @@ func (ptr *QMacNativeWidget) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQMacNativeWidgetKeyReleaseEvent
-func callbackQMacNativeWidgetKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -705,15 +1030,30 @@ func (ptr *QMacNativeWidget) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQMacNativeWidgetMouseDoubleClickEvent
-func callbackQMacNativeWidgetMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -735,15 +1075,30 @@ func (ptr *QMacNativeWidget) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQMacNativeWidgetMouseMoveEvent
-func callbackQMacNativeWidgetMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -765,15 +1120,30 @@ func (ptr *QMacNativeWidget) DisconnectMousePressEvent() {
 }
 
 //export callbackQMacNativeWidgetMousePressEvent
-func callbackQMacNativeWidgetMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -795,15 +1165,30 @@ func (ptr *QMacNativeWidget) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQMacNativeWidgetMouseReleaseEvent
-func callbackQMacNativeWidgetMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -825,15 +1210,30 @@ func (ptr *QMacNativeWidget) DisconnectResizeEvent() {
 }
 
 //export callbackQMacNativeWidgetResizeEvent
-func callbackQMacNativeWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -855,15 +1255,30 @@ func (ptr *QMacNativeWidget) DisconnectTabletEvent() {
 }
 
 //export callbackQMacNativeWidgetTabletEvent
-func callbackQMacNativeWidgetTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -885,15 +1300,30 @@ func (ptr *QMacNativeWidget) DisconnectWheelEvent() {
 }
 
 //export callbackQMacNativeWidgetWheelEvent
-func callbackQMacNativeWidgetWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -915,15 +1345,30 @@ func (ptr *QMacNativeWidget) DisconnectTimerEvent() {
 }
 
 //export callbackQMacNativeWidgetTimerEvent
-func callbackQMacNativeWidgetTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -945,15 +1390,30 @@ func (ptr *QMacNativeWidget) DisconnectChildEvent() {
 }
 
 //export callbackQMacNativeWidgetChildEvent
-func callbackQMacNativeWidgetChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMacNativeWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -975,13 +1435,28 @@ func (ptr *QMacNativeWidget) DisconnectCustomEvent() {
 }
 
 //export callbackQMacNativeWidgetCustomEvent
-func callbackQMacNativeWidgetCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacNativeWidgetCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacNativeWidget::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMacNativeWidgetFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacNativeWidget) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMacNativeWidget) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacNativeWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacNativeWidget_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

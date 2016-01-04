@@ -325,13 +325,21 @@ func (ptr *QComboBox) DisconnectActivated2() {
 }
 
 //export callbackQComboBoxActivated2
-func callbackQComboBoxActivated2(ptrName *C.char, text *C.char) {
+func callbackQComboBoxActivated2(ptr unsafe.Pointer, ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::activated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activated2"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
+}
+
+func (ptr *QComboBox) Activated2(text string) {
+	defer qt.Recovering("QComboBox::activated")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_Activated2(ptr.Pointer(), C.CString(text))
+	}
 }
 
 func (ptr *QComboBox) ConnectActivated(f func(index int)) {
@@ -353,13 +361,21 @@ func (ptr *QComboBox) DisconnectActivated() {
 }
 
 //export callbackQComboBoxActivated
-func callbackQComboBoxActivated(ptrName *C.char, index C.int) {
+func callbackQComboBoxActivated(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QComboBox::activated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
+}
+
+func (ptr *QComboBox) Activated(index int) {
+	defer qt.Recovering("QComboBox::activated")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_Activated(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QComboBox) AddItem2(icon gui.QIcon_ITF, text string, userData core.QVariant_ITF) {
@@ -405,15 +421,30 @@ func (ptr *QComboBox) DisconnectChangeEvent() {
 }
 
 //export callbackQComboBoxChangeEvent
-func callbackQComboBoxChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QComboBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QComboBox) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QComboBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
 }
 
 func (ptr *QComboBox) Clear() {
@@ -460,15 +491,30 @@ func (ptr *QComboBox) DisconnectContextMenuEvent() {
 }
 
 //export callbackQComboBoxContextMenuEvent
-func callbackQComboBoxContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QComboBox::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QComboBox) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QComboBox::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QComboBox) ConnectCurrentIndexChanged2(f func(text string)) {
@@ -490,13 +536,21 @@ func (ptr *QComboBox) DisconnectCurrentIndexChanged2() {
 }
 
 //export callbackQComboBoxCurrentIndexChanged2
-func callbackQComboBoxCurrentIndexChanged2(ptrName *C.char, text *C.char) {
+func callbackQComboBoxCurrentIndexChanged2(ptr unsafe.Pointer, ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::currentIndexChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentIndexChanged2"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
+}
+
+func (ptr *QComboBox) CurrentIndexChanged2(text string) {
+	defer qt.Recovering("QComboBox::currentIndexChanged")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_CurrentIndexChanged2(ptr.Pointer(), C.CString(text))
+	}
 }
 
 func (ptr *QComboBox) ConnectCurrentIndexChanged(f func(index int)) {
@@ -518,13 +572,21 @@ func (ptr *QComboBox) DisconnectCurrentIndexChanged() {
 }
 
 //export callbackQComboBoxCurrentIndexChanged
-func callbackQComboBoxCurrentIndexChanged(ptrName *C.char, index C.int) {
+func callbackQComboBoxCurrentIndexChanged(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QComboBox::currentIndexChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentIndexChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
+}
+
+func (ptr *QComboBox) CurrentIndexChanged(index int) {
+	defer qt.Recovering("QComboBox::currentIndexChanged")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_CurrentIndexChanged(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QComboBox) ConnectCurrentTextChanged(f func(text string)) {
@@ -546,13 +608,21 @@ func (ptr *QComboBox) DisconnectCurrentTextChanged() {
 }
 
 //export callbackQComboBoxCurrentTextChanged
-func callbackQComboBoxCurrentTextChanged(ptrName *C.char, text *C.char) {
+func callbackQComboBoxCurrentTextChanged(ptr unsafe.Pointer, ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::currentTextChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
+}
+
+func (ptr *QComboBox) CurrentTextChanged(text string) {
+	defer qt.Recovering("QComboBox::currentTextChanged")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_CurrentTextChanged(ptr.Pointer(), C.CString(text))
+	}
 }
 
 func (ptr *QComboBox) ConnectEditTextChanged(f func(text string)) {
@@ -574,13 +644,21 @@ func (ptr *QComboBox) DisconnectEditTextChanged() {
 }
 
 //export callbackQComboBoxEditTextChanged
-func callbackQComboBoxEditTextChanged(ptrName *C.char, text *C.char) {
+func callbackQComboBoxEditTextChanged(ptr unsafe.Pointer, ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::editTextChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "editTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
+}
+
+func (ptr *QComboBox) EditTextChanged(text string) {
+	defer qt.Recovering("QComboBox::editTextChanged")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_EditTextChanged(ptr.Pointer(), C.CString(text))
+	}
 }
 
 func (ptr *QComboBox) Event(event core.QEvent_ITF) bool {
@@ -629,15 +707,30 @@ func (ptr *QComboBox) DisconnectFocusInEvent() {
 }
 
 //export callbackQComboBoxFocusInEvent
-func callbackQComboBoxFocusInEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) FocusInEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QComboBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QComboBox) FocusInEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QComboBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QComboBox) ConnectFocusOutEvent(f func(e *gui.QFocusEvent)) {
@@ -659,15 +752,30 @@ func (ptr *QComboBox) DisconnectFocusOutEvent() {
 }
 
 //export callbackQComboBoxFocusOutEvent
-func callbackQComboBoxFocusOutEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) FocusOutEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QComboBox::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QComboBox) FocusOutEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QComboBox::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QComboBox) ConnectHideEvent(f func(e *gui.QHideEvent)) {
@@ -689,15 +797,30 @@ func (ptr *QComboBox) DisconnectHideEvent() {
 }
 
 //export callbackQComboBoxHideEvent
-func callbackQComboBoxHideEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxHideEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) HideEvent(e gui.QHideEvent_ITF) {
+	defer qt.Recovering("QComboBox::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(e))
+	}
+}
+
+func (ptr *QComboBox) HideEventDefault(e gui.QHideEvent_ITF) {
+	defer qt.Recovering("QComboBox::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(e))
+	}
 }
 
 func (ptr *QComboBox) ConnectHidePopup(f func()) {
@@ -719,15 +842,30 @@ func (ptr *QComboBox) DisconnectHidePopup() {
 }
 
 //export callbackQComboBoxHidePopup
-func callbackQComboBoxHidePopup(ptrName *C.char) bool {
+func callbackQComboBoxHidePopup(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QComboBox::hidePopup")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hidePopup"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).HidePopupDefault()
 	}
-	return false
+}
 
+func (ptr *QComboBox) HidePopup() {
+	defer qt.Recovering("QComboBox::hidePopup")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_HidePopup(ptr.Pointer())
+	}
+}
+
+func (ptr *QComboBox) HidePopupDefault() {
+	defer qt.Recovering("QComboBox::hidePopup")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_HidePopupDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QComboBox) ConnectHighlighted2(f func(text string)) {
@@ -749,13 +887,21 @@ func (ptr *QComboBox) DisconnectHighlighted2() {
 }
 
 //export callbackQComboBoxHighlighted2
-func callbackQComboBoxHighlighted2(ptrName *C.char, text *C.char) {
+func callbackQComboBoxHighlighted2(ptr unsafe.Pointer, ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QComboBox::highlighted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted2"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
+}
+
+func (ptr *QComboBox) Highlighted2(text string) {
+	defer qt.Recovering("QComboBox::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_Highlighted2(ptr.Pointer(), C.CString(text))
+	}
 }
 
 func (ptr *QComboBox) ConnectHighlighted(f func(index int)) {
@@ -777,13 +923,21 @@ func (ptr *QComboBox) DisconnectHighlighted() {
 }
 
 //export callbackQComboBoxHighlighted
-func callbackQComboBoxHighlighted(ptrName *C.char, index C.int) {
+func callbackQComboBoxHighlighted(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QComboBox::highlighted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
+}
+
+func (ptr *QComboBox) Highlighted(index int) {
+	defer qt.Recovering("QComboBox::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_Highlighted(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QComboBox) ConnectInputMethodEvent(f func(e *gui.QInputMethodEvent)) {
@@ -805,15 +959,30 @@ func (ptr *QComboBox) DisconnectInputMethodEvent() {
 }
 
 //export callbackQComboBoxInputMethodEvent
-func callbackQComboBoxInputMethodEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) InputMethodEvent(e gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QComboBox::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(e))
+	}
+}
+
+func (ptr *QComboBox) InputMethodEventDefault(e gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QComboBox::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(e))
+	}
 }
 
 func (ptr *QComboBox) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
@@ -912,15 +1081,30 @@ func (ptr *QComboBox) DisconnectKeyPressEvent() {
 }
 
 //export callbackQComboBoxKeyPressEvent
-func callbackQComboBoxKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QComboBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QComboBox) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QComboBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QComboBox) ConnectKeyReleaseEvent(f func(e *gui.QKeyEvent)) {
@@ -942,15 +1126,30 @@ func (ptr *QComboBox) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQComboBoxKeyReleaseEvent
-func callbackQComboBoxKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) KeyReleaseEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QComboBox::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QComboBox) KeyReleaseEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QComboBox::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QComboBox) LineEdit() *QLineEdit {
@@ -999,15 +1198,30 @@ func (ptr *QComboBox) DisconnectMousePressEvent() {
 }
 
 //export callbackQComboBoxMousePressEvent
-func callbackQComboBoxMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) MousePressEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QComboBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QComboBox) MousePressEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QComboBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QComboBox) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -1029,15 +1243,30 @@ func (ptr *QComboBox) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQComboBoxMouseReleaseEvent
-func callbackQComboBoxMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QComboBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QComboBox) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QComboBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QComboBox) ConnectPaintEvent(f func(e *gui.QPaintEvent)) {
@@ -1059,15 +1288,30 @@ func (ptr *QComboBox) DisconnectPaintEvent() {
 }
 
 //export callbackQComboBoxPaintEvent
-func callbackQComboBoxPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxPaintEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) PaintEvent(e gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QComboBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(e))
+	}
+}
+
+func (ptr *QComboBox) PaintEventDefault(e gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QComboBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(e))
+	}
 }
 
 func (ptr *QComboBox) RemoveItem(index int) {
@@ -1097,15 +1341,30 @@ func (ptr *QComboBox) DisconnectResizeEvent() {
 }
 
 //export callbackQComboBoxResizeEvent
-func callbackQComboBoxResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxResizeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) ResizeEvent(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QComboBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
+}
+
+func (ptr *QComboBox) ResizeEventDefault(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QComboBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
 }
 
 func (ptr *QComboBox) RootModelIndex() *core.QModelIndex {
@@ -1208,15 +1467,30 @@ func (ptr *QComboBox) DisconnectShowEvent() {
 }
 
 //export callbackQComboBoxShowEvent
-func callbackQComboBoxShowEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxShowEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) ShowEvent(e gui.QShowEvent_ITF) {
+	defer qt.Recovering("QComboBox::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(e))
+	}
+}
+
+func (ptr *QComboBox) ShowEventDefault(e gui.QShowEvent_ITF) {
+	defer qt.Recovering("QComboBox::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(e))
+	}
 }
 
 func (ptr *QComboBox) ConnectShowPopup(f func()) {
@@ -1238,15 +1512,30 @@ func (ptr *QComboBox) DisconnectShowPopup() {
 }
 
 //export callbackQComboBoxShowPopup
-func callbackQComboBoxShowPopup(ptrName *C.char) bool {
+func callbackQComboBoxShowPopup(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QComboBox::showPopup")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showPopup"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).ShowPopupDefault()
 	}
-	return false
+}
 
+func (ptr *QComboBox) ShowPopup() {
+	defer qt.Recovering("QComboBox::showPopup")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ShowPopup(ptr.Pointer())
+	}
+}
+
+func (ptr *QComboBox) ShowPopupDefault() {
+	defer qt.Recovering("QComboBox::showPopup")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ShowPopupDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QComboBox) SizeHint() *core.QSize {
@@ -1295,15 +1584,30 @@ func (ptr *QComboBox) DisconnectWheelEvent() {
 }
 
 //export callbackQComboBoxWheelEvent
-func callbackQComboBoxWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQComboBoxWheelEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QComboBox) WheelEvent(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QComboBox::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
+}
+
+func (ptr *QComboBox) WheelEventDefault(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QComboBox::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
 }
 
 func (ptr *QComboBox) DestroyQComboBox() {
@@ -1334,15 +1638,30 @@ func (ptr *QComboBox) DisconnectActionEvent() {
 }
 
 //export callbackQComboBoxActionEvent
-func callbackQComboBoxActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QComboBox::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QComboBox) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QComboBox::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -1364,15 +1683,30 @@ func (ptr *QComboBox) DisconnectDragEnterEvent() {
 }
 
 //export callbackQComboBoxDragEnterEvent
-func callbackQComboBoxDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QComboBox::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QComboBox) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QComboBox::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -1394,15 +1728,30 @@ func (ptr *QComboBox) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQComboBoxDragLeaveEvent
-func callbackQComboBoxDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QComboBox::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QComboBox) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QComboBox::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -1424,15 +1773,30 @@ func (ptr *QComboBox) DisconnectDragMoveEvent() {
 }
 
 //export callbackQComboBoxDragMoveEvent
-func callbackQComboBoxDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QComboBox::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QComboBox) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QComboBox::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -1454,15 +1818,30 @@ func (ptr *QComboBox) DisconnectDropEvent() {
 }
 
 //export callbackQComboBoxDropEvent
-func callbackQComboBoxDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QComboBox::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QComboBox) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QComboBox::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -1484,15 +1863,30 @@ func (ptr *QComboBox) DisconnectEnterEvent() {
 }
 
 //export callbackQComboBoxEnterEvent
-func callbackQComboBoxEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QComboBox::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QComboBox) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QComboBox::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -1514,15 +1908,30 @@ func (ptr *QComboBox) DisconnectLeaveEvent() {
 }
 
 //export callbackQComboBoxLeaveEvent
-func callbackQComboBoxLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QComboBox::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QComboBox) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QComboBox::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1544,15 +1953,30 @@ func (ptr *QComboBox) DisconnectMoveEvent() {
 }
 
 //export callbackQComboBoxMoveEvent
-func callbackQComboBoxMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QComboBox::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QComboBox) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QComboBox::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectSetVisible(f func(visible bool)) {
@@ -1574,7 +1998,7 @@ func (ptr *QComboBox) DisconnectSetVisible() {
 }
 
 //export callbackQComboBoxSetVisible
-func callbackQComboBoxSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQComboBoxSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QComboBox::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -1583,6 +2007,22 @@ func callbackQComboBoxSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QComboBox) SetVisible(visible bool) {
+	defer qt.Recovering("QComboBox::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QComboBox) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QComboBox::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QComboBox) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -1604,15 +2044,30 @@ func (ptr *QComboBox) DisconnectCloseEvent() {
 }
 
 //export callbackQComboBoxCloseEvent
-func callbackQComboBoxCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QComboBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QComboBox) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QComboBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1634,15 +2089,30 @@ func (ptr *QComboBox) DisconnectInitPainter() {
 }
 
 //export callbackQComboBoxInitPainter
-func callbackQComboBoxInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQComboBoxInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QComboBox) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QComboBox::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QComboBox) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QComboBox::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QComboBox) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1664,15 +2134,30 @@ func (ptr *QComboBox) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQComboBoxMouseDoubleClickEvent
-func callbackQComboBoxMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QComboBox::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QComboBox) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QComboBox::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -1694,15 +2179,30 @@ func (ptr *QComboBox) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQComboBoxMouseMoveEvent
-func callbackQComboBoxMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QComboBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QComboBox) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QComboBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1724,15 +2224,30 @@ func (ptr *QComboBox) DisconnectTabletEvent() {
 }
 
 //export callbackQComboBoxTabletEvent
-func callbackQComboBoxTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QComboBox::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QComboBox) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QComboBox::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1754,15 +2269,30 @@ func (ptr *QComboBox) DisconnectTimerEvent() {
 }
 
 //export callbackQComboBoxTimerEvent
-func callbackQComboBoxTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QComboBox::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QComboBox) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QComboBox::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1784,15 +2314,30 @@ func (ptr *QComboBox) DisconnectChildEvent() {
 }
 
 //export callbackQComboBoxChildEvent
-func callbackQComboBoxChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QComboBox::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QComboBox) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QComboBox::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QComboBox) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1814,13 +2359,28 @@ func (ptr *QComboBox) DisconnectCustomEvent() {
 }
 
 //export callbackQComboBoxCustomEvent
-func callbackQComboBoxCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQComboBoxCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QComboBox::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQComboBoxFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QComboBox) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QComboBox::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QComboBox) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QComboBox::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QComboBox_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

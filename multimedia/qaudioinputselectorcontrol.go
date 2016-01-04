@@ -65,13 +65,21 @@ func (ptr *QAudioInputSelectorControl) DisconnectActiveInputChanged() {
 }
 
 //export callbackQAudioInputSelectorControlActiveInputChanged
-func callbackQAudioInputSelectorControlActiveInputChanged(ptrName *C.char, name *C.char) {
+func callbackQAudioInputSelectorControlActiveInputChanged(ptr unsafe.Pointer, ptrName *C.char, name *C.char) {
 	defer qt.Recovering("callback QAudioInputSelectorControl::activeInputChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activeInputChanged"); signal != nil {
 		signal.(func(string))(C.GoString(name))
 	}
 
+}
+
+func (ptr *QAudioInputSelectorControl) ActiveInputChanged(name string) {
+	defer qt.Recovering("QAudioInputSelectorControl::activeInputChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioInputSelectorControl_ActiveInputChanged(ptr.Pointer(), C.CString(name))
+	}
 }
 
 func (ptr *QAudioInputSelectorControl) ConnectAvailableInputsChanged(f func()) {
@@ -93,13 +101,21 @@ func (ptr *QAudioInputSelectorControl) DisconnectAvailableInputsChanged() {
 }
 
 //export callbackQAudioInputSelectorControlAvailableInputsChanged
-func callbackQAudioInputSelectorControlAvailableInputsChanged(ptrName *C.char) {
+func callbackQAudioInputSelectorControlAvailableInputsChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAudioInputSelectorControl::availableInputsChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "availableInputsChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QAudioInputSelectorControl) AvailableInputsChanged() {
+	defer qt.Recovering("QAudioInputSelectorControl::availableInputsChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioInputSelectorControl_AvailableInputsChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QAudioInputSelectorControl) DefaultInput() string {
@@ -156,15 +172,30 @@ func (ptr *QAudioInputSelectorControl) DisconnectTimerEvent() {
 }
 
 //export callbackQAudioInputSelectorControlTimerEvent
-func callbackQAudioInputSelectorControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAudioInputSelectorControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAudioInputSelectorControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAudioInputSelectorControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAudioInputSelectorControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAudioInputSelectorControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioInputSelectorControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAudioInputSelectorControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAudioInputSelectorControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioInputSelectorControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAudioInputSelectorControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -186,15 +217,30 @@ func (ptr *QAudioInputSelectorControl) DisconnectChildEvent() {
 }
 
 //export callbackQAudioInputSelectorControlChildEvent
-func callbackQAudioInputSelectorControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAudioInputSelectorControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAudioInputSelectorControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAudioInputSelectorControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAudioInputSelectorControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAudioInputSelectorControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioInputSelectorControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAudioInputSelectorControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAudioInputSelectorControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioInputSelectorControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAudioInputSelectorControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -216,13 +262,28 @@ func (ptr *QAudioInputSelectorControl) DisconnectCustomEvent() {
 }
 
 //export callbackQAudioInputSelectorControlCustomEvent
-func callbackQAudioInputSelectorControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAudioInputSelectorControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAudioInputSelectorControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAudioInputSelectorControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAudioInputSelectorControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAudioInputSelectorControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioInputSelectorControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAudioInputSelectorControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAudioInputSelectorControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioInputSelectorControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

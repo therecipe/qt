@@ -75,15 +75,30 @@ func (ptr *QGraphicsPathItem) DisconnectPaint() {
 }
 
 //export callbackQGraphicsPathItemPaint
-func callbackQGraphicsPathItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQGraphicsPathItemPaint(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsPathItem::paint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paint"); signal != nil {
 		signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQGraphicsPathItemFromPointer(ptr).PaintDefault(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QGraphicsPathItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QGraphicsPathItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsPathItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QGraphicsPathItem) PaintDefault(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QGraphicsPathItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsPathItem_PaintDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QGraphicsPathItem) SetPath(path gui.QPainterPath_ITF) {

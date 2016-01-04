@@ -113,15 +113,30 @@ func (ptr *QDoubleValidator) DisconnectTimerEvent() {
 }
 
 //export callbackQDoubleValidatorTimerEvent
-func callbackQDoubleValidatorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDoubleValidatorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDoubleValidator::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDoubleValidatorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDoubleValidator) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDoubleValidator::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDoubleValidator_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDoubleValidator) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDoubleValidator::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDoubleValidator_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDoubleValidator) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -143,15 +158,30 @@ func (ptr *QDoubleValidator) DisconnectChildEvent() {
 }
 
 //export callbackQDoubleValidatorChildEvent
-func callbackQDoubleValidatorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDoubleValidatorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDoubleValidator::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDoubleValidatorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDoubleValidator) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDoubleValidator::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDoubleValidator_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDoubleValidator) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDoubleValidator::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDoubleValidator_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDoubleValidator) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -173,13 +203,28 @@ func (ptr *QDoubleValidator) DisconnectCustomEvent() {
 }
 
 //export callbackQDoubleValidatorCustomEvent
-func callbackQDoubleValidatorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDoubleValidatorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDoubleValidator::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDoubleValidatorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDoubleValidator) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDoubleValidator::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDoubleValidator_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDoubleValidator) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDoubleValidator::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDoubleValidator_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -101,15 +101,30 @@ func (ptr *QAbstractProxyModel) DisconnectFetchMore() {
 }
 
 //export callbackQAbstractProxyModelFetchMore
-func callbackQAbstractProxyModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+func callbackQAbstractProxyModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractProxyModel::fetchMore")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
-		return true
+	} else {
+		NewQAbstractProxyModelFromPointer(ptr).FetchMoreDefault(NewQModelIndexFromPointer(parent))
 	}
-	return false
+}
 
+func (ptr *QAbstractProxyModel) FetchMore(parent QModelIndex_ITF) {
+	defer qt.Recovering("QAbstractProxyModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_FetchMore(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QAbstractProxyModel) FetchMoreDefault(parent QModelIndex_ITF) {
+	defer qt.Recovering("QAbstractProxyModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_FetchMoreDefault(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
 }
 
 func (ptr *QAbstractProxyModel) Flags(index QModelIndex_ITF) Qt__ItemFlag {
@@ -185,15 +200,30 @@ func (ptr *QAbstractProxyModel) DisconnectRevert() {
 }
 
 //export callbackQAbstractProxyModelRevert
-func callbackQAbstractProxyModelRevert(ptrName *C.char) bool {
+func callbackQAbstractProxyModelRevert(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractProxyModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQAbstractProxyModelFromPointer(ptr).RevertDefault()
 	}
-	return false
+}
 
+func (ptr *QAbstractProxyModel) Revert() {
+	defer qt.Recovering("QAbstractProxyModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_Revert(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractProxyModel) RevertDefault() {
+	defer qt.Recovering("QAbstractProxyModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_RevertDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractProxyModel) SetData(index QModelIndex_ITF, value QVariant_ITF, role int) bool {
@@ -233,15 +263,30 @@ func (ptr *QAbstractProxyModel) DisconnectSetSourceModel() {
 }
 
 //export callbackQAbstractProxyModelSetSourceModel
-func callbackQAbstractProxyModelSetSourceModel(ptrName *C.char, sourceModel unsafe.Pointer) bool {
+func callbackQAbstractProxyModelSetSourceModel(ptr unsafe.Pointer, ptrName *C.char, sourceModel unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractProxyModel::setSourceModel")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSourceModel"); signal != nil {
 		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(sourceModel))
-		return true
+	} else {
+		NewQAbstractProxyModelFromPointer(ptr).SetSourceModelDefault(NewQAbstractItemModelFromPointer(sourceModel))
 	}
-	return false
+}
 
+func (ptr *QAbstractProxyModel) SetSourceModel(sourceModel QAbstractItemModel_ITF) {
+	defer qt.Recovering("QAbstractProxyModel::setSourceModel")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_SetSourceModel(ptr.Pointer(), PointerFromQAbstractItemModel(sourceModel))
+	}
+}
+
+func (ptr *QAbstractProxyModel) SetSourceModelDefault(sourceModel QAbstractItemModel_ITF) {
+	defer qt.Recovering("QAbstractProxyModel::setSourceModel")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_SetSourceModelDefault(ptr.Pointer(), PointerFromQAbstractItemModel(sourceModel))
+	}
 }
 
 func (ptr *QAbstractProxyModel) Sibling(row int, column int, idx QModelIndex_ITF) *QModelIndex {
@@ -272,15 +317,30 @@ func (ptr *QAbstractProxyModel) DisconnectSort() {
 }
 
 //export callbackQAbstractProxyModelSort
-func callbackQAbstractProxyModelSort(ptrName *C.char, column C.int, order C.int) bool {
+func callbackQAbstractProxyModelSort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
 	defer qt.Recovering("callback QAbstractProxyModel::sort")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
-		return true
+	} else {
+		NewQAbstractProxyModelFromPointer(ptr).SortDefault(int(column), Qt__SortOrder(order))
 	}
-	return false
+}
 
+func (ptr *QAbstractProxyModel) Sort(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QAbstractProxyModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
+	}
+}
+
+func (ptr *QAbstractProxyModel) SortDefault(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QAbstractProxyModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
+	}
 }
 
 func (ptr *QAbstractProxyModel) SourceModel() *QAbstractItemModel {
@@ -311,7 +371,7 @@ func (ptr *QAbstractProxyModel) DisconnectSourceModelChanged() {
 }
 
 //export callbackQAbstractProxyModelSourceModelChanged
-func callbackQAbstractProxyModelSourceModelChanged(ptrName *C.char) {
+func callbackQAbstractProxyModelSourceModelChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractProxyModel::sourceModelChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sourceModelChanged"); signal != nil {
@@ -384,15 +444,30 @@ func (ptr *QAbstractProxyModel) DisconnectTimerEvent() {
 }
 
 //export callbackQAbstractProxyModelTimerEvent
-func callbackQAbstractProxyModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractProxyModelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractProxyModel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractProxyModelFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractProxyModel) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAbstractProxyModel) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAbstractProxyModel) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -414,15 +489,30 @@ func (ptr *QAbstractProxyModel) DisconnectChildEvent() {
 }
 
 //export callbackQAbstractProxyModelChildEvent
-func callbackQAbstractProxyModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractProxyModelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractProxyModel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractProxyModelFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractProxyModel) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAbstractProxyModel) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAbstractProxyModel) ConnectCustomEvent(f func(event *QEvent)) {
@@ -444,13 +534,28 @@ func (ptr *QAbstractProxyModel) DisconnectCustomEvent() {
 }
 
 //export callbackQAbstractProxyModelCustomEvent
-func callbackQAbstractProxyModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractProxyModelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractProxyModel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractProxyModelFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractProxyModel) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QAbstractProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractProxyModel) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QAbstractProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

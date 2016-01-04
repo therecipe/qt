@@ -113,15 +113,30 @@ func (ptr *QAbstractVideoBuffer) DisconnectRelease() {
 }
 
 //export callbackQAbstractVideoBufferRelease
-func callbackQAbstractVideoBufferRelease(ptrName *C.char) bool {
+func callbackQAbstractVideoBufferRelease(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractVideoBuffer::release")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "release"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQAbstractVideoBufferFromPointer(ptr).ReleaseDefault()
 	}
-	return false
+}
 
+func (ptr *QAbstractVideoBuffer) Release() {
+	defer qt.Recovering("QAbstractVideoBuffer::release")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoBuffer_Release(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractVideoBuffer) ReleaseDefault() {
+	defer qt.Recovering("QAbstractVideoBuffer::release")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoBuffer_ReleaseDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractVideoBuffer) Unmap() {

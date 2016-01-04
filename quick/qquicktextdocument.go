@@ -72,15 +72,30 @@ func (ptr *QQuickTextDocument) DisconnectTimerEvent() {
 }
 
 //export callbackQQuickTextDocumentTimerEvent
-func callbackQQuickTextDocumentTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickTextDocumentTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickTextDocument::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickTextDocumentFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickTextDocument) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQuickTextDocument::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextDocument_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQuickTextDocument) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQuickTextDocument::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextDocument_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QQuickTextDocument) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -102,15 +117,30 @@ func (ptr *QQuickTextDocument) DisconnectChildEvent() {
 }
 
 //export callbackQQuickTextDocumentChildEvent
-func callbackQQuickTextDocumentChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickTextDocumentChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickTextDocument::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickTextDocumentFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickTextDocument) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQuickTextDocument::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextDocument_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQuickTextDocument) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQuickTextDocument::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextDocument_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QQuickTextDocument) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -132,13 +162,28 @@ func (ptr *QQuickTextDocument) DisconnectCustomEvent() {
 }
 
 //export callbackQQuickTextDocumentCustomEvent
-func callbackQQuickTextDocumentCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickTextDocumentCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickTextDocument::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickTextDocumentFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickTextDocument) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQuickTextDocument::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextDocument_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQuickTextDocument) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQuickTextDocument::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextDocument_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

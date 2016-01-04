@@ -83,13 +83,28 @@ func (ptr *QSGOpacityNode) DisconnectPreprocess() {
 }
 
 //export callbackQSGOpacityNodePreprocess
-func callbackQSGOpacityNodePreprocess(ptrName *C.char) bool {
+func callbackQSGOpacityNodePreprocess(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGOpacityNode::preprocess")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGOpacityNodeFromPointer(ptr).PreprocessDefault()
 	}
-	return false
+}
 
+func (ptr *QSGOpacityNode) Preprocess() {
+	defer qt.Recovering("QSGOpacityNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGOpacityNode_Preprocess(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGOpacityNode) PreprocessDefault() {
+	defer qt.Recovering("QSGOpacityNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGOpacityNode_PreprocessDefault(ptr.Pointer())
+	}
 }

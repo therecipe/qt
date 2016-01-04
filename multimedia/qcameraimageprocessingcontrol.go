@@ -120,15 +120,30 @@ func (ptr *QCameraImageProcessingControl) DisconnectTimerEvent() {
 }
 
 //export callbackQCameraImageProcessingControlTimerEvent
-func callbackQCameraImageProcessingControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraImageProcessingControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraImageProcessingControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraImageProcessingControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraImageProcessingControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessingControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessingControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCameraImageProcessingControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessingControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessingControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCameraImageProcessingControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -150,15 +165,30 @@ func (ptr *QCameraImageProcessingControl) DisconnectChildEvent() {
 }
 
 //export callbackQCameraImageProcessingControlChildEvent
-func callbackQCameraImageProcessingControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraImageProcessingControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraImageProcessingControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraImageProcessingControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraImageProcessingControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessingControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessingControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCameraImageProcessingControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessingControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessingControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCameraImageProcessingControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -180,13 +210,28 @@ func (ptr *QCameraImageProcessingControl) DisconnectCustomEvent() {
 }
 
 //export callbackQCameraImageProcessingControlCustomEvent
-func callbackQCameraImageProcessingControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraImageProcessingControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraImageProcessingControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraImageProcessingControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraImageProcessingControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessingControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessingControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCameraImageProcessingControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessingControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessingControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

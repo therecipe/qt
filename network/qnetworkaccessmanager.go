@@ -94,13 +94,21 @@ func (ptr *QNetworkAccessManager) DisconnectAuthenticationRequired() {
 }
 
 //export callbackQNetworkAccessManagerAuthenticationRequired
-func callbackQNetworkAccessManagerAuthenticationRequired(ptrName *C.char, reply unsafe.Pointer, authenticator unsafe.Pointer) {
+func callbackQNetworkAccessManagerAuthenticationRequired(ptr unsafe.Pointer, ptrName *C.char, reply unsafe.Pointer, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::authenticationRequired")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "authenticationRequired"); signal != nil {
 		signal.(func(*QNetworkReply, *QAuthenticator))(NewQNetworkReplyFromPointer(reply), NewQAuthenticatorFromPointer(authenticator))
 	}
 
+}
+
+func (ptr *QNetworkAccessManager) AuthenticationRequired(reply QNetworkReply_ITF, authenticator QAuthenticator_ITF) {
+	defer qt.Recovering("QNetworkAccessManager::authenticationRequired")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_AuthenticationRequired(ptr.Pointer(), PointerFromQNetworkReply(reply), PointerFromQAuthenticator(authenticator))
+	}
 }
 
 func (ptr *QNetworkAccessManager) Cache() *QAbstractNetworkCache {
@@ -125,6 +133,15 @@ func (ptr *QNetworkAccessManager) CookieJar() *QNetworkCookieJar {
 
 	if ptr.Pointer() != nil {
 		return NewQNetworkCookieJarFromPointer(C.QNetworkAccessManager_CookieJar(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNetworkAccessManager) CreateRequest(op QNetworkAccessManager__Operation, req QNetworkRequest_ITF, outgoingData core.QIODevice_ITF) *QNetworkReply {
+	defer qt.Recovering("QNetworkAccessManager::createRequest")
+
+	if ptr.Pointer() != nil {
+		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_CreateRequest(ptr.Pointer(), C.int(op), PointerFromQNetworkRequest(req), core.PointerFromQIODevice(outgoingData)))
 	}
 	return nil
 }
@@ -157,13 +174,21 @@ func (ptr *QNetworkAccessManager) DisconnectEncrypted() {
 }
 
 //export callbackQNetworkAccessManagerEncrypted
-func callbackQNetworkAccessManagerEncrypted(ptrName *C.char, reply unsafe.Pointer) {
+func callbackQNetworkAccessManagerEncrypted(ptr unsafe.Pointer, ptrName *C.char, reply unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::encrypted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "encrypted"); signal != nil {
 		signal.(func(*QNetworkReply))(NewQNetworkReplyFromPointer(reply))
 	}
 
+}
+
+func (ptr *QNetworkAccessManager) Encrypted(reply QNetworkReply_ITF) {
+	defer qt.Recovering("QNetworkAccessManager::encrypted")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_Encrypted(ptr.Pointer(), PointerFromQNetworkReply(reply))
+	}
 }
 
 func (ptr *QNetworkAccessManager) ConnectFinished(f func(reply *QNetworkReply)) {
@@ -185,13 +210,21 @@ func (ptr *QNetworkAccessManager) DisconnectFinished() {
 }
 
 //export callbackQNetworkAccessManagerFinished
-func callbackQNetworkAccessManagerFinished(ptrName *C.char, reply unsafe.Pointer) {
+func callbackQNetworkAccessManagerFinished(ptr unsafe.Pointer, ptrName *C.char, reply unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::finished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(*QNetworkReply))(NewQNetworkReplyFromPointer(reply))
 	}
 
+}
+
+func (ptr *QNetworkAccessManager) Finished(reply QNetworkReply_ITF) {
+	defer qt.Recovering("QNetworkAccessManager::finished")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_Finished(ptr.Pointer(), PointerFromQNetworkReply(reply))
+	}
 }
 
 func (ptr *QNetworkAccessManager) Get(request QNetworkRequest_ITF) *QNetworkReply {
@@ -240,13 +273,21 @@ func (ptr *QNetworkAccessManager) DisconnectNetworkAccessibleChanged() {
 }
 
 //export callbackQNetworkAccessManagerNetworkAccessibleChanged
-func callbackQNetworkAccessManagerNetworkAccessibleChanged(ptrName *C.char, accessible C.int) {
+func callbackQNetworkAccessManagerNetworkAccessibleChanged(ptr unsafe.Pointer, ptrName *C.char, accessible C.int) {
 	defer qt.Recovering("callback QNetworkAccessManager::networkAccessibleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "networkAccessibleChanged"); signal != nil {
 		signal.(func(QNetworkAccessManager__NetworkAccessibility))(QNetworkAccessManager__NetworkAccessibility(accessible))
 	}
 
+}
+
+func (ptr *QNetworkAccessManager) NetworkAccessibleChanged(accessible QNetworkAccessManager__NetworkAccessibility) {
+	defer qt.Recovering("QNetworkAccessManager::networkAccessibleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_NetworkAccessibleChanged(ptr.Pointer(), C.int(accessible))
+	}
 }
 
 func (ptr *QNetworkAccessManager) Post3(request QNetworkRequest_ITF, multiPart QHttpMultiPart_ITF) *QNetworkReply {
@@ -295,13 +336,21 @@ func (ptr *QNetworkAccessManager) DisconnectPreSharedKeyAuthenticationRequired()
 }
 
 //export callbackQNetworkAccessManagerPreSharedKeyAuthenticationRequired
-func callbackQNetworkAccessManagerPreSharedKeyAuthenticationRequired(ptrName *C.char, reply unsafe.Pointer, authenticator unsafe.Pointer) {
+func callbackQNetworkAccessManagerPreSharedKeyAuthenticationRequired(ptr unsafe.Pointer, ptrName *C.char, reply unsafe.Pointer, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::preSharedKeyAuthenticationRequired")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired"); signal != nil {
 		signal.(func(*QNetworkReply, *QSslPreSharedKeyAuthenticator))(NewQNetworkReplyFromPointer(reply), NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
 	}
 
+}
+
+func (ptr *QNetworkAccessManager) PreSharedKeyAuthenticationRequired(reply QNetworkReply_ITF, authenticator QSslPreSharedKeyAuthenticator_ITF) {
+	defer qt.Recovering("QNetworkAccessManager::preSharedKeyAuthenticationRequired")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_PreSharedKeyAuthenticationRequired(ptr.Pointer(), PointerFromQNetworkReply(reply), PointerFromQSslPreSharedKeyAuthenticator(authenticator))
+	}
 }
 
 func (ptr *QNetworkAccessManager) Put2(request QNetworkRequest_ITF, multiPart QHttpMultiPart_ITF) *QNetworkReply {
@@ -425,15 +474,30 @@ func (ptr *QNetworkAccessManager) DisconnectTimerEvent() {
 }
 
 //export callbackQNetworkAccessManagerTimerEvent
-func callbackQNetworkAccessManagerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkAccessManagerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkAccessManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkAccessManager) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNetworkAccessManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QNetworkAccessManager) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNetworkAccessManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QNetworkAccessManager) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -455,15 +519,30 @@ func (ptr *QNetworkAccessManager) DisconnectChildEvent() {
 }
 
 //export callbackQNetworkAccessManagerChildEvent
-func callbackQNetworkAccessManagerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkAccessManagerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkAccessManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkAccessManager) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNetworkAccessManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QNetworkAccessManager) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNetworkAccessManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QNetworkAccessManager) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -485,13 +564,28 @@ func (ptr *QNetworkAccessManager) DisconnectCustomEvent() {
 }
 
 //export callbackQNetworkAccessManagerCustomEvent
-func callbackQNetworkAccessManagerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkAccessManagerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkAccessManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkAccessManager) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QNetworkAccessManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QNetworkAccessManager) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QNetworkAccessManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

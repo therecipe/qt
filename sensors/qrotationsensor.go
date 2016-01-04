@@ -80,13 +80,21 @@ func (ptr *QRotationSensor) DisconnectHasZChanged() {
 }
 
 //export callbackQRotationSensorHasZChanged
-func callbackQRotationSensorHasZChanged(ptrName *C.char, hasZ C.int) {
+func callbackQRotationSensorHasZChanged(ptr unsafe.Pointer, ptrName *C.char, hasZ C.int) {
 	defer qt.Recovering("callback QRotationSensor::hasZChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hasZChanged"); signal != nil {
 		signal.(func(bool))(int(hasZ) != 0)
 	}
 
+}
+
+func (ptr *QRotationSensor) HasZChanged(hasZ bool) {
+	defer qt.Recovering("QRotationSensor::hasZChanged")
+
+	if ptr.Pointer() != nil {
+		C.QRotationSensor_HasZChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(hasZ)))
+	}
 }
 
 func (ptr *QRotationSensor) SetHasZ(hasZ bool) {
@@ -125,15 +133,30 @@ func (ptr *QRotationSensor) DisconnectTimerEvent() {
 }
 
 //export callbackQRotationSensorTimerEvent
-func callbackQRotationSensorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRotationSensorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRotationSensor::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQRotationSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRotationSensor) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRotationSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRotationSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QRotationSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRotationSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRotationSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QRotationSensor) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -155,15 +178,30 @@ func (ptr *QRotationSensor) DisconnectChildEvent() {
 }
 
 //export callbackQRotationSensorChildEvent
-func callbackQRotationSensorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRotationSensorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRotationSensor::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQRotationSensorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRotationSensor) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRotationSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRotationSensor_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QRotationSensor) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRotationSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRotationSensor_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QRotationSensor) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -185,13 +223,28 @@ func (ptr *QRotationSensor) DisconnectCustomEvent() {
 }
 
 //export callbackQRotationSensorCustomEvent
-func callbackQRotationSensorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRotationSensorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRotationSensor::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQRotationSensorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRotationSensor) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QRotationSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRotationSensor_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QRotationSensor) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QRotationSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRotationSensor_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -56,13 +56,21 @@ func (ptr *QMediaPlayerControl) DisconnectAudioAvailableChanged() {
 }
 
 //export callbackQMediaPlayerControlAudioAvailableChanged
-func callbackQMediaPlayerControlAudioAvailableChanged(ptrName *C.char, audio C.int) {
+func callbackQMediaPlayerControlAudioAvailableChanged(ptr unsafe.Pointer, ptrName *C.char, audio C.int) {
 	defer qt.Recovering("callback QMediaPlayerControl::audioAvailableChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "audioAvailableChanged"); signal != nil {
 		signal.(func(bool))(int(audio) != 0)
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) AudioAvailableChanged(audio bool) {
+	defer qt.Recovering("QMediaPlayerControl::audioAvailableChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_AudioAvailableChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(audio)))
+	}
 }
 
 func (ptr *QMediaPlayerControl) BufferStatus() int {
@@ -93,13 +101,21 @@ func (ptr *QMediaPlayerControl) DisconnectBufferStatusChanged() {
 }
 
 //export callbackQMediaPlayerControlBufferStatusChanged
-func callbackQMediaPlayerControlBufferStatusChanged(ptrName *C.char, progress C.int) {
+func callbackQMediaPlayerControlBufferStatusChanged(ptr unsafe.Pointer, ptrName *C.char, progress C.int) {
 	defer qt.Recovering("callback QMediaPlayerControl::bufferStatusChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "bufferStatusChanged"); signal != nil {
 		signal.(func(int))(int(progress))
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) BufferStatusChanged(progress int) {
+	defer qt.Recovering("QMediaPlayerControl::bufferStatusChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_BufferStatusChanged(ptr.Pointer(), C.int(progress))
+	}
 }
 
 func (ptr *QMediaPlayerControl) Duration() int64 {
@@ -130,13 +146,21 @@ func (ptr *QMediaPlayerControl) DisconnectDurationChanged() {
 }
 
 //export callbackQMediaPlayerControlDurationChanged
-func callbackQMediaPlayerControlDurationChanged(ptrName *C.char, duration C.longlong) {
+func callbackQMediaPlayerControlDurationChanged(ptr unsafe.Pointer, ptrName *C.char, duration C.longlong) {
 	defer qt.Recovering("callback QMediaPlayerControl::durationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "durationChanged"); signal != nil {
 		signal.(func(int64))(int64(duration))
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) DurationChanged(duration int64) {
+	defer qt.Recovering("QMediaPlayerControl::durationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_DurationChanged(ptr.Pointer(), C.longlong(duration))
+	}
 }
 
 func (ptr *QMediaPlayerControl) ConnectError(f func(error int, errorString string)) {
@@ -158,13 +182,21 @@ func (ptr *QMediaPlayerControl) DisconnectError() {
 }
 
 //export callbackQMediaPlayerControlError
-func callbackQMediaPlayerControlError(ptrName *C.char, error C.int, errorString *C.char) {
+func callbackQMediaPlayerControlError(ptr unsafe.Pointer, ptrName *C.char, error C.int, errorString *C.char) {
 	defer qt.Recovering("callback QMediaPlayerControl::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(int, string))(int(error), C.GoString(errorString))
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) Error(error int, errorString string) {
+	defer qt.Recovering("QMediaPlayerControl::error")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_Error(ptr.Pointer(), C.int(error), C.CString(errorString))
+	}
 }
 
 func (ptr *QMediaPlayerControl) IsAudioAvailable() bool {
@@ -231,13 +263,21 @@ func (ptr *QMediaPlayerControl) DisconnectMediaChanged() {
 }
 
 //export callbackQMediaPlayerControlMediaChanged
-func callbackQMediaPlayerControlMediaChanged(ptrName *C.char, content unsafe.Pointer) {
+func callbackQMediaPlayerControlMediaChanged(ptr unsafe.Pointer, ptrName *C.char, content unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaPlayerControl::mediaChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mediaChanged"); signal != nil {
 		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(content))
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) MediaChanged(content QMediaContent_ITF) {
+	defer qt.Recovering("QMediaPlayerControl::mediaChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_MediaChanged(ptr.Pointer(), PointerFromQMediaContent(content))
+	}
 }
 
 func (ptr *QMediaPlayerControl) MediaStatus() QMediaPlayer__MediaStatus {
@@ -268,13 +308,21 @@ func (ptr *QMediaPlayerControl) DisconnectMediaStatusChanged() {
 }
 
 //export callbackQMediaPlayerControlMediaStatusChanged
-func callbackQMediaPlayerControlMediaStatusChanged(ptrName *C.char, status C.int) {
+func callbackQMediaPlayerControlMediaStatusChanged(ptr unsafe.Pointer, ptrName *C.char, status C.int) {
 	defer qt.Recovering("callback QMediaPlayerControl::mediaStatusChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mediaStatusChanged"); signal != nil {
 		signal.(func(QMediaPlayer__MediaStatus))(QMediaPlayer__MediaStatus(status))
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) MediaStatusChanged(status QMediaPlayer__MediaStatus) {
+	defer qt.Recovering("QMediaPlayerControl::mediaStatusChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_MediaStatusChanged(ptr.Pointer(), C.int(status))
+	}
 }
 
 func (ptr *QMediaPlayerControl) MediaStream() *core.QIODevice {
@@ -305,13 +353,21 @@ func (ptr *QMediaPlayerControl) DisconnectMutedChanged() {
 }
 
 //export callbackQMediaPlayerControlMutedChanged
-func callbackQMediaPlayerControlMutedChanged(ptrName *C.char, mute C.int) {
+func callbackQMediaPlayerControlMutedChanged(ptr unsafe.Pointer, ptrName *C.char, mute C.int) {
 	defer qt.Recovering("callback QMediaPlayerControl::mutedChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mutedChanged"); signal != nil {
 		signal.(func(bool))(int(mute) != 0)
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) MutedChanged(mute bool) {
+	defer qt.Recovering("QMediaPlayerControl::mutedChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_MutedChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(mute)))
+	}
 }
 
 func (ptr *QMediaPlayerControl) Pause() {
@@ -358,13 +414,21 @@ func (ptr *QMediaPlayerControl) DisconnectPlaybackRateChanged() {
 }
 
 //export callbackQMediaPlayerControlPlaybackRateChanged
-func callbackQMediaPlayerControlPlaybackRateChanged(ptrName *C.char, rate C.double) {
+func callbackQMediaPlayerControlPlaybackRateChanged(ptr unsafe.Pointer, ptrName *C.char, rate C.double) {
 	defer qt.Recovering("callback QMediaPlayerControl::playbackRateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "playbackRateChanged"); signal != nil {
 		signal.(func(float64))(float64(rate))
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) PlaybackRateChanged(rate float64) {
+	defer qt.Recovering("QMediaPlayerControl::playbackRateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_PlaybackRateChanged(ptr.Pointer(), C.double(rate))
+	}
 }
 
 func (ptr *QMediaPlayerControl) Position() int64 {
@@ -395,13 +459,21 @@ func (ptr *QMediaPlayerControl) DisconnectPositionChanged() {
 }
 
 //export callbackQMediaPlayerControlPositionChanged
-func callbackQMediaPlayerControlPositionChanged(ptrName *C.char, position C.longlong) {
+func callbackQMediaPlayerControlPositionChanged(ptr unsafe.Pointer, ptrName *C.char, position C.longlong) {
 	defer qt.Recovering("callback QMediaPlayerControl::positionChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "positionChanged"); signal != nil {
 		signal.(func(int64))(int64(position))
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) PositionChanged(position int64) {
+	defer qt.Recovering("QMediaPlayerControl::positionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_PositionChanged(ptr.Pointer(), C.longlong(position))
+	}
 }
 
 func (ptr *QMediaPlayerControl) ConnectSeekableChanged(f func(seekable bool)) {
@@ -423,13 +495,21 @@ func (ptr *QMediaPlayerControl) DisconnectSeekableChanged() {
 }
 
 //export callbackQMediaPlayerControlSeekableChanged
-func callbackQMediaPlayerControlSeekableChanged(ptrName *C.char, seekable C.int) {
+func callbackQMediaPlayerControlSeekableChanged(ptr unsafe.Pointer, ptrName *C.char, seekable C.int) {
 	defer qt.Recovering("callback QMediaPlayerControl::seekableChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "seekableChanged"); signal != nil {
 		signal.(func(bool))(int(seekable) != 0)
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) SeekableChanged(seekable bool) {
+	defer qt.Recovering("QMediaPlayerControl::seekableChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_SeekableChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(seekable)))
+	}
 }
 
 func (ptr *QMediaPlayerControl) SetMedia(media QMediaContent_ITF, stream core.QIODevice_ITF) {
@@ -500,13 +580,21 @@ func (ptr *QMediaPlayerControl) DisconnectStateChanged() {
 }
 
 //export callbackQMediaPlayerControlStateChanged
-func callbackQMediaPlayerControlStateChanged(ptrName *C.char, state C.int) {
+func callbackQMediaPlayerControlStateChanged(ptr unsafe.Pointer, ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QMediaPlayerControl::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QMediaPlayer__State))(QMediaPlayer__State(state))
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) StateChanged(state QMediaPlayer__State) {
+	defer qt.Recovering("QMediaPlayerControl::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_StateChanged(ptr.Pointer(), C.int(state))
+	}
 }
 
 func (ptr *QMediaPlayerControl) Stop() {
@@ -536,13 +624,21 @@ func (ptr *QMediaPlayerControl) DisconnectVideoAvailableChanged() {
 }
 
 //export callbackQMediaPlayerControlVideoAvailableChanged
-func callbackQMediaPlayerControlVideoAvailableChanged(ptrName *C.char, video C.int) {
+func callbackQMediaPlayerControlVideoAvailableChanged(ptr unsafe.Pointer, ptrName *C.char, video C.int) {
 	defer qt.Recovering("callback QMediaPlayerControl::videoAvailableChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "videoAvailableChanged"); signal != nil {
 		signal.(func(bool))(int(video) != 0)
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) VideoAvailableChanged(video bool) {
+	defer qt.Recovering("QMediaPlayerControl::videoAvailableChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_VideoAvailableChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(video)))
+	}
 }
 
 func (ptr *QMediaPlayerControl) Volume() int {
@@ -573,13 +669,21 @@ func (ptr *QMediaPlayerControl) DisconnectVolumeChanged() {
 }
 
 //export callbackQMediaPlayerControlVolumeChanged
-func callbackQMediaPlayerControlVolumeChanged(ptrName *C.char, volume C.int) {
+func callbackQMediaPlayerControlVolumeChanged(ptr unsafe.Pointer, ptrName *C.char, volume C.int) {
 	defer qt.Recovering("callback QMediaPlayerControl::volumeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "volumeChanged"); signal != nil {
 		signal.(func(int))(int(volume))
 	}
 
+}
+
+func (ptr *QMediaPlayerControl) VolumeChanged(volume int) {
+	defer qt.Recovering("QMediaPlayerControl::volumeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_VolumeChanged(ptr.Pointer(), C.int(volume))
+	}
 }
 
 func (ptr *QMediaPlayerControl) DestroyQMediaPlayerControl() {
@@ -610,15 +714,30 @@ func (ptr *QMediaPlayerControl) DisconnectTimerEvent() {
 }
 
 //export callbackQMediaPlayerControlTimerEvent
-func callbackQMediaPlayerControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaPlayerControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaPlayerControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaPlayerControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaPlayerControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaPlayerControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMediaPlayerControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaPlayerControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMediaPlayerControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -640,15 +759,30 @@ func (ptr *QMediaPlayerControl) DisconnectChildEvent() {
 }
 
 //export callbackQMediaPlayerControlChildEvent
-func callbackQMediaPlayerControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaPlayerControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaPlayerControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaPlayerControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaPlayerControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaPlayerControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMediaPlayerControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaPlayerControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMediaPlayerControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -670,13 +804,28 @@ func (ptr *QMediaPlayerControl) DisconnectCustomEvent() {
 }
 
 //export callbackQMediaPlayerControlCustomEvent
-func callbackQMediaPlayerControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaPlayerControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaPlayerControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaPlayerControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaPlayerControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaPlayerControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMediaPlayerControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaPlayerControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

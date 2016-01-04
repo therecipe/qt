@@ -274,13 +274,21 @@ func (ptr *QAbstractSlider) DisconnectActionTriggered() {
 }
 
 //export callbackQAbstractSliderActionTriggered
-func callbackQAbstractSliderActionTriggered(ptrName *C.char, action C.int) {
+func callbackQAbstractSliderActionTriggered(ptr unsafe.Pointer, ptrName *C.char, action C.int) {
 	defer qt.Recovering("callback QAbstractSlider::actionTriggered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionTriggered"); signal != nil {
 		signal.(func(int))(int(action))
 	}
 
+}
+
+func (ptr *QAbstractSlider) ActionTriggered(action int) {
+	defer qt.Recovering("QAbstractSlider::actionTriggered")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ActionTriggered(ptr.Pointer(), C.int(action))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectChangeEvent(f func(ev *core.QEvent)) {
@@ -302,15 +310,39 @@ func (ptr *QAbstractSlider) DisconnectChangeEvent() {
 }
 
 //export callbackQAbstractSliderChangeEvent
-func callbackQAbstractSliderChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQAbstractSliderChangeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
+	}
+}
+
+func (ptr *QAbstractSlider) ChangeEvent(ev core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QAbstractSlider) ChangeEventDefault(ev core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QAbstractSlider) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QAbstractSlider::event")
+
+	if ptr.Pointer() != nil {
+		return C.QAbstractSlider_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
 	return false
-
 }
 
 func (ptr *QAbstractSlider) ConnectKeyPressEvent(f func(ev *gui.QKeyEvent)) {
@@ -332,15 +364,30 @@ func (ptr *QAbstractSlider) DisconnectKeyPressEvent() {
 }
 
 //export callbackQAbstractSliderKeyPressEvent
-func callbackQAbstractSliderKeyPressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQAbstractSliderKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(ev))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) KeyPressEvent(ev gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(ev))
+	}
+}
+
+func (ptr *QAbstractSlider) KeyPressEventDefault(ev gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(ev))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectRangeChanged(f func(min int, max int)) {
@@ -362,13 +409,21 @@ func (ptr *QAbstractSlider) DisconnectRangeChanged() {
 }
 
 //export callbackQAbstractSliderRangeChanged
-func callbackQAbstractSliderRangeChanged(ptrName *C.char, min C.int, max C.int) {
+func callbackQAbstractSliderRangeChanged(ptr unsafe.Pointer, ptrName *C.char, min C.int, max C.int) {
 	defer qt.Recovering("callback QAbstractSlider::rangeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rangeChanged"); signal != nil {
 		signal.(func(int, int))(int(min), int(max))
 	}
 
+}
+
+func (ptr *QAbstractSlider) RangeChanged(min int, max int) {
+	defer qt.Recovering("QAbstractSlider::rangeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_RangeChanged(ptr.Pointer(), C.int(min), C.int(max))
+	}
 }
 
 func (ptr *QAbstractSlider) SetRange(min int, max int) {
@@ -398,15 +453,30 @@ func (ptr *QAbstractSlider) DisconnectSliderChange() {
 }
 
 //export callbackQAbstractSliderSliderChange
-func callbackQAbstractSliderSliderChange(ptrName *C.char, change C.int) bool {
+func callbackQAbstractSliderSliderChange(ptr unsafe.Pointer, ptrName *C.char, change C.int) {
 	defer qt.Recovering("callback QAbstractSlider::sliderChange")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sliderChange"); signal != nil {
 		signal.(func(QAbstractSlider__SliderChange))(QAbstractSlider__SliderChange(change))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).SliderChangeDefault(QAbstractSlider__SliderChange(change))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) SliderChange(change QAbstractSlider__SliderChange) {
+	defer qt.Recovering("QAbstractSlider::sliderChange")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_SliderChange(ptr.Pointer(), C.int(change))
+	}
+}
+
+func (ptr *QAbstractSlider) SliderChangeDefault(change QAbstractSlider__SliderChange) {
+	defer qt.Recovering("QAbstractSlider::sliderChange")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_SliderChangeDefault(ptr.Pointer(), C.int(change))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectSliderMoved(f func(value int)) {
@@ -428,13 +498,21 @@ func (ptr *QAbstractSlider) DisconnectSliderMoved() {
 }
 
 //export callbackQAbstractSliderSliderMoved
-func callbackQAbstractSliderSliderMoved(ptrName *C.char, value C.int) {
+func callbackQAbstractSliderSliderMoved(ptr unsafe.Pointer, ptrName *C.char, value C.int) {
 	defer qt.Recovering("callback QAbstractSlider::sliderMoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sliderMoved"); signal != nil {
 		signal.(func(int))(int(value))
 	}
 
+}
+
+func (ptr *QAbstractSlider) SliderMoved(value int) {
+	defer qt.Recovering("QAbstractSlider::sliderMoved")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_SliderMoved(ptr.Pointer(), C.int(value))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectSliderPressed(f func()) {
@@ -456,13 +534,21 @@ func (ptr *QAbstractSlider) DisconnectSliderPressed() {
 }
 
 //export callbackQAbstractSliderSliderPressed
-func callbackQAbstractSliderSliderPressed(ptrName *C.char) {
+func callbackQAbstractSliderSliderPressed(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractSlider::sliderPressed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sliderPressed"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QAbstractSlider) SliderPressed() {
+	defer qt.Recovering("QAbstractSlider::sliderPressed")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_SliderPressed(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectSliderReleased(f func()) {
@@ -484,13 +570,21 @@ func (ptr *QAbstractSlider) DisconnectSliderReleased() {
 }
 
 //export callbackQAbstractSliderSliderReleased
-func callbackQAbstractSliderSliderReleased(ptrName *C.char) {
+func callbackQAbstractSliderSliderReleased(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractSlider::sliderReleased")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sliderReleased"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QAbstractSlider) SliderReleased() {
+	defer qt.Recovering("QAbstractSlider::sliderReleased")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_SliderReleased(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectTimerEvent(f func(e *core.QTimerEvent)) {
@@ -512,15 +606,30 @@ func (ptr *QAbstractSlider) DisconnectTimerEvent() {
 }
 
 //export callbackQAbstractSliderTimerEvent
-func callbackQAbstractSliderTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQAbstractSliderTimerEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) TimerEvent(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
+}
+
+func (ptr *QAbstractSlider) TimerEventDefault(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
 }
 
 func (ptr *QAbstractSlider) TriggerAction(action QAbstractSlider__SliderAction) {
@@ -550,13 +659,21 @@ func (ptr *QAbstractSlider) DisconnectValueChanged() {
 }
 
 //export callbackQAbstractSliderValueChanged
-func callbackQAbstractSliderValueChanged(ptrName *C.char, value C.int) {
+func callbackQAbstractSliderValueChanged(ptr unsafe.Pointer, ptrName *C.char, value C.int) {
 	defer qt.Recovering("callback QAbstractSlider::valueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func(int))(int(value))
 	}
 
+}
+
+func (ptr *QAbstractSlider) ValueChanged(value int) {
+	defer qt.Recovering("QAbstractSlider::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ValueChanged(ptr.Pointer(), C.int(value))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
@@ -578,15 +695,30 @@ func (ptr *QAbstractSlider) DisconnectWheelEvent() {
 }
 
 //export callbackQAbstractSliderWheelEvent
-func callbackQAbstractSliderWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQAbstractSliderWheelEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) WheelEvent(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
+}
+
+func (ptr *QAbstractSlider) WheelEventDefault(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
 }
 
 func (ptr *QAbstractSlider) DestroyQAbstractSlider() {
@@ -617,15 +749,30 @@ func (ptr *QAbstractSlider) DisconnectActionEvent() {
 }
 
 //export callbackQAbstractSliderActionEvent
-func callbackQAbstractSliderActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -647,15 +794,30 @@ func (ptr *QAbstractSlider) DisconnectDragEnterEvent() {
 }
 
 //export callbackQAbstractSliderDragEnterEvent
-func callbackQAbstractSliderDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -677,15 +839,30 @@ func (ptr *QAbstractSlider) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQAbstractSliderDragLeaveEvent
-func callbackQAbstractSliderDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -707,15 +884,30 @@ func (ptr *QAbstractSlider) DisconnectDragMoveEvent() {
 }
 
 //export callbackQAbstractSliderDragMoveEvent
-func callbackQAbstractSliderDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -737,15 +929,30 @@ func (ptr *QAbstractSlider) DisconnectDropEvent() {
 }
 
 //export callbackQAbstractSliderDropEvent
-func callbackQAbstractSliderDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -767,15 +974,30 @@ func (ptr *QAbstractSlider) DisconnectEnterEvent() {
 }
 
 //export callbackQAbstractSliderEnterEvent
-func callbackQAbstractSliderEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -797,15 +1019,30 @@ func (ptr *QAbstractSlider) DisconnectFocusInEvent() {
 }
 
 //export callbackQAbstractSliderFocusInEvent
-func callbackQAbstractSliderFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -827,15 +1064,30 @@ func (ptr *QAbstractSlider) DisconnectFocusOutEvent() {
 }
 
 //export callbackQAbstractSliderFocusOutEvent
-func callbackQAbstractSliderFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -857,15 +1109,30 @@ func (ptr *QAbstractSlider) DisconnectHideEvent() {
 }
 
 //export callbackQAbstractSliderHideEvent
-func callbackQAbstractSliderHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -887,15 +1154,30 @@ func (ptr *QAbstractSlider) DisconnectLeaveEvent() {
 }
 
 //export callbackQAbstractSliderLeaveEvent
-func callbackQAbstractSliderLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -917,15 +1199,30 @@ func (ptr *QAbstractSlider) DisconnectMoveEvent() {
 }
 
 //export callbackQAbstractSliderMoveEvent
-func callbackQAbstractSliderMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -947,15 +1244,30 @@ func (ptr *QAbstractSlider) DisconnectPaintEvent() {
 }
 
 //export callbackQAbstractSliderPaintEvent
-func callbackQAbstractSliderPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectSetVisible(f func(visible bool)) {
@@ -977,7 +1289,7 @@ func (ptr *QAbstractSlider) DisconnectSetVisible() {
 }
 
 //export callbackQAbstractSliderSetVisible
-func callbackQAbstractSliderSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQAbstractSliderSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QAbstractSlider::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -986,6 +1298,22 @@ func callbackQAbstractSliderSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QAbstractSlider) SetVisible(visible bool) {
+	defer qt.Recovering("QAbstractSlider::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QAbstractSlider) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QAbstractSlider::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -1007,15 +1335,30 @@ func (ptr *QAbstractSlider) DisconnectShowEvent() {
 }
 
 //export callbackQAbstractSliderShowEvent
-func callbackQAbstractSliderShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -1037,15 +1380,30 @@ func (ptr *QAbstractSlider) DisconnectCloseEvent() {
 }
 
 //export callbackQAbstractSliderCloseEvent
-func callbackQAbstractSliderCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -1067,15 +1425,30 @@ func (ptr *QAbstractSlider) DisconnectContextMenuEvent() {
 }
 
 //export callbackQAbstractSliderContextMenuEvent
-func callbackQAbstractSliderContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1097,15 +1470,30 @@ func (ptr *QAbstractSlider) DisconnectInitPainter() {
 }
 
 //export callbackQAbstractSliderInitPainter
-func callbackQAbstractSliderInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQAbstractSliderInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QAbstractSlider::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QAbstractSlider) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QAbstractSlider::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -1127,15 +1515,30 @@ func (ptr *QAbstractSlider) DisconnectInputMethodEvent() {
 }
 
 //export callbackQAbstractSliderInputMethodEvent
-func callbackQAbstractSliderInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -1157,15 +1560,30 @@ func (ptr *QAbstractSlider) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQAbstractSliderKeyReleaseEvent
-func callbackQAbstractSliderKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1187,15 +1605,30 @@ func (ptr *QAbstractSlider) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQAbstractSliderMouseDoubleClickEvent
-func callbackQAbstractSliderMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -1217,15 +1650,30 @@ func (ptr *QAbstractSlider) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQAbstractSliderMouseMoveEvent
-func callbackQAbstractSliderMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -1247,15 +1695,30 @@ func (ptr *QAbstractSlider) DisconnectMousePressEvent() {
 }
 
 //export callbackQAbstractSliderMousePressEvent
-func callbackQAbstractSliderMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1277,15 +1740,30 @@ func (ptr *QAbstractSlider) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQAbstractSliderMouseReleaseEvent
-func callbackQAbstractSliderMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -1307,15 +1785,30 @@ func (ptr *QAbstractSlider) DisconnectResizeEvent() {
 }
 
 //export callbackQAbstractSliderResizeEvent
-func callbackQAbstractSliderResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1337,15 +1830,30 @@ func (ptr *QAbstractSlider) DisconnectTabletEvent() {
 }
 
 //export callbackQAbstractSliderTabletEvent
-func callbackQAbstractSliderTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1367,15 +1875,30 @@ func (ptr *QAbstractSlider) DisconnectChildEvent() {
 }
 
 //export callbackQAbstractSliderChildEvent
-func callbackQAbstractSliderChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAbstractSlider) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1397,13 +1920,28 @@ func (ptr *QAbstractSlider) DisconnectCustomEvent() {
 }
 
 //export callbackQAbstractSliderCustomEvent
-func callbackQAbstractSliderCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractSliderCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSlider::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractSliderFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractSlider) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractSlider) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractSlider::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSlider_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

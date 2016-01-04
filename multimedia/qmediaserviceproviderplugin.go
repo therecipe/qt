@@ -73,15 +73,30 @@ func (ptr *QMediaServiceProviderPlugin) DisconnectTimerEvent() {
 }
 
 //export callbackQMediaServiceProviderPluginTimerEvent
-func callbackQMediaServiceProviderPluginTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaServiceProviderPluginTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaServiceProviderPlugin::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaServiceProviderPluginFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaServiceProviderPlugin) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaServiceProviderPlugin::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMediaServiceProviderPlugin) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaServiceProviderPlugin::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMediaServiceProviderPlugin) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -103,15 +118,30 @@ func (ptr *QMediaServiceProviderPlugin) DisconnectChildEvent() {
 }
 
 //export callbackQMediaServiceProviderPluginChildEvent
-func callbackQMediaServiceProviderPluginChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaServiceProviderPluginChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaServiceProviderPlugin::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaServiceProviderPluginFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaServiceProviderPlugin) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaServiceProviderPlugin::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMediaServiceProviderPlugin) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaServiceProviderPlugin::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMediaServiceProviderPlugin) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -133,13 +163,28 @@ func (ptr *QMediaServiceProviderPlugin) DisconnectCustomEvent() {
 }
 
 //export callbackQMediaServiceProviderPluginCustomEvent
-func callbackQMediaServiceProviderPluginCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaServiceProviderPluginCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaServiceProviderPlugin::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaServiceProviderPluginFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaServiceProviderPlugin) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaServiceProviderPlugin::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMediaServiceProviderPlugin) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaServiceProviderPlugin::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

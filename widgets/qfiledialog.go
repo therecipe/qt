@@ -275,15 +275,30 @@ func (ptr *QFileDialog) DisconnectAccept() {
 }
 
 //export callbackQFileDialogAccept
-func callbackQFileDialogAccept(ptrName *C.char) bool {
+func callbackQFileDialogAccept(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QFileDialog::accept")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "accept"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).AcceptDefault()
 	}
-	return false
+}
 
+func (ptr *QFileDialog) Accept() {
+	defer qt.Recovering("QFileDialog::accept")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_Accept(ptr.Pointer())
+	}
+}
+
+func (ptr *QFileDialog) AcceptDefault() {
+	defer qt.Recovering("QFileDialog::accept")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_AcceptDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QFileDialog) ConnectChangeEvent(f func(e *core.QEvent)) {
@@ -305,15 +320,30 @@ func (ptr *QFileDialog) DisconnectChangeEvent() {
 }
 
 //export callbackQFileDialogChangeEvent
-func callbackQFileDialogChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFileDialogChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QFileDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QFileDialog) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QFileDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
 }
 
 func (ptr *QFileDialog) ConnectCurrentChanged(f func(path string)) {
@@ -335,13 +365,21 @@ func (ptr *QFileDialog) DisconnectCurrentChanged() {
 }
 
 //export callbackQFileDialogCurrentChanged
-func callbackQFileDialogCurrentChanged(ptrName *C.char, path *C.char) {
+func callbackQFileDialogCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, path *C.char) {
 	defer qt.Recovering("callback QFileDialog::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(string))(C.GoString(path))
 	}
 
+}
+
+func (ptr *QFileDialog) CurrentChanged(path string) {
+	defer qt.Recovering("QFileDialog::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_CurrentChanged(ptr.Pointer(), C.CString(path))
+	}
 }
 
 func (ptr *QFileDialog) ConnectCurrentUrlChanged(f func(url *core.QUrl)) {
@@ -363,13 +401,21 @@ func (ptr *QFileDialog) DisconnectCurrentUrlChanged() {
 }
 
 //export callbackQFileDialogCurrentUrlChanged
-func callbackQFileDialogCurrentUrlChanged(ptrName *C.char, url unsafe.Pointer) {
+func callbackQFileDialogCurrentUrlChanged(ptr unsafe.Pointer, ptrName *C.char, url unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::currentUrlChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentUrlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
 
+}
+
+func (ptr *QFileDialog) CurrentUrlChanged(url core.QUrl_ITF) {
+	defer qt.Recovering("QFileDialog::currentUrlChanged")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_CurrentUrlChanged(ptr.Pointer(), core.PointerFromQUrl(url))
+	}
 }
 
 func (ptr *QFileDialog) Directory() *core.QDir {
@@ -400,13 +446,21 @@ func (ptr *QFileDialog) DisconnectDirectoryEntered() {
 }
 
 //export callbackQFileDialogDirectoryEntered
-func callbackQFileDialogDirectoryEntered(ptrName *C.char, directory *C.char) {
+func callbackQFileDialogDirectoryEntered(ptr unsafe.Pointer, ptrName *C.char, directory *C.char) {
 	defer qt.Recovering("callback QFileDialog::directoryEntered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "directoryEntered"); signal != nil {
 		signal.(func(string))(C.GoString(directory))
 	}
 
+}
+
+func (ptr *QFileDialog) DirectoryEntered(directory string) {
+	defer qt.Recovering("QFileDialog::directoryEntered")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DirectoryEntered(ptr.Pointer(), C.CString(directory))
+	}
 }
 
 func (ptr *QFileDialog) DirectoryUrl() *core.QUrl {
@@ -437,13 +491,21 @@ func (ptr *QFileDialog) DisconnectDirectoryUrlEntered() {
 }
 
 //export callbackQFileDialogDirectoryUrlEntered
-func callbackQFileDialogDirectoryUrlEntered(ptrName *C.char, directory unsafe.Pointer) {
+func callbackQFileDialogDirectoryUrlEntered(ptr unsafe.Pointer, ptrName *C.char, directory unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::directoryUrlEntered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "directoryUrlEntered"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(directory))
 	}
 
+}
+
+func (ptr *QFileDialog) DirectoryUrlEntered(directory core.QUrl_ITF) {
+	defer qt.Recovering("QFileDialog::directoryUrlEntered")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DirectoryUrlEntered(ptr.Pointer(), core.PointerFromQUrl(directory))
+	}
 }
 
 func (ptr *QFileDialog) ConnectDone(f func(result int)) {
@@ -465,15 +527,30 @@ func (ptr *QFileDialog) DisconnectDone() {
 }
 
 //export callbackQFileDialogDone
-func callbackQFileDialogDone(ptrName *C.char, result C.int) bool {
+func callbackQFileDialogDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) {
 	defer qt.Recovering("callback QFileDialog::done")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
 		signal.(func(int))(int(result))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).DoneDefault(int(result))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) Done(result int) {
+	defer qt.Recovering("QFileDialog::done")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_Done(ptr.Pointer(), C.int(result))
+	}
+}
+
+func (ptr *QFileDialog) DoneDefault(result int) {
+	defer qt.Recovering("QFileDialog::done")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DoneDefault(ptr.Pointer(), C.int(result))
+	}
 }
 
 func (ptr *QFileDialog) ConnectFileSelected(f func(file string)) {
@@ -495,13 +572,21 @@ func (ptr *QFileDialog) DisconnectFileSelected() {
 }
 
 //export callbackQFileDialogFileSelected
-func callbackQFileDialogFileSelected(ptrName *C.char, file *C.char) {
+func callbackQFileDialogFileSelected(ptr unsafe.Pointer, ptrName *C.char, file *C.char) {
 	defer qt.Recovering("callback QFileDialog::fileSelected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fileSelected"); signal != nil {
 		signal.(func(string))(C.GoString(file))
 	}
 
+}
+
+func (ptr *QFileDialog) FileSelected(file string) {
+	defer qt.Recovering("QFileDialog::fileSelected")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_FileSelected(ptr.Pointer(), C.CString(file))
+	}
 }
 
 func (ptr *QFileDialog) ConnectFilesSelected(f func(selected []string)) {
@@ -523,13 +608,21 @@ func (ptr *QFileDialog) DisconnectFilesSelected() {
 }
 
 //export callbackQFileDialogFilesSelected
-func callbackQFileDialogFilesSelected(ptrName *C.char, selected *C.char) {
+func callbackQFileDialogFilesSelected(ptr unsafe.Pointer, ptrName *C.char, selected *C.char) {
 	defer qt.Recovering("callback QFileDialog::filesSelected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "filesSelected"); signal != nil {
 		signal.(func([]string))(strings.Split(C.GoString(selected), ",,,"))
 	}
 
+}
+
+func (ptr *QFileDialog) FilesSelected(selected []string) {
+	defer qt.Recovering("QFileDialog::filesSelected")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_FilesSelected(ptr.Pointer(), C.CString(strings.Join(selected, ",,,")))
+	}
 }
 
 func (ptr *QFileDialog) Filter() core.QDir__Filter {
@@ -560,13 +653,21 @@ func (ptr *QFileDialog) DisconnectFilterSelected() {
 }
 
 //export callbackQFileDialogFilterSelected
-func callbackQFileDialogFilterSelected(ptrName *C.char, filter *C.char) {
+func callbackQFileDialogFilterSelected(ptr unsafe.Pointer, ptrName *C.char, filter *C.char) {
 	defer qt.Recovering("callback QFileDialog::filterSelected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "filterSelected"); signal != nil {
 		signal.(func(string))(C.GoString(filter))
 	}
 
+}
+
+func (ptr *QFileDialog) FilterSelected(filter string) {
+	defer qt.Recovering("QFileDialog::filterSelected")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_FilterSelected(ptr.Pointer(), C.CString(filter))
+	}
 }
 
 func QFileDialog_GetExistingDirectory(parent QWidget_ITF, caption string, dir string, options QFileDialog__Option) string {
@@ -873,15 +974,30 @@ func (ptr *QFileDialog) DisconnectSetVisible() {
 }
 
 //export callbackQFileDialogSetVisible
-func callbackQFileDialogSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQFileDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
 	defer qt.Recovering("callback QFileDialog::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
 	}
-	return false
+}
 
+func (ptr *QFileDialog) SetVisible(visible bool) {
+	defer qt.Recovering("QFileDialog::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QFileDialog) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QFileDialog::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QFileDialog) TestOption(option QFileDialog__Option) bool {
@@ -912,13 +1028,21 @@ func (ptr *QFileDialog) DisconnectUrlSelected() {
 }
 
 //export callbackQFileDialogUrlSelected
-func callbackQFileDialogUrlSelected(ptrName *C.char, url unsafe.Pointer) {
+func callbackQFileDialogUrlSelected(ptr unsafe.Pointer, ptrName *C.char, url unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::urlSelected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "urlSelected"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
 
+}
+
+func (ptr *QFileDialog) UrlSelected(url core.QUrl_ITF) {
+	defer qt.Recovering("QFileDialog::urlSelected")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_UrlSelected(ptr.Pointer(), core.PointerFromQUrl(url))
+	}
 }
 
 func (ptr *QFileDialog) DestroyQFileDialog() {
@@ -949,15 +1073,30 @@ func (ptr *QFileDialog) DisconnectCloseEvent() {
 }
 
 //export callbackQFileDialogCloseEvent
-func callbackQFileDialogCloseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFileDialogCloseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) CloseEvent(e gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QFileDialog::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(e))
+	}
+}
+
+func (ptr *QFileDialog) CloseEventDefault(e gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QFileDialog::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(e))
+	}
 }
 
 func (ptr *QFileDialog) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
@@ -979,15 +1118,30 @@ func (ptr *QFileDialog) DisconnectContextMenuEvent() {
 }
 
 //export callbackQFileDialogContextMenuEvent
-func callbackQFileDialogContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFileDialogContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QFileDialog::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QFileDialog) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QFileDialog::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QFileDialog) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
@@ -1009,45 +1163,30 @@ func (ptr *QFileDialog) DisconnectKeyPressEvent() {
 }
 
 //export callbackQFileDialogKeyPressEvent
-func callbackQFileDialogKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFileDialogKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
-
 }
 
-func (ptr *QFileDialog) ConnectOpen(f func()) {
-	defer qt.Recovering("connect QFileDialog::open")
+func (ptr *QFileDialog) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFileDialog::keyPressEvent")
 
 	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "open", f)
+		C.QFileDialog_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
 	}
 }
 
-func (ptr *QFileDialog) DisconnectOpen() {
-	defer qt.Recovering("disconnect QFileDialog::open")
+func (ptr *QFileDialog) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFileDialog::keyPressEvent")
 
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "open")
+		C.QFileDialog_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
 	}
-}
-
-//export callbackQFileDialogOpen
-func callbackQFileDialogOpen(ptrName *C.char) bool {
-	defer qt.Recovering("callback QFileDialog::open")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "open"); signal != nil {
-		signal.(func())()
-		return true
-	}
-	return false
-
 }
 
 func (ptr *QFileDialog) ConnectReject(f func()) {
@@ -1069,7 +1208,7 @@ func (ptr *QFileDialog) DisconnectReject() {
 }
 
 //export callbackQFileDialogReject
-func callbackQFileDialogReject(ptrName *C.char) bool {
+func callbackQFileDialogReject(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QFileDialog::reject")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reject"); signal != nil {
@@ -1078,6 +1217,22 @@ func callbackQFileDialogReject(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QFileDialog) Reject() {
+	defer qt.Recovering("QFileDialog::reject")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_Reject(ptr.Pointer())
+	}
+}
+
+func (ptr *QFileDialog) RejectDefault() {
+	defer qt.Recovering("QFileDialog::reject")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_RejectDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QFileDialog) ConnectResizeEvent(f func(v *gui.QResizeEvent)) {
@@ -1099,15 +1254,30 @@ func (ptr *QFileDialog) DisconnectResizeEvent() {
 }
 
 //export callbackQFileDialogResizeEvent
-func callbackQFileDialogResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQFileDialogResizeEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) ResizeEvent(v gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QFileDialog::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(v))
+	}
+}
+
+func (ptr *QFileDialog) ResizeEventDefault(v gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QFileDialog::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(v))
+	}
 }
 
 func (ptr *QFileDialog) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -1129,15 +1299,30 @@ func (ptr *QFileDialog) DisconnectShowEvent() {
 }
 
 //export callbackQFileDialogShowEvent
-func callbackQFileDialogShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QFileDialog::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QFileDialog::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -1159,15 +1344,30 @@ func (ptr *QFileDialog) DisconnectActionEvent() {
 }
 
 //export callbackQFileDialogActionEvent
-func callbackQFileDialogActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QFileDialog::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QFileDialog::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -1189,15 +1389,30 @@ func (ptr *QFileDialog) DisconnectDragEnterEvent() {
 }
 
 //export callbackQFileDialogDragEnterEvent
-func callbackQFileDialogDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QFileDialog::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QFileDialog::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -1219,15 +1434,30 @@ func (ptr *QFileDialog) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQFileDialogDragLeaveEvent
-func callbackQFileDialogDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QFileDialog::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QFileDialog::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -1249,15 +1479,30 @@ func (ptr *QFileDialog) DisconnectDragMoveEvent() {
 }
 
 //export callbackQFileDialogDragMoveEvent
-func callbackQFileDialogDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QFileDialog::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QFileDialog::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -1279,15 +1524,30 @@ func (ptr *QFileDialog) DisconnectDropEvent() {
 }
 
 //export callbackQFileDialogDropEvent
-func callbackQFileDialogDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QFileDialog::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QFileDialog::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -1309,15 +1569,30 @@ func (ptr *QFileDialog) DisconnectEnterEvent() {
 }
 
 //export callbackQFileDialogEnterEvent
-func callbackQFileDialogEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFileDialog::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFileDialog::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -1339,15 +1614,30 @@ func (ptr *QFileDialog) DisconnectFocusInEvent() {
 }
 
 //export callbackQFileDialogFocusInEvent
-func callbackQFileDialogFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFileDialog::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFileDialog::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -1369,15 +1659,30 @@ func (ptr *QFileDialog) DisconnectFocusOutEvent() {
 }
 
 //export callbackQFileDialogFocusOutEvent
-func callbackQFileDialogFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFileDialog::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFileDialog::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -1399,15 +1704,30 @@ func (ptr *QFileDialog) DisconnectHideEvent() {
 }
 
 //export callbackQFileDialogHideEvent
-func callbackQFileDialogHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QFileDialog::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QFileDialog::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -1429,15 +1749,30 @@ func (ptr *QFileDialog) DisconnectLeaveEvent() {
 }
 
 //export callbackQFileDialogLeaveEvent
-func callbackQFileDialogLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFileDialog::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFileDialog::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1459,15 +1794,30 @@ func (ptr *QFileDialog) DisconnectMoveEvent() {
 }
 
 //export callbackQFileDialogMoveEvent
-func callbackQFileDialogMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QFileDialog::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QFileDialog::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -1489,15 +1839,30 @@ func (ptr *QFileDialog) DisconnectPaintEvent() {
 }
 
 //export callbackQFileDialogPaintEvent
-func callbackQFileDialogPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QFileDialog::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QFileDialog::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1519,15 +1884,30 @@ func (ptr *QFileDialog) DisconnectInitPainter() {
 }
 
 //export callbackQFileDialogInitPainter
-func callbackQFileDialogInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQFileDialogInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QFileDialog::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QFileDialog) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QFileDialog::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QFileDialog) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -1549,15 +1929,30 @@ func (ptr *QFileDialog) DisconnectInputMethodEvent() {
 }
 
 //export callbackQFileDialogInputMethodEvent
-func callbackQFileDialogInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QFileDialog::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QFileDialog::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -1579,15 +1974,30 @@ func (ptr *QFileDialog) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQFileDialogKeyReleaseEvent
-func callbackQFileDialogKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFileDialog::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFileDialog::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1609,15 +2019,30 @@ func (ptr *QFileDialog) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQFileDialogMouseDoubleClickEvent
-func callbackQFileDialogMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFileDialog::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFileDialog::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -1639,15 +2064,30 @@ func (ptr *QFileDialog) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQFileDialogMouseMoveEvent
-func callbackQFileDialogMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFileDialog::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFileDialog::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -1669,15 +2109,30 @@ func (ptr *QFileDialog) DisconnectMousePressEvent() {
 }
 
 //export callbackQFileDialogMousePressEvent
-func callbackQFileDialogMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFileDialog::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFileDialog::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1699,15 +2154,30 @@ func (ptr *QFileDialog) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQFileDialogMouseReleaseEvent
-func callbackQFileDialogMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFileDialog::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFileDialog::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1729,15 +2199,30 @@ func (ptr *QFileDialog) DisconnectTabletEvent() {
 }
 
 //export callbackQFileDialogTabletEvent
-func callbackQFileDialogTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QFileDialog::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QFileDialog::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1759,15 +2244,30 @@ func (ptr *QFileDialog) DisconnectWheelEvent() {
 }
 
 //export callbackQFileDialogWheelEvent
-func callbackQFileDialogWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QFileDialog::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QFileDialog::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1789,15 +2289,30 @@ func (ptr *QFileDialog) DisconnectTimerEvent() {
 }
 
 //export callbackQFileDialogTimerEvent
-func callbackQFileDialogTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFileDialog::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFileDialog::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1819,15 +2334,30 @@ func (ptr *QFileDialog) DisconnectChildEvent() {
 }
 
 //export callbackQFileDialogChildEvent
-func callbackQFileDialogChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QFileDialog::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QFileDialog::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QFileDialog) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1849,13 +2379,28 @@ func (ptr *QFileDialog) DisconnectCustomEvent() {
 }
 
 //export callbackQFileDialogCustomEvent
-func callbackQFileDialogCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDialogCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDialog::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDialogFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDialog) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFileDialog::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFileDialog) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFileDialog::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDialog_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

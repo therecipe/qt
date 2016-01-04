@@ -83,13 +83,21 @@ func (ptr *QBluetoothSocket) DisconnectConnected() {
 }
 
 //export callbackQBluetoothSocketConnected
-func callbackQBluetoothSocketConnected(ptrName *C.char) {
+func callbackQBluetoothSocketConnected(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QBluetoothSocket::connected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "connected"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QBluetoothSocket) Connected() {
+	defer qt.Recovering("QBluetoothSocket::connected")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_Connected(ptr.Pointer())
+	}
 }
 
 func (ptr *QBluetoothSocket) ConnectDisconnected(f func()) {
@@ -111,13 +119,21 @@ func (ptr *QBluetoothSocket) DisconnectDisconnected() {
 }
 
 //export callbackQBluetoothSocketDisconnected
-func callbackQBluetoothSocketDisconnected(ptrName *C.char) {
+func callbackQBluetoothSocketDisconnected(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QBluetoothSocket::disconnected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "disconnected"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QBluetoothSocket) Disconnected() {
+	defer qt.Recovering("QBluetoothSocket::disconnected")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_Disconnected(ptr.Pointer())
+	}
 }
 
 func (ptr *QBluetoothSocket) ConnectError2(f func(error QBluetoothSocket__SocketError)) {
@@ -139,13 +155,21 @@ func (ptr *QBluetoothSocket) DisconnectError2() {
 }
 
 //export callbackQBluetoothSocketError2
-func callbackQBluetoothSocketError2(ptrName *C.char, error C.int) {
+func callbackQBluetoothSocketError2(ptr unsafe.Pointer, ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QBluetoothSocket::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QBluetoothSocket__SocketError))(QBluetoothSocket__SocketError(error))
 	}
 
+}
+
+func (ptr *QBluetoothSocket) Error2(error QBluetoothSocket__SocketError) {
+	defer qt.Recovering("QBluetoothSocket::error")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_Error2(ptr.Pointer(), C.int(error))
+	}
 }
 
 func (ptr *QBluetoothSocket) ConnectStateChanged(f func(state QBluetoothSocket__SocketState)) {
@@ -167,13 +191,21 @@ func (ptr *QBluetoothSocket) DisconnectStateChanged() {
 }
 
 //export callbackQBluetoothSocketStateChanged
-func callbackQBluetoothSocketStateChanged(ptrName *C.char, state C.int) {
+func callbackQBluetoothSocketStateChanged(ptr unsafe.Pointer, ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QBluetoothSocket::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QBluetoothSocket__SocketState))(QBluetoothSocket__SocketState(state))
 	}
 
+}
+
+func (ptr *QBluetoothSocket) StateChanged(state QBluetoothSocket__SocketState) {
+	defer qt.Recovering("QBluetoothSocket::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_StateChanged(ptr.Pointer(), C.int(state))
+	}
 }
 
 func NewQBluetoothSocket(socketType QBluetoothServiceInfo__Protocol, parent core.QObject_ITF) *QBluetoothSocket {
@@ -242,15 +274,30 @@ func (ptr *QBluetoothSocket) DisconnectClose() {
 }
 
 //export callbackQBluetoothSocketClose
-func callbackQBluetoothSocketClose(ptrName *C.char) bool {
+func callbackQBluetoothSocketClose(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QBluetoothSocket::close")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQBluetoothSocketFromPointer(ptr).CloseDefault()
 	}
-	return false
+}
 
+func (ptr *QBluetoothSocket) Close() {
+	defer qt.Recovering("QBluetoothSocket::close")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QBluetoothSocket) CloseDefault() {
+	defer qt.Recovering("QBluetoothSocket::close")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_CloseDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QBluetoothSocket) ConnectToService2(address QBluetoothAddress_ITF, uuid QBluetoothUuid_ITF, openMode core.QIODevice__OpenModeFlag) {
@@ -322,6 +369,15 @@ func (ptr *QBluetoothSocket) PeerName() string {
 	return ""
 }
 
+func (ptr *QBluetoothSocket) ReadData(data string, maxSize int64) int64 {
+	defer qt.Recovering("QBluetoothSocket::readData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QBluetoothSocket_ReadData(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+	}
+	return 0
+}
+
 func (ptr *QBluetoothSocket) SetSocketDescriptor(socketDescriptor int, socketType QBluetoothServiceInfo__Protocol, socketState QBluetoothSocket__SocketState, openMode core.QIODevice__OpenModeFlag) bool {
 	defer qt.Recovering("QBluetoothSocket::setSocketDescriptor")
 
@@ -358,6 +414,15 @@ func (ptr *QBluetoothSocket) State() QBluetoothSocket__SocketState {
 	return 0
 }
 
+func (ptr *QBluetoothSocket) WriteData(data string, maxSize int64) int64 {
+	defer qt.Recovering("QBluetoothSocket::writeData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QBluetoothSocket_WriteData(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+	}
+	return 0
+}
+
 func (ptr *QBluetoothSocket) DestroyQBluetoothSocket() {
 	defer qt.Recovering("QBluetoothSocket::~QBluetoothSocket")
 
@@ -386,15 +451,30 @@ func (ptr *QBluetoothSocket) DisconnectTimerEvent() {
 }
 
 //export callbackQBluetoothSocketTimerEvent
-func callbackQBluetoothSocketTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQBluetoothSocketTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothSocket::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQBluetoothSocketFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QBluetoothSocket) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QBluetoothSocket::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QBluetoothSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QBluetoothSocket::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QBluetoothSocket) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -416,15 +496,30 @@ func (ptr *QBluetoothSocket) DisconnectChildEvent() {
 }
 
 //export callbackQBluetoothSocketChildEvent
-func callbackQBluetoothSocketChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQBluetoothSocketChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothSocket::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQBluetoothSocketFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QBluetoothSocket) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QBluetoothSocket::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QBluetoothSocket) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QBluetoothSocket::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QBluetoothSocket) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -446,13 +541,28 @@ func (ptr *QBluetoothSocket) DisconnectCustomEvent() {
 }
 
 //export callbackQBluetoothSocketCustomEvent
-func callbackQBluetoothSocketCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQBluetoothSocketCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothSocket::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQBluetoothSocketFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QBluetoothSocket) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QBluetoothSocket::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QBluetoothSocket) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QBluetoothSocket::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

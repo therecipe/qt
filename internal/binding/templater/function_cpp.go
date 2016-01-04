@@ -27,7 +27,11 @@ func cppFunctionSignal(f *parser.Function) string {
 	originalInput = strings.TrimSuffix(originalInput, ", ")
 
 	if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
-		return fmt.Sprintf("void %v(%v)%v { if (!callback%v%v%v(%v)) { %v::%v(%v); }; }", f.Name, converter.CppBodyInputCallback(f), constP, f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f), f.Class(), f.Name, originalInput)
+		if f.Meta == "slot" {
+			return fmt.Sprintf("void %v(%v)%v { if (!callback%v%v%v(%v)) { %v::%v(%v); }; }", f.Name, converter.CppBodyInputCallback(f), constP, f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f), f.Class(), f.Name, originalInput)
+		} else {
+			return fmt.Sprintf("void %v(%v)%v { callback%v%v%v(%v); }", f.Name, converter.CppBodyInputCallback(f), constP, f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f))
+		}
 	}
 	return fmt.Sprintf("void Signal_%v%v(%v) { callback%v%v%v(%v); }", strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyInputCallback(f), f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f))
 }

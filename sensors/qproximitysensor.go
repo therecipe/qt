@@ -80,15 +80,30 @@ func (ptr *QProximitySensor) DisconnectTimerEvent() {
 }
 
 //export callbackQProximitySensorTimerEvent
-func callbackQProximitySensorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProximitySensorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProximitySensor::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQProximitySensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProximitySensor) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QProximitySensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProximitySensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QProximitySensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QProximitySensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProximitySensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QProximitySensor) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -110,15 +125,30 @@ func (ptr *QProximitySensor) DisconnectChildEvent() {
 }
 
 //export callbackQProximitySensorChildEvent
-func callbackQProximitySensorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProximitySensorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProximitySensor::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQProximitySensorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProximitySensor) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QProximitySensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProximitySensor_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QProximitySensor) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QProximitySensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProximitySensor_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QProximitySensor) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -140,13 +170,28 @@ func (ptr *QProximitySensor) DisconnectCustomEvent() {
 }
 
 //export callbackQProximitySensorCustomEvent
-func callbackQProximitySensorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProximitySensorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProximitySensor::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQProximitySensorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProximitySensor) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QProximitySensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProximitySensor_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QProximitySensor) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QProximitySensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProximitySensor_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

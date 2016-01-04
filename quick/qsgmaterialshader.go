@@ -63,15 +63,30 @@ func (ptr *QSGMaterialShader) DisconnectActivate() {
 }
 
 //export callbackQSGMaterialShaderActivate
-func callbackQSGMaterialShaderActivate(ptrName *C.char) bool {
+func callbackQSGMaterialShaderActivate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGMaterialShader::activate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGMaterialShaderFromPointer(ptr).ActivateDefault()
 	}
-	return false
+}
 
+func (ptr *QSGMaterialShader) Activate() {
+	defer qt.Recovering("QSGMaterialShader::activate")
+
+	if ptr.Pointer() != nil {
+		C.QSGMaterialShader_Activate(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGMaterialShader) ActivateDefault() {
+	defer qt.Recovering("QSGMaterialShader::activate")
+
+	if ptr.Pointer() != nil {
+		C.QSGMaterialShader_ActivateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QSGMaterialShader) ConnectCompile(f func()) {
@@ -93,15 +108,30 @@ func (ptr *QSGMaterialShader) DisconnectCompile() {
 }
 
 //export callbackQSGMaterialShaderCompile
-func callbackQSGMaterialShaderCompile(ptrName *C.char) bool {
+func callbackQSGMaterialShaderCompile(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGMaterialShader::compile")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "compile"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGMaterialShaderFromPointer(ptr).CompileDefault()
 	}
-	return false
+}
 
+func (ptr *QSGMaterialShader) Compile() {
+	defer qt.Recovering("QSGMaterialShader::compile")
+
+	if ptr.Pointer() != nil {
+		C.QSGMaterialShader_Compile(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGMaterialShader) CompileDefault() {
+	defer qt.Recovering("QSGMaterialShader::compile")
+
+	if ptr.Pointer() != nil {
+		C.QSGMaterialShader_CompileDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QSGMaterialShader) ConnectDeactivate(f func()) {
@@ -123,15 +153,30 @@ func (ptr *QSGMaterialShader) DisconnectDeactivate() {
 }
 
 //export callbackQSGMaterialShaderDeactivate
-func callbackQSGMaterialShaderDeactivate(ptrName *C.char) bool {
+func callbackQSGMaterialShaderDeactivate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGMaterialShader::deactivate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deactivate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGMaterialShaderFromPointer(ptr).DeactivateDefault()
 	}
-	return false
+}
 
+func (ptr *QSGMaterialShader) Deactivate() {
+	defer qt.Recovering("QSGMaterialShader::deactivate")
+
+	if ptr.Pointer() != nil {
+		C.QSGMaterialShader_Deactivate(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGMaterialShader) DeactivateDefault() {
+	defer qt.Recovering("QSGMaterialShader::deactivate")
+
+	if ptr.Pointer() != nil {
+		C.QSGMaterialShader_DeactivateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QSGMaterialShader) ConnectInitialize(f func()) {
@@ -153,15 +198,30 @@ func (ptr *QSGMaterialShader) DisconnectInitialize() {
 }
 
 //export callbackQSGMaterialShaderInitialize
-func callbackQSGMaterialShaderInitialize(ptrName *C.char) bool {
+func callbackQSGMaterialShaderInitialize(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGMaterialShader::initialize")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initialize"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGMaterialShaderFromPointer(ptr).InitializeDefault()
 	}
-	return false
+}
 
+func (ptr *QSGMaterialShader) Initialize() {
+	defer qt.Recovering("QSGMaterialShader::initialize")
+
+	if ptr.Pointer() != nil {
+		C.QSGMaterialShader_Initialize(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGMaterialShader) InitializeDefault() {
+	defer qt.Recovering("QSGMaterialShader::initialize")
+
+	if ptr.Pointer() != nil {
+		C.QSGMaterialShader_InitializeDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QSGMaterialShader) Program() *gui.QOpenGLShaderProgram {

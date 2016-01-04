@@ -92,13 +92,28 @@ func (ptr *QSGClipNode) DisconnectPreprocess() {
 }
 
 //export callbackQSGClipNodePreprocess
-func callbackQSGClipNodePreprocess(ptrName *C.char) bool {
+func callbackQSGClipNodePreprocess(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGClipNode::preprocess")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGClipNodeFromPointer(ptr).PreprocessDefault()
 	}
-	return false
+}
 
+func (ptr *QSGClipNode) Preprocess() {
+	defer qt.Recovering("QSGClipNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGClipNode_Preprocess(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGClipNode) PreprocessDefault() {
+	defer qt.Recovering("QSGClipNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGClipNode_PreprocessDefault(ptr.Pointer())
+	}
 }

@@ -140,15 +140,30 @@ func (ptr *QQmlComponent) DisconnectCompleteCreate() {
 }
 
 //export callbackQQmlComponentCompleteCreate
-func callbackQQmlComponentCompleteCreate(ptrName *C.char) bool {
+func callbackQQmlComponentCompleteCreate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQmlComponent::completeCreate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "completeCreate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQQmlComponentFromPointer(ptr).CompleteCreateDefault()
 	}
-	return false
+}
 
+func (ptr *QQmlComponent) CompleteCreate() {
+	defer qt.Recovering("QQmlComponent::completeCreate")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_CompleteCreate(ptr.Pointer())
+	}
+}
+
+func (ptr *QQmlComponent) CompleteCreateDefault() {
+	defer qt.Recovering("QQmlComponent::completeCreate")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_CompleteCreateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QQmlComponent) Create(context QQmlContext_ITF) *core.QObject {
@@ -248,13 +263,21 @@ func (ptr *QQmlComponent) DisconnectProgressChanged() {
 }
 
 //export callbackQQmlComponentProgressChanged
-func callbackQQmlComponentProgressChanged(ptrName *C.char, progress C.double) {
+func callbackQQmlComponentProgressChanged(ptr unsafe.Pointer, ptrName *C.char, progress C.double) {
 	defer qt.Recovering("callback QQmlComponent::progressChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "progressChanged"); signal != nil {
 		signal.(func(float64))(float64(progress))
 	}
 
+}
+
+func (ptr *QQmlComponent) ProgressChanged(progress float64) {
+	defer qt.Recovering("QQmlComponent::progressChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_ProgressChanged(ptr.Pointer(), C.double(progress))
+	}
 }
 
 func (ptr *QQmlComponent) SetData(data core.QByteArray_ITF, url core.QUrl_ITF) {
@@ -284,13 +307,21 @@ func (ptr *QQmlComponent) DisconnectStatusChanged() {
 }
 
 //export callbackQQmlComponentStatusChanged
-func callbackQQmlComponentStatusChanged(ptrName *C.char, status C.int) {
+func callbackQQmlComponentStatusChanged(ptr unsafe.Pointer, ptrName *C.char, status C.int) {
 	defer qt.Recovering("callback QQmlComponent::statusChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "statusChanged"); signal != nil {
 		signal.(func(QQmlComponent__Status))(QQmlComponent__Status(status))
 	}
 
+}
+
+func (ptr *QQmlComponent) StatusChanged(status QQmlComponent__Status) {
+	defer qt.Recovering("QQmlComponent::statusChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_StatusChanged(ptr.Pointer(), C.int(status))
+	}
 }
 
 func (ptr *QQmlComponent) DestroyQQmlComponent() {
@@ -321,15 +352,30 @@ func (ptr *QQmlComponent) DisconnectTimerEvent() {
 }
 
 //export callbackQQmlComponentTimerEvent
-func callbackQQmlComponentTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlComponentTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlComponent::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlComponentFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlComponent) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlComponent::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQmlComponent) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlComponent::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QQmlComponent) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -351,15 +397,30 @@ func (ptr *QQmlComponent) DisconnectChildEvent() {
 }
 
 //export callbackQQmlComponentChildEvent
-func callbackQQmlComponentChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlComponentChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlComponent::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlComponentFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlComponent) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlComponent::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQmlComponent) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlComponent::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QQmlComponent) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -381,13 +442,28 @@ func (ptr *QQmlComponent) DisconnectCustomEvent() {
 }
 
 //export callbackQQmlComponentCustomEvent
-func callbackQQmlComponentCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlComponentCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlComponent::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlComponentFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlComponent) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlComponent::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQmlComponent) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlComponent::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

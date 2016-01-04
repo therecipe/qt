@@ -98,15 +98,30 @@ func (ptr *QSyntaxHighlighter) DisconnectTimerEvent() {
 }
 
 //export callbackQSyntaxHighlighterTimerEvent
-func callbackQSyntaxHighlighterTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSyntaxHighlighterTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSyntaxHighlighter::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSyntaxHighlighterFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSyntaxHighlighter) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSyntaxHighlighter::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSyntaxHighlighter_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSyntaxHighlighter) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSyntaxHighlighter::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSyntaxHighlighter_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSyntaxHighlighter) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -128,15 +143,30 @@ func (ptr *QSyntaxHighlighter) DisconnectChildEvent() {
 }
 
 //export callbackQSyntaxHighlighterChildEvent
-func callbackQSyntaxHighlighterChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSyntaxHighlighterChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSyntaxHighlighter::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSyntaxHighlighterFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSyntaxHighlighter) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSyntaxHighlighter::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSyntaxHighlighter_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSyntaxHighlighter) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSyntaxHighlighter::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSyntaxHighlighter_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSyntaxHighlighter) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -158,13 +188,28 @@ func (ptr *QSyntaxHighlighter) DisconnectCustomEvent() {
 }
 
 //export callbackQSyntaxHighlighterCustomEvent
-func callbackQSyntaxHighlighterCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSyntaxHighlighterCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSyntaxHighlighter::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSyntaxHighlighterFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSyntaxHighlighter) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSyntaxHighlighter::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSyntaxHighlighter_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSyntaxHighlighter) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSyntaxHighlighter::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSyntaxHighlighter_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

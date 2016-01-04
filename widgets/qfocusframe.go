@@ -44,6 +44,24 @@ func NewQFocusFrame(parent QWidget_ITF) *QFocusFrame {
 	return NewQFocusFrameFromPointer(C.QFocusFrame_NewQFocusFrame(PointerFromQWidget(parent)))
 }
 
+func (ptr *QFocusFrame) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QFocusFrame::event")
+
+	if ptr.Pointer() != nil {
+		return C.QFocusFrame_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QFocusFrame) EventFilter(o core.QObject_ITF, e core.QEvent_ITF) bool {
+	defer qt.Recovering("QFocusFrame::eventFilter")
+
+	if ptr.Pointer() != nil {
+		return C.QFocusFrame_EventFilter(ptr.Pointer(), core.PointerFromQObject(o), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
 func (ptr *QFocusFrame) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
 	defer qt.Recovering("connect QFocusFrame::paintEvent")
 
@@ -63,15 +81,30 @@ func (ptr *QFocusFrame) DisconnectPaintEvent() {
 }
 
 //export callbackQFocusFramePaintEvent
-func callbackQFocusFramePaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQFocusFramePaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) PaintEvent(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
+}
+
+func (ptr *QFocusFrame) PaintEventDefault(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
 }
 
 func (ptr *QFocusFrame) SetWidget(widget QWidget_ITF) {
@@ -119,15 +152,30 @@ func (ptr *QFocusFrame) DisconnectActionEvent() {
 }
 
 //export callbackQFocusFrameActionEvent
-func callbackQFocusFrameActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -149,15 +197,30 @@ func (ptr *QFocusFrame) DisconnectDragEnterEvent() {
 }
 
 //export callbackQFocusFrameDragEnterEvent
-func callbackQFocusFrameDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -179,15 +242,30 @@ func (ptr *QFocusFrame) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQFocusFrameDragLeaveEvent
-func callbackQFocusFrameDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -209,15 +287,30 @@ func (ptr *QFocusFrame) DisconnectDragMoveEvent() {
 }
 
 //export callbackQFocusFrameDragMoveEvent
-func callbackQFocusFrameDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -239,15 +332,30 @@ func (ptr *QFocusFrame) DisconnectDropEvent() {
 }
 
 //export callbackQFocusFrameDropEvent
-func callbackQFocusFrameDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -269,15 +377,30 @@ func (ptr *QFocusFrame) DisconnectEnterEvent() {
 }
 
 //export callbackQFocusFrameEnterEvent
-func callbackQFocusFrameEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -299,15 +422,30 @@ func (ptr *QFocusFrame) DisconnectFocusInEvent() {
 }
 
 //export callbackQFocusFrameFocusInEvent
-func callbackQFocusFrameFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -329,15 +467,30 @@ func (ptr *QFocusFrame) DisconnectFocusOutEvent() {
 }
 
 //export callbackQFocusFrameFocusOutEvent
-func callbackQFocusFrameFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -359,15 +512,30 @@ func (ptr *QFocusFrame) DisconnectHideEvent() {
 }
 
 //export callbackQFocusFrameHideEvent
-func callbackQFocusFrameHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -389,15 +557,30 @@ func (ptr *QFocusFrame) DisconnectLeaveEvent() {
 }
 
 //export callbackQFocusFrameLeaveEvent
-func callbackQFocusFrameLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -419,15 +602,30 @@ func (ptr *QFocusFrame) DisconnectMoveEvent() {
 }
 
 //export callbackQFocusFrameMoveEvent
-func callbackQFocusFrameMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectSetVisible(f func(visible bool)) {
@@ -449,7 +647,7 @@ func (ptr *QFocusFrame) DisconnectSetVisible() {
 }
 
 //export callbackQFocusFrameSetVisible
-func callbackQFocusFrameSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQFocusFrameSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QFocusFrame::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -458,6 +656,22 @@ func callbackQFocusFrameSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QFocusFrame) SetVisible(visible bool) {
+	defer qt.Recovering("QFocusFrame::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QFocusFrame) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QFocusFrame::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -479,15 +693,30 @@ func (ptr *QFocusFrame) DisconnectShowEvent() {
 }
 
 //export callbackQFocusFrameShowEvent
-func callbackQFocusFrameShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -509,15 +738,30 @@ func (ptr *QFocusFrame) DisconnectChangeEvent() {
 }
 
 //export callbackQFocusFrameChangeEvent
-func callbackQFocusFrameChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -539,15 +783,30 @@ func (ptr *QFocusFrame) DisconnectCloseEvent() {
 }
 
 //export callbackQFocusFrameCloseEvent
-func callbackQFocusFrameCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -569,15 +828,30 @@ func (ptr *QFocusFrame) DisconnectContextMenuEvent() {
 }
 
 //export callbackQFocusFrameContextMenuEvent
-func callbackQFocusFrameContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -599,15 +873,30 @@ func (ptr *QFocusFrame) DisconnectInitPainter() {
 }
 
 //export callbackQFocusFrameInitPainter
-func callbackQFocusFrameInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQFocusFrameInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QFocusFrame::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QFocusFrame) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QFocusFrame::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -629,15 +918,30 @@ func (ptr *QFocusFrame) DisconnectInputMethodEvent() {
 }
 
 //export callbackQFocusFrameInputMethodEvent
-func callbackQFocusFrameInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -659,15 +963,30 @@ func (ptr *QFocusFrame) DisconnectKeyPressEvent() {
 }
 
 //export callbackQFocusFrameKeyPressEvent
-func callbackQFocusFrameKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -689,15 +1008,30 @@ func (ptr *QFocusFrame) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQFocusFrameKeyReleaseEvent
-func callbackQFocusFrameKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -719,15 +1053,30 @@ func (ptr *QFocusFrame) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQFocusFrameMouseDoubleClickEvent
-func callbackQFocusFrameMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -749,15 +1098,30 @@ func (ptr *QFocusFrame) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQFocusFrameMouseMoveEvent
-func callbackQFocusFrameMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -779,15 +1143,30 @@ func (ptr *QFocusFrame) DisconnectMousePressEvent() {
 }
 
 //export callbackQFocusFrameMousePressEvent
-func callbackQFocusFrameMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -809,15 +1188,30 @@ func (ptr *QFocusFrame) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQFocusFrameMouseReleaseEvent
-func callbackQFocusFrameMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -839,15 +1233,30 @@ func (ptr *QFocusFrame) DisconnectResizeEvent() {
 }
 
 //export callbackQFocusFrameResizeEvent
-func callbackQFocusFrameResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -869,15 +1278,30 @@ func (ptr *QFocusFrame) DisconnectTabletEvent() {
 }
 
 //export callbackQFocusFrameTabletEvent
-func callbackQFocusFrameTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -899,15 +1323,30 @@ func (ptr *QFocusFrame) DisconnectWheelEvent() {
 }
 
 //export callbackQFocusFrameWheelEvent
-func callbackQFocusFrameWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -929,15 +1368,30 @@ func (ptr *QFocusFrame) DisconnectTimerEvent() {
 }
 
 //export callbackQFocusFrameTimerEvent
-func callbackQFocusFrameTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -959,15 +1413,30 @@ func (ptr *QFocusFrame) DisconnectChildEvent() {
 }
 
 //export callbackQFocusFrameChildEvent
-func callbackQFocusFrameChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QFocusFrame) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -989,13 +1458,28 @@ func (ptr *QFocusFrame) DisconnectCustomEvent() {
 }
 
 //export callbackQFocusFrameCustomEvent
-func callbackQFocusFrameCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFocusFrameCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFocusFrame::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFocusFrameFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFocusFrame) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFocusFrame) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFocusFrame::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFocusFrame_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

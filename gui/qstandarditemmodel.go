@@ -245,13 +245,21 @@ func (ptr *QStandardItemModel) DisconnectItemChanged() {
 }
 
 //export callbackQStandardItemModelItemChanged
-func callbackQStandardItemModelItemChanged(ptrName *C.char, item unsafe.Pointer) {
+func callbackQStandardItemModelItemChanged(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QStandardItemModel::itemChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "itemChanged"); signal != nil {
 		signal.(func(*QStandardItem))(NewQStandardItemFromPointer(item))
 	}
 
+}
+
+func (ptr *QStandardItemModel) ItemChanged(item QStandardItem_ITF) {
+	defer qt.Recovering("QStandardItemModel::itemChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_ItemChanged(ptr.Pointer(), PointerFromQStandardItem(item))
+	}
 }
 
 func (ptr *QStandardItemModel) ItemFromIndex(index core.QModelIndex_ITF) *QStandardItem {
@@ -435,15 +443,30 @@ func (ptr *QStandardItemModel) DisconnectSort() {
 }
 
 //export callbackQStandardItemModelSort
-func callbackQStandardItemModelSort(ptrName *C.char, column C.int, order C.int) bool {
+func callbackQStandardItemModelSort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
 	defer qt.Recovering("callback QStandardItemModel::sort")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
 		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
-		return true
+	} else {
+		NewQStandardItemModelFromPointer(ptr).SortDefault(int(column), core.Qt__SortOrder(order))
 	}
-	return false
+}
 
+func (ptr *QStandardItemModel) Sort(column int, order core.Qt__SortOrder) {
+	defer qt.Recovering("QStandardItemModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
+	}
+}
+
+func (ptr *QStandardItemModel) SortDefault(column int, order core.Qt__SortOrder) {
+	defer qt.Recovering("QStandardItemModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
+	}
 }
 
 func (ptr *QStandardItemModel) SupportedDropActions() core.Qt__DropAction {
@@ -519,15 +542,30 @@ func (ptr *QStandardItemModel) DisconnectFetchMore() {
 }
 
 //export callbackQStandardItemModelFetchMore
-func callbackQStandardItemModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+func callbackQStandardItemModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
 	defer qt.Recovering("callback QStandardItemModel::fetchMore")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
-		return true
+	} else {
+		NewQStandardItemModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
 	}
-	return false
+}
 
+func (ptr *QStandardItemModel) FetchMore(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QStandardItemModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QStandardItemModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QStandardItemModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
 }
 
 func (ptr *QStandardItemModel) ConnectRevert(f func()) {
@@ -549,7 +587,7 @@ func (ptr *QStandardItemModel) DisconnectRevert() {
 }
 
 //export callbackQStandardItemModelRevert
-func callbackQStandardItemModelRevert(ptrName *C.char) bool {
+func callbackQStandardItemModelRevert(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QStandardItemModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
@@ -558,6 +596,22 @@ func callbackQStandardItemModelRevert(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QStandardItemModel) Revert() {
+	defer qt.Recovering("QStandardItemModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_Revert(ptr.Pointer())
+	}
+}
+
+func (ptr *QStandardItemModel) RevertDefault() {
+	defer qt.Recovering("QStandardItemModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_RevertDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QStandardItemModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -579,15 +633,30 @@ func (ptr *QStandardItemModel) DisconnectTimerEvent() {
 }
 
 //export callbackQStandardItemModelTimerEvent
-func callbackQStandardItemModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStandardItemModelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStandardItemModel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQStandardItemModelFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStandardItemModel) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStandardItemModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QStandardItemModel) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStandardItemModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QStandardItemModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -609,15 +678,30 @@ func (ptr *QStandardItemModel) DisconnectChildEvent() {
 }
 
 //export callbackQStandardItemModelChildEvent
-func callbackQStandardItemModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStandardItemModelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStandardItemModel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQStandardItemModelFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStandardItemModel) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QStandardItemModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QStandardItemModel) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QStandardItemModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QStandardItemModel) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -639,13 +723,28 @@ func (ptr *QStandardItemModel) DisconnectCustomEvent() {
 }
 
 //export callbackQStandardItemModelCustomEvent
-func callbackQStandardItemModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStandardItemModelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStandardItemModel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQStandardItemModelFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStandardItemModel) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QStandardItemModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QStandardItemModel) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QStandardItemModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

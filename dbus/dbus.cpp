@@ -1,3 +1,5 @@
+#define protected public
+
 #include "dbus.h"
 #include "_cgo_export.h"
 
@@ -34,12 +36,35 @@ void QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(void* ptr){
 	static_cast<QDBusAbstractAdaptor*>(ptr)->~QDBusAbstractAdaptor();
 }
 
+void QDBusAbstractAdaptor_TimerEvent(void* ptr, void* event){
+	static_cast<QDBusAbstractAdaptor*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusAbstractAdaptor_TimerEventDefault(void* ptr, void* event){
+	static_cast<QDBusAbstractAdaptor*>(ptr)->QDBusAbstractAdaptor::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusAbstractAdaptor_ChildEvent(void* ptr, void* event){
+	static_cast<QDBusAbstractAdaptor*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusAbstractAdaptor_ChildEventDefault(void* ptr, void* event){
+	static_cast<QDBusAbstractAdaptor*>(ptr)->QDBusAbstractAdaptor::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusAbstractAdaptor_CustomEvent(void* ptr, void* event){
+	static_cast<QDBusAbstractAdaptor*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QDBusAbstractAdaptor_CustomEventDefault(void* ptr, void* event){
+	static_cast<QDBusAbstractAdaptor*>(ptr)->QDBusAbstractAdaptor::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQDBusAbstractInterface: public QDBusAbstractInterface {
 public:
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQDBusAbstractInterfaceTimerEvent(this->objectName().toUtf8().data(), event)) { QDBusAbstractInterface::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQDBusAbstractInterfaceChildEvent(this->objectName().toUtf8().data(), event)) { QDBusAbstractInterface::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQDBusAbstractInterfaceCustomEvent(this->objectName().toUtf8().data(), event)) { QDBusAbstractInterface::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractInterfaceTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQDBusAbstractInterfaceChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQDBusAbstractInterfaceCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 char* QDBusAbstractInterface_Interface(void* ptr){
@@ -68,6 +93,30 @@ int QDBusAbstractInterface_Timeout(void* ptr){
 
 void QDBusAbstractInterface_DestroyQDBusAbstractInterface(void* ptr){
 	static_cast<QDBusAbstractInterface*>(ptr)->~QDBusAbstractInterface();
+}
+
+void QDBusAbstractInterface_TimerEvent(void* ptr, void* event){
+	static_cast<MyQDBusAbstractInterface*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusAbstractInterface_TimerEventDefault(void* ptr, void* event){
+	static_cast<QDBusAbstractInterface*>(ptr)->QDBusAbstractInterface::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusAbstractInterface_ChildEvent(void* ptr, void* event){
+	static_cast<MyQDBusAbstractInterface*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusAbstractInterface_ChildEventDefault(void* ptr, void* event){
+	static_cast<QDBusAbstractInterface*>(ptr)->QDBusAbstractInterface::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusAbstractInterface_CustomEvent(void* ptr, void* event){
+	static_cast<MyQDBusAbstractInterface*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QDBusAbstractInterface_CustomEventDefault(void* ptr, void* event){
+	static_cast<QDBusAbstractInterface*>(ptr)->QDBusAbstractInterface::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QDBusArgument_NewQDBusArgument(){
@@ -248,12 +297,11 @@ void QDBusConnection_DestroyQDBusConnection(void* ptr){
 
 class MyQDBusConnectionInterface: public QDBusConnectionInterface {
 public:
-	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusConnectionInterfaceServiceRegistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
-	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusConnectionInterfaceServiceUnregistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQDBusConnectionInterfaceTimerEvent(this->objectName().toUtf8().data(), event)) { QDBusConnectionInterface::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQDBusConnectionInterfaceChildEvent(this->objectName().toUtf8().data(), event)) { QDBusConnectionInterface::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQDBusConnectionInterfaceCustomEvent(this->objectName().toUtf8().data(), event)) { QDBusConnectionInterface::customEvent(event); }; };
+	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusConnectionInterfaceServiceRegistered(this, this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
+	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusConnectionInterfaceServiceUnregistered(this, this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQDBusConnectionInterfaceTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQDBusConnectionInterfaceChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQDBusConnectionInterfaceCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QDBusConnectionInterface_ConnectServiceRegistered(void* ptr){
@@ -264,12 +312,44 @@ void QDBusConnectionInterface_DisconnectServiceRegistered(void* ptr){
 	QObject::disconnect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceRegistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceRegistered));;
 }
 
+void QDBusConnectionInterface_ServiceRegistered(void* ptr, char* serviceName){
+	static_cast<QDBusConnectionInterface*>(ptr)->serviceRegistered(QString(serviceName));
+}
+
 void QDBusConnectionInterface_ConnectServiceUnregistered(void* ptr){
 	QObject::connect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceUnregistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceUnregistered));;
 }
 
 void QDBusConnectionInterface_DisconnectServiceUnregistered(void* ptr){
 	QObject::disconnect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceUnregistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceUnregistered));;
+}
+
+void QDBusConnectionInterface_ServiceUnregistered(void* ptr, char* serviceName){
+	static_cast<QDBusConnectionInterface*>(ptr)->serviceUnregistered(QString(serviceName));
+}
+
+void QDBusConnectionInterface_TimerEvent(void* ptr, void* event){
+	static_cast<MyQDBusConnectionInterface*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusConnectionInterface_TimerEventDefault(void* ptr, void* event){
+	static_cast<QDBusConnectionInterface*>(ptr)->QDBusConnectionInterface::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusConnectionInterface_ChildEvent(void* ptr, void* event){
+	static_cast<MyQDBusConnectionInterface*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusConnectionInterface_ChildEventDefault(void* ptr, void* event){
+	static_cast<QDBusConnectionInterface*>(ptr)->QDBusConnectionInterface::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusConnectionInterface_CustomEvent(void* ptr, void* event){
+	static_cast<MyQDBusConnectionInterface*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QDBusConnectionInterface_CustomEventDefault(void* ptr, void* event){
+	static_cast<QDBusConnectionInterface*>(ptr)->QDBusConnectionInterface::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QDBusContext_NewQDBusContext(){
@@ -326,6 +406,30 @@ void* QDBusInterface_NewQDBusInterface(char* service, char* path, char* interfa,
 
 void QDBusInterface_DestroyQDBusInterface(void* ptr){
 	static_cast<QDBusInterface*>(ptr)->~QDBusInterface();
+}
+
+void QDBusInterface_TimerEvent(void* ptr, void* event){
+	static_cast<QDBusInterface*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusInterface_TimerEventDefault(void* ptr, void* event){
+	static_cast<QDBusInterface*>(ptr)->QDBusInterface::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusInterface_ChildEvent(void* ptr, void* event){
+	static_cast<QDBusInterface*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusInterface_ChildEventDefault(void* ptr, void* event){
+	static_cast<QDBusInterface*>(ptr)->QDBusInterface::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusInterface_CustomEvent(void* ptr, void* event){
+	static_cast<QDBusInterface*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QDBusInterface_CustomEventDefault(void* ptr, void* event){
+	static_cast<QDBusInterface*>(ptr)->QDBusInterface::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QDBusMessage_NewQDBusMessage(){
@@ -430,11 +534,10 @@ void QDBusPendingCall_DestroyQDBusPendingCall(void* ptr){
 
 class MyQDBusPendingCallWatcher: public QDBusPendingCallWatcher {
 public:
-	void Signal_Finished(QDBusPendingCallWatcher * self) { callbackQDBusPendingCallWatcherFinished(this->objectName().toUtf8().data(), self); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQDBusPendingCallWatcherTimerEvent(this->objectName().toUtf8().data(), event)) { QDBusPendingCallWatcher::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQDBusPendingCallWatcherChildEvent(this->objectName().toUtf8().data(), event)) { QDBusPendingCallWatcher::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQDBusPendingCallWatcherCustomEvent(this->objectName().toUtf8().data(), event)) { QDBusPendingCallWatcher::customEvent(event); }; };
+	void Signal_Finished(QDBusPendingCallWatcher * self) { callbackQDBusPendingCallWatcherFinished(this, this->objectName().toUtf8().data(), self); };
+	void timerEvent(QTimerEvent * event) { callbackQDBusPendingCallWatcherTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQDBusPendingCallWatcherChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQDBusPendingCallWatcherCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QDBusPendingCallWatcher_WaitForFinished(void* ptr){
@@ -453,6 +556,10 @@ void QDBusPendingCallWatcher_DisconnectFinished(void* ptr){
 	QObject::disconnect(static_cast<QDBusPendingCallWatcher*>(ptr), static_cast<void (QDBusPendingCallWatcher::*)(QDBusPendingCallWatcher *)>(&QDBusPendingCallWatcher::finished), static_cast<MyQDBusPendingCallWatcher*>(ptr), static_cast<void (MyQDBusPendingCallWatcher::*)(QDBusPendingCallWatcher *)>(&MyQDBusPendingCallWatcher::Signal_Finished));;
 }
 
+void QDBusPendingCallWatcher_Finished(void* ptr, void* self){
+	static_cast<QDBusPendingCallWatcher*>(ptr)->finished(static_cast<QDBusPendingCallWatcher*>(self));
+}
+
 int QDBusPendingCallWatcher_IsFinished(void* ptr){
 	return static_cast<QDBusPendingCallWatcher*>(ptr)->isFinished();
 }
@@ -461,14 +568,37 @@ void QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcher(void* ptr){
 	static_cast<QDBusPendingCallWatcher*>(ptr)->~QDBusPendingCallWatcher();
 }
 
+void QDBusPendingCallWatcher_TimerEvent(void* ptr, void* event){
+	static_cast<MyQDBusPendingCallWatcher*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusPendingCallWatcher_TimerEventDefault(void* ptr, void* event){
+	static_cast<QDBusPendingCallWatcher*>(ptr)->QDBusPendingCallWatcher::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusPendingCallWatcher_ChildEvent(void* ptr, void* event){
+	static_cast<MyQDBusPendingCallWatcher*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusPendingCallWatcher_ChildEventDefault(void* ptr, void* event){
+	static_cast<QDBusPendingCallWatcher*>(ptr)->QDBusPendingCallWatcher::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusPendingCallWatcher_CustomEvent(void* ptr, void* event){
+	static_cast<MyQDBusPendingCallWatcher*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QDBusPendingCallWatcher_CustomEventDefault(void* ptr, void* event){
+	static_cast<QDBusPendingCallWatcher*>(ptr)->QDBusPendingCallWatcher::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQDBusServer: public QDBusServer {
 public:
 	MyQDBusServer(QObject *parent) : QDBusServer(parent) {};
 	MyQDBusServer(const QString &address, QObject *parent) : QDBusServer(address, parent) {};
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQDBusServerTimerEvent(this->objectName().toUtf8().data(), event)) { QDBusServer::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQDBusServerChildEvent(this->objectName().toUtf8().data(), event)) { QDBusServer::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQDBusServerCustomEvent(this->objectName().toUtf8().data(), event)) { QDBusServer::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQDBusServerTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQDBusServerChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQDBusServerCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QDBusServer_NewQDBusServer2(void* parent){
@@ -499,15 +629,38 @@ void QDBusServer_DestroyQDBusServer(void* ptr){
 	static_cast<QDBusServer*>(ptr)->~QDBusServer();
 }
 
+void QDBusServer_TimerEvent(void* ptr, void* event){
+	static_cast<MyQDBusServer*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusServer_TimerEventDefault(void* ptr, void* event){
+	static_cast<QDBusServer*>(ptr)->QDBusServer::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusServer_ChildEvent(void* ptr, void* event){
+	static_cast<MyQDBusServer*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusServer_ChildEventDefault(void* ptr, void* event){
+	static_cast<QDBusServer*>(ptr)->QDBusServer::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusServer_CustomEvent(void* ptr, void* event){
+	static_cast<MyQDBusServer*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QDBusServer_CustomEventDefault(void* ptr, void* event){
+	static_cast<QDBusServer*>(ptr)->QDBusServer::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQDBusServiceWatcher: public QDBusServiceWatcher {
 public:
-	void Signal_ServiceOwnerChanged(const QString & serviceName, const QString & oldOwner, const QString & newOwner) { callbackQDBusServiceWatcherServiceOwnerChanged(this->objectName().toUtf8().data(), serviceName.toUtf8().data(), oldOwner.toUtf8().data(), newOwner.toUtf8().data()); };
-	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusServiceWatcherServiceRegistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
-	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusServiceWatcherServiceUnregistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQDBusServiceWatcherTimerEvent(this->objectName().toUtf8().data(), event)) { QDBusServiceWatcher::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQDBusServiceWatcherChildEvent(this->objectName().toUtf8().data(), event)) { QDBusServiceWatcher::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQDBusServiceWatcherCustomEvent(this->objectName().toUtf8().data(), event)) { QDBusServiceWatcher::customEvent(event); }; };
+	void Signal_ServiceOwnerChanged(const QString & serviceName, const QString & oldOwner, const QString & newOwner) { callbackQDBusServiceWatcherServiceOwnerChanged(this, this->objectName().toUtf8().data(), serviceName.toUtf8().data(), oldOwner.toUtf8().data(), newOwner.toUtf8().data()); };
+	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusServiceWatcherServiceRegistered(this, this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
+	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusServiceWatcherServiceUnregistered(this, this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQDBusServiceWatcherTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQDBusServiceWatcherChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQDBusServiceWatcherCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QDBusServiceWatcher_SetWatchMode(void* ptr, int mode){
@@ -542,6 +695,10 @@ void QDBusServiceWatcher_DisconnectServiceOwnerChanged(void* ptr){
 	QObject::disconnect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &, const QString &, const QString &)>(&QDBusServiceWatcher::serviceOwnerChanged), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &, const QString &, const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceOwnerChanged));;
 }
 
+void QDBusServiceWatcher_ServiceOwnerChanged(void* ptr, char* serviceName, char* oldOwner, char* newOwner){
+	static_cast<QDBusServiceWatcher*>(ptr)->serviceOwnerChanged(QString(serviceName), QString(oldOwner), QString(newOwner));
+}
+
 void QDBusServiceWatcher_ConnectServiceRegistered(void* ptr){
 	QObject::connect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &)>(&QDBusServiceWatcher::serviceRegistered), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceRegistered));;
 }
@@ -550,12 +707,20 @@ void QDBusServiceWatcher_DisconnectServiceRegistered(void* ptr){
 	QObject::disconnect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &)>(&QDBusServiceWatcher::serviceRegistered), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceRegistered));;
 }
 
+void QDBusServiceWatcher_ServiceRegistered(void* ptr, char* serviceName){
+	static_cast<QDBusServiceWatcher*>(ptr)->serviceRegistered(QString(serviceName));
+}
+
 void QDBusServiceWatcher_ConnectServiceUnregistered(void* ptr){
 	QObject::connect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &)>(&QDBusServiceWatcher::serviceUnregistered), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceUnregistered));;
 }
 
 void QDBusServiceWatcher_DisconnectServiceUnregistered(void* ptr){
 	QObject::disconnect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &)>(&QDBusServiceWatcher::serviceUnregistered), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceUnregistered));;
+}
+
+void QDBusServiceWatcher_ServiceUnregistered(void* ptr, char* serviceName){
+	static_cast<QDBusServiceWatcher*>(ptr)->serviceUnregistered(QString(serviceName));
 }
 
 void QDBusServiceWatcher_SetConnection(void* ptr, void* connection){
@@ -572,6 +737,30 @@ char* QDBusServiceWatcher_WatchedServices(void* ptr){
 
 void QDBusServiceWatcher_DestroyQDBusServiceWatcher(void* ptr){
 	static_cast<QDBusServiceWatcher*>(ptr)->~QDBusServiceWatcher();
+}
+
+void QDBusServiceWatcher_TimerEvent(void* ptr, void* event){
+	static_cast<MyQDBusServiceWatcher*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusServiceWatcher_TimerEventDefault(void* ptr, void* event){
+	static_cast<QDBusServiceWatcher*>(ptr)->QDBusServiceWatcher::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusServiceWatcher_ChildEvent(void* ptr, void* event){
+	static_cast<MyQDBusServiceWatcher*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusServiceWatcher_ChildEventDefault(void* ptr, void* event){
+	static_cast<QDBusServiceWatcher*>(ptr)->QDBusServiceWatcher::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusServiceWatcher_CustomEvent(void* ptr, void* event){
+	static_cast<MyQDBusServiceWatcher*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QDBusServiceWatcher_CustomEventDefault(void* ptr, void* event){
+	static_cast<QDBusServiceWatcher*>(ptr)->QDBusServiceWatcher::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QDBusSignature_NewQDBusSignature(){
@@ -652,10 +841,9 @@ void* QDBusVariant_Variant(void* ptr){
 
 class MyQDBusVirtualObject: public QDBusVirtualObject {
 public:
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQDBusVirtualObjectTimerEvent(this->objectName().toUtf8().data(), event)) { QDBusVirtualObject::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQDBusVirtualObjectChildEvent(this->objectName().toUtf8().data(), event)) { QDBusVirtualObject::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQDBusVirtualObjectCustomEvent(this->objectName().toUtf8().data(), event)) { QDBusVirtualObject::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQDBusVirtualObjectTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQDBusVirtualObjectChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQDBusVirtualObjectCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 int QDBusVirtualObject_HandleMessage(void* ptr, void* message, void* connection){
@@ -668,5 +856,29 @@ char* QDBusVirtualObject_Introspect(void* ptr, char* path){
 
 void QDBusVirtualObject_DestroyQDBusVirtualObject(void* ptr){
 	static_cast<QDBusVirtualObject*>(ptr)->~QDBusVirtualObject();
+}
+
+void QDBusVirtualObject_TimerEvent(void* ptr, void* event){
+	static_cast<MyQDBusVirtualObject*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusVirtualObject_TimerEventDefault(void* ptr, void* event){
+	static_cast<QDBusVirtualObject*>(ptr)->QDBusVirtualObject::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDBusVirtualObject_ChildEvent(void* ptr, void* event){
+	static_cast<MyQDBusVirtualObject*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusVirtualObject_ChildEventDefault(void* ptr, void* event){
+	static_cast<QDBusVirtualObject*>(ptr)->QDBusVirtualObject::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDBusVirtualObject_CustomEvent(void* ptr, void* event){
+	static_cast<MyQDBusVirtualObject*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QDBusVirtualObject_CustomEventDefault(void* ptr, void* event){
+	static_cast<QDBusVirtualObject*>(ptr)->QDBusVirtualObject::customEvent(static_cast<QEvent*>(event));
 }
 

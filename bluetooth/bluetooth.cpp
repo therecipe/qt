@@ -1,3 +1,5 @@
+#define protected public
+
 #include "bluetooth.h"
 #include "_cgo_export.h"
 
@@ -61,13 +63,12 @@ void QBluetoothAddress_DestroyQBluetoothAddress(void* ptr){
 
 class MyQBluetoothDeviceDiscoveryAgent: public QBluetoothDeviceDiscoveryAgent {
 public:
-	void Signal_Canceled() { callbackQBluetoothDeviceDiscoveryAgentCanceled(this->objectName().toUtf8().data()); };
-	void Signal_Error2(QBluetoothDeviceDiscoveryAgent::Error error) { callbackQBluetoothDeviceDiscoveryAgentError2(this->objectName().toUtf8().data(), error); };
-	void Signal_Finished() { callbackQBluetoothDeviceDiscoveryAgentFinished(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothDeviceDiscoveryAgentTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothDeviceDiscoveryAgent::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQBluetoothDeviceDiscoveryAgentChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothDeviceDiscoveryAgent::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQBluetoothDeviceDiscoveryAgentCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothDeviceDiscoveryAgent::customEvent(event); }; };
+	void Signal_Canceled() { callbackQBluetoothDeviceDiscoveryAgentCanceled(this, this->objectName().toUtf8().data()); };
+	void Signal_Error2(QBluetoothDeviceDiscoveryAgent::Error error) { callbackQBluetoothDeviceDiscoveryAgentError2(this, this->objectName().toUtf8().data(), error); };
+	void Signal_Finished() { callbackQBluetoothDeviceDiscoveryAgentFinished(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQBluetoothDeviceDiscoveryAgentTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQBluetoothDeviceDiscoveryAgentChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQBluetoothDeviceDiscoveryAgentCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QBluetoothDeviceDiscoveryAgent_ConnectCanceled(void* ptr){
@@ -78,6 +79,10 @@ void QBluetoothDeviceDiscoveryAgent_DisconnectCanceled(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothDeviceDiscoveryAgent::*)()>(&QBluetoothDeviceDiscoveryAgent::canceled), static_cast<MyQBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothDeviceDiscoveryAgent::*)()>(&MyQBluetoothDeviceDiscoveryAgent::Signal_Canceled));;
 }
 
+void QBluetoothDeviceDiscoveryAgent_Canceled(void* ptr){
+	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->canceled();
+}
+
 void QBluetoothDeviceDiscoveryAgent_ConnectError2(void* ptr){
 	QObject::connect(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothDeviceDiscoveryAgent::*)(QBluetoothDeviceDiscoveryAgent::Error)>(&QBluetoothDeviceDiscoveryAgent::error), static_cast<MyQBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothDeviceDiscoveryAgent::*)(QBluetoothDeviceDiscoveryAgent::Error)>(&MyQBluetoothDeviceDiscoveryAgent::Signal_Error2));;
 }
@@ -86,12 +91,20 @@ void QBluetoothDeviceDiscoveryAgent_DisconnectError2(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothDeviceDiscoveryAgent::*)(QBluetoothDeviceDiscoveryAgent::Error)>(&QBluetoothDeviceDiscoveryAgent::error), static_cast<MyQBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothDeviceDiscoveryAgent::*)(QBluetoothDeviceDiscoveryAgent::Error)>(&MyQBluetoothDeviceDiscoveryAgent::Signal_Error2));;
 }
 
+void QBluetoothDeviceDiscoveryAgent_Error2(void* ptr, int error){
+	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->error(static_cast<QBluetoothDeviceDiscoveryAgent::Error>(error));
+}
+
 void QBluetoothDeviceDiscoveryAgent_ConnectFinished(void* ptr){
 	QObject::connect(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothDeviceDiscoveryAgent::*)()>(&QBluetoothDeviceDiscoveryAgent::finished), static_cast<MyQBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothDeviceDiscoveryAgent::*)()>(&MyQBluetoothDeviceDiscoveryAgent::Signal_Finished));;
 }
 
 void QBluetoothDeviceDiscoveryAgent_DisconnectFinished(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothDeviceDiscoveryAgent::*)()>(&QBluetoothDeviceDiscoveryAgent::finished), static_cast<MyQBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothDeviceDiscoveryAgent::*)()>(&MyQBluetoothDeviceDiscoveryAgent::Signal_Finished));;
+}
+
+void QBluetoothDeviceDiscoveryAgent_Finished(void* ptr){
+	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->finished();
 }
 
 void* QBluetoothDeviceDiscoveryAgent_NewQBluetoothDeviceDiscoveryAgent(void* parent){
@@ -132,6 +145,30 @@ void QBluetoothDeviceDiscoveryAgent_Stop(void* ptr){
 
 void QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent(void* ptr){
 	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->~QBluetoothDeviceDiscoveryAgent();
+}
+
+void QBluetoothDeviceDiscoveryAgent_TimerEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothDeviceDiscoveryAgent*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothDeviceDiscoveryAgent_TimerEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->QBluetoothDeviceDiscoveryAgent::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothDeviceDiscoveryAgent_ChildEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothDeviceDiscoveryAgent*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothDeviceDiscoveryAgent_ChildEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->QBluetoothDeviceDiscoveryAgent::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothDeviceDiscoveryAgent_CustomEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothDeviceDiscoveryAgent*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QBluetoothDeviceDiscoveryAgent_CustomEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->QBluetoothDeviceDiscoveryAgent::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo(){
@@ -214,12 +251,11 @@ class MyQBluetoothLocalDevice: public QBluetoothLocalDevice {
 public:
 	MyQBluetoothLocalDevice(QObject *parent) : QBluetoothLocalDevice(parent) {};
 	MyQBluetoothLocalDevice(const QBluetoothAddress &address, QObject *parent) : QBluetoothLocalDevice(address, parent) {};
-	void Signal_Error(QBluetoothLocalDevice::Error error) { callbackQBluetoothLocalDeviceError(this->objectName().toUtf8().data(), error); };
-	void Signal_HostModeStateChanged(QBluetoothLocalDevice::HostMode state) { callbackQBluetoothLocalDeviceHostModeStateChanged(this->objectName().toUtf8().data(), state); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothLocalDeviceTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothLocalDevice::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQBluetoothLocalDeviceChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothLocalDevice::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQBluetoothLocalDeviceCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothLocalDevice::customEvent(event); }; };
+	void Signal_Error(QBluetoothLocalDevice::Error error) { callbackQBluetoothLocalDeviceError(this, this->objectName().toUtf8().data(), error); };
+	void Signal_HostModeStateChanged(QBluetoothLocalDevice::HostMode state) { callbackQBluetoothLocalDeviceHostModeStateChanged(this, this->objectName().toUtf8().data(), state); };
+	void timerEvent(QTimerEvent * event) { callbackQBluetoothLocalDeviceTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQBluetoothLocalDeviceChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQBluetoothLocalDeviceCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QBluetoothLocalDevice_ConnectError(void* ptr){
@@ -230,12 +266,20 @@ void QBluetoothLocalDevice_DisconnectError(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothLocalDevice*>(ptr), static_cast<void (QBluetoothLocalDevice::*)(QBluetoothLocalDevice::Error)>(&QBluetoothLocalDevice::error), static_cast<MyQBluetoothLocalDevice*>(ptr), static_cast<void (MyQBluetoothLocalDevice::*)(QBluetoothLocalDevice::Error)>(&MyQBluetoothLocalDevice::Signal_Error));;
 }
 
+void QBluetoothLocalDevice_Error(void* ptr, int error){
+	static_cast<QBluetoothLocalDevice*>(ptr)->error(static_cast<QBluetoothLocalDevice::Error>(error));
+}
+
 void QBluetoothLocalDevice_ConnectHostModeStateChanged(void* ptr){
 	QObject::connect(static_cast<QBluetoothLocalDevice*>(ptr), static_cast<void (QBluetoothLocalDevice::*)(QBluetoothLocalDevice::HostMode)>(&QBluetoothLocalDevice::hostModeStateChanged), static_cast<MyQBluetoothLocalDevice*>(ptr), static_cast<void (MyQBluetoothLocalDevice::*)(QBluetoothLocalDevice::HostMode)>(&MyQBluetoothLocalDevice::Signal_HostModeStateChanged));;
 }
 
 void QBluetoothLocalDevice_DisconnectHostModeStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothLocalDevice*>(ptr), static_cast<void (QBluetoothLocalDevice::*)(QBluetoothLocalDevice::HostMode)>(&QBluetoothLocalDevice::hostModeStateChanged), static_cast<MyQBluetoothLocalDevice*>(ptr), static_cast<void (MyQBluetoothLocalDevice::*)(QBluetoothLocalDevice::HostMode)>(&MyQBluetoothLocalDevice::Signal_HostModeStateChanged));;
+}
+
+void QBluetoothLocalDevice_HostModeStateChanged(void* ptr, int state){
+	static_cast<QBluetoothLocalDevice*>(ptr)->hostModeStateChanged(static_cast<QBluetoothLocalDevice::HostMode>(state));
 }
 
 int QBluetoothLocalDevice_IsValid(void* ptr){
@@ -282,14 +326,37 @@ void QBluetoothLocalDevice_SetHostMode(void* ptr, int mode){
 	static_cast<QBluetoothLocalDevice*>(ptr)->setHostMode(static_cast<QBluetoothLocalDevice::HostMode>(mode));
 }
 
+void QBluetoothLocalDevice_TimerEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothLocalDevice*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothLocalDevice_TimerEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothLocalDevice*>(ptr)->QBluetoothLocalDevice::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothLocalDevice_ChildEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothLocalDevice*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothLocalDevice_ChildEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothLocalDevice*>(ptr)->QBluetoothLocalDevice::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothLocalDevice_CustomEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothLocalDevice*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QBluetoothLocalDevice_CustomEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothLocalDevice*>(ptr)->QBluetoothLocalDevice::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQBluetoothServer: public QBluetoothServer {
 public:
-	void Signal_Error2(QBluetoothServer::Error error) { callbackQBluetoothServerError2(this->objectName().toUtf8().data(), error); };
-	void Signal_NewConnection() { callbackQBluetoothServerNewConnection(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothServerTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServer::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQBluetoothServerChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServer::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQBluetoothServerCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServer::customEvent(event); }; };
+	void Signal_Error2(QBluetoothServer::Error error) { callbackQBluetoothServerError2(this, this->objectName().toUtf8().data(), error); };
+	void Signal_NewConnection() { callbackQBluetoothServerNewConnection(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQBluetoothServerTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQBluetoothServerChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQBluetoothServerCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QBluetoothServer_NewQBluetoothServer(int serverType, void* parent){
@@ -304,12 +371,20 @@ void QBluetoothServer_DisconnectError2(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothServer*>(ptr), static_cast<void (QBluetoothServer::*)(QBluetoothServer::Error)>(&QBluetoothServer::error), static_cast<MyQBluetoothServer*>(ptr), static_cast<void (MyQBluetoothServer::*)(QBluetoothServer::Error)>(&MyQBluetoothServer::Signal_Error2));;
 }
 
+void QBluetoothServer_Error2(void* ptr, int error){
+	static_cast<QBluetoothServer*>(ptr)->error(static_cast<QBluetoothServer::Error>(error));
+}
+
 void QBluetoothServer_ConnectNewConnection(void* ptr){
 	QObject::connect(static_cast<QBluetoothServer*>(ptr), static_cast<void (QBluetoothServer::*)()>(&QBluetoothServer::newConnection), static_cast<MyQBluetoothServer*>(ptr), static_cast<void (MyQBluetoothServer::*)()>(&MyQBluetoothServer::Signal_NewConnection));;
 }
 
 void QBluetoothServer_DisconnectNewConnection(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothServer*>(ptr), static_cast<void (QBluetoothServer::*)()>(&QBluetoothServer::newConnection), static_cast<MyQBluetoothServer*>(ptr), static_cast<void (MyQBluetoothServer::*)()>(&MyQBluetoothServer::Signal_NewConnection));;
+}
+
+void QBluetoothServer_NewConnection(void* ptr){
+	static_cast<QBluetoothServer*>(ptr)->newConnection();
 }
 
 int QBluetoothServer_Error(void* ptr){
@@ -348,15 +423,38 @@ void QBluetoothServer_SetMaxPendingConnections(void* ptr, int numConnections){
 	static_cast<QBluetoothServer*>(ptr)->setMaxPendingConnections(numConnections);
 }
 
+void QBluetoothServer_TimerEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothServer*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothServer_TimerEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothServer*>(ptr)->QBluetoothServer::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothServer_ChildEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothServer*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothServer_ChildEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothServer*>(ptr)->QBluetoothServer::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothServer_CustomEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothServer*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QBluetoothServer_CustomEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothServer*>(ptr)->QBluetoothServer::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQBluetoothServiceDiscoveryAgent: public QBluetoothServiceDiscoveryAgent {
 public:
-	void Signal_Canceled() { callbackQBluetoothServiceDiscoveryAgentCanceled(this->objectName().toUtf8().data()); };
-	void Signal_Error2(QBluetoothServiceDiscoveryAgent::Error error) { callbackQBluetoothServiceDiscoveryAgentError2(this->objectName().toUtf8().data(), error); };
-	void Signal_Finished() { callbackQBluetoothServiceDiscoveryAgentFinished(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothServiceDiscoveryAgentTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServiceDiscoveryAgent::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQBluetoothServiceDiscoveryAgentChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServiceDiscoveryAgent::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQBluetoothServiceDiscoveryAgentCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothServiceDiscoveryAgent::customEvent(event); }; };
+	void Signal_Canceled() { callbackQBluetoothServiceDiscoveryAgentCanceled(this, this->objectName().toUtf8().data()); };
+	void Signal_Error2(QBluetoothServiceDiscoveryAgent::Error error) { callbackQBluetoothServiceDiscoveryAgentError2(this, this->objectName().toUtf8().data(), error); };
+	void Signal_Finished() { callbackQBluetoothServiceDiscoveryAgentFinished(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQBluetoothServiceDiscoveryAgentTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQBluetoothServiceDiscoveryAgentChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQBluetoothServiceDiscoveryAgentCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QBluetoothServiceDiscoveryAgent_ConnectCanceled(void* ptr){
@@ -367,6 +465,10 @@ void QBluetoothServiceDiscoveryAgent_DisconnectCanceled(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothServiceDiscoveryAgent::*)()>(&QBluetoothServiceDiscoveryAgent::canceled), static_cast<MyQBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothServiceDiscoveryAgent::*)()>(&MyQBluetoothServiceDiscoveryAgent::Signal_Canceled));;
 }
 
+void QBluetoothServiceDiscoveryAgent_Canceled(void* ptr){
+	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->canceled();
+}
+
 void QBluetoothServiceDiscoveryAgent_ConnectError2(void* ptr){
 	QObject::connect(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothServiceDiscoveryAgent::*)(QBluetoothServiceDiscoveryAgent::Error)>(&QBluetoothServiceDiscoveryAgent::error), static_cast<MyQBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothServiceDiscoveryAgent::*)(QBluetoothServiceDiscoveryAgent::Error)>(&MyQBluetoothServiceDiscoveryAgent::Signal_Error2));;
 }
@@ -375,12 +477,20 @@ void QBluetoothServiceDiscoveryAgent_DisconnectError2(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothServiceDiscoveryAgent::*)(QBluetoothServiceDiscoveryAgent::Error)>(&QBluetoothServiceDiscoveryAgent::error), static_cast<MyQBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothServiceDiscoveryAgent::*)(QBluetoothServiceDiscoveryAgent::Error)>(&MyQBluetoothServiceDiscoveryAgent::Signal_Error2));;
 }
 
+void QBluetoothServiceDiscoveryAgent_Error2(void* ptr, int error){
+	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->error(static_cast<QBluetoothServiceDiscoveryAgent::Error>(error));
+}
+
 void QBluetoothServiceDiscoveryAgent_ConnectFinished(void* ptr){
 	QObject::connect(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothServiceDiscoveryAgent::*)()>(&QBluetoothServiceDiscoveryAgent::finished), static_cast<MyQBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothServiceDiscoveryAgent::*)()>(&MyQBluetoothServiceDiscoveryAgent::Signal_Finished));;
 }
 
 void QBluetoothServiceDiscoveryAgent_DisconnectFinished(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothServiceDiscoveryAgent::*)()>(&QBluetoothServiceDiscoveryAgent::finished), static_cast<MyQBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothServiceDiscoveryAgent::*)()>(&MyQBluetoothServiceDiscoveryAgent::Signal_Finished));;
+}
+
+void QBluetoothServiceDiscoveryAgent_Finished(void* ptr){
+	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->finished();
 }
 
 void* QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent(void* parent){
@@ -425,6 +535,30 @@ void QBluetoothServiceDiscoveryAgent_Stop(void* ptr){
 
 void QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(void* ptr){
 	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->~QBluetoothServiceDiscoveryAgent();
+}
+
+void QBluetoothServiceDiscoveryAgent_TimerEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothServiceDiscoveryAgent*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothServiceDiscoveryAgent_TimerEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->QBluetoothServiceDiscoveryAgent::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothServiceDiscoveryAgent_ChildEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothServiceDiscoveryAgent*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothServiceDiscoveryAgent_ChildEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->QBluetoothServiceDiscoveryAgent::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothServiceDiscoveryAgent_CustomEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothServiceDiscoveryAgent*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QBluetoothServiceDiscoveryAgent_CustomEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->QBluetoothServiceDiscoveryAgent::customEvent(static_cast<QEvent*>(event));
 }
 
 int QBluetoothServiceInfo_ServiceName_Type(){
@@ -519,15 +653,14 @@ class MyQBluetoothSocket: public QBluetoothSocket {
 public:
 	MyQBluetoothSocket(QBluetoothServiceInfo::Protocol socketType, QObject *parent) : QBluetoothSocket(socketType, parent) {};
 	MyQBluetoothSocket(QObject *parent) : QBluetoothSocket(parent) {};
-	void Signal_Connected() { callbackQBluetoothSocketConnected(this->objectName().toUtf8().data()); };
-	void Signal_Disconnected() { callbackQBluetoothSocketDisconnected(this->objectName().toUtf8().data()); };
-	void Signal_Error2(QBluetoothSocket::SocketError error) { callbackQBluetoothSocketError2(this->objectName().toUtf8().data(), error); };
-	void Signal_StateChanged(QBluetoothSocket::SocketState state) { callbackQBluetoothSocketStateChanged(this->objectName().toUtf8().data(), state); };
-	void close() { if (!callbackQBluetoothSocketClose(this->objectName().toUtf8().data())) { QBluetoothSocket::close(); }; };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothSocketTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothSocket::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQBluetoothSocketChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothSocket::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQBluetoothSocketCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothSocket::customEvent(event); }; };
+	void Signal_Connected() { callbackQBluetoothSocketConnected(this, this->objectName().toUtf8().data()); };
+	void Signal_Disconnected() { callbackQBluetoothSocketDisconnected(this, this->objectName().toUtf8().data()); };
+	void Signal_Error2(QBluetoothSocket::SocketError error) { callbackQBluetoothSocketError2(this, this->objectName().toUtf8().data(), error); };
+	void Signal_StateChanged(QBluetoothSocket::SocketState state) { callbackQBluetoothSocketStateChanged(this, this->objectName().toUtf8().data(), state); };
+	void close() { callbackQBluetoothSocketClose(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQBluetoothSocketTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQBluetoothSocketChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQBluetoothSocketCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QBluetoothSocket_ConnectConnected(void* ptr){
@@ -538,12 +671,20 @@ void QBluetoothSocket_DisconnectConnected(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::connected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Connected));;
 }
 
+void QBluetoothSocket_Connected(void* ptr){
+	static_cast<QBluetoothSocket*>(ptr)->connected();
+}
+
 void QBluetoothSocket_ConnectDisconnected(void* ptr){
 	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::disconnected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Disconnected));;
 }
 
 void QBluetoothSocket_DisconnectDisconnected(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::disconnected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Disconnected));;
+}
+
+void QBluetoothSocket_Disconnected(void* ptr){
+	static_cast<QBluetoothSocket*>(ptr)->disconnected();
 }
 
 void QBluetoothSocket_ConnectError2(void* ptr){
@@ -554,12 +695,20 @@ void QBluetoothSocket_DisconnectError2(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&QBluetoothSocket::error), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&MyQBluetoothSocket::Signal_Error2));;
 }
 
+void QBluetoothSocket_Error2(void* ptr, int error){
+	static_cast<QBluetoothSocket*>(ptr)->error(static_cast<QBluetoothSocket::SocketError>(error));
+}
+
 void QBluetoothSocket_ConnectStateChanged(void* ptr){
 	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&QBluetoothSocket::stateChanged), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&MyQBluetoothSocket::Signal_StateChanged));;
 }
 
 void QBluetoothSocket_DisconnectStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&QBluetoothSocket::stateChanged), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&MyQBluetoothSocket::Signal_StateChanged));;
+}
+
+void QBluetoothSocket_StateChanged(void* ptr, int state){
+	static_cast<QBluetoothSocket*>(ptr)->stateChanged(static_cast<QBluetoothSocket::SocketState>(state));
 }
 
 void* QBluetoothSocket_NewQBluetoothSocket(int socketType, void* parent){
@@ -587,7 +736,11 @@ int QBluetoothSocket_CanReadLine(void* ptr){
 }
 
 void QBluetoothSocket_Close(void* ptr){
-	static_cast<QBluetoothSocket*>(ptr)->close();
+	static_cast<MyQBluetoothSocket*>(ptr)->close();
+}
+
+void QBluetoothSocket_CloseDefault(void* ptr){
+	static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::close();
 }
 
 void QBluetoothSocket_ConnectToService2(void* ptr, void* address, void* uuid, int openMode){
@@ -622,6 +775,10 @@ char* QBluetoothSocket_PeerName(void* ptr){
 	return static_cast<QBluetoothSocket*>(ptr)->peerName().toUtf8().data();
 }
 
+long long QBluetoothSocket_ReadData(void* ptr, char* data, long long maxSize){
+	return static_cast<long long>(static_cast<QBluetoothSocket*>(ptr)->readData(data, static_cast<long long>(maxSize)));
+}
+
 int QBluetoothSocket_SetSocketDescriptor(void* ptr, int socketDescriptor, int socketType, int socketState, int openMode){
 	return static_cast<QBluetoothSocket*>(ptr)->setSocketDescriptor(socketDescriptor, static_cast<QBluetoothServiceInfo::Protocol>(socketType), static_cast<QBluetoothSocket::SocketState>(socketState), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
@@ -638,17 +795,44 @@ int QBluetoothSocket_State(void* ptr){
 	return static_cast<QBluetoothSocket*>(ptr)->state();
 }
 
+long long QBluetoothSocket_WriteData(void* ptr, char* data, long long maxSize){
+	return static_cast<long long>(static_cast<QBluetoothSocket*>(ptr)->writeData(const_cast<const char*>(data), static_cast<long long>(maxSize)));
+}
+
 void QBluetoothSocket_DestroyQBluetoothSocket(void* ptr){
 	static_cast<QBluetoothSocket*>(ptr)->~QBluetoothSocket();
 }
 
+void QBluetoothSocket_TimerEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothSocket*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothSocket_TimerEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothSocket_ChildEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothSocket*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothSocket_ChildEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothSocket_CustomEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothSocket*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QBluetoothSocket_CustomEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQBluetoothTransferManager: public QBluetoothTransferManager {
 public:
-	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferManagerFinished(this->objectName().toUtf8().data(), reply); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothTransferManagerTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferManager::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQBluetoothTransferManagerChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferManager::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQBluetoothTransferManagerCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferManager::customEvent(event); }; };
+	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferManagerFinished(this, this->objectName().toUtf8().data(), reply); };
+	void timerEvent(QTimerEvent * event) { callbackQBluetoothTransferManagerTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQBluetoothTransferManagerChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQBluetoothTransferManagerCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QBluetoothTransferManager_Put(void* ptr, void* request, void* data){
@@ -667,19 +851,46 @@ void QBluetoothTransferManager_DisconnectFinished(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothTransferManager*>(ptr), static_cast<void (QBluetoothTransferManager::*)(QBluetoothTransferReply *)>(&QBluetoothTransferManager::finished), static_cast<MyQBluetoothTransferManager*>(ptr), static_cast<void (MyQBluetoothTransferManager::*)(QBluetoothTransferReply *)>(&MyQBluetoothTransferManager::Signal_Finished));;
 }
 
+void QBluetoothTransferManager_Finished(void* ptr, void* reply){
+	static_cast<QBluetoothTransferManager*>(ptr)->finished(static_cast<QBluetoothTransferReply*>(reply));
+}
+
 void QBluetoothTransferManager_DestroyQBluetoothTransferManager(void* ptr){
 	static_cast<QBluetoothTransferManager*>(ptr)->~QBluetoothTransferManager();
 }
 
+void QBluetoothTransferManager_TimerEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothTransferManager*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothTransferManager_TimerEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothTransferManager*>(ptr)->QBluetoothTransferManager::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothTransferManager_ChildEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothTransferManager*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothTransferManager_ChildEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothTransferManager*>(ptr)->QBluetoothTransferManager::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothTransferManager_CustomEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothTransferManager*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QBluetoothTransferManager_CustomEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothTransferManager*>(ptr)->QBluetoothTransferManager::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQBluetoothTransferReply: public QBluetoothTransferReply {
 public:
-	void Signal_Error2(QBluetoothTransferReply::TransferError errorType) { callbackQBluetoothTransferReplyError2(this->objectName().toUtf8().data(), errorType); };
-	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferReplyFinished(this->objectName().toUtf8().data(), reply); };
-	void Signal_TransferProgress(qint64 bytesTransferred, qint64 bytesTotal) { callbackQBluetoothTransferReplyTransferProgress(this->objectName().toUtf8().data(), static_cast<long long>(bytesTransferred), static_cast<long long>(bytesTotal)); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQBluetoothTransferReplyTimerEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferReply::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQBluetoothTransferReplyChildEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferReply::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQBluetoothTransferReplyCustomEvent(this->objectName().toUtf8().data(), event)) { QBluetoothTransferReply::customEvent(event); }; };
+	void Signal_Error2(QBluetoothTransferReply::TransferError errorType) { callbackQBluetoothTransferReplyError2(this, this->objectName().toUtf8().data(), errorType); };
+	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferReplyFinished(this, this->objectName().toUtf8().data(), reply); };
+	void Signal_TransferProgress(qint64 bytesTransferred, qint64 bytesTotal) { callbackQBluetoothTransferReplyTransferProgress(this, this->objectName().toUtf8().data(), static_cast<long long>(bytesTransferred), static_cast<long long>(bytesTotal)); };
+	void timerEvent(QTimerEvent * event) { callbackQBluetoothTransferReplyTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQBluetoothTransferReplyChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQBluetoothTransferReplyCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QBluetoothTransferReply_Abort(void* ptr){
@@ -692,6 +903,10 @@ void QBluetoothTransferReply_ConnectError2(void* ptr){
 
 void QBluetoothTransferReply_DisconnectError2(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothTransferReply*>(ptr), static_cast<void (QBluetoothTransferReply::*)(QBluetoothTransferReply::TransferError)>(&QBluetoothTransferReply::error), static_cast<MyQBluetoothTransferReply*>(ptr), static_cast<void (MyQBluetoothTransferReply::*)(QBluetoothTransferReply::TransferError)>(&MyQBluetoothTransferReply::Signal_Error2));;
+}
+
+void QBluetoothTransferReply_Error2(void* ptr, int errorType){
+	static_cast<QBluetoothTransferReply*>(ptr)->error(static_cast<QBluetoothTransferReply::TransferError>(errorType));
 }
 
 int QBluetoothTransferReply_Error(void* ptr){
@@ -708,6 +923,10 @@ void QBluetoothTransferReply_ConnectFinished(void* ptr){
 
 void QBluetoothTransferReply_DisconnectFinished(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothTransferReply*>(ptr), static_cast<void (QBluetoothTransferReply::*)(QBluetoothTransferReply *)>(&QBluetoothTransferReply::finished), static_cast<MyQBluetoothTransferReply*>(ptr), static_cast<void (MyQBluetoothTransferReply::*)(QBluetoothTransferReply *)>(&MyQBluetoothTransferReply::Signal_Finished));;
+}
+
+void QBluetoothTransferReply_Finished(void* ptr, void* reply){
+	static_cast<QBluetoothTransferReply*>(ptr)->finished(static_cast<QBluetoothTransferReply*>(reply));
 }
 
 int QBluetoothTransferReply_IsFinished(void* ptr){
@@ -730,8 +949,36 @@ void QBluetoothTransferReply_DisconnectTransferProgress(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothTransferReply*>(ptr), static_cast<void (QBluetoothTransferReply::*)(qint64, qint64)>(&QBluetoothTransferReply::transferProgress), static_cast<MyQBluetoothTransferReply*>(ptr), static_cast<void (MyQBluetoothTransferReply::*)(qint64, qint64)>(&MyQBluetoothTransferReply::Signal_TransferProgress));;
 }
 
+void QBluetoothTransferReply_TransferProgress(void* ptr, long long bytesTransferred, long long bytesTotal){
+	static_cast<QBluetoothTransferReply*>(ptr)->transferProgress(static_cast<long long>(bytesTransferred), static_cast<long long>(bytesTotal));
+}
+
 void QBluetoothTransferReply_DestroyQBluetoothTransferReply(void* ptr){
 	static_cast<QBluetoothTransferReply*>(ptr)->~QBluetoothTransferReply();
+}
+
+void QBluetoothTransferReply_TimerEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothTransferReply*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothTransferReply_TimerEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothTransferReply*>(ptr)->QBluetoothTransferReply::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBluetoothTransferReply_ChildEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothTransferReply*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothTransferReply_ChildEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothTransferReply*>(ptr)->QBluetoothTransferReply::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBluetoothTransferReply_CustomEvent(void* ptr, void* event){
+	static_cast<MyQBluetoothTransferReply*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QBluetoothTransferReply_CustomEventDefault(void* ptr, void* event){
+	static_cast<QBluetoothTransferReply*>(ptr)->QBluetoothTransferReply::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QBluetoothTransferRequest_NewQBluetoothTransferRequest(void* address){
@@ -840,15 +1087,14 @@ void QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(void* ptr){
 
 class MyQLowEnergyController: public QLowEnergyController {
 public:
-	void Signal_Connected() { callbackQLowEnergyControllerConnected(this->objectName().toUtf8().data()); };
-	void Signal_Disconnected() { callbackQLowEnergyControllerDisconnected(this->objectName().toUtf8().data()); };
-	void Signal_DiscoveryFinished() { callbackQLowEnergyControllerDiscoveryFinished(this->objectName().toUtf8().data()); };
-	void Signal_Error2(QLowEnergyController::Error newError) { callbackQLowEnergyControllerError2(this->objectName().toUtf8().data(), newError); };
-	void Signal_StateChanged(QLowEnergyController::ControllerState state) { callbackQLowEnergyControllerStateChanged(this->objectName().toUtf8().data(), state); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQLowEnergyControllerTimerEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyController::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQLowEnergyControllerChildEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyController::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQLowEnergyControllerCustomEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyController::customEvent(event); }; };
+	void Signal_Connected() { callbackQLowEnergyControllerConnected(this, this->objectName().toUtf8().data()); };
+	void Signal_Disconnected() { callbackQLowEnergyControllerDisconnected(this, this->objectName().toUtf8().data()); };
+	void Signal_DiscoveryFinished() { callbackQLowEnergyControllerDiscoveryFinished(this, this->objectName().toUtf8().data()); };
+	void Signal_Error2(QLowEnergyController::Error newError) { callbackQLowEnergyControllerError2(this, this->objectName().toUtf8().data(), newError); };
+	void Signal_StateChanged(QLowEnergyController::ControllerState state) { callbackQLowEnergyControllerStateChanged(this, this->objectName().toUtf8().data(), state); };
+	void timerEvent(QTimerEvent * event) { callbackQLowEnergyControllerTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQLowEnergyControllerChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQLowEnergyControllerCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QLowEnergyController_ConnectConnected(void* ptr){
@@ -859,12 +1105,20 @@ void QLowEnergyController_DisconnectConnected(void* ptr){
 	QObject::disconnect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)()>(&QLowEnergyController::connected), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)()>(&MyQLowEnergyController::Signal_Connected));;
 }
 
+void QLowEnergyController_Connected(void* ptr){
+	static_cast<QLowEnergyController*>(ptr)->connected();
+}
+
 void QLowEnergyController_ConnectDisconnected(void* ptr){
 	QObject::connect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)()>(&QLowEnergyController::disconnected), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)()>(&MyQLowEnergyController::Signal_Disconnected));;
 }
 
 void QLowEnergyController_DisconnectDisconnected(void* ptr){
 	QObject::disconnect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)()>(&QLowEnergyController::disconnected), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)()>(&MyQLowEnergyController::Signal_Disconnected));;
+}
+
+void QLowEnergyController_Disconnected(void* ptr){
+	static_cast<QLowEnergyController*>(ptr)->disconnected();
 }
 
 void QLowEnergyController_ConnectDiscoveryFinished(void* ptr){
@@ -875,6 +1129,10 @@ void QLowEnergyController_DisconnectDiscoveryFinished(void* ptr){
 	QObject::disconnect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)()>(&QLowEnergyController::discoveryFinished), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)()>(&MyQLowEnergyController::Signal_DiscoveryFinished));;
 }
 
+void QLowEnergyController_DiscoveryFinished(void* ptr){
+	static_cast<QLowEnergyController*>(ptr)->discoveryFinished();
+}
+
 void QLowEnergyController_ConnectError2(void* ptr){
 	QObject::connect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)(QLowEnergyController::Error)>(&QLowEnergyController::error), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)(QLowEnergyController::Error)>(&MyQLowEnergyController::Signal_Error2));;
 }
@@ -883,12 +1141,20 @@ void QLowEnergyController_DisconnectError2(void* ptr){
 	QObject::disconnect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)(QLowEnergyController::Error)>(&QLowEnergyController::error), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)(QLowEnergyController::Error)>(&MyQLowEnergyController::Signal_Error2));;
 }
 
+void QLowEnergyController_Error2(void* ptr, int newError){
+	static_cast<QLowEnergyController*>(ptr)->error(static_cast<QLowEnergyController::Error>(newError));
+}
+
 void QLowEnergyController_ConnectStateChanged(void* ptr){
 	QObject::connect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)(QLowEnergyController::ControllerState)>(&QLowEnergyController::stateChanged), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)(QLowEnergyController::ControllerState)>(&MyQLowEnergyController::Signal_StateChanged));;
 }
 
 void QLowEnergyController_DisconnectStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)(QLowEnergyController::ControllerState)>(&QLowEnergyController::stateChanged), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)(QLowEnergyController::ControllerState)>(&MyQLowEnergyController::Signal_StateChanged));;
+}
+
+void QLowEnergyController_StateChanged(void* ptr, int state){
+	static_cast<QLowEnergyController*>(ptr)->stateChanged(static_cast<QLowEnergyController::ControllerState>(state));
 }
 
 void* QLowEnergyController_NewQLowEnergyController(void* remoteDeviceInfo, void* parent){
@@ -939,6 +1205,30 @@ void QLowEnergyController_DestroyQLowEnergyController(void* ptr){
 	static_cast<QLowEnergyController*>(ptr)->~QLowEnergyController();
 }
 
+void QLowEnergyController_TimerEvent(void* ptr, void* event){
+	static_cast<MyQLowEnergyController*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QLowEnergyController_TimerEventDefault(void* ptr, void* event){
+	static_cast<QLowEnergyController*>(ptr)->QLowEnergyController::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QLowEnergyController_ChildEvent(void* ptr, void* event){
+	static_cast<MyQLowEnergyController*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QLowEnergyController_ChildEventDefault(void* ptr, void* event){
+	static_cast<QLowEnergyController*>(ptr)->QLowEnergyController::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QLowEnergyController_CustomEvent(void* ptr, void* event){
+	static_cast<MyQLowEnergyController*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QLowEnergyController_CustomEventDefault(void* ptr, void* event){
+	static_cast<QLowEnergyController*>(ptr)->QLowEnergyController::customEvent(static_cast<QEvent*>(event));
+}
+
 void* QLowEnergyDescriptor_NewQLowEnergyDescriptor(){
 	return new QLowEnergyDescriptor();
 }
@@ -969,12 +1259,11 @@ void QLowEnergyDescriptor_DestroyQLowEnergyDescriptor(void* ptr){
 
 class MyQLowEnergyService: public QLowEnergyService {
 public:
-	void Signal_Error2(QLowEnergyService::ServiceError newError) { callbackQLowEnergyServiceError2(this->objectName().toUtf8().data(), newError); };
-	void Signal_StateChanged(QLowEnergyService::ServiceState newState) { callbackQLowEnergyServiceStateChanged(this->objectName().toUtf8().data(), newState); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQLowEnergyServiceTimerEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyService::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQLowEnergyServiceChildEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyService::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQLowEnergyServiceCustomEvent(this->objectName().toUtf8().data(), event)) { QLowEnergyService::customEvent(event); }; };
+	void Signal_Error2(QLowEnergyService::ServiceError newError) { callbackQLowEnergyServiceError2(this, this->objectName().toUtf8().data(), newError); };
+	void Signal_StateChanged(QLowEnergyService::ServiceState newState) { callbackQLowEnergyServiceStateChanged(this, this->objectName().toUtf8().data(), newState); };
+	void timerEvent(QTimerEvent * event) { callbackQLowEnergyServiceTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQLowEnergyServiceChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQLowEnergyServiceCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QLowEnergyService_ConnectError2(void* ptr){
@@ -985,12 +1274,20 @@ void QLowEnergyService_DisconnectError2(void* ptr){
 	QObject::disconnect(static_cast<QLowEnergyService*>(ptr), static_cast<void (QLowEnergyService::*)(QLowEnergyService::ServiceError)>(&QLowEnergyService::error), static_cast<MyQLowEnergyService*>(ptr), static_cast<void (MyQLowEnergyService::*)(QLowEnergyService::ServiceError)>(&MyQLowEnergyService::Signal_Error2));;
 }
 
+void QLowEnergyService_Error2(void* ptr, int newError){
+	static_cast<QLowEnergyService*>(ptr)->error(static_cast<QLowEnergyService::ServiceError>(newError));
+}
+
 void QLowEnergyService_ConnectStateChanged(void* ptr){
 	QObject::connect(static_cast<QLowEnergyService*>(ptr), static_cast<void (QLowEnergyService::*)(QLowEnergyService::ServiceState)>(&QLowEnergyService::stateChanged), static_cast<MyQLowEnergyService*>(ptr), static_cast<void (MyQLowEnergyService::*)(QLowEnergyService::ServiceState)>(&MyQLowEnergyService::Signal_StateChanged));;
 }
 
 void QLowEnergyService_DisconnectStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QLowEnergyService*>(ptr), static_cast<void (QLowEnergyService::*)(QLowEnergyService::ServiceState)>(&QLowEnergyService::stateChanged), static_cast<MyQLowEnergyService*>(ptr), static_cast<void (MyQLowEnergyService::*)(QLowEnergyService::ServiceState)>(&MyQLowEnergyService::Signal_StateChanged));;
+}
+
+void QLowEnergyService_StateChanged(void* ptr, int newState){
+	static_cast<QLowEnergyService*>(ptr)->stateChanged(static_cast<QLowEnergyService::ServiceState>(newState));
 }
 
 int QLowEnergyService_Contains(void* ptr, void* characteristic){
@@ -1039,5 +1336,29 @@ void QLowEnergyService_WriteDescriptor(void* ptr, void* descriptor, void* newVal
 
 void QLowEnergyService_DestroyQLowEnergyService(void* ptr){
 	static_cast<QLowEnergyService*>(ptr)->~QLowEnergyService();
+}
+
+void QLowEnergyService_TimerEvent(void* ptr, void* event){
+	static_cast<MyQLowEnergyService*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QLowEnergyService_TimerEventDefault(void* ptr, void* event){
+	static_cast<QLowEnergyService*>(ptr)->QLowEnergyService::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QLowEnergyService_ChildEvent(void* ptr, void* event){
+	static_cast<MyQLowEnergyService*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QLowEnergyService_ChildEventDefault(void* ptr, void* event){
+	static_cast<QLowEnergyService*>(ptr)->QLowEnergyService::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QLowEnergyService_CustomEvent(void* ptr, void* event){
+	static_cast<MyQLowEnergyService*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QLowEnergyService_CustomEventDefault(void* ptr, void* event){
+	static_cast<QLowEnergyService*>(ptr)->QLowEnergyService::customEvent(static_cast<QEvent*>(event));
 }
 

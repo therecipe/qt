@@ -178,13 +178,21 @@ func (ptr *QVideoWidget) DisconnectBrightnessChanged() {
 }
 
 //export callbackQVideoWidgetBrightnessChanged
-func callbackQVideoWidgetBrightnessChanged(ptrName *C.char, brightness C.int) {
+func callbackQVideoWidgetBrightnessChanged(ptr unsafe.Pointer, ptrName *C.char, brightness C.int) {
 	defer qt.Recovering("callback QVideoWidget::brightnessChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "brightnessChanged"); signal != nil {
 		signal.(func(int))(int(brightness))
 	}
 
+}
+
+func (ptr *QVideoWidget) BrightnessChanged(brightness int) {
+	defer qt.Recovering("QVideoWidget::brightnessChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_BrightnessChanged(ptr.Pointer(), C.int(brightness))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectContrastChanged(f func(contrast int)) {
@@ -206,13 +214,30 @@ func (ptr *QVideoWidget) DisconnectContrastChanged() {
 }
 
 //export callbackQVideoWidgetContrastChanged
-func callbackQVideoWidgetContrastChanged(ptrName *C.char, contrast C.int) {
+func callbackQVideoWidgetContrastChanged(ptr unsafe.Pointer, ptrName *C.char, contrast C.int) {
 	defer qt.Recovering("callback QVideoWidget::contrastChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contrastChanged"); signal != nil {
 		signal.(func(int))(int(contrast))
 	}
 
+}
+
+func (ptr *QVideoWidget) ContrastChanged(contrast int) {
+	defer qt.Recovering("QVideoWidget::contrastChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ContrastChanged(ptr.Pointer(), C.int(contrast))
+	}
+}
+
+func (ptr *QVideoWidget) Event(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QVideoWidget::event")
+
+	if ptr.Pointer() != nil {
+		return C.QVideoWidget_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 func (ptr *QVideoWidget) ConnectFullScreenChanged(f func(fullScreen bool)) {
@@ -234,13 +259,21 @@ func (ptr *QVideoWidget) DisconnectFullScreenChanged() {
 }
 
 //export callbackQVideoWidgetFullScreenChanged
-func callbackQVideoWidgetFullScreenChanged(ptrName *C.char, fullScreen C.int) {
+func callbackQVideoWidgetFullScreenChanged(ptr unsafe.Pointer, ptrName *C.char, fullScreen C.int) {
 	defer qt.Recovering("callback QVideoWidget::fullScreenChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fullScreenChanged"); signal != nil {
 		signal.(func(bool))(int(fullScreen) != 0)
 	}
 
+}
+
+func (ptr *QVideoWidget) FullScreenChanged(fullScreen bool) {
+	defer qt.Recovering("QVideoWidget::fullScreenChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_FullScreenChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(fullScreen)))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -262,15 +295,30 @@ func (ptr *QVideoWidget) DisconnectHideEvent() {
 }
 
 //export callbackQVideoWidgetHideEvent
-func callbackQVideoWidgetHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectHueChanged(f func(hue int)) {
@@ -292,13 +340,21 @@ func (ptr *QVideoWidget) DisconnectHueChanged() {
 }
 
 //export callbackQVideoWidgetHueChanged
-func callbackQVideoWidgetHueChanged(ptrName *C.char, hue C.int) {
+func callbackQVideoWidgetHueChanged(ptr unsafe.Pointer, ptrName *C.char, hue C.int) {
 	defer qt.Recovering("callback QVideoWidget::hueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hueChanged"); signal != nil {
 		signal.(func(int))(int(hue))
 	}
 
+}
+
+func (ptr *QVideoWidget) HueChanged(hue int) {
+	defer qt.Recovering("QVideoWidget::hueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_HueChanged(ptr.Pointer(), C.int(hue))
+	}
 }
 
 func (ptr *QVideoWidget) IsFullScreen() bool {
@@ -329,15 +385,30 @@ func (ptr *QVideoWidget) DisconnectMoveEvent() {
 }
 
 //export callbackQVideoWidgetMoveEvent
-func callbackQVideoWidgetMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -359,15 +430,30 @@ func (ptr *QVideoWidget) DisconnectPaintEvent() {
 }
 
 //export callbackQVideoWidgetPaintEvent
-func callbackQVideoWidgetPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -389,15 +475,30 @@ func (ptr *QVideoWidget) DisconnectResizeEvent() {
 }
 
 //export callbackQVideoWidgetResizeEvent
-func callbackQVideoWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectSaturationChanged(f func(saturation int)) {
@@ -419,13 +520,21 @@ func (ptr *QVideoWidget) DisconnectSaturationChanged() {
 }
 
 //export callbackQVideoWidgetSaturationChanged
-func callbackQVideoWidgetSaturationChanged(ptrName *C.char, saturation C.int) {
+func callbackQVideoWidgetSaturationChanged(ptr unsafe.Pointer, ptrName *C.char, saturation C.int) {
 	defer qt.Recovering("callback QVideoWidget::saturationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "saturationChanged"); signal != nil {
 		signal.(func(int))(int(saturation))
 	}
 
+}
+
+func (ptr *QVideoWidget) SaturationChanged(saturation int) {
+	defer qt.Recovering("QVideoWidget::saturationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SaturationChanged(ptr.Pointer(), C.int(saturation))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -447,15 +556,30 @@ func (ptr *QVideoWidget) DisconnectShowEvent() {
 }
 
 //export callbackQVideoWidgetShowEvent
-func callbackQVideoWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) SizeHint() *core.QSize {
@@ -495,15 +619,30 @@ func (ptr *QVideoWidget) DisconnectActionEvent() {
 }
 
 //export callbackQVideoWidgetActionEvent
-func callbackQVideoWidgetActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -525,15 +664,30 @@ func (ptr *QVideoWidget) DisconnectDragEnterEvent() {
 }
 
 //export callbackQVideoWidgetDragEnterEvent
-func callbackQVideoWidgetDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -555,15 +709,30 @@ func (ptr *QVideoWidget) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQVideoWidgetDragLeaveEvent
-func callbackQVideoWidgetDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -585,15 +754,30 @@ func (ptr *QVideoWidget) DisconnectDragMoveEvent() {
 }
 
 //export callbackQVideoWidgetDragMoveEvent
-func callbackQVideoWidgetDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -615,15 +799,30 @@ func (ptr *QVideoWidget) DisconnectDropEvent() {
 }
 
 //export callbackQVideoWidgetDropEvent
-func callbackQVideoWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -645,15 +844,30 @@ func (ptr *QVideoWidget) DisconnectEnterEvent() {
 }
 
 //export callbackQVideoWidgetEnterEvent
-func callbackQVideoWidgetEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -675,15 +889,30 @@ func (ptr *QVideoWidget) DisconnectFocusInEvent() {
 }
 
 //export callbackQVideoWidgetFocusInEvent
-func callbackQVideoWidgetFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -705,15 +934,30 @@ func (ptr *QVideoWidget) DisconnectFocusOutEvent() {
 }
 
 //export callbackQVideoWidgetFocusOutEvent
-func callbackQVideoWidgetFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -735,15 +979,30 @@ func (ptr *QVideoWidget) DisconnectLeaveEvent() {
 }
 
 //export callbackQVideoWidgetLeaveEvent
-func callbackQVideoWidgetLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectSetVisible(f func(visible bool)) {
@@ -765,7 +1024,7 @@ func (ptr *QVideoWidget) DisconnectSetVisible() {
 }
 
 //export callbackQVideoWidgetSetVisible
-func callbackQVideoWidgetSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQVideoWidgetSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QVideoWidget::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -774,6 +1033,22 @@ func callbackQVideoWidgetSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QVideoWidget) SetVisible(visible bool) {
+	defer qt.Recovering("QVideoWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QVideoWidget) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QVideoWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -795,15 +1070,30 @@ func (ptr *QVideoWidget) DisconnectChangeEvent() {
 }
 
 //export callbackQVideoWidgetChangeEvent
-func callbackQVideoWidgetChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -825,15 +1115,30 @@ func (ptr *QVideoWidget) DisconnectCloseEvent() {
 }
 
 //export callbackQVideoWidgetCloseEvent
-func callbackQVideoWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -855,15 +1160,30 @@ func (ptr *QVideoWidget) DisconnectContextMenuEvent() {
 }
 
 //export callbackQVideoWidgetContextMenuEvent
-func callbackQVideoWidgetContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -885,15 +1205,30 @@ func (ptr *QVideoWidget) DisconnectInitPainter() {
 }
 
 //export callbackQVideoWidgetInitPainter
-func callbackQVideoWidgetInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQVideoWidgetInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QVideoWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QVideoWidget) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QVideoWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -915,15 +1250,30 @@ func (ptr *QVideoWidget) DisconnectInputMethodEvent() {
 }
 
 //export callbackQVideoWidgetInputMethodEvent
-func callbackQVideoWidgetInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -945,15 +1295,30 @@ func (ptr *QVideoWidget) DisconnectKeyPressEvent() {
 }
 
 //export callbackQVideoWidgetKeyPressEvent
-func callbackQVideoWidgetKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -975,15 +1340,30 @@ func (ptr *QVideoWidget) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQVideoWidgetKeyReleaseEvent
-func callbackQVideoWidgetKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1005,15 +1385,30 @@ func (ptr *QVideoWidget) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQVideoWidgetMouseDoubleClickEvent
-func callbackQVideoWidgetMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -1035,15 +1430,30 @@ func (ptr *QVideoWidget) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQVideoWidgetMouseMoveEvent
-func callbackQVideoWidgetMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -1065,15 +1475,30 @@ func (ptr *QVideoWidget) DisconnectMousePressEvent() {
 }
 
 //export callbackQVideoWidgetMousePressEvent
-func callbackQVideoWidgetMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1095,15 +1520,30 @@ func (ptr *QVideoWidget) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQVideoWidgetMouseReleaseEvent
-func callbackQVideoWidgetMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1125,15 +1565,30 @@ func (ptr *QVideoWidget) DisconnectTabletEvent() {
 }
 
 //export callbackQVideoWidgetTabletEvent
-func callbackQVideoWidgetTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1155,15 +1610,30 @@ func (ptr *QVideoWidget) DisconnectWheelEvent() {
 }
 
 //export callbackQVideoWidgetWheelEvent
-func callbackQVideoWidgetWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1185,15 +1655,30 @@ func (ptr *QVideoWidget) DisconnectTimerEvent() {
 }
 
 //export callbackQVideoWidgetTimerEvent
-func callbackQVideoWidgetTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1215,15 +1700,30 @@ func (ptr *QVideoWidget) DisconnectChildEvent() {
 }
 
 //export callbackQVideoWidgetChildEvent
-func callbackQVideoWidgetChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QVideoWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1245,13 +1745,28 @@ func (ptr *QVideoWidget) DisconnectCustomEvent() {
 }
 
 //export callbackQVideoWidgetCustomEvent
-func callbackQVideoWidgetCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidget::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidget) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QVideoWidget) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

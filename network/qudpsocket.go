@@ -133,15 +133,30 @@ func (ptr *QUdpSocket) DisconnectClose() {
 }
 
 //export callbackQUdpSocketClose
-func callbackQUdpSocketClose(ptrName *C.char) bool {
+func callbackQUdpSocketClose(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QUdpSocket::close")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQUdpSocketFromPointer(ptr).CloseDefault()
 	}
-	return false
+}
 
+func (ptr *QUdpSocket) Close() {
+	defer qt.Recovering("QUdpSocket::close")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QUdpSocket) CloseDefault() {
+	defer qt.Recovering("QUdpSocket::close")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_CloseDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QUdpSocket) ConnectDisconnectFromHost(f func()) {
@@ -163,15 +178,30 @@ func (ptr *QUdpSocket) DisconnectDisconnectFromHost() {
 }
 
 //export callbackQUdpSocketDisconnectFromHost
-func callbackQUdpSocketDisconnectFromHost(ptrName *C.char) bool {
+func callbackQUdpSocketDisconnectFromHost(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QUdpSocket::disconnectFromHost")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectFromHost"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQUdpSocketFromPointer(ptr).DisconnectFromHostDefault()
 	}
-	return false
+}
 
+func (ptr *QUdpSocket) DisconnectFromHost() {
+	defer qt.Recovering("QUdpSocket::disconnectFromHost")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_DisconnectFromHost(ptr.Pointer())
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectFromHostDefault() {
+	defer qt.Recovering("QUdpSocket::disconnectFromHost")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_DisconnectFromHostDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QUdpSocket) ConnectResume(f func()) {
@@ -193,15 +223,30 @@ func (ptr *QUdpSocket) DisconnectResume() {
 }
 
 //export callbackQUdpSocketResume
-func callbackQUdpSocketResume(ptrName *C.char) bool {
+func callbackQUdpSocketResume(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QUdpSocket::resume")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resume"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQUdpSocketFromPointer(ptr).ResumeDefault()
 	}
-	return false
+}
 
+func (ptr *QUdpSocket) Resume() {
+	defer qt.Recovering("QUdpSocket::resume")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_Resume(ptr.Pointer())
+	}
+}
+
+func (ptr *QUdpSocket) ResumeDefault() {
+	defer qt.Recovering("QUdpSocket::resume")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_ResumeDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QUdpSocket) ConnectSetReadBufferSize(f func(size int64)) {
@@ -223,15 +268,30 @@ func (ptr *QUdpSocket) DisconnectSetReadBufferSize() {
 }
 
 //export callbackQUdpSocketSetReadBufferSize
-func callbackQUdpSocketSetReadBufferSize(ptrName *C.char, size C.longlong) bool {
+func callbackQUdpSocketSetReadBufferSize(ptr unsafe.Pointer, ptrName *C.char, size C.longlong) {
 	defer qt.Recovering("callback QUdpSocket::setReadBufferSize")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setReadBufferSize"); signal != nil {
 		signal.(func(int64))(int64(size))
-		return true
+	} else {
+		NewQUdpSocketFromPointer(ptr).SetReadBufferSizeDefault(int64(size))
 	}
-	return false
+}
 
+func (ptr *QUdpSocket) SetReadBufferSize(size int64) {
+	defer qt.Recovering("QUdpSocket::setReadBufferSize")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_SetReadBufferSize(ptr.Pointer(), C.longlong(size))
+	}
+}
+
+func (ptr *QUdpSocket) SetReadBufferSizeDefault(size int64) {
+	defer qt.Recovering("QUdpSocket::setReadBufferSize")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_SetReadBufferSizeDefault(ptr.Pointer(), C.longlong(size))
+	}
 }
 
 func (ptr *QUdpSocket) ConnectSetSocketOption(f func(option QAbstractSocket__SocketOption, value *core.QVariant)) {
@@ -253,15 +313,30 @@ func (ptr *QUdpSocket) DisconnectSetSocketOption() {
 }
 
 //export callbackQUdpSocketSetSocketOption
-func callbackQUdpSocketSetSocketOption(ptrName *C.char, option C.int, value unsafe.Pointer) bool {
+func callbackQUdpSocketSetSocketOption(ptr unsafe.Pointer, ptrName *C.char, option C.int, value unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::setSocketOption")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSocketOption"); signal != nil {
 		signal.(func(QAbstractSocket__SocketOption, *core.QVariant))(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
-		return true
+	} else {
+		NewQUdpSocketFromPointer(ptr).SetSocketOptionDefault(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
 	}
-	return false
+}
 
+func (ptr *QUdpSocket) SetSocketOption(option QAbstractSocket__SocketOption, value core.QVariant_ITF) {
+	defer qt.Recovering("QUdpSocket::setSocketOption")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_SetSocketOption(ptr.Pointer(), C.int(option), core.PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QUdpSocket) SetSocketOptionDefault(option QAbstractSocket__SocketOption, value core.QVariant_ITF) {
+	defer qt.Recovering("QUdpSocket::setSocketOption")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_SetSocketOptionDefault(ptr.Pointer(), C.int(option), core.PointerFromQVariant(value))
+	}
 }
 
 func (ptr *QUdpSocket) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -283,15 +358,30 @@ func (ptr *QUdpSocket) DisconnectTimerEvent() {
 }
 
 //export callbackQUdpSocketTimerEvent
-func callbackQUdpSocketTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUdpSocketTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQUdpSocketFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUdpSocket) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QUdpSocket::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QUdpSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QUdpSocket::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QUdpSocket) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -313,15 +403,30 @@ func (ptr *QUdpSocket) DisconnectChildEvent() {
 }
 
 //export callbackQUdpSocketChildEvent
-func callbackQUdpSocketChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUdpSocketChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQUdpSocketFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUdpSocket) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QUdpSocket::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QUdpSocket) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QUdpSocket::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QUdpSocket) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -343,13 +448,28 @@ func (ptr *QUdpSocket) DisconnectCustomEvent() {
 }
 
 //export callbackQUdpSocketCustomEvent
-func callbackQUdpSocketCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUdpSocketCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQUdpSocketFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUdpSocket) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QUdpSocket::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QUdpSocket) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QUdpSocket::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

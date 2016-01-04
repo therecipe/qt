@@ -93,15 +93,30 @@ func (ptr *QGraphicsLineItem) DisconnectPaint() {
 }
 
 //export callbackQGraphicsLineItemPaint
-func callbackQGraphicsLineItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQGraphicsLineItemPaint(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsLineItem::paint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paint"); signal != nil {
 		signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQGraphicsLineItemFromPointer(ptr).PaintDefault(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QGraphicsLineItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QGraphicsLineItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsLineItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QGraphicsLineItem) PaintDefault(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QGraphicsLineItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsLineItem_PaintDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QGraphicsLineItem) SetLine(line core.QLineF_ITF) {

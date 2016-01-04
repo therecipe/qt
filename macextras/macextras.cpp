@@ -1,3 +1,5 @@
+#define protected public
+
 #include "macextras.h"
 #include "_cgo_export.h"
 
@@ -20,7 +22,6 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-protected:
 };
 
 char* QMacPasteboardMime_ConvertorName(void* ptr){
@@ -88,14 +89,37 @@ void QMacToolBar_DestroyQMacToolBar(void* ptr){
 	static_cast<QMacToolBar*>(ptr)->~QMacToolBar();
 }
 
+void QMacToolBar_TimerEvent(void* ptr, void* event){
+	static_cast<QMacToolBar*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QMacToolBar_TimerEventDefault(void* ptr, void* event){
+	static_cast<QMacToolBar*>(ptr)->QMacToolBar::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QMacToolBar_ChildEvent(void* ptr, void* event){
+	static_cast<QMacToolBar*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QMacToolBar_ChildEventDefault(void* ptr, void* event){
+	static_cast<QMacToolBar*>(ptr)->QMacToolBar::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QMacToolBar_CustomEvent(void* ptr, void* event){
+	static_cast<QMacToolBar*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QMacToolBar_CustomEventDefault(void* ptr, void* event){
+	static_cast<QMacToolBar*>(ptr)->QMacToolBar::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQMacToolBarItem: public QMacToolBarItem {
 public:
 	MyQMacToolBarItem(QObject *parent) : QMacToolBarItem(parent) {};
-	void Signal_Activated() { callbackQMacToolBarItemActivated(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQMacToolBarItemTimerEvent(this->objectName().toUtf8().data(), event)) { QMacToolBarItem::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQMacToolBarItemChildEvent(this->objectName().toUtf8().data(), event)) { QMacToolBarItem::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQMacToolBarItemCustomEvent(this->objectName().toUtf8().data(), event)) { QMacToolBarItem::customEvent(event); }; };
+	void Signal_Activated() { callbackQMacToolBarItemActivated(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQMacToolBarItemTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQMacToolBarItemChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQMacToolBarItemCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QMacToolBarItem_NewQMacToolBarItem(void* parent){
@@ -108,6 +132,10 @@ void QMacToolBarItem_ConnectActivated(void* ptr){
 
 void QMacToolBarItem_DisconnectActivated(void* ptr){
 	QObject::disconnect(static_cast<QMacToolBarItem*>(ptr), static_cast<void (QMacToolBarItem::*)()>(&QMacToolBarItem::activated), static_cast<MyQMacToolBarItem*>(ptr), static_cast<void (MyQMacToolBarItem::*)()>(&MyQMacToolBarItem::Signal_Activated));;
+}
+
+void QMacToolBarItem_Activated(void* ptr){
+	static_cast<QMacToolBarItem*>(ptr)->activated();
 }
 
 void QMacToolBarItem_DestroyQMacToolBarItem(void* ptr){
@@ -144,5 +172,29 @@ int QMacToolBarItem_StandardItem(void* ptr){
 
 char* QMacToolBarItem_Text(void* ptr){
 	return static_cast<QMacToolBarItem*>(ptr)->text().toUtf8().data();
+}
+
+void QMacToolBarItem_TimerEvent(void* ptr, void* event){
+	static_cast<MyQMacToolBarItem*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QMacToolBarItem_TimerEventDefault(void* ptr, void* event){
+	static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QMacToolBarItem_ChildEvent(void* ptr, void* event){
+	static_cast<MyQMacToolBarItem*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QMacToolBarItem_ChildEventDefault(void* ptr, void* event){
+	static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QMacToolBarItem_CustomEvent(void* ptr, void* event){
+	static_cast<MyQMacToolBarItem*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QMacToolBarItem_CustomEventDefault(void* ptr, void* event){
+	static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::customEvent(static_cast<QEvent*>(event));
 }
 

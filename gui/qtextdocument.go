@@ -91,6 +91,15 @@ func (ptr *QTextDocument) BlockCount() int {
 	return 0
 }
 
+func (ptr *QTextDocument) CreateObject(format QTextFormat_ITF) *QTextObject {
+	defer qt.Recovering("QTextDocument::createObject")
+
+	if ptr.Pointer() != nil {
+		return NewQTextObjectFromPointer(C.QTextDocument_CreateObject(ptr.Pointer(), PointerFromQTextFormat(format)))
+	}
+	return nil
+}
+
 func (ptr *QTextDocument) DefaultStyleSheet() string {
 	defer qt.Recovering("QTextDocument::defaultStyleSheet")
 
@@ -308,13 +317,21 @@ func (ptr *QTextDocument) DisconnectBaseUrlChanged() {
 }
 
 //export callbackQTextDocumentBaseUrlChanged
-func callbackQTextDocumentBaseUrlChanged(ptrName *C.char, url unsafe.Pointer) {
+func callbackQTextDocumentBaseUrlChanged(ptr unsafe.Pointer, ptrName *C.char, url unsafe.Pointer) {
 	defer qt.Recovering("callback QTextDocument::baseUrlChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "baseUrlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
 
+}
+
+func (ptr *QTextDocument) BaseUrlChanged(url core.QUrl_ITF) {
+	defer qt.Recovering("QTextDocument::baseUrlChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_BaseUrlChanged(ptr.Pointer(), core.PointerFromQUrl(url))
+	}
 }
 
 func (ptr *QTextDocument) ConnectBlockCountChanged(f func(newBlockCount int)) {
@@ -336,13 +353,21 @@ func (ptr *QTextDocument) DisconnectBlockCountChanged() {
 }
 
 //export callbackQTextDocumentBlockCountChanged
-func callbackQTextDocumentBlockCountChanged(ptrName *C.char, newBlockCount C.int) {
+func callbackQTextDocumentBlockCountChanged(ptr unsafe.Pointer, ptrName *C.char, newBlockCount C.int) {
 	defer qt.Recovering("callback QTextDocument::blockCountChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "blockCountChanged"); signal != nil {
 		signal.(func(int))(int(newBlockCount))
 	}
 
+}
+
+func (ptr *QTextDocument) BlockCountChanged(newBlockCount int) {
+	defer qt.Recovering("QTextDocument::blockCountChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_BlockCountChanged(ptr.Pointer(), C.int(newBlockCount))
+	}
 }
 
 func (ptr *QTextDocument) CharacterCount() int {
@@ -373,15 +398,30 @@ func (ptr *QTextDocument) DisconnectClear() {
 }
 
 //export callbackQTextDocumentClear
-func callbackQTextDocumentClear(ptrName *C.char) bool {
+func callbackQTextDocumentClear(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTextDocument::clear")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQTextDocumentFromPointer(ptr).ClearDefault()
 	}
-	return false
+}
 
+func (ptr *QTextDocument) Clear() {
+	defer qt.Recovering("QTextDocument::clear")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QTextDocument) ClearDefault() {
+	defer qt.Recovering("QTextDocument::clear")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_ClearDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextDocument) ClearUndoRedoStacks(stacksToClear QTextDocument__Stacks) {
@@ -420,13 +460,21 @@ func (ptr *QTextDocument) DisconnectContentsChange() {
 }
 
 //export callbackQTextDocumentContentsChange
-func callbackQTextDocumentContentsChange(ptrName *C.char, position C.int, charsRemoved C.int, charsAdded C.int) {
+func callbackQTextDocumentContentsChange(ptr unsafe.Pointer, ptrName *C.char, position C.int, charsRemoved C.int, charsAdded C.int) {
 	defer qt.Recovering("callback QTextDocument::contentsChange")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contentsChange"); signal != nil {
 		signal.(func(int, int, int))(int(position), int(charsRemoved), int(charsAdded))
 	}
 
+}
+
+func (ptr *QTextDocument) ContentsChange(position int, charsRemoved int, charsAdded int) {
+	defer qt.Recovering("QTextDocument::contentsChange")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_ContentsChange(ptr.Pointer(), C.int(position), C.int(charsRemoved), C.int(charsAdded))
+	}
 }
 
 func (ptr *QTextDocument) ConnectContentsChanged(f func()) {
@@ -448,13 +496,21 @@ func (ptr *QTextDocument) DisconnectContentsChanged() {
 }
 
 //export callbackQTextDocumentContentsChanged
-func callbackQTextDocumentContentsChanged(ptrName *C.char) {
+func callbackQTextDocumentContentsChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTextDocument::contentsChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contentsChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QTextDocument) ContentsChanged() {
+	defer qt.Recovering("QTextDocument::contentsChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_ContentsChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextDocument) DefaultCursorMoveStyle() core.Qt__CursorMoveStyle {
@@ -494,13 +550,21 @@ func (ptr *QTextDocument) DisconnectDocumentLayoutChanged() {
 }
 
 //export callbackQTextDocumentDocumentLayoutChanged
-func callbackQTextDocumentDocumentLayoutChanged(ptrName *C.char) {
+func callbackQTextDocumentDocumentLayoutChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTextDocument::documentLayoutChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "documentLayoutChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QTextDocument) DocumentLayoutChanged() {
+	defer qt.Recovering("QTextDocument::documentLayoutChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_DocumentLayoutChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextDocument) DrawContents(p QPainter_ITF, rect core.QRectF_ITF) {
@@ -556,6 +620,15 @@ func (ptr *QTextDocument) LineCount() int {
 	return 0
 }
 
+func (ptr *QTextDocument) LoadResource(ty int, name core.QUrl_ITF) *core.QVariant {
+	defer qt.Recovering("QTextDocument::loadResource")
+
+	if ptr.Pointer() != nil {
+		return core.NewQVariantFromPointer(C.QTextDocument_LoadResource(ptr.Pointer(), C.int(ty), core.PointerFromQUrl(name)))
+	}
+	return nil
+}
+
 func (ptr *QTextDocument) MetaInformation(info QTextDocument__MetaInformation) string {
 	defer qt.Recovering("QTextDocument::metaInformation")
 
@@ -584,13 +657,21 @@ func (ptr *QTextDocument) DisconnectModificationChanged() {
 }
 
 //export callbackQTextDocumentModificationChanged
-func callbackQTextDocumentModificationChanged(ptrName *C.char, changed C.int) {
+func callbackQTextDocumentModificationChanged(ptr unsafe.Pointer, ptrName *C.char, changed C.int) {
 	defer qt.Recovering("callback QTextDocument::modificationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "modificationChanged"); signal != nil {
 		signal.(func(bool))(int(changed) != 0)
 	}
 
+}
+
+func (ptr *QTextDocument) ModificationChanged(changed bool) {
+	defer qt.Recovering("QTextDocument::modificationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_ModificationChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(changed)))
+	}
 }
 
 func (ptr *QTextDocument) Object(objectIndex int) *QTextObject {
@@ -663,13 +744,21 @@ func (ptr *QTextDocument) DisconnectRedoAvailable() {
 }
 
 //export callbackQTextDocumentRedoAvailable
-func callbackQTextDocumentRedoAvailable(ptrName *C.char, available C.int) {
+func callbackQTextDocumentRedoAvailable(ptr unsafe.Pointer, ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QTextDocument::redoAvailable")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "redoAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
+}
+
+func (ptr *QTextDocument) RedoAvailable(available bool) {
+	defer qt.Recovering("QTextDocument::redoAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_RedoAvailable(ptr.Pointer(), C.int(qt.GoBoolToInt(available)))
+	}
 }
 
 func (ptr *QTextDocument) Resource(ty int, name core.QUrl_ITF) *core.QVariant {
@@ -816,13 +905,21 @@ func (ptr *QTextDocument) DisconnectUndoAvailable() {
 }
 
 //export callbackQTextDocumentUndoAvailable
-func callbackQTextDocumentUndoAvailable(ptrName *C.char, available C.int) {
+func callbackQTextDocumentUndoAvailable(ptr unsafe.Pointer, ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QTextDocument::undoAvailable")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "undoAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
+}
+
+func (ptr *QTextDocument) UndoAvailable(available bool) {
+	defer qt.Recovering("QTextDocument::undoAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_UndoAvailable(ptr.Pointer(), C.int(qt.GoBoolToInt(available)))
+	}
 }
 
 func (ptr *QTextDocument) ConnectUndoCommandAdded(f func()) {
@@ -844,13 +941,21 @@ func (ptr *QTextDocument) DisconnectUndoCommandAdded() {
 }
 
 //export callbackQTextDocumentUndoCommandAdded
-func callbackQTextDocumentUndoCommandAdded(ptrName *C.char) {
+func callbackQTextDocumentUndoCommandAdded(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTextDocument::undoCommandAdded")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "undoCommandAdded"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QTextDocument) UndoCommandAdded() {
+	defer qt.Recovering("QTextDocument::undoCommandAdded")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_UndoCommandAdded(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextDocument) DestroyQTextDocument() {
@@ -881,15 +986,30 @@ func (ptr *QTextDocument) DisconnectTimerEvent() {
 }
 
 //export callbackQTextDocumentTimerEvent
-func callbackQTextDocumentTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextDocumentTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextDocument::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTextDocumentFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextDocument) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextDocument::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTextDocument) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextDocument::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTextDocument) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -911,15 +1031,30 @@ func (ptr *QTextDocument) DisconnectChildEvent() {
 }
 
 //export callbackQTextDocumentChildEvent
-func callbackQTextDocumentChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextDocumentChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextDocument::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTextDocumentFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextDocument) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextDocument::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTextDocument) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextDocument::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTextDocument) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -941,13 +1076,28 @@ func (ptr *QTextDocument) DisconnectCustomEvent() {
 }
 
 //export callbackQTextDocumentCustomEvent
-func callbackQTextDocumentCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextDocumentCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextDocument::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTextDocumentFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextDocument) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextDocument::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTextDocument) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextDocument::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextDocument_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

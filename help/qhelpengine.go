@@ -116,15 +116,30 @@ func (ptr *QHelpEngine) DisconnectTimerEvent() {
 }
 
 //export callbackQHelpEngineTimerEvent
-func callbackQHelpEngineTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpEngineTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpEngine::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpEngineFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpEngine) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHelpEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpEngine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QHelpEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHelpEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QHelpEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -146,15 +161,30 @@ func (ptr *QHelpEngine) DisconnectChildEvent() {
 }
 
 //export callbackQHelpEngineChildEvent
-func callbackQHelpEngineChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpEngineChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpEngine::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpEngineFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpEngine) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHelpEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpEngine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QHelpEngine) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHelpEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpEngine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QHelpEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -176,13 +206,28 @@ func (ptr *QHelpEngine) DisconnectCustomEvent() {
 }
 
 //export callbackQHelpEngineCustomEvent
-func callbackQHelpEngineCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpEngineCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpEngine::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpEngineFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpEngine) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpEngine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QHelpEngine) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpEngine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

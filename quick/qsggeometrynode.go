@@ -100,13 +100,28 @@ func (ptr *QSGGeometryNode) DisconnectPreprocess() {
 }
 
 //export callbackQSGGeometryNodePreprocess
-func callbackQSGGeometryNodePreprocess(ptrName *C.char) bool {
+func callbackQSGGeometryNodePreprocess(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGGeometryNode::preprocess")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGGeometryNodeFromPointer(ptr).PreprocessDefault()
 	}
-	return false
+}
 
+func (ptr *QSGGeometryNode) Preprocess() {
+	defer qt.Recovering("QSGGeometryNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGGeometryNode_Preprocess(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGGeometryNode) PreprocessDefault() {
+	defer qt.Recovering("QSGGeometryNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGGeometryNode_PreprocessDefault(ptr.Pointer())
+	}
 }

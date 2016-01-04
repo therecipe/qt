@@ -92,15 +92,30 @@ func (ptr *QVideoEncoderSettingsControl) DisconnectTimerEvent() {
 }
 
 //export callbackQVideoEncoderSettingsControlTimerEvent
-func callbackQVideoEncoderSettingsControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoEncoderSettingsControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoEncoderSettingsControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoEncoderSettingsControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoEncoderSettingsControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoEncoderSettingsControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoEncoderSettingsControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QVideoEncoderSettingsControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoEncoderSettingsControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoEncoderSettingsControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QVideoEncoderSettingsControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -122,15 +137,30 @@ func (ptr *QVideoEncoderSettingsControl) DisconnectChildEvent() {
 }
 
 //export callbackQVideoEncoderSettingsControlChildEvent
-func callbackQVideoEncoderSettingsControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoEncoderSettingsControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoEncoderSettingsControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoEncoderSettingsControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoEncoderSettingsControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoEncoderSettingsControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoEncoderSettingsControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QVideoEncoderSettingsControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoEncoderSettingsControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoEncoderSettingsControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QVideoEncoderSettingsControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -152,13 +182,28 @@ func (ptr *QVideoEncoderSettingsControl) DisconnectCustomEvent() {
 }
 
 //export callbackQVideoEncoderSettingsControlCustomEvent
-func callbackQVideoEncoderSettingsControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoEncoderSettingsControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoEncoderSettingsControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoEncoderSettingsControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoEncoderSettingsControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoEncoderSettingsControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoEncoderSettingsControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QVideoEncoderSettingsControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoEncoderSettingsControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoEncoderSettingsControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

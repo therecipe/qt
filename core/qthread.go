@@ -115,7 +115,7 @@ func (ptr *QThread) DisconnectFinished() {
 }
 
 //export callbackQThreadFinished
-func callbackQThreadFinished(ptrName *C.char) {
+func callbackQThreadFinished(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QThread::finished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
@@ -204,15 +204,30 @@ func (ptr *QThread) DisconnectRun() {
 }
 
 //export callbackQThreadRun
-func callbackQThreadRun(ptrName *C.char) bool {
+func callbackQThreadRun(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QThread::run")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "run"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQThreadFromPointer(ptr).RunDefault()
 	}
-	return false
+}
 
+func (ptr *QThread) Run() {
+	defer qt.Recovering("QThread::run")
+
+	if ptr.Pointer() != nil {
+		C.QThread_Run(ptr.Pointer())
+	}
+}
+
+func (ptr *QThread) RunDefault() {
+	defer qt.Recovering("QThread::run")
+
+	if ptr.Pointer() != nil {
+		C.QThread_RunDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QThread) SetEventDispatcher(eventDispatcher QAbstractEventDispatcher_ITF) {
@@ -242,7 +257,7 @@ func (ptr *QThread) DisconnectStarted() {
 }
 
 //export callbackQThreadStarted
-func callbackQThreadStarted(ptrName *C.char) {
+func callbackQThreadStarted(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QThread::started")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "started"); signal != nil {
@@ -307,15 +322,30 @@ func (ptr *QThread) DisconnectTimerEvent() {
 }
 
 //export callbackQThreadTimerEvent
-func callbackQThreadTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQThreadTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QThread::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQThreadFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QThread) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QThread::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QThread_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QThread) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QThread::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QThread_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QThread) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -337,15 +367,30 @@ func (ptr *QThread) DisconnectChildEvent() {
 }
 
 //export callbackQThreadChildEvent
-func callbackQThreadChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQThreadChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QThread::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQThreadFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QThread) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QThread::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QThread_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QThread) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QThread::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QThread_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QThread) ConnectCustomEvent(f func(event *QEvent)) {
@@ -367,13 +412,28 @@ func (ptr *QThread) DisconnectCustomEvent() {
 }
 
 //export callbackQThreadCustomEvent
-func callbackQThreadCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQThreadCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QThread::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQThreadFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QThread) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QThread::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QThread_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QThread) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QThread::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QThread_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

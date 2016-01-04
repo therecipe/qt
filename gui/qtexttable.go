@@ -162,15 +162,30 @@ func (ptr *QTextTable) DisconnectTimerEvent() {
 }
 
 //export callbackQTextTableTimerEvent
-func callbackQTextTableTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextTableTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextTable::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTextTableFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextTable) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextTable::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextTable_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTextTable) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextTable::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextTable_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTextTable) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -192,15 +207,30 @@ func (ptr *QTextTable) DisconnectChildEvent() {
 }
 
 //export callbackQTextTableChildEvent
-func callbackQTextTableChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextTableChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextTable::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTextTableFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextTable) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextTable::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextTable_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTextTable) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextTable::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextTable_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTextTable) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -222,13 +252,28 @@ func (ptr *QTextTable) DisconnectCustomEvent() {
 }
 
 //export callbackQTextTableCustomEvent
-func callbackQTextTableCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextTableCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextTable::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTextTableFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextTable) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextTable::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextTable_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTextTable) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextTable::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextTable_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

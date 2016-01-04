@@ -61,6 +61,15 @@ func NewQColumnView(parent QWidget_ITF) *QColumnView {
 	return NewQColumnViewFromPointer(C.QColumnView_NewQColumnView(PointerFromQWidget(parent)))
 }
 
+func (ptr *QColumnView) CreateColumn(index core.QModelIndex_ITF) *QAbstractItemView {
+	defer qt.Recovering("QColumnView::createColumn")
+
+	if ptr.Pointer() != nil {
+		return NewQAbstractItemViewFromPointer(C.QColumnView_CreateColumn(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
 func (ptr *QColumnView) ConnectCurrentChanged(f func(current *core.QModelIndex, previous *core.QModelIndex)) {
 	defer qt.Recovering("connect QColumnView::currentChanged")
 
@@ -80,15 +89,39 @@ func (ptr *QColumnView) DisconnectCurrentChanged() {
 }
 
 //export callbackQColumnViewCurrentChanged
-func callbackQColumnViewCurrentChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
+func callbackQColumnViewCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
 	}
-	return false
+}
 
+func (ptr *QColumnView) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
+	defer qt.Recovering("QColumnView::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_CurrentChanged(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
+	}
+}
+
+func (ptr *QColumnView) CurrentChangedDefault(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
+	defer qt.Recovering("QColumnView::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_CurrentChangedDefault(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
+	}
+}
+
+func (ptr *QColumnView) HorizontalOffset() int {
+	defer qt.Recovering("QColumnView::horizontalOffset")
+
+	if ptr.Pointer() != nil {
+		return int(C.QColumnView_HorizontalOffset(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QColumnView) IndexAt(point core.QPoint_ITF) *core.QModelIndex {
@@ -96,6 +129,24 @@ func (ptr *QColumnView) IndexAt(point core.QPoint_ITF) *core.QModelIndex {
 
 	if ptr.Pointer() != nil {
 		return core.NewQModelIndexFromPointer(C.QColumnView_IndexAt(ptr.Pointer(), core.PointerFromQPoint(point)))
+	}
+	return nil
+}
+
+func (ptr *QColumnView) IsIndexHidden(index core.QModelIndex_ITF) bool {
+	defer qt.Recovering("QColumnView::isIndexHidden")
+
+	if ptr.Pointer() != nil {
+		return C.QColumnView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+	}
+	return false
+}
+
+func (ptr *QColumnView) MoveCursor(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
+	defer qt.Recovering("QColumnView::moveCursor")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QColumnView_MoveCursor(ptr.Pointer(), C.int(cursorAction), C.int(modifiers)))
 	}
 	return nil
 }
@@ -128,15 +179,30 @@ func (ptr *QColumnView) DisconnectResizeEvent() {
 }
 
 //export callbackQColumnViewResizeEvent
-func callbackQColumnViewResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QColumnView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QColumnView) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QColumnView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectRowsInserted(f func(parent *core.QModelIndex, start int, end int)) {
@@ -158,15 +224,30 @@ func (ptr *QColumnView) DisconnectRowsInserted() {
 }
 
 //export callbackQColumnViewRowsInserted
-func callbackQColumnViewRowsInserted(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
+func callbackQColumnViewRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
 	defer qt.Recovering("callback QColumnView::rowsInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).RowsInsertedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
 	}
-	return false
+}
 
+func (ptr *QColumnView) RowsInserted(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QColumnView::rowsInserted")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_RowsInserted(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
+}
+
+func (ptr *QColumnView) RowsInsertedDefault(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QColumnView::rowsInserted")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_RowsInsertedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
 }
 
 func (ptr *QColumnView) ConnectScrollContentsBy(f func(dx int, dy int)) {
@@ -188,15 +269,30 @@ func (ptr *QColumnView) DisconnectScrollContentsBy() {
 }
 
 //export callbackQColumnViewScrollContentsBy
-func callbackQColumnViewScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
+func callbackQColumnViewScrollContentsBy(ptr unsafe.Pointer, ptrName *C.char, dx C.int, dy C.int) {
 	defer qt.Recovering("callback QColumnView::scrollContentsBy")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
 		signal.(func(int, int))(int(dx), int(dy))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).ScrollContentsByDefault(int(dx), int(dy))
 	}
-	return false
+}
 
+func (ptr *QColumnView) ScrollContentsBy(dx int, dy int) {
+	defer qt.Recovering("QColumnView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ScrollContentsBy(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
+}
+
+func (ptr *QColumnView) ScrollContentsByDefault(dx int, dy int) {
+	defer qt.Recovering("QColumnView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ScrollContentsByDefault(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
 }
 
 func (ptr *QColumnView) ConnectScrollTo(f func(index *core.QModelIndex, hint QAbstractItemView__ScrollHint)) {
@@ -218,15 +314,30 @@ func (ptr *QColumnView) DisconnectScrollTo() {
 }
 
 //export callbackQColumnViewScrollTo
-func callbackQColumnViewScrollTo(ptrName *C.char, index unsafe.Pointer, hint C.int) bool {
+func callbackQColumnViewScrollTo(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer, hint C.int) {
 	defer qt.Recovering("callback QColumnView::scrollTo")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollTo"); signal != nil {
 		signal.(func(*core.QModelIndex, QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).ScrollToDefault(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
 	}
-	return false
+}
 
+func (ptr *QColumnView) ScrollTo(index core.QModelIndex_ITF, hint QAbstractItemView__ScrollHint) {
+	defer qt.Recovering("QColumnView::scrollTo")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ScrollTo(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(hint))
+	}
+}
+
+func (ptr *QColumnView) ScrollToDefault(index core.QModelIndex_ITF, hint QAbstractItemView__ScrollHint) {
+	defer qt.Recovering("QColumnView::scrollTo")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ScrollToDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(hint))
+	}
 }
 
 func (ptr *QColumnView) ConnectSelectAll(f func()) {
@@ -248,15 +359,30 @@ func (ptr *QColumnView) DisconnectSelectAll() {
 }
 
 //export callbackQColumnViewSelectAll
-func callbackQColumnViewSelectAll(ptrName *C.char) bool {
+func callbackQColumnViewSelectAll(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QColumnView::selectAll")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectAll"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).SelectAllDefault()
 	}
-	return false
+}
 
+func (ptr *QColumnView) SelectAll() {
+	defer qt.Recovering("QColumnView::selectAll")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SelectAll(ptr.Pointer())
+	}
+}
+
+func (ptr *QColumnView) SelectAllDefault() {
+	defer qt.Recovering("QColumnView::selectAll")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SelectAllDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QColumnView) ConnectSetModel(f func(model *core.QAbstractItemModel)) {
@@ -278,15 +404,30 @@ func (ptr *QColumnView) DisconnectSetModel() {
 }
 
 //export callbackQColumnViewSetModel
-func callbackQColumnViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
+func callbackQColumnViewSetModel(ptr unsafe.Pointer, ptrName *C.char, model unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::setModel")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
 		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).SetModelDefault(core.NewQAbstractItemModelFromPointer(model))
 	}
-	return false
+}
 
+func (ptr *QColumnView) SetModel(model core.QAbstractItemModel_ITF) {
+	defer qt.Recovering("QColumnView::setModel")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetModel(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
+	}
+}
+
+func (ptr *QColumnView) SetModelDefault(model core.QAbstractItemModel_ITF) {
+	defer qt.Recovering("QColumnView::setModel")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetModelDefault(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
+	}
 }
 
 func (ptr *QColumnView) SetPreviewWidget(widget QWidget_ITF) {
@@ -316,15 +457,30 @@ func (ptr *QColumnView) DisconnectSetRootIndex() {
 }
 
 //export callbackQColumnViewSetRootIndex
-func callbackQColumnViewSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool {
+func callbackQColumnViewSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::setRootIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).SetRootIndexDefault(core.NewQModelIndexFromPointer(index))
 	}
-	return false
+}
 
+func (ptr *QColumnView) SetRootIndex(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QColumnView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetRootIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QColumnView) SetRootIndexDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QColumnView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetRootIndexDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
 }
 
 func (ptr *QColumnView) ConnectSetSelection(f func(rect *core.QRect, command core.QItemSelectionModel__SelectionFlag)) {
@@ -346,15 +502,30 @@ func (ptr *QColumnView) DisconnectSetSelection() {
 }
 
 //export callbackQColumnViewSetSelection
-func callbackQColumnViewSetSelection(ptrName *C.char, rect unsafe.Pointer, command C.int) bool {
+func callbackQColumnViewSetSelection(ptr unsafe.Pointer, ptrName *C.char, rect unsafe.Pointer, command C.int) {
 	defer qt.Recovering("callback QColumnView::setSelection")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).SetSelectionDefault(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
 	}
-	return false
+}
 
+func (ptr *QColumnView) SetSelection(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QColumnView::setSelection")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetSelection(ptr.Pointer(), core.PointerFromQRect(rect), C.int(command))
+	}
+}
+
+func (ptr *QColumnView) SetSelectionDefault(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QColumnView::setSelection")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetSelectionDefault(ptr.Pointer(), core.PointerFromQRect(rect), C.int(command))
+	}
 }
 
 func (ptr *QColumnView) ConnectSetSelectionModel(f func(newSelectionModel *core.QItemSelectionModel)) {
@@ -376,15 +547,30 @@ func (ptr *QColumnView) DisconnectSetSelectionModel() {
 }
 
 //export callbackQColumnViewSetSelectionModel
-func callbackQColumnViewSetSelectionModel(ptrName *C.char, newSelectionModel unsafe.Pointer) bool {
+func callbackQColumnViewSetSelectionModel(ptr unsafe.Pointer, ptrName *C.char, newSelectionModel unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::setSelectionModel")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelectionModel"); signal != nil {
 		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(newSelectionModel))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).SetSelectionModelDefault(core.NewQItemSelectionModelFromPointer(newSelectionModel))
 	}
-	return false
+}
 
+func (ptr *QColumnView) SetSelectionModel(newSelectionModel core.QItemSelectionModel_ITF) {
+	defer qt.Recovering("QColumnView::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetSelectionModel(ptr.Pointer(), core.PointerFromQItemSelectionModel(newSelectionModel))
+	}
+}
+
+func (ptr *QColumnView) SetSelectionModelDefault(newSelectionModel core.QItemSelectionModel_ITF) {
+	defer qt.Recovering("QColumnView::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetSelectionModelDefault(ptr.Pointer(), core.PointerFromQItemSelectionModel(newSelectionModel))
+	}
 }
 
 func (ptr *QColumnView) SizeHint() *core.QSize {
@@ -415,7 +601,7 @@ func (ptr *QColumnView) DisconnectUpdatePreviewWidget() {
 }
 
 //export callbackQColumnViewUpdatePreviewWidget
-func callbackQColumnViewUpdatePreviewWidget(ptrName *C.char, index unsafe.Pointer) {
+func callbackQColumnViewUpdatePreviewWidget(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::updatePreviewWidget")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updatePreviewWidget"); signal != nil {
@@ -424,11 +610,37 @@ func callbackQColumnViewUpdatePreviewWidget(ptrName *C.char, index unsafe.Pointe
 
 }
 
+func (ptr *QColumnView) UpdatePreviewWidget(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QColumnView::updatePreviewWidget")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_UpdatePreviewWidget(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QColumnView) VerticalOffset() int {
+	defer qt.Recovering("QColumnView::verticalOffset")
+
+	if ptr.Pointer() != nil {
+		return int(C.QColumnView_VerticalOffset(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QColumnView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 	defer qt.Recovering("QColumnView::visualRect")
 
 	if ptr.Pointer() != nil {
 		return core.NewQRectFromPointer(C.QColumnView_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
+func (ptr *QColumnView) VisualRegionForSelection(selection core.QItemSelection_ITF) *gui.QRegion {
+	defer qt.Recovering("QColumnView::visualRegionForSelection")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQRegionFromPointer(C.QColumnView_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
 	}
 	return nil
 }
@@ -461,15 +673,30 @@ func (ptr *QColumnView) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQColumnViewDragLeaveEvent
-func callbackQColumnViewDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QColumnView::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QColumnView) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QColumnView::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectCloseEditor(f func(editor *QWidget, hint QAbstractItemDelegate__EndEditHint)) {
@@ -491,7 +718,7 @@ func (ptr *QColumnView) DisconnectCloseEditor() {
 }
 
 //export callbackQColumnViewCloseEditor
-func callbackQColumnViewCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint C.int) bool {
+func callbackQColumnViewCloseEditor(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer, hint C.int) bool {
 	defer qt.Recovering("callback QColumnView::closeEditor")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEditor"); signal != nil {
@@ -500,6 +727,22 @@ func callbackQColumnViewCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint
 	}
 	return false
 
+}
+
+func (ptr *QColumnView) CloseEditor(editor QWidget_ITF, hint QAbstractItemDelegate__EndEditHint) {
+	defer qt.Recovering("QColumnView::closeEditor")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_CloseEditor(ptr.Pointer(), PointerFromQWidget(editor), C.int(hint))
+	}
+}
+
+func (ptr *QColumnView) CloseEditorDefault(editor QWidget_ITF, hint QAbstractItemDelegate__EndEditHint) {
+	defer qt.Recovering("QColumnView::closeEditor")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_CloseEditorDefault(ptr.Pointer(), PointerFromQWidget(editor), C.int(hint))
+	}
 }
 
 func (ptr *QColumnView) ConnectCommitData(f func(editor *QWidget)) {
@@ -521,7 +764,7 @@ func (ptr *QColumnView) DisconnectCommitData() {
 }
 
 //export callbackQColumnViewCommitData
-func callbackQColumnViewCommitData(ptrName *C.char, editor unsafe.Pointer) bool {
+func callbackQColumnViewCommitData(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer) bool {
 	defer qt.Recovering("callback QColumnView::commitData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "commitData"); signal != nil {
@@ -530,6 +773,22 @@ func callbackQColumnViewCommitData(ptrName *C.char, editor unsafe.Pointer) bool 
 	}
 	return false
 
+}
+
+func (ptr *QColumnView) CommitData(editor QWidget_ITF) {
+	defer qt.Recovering("QColumnView::commitData")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_CommitData(ptr.Pointer(), PointerFromQWidget(editor))
+	}
+}
+
+func (ptr *QColumnView) CommitDataDefault(editor QWidget_ITF) {
+	defer qt.Recovering("QColumnView::commitData")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_CommitDataDefault(ptr.Pointer(), PointerFromQWidget(editor))
+	}
 }
 
 func (ptr *QColumnView) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -551,15 +810,30 @@ func (ptr *QColumnView) DisconnectDragEnterEvent() {
 }
 
 //export callbackQColumnViewDragEnterEvent
-func callbackQColumnViewDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QColumnView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QColumnView) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QColumnView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -581,15 +855,30 @@ func (ptr *QColumnView) DisconnectDragMoveEvent() {
 }
 
 //export callbackQColumnViewDragMoveEvent
-func callbackQColumnViewDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QColumnView::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QColumnView) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QColumnView::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -611,15 +900,30 @@ func (ptr *QColumnView) DisconnectDropEvent() {
 }
 
 //export callbackQColumnViewDropEvent
-func callbackQColumnViewDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QColumnView::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QColumnView) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QColumnView::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectEditorDestroyed(f func(editor *core.QObject)) {
@@ -641,7 +945,7 @@ func (ptr *QColumnView) DisconnectEditorDestroyed() {
 }
 
 //export callbackQColumnViewEditorDestroyed
-func callbackQColumnViewEditorDestroyed(ptrName *C.char, editor unsafe.Pointer) bool {
+func callbackQColumnViewEditorDestroyed(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer) bool {
 	defer qt.Recovering("callback QColumnView::editorDestroyed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "editorDestroyed"); signal != nil {
@@ -650,6 +954,22 @@ func callbackQColumnViewEditorDestroyed(ptrName *C.char, editor unsafe.Pointer) 
 	}
 	return false
 
+}
+
+func (ptr *QColumnView) EditorDestroyed(editor core.QObject_ITF) {
+	defer qt.Recovering("QColumnView::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_EditorDestroyed(ptr.Pointer(), core.PointerFromQObject(editor))
+	}
+}
+
+func (ptr *QColumnView) EditorDestroyedDefault(editor core.QObject_ITF) {
+	defer qt.Recovering("QColumnView::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_EditorDestroyedDefault(ptr.Pointer(), core.PointerFromQObject(editor))
+	}
 }
 
 func (ptr *QColumnView) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -671,15 +991,30 @@ func (ptr *QColumnView) DisconnectFocusInEvent() {
 }
 
 //export callbackQColumnViewFocusInEvent
-func callbackQColumnViewFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QColumnView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QColumnView) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QColumnView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -701,15 +1036,30 @@ func (ptr *QColumnView) DisconnectFocusOutEvent() {
 }
 
 //export callbackQColumnViewFocusOutEvent
-func callbackQColumnViewFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QColumnView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QColumnView) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QColumnView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -731,15 +1081,30 @@ func (ptr *QColumnView) DisconnectInputMethodEvent() {
 }
 
 //export callbackQColumnViewInputMethodEvent
-func callbackQColumnViewInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QColumnView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QColumnView) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QColumnView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -761,15 +1126,30 @@ func (ptr *QColumnView) DisconnectKeyPressEvent() {
 }
 
 //export callbackQColumnViewKeyPressEvent
-func callbackQColumnViewKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QColumnView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QColumnView) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QColumnView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectKeyboardSearch(f func(search string)) {
@@ -791,15 +1171,30 @@ func (ptr *QColumnView) DisconnectKeyboardSearch() {
 }
 
 //export callbackQColumnViewKeyboardSearch
-func callbackQColumnViewKeyboardSearch(ptrName *C.char, search *C.char) bool {
+func callbackQColumnViewKeyboardSearch(ptr unsafe.Pointer, ptrName *C.char, search *C.char) {
 	defer qt.Recovering("callback QColumnView::keyboardSearch")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyboardSearch"); signal != nil {
 		signal.(func(string))(C.GoString(search))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).KeyboardSearchDefault(C.GoString(search))
 	}
-	return false
+}
 
+func (ptr *QColumnView) KeyboardSearch(search string) {
+	defer qt.Recovering("QColumnView::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_KeyboardSearch(ptr.Pointer(), C.CString(search))
+	}
+}
+
+func (ptr *QColumnView) KeyboardSearchDefault(search string) {
+	defer qt.Recovering("QColumnView::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_KeyboardSearchDefault(ptr.Pointer(), C.CString(search))
+	}
 }
 
 func (ptr *QColumnView) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -821,15 +1216,30 @@ func (ptr *QColumnView) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQColumnViewMouseDoubleClickEvent
-func callbackQColumnViewMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColumnView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QColumnView) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColumnView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -851,15 +1261,30 @@ func (ptr *QColumnView) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQColumnViewMouseMoveEvent
-func callbackQColumnViewMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColumnView::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QColumnView) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColumnView::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -881,15 +1306,30 @@ func (ptr *QColumnView) DisconnectMousePressEvent() {
 }
 
 //export callbackQColumnViewMousePressEvent
-func callbackQColumnViewMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColumnView::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QColumnView) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColumnView::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -911,15 +1351,30 @@ func (ptr *QColumnView) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQColumnViewMouseReleaseEvent
-func callbackQColumnViewMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColumnView::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QColumnView) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColumnView::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectReset(f func()) {
@@ -941,7 +1396,7 @@ func (ptr *QColumnView) DisconnectReset() {
 }
 
 //export callbackQColumnViewReset
-func callbackQColumnViewReset(ptrName *C.char) bool {
+func callbackQColumnViewReset(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QColumnView::reset")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
@@ -950,6 +1405,22 @@ func callbackQColumnViewReset(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QColumnView) Reset() {
+	defer qt.Recovering("QColumnView::reset")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_Reset(ptr.Pointer())
+	}
+}
+
+func (ptr *QColumnView) ResetDefault() {
+	defer qt.Recovering("QColumnView::reset")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ResetDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QColumnView) ConnectRowsAboutToBeRemoved(f func(parent *core.QModelIndex, start int, end int)) {
@@ -971,7 +1442,7 @@ func (ptr *QColumnView) DisconnectRowsAboutToBeRemoved() {
 }
 
 //export callbackQColumnViewRowsAboutToBeRemoved
-func callbackQColumnViewRowsAboutToBeRemoved(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
+func callbackQColumnViewRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QColumnView::rowsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
@@ -980,6 +1451,22 @@ func callbackQColumnViewRowsAboutToBeRemoved(ptrName *C.char, parent unsafe.Poin
 	}
 	return false
 
+}
+
+func (ptr *QColumnView) RowsAboutToBeRemoved(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QColumnView::rowsAboutToBeRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_RowsAboutToBeRemoved(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
+}
+
+func (ptr *QColumnView) RowsAboutToBeRemovedDefault(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QColumnView::rowsAboutToBeRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_RowsAboutToBeRemovedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
 }
 
 func (ptr *QColumnView) ConnectStartDrag(f func(supportedActions core.Qt__DropAction)) {
@@ -1001,15 +1488,30 @@ func (ptr *QColumnView) DisconnectStartDrag() {
 }
 
 //export callbackQColumnViewStartDrag
-func callbackQColumnViewStartDrag(ptrName *C.char, supportedActions C.int) bool {
+func callbackQColumnViewStartDrag(ptr unsafe.Pointer, ptrName *C.char, supportedActions C.int) {
 	defer qt.Recovering("callback QColumnView::startDrag")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startDrag"); signal != nil {
 		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(supportedActions))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).StartDragDefault(core.Qt__DropAction(supportedActions))
 	}
-	return false
+}
 
+func (ptr *QColumnView) StartDrag(supportedActions core.Qt__DropAction) {
+	defer qt.Recovering("QColumnView::startDrag")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_StartDrag(ptr.Pointer(), C.int(supportedActions))
+	}
+}
+
+func (ptr *QColumnView) StartDragDefault(supportedActions core.Qt__DropAction) {
+	defer qt.Recovering("QColumnView::startDrag")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_StartDragDefault(ptr.Pointer(), C.int(supportedActions))
+	}
 }
 
 func (ptr *QColumnView) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1031,15 +1533,30 @@ func (ptr *QColumnView) DisconnectTimerEvent() {
 }
 
 //export callbackQColumnViewTimerEvent
-func callbackQColumnViewTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QColumnView::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QColumnView) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QColumnView::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectUpdateGeometries(f func()) {
@@ -1061,7 +1578,7 @@ func (ptr *QColumnView) DisconnectUpdateGeometries() {
 }
 
 //export callbackQColumnViewUpdateGeometries
-func callbackQColumnViewUpdateGeometries(ptrName *C.char) bool {
+func callbackQColumnViewUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QColumnView::updateGeometries")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
@@ -1070,6 +1587,22 @@ func callbackQColumnViewUpdateGeometries(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QColumnView) UpdateGeometries() {
+	defer qt.Recovering("QColumnView::updateGeometries")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_UpdateGeometries(ptr.Pointer())
+	}
+}
+
+func (ptr *QColumnView) UpdateGeometriesDefault() {
+	defer qt.Recovering("QColumnView::updateGeometries")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_UpdateGeometriesDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QColumnView) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -1091,15 +1624,30 @@ func (ptr *QColumnView) DisconnectPaintEvent() {
 }
 
 //export callbackQColumnViewPaintEvent
-func callbackQColumnViewPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QColumnView::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QColumnView) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QColumnView::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
@@ -1121,15 +1669,30 @@ func (ptr *QColumnView) DisconnectContextMenuEvent() {
 }
 
 //export callbackQColumnViewContextMenuEvent
-func callbackQColumnViewContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQColumnViewContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QColumnView) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QColumnView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QColumnView) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QColumnView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QColumnView) ConnectSetupViewport(f func(viewport *QWidget)) {
@@ -1151,15 +1714,30 @@ func (ptr *QColumnView) DisconnectSetupViewport() {
 }
 
 //export callbackQColumnViewSetupViewport
-func callbackQColumnViewSetupViewport(ptrName *C.char, viewport unsafe.Pointer) bool {
+func callbackQColumnViewSetupViewport(ptr unsafe.Pointer, ptrName *C.char, viewport unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::setupViewport")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setupViewport"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(viewport))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).SetupViewportDefault(NewQWidgetFromPointer(viewport))
 	}
-	return false
+}
 
+func (ptr *QColumnView) SetupViewport(viewport QWidget_ITF) {
+	defer qt.Recovering("QColumnView::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetupViewport(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
+}
+
+func (ptr *QColumnView) SetupViewportDefault(viewport QWidget_ITF) {
+	defer qt.Recovering("QColumnView::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetupViewportDefault(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
 }
 
 func (ptr *QColumnView) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
@@ -1181,15 +1759,30 @@ func (ptr *QColumnView) DisconnectWheelEvent() {
 }
 
 //export callbackQColumnViewWheelEvent
-func callbackQColumnViewWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQColumnViewWheelEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QColumnView) WheelEvent(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QColumnView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
+}
+
+func (ptr *QColumnView) WheelEventDefault(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QColumnView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
 }
 
 func (ptr *QColumnView) ConnectChangeEvent(f func(ev *core.QEvent)) {
@@ -1211,15 +1804,30 @@ func (ptr *QColumnView) DisconnectChangeEvent() {
 }
 
 //export callbackQColumnViewChangeEvent
-func callbackQColumnViewChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQColumnViewChangeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QColumnView) ChangeEvent(ev core.QEvent_ITF) {
+	defer qt.Recovering("QColumnView::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QColumnView) ChangeEventDefault(ev core.QEvent_ITF) {
+	defer qt.Recovering("QColumnView::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
 }
 
 func (ptr *QColumnView) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -1241,15 +1849,30 @@ func (ptr *QColumnView) DisconnectActionEvent() {
 }
 
 //export callbackQColumnViewActionEvent
-func callbackQColumnViewActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QColumnView::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QColumnView) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QColumnView::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -1271,15 +1894,30 @@ func (ptr *QColumnView) DisconnectEnterEvent() {
 }
 
 //export callbackQColumnViewEnterEvent
-func callbackQColumnViewEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QColumnView::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QColumnView) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QColumnView::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -1301,15 +1939,30 @@ func (ptr *QColumnView) DisconnectHideEvent() {
 }
 
 //export callbackQColumnViewHideEvent
-func callbackQColumnViewHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QColumnView::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QColumnView) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QColumnView::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -1331,15 +1984,30 @@ func (ptr *QColumnView) DisconnectLeaveEvent() {
 }
 
 //export callbackQColumnViewLeaveEvent
-func callbackQColumnViewLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QColumnView::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QColumnView) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QColumnView::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1361,15 +2029,30 @@ func (ptr *QColumnView) DisconnectMoveEvent() {
 }
 
 //export callbackQColumnViewMoveEvent
-func callbackQColumnViewMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QColumnView::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QColumnView) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QColumnView::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectSetVisible(f func(visible bool)) {
@@ -1391,7 +2074,7 @@ func (ptr *QColumnView) DisconnectSetVisible() {
 }
 
 //export callbackQColumnViewSetVisible
-func callbackQColumnViewSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQColumnViewSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QColumnView::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -1400,6 +2083,22 @@ func callbackQColumnViewSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QColumnView) SetVisible(visible bool) {
+	defer qt.Recovering("QColumnView::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QColumnView) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QColumnView::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QColumnView) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -1421,15 +2120,30 @@ func (ptr *QColumnView) DisconnectShowEvent() {
 }
 
 //export callbackQColumnViewShowEvent
-func callbackQColumnViewShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QColumnView::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QColumnView) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QColumnView::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -1451,15 +2165,30 @@ func (ptr *QColumnView) DisconnectCloseEvent() {
 }
 
 //export callbackQColumnViewCloseEvent
-func callbackQColumnViewCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QColumnView::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QColumnView) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QColumnView::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1481,15 +2210,30 @@ func (ptr *QColumnView) DisconnectInitPainter() {
 }
 
 //export callbackQColumnViewInitPainter
-func callbackQColumnViewInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQColumnViewInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QColumnView) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QColumnView::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QColumnView) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QColumnView::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QColumnView) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -1511,15 +2255,30 @@ func (ptr *QColumnView) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQColumnViewKeyReleaseEvent
-func callbackQColumnViewKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QColumnView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QColumnView) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QColumnView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1541,15 +2300,30 @@ func (ptr *QColumnView) DisconnectTabletEvent() {
 }
 
 //export callbackQColumnViewTabletEvent
-func callbackQColumnViewTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QColumnView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QColumnView) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QColumnView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1571,15 +2345,30 @@ func (ptr *QColumnView) DisconnectChildEvent() {
 }
 
 //export callbackQColumnViewChildEvent
-func callbackQColumnViewChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QColumnView::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QColumnView) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QColumnView::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QColumnView) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1601,13 +2390,28 @@ func (ptr *QColumnView) DisconnectCustomEvent() {
 }
 
 //export callbackQColumnViewCustomEvent
-func callbackQColumnViewCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColumnViewCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColumnView::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQColumnViewFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColumnView) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QColumnView::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QColumnView) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QColumnView::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColumnView_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

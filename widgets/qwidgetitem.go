@@ -134,15 +134,30 @@ func (ptr *QWidgetItem) DisconnectSetGeometry() {
 }
 
 //export callbackQWidgetItemSetGeometry
-func callbackQWidgetItemSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
+func callbackQWidgetItemSetGeometry(ptr unsafe.Pointer, ptrName *C.char, rect unsafe.Pointer) {
 	defer qt.Recovering("callback QWidgetItem::setGeometry")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
-		return true
+	} else {
+		NewQWidgetItemFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(rect))
 	}
-	return false
+}
 
+func (ptr *QWidgetItem) SetGeometry(rect core.QRect_ITF) {
+	defer qt.Recovering("QWidgetItem::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QWidgetItem_SetGeometry(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
+}
+
+func (ptr *QWidgetItem) SetGeometryDefault(rect core.QRect_ITF) {
+	defer qt.Recovering("QWidgetItem::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QWidgetItem_SetGeometryDefault(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
 }
 
 func (ptr *QWidgetItem) SizeHint() *core.QSize {
@@ -207,13 +222,28 @@ func (ptr *QWidgetItem) DisconnectInvalidate() {
 }
 
 //export callbackQWidgetItemInvalidate
-func callbackQWidgetItemInvalidate(ptrName *C.char) bool {
+func callbackQWidgetItemInvalidate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QWidgetItem::invalidate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQWidgetItemFromPointer(ptr).InvalidateDefault()
 	}
-	return false
+}
 
+func (ptr *QWidgetItem) Invalidate() {
+	defer qt.Recovering("QWidgetItem::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QWidgetItem_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QWidgetItem) InvalidateDefault() {
+	defer qt.Recovering("QWidgetItem::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QWidgetItem_InvalidateDefault(ptr.Pointer())
+	}
 }

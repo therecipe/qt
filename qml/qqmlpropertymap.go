@@ -97,6 +97,15 @@ func (ptr *QQmlPropertyMap) Size() int {
 	return 0
 }
 
+func (ptr *QQmlPropertyMap) UpdateValue(key string, input core.QVariant_ITF) *core.QVariant {
+	defer qt.Recovering("QQmlPropertyMap::updateValue")
+
+	if ptr.Pointer() != nil {
+		return core.NewQVariantFromPointer(C.QQmlPropertyMap_UpdateValue(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(input)))
+	}
+	return nil
+}
+
 func (ptr *QQmlPropertyMap) Value(key string) *core.QVariant {
 	defer qt.Recovering("QQmlPropertyMap::value")
 
@@ -125,13 +134,21 @@ func (ptr *QQmlPropertyMap) DisconnectValueChanged() {
 }
 
 //export callbackQQmlPropertyMapValueChanged
-func callbackQQmlPropertyMapValueChanged(ptrName *C.char, key *C.char, value unsafe.Pointer) {
+func callbackQQmlPropertyMapValueChanged(ptr unsafe.Pointer, ptrName *C.char, key *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlPropertyMap::valueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
 	}
 
+}
+
+func (ptr *QQmlPropertyMap) ValueChanged(key string, value core.QVariant_ITF) {
+	defer qt.Recovering("QQmlPropertyMap::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlPropertyMap_ValueChanged(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(value))
+	}
 }
 
 func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMap() {
@@ -162,15 +179,30 @@ func (ptr *QQmlPropertyMap) DisconnectTimerEvent() {
 }
 
 //export callbackQQmlPropertyMapTimerEvent
-func callbackQQmlPropertyMapTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlPropertyMapTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlPropertyMap::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlPropertyMapFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlPropertyMap) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlPropertyMap::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlPropertyMap_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQmlPropertyMap) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlPropertyMap::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlPropertyMap_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QQmlPropertyMap) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -192,15 +224,30 @@ func (ptr *QQmlPropertyMap) DisconnectChildEvent() {
 }
 
 //export callbackQQmlPropertyMapChildEvent
-func callbackQQmlPropertyMapChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlPropertyMapChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlPropertyMap::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlPropertyMapFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlPropertyMap) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlPropertyMap::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlPropertyMap_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQmlPropertyMap) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlPropertyMap::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlPropertyMap_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QQmlPropertyMap) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -222,13 +269,28 @@ func (ptr *QQmlPropertyMap) DisconnectCustomEvent() {
 }
 
 //export callbackQQmlPropertyMapCustomEvent
-func callbackQQmlPropertyMapCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlPropertyMapCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlPropertyMap::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlPropertyMapFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlPropertyMap) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlPropertyMap::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlPropertyMap_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQmlPropertyMap) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlPropertyMap::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlPropertyMap_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

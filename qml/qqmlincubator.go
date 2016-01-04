@@ -158,15 +158,30 @@ func (ptr *QQmlIncubator) DisconnectSetInitialState() {
 }
 
 //export callbackQQmlIncubatorSetInitialState
-func callbackQQmlIncubatorSetInitialState(ptrName *C.char, object unsafe.Pointer) bool {
+func callbackQQmlIncubatorSetInitialState(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlIncubator::setInitialState")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setInitialState"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
-		return true
+	} else {
+		NewQQmlIncubatorFromPointer(ptr).SetInitialStateDefault(core.NewQObjectFromPointer(object))
 	}
-	return false
+}
 
+func (ptr *QQmlIncubator) SetInitialState(object core.QObject_ITF) {
+	defer qt.Recovering("QQmlIncubator::setInitialState")
+
+	if ptr.Pointer() != nil {
+		C.QQmlIncubator_SetInitialState(ptr.Pointer(), core.PointerFromQObject(object))
+	}
+}
+
+func (ptr *QQmlIncubator) SetInitialStateDefault(object core.QObject_ITF) {
+	defer qt.Recovering("QQmlIncubator::setInitialState")
+
+	if ptr.Pointer() != nil {
+		C.QQmlIncubator_SetInitialStateDefault(ptr.Pointer(), core.PointerFromQObject(object))
+	}
 }
 
 func (ptr *QQmlIncubator) Status() QQmlIncubator__Status {
@@ -197,15 +212,30 @@ func (ptr *QQmlIncubator) DisconnectStatusChanged() {
 }
 
 //export callbackQQmlIncubatorStatusChanged
-func callbackQQmlIncubatorStatusChanged(ptrName *C.char, status C.int) bool {
+func callbackQQmlIncubatorStatusChanged(ptr unsafe.Pointer, ptrName *C.char, status C.int) {
 	defer qt.Recovering("callback QQmlIncubator::statusChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "statusChanged"); signal != nil {
 		signal.(func(QQmlIncubator__Status))(QQmlIncubator__Status(status))
-		return true
+	} else {
+		NewQQmlIncubatorFromPointer(ptr).StatusChangedDefault(QQmlIncubator__Status(status))
 	}
-	return false
+}
 
+func (ptr *QQmlIncubator) StatusChanged(status QQmlIncubator__Status) {
+	defer qt.Recovering("QQmlIncubator::statusChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlIncubator_StatusChanged(ptr.Pointer(), C.int(status))
+	}
+}
+
+func (ptr *QQmlIncubator) StatusChangedDefault(status QQmlIncubator__Status) {
+	defer qt.Recovering("QQmlIncubator::statusChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlIncubator_StatusChangedDefault(ptr.Pointer(), C.int(status))
+	}
 }
 
 func (ptr *QQmlIncubator) ObjectNameAbs() string {

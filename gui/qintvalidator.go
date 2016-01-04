@@ -93,15 +93,30 @@ func (ptr *QIntValidator) DisconnectSetRange() {
 }
 
 //export callbackQIntValidatorSetRange
-func callbackQIntValidatorSetRange(ptrName *C.char, bottom C.int, top C.int) bool {
+func callbackQIntValidatorSetRange(ptr unsafe.Pointer, ptrName *C.char, bottom C.int, top C.int) {
 	defer qt.Recovering("callback QIntValidator::setRange")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setRange"); signal != nil {
 		signal.(func(int, int))(int(bottom), int(top))
-		return true
+	} else {
+		NewQIntValidatorFromPointer(ptr).SetRangeDefault(int(bottom), int(top))
 	}
-	return false
+}
 
+func (ptr *QIntValidator) SetRange(bottom int, top int) {
+	defer qt.Recovering("QIntValidator::setRange")
+
+	if ptr.Pointer() != nil {
+		C.QIntValidator_SetRange(ptr.Pointer(), C.int(bottom), C.int(top))
+	}
+}
+
+func (ptr *QIntValidator) SetRangeDefault(bottom int, top int) {
+	defer qt.Recovering("QIntValidator::setRange")
+
+	if ptr.Pointer() != nil {
+		C.QIntValidator_SetRangeDefault(ptr.Pointer(), C.int(bottom), C.int(top))
+	}
 }
 
 func (ptr *QIntValidator) Top() int {
@@ -141,15 +156,30 @@ func (ptr *QIntValidator) DisconnectTimerEvent() {
 }
 
 //export callbackQIntValidatorTimerEvent
-func callbackQIntValidatorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIntValidatorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIntValidator::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQIntValidatorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIntValidator) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QIntValidator::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIntValidator_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QIntValidator) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QIntValidator::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIntValidator_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QIntValidator) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -171,15 +201,30 @@ func (ptr *QIntValidator) DisconnectChildEvent() {
 }
 
 //export callbackQIntValidatorChildEvent
-func callbackQIntValidatorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIntValidatorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIntValidator::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQIntValidatorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIntValidator) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QIntValidator::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIntValidator_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QIntValidator) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QIntValidator::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIntValidator_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QIntValidator) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -201,13 +246,28 @@ func (ptr *QIntValidator) DisconnectCustomEvent() {
 }
 
 //export callbackQIntValidatorCustomEvent
-func callbackQIntValidatorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIntValidatorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIntValidator::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQIntValidatorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIntValidator) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QIntValidator::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIntValidator_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QIntValidator) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QIntValidator::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIntValidator_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

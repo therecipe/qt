@@ -98,13 +98,21 @@ func (ptr *QQmlApplicationEngine) DisconnectObjectCreated() {
 }
 
 //export callbackQQmlApplicationEngineObjectCreated
-func callbackQQmlApplicationEngineObjectCreated(ptrName *C.char, object unsafe.Pointer, url unsafe.Pointer) {
+func callbackQQmlApplicationEngineObjectCreated(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer, url unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlApplicationEngine::objectCreated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "objectCreated"); signal != nil {
 		signal.(func(*core.QObject, *core.QUrl))(core.NewQObjectFromPointer(object), core.NewQUrlFromPointer(url))
 	}
 
+}
+
+func (ptr *QQmlApplicationEngine) ObjectCreated(object core.QObject_ITF, url core.QUrl_ITF) {
+	defer qt.Recovering("QQmlApplicationEngine::objectCreated")
+
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_ObjectCreated(ptr.Pointer(), core.PointerFromQObject(object), core.PointerFromQUrl(url))
+	}
 }
 
 func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
@@ -135,15 +143,30 @@ func (ptr *QQmlApplicationEngine) DisconnectTimerEvent() {
 }
 
 //export callbackQQmlApplicationEngineTimerEvent
-func callbackQQmlApplicationEngineTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlApplicationEngineTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlApplicationEngine::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlApplicationEngineFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlApplicationEngine) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlApplicationEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQmlApplicationEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlApplicationEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QQmlApplicationEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -165,15 +188,30 @@ func (ptr *QQmlApplicationEngine) DisconnectChildEvent() {
 }
 
 //export callbackQQmlApplicationEngineChildEvent
-func callbackQQmlApplicationEngineChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlApplicationEngineChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlApplicationEngine::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlApplicationEngineFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlApplicationEngine) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlApplicationEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQmlApplicationEngine) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlApplicationEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QQmlApplicationEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -195,13 +233,28 @@ func (ptr *QQmlApplicationEngine) DisconnectCustomEvent() {
 }
 
 //export callbackQQmlApplicationEngineCustomEvent
-func callbackQQmlApplicationEngineCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlApplicationEngineCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlApplicationEngine::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlApplicationEngineFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlApplicationEngine) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlApplicationEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQmlApplicationEngine) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlApplicationEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -115,15 +115,30 @@ func (ptr *QSpacerItem) DisconnectSetGeometry() {
 }
 
 //export callbackQSpacerItemSetGeometry
-func callbackQSpacerItemSetGeometry(ptrName *C.char, r unsafe.Pointer) bool {
+func callbackQSpacerItemSetGeometry(ptr unsafe.Pointer, ptrName *C.char, r unsafe.Pointer) {
 	defer qt.Recovering("callback QSpacerItem::setGeometry")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
-		return true
+	} else {
+		NewQSpacerItemFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(r))
 	}
-	return false
+}
 
+func (ptr *QSpacerItem) SetGeometry(r core.QRect_ITF) {
+	defer qt.Recovering("QSpacerItem::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QSpacerItem_SetGeometry(ptr.Pointer(), core.PointerFromQRect(r))
+	}
+}
+
+func (ptr *QSpacerItem) SetGeometryDefault(r core.QRect_ITF) {
+	defer qt.Recovering("QSpacerItem::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QSpacerItem_SetGeometryDefault(ptr.Pointer(), core.PointerFromQRect(r))
+	}
 }
 
 func (ptr *QSpacerItem) SizeHint() *core.QSize {
@@ -188,13 +203,28 @@ func (ptr *QSpacerItem) DisconnectInvalidate() {
 }
 
 //export callbackQSpacerItemInvalidate
-func callbackQSpacerItemInvalidate(ptrName *C.char) bool {
+func callbackQSpacerItemInvalidate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSpacerItem::invalidate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSpacerItemFromPointer(ptr).InvalidateDefault()
 	}
-	return false
+}
 
+func (ptr *QSpacerItem) Invalidate() {
+	defer qt.Recovering("QSpacerItem::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QSpacerItem_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QSpacerItem) InvalidateDefault() {
+	defer qt.Recovering("QSpacerItem::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QSpacerItem_InvalidateDefault(ptr.Pointer())
+	}
 }

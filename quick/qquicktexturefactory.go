@@ -92,15 +92,30 @@ func (ptr *QQuickTextureFactory) DisconnectTimerEvent() {
 }
 
 //export callbackQQuickTextureFactoryTimerEvent
-func callbackQQuickTextureFactoryTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickTextureFactoryTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickTextureFactory::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickTextureFactoryFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickTextureFactory) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQuickTextureFactory::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextureFactory_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQuickTextureFactory) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQuickTextureFactory::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextureFactory_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QQuickTextureFactory) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -122,15 +137,30 @@ func (ptr *QQuickTextureFactory) DisconnectChildEvent() {
 }
 
 //export callbackQQuickTextureFactoryChildEvent
-func callbackQQuickTextureFactoryChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickTextureFactoryChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickTextureFactory::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickTextureFactoryFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickTextureFactory) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQuickTextureFactory::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextureFactory_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQuickTextureFactory) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQuickTextureFactory::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextureFactory_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QQuickTextureFactory) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -152,13 +182,28 @@ func (ptr *QQuickTextureFactory) DisconnectCustomEvent() {
 }
 
 //export callbackQQuickTextureFactoryCustomEvent
-func callbackQQuickTextureFactoryCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickTextureFactoryCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickTextureFactory::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickTextureFactoryFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickTextureFactory) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQuickTextureFactory::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextureFactory_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQuickTextureFactory) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQuickTextureFactory::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextureFactory_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

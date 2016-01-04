@@ -1,3 +1,5 @@
+#define protected public
+
 #include "androidextras_android.h"
 #include "_cgo_export.h"
 

@@ -50,6 +50,24 @@ func NewQRadioButton2(text string, parent QWidget_ITF) *QRadioButton {
 	return NewQRadioButtonFromPointer(C.QRadioButton_NewQRadioButton2(C.CString(text), PointerFromQWidget(parent)))
 }
 
+func (ptr *QRadioButton) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QRadioButton::event")
+
+	if ptr.Pointer() != nil {
+		return C.QRadioButton_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QRadioButton) HitButton(pos core.QPoint_ITF) bool {
+	defer qt.Recovering("QRadioButton::hitButton")
+
+	if ptr.Pointer() != nil {
+		return C.QRadioButton_HitButton(ptr.Pointer(), core.PointerFromQPoint(pos)) != 0
+	}
+	return false
+}
+
 func (ptr *QRadioButton) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QRadioButton::minimumSizeHint")
 
@@ -78,15 +96,30 @@ func (ptr *QRadioButton) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQRadioButtonMouseMoveEvent
-func callbackQRadioButtonMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQRadioButtonMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) MouseMoveEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRadioButton::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QRadioButton) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRadioButton::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QRadioButton) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
@@ -108,15 +141,30 @@ func (ptr *QRadioButton) DisconnectPaintEvent() {
 }
 
 //export callbackQRadioButtonPaintEvent
-func callbackQRadioButtonPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQRadioButtonPaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) PaintEvent(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QRadioButton::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
+}
+
+func (ptr *QRadioButton) PaintEventDefault(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QRadioButton::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
 }
 
 func (ptr *QRadioButton) SizeHint() *core.QSize {
@@ -156,15 +204,30 @@ func (ptr *QRadioButton) DisconnectChangeEvent() {
 }
 
 //export callbackQRadioButtonChangeEvent
-func callbackQRadioButtonChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQRadioButtonChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QRadioButton::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QRadioButton) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QRadioButton::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
 }
 
 func (ptr *QRadioButton) ConnectCheckStateSet(f func()) {
@@ -186,15 +249,30 @@ func (ptr *QRadioButton) DisconnectCheckStateSet() {
 }
 
 //export callbackQRadioButtonCheckStateSet
-func callbackQRadioButtonCheckStateSet(ptrName *C.char) bool {
+func callbackQRadioButtonCheckStateSet(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QRadioButton::checkStateSet")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "checkStateSet"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).CheckStateSetDefault()
 	}
-	return false
+}
 
+func (ptr *QRadioButton) CheckStateSet() {
+	defer qt.Recovering("QRadioButton::checkStateSet")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_CheckStateSet(ptr.Pointer())
+	}
+}
+
+func (ptr *QRadioButton) CheckStateSetDefault() {
+	defer qt.Recovering("QRadioButton::checkStateSet")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_CheckStateSetDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QRadioButton) ConnectFocusInEvent(f func(e *gui.QFocusEvent)) {
@@ -216,15 +294,30 @@ func (ptr *QRadioButton) DisconnectFocusInEvent() {
 }
 
 //export callbackQRadioButtonFocusInEvent
-func callbackQRadioButtonFocusInEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQRadioButtonFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) FocusInEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QRadioButton::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QRadioButton) FocusInEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QRadioButton::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QRadioButton) ConnectFocusOutEvent(f func(e *gui.QFocusEvent)) {
@@ -246,15 +339,30 @@ func (ptr *QRadioButton) DisconnectFocusOutEvent() {
 }
 
 //export callbackQRadioButtonFocusOutEvent
-func callbackQRadioButtonFocusOutEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQRadioButtonFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) FocusOutEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QRadioButton::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QRadioButton) FocusOutEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QRadioButton::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QRadioButton) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
@@ -276,15 +384,30 @@ func (ptr *QRadioButton) DisconnectKeyPressEvent() {
 }
 
 //export callbackQRadioButtonKeyPressEvent
-func callbackQRadioButtonKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQRadioButtonKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QRadioButton::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QRadioButton) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QRadioButton::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QRadioButton) ConnectKeyReleaseEvent(f func(e *gui.QKeyEvent)) {
@@ -306,15 +429,30 @@ func (ptr *QRadioButton) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQRadioButtonKeyReleaseEvent
-func callbackQRadioButtonKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQRadioButtonKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) KeyReleaseEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QRadioButton::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QRadioButton) KeyReleaseEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QRadioButton::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QRadioButton) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
@@ -336,15 +474,30 @@ func (ptr *QRadioButton) DisconnectMousePressEvent() {
 }
 
 //export callbackQRadioButtonMousePressEvent
-func callbackQRadioButtonMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQRadioButtonMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) MousePressEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRadioButton::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QRadioButton) MousePressEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRadioButton::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QRadioButton) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -366,15 +519,30 @@ func (ptr *QRadioButton) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQRadioButtonMouseReleaseEvent
-func callbackQRadioButtonMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQRadioButtonMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRadioButton::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QRadioButton) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRadioButton::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QRadioButton) ConnectNextCheckState(f func()) {
@@ -396,15 +564,30 @@ func (ptr *QRadioButton) DisconnectNextCheckState() {
 }
 
 //export callbackQRadioButtonNextCheckState
-func callbackQRadioButtonNextCheckState(ptrName *C.char) bool {
+func callbackQRadioButtonNextCheckState(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QRadioButton::nextCheckState")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nextCheckState"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).NextCheckStateDefault()
 	}
-	return false
+}
 
+func (ptr *QRadioButton) NextCheckState() {
+	defer qt.Recovering("QRadioButton::nextCheckState")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_NextCheckState(ptr.Pointer())
+	}
+}
+
+func (ptr *QRadioButton) NextCheckStateDefault() {
+	defer qt.Recovering("QRadioButton::nextCheckState")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_NextCheckStateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QRadioButton) ConnectTimerEvent(f func(e *core.QTimerEvent)) {
@@ -426,15 +609,30 @@ func (ptr *QRadioButton) DisconnectTimerEvent() {
 }
 
 //export callbackQRadioButtonTimerEvent
-func callbackQRadioButtonTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQRadioButtonTimerEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) TimerEvent(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRadioButton::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
+}
+
+func (ptr *QRadioButton) TimerEventDefault(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRadioButton::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
 }
 
 func (ptr *QRadioButton) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -456,15 +654,30 @@ func (ptr *QRadioButton) DisconnectActionEvent() {
 }
 
 //export callbackQRadioButtonActionEvent
-func callbackQRadioButtonActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QRadioButton::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QRadioButton::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -486,15 +699,30 @@ func (ptr *QRadioButton) DisconnectDragEnterEvent() {
 }
 
 //export callbackQRadioButtonDragEnterEvent
-func callbackQRadioButtonDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QRadioButton::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QRadioButton::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -516,15 +744,30 @@ func (ptr *QRadioButton) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQRadioButtonDragLeaveEvent
-func callbackQRadioButtonDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QRadioButton::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QRadioButton::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -546,15 +789,30 @@ func (ptr *QRadioButton) DisconnectDragMoveEvent() {
 }
 
 //export callbackQRadioButtonDragMoveEvent
-func callbackQRadioButtonDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QRadioButton::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QRadioButton::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -576,15 +834,30 @@ func (ptr *QRadioButton) DisconnectDropEvent() {
 }
 
 //export callbackQRadioButtonDropEvent
-func callbackQRadioButtonDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QRadioButton::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QRadioButton::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -606,15 +879,30 @@ func (ptr *QRadioButton) DisconnectEnterEvent() {
 }
 
 //export callbackQRadioButtonEnterEvent
-func callbackQRadioButtonEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QRadioButton::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QRadioButton::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -636,15 +924,30 @@ func (ptr *QRadioButton) DisconnectHideEvent() {
 }
 
 //export callbackQRadioButtonHideEvent
-func callbackQRadioButtonHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QRadioButton::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QRadioButton::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -666,15 +969,30 @@ func (ptr *QRadioButton) DisconnectLeaveEvent() {
 }
 
 //export callbackQRadioButtonLeaveEvent
-func callbackQRadioButtonLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QRadioButton::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QRadioButton::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -696,15 +1014,30 @@ func (ptr *QRadioButton) DisconnectMoveEvent() {
 }
 
 //export callbackQRadioButtonMoveEvent
-func callbackQRadioButtonMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QRadioButton::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QRadioButton::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectSetVisible(f func(visible bool)) {
@@ -726,7 +1059,7 @@ func (ptr *QRadioButton) DisconnectSetVisible() {
 }
 
 //export callbackQRadioButtonSetVisible
-func callbackQRadioButtonSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQRadioButtonSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QRadioButton::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -735,6 +1068,22 @@ func callbackQRadioButtonSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QRadioButton) SetVisible(visible bool) {
+	defer qt.Recovering("QRadioButton::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QRadioButton) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QRadioButton::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QRadioButton) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -756,15 +1105,30 @@ func (ptr *QRadioButton) DisconnectShowEvent() {
 }
 
 //export callbackQRadioButtonShowEvent
-func callbackQRadioButtonShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QRadioButton::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QRadioButton::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -786,15 +1150,30 @@ func (ptr *QRadioButton) DisconnectCloseEvent() {
 }
 
 //export callbackQRadioButtonCloseEvent
-func callbackQRadioButtonCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QRadioButton::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QRadioButton::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -816,15 +1195,30 @@ func (ptr *QRadioButton) DisconnectContextMenuEvent() {
 }
 
 //export callbackQRadioButtonContextMenuEvent
-func callbackQRadioButtonContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QRadioButton::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QRadioButton::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -846,15 +1240,30 @@ func (ptr *QRadioButton) DisconnectInitPainter() {
 }
 
 //export callbackQRadioButtonInitPainter
-func callbackQRadioButtonInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQRadioButtonInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QRadioButton::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QRadioButton) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QRadioButton::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QRadioButton) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -876,15 +1285,30 @@ func (ptr *QRadioButton) DisconnectInputMethodEvent() {
 }
 
 //export callbackQRadioButtonInputMethodEvent
-func callbackQRadioButtonInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QRadioButton::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QRadioButton::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -906,15 +1330,30 @@ func (ptr *QRadioButton) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQRadioButtonMouseDoubleClickEvent
-func callbackQRadioButtonMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRadioButton::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QRadioButton::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -936,15 +1375,30 @@ func (ptr *QRadioButton) DisconnectResizeEvent() {
 }
 
 //export callbackQRadioButtonResizeEvent
-func callbackQRadioButtonResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QRadioButton::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QRadioButton::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -966,15 +1420,30 @@ func (ptr *QRadioButton) DisconnectTabletEvent() {
 }
 
 //export callbackQRadioButtonTabletEvent
-func callbackQRadioButtonTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QRadioButton::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QRadioButton::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -996,15 +1465,30 @@ func (ptr *QRadioButton) DisconnectWheelEvent() {
 }
 
 //export callbackQRadioButtonWheelEvent
-func callbackQRadioButtonWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QRadioButton::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QRadioButton::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1026,15 +1510,30 @@ func (ptr *QRadioButton) DisconnectChildEvent() {
 }
 
 //export callbackQRadioButtonChildEvent
-func callbackQRadioButtonChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRadioButton::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRadioButton::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QRadioButton) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1056,13 +1555,28 @@ func (ptr *QRadioButton) DisconnectCustomEvent() {
 }
 
 //export callbackQRadioButtonCustomEvent
-func callbackQRadioButtonCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRadioButtonCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRadioButton::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQRadioButtonFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRadioButton) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QRadioButton::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QRadioButton) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QRadioButton::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRadioButton_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

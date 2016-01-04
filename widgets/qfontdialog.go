@@ -98,15 +98,30 @@ func (ptr *QFontDialog) DisconnectChangeEvent() {
 }
 
 //export callbackQFontDialogChangeEvent
-func callbackQFontDialogChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontDialogChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QFontDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QFontDialog) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QFontDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
 }
 
 func (ptr *QFontDialog) ConnectDone(f func(result int)) {
@@ -128,15 +143,30 @@ func (ptr *QFontDialog) DisconnectDone() {
 }
 
 //export callbackQFontDialogDone
-func callbackQFontDialogDone(ptrName *C.char, result C.int) bool {
+func callbackQFontDialogDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) {
 	defer qt.Recovering("callback QFontDialog::done")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
 		signal.(func(int))(int(result))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).DoneDefault(int(result))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) Done(result int) {
+	defer qt.Recovering("QFontDialog::done")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_Done(ptr.Pointer(), C.int(result))
+	}
+}
+
+func (ptr *QFontDialog) DoneDefault(result int) {
+	defer qt.Recovering("QFontDialog::done")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_DoneDefault(ptr.Pointer(), C.int(result))
+	}
 }
 
 func (ptr *QFontDialog) Open(receiver core.QObject_ITF, member string) {
@@ -182,15 +212,30 @@ func (ptr *QFontDialog) DisconnectSetVisible() {
 }
 
 //export callbackQFontDialogSetVisible
-func callbackQFontDialogSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQFontDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
 	defer qt.Recovering("callback QFontDialog::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
 	}
-	return false
+}
 
+func (ptr *QFontDialog) SetVisible(visible bool) {
+	defer qt.Recovering("QFontDialog::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QFontDialog) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QFontDialog::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QFontDialog) TestOption(option QFontDialog__FontDialogOption) bool {
@@ -221,7 +266,7 @@ func (ptr *QFontDialog) DisconnectAccept() {
 }
 
 //export callbackQFontDialogAccept
-func callbackQFontDialogAccept(ptrName *C.char) bool {
+func callbackQFontDialogAccept(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QFontDialog::accept")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "accept"); signal != nil {
@@ -230,6 +275,22 @@ func callbackQFontDialogAccept(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QFontDialog) Accept() {
+	defer qt.Recovering("QFontDialog::accept")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_Accept(ptr.Pointer())
+	}
+}
+
+func (ptr *QFontDialog) AcceptDefault() {
+	defer qt.Recovering("QFontDialog::accept")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_AcceptDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QFontDialog) ConnectCloseEvent(f func(e *gui.QCloseEvent)) {
@@ -251,15 +312,30 @@ func (ptr *QFontDialog) DisconnectCloseEvent() {
 }
 
 //export callbackQFontDialogCloseEvent
-func callbackQFontDialogCloseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontDialogCloseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) CloseEvent(e gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QFontDialog::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(e))
+	}
+}
+
+func (ptr *QFontDialog) CloseEventDefault(e gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QFontDialog::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(e))
+	}
 }
 
 func (ptr *QFontDialog) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
@@ -281,15 +357,30 @@ func (ptr *QFontDialog) DisconnectContextMenuEvent() {
 }
 
 //export callbackQFontDialogContextMenuEvent
-func callbackQFontDialogContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontDialogContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QFontDialog::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QFontDialog) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QFontDialog::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QFontDialog) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
@@ -311,45 +402,30 @@ func (ptr *QFontDialog) DisconnectKeyPressEvent() {
 }
 
 //export callbackQFontDialogKeyPressEvent
-func callbackQFontDialogKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontDialogKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
-
 }
 
-func (ptr *QFontDialog) ConnectOpen(f func()) {
-	defer qt.Recovering("connect QFontDialog::open")
+func (ptr *QFontDialog) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFontDialog::keyPressEvent")
 
 	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "open", f)
+		C.QFontDialog_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
 	}
 }
 
-func (ptr *QFontDialog) DisconnectOpen() {
-	defer qt.Recovering("disconnect QFontDialog::open")
+func (ptr *QFontDialog) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFontDialog::keyPressEvent")
 
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "open")
+		C.QFontDialog_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
 	}
-}
-
-//export callbackQFontDialogOpen
-func callbackQFontDialogOpen(ptrName *C.char) bool {
-	defer qt.Recovering("callback QFontDialog::open")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "open"); signal != nil {
-		signal.(func())()
-		return true
-	}
-	return false
-
 }
 
 func (ptr *QFontDialog) ConnectReject(f func()) {
@@ -371,7 +447,7 @@ func (ptr *QFontDialog) DisconnectReject() {
 }
 
 //export callbackQFontDialogReject
-func callbackQFontDialogReject(ptrName *C.char) bool {
+func callbackQFontDialogReject(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QFontDialog::reject")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reject"); signal != nil {
@@ -380,6 +456,22 @@ func callbackQFontDialogReject(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QFontDialog) Reject() {
+	defer qt.Recovering("QFontDialog::reject")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_Reject(ptr.Pointer())
+	}
+}
+
+func (ptr *QFontDialog) RejectDefault() {
+	defer qt.Recovering("QFontDialog::reject")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_RejectDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QFontDialog) ConnectResizeEvent(f func(v *gui.QResizeEvent)) {
@@ -401,15 +493,30 @@ func (ptr *QFontDialog) DisconnectResizeEvent() {
 }
 
 //export callbackQFontDialogResizeEvent
-func callbackQFontDialogResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQFontDialogResizeEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) ResizeEvent(v gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QFontDialog::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(v))
+	}
+}
+
+func (ptr *QFontDialog) ResizeEventDefault(v gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QFontDialog::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(v))
+	}
 }
 
 func (ptr *QFontDialog) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -431,15 +538,30 @@ func (ptr *QFontDialog) DisconnectShowEvent() {
 }
 
 //export callbackQFontDialogShowEvent
-func callbackQFontDialogShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QFontDialog::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QFontDialog::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -461,15 +583,30 @@ func (ptr *QFontDialog) DisconnectActionEvent() {
 }
 
 //export callbackQFontDialogActionEvent
-func callbackQFontDialogActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QFontDialog::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QFontDialog::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -491,15 +628,30 @@ func (ptr *QFontDialog) DisconnectDragEnterEvent() {
 }
 
 //export callbackQFontDialogDragEnterEvent
-func callbackQFontDialogDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QFontDialog::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QFontDialog::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -521,15 +673,30 @@ func (ptr *QFontDialog) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQFontDialogDragLeaveEvent
-func callbackQFontDialogDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QFontDialog::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QFontDialog::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -551,15 +718,30 @@ func (ptr *QFontDialog) DisconnectDragMoveEvent() {
 }
 
 //export callbackQFontDialogDragMoveEvent
-func callbackQFontDialogDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QFontDialog::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QFontDialog::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -581,15 +763,30 @@ func (ptr *QFontDialog) DisconnectDropEvent() {
 }
 
 //export callbackQFontDialogDropEvent
-func callbackQFontDialogDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QFontDialog::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QFontDialog::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -611,15 +808,30 @@ func (ptr *QFontDialog) DisconnectEnterEvent() {
 }
 
 //export callbackQFontDialogEnterEvent
-func callbackQFontDialogEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontDialog::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontDialog::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -641,15 +853,30 @@ func (ptr *QFontDialog) DisconnectFocusInEvent() {
 }
 
 //export callbackQFontDialogFocusInEvent
-func callbackQFontDialogFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFontDialog::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFontDialog::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -671,15 +898,30 @@ func (ptr *QFontDialog) DisconnectFocusOutEvent() {
 }
 
 //export callbackQFontDialogFocusOutEvent
-func callbackQFontDialogFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFontDialog::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFontDialog::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -701,15 +943,30 @@ func (ptr *QFontDialog) DisconnectHideEvent() {
 }
 
 //export callbackQFontDialogHideEvent
-func callbackQFontDialogHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QFontDialog::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QFontDialog::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -731,15 +988,30 @@ func (ptr *QFontDialog) DisconnectLeaveEvent() {
 }
 
 //export callbackQFontDialogLeaveEvent
-func callbackQFontDialogLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontDialog::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontDialog::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -761,15 +1033,30 @@ func (ptr *QFontDialog) DisconnectMoveEvent() {
 }
 
 //export callbackQFontDialogMoveEvent
-func callbackQFontDialogMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QFontDialog::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QFontDialog::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -791,15 +1078,30 @@ func (ptr *QFontDialog) DisconnectPaintEvent() {
 }
 
 //export callbackQFontDialogPaintEvent
-func callbackQFontDialogPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QFontDialog::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QFontDialog::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -821,15 +1123,30 @@ func (ptr *QFontDialog) DisconnectInitPainter() {
 }
 
 //export callbackQFontDialogInitPainter
-func callbackQFontDialogInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQFontDialogInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QFontDialog::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QFontDialog) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QFontDialog::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QFontDialog) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -851,15 +1168,30 @@ func (ptr *QFontDialog) DisconnectInputMethodEvent() {
 }
 
 //export callbackQFontDialogInputMethodEvent
-func callbackQFontDialogInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QFontDialog::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QFontDialog::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -881,15 +1213,30 @@ func (ptr *QFontDialog) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQFontDialogKeyReleaseEvent
-func callbackQFontDialogKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFontDialog::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFontDialog::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -911,15 +1258,30 @@ func (ptr *QFontDialog) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQFontDialogMouseDoubleClickEvent
-func callbackQFontDialogMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontDialog::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontDialog::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -941,15 +1303,30 @@ func (ptr *QFontDialog) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQFontDialogMouseMoveEvent
-func callbackQFontDialogMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontDialog::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontDialog::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -971,15 +1348,30 @@ func (ptr *QFontDialog) DisconnectMousePressEvent() {
 }
 
 //export callbackQFontDialogMousePressEvent
-func callbackQFontDialogMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontDialog::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontDialog::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1001,15 +1393,30 @@ func (ptr *QFontDialog) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQFontDialogMouseReleaseEvent
-func callbackQFontDialogMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontDialog::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontDialog::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1031,15 +1438,30 @@ func (ptr *QFontDialog) DisconnectTabletEvent() {
 }
 
 //export callbackQFontDialogTabletEvent
-func callbackQFontDialogTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QFontDialog::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QFontDialog::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1061,15 +1483,30 @@ func (ptr *QFontDialog) DisconnectWheelEvent() {
 }
 
 //export callbackQFontDialogWheelEvent
-func callbackQFontDialogWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QFontDialog::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QFontDialog::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1091,15 +1528,30 @@ func (ptr *QFontDialog) DisconnectTimerEvent() {
 }
 
 //export callbackQFontDialogTimerEvent
-func callbackQFontDialogTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFontDialog::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFontDialog::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1121,15 +1573,30 @@ func (ptr *QFontDialog) DisconnectChildEvent() {
 }
 
 //export callbackQFontDialogChildEvent
-func callbackQFontDialogChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QFontDialog::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QFontDialog::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QFontDialog) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1151,13 +1618,28 @@ func (ptr *QFontDialog) DisconnectCustomEvent() {
 }
 
 //export callbackQFontDialogCustomEvent
-func callbackQFontDialogCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontDialogCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontDialog::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFontDialogFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontDialog) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontDialog::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFontDialog) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontDialog::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontDialog_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

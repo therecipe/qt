@@ -77,15 +77,30 @@ func (ptr *QVBoxLayout) DisconnectAddItem() {
 }
 
 //export callbackQVBoxLayoutAddItem
-func callbackQVBoxLayoutAddItem(ptrName *C.char, item unsafe.Pointer) bool {
+func callbackQVBoxLayoutAddItem(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QVBoxLayout::addItem")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "addItem"); signal != nil {
 		signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
-		return true
+	} else {
+		NewQVBoxLayoutFromPointer(ptr).AddItemDefault(NewQLayoutItemFromPointer(item))
 	}
-	return false
+}
 
+func (ptr *QVBoxLayout) AddItem(item QLayoutItem_ITF) {
+	defer qt.Recovering("QVBoxLayout::addItem")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_AddItem(ptr.Pointer(), PointerFromQLayoutItem(item))
+	}
+}
+
+func (ptr *QVBoxLayout) AddItemDefault(item QLayoutItem_ITF) {
+	defer qt.Recovering("QVBoxLayout::addItem")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_AddItemDefault(ptr.Pointer(), PointerFromQLayoutItem(item))
+	}
 }
 
 func (ptr *QVBoxLayout) ConnectInvalidate(f func()) {
@@ -107,15 +122,30 @@ func (ptr *QVBoxLayout) DisconnectInvalidate() {
 }
 
 //export callbackQVBoxLayoutInvalidate
-func callbackQVBoxLayoutInvalidate(ptrName *C.char) bool {
+func callbackQVBoxLayoutInvalidate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QVBoxLayout::invalidate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQVBoxLayoutFromPointer(ptr).InvalidateDefault()
 	}
-	return false
+}
 
+func (ptr *QVBoxLayout) Invalidate() {
+	defer qt.Recovering("QVBoxLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QVBoxLayout) InvalidateDefault() {
+	defer qt.Recovering("QVBoxLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_InvalidateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QVBoxLayout) ConnectSetGeometry(f func(r *core.QRect)) {
@@ -137,15 +167,30 @@ func (ptr *QVBoxLayout) DisconnectSetGeometry() {
 }
 
 //export callbackQVBoxLayoutSetGeometry
-func callbackQVBoxLayoutSetGeometry(ptrName *C.char, r unsafe.Pointer) bool {
+func callbackQVBoxLayoutSetGeometry(ptr unsafe.Pointer, ptrName *C.char, r unsafe.Pointer) {
 	defer qt.Recovering("callback QVBoxLayout::setGeometry")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
-		return true
+	} else {
+		NewQVBoxLayoutFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(r))
 	}
-	return false
+}
 
+func (ptr *QVBoxLayout) SetGeometry(r core.QRect_ITF) {
+	defer qt.Recovering("QVBoxLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRect(r))
+	}
+}
+
+func (ptr *QVBoxLayout) SetGeometryDefault(r core.QRect_ITF) {
+	defer qt.Recovering("QVBoxLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_SetGeometryDefault(ptr.Pointer(), core.PointerFromQRect(r))
+	}
 }
 
 func (ptr *QVBoxLayout) ConnectChildEvent(f func(e *core.QChildEvent)) {
@@ -167,15 +212,30 @@ func (ptr *QVBoxLayout) DisconnectChildEvent() {
 }
 
 //export callbackQVBoxLayoutChildEvent
-func callbackQVBoxLayoutChildEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQVBoxLayoutChildEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QVBoxLayout::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(e))
-		return true
+	} else {
+		NewQVBoxLayoutFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QVBoxLayout) ChildEvent(e core.QChildEvent_ITF) {
+	defer qt.Recovering("QVBoxLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(e))
+	}
+}
+
+func (ptr *QVBoxLayout) ChildEventDefault(e core.QChildEvent_ITF) {
+	defer qt.Recovering("QVBoxLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(e))
+	}
 }
 
 func (ptr *QVBoxLayout) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -197,15 +257,30 @@ func (ptr *QVBoxLayout) DisconnectTimerEvent() {
 }
 
 //export callbackQVBoxLayoutTimerEvent
-func callbackQVBoxLayoutTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVBoxLayoutTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVBoxLayout::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQVBoxLayoutFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVBoxLayout) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVBoxLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QVBoxLayout) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVBoxLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QVBoxLayout) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -227,13 +302,28 @@ func (ptr *QVBoxLayout) DisconnectCustomEvent() {
 }
 
 //export callbackQVBoxLayoutCustomEvent
-func callbackQVBoxLayoutCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVBoxLayoutCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVBoxLayout::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQVBoxLayoutFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVBoxLayout) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QVBoxLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QVBoxLayout) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QVBoxLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVBoxLayout_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

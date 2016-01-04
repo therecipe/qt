@@ -87,13 +87,21 @@ func (ptr *QIODevice) DisconnectAboutToClose() {
 }
 
 //export callbackQIODeviceAboutToClose
-func callbackQIODeviceAboutToClose(ptrName *C.char) {
+func callbackQIODeviceAboutToClose(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QIODevice::aboutToClose")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "aboutToClose"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QIODevice) AboutToClose() {
+	defer qt.Recovering("QIODevice::aboutToClose")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_AboutToClose(ptr.Pointer())
+	}
 }
 
 func (ptr *QIODevice) AtEnd() bool {
@@ -142,13 +150,21 @@ func (ptr *QIODevice) DisconnectBytesWritten() {
 }
 
 //export callbackQIODeviceBytesWritten
-func callbackQIODeviceBytesWritten(ptrName *C.char, bytes C.longlong) {
+func callbackQIODeviceBytesWritten(ptr unsafe.Pointer, ptrName *C.char, bytes C.longlong) {
 	defer qt.Recovering("callback QIODevice::bytesWritten")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "bytesWritten"); signal != nil {
 		signal.(func(int64))(int64(bytes))
 	}
 
+}
+
+func (ptr *QIODevice) BytesWritten(bytes int64) {
+	defer qt.Recovering("QIODevice::bytesWritten")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_BytesWritten(ptr.Pointer(), C.longlong(bytes))
+	}
 }
 
 func (ptr *QIODevice) CanReadLine() bool {
@@ -179,15 +195,30 @@ func (ptr *QIODevice) DisconnectClose() {
 }
 
 //export callbackQIODeviceClose
-func callbackQIODeviceClose(ptrName *C.char) bool {
+func callbackQIODeviceClose(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QIODevice::close")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQIODeviceFromPointer(ptr).CloseDefault()
 	}
-	return false
+}
 
+func (ptr *QIODevice) Close() {
+	defer qt.Recovering("QIODevice::close")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QIODevice) CloseDefault() {
+	defer qt.Recovering("QIODevice::close")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_CloseDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QIODevice) ErrorString() string {
@@ -335,13 +366,21 @@ func (ptr *QIODevice) DisconnectReadChannelFinished() {
 }
 
 //export callbackQIODeviceReadChannelFinished
-func callbackQIODeviceReadChannelFinished(ptrName *C.char) {
+func callbackQIODeviceReadChannelFinished(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QIODevice::readChannelFinished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "readChannelFinished"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QIODevice) ReadChannelFinished() {
+	defer qt.Recovering("QIODevice::readChannelFinished")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_ReadChannelFinished(ptr.Pointer())
+	}
 }
 
 func (ptr *QIODevice) ReadLine2(maxSize int64) *QByteArray {
@@ -358,6 +397,15 @@ func (ptr *QIODevice) ReadLine(data string, maxSize int64) int64 {
 
 	if ptr.Pointer() != nil {
 		return int64(C.QIODevice_ReadLine(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+	}
+	return 0
+}
+
+func (ptr *QIODevice) ReadLineData(data string, maxSize int64) int64 {
+	defer qt.Recovering("QIODevice::readLineData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QIODevice_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -381,13 +429,21 @@ func (ptr *QIODevice) DisconnectReadyRead() {
 }
 
 //export callbackQIODeviceReadyRead
-func callbackQIODeviceReadyRead(ptrName *C.char) {
+func callbackQIODeviceReadyRead(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QIODevice::readyRead")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "readyRead"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QIODevice) ReadyRead() {
+	defer qt.Recovering("QIODevice::readyRead")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_ReadyRead(ptr.Pointer())
+	}
 }
 
 func (ptr *QIODevice) Reset() bool {
@@ -506,15 +562,30 @@ func (ptr *QIODevice) DisconnectTimerEvent() {
 }
 
 //export callbackQIODeviceTimerEvent
-func callbackQIODeviceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIODeviceTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIODevice::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQIODeviceFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIODevice) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QIODevice::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QIODevice) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QIODevice::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QIODevice) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -536,15 +607,30 @@ func (ptr *QIODevice) DisconnectChildEvent() {
 }
 
 //export callbackQIODeviceChildEvent
-func callbackQIODeviceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIODeviceChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIODevice::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQIODeviceFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIODevice) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QIODevice::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QIODevice) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QIODevice::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QIODevice) ConnectCustomEvent(f func(event *QEvent)) {
@@ -566,13 +652,28 @@ func (ptr *QIODevice) DisconnectCustomEvent() {
 }
 
 //export callbackQIODeviceCustomEvent
-func callbackQIODeviceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIODeviceCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIODevice::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQIODeviceFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIODevice) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QIODevice::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QIODevice) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QIODevice::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

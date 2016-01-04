@@ -62,15 +62,30 @@ func (ptr *QXmlFormatter) DisconnectCharacters() {
 }
 
 //export callbackQXmlFormatterCharacters
-func callbackQXmlFormatterCharacters(ptrName *C.char, value unsafe.Pointer) bool {
+func callbackQXmlFormatterCharacters(ptr unsafe.Pointer, ptrName *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QXmlFormatter::characters")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "characters"); signal != nil {
 		signal.(func(*core.QStringRef))(core.NewQStringRefFromPointer(value))
-		return true
+	} else {
+		NewQXmlFormatterFromPointer(ptr).CharactersDefault(core.NewQStringRefFromPointer(value))
 	}
-	return false
+}
 
+func (ptr *QXmlFormatter) Characters(value core.QStringRef_ITF) {
+	defer qt.Recovering("QXmlFormatter::characters")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_Characters(ptr.Pointer(), core.PointerFromQStringRef(value))
+	}
+}
+
+func (ptr *QXmlFormatter) CharactersDefault(value core.QStringRef_ITF) {
+	defer qt.Recovering("QXmlFormatter::characters")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_CharactersDefault(ptr.Pointer(), core.PointerFromQStringRef(value))
+	}
 }
 
 func (ptr *QXmlFormatter) ConnectComment(f func(value string)) {
@@ -92,15 +107,30 @@ func (ptr *QXmlFormatter) DisconnectComment() {
 }
 
 //export callbackQXmlFormatterComment
-func callbackQXmlFormatterComment(ptrName *C.char, value *C.char) bool {
+func callbackQXmlFormatterComment(ptr unsafe.Pointer, ptrName *C.char, value *C.char) {
 	defer qt.Recovering("callback QXmlFormatter::comment")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "comment"); signal != nil {
 		signal.(func(string))(C.GoString(value))
-		return true
+	} else {
+		NewQXmlFormatterFromPointer(ptr).CommentDefault(C.GoString(value))
 	}
-	return false
+}
 
+func (ptr *QXmlFormatter) Comment(value string) {
+	defer qt.Recovering("QXmlFormatter::comment")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_Comment(ptr.Pointer(), C.CString(value))
+	}
+}
+
+func (ptr *QXmlFormatter) CommentDefault(value string) {
+	defer qt.Recovering("QXmlFormatter::comment")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_CommentDefault(ptr.Pointer(), C.CString(value))
+	}
 }
 
 func (ptr *QXmlFormatter) ConnectEndDocument(f func()) {
@@ -122,15 +152,30 @@ func (ptr *QXmlFormatter) DisconnectEndDocument() {
 }
 
 //export callbackQXmlFormatterEndDocument
-func callbackQXmlFormatterEndDocument(ptrName *C.char) bool {
+func callbackQXmlFormatterEndDocument(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QXmlFormatter::endDocument")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "endDocument"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQXmlFormatterFromPointer(ptr).EndDocumentDefault()
 	}
-	return false
+}
 
+func (ptr *QXmlFormatter) EndDocument() {
+	defer qt.Recovering("QXmlFormatter::endDocument")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_EndDocument(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlFormatter) EndDocumentDefault() {
+	defer qt.Recovering("QXmlFormatter::endDocument")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_EndDocumentDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QXmlFormatter) ConnectEndElement(f func()) {
@@ -152,15 +197,30 @@ func (ptr *QXmlFormatter) DisconnectEndElement() {
 }
 
 //export callbackQXmlFormatterEndElement
-func callbackQXmlFormatterEndElement(ptrName *C.char) bool {
+func callbackQXmlFormatterEndElement(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QXmlFormatter::endElement")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "endElement"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQXmlFormatterFromPointer(ptr).EndElementDefault()
 	}
-	return false
+}
 
+func (ptr *QXmlFormatter) EndElement() {
+	defer qt.Recovering("QXmlFormatter::endElement")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_EndElement(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlFormatter) EndElementDefault() {
+	defer qt.Recovering("QXmlFormatter::endElement")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_EndElementDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QXmlFormatter) ConnectEndOfSequence(f func()) {
@@ -182,15 +242,30 @@ func (ptr *QXmlFormatter) DisconnectEndOfSequence() {
 }
 
 //export callbackQXmlFormatterEndOfSequence
-func callbackQXmlFormatterEndOfSequence(ptrName *C.char) bool {
+func callbackQXmlFormatterEndOfSequence(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QXmlFormatter::endOfSequence")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "endOfSequence"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQXmlFormatterFromPointer(ptr).EndOfSequenceDefault()
 	}
-	return false
+}
 
+func (ptr *QXmlFormatter) EndOfSequence() {
+	defer qt.Recovering("QXmlFormatter::endOfSequence")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_EndOfSequence(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlFormatter) EndOfSequenceDefault() {
+	defer qt.Recovering("QXmlFormatter::endOfSequence")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_EndOfSequenceDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QXmlFormatter) IndentationDepth() int {
@@ -229,15 +304,30 @@ func (ptr *QXmlFormatter) DisconnectStartDocument() {
 }
 
 //export callbackQXmlFormatterStartDocument
-func callbackQXmlFormatterStartDocument(ptrName *C.char) bool {
+func callbackQXmlFormatterStartDocument(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QXmlFormatter::startDocument")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startDocument"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQXmlFormatterFromPointer(ptr).StartDocumentDefault()
 	}
-	return false
+}
 
+func (ptr *QXmlFormatter) StartDocument() {
+	defer qt.Recovering("QXmlFormatter::startDocument")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_StartDocument(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlFormatter) StartDocumentDefault() {
+	defer qt.Recovering("QXmlFormatter::startDocument")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_StartDocumentDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QXmlFormatter) ConnectStartOfSequence(f func()) {
@@ -259,15 +349,30 @@ func (ptr *QXmlFormatter) DisconnectStartOfSequence() {
 }
 
 //export callbackQXmlFormatterStartOfSequence
-func callbackQXmlFormatterStartOfSequence(ptrName *C.char) bool {
+func callbackQXmlFormatterStartOfSequence(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QXmlFormatter::startOfSequence")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startOfSequence"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQXmlFormatterFromPointer(ptr).StartOfSequenceDefault()
 	}
-	return false
+}
 
+func (ptr *QXmlFormatter) StartOfSequence() {
+	defer qt.Recovering("QXmlFormatter::startOfSequence")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_StartOfSequence(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlFormatter) StartOfSequenceDefault() {
+	defer qt.Recovering("QXmlFormatter::startOfSequence")
+
+	if ptr.Pointer() != nil {
+		C.QXmlFormatter_StartOfSequenceDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QXmlFormatter) ObjectNameAbs() string {

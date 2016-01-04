@@ -109,15 +109,30 @@ func (ptr *QTapReading) DisconnectTimerEvent() {
 }
 
 //export callbackQTapReadingTimerEvent
-func callbackQTapReadingTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTapReadingTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTapReading::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTapReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTapReading) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTapReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTapReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTapReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTapReading) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -139,15 +154,30 @@ func (ptr *QTapReading) DisconnectChildEvent() {
 }
 
 //export callbackQTapReadingChildEvent
-func callbackQTapReadingChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTapReadingChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTapReading::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTapReadingFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTapReading) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTapReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapReading_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTapReading) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTapReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapReading_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTapReading) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -169,13 +199,28 @@ func (ptr *QTapReading) DisconnectCustomEvent() {
 }
 
 //export callbackQTapReadingCustomEvent
-func callbackQTapReadingCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTapReadingCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTapReading::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTapReadingFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTapReading) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTapReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapReading_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTapReading) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTapReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapReading_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

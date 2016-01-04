@@ -243,15 +243,48 @@ func (ptr *QSortFilterProxyModel) DisconnectFetchMore() {
 }
 
 //export callbackQSortFilterProxyModelFetchMore
-func callbackQSortFilterProxyModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+func callbackQSortFilterProxyModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
 	defer qt.Recovering("callback QSortFilterProxyModel::fetchMore")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
-		return true
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).FetchMoreDefault(NewQModelIndexFromPointer(parent))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) FetchMore(parent QModelIndex_ITF) {
+	defer qt.Recovering("QSortFilterProxyModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_FetchMore(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) FetchMoreDefault(parent QModelIndex_ITF) {
+	defer qt.Recovering("QSortFilterProxyModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_FetchMoreDefault(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) FilterAcceptsColumn(source_column int, source_parent QModelIndex_ITF) bool {
+	defer qt.Recovering("QSortFilterProxyModel::filterAcceptsColumn")
+
+	if ptr.Pointer() != nil {
+		return C.QSortFilterProxyModel_FilterAcceptsColumn(ptr.Pointer(), C.int(source_column), PointerFromQModelIndex(source_parent)) != 0
 	}
 	return false
+}
 
+func (ptr *QSortFilterProxyModel) FilterAcceptsRow(source_row int, source_parent QModelIndex_ITF) bool {
+	defer qt.Recovering("QSortFilterProxyModel::filterAcceptsRow")
+
+	if ptr.Pointer() != nil {
+		return C.QSortFilterProxyModel_FilterAcceptsRow(ptr.Pointer(), C.int(source_row), PointerFromQModelIndex(source_parent)) != 0
+	}
+	return false
 }
 
 func (ptr *QSortFilterProxyModel) Flags(index QModelIndex_ITF) Qt__ItemFlag {
@@ -314,6 +347,15 @@ func (ptr *QSortFilterProxyModel) Invalidate() {
 	if ptr.Pointer() != nil {
 		C.QSortFilterProxyModel_Invalidate(ptr.Pointer())
 	}
+}
+
+func (ptr *QSortFilterProxyModel) LessThan(source_left QModelIndex_ITF, source_right QModelIndex_ITF) bool {
+	defer qt.Recovering("QSortFilterProxyModel::lessThan")
+
+	if ptr.Pointer() != nil {
+		return C.QSortFilterProxyModel_LessThan(ptr.Pointer(), PointerFromQModelIndex(source_left), PointerFromQModelIndex(source_right)) != 0
+	}
+	return false
 }
 
 func (ptr *QSortFilterProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QModelIndex {
@@ -440,15 +482,30 @@ func (ptr *QSortFilterProxyModel) DisconnectSetSourceModel() {
 }
 
 //export callbackQSortFilterProxyModelSetSourceModel
-func callbackQSortFilterProxyModelSetSourceModel(ptrName *C.char, sourceModel unsafe.Pointer) bool {
+func callbackQSortFilterProxyModelSetSourceModel(ptr unsafe.Pointer, ptrName *C.char, sourceModel unsafe.Pointer) {
 	defer qt.Recovering("callback QSortFilterProxyModel::setSourceModel")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSourceModel"); signal != nil {
 		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(sourceModel))
-		return true
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).SetSourceModelDefault(NewQAbstractItemModelFromPointer(sourceModel))
 	}
-	return false
+}
 
+func (ptr *QSortFilterProxyModel) SetSourceModel(sourceModel QAbstractItemModel_ITF) {
+	defer qt.Recovering("QSortFilterProxyModel::setSourceModel")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_SetSourceModel(ptr.Pointer(), PointerFromQAbstractItemModel(sourceModel))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) SetSourceModelDefault(sourceModel QAbstractItemModel_ITF) {
+	defer qt.Recovering("QSortFilterProxyModel::setSourceModel")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_SetSourceModelDefault(ptr.Pointer(), PointerFromQAbstractItemModel(sourceModel))
+	}
 }
 
 func (ptr *QSortFilterProxyModel) Sibling(row int, column int, idx QModelIndex_ITF) *QModelIndex {
@@ -479,15 +536,30 @@ func (ptr *QSortFilterProxyModel) DisconnectSort() {
 }
 
 //export callbackQSortFilterProxyModelSort
-func callbackQSortFilterProxyModelSort(ptrName *C.char, column C.int, order C.int) bool {
+func callbackQSortFilterProxyModelSort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
 	defer qt.Recovering("callback QSortFilterProxyModel::sort")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
-		return true
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).SortDefault(int(column), Qt__SortOrder(order))
 	}
-	return false
+}
 
+func (ptr *QSortFilterProxyModel) Sort(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QSortFilterProxyModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) SortDefault(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QSortFilterProxyModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
+	}
 }
 
 func (ptr *QSortFilterProxyModel) SortColumn() int {
@@ -554,15 +626,30 @@ func (ptr *QSortFilterProxyModel) DisconnectRevert() {
 }
 
 //export callbackQSortFilterProxyModelRevert
-func callbackQSortFilterProxyModelRevert(ptrName *C.char) bool {
+func callbackQSortFilterProxyModelRevert(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSortFilterProxyModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).RevertDefault()
 	}
-	return false
+}
 
+func (ptr *QSortFilterProxyModel) Revert() {
+	defer qt.Recovering("QSortFilterProxyModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_Revert(ptr.Pointer())
+	}
+}
+
+func (ptr *QSortFilterProxyModel) RevertDefault() {
+	defer qt.Recovering("QSortFilterProxyModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_RevertDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QSortFilterProxyModel) ConnectTimerEvent(f func(event *QTimerEvent)) {
@@ -584,15 +671,30 @@ func (ptr *QSortFilterProxyModel) DisconnectTimerEvent() {
 }
 
 //export callbackQSortFilterProxyModelTimerEvent
-func callbackQSortFilterProxyModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSortFilterProxyModelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSortFilterProxyModel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSortFilterProxyModel) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QSortFilterProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QSortFilterProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSortFilterProxyModel) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -614,15 +716,30 @@ func (ptr *QSortFilterProxyModel) DisconnectChildEvent() {
 }
 
 //export callbackQSortFilterProxyModelChildEvent
-func callbackQSortFilterProxyModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSortFilterProxyModelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSortFilterProxyModel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSortFilterProxyModel) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QSortFilterProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QSortFilterProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSortFilterProxyModel) ConnectCustomEvent(f func(event *QEvent)) {
@@ -644,13 +761,28 @@ func (ptr *QSortFilterProxyModel) DisconnectCustomEvent() {
 }
 
 //export callbackQSortFilterProxyModelCustomEvent
-func callbackQSortFilterProxyModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSortFilterProxyModelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSortFilterProxyModel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSortFilterProxyModel) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QSortFilterProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QSortFilterProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

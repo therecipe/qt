@@ -113,13 +113,21 @@ func (ptr *QUndoStack) DisconnectCanRedoChanged() {
 }
 
 //export callbackQUndoStackCanRedoChanged
-func callbackQUndoStackCanRedoChanged(ptrName *C.char, canRedo C.int) {
+func callbackQUndoStackCanRedoChanged(ptr unsafe.Pointer, ptrName *C.char, canRedo C.int) {
 	defer qt.Recovering("callback QUndoStack::canRedoChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "canRedoChanged"); signal != nil {
 		signal.(func(bool))(int(canRedo) != 0)
 	}
 
+}
+
+func (ptr *QUndoStack) CanRedoChanged(canRedo bool) {
+	defer qt.Recovering("QUndoStack::canRedoChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_CanRedoChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(canRedo)))
+	}
 }
 
 func (ptr *QUndoStack) CanUndo() bool {
@@ -150,13 +158,21 @@ func (ptr *QUndoStack) DisconnectCanUndoChanged() {
 }
 
 //export callbackQUndoStackCanUndoChanged
-func callbackQUndoStackCanUndoChanged(ptrName *C.char, canUndo C.int) {
+func callbackQUndoStackCanUndoChanged(ptr unsafe.Pointer, ptrName *C.char, canUndo C.int) {
 	defer qt.Recovering("callback QUndoStack::canUndoChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "canUndoChanged"); signal != nil {
 		signal.(func(bool))(int(canUndo) != 0)
 	}
 
+}
+
+func (ptr *QUndoStack) CanUndoChanged(canUndo bool) {
+	defer qt.Recovering("QUndoStack::canUndoChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_CanUndoChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(canUndo)))
+	}
 }
 
 func (ptr *QUndoStack) ConnectCleanChanged(f func(clean bool)) {
@@ -178,13 +194,21 @@ func (ptr *QUndoStack) DisconnectCleanChanged() {
 }
 
 //export callbackQUndoStackCleanChanged
-func callbackQUndoStackCleanChanged(ptrName *C.char, clean C.int) {
+func callbackQUndoStackCleanChanged(ptr unsafe.Pointer, ptrName *C.char, clean C.int) {
 	defer qt.Recovering("callback QUndoStack::cleanChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "cleanChanged"); signal != nil {
 		signal.(func(bool))(int(clean) != 0)
 	}
 
+}
+
+func (ptr *QUndoStack) CleanChanged(clean bool) {
+	defer qt.Recovering("QUndoStack::cleanChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_CleanChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(clean)))
+	}
 }
 
 func (ptr *QUndoStack) CleanIndex() int {
@@ -276,13 +300,21 @@ func (ptr *QUndoStack) DisconnectIndexChanged() {
 }
 
 //export callbackQUndoStackIndexChanged
-func callbackQUndoStackIndexChanged(ptrName *C.char, idx C.int) {
+func callbackQUndoStackIndexChanged(ptr unsafe.Pointer, ptrName *C.char, idx C.int) {
 	defer qt.Recovering("callback QUndoStack::indexChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "indexChanged"); signal != nil {
 		signal.(func(int))(int(idx))
 	}
 
+}
+
+func (ptr *QUndoStack) IndexChanged(idx int) {
+	defer qt.Recovering("QUndoStack::indexChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_IndexChanged(ptr.Pointer(), C.int(idx))
+	}
 }
 
 func (ptr *QUndoStack) IsClean() bool {
@@ -338,13 +370,21 @@ func (ptr *QUndoStack) DisconnectRedoTextChanged() {
 }
 
 //export callbackQUndoStackRedoTextChanged
-func callbackQUndoStackRedoTextChanged(ptrName *C.char, redoText *C.char) {
+func callbackQUndoStackRedoTextChanged(ptr unsafe.Pointer, ptrName *C.char, redoText *C.char) {
 	defer qt.Recovering("callback QUndoStack::redoTextChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "redoTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(redoText))
 	}
 
+}
+
+func (ptr *QUndoStack) RedoTextChanged(redoText string) {
+	defer qt.Recovering("QUndoStack::redoTextChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_RedoTextChanged(ptr.Pointer(), C.CString(redoText))
+	}
 }
 
 func (ptr *QUndoStack) SetClean() {
@@ -408,13 +448,21 @@ func (ptr *QUndoStack) DisconnectUndoTextChanged() {
 }
 
 //export callbackQUndoStackUndoTextChanged
-func callbackQUndoStackUndoTextChanged(ptrName *C.char, undoText *C.char) {
+func callbackQUndoStackUndoTextChanged(ptr unsafe.Pointer, ptrName *C.char, undoText *C.char) {
 	defer qt.Recovering("callback QUndoStack::undoTextChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "undoTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(undoText))
 	}
 
+}
+
+func (ptr *QUndoStack) UndoTextChanged(undoText string) {
+	defer qt.Recovering("QUndoStack::undoTextChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_UndoTextChanged(ptr.Pointer(), C.CString(undoText))
+	}
 }
 
 func (ptr *QUndoStack) DestroyQUndoStack() {
@@ -445,15 +493,30 @@ func (ptr *QUndoStack) DisconnectTimerEvent() {
 }
 
 //export callbackQUndoStackTimerEvent
-func callbackQUndoStackTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoStackTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoStack::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoStackFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoStack) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QUndoStack::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QUndoStack) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QUndoStack::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QUndoStack) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -475,15 +538,30 @@ func (ptr *QUndoStack) DisconnectChildEvent() {
 }
 
 //export callbackQUndoStackChildEvent
-func callbackQUndoStackChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoStackChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoStack::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoStackFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoStack) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QUndoStack::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QUndoStack) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QUndoStack::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QUndoStack) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -505,13 +583,28 @@ func (ptr *QUndoStack) DisconnectCustomEvent() {
 }
 
 //export callbackQUndoStackCustomEvent
-func callbackQUndoStackCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoStackCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoStack::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoStackFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoStack) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QUndoStack::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QUndoStack) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QUndoStack::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoStack_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

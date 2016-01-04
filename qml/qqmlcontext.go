@@ -181,15 +181,30 @@ func (ptr *QQmlContext) DisconnectTimerEvent() {
 }
 
 //export callbackQQmlContextTimerEvent
-func callbackQQmlContextTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlContextTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlContext::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlContextFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlContext) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlContext::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlContext_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQmlContext) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlContext::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlContext_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QQmlContext) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -211,15 +226,30 @@ func (ptr *QQmlContext) DisconnectChildEvent() {
 }
 
 //export callbackQQmlContextChildEvent
-func callbackQQmlContextChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlContextChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlContext::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlContextFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlContext) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlContext::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlContext_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQmlContext) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlContext::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlContext_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QQmlContext) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -241,13 +271,28 @@ func (ptr *QQmlContext) DisconnectCustomEvent() {
 }
 
 //export callbackQQmlContextCustomEvent
-func callbackQQmlContextCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlContextCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlContext::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlContextFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlContext) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlContext::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlContext_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQmlContext) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlContext::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlContext_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

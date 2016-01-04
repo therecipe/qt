@@ -99,13 +99,28 @@ func (ptr *QSGSimpleRectNode) DisconnectPreprocess() {
 }
 
 //export callbackQSGSimpleRectNodePreprocess
-func callbackQSGSimpleRectNodePreprocess(ptrName *C.char) bool {
+func callbackQSGSimpleRectNodePreprocess(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGSimpleRectNode::preprocess")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGSimpleRectNodeFromPointer(ptr).PreprocessDefault()
 	}
-	return false
+}
 
+func (ptr *QSGSimpleRectNode) Preprocess() {
+	defer qt.Recovering("QSGSimpleRectNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGSimpleRectNode_Preprocess(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGSimpleRectNode) PreprocessDefault() {
+	defer qt.Recovering("QSGSimpleRectNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGSimpleRectNode_PreprocessDefault(ptr.Pointer())
+	}
 }

@@ -56,13 +56,21 @@ func (ptr *QMediaGaplessPlaybackControl) DisconnectAdvancedToNextMedia() {
 }
 
 //export callbackQMediaGaplessPlaybackControlAdvancedToNextMedia
-func callbackQMediaGaplessPlaybackControlAdvancedToNextMedia(ptrName *C.char) {
+func callbackQMediaGaplessPlaybackControlAdvancedToNextMedia(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QMediaGaplessPlaybackControl::advancedToNextMedia")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "advancedToNextMedia"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QMediaGaplessPlaybackControl) AdvancedToNextMedia() {
+	defer qt.Recovering("QMediaGaplessPlaybackControl::advancedToNextMedia")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_AdvancedToNextMedia(ptr.Pointer())
+	}
 }
 
 func (ptr *QMediaGaplessPlaybackControl) CrossfadeTime() float64 {
@@ -93,13 +101,21 @@ func (ptr *QMediaGaplessPlaybackControl) DisconnectCrossfadeTimeChanged() {
 }
 
 //export callbackQMediaGaplessPlaybackControlCrossfadeTimeChanged
-func callbackQMediaGaplessPlaybackControlCrossfadeTimeChanged(ptrName *C.char, crossfadeTime C.double) {
+func callbackQMediaGaplessPlaybackControlCrossfadeTimeChanged(ptr unsafe.Pointer, ptrName *C.char, crossfadeTime C.double) {
 	defer qt.Recovering("callback QMediaGaplessPlaybackControl::crossfadeTimeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "crossfadeTimeChanged"); signal != nil {
 		signal.(func(float64))(float64(crossfadeTime))
 	}
 
+}
+
+func (ptr *QMediaGaplessPlaybackControl) CrossfadeTimeChanged(crossfadeTime float64) {
+	defer qt.Recovering("QMediaGaplessPlaybackControl::crossfadeTimeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_CrossfadeTimeChanged(ptr.Pointer(), C.double(crossfadeTime))
+	}
 }
 
 func (ptr *QMediaGaplessPlaybackControl) IsCrossfadeSupported() bool {
@@ -139,13 +155,21 @@ func (ptr *QMediaGaplessPlaybackControl) DisconnectNextMediaChanged() {
 }
 
 //export callbackQMediaGaplessPlaybackControlNextMediaChanged
-func callbackQMediaGaplessPlaybackControlNextMediaChanged(ptrName *C.char, media unsafe.Pointer) {
+func callbackQMediaGaplessPlaybackControlNextMediaChanged(ptr unsafe.Pointer, ptrName *C.char, media unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaGaplessPlaybackControl::nextMediaChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nextMediaChanged"); signal != nil {
 		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(media))
 	}
 
+}
+
+func (ptr *QMediaGaplessPlaybackControl) NextMediaChanged(media QMediaContent_ITF) {
+	defer qt.Recovering("QMediaGaplessPlaybackControl::nextMediaChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_NextMediaChanged(ptr.Pointer(), PointerFromQMediaContent(media))
+	}
 }
 
 func (ptr *QMediaGaplessPlaybackControl) SetCrossfadeTime(crossfadeTime float64) {
@@ -192,15 +216,30 @@ func (ptr *QMediaGaplessPlaybackControl) DisconnectTimerEvent() {
 }
 
 //export callbackQMediaGaplessPlaybackControlTimerEvent
-func callbackQMediaGaplessPlaybackControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaGaplessPlaybackControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaGaplessPlaybackControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaGaplessPlaybackControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaGaplessPlaybackControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaGaplessPlaybackControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMediaGaplessPlaybackControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaGaplessPlaybackControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMediaGaplessPlaybackControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -222,15 +261,30 @@ func (ptr *QMediaGaplessPlaybackControl) DisconnectChildEvent() {
 }
 
 //export callbackQMediaGaplessPlaybackControlChildEvent
-func callbackQMediaGaplessPlaybackControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaGaplessPlaybackControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaGaplessPlaybackControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaGaplessPlaybackControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaGaplessPlaybackControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaGaplessPlaybackControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMediaGaplessPlaybackControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaGaplessPlaybackControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMediaGaplessPlaybackControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -252,13 +306,28 @@ func (ptr *QMediaGaplessPlaybackControl) DisconnectCustomEvent() {
 }
 
 //export callbackQMediaGaplessPlaybackControlCustomEvent
-func callbackQMediaGaplessPlaybackControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaGaplessPlaybackControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaGaplessPlaybackControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaGaplessPlaybackControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaGaplessPlaybackControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaGaplessPlaybackControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMediaGaplessPlaybackControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaGaplessPlaybackControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

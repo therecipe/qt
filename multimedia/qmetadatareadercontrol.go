@@ -84,13 +84,21 @@ func (ptr *QMetaDataReaderControl) DisconnectMetaDataAvailableChanged() {
 }
 
 //export callbackQMetaDataReaderControlMetaDataAvailableChanged
-func callbackQMetaDataReaderControlMetaDataAvailableChanged(ptrName *C.char, available C.int) {
+func callbackQMetaDataReaderControlMetaDataAvailableChanged(ptr unsafe.Pointer, ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QMetaDataReaderControl::metaDataAvailableChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataAvailableChanged"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
+}
+
+func (ptr *QMetaDataReaderControl) MetaDataAvailableChanged(available bool) {
+	defer qt.Recovering("QMetaDataReaderControl::metaDataAvailableChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataReaderControl_MetaDataAvailableChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(available)))
+	}
 }
 
 func (ptr *QMetaDataReaderControl) ConnectMetaDataChanged(f func()) {
@@ -112,13 +120,21 @@ func (ptr *QMetaDataReaderControl) DisconnectMetaDataChanged() {
 }
 
 //export callbackQMetaDataReaderControlMetaDataChanged
-func callbackQMetaDataReaderControlMetaDataChanged(ptrName *C.char) {
+func callbackQMetaDataReaderControlMetaDataChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QMetaDataReaderControl::metaDataChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QMetaDataReaderControl) MetaDataChanged() {
+	defer qt.Recovering("QMetaDataReaderControl::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataReaderControl_MetaDataChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QMetaDataReaderControl) ConnectMetaDataChanged2(f func(key string, value *core.QVariant)) {
@@ -140,13 +156,21 @@ func (ptr *QMetaDataReaderControl) DisconnectMetaDataChanged2() {
 }
 
 //export callbackQMetaDataReaderControlMetaDataChanged2
-func callbackQMetaDataReaderControlMetaDataChanged2(ptrName *C.char, key *C.char, value unsafe.Pointer) {
+func callbackQMetaDataReaderControlMetaDataChanged2(ptr unsafe.Pointer, ptrName *C.char, key *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QMetaDataReaderControl::metaDataChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataChanged2"); signal != nil {
 		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
 	}
 
+}
+
+func (ptr *QMetaDataReaderControl) MetaDataChanged2(key string, value core.QVariant_ITF) {
+	defer qt.Recovering("QMetaDataReaderControl::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataReaderControl_MetaDataChanged2(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(value))
+	}
 }
 
 func (ptr *QMetaDataReaderControl) DestroyQMetaDataReaderControl() {
@@ -177,15 +201,30 @@ func (ptr *QMetaDataReaderControl) DisconnectTimerEvent() {
 }
 
 //export callbackQMetaDataReaderControlTimerEvent
-func callbackQMetaDataReaderControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMetaDataReaderControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMetaDataReaderControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMetaDataReaderControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMetaDataReaderControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMetaDataReaderControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataReaderControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMetaDataReaderControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMetaDataReaderControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataReaderControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMetaDataReaderControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -207,15 +246,30 @@ func (ptr *QMetaDataReaderControl) DisconnectChildEvent() {
 }
 
 //export callbackQMetaDataReaderControlChildEvent
-func callbackQMetaDataReaderControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMetaDataReaderControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMetaDataReaderControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMetaDataReaderControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMetaDataReaderControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMetaDataReaderControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataReaderControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMetaDataReaderControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMetaDataReaderControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataReaderControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMetaDataReaderControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -237,13 +291,28 @@ func (ptr *QMetaDataReaderControl) DisconnectCustomEvent() {
 }
 
 //export callbackQMetaDataReaderControlCustomEvent
-func callbackQMetaDataReaderControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMetaDataReaderControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMetaDataReaderControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMetaDataReaderControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMetaDataReaderControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMetaDataReaderControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataReaderControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMetaDataReaderControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMetaDataReaderControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataReaderControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

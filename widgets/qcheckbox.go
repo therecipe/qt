@@ -95,15 +95,48 @@ func (ptr *QCheckBox) DisconnectCheckStateSet() {
 }
 
 //export callbackQCheckBoxCheckStateSet
-func callbackQCheckBoxCheckStateSet(ptrName *C.char) bool {
+func callbackQCheckBoxCheckStateSet(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCheckBox::checkStateSet")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "checkStateSet"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).CheckStateSetDefault()
+	}
+}
+
+func (ptr *QCheckBox) CheckStateSet() {
+	defer qt.Recovering("QCheckBox::checkStateSet")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_CheckStateSet(ptr.Pointer())
+	}
+}
+
+func (ptr *QCheckBox) CheckStateSetDefault() {
+	defer qt.Recovering("QCheckBox::checkStateSet")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_CheckStateSetDefault(ptr.Pointer())
+	}
+}
+
+func (ptr *QCheckBox) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QCheckBox::event")
+
+	if ptr.Pointer() != nil {
+		return C.QCheckBox_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
 	return false
+}
 
+func (ptr *QCheckBox) HitButton(pos core.QPoint_ITF) bool {
+	defer qt.Recovering("QCheckBox::hitButton")
+
+	if ptr.Pointer() != nil {
+		return C.QCheckBox_HitButton(ptr.Pointer(), core.PointerFromQPoint(pos)) != 0
+	}
+	return false
 }
 
 func (ptr *QCheckBox) MinimumSizeHint() *core.QSize {
@@ -134,15 +167,30 @@ func (ptr *QCheckBox) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQCheckBoxMouseMoveEvent
-func callbackQCheckBoxMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQCheckBoxMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) MouseMoveEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCheckBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QCheckBox) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCheckBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QCheckBox) ConnectNextCheckState(f func()) {
@@ -164,15 +212,30 @@ func (ptr *QCheckBox) DisconnectNextCheckState() {
 }
 
 //export callbackQCheckBoxNextCheckState
-func callbackQCheckBoxNextCheckState(ptrName *C.char) bool {
+func callbackQCheckBoxNextCheckState(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCheckBox::nextCheckState")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nextCheckState"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).NextCheckStateDefault()
 	}
-	return false
+}
 
+func (ptr *QCheckBox) NextCheckState() {
+	defer qt.Recovering("QCheckBox::nextCheckState")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_NextCheckState(ptr.Pointer())
+	}
+}
+
+func (ptr *QCheckBox) NextCheckStateDefault() {
+	defer qt.Recovering("QCheckBox::nextCheckState")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_NextCheckStateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QCheckBox) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
@@ -194,15 +257,30 @@ func (ptr *QCheckBox) DisconnectPaintEvent() {
 }
 
 //export callbackQCheckBoxPaintEvent
-func callbackQCheckBoxPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQCheckBoxPaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) PaintEvent(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QCheckBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
+}
+
+func (ptr *QCheckBox) PaintEventDefault(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QCheckBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
 }
 
 func (ptr *QCheckBox) SetCheckState(state core.Qt__CheckState) {
@@ -241,13 +319,21 @@ func (ptr *QCheckBox) DisconnectStateChanged() {
 }
 
 //export callbackQCheckBoxStateChanged
-func callbackQCheckBoxStateChanged(ptrName *C.char, state C.int) {
+func callbackQCheckBoxStateChanged(ptr unsafe.Pointer, ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QCheckBox::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(int))(int(state))
 	}
 
+}
+
+func (ptr *QCheckBox) StateChanged(state int) {
+	defer qt.Recovering("QCheckBox::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_StateChanged(ptr.Pointer(), C.int(state))
+	}
 }
 
 func (ptr *QCheckBox) DestroyQCheckBox() {
@@ -278,15 +364,30 @@ func (ptr *QCheckBox) DisconnectChangeEvent() {
 }
 
 //export callbackQCheckBoxChangeEvent
-func callbackQCheckBoxChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQCheckBoxChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QCheckBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QCheckBox) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QCheckBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
 }
 
 func (ptr *QCheckBox) ConnectFocusInEvent(f func(e *gui.QFocusEvent)) {
@@ -308,15 +409,30 @@ func (ptr *QCheckBox) DisconnectFocusInEvent() {
 }
 
 //export callbackQCheckBoxFocusInEvent
-func callbackQCheckBoxFocusInEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQCheckBoxFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) FocusInEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QCheckBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QCheckBox) FocusInEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QCheckBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QCheckBox) ConnectFocusOutEvent(f func(e *gui.QFocusEvent)) {
@@ -338,15 +454,30 @@ func (ptr *QCheckBox) DisconnectFocusOutEvent() {
 }
 
 //export callbackQCheckBoxFocusOutEvent
-func callbackQCheckBoxFocusOutEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQCheckBoxFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) FocusOutEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QCheckBox::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QCheckBox) FocusOutEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QCheckBox::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QCheckBox) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
@@ -368,15 +499,30 @@ func (ptr *QCheckBox) DisconnectKeyPressEvent() {
 }
 
 //export callbackQCheckBoxKeyPressEvent
-func callbackQCheckBoxKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQCheckBoxKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QCheckBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QCheckBox) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QCheckBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QCheckBox) ConnectKeyReleaseEvent(f func(e *gui.QKeyEvent)) {
@@ -398,15 +544,30 @@ func (ptr *QCheckBox) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQCheckBoxKeyReleaseEvent
-func callbackQCheckBoxKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQCheckBoxKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) KeyReleaseEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QCheckBox::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QCheckBox) KeyReleaseEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QCheckBox::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QCheckBox) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
@@ -428,15 +589,30 @@ func (ptr *QCheckBox) DisconnectMousePressEvent() {
 }
 
 //export callbackQCheckBoxMousePressEvent
-func callbackQCheckBoxMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQCheckBoxMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) MousePressEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCheckBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QCheckBox) MousePressEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCheckBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QCheckBox) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -458,15 +634,30 @@ func (ptr *QCheckBox) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQCheckBoxMouseReleaseEvent
-func callbackQCheckBoxMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQCheckBoxMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCheckBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QCheckBox) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCheckBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QCheckBox) ConnectTimerEvent(f func(e *core.QTimerEvent)) {
@@ -488,15 +679,30 @@ func (ptr *QCheckBox) DisconnectTimerEvent() {
 }
 
 //export callbackQCheckBoxTimerEvent
-func callbackQCheckBoxTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQCheckBoxTimerEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) TimerEvent(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCheckBox::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
+}
+
+func (ptr *QCheckBox) TimerEventDefault(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCheckBox::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
 }
 
 func (ptr *QCheckBox) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -518,15 +724,30 @@ func (ptr *QCheckBox) DisconnectActionEvent() {
 }
 
 //export callbackQCheckBoxActionEvent
-func callbackQCheckBoxActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QCheckBox::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QCheckBox::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -548,15 +769,30 @@ func (ptr *QCheckBox) DisconnectDragEnterEvent() {
 }
 
 //export callbackQCheckBoxDragEnterEvent
-func callbackQCheckBoxDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QCheckBox::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QCheckBox::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -578,15 +814,30 @@ func (ptr *QCheckBox) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQCheckBoxDragLeaveEvent
-func callbackQCheckBoxDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QCheckBox::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QCheckBox::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -608,15 +859,30 @@ func (ptr *QCheckBox) DisconnectDragMoveEvent() {
 }
 
 //export callbackQCheckBoxDragMoveEvent
-func callbackQCheckBoxDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QCheckBox::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QCheckBox::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -638,15 +904,30 @@ func (ptr *QCheckBox) DisconnectDropEvent() {
 }
 
 //export callbackQCheckBoxDropEvent
-func callbackQCheckBoxDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QCheckBox::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QCheckBox::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -668,15 +949,30 @@ func (ptr *QCheckBox) DisconnectEnterEvent() {
 }
 
 //export callbackQCheckBoxEnterEvent
-func callbackQCheckBoxEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCheckBox::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCheckBox::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -698,15 +994,30 @@ func (ptr *QCheckBox) DisconnectHideEvent() {
 }
 
 //export callbackQCheckBoxHideEvent
-func callbackQCheckBoxHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QCheckBox::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QCheckBox::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -728,15 +1039,30 @@ func (ptr *QCheckBox) DisconnectLeaveEvent() {
 }
 
 //export callbackQCheckBoxLeaveEvent
-func callbackQCheckBoxLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCheckBox::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCheckBox::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -758,15 +1084,30 @@ func (ptr *QCheckBox) DisconnectMoveEvent() {
 }
 
 //export callbackQCheckBoxMoveEvent
-func callbackQCheckBoxMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QCheckBox::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QCheckBox::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectSetVisible(f func(visible bool)) {
@@ -788,7 +1129,7 @@ func (ptr *QCheckBox) DisconnectSetVisible() {
 }
 
 //export callbackQCheckBoxSetVisible
-func callbackQCheckBoxSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQCheckBoxSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QCheckBox::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -797,6 +1138,22 @@ func callbackQCheckBoxSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QCheckBox) SetVisible(visible bool) {
+	defer qt.Recovering("QCheckBox::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QCheckBox) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QCheckBox::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QCheckBox) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -818,15 +1175,30 @@ func (ptr *QCheckBox) DisconnectShowEvent() {
 }
 
 //export callbackQCheckBoxShowEvent
-func callbackQCheckBoxShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QCheckBox::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QCheckBox::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -848,15 +1220,30 @@ func (ptr *QCheckBox) DisconnectCloseEvent() {
 }
 
 //export callbackQCheckBoxCloseEvent
-func callbackQCheckBoxCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QCheckBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QCheckBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -878,15 +1265,30 @@ func (ptr *QCheckBox) DisconnectContextMenuEvent() {
 }
 
 //export callbackQCheckBoxContextMenuEvent
-func callbackQCheckBoxContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QCheckBox::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QCheckBox::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -908,15 +1310,30 @@ func (ptr *QCheckBox) DisconnectInitPainter() {
 }
 
 //export callbackQCheckBoxInitPainter
-func callbackQCheckBoxInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQCheckBoxInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QCheckBox::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QCheckBox) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QCheckBox::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QCheckBox) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -938,15 +1355,30 @@ func (ptr *QCheckBox) DisconnectInputMethodEvent() {
 }
 
 //export callbackQCheckBoxInputMethodEvent
-func callbackQCheckBoxInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QCheckBox::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QCheckBox::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -968,15 +1400,30 @@ func (ptr *QCheckBox) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQCheckBoxMouseDoubleClickEvent
-func callbackQCheckBoxMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCheckBox::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCheckBox::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -998,15 +1445,30 @@ func (ptr *QCheckBox) DisconnectResizeEvent() {
 }
 
 //export callbackQCheckBoxResizeEvent
-func callbackQCheckBoxResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QCheckBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QCheckBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1028,15 +1490,30 @@ func (ptr *QCheckBox) DisconnectTabletEvent() {
 }
 
 //export callbackQCheckBoxTabletEvent
-func callbackQCheckBoxTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QCheckBox::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QCheckBox::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1058,15 +1535,30 @@ func (ptr *QCheckBox) DisconnectWheelEvent() {
 }
 
 //export callbackQCheckBoxWheelEvent
-func callbackQCheckBoxWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QCheckBox::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QCheckBox::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1088,15 +1580,30 @@ func (ptr *QCheckBox) DisconnectChildEvent() {
 }
 
 //export callbackQCheckBoxChildEvent
-func callbackQCheckBoxChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCheckBox::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCheckBox::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCheckBox) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1118,13 +1625,28 @@ func (ptr *QCheckBox) DisconnectCustomEvent() {
 }
 
 //export callbackQCheckBoxCustomEvent
-func callbackQCheckBoxCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCheckBoxCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCheckBox::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCheckBoxFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCheckBox) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCheckBox::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCheckBox) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCheckBox::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCheckBox_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

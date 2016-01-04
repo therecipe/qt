@@ -67,13 +67,30 @@ func (ptr *QGraphicsObject) DisconnectEnabledChanged() {
 }
 
 //export callbackQGraphicsObjectEnabledChanged
-func callbackQGraphicsObjectEnabledChanged(ptrName *C.char) {
+func callbackQGraphicsObjectEnabledChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::enabledChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enabledChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsObject) EnabledChanged() {
+	defer qt.Recovering("QGraphicsObject::enabledChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_EnabledChanged(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsObject) Event(ev core.QEvent_ITF) bool {
+	defer qt.Recovering("QGraphicsObject::event")
+
+	if ptr.Pointer() != nil {
+		return C.QGraphicsObject_Event(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
+	}
+	return false
 }
 
 func (ptr *QGraphicsObject) GrabGesture(gesture core.Qt__GestureType, flags core.Qt__GestureFlag) {
@@ -103,13 +120,21 @@ func (ptr *QGraphicsObject) DisconnectOpacityChanged() {
 }
 
 //export callbackQGraphicsObjectOpacityChanged
-func callbackQGraphicsObjectOpacityChanged(ptrName *C.char) {
+func callbackQGraphicsObjectOpacityChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::opacityChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "opacityChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsObject) OpacityChanged() {
+	defer qt.Recovering("QGraphicsObject::opacityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_OpacityChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsObject) ConnectParentChanged(f func()) {
@@ -131,13 +156,21 @@ func (ptr *QGraphicsObject) DisconnectParentChanged() {
 }
 
 //export callbackQGraphicsObjectParentChanged
-func callbackQGraphicsObjectParentChanged(ptrName *C.char) {
+func callbackQGraphicsObjectParentChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::parentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "parentChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsObject) ParentChanged() {
+	defer qt.Recovering("QGraphicsObject::parentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_ParentChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsObject) ConnectRotationChanged(f func()) {
@@ -159,13 +192,21 @@ func (ptr *QGraphicsObject) DisconnectRotationChanged() {
 }
 
 //export callbackQGraphicsObjectRotationChanged
-func callbackQGraphicsObjectRotationChanged(ptrName *C.char) {
+func callbackQGraphicsObjectRotationChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::rotationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rotationChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsObject) RotationChanged() {
+	defer qt.Recovering("QGraphicsObject::rotationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_RotationChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsObject) ConnectScaleChanged(f func()) {
@@ -187,13 +228,21 @@ func (ptr *QGraphicsObject) DisconnectScaleChanged() {
 }
 
 //export callbackQGraphicsObjectScaleChanged
-func callbackQGraphicsObjectScaleChanged(ptrName *C.char) {
+func callbackQGraphicsObjectScaleChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::scaleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scaleChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsObject) ScaleChanged() {
+	defer qt.Recovering("QGraphicsObject::scaleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_ScaleChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsObject) UngrabGesture(gesture core.Qt__GestureType) {
@@ -223,13 +272,21 @@ func (ptr *QGraphicsObject) DisconnectVisibleChanged() {
 }
 
 //export callbackQGraphicsObjectVisibleChanged
-func callbackQGraphicsObjectVisibleChanged(ptrName *C.char) {
+func callbackQGraphicsObjectVisibleChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::visibleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "visibleChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsObject) VisibleChanged() {
+	defer qt.Recovering("QGraphicsObject::visibleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_VisibleChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsObject) ConnectXChanged(f func()) {
@@ -251,13 +308,21 @@ func (ptr *QGraphicsObject) DisconnectXChanged() {
 }
 
 //export callbackQGraphicsObjectXChanged
-func callbackQGraphicsObjectXChanged(ptrName *C.char) {
+func callbackQGraphicsObjectXChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::xChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "xChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsObject) XChanged() {
+	defer qt.Recovering("QGraphicsObject::xChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_XChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsObject) ConnectYChanged(f func()) {
@@ -279,13 +344,21 @@ func (ptr *QGraphicsObject) DisconnectYChanged() {
 }
 
 //export callbackQGraphicsObjectYChanged
-func callbackQGraphicsObjectYChanged(ptrName *C.char) {
+func callbackQGraphicsObjectYChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::yChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "yChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsObject) YChanged() {
+	defer qt.Recovering("QGraphicsObject::yChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_YChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsObject) ConnectZChanged(f func()) {
@@ -307,13 +380,21 @@ func (ptr *QGraphicsObject) DisconnectZChanged() {
 }
 
 //export callbackQGraphicsObjectZChanged
-func callbackQGraphicsObjectZChanged(ptrName *C.char) {
+func callbackQGraphicsObjectZChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsObject::zChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "zChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsObject) ZChanged() {
+	defer qt.Recovering("QGraphicsObject::zChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_ZChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsObject) DestroyQGraphicsObject() {
@@ -344,15 +425,30 @@ func (ptr *QGraphicsObject) DisconnectTimerEvent() {
 }
 
 //export callbackQGraphicsObjectTimerEvent
-func callbackQGraphicsObjectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsObjectTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsObject::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsObjectFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsObject) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsObject::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGraphicsObject) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsObject::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGraphicsObject) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -374,15 +470,30 @@ func (ptr *QGraphicsObject) DisconnectChildEvent() {
 }
 
 //export callbackQGraphicsObjectChildEvent
-func callbackQGraphicsObjectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsObjectChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsObject::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsObjectFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsObject) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsObject::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGraphicsObject) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsObject::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGraphicsObject) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -404,13 +515,28 @@ func (ptr *QGraphicsObject) DisconnectCustomEvent() {
 }
 
 //export callbackQGraphicsObjectCustomEvent
-func callbackQGraphicsObjectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsObjectCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsObject::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsObjectFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsObject) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsObject::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGraphicsObject) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsObject::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

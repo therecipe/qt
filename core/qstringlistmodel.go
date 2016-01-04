@@ -127,15 +127,30 @@ func (ptr *QStringListModel) DisconnectSort() {
 }
 
 //export callbackQStringListModelSort
-func callbackQStringListModelSort(ptrName *C.char, column C.int, order C.int) bool {
+func callbackQStringListModelSort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
 	defer qt.Recovering("callback QStringListModel::sort")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
-		return true
+	} else {
+		NewQStringListModelFromPointer(ptr).SortDefault(int(column), Qt__SortOrder(order))
 	}
-	return false
+}
 
+func (ptr *QStringListModel) Sort(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QStringListModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
+	}
+}
+
+func (ptr *QStringListModel) SortDefault(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QStringListModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
+	}
 }
 
 func (ptr *QStringListModel) StringList() []string {
@@ -175,15 +190,30 @@ func (ptr *QStringListModel) DisconnectFetchMore() {
 }
 
 //export callbackQStringListModelFetchMore
-func callbackQStringListModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+func callbackQStringListModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
 	defer qt.Recovering("callback QStringListModel::fetchMore")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
-		return true
+	} else {
+		NewQStringListModelFromPointer(ptr).FetchMoreDefault(NewQModelIndexFromPointer(parent))
 	}
-	return false
+}
 
+func (ptr *QStringListModel) FetchMore(parent QModelIndex_ITF) {
+	defer qt.Recovering("QStringListModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_FetchMore(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QStringListModel) FetchMoreDefault(parent QModelIndex_ITF) {
+	defer qt.Recovering("QStringListModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_FetchMoreDefault(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
 }
 
 func (ptr *QStringListModel) ConnectRevert(f func()) {
@@ -205,7 +235,7 @@ func (ptr *QStringListModel) DisconnectRevert() {
 }
 
 //export callbackQStringListModelRevert
-func callbackQStringListModelRevert(ptrName *C.char) bool {
+func callbackQStringListModelRevert(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QStringListModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
@@ -214,6 +244,22 @@ func callbackQStringListModelRevert(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QStringListModel) Revert() {
+	defer qt.Recovering("QStringListModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_Revert(ptr.Pointer())
+	}
+}
+
+func (ptr *QStringListModel) RevertDefault() {
+	defer qt.Recovering("QStringListModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_RevertDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QStringListModel) ConnectTimerEvent(f func(event *QTimerEvent)) {
@@ -235,15 +281,30 @@ func (ptr *QStringListModel) DisconnectTimerEvent() {
 }
 
 //export callbackQStringListModelTimerEvent
-func callbackQStringListModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStringListModelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStringListModel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQStringListModelFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStringListModel) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QStringListModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QStringListModel) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QStringListModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QStringListModel) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -265,15 +326,30 @@ func (ptr *QStringListModel) DisconnectChildEvent() {
 }
 
 //export callbackQStringListModelChildEvent
-func callbackQStringListModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStringListModelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStringListModel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQStringListModelFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStringListModel) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QStringListModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QStringListModel) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QStringListModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QStringListModel) ConnectCustomEvent(f func(event *QEvent)) {
@@ -295,13 +371,28 @@ func (ptr *QStringListModel) DisconnectCustomEvent() {
 }
 
 //export callbackQStringListModelCustomEvent
-func callbackQStringListModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStringListModelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStringListModel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQStringListModelFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStringListModel) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QStringListModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QStringListModel) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QStringListModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStringListModel_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

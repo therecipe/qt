@@ -106,13 +106,21 @@ func (ptr *QStackedWidget) DisconnectCurrentChanged() {
 }
 
 //export callbackQStackedWidgetCurrentChanged
-func callbackQStackedWidgetCurrentChanged(ptrName *C.char, index C.int) {
+func callbackQStackedWidgetCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QStackedWidget::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
+}
+
+func (ptr *QStackedWidget) CurrentChanged(index int) {
+	defer qt.Recovering("QStackedWidget::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_CurrentChanged(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QStackedWidget) CurrentWidget() *QWidget {
@@ -122,6 +130,15 @@ func (ptr *QStackedWidget) CurrentWidget() *QWidget {
 		return NewQWidgetFromPointer(C.QStackedWidget_CurrentWidget(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QStackedWidget) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QStackedWidget::event")
+
+	if ptr.Pointer() != nil {
+		return C.QStackedWidget_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
 }
 
 func (ptr *QStackedWidget) IndexOf(widget QWidget_ITF) int {
@@ -178,13 +195,21 @@ func (ptr *QStackedWidget) DisconnectWidgetRemoved() {
 }
 
 //export callbackQStackedWidgetWidgetRemoved
-func callbackQStackedWidgetWidgetRemoved(ptrName *C.char, index C.int) {
+func callbackQStackedWidgetWidgetRemoved(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QStackedWidget::widgetRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "widgetRemoved"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
+}
+
+func (ptr *QStackedWidget) WidgetRemoved(index int) {
+	defer qt.Recovering("QStackedWidget::widgetRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_WidgetRemoved(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QStackedWidget) DestroyQStackedWidget() {
@@ -215,15 +240,30 @@ func (ptr *QStackedWidget) DisconnectChangeEvent() {
 }
 
 //export callbackQStackedWidgetChangeEvent
-func callbackQStackedWidgetChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQStackedWidgetChangeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) ChangeEvent(ev core.QEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QStackedWidget) ChangeEventDefault(ev core.QEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
@@ -245,15 +285,30 @@ func (ptr *QStackedWidget) DisconnectPaintEvent() {
 }
 
 //export callbackQStackedWidgetPaintEvent
-func callbackQStackedWidgetPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQStackedWidgetPaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) PaintEvent(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
+}
+
+func (ptr *QStackedWidget) PaintEventDefault(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -275,15 +330,30 @@ func (ptr *QStackedWidget) DisconnectActionEvent() {
 }
 
 //export callbackQStackedWidgetActionEvent
-func callbackQStackedWidgetActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -305,15 +375,30 @@ func (ptr *QStackedWidget) DisconnectDragEnterEvent() {
 }
 
 //export callbackQStackedWidgetDragEnterEvent
-func callbackQStackedWidgetDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -335,15 +420,30 @@ func (ptr *QStackedWidget) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQStackedWidgetDragLeaveEvent
-func callbackQStackedWidgetDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -365,15 +465,30 @@ func (ptr *QStackedWidget) DisconnectDragMoveEvent() {
 }
 
 //export callbackQStackedWidgetDragMoveEvent
-func callbackQStackedWidgetDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -395,15 +510,30 @@ func (ptr *QStackedWidget) DisconnectDropEvent() {
 }
 
 //export callbackQStackedWidgetDropEvent
-func callbackQStackedWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -425,15 +555,30 @@ func (ptr *QStackedWidget) DisconnectEnterEvent() {
 }
 
 //export callbackQStackedWidgetEnterEvent
-func callbackQStackedWidgetEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -455,15 +600,30 @@ func (ptr *QStackedWidget) DisconnectFocusInEvent() {
 }
 
 //export callbackQStackedWidgetFocusInEvent
-func callbackQStackedWidgetFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -485,15 +645,30 @@ func (ptr *QStackedWidget) DisconnectFocusOutEvent() {
 }
 
 //export callbackQStackedWidgetFocusOutEvent
-func callbackQStackedWidgetFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -515,15 +690,30 @@ func (ptr *QStackedWidget) DisconnectHideEvent() {
 }
 
 //export callbackQStackedWidgetHideEvent
-func callbackQStackedWidgetHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -545,15 +735,30 @@ func (ptr *QStackedWidget) DisconnectLeaveEvent() {
 }
 
 //export callbackQStackedWidgetLeaveEvent
-func callbackQStackedWidgetLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -575,15 +780,30 @@ func (ptr *QStackedWidget) DisconnectMoveEvent() {
 }
 
 //export callbackQStackedWidgetMoveEvent
-func callbackQStackedWidgetMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectSetVisible(f func(visible bool)) {
@@ -605,7 +825,7 @@ func (ptr *QStackedWidget) DisconnectSetVisible() {
 }
 
 //export callbackQStackedWidgetSetVisible
-func callbackQStackedWidgetSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQStackedWidgetSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QStackedWidget::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -614,6 +834,22 @@ func callbackQStackedWidgetSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QStackedWidget) SetVisible(visible bool) {
+	defer qt.Recovering("QStackedWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QStackedWidget) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QStackedWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -635,15 +871,30 @@ func (ptr *QStackedWidget) DisconnectShowEvent() {
 }
 
 //export callbackQStackedWidgetShowEvent
-func callbackQStackedWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -665,15 +916,30 @@ func (ptr *QStackedWidget) DisconnectCloseEvent() {
 }
 
 //export callbackQStackedWidgetCloseEvent
-func callbackQStackedWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -695,15 +961,30 @@ func (ptr *QStackedWidget) DisconnectContextMenuEvent() {
 }
 
 //export callbackQStackedWidgetContextMenuEvent
-func callbackQStackedWidgetContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -725,15 +1006,30 @@ func (ptr *QStackedWidget) DisconnectInitPainter() {
 }
 
 //export callbackQStackedWidgetInitPainter
-func callbackQStackedWidgetInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQStackedWidgetInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QStackedWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QStackedWidget) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QStackedWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -755,15 +1051,30 @@ func (ptr *QStackedWidget) DisconnectInputMethodEvent() {
 }
 
 //export callbackQStackedWidgetInputMethodEvent
-func callbackQStackedWidgetInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -785,15 +1096,30 @@ func (ptr *QStackedWidget) DisconnectKeyPressEvent() {
 }
 
 //export callbackQStackedWidgetKeyPressEvent
-func callbackQStackedWidgetKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -815,15 +1141,30 @@ func (ptr *QStackedWidget) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQStackedWidgetKeyReleaseEvent
-func callbackQStackedWidgetKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -845,15 +1186,30 @@ func (ptr *QStackedWidget) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQStackedWidgetMouseDoubleClickEvent
-func callbackQStackedWidgetMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -875,15 +1231,30 @@ func (ptr *QStackedWidget) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQStackedWidgetMouseMoveEvent
-func callbackQStackedWidgetMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -905,15 +1276,30 @@ func (ptr *QStackedWidget) DisconnectMousePressEvent() {
 }
 
 //export callbackQStackedWidgetMousePressEvent
-func callbackQStackedWidgetMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -935,15 +1321,30 @@ func (ptr *QStackedWidget) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQStackedWidgetMouseReleaseEvent
-func callbackQStackedWidgetMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -965,15 +1366,30 @@ func (ptr *QStackedWidget) DisconnectResizeEvent() {
 }
 
 //export callbackQStackedWidgetResizeEvent
-func callbackQStackedWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -995,15 +1411,30 @@ func (ptr *QStackedWidget) DisconnectTabletEvent() {
 }
 
 //export callbackQStackedWidgetTabletEvent
-func callbackQStackedWidgetTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1025,15 +1456,30 @@ func (ptr *QStackedWidget) DisconnectWheelEvent() {
 }
 
 //export callbackQStackedWidgetWheelEvent
-func callbackQStackedWidgetWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1055,15 +1501,30 @@ func (ptr *QStackedWidget) DisconnectTimerEvent() {
 }
 
 //export callbackQStackedWidgetTimerEvent
-func callbackQStackedWidgetTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1085,15 +1546,30 @@ func (ptr *QStackedWidget) DisconnectChildEvent() {
 }
 
 //export callbackQStackedWidgetChildEvent
-func callbackQStackedWidgetChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QStackedWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1115,13 +1591,28 @@ func (ptr *QStackedWidget) DisconnectCustomEvent() {
 }
 
 //export callbackQStackedWidgetCustomEvent
-func callbackQStackedWidgetCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedWidgetCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedWidget::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedWidgetFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedWidget) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QStackedWidget) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QStackedWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedWidget_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

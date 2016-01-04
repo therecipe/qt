@@ -103,13 +103,21 @@ func (ptr *QQuickRenderControl) DisconnectRenderRequested() {
 }
 
 //export callbackQQuickRenderControlRenderRequested
-func callbackQQuickRenderControlRenderRequested(ptrName *C.char) {
+func callbackQQuickRenderControlRenderRequested(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickRenderControl::renderRequested")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "renderRequested"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QQuickRenderControl) RenderRequested() {
+	defer qt.Recovering("QQuickRenderControl::renderRequested")
+
+	if ptr.Pointer() != nil {
+		C.QQuickRenderControl_RenderRequested(ptr.Pointer())
+	}
 }
 
 func (ptr *QQuickRenderControl) RenderWindow(offset core.QPoint_ITF) *gui.QWindow {
@@ -146,13 +154,21 @@ func (ptr *QQuickRenderControl) DisconnectSceneChanged() {
 }
 
 //export callbackQQuickRenderControlSceneChanged
-func callbackQQuickRenderControlSceneChanged(ptrName *C.char) {
+func callbackQQuickRenderControlSceneChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickRenderControl::sceneChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sceneChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QQuickRenderControl) SceneChanged() {
+	defer qt.Recovering("QQuickRenderControl::sceneChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickRenderControl_SceneChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QQuickRenderControl) Sync() bool {
@@ -192,15 +208,30 @@ func (ptr *QQuickRenderControl) DisconnectTimerEvent() {
 }
 
 //export callbackQQuickRenderControlTimerEvent
-func callbackQQuickRenderControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickRenderControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickRenderControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickRenderControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickRenderControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQuickRenderControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickRenderControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQuickRenderControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQuickRenderControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickRenderControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QQuickRenderControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -222,15 +253,30 @@ func (ptr *QQuickRenderControl) DisconnectChildEvent() {
 }
 
 //export callbackQQuickRenderControlChildEvent
-func callbackQQuickRenderControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickRenderControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickRenderControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickRenderControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickRenderControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQuickRenderControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickRenderControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQuickRenderControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQuickRenderControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickRenderControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QQuickRenderControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -252,13 +298,28 @@ func (ptr *QQuickRenderControl) DisconnectCustomEvent() {
 }
 
 //export callbackQQuickRenderControlCustomEvent
-func callbackQQuickRenderControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickRenderControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickRenderControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickRenderControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickRenderControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQuickRenderControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickRenderControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQuickRenderControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQuickRenderControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickRenderControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

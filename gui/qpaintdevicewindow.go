@@ -67,15 +67,30 @@ func (ptr *QPaintDeviceWindow) DisconnectPaintEvent() {
 }
 
 //export callbackQPaintDeviceWindowPaintEvent
-func callbackQPaintDeviceWindowPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*QPaintEvent))(NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).PaintEventDefault(NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) PaintEvent(event QPaintEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_PaintEvent(ptr.Pointer(), PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) PaintEventDefault(event QPaintEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_PaintEventDefault(ptr.Pointer(), PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) Update3() {
@@ -121,15 +136,30 @@ func (ptr *QPaintDeviceWindow) DisconnectExposeEvent() {
 }
 
 //export callbackQPaintDeviceWindowExposeEvent
-func callbackQPaintDeviceWindowExposeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowExposeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::exposeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "exposeEvent"); signal != nil {
 		signal.(func(*QExposeEvent))(NewQExposeEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).ExposeEventDefault(NewQExposeEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) ExposeEvent(ev QExposeEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::exposeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_ExposeEvent(ptr.Pointer(), PointerFromQExposeEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) ExposeEventDefault(ev QExposeEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::exposeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_ExposeEventDefault(ptr.Pointer(), PointerFromQExposeEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectFocusInEvent(f func(ev *QFocusEvent)) {
@@ -151,15 +181,30 @@ func (ptr *QPaintDeviceWindow) DisconnectFocusInEvent() {
 }
 
 //export callbackQPaintDeviceWindowFocusInEvent
-func callbackQPaintDeviceWindowFocusInEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*QFocusEvent))(NewQFocusEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).FocusInEventDefault(NewQFocusEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) FocusInEvent(ev QFocusEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_FocusInEvent(ptr.Pointer(), PointerFromQFocusEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) FocusInEventDefault(ev QFocusEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_FocusInEventDefault(ptr.Pointer(), PointerFromQFocusEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectFocusOutEvent(f func(ev *QFocusEvent)) {
@@ -181,15 +226,30 @@ func (ptr *QPaintDeviceWindow) DisconnectFocusOutEvent() {
 }
 
 //export callbackQPaintDeviceWindowFocusOutEvent
-func callbackQPaintDeviceWindowFocusOutEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*QFocusEvent))(NewQFocusEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).FocusOutEventDefault(NewQFocusEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) FocusOutEvent(ev QFocusEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_FocusOutEvent(ptr.Pointer(), PointerFromQFocusEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) FocusOutEventDefault(ev QFocusEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_FocusOutEventDefault(ptr.Pointer(), PointerFromQFocusEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectHideEvent(f func(ev *QHideEvent)) {
@@ -211,15 +271,30 @@ func (ptr *QPaintDeviceWindow) DisconnectHideEvent() {
 }
 
 //export callbackQPaintDeviceWindowHideEvent
-func callbackQPaintDeviceWindowHideEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowHideEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*QHideEvent))(NewQHideEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).HideEventDefault(NewQHideEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) HideEvent(ev QHideEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_HideEvent(ptr.Pointer(), PointerFromQHideEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) HideEventDefault(ev QHideEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_HideEventDefault(ptr.Pointer(), PointerFromQHideEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectKeyPressEvent(f func(ev *QKeyEvent)) {
@@ -241,15 +316,30 @@ func (ptr *QPaintDeviceWindow) DisconnectKeyPressEvent() {
 }
 
 //export callbackQPaintDeviceWindowKeyPressEvent
-func callbackQPaintDeviceWindowKeyPressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*QKeyEvent))(NewQKeyEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).KeyPressEventDefault(NewQKeyEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) KeyPressEvent(ev QKeyEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_KeyPressEvent(ptr.Pointer(), PointerFromQKeyEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) KeyPressEventDefault(ev QKeyEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_KeyPressEventDefault(ptr.Pointer(), PointerFromQKeyEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectKeyReleaseEvent(f func(ev *QKeyEvent)) {
@@ -271,15 +361,30 @@ func (ptr *QPaintDeviceWindow) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQPaintDeviceWindowKeyReleaseEvent
-func callbackQPaintDeviceWindowKeyReleaseEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*QKeyEvent))(NewQKeyEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).KeyReleaseEventDefault(NewQKeyEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) KeyReleaseEvent(ev QKeyEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_KeyReleaseEvent(ptr.Pointer(), PointerFromQKeyEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) KeyReleaseEventDefault(ev QKeyEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_KeyReleaseEventDefault(ptr.Pointer(), PointerFromQKeyEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectMouseDoubleClickEvent(f func(ev *QMouseEvent)) {
@@ -301,15 +406,30 @@ func (ptr *QPaintDeviceWindow) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQPaintDeviceWindowMouseDoubleClickEvent
-func callbackQPaintDeviceWindowMouseDoubleClickEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*QMouseEvent))(NewQMouseEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).MouseDoubleClickEventDefault(NewQMouseEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) MouseDoubleClickEvent(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_MouseDoubleClickEvent(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) MouseDoubleClickEventDefault(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_MouseDoubleClickEventDefault(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectMouseMoveEvent(f func(ev *QMouseEvent)) {
@@ -331,15 +451,30 @@ func (ptr *QPaintDeviceWindow) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQPaintDeviceWindowMouseMoveEvent
-func callbackQPaintDeviceWindowMouseMoveEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*QMouseEvent))(NewQMouseEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).MouseMoveEventDefault(NewQMouseEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) MouseMoveEvent(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_MouseMoveEvent(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) MouseMoveEventDefault(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_MouseMoveEventDefault(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectMousePressEvent(f func(ev *QMouseEvent)) {
@@ -361,15 +496,30 @@ func (ptr *QPaintDeviceWindow) DisconnectMousePressEvent() {
 }
 
 //export callbackQPaintDeviceWindowMousePressEvent
-func callbackQPaintDeviceWindowMousePressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*QMouseEvent))(NewQMouseEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).MousePressEventDefault(NewQMouseEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) MousePressEvent(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_MousePressEvent(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) MousePressEventDefault(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_MousePressEventDefault(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectMouseReleaseEvent(f func(ev *QMouseEvent)) {
@@ -391,15 +541,30 @@ func (ptr *QPaintDeviceWindow) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQPaintDeviceWindowMouseReleaseEvent
-func callbackQPaintDeviceWindowMouseReleaseEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*QMouseEvent))(NewQMouseEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).MouseReleaseEventDefault(NewQMouseEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) MouseReleaseEvent(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_MouseReleaseEvent(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) MouseReleaseEventDefault(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_MouseReleaseEventDefault(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectMoveEvent(f func(ev *QMoveEvent)) {
@@ -421,15 +586,30 @@ func (ptr *QPaintDeviceWindow) DisconnectMoveEvent() {
 }
 
 //export callbackQPaintDeviceWindowMoveEvent
-func callbackQPaintDeviceWindowMoveEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowMoveEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*QMoveEvent))(NewQMoveEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).MoveEventDefault(NewQMoveEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) MoveEvent(ev QMoveEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_MoveEvent(ptr.Pointer(), PointerFromQMoveEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) MoveEventDefault(ev QMoveEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_MoveEventDefault(ptr.Pointer(), PointerFromQMoveEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectResizeEvent(f func(ev *QResizeEvent)) {
@@ -451,15 +631,30 @@ func (ptr *QPaintDeviceWindow) DisconnectResizeEvent() {
 }
 
 //export callbackQPaintDeviceWindowResizeEvent
-func callbackQPaintDeviceWindowResizeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowResizeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*QResizeEvent))(NewQResizeEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).ResizeEventDefault(NewQResizeEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) ResizeEvent(ev QResizeEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_ResizeEvent(ptr.Pointer(), PointerFromQResizeEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) ResizeEventDefault(ev QResizeEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_ResizeEventDefault(ptr.Pointer(), PointerFromQResizeEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectShowEvent(f func(ev *QShowEvent)) {
@@ -481,15 +676,30 @@ func (ptr *QPaintDeviceWindow) DisconnectShowEvent() {
 }
 
 //export callbackQPaintDeviceWindowShowEvent
-func callbackQPaintDeviceWindowShowEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowShowEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*QShowEvent))(NewQShowEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).ShowEventDefault(NewQShowEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) ShowEvent(ev QShowEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_ShowEvent(ptr.Pointer(), PointerFromQShowEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) ShowEventDefault(ev QShowEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_ShowEventDefault(ptr.Pointer(), PointerFromQShowEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectTabletEvent(f func(ev *QTabletEvent)) {
@@ -511,15 +721,30 @@ func (ptr *QPaintDeviceWindow) DisconnectTabletEvent() {
 }
 
 //export callbackQPaintDeviceWindowTabletEvent
-func callbackQPaintDeviceWindowTabletEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowTabletEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*QTabletEvent))(NewQTabletEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).TabletEventDefault(NewQTabletEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) TabletEvent(ev QTabletEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_TabletEvent(ptr.Pointer(), PointerFromQTabletEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) TabletEventDefault(ev QTabletEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_TabletEventDefault(ptr.Pointer(), PointerFromQTabletEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectTouchEvent(f func(ev *QTouchEvent)) {
@@ -541,15 +766,30 @@ func (ptr *QPaintDeviceWindow) DisconnectTouchEvent() {
 }
 
 //export callbackQPaintDeviceWindowTouchEvent
-func callbackQPaintDeviceWindowTouchEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowTouchEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::touchEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "touchEvent"); signal != nil {
 		signal.(func(*QTouchEvent))(NewQTouchEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).TouchEventDefault(NewQTouchEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) TouchEvent(ev QTouchEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::touchEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_TouchEvent(ptr.Pointer(), PointerFromQTouchEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) TouchEventDefault(ev QTouchEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::touchEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_TouchEventDefault(ptr.Pointer(), PointerFromQTouchEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectWheelEvent(f func(ev *QWheelEvent)) {
@@ -571,15 +811,30 @@ func (ptr *QPaintDeviceWindow) DisconnectWheelEvent() {
 }
 
 //export callbackQPaintDeviceWindowWheelEvent
-func callbackQPaintDeviceWindowWheelEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowWheelEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*QWheelEvent))(NewQWheelEventFromPointer(ev))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).WheelEventDefault(NewQWheelEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) WheelEvent(ev QWheelEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_WheelEvent(ptr.Pointer(), PointerFromQWheelEvent(ev))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) WheelEventDefault(ev QWheelEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_WheelEventDefault(ptr.Pointer(), PointerFromQWheelEvent(ev))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -601,15 +856,30 @@ func (ptr *QPaintDeviceWindow) DisconnectTimerEvent() {
 }
 
 //export callbackQPaintDeviceWindowTimerEvent
-func callbackQPaintDeviceWindowTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -631,15 +901,30 @@ func (ptr *QPaintDeviceWindow) DisconnectChildEvent() {
 }
 
 //export callbackQPaintDeviceWindowChildEvent
-func callbackQPaintDeviceWindowChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QPaintDeviceWindow) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -661,13 +946,28 @@ func (ptr *QPaintDeviceWindow) DisconnectCustomEvent() {
 }
 
 //export callbackQPaintDeviceWindowCustomEvent
-func callbackQPaintDeviceWindowCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPaintDeviceWindowCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPaintDeviceWindow::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPaintDeviceWindow) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPaintDeviceWindow) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QPaintDeviceWindow::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

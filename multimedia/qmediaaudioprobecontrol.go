@@ -56,13 +56,21 @@ func (ptr *QMediaAudioProbeControl) DisconnectFlush() {
 }
 
 //export callbackQMediaAudioProbeControlFlush
-func callbackQMediaAudioProbeControlFlush(ptrName *C.char) {
+func callbackQMediaAudioProbeControlFlush(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QMediaAudioProbeControl::flush")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "flush"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QMediaAudioProbeControl) Flush() {
+	defer qt.Recovering("QMediaAudioProbeControl::flush")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAudioProbeControl_Flush(ptr.Pointer())
+	}
 }
 
 func (ptr *QMediaAudioProbeControl) DestroyQMediaAudioProbeControl() {
@@ -93,15 +101,30 @@ func (ptr *QMediaAudioProbeControl) DisconnectTimerEvent() {
 }
 
 //export callbackQMediaAudioProbeControlTimerEvent
-func callbackQMediaAudioProbeControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaAudioProbeControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaAudioProbeControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaAudioProbeControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaAudioProbeControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaAudioProbeControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAudioProbeControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMediaAudioProbeControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaAudioProbeControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAudioProbeControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMediaAudioProbeControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -123,15 +146,30 @@ func (ptr *QMediaAudioProbeControl) DisconnectChildEvent() {
 }
 
 //export callbackQMediaAudioProbeControlChildEvent
-func callbackQMediaAudioProbeControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaAudioProbeControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaAudioProbeControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaAudioProbeControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaAudioProbeControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaAudioProbeControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAudioProbeControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMediaAudioProbeControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaAudioProbeControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAudioProbeControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMediaAudioProbeControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -153,13 +191,28 @@ func (ptr *QMediaAudioProbeControl) DisconnectCustomEvent() {
 }
 
 //export callbackQMediaAudioProbeControlCustomEvent
-func callbackQMediaAudioProbeControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaAudioProbeControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaAudioProbeControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaAudioProbeControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaAudioProbeControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaAudioProbeControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAudioProbeControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMediaAudioProbeControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaAudioProbeControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAudioProbeControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

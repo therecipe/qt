@@ -72,13 +72,21 @@ func (ptr *QMacToolBarItem) DisconnectActivated() {
 }
 
 //export callbackQMacToolBarItemActivated
-func callbackQMacToolBarItemActivated(ptrName *C.char) {
+func callbackQMacToolBarItemActivated(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QMacToolBarItem::activated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QMacToolBarItem) Activated() {
+	defer qt.Recovering("QMacToolBarItem::activated")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_Activated(ptr.Pointer())
+	}
 }
 
 func (ptr *QMacToolBarItem) DestroyQMacToolBarItem() {
@@ -177,15 +185,30 @@ func (ptr *QMacToolBarItem) DisconnectTimerEvent() {
 }
 
 //export callbackQMacToolBarItemTimerEvent
-func callbackQMacToolBarItemTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacToolBarItemTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBarItem::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMacToolBarItemFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacToolBarItem) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMacToolBarItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMacToolBarItem) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMacToolBarItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMacToolBarItem) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -207,15 +230,30 @@ func (ptr *QMacToolBarItem) DisconnectChildEvent() {
 }
 
 //export callbackQMacToolBarItemChildEvent
-func callbackQMacToolBarItemChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacToolBarItemChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBarItem::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMacToolBarItemFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacToolBarItem) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMacToolBarItem::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMacToolBarItem) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMacToolBarItem::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMacToolBarItem) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -237,13 +275,28 @@ func (ptr *QMacToolBarItem) DisconnectCustomEvent() {
 }
 
 //export callbackQMacToolBarItemCustomEvent
-func callbackQMacToolBarItemCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacToolBarItemCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBarItem::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMacToolBarItemFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacToolBarItem) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacToolBarItem::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMacToolBarItem) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacToolBarItem::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

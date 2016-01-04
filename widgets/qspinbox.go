@@ -166,10 +166,28 @@ func (ptr *QSpinBox) Value() int {
 	return 0
 }
 
+func (ptr *QSpinBox) ValueFromText(text string) int {
+	defer qt.Recovering("QSpinBox::valueFromText")
+
+	if ptr.Pointer() != nil {
+		return int(C.QSpinBox_ValueFromText(ptr.Pointer(), C.CString(text)))
+	}
+	return 0
+}
+
 func NewQSpinBox(parent QWidget_ITF) *QSpinBox {
 	defer qt.Recovering("QSpinBox::QSpinBox")
 
 	return NewQSpinBoxFromPointer(C.QSpinBox_NewQSpinBox(PointerFromQWidget(parent)))
+}
+
+func (ptr *QSpinBox) Event(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QSpinBox::event")
+
+	if ptr.Pointer() != nil {
+		return C.QSpinBox_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 func (ptr *QSpinBox) SetRange(minimum int, maximum int) {
@@ -178,6 +196,15 @@ func (ptr *QSpinBox) SetRange(minimum int, maximum int) {
 	if ptr.Pointer() != nil {
 		C.QSpinBox_SetRange(ptr.Pointer(), C.int(minimum), C.int(maximum))
 	}
+}
+
+func (ptr *QSpinBox) TextFromValue(value int) string {
+	defer qt.Recovering("QSpinBox::textFromValue")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QSpinBox_TextFromValue(ptr.Pointer(), C.int(value)))
+	}
+	return ""
 }
 
 func (ptr *QSpinBox) ConnectValueChanged2(f func(text string)) {
@@ -199,13 +226,21 @@ func (ptr *QSpinBox) DisconnectValueChanged2() {
 }
 
 //export callbackQSpinBoxValueChanged2
-func callbackQSpinBoxValueChanged2(ptrName *C.char, text *C.char) {
+func callbackQSpinBoxValueChanged2(ptr unsafe.Pointer, ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QSpinBox::valueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged2"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
+}
+
+func (ptr *QSpinBox) ValueChanged2(text string) {
+	defer qt.Recovering("QSpinBox::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ValueChanged2(ptr.Pointer(), C.CString(text))
+	}
 }
 
 func (ptr *QSpinBox) ConnectValueChanged(f func(i int)) {
@@ -227,13 +262,21 @@ func (ptr *QSpinBox) DisconnectValueChanged() {
 }
 
 //export callbackQSpinBoxValueChanged
-func callbackQSpinBoxValueChanged(ptrName *C.char, i C.int) {
+func callbackQSpinBoxValueChanged(ptr unsafe.Pointer, ptrName *C.char, i C.int) {
 	defer qt.Recovering("callback QSpinBox::valueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func(int))(int(i))
 	}
 
+}
+
+func (ptr *QSpinBox) ValueChanged(i int) {
+	defer qt.Recovering("QSpinBox::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ValueChanged(ptr.Pointer(), C.int(i))
+	}
 }
 
 func (ptr *QSpinBox) DestroyQSpinBox() {
@@ -264,15 +307,30 @@ func (ptr *QSpinBox) DisconnectChangeEvent() {
 }
 
 //export callbackQSpinBoxChangeEvent
-func callbackQSpinBoxChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSpinBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSpinBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectClear(f func()) {
@@ -294,7 +352,7 @@ func (ptr *QSpinBox) DisconnectClear() {
 }
 
 //export callbackQSpinBoxClear
-func callbackQSpinBoxClear(ptrName *C.char) bool {
+func callbackQSpinBoxClear(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QSpinBox::clear")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
@@ -303,6 +361,22 @@ func callbackQSpinBoxClear(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QSpinBox) Clear() {
+	defer qt.Recovering("QSpinBox::clear")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QSpinBox) ClearDefault() {
+	defer qt.Recovering("QSpinBox::clear")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ClearDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QSpinBox) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -324,15 +398,30 @@ func (ptr *QSpinBox) DisconnectCloseEvent() {
 }
 
 //export callbackQSpinBoxCloseEvent
-func callbackQSpinBoxCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QSpinBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QSpinBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -354,15 +443,30 @@ func (ptr *QSpinBox) DisconnectContextMenuEvent() {
 }
 
 //export callbackQSpinBoxContextMenuEvent
-func callbackQSpinBoxContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QSpinBox::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QSpinBox::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -384,15 +488,30 @@ func (ptr *QSpinBox) DisconnectFocusInEvent() {
 }
 
 //export callbackQSpinBoxFocusInEvent
-func callbackQSpinBoxFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSpinBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSpinBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -414,15 +533,30 @@ func (ptr *QSpinBox) DisconnectFocusOutEvent() {
 }
 
 //export callbackQSpinBoxFocusOutEvent
-func callbackQSpinBoxFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSpinBox::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSpinBox::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -444,15 +578,30 @@ func (ptr *QSpinBox) DisconnectHideEvent() {
 }
 
 //export callbackQSpinBoxHideEvent
-func callbackQSpinBoxHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QSpinBox::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QSpinBox::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -474,15 +623,30 @@ func (ptr *QSpinBox) DisconnectKeyPressEvent() {
 }
 
 //export callbackQSpinBoxKeyPressEvent
-func callbackQSpinBoxKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSpinBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSpinBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -504,15 +668,30 @@ func (ptr *QSpinBox) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQSpinBoxKeyReleaseEvent
-func callbackQSpinBoxKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSpinBox::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSpinBox::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -534,15 +713,30 @@ func (ptr *QSpinBox) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQSpinBoxMouseMoveEvent
-func callbackQSpinBoxMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSpinBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSpinBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -564,15 +758,30 @@ func (ptr *QSpinBox) DisconnectMousePressEvent() {
 }
 
 //export callbackQSpinBoxMousePressEvent
-func callbackQSpinBoxMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSpinBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSpinBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -594,15 +803,30 @@ func (ptr *QSpinBox) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQSpinBoxMouseReleaseEvent
-func callbackQSpinBoxMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSpinBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSpinBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -624,15 +848,30 @@ func (ptr *QSpinBox) DisconnectPaintEvent() {
 }
 
 //export callbackQSpinBoxPaintEvent
-func callbackQSpinBoxPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QSpinBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QSpinBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -654,15 +893,30 @@ func (ptr *QSpinBox) DisconnectResizeEvent() {
 }
 
 //export callbackQSpinBoxResizeEvent
-func callbackQSpinBoxResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QSpinBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QSpinBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -684,15 +938,30 @@ func (ptr *QSpinBox) DisconnectShowEvent() {
 }
 
 //export callbackQSpinBoxShowEvent
-func callbackQSpinBoxShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QSpinBox::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QSpinBox::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectStepBy(f func(steps int)) {
@@ -714,15 +983,30 @@ func (ptr *QSpinBox) DisconnectStepBy() {
 }
 
 //export callbackQSpinBoxStepBy
-func callbackQSpinBoxStepBy(ptrName *C.char, steps C.int) bool {
+func callbackQSpinBoxStepBy(ptr unsafe.Pointer, ptrName *C.char, steps C.int) {
 	defer qt.Recovering("callback QSpinBox::stepBy")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stepBy"); signal != nil {
 		signal.(func(int))(int(steps))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).StepByDefault(int(steps))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) StepBy(steps int) {
+	defer qt.Recovering("QSpinBox::stepBy")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_StepBy(ptr.Pointer(), C.int(steps))
+	}
+}
+
+func (ptr *QSpinBox) StepByDefault(steps int) {
+	defer qt.Recovering("QSpinBox::stepBy")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_StepByDefault(ptr.Pointer(), C.int(steps))
+	}
 }
 
 func (ptr *QSpinBox) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -744,15 +1028,30 @@ func (ptr *QSpinBox) DisconnectTimerEvent() {
 }
 
 //export callbackQSpinBoxTimerEvent
-func callbackQSpinBoxTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSpinBox::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSpinBox::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -774,15 +1073,30 @@ func (ptr *QSpinBox) DisconnectWheelEvent() {
 }
 
 //export callbackQSpinBoxWheelEvent
-func callbackQSpinBoxWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QSpinBox::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QSpinBox::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -804,15 +1118,30 @@ func (ptr *QSpinBox) DisconnectActionEvent() {
 }
 
 //export callbackQSpinBoxActionEvent
-func callbackQSpinBoxActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QSpinBox::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QSpinBox::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -834,15 +1163,30 @@ func (ptr *QSpinBox) DisconnectDragEnterEvent() {
 }
 
 //export callbackQSpinBoxDragEnterEvent
-func callbackQSpinBoxDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QSpinBox::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QSpinBox::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -864,15 +1208,30 @@ func (ptr *QSpinBox) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQSpinBoxDragLeaveEvent
-func callbackQSpinBoxDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QSpinBox::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QSpinBox::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -894,15 +1253,30 @@ func (ptr *QSpinBox) DisconnectDragMoveEvent() {
 }
 
 //export callbackQSpinBoxDragMoveEvent
-func callbackQSpinBoxDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QSpinBox::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QSpinBox::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -924,15 +1298,30 @@ func (ptr *QSpinBox) DisconnectDropEvent() {
 }
 
 //export callbackQSpinBoxDropEvent
-func callbackQSpinBoxDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QSpinBox::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QSpinBox::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -954,15 +1343,30 @@ func (ptr *QSpinBox) DisconnectEnterEvent() {
 }
 
 //export callbackQSpinBoxEnterEvent
-func callbackQSpinBoxEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSpinBox::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSpinBox::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -984,15 +1388,30 @@ func (ptr *QSpinBox) DisconnectLeaveEvent() {
 }
 
 //export callbackQSpinBoxLeaveEvent
-func callbackQSpinBoxLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSpinBox::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSpinBox::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1014,15 +1433,30 @@ func (ptr *QSpinBox) DisconnectMoveEvent() {
 }
 
 //export callbackQSpinBoxMoveEvent
-func callbackQSpinBoxMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QSpinBox::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QSpinBox::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectSetVisible(f func(visible bool)) {
@@ -1044,7 +1478,7 @@ func (ptr *QSpinBox) DisconnectSetVisible() {
 }
 
 //export callbackQSpinBoxSetVisible
-func callbackQSpinBoxSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQSpinBoxSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QSpinBox::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -1053,6 +1487,22 @@ func callbackQSpinBoxSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QSpinBox) SetVisible(visible bool) {
+	defer qt.Recovering("QSpinBox::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QSpinBox) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QSpinBox::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QSpinBox) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1074,15 +1524,30 @@ func (ptr *QSpinBox) DisconnectInitPainter() {
 }
 
 //export callbackQSpinBoxInitPainter
-func callbackQSpinBoxInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQSpinBoxInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QSpinBox::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QSpinBox) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QSpinBox::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QSpinBox) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -1104,15 +1569,30 @@ func (ptr *QSpinBox) DisconnectInputMethodEvent() {
 }
 
 //export callbackQSpinBoxInputMethodEvent
-func callbackQSpinBoxInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QSpinBox::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QSpinBox::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1134,15 +1614,30 @@ func (ptr *QSpinBox) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQSpinBoxMouseDoubleClickEvent
-func callbackQSpinBoxMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSpinBox::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSpinBox::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1164,15 +1659,30 @@ func (ptr *QSpinBox) DisconnectTabletEvent() {
 }
 
 //export callbackQSpinBoxTabletEvent
-func callbackQSpinBoxTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QSpinBox::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QSpinBox::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1194,15 +1704,30 @@ func (ptr *QSpinBox) DisconnectChildEvent() {
 }
 
 //export callbackQSpinBoxChildEvent
-func callbackQSpinBoxChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSpinBox::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSpinBox::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSpinBox) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1224,13 +1749,28 @@ func (ptr *QSpinBox) DisconnectCustomEvent() {
 }
 
 //export callbackQSpinBoxCustomEvent
-func callbackQSpinBoxCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSpinBoxCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSpinBox::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSpinBoxFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSpinBox) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSpinBox::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSpinBox) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSpinBox::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSpinBox_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -203,15 +203,30 @@ func (ptr *QSessionManager) DisconnectTimerEvent() {
 }
 
 //export callbackQSessionManagerTimerEvent
-func callbackQSessionManagerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSessionManagerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSessionManager::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSessionManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSessionManager) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSessionManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSessionManager_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSessionManager) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSessionManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSessionManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSessionManager) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -233,15 +248,30 @@ func (ptr *QSessionManager) DisconnectChildEvent() {
 }
 
 //export callbackQSessionManagerChildEvent
-func callbackQSessionManagerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSessionManagerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSessionManager::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSessionManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSessionManager) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSessionManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSessionManager_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSessionManager) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSessionManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSessionManager_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSessionManager) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -263,13 +293,28 @@ func (ptr *QSessionManager) DisconnectCustomEvent() {
 }
 
 //export callbackQSessionManagerCustomEvent
-func callbackQSessionManagerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSessionManagerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSessionManager::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSessionManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSessionManager) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSessionManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSessionManager_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSessionManager) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSessionManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSessionManager_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

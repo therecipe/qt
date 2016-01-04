@@ -128,15 +128,30 @@ func (ptr *QFileDevice) DisconnectClose() {
 }
 
 //export callbackQFileDeviceClose
-func callbackQFileDeviceClose(ptrName *C.char) bool {
+func callbackQFileDeviceClose(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QFileDevice::close")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQFileDeviceFromPointer(ptr).CloseDefault()
 	}
-	return false
+}
 
+func (ptr *QFileDevice) Close() {
+	defer qt.Recovering("QFileDevice::close")
+
+	if ptr.Pointer() != nil {
+		C.QFileDevice_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QFileDevice) CloseDefault() {
+	defer qt.Recovering("QFileDevice::close")
+
+	if ptr.Pointer() != nil {
+		C.QFileDevice_CloseDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QFileDevice) Error() QFileDevice__FileError {
@@ -202,6 +217,24 @@ func (ptr *QFileDevice) Pos() int64 {
 	return 0
 }
 
+func (ptr *QFileDevice) ReadData(data string, len int64) int64 {
+	defer qt.Recovering("QFileDevice::readData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QFileDevice_ReadData(ptr.Pointer(), C.CString(data), C.longlong(len)))
+	}
+	return 0
+}
+
+func (ptr *QFileDevice) ReadLineData(data string, maxlen int64) int64 {
+	defer qt.Recovering("QFileDevice::readLineData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QFileDevice_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
+	}
+	return 0
+}
+
 func (ptr *QFileDevice) Resize(sz int64) bool {
 	defer qt.Recovering("QFileDevice::resize")
 
@@ -237,6 +270,15 @@ func (ptr *QFileDevice) UnsetError() {
 	}
 }
 
+func (ptr *QFileDevice) WriteData(data string, len int64) int64 {
+	defer qt.Recovering("QFileDevice::writeData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QFileDevice_WriteData(ptr.Pointer(), C.CString(data), C.longlong(len)))
+	}
+	return 0
+}
+
 func (ptr *QFileDevice) DestroyQFileDevice() {
 	defer qt.Recovering("QFileDevice::~QFileDevice")
 
@@ -265,15 +307,30 @@ func (ptr *QFileDevice) DisconnectTimerEvent() {
 }
 
 //export callbackQFileDeviceTimerEvent
-func callbackQFileDeviceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDeviceTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDevice::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDeviceFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDevice) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QFileDevice::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDevice_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QFileDevice) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QFileDevice::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDevice_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QFileDevice) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -295,15 +352,30 @@ func (ptr *QFileDevice) DisconnectChildEvent() {
 }
 
 //export callbackQFileDeviceChildEvent
-func callbackQFileDeviceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDeviceChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDevice::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDeviceFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDevice) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QFileDevice::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDevice_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QFileDevice) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QFileDevice::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDevice_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QFileDevice) ConnectCustomEvent(f func(event *QEvent)) {
@@ -325,13 +397,28 @@ func (ptr *QFileDevice) DisconnectCustomEvent() {
 }
 
 //export callbackQFileDeviceCustomEvent
-func callbackQFileDeviceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileDeviceCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileDevice::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFileDeviceFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileDevice) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QFileDevice::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDevice_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFileDevice) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QFileDevice::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileDevice_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

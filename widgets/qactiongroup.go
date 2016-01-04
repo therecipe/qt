@@ -150,13 +150,21 @@ func (ptr *QActionGroup) DisconnectHovered() {
 }
 
 //export callbackQActionGroupHovered
-func callbackQActionGroupHovered(ptrName *C.char, action unsafe.Pointer) {
+func callbackQActionGroupHovered(ptr unsafe.Pointer, ptrName *C.char, action unsafe.Pointer) {
 	defer qt.Recovering("callback QActionGroup::hovered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hovered"); signal != nil {
 		signal.(func(*QAction))(NewQActionFromPointer(action))
 	}
 
+}
+
+func (ptr *QActionGroup) Hovered(action QAction_ITF) {
+	defer qt.Recovering("QActionGroup::hovered")
+
+	if ptr.Pointer() != nil {
+		C.QActionGroup_Hovered(ptr.Pointer(), PointerFromQAction(action))
+	}
 }
 
 func (ptr *QActionGroup) RemoveAction(action QAction_ITF) {
@@ -194,13 +202,21 @@ func (ptr *QActionGroup) DisconnectTriggered() {
 }
 
 //export callbackQActionGroupTriggered
-func callbackQActionGroupTriggered(ptrName *C.char, action unsafe.Pointer) {
+func callbackQActionGroupTriggered(ptr unsafe.Pointer, ptrName *C.char, action unsafe.Pointer) {
 	defer qt.Recovering("callback QActionGroup::triggered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "triggered"); signal != nil {
 		signal.(func(*QAction))(NewQActionFromPointer(action))
 	}
 
+}
+
+func (ptr *QActionGroup) Triggered(action QAction_ITF) {
+	defer qt.Recovering("QActionGroup::triggered")
+
+	if ptr.Pointer() != nil {
+		C.QActionGroup_Triggered(ptr.Pointer(), PointerFromQAction(action))
+	}
 }
 
 func (ptr *QActionGroup) DestroyQActionGroup() {
@@ -231,15 +247,30 @@ func (ptr *QActionGroup) DisconnectTimerEvent() {
 }
 
 //export callbackQActionGroupTimerEvent
-func callbackQActionGroupTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQActionGroupTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QActionGroup::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQActionGroupFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QActionGroup) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QActionGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QActionGroup_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QActionGroup) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QActionGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QActionGroup_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QActionGroup) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -261,15 +292,30 @@ func (ptr *QActionGroup) DisconnectChildEvent() {
 }
 
 //export callbackQActionGroupChildEvent
-func callbackQActionGroupChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQActionGroupChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QActionGroup::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQActionGroupFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QActionGroup) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QActionGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QActionGroup_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QActionGroup) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QActionGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QActionGroup_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QActionGroup) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -291,13 +337,28 @@ func (ptr *QActionGroup) DisconnectCustomEvent() {
 }
 
 //export callbackQActionGroupCustomEvent
-func callbackQActionGroupCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQActionGroupCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QActionGroup::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQActionGroupFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QActionGroup) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QActionGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QActionGroup_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QActionGroup) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QActionGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QActionGroup_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

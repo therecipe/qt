@@ -100,15 +100,30 @@ func (ptr *QAbstractTableModel) DisconnectFetchMore() {
 }
 
 //export callbackQAbstractTableModelFetchMore
-func callbackQAbstractTableModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+func callbackQAbstractTableModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractTableModel::fetchMore")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
-		return true
+	} else {
+		NewQAbstractTableModelFromPointer(ptr).FetchMoreDefault(NewQModelIndexFromPointer(parent))
 	}
-	return false
+}
 
+func (ptr *QAbstractTableModel) FetchMore(parent QModelIndex_ITF) {
+	defer qt.Recovering("QAbstractTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_FetchMore(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QAbstractTableModel) FetchMoreDefault(parent QModelIndex_ITF) {
+	defer qt.Recovering("QAbstractTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_FetchMoreDefault(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
 }
 
 func (ptr *QAbstractTableModel) ConnectRevert(f func()) {
@@ -130,7 +145,7 @@ func (ptr *QAbstractTableModel) DisconnectRevert() {
 }
 
 //export callbackQAbstractTableModelRevert
-func callbackQAbstractTableModelRevert(ptrName *C.char) bool {
+func callbackQAbstractTableModelRevert(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QAbstractTableModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
@@ -139,6 +154,22 @@ func callbackQAbstractTableModelRevert(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QAbstractTableModel) Revert() {
+	defer qt.Recovering("QAbstractTableModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_Revert(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractTableModel) RevertDefault() {
+	defer qt.Recovering("QAbstractTableModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_RevertDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractTableModel) ConnectSort(f func(column int, order Qt__SortOrder)) {
@@ -160,15 +191,30 @@ func (ptr *QAbstractTableModel) DisconnectSort() {
 }
 
 //export callbackQAbstractTableModelSort
-func callbackQAbstractTableModelSort(ptrName *C.char, column C.int, order C.int) bool {
+func callbackQAbstractTableModelSort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
 	defer qt.Recovering("callback QAbstractTableModel::sort")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
-		return true
+	} else {
+		NewQAbstractTableModelFromPointer(ptr).SortDefault(int(column), Qt__SortOrder(order))
 	}
-	return false
+}
 
+func (ptr *QAbstractTableModel) Sort(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QAbstractTableModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
+	}
+}
+
+func (ptr *QAbstractTableModel) SortDefault(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QAbstractTableModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
+	}
 }
 
 func (ptr *QAbstractTableModel) ConnectTimerEvent(f func(event *QTimerEvent)) {
@@ -190,15 +236,30 @@ func (ptr *QAbstractTableModel) DisconnectTimerEvent() {
 }
 
 //export callbackQAbstractTableModelTimerEvent
-func callbackQAbstractTableModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractTableModelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractTableModel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractTableModelFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractTableModel) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractTableModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAbstractTableModel) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractTableModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAbstractTableModel) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -220,15 +281,30 @@ func (ptr *QAbstractTableModel) DisconnectChildEvent() {
 }
 
 //export callbackQAbstractTableModelChildEvent
-func callbackQAbstractTableModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractTableModelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractTableModel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractTableModelFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractTableModel) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractTableModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAbstractTableModel) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractTableModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAbstractTableModel) ConnectCustomEvent(f func(event *QEvent)) {
@@ -250,13 +326,28 @@ func (ptr *QAbstractTableModel) DisconnectCustomEvent() {
 }
 
 //export callbackQAbstractTableModelCustomEvent
-func callbackQAbstractTableModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractTableModelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractTableModel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractTableModelFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractTableModel) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QAbstractTableModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractTableModel) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QAbstractTableModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTableModel_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

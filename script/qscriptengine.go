@@ -389,13 +389,21 @@ func (ptr *QScriptEngine) DisconnectSignalHandlerException() {
 }
 
 //export callbackQScriptEngineSignalHandlerException
-func callbackQScriptEngineSignalHandlerException(ptrName *C.char, exception unsafe.Pointer) {
+func callbackQScriptEngineSignalHandlerException(ptr unsafe.Pointer, ptrName *C.char, exception unsafe.Pointer) {
 	defer qt.Recovering("callback QScriptEngine::signalHandlerException")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "signalHandlerException"); signal != nil {
 		signal.(func(*QScriptValue))(NewQScriptValueFromPointer(exception))
 	}
 
+}
+
+func (ptr *QScriptEngine) SignalHandlerException(exception QScriptValue_ITF) {
+	defer qt.Recovering("QScriptEngine::signalHandlerException")
+
+	if ptr.Pointer() != nil {
+		C.QScriptEngine_SignalHandlerException(ptr.Pointer(), PointerFromQScriptValue(exception))
+	}
 }
 
 func (ptr *QScriptEngine) ToObject(value QScriptValue_ITF) *QScriptValue {
@@ -471,15 +479,30 @@ func (ptr *QScriptEngine) DisconnectTimerEvent() {
 }
 
 //export callbackQScriptEngineTimerEvent
-func callbackQScriptEngineTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScriptEngineTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScriptEngine::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQScriptEngineFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScriptEngine) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QScriptEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScriptEngine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QScriptEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QScriptEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScriptEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QScriptEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -501,15 +524,30 @@ func (ptr *QScriptEngine) DisconnectChildEvent() {
 }
 
 //export callbackQScriptEngineChildEvent
-func callbackQScriptEngineChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScriptEngineChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScriptEngine::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQScriptEngineFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScriptEngine) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QScriptEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScriptEngine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QScriptEngine) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QScriptEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScriptEngine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QScriptEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -531,13 +569,28 @@ func (ptr *QScriptEngine) DisconnectCustomEvent() {
 }
 
 //export callbackQScriptEngineCustomEvent
-func callbackQScriptEngineCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScriptEngineCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScriptEngine::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQScriptEngineFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScriptEngine) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QScriptEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScriptEngine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QScriptEngine) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QScriptEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScriptEngine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -222,6 +222,15 @@ func NewQProgressBar(parent QWidget_ITF) *QProgressBar {
 	return NewQProgressBarFromPointer(C.QProgressBar_NewQProgressBar(PointerFromQWidget(parent)))
 }
 
+func (ptr *QProgressBar) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QProgressBar::event")
+
+	if ptr.Pointer() != nil {
+		return C.QProgressBar_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
 func (ptr *QProgressBar) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QProgressBar::minimumSizeHint")
 
@@ -250,15 +259,30 @@ func (ptr *QProgressBar) DisconnectPaintEvent() {
 }
 
 //export callbackQProgressBarPaintEvent
-func callbackQProgressBarPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQProgressBarPaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) PaintEvent(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QProgressBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
+}
+
+func (ptr *QProgressBar) PaintEventDefault(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QProgressBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
 }
 
 func (ptr *QProgressBar) Reset() {
@@ -305,13 +329,21 @@ func (ptr *QProgressBar) DisconnectValueChanged() {
 }
 
 //export callbackQProgressBarValueChanged
-func callbackQProgressBarValueChanged(ptrName *C.char, value C.int) {
+func callbackQProgressBarValueChanged(ptr unsafe.Pointer, ptrName *C.char, value C.int) {
 	defer qt.Recovering("callback QProgressBar::valueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func(int))(int(value))
 	}
 
+}
+
+func (ptr *QProgressBar) ValueChanged(value int) {
+	defer qt.Recovering("QProgressBar::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ValueChanged(ptr.Pointer(), C.int(value))
+	}
 }
 
 func (ptr *QProgressBar) DestroyQProgressBar() {
@@ -342,15 +374,30 @@ func (ptr *QProgressBar) DisconnectActionEvent() {
 }
 
 //export callbackQProgressBarActionEvent
-func callbackQProgressBarActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QProgressBar::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QProgressBar::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -372,15 +419,30 @@ func (ptr *QProgressBar) DisconnectDragEnterEvent() {
 }
 
 //export callbackQProgressBarDragEnterEvent
-func callbackQProgressBarDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QProgressBar::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QProgressBar::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -402,15 +464,30 @@ func (ptr *QProgressBar) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQProgressBarDragLeaveEvent
-func callbackQProgressBarDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QProgressBar::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QProgressBar::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -432,15 +509,30 @@ func (ptr *QProgressBar) DisconnectDragMoveEvent() {
 }
 
 //export callbackQProgressBarDragMoveEvent
-func callbackQProgressBarDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QProgressBar::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QProgressBar::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -462,15 +554,30 @@ func (ptr *QProgressBar) DisconnectDropEvent() {
 }
 
 //export callbackQProgressBarDropEvent
-func callbackQProgressBarDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QProgressBar::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QProgressBar::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -492,15 +599,30 @@ func (ptr *QProgressBar) DisconnectEnterEvent() {
 }
 
 //export callbackQProgressBarEnterEvent
-func callbackQProgressBarEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QProgressBar::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QProgressBar::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -522,15 +644,30 @@ func (ptr *QProgressBar) DisconnectFocusInEvent() {
 }
 
 //export callbackQProgressBarFocusInEvent
-func callbackQProgressBarFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QProgressBar::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QProgressBar::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -552,15 +689,30 @@ func (ptr *QProgressBar) DisconnectFocusOutEvent() {
 }
 
 //export callbackQProgressBarFocusOutEvent
-func callbackQProgressBarFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QProgressBar::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QProgressBar::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -582,15 +734,30 @@ func (ptr *QProgressBar) DisconnectHideEvent() {
 }
 
 //export callbackQProgressBarHideEvent
-func callbackQProgressBarHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QProgressBar::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QProgressBar::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -612,15 +779,30 @@ func (ptr *QProgressBar) DisconnectLeaveEvent() {
 }
 
 //export callbackQProgressBarLeaveEvent
-func callbackQProgressBarLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QProgressBar::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QProgressBar::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -642,15 +824,30 @@ func (ptr *QProgressBar) DisconnectMoveEvent() {
 }
 
 //export callbackQProgressBarMoveEvent
-func callbackQProgressBarMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QProgressBar::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QProgressBar::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectSetVisible(f func(visible bool)) {
@@ -672,7 +869,7 @@ func (ptr *QProgressBar) DisconnectSetVisible() {
 }
 
 //export callbackQProgressBarSetVisible
-func callbackQProgressBarSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQProgressBarSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QProgressBar::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -681,6 +878,22 @@ func callbackQProgressBarSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QProgressBar) SetVisible(visible bool) {
+	defer qt.Recovering("QProgressBar::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QProgressBar) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QProgressBar::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QProgressBar) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -702,15 +915,30 @@ func (ptr *QProgressBar) DisconnectShowEvent() {
 }
 
 //export callbackQProgressBarShowEvent
-func callbackQProgressBarShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QProgressBar::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QProgressBar::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -732,15 +960,30 @@ func (ptr *QProgressBar) DisconnectChangeEvent() {
 }
 
 //export callbackQProgressBarChangeEvent
-func callbackQProgressBarChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QProgressBar::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QProgressBar::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -762,15 +1005,30 @@ func (ptr *QProgressBar) DisconnectCloseEvent() {
 }
 
 //export callbackQProgressBarCloseEvent
-func callbackQProgressBarCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QProgressBar::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QProgressBar::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -792,15 +1050,30 @@ func (ptr *QProgressBar) DisconnectContextMenuEvent() {
 }
 
 //export callbackQProgressBarContextMenuEvent
-func callbackQProgressBarContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QProgressBar::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QProgressBar::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -822,15 +1095,30 @@ func (ptr *QProgressBar) DisconnectInitPainter() {
 }
 
 //export callbackQProgressBarInitPainter
-func callbackQProgressBarInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQProgressBarInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QProgressBar::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QProgressBar) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QProgressBar::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QProgressBar) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -852,15 +1140,30 @@ func (ptr *QProgressBar) DisconnectInputMethodEvent() {
 }
 
 //export callbackQProgressBarInputMethodEvent
-func callbackQProgressBarInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QProgressBar::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QProgressBar::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -882,15 +1185,30 @@ func (ptr *QProgressBar) DisconnectKeyPressEvent() {
 }
 
 //export callbackQProgressBarKeyPressEvent
-func callbackQProgressBarKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QProgressBar::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QProgressBar::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -912,15 +1230,30 @@ func (ptr *QProgressBar) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQProgressBarKeyReleaseEvent
-func callbackQProgressBarKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QProgressBar::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QProgressBar::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -942,15 +1275,30 @@ func (ptr *QProgressBar) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQProgressBarMouseDoubleClickEvent
-func callbackQProgressBarMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QProgressBar::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QProgressBar::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -972,15 +1320,30 @@ func (ptr *QProgressBar) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQProgressBarMouseMoveEvent
-func callbackQProgressBarMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QProgressBar::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QProgressBar::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -1002,15 +1365,30 @@ func (ptr *QProgressBar) DisconnectMousePressEvent() {
 }
 
 //export callbackQProgressBarMousePressEvent
-func callbackQProgressBarMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QProgressBar::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QProgressBar::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1032,15 +1410,30 @@ func (ptr *QProgressBar) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQProgressBarMouseReleaseEvent
-func callbackQProgressBarMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QProgressBar::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QProgressBar::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -1062,15 +1455,30 @@ func (ptr *QProgressBar) DisconnectResizeEvent() {
 }
 
 //export callbackQProgressBarResizeEvent
-func callbackQProgressBarResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QProgressBar::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QProgressBar::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1092,15 +1500,30 @@ func (ptr *QProgressBar) DisconnectTabletEvent() {
 }
 
 //export callbackQProgressBarTabletEvent
-func callbackQProgressBarTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QProgressBar::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QProgressBar::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1122,15 +1545,30 @@ func (ptr *QProgressBar) DisconnectWheelEvent() {
 }
 
 //export callbackQProgressBarWheelEvent
-func callbackQProgressBarWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QProgressBar::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QProgressBar::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1152,15 +1590,30 @@ func (ptr *QProgressBar) DisconnectTimerEvent() {
 }
 
 //export callbackQProgressBarTimerEvent
-func callbackQProgressBarTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QProgressBar::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QProgressBar::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1182,15 +1635,30 @@ func (ptr *QProgressBar) DisconnectChildEvent() {
 }
 
 //export callbackQProgressBarChildEvent
-func callbackQProgressBarChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QProgressBar::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QProgressBar::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QProgressBar) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1212,13 +1680,28 @@ func (ptr *QProgressBar) DisconnectCustomEvent() {
 }
 
 //export callbackQProgressBarCustomEvent
-func callbackQProgressBarCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProgressBarCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProgressBar::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQProgressBarFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProgressBar) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QProgressBar::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QProgressBar) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QProgressBar::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProgressBar_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

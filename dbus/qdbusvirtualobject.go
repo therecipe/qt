@@ -83,15 +83,30 @@ func (ptr *QDBusVirtualObject) DisconnectTimerEvent() {
 }
 
 //export callbackQDBusVirtualObjectTimerEvent
-func callbackQDBusVirtualObjectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusVirtualObjectTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusVirtualObject::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusVirtualObjectFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusVirtualObject) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDBusVirtualObject::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusVirtualObject_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDBusVirtualObject) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDBusVirtualObject::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusVirtualObject_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDBusVirtualObject) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -113,15 +128,30 @@ func (ptr *QDBusVirtualObject) DisconnectChildEvent() {
 }
 
 //export callbackQDBusVirtualObjectChildEvent
-func callbackQDBusVirtualObjectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusVirtualObjectChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusVirtualObject::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusVirtualObjectFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusVirtualObject) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDBusVirtualObject::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusVirtualObject_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDBusVirtualObject) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDBusVirtualObject::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusVirtualObject_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDBusVirtualObject) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -143,13 +173,28 @@ func (ptr *QDBusVirtualObject) DisconnectCustomEvent() {
 }
 
 //export callbackQDBusVirtualObjectCustomEvent
-func callbackQDBusVirtualObjectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusVirtualObjectCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusVirtualObject::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusVirtualObjectFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusVirtualObject) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDBusVirtualObject::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusVirtualObject_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDBusVirtualObject) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDBusVirtualObject::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusVirtualObject_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

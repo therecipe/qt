@@ -93,13 +93,21 @@ func (ptr *QMetaDataWriterControl) DisconnectMetaDataAvailableChanged() {
 }
 
 //export callbackQMetaDataWriterControlMetaDataAvailableChanged
-func callbackQMetaDataWriterControlMetaDataAvailableChanged(ptrName *C.char, available C.int) {
+func callbackQMetaDataWriterControlMetaDataAvailableChanged(ptr unsafe.Pointer, ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QMetaDataWriterControl::metaDataAvailableChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataAvailableChanged"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
+}
+
+func (ptr *QMetaDataWriterControl) MetaDataAvailableChanged(available bool) {
+	defer qt.Recovering("QMetaDataWriterControl::metaDataAvailableChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_MetaDataAvailableChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(available)))
+	}
 }
 
 func (ptr *QMetaDataWriterControl) ConnectMetaDataChanged(f func()) {
@@ -121,13 +129,21 @@ func (ptr *QMetaDataWriterControl) DisconnectMetaDataChanged() {
 }
 
 //export callbackQMetaDataWriterControlMetaDataChanged
-func callbackQMetaDataWriterControlMetaDataChanged(ptrName *C.char) {
+func callbackQMetaDataWriterControlMetaDataChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QMetaDataWriterControl::metaDataChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QMetaDataWriterControl) MetaDataChanged() {
+	defer qt.Recovering("QMetaDataWriterControl::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_MetaDataChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QMetaDataWriterControl) ConnectMetaDataChanged2(f func(key string, value *core.QVariant)) {
@@ -149,13 +165,21 @@ func (ptr *QMetaDataWriterControl) DisconnectMetaDataChanged2() {
 }
 
 //export callbackQMetaDataWriterControlMetaDataChanged2
-func callbackQMetaDataWriterControlMetaDataChanged2(ptrName *C.char, key *C.char, value unsafe.Pointer) {
+func callbackQMetaDataWriterControlMetaDataChanged2(ptr unsafe.Pointer, ptrName *C.char, key *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QMetaDataWriterControl::metaDataChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataChanged2"); signal != nil {
 		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
 	}
 
+}
+
+func (ptr *QMetaDataWriterControl) MetaDataChanged2(key string, value core.QVariant_ITF) {
+	defer qt.Recovering("QMetaDataWriterControl::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_MetaDataChanged2(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(value))
+	}
 }
 
 func (ptr *QMetaDataWriterControl) SetMetaData(key string, value core.QVariant_ITF) {
@@ -185,13 +209,21 @@ func (ptr *QMetaDataWriterControl) DisconnectWritableChanged() {
 }
 
 //export callbackQMetaDataWriterControlWritableChanged
-func callbackQMetaDataWriterControlWritableChanged(ptrName *C.char, writable C.int) {
+func callbackQMetaDataWriterControlWritableChanged(ptr unsafe.Pointer, ptrName *C.char, writable C.int) {
 	defer qt.Recovering("callback QMetaDataWriterControl::writableChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "writableChanged"); signal != nil {
 		signal.(func(bool))(int(writable) != 0)
 	}
 
+}
+
+func (ptr *QMetaDataWriterControl) WritableChanged(writable bool) {
+	defer qt.Recovering("QMetaDataWriterControl::writableChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_WritableChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(writable)))
+	}
 }
 
 func (ptr *QMetaDataWriterControl) DestroyQMetaDataWriterControl() {
@@ -222,15 +254,30 @@ func (ptr *QMetaDataWriterControl) DisconnectTimerEvent() {
 }
 
 //export callbackQMetaDataWriterControlTimerEvent
-func callbackQMetaDataWriterControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMetaDataWriterControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMetaDataWriterControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMetaDataWriterControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMetaDataWriterControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMetaDataWriterControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMetaDataWriterControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMetaDataWriterControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMetaDataWriterControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -252,15 +299,30 @@ func (ptr *QMetaDataWriterControl) DisconnectChildEvent() {
 }
 
 //export callbackQMetaDataWriterControlChildEvent
-func callbackQMetaDataWriterControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMetaDataWriterControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMetaDataWriterControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMetaDataWriterControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMetaDataWriterControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMetaDataWriterControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMetaDataWriterControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMetaDataWriterControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMetaDataWriterControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -282,13 +344,28 @@ func (ptr *QMetaDataWriterControl) DisconnectCustomEvent() {
 }
 
 //export callbackQMetaDataWriterControlCustomEvent
-func callbackQMetaDataWriterControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMetaDataWriterControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMetaDataWriterControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMetaDataWriterControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMetaDataWriterControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMetaDataWriterControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMetaDataWriterControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMetaDataWriterControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMetaDataWriterControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

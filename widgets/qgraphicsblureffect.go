@@ -105,13 +105,21 @@ func (ptr *QGraphicsBlurEffect) DisconnectBlurHintsChanged() {
 }
 
 //export callbackQGraphicsBlurEffectBlurHintsChanged
-func callbackQGraphicsBlurEffectBlurHintsChanged(ptrName *C.char, hints C.int) {
+func callbackQGraphicsBlurEffectBlurHintsChanged(ptr unsafe.Pointer, ptrName *C.char, hints C.int) {
 	defer qt.Recovering("callback QGraphicsBlurEffect::blurHintsChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "blurHintsChanged"); signal != nil {
 		signal.(func(QGraphicsBlurEffect__BlurHint))(QGraphicsBlurEffect__BlurHint(hints))
 	}
 
+}
+
+func (ptr *QGraphicsBlurEffect) BlurHintsChanged(hints QGraphicsBlurEffect__BlurHint) {
+	defer qt.Recovering("QGraphicsBlurEffect::blurHintsChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsBlurEffect_BlurHintsChanged(ptr.Pointer(), C.int(hints))
+	}
 }
 
 func (ptr *QGraphicsBlurEffect) ConnectBlurRadiusChanged(f func(radius float64)) {
@@ -133,13 +141,21 @@ func (ptr *QGraphicsBlurEffect) DisconnectBlurRadiusChanged() {
 }
 
 //export callbackQGraphicsBlurEffectBlurRadiusChanged
-func callbackQGraphicsBlurEffectBlurRadiusChanged(ptrName *C.char, radius C.double) {
+func callbackQGraphicsBlurEffectBlurRadiusChanged(ptr unsafe.Pointer, ptrName *C.char, radius C.double) {
 	defer qt.Recovering("callback QGraphicsBlurEffect::blurRadiusChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "blurRadiusChanged"); signal != nil {
 		signal.(func(float64))(float64(radius))
 	}
 
+}
+
+func (ptr *QGraphicsBlurEffect) BlurRadiusChanged(radius float64) {
+	defer qt.Recovering("QGraphicsBlurEffect::blurRadiusChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsBlurEffect_BlurRadiusChanged(ptr.Pointer(), C.double(radius))
+	}
 }
 
 func (ptr *QGraphicsBlurEffect) DestroyQGraphicsBlurEffect() {
@@ -170,15 +186,30 @@ func (ptr *QGraphicsBlurEffect) DisconnectTimerEvent() {
 }
 
 //export callbackQGraphicsBlurEffectTimerEvent
-func callbackQGraphicsBlurEffectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsBlurEffectTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsBlurEffect::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsBlurEffectFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsBlurEffect) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsBlurEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsBlurEffect_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGraphicsBlurEffect) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsBlurEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsBlurEffect_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGraphicsBlurEffect) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -200,15 +231,30 @@ func (ptr *QGraphicsBlurEffect) DisconnectChildEvent() {
 }
 
 //export callbackQGraphicsBlurEffectChildEvent
-func callbackQGraphicsBlurEffectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsBlurEffectChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsBlurEffect::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsBlurEffectFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsBlurEffect) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsBlurEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsBlurEffect_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGraphicsBlurEffect) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsBlurEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsBlurEffect_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGraphicsBlurEffect) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -230,13 +276,28 @@ func (ptr *QGraphicsBlurEffect) DisconnectCustomEvent() {
 }
 
 //export callbackQGraphicsBlurEffectCustomEvent
-func callbackQGraphicsBlurEffectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsBlurEffectCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsBlurEffect::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsBlurEffectFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsBlurEffect) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsBlurEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsBlurEffect_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGraphicsBlurEffect) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsBlurEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsBlurEffect_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

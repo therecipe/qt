@@ -124,15 +124,30 @@ func (ptr *QMagnetometerReading) DisconnectTimerEvent() {
 }
 
 //export callbackQMagnetometerReadingTimerEvent
-func callbackQMagnetometerReadingTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMagnetometerReadingTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMagnetometerReading::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMagnetometerReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMagnetometerReading) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMagnetometerReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMagnetometerReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMagnetometerReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMagnetometerReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMagnetometerReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMagnetometerReading) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -154,15 +169,30 @@ func (ptr *QMagnetometerReading) DisconnectChildEvent() {
 }
 
 //export callbackQMagnetometerReadingChildEvent
-func callbackQMagnetometerReadingChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMagnetometerReadingChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMagnetometerReading::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMagnetometerReadingFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMagnetometerReading) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMagnetometerReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMagnetometerReading_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMagnetometerReading) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMagnetometerReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMagnetometerReading_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMagnetometerReading) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -184,13 +214,28 @@ func (ptr *QMagnetometerReading) DisconnectCustomEvent() {
 }
 
 //export callbackQMagnetometerReadingCustomEvent
-func callbackQMagnetometerReadingCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMagnetometerReadingCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMagnetometerReading::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMagnetometerReadingFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMagnetometerReading) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMagnetometerReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMagnetometerReading_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMagnetometerReading) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMagnetometerReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMagnetometerReading_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

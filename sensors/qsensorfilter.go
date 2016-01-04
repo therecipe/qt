@@ -52,6 +52,14 @@ func (ptr *QSensorFilter) Filter(reading QSensorReading_ITF) bool {
 	return false
 }
 
+func (ptr *QSensorFilter) DestroyQSensorFilter() {
+	defer qt.Recovering("QSensorFilter::~QSensorFilter")
+
+	if ptr.Pointer() != nil {
+		C.QSensorFilter_DestroyQSensorFilter(ptr.Pointer())
+	}
+}
+
 func (ptr *QSensorFilter) ObjectNameAbs() string {
 	defer qt.Recovering("QSensorFilter::objectNameAbs")
 

@@ -93,13 +93,21 @@ func (ptr *QSGAbstractRenderer) DisconnectSceneGraphChanged() {
 }
 
 //export callbackQSGAbstractRendererSceneGraphChanged
-func callbackQSGAbstractRendererSceneGraphChanged(ptrName *C.char) {
+func callbackQSGAbstractRendererSceneGraphChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGAbstractRenderer::sceneGraphChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sceneGraphChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSGAbstractRenderer) SceneGraphChanged() {
+	defer qt.Recovering("QSGAbstractRenderer::sceneGraphChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSGAbstractRenderer_SceneGraphChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QSGAbstractRenderer) SetClearColor(color gui.QColor_ITF) {
@@ -194,15 +202,30 @@ func (ptr *QSGAbstractRenderer) DisconnectTimerEvent() {
 }
 
 //export callbackQSGAbstractRendererTimerEvent
-func callbackQSGAbstractRendererTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSGAbstractRendererTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSGAbstractRenderer::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSGAbstractRendererFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSGAbstractRenderer) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSGAbstractRenderer::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGAbstractRenderer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSGAbstractRenderer) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSGAbstractRenderer::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGAbstractRenderer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSGAbstractRenderer) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -224,15 +247,30 @@ func (ptr *QSGAbstractRenderer) DisconnectChildEvent() {
 }
 
 //export callbackQSGAbstractRendererChildEvent
-func callbackQSGAbstractRendererChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSGAbstractRendererChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSGAbstractRenderer::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSGAbstractRendererFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSGAbstractRenderer) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSGAbstractRenderer::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGAbstractRenderer_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSGAbstractRenderer) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSGAbstractRenderer::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGAbstractRenderer_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSGAbstractRenderer) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -254,13 +292,28 @@ func (ptr *QSGAbstractRenderer) DisconnectCustomEvent() {
 }
 
 //export callbackQSGAbstractRendererCustomEvent
-func callbackQSGAbstractRendererCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSGAbstractRendererCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSGAbstractRenderer::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSGAbstractRendererFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSGAbstractRenderer) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSGAbstractRenderer::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGAbstractRenderer_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSGAbstractRenderer) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSGAbstractRenderer::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGAbstractRenderer_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

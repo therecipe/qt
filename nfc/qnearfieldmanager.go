@@ -142,13 +142,21 @@ func (ptr *QNearFieldManager) DisconnectTargetDetected() {
 }
 
 //export callbackQNearFieldManagerTargetDetected
-func callbackQNearFieldManagerTargetDetected(ptrName *C.char, target unsafe.Pointer) {
+func callbackQNearFieldManagerTargetDetected(ptr unsafe.Pointer, ptrName *C.char, target unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldManager::targetDetected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "targetDetected"); signal != nil {
 		signal.(func(*QNearFieldTarget))(NewQNearFieldTargetFromPointer(target))
 	}
 
+}
+
+func (ptr *QNearFieldManager) TargetDetected(target QNearFieldTarget_ITF) {
+	defer qt.Recovering("QNearFieldManager::targetDetected")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldManager_TargetDetected(ptr.Pointer(), PointerFromQNearFieldTarget(target))
+	}
 }
 
 func (ptr *QNearFieldManager) ConnectTargetLost(f func(target *QNearFieldTarget)) {
@@ -170,13 +178,21 @@ func (ptr *QNearFieldManager) DisconnectTargetLost() {
 }
 
 //export callbackQNearFieldManagerTargetLost
-func callbackQNearFieldManagerTargetLost(ptrName *C.char, target unsafe.Pointer) {
+func callbackQNearFieldManagerTargetLost(ptr unsafe.Pointer, ptrName *C.char, target unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldManager::targetLost")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "targetLost"); signal != nil {
 		signal.(func(*QNearFieldTarget))(NewQNearFieldTargetFromPointer(target))
 	}
 
+}
+
+func (ptr *QNearFieldManager) TargetLost(target QNearFieldTarget_ITF) {
+	defer qt.Recovering("QNearFieldManager::targetLost")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldManager_TargetLost(ptr.Pointer(), PointerFromQNearFieldTarget(target))
+	}
 }
 
 func (ptr *QNearFieldManager) UnregisterNdefMessageHandler(handlerId int) bool {
@@ -216,15 +232,30 @@ func (ptr *QNearFieldManager) DisconnectTimerEvent() {
 }
 
 //export callbackQNearFieldManagerTimerEvent
-func callbackQNearFieldManagerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNearFieldManagerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldManager::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQNearFieldManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNearFieldManager) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNearFieldManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldManager_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QNearFieldManager) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNearFieldManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QNearFieldManager) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -246,15 +277,30 @@ func (ptr *QNearFieldManager) DisconnectChildEvent() {
 }
 
 //export callbackQNearFieldManagerChildEvent
-func callbackQNearFieldManagerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNearFieldManagerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldManager::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQNearFieldManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNearFieldManager) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNearFieldManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldManager_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QNearFieldManager) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNearFieldManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldManager_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QNearFieldManager) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -276,13 +322,28 @@ func (ptr *QNearFieldManager) DisconnectCustomEvent() {
 }
 
 //export callbackQNearFieldManagerCustomEvent
-func callbackQNearFieldManagerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNearFieldManagerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNearFieldManager::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQNearFieldManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNearFieldManager) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QNearFieldManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldManager_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QNearFieldManager) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QNearFieldManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldManager_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

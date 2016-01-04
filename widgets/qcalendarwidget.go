@@ -249,13 +249,39 @@ func (ptr *QCalendarWidget) DisconnectCurrentPageChanged() {
 }
 
 //export callbackQCalendarWidgetCurrentPageChanged
-func callbackQCalendarWidgetCurrentPageChanged(ptrName *C.char, year C.int, month C.int) {
+func callbackQCalendarWidgetCurrentPageChanged(ptr unsafe.Pointer, ptrName *C.char, year C.int, month C.int) {
 	defer qt.Recovering("callback QCalendarWidget::currentPageChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentPageChanged"); signal != nil {
 		signal.(func(int, int))(int(year), int(month))
 	}
 
+}
+
+func (ptr *QCalendarWidget) CurrentPageChanged(year int, month int) {
+	defer qt.Recovering("QCalendarWidget::currentPageChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_CurrentPageChanged(ptr.Pointer(), C.int(year), C.int(month))
+	}
+}
+
+func (ptr *QCalendarWidget) Event(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QCalendarWidget::event")
+
+	if ptr.Pointer() != nil {
+		return C.QCalendarWidget_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QCalendarWidget) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	defer qt.Recovering("QCalendarWidget::eventFilter")
+
+	if ptr.Pointer() != nil {
+		return C.QCalendarWidget_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 func (ptr *QCalendarWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -277,15 +303,30 @@ func (ptr *QCalendarWidget) DisconnectKeyPressEvent() {
 }
 
 //export callbackQCalendarWidgetKeyPressEvent
-func callbackQCalendarWidgetKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) MinimumSizeHint() *core.QSize {
@@ -325,15 +366,30 @@ func (ptr *QCalendarWidget) DisconnectMousePressEvent() {
 }
 
 //export callbackQCalendarWidgetMousePressEvent
-func callbackQCalendarWidgetMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -355,15 +411,30 @@ func (ptr *QCalendarWidget) DisconnectResizeEvent() {
 }
 
 //export callbackQCalendarWidgetResizeEvent
-func callbackQCalendarWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectSelectionChanged(f func()) {
@@ -385,13 +456,21 @@ func (ptr *QCalendarWidget) DisconnectSelectionChanged() {
 }
 
 //export callbackQCalendarWidgetSelectionChanged
-func callbackQCalendarWidgetSelectionChanged(ptrName *C.char) {
+func callbackQCalendarWidgetSelectionChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCalendarWidget::selectionChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectionChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QCalendarWidget) SelectionChanged() {
+	defer qt.Recovering("QCalendarWidget::selectionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_SelectionChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QCalendarWidget) SetCurrentPage(year int, month int) {
@@ -528,15 +607,30 @@ func (ptr *QCalendarWidget) DisconnectActionEvent() {
 }
 
 //export callbackQCalendarWidgetActionEvent
-func callbackQCalendarWidgetActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -558,15 +652,30 @@ func (ptr *QCalendarWidget) DisconnectDragEnterEvent() {
 }
 
 //export callbackQCalendarWidgetDragEnterEvent
-func callbackQCalendarWidgetDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -588,15 +697,30 @@ func (ptr *QCalendarWidget) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQCalendarWidgetDragLeaveEvent
-func callbackQCalendarWidgetDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -618,15 +742,30 @@ func (ptr *QCalendarWidget) DisconnectDragMoveEvent() {
 }
 
 //export callbackQCalendarWidgetDragMoveEvent
-func callbackQCalendarWidgetDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -648,15 +787,30 @@ func (ptr *QCalendarWidget) DisconnectDropEvent() {
 }
 
 //export callbackQCalendarWidgetDropEvent
-func callbackQCalendarWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -678,15 +832,30 @@ func (ptr *QCalendarWidget) DisconnectEnterEvent() {
 }
 
 //export callbackQCalendarWidgetEnterEvent
-func callbackQCalendarWidgetEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -708,15 +877,30 @@ func (ptr *QCalendarWidget) DisconnectFocusInEvent() {
 }
 
 //export callbackQCalendarWidgetFocusInEvent
-func callbackQCalendarWidgetFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -738,15 +922,30 @@ func (ptr *QCalendarWidget) DisconnectFocusOutEvent() {
 }
 
 //export callbackQCalendarWidgetFocusOutEvent
-func callbackQCalendarWidgetFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -768,15 +967,30 @@ func (ptr *QCalendarWidget) DisconnectHideEvent() {
 }
 
 //export callbackQCalendarWidgetHideEvent
-func callbackQCalendarWidgetHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -798,15 +1012,30 @@ func (ptr *QCalendarWidget) DisconnectLeaveEvent() {
 }
 
 //export callbackQCalendarWidgetLeaveEvent
-func callbackQCalendarWidgetLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -828,15 +1057,30 @@ func (ptr *QCalendarWidget) DisconnectMoveEvent() {
 }
 
 //export callbackQCalendarWidgetMoveEvent
-func callbackQCalendarWidgetMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -858,15 +1102,30 @@ func (ptr *QCalendarWidget) DisconnectPaintEvent() {
 }
 
 //export callbackQCalendarWidgetPaintEvent
-func callbackQCalendarWidgetPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectSetVisible(f func(visible bool)) {
@@ -888,7 +1147,7 @@ func (ptr *QCalendarWidget) DisconnectSetVisible() {
 }
 
 //export callbackQCalendarWidgetSetVisible
-func callbackQCalendarWidgetSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQCalendarWidgetSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QCalendarWidget::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -897,6 +1156,22 @@ func callbackQCalendarWidgetSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QCalendarWidget) SetVisible(visible bool) {
+	defer qt.Recovering("QCalendarWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QCalendarWidget) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QCalendarWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -918,15 +1193,30 @@ func (ptr *QCalendarWidget) DisconnectShowEvent() {
 }
 
 //export callbackQCalendarWidgetShowEvent
-func callbackQCalendarWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -948,15 +1238,30 @@ func (ptr *QCalendarWidget) DisconnectChangeEvent() {
 }
 
 //export callbackQCalendarWidgetChangeEvent
-func callbackQCalendarWidgetChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -978,15 +1283,30 @@ func (ptr *QCalendarWidget) DisconnectCloseEvent() {
 }
 
 //export callbackQCalendarWidgetCloseEvent
-func callbackQCalendarWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -1008,15 +1328,30 @@ func (ptr *QCalendarWidget) DisconnectContextMenuEvent() {
 }
 
 //export callbackQCalendarWidgetContextMenuEvent
-func callbackQCalendarWidgetContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1038,15 +1373,30 @@ func (ptr *QCalendarWidget) DisconnectInitPainter() {
 }
 
 //export callbackQCalendarWidgetInitPainter
-func callbackQCalendarWidgetInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQCalendarWidgetInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QCalendarWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QCalendarWidget) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QCalendarWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -1068,15 +1418,30 @@ func (ptr *QCalendarWidget) DisconnectInputMethodEvent() {
 }
 
 //export callbackQCalendarWidgetInputMethodEvent
-func callbackQCalendarWidgetInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -1098,15 +1463,30 @@ func (ptr *QCalendarWidget) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQCalendarWidgetKeyReleaseEvent
-func callbackQCalendarWidgetKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1128,15 +1508,30 @@ func (ptr *QCalendarWidget) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQCalendarWidgetMouseDoubleClickEvent
-func callbackQCalendarWidgetMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -1158,15 +1553,30 @@ func (ptr *QCalendarWidget) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQCalendarWidgetMouseMoveEvent
-func callbackQCalendarWidgetMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1188,15 +1598,30 @@ func (ptr *QCalendarWidget) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQCalendarWidgetMouseReleaseEvent
-func callbackQCalendarWidgetMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1218,15 +1643,30 @@ func (ptr *QCalendarWidget) DisconnectTabletEvent() {
 }
 
 //export callbackQCalendarWidgetTabletEvent
-func callbackQCalendarWidgetTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1248,15 +1688,30 @@ func (ptr *QCalendarWidget) DisconnectWheelEvent() {
 }
 
 //export callbackQCalendarWidgetWheelEvent
-func callbackQCalendarWidgetWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1278,15 +1733,30 @@ func (ptr *QCalendarWidget) DisconnectTimerEvent() {
 }
 
 //export callbackQCalendarWidgetTimerEvent
-func callbackQCalendarWidgetTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1308,15 +1778,30 @@ func (ptr *QCalendarWidget) DisconnectChildEvent() {
 }
 
 //export callbackQCalendarWidgetChildEvent
-func callbackQCalendarWidgetChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCalendarWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1338,13 +1823,28 @@ func (ptr *QCalendarWidget) DisconnectCustomEvent() {
 }
 
 //export callbackQCalendarWidgetCustomEvent
-func callbackQCalendarWidgetCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCalendarWidgetCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCalendarWidget::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCalendarWidgetFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCalendarWidget) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCalendarWidget) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCalendarWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

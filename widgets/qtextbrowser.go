@@ -109,7 +109,7 @@ func (ptr *QTextBrowser) DisconnectSetSource() {
 }
 
 //export callbackQTextBrowserSetSource
-func callbackQTextBrowserSetSource(ptrName *C.char, name unsafe.Pointer) bool {
+func callbackQTextBrowserSetSource(ptr unsafe.Pointer, ptrName *C.char, name unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTextBrowser::setSource")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSource"); signal != nil {
@@ -118,6 +118,22 @@ func callbackQTextBrowserSetSource(ptrName *C.char, name unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTextBrowser) SetSource(name core.QUrl_ITF) {
+	defer qt.Recovering("QTextBrowser::setSource")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_SetSource(ptr.Pointer(), core.PointerFromQUrl(name))
+	}
+}
+
+func (ptr *QTextBrowser) SetSourceDefault(name core.QUrl_ITF) {
+	defer qt.Recovering("QTextBrowser::setSource")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_SetSourceDefault(ptr.Pointer(), core.PointerFromQUrl(name))
+	}
 }
 
 func (ptr *QTextBrowser) Source() *core.QUrl {
@@ -154,13 +170,21 @@ func (ptr *QTextBrowser) DisconnectAnchorClicked() {
 }
 
 //export callbackQTextBrowserAnchorClicked
-func callbackQTextBrowserAnchorClicked(ptrName *C.char, link unsafe.Pointer) {
+func callbackQTextBrowserAnchorClicked(ptr unsafe.Pointer, ptrName *C.char, link unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::anchorClicked")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "anchorClicked"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
 	}
 
+}
+
+func (ptr *QTextBrowser) AnchorClicked(link core.QUrl_ITF) {
+	defer qt.Recovering("QTextBrowser::anchorClicked")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_AnchorClicked(ptr.Pointer(), core.PointerFromQUrl(link))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectBackward(f func()) {
@@ -182,7 +206,7 @@ func (ptr *QTextBrowser) DisconnectBackward() {
 }
 
 //export callbackQTextBrowserBackward
-func callbackQTextBrowserBackward(ptrName *C.char) bool {
+func callbackQTextBrowserBackward(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QTextBrowser::backward")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "backward"); signal != nil {
@@ -191,6 +215,22 @@ func callbackQTextBrowserBackward(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTextBrowser) Backward() {
+	defer qt.Recovering("QTextBrowser::backward")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_Backward(ptr.Pointer())
+	}
+}
+
+func (ptr *QTextBrowser) BackwardDefault() {
+	defer qt.Recovering("QTextBrowser::backward")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_BackwardDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextBrowser) ConnectBackwardAvailable(f func(available bool)) {
@@ -212,13 +252,21 @@ func (ptr *QTextBrowser) DisconnectBackwardAvailable() {
 }
 
 //export callbackQTextBrowserBackwardAvailable
-func callbackQTextBrowserBackwardAvailable(ptrName *C.char, available C.int) {
+func callbackQTextBrowserBackwardAvailable(ptr unsafe.Pointer, ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QTextBrowser::backwardAvailable")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "backwardAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
+}
+
+func (ptr *QTextBrowser) BackwardAvailable(available bool) {
+	defer qt.Recovering("QTextBrowser::backwardAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_BackwardAvailable(ptr.Pointer(), C.int(qt.GoBoolToInt(available)))
+	}
 }
 
 func (ptr *QTextBrowser) BackwardHistoryCount() int {
@@ -236,6 +284,24 @@ func (ptr *QTextBrowser) ClearHistory() {
 	if ptr.Pointer() != nil {
 		C.QTextBrowser_ClearHistory(ptr.Pointer())
 	}
+}
+
+func (ptr *QTextBrowser) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QTextBrowser::event")
+
+	if ptr.Pointer() != nil {
+		return C.QTextBrowser_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QTextBrowser) FocusNextPrevChild(next bool) bool {
+	defer qt.Recovering("QTextBrowser::focusNextPrevChild")
+
+	if ptr.Pointer() != nil {
+		return C.QTextBrowser_FocusNextPrevChild(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
+	}
+	return false
 }
 
 func (ptr *QTextBrowser) ConnectFocusOutEvent(f func(ev *gui.QFocusEvent)) {
@@ -257,15 +323,30 @@ func (ptr *QTextBrowser) DisconnectFocusOutEvent() {
 }
 
 //export callbackQTextBrowserFocusOutEvent
-func callbackQTextBrowserFocusOutEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQTextBrowserFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) FocusOutEvent(ev gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
+	}
+}
+
+func (ptr *QTextBrowser) FocusOutEventDefault(ev gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectForward(f func()) {
@@ -287,7 +368,7 @@ func (ptr *QTextBrowser) DisconnectForward() {
 }
 
 //export callbackQTextBrowserForward
-func callbackQTextBrowserForward(ptrName *C.char) bool {
+func callbackQTextBrowserForward(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QTextBrowser::forward")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "forward"); signal != nil {
@@ -296,6 +377,22 @@ func callbackQTextBrowserForward(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTextBrowser) Forward() {
+	defer qt.Recovering("QTextBrowser::forward")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_Forward(ptr.Pointer())
+	}
+}
+
+func (ptr *QTextBrowser) ForwardDefault() {
+	defer qt.Recovering("QTextBrowser::forward")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ForwardDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextBrowser) ConnectForwardAvailable(f func(available bool)) {
@@ -317,13 +414,21 @@ func (ptr *QTextBrowser) DisconnectForwardAvailable() {
 }
 
 //export callbackQTextBrowserForwardAvailable
-func callbackQTextBrowserForwardAvailable(ptrName *C.char, available C.int) {
+func callbackQTextBrowserForwardAvailable(ptr unsafe.Pointer, ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QTextBrowser::forwardAvailable")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "forwardAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
+}
+
+func (ptr *QTextBrowser) ForwardAvailable(available bool) {
+	defer qt.Recovering("QTextBrowser::forwardAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ForwardAvailable(ptr.Pointer(), C.int(qt.GoBoolToInt(available)))
+	}
 }
 
 func (ptr *QTextBrowser) ForwardHistoryCount() int {
@@ -354,13 +459,21 @@ func (ptr *QTextBrowser) DisconnectHighlighted2() {
 }
 
 //export callbackQTextBrowserHighlighted2
-func callbackQTextBrowserHighlighted2(ptrName *C.char, link *C.char) {
+func callbackQTextBrowserHighlighted2(ptr unsafe.Pointer, ptrName *C.char, link *C.char) {
 	defer qt.Recovering("callback QTextBrowser::highlighted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted2"); signal != nil {
 		signal.(func(string))(C.GoString(link))
 	}
 
+}
+
+func (ptr *QTextBrowser) Highlighted2(link string) {
+	defer qt.Recovering("QTextBrowser::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_Highlighted2(ptr.Pointer(), C.CString(link))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectHighlighted(f func(link *core.QUrl)) {
@@ -382,13 +495,21 @@ func (ptr *QTextBrowser) DisconnectHighlighted() {
 }
 
 //export callbackQTextBrowserHighlighted
-func callbackQTextBrowserHighlighted(ptrName *C.char, link unsafe.Pointer) {
+func callbackQTextBrowserHighlighted(ptr unsafe.Pointer, ptrName *C.char, link unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::highlighted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "highlighted"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
 	}
 
+}
+
+func (ptr *QTextBrowser) Highlighted(link core.QUrl_ITF) {
+	defer qt.Recovering("QTextBrowser::highlighted")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_Highlighted(ptr.Pointer(), core.PointerFromQUrl(link))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectHistoryChanged(f func()) {
@@ -410,13 +531,21 @@ func (ptr *QTextBrowser) DisconnectHistoryChanged() {
 }
 
 //export callbackQTextBrowserHistoryChanged
-func callbackQTextBrowserHistoryChanged(ptrName *C.char) {
+func callbackQTextBrowserHistoryChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTextBrowser::historyChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "historyChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QTextBrowser) HistoryChanged() {
+	defer qt.Recovering("QTextBrowser::historyChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_HistoryChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextBrowser) HistoryTitle(i int) string {
@@ -456,7 +585,7 @@ func (ptr *QTextBrowser) DisconnectHome() {
 }
 
 //export callbackQTextBrowserHome
-func callbackQTextBrowserHome(ptrName *C.char) bool {
+func callbackQTextBrowserHome(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QTextBrowser::home")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "home"); signal != nil {
@@ -465,6 +594,22 @@ func callbackQTextBrowserHome(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTextBrowser) Home() {
+	defer qt.Recovering("QTextBrowser::home")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_Home(ptr.Pointer())
+	}
+}
+
+func (ptr *QTextBrowser) HomeDefault() {
+	defer qt.Recovering("QTextBrowser::home")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_HomeDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextBrowser) IsBackwardAvailable() bool {
@@ -504,15 +649,30 @@ func (ptr *QTextBrowser) DisconnectKeyPressEvent() {
 }
 
 //export callbackQTextBrowserKeyPressEvent
-func callbackQTextBrowserKeyPressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQTextBrowserKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(ev))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) KeyPressEvent(ev gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(ev))
+	}
+}
+
+func (ptr *QTextBrowser) KeyPressEventDefault(ev gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(ev))
+	}
 }
 
 func (ptr *QTextBrowser) LoadResource(ty int, name core.QUrl_ITF) *core.QVariant {
@@ -543,15 +703,30 @@ func (ptr *QTextBrowser) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQTextBrowserMouseMoveEvent
-func callbackQTextBrowserMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) MouseMoveEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
@@ -573,15 +748,30 @@ func (ptr *QTextBrowser) DisconnectMousePressEvent() {
 }
 
 //export callbackQTextBrowserMousePressEvent
-func callbackQTextBrowserMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) MousePressEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) MousePressEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -603,15 +793,30 @@ func (ptr *QTextBrowser) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQTextBrowserMouseReleaseEvent
-func callbackQTextBrowserMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectPaintEvent(f func(e *gui.QPaintEvent)) {
@@ -633,15 +838,30 @@ func (ptr *QTextBrowser) DisconnectPaintEvent() {
 }
 
 //export callbackQTextBrowserPaintEvent
-func callbackQTextBrowserPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserPaintEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) PaintEvent(e gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) PaintEventDefault(e gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectReload(f func()) {
@@ -663,7 +883,7 @@ func (ptr *QTextBrowser) DisconnectReload() {
 }
 
 //export callbackQTextBrowserReload
-func callbackQTextBrowserReload(ptrName *C.char) bool {
+func callbackQTextBrowserReload(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QTextBrowser::reload")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reload"); signal != nil {
@@ -672,6 +892,22 @@ func callbackQTextBrowserReload(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTextBrowser) Reload() {
+	defer qt.Recovering("QTextBrowser::reload")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_Reload(ptr.Pointer())
+	}
+}
+
+func (ptr *QTextBrowser) ReloadDefault() {
+	defer qt.Recovering("QTextBrowser::reload")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ReloadDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextBrowser) ConnectSourceChanged(f func(src *core.QUrl)) {
@@ -693,13 +929,21 @@ func (ptr *QTextBrowser) DisconnectSourceChanged() {
 }
 
 //export callbackQTextBrowserSourceChanged
-func callbackQTextBrowserSourceChanged(ptrName *C.char, src unsafe.Pointer) {
+func callbackQTextBrowserSourceChanged(ptr unsafe.Pointer, ptrName *C.char, src unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::sourceChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sourceChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(src))
 	}
 
+}
+
+func (ptr *QTextBrowser) SourceChanged(src core.QUrl_ITF) {
+	defer qt.Recovering("QTextBrowser::sourceChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_SourceChanged(ptr.Pointer(), core.PointerFromQUrl(src))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -721,15 +965,30 @@ func (ptr *QTextBrowser) DisconnectContextMenuEvent() {
 }
 
 //export callbackQTextBrowserContextMenuEvent
-func callbackQTextBrowserContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBrowserContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QTextBrowser) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectChangeEvent(f func(e *core.QEvent)) {
@@ -751,15 +1010,30 @@ func (ptr *QTextBrowser) DisconnectChangeEvent() {
 }
 
 //export callbackQTextBrowserChangeEvent
-func callbackQTextBrowserChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectDragEnterEvent(f func(e *gui.QDragEnterEvent)) {
@@ -781,15 +1055,30 @@ func (ptr *QTextBrowser) DisconnectDragEnterEvent() {
 }
 
 //export callbackQTextBrowserDragEnterEvent
-func callbackQTextBrowserDragEnterEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) DragEnterEvent(e gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) DragEnterEventDefault(e gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectDragLeaveEvent(f func(e *gui.QDragLeaveEvent)) {
@@ -811,15 +1100,30 @@ func (ptr *QTextBrowser) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQTextBrowserDragLeaveEvent
-func callbackQTextBrowserDragLeaveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) DragLeaveEvent(e gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) DragLeaveEventDefault(e gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectDragMoveEvent(f func(e *gui.QDragMoveEvent)) {
@@ -841,15 +1145,30 @@ func (ptr *QTextBrowser) DisconnectDragMoveEvent() {
 }
 
 //export callbackQTextBrowserDragMoveEvent
-func callbackQTextBrowserDragMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) DragMoveEvent(e gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) DragMoveEventDefault(e gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectDropEvent(f func(e *gui.QDropEvent)) {
@@ -871,15 +1190,30 @@ func (ptr *QTextBrowser) DisconnectDropEvent() {
 }
 
 //export callbackQTextBrowserDropEvent
-func callbackQTextBrowserDropEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserDropEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) DropEvent(e gui.QDropEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) DropEventDefault(e gui.QDropEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectFocusInEvent(f func(e *gui.QFocusEvent)) {
@@ -901,15 +1235,30 @@ func (ptr *QTextBrowser) DisconnectFocusInEvent() {
 }
 
 //export callbackQTextBrowserFocusInEvent
-func callbackQTextBrowserFocusInEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) FocusInEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) FocusInEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectInputMethodEvent(f func(e *gui.QInputMethodEvent)) {
@@ -931,15 +1280,30 @@ func (ptr *QTextBrowser) DisconnectInputMethodEvent() {
 }
 
 //export callbackQTextBrowserInputMethodEvent
-func callbackQTextBrowserInputMethodEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) InputMethodEvent(e gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) InputMethodEventDefault(e gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectInsertFromMimeData(f func(source *core.QMimeData)) {
@@ -961,15 +1325,30 @@ func (ptr *QTextBrowser) DisconnectInsertFromMimeData() {
 }
 
 //export callbackQTextBrowserInsertFromMimeData
-func callbackQTextBrowserInsertFromMimeData(ptrName *C.char, source unsafe.Pointer) bool {
+func callbackQTextBrowserInsertFromMimeData(ptr unsafe.Pointer, ptrName *C.char, source unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::insertFromMimeData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "insertFromMimeData"); signal != nil {
 		signal.(func(*core.QMimeData))(core.NewQMimeDataFromPointer(source))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).InsertFromMimeDataDefault(core.NewQMimeDataFromPointer(source))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) InsertFromMimeData(source core.QMimeData_ITF) {
+	defer qt.Recovering("QTextBrowser::insertFromMimeData")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_InsertFromMimeData(ptr.Pointer(), core.PointerFromQMimeData(source))
+	}
+}
+
+func (ptr *QTextBrowser) InsertFromMimeDataDefault(source core.QMimeData_ITF) {
+	defer qt.Recovering("QTextBrowser::insertFromMimeData")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_InsertFromMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(source))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectKeyReleaseEvent(f func(e *gui.QKeyEvent)) {
@@ -991,15 +1370,30 @@ func (ptr *QTextBrowser) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQTextBrowserKeyReleaseEvent
-func callbackQTextBrowserKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) KeyReleaseEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) KeyReleaseEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectMouseDoubleClickEvent(f func(e *gui.QMouseEvent)) {
@@ -1021,15 +1415,30 @@ func (ptr *QTextBrowser) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQTextBrowserMouseDoubleClickEvent
-func callbackQTextBrowserMouseDoubleClickEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) MouseDoubleClickEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) MouseDoubleClickEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectResizeEvent(f func(e *gui.QResizeEvent)) {
@@ -1051,15 +1460,30 @@ func (ptr *QTextBrowser) DisconnectResizeEvent() {
 }
 
 //export callbackQTextBrowserResizeEvent
-func callbackQTextBrowserResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserResizeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) ResizeEvent(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) ResizeEventDefault(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectScrollContentsBy(f func(dx int, dy int)) {
@@ -1081,15 +1505,30 @@ func (ptr *QTextBrowser) DisconnectScrollContentsBy() {
 }
 
 //export callbackQTextBrowserScrollContentsBy
-func callbackQTextBrowserScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
+func callbackQTextBrowserScrollContentsBy(ptr unsafe.Pointer, ptrName *C.char, dx C.int, dy C.int) {
 	defer qt.Recovering("callback QTextBrowser::scrollContentsBy")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
 		signal.(func(int, int))(int(dx), int(dy))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).ScrollContentsByDefault(int(dx), int(dy))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) ScrollContentsBy(dx int, dy int) {
+	defer qt.Recovering("QTextBrowser::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ScrollContentsBy(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
+}
+
+func (ptr *QTextBrowser) ScrollContentsByDefault(dx int, dy int) {
+	defer qt.Recovering("QTextBrowser::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ScrollContentsByDefault(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectShowEvent(f func(v *gui.QShowEvent)) {
@@ -1111,15 +1550,30 @@ func (ptr *QTextBrowser) DisconnectShowEvent() {
 }
 
 //export callbackQTextBrowserShowEvent
-func callbackQTextBrowserShowEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQTextBrowserShowEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) ShowEvent(v gui.QShowEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(v))
+	}
+}
+
+func (ptr *QTextBrowser) ShowEventDefault(v gui.QShowEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(v))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
@@ -1141,15 +1595,30 @@ func (ptr *QTextBrowser) DisconnectWheelEvent() {
 }
 
 //export callbackQTextBrowserWheelEvent
-func callbackQTextBrowserWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextBrowserWheelEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) WheelEvent(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
+}
+
+func (ptr *QTextBrowser) WheelEventDefault(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectSetupViewport(f func(viewport *QWidget)) {
@@ -1171,15 +1640,30 @@ func (ptr *QTextBrowser) DisconnectSetupViewport() {
 }
 
 //export callbackQTextBrowserSetupViewport
-func callbackQTextBrowserSetupViewport(ptrName *C.char, viewport unsafe.Pointer) bool {
+func callbackQTextBrowserSetupViewport(ptr unsafe.Pointer, ptrName *C.char, viewport unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::setupViewport")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setupViewport"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(viewport))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).SetupViewportDefault(NewQWidgetFromPointer(viewport))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) SetupViewport(viewport QWidget_ITF) {
+	defer qt.Recovering("QTextBrowser::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_SetupViewport(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
+}
+
+func (ptr *QTextBrowser) SetupViewportDefault(viewport QWidget_ITF) {
+	defer qt.Recovering("QTextBrowser::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_SetupViewportDefault(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -1201,15 +1685,30 @@ func (ptr *QTextBrowser) DisconnectActionEvent() {
 }
 
 //export callbackQTextBrowserActionEvent
-func callbackQTextBrowserActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBrowserActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QTextBrowser) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -1231,15 +1730,30 @@ func (ptr *QTextBrowser) DisconnectEnterEvent() {
 }
 
 //export callbackQTextBrowserEnterEvent
-func callbackQTextBrowserEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBrowserEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTextBrowser) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -1261,15 +1775,30 @@ func (ptr *QTextBrowser) DisconnectHideEvent() {
 }
 
 //export callbackQTextBrowserHideEvent
-func callbackQTextBrowserHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBrowserHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QTextBrowser) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -1291,15 +1820,30 @@ func (ptr *QTextBrowser) DisconnectLeaveEvent() {
 }
 
 //export callbackQTextBrowserLeaveEvent
-func callbackQTextBrowserLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBrowserLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTextBrowser) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1321,15 +1865,30 @@ func (ptr *QTextBrowser) DisconnectMoveEvent() {
 }
 
 //export callbackQTextBrowserMoveEvent
-func callbackQTextBrowserMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBrowserMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QTextBrowser) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectSetVisible(f func(visible bool)) {
@@ -1351,7 +1910,7 @@ func (ptr *QTextBrowser) DisconnectSetVisible() {
 }
 
 //export callbackQTextBrowserSetVisible
-func callbackQTextBrowserSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQTextBrowserSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QTextBrowser::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -1360,6 +1919,22 @@ func callbackQTextBrowserSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTextBrowser) SetVisible(visible bool) {
+	defer qt.Recovering("QTextBrowser::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QTextBrowser) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QTextBrowser::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -1381,15 +1956,30 @@ func (ptr *QTextBrowser) DisconnectCloseEvent() {
 }
 
 //export callbackQTextBrowserCloseEvent
-func callbackQTextBrowserCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBrowserCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QTextBrowser) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1411,15 +2001,30 @@ func (ptr *QTextBrowser) DisconnectInitPainter() {
 }
 
 //export callbackQTextBrowserInitPainter
-func callbackQTextBrowserInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQTextBrowserInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QTextBrowser::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QTextBrowser) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QTextBrowser::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1441,15 +2046,30 @@ func (ptr *QTextBrowser) DisconnectTabletEvent() {
 }
 
 //export callbackQTextBrowserTabletEvent
-func callbackQTextBrowserTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBrowserTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QTextBrowser) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1471,15 +2091,30 @@ func (ptr *QTextBrowser) DisconnectTimerEvent() {
 }
 
 //export callbackQTextBrowserTimerEvent
-func callbackQTextBrowserTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBrowserTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTextBrowser) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1501,15 +2136,30 @@ func (ptr *QTextBrowser) DisconnectChildEvent() {
 }
 
 //export callbackQTextBrowserChildEvent
-func callbackQTextBrowserChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBrowserChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTextBrowser) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTextBrowser) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1531,13 +2181,28 @@ func (ptr *QTextBrowser) DisconnectCustomEvent() {
 }
 
 //export callbackQTextBrowserCustomEvent
-func callbackQTextBrowserCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBrowserCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBrowser::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBrowserFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBrowser) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTextBrowser) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextBrowser::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBrowser_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

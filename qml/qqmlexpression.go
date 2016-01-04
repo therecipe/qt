@@ -196,13 +196,21 @@ func (ptr *QQmlExpression) DisconnectValueChanged() {
 }
 
 //export callbackQQmlExpressionValueChanged
-func callbackQQmlExpressionValueChanged(ptrName *C.char) {
+func callbackQQmlExpressionValueChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQmlExpression::valueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QQmlExpression) ValueChanged() {
+	defer qt.Recovering("QQmlExpression::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExpression_ValueChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QQmlExpression) DestroyQQmlExpression() {
@@ -233,15 +241,30 @@ func (ptr *QQmlExpression) DisconnectTimerEvent() {
 }
 
 //export callbackQQmlExpressionTimerEvent
-func callbackQQmlExpressionTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlExpressionTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlExpression::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlExpressionFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlExpression) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlExpression::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExpression_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQmlExpression) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlExpression::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExpression_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QQmlExpression) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -263,15 +286,30 @@ func (ptr *QQmlExpression) DisconnectChildEvent() {
 }
 
 //export callbackQQmlExpressionChildEvent
-func callbackQQmlExpressionChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlExpressionChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlExpression::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlExpressionFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlExpression) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlExpression::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExpression_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQmlExpression) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlExpression::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExpression_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QQmlExpression) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -293,13 +331,28 @@ func (ptr *QQmlExpression) DisconnectCustomEvent() {
 }
 
 //export callbackQQmlExpressionCustomEvent
-func callbackQQmlExpressionCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlExpressionCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlExpression::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlExpressionFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlExpression) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlExpression::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExpression_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQmlExpression) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlExpression::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExpression_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -112,13 +112,21 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceOwnerChanged() {
 }
 
 //export callbackQDBusServiceWatcherServiceOwnerChanged
-func callbackQDBusServiceWatcherServiceOwnerChanged(ptrName *C.char, serviceName *C.char, oldOwner *C.char, newOwner *C.char) {
+func callbackQDBusServiceWatcherServiceOwnerChanged(ptr unsafe.Pointer, ptrName *C.char, serviceName *C.char, oldOwner *C.char, newOwner *C.char) {
 	defer qt.Recovering("callback QDBusServiceWatcher::serviceOwnerChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "serviceOwnerChanged"); signal != nil {
 		signal.(func(string, string, string))(C.GoString(serviceName), C.GoString(oldOwner), C.GoString(newOwner))
 	}
 
+}
+
+func (ptr *QDBusServiceWatcher) ServiceOwnerChanged(serviceName string, oldOwner string, newOwner string) {
+	defer qt.Recovering("QDBusServiceWatcher::serviceOwnerChanged")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServiceWatcher_ServiceOwnerChanged(ptr.Pointer(), C.CString(serviceName), C.CString(oldOwner), C.CString(newOwner))
+	}
 }
 
 func (ptr *QDBusServiceWatcher) ConnectServiceRegistered(f func(serviceName string)) {
@@ -140,13 +148,21 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceRegistered() {
 }
 
 //export callbackQDBusServiceWatcherServiceRegistered
-func callbackQDBusServiceWatcherServiceRegistered(ptrName *C.char, serviceName *C.char) {
+func callbackQDBusServiceWatcherServiceRegistered(ptr unsafe.Pointer, ptrName *C.char, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusServiceWatcher::serviceRegistered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "serviceRegistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 
+}
+
+func (ptr *QDBusServiceWatcher) ServiceRegistered(serviceName string) {
+	defer qt.Recovering("QDBusServiceWatcher::serviceRegistered")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServiceWatcher_ServiceRegistered(ptr.Pointer(), C.CString(serviceName))
+	}
 }
 
 func (ptr *QDBusServiceWatcher) ConnectServiceUnregistered(f func(serviceName string)) {
@@ -168,13 +184,21 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceUnregistered() {
 }
 
 //export callbackQDBusServiceWatcherServiceUnregistered
-func callbackQDBusServiceWatcherServiceUnregistered(ptrName *C.char, serviceName *C.char) {
+func callbackQDBusServiceWatcherServiceUnregistered(ptr unsafe.Pointer, ptrName *C.char, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusServiceWatcher::serviceUnregistered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "serviceUnregistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 
+}
+
+func (ptr *QDBusServiceWatcher) ServiceUnregistered(serviceName string) {
+	defer qt.Recovering("QDBusServiceWatcher::serviceUnregistered")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServiceWatcher_ServiceUnregistered(ptr.Pointer(), C.CString(serviceName))
+	}
 }
 
 func (ptr *QDBusServiceWatcher) SetConnection(connection QDBusConnection_ITF) {
@@ -230,15 +254,30 @@ func (ptr *QDBusServiceWatcher) DisconnectTimerEvent() {
 }
 
 //export callbackQDBusServiceWatcherTimerEvent
-func callbackQDBusServiceWatcherTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusServiceWatcherTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServiceWatcher::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusServiceWatcherFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusServiceWatcher) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDBusServiceWatcher::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServiceWatcher_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDBusServiceWatcher) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDBusServiceWatcher::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServiceWatcher_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDBusServiceWatcher) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -260,15 +299,30 @@ func (ptr *QDBusServiceWatcher) DisconnectChildEvent() {
 }
 
 //export callbackQDBusServiceWatcherChildEvent
-func callbackQDBusServiceWatcherChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusServiceWatcherChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServiceWatcher::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusServiceWatcherFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusServiceWatcher) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDBusServiceWatcher::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServiceWatcher_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDBusServiceWatcher) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDBusServiceWatcher::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServiceWatcher_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDBusServiceWatcher) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -290,13 +344,28 @@ func (ptr *QDBusServiceWatcher) DisconnectCustomEvent() {
 }
 
 //export callbackQDBusServiceWatcherCustomEvent
-func callbackQDBusServiceWatcherCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusServiceWatcherCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServiceWatcher::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusServiceWatcherFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusServiceWatcher) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDBusServiceWatcher::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServiceWatcher_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDBusServiceWatcher) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDBusServiceWatcher::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServiceWatcher_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -254,13 +254,21 @@ func (ptr *QScreen) DisconnectAvailableGeometryChanged() {
 }
 
 //export callbackQScreenAvailableGeometryChanged
-func callbackQScreenAvailableGeometryChanged(ptrName *C.char, geometry unsafe.Pointer) {
+func callbackQScreenAvailableGeometryChanged(ptr unsafe.Pointer, ptrName *C.char, geometry unsafe.Pointer) {
 	defer qt.Recovering("callback QScreen::availableGeometryChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "availableGeometryChanged"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(geometry))
 	}
 
+}
+
+func (ptr *QScreen) AvailableGeometryChanged(geometry core.QRect_ITF) {
+	defer qt.Recovering("QScreen::availableGeometryChanged")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_AvailableGeometryChanged(ptr.Pointer(), core.PointerFromQRect(geometry))
+	}
 }
 
 func (ptr *QScreen) ConnectGeometryChanged(f func(geometry *core.QRect)) {
@@ -282,13 +290,21 @@ func (ptr *QScreen) DisconnectGeometryChanged() {
 }
 
 //export callbackQScreenGeometryChanged
-func callbackQScreenGeometryChanged(ptrName *C.char, geometry unsafe.Pointer) {
+func callbackQScreenGeometryChanged(ptr unsafe.Pointer, ptrName *C.char, geometry unsafe.Pointer) {
 	defer qt.Recovering("callback QScreen::geometryChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "geometryChanged"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(geometry))
 	}
 
+}
+
+func (ptr *QScreen) GeometryChanged(geometry core.QRect_ITF) {
+	defer qt.Recovering("QScreen::geometryChanged")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_GeometryChanged(ptr.Pointer(), core.PointerFromQRect(geometry))
+	}
 }
 
 func (ptr *QScreen) IsLandscape(o core.Qt__ScreenOrientation) bool {
@@ -328,13 +344,21 @@ func (ptr *QScreen) DisconnectLogicalDotsPerInchChanged() {
 }
 
 //export callbackQScreenLogicalDotsPerInchChanged
-func callbackQScreenLogicalDotsPerInchChanged(ptrName *C.char, dpi C.double) {
+func callbackQScreenLogicalDotsPerInchChanged(ptr unsafe.Pointer, ptrName *C.char, dpi C.double) {
 	defer qt.Recovering("callback QScreen::logicalDotsPerInchChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "logicalDotsPerInchChanged"); signal != nil {
 		signal.(func(float64))(float64(dpi))
 	}
 
+}
+
+func (ptr *QScreen) LogicalDotsPerInchChanged(dpi float64) {
+	defer qt.Recovering("QScreen::logicalDotsPerInchChanged")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_LogicalDotsPerInchChanged(ptr.Pointer(), C.double(dpi))
+	}
 }
 
 func (ptr *QScreen) MapBetween(a core.Qt__ScreenOrientation, b core.Qt__ScreenOrientation, rect core.QRect_ITF) *core.QRect {
@@ -365,13 +389,21 @@ func (ptr *QScreen) DisconnectOrientationChanged() {
 }
 
 //export callbackQScreenOrientationChanged
-func callbackQScreenOrientationChanged(ptrName *C.char, orientation C.int) {
+func callbackQScreenOrientationChanged(ptr unsafe.Pointer, ptrName *C.char, orientation C.int) {
 	defer qt.Recovering("callback QScreen::orientationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "orientationChanged"); signal != nil {
 		signal.(func(core.Qt__ScreenOrientation))(core.Qt__ScreenOrientation(orientation))
 	}
 
+}
+
+func (ptr *QScreen) OrientationChanged(orientation core.Qt__ScreenOrientation) {
+	defer qt.Recovering("QScreen::orientationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_OrientationChanged(ptr.Pointer(), C.int(orientation))
+	}
 }
 
 func (ptr *QScreen) OrientationUpdateMask() core.Qt__ScreenOrientation {
@@ -402,13 +434,21 @@ func (ptr *QScreen) DisconnectPhysicalDotsPerInchChanged() {
 }
 
 //export callbackQScreenPhysicalDotsPerInchChanged
-func callbackQScreenPhysicalDotsPerInchChanged(ptrName *C.char, dpi C.double) {
+func callbackQScreenPhysicalDotsPerInchChanged(ptr unsafe.Pointer, ptrName *C.char, dpi C.double) {
 	defer qt.Recovering("callback QScreen::physicalDotsPerInchChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "physicalDotsPerInchChanged"); signal != nil {
 		signal.(func(float64))(float64(dpi))
 	}
 
+}
+
+func (ptr *QScreen) PhysicalDotsPerInchChanged(dpi float64) {
+	defer qt.Recovering("QScreen::physicalDotsPerInchChanged")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_PhysicalDotsPerInchChanged(ptr.Pointer(), C.double(dpi))
+	}
 }
 
 func (ptr *QScreen) ConnectPrimaryOrientationChanged(f func(orientation core.Qt__ScreenOrientation)) {
@@ -430,13 +470,21 @@ func (ptr *QScreen) DisconnectPrimaryOrientationChanged() {
 }
 
 //export callbackQScreenPrimaryOrientationChanged
-func callbackQScreenPrimaryOrientationChanged(ptrName *C.char, orientation C.int) {
+func callbackQScreenPrimaryOrientationChanged(ptr unsafe.Pointer, ptrName *C.char, orientation C.int) {
 	defer qt.Recovering("callback QScreen::primaryOrientationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "primaryOrientationChanged"); signal != nil {
 		signal.(func(core.Qt__ScreenOrientation))(core.Qt__ScreenOrientation(orientation))
 	}
 
+}
+
+func (ptr *QScreen) PrimaryOrientationChanged(orientation core.Qt__ScreenOrientation) {
+	defer qt.Recovering("QScreen::primaryOrientationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_PrimaryOrientationChanged(ptr.Pointer(), C.int(orientation))
+	}
 }
 
 func (ptr *QScreen) ConnectRefreshRateChanged(f func(refreshRate float64)) {
@@ -458,13 +506,21 @@ func (ptr *QScreen) DisconnectRefreshRateChanged() {
 }
 
 //export callbackQScreenRefreshRateChanged
-func callbackQScreenRefreshRateChanged(ptrName *C.char, refreshRate C.double) {
+func callbackQScreenRefreshRateChanged(ptr unsafe.Pointer, ptrName *C.char, refreshRate C.double) {
 	defer qt.Recovering("callback QScreen::refreshRateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "refreshRateChanged"); signal != nil {
 		signal.(func(float64))(float64(refreshRate))
 	}
 
+}
+
+func (ptr *QScreen) RefreshRateChanged(refreshRate float64) {
+	defer qt.Recovering("QScreen::refreshRateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_RefreshRateChanged(ptr.Pointer(), C.double(refreshRate))
+	}
 }
 
 func (ptr *QScreen) SetOrientationUpdateMask(mask core.Qt__ScreenOrientation) {
@@ -494,13 +550,21 @@ func (ptr *QScreen) DisconnectVirtualGeometryChanged() {
 }
 
 //export callbackQScreenVirtualGeometryChanged
-func callbackQScreenVirtualGeometryChanged(ptrName *C.char, rect unsafe.Pointer) {
+func callbackQScreenVirtualGeometryChanged(ptr unsafe.Pointer, ptrName *C.char, rect unsafe.Pointer) {
 	defer qt.Recovering("callback QScreen::virtualGeometryChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "virtualGeometryChanged"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
 	}
 
+}
+
+func (ptr *QScreen) VirtualGeometryChanged(rect core.QRect_ITF) {
+	defer qt.Recovering("QScreen::virtualGeometryChanged")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_VirtualGeometryChanged(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
 }
 
 func (ptr *QScreen) DestroyQScreen() {
@@ -531,15 +595,30 @@ func (ptr *QScreen) DisconnectTimerEvent() {
 }
 
 //export callbackQScreenTimerEvent
-func callbackQScreenTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScreenTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScreen::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQScreenFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScreen) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QScreen::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QScreen) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QScreen::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QScreen) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -561,15 +640,30 @@ func (ptr *QScreen) DisconnectChildEvent() {
 }
 
 //export callbackQScreenChildEvent
-func callbackQScreenChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScreenChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScreen::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQScreenFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScreen) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QScreen::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QScreen) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QScreen::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QScreen) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -591,13 +685,28 @@ func (ptr *QScreen) DisconnectCustomEvent() {
 }
 
 //export callbackQScreenCustomEvent
-func callbackQScreenCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScreenCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScreen::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQScreenFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScreen) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QScreen::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QScreen) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QScreen::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScreen_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -265,15 +265,30 @@ func (ptr *QMdiArea) DisconnectChildEvent() {
 }
 
 //export callbackQMdiAreaChildEvent
-func callbackQMdiAreaChildEvent(ptrName *C.char, childEvent unsafe.Pointer) bool {
+func callbackQMdiAreaChildEvent(ptr unsafe.Pointer, ptrName *C.char, childEvent unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(childEvent))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(childEvent))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) ChildEvent(childEvent core.QChildEvent_ITF) {
+	defer qt.Recovering("QMdiArea::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(childEvent))
+	}
+}
+
+func (ptr *QMdiArea) ChildEventDefault(childEvent core.QChildEvent_ITF) {
+	defer qt.Recovering("QMdiArea::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(childEvent))
+	}
 }
 
 func (ptr *QMdiArea) CloseActiveSubWindow() {
@@ -299,6 +314,24 @@ func (ptr *QMdiArea) CurrentSubWindow() *QMdiSubWindow {
 		return NewQMdiSubWindowFromPointer(C.QMdiArea_CurrentSubWindow(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QMdiArea) Event(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QMdiArea::event")
+
+	if ptr.Pointer() != nil {
+		return C.QMdiArea_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QMdiArea) EventFilter(object core.QObject_ITF, event core.QEvent_ITF) bool {
+	defer qt.Recovering("QMdiArea::eventFilter")
+
+	if ptr.Pointer() != nil {
+		return C.QMdiArea_EventFilter(ptr.Pointer(), core.PointerFromQObject(object), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 func (ptr *QMdiArea) MinimumSizeHint() *core.QSize {
@@ -329,15 +362,30 @@ func (ptr *QMdiArea) DisconnectPaintEvent() {
 }
 
 //export callbackQMdiAreaPaintEvent
-func callbackQMdiAreaPaintEvent(ptrName *C.char, paintEvent unsafe.Pointer) bool {
+func callbackQMdiAreaPaintEvent(ptr unsafe.Pointer, ptrName *C.char, paintEvent unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(paintEvent))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(paintEvent))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) PaintEvent(paintEvent gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QMdiArea::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(paintEvent))
+	}
+}
+
+func (ptr *QMdiArea) PaintEventDefault(paintEvent gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QMdiArea::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(paintEvent))
+	}
 }
 
 func (ptr *QMdiArea) RemoveSubWindow(widget QWidget_ITF) {
@@ -367,15 +415,30 @@ func (ptr *QMdiArea) DisconnectResizeEvent() {
 }
 
 //export callbackQMdiAreaResizeEvent
-func callbackQMdiAreaResizeEvent(ptrName *C.char, resizeEvent unsafe.Pointer) bool {
+func callbackQMdiAreaResizeEvent(ptr unsafe.Pointer, ptrName *C.char, resizeEvent unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(resizeEvent))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(resizeEvent))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) ResizeEvent(resizeEvent gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QMdiArea::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(resizeEvent))
+	}
+}
+
+func (ptr *QMdiArea) ResizeEventDefault(resizeEvent gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QMdiArea::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(resizeEvent))
+	}
 }
 
 func (ptr *QMdiArea) ConnectScrollContentsBy(f func(dx int, dy int)) {
@@ -397,15 +460,30 @@ func (ptr *QMdiArea) DisconnectScrollContentsBy() {
 }
 
 //export callbackQMdiAreaScrollContentsBy
-func callbackQMdiAreaScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
+func callbackQMdiAreaScrollContentsBy(ptr unsafe.Pointer, ptrName *C.char, dx C.int, dy C.int) {
 	defer qt.Recovering("callback QMdiArea::scrollContentsBy")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
 		signal.(func(int, int))(int(dx), int(dy))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).ScrollContentsByDefault(int(dx), int(dy))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) ScrollContentsBy(dx int, dy int) {
+	defer qt.Recovering("QMdiArea::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ScrollContentsBy(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
+}
+
+func (ptr *QMdiArea) ScrollContentsByDefault(dx int, dy int) {
+	defer qt.Recovering("QMdiArea::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ScrollContentsByDefault(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
 }
 
 func (ptr *QMdiArea) SetActiveSubWindow(window QMdiSubWindow_ITF) {
@@ -443,7 +521,7 @@ func (ptr *QMdiArea) DisconnectSetupViewport() {
 }
 
 //export callbackQMdiAreaSetupViewport
-func callbackQMdiAreaSetupViewport(ptrName *C.char, viewport unsafe.Pointer) bool {
+func callbackQMdiAreaSetupViewport(ptr unsafe.Pointer, ptrName *C.char, viewport unsafe.Pointer) bool {
 	defer qt.Recovering("callback QMdiArea::setupViewport")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setupViewport"); signal != nil {
@@ -452,6 +530,22 @@ func callbackQMdiAreaSetupViewport(ptrName *C.char, viewport unsafe.Pointer) boo
 	}
 	return false
 
+}
+
+func (ptr *QMdiArea) SetupViewport(viewport QWidget_ITF) {
+	defer qt.Recovering("QMdiArea::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_SetupViewport(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
+}
+
+func (ptr *QMdiArea) SetupViewportDefault(viewport QWidget_ITF) {
+	defer qt.Recovering("QMdiArea::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_SetupViewportDefault(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
 }
 
 func (ptr *QMdiArea) ConnectShowEvent(f func(showEvent *gui.QShowEvent)) {
@@ -473,15 +567,30 @@ func (ptr *QMdiArea) DisconnectShowEvent() {
 }
 
 //export callbackQMdiAreaShowEvent
-func callbackQMdiAreaShowEvent(ptrName *C.char, showEvent unsafe.Pointer) bool {
+func callbackQMdiAreaShowEvent(ptr unsafe.Pointer, ptrName *C.char, showEvent unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(showEvent))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(showEvent))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) ShowEvent(showEvent gui.QShowEvent_ITF) {
+	defer qt.Recovering("QMdiArea::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(showEvent))
+	}
+}
+
+func (ptr *QMdiArea) ShowEventDefault(showEvent gui.QShowEvent_ITF) {
+	defer qt.Recovering("QMdiArea::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(showEvent))
+	}
 }
 
 func (ptr *QMdiArea) SizeHint() *core.QSize {
@@ -512,13 +621,21 @@ func (ptr *QMdiArea) DisconnectSubWindowActivated() {
 }
 
 //export callbackQMdiAreaSubWindowActivated
-func callbackQMdiAreaSubWindowActivated(ptrName *C.char, window unsafe.Pointer) {
+func callbackQMdiAreaSubWindowActivated(ptr unsafe.Pointer, ptrName *C.char, window unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::subWindowActivated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "subWindowActivated"); signal != nil {
 		signal.(func(*QMdiSubWindow))(NewQMdiSubWindowFromPointer(window))
 	}
 
+}
+
+func (ptr *QMdiArea) SubWindowActivated(window QMdiSubWindow_ITF) {
+	defer qt.Recovering("QMdiArea::subWindowActivated")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_SubWindowActivated(ptr.Pointer(), PointerFromQMdiSubWindow(window))
+	}
 }
 
 func (ptr *QMdiArea) TestOption(option QMdiArea__AreaOption) bool {
@@ -557,15 +674,39 @@ func (ptr *QMdiArea) DisconnectTimerEvent() {
 }
 
 //export callbackQMdiAreaTimerEvent
-func callbackQMdiAreaTimerEvent(ptrName *C.char, timerEvent unsafe.Pointer) bool {
+func callbackQMdiAreaTimerEvent(ptr unsafe.Pointer, ptrName *C.char, timerEvent unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(timerEvent))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(timerEvent))
+	}
+}
+
+func (ptr *QMdiArea) TimerEvent(timerEvent core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMdiArea::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(timerEvent))
+	}
+}
+
+func (ptr *QMdiArea) TimerEventDefault(timerEvent core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMdiArea::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(timerEvent))
+	}
+}
+
+func (ptr *QMdiArea) ViewportEvent(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QMdiArea::viewportEvent")
+
+	if ptr.Pointer() != nil {
+		return C.QMdiArea_ViewportEvent(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
 	return false
-
 }
 
 func (ptr *QMdiArea) DestroyQMdiArea() {
@@ -596,15 +737,30 @@ func (ptr *QMdiArea) DisconnectDragEnterEvent() {
 }
 
 //export callbackQMdiAreaDragEnterEvent
-func callbackQMdiAreaDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QMdiArea::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QMdiArea::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -626,15 +782,30 @@ func (ptr *QMdiArea) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQMdiAreaDragLeaveEvent
-func callbackQMdiAreaDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QMdiArea::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QMdiArea::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -656,15 +827,30 @@ func (ptr *QMdiArea) DisconnectDragMoveEvent() {
 }
 
 //export callbackQMdiAreaDragMoveEvent
-func callbackQMdiAreaDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QMdiArea::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QMdiArea::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -686,15 +872,30 @@ func (ptr *QMdiArea) DisconnectDropEvent() {
 }
 
 //export callbackQMdiAreaDropEvent
-func callbackQMdiAreaDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QMdiArea::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QMdiArea::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
@@ -716,15 +917,30 @@ func (ptr *QMdiArea) DisconnectContextMenuEvent() {
 }
 
 //export callbackQMdiAreaContextMenuEvent
-func callbackQMdiAreaContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQMdiAreaContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QMdiArea::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QMdiArea) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QMdiArea::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QMdiArea) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
@@ -746,15 +962,30 @@ func (ptr *QMdiArea) DisconnectKeyPressEvent() {
 }
 
 //export callbackQMdiAreaKeyPressEvent
-func callbackQMdiAreaKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQMdiAreaKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMdiArea::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QMdiArea) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMdiArea::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QMdiArea) ConnectMouseDoubleClickEvent(f func(e *gui.QMouseEvent)) {
@@ -776,15 +1007,30 @@ func (ptr *QMdiArea) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQMdiAreaMouseDoubleClickEvent
-func callbackQMdiAreaMouseDoubleClickEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQMdiAreaMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) MouseDoubleClickEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMdiArea::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QMdiArea) MouseDoubleClickEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMdiArea::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QMdiArea) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
@@ -806,15 +1052,30 @@ func (ptr *QMdiArea) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQMdiAreaMouseMoveEvent
-func callbackQMdiAreaMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQMdiAreaMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) MouseMoveEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMdiArea::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QMdiArea) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMdiArea::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QMdiArea) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
@@ -836,15 +1097,30 @@ func (ptr *QMdiArea) DisconnectMousePressEvent() {
 }
 
 //export callbackQMdiAreaMousePressEvent
-func callbackQMdiAreaMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQMdiAreaMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) MousePressEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMdiArea::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QMdiArea) MousePressEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMdiArea::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QMdiArea) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -866,15 +1142,30 @@ func (ptr *QMdiArea) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQMdiAreaMouseReleaseEvent
-func callbackQMdiAreaMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQMdiAreaMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMdiArea::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QMdiArea) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMdiArea::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QMdiArea) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
@@ -896,15 +1187,30 @@ func (ptr *QMdiArea) DisconnectWheelEvent() {
 }
 
 //export callbackQMdiAreaWheelEvent
-func callbackQMdiAreaWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQMdiAreaWheelEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) WheelEvent(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QMdiArea::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
+}
+
+func (ptr *QMdiArea) WheelEventDefault(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QMdiArea::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
 }
 
 func (ptr *QMdiArea) ConnectChangeEvent(f func(ev *core.QEvent)) {
@@ -926,15 +1232,30 @@ func (ptr *QMdiArea) DisconnectChangeEvent() {
 }
 
 //export callbackQMdiAreaChangeEvent
-func callbackQMdiAreaChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQMdiAreaChangeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) ChangeEvent(ev core.QEvent_ITF) {
+	defer qt.Recovering("QMdiArea::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QMdiArea) ChangeEventDefault(ev core.QEvent_ITF) {
+	defer qt.Recovering("QMdiArea::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
 }
 
 func (ptr *QMdiArea) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -956,15 +1277,30 @@ func (ptr *QMdiArea) DisconnectActionEvent() {
 }
 
 //export callbackQMdiAreaActionEvent
-func callbackQMdiAreaActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QMdiArea::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QMdiArea::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -986,15 +1322,30 @@ func (ptr *QMdiArea) DisconnectEnterEvent() {
 }
 
 //export callbackQMdiAreaEnterEvent
-func callbackQMdiAreaEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMdiArea::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMdiArea::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -1016,15 +1367,30 @@ func (ptr *QMdiArea) DisconnectFocusInEvent() {
 }
 
 //export callbackQMdiAreaFocusInEvent
-func callbackQMdiAreaFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMdiArea::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMdiArea::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -1046,15 +1412,30 @@ func (ptr *QMdiArea) DisconnectFocusOutEvent() {
 }
 
 //export callbackQMdiAreaFocusOutEvent
-func callbackQMdiAreaFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMdiArea::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMdiArea::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -1076,15 +1457,30 @@ func (ptr *QMdiArea) DisconnectHideEvent() {
 }
 
 //export callbackQMdiAreaHideEvent
-func callbackQMdiAreaHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QMdiArea::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QMdiArea::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -1106,15 +1502,30 @@ func (ptr *QMdiArea) DisconnectLeaveEvent() {
 }
 
 //export callbackQMdiAreaLeaveEvent
-func callbackQMdiAreaLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMdiArea::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMdiArea::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1136,15 +1547,30 @@ func (ptr *QMdiArea) DisconnectMoveEvent() {
 }
 
 //export callbackQMdiAreaMoveEvent
-func callbackQMdiAreaMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QMdiArea::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QMdiArea::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectSetVisible(f func(visible bool)) {
@@ -1166,7 +1592,7 @@ func (ptr *QMdiArea) DisconnectSetVisible() {
 }
 
 //export callbackQMdiAreaSetVisible
-func callbackQMdiAreaSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQMdiAreaSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QMdiArea::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -1175,6 +1601,22 @@ func callbackQMdiAreaSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QMdiArea) SetVisible(visible bool) {
+	defer qt.Recovering("QMdiArea::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QMdiArea) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QMdiArea::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QMdiArea) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -1196,15 +1638,30 @@ func (ptr *QMdiArea) DisconnectCloseEvent() {
 }
 
 //export callbackQMdiAreaCloseEvent
-func callbackQMdiAreaCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QMdiArea::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QMdiArea::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1226,15 +1683,30 @@ func (ptr *QMdiArea) DisconnectInitPainter() {
 }
 
 //export callbackQMdiAreaInitPainter
-func callbackQMdiAreaInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQMdiAreaInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QMdiArea::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QMdiArea) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QMdiArea::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QMdiArea) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -1256,15 +1728,30 @@ func (ptr *QMdiArea) DisconnectInputMethodEvent() {
 }
 
 //export callbackQMdiAreaInputMethodEvent
-func callbackQMdiAreaInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QMdiArea::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QMdiArea::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -1286,15 +1773,30 @@ func (ptr *QMdiArea) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQMdiAreaKeyReleaseEvent
-func callbackQMdiAreaKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMdiArea::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMdiArea::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1316,15 +1818,30 @@ func (ptr *QMdiArea) DisconnectTabletEvent() {
 }
 
 //export callbackQMdiAreaTabletEvent
-func callbackQMdiAreaTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QMdiArea::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QMdiArea::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QMdiArea) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1346,13 +1863,28 @@ func (ptr *QMdiArea) DisconnectCustomEvent() {
 }
 
 //export callbackQMdiAreaCustomEvent
-func callbackQMdiAreaCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMdiAreaCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMdiArea::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMdiAreaFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMdiArea) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMdiArea::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMdiArea) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMdiArea::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMdiArea_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

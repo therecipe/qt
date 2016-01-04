@@ -57,15 +57,30 @@ func (ptr *QCommonStyle) DisconnectDrawControl() {
 }
 
 //export callbackQCommonStyleDrawControl
-func callbackQCommonStyleDrawControl(ptrName *C.char, element C.int, opt unsafe.Pointer, p unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQCommonStyleDrawControl(ptr unsafe.Pointer, ptrName *C.char, element C.int, opt unsafe.Pointer, p unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QCommonStyle::drawControl")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawControl"); signal != nil {
 		signal.(func(QStyle__ControlElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__ControlElement(element), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQCommonStyleFromPointer(ptr).DrawControlDefault(QStyle__ControlElement(element), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QCommonStyle) DrawControl(element QStyle__ControlElement, opt QStyleOption_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QCommonStyle::drawControl")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawControl(ptr.Pointer(), C.int(element), PointerFromQStyleOption(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QCommonStyle) DrawControlDefault(element QStyle__ControlElement, opt QStyleOption_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QCommonStyle::drawControl")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawControlDefault(ptr.Pointer(), C.int(element), PointerFromQStyleOption(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QCommonStyle) ConnectDrawPrimitive(f func(pe QStyle__PrimitiveElement, opt *QStyleOption, p *gui.QPainter, widget *QWidget)) {
@@ -87,15 +102,30 @@ func (ptr *QCommonStyle) DisconnectDrawPrimitive() {
 }
 
 //export callbackQCommonStyleDrawPrimitive
-func callbackQCommonStyleDrawPrimitive(ptrName *C.char, pe C.int, opt unsafe.Pointer, p unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQCommonStyleDrawPrimitive(ptr unsafe.Pointer, ptrName *C.char, pe C.int, opt unsafe.Pointer, p unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QCommonStyle::drawPrimitive")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawPrimitive"); signal != nil {
 		signal.(func(QStyle__PrimitiveElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__PrimitiveElement(pe), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQCommonStyleFromPointer(ptr).DrawPrimitiveDefault(QStyle__PrimitiveElement(pe), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QCommonStyle) DrawPrimitive(pe QStyle__PrimitiveElement, opt QStyleOption_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QCommonStyle::drawPrimitive")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawPrimitive(ptr.Pointer(), C.int(pe), PointerFromQStyleOption(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QCommonStyle) DrawPrimitiveDefault(pe QStyle__PrimitiveElement, opt QStyleOption_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QCommonStyle::drawPrimitive")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawPrimitiveDefault(ptr.Pointer(), C.int(pe), PointerFromQStyleOption(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QCommonStyle) ConnectDrawComplexControl(f func(cc QStyle__ComplexControl, opt *QStyleOptionComplex, p *gui.QPainter, widget *QWidget)) {
@@ -117,15 +147,30 @@ func (ptr *QCommonStyle) DisconnectDrawComplexControl() {
 }
 
 //export callbackQCommonStyleDrawComplexControl
-func callbackQCommonStyleDrawComplexControl(ptrName *C.char, cc C.int, opt unsafe.Pointer, p unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQCommonStyleDrawComplexControl(ptr unsafe.Pointer, ptrName *C.char, cc C.int, opt unsafe.Pointer, p unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QCommonStyle::drawComplexControl")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawComplexControl"); signal != nil {
 		signal.(func(QStyle__ComplexControl, *QStyleOptionComplex, *gui.QPainter, *QWidget))(QStyle__ComplexControl(cc), NewQStyleOptionComplexFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQCommonStyleFromPointer(ptr).DrawComplexControlDefault(QStyle__ComplexControl(cc), NewQStyleOptionComplexFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QCommonStyle) DrawComplexControl(cc QStyle__ComplexControl, opt QStyleOptionComplex_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QCommonStyle::drawComplexControl")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawComplexControl(ptr.Pointer(), C.int(cc), PointerFromQStyleOptionComplex(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QCommonStyle) DrawComplexControlDefault(cc QStyle__ComplexControl, opt QStyleOptionComplex_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QCommonStyle::drawComplexControl")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawComplexControlDefault(ptr.Pointer(), C.int(cc), PointerFromQStyleOptionComplex(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QCommonStyle) HitTestComplexControl(cc QStyle__ComplexControl, opt QStyleOptionComplex_ITF, pt core.QPoint_ITF, widget QWidget_ITF) QStyle__SubControl {
@@ -210,15 +255,30 @@ func (ptr *QCommonStyle) DisconnectUnpolish() {
 }
 
 //export callbackQCommonStyleUnpolish
-func callbackQCommonStyleUnpolish(ptrName *C.char, widget unsafe.Pointer) bool {
+func callbackQCommonStyleUnpolish(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QCommonStyle::unpolish")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "unpolish"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQCommonStyleFromPointer(ptr).UnpolishDefault(NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QCommonStyle) Unpolish(widget QWidget_ITF) {
+	defer qt.Recovering("QCommonStyle::unpolish")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_Unpolish(ptr.Pointer(), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QCommonStyle) UnpolishDefault(widget QWidget_ITF) {
+	defer qt.Recovering("QCommonStyle::unpolish")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_UnpolishDefault(ptr.Pointer(), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QCommonStyle) DestroyQCommonStyle() {
@@ -249,15 +309,30 @@ func (ptr *QCommonStyle) DisconnectPolish() {
 }
 
 //export callbackQCommonStylePolish
-func callbackQCommonStylePolish(ptrName *C.char, widget unsafe.Pointer) bool {
+func callbackQCommonStylePolish(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QCommonStyle::polish")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "polish"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQCommonStyleFromPointer(ptr).PolishDefault(NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QCommonStyle) Polish(widget QWidget_ITF) {
+	defer qt.Recovering("QCommonStyle::polish")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_Polish(ptr.Pointer(), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QCommonStyle) PolishDefault(widget QWidget_ITF) {
+	defer qt.Recovering("QCommonStyle::polish")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_PolishDefault(ptr.Pointer(), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QCommonStyle) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -279,15 +354,30 @@ func (ptr *QCommonStyle) DisconnectTimerEvent() {
 }
 
 //export callbackQCommonStyleTimerEvent
-func callbackQCommonStyleTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCommonStyleTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCommonStyle::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCommonStyleFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCommonStyle) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCommonStyle::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCommonStyle) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCommonStyle::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCommonStyle) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -309,15 +399,30 @@ func (ptr *QCommonStyle) DisconnectChildEvent() {
 }
 
 //export callbackQCommonStyleChildEvent
-func callbackQCommonStyleChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCommonStyleChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCommonStyle::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCommonStyleFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCommonStyle) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCommonStyle::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCommonStyle) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCommonStyle::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCommonStyle) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -339,13 +444,28 @@ func (ptr *QCommonStyle) DisconnectCustomEvent() {
 }
 
 //export callbackQCommonStyleCustomEvent
-func callbackQCommonStyleCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCommonStyleCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCommonStyle::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCommonStyleFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCommonStyle) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCommonStyle::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCommonStyle) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCommonStyle::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

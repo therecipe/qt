@@ -73,15 +73,30 @@ func (ptr *QIRProximityReading) DisconnectTimerEvent() {
 }
 
 //export callbackQIRProximityReadingTimerEvent
-func callbackQIRProximityReadingTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIRProximityReadingTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIRProximityReading::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQIRProximityReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIRProximityReading) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QIRProximityReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIRProximityReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QIRProximityReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QIRProximityReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIRProximityReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QIRProximityReading) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -103,15 +118,30 @@ func (ptr *QIRProximityReading) DisconnectChildEvent() {
 }
 
 //export callbackQIRProximityReadingChildEvent
-func callbackQIRProximityReadingChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIRProximityReadingChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIRProximityReading::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQIRProximityReadingFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIRProximityReading) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QIRProximityReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIRProximityReading_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QIRProximityReading) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QIRProximityReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIRProximityReading_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QIRProximityReading) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -133,13 +163,28 @@ func (ptr *QIRProximityReading) DisconnectCustomEvent() {
 }
 
 //export callbackQIRProximityReadingCustomEvent
-func callbackQIRProximityReadingCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIRProximityReadingCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIRProximityReading::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQIRProximityReadingFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIRProximityReading) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QIRProximityReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIRProximityReading_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QIRProximityReading) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QIRProximityReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIRProximityReading_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

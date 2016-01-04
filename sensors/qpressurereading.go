@@ -90,15 +90,30 @@ func (ptr *QPressureReading) DisconnectTimerEvent() {
 }
 
 //export callbackQPressureReadingTimerEvent
-func callbackQPressureReadingTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPressureReadingTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPressureReading::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQPressureReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPressureReading) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QPressureReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPressureReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QPressureReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QPressureReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPressureReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QPressureReading) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -120,15 +135,30 @@ func (ptr *QPressureReading) DisconnectChildEvent() {
 }
 
 //export callbackQPressureReadingChildEvent
-func callbackQPressureReadingChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPressureReadingChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPressureReading::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQPressureReadingFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPressureReading) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QPressureReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPressureReading_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QPressureReading) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QPressureReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPressureReading_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QPressureReading) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -150,13 +180,28 @@ func (ptr *QPressureReading) DisconnectCustomEvent() {
 }
 
 //export callbackQPressureReadingCustomEvent
-func callbackQPressureReadingCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPressureReadingCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPressureReading::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQPressureReadingFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPressureReading) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QPressureReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPressureReading_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPressureReading) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QPressureReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPressureReading_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -1,3 +1,5 @@
+#define protected public
+
 #include "script.h"
 #include "_cgo_export.h"
 
@@ -32,7 +34,6 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQScriptClass(QScriptEngine *engine) : QScriptClass(engine) {};
-protected:
 };
 
 void* QScriptClass_NewQScriptClass(void* engine){
@@ -212,11 +213,10 @@ class MyQScriptEngine: public QScriptEngine {
 public:
 	MyQScriptEngine() : QScriptEngine() {};
 	MyQScriptEngine(QObject *parent) : QScriptEngine(parent) {};
-	void Signal_SignalHandlerException(const QScriptValue & exception) { callbackQScriptEngineSignalHandlerException(this->objectName().toUtf8().data(), new QScriptValue(exception)); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQScriptEngineTimerEvent(this->objectName().toUtf8().data(), event)) { QScriptEngine::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQScriptEngineChildEvent(this->objectName().toUtf8().data(), event)) { QScriptEngine::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQScriptEngineCustomEvent(this->objectName().toUtf8().data(), event)) { QScriptEngine::customEvent(event); }; };
+	void Signal_SignalHandlerException(const QScriptValue & exception) { callbackQScriptEngineSignalHandlerException(this, this->objectName().toUtf8().data(), new QScriptValue(exception)); };
+	void timerEvent(QTimerEvent * event) { callbackQScriptEngineTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQScriptEngineChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQScriptEngineCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QScriptEngine_NewQScriptEngine(){
@@ -371,6 +371,10 @@ void QScriptEngine_DisconnectSignalHandlerException(void* ptr){
 	QObject::disconnect(static_cast<QScriptEngine*>(ptr), static_cast<void (QScriptEngine::*)(const QScriptValue &)>(&QScriptEngine::signalHandlerException), static_cast<MyQScriptEngine*>(ptr), static_cast<void (MyQScriptEngine::*)(const QScriptValue &)>(&MyQScriptEngine::Signal_SignalHandlerException));;
 }
 
+void QScriptEngine_SignalHandlerException(void* ptr, void* exception){
+	static_cast<QScriptEngine*>(ptr)->signalHandlerException(*static_cast<QScriptValue*>(exception));
+}
+
 void* QScriptEngine_ToObject(void* ptr, void* value){
 	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->toObject(*static_cast<QScriptValue*>(value)));
 }
@@ -395,22 +399,45 @@ void QScriptEngine_DestroyQScriptEngine(void* ptr){
 	static_cast<QScriptEngine*>(ptr)->~QScriptEngine();
 }
 
+void QScriptEngine_TimerEvent(void* ptr, void* event){
+	static_cast<MyQScriptEngine*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QScriptEngine_TimerEventDefault(void* ptr, void* event){
+	static_cast<QScriptEngine*>(ptr)->QScriptEngine::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QScriptEngine_ChildEvent(void* ptr, void* event){
+	static_cast<MyQScriptEngine*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QScriptEngine_ChildEventDefault(void* ptr, void* event){
+	static_cast<QScriptEngine*>(ptr)->QScriptEngine::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QScriptEngine_CustomEvent(void* ptr, void* event){
+	static_cast<MyQScriptEngine*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QScriptEngine_CustomEventDefault(void* ptr, void* event){
+	static_cast<QScriptEngine*>(ptr)->QScriptEngine::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQScriptEngineAgent: public QScriptEngineAgent {
 public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQScriptEngineAgent(QScriptEngine *engine) : QScriptEngineAgent(engine) {};
-	void contextPop() { if (!callbackQScriptEngineAgentContextPop(this->objectNameAbs().toUtf8().data())) { QScriptEngineAgent::contextPop(); }; };
-	void contextPush() { if (!callbackQScriptEngineAgentContextPush(this->objectNameAbs().toUtf8().data())) { QScriptEngineAgent::contextPush(); }; };
-	void exceptionCatch(qint64 scriptId, const QScriptValue & exception) { if (!callbackQScriptEngineAgentExceptionCatch(this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(exception))) { QScriptEngineAgent::exceptionCatch(scriptId, exception); }; };
-	void exceptionThrow(qint64 scriptId, const QScriptValue & exception, bool hasHandler) { if (!callbackQScriptEngineAgentExceptionThrow(this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(exception), hasHandler)) { QScriptEngineAgent::exceptionThrow(scriptId, exception, hasHandler); }; };
-	void functionEntry(qint64 scriptId) { if (!callbackQScriptEngineAgentFunctionEntry(this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId))) { QScriptEngineAgent::functionEntry(scriptId); }; };
-	void functionExit(qint64 scriptId, const QScriptValue & returnValue) { if (!callbackQScriptEngineAgentFunctionExit(this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(returnValue))) { QScriptEngineAgent::functionExit(scriptId, returnValue); }; };
-	void positionChange(qint64 scriptId, int lineNumber, int columnNumber) { if (!callbackQScriptEngineAgentPositionChange(this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), lineNumber, columnNumber)) { QScriptEngineAgent::positionChange(scriptId, lineNumber, columnNumber); }; };
-	void scriptLoad(qint64 id, const QString & program, const QString & fileName, int baseLineNumber) { if (!callbackQScriptEngineAgentScriptLoad(this->objectNameAbs().toUtf8().data(), static_cast<long long>(id), program.toUtf8().data(), fileName.toUtf8().data(), baseLineNumber)) { QScriptEngineAgent::scriptLoad(id, program, fileName, baseLineNumber); }; };
-	void scriptUnload(qint64 id) { if (!callbackQScriptEngineAgentScriptUnload(this->objectNameAbs().toUtf8().data(), static_cast<long long>(id))) { QScriptEngineAgent::scriptUnload(id); }; };
-protected:
+	void contextPop() { callbackQScriptEngineAgentContextPop(this, this->objectNameAbs().toUtf8().data()); };
+	void contextPush() { callbackQScriptEngineAgentContextPush(this, this->objectNameAbs().toUtf8().data()); };
+	void exceptionCatch(qint64 scriptId, const QScriptValue & exception) { callbackQScriptEngineAgentExceptionCatch(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(exception)); };
+	void exceptionThrow(qint64 scriptId, const QScriptValue & exception, bool hasHandler) { callbackQScriptEngineAgentExceptionThrow(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(exception), hasHandler); };
+	void functionEntry(qint64 scriptId) { callbackQScriptEngineAgentFunctionEntry(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId)); };
+	void functionExit(qint64 scriptId, const QScriptValue & returnValue) { callbackQScriptEngineAgentFunctionExit(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(returnValue)); };
+	void positionChange(qint64 scriptId, int lineNumber, int columnNumber) { callbackQScriptEngineAgentPositionChange(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), lineNumber, columnNumber); };
+	void scriptLoad(qint64 id, const QString & program, const QString & fileName, int baseLineNumber) { callbackQScriptEngineAgentScriptLoad(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(id), program.toUtf8().data(), fileName.toUtf8().data(), baseLineNumber); };
+	void scriptUnload(qint64 id) { callbackQScriptEngineAgentScriptUnload(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(id)); };
 };
 
 void* QScriptEngineAgent_NewQScriptEngineAgent(void* engine){
@@ -418,11 +445,19 @@ void* QScriptEngineAgent_NewQScriptEngineAgent(void* engine){
 }
 
 void QScriptEngineAgent_ContextPop(void* ptr){
-	static_cast<QScriptEngineAgent*>(ptr)->contextPop();
+	static_cast<MyQScriptEngineAgent*>(ptr)->contextPop();
+}
+
+void QScriptEngineAgent_ContextPopDefault(void* ptr){
+	static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::contextPop();
 }
 
 void QScriptEngineAgent_ContextPush(void* ptr){
-	static_cast<QScriptEngineAgent*>(ptr)->contextPush();
+	static_cast<MyQScriptEngineAgent*>(ptr)->contextPush();
+}
+
+void QScriptEngineAgent_ContextPushDefault(void* ptr){
+	static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::contextPush();
 }
 
 void* QScriptEngineAgent_Engine(void* ptr){
@@ -430,11 +465,19 @@ void* QScriptEngineAgent_Engine(void* ptr){
 }
 
 void QScriptEngineAgent_ExceptionCatch(void* ptr, long long scriptId, void* exception){
-	static_cast<QScriptEngineAgent*>(ptr)->exceptionCatch(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(exception));
+	static_cast<MyQScriptEngineAgent*>(ptr)->exceptionCatch(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(exception));
+}
+
+void QScriptEngineAgent_ExceptionCatchDefault(void* ptr, long long scriptId, void* exception){
+	static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::exceptionCatch(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(exception));
 }
 
 void QScriptEngineAgent_ExceptionThrow(void* ptr, long long scriptId, void* exception, int hasHandler){
-	static_cast<QScriptEngineAgent*>(ptr)->exceptionThrow(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(exception), hasHandler != 0);
+	static_cast<MyQScriptEngineAgent*>(ptr)->exceptionThrow(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(exception), hasHandler != 0);
+}
+
+void QScriptEngineAgent_ExceptionThrowDefault(void* ptr, long long scriptId, void* exception, int hasHandler){
+	static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::exceptionThrow(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(exception), hasHandler != 0);
 }
 
 void* QScriptEngineAgent_Extension(void* ptr, int extension, void* argument){
@@ -442,23 +485,43 @@ void* QScriptEngineAgent_Extension(void* ptr, int extension, void* argument){
 }
 
 void QScriptEngineAgent_FunctionEntry(void* ptr, long long scriptId){
-	static_cast<QScriptEngineAgent*>(ptr)->functionEntry(static_cast<long long>(scriptId));
+	static_cast<MyQScriptEngineAgent*>(ptr)->functionEntry(static_cast<long long>(scriptId));
+}
+
+void QScriptEngineAgent_FunctionEntryDefault(void* ptr, long long scriptId){
+	static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::functionEntry(static_cast<long long>(scriptId));
 }
 
 void QScriptEngineAgent_FunctionExit(void* ptr, long long scriptId, void* returnValue){
-	static_cast<QScriptEngineAgent*>(ptr)->functionExit(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(returnValue));
+	static_cast<MyQScriptEngineAgent*>(ptr)->functionExit(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(returnValue));
+}
+
+void QScriptEngineAgent_FunctionExitDefault(void* ptr, long long scriptId, void* returnValue){
+	static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::functionExit(static_cast<long long>(scriptId), *static_cast<QScriptValue*>(returnValue));
 }
 
 void QScriptEngineAgent_PositionChange(void* ptr, long long scriptId, int lineNumber, int columnNumber){
-	static_cast<QScriptEngineAgent*>(ptr)->positionChange(static_cast<long long>(scriptId), lineNumber, columnNumber);
+	static_cast<MyQScriptEngineAgent*>(ptr)->positionChange(static_cast<long long>(scriptId), lineNumber, columnNumber);
+}
+
+void QScriptEngineAgent_PositionChangeDefault(void* ptr, long long scriptId, int lineNumber, int columnNumber){
+	static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::positionChange(static_cast<long long>(scriptId), lineNumber, columnNumber);
 }
 
 void QScriptEngineAgent_ScriptLoad(void* ptr, long long id, char* program, char* fileName, int baseLineNumber){
-	static_cast<QScriptEngineAgent*>(ptr)->scriptLoad(static_cast<long long>(id), QString(program), QString(fileName), baseLineNumber);
+	static_cast<MyQScriptEngineAgent*>(ptr)->scriptLoad(static_cast<long long>(id), QString(program), QString(fileName), baseLineNumber);
+}
+
+void QScriptEngineAgent_ScriptLoadDefault(void* ptr, long long id, char* program, char* fileName, int baseLineNumber){
+	static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::scriptLoad(static_cast<long long>(id), QString(program), QString(fileName), baseLineNumber);
 }
 
 void QScriptEngineAgent_ScriptUnload(void* ptr, long long id){
-	static_cast<QScriptEngineAgent*>(ptr)->scriptUnload(static_cast<long long>(id));
+	static_cast<MyQScriptEngineAgent*>(ptr)->scriptUnload(static_cast<long long>(id));
+}
+
+void QScriptEngineAgent_ScriptUnloadDefault(void* ptr, long long id){
+	static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::scriptUnload(static_cast<long long>(id));
 }
 
 int QScriptEngineAgent_SupportsExtension(void* ptr, int extension){
@@ -496,6 +559,30 @@ void* QScriptExtensionPlugin_SetupPackage(void* ptr, char* key, void* engine){
 
 void QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(void* ptr){
 	static_cast<QScriptExtensionPlugin*>(ptr)->~QScriptExtensionPlugin();
+}
+
+void QScriptExtensionPlugin_TimerEvent(void* ptr, void* event){
+	static_cast<QScriptExtensionPlugin*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QScriptExtensionPlugin_TimerEventDefault(void* ptr, void* event){
+	static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QScriptExtensionPlugin_ChildEvent(void* ptr, void* event){
+	static_cast<QScriptExtensionPlugin*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QScriptExtensionPlugin_ChildEventDefault(void* ptr, void* event){
+	static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QScriptExtensionPlugin_CustomEvent(void* ptr, void* event){
+	static_cast<QScriptExtensionPlugin*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QScriptExtensionPlugin_CustomEventDefault(void* ptr, void* event){
+	static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QScriptProgram_NewQScriptProgram(){

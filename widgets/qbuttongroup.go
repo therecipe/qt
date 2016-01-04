@@ -148,13 +148,21 @@ func (ptr *QButtonGroup) DisconnectButtonClicked() {
 }
 
 //export callbackQButtonGroupButtonClicked
-func callbackQButtonGroupButtonClicked(ptrName *C.char, button unsafe.Pointer) {
+func callbackQButtonGroupButtonClicked(ptr unsafe.Pointer, ptrName *C.char, button unsafe.Pointer) {
 	defer qt.Recovering("callback QButtonGroup::buttonClicked")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "buttonClicked"); signal != nil {
 		signal.(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
 	}
 
+}
+
+func (ptr *QButtonGroup) ButtonClicked(button QAbstractButton_ITF) {
+	defer qt.Recovering("QButtonGroup::buttonClicked")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ButtonClicked(ptr.Pointer(), PointerFromQAbstractButton(button))
+	}
 }
 
 func (ptr *QButtonGroup) ConnectButtonClicked2(f func(id int)) {
@@ -176,13 +184,21 @@ func (ptr *QButtonGroup) DisconnectButtonClicked2() {
 }
 
 //export callbackQButtonGroupButtonClicked2
-func callbackQButtonGroupButtonClicked2(ptrName *C.char, id C.int) {
+func callbackQButtonGroupButtonClicked2(ptr unsafe.Pointer, ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QButtonGroup::buttonClicked")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "buttonClicked2"); signal != nil {
 		signal.(func(int))(int(id))
 	}
 
+}
+
+func (ptr *QButtonGroup) ButtonClicked2(id int) {
+	defer qt.Recovering("QButtonGroup::buttonClicked")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ButtonClicked2(ptr.Pointer(), C.int(id))
+	}
 }
 
 func (ptr *QButtonGroup) ConnectButtonPressed(f func(button *QAbstractButton)) {
@@ -204,13 +220,21 @@ func (ptr *QButtonGroup) DisconnectButtonPressed() {
 }
 
 //export callbackQButtonGroupButtonPressed
-func callbackQButtonGroupButtonPressed(ptrName *C.char, button unsafe.Pointer) {
+func callbackQButtonGroupButtonPressed(ptr unsafe.Pointer, ptrName *C.char, button unsafe.Pointer) {
 	defer qt.Recovering("callback QButtonGroup::buttonPressed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "buttonPressed"); signal != nil {
 		signal.(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
 	}
 
+}
+
+func (ptr *QButtonGroup) ButtonPressed(button QAbstractButton_ITF) {
+	defer qt.Recovering("QButtonGroup::buttonPressed")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ButtonPressed(ptr.Pointer(), PointerFromQAbstractButton(button))
+	}
 }
 
 func (ptr *QButtonGroup) ConnectButtonPressed2(f func(id int)) {
@@ -232,13 +256,21 @@ func (ptr *QButtonGroup) DisconnectButtonPressed2() {
 }
 
 //export callbackQButtonGroupButtonPressed2
-func callbackQButtonGroupButtonPressed2(ptrName *C.char, id C.int) {
+func callbackQButtonGroupButtonPressed2(ptr unsafe.Pointer, ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QButtonGroup::buttonPressed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "buttonPressed2"); signal != nil {
 		signal.(func(int))(int(id))
 	}
 
+}
+
+func (ptr *QButtonGroup) ButtonPressed2(id int) {
+	defer qt.Recovering("QButtonGroup::buttonPressed")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ButtonPressed2(ptr.Pointer(), C.int(id))
+	}
 }
 
 func (ptr *QButtonGroup) ConnectButtonReleased(f func(button *QAbstractButton)) {
@@ -260,13 +292,21 @@ func (ptr *QButtonGroup) DisconnectButtonReleased() {
 }
 
 //export callbackQButtonGroupButtonReleased
-func callbackQButtonGroupButtonReleased(ptrName *C.char, button unsafe.Pointer) {
+func callbackQButtonGroupButtonReleased(ptr unsafe.Pointer, ptrName *C.char, button unsafe.Pointer) {
 	defer qt.Recovering("callback QButtonGroup::buttonReleased")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "buttonReleased"); signal != nil {
 		signal.(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
 	}
 
+}
+
+func (ptr *QButtonGroup) ButtonReleased(button QAbstractButton_ITF) {
+	defer qt.Recovering("QButtonGroup::buttonReleased")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ButtonReleased(ptr.Pointer(), PointerFromQAbstractButton(button))
+	}
 }
 
 func (ptr *QButtonGroup) ConnectButtonReleased2(f func(id int)) {
@@ -288,13 +328,21 @@ func (ptr *QButtonGroup) DisconnectButtonReleased2() {
 }
 
 //export callbackQButtonGroupButtonReleased2
-func callbackQButtonGroupButtonReleased2(ptrName *C.char, id C.int) {
+func callbackQButtonGroupButtonReleased2(ptr unsafe.Pointer, ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QButtonGroup::buttonReleased")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "buttonReleased2"); signal != nil {
 		signal.(func(int))(int(id))
 	}
 
+}
+
+func (ptr *QButtonGroup) ButtonReleased2(id int) {
+	defer qt.Recovering("QButtonGroup::buttonReleased")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ButtonReleased2(ptr.Pointer(), C.int(id))
+	}
 }
 
 func (ptr *QButtonGroup) ConnectButtonToggled(f func(button *QAbstractButton, checked bool)) {
@@ -316,13 +364,21 @@ func (ptr *QButtonGroup) DisconnectButtonToggled() {
 }
 
 //export callbackQButtonGroupButtonToggled
-func callbackQButtonGroupButtonToggled(ptrName *C.char, button unsafe.Pointer, checked C.int) {
+func callbackQButtonGroupButtonToggled(ptr unsafe.Pointer, ptrName *C.char, button unsafe.Pointer, checked C.int) {
 	defer qt.Recovering("callback QButtonGroup::buttonToggled")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "buttonToggled"); signal != nil {
 		signal.(func(*QAbstractButton, bool))(NewQAbstractButtonFromPointer(button), int(checked) != 0)
 	}
 
+}
+
+func (ptr *QButtonGroup) ButtonToggled(button QAbstractButton_ITF, checked bool) {
+	defer qt.Recovering("QButtonGroup::buttonToggled")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ButtonToggled(ptr.Pointer(), PointerFromQAbstractButton(button), C.int(qt.GoBoolToInt(checked)))
+	}
 }
 
 func (ptr *QButtonGroup) ConnectButtonToggled2(f func(id int, checked bool)) {
@@ -344,13 +400,21 @@ func (ptr *QButtonGroup) DisconnectButtonToggled2() {
 }
 
 //export callbackQButtonGroupButtonToggled2
-func callbackQButtonGroupButtonToggled2(ptrName *C.char, id C.int, checked C.int) {
+func callbackQButtonGroupButtonToggled2(ptr unsafe.Pointer, ptrName *C.char, id C.int, checked C.int) {
 	defer qt.Recovering("callback QButtonGroup::buttonToggled")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "buttonToggled2"); signal != nil {
 		signal.(func(int, bool))(int(id), int(checked) != 0)
 	}
 
+}
+
+func (ptr *QButtonGroup) ButtonToggled2(id int, checked bool) {
+	defer qt.Recovering("QButtonGroup::buttonToggled")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ButtonToggled2(ptr.Pointer(), C.int(id), C.int(qt.GoBoolToInt(checked)))
+	}
 }
 
 func (ptr *QButtonGroup) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -372,15 +436,30 @@ func (ptr *QButtonGroup) DisconnectTimerEvent() {
 }
 
 //export callbackQButtonGroupTimerEvent
-func callbackQButtonGroupTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQButtonGroupTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QButtonGroup::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQButtonGroupFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QButtonGroup) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QButtonGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QButtonGroup) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QButtonGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QButtonGroup) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -402,15 +481,30 @@ func (ptr *QButtonGroup) DisconnectChildEvent() {
 }
 
 //export callbackQButtonGroupChildEvent
-func callbackQButtonGroupChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQButtonGroupChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QButtonGroup::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQButtonGroupFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QButtonGroup) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QButtonGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QButtonGroup) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QButtonGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QButtonGroup) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -432,13 +526,28 @@ func (ptr *QButtonGroup) DisconnectCustomEvent() {
 }
 
 //export callbackQButtonGroupCustomEvent
-func callbackQButtonGroupCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQButtonGroupCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QButtonGroup::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQButtonGroupFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QButtonGroup) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QButtonGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QButtonGroup) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QButtonGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QButtonGroup_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

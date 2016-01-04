@@ -72,13 +72,21 @@ func (ptr *QSensorGestureManager) DisconnectNewSensorGestureAvailable() {
 }
 
 //export callbackQSensorGestureManagerNewSensorGestureAvailable
-func callbackQSensorGestureManagerNewSensorGestureAvailable(ptrName *C.char) {
+func callbackQSensorGestureManagerNewSensorGestureAvailable(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSensorGestureManager::newSensorGestureAvailable")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "newSensorGestureAvailable"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSensorGestureManager) NewSensorGestureAvailable() {
+	defer qt.Recovering("QSensorGestureManager::newSensorGestureAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager_NewSensorGestureAvailable(ptr.Pointer())
+	}
 }
 
 func (ptr *QSensorGestureManager) RecognizerSignals(gestureId string) []string {
@@ -133,15 +141,30 @@ func (ptr *QSensorGestureManager) DisconnectTimerEvent() {
 }
 
 //export callbackQSensorGestureManagerTimerEvent
-func callbackQSensorGestureManagerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSensorGestureManagerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSensorGestureManager::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSensorGestureManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSensorGestureManager) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSensorGestureManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSensorGestureManager) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSensorGestureManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSensorGestureManager) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -163,15 +186,30 @@ func (ptr *QSensorGestureManager) DisconnectChildEvent() {
 }
 
 //export callbackQSensorGestureManagerChildEvent
-func callbackQSensorGestureManagerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSensorGestureManagerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSensorGestureManager::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSensorGestureManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSensorGestureManager) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSensorGestureManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSensorGestureManager) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSensorGestureManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSensorGestureManager) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -193,13 +231,28 @@ func (ptr *QSensorGestureManager) DisconnectCustomEvent() {
 }
 
 //export callbackQSensorGestureManagerCustomEvent
-func callbackQSensorGestureManagerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSensorGestureManagerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSensorGestureManager::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSensorGestureManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSensorGestureManager) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSensorGestureManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSensorGestureManager) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSensorGestureManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

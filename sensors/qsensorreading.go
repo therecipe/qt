@@ -74,15 +74,30 @@ func (ptr *QSensorReading) DisconnectTimerEvent() {
 }
 
 //export callbackQSensorReadingTimerEvent
-func callbackQSensorReadingTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSensorReadingTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSensorReading::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSensorReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSensorReading) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSensorReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSensorReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSensorReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSensorReading) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -104,15 +119,30 @@ func (ptr *QSensorReading) DisconnectChildEvent() {
 }
 
 //export callbackQSensorReadingChildEvent
-func callbackQSensorReadingChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSensorReadingChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSensorReading::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSensorReadingFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSensorReading) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSensorReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorReading_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSensorReading) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSensorReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorReading_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSensorReading) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -134,13 +164,28 @@ func (ptr *QSensorReading) DisconnectCustomEvent() {
 }
 
 //export callbackQSensorReadingCustomEvent
-func callbackQSensorReadingCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSensorReadingCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSensorReading::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSensorReadingFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSensorReading) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSensorReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorReading_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSensorReading) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSensorReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSensorReading_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

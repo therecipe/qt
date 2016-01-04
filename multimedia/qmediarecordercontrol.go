@@ -56,13 +56,21 @@ func (ptr *QMediaRecorderControl) DisconnectActualLocationChanged() {
 }
 
 //export callbackQMediaRecorderControlActualLocationChanged
-func callbackQMediaRecorderControlActualLocationChanged(ptrName *C.char, location unsafe.Pointer) {
+func callbackQMediaRecorderControlActualLocationChanged(ptr unsafe.Pointer, ptrName *C.char, location unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaRecorderControl::actualLocationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actualLocationChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(location))
 	}
 
+}
+
+func (ptr *QMediaRecorderControl) ActualLocationChanged(location core.QUrl_ITF) {
+	defer qt.Recovering("QMediaRecorderControl::actualLocationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_ActualLocationChanged(ptr.Pointer(), core.PointerFromQUrl(location))
+	}
 }
 
 func (ptr *QMediaRecorderControl) ApplySettings() {
@@ -101,13 +109,21 @@ func (ptr *QMediaRecorderControl) DisconnectDurationChanged() {
 }
 
 //export callbackQMediaRecorderControlDurationChanged
-func callbackQMediaRecorderControlDurationChanged(ptrName *C.char, duration C.longlong) {
+func callbackQMediaRecorderControlDurationChanged(ptr unsafe.Pointer, ptrName *C.char, duration C.longlong) {
 	defer qt.Recovering("callback QMediaRecorderControl::durationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "durationChanged"); signal != nil {
 		signal.(func(int64))(int64(duration))
 	}
 
+}
+
+func (ptr *QMediaRecorderControl) DurationChanged(duration int64) {
+	defer qt.Recovering("QMediaRecorderControl::durationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_DurationChanged(ptr.Pointer(), C.longlong(duration))
+	}
 }
 
 func (ptr *QMediaRecorderControl) ConnectError(f func(error int, errorString string)) {
@@ -129,13 +145,21 @@ func (ptr *QMediaRecorderControl) DisconnectError() {
 }
 
 //export callbackQMediaRecorderControlError
-func callbackQMediaRecorderControlError(ptrName *C.char, error C.int, errorString *C.char) {
+func callbackQMediaRecorderControlError(ptr unsafe.Pointer, ptrName *C.char, error C.int, errorString *C.char) {
 	defer qt.Recovering("callback QMediaRecorderControl::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(int, string))(int(error), C.GoString(errorString))
 	}
 
+}
+
+func (ptr *QMediaRecorderControl) Error(error int, errorString string) {
+	defer qt.Recovering("QMediaRecorderControl::error")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_Error(ptr.Pointer(), C.int(error), C.CString(errorString))
+	}
 }
 
 func (ptr *QMediaRecorderControl) IsMuted() bool {
@@ -166,13 +190,21 @@ func (ptr *QMediaRecorderControl) DisconnectMutedChanged() {
 }
 
 //export callbackQMediaRecorderControlMutedChanged
-func callbackQMediaRecorderControlMutedChanged(ptrName *C.char, muted C.int) {
+func callbackQMediaRecorderControlMutedChanged(ptr unsafe.Pointer, ptrName *C.char, muted C.int) {
 	defer qt.Recovering("callback QMediaRecorderControl::mutedChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mutedChanged"); signal != nil {
 		signal.(func(bool))(int(muted) != 0)
 	}
 
+}
+
+func (ptr *QMediaRecorderControl) MutedChanged(muted bool) {
+	defer qt.Recovering("QMediaRecorderControl::mutedChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_MutedChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(muted)))
+	}
 }
 
 func (ptr *QMediaRecorderControl) OutputLocation() *core.QUrl {
@@ -245,13 +277,21 @@ func (ptr *QMediaRecorderControl) DisconnectStateChanged() {
 }
 
 //export callbackQMediaRecorderControlStateChanged
-func callbackQMediaRecorderControlStateChanged(ptrName *C.char, state C.int) {
+func callbackQMediaRecorderControlStateChanged(ptr unsafe.Pointer, ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QMediaRecorderControl::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QMediaRecorder__State))(QMediaRecorder__State(state))
 	}
 
+}
+
+func (ptr *QMediaRecorderControl) StateChanged(state QMediaRecorder__State) {
+	defer qt.Recovering("QMediaRecorderControl::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_StateChanged(ptr.Pointer(), C.int(state))
+	}
 }
 
 func (ptr *QMediaRecorderControl) Status() QMediaRecorder__Status {
@@ -282,13 +322,21 @@ func (ptr *QMediaRecorderControl) DisconnectStatusChanged() {
 }
 
 //export callbackQMediaRecorderControlStatusChanged
-func callbackQMediaRecorderControlStatusChanged(ptrName *C.char, status C.int) {
+func callbackQMediaRecorderControlStatusChanged(ptr unsafe.Pointer, ptrName *C.char, status C.int) {
 	defer qt.Recovering("callback QMediaRecorderControl::statusChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "statusChanged"); signal != nil {
 		signal.(func(QMediaRecorder__Status))(QMediaRecorder__Status(status))
 	}
 
+}
+
+func (ptr *QMediaRecorderControl) StatusChanged(status QMediaRecorder__Status) {
+	defer qt.Recovering("QMediaRecorderControl::statusChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_StatusChanged(ptr.Pointer(), C.int(status))
+	}
 }
 
 func (ptr *QMediaRecorderControl) Volume() float64 {
@@ -319,13 +367,21 @@ func (ptr *QMediaRecorderControl) DisconnectVolumeChanged() {
 }
 
 //export callbackQMediaRecorderControlVolumeChanged
-func callbackQMediaRecorderControlVolumeChanged(ptrName *C.char, gain C.double) {
+func callbackQMediaRecorderControlVolumeChanged(ptr unsafe.Pointer, ptrName *C.char, gain C.double) {
 	defer qt.Recovering("callback QMediaRecorderControl::volumeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "volumeChanged"); signal != nil {
 		signal.(func(float64))(float64(gain))
 	}
 
+}
+
+func (ptr *QMediaRecorderControl) VolumeChanged(gain float64) {
+	defer qt.Recovering("QMediaRecorderControl::volumeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_VolumeChanged(ptr.Pointer(), C.double(gain))
+	}
 }
 
 func (ptr *QMediaRecorderControl) DestroyQMediaRecorderControl() {
@@ -356,15 +412,30 @@ func (ptr *QMediaRecorderControl) DisconnectTimerEvent() {
 }
 
 //export callbackQMediaRecorderControlTimerEvent
-func callbackQMediaRecorderControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaRecorderControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaRecorderControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaRecorderControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaRecorderControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaRecorderControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMediaRecorderControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaRecorderControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMediaRecorderControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -386,15 +457,30 @@ func (ptr *QMediaRecorderControl) DisconnectChildEvent() {
 }
 
 //export callbackQMediaRecorderControlChildEvent
-func callbackQMediaRecorderControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaRecorderControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaRecorderControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaRecorderControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaRecorderControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaRecorderControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMediaRecorderControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaRecorderControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMediaRecorderControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -416,13 +502,28 @@ func (ptr *QMediaRecorderControl) DisconnectCustomEvent() {
 }
 
 //export callbackQMediaRecorderControlCustomEvent
-func callbackQMediaRecorderControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaRecorderControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaRecorderControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaRecorderControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaRecorderControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaRecorderControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMediaRecorderControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaRecorderControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

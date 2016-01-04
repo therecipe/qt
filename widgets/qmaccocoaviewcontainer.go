@@ -66,15 +66,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectActionEvent() {
 }
 
 //export callbackQMacCocoaViewContainerActionEvent
-func callbackQMacCocoaViewContainerActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -96,15 +111,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectDragEnterEvent() {
 }
 
 //export callbackQMacCocoaViewContainerDragEnterEvent
-func callbackQMacCocoaViewContainerDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -126,15 +156,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQMacCocoaViewContainerDragLeaveEvent
-func callbackQMacCocoaViewContainerDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -156,15 +201,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectDragMoveEvent() {
 }
 
 //export callbackQMacCocoaViewContainerDragMoveEvent
-func callbackQMacCocoaViewContainerDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -186,15 +246,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectDropEvent() {
 }
 
 //export callbackQMacCocoaViewContainerDropEvent
-func callbackQMacCocoaViewContainerDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -216,15 +291,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectEnterEvent() {
 }
 
 //export callbackQMacCocoaViewContainerEnterEvent
-func callbackQMacCocoaViewContainerEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -246,15 +336,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectFocusInEvent() {
 }
 
 //export callbackQMacCocoaViewContainerFocusInEvent
-func callbackQMacCocoaViewContainerFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -276,15 +381,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectFocusOutEvent() {
 }
 
 //export callbackQMacCocoaViewContainerFocusOutEvent
-func callbackQMacCocoaViewContainerFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -306,15 +426,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectHideEvent() {
 }
 
 //export callbackQMacCocoaViewContainerHideEvent
-func callbackQMacCocoaViewContainerHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -336,15 +471,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectLeaveEvent() {
 }
 
 //export callbackQMacCocoaViewContainerLeaveEvent
-func callbackQMacCocoaViewContainerLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -366,15 +516,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectMoveEvent() {
 }
 
 //export callbackQMacCocoaViewContainerMoveEvent
-func callbackQMacCocoaViewContainerMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -396,15 +561,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectPaintEvent() {
 }
 
 //export callbackQMacCocoaViewContainerPaintEvent
-func callbackQMacCocoaViewContainerPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectSetVisible(f func(visible bool)) {
@@ -426,7 +606,7 @@ func (ptr *QMacCocoaViewContainer) DisconnectSetVisible() {
 }
 
 //export callbackQMacCocoaViewContainerSetVisible
-func callbackQMacCocoaViewContainerSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQMacCocoaViewContainerSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QMacCocoaViewContainer::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -435,6 +615,22 @@ func callbackQMacCocoaViewContainerSetVisible(ptrName *C.char, visible C.int) bo
 	}
 	return false
 
+}
+
+func (ptr *QMacCocoaViewContainer) SetVisible(visible bool) {
+	defer qt.Recovering("QMacCocoaViewContainer::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QMacCocoaViewContainer::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -456,15 +652,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectShowEvent() {
 }
 
 //export callbackQMacCocoaViewContainerShowEvent
-func callbackQMacCocoaViewContainerShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -486,15 +697,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectChangeEvent() {
 }
 
 //export callbackQMacCocoaViewContainerChangeEvent
-func callbackQMacCocoaViewContainerChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -516,15 +742,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectCloseEvent() {
 }
 
 //export callbackQMacCocoaViewContainerCloseEvent
-func callbackQMacCocoaViewContainerCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -546,15 +787,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectContextMenuEvent() {
 }
 
 //export callbackQMacCocoaViewContainerContextMenuEvent
-func callbackQMacCocoaViewContainerContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -576,15 +832,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectInitPainter() {
 }
 
 //export callbackQMacCocoaViewContainerInitPainter
-func callbackQMacCocoaViewContainerInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -606,15 +877,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectInputMethodEvent() {
 }
 
 //export callbackQMacCocoaViewContainerInputMethodEvent
-func callbackQMacCocoaViewContainerInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -636,15 +922,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectKeyPressEvent() {
 }
 
 //export callbackQMacCocoaViewContainerKeyPressEvent
-func callbackQMacCocoaViewContainerKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -666,15 +967,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQMacCocoaViewContainerKeyReleaseEvent
-func callbackQMacCocoaViewContainerKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -696,15 +1012,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQMacCocoaViewContainerMouseDoubleClickEvent
-func callbackQMacCocoaViewContainerMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -726,15 +1057,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQMacCocoaViewContainerMouseMoveEvent
-func callbackQMacCocoaViewContainerMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -756,15 +1102,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectMousePressEvent() {
 }
 
 //export callbackQMacCocoaViewContainerMousePressEvent
-func callbackQMacCocoaViewContainerMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -786,15 +1147,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQMacCocoaViewContainerMouseReleaseEvent
-func callbackQMacCocoaViewContainerMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -816,15 +1192,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectResizeEvent() {
 }
 
 //export callbackQMacCocoaViewContainerResizeEvent
-func callbackQMacCocoaViewContainerResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -846,15 +1237,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectTabletEvent() {
 }
 
 //export callbackQMacCocoaViewContainerTabletEvent
-func callbackQMacCocoaViewContainerTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -876,15 +1282,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectWheelEvent() {
 }
 
 //export callbackQMacCocoaViewContainerWheelEvent
-func callbackQMacCocoaViewContainerWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -906,15 +1327,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectTimerEvent() {
 }
 
 //export callbackQMacCocoaViewContainerTimerEvent
-func callbackQMacCocoaViewContainerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -936,15 +1372,30 @@ func (ptr *QMacCocoaViewContainer) DisconnectChildEvent() {
 }
 
 //export callbackQMacCocoaViewContainerChildEvent
-func callbackQMacCocoaViewContainerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMacCocoaViewContainer) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -966,13 +1417,28 @@ func (ptr *QMacCocoaViewContainer) DisconnectCustomEvent() {
 }
 
 //export callbackQMacCocoaViewContainerCustomEvent
-func callbackQMacCocoaViewContainerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacCocoaViewContainerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacCocoaViewContainer::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMacCocoaViewContainerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacCocoaViewContainer) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMacCocoaViewContainer) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacCocoaViewContainer::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacCocoaViewContainer_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

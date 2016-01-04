@@ -152,15 +152,30 @@ func (ptr *QUndoView) DisconnectCurrentChanged() {
 }
 
 //export callbackQUndoViewCurrentChanged
-func callbackQUndoViewCurrentChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
+func callbackQUndoViewCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
 	}
-	return false
+}
 
+func (ptr *QUndoView) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
+	defer qt.Recovering("QUndoView::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_CurrentChanged(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
+	}
+}
+
+func (ptr *QUndoView) CurrentChangedDefault(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
+	defer qt.Recovering("QUndoView::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_CurrentChangedDefault(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
+	}
 }
 
 func (ptr *QUndoView) ConnectDragLeaveEvent(f func(e *gui.QDragLeaveEvent)) {
@@ -182,15 +197,30 @@ func (ptr *QUndoView) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQUndoViewDragLeaveEvent
-func callbackQUndoViewDragLeaveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQUndoViewDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(e))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QUndoView) DragLeaveEvent(e gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QUndoView::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(e))
+	}
+}
+
+func (ptr *QUndoView) DragLeaveEventDefault(e gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QUndoView::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(e))
+	}
 }
 
 func (ptr *QUndoView) ConnectDragMoveEvent(f func(e *gui.QDragMoveEvent)) {
@@ -212,15 +242,30 @@ func (ptr *QUndoView) DisconnectDragMoveEvent() {
 }
 
 //export callbackQUndoViewDragMoveEvent
-func callbackQUndoViewDragMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQUndoViewDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(e))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QUndoView) DragMoveEvent(e gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QUndoView::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
+	}
+}
+
+func (ptr *QUndoView) DragMoveEventDefault(e gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QUndoView::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
+	}
 }
 
 func (ptr *QUndoView) ConnectDropEvent(f func(e *gui.QDropEvent)) {
@@ -242,15 +287,30 @@ func (ptr *QUndoView) DisconnectDropEvent() {
 }
 
 //export callbackQUndoViewDropEvent
-func callbackQUndoViewDropEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQUndoViewDropEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(e))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QUndoView) DropEvent(e gui.QDropEvent_ITF) {
+	defer qt.Recovering("QUndoView::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(e))
+	}
+}
+
+func (ptr *QUndoView) DropEventDefault(e gui.QDropEvent_ITF) {
+	defer qt.Recovering("QUndoView::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(e))
+	}
 }
 
 func (ptr *QUndoView) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
@@ -272,15 +332,30 @@ func (ptr *QUndoView) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQUndoViewMouseMoveEvent
-func callbackQUndoViewMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQUndoViewMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QUndoView) MouseMoveEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QUndoView::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QUndoView) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QUndoView::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QUndoView) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -302,15 +377,30 @@ func (ptr *QUndoView) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQUndoViewMouseReleaseEvent
-func callbackQUndoViewMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQUndoViewMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QUndoView) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QUndoView::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QUndoView) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QUndoView::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QUndoView) ConnectPaintEvent(f func(e *gui.QPaintEvent)) {
@@ -332,15 +422,30 @@ func (ptr *QUndoView) DisconnectPaintEvent() {
 }
 
 //export callbackQUndoViewPaintEvent
-func callbackQUndoViewPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQUndoViewPaintEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QUndoView) PaintEvent(e gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QUndoView::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(e))
+	}
+}
+
+func (ptr *QUndoView) PaintEventDefault(e gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QUndoView::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(e))
+	}
 }
 
 func (ptr *QUndoView) ConnectResizeEvent(f func(e *gui.QResizeEvent)) {
@@ -362,15 +467,30 @@ func (ptr *QUndoView) DisconnectResizeEvent() {
 }
 
 //export callbackQUndoViewResizeEvent
-func callbackQUndoViewResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQUndoViewResizeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QUndoView) ResizeEvent(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QUndoView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
+}
+
+func (ptr *QUndoView) ResizeEventDefault(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QUndoView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
 }
 
 func (ptr *QUndoView) ConnectRowsAboutToBeRemoved(f func(parent *core.QModelIndex, start int, end int)) {
@@ -392,15 +512,30 @@ func (ptr *QUndoView) DisconnectRowsAboutToBeRemoved() {
 }
 
 //export callbackQUndoViewRowsAboutToBeRemoved
-func callbackQUndoViewRowsAboutToBeRemoved(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
+func callbackQUndoViewRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
 	defer qt.Recovering("callback QUndoView::rowsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).RowsAboutToBeRemovedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
 	}
-	return false
+}
 
+func (ptr *QUndoView) RowsAboutToBeRemoved(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QUndoView::rowsAboutToBeRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_RowsAboutToBeRemoved(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
+}
+
+func (ptr *QUndoView) RowsAboutToBeRemovedDefault(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QUndoView::rowsAboutToBeRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_RowsAboutToBeRemovedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
 }
 
 func (ptr *QUndoView) ConnectRowsInserted(f func(parent *core.QModelIndex, start int, end int)) {
@@ -422,15 +557,30 @@ func (ptr *QUndoView) DisconnectRowsInserted() {
 }
 
 //export callbackQUndoViewRowsInserted
-func callbackQUndoViewRowsInserted(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
+func callbackQUndoViewRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
 	defer qt.Recovering("callback QUndoView::rowsInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).RowsInsertedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
 	}
-	return false
+}
 
+func (ptr *QUndoView) RowsInserted(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QUndoView::rowsInserted")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_RowsInserted(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
+}
+
+func (ptr *QUndoView) RowsInsertedDefault(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QUndoView::rowsInserted")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_RowsInsertedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
 }
 
 func (ptr *QUndoView) ConnectScrollTo(f func(index *core.QModelIndex, hint QAbstractItemView__ScrollHint)) {
@@ -452,15 +602,30 @@ func (ptr *QUndoView) DisconnectScrollTo() {
 }
 
 //export callbackQUndoViewScrollTo
-func callbackQUndoViewScrollTo(ptrName *C.char, index unsafe.Pointer, hint C.int) bool {
+func callbackQUndoViewScrollTo(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer, hint C.int) {
 	defer qt.Recovering("callback QUndoView::scrollTo")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollTo"); signal != nil {
 		signal.(func(*core.QModelIndex, QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).ScrollToDefault(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
 	}
-	return false
+}
 
+func (ptr *QUndoView) ScrollTo(index core.QModelIndex_ITF, hint QAbstractItemView__ScrollHint) {
+	defer qt.Recovering("QUndoView::scrollTo")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ScrollTo(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(hint))
+	}
+}
+
+func (ptr *QUndoView) ScrollToDefault(index core.QModelIndex_ITF, hint QAbstractItemView__ScrollHint) {
+	defer qt.Recovering("QUndoView::scrollTo")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ScrollToDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(hint))
+	}
 }
 
 func (ptr *QUndoView) ConnectSetSelection(f func(rect *core.QRect, command core.QItemSelectionModel__SelectionFlag)) {
@@ -482,15 +647,30 @@ func (ptr *QUndoView) DisconnectSetSelection() {
 }
 
 //export callbackQUndoViewSetSelection
-func callbackQUndoViewSetSelection(ptrName *C.char, rect unsafe.Pointer, command C.int) bool {
+func callbackQUndoViewSetSelection(ptr unsafe.Pointer, ptrName *C.char, rect unsafe.Pointer, command C.int) {
 	defer qt.Recovering("callback QUndoView::setSelection")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).SetSelectionDefault(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
 	}
-	return false
+}
 
+func (ptr *QUndoView) SetSelection(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QUndoView::setSelection")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetSelection(ptr.Pointer(), core.PointerFromQRect(rect), C.int(command))
+	}
+}
+
+func (ptr *QUndoView) SetSelectionDefault(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QUndoView::setSelection")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetSelectionDefault(ptr.Pointer(), core.PointerFromQRect(rect), C.int(command))
+	}
 }
 
 func (ptr *QUndoView) ConnectStartDrag(f func(supportedActions core.Qt__DropAction)) {
@@ -512,15 +692,30 @@ func (ptr *QUndoView) DisconnectStartDrag() {
 }
 
 //export callbackQUndoViewStartDrag
-func callbackQUndoViewStartDrag(ptrName *C.char, supportedActions C.int) bool {
+func callbackQUndoViewStartDrag(ptr unsafe.Pointer, ptrName *C.char, supportedActions C.int) {
 	defer qt.Recovering("callback QUndoView::startDrag")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startDrag"); signal != nil {
 		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(supportedActions))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).StartDragDefault(core.Qt__DropAction(supportedActions))
 	}
-	return false
+}
 
+func (ptr *QUndoView) StartDrag(supportedActions core.Qt__DropAction) {
+	defer qt.Recovering("QUndoView::startDrag")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_StartDrag(ptr.Pointer(), C.int(supportedActions))
+	}
+}
+
+func (ptr *QUndoView) StartDragDefault(supportedActions core.Qt__DropAction) {
+	defer qt.Recovering("QUndoView::startDrag")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_StartDragDefault(ptr.Pointer(), C.int(supportedActions))
+	}
 }
 
 func (ptr *QUndoView) ConnectTimerEvent(f func(e *core.QTimerEvent)) {
@@ -542,15 +737,30 @@ func (ptr *QUndoView) DisconnectTimerEvent() {
 }
 
 //export callbackQUndoViewTimerEvent
-func callbackQUndoViewTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQUndoViewTimerEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QUndoView) TimerEvent(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QUndoView::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
+}
+
+func (ptr *QUndoView) TimerEventDefault(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QUndoView::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
 }
 
 func (ptr *QUndoView) ConnectUpdateGeometries(f func()) {
@@ -572,15 +782,30 @@ func (ptr *QUndoView) DisconnectUpdateGeometries() {
 }
 
 //export callbackQUndoViewUpdateGeometries
-func callbackQUndoViewUpdateGeometries(ptrName *C.char) bool {
+func callbackQUndoViewUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QUndoView::updateGeometries")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).UpdateGeometriesDefault()
 	}
-	return false
+}
 
+func (ptr *QUndoView) UpdateGeometries() {
+	defer qt.Recovering("QUndoView::updateGeometries")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_UpdateGeometries(ptr.Pointer())
+	}
+}
+
+func (ptr *QUndoView) UpdateGeometriesDefault() {
+	defer qt.Recovering("QUndoView::updateGeometries")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_UpdateGeometriesDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QUndoView) ConnectCloseEditor(f func(editor *QWidget, hint QAbstractItemDelegate__EndEditHint)) {
@@ -602,7 +827,7 @@ func (ptr *QUndoView) DisconnectCloseEditor() {
 }
 
 //export callbackQUndoViewCloseEditor
-func callbackQUndoViewCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint C.int) bool {
+func callbackQUndoViewCloseEditor(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer, hint C.int) bool {
 	defer qt.Recovering("callback QUndoView::closeEditor")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEditor"); signal != nil {
@@ -611,6 +836,22 @@ func callbackQUndoViewCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint C
 	}
 	return false
 
+}
+
+func (ptr *QUndoView) CloseEditor(editor QWidget_ITF, hint QAbstractItemDelegate__EndEditHint) {
+	defer qt.Recovering("QUndoView::closeEditor")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_CloseEditor(ptr.Pointer(), PointerFromQWidget(editor), C.int(hint))
+	}
+}
+
+func (ptr *QUndoView) CloseEditorDefault(editor QWidget_ITF, hint QAbstractItemDelegate__EndEditHint) {
+	defer qt.Recovering("QUndoView::closeEditor")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_CloseEditorDefault(ptr.Pointer(), PointerFromQWidget(editor), C.int(hint))
+	}
 }
 
 func (ptr *QUndoView) ConnectCommitData(f func(editor *QWidget)) {
@@ -632,7 +873,7 @@ func (ptr *QUndoView) DisconnectCommitData() {
 }
 
 //export callbackQUndoViewCommitData
-func callbackQUndoViewCommitData(ptrName *C.char, editor unsafe.Pointer) bool {
+func callbackQUndoViewCommitData(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer) bool {
 	defer qt.Recovering("callback QUndoView::commitData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "commitData"); signal != nil {
@@ -641,6 +882,22 @@ func callbackQUndoViewCommitData(ptrName *C.char, editor unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QUndoView) CommitData(editor QWidget_ITF) {
+	defer qt.Recovering("QUndoView::commitData")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_CommitData(ptr.Pointer(), PointerFromQWidget(editor))
+	}
+}
+
+func (ptr *QUndoView) CommitDataDefault(editor QWidget_ITF) {
+	defer qt.Recovering("QUndoView::commitData")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_CommitDataDefault(ptr.Pointer(), PointerFromQWidget(editor))
+	}
 }
 
 func (ptr *QUndoView) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -662,15 +919,30 @@ func (ptr *QUndoView) DisconnectDragEnterEvent() {
 }
 
 //export callbackQUndoViewDragEnterEvent
-func callbackQUndoViewDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QUndoView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QUndoView) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QUndoView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectEditorDestroyed(f func(editor *core.QObject)) {
@@ -692,7 +964,7 @@ func (ptr *QUndoView) DisconnectEditorDestroyed() {
 }
 
 //export callbackQUndoViewEditorDestroyed
-func callbackQUndoViewEditorDestroyed(ptrName *C.char, editor unsafe.Pointer) bool {
+func callbackQUndoViewEditorDestroyed(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer) bool {
 	defer qt.Recovering("callback QUndoView::editorDestroyed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "editorDestroyed"); signal != nil {
@@ -701,6 +973,22 @@ func callbackQUndoViewEditorDestroyed(ptrName *C.char, editor unsafe.Pointer) bo
 	}
 	return false
 
+}
+
+func (ptr *QUndoView) EditorDestroyed(editor core.QObject_ITF) {
+	defer qt.Recovering("QUndoView::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_EditorDestroyed(ptr.Pointer(), core.PointerFromQObject(editor))
+	}
+}
+
+func (ptr *QUndoView) EditorDestroyedDefault(editor core.QObject_ITF) {
+	defer qt.Recovering("QUndoView::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_EditorDestroyedDefault(ptr.Pointer(), core.PointerFromQObject(editor))
+	}
 }
 
 func (ptr *QUndoView) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -722,15 +1010,30 @@ func (ptr *QUndoView) DisconnectFocusInEvent() {
 }
 
 //export callbackQUndoViewFocusInEvent
-func callbackQUndoViewFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QUndoView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QUndoView) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QUndoView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -752,15 +1055,30 @@ func (ptr *QUndoView) DisconnectFocusOutEvent() {
 }
 
 //export callbackQUndoViewFocusOutEvent
-func callbackQUndoViewFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QUndoView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QUndoView) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QUndoView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -782,15 +1100,30 @@ func (ptr *QUndoView) DisconnectInputMethodEvent() {
 }
 
 //export callbackQUndoViewInputMethodEvent
-func callbackQUndoViewInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QUndoView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QUndoView) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QUndoView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -812,15 +1145,30 @@ func (ptr *QUndoView) DisconnectKeyPressEvent() {
 }
 
 //export callbackQUndoViewKeyPressEvent
-func callbackQUndoViewKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QUndoView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QUndoView) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QUndoView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectKeyboardSearch(f func(search string)) {
@@ -842,15 +1190,30 @@ func (ptr *QUndoView) DisconnectKeyboardSearch() {
 }
 
 //export callbackQUndoViewKeyboardSearch
-func callbackQUndoViewKeyboardSearch(ptrName *C.char, search *C.char) bool {
+func callbackQUndoViewKeyboardSearch(ptr unsafe.Pointer, ptrName *C.char, search *C.char) {
 	defer qt.Recovering("callback QUndoView::keyboardSearch")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyboardSearch"); signal != nil {
 		signal.(func(string))(C.GoString(search))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).KeyboardSearchDefault(C.GoString(search))
 	}
-	return false
+}
 
+func (ptr *QUndoView) KeyboardSearch(search string) {
+	defer qt.Recovering("QUndoView::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_KeyboardSearch(ptr.Pointer(), C.CString(search))
+	}
+}
+
+func (ptr *QUndoView) KeyboardSearchDefault(search string) {
+	defer qt.Recovering("QUndoView::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_KeyboardSearchDefault(ptr.Pointer(), C.CString(search))
+	}
 }
 
 func (ptr *QUndoView) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -872,15 +1235,30 @@ func (ptr *QUndoView) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQUndoViewMouseDoubleClickEvent
-func callbackQUndoViewMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QUndoView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QUndoView) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QUndoView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -902,15 +1280,30 @@ func (ptr *QUndoView) DisconnectMousePressEvent() {
 }
 
 //export callbackQUndoViewMousePressEvent
-func callbackQUndoViewMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QUndoView::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QUndoView) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QUndoView::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectReset(f func()) {
@@ -932,7 +1325,7 @@ func (ptr *QUndoView) DisconnectReset() {
 }
 
 //export callbackQUndoViewReset
-func callbackQUndoViewReset(ptrName *C.char) bool {
+func callbackQUndoViewReset(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QUndoView::reset")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
@@ -941,6 +1334,22 @@ func callbackQUndoViewReset(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QUndoView) Reset() {
+	defer qt.Recovering("QUndoView::reset")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_Reset(ptr.Pointer())
+	}
+}
+
+func (ptr *QUndoView) ResetDefault() {
+	defer qt.Recovering("QUndoView::reset")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ResetDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QUndoView) ConnectSelectAll(f func()) {
@@ -962,7 +1371,7 @@ func (ptr *QUndoView) DisconnectSelectAll() {
 }
 
 //export callbackQUndoViewSelectAll
-func callbackQUndoViewSelectAll(ptrName *C.char) bool {
+func callbackQUndoViewSelectAll(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QUndoView::selectAll")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectAll"); signal != nil {
@@ -971,6 +1380,22 @@ func callbackQUndoViewSelectAll(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QUndoView) SelectAll() {
+	defer qt.Recovering("QUndoView::selectAll")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SelectAll(ptr.Pointer())
+	}
+}
+
+func (ptr *QUndoView) SelectAllDefault() {
+	defer qt.Recovering("QUndoView::selectAll")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SelectAllDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QUndoView) ConnectSetModel(f func(model *core.QAbstractItemModel)) {
@@ -992,15 +1417,30 @@ func (ptr *QUndoView) DisconnectSetModel() {
 }
 
 //export callbackQUndoViewSetModel
-func callbackQUndoViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
+func callbackQUndoViewSetModel(ptr unsafe.Pointer, ptrName *C.char, model unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::setModel")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
 		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).SetModelDefault(core.NewQAbstractItemModelFromPointer(model))
 	}
-	return false
+}
 
+func (ptr *QUndoView) SetModel(model core.QAbstractItemModel_ITF) {
+	defer qt.Recovering("QUndoView::setModel")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetModel(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
+	}
+}
+
+func (ptr *QUndoView) SetModelDefault(model core.QAbstractItemModel_ITF) {
+	defer qt.Recovering("QUndoView::setModel")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetModelDefault(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
+	}
 }
 
 func (ptr *QUndoView) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
@@ -1022,7 +1462,7 @@ func (ptr *QUndoView) DisconnectSetRootIndex() {
 }
 
 //export callbackQUndoViewSetRootIndex
-func callbackQUndoViewSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool {
+func callbackQUndoViewSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) bool {
 	defer qt.Recovering("callback QUndoView::setRootIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
@@ -1031,6 +1471,22 @@ func callbackQUndoViewSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QUndoView) SetRootIndex(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QUndoView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetRootIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QUndoView) SetRootIndexDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QUndoView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetRootIndexDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
 }
 
 func (ptr *QUndoView) ConnectSetSelectionModel(f func(selectionModel *core.QItemSelectionModel)) {
@@ -1052,15 +1508,30 @@ func (ptr *QUndoView) DisconnectSetSelectionModel() {
 }
 
 //export callbackQUndoViewSetSelectionModel
-func callbackQUndoViewSetSelectionModel(ptrName *C.char, selectionModel unsafe.Pointer) bool {
+func callbackQUndoViewSetSelectionModel(ptr unsafe.Pointer, ptrName *C.char, selectionModel unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::setSelectionModel")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelectionModel"); signal != nil {
 		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).SetSelectionModelDefault(core.NewQItemSelectionModelFromPointer(selectionModel))
 	}
-	return false
+}
 
+func (ptr *QUndoView) SetSelectionModel(selectionModel core.QItemSelectionModel_ITF) {
+	defer qt.Recovering("QUndoView::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetSelectionModel(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
+	}
+}
+
+func (ptr *QUndoView) SetSelectionModelDefault(selectionModel core.QItemSelectionModel_ITF) {
+	defer qt.Recovering("QUndoView::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetSelectionModelDefault(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
+	}
 }
 
 func (ptr *QUndoView) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
@@ -1082,15 +1553,30 @@ func (ptr *QUndoView) DisconnectContextMenuEvent() {
 }
 
 //export callbackQUndoViewContextMenuEvent
-func callbackQUndoViewContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQUndoViewContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QUndoView) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QUndoView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QUndoView) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QUndoView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QUndoView) ConnectScrollContentsBy(f func(dx int, dy int)) {
@@ -1112,15 +1598,30 @@ func (ptr *QUndoView) DisconnectScrollContentsBy() {
 }
 
 //export callbackQUndoViewScrollContentsBy
-func callbackQUndoViewScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
+func callbackQUndoViewScrollContentsBy(ptr unsafe.Pointer, ptrName *C.char, dx C.int, dy C.int) {
 	defer qt.Recovering("callback QUndoView::scrollContentsBy")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
 		signal.(func(int, int))(int(dx), int(dy))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).ScrollContentsByDefault(int(dx), int(dy))
 	}
-	return false
+}
 
+func (ptr *QUndoView) ScrollContentsBy(dx int, dy int) {
+	defer qt.Recovering("QUndoView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ScrollContentsBy(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
+}
+
+func (ptr *QUndoView) ScrollContentsByDefault(dx int, dy int) {
+	defer qt.Recovering("QUndoView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ScrollContentsByDefault(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
 }
 
 func (ptr *QUndoView) ConnectSetupViewport(f func(viewport *QWidget)) {
@@ -1142,15 +1643,30 @@ func (ptr *QUndoView) DisconnectSetupViewport() {
 }
 
 //export callbackQUndoViewSetupViewport
-func callbackQUndoViewSetupViewport(ptrName *C.char, viewport unsafe.Pointer) bool {
+func callbackQUndoViewSetupViewport(ptr unsafe.Pointer, ptrName *C.char, viewport unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::setupViewport")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setupViewport"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(viewport))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).SetupViewportDefault(NewQWidgetFromPointer(viewport))
 	}
-	return false
+}
 
+func (ptr *QUndoView) SetupViewport(viewport QWidget_ITF) {
+	defer qt.Recovering("QUndoView::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetupViewport(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
+}
+
+func (ptr *QUndoView) SetupViewportDefault(viewport QWidget_ITF) {
+	defer qt.Recovering("QUndoView::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetupViewportDefault(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
 }
 
 func (ptr *QUndoView) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
@@ -1172,15 +1688,30 @@ func (ptr *QUndoView) DisconnectWheelEvent() {
 }
 
 //export callbackQUndoViewWheelEvent
-func callbackQUndoViewWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQUndoViewWheelEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QUndoView) WheelEvent(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QUndoView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
+}
+
+func (ptr *QUndoView) WheelEventDefault(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QUndoView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
 }
 
 func (ptr *QUndoView) ConnectChangeEvent(f func(ev *core.QEvent)) {
@@ -1202,15 +1733,30 @@ func (ptr *QUndoView) DisconnectChangeEvent() {
 }
 
 //export callbackQUndoViewChangeEvent
-func callbackQUndoViewChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQUndoViewChangeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QUndoView) ChangeEvent(ev core.QEvent_ITF) {
+	defer qt.Recovering("QUndoView::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QUndoView) ChangeEventDefault(ev core.QEvent_ITF) {
+	defer qt.Recovering("QUndoView::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
 }
 
 func (ptr *QUndoView) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -1232,15 +1778,30 @@ func (ptr *QUndoView) DisconnectActionEvent() {
 }
 
 //export callbackQUndoViewActionEvent
-func callbackQUndoViewActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QUndoView::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QUndoView) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QUndoView::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -1262,15 +1823,30 @@ func (ptr *QUndoView) DisconnectEnterEvent() {
 }
 
 //export callbackQUndoViewEnterEvent
-func callbackQUndoViewEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QUndoView::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QUndoView) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QUndoView::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -1292,15 +1868,30 @@ func (ptr *QUndoView) DisconnectHideEvent() {
 }
 
 //export callbackQUndoViewHideEvent
-func callbackQUndoViewHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QUndoView::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QUndoView) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QUndoView::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -1322,15 +1913,30 @@ func (ptr *QUndoView) DisconnectLeaveEvent() {
 }
 
 //export callbackQUndoViewLeaveEvent
-func callbackQUndoViewLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QUndoView::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QUndoView) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QUndoView::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1352,15 +1958,30 @@ func (ptr *QUndoView) DisconnectMoveEvent() {
 }
 
 //export callbackQUndoViewMoveEvent
-func callbackQUndoViewMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QUndoView::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QUndoView) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QUndoView::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectSetVisible(f func(visible bool)) {
@@ -1382,7 +2003,7 @@ func (ptr *QUndoView) DisconnectSetVisible() {
 }
 
 //export callbackQUndoViewSetVisible
-func callbackQUndoViewSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQUndoViewSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QUndoView::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -1391,6 +2012,22 @@ func callbackQUndoViewSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QUndoView) SetVisible(visible bool) {
+	defer qt.Recovering("QUndoView::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QUndoView) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QUndoView::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QUndoView) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -1412,15 +2049,30 @@ func (ptr *QUndoView) DisconnectShowEvent() {
 }
 
 //export callbackQUndoViewShowEvent
-func callbackQUndoViewShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QUndoView::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QUndoView) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QUndoView::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -1442,15 +2094,30 @@ func (ptr *QUndoView) DisconnectCloseEvent() {
 }
 
 //export callbackQUndoViewCloseEvent
-func callbackQUndoViewCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QUndoView::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QUndoView) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QUndoView::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1472,15 +2139,30 @@ func (ptr *QUndoView) DisconnectInitPainter() {
 }
 
 //export callbackQUndoViewInitPainter
-func callbackQUndoViewInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQUndoViewInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QUndoView) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QUndoView::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QUndoView) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QUndoView::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QUndoView) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -1502,15 +2184,30 @@ func (ptr *QUndoView) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQUndoViewKeyReleaseEvent
-func callbackQUndoViewKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QUndoView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QUndoView) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QUndoView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1532,15 +2229,30 @@ func (ptr *QUndoView) DisconnectTabletEvent() {
 }
 
 //export callbackQUndoViewTabletEvent
-func callbackQUndoViewTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QUndoView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QUndoView) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QUndoView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1562,15 +2274,30 @@ func (ptr *QUndoView) DisconnectChildEvent() {
 }
 
 //export callbackQUndoViewChildEvent
-func callbackQUndoViewChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QUndoView::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QUndoView) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QUndoView::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QUndoView) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1592,13 +2319,28 @@ func (ptr *QUndoView) DisconnectCustomEvent() {
 }
 
 //export callbackQUndoViewCustomEvent
-func callbackQUndoViewCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoViewCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoView::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoViewFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoView) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QUndoView::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QUndoView) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QUndoView::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoView_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -83,13 +83,21 @@ func (ptr *QMediaObject) DisconnectAvailabilityChanged2() {
 }
 
 //export callbackQMediaObjectAvailabilityChanged2
-func callbackQMediaObjectAvailabilityChanged2(ptrName *C.char, availability C.int) {
+func callbackQMediaObjectAvailabilityChanged2(ptr unsafe.Pointer, ptrName *C.char, availability C.int) {
 	defer qt.Recovering("callback QMediaObject::availabilityChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "availabilityChanged2"); signal != nil {
 		signal.(func(QMultimedia__AvailabilityStatus))(QMultimedia__AvailabilityStatus(availability))
 	}
 
+}
+
+func (ptr *QMediaObject) AvailabilityChanged2(availability QMultimedia__AvailabilityStatus) {
+	defer qt.Recovering("QMediaObject::availabilityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_AvailabilityChanged2(ptr.Pointer(), C.int(availability))
+	}
 }
 
 func (ptr *QMediaObject) ConnectAvailabilityChanged(f func(available bool)) {
@@ -111,13 +119,21 @@ func (ptr *QMediaObject) DisconnectAvailabilityChanged() {
 }
 
 //export callbackQMediaObjectAvailabilityChanged
-func callbackQMediaObjectAvailabilityChanged(ptrName *C.char, available C.int) {
+func callbackQMediaObjectAvailabilityChanged(ptr unsafe.Pointer, ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QMediaObject::availabilityChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "availabilityChanged"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
+}
+
+func (ptr *QMediaObject) AvailabilityChanged(available bool) {
+	defer qt.Recovering("QMediaObject::availabilityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_AvailabilityChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(available)))
+	}
 }
 
 func (ptr *QMediaObject) AvailableMetaData() []string {
@@ -184,13 +200,21 @@ func (ptr *QMediaObject) DisconnectMetaDataAvailableChanged() {
 }
 
 //export callbackQMediaObjectMetaDataAvailableChanged
-func callbackQMediaObjectMetaDataAvailableChanged(ptrName *C.char, available C.int) {
+func callbackQMediaObjectMetaDataAvailableChanged(ptr unsafe.Pointer, ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QMediaObject::metaDataAvailableChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataAvailableChanged"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
+}
+
+func (ptr *QMediaObject) MetaDataAvailableChanged(available bool) {
+	defer qt.Recovering("QMediaObject::metaDataAvailableChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_MetaDataAvailableChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(available)))
+	}
 }
 
 func (ptr *QMediaObject) ConnectMetaDataChanged(f func()) {
@@ -212,13 +236,21 @@ func (ptr *QMediaObject) DisconnectMetaDataChanged() {
 }
 
 //export callbackQMediaObjectMetaDataChanged
-func callbackQMediaObjectMetaDataChanged(ptrName *C.char) {
+func callbackQMediaObjectMetaDataChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QMediaObject::metaDataChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QMediaObject) MetaDataChanged() {
+	defer qt.Recovering("QMediaObject::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_MetaDataChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QMediaObject) ConnectMetaDataChanged2(f func(key string, value *core.QVariant)) {
@@ -240,13 +272,21 @@ func (ptr *QMediaObject) DisconnectMetaDataChanged2() {
 }
 
 //export callbackQMediaObjectMetaDataChanged2
-func callbackQMediaObjectMetaDataChanged2(ptrName *C.char, key *C.char, value unsafe.Pointer) {
+func callbackQMediaObjectMetaDataChanged2(ptr unsafe.Pointer, ptrName *C.char, key *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaObject::metaDataChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "metaDataChanged2"); signal != nil {
 		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
 	}
 
+}
+
+func (ptr *QMediaObject) MetaDataChanged2(key string, value core.QVariant_ITF) {
+	defer qt.Recovering("QMediaObject::metaDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_MetaDataChanged2(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(value))
+	}
 }
 
 func (ptr *QMediaObject) ConnectNotifyIntervalChanged(f func(milliseconds int)) {
@@ -268,13 +308,21 @@ func (ptr *QMediaObject) DisconnectNotifyIntervalChanged() {
 }
 
 //export callbackQMediaObjectNotifyIntervalChanged
-func callbackQMediaObjectNotifyIntervalChanged(ptrName *C.char, milliseconds C.int) {
+func callbackQMediaObjectNotifyIntervalChanged(ptr unsafe.Pointer, ptrName *C.char, milliseconds C.int) {
 	defer qt.Recovering("callback QMediaObject::notifyIntervalChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "notifyIntervalChanged"); signal != nil {
 		signal.(func(int))(int(milliseconds))
 	}
 
+}
+
+func (ptr *QMediaObject) NotifyIntervalChanged(milliseconds int) {
+	defer qt.Recovering("QMediaObject::notifyIntervalChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_NotifyIntervalChanged(ptr.Pointer(), C.int(milliseconds))
+	}
 }
 
 func (ptr *QMediaObject) Service() *QMediaService {
@@ -305,15 +353,30 @@ func (ptr *QMediaObject) DisconnectUnbind() {
 }
 
 //export callbackQMediaObjectUnbind
-func callbackQMediaObjectUnbind(ptrName *C.char, object unsafe.Pointer) bool {
+func callbackQMediaObjectUnbind(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaObject::unbind")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "unbind"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
-		return true
+	} else {
+		NewQMediaObjectFromPointer(ptr).UnbindDefault(core.NewQObjectFromPointer(object))
 	}
-	return false
+}
 
+func (ptr *QMediaObject) Unbind(object core.QObject_ITF) {
+	defer qt.Recovering("QMediaObject::unbind")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_Unbind(ptr.Pointer(), core.PointerFromQObject(object))
+	}
+}
+
+func (ptr *QMediaObject) UnbindDefault(object core.QObject_ITF) {
+	defer qt.Recovering("QMediaObject::unbind")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_UnbindDefault(ptr.Pointer(), core.PointerFromQObject(object))
+	}
 }
 
 func (ptr *QMediaObject) DestroyQMediaObject() {
@@ -344,15 +407,30 @@ func (ptr *QMediaObject) DisconnectTimerEvent() {
 }
 
 //export callbackQMediaObjectTimerEvent
-func callbackQMediaObjectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaObjectTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaObject::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaObjectFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaObject) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaObject::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMediaObject) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaObject::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMediaObject) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -374,15 +452,30 @@ func (ptr *QMediaObject) DisconnectChildEvent() {
 }
 
 //export callbackQMediaObjectChildEvent
-func callbackQMediaObjectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaObjectChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaObject::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaObjectFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaObject) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaObject::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMediaObject) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaObject::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMediaObject) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -404,13 +497,28 @@ func (ptr *QMediaObject) DisconnectCustomEvent() {
 }
 
 //export callbackQMediaObjectCustomEvent
-func callbackQMediaObjectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaObjectCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaObject::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaObjectFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaObject) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaObject::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMediaObject) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaObject::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaObject_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

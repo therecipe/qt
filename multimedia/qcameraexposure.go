@@ -235,13 +235,21 @@ func (ptr *QCameraExposure) DisconnectApertureChanged() {
 }
 
 //export callbackQCameraExposureApertureChanged
-func callbackQCameraExposureApertureChanged(ptrName *C.char, value C.double) {
+func callbackQCameraExposureApertureChanged(ptr unsafe.Pointer, ptrName *C.char, value C.double) {
 	defer qt.Recovering("callback QCameraExposure::apertureChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "apertureChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
 
+}
+
+func (ptr *QCameraExposure) ApertureChanged(value float64) {
+	defer qt.Recovering("QCameraExposure::apertureChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_ApertureChanged(ptr.Pointer(), C.double(value))
+	}
 }
 
 func (ptr *QCameraExposure) ConnectApertureRangeChanged(f func()) {
@@ -263,13 +271,21 @@ func (ptr *QCameraExposure) DisconnectApertureRangeChanged() {
 }
 
 //export callbackQCameraExposureApertureRangeChanged
-func callbackQCameraExposureApertureRangeChanged(ptrName *C.char) {
+func callbackQCameraExposureApertureRangeChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraExposure::apertureRangeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "apertureRangeChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QCameraExposure) ApertureRangeChanged() {
+	defer qt.Recovering("QCameraExposure::apertureRangeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_ApertureRangeChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QCameraExposure) ConnectExposureCompensationChanged(f func(value float64)) {
@@ -291,13 +307,21 @@ func (ptr *QCameraExposure) DisconnectExposureCompensationChanged() {
 }
 
 //export callbackQCameraExposureExposureCompensationChanged
-func callbackQCameraExposureExposureCompensationChanged(ptrName *C.char, value C.double) {
+func callbackQCameraExposureExposureCompensationChanged(ptr unsafe.Pointer, ptrName *C.char, value C.double) {
 	defer qt.Recovering("callback QCameraExposure::exposureCompensationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "exposureCompensationChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
 
+}
+
+func (ptr *QCameraExposure) ExposureCompensationChanged(value float64) {
+	defer qt.Recovering("QCameraExposure::exposureCompensationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_ExposureCompensationChanged(ptr.Pointer(), C.double(value))
+	}
 }
 
 func (ptr *QCameraExposure) ConnectFlashReady(f func(ready bool)) {
@@ -319,13 +343,21 @@ func (ptr *QCameraExposure) DisconnectFlashReady() {
 }
 
 //export callbackQCameraExposureFlashReady
-func callbackQCameraExposureFlashReady(ptrName *C.char, ready C.int) {
+func callbackQCameraExposureFlashReady(ptr unsafe.Pointer, ptrName *C.char, ready C.int) {
 	defer qt.Recovering("callback QCameraExposure::flashReady")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "flashReady"); signal != nil {
 		signal.(func(bool))(int(ready) != 0)
 	}
 
+}
+
+func (ptr *QCameraExposure) FlashReady(ready bool) {
+	defer qt.Recovering("QCameraExposure::flashReady")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_FlashReady(ptr.Pointer(), C.int(qt.GoBoolToInt(ready)))
+	}
 }
 
 func (ptr *QCameraExposure) IsAvailable() bool {
@@ -392,13 +424,21 @@ func (ptr *QCameraExposure) DisconnectIsoSensitivityChanged() {
 }
 
 //export callbackQCameraExposureIsoSensitivityChanged
-func callbackQCameraExposureIsoSensitivityChanged(ptrName *C.char, value C.int) {
+func callbackQCameraExposureIsoSensitivityChanged(ptr unsafe.Pointer, ptrName *C.char, value C.int) {
 	defer qt.Recovering("callback QCameraExposure::isoSensitivityChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "isoSensitivityChanged"); signal != nil {
 		signal.(func(int))(int(value))
 	}
 
+}
+
+func (ptr *QCameraExposure) IsoSensitivityChanged(value int) {
+	defer qt.Recovering("QCameraExposure::isoSensitivityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_IsoSensitivityChanged(ptr.Pointer(), C.int(value))
+	}
 }
 
 func (ptr *QCameraExposure) RequestedAperture() float64 {
@@ -472,13 +512,21 @@ func (ptr *QCameraExposure) DisconnectShutterSpeedChanged() {
 }
 
 //export callbackQCameraExposureShutterSpeedChanged
-func callbackQCameraExposureShutterSpeedChanged(ptrName *C.char, speed C.double) {
+func callbackQCameraExposureShutterSpeedChanged(ptr unsafe.Pointer, ptrName *C.char, speed C.double) {
 	defer qt.Recovering("callback QCameraExposure::shutterSpeedChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "shutterSpeedChanged"); signal != nil {
 		signal.(func(float64))(float64(speed))
 	}
 
+}
+
+func (ptr *QCameraExposure) ShutterSpeedChanged(speed float64) {
+	defer qt.Recovering("QCameraExposure::shutterSpeedChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_ShutterSpeedChanged(ptr.Pointer(), C.double(speed))
+	}
 }
 
 func (ptr *QCameraExposure) ConnectShutterSpeedRangeChanged(f func()) {
@@ -500,13 +548,21 @@ func (ptr *QCameraExposure) DisconnectShutterSpeedRangeChanged() {
 }
 
 //export callbackQCameraExposureShutterSpeedRangeChanged
-func callbackQCameraExposureShutterSpeedRangeChanged(ptrName *C.char) {
+func callbackQCameraExposureShutterSpeedRangeChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraExposure::shutterSpeedRangeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "shutterSpeedRangeChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QCameraExposure) ShutterSpeedRangeChanged() {
+	defer qt.Recovering("QCameraExposure::shutterSpeedRangeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_ShutterSpeedRangeChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QCameraExposure) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -528,15 +584,30 @@ func (ptr *QCameraExposure) DisconnectTimerEvent() {
 }
 
 //export callbackQCameraExposureTimerEvent
-func callbackQCameraExposureTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraExposureTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraExposure::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraExposureFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraExposure) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraExposure::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCameraExposure) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraExposure::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCameraExposure) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -558,15 +629,30 @@ func (ptr *QCameraExposure) DisconnectChildEvent() {
 }
 
 //export callbackQCameraExposureChildEvent
-func callbackQCameraExposureChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraExposureChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraExposure::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraExposureFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraExposure) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraExposure::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCameraExposure) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraExposure::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCameraExposure) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -588,13 +674,28 @@ func (ptr *QCameraExposure) DisconnectCustomEvent() {
 }
 
 //export callbackQCameraExposureCustomEvent
-func callbackQCameraExposureCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraExposureCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraExposure::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraExposureFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraExposure) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraExposure::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCameraExposure) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraExposure::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

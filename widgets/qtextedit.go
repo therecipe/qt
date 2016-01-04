@@ -94,15 +94,30 @@ func (ptr *QTextEdit) DisconnectContextMenuEvent() {
 }
 
 //export callbackQTextEditContextMenuEvent
-func callbackQTextEditContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QTextEdit::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QTextEdit::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QTextEdit) CursorWidth() int {
@@ -178,15 +193,30 @@ func (ptr *QTextEdit) DisconnectPaintEvent() {
 }
 
 //export callbackQTextEditPaintEvent
-func callbackQTextEditPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QTextEdit::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QTextEdit::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QTextEdit) PlaceholderText() string {
@@ -425,6 +455,15 @@ func (ptr *QTextEdit) Append(text string) {
 	}
 }
 
+func (ptr *QTextEdit) CanInsertFromMimeData(source core.QMimeData_ITF) bool {
+	defer qt.Recovering("QTextEdit::canInsertFromMimeData")
+
+	if ptr.Pointer() != nil {
+		return C.QTextEdit_CanInsertFromMimeData(ptr.Pointer(), core.PointerFromQMimeData(source)) != 0
+	}
+	return false
+}
+
 func (ptr *QTextEdit) CanPaste() bool {
 	defer qt.Recovering("QTextEdit::canPaste")
 
@@ -453,15 +492,30 @@ func (ptr *QTextEdit) DisconnectChangeEvent() {
 }
 
 //export callbackQTextEditChangeEvent
-func callbackQTextEditChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QTextEdit::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QTextEdit::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) Clear() {
@@ -499,13 +553,30 @@ func (ptr *QTextEdit) DisconnectCopyAvailable() {
 }
 
 //export callbackQTextEditCopyAvailable
-func callbackQTextEditCopyAvailable(ptrName *C.char, yes C.int) {
+func callbackQTextEditCopyAvailable(ptr unsafe.Pointer, ptrName *C.char, yes C.int) {
 	defer qt.Recovering("callback QTextEdit::copyAvailable")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "copyAvailable"); signal != nil {
 		signal.(func(bool))(int(yes) != 0)
 	}
 
+}
+
+func (ptr *QTextEdit) CopyAvailable(yes bool) {
+	defer qt.Recovering("QTextEdit::copyAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_CopyAvailable(ptr.Pointer(), C.int(qt.GoBoolToInt(yes)))
+	}
+}
+
+func (ptr *QTextEdit) CreateMimeDataFromSelection() *core.QMimeData {
+	defer qt.Recovering("QTextEdit::createMimeDataFromSelection")
+
+	if ptr.Pointer() != nil {
+		return core.NewQMimeDataFromPointer(C.QTextEdit_CreateMimeDataFromSelection(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QTextEdit) CreateStandardContextMenu() *QMenu {
@@ -545,13 +616,21 @@ func (ptr *QTextEdit) DisconnectCursorPositionChanged() {
 }
 
 //export callbackQTextEditCursorPositionChanged
-func callbackQTextEditCursorPositionChanged(ptrName *C.char) {
+func callbackQTextEditCursorPositionChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTextEdit::cursorPositionChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "cursorPositionChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QTextEdit) CursorPositionChanged() {
+	defer qt.Recovering("QTextEdit::cursorPositionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_CursorPositionChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextEdit) CursorRect2() *core.QRect {
@@ -608,15 +687,30 @@ func (ptr *QTextEdit) DisconnectDragEnterEvent() {
 }
 
 //export callbackQTextEditDragEnterEvent
-func callbackQTextEditDragEnterEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) DragEnterEvent(e gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QTextEdit::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) DragEnterEventDefault(e gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QTextEdit::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) ConnectDragLeaveEvent(f func(e *gui.QDragLeaveEvent)) {
@@ -638,15 +732,30 @@ func (ptr *QTextEdit) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQTextEditDragLeaveEvent
-func callbackQTextEditDragLeaveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) DragLeaveEvent(e gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QTextEdit::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) DragLeaveEventDefault(e gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QTextEdit::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) ConnectDragMoveEvent(f func(e *gui.QDragMoveEvent)) {
@@ -668,15 +777,30 @@ func (ptr *QTextEdit) DisconnectDragMoveEvent() {
 }
 
 //export callbackQTextEditDragMoveEvent
-func callbackQTextEditDragMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) DragMoveEvent(e gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QTextEdit::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) DragMoveEventDefault(e gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QTextEdit::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) ConnectDropEvent(f func(e *gui.QDropEvent)) {
@@ -698,15 +822,30 @@ func (ptr *QTextEdit) DisconnectDropEvent() {
 }
 
 //export callbackQTextEditDropEvent
-func callbackQTextEditDropEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditDropEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) DropEvent(e gui.QDropEvent_ITF) {
+	defer qt.Recovering("QTextEdit::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) DropEventDefault(e gui.QDropEvent_ITF) {
+	defer qt.Recovering("QTextEdit::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) EnsureCursorVisible() {
@@ -736,15 +875,39 @@ func (ptr *QTextEdit) DisconnectFocusInEvent() {
 }
 
 //export callbackQTextEditFocusInEvent
-func callbackQTextEditFocusInEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(e))
+	}
+}
+
+func (ptr *QTextEdit) FocusInEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTextEdit::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) FocusInEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTextEdit::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) FocusNextPrevChild(next bool) bool {
+	defer qt.Recovering("QTextEdit::focusNextPrevChild")
+
+	if ptr.Pointer() != nil {
+		return C.QTextEdit_FocusNextPrevChild(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
 	}
 	return false
-
 }
 
 func (ptr *QTextEdit) ConnectFocusOutEvent(f func(e *gui.QFocusEvent)) {
@@ -766,15 +929,30 @@ func (ptr *QTextEdit) DisconnectFocusOutEvent() {
 }
 
 //export callbackQTextEditFocusOutEvent
-func callbackQTextEditFocusOutEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) FocusOutEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTextEdit::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) FocusOutEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTextEdit::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) FontFamily() string {
@@ -841,15 +1019,30 @@ func (ptr *QTextEdit) DisconnectInputMethodEvent() {
 }
 
 //export callbackQTextEditInputMethodEvent
-func callbackQTextEditInputMethodEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) InputMethodEvent(e gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QTextEdit::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) InputMethodEventDefault(e gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QTextEdit::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) InputMethodQuery(property core.Qt__InputMethodQuery) *core.QVariant {
@@ -880,15 +1073,30 @@ func (ptr *QTextEdit) DisconnectInsertFromMimeData() {
 }
 
 //export callbackQTextEditInsertFromMimeData
-func callbackQTextEditInsertFromMimeData(ptrName *C.char, source unsafe.Pointer) bool {
+func callbackQTextEditInsertFromMimeData(ptr unsafe.Pointer, ptrName *C.char, source unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::insertFromMimeData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "insertFromMimeData"); signal != nil {
 		signal.(func(*core.QMimeData))(core.NewQMimeDataFromPointer(source))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).InsertFromMimeDataDefault(core.NewQMimeDataFromPointer(source))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) InsertFromMimeData(source core.QMimeData_ITF) {
+	defer qt.Recovering("QTextEdit::insertFromMimeData")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_InsertFromMimeData(ptr.Pointer(), core.PointerFromQMimeData(source))
+	}
+}
+
+func (ptr *QTextEdit) InsertFromMimeDataDefault(source core.QMimeData_ITF) {
+	defer qt.Recovering("QTextEdit::insertFromMimeData")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_InsertFromMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(source))
+	}
 }
 
 func (ptr *QTextEdit) InsertHtml(text string) {
@@ -935,15 +1143,30 @@ func (ptr *QTextEdit) DisconnectKeyPressEvent() {
 }
 
 //export callbackQTextEditKeyPressEvent
-func callbackQTextEditKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTextEdit::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTextEdit::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) ConnectKeyReleaseEvent(f func(e *gui.QKeyEvent)) {
@@ -965,15 +1188,30 @@ func (ptr *QTextEdit) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQTextEditKeyReleaseEvent
-func callbackQTextEditKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) KeyReleaseEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTextEdit::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) KeyReleaseEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTextEdit::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) LoadResource(ty int, name core.QUrl_ITF) *core.QVariant {
@@ -1012,15 +1250,30 @@ func (ptr *QTextEdit) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQTextEditMouseDoubleClickEvent
-func callbackQTextEditMouseDoubleClickEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) MouseDoubleClickEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextEdit::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) MouseDoubleClickEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextEdit::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
@@ -1042,15 +1295,30 @@ func (ptr *QTextEdit) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQTextEditMouseMoveEvent
-func callbackQTextEditMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) MouseMoveEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextEdit::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextEdit::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
@@ -1072,15 +1340,30 @@ func (ptr *QTextEdit) DisconnectMousePressEvent() {
 }
 
 //export callbackQTextEditMousePressEvent
-func callbackQTextEditMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) MousePressEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextEdit::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) MousePressEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextEdit::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -1102,15 +1385,30 @@ func (ptr *QTextEdit) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQTextEditMouseReleaseEvent
-func callbackQTextEditMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextEdit::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTextEdit::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) MoveCursor(operation gui.QTextCursor__MoveOperation, mode gui.QTextCursor__MoveMode) {
@@ -1156,13 +1454,21 @@ func (ptr *QTextEdit) DisconnectRedoAvailable() {
 }
 
 //export callbackQTextEditRedoAvailable
-func callbackQTextEditRedoAvailable(ptrName *C.char, available C.int) {
+func callbackQTextEditRedoAvailable(ptr unsafe.Pointer, ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QTextEdit::redoAvailable")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "redoAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
+}
+
+func (ptr *QTextEdit) RedoAvailable(available bool) {
+	defer qt.Recovering("QTextEdit::redoAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_RedoAvailable(ptr.Pointer(), C.int(qt.GoBoolToInt(available)))
+	}
 }
 
 func (ptr *QTextEdit) ConnectResizeEvent(f func(e *gui.QResizeEvent)) {
@@ -1184,15 +1490,30 @@ func (ptr *QTextEdit) DisconnectResizeEvent() {
 }
 
 //export callbackQTextEditResizeEvent
-func callbackQTextEditResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditResizeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) ResizeEvent(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QTextEdit::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) ResizeEventDefault(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QTextEdit::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) ConnectScrollContentsBy(f func(dx int, dy int)) {
@@ -1214,15 +1535,30 @@ func (ptr *QTextEdit) DisconnectScrollContentsBy() {
 }
 
 //export callbackQTextEditScrollContentsBy
-func callbackQTextEditScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
+func callbackQTextEditScrollContentsBy(ptr unsafe.Pointer, ptrName *C.char, dx C.int, dy C.int) {
 	defer qt.Recovering("callback QTextEdit::scrollContentsBy")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
 		signal.(func(int, int))(int(dx), int(dy))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).ScrollContentsByDefault(int(dx), int(dy))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) ScrollContentsBy(dx int, dy int) {
+	defer qt.Recovering("QTextEdit::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ScrollContentsBy(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
+}
+
+func (ptr *QTextEdit) ScrollContentsByDefault(dx int, dy int) {
+	defer qt.Recovering("QTextEdit::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ScrollContentsByDefault(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
 }
 
 func (ptr *QTextEdit) ScrollToAnchor(name string) {
@@ -1260,13 +1596,21 @@ func (ptr *QTextEdit) DisconnectSelectionChanged() {
 }
 
 //export callbackQTextEditSelectionChanged
-func callbackQTextEditSelectionChanged(ptrName *C.char) {
+func callbackQTextEditSelectionChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTextEdit::selectionChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectionChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QTextEdit) SelectionChanged() {
+	defer qt.Recovering("QTextEdit::selectionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_SelectionChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextEdit) SetAlignment(a core.Qt__AlignmentFlag) {
@@ -1400,15 +1744,30 @@ func (ptr *QTextEdit) DisconnectShowEvent() {
 }
 
 //export callbackQTextEditShowEvent
-func callbackQTextEditShowEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQTextEditShowEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(v))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) ShowEvent(v gui.QShowEvent_ITF) {
+	defer qt.Recovering("QTextEdit::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(v))
+	}
+}
+
+func (ptr *QTextEdit) ShowEventDefault(v gui.QShowEvent_ITF) {
+	defer qt.Recovering("QTextEdit::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(v))
+	}
 }
 
 func (ptr *QTextEdit) TextBackgroundColor() *gui.QColor {
@@ -1439,13 +1798,21 @@ func (ptr *QTextEdit) DisconnectTextChanged() {
 }
 
 //export callbackQTextEditTextChanged
-func callbackQTextEditTextChanged(ptrName *C.char) {
+func callbackQTextEditTextChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTextEdit::textChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "textChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QTextEdit) TextChanged() {
+	defer qt.Recovering("QTextEdit::textChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_TextChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QTextEdit) TextColor() *gui.QColor {
@@ -1493,13 +1860,21 @@ func (ptr *QTextEdit) DisconnectUndoAvailable() {
 }
 
 //export callbackQTextEditUndoAvailable
-func callbackQTextEditUndoAvailable(ptrName *C.char, available C.int) {
+func callbackQTextEditUndoAvailable(ptr unsafe.Pointer, ptrName *C.char, available C.int) {
 	defer qt.Recovering("callback QTextEdit::undoAvailable")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "undoAvailable"); signal != nil {
 		signal.(func(bool))(int(available) != 0)
 	}
 
+}
+
+func (ptr *QTextEdit) UndoAvailable(available bool) {
+	defer qt.Recovering("QTextEdit::undoAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_UndoAvailable(ptr.Pointer(), C.int(qt.GoBoolToInt(available)))
+	}
 }
 
 func (ptr *QTextEdit) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
@@ -1521,15 +1896,30 @@ func (ptr *QTextEdit) DisconnectWheelEvent() {
 }
 
 //export callbackQTextEditWheelEvent
-func callbackQTextEditWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTextEditWheelEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) WheelEvent(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QTextEdit::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
+}
+
+func (ptr *QTextEdit) WheelEventDefault(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QTextEdit::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
 }
 
 func (ptr *QTextEdit) DestroyQTextEdit() {
@@ -1560,15 +1950,30 @@ func (ptr *QTextEdit) DisconnectSetupViewport() {
 }
 
 //export callbackQTextEditSetupViewport
-func callbackQTextEditSetupViewport(ptrName *C.char, viewport unsafe.Pointer) bool {
+func callbackQTextEditSetupViewport(ptr unsafe.Pointer, ptrName *C.char, viewport unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::setupViewport")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setupViewport"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(viewport))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).SetupViewportDefault(NewQWidgetFromPointer(viewport))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) SetupViewport(viewport QWidget_ITF) {
+	defer qt.Recovering("QTextEdit::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_SetupViewport(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
+}
+
+func (ptr *QTextEdit) SetupViewportDefault(viewport QWidget_ITF) {
+	defer qt.Recovering("QTextEdit::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_SetupViewportDefault(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
 }
 
 func (ptr *QTextEdit) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -1590,15 +1995,30 @@ func (ptr *QTextEdit) DisconnectActionEvent() {
 }
 
 //export callbackQTextEditActionEvent
-func callbackQTextEditActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QTextEdit::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QTextEdit::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QTextEdit) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -1620,15 +2040,30 @@ func (ptr *QTextEdit) DisconnectEnterEvent() {
 }
 
 //export callbackQTextEditEnterEvent
-func callbackQTextEditEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextEdit::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextEdit::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QTextEdit) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -1650,15 +2085,30 @@ func (ptr *QTextEdit) DisconnectHideEvent() {
 }
 
 //export callbackQTextEditHideEvent
-func callbackQTextEditHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QTextEdit::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QTextEdit::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QTextEdit) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -1680,15 +2130,30 @@ func (ptr *QTextEdit) DisconnectLeaveEvent() {
 }
 
 //export callbackQTextEditLeaveEvent
-func callbackQTextEditLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextEdit::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextEdit::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QTextEdit) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1710,15 +2175,30 @@ func (ptr *QTextEdit) DisconnectMoveEvent() {
 }
 
 //export callbackQTextEditMoveEvent
-func callbackQTextEditMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QTextEdit::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QTextEdit::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QTextEdit) ConnectSetVisible(f func(visible bool)) {
@@ -1740,7 +2220,7 @@ func (ptr *QTextEdit) DisconnectSetVisible() {
 }
 
 //export callbackQTextEditSetVisible
-func callbackQTextEditSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQTextEditSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QTextEdit::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -1749,6 +2229,22 @@ func callbackQTextEditSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTextEdit) SetVisible(visible bool) {
+	defer qt.Recovering("QTextEdit::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QTextEdit) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QTextEdit::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QTextEdit) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -1770,15 +2266,30 @@ func (ptr *QTextEdit) DisconnectCloseEvent() {
 }
 
 //export callbackQTextEditCloseEvent
-func callbackQTextEditCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QTextEdit::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QTextEdit::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QTextEdit) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1800,15 +2311,30 @@ func (ptr *QTextEdit) DisconnectInitPainter() {
 }
 
 //export callbackQTextEditInitPainter
-func callbackQTextEditInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQTextEditInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QTextEdit::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QTextEdit) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QTextEdit::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QTextEdit) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1830,15 +2356,30 @@ func (ptr *QTextEdit) DisconnectTabletEvent() {
 }
 
 //export callbackQTextEditTabletEvent
-func callbackQTextEditTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QTextEdit::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QTextEdit::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QTextEdit) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1860,15 +2401,30 @@ func (ptr *QTextEdit) DisconnectTimerEvent() {
 }
 
 //export callbackQTextEditTimerEvent
-func callbackQTextEditTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextEdit::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextEdit::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTextEdit) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1890,15 +2446,30 @@ func (ptr *QTextEdit) DisconnectChildEvent() {
 }
 
 //export callbackQTextEditChildEvent
-func callbackQTextEditChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextEdit::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextEdit::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTextEdit) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1920,13 +2491,28 @@ func (ptr *QTextEdit) DisconnectCustomEvent() {
 }
 
 //export callbackQTextEditCustomEvent
-func callbackQTextEditCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextEditCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextEdit::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTextEditFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextEdit) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextEdit::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTextEdit) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextEdit::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextEdit_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

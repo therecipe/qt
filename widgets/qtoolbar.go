@@ -198,15 +198,30 @@ func (ptr *QToolBar) DisconnectActionEvent() {
 }
 
 //export callbackQToolBarActionEvent
-func callbackQToolBarActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QToolBar::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QToolBar) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QToolBar::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectActionTriggered(f func(action *QAction)) {
@@ -228,13 +243,21 @@ func (ptr *QToolBar) DisconnectActionTriggered() {
 }
 
 //export callbackQToolBarActionTriggered
-func callbackQToolBarActionTriggered(ptrName *C.char, action unsafe.Pointer) {
+func callbackQToolBarActionTriggered(ptr unsafe.Pointer, ptrName *C.char, action unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::actionTriggered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionTriggered"); signal != nil {
 		signal.(func(*QAction))(NewQActionFromPointer(action))
 	}
 
+}
+
+func (ptr *QToolBar) ActionTriggered(action QAction_ITF) {
+	defer qt.Recovering("QToolBar::actionTriggered")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ActionTriggered(ptr.Pointer(), PointerFromQAction(action))
+	}
 }
 
 func (ptr *QToolBar) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
@@ -310,13 +333,21 @@ func (ptr *QToolBar) DisconnectAllowedAreasChanged() {
 }
 
 //export callbackQToolBarAllowedAreasChanged
-func callbackQToolBarAllowedAreasChanged(ptrName *C.char, allowedAreas C.int) {
+func callbackQToolBarAllowedAreasChanged(ptr unsafe.Pointer, ptrName *C.char, allowedAreas C.int) {
 	defer qt.Recovering("callback QToolBar::allowedAreasChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "allowedAreasChanged"); signal != nil {
 		signal.(func(core.Qt__ToolBarArea))(core.Qt__ToolBarArea(allowedAreas))
 	}
 
+}
+
+func (ptr *QToolBar) AllowedAreasChanged(allowedAreas core.Qt__ToolBarArea) {
+	defer qt.Recovering("QToolBar::allowedAreasChanged")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_AllowedAreasChanged(ptr.Pointer(), C.int(allowedAreas))
+	}
 }
 
 func (ptr *QToolBar) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -338,15 +369,30 @@ func (ptr *QToolBar) DisconnectChangeEvent() {
 }
 
 //export callbackQToolBarChangeEvent
-func callbackQToolBarChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QToolBar::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QToolBar) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QToolBar::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QToolBar) Clear() {
@@ -355,6 +401,15 @@ func (ptr *QToolBar) Clear() {
 	if ptr.Pointer() != nil {
 		C.QToolBar_Clear(ptr.Pointer())
 	}
+}
+
+func (ptr *QToolBar) Event(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QToolBar::event")
+
+	if ptr.Pointer() != nil {
+		return C.QToolBar_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 func (ptr *QToolBar) ConnectIconSizeChanged(f func(iconSize *core.QSize)) {
@@ -376,13 +431,21 @@ func (ptr *QToolBar) DisconnectIconSizeChanged() {
 }
 
 //export callbackQToolBarIconSizeChanged
-func callbackQToolBarIconSizeChanged(ptrName *C.char, iconSize unsafe.Pointer) {
+func callbackQToolBarIconSizeChanged(ptr unsafe.Pointer, ptrName *C.char, iconSize unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::iconSizeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "iconSizeChanged"); signal != nil {
 		signal.(func(*core.QSize))(core.NewQSizeFromPointer(iconSize))
 	}
 
+}
+
+func (ptr *QToolBar) IconSizeChanged(iconSize core.QSize_ITF) {
+	defer qt.Recovering("QToolBar::iconSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_IconSizeChanged(ptr.Pointer(), core.PointerFromQSize(iconSize))
+	}
 }
 
 func (ptr *QToolBar) InsertSeparator(before QAction_ITF) *QAction {
@@ -431,13 +494,21 @@ func (ptr *QToolBar) DisconnectMovableChanged() {
 }
 
 //export callbackQToolBarMovableChanged
-func callbackQToolBarMovableChanged(ptrName *C.char, movable C.int) {
+func callbackQToolBarMovableChanged(ptr unsafe.Pointer, ptrName *C.char, movable C.int) {
 	defer qt.Recovering("callback QToolBar::movableChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "movableChanged"); signal != nil {
 		signal.(func(bool))(int(movable) != 0)
 	}
 
+}
+
+func (ptr *QToolBar) MovableChanged(movable bool) {
+	defer qt.Recovering("QToolBar::movableChanged")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_MovableChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(movable)))
+	}
 }
 
 func (ptr *QToolBar) ConnectOrientationChanged(f func(orientation core.Qt__Orientation)) {
@@ -459,13 +530,21 @@ func (ptr *QToolBar) DisconnectOrientationChanged() {
 }
 
 //export callbackQToolBarOrientationChanged
-func callbackQToolBarOrientationChanged(ptrName *C.char, orientation C.int) {
+func callbackQToolBarOrientationChanged(ptr unsafe.Pointer, ptrName *C.char, orientation C.int) {
 	defer qt.Recovering("callback QToolBar::orientationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "orientationChanged"); signal != nil {
 		signal.(func(core.Qt__Orientation))(core.Qt__Orientation(orientation))
 	}
 
+}
+
+func (ptr *QToolBar) OrientationChanged(orientation core.Qt__Orientation) {
+	defer qt.Recovering("QToolBar::orientationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_OrientationChanged(ptr.Pointer(), C.int(orientation))
+	}
 }
 
 func (ptr *QToolBar) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -487,15 +566,30 @@ func (ptr *QToolBar) DisconnectPaintEvent() {
 }
 
 //export callbackQToolBarPaintEvent
-func callbackQToolBarPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QToolBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QToolBar) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QToolBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ToggleViewAction() *QAction {
@@ -526,13 +620,21 @@ func (ptr *QToolBar) DisconnectToolButtonStyleChanged() {
 }
 
 //export callbackQToolBarToolButtonStyleChanged
-func callbackQToolBarToolButtonStyleChanged(ptrName *C.char, toolButtonStyle C.int) {
+func callbackQToolBarToolButtonStyleChanged(ptr unsafe.Pointer, ptrName *C.char, toolButtonStyle C.int) {
 	defer qt.Recovering("callback QToolBar::toolButtonStyleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "toolButtonStyleChanged"); signal != nil {
 		signal.(func(core.Qt__ToolButtonStyle))(core.Qt__ToolButtonStyle(toolButtonStyle))
 	}
 
+}
+
+func (ptr *QToolBar) ToolButtonStyleChanged(toolButtonStyle core.Qt__ToolButtonStyle) {
+	defer qt.Recovering("QToolBar::toolButtonStyleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ToolButtonStyleChanged(ptr.Pointer(), C.int(toolButtonStyle))
+	}
 }
 
 func (ptr *QToolBar) ConnectTopLevelChanged(f func(topLevel bool)) {
@@ -554,13 +656,21 @@ func (ptr *QToolBar) DisconnectTopLevelChanged() {
 }
 
 //export callbackQToolBarTopLevelChanged
-func callbackQToolBarTopLevelChanged(ptrName *C.char, topLevel C.int) {
+func callbackQToolBarTopLevelChanged(ptr unsafe.Pointer, ptrName *C.char, topLevel C.int) {
 	defer qt.Recovering("callback QToolBar::topLevelChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "topLevelChanged"); signal != nil {
 		signal.(func(bool))(int(topLevel) != 0)
 	}
 
+}
+
+func (ptr *QToolBar) TopLevelChanged(topLevel bool) {
+	defer qt.Recovering("QToolBar::topLevelChanged")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_TopLevelChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(topLevel)))
+	}
 }
 
 func (ptr *QToolBar) ConnectVisibilityChanged(f func(visible bool)) {
@@ -582,13 +692,21 @@ func (ptr *QToolBar) DisconnectVisibilityChanged() {
 }
 
 //export callbackQToolBarVisibilityChanged
-func callbackQToolBarVisibilityChanged(ptrName *C.char, visible C.int) {
+func callbackQToolBarVisibilityChanged(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
 	defer qt.Recovering("callback QToolBar::visibilityChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "visibilityChanged"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
 	}
 
+}
+
+func (ptr *QToolBar) VisibilityChanged(visible bool) {
+	defer qt.Recovering("QToolBar::visibilityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_VisibilityChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QToolBar) WidgetForAction(action QAction_ITF) *QWidget {
@@ -628,15 +746,30 @@ func (ptr *QToolBar) DisconnectDragEnterEvent() {
 }
 
 //export callbackQToolBarDragEnterEvent
-func callbackQToolBarDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QToolBar::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QToolBar) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QToolBar::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -658,15 +791,30 @@ func (ptr *QToolBar) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQToolBarDragLeaveEvent
-func callbackQToolBarDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QToolBar::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QToolBar) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QToolBar::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -688,15 +836,30 @@ func (ptr *QToolBar) DisconnectDragMoveEvent() {
 }
 
 //export callbackQToolBarDragMoveEvent
-func callbackQToolBarDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QToolBar::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QToolBar) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QToolBar::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -718,15 +881,30 @@ func (ptr *QToolBar) DisconnectDropEvent() {
 }
 
 //export callbackQToolBarDropEvent
-func callbackQToolBarDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QToolBar::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QToolBar) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QToolBar::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -748,15 +926,30 @@ func (ptr *QToolBar) DisconnectEnterEvent() {
 }
 
 //export callbackQToolBarEnterEvent
-func callbackQToolBarEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QToolBar::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QToolBar) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QToolBar::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -778,15 +971,30 @@ func (ptr *QToolBar) DisconnectFocusInEvent() {
 }
 
 //export callbackQToolBarFocusInEvent
-func callbackQToolBarFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QToolBar::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QToolBar) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QToolBar::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -808,15 +1016,30 @@ func (ptr *QToolBar) DisconnectFocusOutEvent() {
 }
 
 //export callbackQToolBarFocusOutEvent
-func callbackQToolBarFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QToolBar::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QToolBar) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QToolBar::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -838,15 +1061,30 @@ func (ptr *QToolBar) DisconnectHideEvent() {
 }
 
 //export callbackQToolBarHideEvent
-func callbackQToolBarHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QToolBar::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QToolBar) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QToolBar::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -868,15 +1106,30 @@ func (ptr *QToolBar) DisconnectLeaveEvent() {
 }
 
 //export callbackQToolBarLeaveEvent
-func callbackQToolBarLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QToolBar::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QToolBar) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QToolBar::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -898,15 +1151,30 @@ func (ptr *QToolBar) DisconnectMoveEvent() {
 }
 
 //export callbackQToolBarMoveEvent
-func callbackQToolBarMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QToolBar::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QToolBar) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QToolBar::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectSetVisible(f func(visible bool)) {
@@ -928,7 +1196,7 @@ func (ptr *QToolBar) DisconnectSetVisible() {
 }
 
 //export callbackQToolBarSetVisible
-func callbackQToolBarSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQToolBarSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QToolBar::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -937,6 +1205,22 @@ func callbackQToolBarSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QToolBar) SetVisible(visible bool) {
+	defer qt.Recovering("QToolBar::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QToolBar) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QToolBar::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QToolBar) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -958,15 +1242,30 @@ func (ptr *QToolBar) DisconnectShowEvent() {
 }
 
 //export callbackQToolBarShowEvent
-func callbackQToolBarShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QToolBar::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QToolBar) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QToolBar::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -988,15 +1287,30 @@ func (ptr *QToolBar) DisconnectCloseEvent() {
 }
 
 //export callbackQToolBarCloseEvent
-func callbackQToolBarCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QToolBar::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QToolBar) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QToolBar::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -1018,15 +1332,30 @@ func (ptr *QToolBar) DisconnectContextMenuEvent() {
 }
 
 //export callbackQToolBarContextMenuEvent
-func callbackQToolBarContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QToolBar::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QToolBar) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QToolBar::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1048,15 +1377,30 @@ func (ptr *QToolBar) DisconnectInitPainter() {
 }
 
 //export callbackQToolBarInitPainter
-func callbackQToolBarInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQToolBarInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QToolBar) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QToolBar::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QToolBar) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QToolBar::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QToolBar) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -1078,15 +1422,30 @@ func (ptr *QToolBar) DisconnectInputMethodEvent() {
 }
 
 //export callbackQToolBarInputMethodEvent
-func callbackQToolBarInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QToolBar::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QToolBar) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QToolBar::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -1108,15 +1467,30 @@ func (ptr *QToolBar) DisconnectKeyPressEvent() {
 }
 
 //export callbackQToolBarKeyPressEvent
-func callbackQToolBarKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QToolBar::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QToolBar) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QToolBar::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -1138,15 +1512,30 @@ func (ptr *QToolBar) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQToolBarKeyReleaseEvent
-func callbackQToolBarKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QToolBar::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QToolBar) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QToolBar::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1168,15 +1557,30 @@ func (ptr *QToolBar) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQToolBarMouseDoubleClickEvent
-func callbackQToolBarMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QToolBar::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QToolBar) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QToolBar::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -1198,15 +1602,30 @@ func (ptr *QToolBar) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQToolBarMouseMoveEvent
-func callbackQToolBarMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QToolBar::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QToolBar) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QToolBar::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -1228,15 +1647,30 @@ func (ptr *QToolBar) DisconnectMousePressEvent() {
 }
 
 //export callbackQToolBarMousePressEvent
-func callbackQToolBarMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QToolBar::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QToolBar) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QToolBar::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1258,15 +1692,30 @@ func (ptr *QToolBar) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQToolBarMouseReleaseEvent
-func callbackQToolBarMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QToolBar::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QToolBar) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QToolBar::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -1288,15 +1737,30 @@ func (ptr *QToolBar) DisconnectResizeEvent() {
 }
 
 //export callbackQToolBarResizeEvent
-func callbackQToolBarResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QToolBar::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QToolBar) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QToolBar::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1318,15 +1782,30 @@ func (ptr *QToolBar) DisconnectTabletEvent() {
 }
 
 //export callbackQToolBarTabletEvent
-func callbackQToolBarTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QToolBar::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QToolBar) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QToolBar::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1348,15 +1827,30 @@ func (ptr *QToolBar) DisconnectWheelEvent() {
 }
 
 //export callbackQToolBarWheelEvent
-func callbackQToolBarWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QToolBar::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QToolBar) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QToolBar::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1378,15 +1872,30 @@ func (ptr *QToolBar) DisconnectTimerEvent() {
 }
 
 //export callbackQToolBarTimerEvent
-func callbackQToolBarTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QToolBar::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QToolBar) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QToolBar::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1408,15 +1917,30 @@ func (ptr *QToolBar) DisconnectChildEvent() {
 }
 
 //export callbackQToolBarChildEvent
-func callbackQToolBarChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QToolBar::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QToolBar) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QToolBar::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QToolBar) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1438,13 +1962,28 @@ func (ptr *QToolBar) DisconnectCustomEvent() {
 }
 
 //export callbackQToolBarCustomEvent
-func callbackQToolBarCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQToolBarCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QToolBar::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQToolBarFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QToolBar) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QToolBar::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QToolBar) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QToolBar::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QToolBar_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

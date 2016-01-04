@@ -94,15 +94,30 @@ func (ptr *QRegExpValidator) DisconnectTimerEvent() {
 }
 
 //export callbackQRegExpValidatorTimerEvent
-func callbackQRegExpValidatorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRegExpValidatorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRegExpValidator::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQRegExpValidatorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRegExpValidator) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRegExpValidator::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRegExpValidator_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QRegExpValidator) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRegExpValidator::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRegExpValidator_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QRegExpValidator) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -124,15 +139,30 @@ func (ptr *QRegExpValidator) DisconnectChildEvent() {
 }
 
 //export callbackQRegExpValidatorChildEvent
-func callbackQRegExpValidatorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRegExpValidatorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRegExpValidator::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQRegExpValidatorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRegExpValidator) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRegExpValidator::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRegExpValidator_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QRegExpValidator) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRegExpValidator::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRegExpValidator_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QRegExpValidator) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -154,13 +184,28 @@ func (ptr *QRegExpValidator) DisconnectCustomEvent() {
 }
 
 //export callbackQRegExpValidatorCustomEvent
-func callbackQRegExpValidatorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRegExpValidatorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRegExpValidator::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQRegExpValidatorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRegExpValidator) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QRegExpValidator::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRegExpValidator_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QRegExpValidator) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QRegExpValidator::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRegExpValidator_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

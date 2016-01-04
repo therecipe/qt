@@ -92,13 +92,21 @@ func (ptr *QAbstractTextDocumentLayout) DisconnectPageCountChanged() {
 }
 
 //export callbackQAbstractTextDocumentLayoutPageCountChanged
-func callbackQAbstractTextDocumentLayoutPageCountChanged(ptrName *C.char, newPages C.int) {
+func callbackQAbstractTextDocumentLayoutPageCountChanged(ptr unsafe.Pointer, ptrName *C.char, newPages C.int) {
 	defer qt.Recovering("callback QAbstractTextDocumentLayout::pageCountChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "pageCountChanged"); signal != nil {
 		signal.(func(int))(int(newPages))
 	}
 
+}
+
+func (ptr *QAbstractTextDocumentLayout) PageCountChanged(newPages int) {
+	defer qt.Recovering("QAbstractTextDocumentLayout::pageCountChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_PageCountChanged(ptr.Pointer(), C.int(newPages))
+	}
 }
 
 func (ptr *QAbstractTextDocumentLayout) PaintDevice() *QPaintDevice {
@@ -153,15 +161,30 @@ func (ptr *QAbstractTextDocumentLayout) DisconnectTimerEvent() {
 }
 
 //export callbackQAbstractTextDocumentLayoutTimerEvent
-func callbackQAbstractTextDocumentLayoutTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractTextDocumentLayoutTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractTextDocumentLayout::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractTextDocumentLayoutFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractTextDocumentLayout) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractTextDocumentLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractTextDocumentLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAbstractTextDocumentLayout) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -183,15 +206,30 @@ func (ptr *QAbstractTextDocumentLayout) DisconnectChildEvent() {
 }
 
 //export callbackQAbstractTextDocumentLayoutChildEvent
-func callbackQAbstractTextDocumentLayoutChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractTextDocumentLayoutChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractTextDocumentLayout::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractTextDocumentLayoutFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractTextDocumentLayout) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractTextDocumentLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractTextDocumentLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAbstractTextDocumentLayout) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -213,13 +251,28 @@ func (ptr *QAbstractTextDocumentLayout) DisconnectCustomEvent() {
 }
 
 //export callbackQAbstractTextDocumentLayoutCustomEvent
-func callbackQAbstractTextDocumentLayoutCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractTextDocumentLayoutCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractTextDocumentLayout::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractTextDocumentLayoutFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractTextDocumentLayout) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractTextDocumentLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractTextDocumentLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

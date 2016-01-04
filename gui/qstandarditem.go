@@ -448,15 +448,30 @@ func (ptr *QStandardItem) DisconnectSetData() {
 }
 
 //export callbackQStandardItemSetData
-func callbackQStandardItemSetData(ptrName *C.char, value unsafe.Pointer, role C.int) bool {
+func callbackQStandardItemSetData(ptr unsafe.Pointer, ptrName *C.char, value unsafe.Pointer, role C.int) {
 	defer qt.Recovering("callback QStandardItem::setData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
 		signal.(func(*core.QVariant, int))(core.NewQVariantFromPointer(value), int(role))
-		return true
+	} else {
+		NewQStandardItemFromPointer(ptr).SetDataDefault(core.NewQVariantFromPointer(value), int(role))
 	}
-	return false
+}
 
+func (ptr *QStandardItem) SetData(value core.QVariant_ITF, role int) {
+	defer qt.Recovering("QStandardItem::setData")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItem_SetData(ptr.Pointer(), core.PointerFromQVariant(value), C.int(role))
+	}
+}
+
+func (ptr *QStandardItem) SetDataDefault(value core.QVariant_ITF, role int) {
+	defer qt.Recovering("QStandardItem::setData")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItem_SetDataDefault(ptr.Pointer(), core.PointerFromQVariant(value), C.int(role))
+	}
 }
 
 func (ptr *QStandardItem) SetDragEnabled(dragEnabled bool) {

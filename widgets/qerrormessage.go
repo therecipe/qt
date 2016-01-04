@@ -63,15 +63,30 @@ func (ptr *QErrorMessage) DisconnectChangeEvent() {
 }
 
 //export callbackQErrorMessageChangeEvent
-func callbackQErrorMessageChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQErrorMessageChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QErrorMessage) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectDone(f func(a int)) {
@@ -93,15 +108,30 @@ func (ptr *QErrorMessage) DisconnectDone() {
 }
 
 //export callbackQErrorMessageDone
-func callbackQErrorMessageDone(ptrName *C.char, a C.int) bool {
+func callbackQErrorMessageDone(ptr unsafe.Pointer, ptrName *C.char, a C.int) {
 	defer qt.Recovering("callback QErrorMessage::done")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
 		signal.(func(int))(int(a))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).DoneDefault(int(a))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) Done(a int) {
+	defer qt.Recovering("QErrorMessage::done")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_Done(ptr.Pointer(), C.int(a))
+	}
+}
+
+func (ptr *QErrorMessage) DoneDefault(a int) {
+	defer qt.Recovering("QErrorMessage::done")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_DoneDefault(ptr.Pointer(), C.int(a))
+	}
 }
 
 func QErrorMessage_QtHandler() *QErrorMessage {
@@ -154,7 +184,7 @@ func (ptr *QErrorMessage) DisconnectAccept() {
 }
 
 //export callbackQErrorMessageAccept
-func callbackQErrorMessageAccept(ptrName *C.char) bool {
+func callbackQErrorMessageAccept(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QErrorMessage::accept")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "accept"); signal != nil {
@@ -163,6 +193,22 @@ func callbackQErrorMessageAccept(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QErrorMessage) Accept() {
+	defer qt.Recovering("QErrorMessage::accept")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_Accept(ptr.Pointer())
+	}
+}
+
+func (ptr *QErrorMessage) AcceptDefault() {
+	defer qt.Recovering("QErrorMessage::accept")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_AcceptDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QErrorMessage) ConnectCloseEvent(f func(e *gui.QCloseEvent)) {
@@ -184,15 +230,30 @@ func (ptr *QErrorMessage) DisconnectCloseEvent() {
 }
 
 //export callbackQErrorMessageCloseEvent
-func callbackQErrorMessageCloseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQErrorMessageCloseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) CloseEvent(e gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(e))
+	}
+}
+
+func (ptr *QErrorMessage) CloseEventDefault(e gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(e))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
@@ -214,15 +275,30 @@ func (ptr *QErrorMessage) DisconnectContextMenuEvent() {
 }
 
 //export callbackQErrorMessageContextMenuEvent
-func callbackQErrorMessageContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQErrorMessageContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QErrorMessage) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
@@ -244,15 +320,30 @@ func (ptr *QErrorMessage) DisconnectKeyPressEvent() {
 }
 
 //export callbackQErrorMessageKeyPressEvent
-func callbackQErrorMessageKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQErrorMessageKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QErrorMessage) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectOpen(f func()) {
@@ -274,7 +365,7 @@ func (ptr *QErrorMessage) DisconnectOpen() {
 }
 
 //export callbackQErrorMessageOpen
-func callbackQErrorMessageOpen(ptrName *C.char) bool {
+func callbackQErrorMessageOpen(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QErrorMessage::open")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "open"); signal != nil {
@@ -283,6 +374,22 @@ func callbackQErrorMessageOpen(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QErrorMessage) Open() {
+	defer qt.Recovering("QErrorMessage::open")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_Open(ptr.Pointer())
+	}
+}
+
+func (ptr *QErrorMessage) OpenDefault() {
+	defer qt.Recovering("QErrorMessage::open")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_OpenDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QErrorMessage) ConnectReject(f func()) {
@@ -304,7 +411,7 @@ func (ptr *QErrorMessage) DisconnectReject() {
 }
 
 //export callbackQErrorMessageReject
-func callbackQErrorMessageReject(ptrName *C.char) bool {
+func callbackQErrorMessageReject(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QErrorMessage::reject")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reject"); signal != nil {
@@ -313,6 +420,22 @@ func callbackQErrorMessageReject(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QErrorMessage) Reject() {
+	defer qt.Recovering("QErrorMessage::reject")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_Reject(ptr.Pointer())
+	}
+}
+
+func (ptr *QErrorMessage) RejectDefault() {
+	defer qt.Recovering("QErrorMessage::reject")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_RejectDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QErrorMessage) ConnectResizeEvent(f func(v *gui.QResizeEvent)) {
@@ -334,15 +457,30 @@ func (ptr *QErrorMessage) DisconnectResizeEvent() {
 }
 
 //export callbackQErrorMessageResizeEvent
-func callbackQErrorMessageResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQErrorMessageResizeEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) ResizeEvent(v gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(v))
+	}
+}
+
+func (ptr *QErrorMessage) ResizeEventDefault(v gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(v))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectSetVisible(f func(visible bool)) {
@@ -364,15 +502,30 @@ func (ptr *QErrorMessage) DisconnectSetVisible() {
 }
 
 //export callbackQErrorMessageSetVisible
-func callbackQErrorMessageSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQErrorMessageSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
 	defer qt.Recovering("callback QErrorMessage::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) SetVisible(visible bool) {
+	defer qt.Recovering("QErrorMessage::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QErrorMessage) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QErrorMessage::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -394,15 +547,30 @@ func (ptr *QErrorMessage) DisconnectShowEvent() {
 }
 
 //export callbackQErrorMessageShowEvent
-func callbackQErrorMessageShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -424,15 +592,30 @@ func (ptr *QErrorMessage) DisconnectActionEvent() {
 }
 
 //export callbackQErrorMessageActionEvent
-func callbackQErrorMessageActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -454,15 +637,30 @@ func (ptr *QErrorMessage) DisconnectDragEnterEvent() {
 }
 
 //export callbackQErrorMessageDragEnterEvent
-func callbackQErrorMessageDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -484,15 +682,30 @@ func (ptr *QErrorMessage) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQErrorMessageDragLeaveEvent
-func callbackQErrorMessageDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -514,15 +727,30 @@ func (ptr *QErrorMessage) DisconnectDragMoveEvent() {
 }
 
 //export callbackQErrorMessageDragMoveEvent
-func callbackQErrorMessageDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -544,15 +772,30 @@ func (ptr *QErrorMessage) DisconnectDropEvent() {
 }
 
 //export callbackQErrorMessageDropEvent
-func callbackQErrorMessageDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -574,15 +817,30 @@ func (ptr *QErrorMessage) DisconnectEnterEvent() {
 }
 
 //export callbackQErrorMessageEnterEvent
-func callbackQErrorMessageEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -604,15 +862,30 @@ func (ptr *QErrorMessage) DisconnectFocusInEvent() {
 }
 
 //export callbackQErrorMessageFocusInEvent
-func callbackQErrorMessageFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -634,15 +907,30 @@ func (ptr *QErrorMessage) DisconnectFocusOutEvent() {
 }
 
 //export callbackQErrorMessageFocusOutEvent
-func callbackQErrorMessageFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -664,15 +952,30 @@ func (ptr *QErrorMessage) DisconnectHideEvent() {
 }
 
 //export callbackQErrorMessageHideEvent
-func callbackQErrorMessageHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -694,15 +997,30 @@ func (ptr *QErrorMessage) DisconnectLeaveEvent() {
 }
 
 //export callbackQErrorMessageLeaveEvent
-func callbackQErrorMessageLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -724,15 +1042,30 @@ func (ptr *QErrorMessage) DisconnectMoveEvent() {
 }
 
 //export callbackQErrorMessageMoveEvent
-func callbackQErrorMessageMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -754,15 +1087,30 @@ func (ptr *QErrorMessage) DisconnectPaintEvent() {
 }
 
 //export callbackQErrorMessagePaintEvent
-func callbackQErrorMessagePaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessagePaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -784,15 +1132,30 @@ func (ptr *QErrorMessage) DisconnectInitPainter() {
 }
 
 //export callbackQErrorMessageInitPainter
-func callbackQErrorMessageInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQErrorMessageInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QErrorMessage::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QErrorMessage) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QErrorMessage::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -814,15 +1177,30 @@ func (ptr *QErrorMessage) DisconnectInputMethodEvent() {
 }
 
 //export callbackQErrorMessageInputMethodEvent
-func callbackQErrorMessageInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -844,15 +1222,30 @@ func (ptr *QErrorMessage) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQErrorMessageKeyReleaseEvent
-func callbackQErrorMessageKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -874,15 +1267,30 @@ func (ptr *QErrorMessage) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQErrorMessageMouseDoubleClickEvent
-func callbackQErrorMessageMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -904,15 +1312,30 @@ func (ptr *QErrorMessage) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQErrorMessageMouseMoveEvent
-func callbackQErrorMessageMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -934,15 +1357,30 @@ func (ptr *QErrorMessage) DisconnectMousePressEvent() {
 }
 
 //export callbackQErrorMessageMousePressEvent
-func callbackQErrorMessageMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -964,15 +1402,30 @@ func (ptr *QErrorMessage) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQErrorMessageMouseReleaseEvent
-func callbackQErrorMessageMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -994,15 +1447,30 @@ func (ptr *QErrorMessage) DisconnectTabletEvent() {
 }
 
 //export callbackQErrorMessageTabletEvent
-func callbackQErrorMessageTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1024,15 +1492,30 @@ func (ptr *QErrorMessage) DisconnectWheelEvent() {
 }
 
 //export callbackQErrorMessageWheelEvent
-func callbackQErrorMessageWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1054,15 +1537,30 @@ func (ptr *QErrorMessage) DisconnectTimerEvent() {
 }
 
 //export callbackQErrorMessageTimerEvent
-func callbackQErrorMessageTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1084,15 +1582,30 @@ func (ptr *QErrorMessage) DisconnectChildEvent() {
 }
 
 //export callbackQErrorMessageChildEvent
-func callbackQErrorMessageChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QErrorMessage) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1114,13 +1627,28 @@ func (ptr *QErrorMessage) DisconnectCustomEvent() {
 }
 
 //export callbackQErrorMessageCustomEvent
-func callbackQErrorMessageCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQErrorMessageCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QErrorMessage::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQErrorMessageFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QErrorMessage) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QErrorMessage) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QErrorMessage::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QErrorMessage_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

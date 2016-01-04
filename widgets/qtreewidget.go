@@ -140,13 +140,21 @@ func (ptr *QTreeWidget) DisconnectCurrentItemChanged() {
 }
 
 //export callbackQTreeWidgetCurrentItemChanged
-func callbackQTreeWidgetCurrentItemChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
+func callbackQTreeWidgetCurrentItemChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::currentItemChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentItemChanged"); signal != nil {
 		signal.(func(*QTreeWidgetItem, *QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(current), NewQTreeWidgetItemFromPointer(previous))
 	}
 
+}
+
+func (ptr *QTreeWidget) CurrentItemChanged(current QTreeWidgetItem_ITF, previous QTreeWidgetItem_ITF) {
+	defer qt.Recovering("QTreeWidget::currentItemChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_CurrentItemChanged(ptr.Pointer(), PointerFromQTreeWidgetItem(current), PointerFromQTreeWidgetItem(previous))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -168,15 +176,39 @@ func (ptr *QTreeWidget) DisconnectDropEvent() {
 }
 
 //export callbackQTreeWidgetDropEvent
-func callbackQTreeWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
+	}
+}
+
+func (ptr *QTreeWidget) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) DropMimeData(parent QTreeWidgetItem_ITF, index int, data core.QMimeData_ITF, action core.Qt__DropAction) bool {
+	defer qt.Recovering("QTreeWidget::dropMimeData")
+
+	if ptr.Pointer() != nil {
+		return C.QTreeWidget_DropMimeData(ptr.Pointer(), PointerFromQTreeWidgetItem(parent), C.int(index), core.PointerFromQMimeData(data), C.int(action)) != 0
 	}
 	return false
-
 }
 
 func (ptr *QTreeWidget) EditItem(item QTreeWidgetItem_ITF, column int) {
@@ -185,6 +217,15 @@ func (ptr *QTreeWidget) EditItem(item QTreeWidgetItem_ITF, column int) {
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_EditItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
 	}
+}
+
+func (ptr *QTreeWidget) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QTreeWidget::event")
+
+	if ptr.Pointer() != nil {
+		return C.QTreeWidget_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
 }
 
 func (ptr *QTreeWidget) ExpandItem(item QTreeWidgetItem_ITF) {
@@ -267,13 +308,21 @@ func (ptr *QTreeWidget) DisconnectItemActivated() {
 }
 
 //export callbackQTreeWidgetItemActivated
-func callbackQTreeWidgetItemActivated(ptrName *C.char, item unsafe.Pointer, column C.int) {
+func callbackQTreeWidgetItemActivated(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemActivated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "itemActivated"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
+}
+
+func (ptr *QTreeWidget) ItemActivated(item QTreeWidgetItem_ITF, column int) {
+	defer qt.Recovering("QTreeWidget::itemActivated")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ItemActivated(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
+	}
 }
 
 func (ptr *QTreeWidget) ItemAt(p core.QPoint_ITF) *QTreeWidgetItem {
@@ -322,13 +371,21 @@ func (ptr *QTreeWidget) DisconnectItemChanged() {
 }
 
 //export callbackQTreeWidgetItemChanged
-func callbackQTreeWidgetItemChanged(ptrName *C.char, item unsafe.Pointer, column C.int) {
+func callbackQTreeWidgetItemChanged(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "itemChanged"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
+}
+
+func (ptr *QTreeWidget) ItemChanged(item QTreeWidgetItem_ITF, column int) {
+	defer qt.Recovering("QTreeWidget::itemChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ItemChanged(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectItemClicked(f func(item *QTreeWidgetItem, column int)) {
@@ -350,13 +407,21 @@ func (ptr *QTreeWidget) DisconnectItemClicked() {
 }
 
 //export callbackQTreeWidgetItemClicked
-func callbackQTreeWidgetItemClicked(ptrName *C.char, item unsafe.Pointer, column C.int) {
+func callbackQTreeWidgetItemClicked(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemClicked")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "itemClicked"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
+}
+
+func (ptr *QTreeWidget) ItemClicked(item QTreeWidgetItem_ITF, column int) {
+	defer qt.Recovering("QTreeWidget::itemClicked")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ItemClicked(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectItemCollapsed(f func(item *QTreeWidgetItem)) {
@@ -378,13 +443,21 @@ func (ptr *QTreeWidget) DisconnectItemCollapsed() {
 }
 
 //export callbackQTreeWidgetItemCollapsed
-func callbackQTreeWidgetItemCollapsed(ptrName *C.char, item unsafe.Pointer) {
+func callbackQTreeWidgetItemCollapsed(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::itemCollapsed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "itemCollapsed"); signal != nil {
 		signal.(func(*QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(item))
 	}
 
+}
+
+func (ptr *QTreeWidget) ItemCollapsed(item QTreeWidgetItem_ITF) {
+	defer qt.Recovering("QTreeWidget::itemCollapsed")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ItemCollapsed(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectItemDoubleClicked(f func(item *QTreeWidgetItem, column int)) {
@@ -406,13 +479,21 @@ func (ptr *QTreeWidget) DisconnectItemDoubleClicked() {
 }
 
 //export callbackQTreeWidgetItemDoubleClicked
-func callbackQTreeWidgetItemDoubleClicked(ptrName *C.char, item unsafe.Pointer, column C.int) {
+func callbackQTreeWidgetItemDoubleClicked(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemDoubleClicked")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
+}
+
+func (ptr *QTreeWidget) ItemDoubleClicked(item QTreeWidgetItem_ITF, column int) {
+	defer qt.Recovering("QTreeWidget::itemDoubleClicked")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ItemDoubleClicked(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectItemEntered(f func(item *QTreeWidgetItem, column int)) {
@@ -434,13 +515,21 @@ func (ptr *QTreeWidget) DisconnectItemEntered() {
 }
 
 //export callbackQTreeWidgetItemEntered
-func callbackQTreeWidgetItemEntered(ptrName *C.char, item unsafe.Pointer, column C.int) {
+func callbackQTreeWidgetItemEntered(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemEntered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "itemEntered"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
+}
+
+func (ptr *QTreeWidget) ItemEntered(item QTreeWidgetItem_ITF, column int) {
+	defer qt.Recovering("QTreeWidget::itemEntered")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ItemEntered(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectItemExpanded(f func(item *QTreeWidgetItem)) {
@@ -462,13 +551,21 @@ func (ptr *QTreeWidget) DisconnectItemExpanded() {
 }
 
 //export callbackQTreeWidgetItemExpanded
-func callbackQTreeWidgetItemExpanded(ptrName *C.char, item unsafe.Pointer) {
+func callbackQTreeWidgetItemExpanded(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::itemExpanded")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "itemExpanded"); signal != nil {
 		signal.(func(*QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(item))
 	}
 
+}
+
+func (ptr *QTreeWidget) ItemExpanded(item QTreeWidgetItem_ITF) {
+	defer qt.Recovering("QTreeWidget::itemExpanded")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ItemExpanded(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectItemPressed(f func(item *QTreeWidgetItem, column int)) {
@@ -490,13 +587,21 @@ func (ptr *QTreeWidget) DisconnectItemPressed() {
 }
 
 //export callbackQTreeWidgetItemPressed
-func callbackQTreeWidgetItemPressed(ptrName *C.char, item unsafe.Pointer, column C.int) {
+func callbackQTreeWidgetItemPressed(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QTreeWidget::itemPressed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "itemPressed"); signal != nil {
 		signal.(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 	}
 
+}
+
+func (ptr *QTreeWidget) ItemPressed(item QTreeWidgetItem_ITF, column int) {
+	defer qt.Recovering("QTreeWidget::itemPressed")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ItemPressed(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectItemSelectionChanged(f func()) {
@@ -518,13 +623,21 @@ func (ptr *QTreeWidget) DisconnectItemSelectionChanged() {
 }
 
 //export callbackQTreeWidgetItemSelectionChanged
-func callbackQTreeWidgetItemSelectionChanged(ptrName *C.char) {
+func callbackQTreeWidgetItemSelectionChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTreeWidget::itemSelectionChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QTreeWidget) ItemSelectionChanged() {
+	defer qt.Recovering("QTreeWidget::itemSelectionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ItemSelectionChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QTreeWidget) ItemWidget(item QTreeWidgetItem_ITF, column int) *QWidget {
@@ -534,6 +647,15 @@ func (ptr *QTreeWidget) ItemWidget(item QTreeWidgetItem_ITF, column int) *QWidge
 		return NewQWidgetFromPointer(C.QTreeWidget_ItemWidget(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column)))
 	}
 	return nil
+}
+
+func (ptr *QTreeWidget) MimeTypes() []string {
+	defer qt.Recovering("QTreeWidget::mimeTypes")
+
+	if ptr.Pointer() != nil {
+		return strings.Split(C.GoString(C.QTreeWidget_MimeTypes(ptr.Pointer())), ",,,")
+	}
+	return make([]string, 0)
 }
 
 func (ptr *QTreeWidget) OpenPersistentEditor(item QTreeWidgetItem_ITF, column int) {
@@ -643,15 +765,30 @@ func (ptr *QTreeWidget) DisconnectSetSelectionModel() {
 }
 
 //export callbackQTreeWidgetSetSelectionModel
-func callbackQTreeWidgetSetSelectionModel(ptrName *C.char, selectionModel unsafe.Pointer) bool {
+func callbackQTreeWidgetSetSelectionModel(ptr unsafe.Pointer, ptrName *C.char, selectionModel unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::setSelectionModel")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelectionModel"); signal != nil {
 		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).SetSelectionModelDefault(core.NewQItemSelectionModelFromPointer(selectionModel))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) SetSelectionModel(selectionModel core.QItemSelectionModel_ITF) {
+	defer qt.Recovering("QTreeWidget::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SetSelectionModel(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
+	}
+}
+
+func (ptr *QTreeWidget) SetSelectionModelDefault(selectionModel core.QItemSelectionModel_ITF) {
+	defer qt.Recovering("QTreeWidget::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SetSelectionModelDefault(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
+	}
 }
 
 func (ptr *QTreeWidget) SortColumn() int {
@@ -669,6 +806,15 @@ func (ptr *QTreeWidget) SortItems(column int, order core.Qt__SortOrder) {
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_SortItems(ptr.Pointer(), C.int(column), C.int(order))
 	}
+}
+
+func (ptr *QTreeWidget) SupportedDropActions() core.Qt__DropAction {
+	defer qt.Recovering("QTreeWidget::supportedDropActions")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__DropAction(C.QTreeWidget_SupportedDropActions(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QTreeWidget) TakeTopLevelItem(index int) *QTreeWidgetItem {
@@ -726,15 +872,30 @@ func (ptr *QTreeWidget) DisconnectCurrentChanged() {
 }
 
 //export callbackQTreeWidgetCurrentChanged
-func callbackQTreeWidgetCurrentChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
+func callbackQTreeWidgetCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
+	defer qt.Recovering("QTreeWidget::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_CurrentChanged(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
+	}
+}
+
+func (ptr *QTreeWidget) CurrentChangedDefault(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
+	defer qt.Recovering("QTreeWidget::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_CurrentChangedDefault(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -756,15 +917,30 @@ func (ptr *QTreeWidget) DisconnectDragMoveEvent() {
 }
 
 //export callbackQTreeWidgetDragMoveEvent
-func callbackQTreeWidgetDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectDrawBranches(f func(painter *gui.QPainter, rect *core.QRect, index *core.QModelIndex)) {
@@ -786,15 +962,30 @@ func (ptr *QTreeWidget) DisconnectDrawBranches() {
 }
 
 //export callbackQTreeWidgetDrawBranches
-func callbackQTreeWidgetDrawBranches(ptrName *C.char, painter unsafe.Pointer, rect unsafe.Pointer, index unsafe.Pointer) bool {
+func callbackQTreeWidgetDrawBranches(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer, rect unsafe.Pointer, index unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::drawBranches")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawBranches"); signal != nil {
 		signal.(func(*gui.QPainter, *core.QRect, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), core.NewQModelIndexFromPointer(index))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).DrawBranchesDefault(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), core.NewQModelIndexFromPointer(index))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) DrawBranches(painter gui.QPainter_ITF, rect core.QRect_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QTreeWidget::drawBranches")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_DrawBranches(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rect), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QTreeWidget) DrawBranchesDefault(painter gui.QPainter_ITF, rect core.QRect_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QTreeWidget::drawBranches")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_DrawBranchesDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rect), core.PointerFromQModelIndex(index))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -816,15 +1007,30 @@ func (ptr *QTreeWidget) DisconnectKeyPressEvent() {
 }
 
 //export callbackQTreeWidgetKeyPressEvent
-func callbackQTreeWidgetKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectKeyboardSearch(f func(search string)) {
@@ -846,15 +1052,30 @@ func (ptr *QTreeWidget) DisconnectKeyboardSearch() {
 }
 
 //export callbackQTreeWidgetKeyboardSearch
-func callbackQTreeWidgetKeyboardSearch(ptrName *C.char, search *C.char) bool {
+func callbackQTreeWidgetKeyboardSearch(ptr unsafe.Pointer, ptrName *C.char, search *C.char) {
 	defer qt.Recovering("callback QTreeWidget::keyboardSearch")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyboardSearch"); signal != nil {
 		signal.(func(string))(C.GoString(search))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).KeyboardSearchDefault(C.GoString(search))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) KeyboardSearch(search string) {
+	defer qt.Recovering("QTreeWidget::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_KeyboardSearch(ptr.Pointer(), C.CString(search))
+	}
+}
+
+func (ptr *QTreeWidget) KeyboardSearchDefault(search string) {
+	defer qt.Recovering("QTreeWidget::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_KeyboardSearchDefault(ptr.Pointer(), C.CString(search))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -876,15 +1097,30 @@ func (ptr *QTreeWidget) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQTreeWidgetMouseDoubleClickEvent
-func callbackQTreeWidgetMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -906,15 +1142,30 @@ func (ptr *QTreeWidget) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQTreeWidgetMouseMoveEvent
-func callbackQTreeWidgetMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -936,15 +1187,30 @@ func (ptr *QTreeWidget) DisconnectMousePressEvent() {
 }
 
 //export callbackQTreeWidgetMousePressEvent
-func callbackQTreeWidgetMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -966,15 +1232,30 @@ func (ptr *QTreeWidget) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQTreeWidgetMouseReleaseEvent
-func callbackQTreeWidgetMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -996,15 +1277,30 @@ func (ptr *QTreeWidget) DisconnectPaintEvent() {
 }
 
 //export callbackQTreeWidgetPaintEvent
-func callbackQTreeWidgetPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectReset(f func()) {
@@ -1026,15 +1322,30 @@ func (ptr *QTreeWidget) DisconnectReset() {
 }
 
 //export callbackQTreeWidgetReset
-func callbackQTreeWidgetReset(ptrName *C.char) bool {
+func callbackQTreeWidgetReset(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTreeWidget::reset")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).ResetDefault()
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) Reset() {
+	defer qt.Recovering("QTreeWidget::reset")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_Reset(ptr.Pointer())
+	}
+}
+
+func (ptr *QTreeWidget) ResetDefault() {
+	defer qt.Recovering("QTreeWidget::reset")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ResetDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTreeWidget) ConnectRowsAboutToBeRemoved(f func(parent *core.QModelIndex, start int, end int)) {
@@ -1056,15 +1367,30 @@ func (ptr *QTreeWidget) DisconnectRowsAboutToBeRemoved() {
 }
 
 //export callbackQTreeWidgetRowsAboutToBeRemoved
-func callbackQTreeWidgetRowsAboutToBeRemoved(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
+func callbackQTreeWidgetRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
 	defer qt.Recovering("callback QTreeWidget::rowsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).RowsAboutToBeRemovedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) RowsAboutToBeRemoved(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QTreeWidget::rowsAboutToBeRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_RowsAboutToBeRemoved(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
+}
+
+func (ptr *QTreeWidget) RowsAboutToBeRemovedDefault(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QTreeWidget::rowsAboutToBeRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_RowsAboutToBeRemovedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectRowsInserted(f func(parent *core.QModelIndex, start int, end int)) {
@@ -1086,15 +1412,30 @@ func (ptr *QTreeWidget) DisconnectRowsInserted() {
 }
 
 //export callbackQTreeWidgetRowsInserted
-func callbackQTreeWidgetRowsInserted(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
+func callbackQTreeWidgetRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
 	defer qt.Recovering("callback QTreeWidget::rowsInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).RowsInsertedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) RowsInserted(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QTreeWidget::rowsInserted")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_RowsInserted(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
+}
+
+func (ptr *QTreeWidget) RowsInsertedDefault(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QTreeWidget::rowsInserted")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_RowsInsertedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectScrollContentsBy(f func(dx int, dy int)) {
@@ -1116,15 +1457,30 @@ func (ptr *QTreeWidget) DisconnectScrollContentsBy() {
 }
 
 //export callbackQTreeWidgetScrollContentsBy
-func callbackQTreeWidgetScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
+func callbackQTreeWidgetScrollContentsBy(ptr unsafe.Pointer, ptrName *C.char, dx C.int, dy C.int) {
 	defer qt.Recovering("callback QTreeWidget::scrollContentsBy")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
 		signal.(func(int, int))(int(dx), int(dy))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).ScrollContentsByDefault(int(dx), int(dy))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) ScrollContentsBy(dx int, dy int) {
+	defer qt.Recovering("QTreeWidget::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ScrollContentsBy(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
+}
+
+func (ptr *QTreeWidget) ScrollContentsByDefault(dx int, dy int) {
+	defer qt.Recovering("QTreeWidget::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ScrollContentsByDefault(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectScrollTo(f func(index *core.QModelIndex, hint QAbstractItemView__ScrollHint)) {
@@ -1146,15 +1502,30 @@ func (ptr *QTreeWidget) DisconnectScrollTo() {
 }
 
 //export callbackQTreeWidgetScrollTo
-func callbackQTreeWidgetScrollTo(ptrName *C.char, index unsafe.Pointer, hint C.int) bool {
+func callbackQTreeWidgetScrollTo(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer, hint C.int) {
 	defer qt.Recovering("callback QTreeWidget::scrollTo")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollTo"); signal != nil {
 		signal.(func(*core.QModelIndex, QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).ScrollToDefault(core.NewQModelIndexFromPointer(index), QAbstractItemView__ScrollHint(hint))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) ScrollTo(index core.QModelIndex_ITF, hint QAbstractItemView__ScrollHint) {
+	defer qt.Recovering("QTreeWidget::scrollTo")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ScrollTo(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(hint))
+	}
+}
+
+func (ptr *QTreeWidget) ScrollToDefault(index core.QModelIndex_ITF, hint QAbstractItemView__ScrollHint) {
+	defer qt.Recovering("QTreeWidget::scrollTo")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ScrollToDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(hint))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectSelectAll(f func()) {
@@ -1176,15 +1547,30 @@ func (ptr *QTreeWidget) DisconnectSelectAll() {
 }
 
 //export callbackQTreeWidgetSelectAll
-func callbackQTreeWidgetSelectAll(ptrName *C.char) bool {
+func callbackQTreeWidgetSelectAll(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTreeWidget::selectAll")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectAll"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).SelectAllDefault()
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) SelectAll() {
+	defer qt.Recovering("QTreeWidget::selectAll")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SelectAll(ptr.Pointer())
+	}
+}
+
+func (ptr *QTreeWidget) SelectAllDefault() {
+	defer qt.Recovering("QTreeWidget::selectAll")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SelectAllDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTreeWidget) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
@@ -1206,15 +1592,30 @@ func (ptr *QTreeWidget) DisconnectSetRootIndex() {
 }
 
 //export callbackQTreeWidgetSetRootIndex
-func callbackQTreeWidgetSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool {
+func callbackQTreeWidgetSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::setRootIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).SetRootIndexDefault(core.NewQModelIndexFromPointer(index))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) SetRootIndex(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QTreeWidget::setRootIndex")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SetRootIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QTreeWidget) SetRootIndexDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QTreeWidget::setRootIndex")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SetRootIndexDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectSetSelection(f func(rect *core.QRect, command core.QItemSelectionModel__SelectionFlag)) {
@@ -1236,15 +1637,30 @@ func (ptr *QTreeWidget) DisconnectSetSelection() {
 }
 
 //export callbackQTreeWidgetSetSelection
-func callbackQTreeWidgetSetSelection(ptrName *C.char, rect unsafe.Pointer, command C.int) bool {
+func callbackQTreeWidgetSetSelection(ptr unsafe.Pointer, ptrName *C.char, rect unsafe.Pointer, command C.int) {
 	defer qt.Recovering("callback QTreeWidget::setSelection")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).SetSelectionDefault(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) SetSelection(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QTreeWidget::setSelection")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SetSelection(ptr.Pointer(), core.PointerFromQRect(rect), C.int(command))
+	}
+}
+
+func (ptr *QTreeWidget) SetSelectionDefault(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QTreeWidget::setSelection")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SetSelectionDefault(ptr.Pointer(), core.PointerFromQRect(rect), C.int(command))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1266,15 +1682,30 @@ func (ptr *QTreeWidget) DisconnectTimerEvent() {
 }
 
 //export callbackQTreeWidgetTimerEvent
-func callbackQTreeWidgetTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectUpdateGeometries(f func()) {
@@ -1296,15 +1727,30 @@ func (ptr *QTreeWidget) DisconnectUpdateGeometries() {
 }
 
 //export callbackQTreeWidgetUpdateGeometries
-func callbackQTreeWidgetUpdateGeometries(ptrName *C.char) bool {
+func callbackQTreeWidgetUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTreeWidget::updateGeometries")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).UpdateGeometriesDefault()
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) UpdateGeometries() {
+	defer qt.Recovering("QTreeWidget::updateGeometries")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_UpdateGeometries(ptr.Pointer())
+	}
+}
+
+func (ptr *QTreeWidget) UpdateGeometriesDefault() {
+	defer qt.Recovering("QTreeWidget::updateGeometries")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_UpdateGeometriesDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTreeWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -1326,15 +1772,30 @@ func (ptr *QTreeWidget) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQTreeWidgetDragLeaveEvent
-func callbackQTreeWidgetDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectCloseEditor(f func(editor *QWidget, hint QAbstractItemDelegate__EndEditHint)) {
@@ -1356,7 +1817,7 @@ func (ptr *QTreeWidget) DisconnectCloseEditor() {
 }
 
 //export callbackQTreeWidgetCloseEditor
-func callbackQTreeWidgetCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint C.int) bool {
+func callbackQTreeWidgetCloseEditor(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer, hint C.int) bool {
 	defer qt.Recovering("callback QTreeWidget::closeEditor")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEditor"); signal != nil {
@@ -1365,6 +1826,22 @@ func callbackQTreeWidgetCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint
 	}
 	return false
 
+}
+
+func (ptr *QTreeWidget) CloseEditor(editor QWidget_ITF, hint QAbstractItemDelegate__EndEditHint) {
+	defer qt.Recovering("QTreeWidget::closeEditor")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_CloseEditor(ptr.Pointer(), PointerFromQWidget(editor), C.int(hint))
+	}
+}
+
+func (ptr *QTreeWidget) CloseEditorDefault(editor QWidget_ITF, hint QAbstractItemDelegate__EndEditHint) {
+	defer qt.Recovering("QTreeWidget::closeEditor")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_CloseEditorDefault(ptr.Pointer(), PointerFromQWidget(editor), C.int(hint))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectCommitData(f func(editor *QWidget)) {
@@ -1386,7 +1863,7 @@ func (ptr *QTreeWidget) DisconnectCommitData() {
 }
 
 //export callbackQTreeWidgetCommitData
-func callbackQTreeWidgetCommitData(ptrName *C.char, editor unsafe.Pointer) bool {
+func callbackQTreeWidgetCommitData(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeWidget::commitData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "commitData"); signal != nil {
@@ -1395,6 +1872,22 @@ func callbackQTreeWidgetCommitData(ptrName *C.char, editor unsafe.Pointer) bool 
 	}
 	return false
 
+}
+
+func (ptr *QTreeWidget) CommitData(editor QWidget_ITF) {
+	defer qt.Recovering("QTreeWidget::commitData")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_CommitData(ptr.Pointer(), PointerFromQWidget(editor))
+	}
+}
+
+func (ptr *QTreeWidget) CommitDataDefault(editor QWidget_ITF) {
+	defer qt.Recovering("QTreeWidget::commitData")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_CommitDataDefault(ptr.Pointer(), PointerFromQWidget(editor))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -1416,15 +1909,30 @@ func (ptr *QTreeWidget) DisconnectDragEnterEvent() {
 }
 
 //export callbackQTreeWidgetDragEnterEvent
-func callbackQTreeWidgetDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectEditorDestroyed(f func(editor *core.QObject)) {
@@ -1446,7 +1954,7 @@ func (ptr *QTreeWidget) DisconnectEditorDestroyed() {
 }
 
 //export callbackQTreeWidgetEditorDestroyed
-func callbackQTreeWidgetEditorDestroyed(ptrName *C.char, editor unsafe.Pointer) bool {
+func callbackQTreeWidgetEditorDestroyed(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTreeWidget::editorDestroyed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "editorDestroyed"); signal != nil {
@@ -1455,6 +1963,22 @@ func callbackQTreeWidgetEditorDestroyed(ptrName *C.char, editor unsafe.Pointer) 
 	}
 	return false
 
+}
+
+func (ptr *QTreeWidget) EditorDestroyed(editor core.QObject_ITF) {
+	defer qt.Recovering("QTreeWidget::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_EditorDestroyed(ptr.Pointer(), core.PointerFromQObject(editor))
+	}
+}
+
+func (ptr *QTreeWidget) EditorDestroyedDefault(editor core.QObject_ITF) {
+	defer qt.Recovering("QTreeWidget::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_EditorDestroyedDefault(ptr.Pointer(), core.PointerFromQObject(editor))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -1476,15 +2000,30 @@ func (ptr *QTreeWidget) DisconnectFocusInEvent() {
 }
 
 //export callbackQTreeWidgetFocusInEvent
-func callbackQTreeWidgetFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -1506,15 +2045,30 @@ func (ptr *QTreeWidget) DisconnectFocusOutEvent() {
 }
 
 //export callbackQTreeWidgetFocusOutEvent
-func callbackQTreeWidgetFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -1536,15 +2090,30 @@ func (ptr *QTreeWidget) DisconnectInputMethodEvent() {
 }
 
 //export callbackQTreeWidgetInputMethodEvent
-func callbackQTreeWidgetInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -1566,15 +2135,30 @@ func (ptr *QTreeWidget) DisconnectResizeEvent() {
 }
 
 //export callbackQTreeWidgetResizeEvent
-func callbackQTreeWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectStartDrag(f func(supportedActions core.Qt__DropAction)) {
@@ -1596,15 +2180,30 @@ func (ptr *QTreeWidget) DisconnectStartDrag() {
 }
 
 //export callbackQTreeWidgetStartDrag
-func callbackQTreeWidgetStartDrag(ptrName *C.char, supportedActions C.int) bool {
+func callbackQTreeWidgetStartDrag(ptr unsafe.Pointer, ptrName *C.char, supportedActions C.int) {
 	defer qt.Recovering("callback QTreeWidget::startDrag")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startDrag"); signal != nil {
 		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(supportedActions))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).StartDragDefault(core.Qt__DropAction(supportedActions))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) StartDrag(supportedActions core.Qt__DropAction) {
+	defer qt.Recovering("QTreeWidget::startDrag")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_StartDrag(ptr.Pointer(), C.int(supportedActions))
+	}
+}
+
+func (ptr *QTreeWidget) StartDragDefault(supportedActions core.Qt__DropAction) {
+	defer qt.Recovering("QTreeWidget::startDrag")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_StartDragDefault(ptr.Pointer(), C.int(supportedActions))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
@@ -1626,15 +2225,30 @@ func (ptr *QTreeWidget) DisconnectContextMenuEvent() {
 }
 
 //export callbackQTreeWidgetContextMenuEvent
-func callbackQTreeWidgetContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTreeWidgetContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QTreeWidget) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectSetupViewport(f func(viewport *QWidget)) {
@@ -1656,15 +2270,30 @@ func (ptr *QTreeWidget) DisconnectSetupViewport() {
 }
 
 //export callbackQTreeWidgetSetupViewport
-func callbackQTreeWidgetSetupViewport(ptrName *C.char, viewport unsafe.Pointer) bool {
+func callbackQTreeWidgetSetupViewport(ptr unsafe.Pointer, ptrName *C.char, viewport unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::setupViewport")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setupViewport"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(viewport))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).SetupViewportDefault(NewQWidgetFromPointer(viewport))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) SetupViewport(viewport QWidget_ITF) {
+	defer qt.Recovering("QTreeWidget::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SetupViewport(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
+}
+
+func (ptr *QTreeWidget) SetupViewportDefault(viewport QWidget_ITF) {
+	defer qt.Recovering("QTreeWidget::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SetupViewportDefault(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
@@ -1686,15 +2315,30 @@ func (ptr *QTreeWidget) DisconnectWheelEvent() {
 }
 
 //export callbackQTreeWidgetWheelEvent
-func callbackQTreeWidgetWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTreeWidgetWheelEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) WheelEvent(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
+}
+
+func (ptr *QTreeWidget) WheelEventDefault(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectChangeEvent(f func(ev *core.QEvent)) {
@@ -1716,15 +2360,30 @@ func (ptr *QTreeWidget) DisconnectChangeEvent() {
 }
 
 //export callbackQTreeWidgetChangeEvent
-func callbackQTreeWidgetChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQTreeWidgetChangeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) ChangeEvent(ev core.QEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QTreeWidget) ChangeEventDefault(ev core.QEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -1746,15 +2405,30 @@ func (ptr *QTreeWidget) DisconnectActionEvent() {
 }
 
 //export callbackQTreeWidgetActionEvent
-func callbackQTreeWidgetActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -1776,15 +2450,30 @@ func (ptr *QTreeWidget) DisconnectEnterEvent() {
 }
 
 //export callbackQTreeWidgetEnterEvent
-func callbackQTreeWidgetEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -1806,15 +2495,30 @@ func (ptr *QTreeWidget) DisconnectHideEvent() {
 }
 
 //export callbackQTreeWidgetHideEvent
-func callbackQTreeWidgetHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -1836,15 +2540,30 @@ func (ptr *QTreeWidget) DisconnectLeaveEvent() {
 }
 
 //export callbackQTreeWidgetLeaveEvent
-func callbackQTreeWidgetLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1866,15 +2585,30 @@ func (ptr *QTreeWidget) DisconnectMoveEvent() {
 }
 
 //export callbackQTreeWidgetMoveEvent
-func callbackQTreeWidgetMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectSetVisible(f func(visible bool)) {
@@ -1896,7 +2630,7 @@ func (ptr *QTreeWidget) DisconnectSetVisible() {
 }
 
 //export callbackQTreeWidgetSetVisible
-func callbackQTreeWidgetSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQTreeWidgetSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QTreeWidget::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -1905,6 +2639,22 @@ func callbackQTreeWidgetSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTreeWidget) SetVisible(visible bool) {
+	defer qt.Recovering("QTreeWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QTreeWidget) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QTreeWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -1926,15 +2676,30 @@ func (ptr *QTreeWidget) DisconnectShowEvent() {
 }
 
 //export callbackQTreeWidgetShowEvent
-func callbackQTreeWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -1956,15 +2721,30 @@ func (ptr *QTreeWidget) DisconnectCloseEvent() {
 }
 
 //export callbackQTreeWidgetCloseEvent
-func callbackQTreeWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1986,15 +2766,30 @@ func (ptr *QTreeWidget) DisconnectInitPainter() {
 }
 
 //export callbackQTreeWidgetInitPainter
-func callbackQTreeWidgetInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQTreeWidgetInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QTreeWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QTreeWidget) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QTreeWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -2016,15 +2811,30 @@ func (ptr *QTreeWidget) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQTreeWidgetKeyReleaseEvent
-func callbackQTreeWidgetKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -2046,15 +2856,30 @@ func (ptr *QTreeWidget) DisconnectTabletEvent() {
 }
 
 //export callbackQTreeWidgetTabletEvent
-func callbackQTreeWidgetTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -2076,15 +2901,30 @@ func (ptr *QTreeWidget) DisconnectChildEvent() {
 }
 
 //export callbackQTreeWidgetChildEvent
-func callbackQTreeWidgetChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTreeWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -2106,13 +2946,28 @@ func (ptr *QTreeWidget) DisconnectCustomEvent() {
 }
 
 //export callbackQTreeWidgetCustomEvent
-func callbackQTreeWidgetCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTreeWidgetCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidget::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTreeWidgetFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTreeWidget) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTreeWidget) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTreeWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidget_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

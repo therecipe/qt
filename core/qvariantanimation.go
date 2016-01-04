@@ -128,6 +128,24 @@ func (ptr *QVariantAnimation) KeyValueAt(step float64) *QVariant {
 	return nil
 }
 
+func (ptr *QVariantAnimation) Event(event QEvent_ITF) bool {
+	defer qt.Recovering("QVariantAnimation::event")
+
+	if ptr.Pointer() != nil {
+		return C.QVariantAnimation_Event(ptr.Pointer(), PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QVariantAnimation) Interpolated(from QVariant_ITF, to QVariant_ITF, progress float64) *QVariant {
+	defer qt.Recovering("QVariantAnimation::interpolated")
+
+	if ptr.Pointer() != nil {
+		return NewQVariantFromPointer(C.QVariantAnimation_Interpolated(ptr.Pointer(), PointerFromQVariant(from), PointerFromQVariant(to), C.double(progress)))
+	}
+	return nil
+}
+
 func (ptr *QVariantAnimation) SetKeyValueAt(step float64, value QVariant_ITF) {
 	defer qt.Recovering("QVariantAnimation::setKeyValueAt")
 
@@ -155,15 +173,30 @@ func (ptr *QVariantAnimation) DisconnectUpdateCurrentTime() {
 }
 
 //export callbackQVariantAnimationUpdateCurrentTime
-func callbackQVariantAnimationUpdateCurrentTime(ptrName *C.char, v C.int) bool {
+func callbackQVariantAnimationUpdateCurrentTime(ptr unsafe.Pointer, ptrName *C.char, v C.int) {
 	defer qt.Recovering("callback QVariantAnimation::updateCurrentTime")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(v))
-		return true
+	} else {
+		NewQVariantAnimationFromPointer(ptr).UpdateCurrentTimeDefault(int(v))
 	}
-	return false
+}
 
+func (ptr *QVariantAnimation) UpdateCurrentTime(v int) {
+	defer qt.Recovering("QVariantAnimation::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_UpdateCurrentTime(ptr.Pointer(), C.int(v))
+	}
+}
+
+func (ptr *QVariantAnimation) UpdateCurrentTimeDefault(v int) {
+	defer qt.Recovering("QVariantAnimation::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_UpdateCurrentTimeDefault(ptr.Pointer(), C.int(v))
+	}
 }
 
 func (ptr *QVariantAnimation) ConnectUpdateCurrentValue(f func(value *QVariant)) {
@@ -185,15 +218,30 @@ func (ptr *QVariantAnimation) DisconnectUpdateCurrentValue() {
 }
 
 //export callbackQVariantAnimationUpdateCurrentValue
-func callbackQVariantAnimationUpdateCurrentValue(ptrName *C.char, value unsafe.Pointer) bool {
+func callbackQVariantAnimationUpdateCurrentValue(ptr unsafe.Pointer, ptrName *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QVariantAnimation::updateCurrentValue")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentValue"); signal != nil {
 		signal.(func(*QVariant))(NewQVariantFromPointer(value))
-		return true
+	} else {
+		NewQVariantAnimationFromPointer(ptr).UpdateCurrentValueDefault(NewQVariantFromPointer(value))
 	}
-	return false
+}
 
+func (ptr *QVariantAnimation) UpdateCurrentValue(value QVariant_ITF) {
+	defer qt.Recovering("QVariantAnimation::updateCurrentValue")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_UpdateCurrentValue(ptr.Pointer(), PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QVariantAnimation) UpdateCurrentValueDefault(value QVariant_ITF) {
+	defer qt.Recovering("QVariantAnimation::updateCurrentValue")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_UpdateCurrentValueDefault(ptr.Pointer(), PointerFromQVariant(value))
+	}
 }
 
 func (ptr *QVariantAnimation) ConnectUpdateState(f func(newState QAbstractAnimation__State, oldState QAbstractAnimation__State)) {
@@ -215,15 +263,30 @@ func (ptr *QVariantAnimation) DisconnectUpdateState() {
 }
 
 //export callbackQVariantAnimationUpdateState
-func callbackQVariantAnimationUpdateState(ptrName *C.char, newState C.int, oldState C.int) bool {
+func callbackQVariantAnimationUpdateState(ptr unsafe.Pointer, ptrName *C.char, newState C.int, oldState C.int) {
 	defer qt.Recovering("callback QVariantAnimation::updateState")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateState"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
-		return true
+	} else {
+		NewQVariantAnimationFromPointer(ptr).UpdateStateDefault(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	}
-	return false
+}
 
+func (ptr *QVariantAnimation) UpdateState(newState QAbstractAnimation__State, oldState QAbstractAnimation__State) {
+	defer qt.Recovering("QVariantAnimation::updateState")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_UpdateState(ptr.Pointer(), C.int(newState), C.int(oldState))
+	}
+}
+
+func (ptr *QVariantAnimation) UpdateStateDefault(newState QAbstractAnimation__State, oldState QAbstractAnimation__State) {
+	defer qt.Recovering("QVariantAnimation::updateState")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_UpdateStateDefault(ptr.Pointer(), C.int(newState), C.int(oldState))
+	}
 }
 
 func (ptr *QVariantAnimation) ConnectValueChanged(f func(value *QVariant)) {
@@ -245,13 +308,21 @@ func (ptr *QVariantAnimation) DisconnectValueChanged() {
 }
 
 //export callbackQVariantAnimationValueChanged
-func callbackQVariantAnimationValueChanged(ptrName *C.char, value unsafe.Pointer) {
+func callbackQVariantAnimationValueChanged(ptr unsafe.Pointer, ptrName *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QVariantAnimation::valueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
 		signal.(func(*QVariant))(NewQVariantFromPointer(value))
 	}
 
+}
+
+func (ptr *QVariantAnimation) ValueChanged(value QVariant_ITF) {
+	defer qt.Recovering("QVariantAnimation::valueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_ValueChanged(ptr.Pointer(), PointerFromQVariant(value))
+	}
 }
 
 func (ptr *QVariantAnimation) DestroyQVariantAnimation() {
@@ -282,15 +353,30 @@ func (ptr *QVariantAnimation) DisconnectUpdateDirection() {
 }
 
 //export callbackQVariantAnimationUpdateDirection
-func callbackQVariantAnimationUpdateDirection(ptrName *C.char, direction C.int) bool {
+func callbackQVariantAnimationUpdateDirection(ptr unsafe.Pointer, ptrName *C.char, direction C.int) {
 	defer qt.Recovering("callback QVariantAnimation::updateDirection")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateDirection"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
-		return true
+	} else {
+		NewQVariantAnimationFromPointer(ptr).UpdateDirectionDefault(QAbstractAnimation__Direction(direction))
 	}
-	return false
+}
 
+func (ptr *QVariantAnimation) UpdateDirection(direction QAbstractAnimation__Direction) {
+	defer qt.Recovering("QVariantAnimation::updateDirection")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_UpdateDirection(ptr.Pointer(), C.int(direction))
+	}
+}
+
+func (ptr *QVariantAnimation) UpdateDirectionDefault(direction QAbstractAnimation__Direction) {
+	defer qt.Recovering("QVariantAnimation::updateDirection")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_UpdateDirectionDefault(ptr.Pointer(), C.int(direction))
+	}
 }
 
 func (ptr *QVariantAnimation) ConnectTimerEvent(f func(event *QTimerEvent)) {
@@ -312,15 +398,30 @@ func (ptr *QVariantAnimation) DisconnectTimerEvent() {
 }
 
 //export callbackQVariantAnimationTimerEvent
-func callbackQVariantAnimationTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVariantAnimationTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVariantAnimation::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQVariantAnimationFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVariantAnimation) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QVariantAnimation::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QVariantAnimation) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QVariantAnimation::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QVariantAnimation) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -342,15 +443,30 @@ func (ptr *QVariantAnimation) DisconnectChildEvent() {
 }
 
 //export callbackQVariantAnimationChildEvent
-func callbackQVariantAnimationChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVariantAnimationChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVariantAnimation::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQVariantAnimationFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVariantAnimation) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QVariantAnimation::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QVariantAnimation) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QVariantAnimation::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QVariantAnimation) ConnectCustomEvent(f func(event *QEvent)) {
@@ -372,13 +488,28 @@ func (ptr *QVariantAnimation) DisconnectCustomEvent() {
 }
 
 //export callbackQVariantAnimationCustomEvent
-func callbackQVariantAnimationCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVariantAnimationCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVariantAnimation::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQVariantAnimationFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVariantAnimation) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QVariantAnimation::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QVariantAnimation) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QVariantAnimation::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

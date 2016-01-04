@@ -65,6 +65,15 @@ func (ptr *QTableView) IsSortingEnabled() bool {
 	return false
 }
 
+func (ptr *QTableView) MoveCursor(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
+	defer qt.Recovering("QTableView::moveCursor")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QTableView_MoveCursor(ptr.Pointer(), C.int(cursorAction), C.int(modifiers)))
+	}
+	return nil
+}
+
 func (ptr *QTableView) SetCornerButtonEnabled(enable bool) {
 	defer qt.Recovering("QTableView::setCornerButtonEnabled")
 
@@ -100,15 +109,30 @@ func (ptr *QTableView) DisconnectSetSelection() {
 }
 
 //export callbackQTableViewSetSelection
-func callbackQTableViewSetSelection(ptrName *C.char, rect unsafe.Pointer, flags C.int) bool {
+func callbackQTableViewSetSelection(ptr unsafe.Pointer, ptrName *C.char, rect unsafe.Pointer, flags C.int) {
 	defer qt.Recovering("callback QTableView::setSelection")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).SetSelectionDefault(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
 	}
-	return false
+}
 
+func (ptr *QTableView) SetSelection(rect core.QRect_ITF, flags core.QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QTableView::setSelection")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetSelection(ptr.Pointer(), core.PointerFromQRect(rect), C.int(flags))
+	}
+}
+
+func (ptr *QTableView) SetSelectionDefault(rect core.QRect_ITF, flags core.QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QTableView::setSelection")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetSelectionDefault(ptr.Pointer(), core.PointerFromQRect(rect), C.int(flags))
+	}
 }
 
 func (ptr *QTableView) SetShowGrid(show bool) {
@@ -216,15 +240,30 @@ func (ptr *QTableView) DisconnectCurrentChanged() {
 }
 
 //export callbackQTableViewCurrentChanged
-func callbackQTableViewCurrentChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) bool {
+func callbackQTableViewCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).CurrentChangedDefault(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
 	}
-	return false
+}
 
+func (ptr *QTableView) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
+	defer qt.Recovering("QTableView::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_CurrentChanged(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
+	}
+}
+
+func (ptr *QTableView) CurrentChangedDefault(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
+	defer qt.Recovering("QTableView::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_CurrentChangedDefault(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
+	}
 }
 
 func (ptr *QTableView) HideColumn(column int) {
@@ -252,6 +291,15 @@ func (ptr *QTableView) HorizontalHeader() *QHeaderView {
 	return nil
 }
 
+func (ptr *QTableView) HorizontalOffset() int {
+	defer qt.Recovering("QTableView::horizontalOffset")
+
+	if ptr.Pointer() != nil {
+		return int(C.QTableView_HorizontalOffset(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QTableView) IndexAt(pos core.QPoint_ITF) *core.QModelIndex {
 	defer qt.Recovering("QTableView::indexAt")
 
@@ -266,6 +314,15 @@ func (ptr *QTableView) IsColumnHidden(column int) bool {
 
 	if ptr.Pointer() != nil {
 		return C.QTableView_IsColumnHidden(ptr.Pointer(), C.int(column)) != 0
+	}
+	return false
+}
+
+func (ptr *QTableView) IsIndexHidden(index core.QModelIndex_ITF) bool {
+	defer qt.Recovering("QTableView::isIndexHidden")
+
+	if ptr.Pointer() != nil {
+		return C.QTableView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
 	}
 	return false
 }
@@ -298,15 +355,30 @@ func (ptr *QTableView) DisconnectPaintEvent() {
 }
 
 //export callbackQTableViewPaintEvent
-func callbackQTableViewPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QTableView::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QTableView) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QTableView::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QTableView) ResizeColumnToContents(column int) {
@@ -436,15 +508,30 @@ func (ptr *QTableView) DisconnectSetModel() {
 }
 
 //export callbackQTableViewSetModel
-func callbackQTableViewSetModel(ptrName *C.char, model unsafe.Pointer) bool {
+func callbackQTableViewSetModel(ptr unsafe.Pointer, ptrName *C.char, model unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::setModel")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setModel"); signal != nil {
 		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).SetModelDefault(core.NewQAbstractItemModelFromPointer(model))
 	}
-	return false
+}
 
+func (ptr *QTableView) SetModel(model core.QAbstractItemModel_ITF) {
+	defer qt.Recovering("QTableView::setModel")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetModel(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
+	}
+}
+
+func (ptr *QTableView) SetModelDefault(model core.QAbstractItemModel_ITF) {
+	defer qt.Recovering("QTableView::setModel")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetModelDefault(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
+	}
 }
 
 func (ptr *QTableView) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
@@ -466,15 +553,30 @@ func (ptr *QTableView) DisconnectSetRootIndex() {
 }
 
 //export callbackQTableViewSetRootIndex
-func callbackQTableViewSetRootIndex(ptrName *C.char, index unsafe.Pointer) bool {
+func callbackQTableViewSetRootIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::setRootIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setRootIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).SetRootIndexDefault(core.NewQModelIndexFromPointer(index))
 	}
-	return false
+}
 
+func (ptr *QTableView) SetRootIndex(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QTableView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetRootIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QTableView) SetRootIndexDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QTableView::setRootIndex")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetRootIndexDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
 }
 
 func (ptr *QTableView) SetRowHeight(row int, height int) {
@@ -512,15 +614,30 @@ func (ptr *QTableView) DisconnectSetSelectionModel() {
 }
 
 //export callbackQTableViewSetSelectionModel
-func callbackQTableViewSetSelectionModel(ptrName *C.char, selectionModel unsafe.Pointer) bool {
+func callbackQTableViewSetSelectionModel(ptr unsafe.Pointer, ptrName *C.char, selectionModel unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::setSelectionModel")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelectionModel"); signal != nil {
 		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).SetSelectionModelDefault(core.NewQItemSelectionModelFromPointer(selectionModel))
 	}
-	return false
+}
 
+func (ptr *QTableView) SetSelectionModel(selectionModel core.QItemSelectionModel_ITF) {
+	defer qt.Recovering("QTableView::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetSelectionModel(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
+	}
+}
+
+func (ptr *QTableView) SetSelectionModelDefault(selectionModel core.QItemSelectionModel_ITF) {
+	defer qt.Recovering("QTableView::setSelectionModel")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetSelectionModelDefault(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
+	}
 }
 
 func (ptr *QTableView) SetSortingEnabled(enable bool) {
@@ -555,6 +672,24 @@ func (ptr *QTableView) ShowRow(row int) {
 	}
 }
 
+func (ptr *QTableView) SizeHintForColumn(column int) int {
+	defer qt.Recovering("QTableView::sizeHintForColumn")
+
+	if ptr.Pointer() != nil {
+		return int(C.QTableView_SizeHintForColumn(ptr.Pointer(), C.int(column)))
+	}
+	return 0
+}
+
+func (ptr *QTableView) SizeHintForRow(row int) int {
+	defer qt.Recovering("QTableView::sizeHintForRow")
+
+	if ptr.Pointer() != nil {
+		return int(C.QTableView_SizeHintForRow(ptr.Pointer(), C.int(row)))
+	}
+	return 0
+}
+
 func (ptr *QTableView) SortByColumn(column int, order core.Qt__SortOrder) {
 	defer qt.Recovering("QTableView::sortByColumn")
 
@@ -582,15 +717,30 @@ func (ptr *QTableView) DisconnectTimerEvent() {
 }
 
 //export callbackQTableViewTimerEvent
-func callbackQTableViewTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTableView::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTableView) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTableView::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectUpdateGeometries(f func()) {
@@ -612,15 +762,30 @@ func (ptr *QTableView) DisconnectUpdateGeometries() {
 }
 
 //export callbackQTableViewUpdateGeometries
-func callbackQTableViewUpdateGeometries(ptrName *C.char) bool {
+func callbackQTableViewUpdateGeometries(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTableView::updateGeometries")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateGeometries"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).UpdateGeometriesDefault()
 	}
-	return false
+}
 
+func (ptr *QTableView) UpdateGeometries() {
+	defer qt.Recovering("QTableView::updateGeometries")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_UpdateGeometries(ptr.Pointer())
+	}
+}
+
+func (ptr *QTableView) UpdateGeometriesDefault() {
+	defer qt.Recovering("QTableView::updateGeometries")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_UpdateGeometriesDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTableView) VerticalHeader() *QHeaderView {
@@ -628,6 +793,24 @@ func (ptr *QTableView) VerticalHeader() *QHeaderView {
 
 	if ptr.Pointer() != nil {
 		return NewQHeaderViewFromPointer(C.QTableView_VerticalHeader(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTableView) VerticalOffset() int {
+	defer qt.Recovering("QTableView::verticalOffset")
+
+	if ptr.Pointer() != nil {
+		return int(C.QTableView_VerticalOffset(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QTableView) ViewportSizeHint() *core.QSize {
+	defer qt.Recovering("QTableView::viewportSizeHint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QTableView_ViewportSizeHint(ptr.Pointer()))
 	}
 	return nil
 }
@@ -660,15 +843,30 @@ func (ptr *QTableView) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQTableViewDragLeaveEvent
-func callbackQTableViewDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QTableView::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QTableView) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QTableView::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectCloseEditor(f func(editor *QWidget, hint QAbstractItemDelegate__EndEditHint)) {
@@ -690,7 +888,7 @@ func (ptr *QTableView) DisconnectCloseEditor() {
 }
 
 //export callbackQTableViewCloseEditor
-func callbackQTableViewCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint C.int) bool {
+func callbackQTableViewCloseEditor(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer, hint C.int) bool {
 	defer qt.Recovering("callback QTableView::closeEditor")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEditor"); signal != nil {
@@ -699,6 +897,22 @@ func callbackQTableViewCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint 
 	}
 	return false
 
+}
+
+func (ptr *QTableView) CloseEditor(editor QWidget_ITF, hint QAbstractItemDelegate__EndEditHint) {
+	defer qt.Recovering("QTableView::closeEditor")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_CloseEditor(ptr.Pointer(), PointerFromQWidget(editor), C.int(hint))
+	}
+}
+
+func (ptr *QTableView) CloseEditorDefault(editor QWidget_ITF, hint QAbstractItemDelegate__EndEditHint) {
+	defer qt.Recovering("QTableView::closeEditor")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_CloseEditorDefault(ptr.Pointer(), PointerFromQWidget(editor), C.int(hint))
+	}
 }
 
 func (ptr *QTableView) ConnectCommitData(f func(editor *QWidget)) {
@@ -720,7 +934,7 @@ func (ptr *QTableView) DisconnectCommitData() {
 }
 
 //export callbackQTableViewCommitData
-func callbackQTableViewCommitData(ptrName *C.char, editor unsafe.Pointer) bool {
+func callbackQTableViewCommitData(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableView::commitData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "commitData"); signal != nil {
@@ -729,6 +943,22 @@ func callbackQTableViewCommitData(ptrName *C.char, editor unsafe.Pointer) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTableView) CommitData(editor QWidget_ITF) {
+	defer qt.Recovering("QTableView::commitData")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_CommitData(ptr.Pointer(), PointerFromQWidget(editor))
+	}
+}
+
+func (ptr *QTableView) CommitDataDefault(editor QWidget_ITF) {
+	defer qt.Recovering("QTableView::commitData")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_CommitDataDefault(ptr.Pointer(), PointerFromQWidget(editor))
+	}
 }
 
 func (ptr *QTableView) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -750,15 +980,30 @@ func (ptr *QTableView) DisconnectDragEnterEvent() {
 }
 
 //export callbackQTableViewDragEnterEvent
-func callbackQTableViewDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QTableView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QTableView) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QTableView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -780,15 +1025,30 @@ func (ptr *QTableView) DisconnectDragMoveEvent() {
 }
 
 //export callbackQTableViewDragMoveEvent
-func callbackQTableViewDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QTableView::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QTableView) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QTableView::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -810,15 +1070,30 @@ func (ptr *QTableView) DisconnectDropEvent() {
 }
 
 //export callbackQTableViewDropEvent
-func callbackQTableViewDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QTableView::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QTableView) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QTableView::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectEditorDestroyed(f func(editor *core.QObject)) {
@@ -840,7 +1115,7 @@ func (ptr *QTableView) DisconnectEditorDestroyed() {
 }
 
 //export callbackQTableViewEditorDestroyed
-func callbackQTableViewEditorDestroyed(ptrName *C.char, editor unsafe.Pointer) bool {
+func callbackQTableViewEditorDestroyed(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer) bool {
 	defer qt.Recovering("callback QTableView::editorDestroyed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "editorDestroyed"); signal != nil {
@@ -849,6 +1124,22 @@ func callbackQTableViewEditorDestroyed(ptrName *C.char, editor unsafe.Pointer) b
 	}
 	return false
 
+}
+
+func (ptr *QTableView) EditorDestroyed(editor core.QObject_ITF) {
+	defer qt.Recovering("QTableView::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_EditorDestroyed(ptr.Pointer(), core.PointerFromQObject(editor))
+	}
+}
+
+func (ptr *QTableView) EditorDestroyedDefault(editor core.QObject_ITF) {
+	defer qt.Recovering("QTableView::editorDestroyed")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_EditorDestroyedDefault(ptr.Pointer(), core.PointerFromQObject(editor))
+	}
 }
 
 func (ptr *QTableView) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -870,15 +1161,30 @@ func (ptr *QTableView) DisconnectFocusInEvent() {
 }
 
 //export callbackQTableViewFocusInEvent
-func callbackQTableViewFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTableView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QTableView) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTableView::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -900,15 +1206,30 @@ func (ptr *QTableView) DisconnectFocusOutEvent() {
 }
 
 //export callbackQTableViewFocusOutEvent
-func callbackQTableViewFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTableView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QTableView) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QTableView::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -930,15 +1251,30 @@ func (ptr *QTableView) DisconnectInputMethodEvent() {
 }
 
 //export callbackQTableViewInputMethodEvent
-func callbackQTableViewInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QTableView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QTableView) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QTableView::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -960,15 +1296,30 @@ func (ptr *QTableView) DisconnectKeyPressEvent() {
 }
 
 //export callbackQTableViewKeyPressEvent
-func callbackQTableViewKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTableView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QTableView) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTableView::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectKeyboardSearch(f func(search string)) {
@@ -990,15 +1341,30 @@ func (ptr *QTableView) DisconnectKeyboardSearch() {
 }
 
 //export callbackQTableViewKeyboardSearch
-func callbackQTableViewKeyboardSearch(ptrName *C.char, search *C.char) bool {
+func callbackQTableViewKeyboardSearch(ptr unsafe.Pointer, ptrName *C.char, search *C.char) {
 	defer qt.Recovering("callback QTableView::keyboardSearch")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyboardSearch"); signal != nil {
 		signal.(func(string))(C.GoString(search))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).KeyboardSearchDefault(C.GoString(search))
 	}
-	return false
+}
 
+func (ptr *QTableView) KeyboardSearch(search string) {
+	defer qt.Recovering("QTableView::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_KeyboardSearch(ptr.Pointer(), C.CString(search))
+	}
+}
+
+func (ptr *QTableView) KeyboardSearchDefault(search string) {
+	defer qt.Recovering("QTableView::keyboardSearch")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_KeyboardSearchDefault(ptr.Pointer(), C.CString(search))
+	}
 }
 
 func (ptr *QTableView) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1020,15 +1386,30 @@ func (ptr *QTableView) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQTableViewMouseDoubleClickEvent
-func callbackQTableViewMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTableView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QTableView) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTableView::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -1050,15 +1431,30 @@ func (ptr *QTableView) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQTableViewMouseMoveEvent
-func callbackQTableViewMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTableView::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QTableView) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTableView::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -1080,15 +1476,30 @@ func (ptr *QTableView) DisconnectMousePressEvent() {
 }
 
 //export callbackQTableViewMousePressEvent
-func callbackQTableViewMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTableView::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QTableView) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTableView::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1110,15 +1521,30 @@ func (ptr *QTableView) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQTableViewMouseReleaseEvent
-func callbackQTableViewMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTableView::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QTableView) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QTableView::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectReset(f func()) {
@@ -1140,7 +1566,7 @@ func (ptr *QTableView) DisconnectReset() {
 }
 
 //export callbackQTableViewReset
-func callbackQTableViewReset(ptrName *C.char) bool {
+func callbackQTableViewReset(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QTableView::reset")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
@@ -1149,6 +1575,22 @@ func callbackQTableViewReset(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTableView) Reset() {
+	defer qt.Recovering("QTableView::reset")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_Reset(ptr.Pointer())
+	}
+}
+
+func (ptr *QTableView) ResetDefault() {
+	defer qt.Recovering("QTableView::reset")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ResetDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTableView) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -1170,15 +1612,30 @@ func (ptr *QTableView) DisconnectResizeEvent() {
 }
 
 //export callbackQTableViewResizeEvent
-func callbackQTableViewResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QTableView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QTableView) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QTableView::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectRowsAboutToBeRemoved(f func(parent *core.QModelIndex, start int, end int)) {
@@ -1200,7 +1657,7 @@ func (ptr *QTableView) DisconnectRowsAboutToBeRemoved() {
 }
 
 //export callbackQTableViewRowsAboutToBeRemoved
-func callbackQTableViewRowsAboutToBeRemoved(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
+func callbackQTableViewRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QTableView::rowsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
@@ -1209,6 +1666,22 @@ func callbackQTableViewRowsAboutToBeRemoved(ptrName *C.char, parent unsafe.Point
 	}
 	return false
 
+}
+
+func (ptr *QTableView) RowsAboutToBeRemoved(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QTableView::rowsAboutToBeRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_RowsAboutToBeRemoved(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
+}
+
+func (ptr *QTableView) RowsAboutToBeRemovedDefault(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QTableView::rowsAboutToBeRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_RowsAboutToBeRemovedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
 }
 
 func (ptr *QTableView) ConnectRowsInserted(f func(parent *core.QModelIndex, start int, end int)) {
@@ -1230,7 +1703,7 @@ func (ptr *QTableView) DisconnectRowsInserted() {
 }
 
 //export callbackQTableViewRowsInserted
-func callbackQTableViewRowsInserted(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
+func callbackQTableViewRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) bool {
 	defer qt.Recovering("callback QTableView::rowsInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
@@ -1239,6 +1712,22 @@ func callbackQTableViewRowsInserted(ptrName *C.char, parent unsafe.Pointer, star
 	}
 	return false
 
+}
+
+func (ptr *QTableView) RowsInserted(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QTableView::rowsInserted")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_RowsInserted(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
+}
+
+func (ptr *QTableView) RowsInsertedDefault(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QTableView::rowsInserted")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_RowsInsertedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
 }
 
 func (ptr *QTableView) ConnectSelectAll(f func()) {
@@ -1260,7 +1749,7 @@ func (ptr *QTableView) DisconnectSelectAll() {
 }
 
 //export callbackQTableViewSelectAll
-func callbackQTableViewSelectAll(ptrName *C.char) bool {
+func callbackQTableViewSelectAll(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QTableView::selectAll")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectAll"); signal != nil {
@@ -1269,6 +1758,22 @@ func callbackQTableViewSelectAll(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTableView) SelectAll() {
+	defer qt.Recovering("QTableView::selectAll")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SelectAll(ptr.Pointer())
+	}
+}
+
+func (ptr *QTableView) SelectAllDefault() {
+	defer qt.Recovering("QTableView::selectAll")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SelectAllDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTableView) ConnectStartDrag(f func(supportedActions core.Qt__DropAction)) {
@@ -1290,15 +1795,30 @@ func (ptr *QTableView) DisconnectStartDrag() {
 }
 
 //export callbackQTableViewStartDrag
-func callbackQTableViewStartDrag(ptrName *C.char, supportedActions C.int) bool {
+func callbackQTableViewStartDrag(ptr unsafe.Pointer, ptrName *C.char, supportedActions C.int) {
 	defer qt.Recovering("callback QTableView::startDrag")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startDrag"); signal != nil {
 		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(supportedActions))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).StartDragDefault(core.Qt__DropAction(supportedActions))
 	}
-	return false
+}
 
+func (ptr *QTableView) StartDrag(supportedActions core.Qt__DropAction) {
+	defer qt.Recovering("QTableView::startDrag")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_StartDrag(ptr.Pointer(), C.int(supportedActions))
+	}
+}
+
+func (ptr *QTableView) StartDragDefault(supportedActions core.Qt__DropAction) {
+	defer qt.Recovering("QTableView::startDrag")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_StartDragDefault(ptr.Pointer(), C.int(supportedActions))
+	}
 }
 
 func (ptr *QTableView) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
@@ -1320,15 +1840,30 @@ func (ptr *QTableView) DisconnectContextMenuEvent() {
 }
 
 //export callbackQTableViewContextMenuEvent
-func callbackQTableViewContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTableViewContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTableView) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QTableView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QTableView) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QTableView::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QTableView) ConnectScrollContentsBy(f func(dx int, dy int)) {
@@ -1350,15 +1885,30 @@ func (ptr *QTableView) DisconnectScrollContentsBy() {
 }
 
 //export callbackQTableViewScrollContentsBy
-func callbackQTableViewScrollContentsBy(ptrName *C.char, dx C.int, dy C.int) bool {
+func callbackQTableViewScrollContentsBy(ptr unsafe.Pointer, ptrName *C.char, dx C.int, dy C.int) {
 	defer qt.Recovering("callback QTableView::scrollContentsBy")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollContentsBy"); signal != nil {
 		signal.(func(int, int))(int(dx), int(dy))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).ScrollContentsByDefault(int(dx), int(dy))
 	}
-	return false
+}
 
+func (ptr *QTableView) ScrollContentsBy(dx int, dy int) {
+	defer qt.Recovering("QTableView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ScrollContentsBy(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
+}
+
+func (ptr *QTableView) ScrollContentsByDefault(dx int, dy int) {
+	defer qt.Recovering("QTableView::scrollContentsBy")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ScrollContentsByDefault(ptr.Pointer(), C.int(dx), C.int(dy))
+	}
 }
 
 func (ptr *QTableView) ConnectSetupViewport(f func(viewport *QWidget)) {
@@ -1380,15 +1930,30 @@ func (ptr *QTableView) DisconnectSetupViewport() {
 }
 
 //export callbackQTableViewSetupViewport
-func callbackQTableViewSetupViewport(ptrName *C.char, viewport unsafe.Pointer) bool {
+func callbackQTableViewSetupViewport(ptr unsafe.Pointer, ptrName *C.char, viewport unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::setupViewport")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setupViewport"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(viewport))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).SetupViewportDefault(NewQWidgetFromPointer(viewport))
 	}
-	return false
+}
 
+func (ptr *QTableView) SetupViewport(viewport QWidget_ITF) {
+	defer qt.Recovering("QTableView::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetupViewport(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
+}
+
+func (ptr *QTableView) SetupViewportDefault(viewport QWidget_ITF) {
+	defer qt.Recovering("QTableView::setupViewport")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetupViewportDefault(ptr.Pointer(), PointerFromQWidget(viewport))
+	}
 }
 
 func (ptr *QTableView) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
@@ -1410,15 +1975,30 @@ func (ptr *QTableView) DisconnectWheelEvent() {
 }
 
 //export callbackQTableViewWheelEvent
-func callbackQTableViewWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQTableViewWheelEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QTableView) WheelEvent(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QTableView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
+}
+
+func (ptr *QTableView) WheelEventDefault(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QTableView::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
 }
 
 func (ptr *QTableView) ConnectChangeEvent(f func(ev *core.QEvent)) {
@@ -1440,15 +2020,30 @@ func (ptr *QTableView) DisconnectChangeEvent() {
 }
 
 //export callbackQTableViewChangeEvent
-func callbackQTableViewChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQTableViewChangeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QTableView) ChangeEvent(ev core.QEvent_ITF) {
+	defer qt.Recovering("QTableView::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QTableView) ChangeEventDefault(ev core.QEvent_ITF) {
+	defer qt.Recovering("QTableView::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
 }
 
 func (ptr *QTableView) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -1470,15 +2065,30 @@ func (ptr *QTableView) DisconnectActionEvent() {
 }
 
 //export callbackQTableViewActionEvent
-func callbackQTableViewActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QTableView::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QTableView) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QTableView::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -1500,15 +2110,30 @@ func (ptr *QTableView) DisconnectEnterEvent() {
 }
 
 //export callbackQTableViewEnterEvent
-func callbackQTableViewEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTableView::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTableView) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTableView::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -1530,15 +2155,30 @@ func (ptr *QTableView) DisconnectHideEvent() {
 }
 
 //export callbackQTableViewHideEvent
-func callbackQTableViewHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QTableView::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QTableView) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QTableView::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -1560,15 +2200,30 @@ func (ptr *QTableView) DisconnectLeaveEvent() {
 }
 
 //export callbackQTableViewLeaveEvent
-func callbackQTableViewLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTableView::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTableView) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTableView::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1590,15 +2245,30 @@ func (ptr *QTableView) DisconnectMoveEvent() {
 }
 
 //export callbackQTableViewMoveEvent
-func callbackQTableViewMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QTableView::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QTableView) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QTableView::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectSetVisible(f func(visible bool)) {
@@ -1620,7 +2290,7 @@ func (ptr *QTableView) DisconnectSetVisible() {
 }
 
 //export callbackQTableViewSetVisible
-func callbackQTableViewSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQTableViewSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QTableView::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -1629,6 +2299,22 @@ func callbackQTableViewSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QTableView) SetVisible(visible bool) {
+	defer qt.Recovering("QTableView::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QTableView) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QTableView::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QTableView) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -1650,15 +2336,30 @@ func (ptr *QTableView) DisconnectShowEvent() {
 }
 
 //export callbackQTableViewShowEvent
-func callbackQTableViewShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QTableView::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QTableView) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QTableView::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -1680,15 +2381,30 @@ func (ptr *QTableView) DisconnectCloseEvent() {
 }
 
 //export callbackQTableViewCloseEvent
-func callbackQTableViewCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QTableView::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QTableView) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QTableView::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1710,15 +2426,30 @@ func (ptr *QTableView) DisconnectInitPainter() {
 }
 
 //export callbackQTableViewInitPainter
-func callbackQTableViewInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQTableViewInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QTableView) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QTableView::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QTableView) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QTableView::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QTableView) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -1740,15 +2471,30 @@ func (ptr *QTableView) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQTableViewKeyReleaseEvent
-func callbackQTableViewKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTableView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QTableView) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QTableView::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1770,15 +2516,30 @@ func (ptr *QTableView) DisconnectTabletEvent() {
 }
 
 //export callbackQTableViewTabletEvent
-func callbackQTableViewTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QTableView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QTableView) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QTableView::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1800,15 +2561,30 @@ func (ptr *QTableView) DisconnectChildEvent() {
 }
 
 //export callbackQTableViewChildEvent
-func callbackQTableViewChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTableView::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTableView) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTableView::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTableView) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1830,13 +2606,28 @@ func (ptr *QTableView) DisconnectCustomEvent() {
 }
 
 //export callbackQTableViewCustomEvent
-func callbackQTableViewCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTableViewCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTableView::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTableViewFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTableView) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTableView::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTableView) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTableView::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTableView_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

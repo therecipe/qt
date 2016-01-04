@@ -126,15 +126,30 @@ func (ptr *QCameraFeedbackControl) DisconnectTimerEvent() {
 }
 
 //export callbackQCameraFeedbackControlTimerEvent
-func callbackQCameraFeedbackControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFeedbackControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFeedbackControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFeedbackControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFeedbackControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraFeedbackControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFeedbackControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCameraFeedbackControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraFeedbackControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFeedbackControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCameraFeedbackControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -156,15 +171,30 @@ func (ptr *QCameraFeedbackControl) DisconnectChildEvent() {
 }
 
 //export callbackQCameraFeedbackControlChildEvent
-func callbackQCameraFeedbackControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFeedbackControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFeedbackControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFeedbackControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFeedbackControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraFeedbackControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFeedbackControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCameraFeedbackControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraFeedbackControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFeedbackControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCameraFeedbackControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -186,13 +216,28 @@ func (ptr *QCameraFeedbackControl) DisconnectCustomEvent() {
 }
 
 //export callbackQCameraFeedbackControlCustomEvent
-func callbackQCameraFeedbackControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFeedbackControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFeedbackControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFeedbackControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFeedbackControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraFeedbackControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFeedbackControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCameraFeedbackControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraFeedbackControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFeedbackControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

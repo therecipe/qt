@@ -152,13 +152,21 @@ func (ptr *QMovie) DisconnectError() {
 }
 
 //export callbackQMovieError
-func callbackQMovieError(ptrName *C.char, error C.int) {
+func callbackQMovieError(ptr unsafe.Pointer, ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QMovie::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(QImageReader__ImageReaderError))(QImageReader__ImageReaderError(error))
 	}
 
+}
+
+func (ptr *QMovie) Error(error QImageReader__ImageReaderError) {
+	defer qt.Recovering("QMovie::error")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_Error(ptr.Pointer(), C.int(error))
+	}
 }
 
 func (ptr *QMovie) FileName() string {
@@ -189,13 +197,21 @@ func (ptr *QMovie) DisconnectFinished() {
 }
 
 //export callbackQMovieFinished
-func callbackQMovieFinished(ptrName *C.char) {
+func callbackQMovieFinished(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QMovie::finished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QMovie) Finished() {
+	defer qt.Recovering("QMovie::finished")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_Finished(ptr.Pointer())
+	}
 }
 
 func (ptr *QMovie) Format() *core.QByteArray {
@@ -226,13 +242,21 @@ func (ptr *QMovie) DisconnectFrameChanged() {
 }
 
 //export callbackQMovieFrameChanged
-func callbackQMovieFrameChanged(ptrName *C.char, frameNumber C.int) {
+func callbackQMovieFrameChanged(ptr unsafe.Pointer, ptrName *C.char, frameNumber C.int) {
 	defer qt.Recovering("callback QMovie::frameChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "frameChanged"); signal != nil {
 		signal.(func(int))(int(frameNumber))
 	}
 
+}
+
+func (ptr *QMovie) FrameChanged(frameNumber int) {
+	defer qt.Recovering("QMovie::frameChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_FrameChanged(ptr.Pointer(), C.int(frameNumber))
+	}
 }
 
 func (ptr *QMovie) FrameCount() int {
@@ -317,13 +341,21 @@ func (ptr *QMovie) DisconnectResized() {
 }
 
 //export callbackQMovieResized
-func callbackQMovieResized(ptrName *C.char, size unsafe.Pointer) {
+func callbackQMovieResized(ptr unsafe.Pointer, ptrName *C.char, size unsafe.Pointer) {
 	defer qt.Recovering("callback QMovie::resized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resized"); signal != nil {
 		signal.(func(*core.QSize))(core.NewQSizeFromPointer(size))
 	}
 
+}
+
+func (ptr *QMovie) Resized(size core.QSize_ITF) {
+	defer qt.Recovering("QMovie::resized")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_Resized(ptr.Pointer(), core.PointerFromQSize(size))
+	}
 }
 
 func (ptr *QMovie) ScaledSize() *core.QSize {
@@ -410,13 +442,21 @@ func (ptr *QMovie) DisconnectStarted() {
 }
 
 //export callbackQMovieStarted
-func callbackQMovieStarted(ptrName *C.char) {
+func callbackQMovieStarted(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QMovie::started")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "started"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QMovie) Started() {
+	defer qt.Recovering("QMovie::started")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_Started(ptr.Pointer())
+	}
 }
 
 func (ptr *QMovie) State() QMovie__MovieState {
@@ -447,13 +487,21 @@ func (ptr *QMovie) DisconnectStateChanged() {
 }
 
 //export callbackQMovieStateChanged
-func callbackQMovieStateChanged(ptrName *C.char, state C.int) {
+func callbackQMovieStateChanged(ptr unsafe.Pointer, ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QMovie::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QMovie__MovieState))(QMovie__MovieState(state))
 	}
 
+}
+
+func (ptr *QMovie) StateChanged(state QMovie__MovieState) {
+	defer qt.Recovering("QMovie::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_StateChanged(ptr.Pointer(), C.int(state))
+	}
 }
 
 func (ptr *QMovie) Stop() {
@@ -483,13 +531,21 @@ func (ptr *QMovie) DisconnectUpdated() {
 }
 
 //export callbackQMovieUpdated
-func callbackQMovieUpdated(ptrName *C.char, rect unsafe.Pointer) {
+func callbackQMovieUpdated(ptr unsafe.Pointer, ptrName *C.char, rect unsafe.Pointer) {
 	defer qt.Recovering("callback QMovie::updated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updated"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
 	}
 
+}
+
+func (ptr *QMovie) Updated(rect core.QRect_ITF) {
+	defer qt.Recovering("QMovie::updated")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_Updated(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
 }
 
 func (ptr *QMovie) DestroyQMovie() {
@@ -520,15 +576,30 @@ func (ptr *QMovie) DisconnectTimerEvent() {
 }
 
 //export callbackQMovieTimerEvent
-func callbackQMovieTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMovieTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMovie::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMovieFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMovie) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMovie::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMovie) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMovie::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMovie) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -550,15 +621,30 @@ func (ptr *QMovie) DisconnectChildEvent() {
 }
 
 //export callbackQMovieChildEvent
-func callbackQMovieChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMovieChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMovie::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMovieFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMovie) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMovie::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMovie) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMovie::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMovie) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -580,13 +666,28 @@ func (ptr *QMovie) DisconnectCustomEvent() {
 }
 
 //export callbackQMovieCustomEvent
-func callbackQMovieCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMovieCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMovie::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMovieFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMovie) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMovie::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMovie) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMovie::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMovie_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -104,13 +104,21 @@ func (ptr *QGraphicsRotation) DisconnectAngleChanged() {
 }
 
 //export callbackQGraphicsRotationAngleChanged
-func callbackQGraphicsRotationAngleChanged(ptrName *C.char) {
+func callbackQGraphicsRotationAngleChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsRotation::angleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "angleChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsRotation) AngleChanged() {
+	defer qt.Recovering("QGraphicsRotation::angleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_AngleChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsRotation) ConnectApplyTo(f func(matrix *gui.QMatrix4x4)) {
@@ -132,15 +140,30 @@ func (ptr *QGraphicsRotation) DisconnectApplyTo() {
 }
 
 //export callbackQGraphicsRotationApplyTo
-func callbackQGraphicsRotationApplyTo(ptrName *C.char, matrix unsafe.Pointer) bool {
+func callbackQGraphicsRotationApplyTo(ptr unsafe.Pointer, ptrName *C.char, matrix unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsRotation::applyTo")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "applyTo"); signal != nil {
 		signal.(func(*gui.QMatrix4x4))(gui.NewQMatrix4x4FromPointer(matrix))
-		return true
+	} else {
+		NewQGraphicsRotationFromPointer(ptr).ApplyToDefault(gui.NewQMatrix4x4FromPointer(matrix))
 	}
-	return false
+}
 
+func (ptr *QGraphicsRotation) ApplyTo(matrix gui.QMatrix4x4_ITF) {
+	defer qt.Recovering("QGraphicsRotation::applyTo")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_ApplyTo(ptr.Pointer(), gui.PointerFromQMatrix4x4(matrix))
+	}
+}
+
+func (ptr *QGraphicsRotation) ApplyToDefault(matrix gui.QMatrix4x4_ITF) {
+	defer qt.Recovering("QGraphicsRotation::applyTo")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_ApplyToDefault(ptr.Pointer(), gui.PointerFromQMatrix4x4(matrix))
+	}
 }
 
 func (ptr *QGraphicsRotation) ConnectAxisChanged(f func()) {
@@ -162,13 +185,21 @@ func (ptr *QGraphicsRotation) DisconnectAxisChanged() {
 }
 
 //export callbackQGraphicsRotationAxisChanged
-func callbackQGraphicsRotationAxisChanged(ptrName *C.char) {
+func callbackQGraphicsRotationAxisChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsRotation::axisChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "axisChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsRotation) AxisChanged() {
+	defer qt.Recovering("QGraphicsRotation::axisChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_AxisChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsRotation) ConnectOriginChanged(f func()) {
@@ -190,13 +221,21 @@ func (ptr *QGraphicsRotation) DisconnectOriginChanged() {
 }
 
 //export callbackQGraphicsRotationOriginChanged
-func callbackQGraphicsRotationOriginChanged(ptrName *C.char) {
+func callbackQGraphicsRotationOriginChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsRotation::originChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "originChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsRotation) OriginChanged() {
+	defer qt.Recovering("QGraphicsRotation::originChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_OriginChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsRotation) DestroyQGraphicsRotation() {
@@ -227,15 +266,30 @@ func (ptr *QGraphicsRotation) DisconnectTimerEvent() {
 }
 
 //export callbackQGraphicsRotationTimerEvent
-func callbackQGraphicsRotationTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsRotationTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsRotation::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsRotationFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsRotation) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsRotation::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGraphicsRotation) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsRotation::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGraphicsRotation) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -257,15 +311,30 @@ func (ptr *QGraphicsRotation) DisconnectChildEvent() {
 }
 
 //export callbackQGraphicsRotationChildEvent
-func callbackQGraphicsRotationChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsRotationChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsRotation::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsRotationFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsRotation) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsRotation::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGraphicsRotation) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsRotation::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGraphicsRotation) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -287,13 +356,28 @@ func (ptr *QGraphicsRotation) DisconnectCustomEvent() {
 }
 
 //export callbackQGraphicsRotationCustomEvent
-func callbackQGraphicsRotationCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsRotationCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsRotation::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsRotationFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsRotation) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsRotation::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGraphicsRotation) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsRotation::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

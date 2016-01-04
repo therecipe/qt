@@ -120,15 +120,30 @@ func (ptr *QMacToolBar) DisconnectTimerEvent() {
 }
 
 //export callbackQMacToolBarTimerEvent
-func callbackQMacToolBarTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacToolBarTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBar::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMacToolBarFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacToolBar) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMacToolBar::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBar_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMacToolBar) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMacToolBar::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBar_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMacToolBar) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -150,15 +165,30 @@ func (ptr *QMacToolBar) DisconnectChildEvent() {
 }
 
 //export callbackQMacToolBarChildEvent
-func callbackQMacToolBarChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacToolBarChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBar::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMacToolBarFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacToolBar) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMacToolBar::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBar_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMacToolBar) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMacToolBar::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBar_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMacToolBar) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -180,13 +210,28 @@ func (ptr *QMacToolBar) DisconnectCustomEvent() {
 }
 
 //export callbackQMacToolBarCustomEvent
-func callbackQMacToolBarCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMacToolBarCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBar::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMacToolBarFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMacToolBar) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacToolBar::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBar_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMacToolBar) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMacToolBar::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBar_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

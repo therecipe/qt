@@ -138,15 +138,30 @@ func (ptr *QLayout) DisconnectChildEvent() {
 }
 
 //export callbackQLayoutChildEvent
-func callbackQLayoutChildEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQLayoutChildEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QLayout::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(e))
-		return true
+	} else {
+		NewQLayoutFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QLayout) ChildEvent(e core.QChildEvent_ITF) {
+	defer qt.Recovering("QLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLayout_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(e))
+	}
+}
+
+func (ptr *QLayout) ChildEventDefault(e core.QChildEvent_ITF) {
+	defer qt.Recovering("QLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLayout_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(e))
+	}
 }
 
 func QLayout_ClosestAcceptableSize(widget QWidget_ITF, size core.QSize_ITF) *core.QSize {
@@ -236,15 +251,30 @@ func (ptr *QLayout) DisconnectInvalidate() {
 }
 
 //export callbackQLayoutInvalidate
-func callbackQLayoutInvalidate(ptrName *C.char) bool {
+func callbackQLayoutInvalidate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QLayout::invalidate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQLayoutFromPointer(ptr).InvalidateDefault()
 	}
-	return false
+}
 
+func (ptr *QLayout) Invalidate() {
+	defer qt.Recovering("QLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QLayout_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QLayout) InvalidateDefault() {
+	defer qt.Recovering("QLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QLayout_InvalidateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QLayout) IsEmpty() bool {
@@ -405,15 +435,30 @@ func (ptr *QLayout) DisconnectSetGeometry() {
 }
 
 //export callbackQLayoutSetGeometry
-func callbackQLayoutSetGeometry(ptrName *C.char, r unsafe.Pointer) bool {
+func callbackQLayoutSetGeometry(ptr unsafe.Pointer, ptrName *C.char, r unsafe.Pointer) {
 	defer qt.Recovering("callback QLayout::setGeometry")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
-		return true
+	} else {
+		NewQLayoutFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(r))
 	}
-	return false
+}
 
+func (ptr *QLayout) SetGeometry(r core.QRect_ITF) {
+	defer qt.Recovering("QLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRect(r))
+	}
+}
+
+func (ptr *QLayout) SetGeometryDefault(r core.QRect_ITF) {
+	defer qt.Recovering("QLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QLayout_SetGeometryDefault(ptr.Pointer(), core.PointerFromQRect(r))
+	}
 }
 
 func (ptr *QLayout) SetMenuBar(widget QWidget_ITF) {
@@ -460,15 +505,30 @@ func (ptr *QLayout) DisconnectTimerEvent() {
 }
 
 //export callbackQLayoutTimerEvent
-func callbackQLayoutTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLayoutTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLayout::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQLayoutFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLayout) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLayout_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QLayout) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLayout_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QLayout) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -490,13 +550,28 @@ func (ptr *QLayout) DisconnectCustomEvent() {
 }
 
 //export callbackQLayoutCustomEvent
-func callbackQLayoutCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLayoutCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLayout::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQLayoutFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLayout) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLayout_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QLayout) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLayout_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

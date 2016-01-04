@@ -60,6 +60,15 @@ const (
 	QPaintDevice__PdmDevicePixelRatio = QPaintDevice__PaintDeviceMetric(11)
 )
 
+func (ptr *QPaintDevice) Metric(metric QPaintDevice__PaintDeviceMetric) int {
+	defer qt.Recovering("QPaintDevice::metric")
+
+	if ptr.Pointer() != nil {
+		return int(C.QPaintDevice_Metric(ptr.Pointer(), C.int(metric)))
+	}
+	return 0
+}
+
 func (ptr *QPaintDevice) DestroyQPaintDevice() {
 	defer qt.Recovering("QPaintDevice::~QPaintDevice")
 

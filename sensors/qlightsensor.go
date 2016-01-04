@@ -80,13 +80,21 @@ func (ptr *QLightSensor) DisconnectFieldOfViewChanged() {
 }
 
 //export callbackQLightSensorFieldOfViewChanged
-func callbackQLightSensorFieldOfViewChanged(ptrName *C.char, fieldOfView C.double) {
+func callbackQLightSensorFieldOfViewChanged(ptr unsafe.Pointer, ptrName *C.char, fieldOfView C.double) {
 	defer qt.Recovering("callback QLightSensor::fieldOfViewChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fieldOfViewChanged"); signal != nil {
 		signal.(func(float64))(float64(fieldOfView))
 	}
 
+}
+
+func (ptr *QLightSensor) FieldOfViewChanged(fieldOfView float64) {
+	defer qt.Recovering("QLightSensor::fieldOfViewChanged")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_FieldOfViewChanged(ptr.Pointer(), C.double(fieldOfView))
+	}
 }
 
 func (ptr *QLightSensor) SetFieldOfView(fieldOfView float64) {
@@ -125,15 +133,30 @@ func (ptr *QLightSensor) DisconnectTimerEvent() {
 }
 
 //export callbackQLightSensorTimerEvent
-func callbackQLightSensorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLightSensorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLightSensor::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQLightSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLightSensor) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLightSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QLightSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLightSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QLightSensor) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -155,15 +178,30 @@ func (ptr *QLightSensor) DisconnectChildEvent() {
 }
 
 //export callbackQLightSensorChildEvent
-func callbackQLightSensorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLightSensorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLightSensor::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQLightSensorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLightSensor) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLightSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QLightSensor) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLightSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QLightSensor) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -185,13 +223,28 @@ func (ptr *QLightSensor) DisconnectCustomEvent() {
 }
 
 //export callbackQLightSensorCustomEvent
-func callbackQLightSensorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLightSensorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLightSensor::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQLightSensorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLightSensor) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QLightSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QLightSensor) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QLightSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

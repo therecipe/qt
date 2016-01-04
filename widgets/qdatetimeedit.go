@@ -366,15 +366,30 @@ func (ptr *QDateTimeEdit) DisconnectClear() {
 }
 
 //export callbackQDateTimeEditClear
-func callbackQDateTimeEditClear(ptrName *C.char) bool {
+func callbackQDateTimeEditClear(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QDateTimeEdit::clear")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).ClearDefault()
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) Clear() {
+	defer qt.Recovering("QDateTimeEdit::clear")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QDateTimeEdit) ClearDefault() {
+	defer qt.Recovering("QDateTimeEdit::clear")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ClearDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectDateTimeChanged(f func(datetime *core.QDateTime)) {
@@ -396,13 +411,30 @@ func (ptr *QDateTimeEdit) DisconnectDateTimeChanged() {
 }
 
 //export callbackQDateTimeEditDateTimeChanged
-func callbackQDateTimeEditDateTimeChanged(ptrName *C.char, datetime unsafe.Pointer) {
+func callbackQDateTimeEditDateTimeChanged(ptr unsafe.Pointer, ptrName *C.char, datetime unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::dateTimeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dateTimeChanged"); signal != nil {
 		signal.(func(*core.QDateTime))(core.NewQDateTimeFromPointer(datetime))
 	}
 
+}
+
+func (ptr *QDateTimeEdit) DateTimeChanged(datetime core.QDateTime_ITF) {
+	defer qt.Recovering("QDateTimeEdit::dateTimeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_DateTimeChanged(ptr.Pointer(), core.PointerFromQDateTime(datetime))
+	}
+}
+
+func (ptr *QDateTimeEdit) DateTimeFromText(text string) *core.QDateTime {
+	defer qt.Recovering("QDateTimeEdit::dateTimeFromText")
+
+	if ptr.Pointer() != nil {
+		return core.NewQDateTimeFromPointer(C.QDateTimeEdit_DateTimeFromText(ptr.Pointer(), C.CString(text)))
+	}
+	return nil
 }
 
 func (ptr *QDateTimeEdit) Event(event core.QEvent_ITF) bool {
@@ -433,15 +465,39 @@ func (ptr *QDateTimeEdit) DisconnectFocusInEvent() {
 }
 
 //export callbackQDateTimeEditFocusInEvent
-func callbackQDateTimeEditFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) FocusNextPrevChild(next bool) bool {
+	defer qt.Recovering("QDateTimeEdit::focusNextPrevChild")
+
+	if ptr.Pointer() != nil {
+		return C.QDateTimeEdit_FocusNextPrevChild(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
 	}
 	return false
-
 }
 
 func (ptr *QDateTimeEdit) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -463,15 +519,30 @@ func (ptr *QDateTimeEdit) DisconnectKeyPressEvent() {
 }
 
 //export callbackQDateTimeEditKeyPressEvent
-func callbackQDateTimeEditKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -493,15 +564,30 @@ func (ptr *QDateTimeEdit) DisconnectMousePressEvent() {
 }
 
 //export callbackQDateTimeEditMousePressEvent
-func callbackQDateTimeEditMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -523,15 +609,30 @@ func (ptr *QDateTimeEdit) DisconnectPaintEvent() {
 }
 
 //export callbackQDateTimeEditPaintEvent
-func callbackQDateTimeEditPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) SectionAt(index int) QDateTimeEdit__Section {
@@ -611,15 +712,48 @@ func (ptr *QDateTimeEdit) DisconnectStepBy() {
 }
 
 //export callbackQDateTimeEditStepBy
-func callbackQDateTimeEditStepBy(ptrName *C.char, steps C.int) bool {
+func callbackQDateTimeEditStepBy(ptr unsafe.Pointer, ptrName *C.char, steps C.int) {
 	defer qt.Recovering("callback QDateTimeEdit::stepBy")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stepBy"); signal != nil {
 		signal.(func(int))(int(steps))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).StepByDefault(int(steps))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) StepBy(steps int) {
+	defer qt.Recovering("QDateTimeEdit::stepBy")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_StepBy(ptr.Pointer(), C.int(steps))
+	}
+}
+
+func (ptr *QDateTimeEdit) StepByDefault(steps int) {
+	defer qt.Recovering("QDateTimeEdit::stepBy")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_StepByDefault(ptr.Pointer(), C.int(steps))
+	}
+}
+
+func (ptr *QDateTimeEdit) StepEnabled() QAbstractSpinBox__StepEnabledFlag {
+	defer qt.Recovering("QDateTimeEdit::stepEnabled")
+
+	if ptr.Pointer() != nil {
+		return QAbstractSpinBox__StepEnabledFlag(C.QDateTimeEdit_StepEnabled(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QDateTimeEdit) TextFromDateTime(dateTime core.QDateTime_ITF) string {
+	defer qt.Recovering("QDateTimeEdit::textFromDateTime")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QDateTimeEdit_TextFromDateTime(ptr.Pointer(), core.PointerFromQDateTime(dateTime)))
+	}
+	return ""
 }
 
 func (ptr *QDateTimeEdit) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -641,15 +775,30 @@ func (ptr *QDateTimeEdit) DisconnectWheelEvent() {
 }
 
 //export callbackQDateTimeEditWheelEvent
-func callbackQDateTimeEditWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) DestroyQDateTimeEdit() {
@@ -680,15 +829,30 @@ func (ptr *QDateTimeEdit) DisconnectChangeEvent() {
 }
 
 //export callbackQDateTimeEditChangeEvent
-func callbackQDateTimeEditChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -710,15 +874,30 @@ func (ptr *QDateTimeEdit) DisconnectCloseEvent() {
 }
 
 //export callbackQDateTimeEditCloseEvent
-func callbackQDateTimeEditCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -740,15 +919,30 @@ func (ptr *QDateTimeEdit) DisconnectContextMenuEvent() {
 }
 
 //export callbackQDateTimeEditContextMenuEvent
-func callbackQDateTimeEditContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -770,15 +964,30 @@ func (ptr *QDateTimeEdit) DisconnectFocusOutEvent() {
 }
 
 //export callbackQDateTimeEditFocusOutEvent
-func callbackQDateTimeEditFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -800,15 +1009,30 @@ func (ptr *QDateTimeEdit) DisconnectHideEvent() {
 }
 
 //export callbackQDateTimeEditHideEvent
-func callbackQDateTimeEditHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -830,15 +1054,30 @@ func (ptr *QDateTimeEdit) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQDateTimeEditKeyReleaseEvent
-func callbackQDateTimeEditKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -860,15 +1099,30 @@ func (ptr *QDateTimeEdit) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQDateTimeEditMouseMoveEvent
-func callbackQDateTimeEditMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -890,15 +1144,30 @@ func (ptr *QDateTimeEdit) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQDateTimeEditMouseReleaseEvent
-func callbackQDateTimeEditMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -920,15 +1189,30 @@ func (ptr *QDateTimeEdit) DisconnectResizeEvent() {
 }
 
 //export callbackQDateTimeEditResizeEvent
-func callbackQDateTimeEditResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -950,15 +1234,30 @@ func (ptr *QDateTimeEdit) DisconnectShowEvent() {
 }
 
 //export callbackQDateTimeEditShowEvent
-func callbackQDateTimeEditShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -980,15 +1279,30 @@ func (ptr *QDateTimeEdit) DisconnectTimerEvent() {
 }
 
 //export callbackQDateTimeEditTimerEvent
-func callbackQDateTimeEditTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -1010,15 +1324,30 @@ func (ptr *QDateTimeEdit) DisconnectActionEvent() {
 }
 
 //export callbackQDateTimeEditActionEvent
-func callbackQDateTimeEditActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -1040,15 +1369,30 @@ func (ptr *QDateTimeEdit) DisconnectDragEnterEvent() {
 }
 
 //export callbackQDateTimeEditDragEnterEvent
-func callbackQDateTimeEditDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -1070,15 +1414,30 @@ func (ptr *QDateTimeEdit) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQDateTimeEditDragLeaveEvent
-func callbackQDateTimeEditDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -1100,15 +1459,30 @@ func (ptr *QDateTimeEdit) DisconnectDragMoveEvent() {
 }
 
 //export callbackQDateTimeEditDragMoveEvent
-func callbackQDateTimeEditDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -1130,15 +1504,30 @@ func (ptr *QDateTimeEdit) DisconnectDropEvent() {
 }
 
 //export callbackQDateTimeEditDropEvent
-func callbackQDateTimeEditDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -1160,15 +1549,30 @@ func (ptr *QDateTimeEdit) DisconnectEnterEvent() {
 }
 
 //export callbackQDateTimeEditEnterEvent
-func callbackQDateTimeEditEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -1190,15 +1594,30 @@ func (ptr *QDateTimeEdit) DisconnectLeaveEvent() {
 }
 
 //export callbackQDateTimeEditLeaveEvent
-func callbackQDateTimeEditLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1220,15 +1639,30 @@ func (ptr *QDateTimeEdit) DisconnectMoveEvent() {
 }
 
 //export callbackQDateTimeEditMoveEvent
-func callbackQDateTimeEditMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectSetVisible(f func(visible bool)) {
@@ -1250,7 +1684,7 @@ func (ptr *QDateTimeEdit) DisconnectSetVisible() {
 }
 
 //export callbackQDateTimeEditSetVisible
-func callbackQDateTimeEditSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQDateTimeEditSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QDateTimeEdit::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -1259,6 +1693,22 @@ func callbackQDateTimeEditSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QDateTimeEdit) SetVisible(visible bool) {
+	defer qt.Recovering("QDateTimeEdit::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QDateTimeEdit) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QDateTimeEdit::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1280,15 +1730,30 @@ func (ptr *QDateTimeEdit) DisconnectInitPainter() {
 }
 
 //export callbackQDateTimeEditInitPainter
-func callbackQDateTimeEditInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQDateTimeEditInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QDateTimeEdit::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QDateTimeEdit) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QDateTimeEdit::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -1310,15 +1775,30 @@ func (ptr *QDateTimeEdit) DisconnectInputMethodEvent() {
 }
 
 //export callbackQDateTimeEditInputMethodEvent
-func callbackQDateTimeEditInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1340,15 +1820,30 @@ func (ptr *QDateTimeEdit) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQDateTimeEditMouseDoubleClickEvent
-func callbackQDateTimeEditMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1370,15 +1865,30 @@ func (ptr *QDateTimeEdit) DisconnectTabletEvent() {
 }
 
 //export callbackQDateTimeEditTabletEvent
-func callbackQDateTimeEditTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1400,15 +1910,30 @@ func (ptr *QDateTimeEdit) DisconnectChildEvent() {
 }
 
 //export callbackQDateTimeEditChildEvent
-func callbackQDateTimeEditChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDateTimeEdit) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1430,13 +1955,28 @@ func (ptr *QDateTimeEdit) DisconnectCustomEvent() {
 }
 
 //export callbackQDateTimeEditCustomEvent
-func callbackQDateTimeEditCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDateTimeEditCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDateTimeEdit::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDateTimeEditFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDateTimeEdit) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDateTimeEdit) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDateTimeEdit::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

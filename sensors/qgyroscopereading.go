@@ -107,15 +107,30 @@ func (ptr *QGyroscopeReading) DisconnectTimerEvent() {
 }
 
 //export callbackQGyroscopeReadingTimerEvent
-func callbackQGyroscopeReadingTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGyroscopeReadingTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGyroscopeReading::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGyroscopeReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGyroscopeReading) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGyroscopeReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGyroscopeReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGyroscopeReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGyroscopeReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGyroscopeReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGyroscopeReading) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -137,15 +152,30 @@ func (ptr *QGyroscopeReading) DisconnectChildEvent() {
 }
 
 //export callbackQGyroscopeReadingChildEvent
-func callbackQGyroscopeReadingChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGyroscopeReadingChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGyroscopeReading::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGyroscopeReadingFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGyroscopeReading) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGyroscopeReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGyroscopeReading_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGyroscopeReading) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGyroscopeReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGyroscopeReading_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGyroscopeReading) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -167,13 +197,28 @@ func (ptr *QGyroscopeReading) DisconnectCustomEvent() {
 }
 
 //export callbackQGyroscopeReadingCustomEvent
-func callbackQGyroscopeReadingCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGyroscopeReadingCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGyroscopeReading::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGyroscopeReadingFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGyroscopeReading) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGyroscopeReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGyroscopeReading_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGyroscopeReading) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGyroscopeReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGyroscopeReading_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

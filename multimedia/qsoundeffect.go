@@ -129,13 +129,21 @@ func (ptr *QSoundEffect) DisconnectCategoryChanged() {
 }
 
 //export callbackQSoundEffectCategoryChanged
-func callbackQSoundEffectCategoryChanged(ptrName *C.char) {
+func callbackQSoundEffectCategoryChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::categoryChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "categoryChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSoundEffect) CategoryChanged() {
+	defer qt.Recovering("QSoundEffect::categoryChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_CategoryChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QSoundEffect) IsMuted() bool {
@@ -175,13 +183,21 @@ func (ptr *QSoundEffect) DisconnectLoadedChanged() {
 }
 
 //export callbackQSoundEffectLoadedChanged
-func callbackQSoundEffectLoadedChanged(ptrName *C.char) {
+func callbackQSoundEffectLoadedChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::loadedChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "loadedChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSoundEffect) LoadedChanged() {
+	defer qt.Recovering("QSoundEffect::loadedChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_LoadedChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QSoundEffect) LoopCount() int {
@@ -212,13 +228,21 @@ func (ptr *QSoundEffect) DisconnectLoopCountChanged() {
 }
 
 //export callbackQSoundEffectLoopCountChanged
-func callbackQSoundEffectLoopCountChanged(ptrName *C.char) {
+func callbackQSoundEffectLoopCountChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::loopCountChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "loopCountChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSoundEffect) LoopCountChanged() {
+	defer qt.Recovering("QSoundEffect::loopCountChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_LoopCountChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QSoundEffect) ConnectLoopsRemainingChanged(f func()) {
@@ -240,13 +264,21 @@ func (ptr *QSoundEffect) DisconnectLoopsRemainingChanged() {
 }
 
 //export callbackQSoundEffectLoopsRemainingChanged
-func callbackQSoundEffectLoopsRemainingChanged(ptrName *C.char) {
+func callbackQSoundEffectLoopsRemainingChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::loopsRemainingChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "loopsRemainingChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSoundEffect) LoopsRemainingChanged() {
+	defer qt.Recovering("QSoundEffect::loopsRemainingChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_LoopsRemainingChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QSoundEffect) ConnectMutedChanged(f func()) {
@@ -268,13 +300,21 @@ func (ptr *QSoundEffect) DisconnectMutedChanged() {
 }
 
 //export callbackQSoundEffectMutedChanged
-func callbackQSoundEffectMutedChanged(ptrName *C.char) {
+func callbackQSoundEffectMutedChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::mutedChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mutedChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSoundEffect) MutedChanged() {
+	defer qt.Recovering("QSoundEffect::mutedChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_MutedChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QSoundEffect) ConnectPlayingChanged(f func()) {
@@ -296,13 +336,21 @@ func (ptr *QSoundEffect) DisconnectPlayingChanged() {
 }
 
 //export callbackQSoundEffectPlayingChanged
-func callbackQSoundEffectPlayingChanged(ptrName *C.char) {
+func callbackQSoundEffectPlayingChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::playingChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "playingChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSoundEffect) PlayingChanged() {
+	defer qt.Recovering("QSoundEffect::playingChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_PlayingChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QSoundEffect) SetCategory(category string) {
@@ -373,13 +421,21 @@ func (ptr *QSoundEffect) DisconnectSourceChanged() {
 }
 
 //export callbackQSoundEffectSourceChanged
-func callbackQSoundEffectSourceChanged(ptrName *C.char) {
+func callbackQSoundEffectSourceChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::sourceChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sourceChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSoundEffect) SourceChanged() {
+	defer qt.Recovering("QSoundEffect::sourceChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_SourceChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QSoundEffect) Status() QSoundEffect__Status {
@@ -410,13 +466,21 @@ func (ptr *QSoundEffect) DisconnectStatusChanged() {
 }
 
 //export callbackQSoundEffectStatusChanged
-func callbackQSoundEffectStatusChanged(ptrName *C.char) {
+func callbackQSoundEffectStatusChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::statusChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "statusChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSoundEffect) StatusChanged() {
+	defer qt.Recovering("QSoundEffect::statusChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_StatusChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QSoundEffect) Volume() float64 {
@@ -447,13 +511,21 @@ func (ptr *QSoundEffect) DisconnectVolumeChanged() {
 }
 
 //export callbackQSoundEffectVolumeChanged
-func callbackQSoundEffectVolumeChanged(ptrName *C.char) {
+func callbackQSoundEffectVolumeChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSoundEffect::volumeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "volumeChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSoundEffect) VolumeChanged() {
+	defer qt.Recovering("QSoundEffect::volumeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_VolumeChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QSoundEffect) DestroyQSoundEffect() {
@@ -484,15 +556,30 @@ func (ptr *QSoundEffect) DisconnectTimerEvent() {
 }
 
 //export callbackQSoundEffectTimerEvent
-func callbackQSoundEffectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSoundEffectTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSoundEffect::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSoundEffectFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSoundEffect) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSoundEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSoundEffect) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSoundEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSoundEffect) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -514,15 +601,30 @@ func (ptr *QSoundEffect) DisconnectChildEvent() {
 }
 
 //export callbackQSoundEffectChildEvent
-func callbackQSoundEffectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSoundEffectChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSoundEffect::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSoundEffectFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSoundEffect) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSoundEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSoundEffect) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSoundEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSoundEffect) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -544,13 +646,28 @@ func (ptr *QSoundEffect) DisconnectCustomEvent() {
 }
 
 //export callbackQSoundEffectCustomEvent
-func callbackQSoundEffectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSoundEffectCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSoundEffect::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSoundEffectFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSoundEffect) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSoundEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSoundEffect) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSoundEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

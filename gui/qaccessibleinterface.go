@@ -44,6 +44,14 @@ func (ptr *QAccessibleInterface) QAccessibleInterface_PTR() *QAccessibleInterfac
 	return ptr
 }
 
+func (ptr *QAccessibleInterface) DestroyQAccessibleInterface() {
+	defer qt.Recovering("QAccessibleInterface::~QAccessibleInterface")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleInterface_DestroyQAccessibleInterface(ptr.Pointer())
+	}
+}
+
 func (ptr *QAccessibleInterface) ActionInterface() *QAccessibleActionInterface {
 	defer qt.Recovering("QAccessibleInterface::actionInterface")
 

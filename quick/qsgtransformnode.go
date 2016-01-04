@@ -75,13 +75,28 @@ func (ptr *QSGTransformNode) DisconnectPreprocess() {
 }
 
 //export callbackQSGTransformNodePreprocess
-func callbackQSGTransformNodePreprocess(ptrName *C.char) bool {
+func callbackQSGTransformNodePreprocess(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGTransformNode::preprocess")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGTransformNodeFromPointer(ptr).PreprocessDefault()
 	}
-	return false
+}
 
+func (ptr *QSGTransformNode) Preprocess() {
+	defer qt.Recovering("QSGTransformNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGTransformNode_Preprocess(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGTransformNode) PreprocessDefault() {
+	defer qt.Recovering("QSGTransformNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGTransformNode_PreprocessDefault(ptr.Pointer())
+	}
 }

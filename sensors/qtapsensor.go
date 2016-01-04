@@ -88,13 +88,21 @@ func (ptr *QTapSensor) DisconnectReturnDoubleTapEventsChanged() {
 }
 
 //export callbackQTapSensorReturnDoubleTapEventsChanged
-func callbackQTapSensorReturnDoubleTapEventsChanged(ptrName *C.char, returnDoubleTapEvents C.int) {
+func callbackQTapSensorReturnDoubleTapEventsChanged(ptr unsafe.Pointer, ptrName *C.char, returnDoubleTapEvents C.int) {
 	defer qt.Recovering("callback QTapSensor::returnDoubleTapEventsChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "returnDoubleTapEventsChanged"); signal != nil {
 		signal.(func(bool))(int(returnDoubleTapEvents) != 0)
 	}
 
+}
+
+func (ptr *QTapSensor) ReturnDoubleTapEventsChanged(returnDoubleTapEvents bool) {
+	defer qt.Recovering("QTapSensor::returnDoubleTapEventsChanged")
+
+	if ptr.Pointer() != nil {
+		C.QTapSensor_ReturnDoubleTapEventsChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(returnDoubleTapEvents)))
+	}
 }
 
 func (ptr *QTapSensor) DestroyQTapSensor() {
@@ -125,15 +133,30 @@ func (ptr *QTapSensor) DisconnectTimerEvent() {
 }
 
 //export callbackQTapSensorTimerEvent
-func callbackQTapSensorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTapSensorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTapSensor::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTapSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTapSensor) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTapSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTapSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTapSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTapSensor) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -155,15 +178,30 @@ func (ptr *QTapSensor) DisconnectChildEvent() {
 }
 
 //export callbackQTapSensorChildEvent
-func callbackQTapSensorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTapSensorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTapSensor::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTapSensorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTapSensor) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTapSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapSensor_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTapSensor) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTapSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapSensor_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTapSensor) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -185,13 +223,28 @@ func (ptr *QTapSensor) DisconnectCustomEvent() {
 }
 
 //export callbackQTapSensorCustomEvent
-func callbackQTapSensorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTapSensorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTapSensor::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTapSensorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTapSensor) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTapSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapSensor_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTapSensor) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTapSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapSensor_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

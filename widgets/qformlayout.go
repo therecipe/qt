@@ -191,15 +191,30 @@ func (ptr *QFormLayout) DisconnectAddItem() {
 }
 
 //export callbackQFormLayoutAddItem
-func callbackQFormLayoutAddItem(ptrName *C.char, item unsafe.Pointer) bool {
+func callbackQFormLayoutAddItem(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QFormLayout::addItem")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "addItem"); signal != nil {
 		signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
-		return true
+	} else {
+		NewQFormLayoutFromPointer(ptr).AddItemDefault(NewQLayoutItemFromPointer(item))
 	}
-	return false
+}
 
+func (ptr *QFormLayout) AddItem(item QLayoutItem_ITF) {
+	defer qt.Recovering("QFormLayout::addItem")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_AddItem(ptr.Pointer(), PointerFromQLayoutItem(item))
+	}
+}
+
+func (ptr *QFormLayout) AddItemDefault(item QLayoutItem_ITF) {
+	defer qt.Recovering("QFormLayout::addItem")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_AddItemDefault(ptr.Pointer(), PointerFromQLayoutItem(item))
+	}
 }
 
 func (ptr *QFormLayout) AddRow6(layout QLayout_ITF) {
@@ -353,15 +368,30 @@ func (ptr *QFormLayout) DisconnectInvalidate() {
 }
 
 //export callbackQFormLayoutInvalidate
-func callbackQFormLayoutInvalidate(ptrName *C.char) bool {
+func callbackQFormLayoutInvalidate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QFormLayout::invalidate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQFormLayoutFromPointer(ptr).InvalidateDefault()
 	}
-	return false
+}
 
+func (ptr *QFormLayout) Invalidate() {
+	defer qt.Recovering("QFormLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QFormLayout) InvalidateDefault() {
+	defer qt.Recovering("QFormLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_InvalidateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QFormLayout) ItemAt(row int, role QFormLayout__ItemRole) *QLayoutItem {
@@ -428,15 +458,30 @@ func (ptr *QFormLayout) DisconnectSetGeometry() {
 }
 
 //export callbackQFormLayoutSetGeometry
-func callbackQFormLayoutSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
+func callbackQFormLayoutSetGeometry(ptr unsafe.Pointer, ptrName *C.char, rect unsafe.Pointer) {
 	defer qt.Recovering("callback QFormLayout::setGeometry")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
-		return true
+	} else {
+		NewQFormLayoutFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(rect))
 	}
-	return false
+}
 
+func (ptr *QFormLayout) SetGeometry(rect core.QRect_ITF) {
+	defer qt.Recovering("QFormLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
+}
+
+func (ptr *QFormLayout) SetGeometryDefault(rect core.QRect_ITF) {
+	defer qt.Recovering("QFormLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_SetGeometryDefault(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
 }
 
 func (ptr *QFormLayout) SetItem(row int, role QFormLayout__ItemRole, item QLayoutItem_ITF) {
@@ -526,15 +571,30 @@ func (ptr *QFormLayout) DisconnectChildEvent() {
 }
 
 //export callbackQFormLayoutChildEvent
-func callbackQFormLayoutChildEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFormLayoutChildEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFormLayout::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(e))
-		return true
+	} else {
+		NewQFormLayoutFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFormLayout) ChildEvent(e core.QChildEvent_ITF) {
+	defer qt.Recovering("QFormLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(e))
+	}
+}
+
+func (ptr *QFormLayout) ChildEventDefault(e core.QChildEvent_ITF) {
+	defer qt.Recovering("QFormLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(e))
+	}
 }
 
 func (ptr *QFormLayout) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -556,15 +616,30 @@ func (ptr *QFormLayout) DisconnectTimerEvent() {
 }
 
 //export callbackQFormLayoutTimerEvent
-func callbackQFormLayoutTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFormLayoutTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFormLayout::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQFormLayoutFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFormLayout) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFormLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QFormLayout) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFormLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QFormLayout) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -586,13 +661,28 @@ func (ptr *QFormLayout) DisconnectCustomEvent() {
 }
 
 //export callbackQFormLayoutCustomEvent
-func callbackQFormLayoutCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFormLayoutCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFormLayout::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFormLayoutFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFormLayout) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFormLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFormLayout) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFormLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFormLayout_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

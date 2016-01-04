@@ -110,13 +110,21 @@ func (ptr *QNetworkSession) DisconnectClosed() {
 }
 
 //export callbackQNetworkSessionClosed
-func callbackQNetworkSessionClosed(ptrName *C.char) {
+func callbackQNetworkSessionClosed(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkSession::closed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closed"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QNetworkSession) Closed() {
+	defer qt.Recovering("QNetworkSession::closed")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_Closed(ptr.Pointer())
+	}
 }
 
 func (ptr *QNetworkSession) ConnectError2(f func(error QNetworkSession__SessionError)) {
@@ -138,13 +146,21 @@ func (ptr *QNetworkSession) DisconnectError2() {
 }
 
 //export callbackQNetworkSessionError2
-func callbackQNetworkSessionError2(ptrName *C.char, error C.int) {
+func callbackQNetworkSessionError2(ptr unsafe.Pointer, ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QNetworkSession::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QNetworkSession__SessionError))(QNetworkSession__SessionError(error))
 	}
 
+}
+
+func (ptr *QNetworkSession) Error2(error QNetworkSession__SessionError) {
+	defer qt.Recovering("QNetworkSession::error")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_Error2(ptr.Pointer(), C.int(error))
+	}
 }
 
 func (ptr *QNetworkSession) Error() QNetworkSession__SessionError {
@@ -209,13 +225,21 @@ func (ptr *QNetworkSession) DisconnectNewConfigurationActivated() {
 }
 
 //export callbackQNetworkSessionNewConfigurationActivated
-func callbackQNetworkSessionNewConfigurationActivated(ptrName *C.char) {
+func callbackQNetworkSessionNewConfigurationActivated(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkSession::newConfigurationActivated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "newConfigurationActivated"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QNetworkSession) NewConfigurationActivated() {
+	defer qt.Recovering("QNetworkSession::newConfigurationActivated")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_NewConfigurationActivated(ptr.Pointer())
+	}
 }
 
 func (ptr *QNetworkSession) Open() {
@@ -245,13 +269,21 @@ func (ptr *QNetworkSession) DisconnectOpened() {
 }
 
 //export callbackQNetworkSessionOpened
-func callbackQNetworkSessionOpened(ptrName *C.char) {
+func callbackQNetworkSessionOpened(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkSession::opened")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "opened"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QNetworkSession) Opened() {
+	defer qt.Recovering("QNetworkSession::opened")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_Opened(ptr.Pointer())
+	}
 }
 
 func (ptr *QNetworkSession) Reject() {
@@ -307,13 +339,21 @@ func (ptr *QNetworkSession) DisconnectStateChanged() {
 }
 
 //export callbackQNetworkSessionStateChanged
-func callbackQNetworkSessionStateChanged(ptrName *C.char, state C.int) {
+func callbackQNetworkSessionStateChanged(ptr unsafe.Pointer, ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QNetworkSession::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QNetworkSession__State))(QNetworkSession__State(state))
 	}
 
+}
+
+func (ptr *QNetworkSession) StateChanged(state QNetworkSession__State) {
+	defer qt.Recovering("QNetworkSession::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_StateChanged(ptr.Pointer(), C.int(state))
+	}
 }
 
 func (ptr *QNetworkSession) Stop() {
@@ -352,13 +392,21 @@ func (ptr *QNetworkSession) DisconnectUsagePoliciesChanged() {
 }
 
 //export callbackQNetworkSessionUsagePoliciesChanged
-func callbackQNetworkSessionUsagePoliciesChanged(ptrName *C.char, usagePolicies C.int) {
+func callbackQNetworkSessionUsagePoliciesChanged(ptr unsafe.Pointer, ptrName *C.char, usagePolicies C.int) {
 	defer qt.Recovering("callback QNetworkSession::usagePoliciesChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "usagePoliciesChanged"); signal != nil {
 		signal.(func(QNetworkSession__UsagePolicy))(QNetworkSession__UsagePolicy(usagePolicies))
 	}
 
+}
+
+func (ptr *QNetworkSession) UsagePoliciesChanged(usagePolicies QNetworkSession__UsagePolicy) {
+	defer qt.Recovering("QNetworkSession::usagePoliciesChanged")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_UsagePoliciesChanged(ptr.Pointer(), C.int(usagePolicies))
+	}
 }
 
 func (ptr *QNetworkSession) WaitForOpened(msecs int) bool {
@@ -398,15 +446,30 @@ func (ptr *QNetworkSession) DisconnectTimerEvent() {
 }
 
 //export callbackQNetworkSessionTimerEvent
-func callbackQNetworkSessionTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkSessionTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkSessionFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkSession) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNetworkSession::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QNetworkSession) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNetworkSession::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QNetworkSession) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -428,15 +491,30 @@ func (ptr *QNetworkSession) DisconnectChildEvent() {
 }
 
 //export callbackQNetworkSessionChildEvent
-func callbackQNetworkSessionChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkSessionChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkSessionFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkSession) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNetworkSession::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QNetworkSession) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNetworkSession::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QNetworkSession) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -458,13 +536,28 @@ func (ptr *QNetworkSession) DisconnectCustomEvent() {
 }
 
 //export callbackQNetworkSessionCustomEvent
-func callbackQNetworkSessionCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkSessionCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkSessionFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkSession) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QNetworkSession::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QNetworkSession) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QNetworkSession::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

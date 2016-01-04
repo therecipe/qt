@@ -264,15 +264,30 @@ func (ptr *QFile) DisconnectClose() {
 }
 
 //export callbackQFileClose
-func callbackQFileClose(ptrName *C.char) bool {
+func callbackQFileClose(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QFile::close")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQFileFromPointer(ptr).CloseDefault()
 	}
-	return false
+}
 
+func (ptr *QFile) Close() {
+	defer qt.Recovering("QFile::close")
+
+	if ptr.Pointer() != nil {
+		C.QFile_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QFile) CloseDefault() {
+	defer qt.Recovering("QFile::close")
+
+	if ptr.Pointer() != nil {
+		C.QFile_CloseDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QFile) ConnectTimerEvent(f func(event *QTimerEvent)) {
@@ -294,15 +309,30 @@ func (ptr *QFile) DisconnectTimerEvent() {
 }
 
 //export callbackQFileTimerEvent
-func callbackQFileTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFile::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQFileFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFile) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QFile::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFile_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QFile) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QFile::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFile_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QFile) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -324,15 +354,30 @@ func (ptr *QFile) DisconnectChildEvent() {
 }
 
 //export callbackQFileChildEvent
-func callbackQFileChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFile::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQFileFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFile) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QFile::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFile_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QFile) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QFile::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFile_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QFile) ConnectCustomEvent(f func(event *QEvent)) {
@@ -354,13 +399,28 @@ func (ptr *QFile) DisconnectCustomEvent() {
 }
 
 //export callbackQFileCustomEvent
-func callbackQFileCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFile::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFileFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFile) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QFile::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFile_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFile) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QFile::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFile_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

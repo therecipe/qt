@@ -168,15 +168,30 @@ func (ptr *QGraphicsGridLayout) DisconnectInvalidate() {
 }
 
 //export callbackQGraphicsGridLayoutInvalidate
-func callbackQGraphicsGridLayoutInvalidate(ptrName *C.char) bool {
+func callbackQGraphicsGridLayoutInvalidate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsGridLayout::invalidate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQGraphicsGridLayoutFromPointer(ptr).InvalidateDefault()
 	}
-	return false
+}
 
+func (ptr *QGraphicsGridLayout) Invalidate() {
+	defer qt.Recovering("QGraphicsGridLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsGridLayout_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsGridLayout) InvalidateDefault() {
+	defer qt.Recovering("QGraphicsGridLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsGridLayout_InvalidateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsGridLayout) ItemAt(row int, column int) *QGraphicsLayoutItem {
@@ -207,15 +222,30 @@ func (ptr *QGraphicsGridLayout) DisconnectRemoveAt() {
 }
 
 //export callbackQGraphicsGridLayoutRemoveAt
-func callbackQGraphicsGridLayoutRemoveAt(ptrName *C.char, index C.int) bool {
+func callbackQGraphicsGridLayoutRemoveAt(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QGraphicsGridLayout::removeAt")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "removeAt"); signal != nil {
 		signal.(func(int))(int(index))
-		return true
+	} else {
+		NewQGraphicsGridLayoutFromPointer(ptr).RemoveAtDefault(int(index))
 	}
-	return false
+}
 
+func (ptr *QGraphicsGridLayout) RemoveAt(index int) {
+	defer qt.Recovering("QGraphicsGridLayout::removeAt")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsGridLayout_RemoveAt(ptr.Pointer(), C.int(index))
+	}
+}
+
+func (ptr *QGraphicsGridLayout) RemoveAtDefault(index int) {
+	defer qt.Recovering("QGraphicsGridLayout::removeAt")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsGridLayout_RemoveAtDefault(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QGraphicsGridLayout) RemoveItem(item QGraphicsLayoutItem_ITF) {

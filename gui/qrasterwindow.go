@@ -62,15 +62,30 @@ func (ptr *QRasterWindow) DisconnectPaintEvent() {
 }
 
 //export callbackQRasterWindowPaintEvent
-func callbackQRasterWindowPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRasterWindowPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*QPaintEvent))(NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).PaintEventDefault(NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) PaintEvent(event QPaintEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_PaintEvent(ptr.Pointer(), PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QRasterWindow) PaintEventDefault(event QPaintEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_PaintEventDefault(ptr.Pointer(), PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectExposeEvent(f func(ev *QExposeEvent)) {
@@ -92,15 +107,30 @@ func (ptr *QRasterWindow) DisconnectExposeEvent() {
 }
 
 //export callbackQRasterWindowExposeEvent
-func callbackQRasterWindowExposeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowExposeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::exposeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "exposeEvent"); signal != nil {
 		signal.(func(*QExposeEvent))(NewQExposeEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).ExposeEventDefault(NewQExposeEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) ExposeEvent(ev QExposeEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::exposeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_ExposeEvent(ptr.Pointer(), PointerFromQExposeEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) ExposeEventDefault(ev QExposeEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::exposeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_ExposeEventDefault(ptr.Pointer(), PointerFromQExposeEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectFocusInEvent(f func(ev *QFocusEvent)) {
@@ -122,15 +152,30 @@ func (ptr *QRasterWindow) DisconnectFocusInEvent() {
 }
 
 //export callbackQRasterWindowFocusInEvent
-func callbackQRasterWindowFocusInEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*QFocusEvent))(NewQFocusEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).FocusInEventDefault(NewQFocusEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) FocusInEvent(ev QFocusEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_FocusInEvent(ptr.Pointer(), PointerFromQFocusEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) FocusInEventDefault(ev QFocusEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_FocusInEventDefault(ptr.Pointer(), PointerFromQFocusEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectFocusOutEvent(f func(ev *QFocusEvent)) {
@@ -152,15 +197,30 @@ func (ptr *QRasterWindow) DisconnectFocusOutEvent() {
 }
 
 //export callbackQRasterWindowFocusOutEvent
-func callbackQRasterWindowFocusOutEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*QFocusEvent))(NewQFocusEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).FocusOutEventDefault(NewQFocusEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) FocusOutEvent(ev QFocusEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_FocusOutEvent(ptr.Pointer(), PointerFromQFocusEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) FocusOutEventDefault(ev QFocusEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_FocusOutEventDefault(ptr.Pointer(), PointerFromQFocusEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectHideEvent(f func(ev *QHideEvent)) {
@@ -182,15 +242,30 @@ func (ptr *QRasterWindow) DisconnectHideEvent() {
 }
 
 //export callbackQRasterWindowHideEvent
-func callbackQRasterWindowHideEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowHideEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*QHideEvent))(NewQHideEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).HideEventDefault(NewQHideEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) HideEvent(ev QHideEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_HideEvent(ptr.Pointer(), PointerFromQHideEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) HideEventDefault(ev QHideEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_HideEventDefault(ptr.Pointer(), PointerFromQHideEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectKeyPressEvent(f func(ev *QKeyEvent)) {
@@ -212,15 +287,30 @@ func (ptr *QRasterWindow) DisconnectKeyPressEvent() {
 }
 
 //export callbackQRasterWindowKeyPressEvent
-func callbackQRasterWindowKeyPressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*QKeyEvent))(NewQKeyEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).KeyPressEventDefault(NewQKeyEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) KeyPressEvent(ev QKeyEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_KeyPressEvent(ptr.Pointer(), PointerFromQKeyEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) KeyPressEventDefault(ev QKeyEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_KeyPressEventDefault(ptr.Pointer(), PointerFromQKeyEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectKeyReleaseEvent(f func(ev *QKeyEvent)) {
@@ -242,15 +332,30 @@ func (ptr *QRasterWindow) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQRasterWindowKeyReleaseEvent
-func callbackQRasterWindowKeyReleaseEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*QKeyEvent))(NewQKeyEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).KeyReleaseEventDefault(NewQKeyEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) KeyReleaseEvent(ev QKeyEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_KeyReleaseEvent(ptr.Pointer(), PointerFromQKeyEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) KeyReleaseEventDefault(ev QKeyEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_KeyReleaseEventDefault(ptr.Pointer(), PointerFromQKeyEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectMouseDoubleClickEvent(f func(ev *QMouseEvent)) {
@@ -272,15 +377,30 @@ func (ptr *QRasterWindow) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQRasterWindowMouseDoubleClickEvent
-func callbackQRasterWindowMouseDoubleClickEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*QMouseEvent))(NewQMouseEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).MouseDoubleClickEventDefault(NewQMouseEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) MouseDoubleClickEvent(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_MouseDoubleClickEvent(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) MouseDoubleClickEventDefault(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_MouseDoubleClickEventDefault(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectMouseMoveEvent(f func(ev *QMouseEvent)) {
@@ -302,15 +422,30 @@ func (ptr *QRasterWindow) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQRasterWindowMouseMoveEvent
-func callbackQRasterWindowMouseMoveEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*QMouseEvent))(NewQMouseEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).MouseMoveEventDefault(NewQMouseEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) MouseMoveEvent(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_MouseMoveEvent(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) MouseMoveEventDefault(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_MouseMoveEventDefault(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectMousePressEvent(f func(ev *QMouseEvent)) {
@@ -332,15 +467,30 @@ func (ptr *QRasterWindow) DisconnectMousePressEvent() {
 }
 
 //export callbackQRasterWindowMousePressEvent
-func callbackQRasterWindowMousePressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*QMouseEvent))(NewQMouseEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).MousePressEventDefault(NewQMouseEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) MousePressEvent(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_MousePressEvent(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) MousePressEventDefault(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_MousePressEventDefault(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectMouseReleaseEvent(f func(ev *QMouseEvent)) {
@@ -362,15 +512,30 @@ func (ptr *QRasterWindow) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQRasterWindowMouseReleaseEvent
-func callbackQRasterWindowMouseReleaseEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*QMouseEvent))(NewQMouseEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).MouseReleaseEventDefault(NewQMouseEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) MouseReleaseEvent(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_MouseReleaseEvent(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) MouseReleaseEventDefault(ev QMouseEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_MouseReleaseEventDefault(ptr.Pointer(), PointerFromQMouseEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectMoveEvent(f func(ev *QMoveEvent)) {
@@ -392,15 +557,30 @@ func (ptr *QRasterWindow) DisconnectMoveEvent() {
 }
 
 //export callbackQRasterWindowMoveEvent
-func callbackQRasterWindowMoveEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowMoveEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*QMoveEvent))(NewQMoveEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).MoveEventDefault(NewQMoveEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) MoveEvent(ev QMoveEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_MoveEvent(ptr.Pointer(), PointerFromQMoveEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) MoveEventDefault(ev QMoveEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_MoveEventDefault(ptr.Pointer(), PointerFromQMoveEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectResizeEvent(f func(ev *QResizeEvent)) {
@@ -422,15 +602,30 @@ func (ptr *QRasterWindow) DisconnectResizeEvent() {
 }
 
 //export callbackQRasterWindowResizeEvent
-func callbackQRasterWindowResizeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowResizeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*QResizeEvent))(NewQResizeEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).ResizeEventDefault(NewQResizeEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) ResizeEvent(ev QResizeEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_ResizeEvent(ptr.Pointer(), PointerFromQResizeEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) ResizeEventDefault(ev QResizeEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_ResizeEventDefault(ptr.Pointer(), PointerFromQResizeEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectShowEvent(f func(ev *QShowEvent)) {
@@ -452,15 +647,30 @@ func (ptr *QRasterWindow) DisconnectShowEvent() {
 }
 
 //export callbackQRasterWindowShowEvent
-func callbackQRasterWindowShowEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowShowEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*QShowEvent))(NewQShowEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).ShowEventDefault(NewQShowEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) ShowEvent(ev QShowEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_ShowEvent(ptr.Pointer(), PointerFromQShowEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) ShowEventDefault(ev QShowEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_ShowEventDefault(ptr.Pointer(), PointerFromQShowEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectTabletEvent(f func(ev *QTabletEvent)) {
@@ -482,15 +692,30 @@ func (ptr *QRasterWindow) DisconnectTabletEvent() {
 }
 
 //export callbackQRasterWindowTabletEvent
-func callbackQRasterWindowTabletEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowTabletEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*QTabletEvent))(NewQTabletEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).TabletEventDefault(NewQTabletEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) TabletEvent(ev QTabletEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_TabletEvent(ptr.Pointer(), PointerFromQTabletEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) TabletEventDefault(ev QTabletEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_TabletEventDefault(ptr.Pointer(), PointerFromQTabletEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectTouchEvent(f func(ev *QTouchEvent)) {
@@ -512,15 +737,30 @@ func (ptr *QRasterWindow) DisconnectTouchEvent() {
 }
 
 //export callbackQRasterWindowTouchEvent
-func callbackQRasterWindowTouchEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowTouchEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::touchEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "touchEvent"); signal != nil {
 		signal.(func(*QTouchEvent))(NewQTouchEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).TouchEventDefault(NewQTouchEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) TouchEvent(ev QTouchEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::touchEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_TouchEvent(ptr.Pointer(), PointerFromQTouchEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) TouchEventDefault(ev QTouchEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::touchEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_TouchEventDefault(ptr.Pointer(), PointerFromQTouchEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectWheelEvent(f func(ev *QWheelEvent)) {
@@ -542,15 +782,30 @@ func (ptr *QRasterWindow) DisconnectWheelEvent() {
 }
 
 //export callbackQRasterWindowWheelEvent
-func callbackQRasterWindowWheelEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQRasterWindowWheelEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*QWheelEvent))(NewQWheelEventFromPointer(ev))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).WheelEventDefault(NewQWheelEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) WheelEvent(ev QWheelEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_WheelEvent(ptr.Pointer(), PointerFromQWheelEvent(ev))
+	}
+}
+
+func (ptr *QRasterWindow) WheelEventDefault(ev QWheelEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_WheelEventDefault(ptr.Pointer(), PointerFromQWheelEvent(ev))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -572,15 +827,30 @@ func (ptr *QRasterWindow) DisconnectTimerEvent() {
 }
 
 //export callbackQRasterWindowTimerEvent
-func callbackQRasterWindowTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRasterWindowTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QRasterWindow) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -602,15 +872,30 @@ func (ptr *QRasterWindow) DisconnectChildEvent() {
 }
 
 //export callbackQRasterWindowChildEvent
-func callbackQRasterWindowChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRasterWindowChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QRasterWindow) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QRasterWindow) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -632,13 +917,28 @@ func (ptr *QRasterWindow) DisconnectCustomEvent() {
 }
 
 //export callbackQRasterWindowCustomEvent
-func callbackQRasterWindowCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQRasterWindowCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QRasterWindow::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQRasterWindowFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QRasterWindow) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QRasterWindow) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QRasterWindow::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QRasterWindow_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

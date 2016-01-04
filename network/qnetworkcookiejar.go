@@ -70,6 +70,15 @@ func (ptr *QNetworkCookieJar) UpdateCookie(cookie QNetworkCookie_ITF) bool {
 	return false
 }
 
+func (ptr *QNetworkCookieJar) ValidateCookie(cookie QNetworkCookie_ITF, url core.QUrl_ITF) bool {
+	defer qt.Recovering("QNetworkCookieJar::validateCookie")
+
+	if ptr.Pointer() != nil {
+		return C.QNetworkCookieJar_ValidateCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie), core.PointerFromQUrl(url)) != 0
+	}
+	return false
+}
+
 func (ptr *QNetworkCookieJar) DestroyQNetworkCookieJar() {
 	defer qt.Recovering("QNetworkCookieJar::~QNetworkCookieJar")
 
@@ -98,15 +107,30 @@ func (ptr *QNetworkCookieJar) DisconnectTimerEvent() {
 }
 
 //export callbackQNetworkCookieJarTimerEvent
-func callbackQNetworkCookieJarTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkCookieJarTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkCookieJar::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkCookieJarFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkCookieJar) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNetworkCookieJar::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkCookieJar_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QNetworkCookieJar) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNetworkCookieJar::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkCookieJar_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QNetworkCookieJar) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -128,15 +152,30 @@ func (ptr *QNetworkCookieJar) DisconnectChildEvent() {
 }
 
 //export callbackQNetworkCookieJarChildEvent
-func callbackQNetworkCookieJarChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkCookieJarChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkCookieJar::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkCookieJarFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkCookieJar) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNetworkCookieJar::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkCookieJar_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QNetworkCookieJar) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNetworkCookieJar::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkCookieJar_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QNetworkCookieJar) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -158,13 +197,28 @@ func (ptr *QNetworkCookieJar) DisconnectCustomEvent() {
 }
 
 //export callbackQNetworkCookieJarCustomEvent
-func callbackQNetworkCookieJarCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkCookieJarCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkCookieJar::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkCookieJarFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkCookieJar) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QNetworkCookieJar::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkCookieJar_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QNetworkCookieJar) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QNetworkCookieJar::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkCookieJar_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

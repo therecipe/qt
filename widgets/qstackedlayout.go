@@ -133,15 +133,30 @@ func (ptr *QStackedLayout) DisconnectAddItem() {
 }
 
 //export callbackQStackedLayoutAddItem
-func callbackQStackedLayoutAddItem(ptrName *C.char, item unsafe.Pointer) bool {
+func callbackQStackedLayoutAddItem(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedLayout::addItem")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "addItem"); signal != nil {
 		signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
-		return true
+	} else {
+		NewQStackedLayoutFromPointer(ptr).AddItemDefault(NewQLayoutItemFromPointer(item))
 	}
-	return false
+}
 
+func (ptr *QStackedLayout) AddItem(item QLayoutItem_ITF) {
+	defer qt.Recovering("QStackedLayout::addItem")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_AddItem(ptr.Pointer(), PointerFromQLayoutItem(item))
+	}
+}
+
+func (ptr *QStackedLayout) AddItemDefault(item QLayoutItem_ITF) {
+	defer qt.Recovering("QStackedLayout::addItem")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_AddItemDefault(ptr.Pointer(), PointerFromQLayoutItem(item))
+	}
 }
 
 func (ptr *QStackedLayout) AddWidget(widget QWidget_ITF) int {
@@ -172,13 +187,21 @@ func (ptr *QStackedLayout) DisconnectCurrentChanged() {
 }
 
 //export callbackQStackedLayoutCurrentChanged
-func callbackQStackedLayoutCurrentChanged(ptrName *C.char, index C.int) {
+func callbackQStackedLayoutCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QStackedLayout::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
+}
+
+func (ptr *QStackedLayout) CurrentChanged(index int) {
+	defer qt.Recovering("QStackedLayout::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_CurrentChanged(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QStackedLayout) CurrentWidget() *QWidget {
@@ -254,15 +277,30 @@ func (ptr *QStackedLayout) DisconnectSetGeometry() {
 }
 
 //export callbackQStackedLayoutSetGeometry
-func callbackQStackedLayoutSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
+func callbackQStackedLayoutSetGeometry(ptr unsafe.Pointer, ptrName *C.char, rect unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedLayout::setGeometry")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
-		return true
+	} else {
+		NewQStackedLayoutFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(rect))
 	}
-	return false
+}
 
+func (ptr *QStackedLayout) SetGeometry(rect core.QRect_ITF) {
+	defer qt.Recovering("QStackedLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
+}
+
+func (ptr *QStackedLayout) SetGeometryDefault(rect core.QRect_ITF) {
+	defer qt.Recovering("QStackedLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_SetGeometryDefault(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
 }
 
 func (ptr *QStackedLayout) SizeHint() *core.QSize {
@@ -311,13 +349,21 @@ func (ptr *QStackedLayout) DisconnectWidgetRemoved() {
 }
 
 //export callbackQStackedLayoutWidgetRemoved
-func callbackQStackedLayoutWidgetRemoved(ptrName *C.char, index C.int) {
+func callbackQStackedLayoutWidgetRemoved(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QStackedLayout::widgetRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "widgetRemoved"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
+}
+
+func (ptr *QStackedLayout) WidgetRemoved(index int) {
+	defer qt.Recovering("QStackedLayout::widgetRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_WidgetRemoved(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QStackedLayout) DestroyQStackedLayout() {
@@ -348,15 +394,30 @@ func (ptr *QStackedLayout) DisconnectChildEvent() {
 }
 
 //export callbackQStackedLayoutChildEvent
-func callbackQStackedLayoutChildEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQStackedLayoutChildEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedLayout::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(e))
-		return true
+	} else {
+		NewQStackedLayoutFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QStackedLayout) ChildEvent(e core.QChildEvent_ITF) {
+	defer qt.Recovering("QStackedLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(e))
+	}
+}
+
+func (ptr *QStackedLayout) ChildEventDefault(e core.QChildEvent_ITF) {
+	defer qt.Recovering("QStackedLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(e))
+	}
 }
 
 func (ptr *QStackedLayout) ConnectInvalidate(f func()) {
@@ -378,15 +439,30 @@ func (ptr *QStackedLayout) DisconnectInvalidate() {
 }
 
 //export callbackQStackedLayoutInvalidate
-func callbackQStackedLayoutInvalidate(ptrName *C.char) bool {
+func callbackQStackedLayoutInvalidate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QStackedLayout::invalidate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQStackedLayoutFromPointer(ptr).InvalidateDefault()
 	}
-	return false
+}
 
+func (ptr *QStackedLayout) Invalidate() {
+	defer qt.Recovering("QStackedLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QStackedLayout) InvalidateDefault() {
+	defer qt.Recovering("QStackedLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_InvalidateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QStackedLayout) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -408,15 +484,30 @@ func (ptr *QStackedLayout) DisconnectTimerEvent() {
 }
 
 //export callbackQStackedLayoutTimerEvent
-func callbackQStackedLayoutTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedLayoutTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedLayout::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedLayoutFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedLayout) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStackedLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QStackedLayout) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStackedLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QStackedLayout) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -438,13 +529,28 @@ func (ptr *QStackedLayout) DisconnectCustomEvent() {
 }
 
 //export callbackQStackedLayoutCustomEvent
-func callbackQStackedLayoutCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStackedLayoutCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStackedLayout::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQStackedLayoutFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStackedLayout) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QStackedLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QStackedLayout) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QStackedLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStackedLayout_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

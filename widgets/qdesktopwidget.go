@@ -93,15 +93,30 @@ func (ptr *QDesktopWidget) DisconnectResizeEvent() {
 }
 
 //export callbackQDesktopWidgetResizeEvent
-func callbackQDesktopWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) Screen(screen int) *QWidget {
@@ -177,13 +192,21 @@ func (ptr *QDesktopWidget) DisconnectResized() {
 }
 
 //export callbackQDesktopWidgetResized
-func callbackQDesktopWidgetResized(ptrName *C.char, screen C.int) {
+func callbackQDesktopWidgetResized(ptr unsafe.Pointer, ptrName *C.char, screen C.int) {
 	defer qt.Recovering("callback QDesktopWidget::resized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resized"); signal != nil {
 		signal.(func(int))(int(screen))
 	}
 
+}
+
+func (ptr *QDesktopWidget) Resized(screen int) {
+	defer qt.Recovering("QDesktopWidget::resized")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_Resized(ptr.Pointer(), C.int(screen))
+	}
 }
 
 func (ptr *QDesktopWidget) ScreenCount() int {
@@ -214,13 +237,21 @@ func (ptr *QDesktopWidget) DisconnectScreenCountChanged() {
 }
 
 //export callbackQDesktopWidgetScreenCountChanged
-func callbackQDesktopWidgetScreenCountChanged(ptrName *C.char, newCount C.int) {
+func callbackQDesktopWidgetScreenCountChanged(ptr unsafe.Pointer, ptrName *C.char, newCount C.int) {
 	defer qt.Recovering("callback QDesktopWidget::screenCountChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "screenCountChanged"); signal != nil {
 		signal.(func(int))(int(newCount))
 	}
 
+}
+
+func (ptr *QDesktopWidget) ScreenCountChanged(newCount int) {
+	defer qt.Recovering("QDesktopWidget::screenCountChanged")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ScreenCountChanged(ptr.Pointer(), C.int(newCount))
+	}
 }
 
 func (ptr *QDesktopWidget) ScreenGeometry3(p core.QPoint_ITF) *core.QRect {
@@ -251,13 +282,21 @@ func (ptr *QDesktopWidget) DisconnectWorkAreaResized() {
 }
 
 //export callbackQDesktopWidgetWorkAreaResized
-func callbackQDesktopWidgetWorkAreaResized(ptrName *C.char, screen C.int) {
+func callbackQDesktopWidgetWorkAreaResized(ptr unsafe.Pointer, ptrName *C.char, screen C.int) {
 	defer qt.Recovering("callback QDesktopWidget::workAreaResized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "workAreaResized"); signal != nil {
 		signal.(func(int))(int(screen))
 	}
 
+}
+
+func (ptr *QDesktopWidget) WorkAreaResized(screen int) {
+	defer qt.Recovering("QDesktopWidget::workAreaResized")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_WorkAreaResized(ptr.Pointer(), C.int(screen))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -279,15 +318,30 @@ func (ptr *QDesktopWidget) DisconnectActionEvent() {
 }
 
 //export callbackQDesktopWidgetActionEvent
-func callbackQDesktopWidgetActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -309,15 +363,30 @@ func (ptr *QDesktopWidget) DisconnectDragEnterEvent() {
 }
 
 //export callbackQDesktopWidgetDragEnterEvent
-func callbackQDesktopWidgetDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -339,15 +408,30 @@ func (ptr *QDesktopWidget) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQDesktopWidgetDragLeaveEvent
-func callbackQDesktopWidgetDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -369,15 +453,30 @@ func (ptr *QDesktopWidget) DisconnectDragMoveEvent() {
 }
 
 //export callbackQDesktopWidgetDragMoveEvent
-func callbackQDesktopWidgetDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -399,15 +498,30 @@ func (ptr *QDesktopWidget) DisconnectDropEvent() {
 }
 
 //export callbackQDesktopWidgetDropEvent
-func callbackQDesktopWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -429,15 +543,30 @@ func (ptr *QDesktopWidget) DisconnectEnterEvent() {
 }
 
 //export callbackQDesktopWidgetEnterEvent
-func callbackQDesktopWidgetEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -459,15 +588,30 @@ func (ptr *QDesktopWidget) DisconnectFocusInEvent() {
 }
 
 //export callbackQDesktopWidgetFocusInEvent
-func callbackQDesktopWidgetFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -489,15 +633,30 @@ func (ptr *QDesktopWidget) DisconnectFocusOutEvent() {
 }
 
 //export callbackQDesktopWidgetFocusOutEvent
-func callbackQDesktopWidgetFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -519,15 +678,30 @@ func (ptr *QDesktopWidget) DisconnectHideEvent() {
 }
 
 //export callbackQDesktopWidgetHideEvent
-func callbackQDesktopWidgetHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -549,15 +723,30 @@ func (ptr *QDesktopWidget) DisconnectLeaveEvent() {
 }
 
 //export callbackQDesktopWidgetLeaveEvent
-func callbackQDesktopWidgetLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -579,15 +768,30 @@ func (ptr *QDesktopWidget) DisconnectMoveEvent() {
 }
 
 //export callbackQDesktopWidgetMoveEvent
-func callbackQDesktopWidgetMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -609,15 +813,30 @@ func (ptr *QDesktopWidget) DisconnectPaintEvent() {
 }
 
 //export callbackQDesktopWidgetPaintEvent
-func callbackQDesktopWidgetPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectSetVisible(f func(visible bool)) {
@@ -639,7 +858,7 @@ func (ptr *QDesktopWidget) DisconnectSetVisible() {
 }
 
 //export callbackQDesktopWidgetSetVisible
-func callbackQDesktopWidgetSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQDesktopWidgetSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QDesktopWidget::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -648,6 +867,22 @@ func callbackQDesktopWidgetSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QDesktopWidget) SetVisible(visible bool) {
+	defer qt.Recovering("QDesktopWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QDesktopWidget) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QDesktopWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -669,15 +904,30 @@ func (ptr *QDesktopWidget) DisconnectShowEvent() {
 }
 
 //export callbackQDesktopWidgetShowEvent
-func callbackQDesktopWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -699,15 +949,30 @@ func (ptr *QDesktopWidget) DisconnectChangeEvent() {
 }
 
 //export callbackQDesktopWidgetChangeEvent
-func callbackQDesktopWidgetChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -729,15 +994,30 @@ func (ptr *QDesktopWidget) DisconnectCloseEvent() {
 }
 
 //export callbackQDesktopWidgetCloseEvent
-func callbackQDesktopWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -759,15 +1039,30 @@ func (ptr *QDesktopWidget) DisconnectContextMenuEvent() {
 }
 
 //export callbackQDesktopWidgetContextMenuEvent
-func callbackQDesktopWidgetContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -789,15 +1084,30 @@ func (ptr *QDesktopWidget) DisconnectInitPainter() {
 }
 
 //export callbackQDesktopWidgetInitPainter
-func callbackQDesktopWidgetInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQDesktopWidgetInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QDesktopWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QDesktopWidget) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QDesktopWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -819,15 +1129,30 @@ func (ptr *QDesktopWidget) DisconnectInputMethodEvent() {
 }
 
 //export callbackQDesktopWidgetInputMethodEvent
-func callbackQDesktopWidgetInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -849,15 +1174,30 @@ func (ptr *QDesktopWidget) DisconnectKeyPressEvent() {
 }
 
 //export callbackQDesktopWidgetKeyPressEvent
-func callbackQDesktopWidgetKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -879,15 +1219,30 @@ func (ptr *QDesktopWidget) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQDesktopWidgetKeyReleaseEvent
-func callbackQDesktopWidgetKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -909,15 +1264,30 @@ func (ptr *QDesktopWidget) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQDesktopWidgetMouseDoubleClickEvent
-func callbackQDesktopWidgetMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -939,15 +1309,30 @@ func (ptr *QDesktopWidget) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQDesktopWidgetMouseMoveEvent
-func callbackQDesktopWidgetMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -969,15 +1354,30 @@ func (ptr *QDesktopWidget) DisconnectMousePressEvent() {
 }
 
 //export callbackQDesktopWidgetMousePressEvent
-func callbackQDesktopWidgetMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -999,15 +1399,30 @@ func (ptr *QDesktopWidget) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQDesktopWidgetMouseReleaseEvent
-func callbackQDesktopWidgetMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1029,15 +1444,30 @@ func (ptr *QDesktopWidget) DisconnectTabletEvent() {
 }
 
 //export callbackQDesktopWidgetTabletEvent
-func callbackQDesktopWidgetTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1059,15 +1489,30 @@ func (ptr *QDesktopWidget) DisconnectWheelEvent() {
 }
 
 //export callbackQDesktopWidgetWheelEvent
-func callbackQDesktopWidgetWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1089,15 +1534,30 @@ func (ptr *QDesktopWidget) DisconnectTimerEvent() {
 }
 
 //export callbackQDesktopWidgetTimerEvent
-func callbackQDesktopWidgetTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1119,15 +1579,30 @@ func (ptr *QDesktopWidget) DisconnectChildEvent() {
 }
 
 //export callbackQDesktopWidgetChildEvent
-func callbackQDesktopWidgetChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDesktopWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1149,13 +1624,28 @@ func (ptr *QDesktopWidget) DisconnectCustomEvent() {
 }
 
 //export callbackQDesktopWidgetCustomEvent
-func callbackQDesktopWidgetCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDesktopWidgetCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesktopWidget::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDesktopWidget) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDesktopWidget) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDesktopWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

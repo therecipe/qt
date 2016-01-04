@@ -57,15 +57,30 @@ func (ptr *QSizeGrip) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQSizeGripMouseMoveEvent
-func callbackQSizeGripMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -87,21 +102,54 @@ func (ptr *QSizeGrip) DisconnectMousePressEvent() {
 }
 
 //export callbackQSizeGripMousePressEvent
-func callbackQSizeGripMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func NewQSizeGrip(parent QWidget_ITF) *QSizeGrip {
 	defer qt.Recovering("QSizeGrip::QSizeGrip")
 
 	return NewQSizeGripFromPointer(C.QSizeGrip_NewQSizeGrip(PointerFromQWidget(parent)))
+}
+
+func (ptr *QSizeGrip) Event(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QSizeGrip::event")
+
+	if ptr.Pointer() != nil {
+		return C.QSizeGrip_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QSizeGrip) EventFilter(o core.QObject_ITF, e core.QEvent_ITF) bool {
+	defer qt.Recovering("QSizeGrip::eventFilter")
+
+	if ptr.Pointer() != nil {
+		return C.QSizeGrip_EventFilter(ptr.Pointer(), core.PointerFromQObject(o), core.PointerFromQEvent(e)) != 0
+	}
+	return false
 }
 
 func (ptr *QSizeGrip) ConnectHideEvent(f func(hideEvent *gui.QHideEvent)) {
@@ -123,15 +171,30 @@ func (ptr *QSizeGrip) DisconnectHideEvent() {
 }
 
 //export callbackQSizeGripHideEvent
-func callbackQSizeGripHideEvent(ptrName *C.char, hideEvent unsafe.Pointer) bool {
+func callbackQSizeGripHideEvent(ptr unsafe.Pointer, ptrName *C.char, hideEvent unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(hideEvent))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(hideEvent))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) HideEvent(hideEvent gui.QHideEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(hideEvent))
+	}
+}
+
+func (ptr *QSizeGrip) HideEventDefault(hideEvent gui.QHideEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(hideEvent))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectMouseReleaseEvent(f func(mouseEvent *gui.QMouseEvent)) {
@@ -153,15 +216,30 @@ func (ptr *QSizeGrip) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQSizeGripMouseReleaseEvent
-func callbackQSizeGripMouseReleaseEvent(ptrName *C.char, mouseEvent unsafe.Pointer) bool {
+func callbackQSizeGripMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, mouseEvent unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(mouseEvent))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(mouseEvent))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) MouseReleaseEvent(mouseEvent gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(mouseEvent))
+	}
+}
+
+func (ptr *QSizeGrip) MouseReleaseEventDefault(mouseEvent gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(mouseEvent))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectMoveEvent(f func(moveEvent *gui.QMoveEvent)) {
@@ -183,15 +261,30 @@ func (ptr *QSizeGrip) DisconnectMoveEvent() {
 }
 
 //export callbackQSizeGripMoveEvent
-func callbackQSizeGripMoveEvent(ptrName *C.char, moveEvent unsafe.Pointer) bool {
+func callbackQSizeGripMoveEvent(ptr unsafe.Pointer, ptrName *C.char, moveEvent unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(moveEvent))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(moveEvent))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) MoveEvent(moveEvent gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(moveEvent))
+	}
+}
+
+func (ptr *QSizeGrip) MoveEventDefault(moveEvent gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(moveEvent))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -213,15 +306,30 @@ func (ptr *QSizeGrip) DisconnectPaintEvent() {
 }
 
 //export callbackQSizeGripPaintEvent
-func callbackQSizeGripPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectSetVisible(f func(visible bool)) {
@@ -243,15 +351,30 @@ func (ptr *QSizeGrip) DisconnectSetVisible() {
 }
 
 //export callbackQSizeGripSetVisible
-func callbackQSizeGripSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQSizeGripSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
 	defer qt.Recovering("callback QSizeGrip::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) SetVisible(visible bool) {
+	defer qt.Recovering("QSizeGrip::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QSizeGrip) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QSizeGrip::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectShowEvent(f func(showEvent *gui.QShowEvent)) {
@@ -273,15 +396,30 @@ func (ptr *QSizeGrip) DisconnectShowEvent() {
 }
 
 //export callbackQSizeGripShowEvent
-func callbackQSizeGripShowEvent(ptrName *C.char, showEvent unsafe.Pointer) bool {
+func callbackQSizeGripShowEvent(ptr unsafe.Pointer, ptrName *C.char, showEvent unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(showEvent))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(showEvent))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) ShowEvent(showEvent gui.QShowEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(showEvent))
+	}
+}
+
+func (ptr *QSizeGrip) ShowEventDefault(showEvent gui.QShowEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(showEvent))
+	}
 }
 
 func (ptr *QSizeGrip) SizeHint() *core.QSize {
@@ -321,15 +459,30 @@ func (ptr *QSizeGrip) DisconnectActionEvent() {
 }
 
 //export callbackQSizeGripActionEvent
-func callbackQSizeGripActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -351,15 +504,30 @@ func (ptr *QSizeGrip) DisconnectDragEnterEvent() {
 }
 
 //export callbackQSizeGripDragEnterEvent
-func callbackQSizeGripDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -381,15 +549,30 @@ func (ptr *QSizeGrip) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQSizeGripDragLeaveEvent
-func callbackQSizeGripDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -411,15 +594,30 @@ func (ptr *QSizeGrip) DisconnectDragMoveEvent() {
 }
 
 //export callbackQSizeGripDragMoveEvent
-func callbackQSizeGripDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -441,15 +639,30 @@ func (ptr *QSizeGrip) DisconnectDropEvent() {
 }
 
 //export callbackQSizeGripDropEvent
-func callbackQSizeGripDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -471,15 +684,30 @@ func (ptr *QSizeGrip) DisconnectEnterEvent() {
 }
 
 //export callbackQSizeGripEnterEvent
-func callbackQSizeGripEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -501,15 +729,30 @@ func (ptr *QSizeGrip) DisconnectFocusInEvent() {
 }
 
 //export callbackQSizeGripFocusInEvent
-func callbackQSizeGripFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -531,15 +774,30 @@ func (ptr *QSizeGrip) DisconnectFocusOutEvent() {
 }
 
 //export callbackQSizeGripFocusOutEvent
-func callbackQSizeGripFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -561,15 +819,30 @@ func (ptr *QSizeGrip) DisconnectLeaveEvent() {
 }
 
 //export callbackQSizeGripLeaveEvent
-func callbackQSizeGripLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -591,15 +864,30 @@ func (ptr *QSizeGrip) DisconnectChangeEvent() {
 }
 
 //export callbackQSizeGripChangeEvent
-func callbackQSizeGripChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -621,15 +909,30 @@ func (ptr *QSizeGrip) DisconnectCloseEvent() {
 }
 
 //export callbackQSizeGripCloseEvent
-func callbackQSizeGripCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -651,15 +954,30 @@ func (ptr *QSizeGrip) DisconnectContextMenuEvent() {
 }
 
 //export callbackQSizeGripContextMenuEvent
-func callbackQSizeGripContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -681,15 +999,30 @@ func (ptr *QSizeGrip) DisconnectInitPainter() {
 }
 
 //export callbackQSizeGripInitPainter
-func callbackQSizeGripInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQSizeGripInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QSizeGrip::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QSizeGrip) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QSizeGrip::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -711,15 +1044,30 @@ func (ptr *QSizeGrip) DisconnectInputMethodEvent() {
 }
 
 //export callbackQSizeGripInputMethodEvent
-func callbackQSizeGripInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -741,15 +1089,30 @@ func (ptr *QSizeGrip) DisconnectKeyPressEvent() {
 }
 
 //export callbackQSizeGripKeyPressEvent
-func callbackQSizeGripKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -771,15 +1134,30 @@ func (ptr *QSizeGrip) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQSizeGripKeyReleaseEvent
-func callbackQSizeGripKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -801,15 +1179,30 @@ func (ptr *QSizeGrip) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQSizeGripMouseDoubleClickEvent
-func callbackQSizeGripMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -831,15 +1224,30 @@ func (ptr *QSizeGrip) DisconnectResizeEvent() {
 }
 
 //export callbackQSizeGripResizeEvent
-func callbackQSizeGripResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -861,15 +1269,30 @@ func (ptr *QSizeGrip) DisconnectTabletEvent() {
 }
 
 //export callbackQSizeGripTabletEvent
-func callbackQSizeGripTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -891,15 +1314,30 @@ func (ptr *QSizeGrip) DisconnectWheelEvent() {
 }
 
 //export callbackQSizeGripWheelEvent
-func callbackQSizeGripWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -921,15 +1359,30 @@ func (ptr *QSizeGrip) DisconnectTimerEvent() {
 }
 
 //export callbackQSizeGripTimerEvent
-func callbackQSizeGripTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -951,15 +1404,30 @@ func (ptr *QSizeGrip) DisconnectChildEvent() {
 }
 
 //export callbackQSizeGripChildEvent
-func callbackQSizeGripChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSizeGrip) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -981,13 +1449,28 @@ func (ptr *QSizeGrip) DisconnectCustomEvent() {
 }
 
 //export callbackQSizeGripCustomEvent
-func callbackQSizeGripCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSizeGripCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSizeGrip::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSizeGripFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSizeGrip) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSizeGrip) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSizeGrip::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSizeGrip_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

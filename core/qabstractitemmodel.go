@@ -110,7 +110,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsAboutToBeInserted() {
 }
 
 //export callbackQAbstractItemModelColumnsAboutToBeInserted
-func callbackQAbstractItemModelColumnsAboutToBeInserted(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
+func callbackQAbstractItemModelColumnsAboutToBeInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsAboutToBeInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "columnsAboutToBeInserted"); signal != nil {
@@ -138,7 +138,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsAboutToBeMoved() {
 }
 
 //export callbackQAbstractItemModelColumnsAboutToBeMoved
-func callbackQAbstractItemModelColumnsAboutToBeMoved(ptrName *C.char, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
+func callbackQAbstractItemModelColumnsAboutToBeMoved(ptr unsafe.Pointer, ptrName *C.char, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsAboutToBeMoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "columnsAboutToBeMoved"); signal != nil {
@@ -166,7 +166,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsAboutToBeRemoved() {
 }
 
 //export callbackQAbstractItemModelColumnsAboutToBeRemoved
-func callbackQAbstractItemModelColumnsAboutToBeRemoved(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
+func callbackQAbstractItemModelColumnsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "columnsAboutToBeRemoved"); signal != nil {
@@ -194,7 +194,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsInserted() {
 }
 
 //export callbackQAbstractItemModelColumnsInserted
-func callbackQAbstractItemModelColumnsInserted(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
+func callbackQAbstractItemModelColumnsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "columnsInserted"); signal != nil {
@@ -222,7 +222,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsMoved() {
 }
 
 //export callbackQAbstractItemModelColumnsMoved
-func callbackQAbstractItemModelColumnsMoved(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
+func callbackQAbstractItemModelColumnsMoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsMoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "columnsMoved"); signal != nil {
@@ -250,7 +250,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsRemoved() {
 }
 
 //export callbackQAbstractItemModelColumnsRemoved
-func callbackQAbstractItemModelColumnsRemoved(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
+func callbackQAbstractItemModelColumnsRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::columnsRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "columnsRemoved"); signal != nil {
@@ -296,15 +296,30 @@ func (ptr *QAbstractItemModel) DisconnectFetchMore() {
 }
 
 //export callbackQAbstractItemModelFetchMore
-func callbackQAbstractItemModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+func callbackQAbstractItemModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractItemModel::fetchMore")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
-		return true
+	} else {
+		NewQAbstractItemModelFromPointer(ptr).FetchMoreDefault(NewQModelIndexFromPointer(parent))
 	}
-	return false
+}
 
+func (ptr *QAbstractItemModel) FetchMore(parent QModelIndex_ITF) {
+	defer qt.Recovering("QAbstractItemModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_FetchMore(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QAbstractItemModel) FetchMoreDefault(parent QModelIndex_ITF) {
+	defer qt.Recovering("QAbstractItemModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_FetchMoreDefault(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
 }
 
 func (ptr *QAbstractItemModel) Flags(index QModelIndex_ITF) Qt__ItemFlag {
@@ -362,13 +377,21 @@ func (ptr *QAbstractItemModel) DisconnectHeaderDataChanged() {
 }
 
 //export callbackQAbstractItemModelHeaderDataChanged
-func callbackQAbstractItemModelHeaderDataChanged(ptrName *C.char, orientation C.int, first C.int, last C.int) {
+func callbackQAbstractItemModelHeaderDataChanged(ptr unsafe.Pointer, ptrName *C.char, orientation C.int, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::headerDataChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "headerDataChanged"); signal != nil {
 		signal.(func(Qt__Orientation, int, int))(Qt__Orientation(orientation), int(first), int(last))
 	}
 
+}
+
+func (ptr *QAbstractItemModel) HeaderDataChanged(orientation Qt__Orientation, first int, last int) {
+	defer qt.Recovering("QAbstractItemModel::headerDataChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_HeaderDataChanged(ptr.Pointer(), C.int(orientation), C.int(first), C.int(last))
+	}
 }
 
 func (ptr *QAbstractItemModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
@@ -444,7 +467,7 @@ func (ptr *QAbstractItemModel) DisconnectModelAboutToBeReset() {
 }
 
 //export callbackQAbstractItemModelModelAboutToBeReset
-func callbackQAbstractItemModelModelAboutToBeReset(ptrName *C.char) {
+func callbackQAbstractItemModelModelAboutToBeReset(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractItemModel::modelAboutToBeReset")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "modelAboutToBeReset"); signal != nil {
@@ -472,7 +495,7 @@ func (ptr *QAbstractItemModel) DisconnectModelReset() {
 }
 
 //export callbackQAbstractItemModelModelReset
-func callbackQAbstractItemModelModelReset(ptrName *C.char) {
+func callbackQAbstractItemModelModelReset(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractItemModel::modelReset")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "modelReset"); signal != nil {
@@ -581,7 +604,7 @@ func (ptr *QAbstractItemModel) DisconnectRevert() {
 }
 
 //export callbackQAbstractItemModelRevert
-func callbackQAbstractItemModelRevert(ptrName *C.char) bool {
+func callbackQAbstractItemModelRevert(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QAbstractItemModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
@@ -590,6 +613,22 @@ func callbackQAbstractItemModelRevert(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QAbstractItemModel) Revert() {
+	defer qt.Recovering("QAbstractItemModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_Revert(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractItemModel) RevertDefault() {
+	defer qt.Recovering("QAbstractItemModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_RevertDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractItemModel) RowCount(parent QModelIndex_ITF) int {
@@ -620,7 +659,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsAboutToBeInserted() {
 }
 
 //export callbackQAbstractItemModelRowsAboutToBeInserted
-func callbackQAbstractItemModelRowsAboutToBeInserted(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
+func callbackQAbstractItemModelRowsAboutToBeInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsAboutToBeInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeInserted"); signal != nil {
@@ -648,7 +687,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsAboutToBeMoved() {
 }
 
 //export callbackQAbstractItemModelRowsAboutToBeMoved
-func callbackQAbstractItemModelRowsAboutToBeMoved(ptrName *C.char, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
+func callbackQAbstractItemModelRowsAboutToBeMoved(ptr unsafe.Pointer, ptrName *C.char, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsAboutToBeMoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeMoved"); signal != nil {
@@ -676,7 +715,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsAboutToBeRemoved() {
 }
 
 //export callbackQAbstractItemModelRowsAboutToBeRemoved
-func callbackQAbstractItemModelRowsAboutToBeRemoved(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
+func callbackQAbstractItemModelRowsAboutToBeRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsAboutToBeRemoved"); signal != nil {
@@ -704,7 +743,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsInserted() {
 }
 
 //export callbackQAbstractItemModelRowsInserted
-func callbackQAbstractItemModelRowsInserted(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
+func callbackQAbstractItemModelRowsInserted(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsInserted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsInserted"); signal != nil {
@@ -732,7 +771,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsMoved() {
 }
 
 //export callbackQAbstractItemModelRowsMoved
-func callbackQAbstractItemModelRowsMoved(ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
+func callbackQAbstractItemModelRowsMoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsMoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsMoved"); signal != nil {
@@ -760,7 +799,7 @@ func (ptr *QAbstractItemModel) DisconnectRowsRemoved() {
 }
 
 //export callbackQAbstractItemModelRowsRemoved
-func callbackQAbstractItemModelRowsRemoved(ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
+func callbackQAbstractItemModelRowsRemoved(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, first C.int, last C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::rowsRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsRemoved"); signal != nil {
@@ -806,15 +845,30 @@ func (ptr *QAbstractItemModel) DisconnectSort() {
 }
 
 //export callbackQAbstractItemModelSort
-func callbackQAbstractItemModelSort(ptrName *C.char, column C.int, order C.int) bool {
+func callbackQAbstractItemModelSort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
 	defer qt.Recovering("callback QAbstractItemModel::sort")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
-		return true
+	} else {
+		NewQAbstractItemModelFromPointer(ptr).SortDefault(int(column), Qt__SortOrder(order))
 	}
-	return false
+}
 
+func (ptr *QAbstractItemModel) Sort(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QAbstractItemModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
+	}
+}
+
+func (ptr *QAbstractItemModel) SortDefault(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QAbstractItemModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
+	}
 }
 
 func (ptr *QAbstractItemModel) Span(index QModelIndex_ITF) *QSize {
@@ -881,15 +935,30 @@ func (ptr *QAbstractItemModel) DisconnectTimerEvent() {
 }
 
 //export callbackQAbstractItemModelTimerEvent
-func callbackQAbstractItemModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractItemModelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractItemModel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractItemModelFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractItemModel) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractItemModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAbstractItemModel) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractItemModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAbstractItemModel) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -911,15 +980,30 @@ func (ptr *QAbstractItemModel) DisconnectChildEvent() {
 }
 
 //export callbackQAbstractItemModelChildEvent
-func callbackQAbstractItemModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractItemModelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractItemModel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractItemModelFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractItemModel) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractItemModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAbstractItemModel) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractItemModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAbstractItemModel) ConnectCustomEvent(f func(event *QEvent)) {
@@ -941,13 +1025,28 @@ func (ptr *QAbstractItemModel) DisconnectCustomEvent() {
 }
 
 //export callbackQAbstractItemModelCustomEvent
-func callbackQAbstractItemModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractItemModelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractItemModel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractItemModelFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractItemModel) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QAbstractItemModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractItemModel) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QAbstractItemModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

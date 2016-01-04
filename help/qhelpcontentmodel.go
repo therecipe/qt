@@ -74,13 +74,21 @@ func (ptr *QHelpContentModel) DisconnectContentsCreated() {
 }
 
 //export callbackQHelpContentModelContentsCreated
-func callbackQHelpContentModelContentsCreated(ptrName *C.char) {
+func callbackQHelpContentModelContentsCreated(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentModel::contentsCreated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contentsCreated"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QHelpContentModel) ContentsCreated() {
+	defer qt.Recovering("QHelpContentModel::contentsCreated")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_ContentsCreated(ptr.Pointer())
+	}
 }
 
 func (ptr *QHelpContentModel) ConnectContentsCreationStarted(f func()) {
@@ -102,13 +110,21 @@ func (ptr *QHelpContentModel) DisconnectContentsCreationStarted() {
 }
 
 //export callbackQHelpContentModelContentsCreationStarted
-func callbackQHelpContentModelContentsCreationStarted(ptrName *C.char) {
+func callbackQHelpContentModelContentsCreationStarted(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentModel::contentsCreationStarted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contentsCreationStarted"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QHelpContentModel) ContentsCreationStarted() {
+	defer qt.Recovering("QHelpContentModel::contentsCreationStarted")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_ContentsCreationStarted(ptr.Pointer())
+	}
 }
 
 func (ptr *QHelpContentModel) CreateContents(customFilterName string) {
@@ -192,15 +208,30 @@ func (ptr *QHelpContentModel) DisconnectFetchMore() {
 }
 
 //export callbackQHelpContentModelFetchMore
-func callbackQHelpContentModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+func callbackQHelpContentModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpContentModel::fetchMore")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
-		return true
+	} else {
+		NewQHelpContentModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
 	}
-	return false
+}
 
+func (ptr *QHelpContentModel) FetchMore(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QHelpContentModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QHelpContentModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QHelpContentModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
 }
 
 func (ptr *QHelpContentModel) ConnectRevert(f func()) {
@@ -222,7 +253,7 @@ func (ptr *QHelpContentModel) DisconnectRevert() {
 }
 
 //export callbackQHelpContentModelRevert
-func callbackQHelpContentModelRevert(ptrName *C.char) bool {
+func callbackQHelpContentModelRevert(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QHelpContentModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
@@ -231,6 +262,22 @@ func callbackQHelpContentModelRevert(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QHelpContentModel) Revert() {
+	defer qt.Recovering("QHelpContentModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_Revert(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpContentModel) RevertDefault() {
+	defer qt.Recovering("QHelpContentModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_RevertDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QHelpContentModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {
@@ -252,15 +299,30 @@ func (ptr *QHelpContentModel) DisconnectSort() {
 }
 
 //export callbackQHelpContentModelSort
-func callbackQHelpContentModelSort(ptrName *C.char, column C.int, order C.int) bool {
+func callbackQHelpContentModelSort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
 	defer qt.Recovering("callback QHelpContentModel::sort")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
 		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
-		return true
+	} else {
+		NewQHelpContentModelFromPointer(ptr).SortDefault(int(column), core.Qt__SortOrder(order))
 	}
-	return false
+}
 
+func (ptr *QHelpContentModel) Sort(column int, order core.Qt__SortOrder) {
+	defer qt.Recovering("QHelpContentModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
+	}
+}
+
+func (ptr *QHelpContentModel) SortDefault(column int, order core.Qt__SortOrder) {
+	defer qt.Recovering("QHelpContentModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
+	}
 }
 
 func (ptr *QHelpContentModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -282,15 +344,30 @@ func (ptr *QHelpContentModel) DisconnectTimerEvent() {
 }
 
 //export callbackQHelpContentModelTimerEvent
-func callbackQHelpContentModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpContentModelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpContentModel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpContentModelFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpContentModel) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHelpContentModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QHelpContentModel) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHelpContentModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QHelpContentModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -312,15 +389,30 @@ func (ptr *QHelpContentModel) DisconnectChildEvent() {
 }
 
 //export callbackQHelpContentModelChildEvent
-func callbackQHelpContentModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpContentModelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpContentModel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpContentModelFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpContentModel) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHelpContentModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QHelpContentModel) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHelpContentModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QHelpContentModel) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -342,13 +434,28 @@ func (ptr *QHelpContentModel) DisconnectCustomEvent() {
 }
 
 //export callbackQHelpContentModelCustomEvent
-func callbackQHelpContentModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpContentModelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpContentModel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpContentModelFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpContentModel) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpContentModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QHelpContentModel) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpContentModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

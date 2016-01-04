@@ -122,15 +122,30 @@ func (ptr *QGraphicsScale) DisconnectApplyTo() {
 }
 
 //export callbackQGraphicsScaleApplyTo
-func callbackQGraphicsScaleApplyTo(ptrName *C.char, matrix unsafe.Pointer) bool {
+func callbackQGraphicsScaleApplyTo(ptr unsafe.Pointer, ptrName *C.char, matrix unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsScale::applyTo")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "applyTo"); signal != nil {
 		signal.(func(*gui.QMatrix4x4))(gui.NewQMatrix4x4FromPointer(matrix))
-		return true
+	} else {
+		NewQGraphicsScaleFromPointer(ptr).ApplyToDefault(gui.NewQMatrix4x4FromPointer(matrix))
 	}
-	return false
+}
 
+func (ptr *QGraphicsScale) ApplyTo(matrix gui.QMatrix4x4_ITF) {
+	defer qt.Recovering("QGraphicsScale::applyTo")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_ApplyTo(ptr.Pointer(), gui.PointerFromQMatrix4x4(matrix))
+	}
+}
+
+func (ptr *QGraphicsScale) ApplyToDefault(matrix gui.QMatrix4x4_ITF) {
+	defer qt.Recovering("QGraphicsScale::applyTo")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_ApplyToDefault(ptr.Pointer(), gui.PointerFromQMatrix4x4(matrix))
+	}
 }
 
 func (ptr *QGraphicsScale) ConnectOriginChanged(f func()) {
@@ -152,13 +167,21 @@ func (ptr *QGraphicsScale) DisconnectOriginChanged() {
 }
 
 //export callbackQGraphicsScaleOriginChanged
-func callbackQGraphicsScaleOriginChanged(ptrName *C.char) {
+func callbackQGraphicsScaleOriginChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsScale::originChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "originChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsScale) OriginChanged() {
+	defer qt.Recovering("QGraphicsScale::originChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_OriginChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsScale) ConnectScaleChanged(f func()) {
@@ -180,13 +203,21 @@ func (ptr *QGraphicsScale) DisconnectScaleChanged() {
 }
 
 //export callbackQGraphicsScaleScaleChanged
-func callbackQGraphicsScaleScaleChanged(ptrName *C.char) {
+func callbackQGraphicsScaleScaleChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsScale::scaleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scaleChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsScale) ScaleChanged() {
+	defer qt.Recovering("QGraphicsScale::scaleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_ScaleChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsScale) ConnectXScaleChanged(f func()) {
@@ -208,13 +239,21 @@ func (ptr *QGraphicsScale) DisconnectXScaleChanged() {
 }
 
 //export callbackQGraphicsScaleXScaleChanged
-func callbackQGraphicsScaleXScaleChanged(ptrName *C.char) {
+func callbackQGraphicsScaleXScaleChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsScale::xScaleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "xScaleChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsScale) XScaleChanged() {
+	defer qt.Recovering("QGraphicsScale::xScaleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_XScaleChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsScale) ConnectYScaleChanged(f func()) {
@@ -236,13 +275,21 @@ func (ptr *QGraphicsScale) DisconnectYScaleChanged() {
 }
 
 //export callbackQGraphicsScaleYScaleChanged
-func callbackQGraphicsScaleYScaleChanged(ptrName *C.char) {
+func callbackQGraphicsScaleYScaleChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsScale::yScaleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "yScaleChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsScale) YScaleChanged() {
+	defer qt.Recovering("QGraphicsScale::yScaleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_YScaleChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsScale) ConnectZScaleChanged(f func()) {
@@ -264,13 +311,21 @@ func (ptr *QGraphicsScale) DisconnectZScaleChanged() {
 }
 
 //export callbackQGraphicsScaleZScaleChanged
-func callbackQGraphicsScaleZScaleChanged(ptrName *C.char) {
+func callbackQGraphicsScaleZScaleChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsScale::zScaleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "zScaleChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QGraphicsScale) ZScaleChanged() {
+	defer qt.Recovering("QGraphicsScale::zScaleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_ZScaleChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsScale) DestroyQGraphicsScale() {
@@ -301,15 +356,30 @@ func (ptr *QGraphicsScale) DisconnectTimerEvent() {
 }
 
 //export callbackQGraphicsScaleTimerEvent
-func callbackQGraphicsScaleTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsScaleTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsScale::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsScaleFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsScale) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsScale::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGraphicsScale) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsScale::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGraphicsScale) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -331,15 +401,30 @@ func (ptr *QGraphicsScale) DisconnectChildEvent() {
 }
 
 //export callbackQGraphicsScaleChildEvent
-func callbackQGraphicsScaleChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsScaleChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsScale::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsScaleFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsScale) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsScale::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGraphicsScale) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsScale::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGraphicsScale) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -361,13 +446,28 @@ func (ptr *QGraphicsScale) DisconnectCustomEvent() {
 }
 
 //export callbackQGraphicsScaleCustomEvent
-func callbackQGraphicsScaleCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsScaleCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsScale::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsScaleFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsScale) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsScale::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGraphicsScale) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsScale::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsScale_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -49,6 +49,15 @@ func NewQKeyEventTransition(sourceState core.QState_ITF) *QKeyEventTransition {
 	return NewQKeyEventTransitionFromPointer(C.QKeyEventTransition_NewQKeyEventTransition(core.PointerFromQState(sourceState)))
 }
 
+func (ptr *QKeyEventTransition) EventTest(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QKeyEventTransition::eventTest")
+
+	if ptr.Pointer() != nil {
+		return C.QKeyEventTransition_EventTest(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
 func (ptr *QKeyEventTransition) Key() int {
 	defer qt.Recovering("QKeyEventTransition::key")
 
@@ -86,15 +95,30 @@ func (ptr *QKeyEventTransition) DisconnectOnTransition() {
 }
 
 //export callbackQKeyEventTransitionOnTransition
-func callbackQKeyEventTransitionOnTransition(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQKeyEventTransitionOnTransition(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QKeyEventTransition::onTransition")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "onTransition"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQKeyEventTransitionFromPointer(ptr).OnTransitionDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QKeyEventTransition) OnTransition(event core.QEvent_ITF) {
+	defer qt.Recovering("QKeyEventTransition::onTransition")
+
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition_OnTransition(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QKeyEventTransition) OnTransitionDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QKeyEventTransition::onTransition")
+
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition_OnTransitionDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QKeyEventTransition) SetKey(key int) {
@@ -141,15 +165,30 @@ func (ptr *QKeyEventTransition) DisconnectTimerEvent() {
 }
 
 //export callbackQKeyEventTransitionTimerEvent
-func callbackQKeyEventTransitionTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQKeyEventTransitionTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QKeyEventTransition::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQKeyEventTransitionFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QKeyEventTransition) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QKeyEventTransition::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QKeyEventTransition) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QKeyEventTransition::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QKeyEventTransition) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -171,15 +210,30 @@ func (ptr *QKeyEventTransition) DisconnectChildEvent() {
 }
 
 //export callbackQKeyEventTransitionChildEvent
-func callbackQKeyEventTransitionChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQKeyEventTransitionChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QKeyEventTransition::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQKeyEventTransitionFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QKeyEventTransition) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QKeyEventTransition::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QKeyEventTransition) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QKeyEventTransition::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QKeyEventTransition) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -201,13 +255,28 @@ func (ptr *QKeyEventTransition) DisconnectCustomEvent() {
 }
 
 //export callbackQKeyEventTransitionCustomEvent
-func callbackQKeyEventTransitionCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQKeyEventTransitionCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QKeyEventTransition::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQKeyEventTransitionFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QKeyEventTransition) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QKeyEventTransition::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QKeyEventTransition) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QKeyEventTransition::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

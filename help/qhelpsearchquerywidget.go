@@ -89,13 +89,21 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSearch() {
 }
 
 //export callbackQHelpSearchQueryWidgetSearch
-func callbackQHelpSearchQueryWidgetSearch(ptrName *C.char) {
+func callbackQHelpSearchQueryWidgetSearch(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::search")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "search"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QHelpSearchQueryWidget) Search() {
+	defer qt.Recovering("QHelpSearchQueryWidget::search")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_Search(ptr.Pointer())
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidget() {
@@ -126,15 +134,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectActionEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetActionEvent
-func callbackQHelpSearchQueryWidgetActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -156,15 +179,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDragEnterEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetDragEnterEvent
-func callbackQHelpSearchQueryWidgetDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -186,15 +224,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetDragLeaveEvent
-func callbackQHelpSearchQueryWidgetDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -216,15 +269,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDragMoveEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetDragMoveEvent
-func callbackQHelpSearchQueryWidgetDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -246,15 +314,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDropEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetDropEvent
-func callbackQHelpSearchQueryWidgetDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -276,15 +359,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectEnterEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetEnterEvent
-func callbackQHelpSearchQueryWidgetEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -306,15 +404,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectFocusOutEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetFocusOutEvent
-func callbackQHelpSearchQueryWidgetFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -336,15 +449,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectHideEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetHideEvent
-func callbackQHelpSearchQueryWidgetHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -366,15 +494,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectLeaveEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetLeaveEvent
-func callbackQHelpSearchQueryWidgetLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -396,15 +539,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMoveEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetMoveEvent
-func callbackQHelpSearchQueryWidgetMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -426,15 +584,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectPaintEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetPaintEvent
-func callbackQHelpSearchQueryWidgetPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetVisible(f func(visible bool)) {
@@ -456,7 +629,7 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSetVisible() {
 }
 
 //export callbackQHelpSearchQueryWidgetSetVisible
-func callbackQHelpSearchQueryWidgetSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQHelpSearchQueryWidgetSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -465,6 +638,22 @@ func callbackQHelpSearchQueryWidgetSetVisible(ptrName *C.char, visible C.int) bo
 	}
 	return false
 
+}
+
+func (ptr *QHelpSearchQueryWidget) SetVisible(visible bool) {
+	defer qt.Recovering("QHelpSearchQueryWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QHelpSearchQueryWidget::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -486,15 +675,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectShowEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetShowEvent
-func callbackQHelpSearchQueryWidgetShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -516,15 +720,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectCloseEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetCloseEvent
-func callbackQHelpSearchQueryWidgetCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -546,15 +765,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectContextMenuEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetContextMenuEvent
-func callbackQHelpSearchQueryWidgetContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -576,15 +810,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectInitPainter() {
 }
 
 //export callbackQHelpSearchQueryWidgetInitPainter
-func callbackQHelpSearchQueryWidgetInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -606,15 +855,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectInputMethodEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetInputMethodEvent
-func callbackQHelpSearchQueryWidgetInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -636,15 +900,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectKeyPressEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetKeyPressEvent
-func callbackQHelpSearchQueryWidgetKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -666,15 +945,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetKeyReleaseEvent
-func callbackQHelpSearchQueryWidgetKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -696,15 +990,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetMouseDoubleClickEvent
-func callbackQHelpSearchQueryWidgetMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -726,15 +1035,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetMouseMoveEvent
-func callbackQHelpSearchQueryWidgetMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -756,15 +1080,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMousePressEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetMousePressEvent
-func callbackQHelpSearchQueryWidgetMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -786,15 +1125,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetMouseReleaseEvent
-func callbackQHelpSearchQueryWidgetMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -816,15 +1170,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectResizeEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetResizeEvent
-func callbackQHelpSearchQueryWidgetResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -846,15 +1215,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectTabletEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetTabletEvent
-func callbackQHelpSearchQueryWidgetTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -876,15 +1260,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectWheelEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetWheelEvent
-func callbackQHelpSearchQueryWidgetWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -906,15 +1305,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectTimerEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetTimerEvent
-func callbackQHelpSearchQueryWidgetTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -936,15 +1350,30 @@ func (ptr *QHelpSearchQueryWidget) DisconnectChildEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetChildEvent
-func callbackQHelpSearchQueryWidgetChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -966,13 +1395,28 @@ func (ptr *QHelpSearchQueryWidget) DisconnectCustomEvent() {
 }
 
 //export callbackQHelpSearchQueryWidgetCustomEvent
-func callbackQHelpSearchQueryWidgetCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHelpSearchQueryWidgetCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHelpSearchQueryWidget) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QHelpSearchQueryWidget::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

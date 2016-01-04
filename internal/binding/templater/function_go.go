@@ -23,11 +23,24 @@ func goFunction(f *parser.Function) string {
 			tmp += fmt.Sprintf("%v{\n%v\n}\n\n", goFunctionHeader(f), goFunctionBody(f))
 		}
 		f.SignalMode = ""
-		return tmp
-	}
 
-	if strings.Contains(f.Virtual, "impure") && f.Access == "protected" {
-		return ""
+		var isPrivate bool
+		if f.Meta == "signal" {
+			isPrivate = converter.IsPrivateSignal(f)
+		}
+
+		var tmpMeta = f.Meta
+		f.Meta = "plain"
+		if !isPrivate {
+			tmp += fmt.Sprintf("%v{\n%v\n}\n\n", goFunctionHeader(f), goFunctionBody(f))
+			if tmpMeta != "signal" {
+				var tmpTmp = strings.Replace(fmt.Sprintf("%v{\n%v\n}\n\n", goFunctionHeader(f), goFunctionBody(f)), "_"+strings.Title(f.Name)+"(", "_"+strings.Title(f.Name)+"Default(", -1)
+				tmp += strings.Replace(tmpTmp, ")"+strings.Title(f.Name)+"(", ")"+strings.Title(f.Name)+"Default(", -1)
+			}
+		}
+		f.Meta = tmpMeta
+
+		return tmp
 	}
 
 	if isGeneric(f) {
@@ -52,7 +65,11 @@ func goFunctionHeader(f *parser.Function) string {
 
 func goInterface(f *parser.Function) string {
 	if f.Virtual == "impure" && f.SignalMode == "callback" {
-		return fmt.Sprintf("%v(%v)%v", converter.GoHeaderName(f), converter.GoHeaderInput(f), "bool")
+		if f.Meta == "slot" {
+			return fmt.Sprintf("%v(%v)%v", converter.GoHeaderName(f), converter.GoHeaderInput(f), "bool")
+		} else {
+			return fmt.Sprintf("%v(%v)", converter.GoHeaderName(f), converter.GoHeaderInput(f))
+		}
 	}
 	return fmt.Sprintf("%v(%v)%v", converter.GoHeaderName(f), converter.GoHeaderInput(f), converter.GoHeaderOutput(f))
 }
@@ -93,7 +110,11 @@ func goFunctionBody(f *parser.Function) (o string) {
 		o += fmt.Sprintf("\tsignal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
 
 		if f.Virtual == "impure" {
-			o += fmt.Sprintf("\treturn true\n}\nreturn false\n")
+			if f.Meta == "slot" {
+				o += fmt.Sprintf("\treturn true\n}\nreturn false\n")
+			} else {
+				o += fmt.Sprintf("} else {\n\tNew%vFromPointer(ptr).%vDefault(%v)\n}", f.Class(), strings.Title(f.Name), converter.GoBodyInputSignalValues(f))
+			}
 		} else {
 			o += "}\n"
 		}

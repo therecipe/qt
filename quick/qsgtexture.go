@@ -220,15 +220,30 @@ func (ptr *QSGTexture) DisconnectTimerEvent() {
 }
 
 //export callbackQSGTextureTimerEvent
-func callbackQSGTextureTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSGTextureTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSGTexture::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSGTextureFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSGTexture) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSGTexture::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGTexture_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSGTexture) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSGTexture::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGTexture_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSGTexture) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -250,15 +265,30 @@ func (ptr *QSGTexture) DisconnectChildEvent() {
 }
 
 //export callbackQSGTextureChildEvent
-func callbackQSGTextureChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSGTextureChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSGTexture::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSGTextureFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSGTexture) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSGTexture::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGTexture_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSGTexture) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSGTexture::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGTexture_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSGTexture) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -280,13 +310,28 @@ func (ptr *QSGTexture) DisconnectCustomEvent() {
 }
 
 //export callbackQSGTextureCustomEvent
-func callbackQSGTextureCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSGTextureCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSGTexture::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSGTextureFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSGTexture) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSGTexture::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGTexture_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSGTexture) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSGTexture::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGTexture_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

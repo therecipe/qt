@@ -94,15 +94,30 @@ func (ptr *QGraphicsVideoItem) DisconnectPaint() {
 }
 
 //export callbackQGraphicsVideoItemPaint
-func callbackQGraphicsVideoItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQGraphicsVideoItemPaint(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsVideoItem::paint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paint"); signal != nil {
 		signal.(func(*gui.QPainter, *widgets.QStyleOptionGraphicsItem, *widgets.QWidget))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionGraphicsItemFromPointer(option), widgets.NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).PaintDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionGraphicsItemFromPointer(option), widgets.NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QGraphicsVideoItem) Paint(painter gui.QPainter_ITF, option widgets.QStyleOptionGraphicsItem_ITF, widget widgets.QWidget_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionGraphicsItem(option), widgets.PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) PaintDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionGraphicsItem_ITF, widget widgets.QWidget_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_PaintDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionGraphicsItem(option), widgets.PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) SetAspectRatioMode(mode core.Qt__AspectRatioMode) {
@@ -157,15 +172,30 @@ func (ptr *QGraphicsVideoItem) DisconnectTimerEvent() {
 }
 
 //export callbackQGraphicsVideoItemTimerEvent
-func callbackQGraphicsVideoItemTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsVideoItemTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsVideoItem::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsVideoItem) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -187,15 +217,30 @@ func (ptr *QGraphicsVideoItem) DisconnectChildEvent() {
 }
 
 //export callbackQGraphicsVideoItemChildEvent
-func callbackQGraphicsVideoItemChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsVideoItemChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsVideoItem::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsVideoItem) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -217,13 +262,28 @@ func (ptr *QGraphicsVideoItem) DisconnectCustomEvent() {
 }
 
 //export callbackQGraphicsVideoItemCustomEvent
-func callbackQGraphicsVideoItemCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsVideoItemCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsVideoItem::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsVideoItem) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

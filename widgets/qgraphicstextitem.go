@@ -99,15 +99,30 @@ func (ptr *QGraphicsTextItem) DisconnectContextMenuEvent() {
 }
 
 //export callbackQGraphicsTextItemContextMenuEvent
-func callbackQGraphicsTextItemContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneContextMenuEvent))(NewQGraphicsSceneContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).ContextMenuEventDefault(NewQGraphicsSceneContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) ContextMenuEvent(event QGraphicsSceneContextMenuEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_ContextMenuEvent(ptr.Pointer(), PointerFromQGraphicsSceneContextMenuEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) ContextMenuEventDefault(event QGraphicsSceneContextMenuEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_ContextMenuEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneContextMenuEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) DefaultTextColor() *gui.QColor {
@@ -147,15 +162,30 @@ func (ptr *QGraphicsTextItem) DisconnectDragEnterEvent() {
 }
 
 //export callbackQGraphicsTextItemDragEnterEvent
-func callbackQGraphicsTextItemDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).DragEnterEventDefault(NewQGraphicsSceneDragDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) DragEnterEvent(event QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_DragEnterEvent(ptr.Pointer(), PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) DragEnterEventDefault(event QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_DragEnterEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneDragDropEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectDragLeaveEvent(f func(event *QGraphicsSceneDragDropEvent)) {
@@ -177,15 +207,30 @@ func (ptr *QGraphicsTextItem) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQGraphicsTextItemDragLeaveEvent
-func callbackQGraphicsTextItemDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).DragLeaveEventDefault(NewQGraphicsSceneDragDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) DragLeaveEvent(event QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_DragLeaveEvent(ptr.Pointer(), PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) DragLeaveEventDefault(event QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_DragLeaveEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneDragDropEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectDragMoveEvent(f func(event *QGraphicsSceneDragDropEvent)) {
@@ -207,15 +252,30 @@ func (ptr *QGraphicsTextItem) DisconnectDragMoveEvent() {
 }
 
 //export callbackQGraphicsTextItemDragMoveEvent
-func callbackQGraphicsTextItemDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).DragMoveEventDefault(NewQGraphicsSceneDragDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) DragMoveEvent(event QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_DragMoveEvent(ptr.Pointer(), PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) DragMoveEventDefault(event QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_DragMoveEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneDragDropEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectDropEvent(f func(event *QGraphicsSceneDragDropEvent)) {
@@ -237,15 +297,30 @@ func (ptr *QGraphicsTextItem) DisconnectDropEvent() {
 }
 
 //export callbackQGraphicsTextItemDropEvent
-func callbackQGraphicsTextItemDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneDragDropEvent))(NewQGraphicsSceneDragDropEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).DropEventDefault(NewQGraphicsSceneDragDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) DropEvent(event QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_DropEvent(ptr.Pointer(), PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) DropEventDefault(event QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_DropEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneDragDropEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -267,15 +342,30 @@ func (ptr *QGraphicsTextItem) DisconnectFocusInEvent() {
 }
 
 //export callbackQGraphicsTextItemFocusInEvent
-func callbackQGraphicsTextItemFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -297,15 +387,30 @@ func (ptr *QGraphicsTextItem) DisconnectFocusOutEvent() {
 }
 
 //export callbackQGraphicsTextItemFocusOutEvent
-func callbackQGraphicsTextItemFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectHoverEnterEvent(f func(event *QGraphicsSceneHoverEvent)) {
@@ -327,15 +432,30 @@ func (ptr *QGraphicsTextItem) DisconnectHoverEnterEvent() {
 }
 
 //export callbackQGraphicsTextItemHoverEnterEvent
-func callbackQGraphicsTextItemHoverEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemHoverEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::hoverEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hoverEnterEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneHoverEvent))(NewQGraphicsSceneHoverEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).HoverEnterEventDefault(NewQGraphicsSceneHoverEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) HoverEnterEvent(event QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_HoverEnterEvent(ptr.Pointer(), PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) HoverEnterEventDefault(event QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_HoverEnterEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneHoverEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectHoverLeaveEvent(f func(event *QGraphicsSceneHoverEvent)) {
@@ -357,15 +477,30 @@ func (ptr *QGraphicsTextItem) DisconnectHoverLeaveEvent() {
 }
 
 //export callbackQGraphicsTextItemHoverLeaveEvent
-func callbackQGraphicsTextItemHoverLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemHoverLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::hoverLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hoverLeaveEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneHoverEvent))(NewQGraphicsSceneHoverEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).HoverLeaveEventDefault(NewQGraphicsSceneHoverEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) HoverLeaveEvent(event QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_HoverLeaveEvent(ptr.Pointer(), PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) HoverLeaveEventDefault(event QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_HoverLeaveEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneHoverEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectHoverMoveEvent(f func(event *QGraphicsSceneHoverEvent)) {
@@ -387,15 +522,30 @@ func (ptr *QGraphicsTextItem) DisconnectHoverMoveEvent() {
 }
 
 //export callbackQGraphicsTextItemHoverMoveEvent
-func callbackQGraphicsTextItemHoverMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemHoverMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::hoverMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hoverMoveEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneHoverEvent))(NewQGraphicsSceneHoverEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).HoverMoveEventDefault(NewQGraphicsSceneHoverEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) HoverMoveEvent(event QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_HoverMoveEvent(ptr.Pointer(), PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) HoverMoveEventDefault(event QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_HoverMoveEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneHoverEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -417,15 +567,39 @@ func (ptr *QGraphicsTextItem) DisconnectInputMethodEvent() {
 }
 
 //export callbackQGraphicsTextItemInputMethodEvent
-func callbackQGraphicsTextItemInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
+	defer qt.Recovering("QGraphicsTextItem::inputMethodQuery")
+
+	if ptr.Pointer() != nil {
+		return core.NewQVariantFromPointer(C.QGraphicsTextItem_InputMethodQuery(ptr.Pointer(), C.int(query)))
+	}
+	return nil
 }
 
 func (ptr *QGraphicsTextItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
@@ -456,15 +630,30 @@ func (ptr *QGraphicsTextItem) DisconnectKeyPressEvent() {
 }
 
 //export callbackQGraphicsTextItemKeyPressEvent
-func callbackQGraphicsTextItemKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -486,15 +675,30 @@ func (ptr *QGraphicsTextItem) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQGraphicsTextItemKeyReleaseEvent
-func callbackQGraphicsTextItemKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectLinkActivated(f func(link string)) {
@@ -516,13 +720,21 @@ func (ptr *QGraphicsTextItem) DisconnectLinkActivated() {
 }
 
 //export callbackQGraphicsTextItemLinkActivated
-func callbackQGraphicsTextItemLinkActivated(ptrName *C.char, link *C.char) {
+func callbackQGraphicsTextItemLinkActivated(ptr unsafe.Pointer, ptrName *C.char, link *C.char) {
 	defer qt.Recovering("callback QGraphicsTextItem::linkActivated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "linkActivated"); signal != nil {
 		signal.(func(string))(C.GoString(link))
 	}
 
+}
+
+func (ptr *QGraphicsTextItem) LinkActivated(link string) {
+	defer qt.Recovering("QGraphicsTextItem::linkActivated")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_LinkActivated(ptr.Pointer(), C.CString(link))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectLinkHovered(f func(link string)) {
@@ -544,13 +756,21 @@ func (ptr *QGraphicsTextItem) DisconnectLinkHovered() {
 }
 
 //export callbackQGraphicsTextItemLinkHovered
-func callbackQGraphicsTextItemLinkHovered(ptrName *C.char, link *C.char) {
+func callbackQGraphicsTextItemLinkHovered(ptr unsafe.Pointer, ptrName *C.char, link *C.char) {
 	defer qt.Recovering("callback QGraphicsTextItem::linkHovered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "linkHovered"); signal != nil {
 		signal.(func(string))(C.GoString(link))
 	}
 
+}
+
+func (ptr *QGraphicsTextItem) LinkHovered(link string) {
+	defer qt.Recovering("QGraphicsTextItem::linkHovered")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_LinkHovered(ptr.Pointer(), C.CString(link))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectMouseDoubleClickEvent(f func(event *QGraphicsSceneMouseEvent)) {
@@ -572,15 +792,30 @@ func (ptr *QGraphicsTextItem) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQGraphicsTextItemMouseDoubleClickEvent
-func callbackQGraphicsTextItemMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).MouseDoubleClickEventDefault(NewQGraphicsSceneMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) MouseDoubleClickEvent(event QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_MouseDoubleClickEvent(ptr.Pointer(), PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) MouseDoubleClickEventDefault(event QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_MouseDoubleClickEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneMouseEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectMouseMoveEvent(f func(event *QGraphicsSceneMouseEvent)) {
@@ -602,15 +837,30 @@ func (ptr *QGraphicsTextItem) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQGraphicsTextItemMouseMoveEvent
-func callbackQGraphicsTextItemMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).MouseMoveEventDefault(NewQGraphicsSceneMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) MouseMoveEvent(event QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_MouseMoveEvent(ptr.Pointer(), PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) MouseMoveEventDefault(event QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_MouseMoveEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneMouseEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectMousePressEvent(f func(event *QGraphicsSceneMouseEvent)) {
@@ -632,15 +882,30 @@ func (ptr *QGraphicsTextItem) DisconnectMousePressEvent() {
 }
 
 //export callbackQGraphicsTextItemMousePressEvent
-func callbackQGraphicsTextItemMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).MousePressEventDefault(NewQGraphicsSceneMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) MousePressEvent(event QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_MousePressEvent(ptr.Pointer(), PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) MousePressEventDefault(event QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_MousePressEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneMouseEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectMouseReleaseEvent(f func(event *QGraphicsSceneMouseEvent)) {
@@ -662,15 +927,30 @@ func (ptr *QGraphicsTextItem) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQGraphicsTextItemMouseReleaseEvent
-func callbackQGraphicsTextItemMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*QGraphicsSceneMouseEvent))(NewQGraphicsSceneMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).MouseReleaseEventDefault(NewQGraphicsSceneMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) MouseReleaseEvent(event QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_MouseReleaseEvent(ptr.Pointer(), PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) MouseReleaseEventDefault(event QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_MouseReleaseEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneMouseEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectPaint(f func(painter *gui.QPainter, option *QStyleOptionGraphicsItem, widget *QWidget)) {
@@ -692,15 +972,39 @@ func (ptr *QGraphicsTextItem) DisconnectPaint() {
 }
 
 //export callbackQGraphicsTextItemPaint
-func callbackQGraphicsTextItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQGraphicsTextItemPaint(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::paint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paint"); signal != nil {
 		signal.(func(*gui.QPainter, *QStyleOptionGraphicsItem, *QWidget))(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).PaintDefault(gui.NewQPainterFromPointer(painter), NewQStyleOptionGraphicsItemFromPointer(option), NewQWidgetFromPointer(widget))
+	}
+}
+
+func (ptr *QGraphicsTextItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QGraphicsTextItem) PaintDefault(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_PaintDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QGraphicsTextItem) SceneEvent(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QGraphicsTextItem::sceneEvent")
+
+	if ptr.Pointer() != nil {
+		return C.QGraphicsTextItem_SceneEvent(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
 	return false
-
 }
 
 func (ptr *QGraphicsTextItem) SetDefaultTextColor(col gui.QColor_ITF) {
@@ -849,15 +1153,30 @@ func (ptr *QGraphicsTextItem) DisconnectTimerEvent() {
 }
 
 //export callbackQGraphicsTextItemTimerEvent
-func callbackQGraphicsTextItemTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -879,15 +1198,30 @@ func (ptr *QGraphicsTextItem) DisconnectChildEvent() {
 }
 
 //export callbackQGraphicsTextItemChildEvent
-func callbackQGraphicsTextItemChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGraphicsTextItem) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -909,13 +1243,28 @@ func (ptr *QGraphicsTextItem) DisconnectCustomEvent() {
 }
 
 //export callbackQGraphicsTextItemCustomEvent
-func callbackQGraphicsTextItemCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsTextItemCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsTextItem::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsTextItemFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsTextItem) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGraphicsTextItem) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsTextItem::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsTextItem_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

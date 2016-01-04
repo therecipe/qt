@@ -82,13 +82,21 @@ func (ptr *QDBusConnectionInterface) DisconnectServiceRegistered() {
 }
 
 //export callbackQDBusConnectionInterfaceServiceRegistered
-func callbackQDBusConnectionInterfaceServiceRegistered(ptrName *C.char, serviceName *C.char) {
+func callbackQDBusConnectionInterfaceServiceRegistered(ptr unsafe.Pointer, ptrName *C.char, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusConnectionInterface::serviceRegistered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "serviceRegistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 
+}
+
+func (ptr *QDBusConnectionInterface) ServiceRegistered(serviceName string) {
+	defer qt.Recovering("QDBusConnectionInterface::serviceRegistered")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_ServiceRegistered(ptr.Pointer(), C.CString(serviceName))
+	}
 }
 
 func (ptr *QDBusConnectionInterface) ConnectServiceUnregistered(f func(serviceName string)) {
@@ -110,13 +118,21 @@ func (ptr *QDBusConnectionInterface) DisconnectServiceUnregistered() {
 }
 
 //export callbackQDBusConnectionInterfaceServiceUnregistered
-func callbackQDBusConnectionInterfaceServiceUnregistered(ptrName *C.char, serviceName *C.char) {
+func callbackQDBusConnectionInterfaceServiceUnregistered(ptr unsafe.Pointer, ptrName *C.char, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusConnectionInterface::serviceUnregistered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "serviceUnregistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 
+}
+
+func (ptr *QDBusConnectionInterface) ServiceUnregistered(serviceName string) {
+	defer qt.Recovering("QDBusConnectionInterface::serviceUnregistered")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_ServiceUnregistered(ptr.Pointer(), C.CString(serviceName))
+	}
 }
 
 func (ptr *QDBusConnectionInterface) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -138,15 +154,30 @@ func (ptr *QDBusConnectionInterface) DisconnectTimerEvent() {
 }
 
 //export callbackQDBusConnectionInterfaceTimerEvent
-func callbackQDBusConnectionInterfaceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusConnectionInterfaceTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusConnectionInterface::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusConnectionInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusConnectionInterface) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDBusConnectionInterface::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDBusConnectionInterface) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDBusConnectionInterface::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDBusConnectionInterface) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -168,15 +199,30 @@ func (ptr *QDBusConnectionInterface) DisconnectChildEvent() {
 }
 
 //export callbackQDBusConnectionInterfaceChildEvent
-func callbackQDBusConnectionInterfaceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusConnectionInterfaceChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusConnectionInterface::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusConnectionInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusConnectionInterface) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDBusConnectionInterface::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDBusConnectionInterface) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDBusConnectionInterface::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDBusConnectionInterface) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -198,13 +244,28 @@ func (ptr *QDBusConnectionInterface) DisconnectCustomEvent() {
 }
 
 //export callbackQDBusConnectionInterfaceCustomEvent
-func callbackQDBusConnectionInterfaceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusConnectionInterfaceCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusConnectionInterface::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusConnectionInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusConnectionInterface) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDBusConnectionInterface::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDBusConnectionInterface) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDBusConnectionInterface::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

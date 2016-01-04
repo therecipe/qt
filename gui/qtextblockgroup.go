@@ -56,15 +56,30 @@ func (ptr *QTextBlockGroup) DisconnectTimerEvent() {
 }
 
 //export callbackQTextBlockGroupTimerEvent
-func callbackQTextBlockGroupTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBlockGroupTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBlockGroup::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBlockGroupFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBlockGroup) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextBlockGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBlockGroup_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTextBlockGroup) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextBlockGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBlockGroup_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTextBlockGroup) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -86,15 +101,30 @@ func (ptr *QTextBlockGroup) DisconnectChildEvent() {
 }
 
 //export callbackQTextBlockGroupChildEvent
-func callbackQTextBlockGroupChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBlockGroupChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBlockGroup::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBlockGroupFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBlockGroup) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextBlockGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBlockGroup_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTextBlockGroup) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextBlockGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBlockGroup_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTextBlockGroup) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -116,13 +146,28 @@ func (ptr *QTextBlockGroup) DisconnectCustomEvent() {
 }
 
 //export callbackQTextBlockGroupCustomEvent
-func callbackQTextBlockGroupCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextBlockGroupCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextBlockGroup::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTextBlockGroupFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextBlockGroup) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextBlockGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBlockGroup_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTextBlockGroup) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextBlockGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextBlockGroup_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

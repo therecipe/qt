@@ -74,15 +74,30 @@ func (ptr *QStylePlugin) DisconnectTimerEvent() {
 }
 
 //export callbackQStylePluginTimerEvent
-func callbackQStylePluginTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStylePluginTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStylePlugin::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQStylePluginFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStylePlugin) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStylePlugin::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStylePlugin_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QStylePlugin) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStylePlugin::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStylePlugin_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QStylePlugin) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -104,15 +119,30 @@ func (ptr *QStylePlugin) DisconnectChildEvent() {
 }
 
 //export callbackQStylePluginChildEvent
-func callbackQStylePluginChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStylePluginChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStylePlugin::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQStylePluginFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStylePlugin) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QStylePlugin::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStylePlugin_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QStylePlugin) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QStylePlugin::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStylePlugin_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QStylePlugin) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -134,13 +164,28 @@ func (ptr *QStylePlugin) DisconnectCustomEvent() {
 }
 
 //export callbackQStylePluginCustomEvent
-func callbackQStylePluginCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStylePluginCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStylePlugin::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQStylePluginFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStylePlugin) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QStylePlugin::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStylePlugin_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QStylePlugin) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QStylePlugin::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStylePlugin_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

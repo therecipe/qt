@@ -216,15 +216,30 @@ func (ptr *QSGNode) DisconnectPreprocess() {
 }
 
 //export callbackQSGNodePreprocess
-func callbackQSGNodePreprocess(ptrName *C.char) bool {
+func callbackQSGNodePreprocess(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGNode::preprocess")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGNodeFromPointer(ptr).PreprocessDefault()
 	}
-	return false
+}
 
+func (ptr *QSGNode) Preprocess() {
+	defer qt.Recovering("QSGNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGNode_Preprocess(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGNode) PreprocessDefault() {
+	defer qt.Recovering("QSGNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGNode_PreprocessDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QSGNode) PreviousSibling() *QSGNode {

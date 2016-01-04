@@ -66,13 +66,21 @@ func (ptr *QGeoRoutingManagerEngine) DisconnectError() {
 }
 
 //export callbackQGeoRoutingManagerEngineError
-func callbackQGeoRoutingManagerEngineError(ptrName *C.char, reply unsafe.Pointer, error C.int, errorString *C.char) {
+func callbackQGeoRoutingManagerEngineError(ptr unsafe.Pointer, ptrName *C.char, reply unsafe.Pointer, error C.int, errorString *C.char) {
 	defer qt.Recovering("callback QGeoRoutingManagerEngine::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error"); signal != nil {
 		signal.(func(*QGeoRouteReply, QGeoRouteReply__Error, string))(NewQGeoRouteReplyFromPointer(reply), QGeoRouteReply__Error(error), C.GoString(errorString))
 	}
 
+}
+
+func (ptr *QGeoRoutingManagerEngine) Error(reply QGeoRouteReply_ITF, error QGeoRouteReply__Error, errorString string) {
+	defer qt.Recovering("QGeoRoutingManagerEngine::error")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRoutingManagerEngine_Error(ptr.Pointer(), PointerFromQGeoRouteReply(reply), C.int(error), C.CString(errorString))
+	}
 }
 
 func (ptr *QGeoRoutingManagerEngine) ConnectFinished(f func(reply *QGeoRouteReply)) {
@@ -94,13 +102,21 @@ func (ptr *QGeoRoutingManagerEngine) DisconnectFinished() {
 }
 
 //export callbackQGeoRoutingManagerEngineFinished
-func callbackQGeoRoutingManagerEngineFinished(ptrName *C.char, reply unsafe.Pointer) {
+func callbackQGeoRoutingManagerEngineFinished(ptr unsafe.Pointer, ptrName *C.char, reply unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoRoutingManagerEngine::finished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(*QGeoRouteReply))(NewQGeoRouteReplyFromPointer(reply))
 	}
 
+}
+
+func (ptr *QGeoRoutingManagerEngine) Finished(reply QGeoRouteReply_ITF) {
+	defer qt.Recovering("QGeoRoutingManagerEngine::finished")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRoutingManagerEngine_Finished(ptr.Pointer(), PointerFromQGeoRouteReply(reply))
+	}
 }
 
 func (ptr *QGeoRoutingManagerEngine) ManagerName() string {
@@ -237,15 +253,30 @@ func (ptr *QGeoRoutingManagerEngine) DisconnectTimerEvent() {
 }
 
 //export callbackQGeoRoutingManagerEngineTimerEvent
-func callbackQGeoRoutingManagerEngineTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGeoRoutingManagerEngineTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoRoutingManagerEngine::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGeoRoutingManagerEngineFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGeoRoutingManagerEngine) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGeoRoutingManagerEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRoutingManagerEngine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGeoRoutingManagerEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGeoRoutingManagerEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRoutingManagerEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGeoRoutingManagerEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -267,15 +298,30 @@ func (ptr *QGeoRoutingManagerEngine) DisconnectChildEvent() {
 }
 
 //export callbackQGeoRoutingManagerEngineChildEvent
-func callbackQGeoRoutingManagerEngineChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGeoRoutingManagerEngineChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoRoutingManagerEngine::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGeoRoutingManagerEngineFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGeoRoutingManagerEngine) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGeoRoutingManagerEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRoutingManagerEngine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGeoRoutingManagerEngine) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGeoRoutingManagerEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRoutingManagerEngine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGeoRoutingManagerEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -297,13 +343,28 @@ func (ptr *QGeoRoutingManagerEngine) DisconnectCustomEvent() {
 }
 
 //export callbackQGeoRoutingManagerEngineCustomEvent
-func callbackQGeoRoutingManagerEngineCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGeoRoutingManagerEngineCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoRoutingManagerEngine::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGeoRoutingManagerEngineFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGeoRoutingManagerEngine) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGeoRoutingManagerEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRoutingManagerEngine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGeoRoutingManagerEngine) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGeoRoutingManagerEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRoutingManagerEngine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

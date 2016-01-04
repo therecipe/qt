@@ -112,15 +112,30 @@ func (ptr *QColorDialog) DisconnectChangeEvent() {
 }
 
 //export callbackQColorDialogChangeEvent
-func callbackQColorDialogChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQColorDialogChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QColorDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QColorDialog) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QColorDialog::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
 }
 
 func (ptr *QColorDialog) ConnectColorSelected(f func(color *gui.QColor)) {
@@ -142,13 +157,21 @@ func (ptr *QColorDialog) DisconnectColorSelected() {
 }
 
 //export callbackQColorDialogColorSelected
-func callbackQColorDialogColorSelected(ptrName *C.char, color unsafe.Pointer) {
+func callbackQColorDialogColorSelected(ptr unsafe.Pointer, ptrName *C.char, color unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::colorSelected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "colorSelected"); signal != nil {
 		signal.(func(*gui.QColor))(gui.NewQColorFromPointer(color))
 	}
 
+}
+
+func (ptr *QColorDialog) ColorSelected(color gui.QColor_ITF) {
+	defer qt.Recovering("QColorDialog::colorSelected")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ColorSelected(ptr.Pointer(), gui.PointerFromQColor(color))
+	}
 }
 
 func (ptr *QColorDialog) ConnectCurrentColorChanged(f func(color *gui.QColor)) {
@@ -170,13 +193,21 @@ func (ptr *QColorDialog) DisconnectCurrentColorChanged() {
 }
 
 //export callbackQColorDialogCurrentColorChanged
-func callbackQColorDialogCurrentColorChanged(ptrName *C.char, color unsafe.Pointer) {
+func callbackQColorDialogCurrentColorChanged(ptr unsafe.Pointer, ptrName *C.char, color unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::currentColorChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentColorChanged"); signal != nil {
 		signal.(func(*gui.QColor))(gui.NewQColorFromPointer(color))
 	}
 
+}
+
+func (ptr *QColorDialog) CurrentColorChanged(color gui.QColor_ITF) {
+	defer qt.Recovering("QColorDialog::currentColorChanged")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_CurrentColorChanged(ptr.Pointer(), gui.PointerFromQColor(color))
+	}
 }
 
 func QColorDialog_CustomColor(index int) *gui.QColor {
@@ -210,15 +241,30 @@ func (ptr *QColorDialog) DisconnectDone() {
 }
 
 //export callbackQColorDialogDone
-func callbackQColorDialogDone(ptrName *C.char, result C.int) bool {
+func callbackQColorDialogDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) {
 	defer qt.Recovering("callback QColorDialog::done")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
 		signal.(func(int))(int(result))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).DoneDefault(int(result))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) Done(result int) {
+	defer qt.Recovering("QColorDialog::done")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_Done(ptr.Pointer(), C.int(result))
+	}
+}
+
+func (ptr *QColorDialog) DoneDefault(result int) {
+	defer qt.Recovering("QColorDialog::done")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_DoneDefault(ptr.Pointer(), C.int(result))
+	}
 }
 
 func QColorDialog_GetColor(initial gui.QColor_ITF, parent QWidget_ITF, title string, options QColorDialog__ColorDialogOption) *gui.QColor {
@@ -283,15 +329,30 @@ func (ptr *QColorDialog) DisconnectSetVisible() {
 }
 
 //export callbackQColorDialogSetVisible
-func callbackQColorDialogSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQColorDialogSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
 	defer qt.Recovering("callback QColorDialog::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
 	}
-	return false
+}
 
+func (ptr *QColorDialog) SetVisible(visible bool) {
+	defer qt.Recovering("QColorDialog::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QColorDialog) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QColorDialog::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func QColorDialog_StandardColor(index int) *gui.QColor {
@@ -337,7 +398,7 @@ func (ptr *QColorDialog) DisconnectAccept() {
 }
 
 //export callbackQColorDialogAccept
-func callbackQColorDialogAccept(ptrName *C.char) bool {
+func callbackQColorDialogAccept(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QColorDialog::accept")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "accept"); signal != nil {
@@ -346,6 +407,22 @@ func callbackQColorDialogAccept(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QColorDialog) Accept() {
+	defer qt.Recovering("QColorDialog::accept")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_Accept(ptr.Pointer())
+	}
+}
+
+func (ptr *QColorDialog) AcceptDefault() {
+	defer qt.Recovering("QColorDialog::accept")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_AcceptDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QColorDialog) ConnectCloseEvent(f func(e *gui.QCloseEvent)) {
@@ -367,15 +444,30 @@ func (ptr *QColorDialog) DisconnectCloseEvent() {
 }
 
 //export callbackQColorDialogCloseEvent
-func callbackQColorDialogCloseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQColorDialogCloseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) CloseEvent(e gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QColorDialog::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(e))
+	}
+}
+
+func (ptr *QColorDialog) CloseEventDefault(e gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QColorDialog::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(e))
+	}
 }
 
 func (ptr *QColorDialog) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
@@ -397,15 +489,30 @@ func (ptr *QColorDialog) DisconnectContextMenuEvent() {
 }
 
 //export callbackQColorDialogContextMenuEvent
-func callbackQColorDialogContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQColorDialogContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QColorDialog::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QColorDialog) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QColorDialog::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QColorDialog) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
@@ -427,45 +534,30 @@ func (ptr *QColorDialog) DisconnectKeyPressEvent() {
 }
 
 //export callbackQColorDialogKeyPressEvent
-func callbackQColorDialogKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQColorDialogKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
-
 }
 
-func (ptr *QColorDialog) ConnectOpen(f func()) {
-	defer qt.Recovering("connect QColorDialog::open")
+func (ptr *QColorDialog) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QColorDialog::keyPressEvent")
 
 	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "open", f)
+		C.QColorDialog_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
 	}
 }
 
-func (ptr *QColorDialog) DisconnectOpen() {
-	defer qt.Recovering("disconnect QColorDialog::open")
+func (ptr *QColorDialog) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QColorDialog::keyPressEvent")
 
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "open")
+		C.QColorDialog_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
 	}
-}
-
-//export callbackQColorDialogOpen
-func callbackQColorDialogOpen(ptrName *C.char) bool {
-	defer qt.Recovering("callback QColorDialog::open")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "open"); signal != nil {
-		signal.(func())()
-		return true
-	}
-	return false
-
 }
 
 func (ptr *QColorDialog) ConnectReject(f func()) {
@@ -487,7 +579,7 @@ func (ptr *QColorDialog) DisconnectReject() {
 }
 
 //export callbackQColorDialogReject
-func callbackQColorDialogReject(ptrName *C.char) bool {
+func callbackQColorDialogReject(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QColorDialog::reject")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reject"); signal != nil {
@@ -496,6 +588,22 @@ func callbackQColorDialogReject(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QColorDialog) Reject() {
+	defer qt.Recovering("QColorDialog::reject")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_Reject(ptr.Pointer())
+	}
+}
+
+func (ptr *QColorDialog) RejectDefault() {
+	defer qt.Recovering("QColorDialog::reject")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_RejectDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QColorDialog) ConnectResizeEvent(f func(v *gui.QResizeEvent)) {
@@ -517,15 +625,30 @@ func (ptr *QColorDialog) DisconnectResizeEvent() {
 }
 
 //export callbackQColorDialogResizeEvent
-func callbackQColorDialogResizeEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQColorDialogResizeEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(v))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) ResizeEvent(v gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QColorDialog::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(v))
+	}
+}
+
+func (ptr *QColorDialog) ResizeEventDefault(v gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QColorDialog::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(v))
+	}
 }
 
 func (ptr *QColorDialog) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -547,15 +670,30 @@ func (ptr *QColorDialog) DisconnectShowEvent() {
 }
 
 //export callbackQColorDialogShowEvent
-func callbackQColorDialogShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QColorDialog::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QColorDialog::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -577,15 +715,30 @@ func (ptr *QColorDialog) DisconnectActionEvent() {
 }
 
 //export callbackQColorDialogActionEvent
-func callbackQColorDialogActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QColorDialog::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QColorDialog::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -607,15 +760,30 @@ func (ptr *QColorDialog) DisconnectDragEnterEvent() {
 }
 
 //export callbackQColorDialogDragEnterEvent
-func callbackQColorDialogDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QColorDialog::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QColorDialog::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -637,15 +805,30 @@ func (ptr *QColorDialog) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQColorDialogDragLeaveEvent
-func callbackQColorDialogDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QColorDialog::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QColorDialog::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -667,15 +850,30 @@ func (ptr *QColorDialog) DisconnectDragMoveEvent() {
 }
 
 //export callbackQColorDialogDragMoveEvent
-func callbackQColorDialogDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QColorDialog::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QColorDialog::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -697,15 +895,30 @@ func (ptr *QColorDialog) DisconnectDropEvent() {
 }
 
 //export callbackQColorDialogDropEvent
-func callbackQColorDialogDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QColorDialog::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QColorDialog::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -727,15 +940,30 @@ func (ptr *QColorDialog) DisconnectEnterEvent() {
 }
 
 //export callbackQColorDialogEnterEvent
-func callbackQColorDialogEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QColorDialog::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QColorDialog::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -757,15 +985,30 @@ func (ptr *QColorDialog) DisconnectFocusInEvent() {
 }
 
 //export callbackQColorDialogFocusInEvent
-func callbackQColorDialogFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QColorDialog::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QColorDialog::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -787,15 +1030,30 @@ func (ptr *QColorDialog) DisconnectFocusOutEvent() {
 }
 
 //export callbackQColorDialogFocusOutEvent
-func callbackQColorDialogFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QColorDialog::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QColorDialog::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -817,15 +1075,30 @@ func (ptr *QColorDialog) DisconnectHideEvent() {
 }
 
 //export callbackQColorDialogHideEvent
-func callbackQColorDialogHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QColorDialog::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QColorDialog::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -847,15 +1120,30 @@ func (ptr *QColorDialog) DisconnectLeaveEvent() {
 }
 
 //export callbackQColorDialogLeaveEvent
-func callbackQColorDialogLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QColorDialog::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QColorDialog::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -877,15 +1165,30 @@ func (ptr *QColorDialog) DisconnectMoveEvent() {
 }
 
 //export callbackQColorDialogMoveEvent
-func callbackQColorDialogMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QColorDialog::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QColorDialog::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -907,15 +1210,30 @@ func (ptr *QColorDialog) DisconnectPaintEvent() {
 }
 
 //export callbackQColorDialogPaintEvent
-func callbackQColorDialogPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QColorDialog::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QColorDialog::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -937,15 +1255,30 @@ func (ptr *QColorDialog) DisconnectInitPainter() {
 }
 
 //export callbackQColorDialogInitPainter
-func callbackQColorDialogInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQColorDialogInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QColorDialog::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QColorDialog) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QColorDialog::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QColorDialog) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -967,15 +1300,30 @@ func (ptr *QColorDialog) DisconnectInputMethodEvent() {
 }
 
 //export callbackQColorDialogInputMethodEvent
-func callbackQColorDialogInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QColorDialog::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QColorDialog::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -997,15 +1345,30 @@ func (ptr *QColorDialog) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQColorDialogKeyReleaseEvent
-func callbackQColorDialogKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QColorDialog::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QColorDialog::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1027,15 +1390,30 @@ func (ptr *QColorDialog) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQColorDialogMouseDoubleClickEvent
-func callbackQColorDialogMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColorDialog::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColorDialog::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -1057,15 +1435,30 @@ func (ptr *QColorDialog) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQColorDialogMouseMoveEvent
-func callbackQColorDialogMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColorDialog::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColorDialog::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -1087,15 +1480,30 @@ func (ptr *QColorDialog) DisconnectMousePressEvent() {
 }
 
 //export callbackQColorDialogMousePressEvent
-func callbackQColorDialogMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColorDialog::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColorDialog::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1117,15 +1525,30 @@ func (ptr *QColorDialog) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQColorDialogMouseReleaseEvent
-func callbackQColorDialogMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColorDialog::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QColorDialog::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1147,15 +1570,30 @@ func (ptr *QColorDialog) DisconnectTabletEvent() {
 }
 
 //export callbackQColorDialogTabletEvent
-func callbackQColorDialogTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QColorDialog::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QColorDialog::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1177,15 +1615,30 @@ func (ptr *QColorDialog) DisconnectWheelEvent() {
 }
 
 //export callbackQColorDialogWheelEvent
-func callbackQColorDialogWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QColorDialog::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QColorDialog::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1207,15 +1660,30 @@ func (ptr *QColorDialog) DisconnectTimerEvent() {
 }
 
 //export callbackQColorDialogTimerEvent
-func callbackQColorDialogTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QColorDialog::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QColorDialog::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1237,15 +1705,30 @@ func (ptr *QColorDialog) DisconnectChildEvent() {
 }
 
 //export callbackQColorDialogChildEvent
-func callbackQColorDialogChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QColorDialog::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QColorDialog::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QColorDialog) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1267,13 +1750,28 @@ func (ptr *QColorDialog) DisconnectCustomEvent() {
 }
 
 //export callbackQColorDialogCustomEvent
-func callbackQColorDialogCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQColorDialogCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QColorDialog::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQColorDialogFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QColorDialog) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QColorDialog::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QColorDialog) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QColorDialog::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QColorDialog_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -110,10 +110,16 @@ func CppBodyInputCallback(f *parser.Function) (o string) {
 
 func CppBodyOutputCallback(f *parser.Function) (o string) {
 
+	//TODO: parse from docs
+	var this = "this"
+	if strings.Contains(strings.Split(f.Signature, ")")[1], "const") {
+		this = fmt.Sprintf("const_cast<My%v*>(this)", f.Class())
+	}
+
 	if parser.ClassMap[f.Class()].IsQObjectSubClass() {
-		o += fmt.Sprintf("%v", cppOutput("this->objectName()", "QString", f))
+		o += fmt.Sprintf("%v, %v", this, cppOutput("this->objectName()", "QString", f))
 	} else {
-		o += fmt.Sprintf("%v", cppOutput("this->objectNameAbs()", "QString", f))
+		o += fmt.Sprintf("%v, %v", this, cppOutput("this->objectNameAbs()", "QString", f))
 	}
 
 	for _, p := range f.Parameters {

@@ -69,15 +69,30 @@ func (ptr *QScrollBar) DisconnectContextMenuEvent() {
 }
 
 //export callbackQScrollBarContextMenuEvent
-func callbackQScrollBarContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QScrollBar::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QScrollBar::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) Event(event core.QEvent_ITF) bool {
@@ -108,15 +123,30 @@ func (ptr *QScrollBar) DisconnectHideEvent() {
 }
 
 //export callbackQScrollBarHideEvent
-func callbackQScrollBarHideEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQScrollBarHideEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(v))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) HideEvent(v gui.QHideEvent_ITF) {
+	defer qt.Recovering("QScrollBar::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(v))
+	}
+}
+
+func (ptr *QScrollBar) HideEventDefault(v gui.QHideEvent_ITF) {
+	defer qt.Recovering("QScrollBar::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(v))
+	}
 }
 
 func (ptr *QScrollBar) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
@@ -138,15 +168,30 @@ func (ptr *QScrollBar) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQScrollBarMouseMoveEvent
-func callbackQScrollBarMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQScrollBarMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) MouseMoveEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QScrollBar::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QScrollBar) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QScrollBar::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QScrollBar) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
@@ -168,15 +213,30 @@ func (ptr *QScrollBar) DisconnectMousePressEvent() {
 }
 
 //export callbackQScrollBarMousePressEvent
-func callbackQScrollBarMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQScrollBarMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) MousePressEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QScrollBar::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QScrollBar) MousePressEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QScrollBar::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QScrollBar) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -198,15 +258,30 @@ func (ptr *QScrollBar) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQScrollBarMouseReleaseEvent
-func callbackQScrollBarMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQScrollBarMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QScrollBar::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QScrollBar) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QScrollBar::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QScrollBar) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
@@ -228,15 +303,30 @@ func (ptr *QScrollBar) DisconnectPaintEvent() {
 }
 
 //export callbackQScrollBarPaintEvent
-func callbackQScrollBarPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQScrollBarPaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) PaintEvent(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QScrollBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
+}
+
+func (ptr *QScrollBar) PaintEventDefault(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QScrollBar::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
 }
 
 func (ptr *QScrollBar) SizeHint() *core.QSize {
@@ -267,15 +357,30 @@ func (ptr *QScrollBar) DisconnectSliderChange() {
 }
 
 //export callbackQScrollBarSliderChange
-func callbackQScrollBarSliderChange(ptrName *C.char, change C.int) bool {
+func callbackQScrollBarSliderChange(ptr unsafe.Pointer, ptrName *C.char, change C.int) {
 	defer qt.Recovering("callback QScrollBar::sliderChange")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sliderChange"); signal != nil {
 		signal.(func(QAbstractSlider__SliderChange))(QAbstractSlider__SliderChange(change))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).SliderChangeDefault(QAbstractSlider__SliderChange(change))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) SliderChange(change QAbstractSlider__SliderChange) {
+	defer qt.Recovering("QScrollBar::sliderChange")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_SliderChange(ptr.Pointer(), C.int(change))
+	}
+}
+
+func (ptr *QScrollBar) SliderChangeDefault(change QAbstractSlider__SliderChange) {
+	defer qt.Recovering("QScrollBar::sliderChange")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_SliderChangeDefault(ptr.Pointer(), C.int(change))
+	}
 }
 
 func (ptr *QScrollBar) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -297,15 +402,30 @@ func (ptr *QScrollBar) DisconnectWheelEvent() {
 }
 
 //export callbackQScrollBarWheelEvent
-func callbackQScrollBarWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QScrollBar::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QScrollBar::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) DestroyQScrollBar() {
@@ -336,15 +456,30 @@ func (ptr *QScrollBar) DisconnectChangeEvent() {
 }
 
 //export callbackQScrollBarChangeEvent
-func callbackQScrollBarChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQScrollBarChangeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) ChangeEvent(ev core.QEvent_ITF) {
+	defer qt.Recovering("QScrollBar::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QScrollBar) ChangeEventDefault(ev core.QEvent_ITF) {
+	defer qt.Recovering("QScrollBar::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
 }
 
 func (ptr *QScrollBar) ConnectKeyPressEvent(f func(ev *gui.QKeyEvent)) {
@@ -366,15 +501,30 @@ func (ptr *QScrollBar) DisconnectKeyPressEvent() {
 }
 
 //export callbackQScrollBarKeyPressEvent
-func callbackQScrollBarKeyPressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQScrollBarKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(ev))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) KeyPressEvent(ev gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QScrollBar::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(ev))
+	}
+}
+
+func (ptr *QScrollBar) KeyPressEventDefault(ev gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QScrollBar::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(ev))
+	}
 }
 
 func (ptr *QScrollBar) ConnectTimerEvent(f func(e *core.QTimerEvent)) {
@@ -396,15 +546,30 @@ func (ptr *QScrollBar) DisconnectTimerEvent() {
 }
 
 //export callbackQScrollBarTimerEvent
-func callbackQScrollBarTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQScrollBarTimerEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) TimerEvent(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QScrollBar::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
+}
+
+func (ptr *QScrollBar) TimerEventDefault(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QScrollBar::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
 }
 
 func (ptr *QScrollBar) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -426,15 +591,30 @@ func (ptr *QScrollBar) DisconnectActionEvent() {
 }
 
 //export callbackQScrollBarActionEvent
-func callbackQScrollBarActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QScrollBar::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QScrollBar::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -456,15 +636,30 @@ func (ptr *QScrollBar) DisconnectDragEnterEvent() {
 }
 
 //export callbackQScrollBarDragEnterEvent
-func callbackQScrollBarDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QScrollBar::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QScrollBar::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -486,15 +681,30 @@ func (ptr *QScrollBar) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQScrollBarDragLeaveEvent
-func callbackQScrollBarDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QScrollBar::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QScrollBar::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -516,15 +726,30 @@ func (ptr *QScrollBar) DisconnectDragMoveEvent() {
 }
 
 //export callbackQScrollBarDragMoveEvent
-func callbackQScrollBarDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QScrollBar::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QScrollBar::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -546,15 +771,30 @@ func (ptr *QScrollBar) DisconnectDropEvent() {
 }
 
 //export callbackQScrollBarDropEvent
-func callbackQScrollBarDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QScrollBar::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QScrollBar::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -576,15 +816,30 @@ func (ptr *QScrollBar) DisconnectEnterEvent() {
 }
 
 //export callbackQScrollBarEnterEvent
-func callbackQScrollBarEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QScrollBar::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QScrollBar::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -606,15 +861,30 @@ func (ptr *QScrollBar) DisconnectFocusInEvent() {
 }
 
 //export callbackQScrollBarFocusInEvent
-func callbackQScrollBarFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QScrollBar::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QScrollBar::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -636,15 +906,30 @@ func (ptr *QScrollBar) DisconnectFocusOutEvent() {
 }
 
 //export callbackQScrollBarFocusOutEvent
-func callbackQScrollBarFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QScrollBar::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QScrollBar::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -666,15 +951,30 @@ func (ptr *QScrollBar) DisconnectLeaveEvent() {
 }
 
 //export callbackQScrollBarLeaveEvent
-func callbackQScrollBarLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QScrollBar::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QScrollBar::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -696,15 +996,30 @@ func (ptr *QScrollBar) DisconnectMoveEvent() {
 }
 
 //export callbackQScrollBarMoveEvent
-func callbackQScrollBarMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QScrollBar::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QScrollBar::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectSetVisible(f func(visible bool)) {
@@ -726,7 +1041,7 @@ func (ptr *QScrollBar) DisconnectSetVisible() {
 }
 
 //export callbackQScrollBarSetVisible
-func callbackQScrollBarSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQScrollBarSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QScrollBar::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -735,6 +1050,22 @@ func callbackQScrollBarSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QScrollBar) SetVisible(visible bool) {
+	defer qt.Recovering("QScrollBar::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QScrollBar) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QScrollBar::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QScrollBar) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -756,15 +1087,30 @@ func (ptr *QScrollBar) DisconnectShowEvent() {
 }
 
 //export callbackQScrollBarShowEvent
-func callbackQScrollBarShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QScrollBar::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QScrollBar::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -786,15 +1132,30 @@ func (ptr *QScrollBar) DisconnectCloseEvent() {
 }
 
 //export callbackQScrollBarCloseEvent
-func callbackQScrollBarCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QScrollBar::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QScrollBar::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -816,15 +1177,30 @@ func (ptr *QScrollBar) DisconnectInitPainter() {
 }
 
 //export callbackQScrollBarInitPainter
-func callbackQScrollBarInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQScrollBarInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QScrollBar::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QScrollBar) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QScrollBar::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QScrollBar) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -846,15 +1222,30 @@ func (ptr *QScrollBar) DisconnectInputMethodEvent() {
 }
 
 //export callbackQScrollBarInputMethodEvent
-func callbackQScrollBarInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QScrollBar::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QScrollBar::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -876,15 +1267,30 @@ func (ptr *QScrollBar) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQScrollBarKeyReleaseEvent
-func callbackQScrollBarKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QScrollBar::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QScrollBar::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -906,15 +1312,30 @@ func (ptr *QScrollBar) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQScrollBarMouseDoubleClickEvent
-func callbackQScrollBarMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QScrollBar::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QScrollBar::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -936,15 +1357,30 @@ func (ptr *QScrollBar) DisconnectResizeEvent() {
 }
 
 //export callbackQScrollBarResizeEvent
-func callbackQScrollBarResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QScrollBar::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QScrollBar::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -966,15 +1402,30 @@ func (ptr *QScrollBar) DisconnectTabletEvent() {
 }
 
 //export callbackQScrollBarTabletEvent
-func callbackQScrollBarTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QScrollBar::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QScrollBar::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -996,15 +1447,30 @@ func (ptr *QScrollBar) DisconnectChildEvent() {
 }
 
 //export callbackQScrollBarChildEvent
-func callbackQScrollBarChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QScrollBar::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QScrollBar::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QScrollBar) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1026,13 +1492,28 @@ func (ptr *QScrollBar) DisconnectCustomEvent() {
 }
 
 //export callbackQScrollBarCustomEvent
-func callbackQScrollBarCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollBarCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScrollBar::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollBarFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScrollBar) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QScrollBar::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QScrollBar) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QScrollBar::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScrollBar_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

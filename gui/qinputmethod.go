@@ -91,13 +91,21 @@ func (ptr *QInputMethod) DisconnectAnimatingChanged() {
 }
 
 //export callbackQInputMethodAnimatingChanged
-func callbackQInputMethodAnimatingChanged(ptrName *C.char) {
+func callbackQInputMethodAnimatingChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QInputMethod::animatingChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "animatingChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QInputMethod) AnimatingChanged() {
+	defer qt.Recovering("QInputMethod::animatingChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_AnimatingChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QInputMethod) Commit() {
@@ -127,13 +135,21 @@ func (ptr *QInputMethod) DisconnectCursorRectangleChanged() {
 }
 
 //export callbackQInputMethodCursorRectangleChanged
-func callbackQInputMethodCursorRectangleChanged(ptrName *C.char) {
+func callbackQInputMethodCursorRectangleChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QInputMethod::cursorRectangleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "cursorRectangleChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QInputMethod) CursorRectangleChanged() {
+	defer qt.Recovering("QInputMethod::cursorRectangleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_CursorRectangleChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QInputMethod) Hide() {
@@ -163,13 +179,21 @@ func (ptr *QInputMethod) DisconnectInputDirectionChanged() {
 }
 
 //export callbackQInputMethodInputDirectionChanged
-func callbackQInputMethodInputDirectionChanged(ptrName *C.char, newDirection C.int) {
+func callbackQInputMethodInputDirectionChanged(ptr unsafe.Pointer, ptrName *C.char, newDirection C.int) {
 	defer qt.Recovering("callback QInputMethod::inputDirectionChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputDirectionChanged"); signal != nil {
 		signal.(func(core.Qt__LayoutDirection))(core.Qt__LayoutDirection(newDirection))
 	}
 
+}
+
+func (ptr *QInputMethod) InputDirectionChanged(newDirection core.Qt__LayoutDirection) {
+	defer qt.Recovering("QInputMethod::inputDirectionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_InputDirectionChanged(ptr.Pointer(), C.int(newDirection))
+	}
 }
 
 func (ptr *QInputMethod) InvokeAction(a QInputMethod__Action, cursorPosition int) {
@@ -199,13 +223,21 @@ func (ptr *QInputMethod) DisconnectKeyboardRectangleChanged() {
 }
 
 //export callbackQInputMethodKeyboardRectangleChanged
-func callbackQInputMethodKeyboardRectangleChanged(ptrName *C.char) {
+func callbackQInputMethodKeyboardRectangleChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QInputMethod::keyboardRectangleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyboardRectangleChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QInputMethod) KeyboardRectangleChanged() {
+	defer qt.Recovering("QInputMethod::keyboardRectangleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_KeyboardRectangleChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QInputMethod) ConnectLocaleChanged(f func()) {
@@ -227,13 +259,21 @@ func (ptr *QInputMethod) DisconnectLocaleChanged() {
 }
 
 //export callbackQInputMethodLocaleChanged
-func callbackQInputMethodLocaleChanged(ptrName *C.char) {
+func callbackQInputMethodLocaleChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QInputMethod::localeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "localeChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QInputMethod) LocaleChanged() {
+	defer qt.Recovering("QInputMethod::localeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_LocaleChanged(ptr.Pointer())
+	}
 }
 
 func QInputMethod_QueryFocusObject(query core.Qt__InputMethodQuery, argument core.QVariant_ITF) *core.QVariant {
@@ -309,13 +349,21 @@ func (ptr *QInputMethod) DisconnectVisibleChanged() {
 }
 
 //export callbackQInputMethodVisibleChanged
-func callbackQInputMethodVisibleChanged(ptrName *C.char) {
+func callbackQInputMethodVisibleChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QInputMethod::visibleChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "visibleChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QInputMethod) VisibleChanged() {
+	defer qt.Recovering("QInputMethod::visibleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_VisibleChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QInputMethod) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -337,15 +385,30 @@ func (ptr *QInputMethod) DisconnectTimerEvent() {
 }
 
 //export callbackQInputMethodTimerEvent
-func callbackQInputMethodTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQInputMethodTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QInputMethod::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQInputMethodFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QInputMethod) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QInputMethod::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QInputMethod) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QInputMethod::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QInputMethod) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -367,15 +430,30 @@ func (ptr *QInputMethod) DisconnectChildEvent() {
 }
 
 //export callbackQInputMethodChildEvent
-func callbackQInputMethodChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQInputMethodChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QInputMethod::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQInputMethodFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QInputMethod) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QInputMethod::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QInputMethod) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QInputMethod::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QInputMethod) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -397,13 +475,28 @@ func (ptr *QInputMethod) DisconnectCustomEvent() {
 }
 
 //export callbackQInputMethodCustomEvent
-func callbackQInputMethodCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQInputMethodCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QInputMethod::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQInputMethodFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QInputMethod) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QInputMethod::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QInputMethod) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QInputMethod::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

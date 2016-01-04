@@ -157,6 +157,15 @@ func (ptr *QLCDNumber) Display3(num int) {
 	}
 }
 
+func (ptr *QLCDNumber) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QLCDNumber::event")
+
+	if ptr.Pointer() != nil {
+		return C.QLCDNumber_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
 func (ptr *QLCDNumber) ConnectOverflow(f func()) {
 	defer qt.Recovering("connect QLCDNumber::overflow")
 
@@ -176,13 +185,21 @@ func (ptr *QLCDNumber) DisconnectOverflow() {
 }
 
 //export callbackQLCDNumberOverflow
-func callbackQLCDNumberOverflow(ptrName *C.char) {
+func callbackQLCDNumberOverflow(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QLCDNumber::overflow")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "overflow"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QLCDNumber) Overflow() {
+	defer qt.Recovering("QLCDNumber::overflow")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_Overflow(ptr.Pointer())
+	}
 }
 
 func (ptr *QLCDNumber) ConnectPaintEvent(f func(v *gui.QPaintEvent)) {
@@ -204,15 +221,30 @@ func (ptr *QLCDNumber) DisconnectPaintEvent() {
 }
 
 //export callbackQLCDNumberPaintEvent
-func callbackQLCDNumberPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQLCDNumberPaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) PaintEvent(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
+}
+
+func (ptr *QLCDNumber) PaintEventDefault(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
 }
 
 func (ptr *QLCDNumber) SetBinMode() {
@@ -292,15 +324,30 @@ func (ptr *QLCDNumber) DisconnectChangeEvent() {
 }
 
 //export callbackQLCDNumberChangeEvent
-func callbackQLCDNumberChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQLCDNumberChangeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) ChangeEvent(ev core.QEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QLCDNumber) ChangeEventDefault(ev core.QEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -322,15 +369,30 @@ func (ptr *QLCDNumber) DisconnectActionEvent() {
 }
 
 //export callbackQLCDNumberActionEvent
-func callbackQLCDNumberActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -352,15 +414,30 @@ func (ptr *QLCDNumber) DisconnectDragEnterEvent() {
 }
 
 //export callbackQLCDNumberDragEnterEvent
-func callbackQLCDNumberDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -382,15 +459,30 @@ func (ptr *QLCDNumber) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQLCDNumberDragLeaveEvent
-func callbackQLCDNumberDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -412,15 +504,30 @@ func (ptr *QLCDNumber) DisconnectDragMoveEvent() {
 }
 
 //export callbackQLCDNumberDragMoveEvent
-func callbackQLCDNumberDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -442,15 +549,30 @@ func (ptr *QLCDNumber) DisconnectDropEvent() {
 }
 
 //export callbackQLCDNumberDropEvent
-func callbackQLCDNumberDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -472,15 +594,30 @@ func (ptr *QLCDNumber) DisconnectEnterEvent() {
 }
 
 //export callbackQLCDNumberEnterEvent
-func callbackQLCDNumberEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -502,15 +639,30 @@ func (ptr *QLCDNumber) DisconnectFocusInEvent() {
 }
 
 //export callbackQLCDNumberFocusInEvent
-func callbackQLCDNumberFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -532,15 +684,30 @@ func (ptr *QLCDNumber) DisconnectFocusOutEvent() {
 }
 
 //export callbackQLCDNumberFocusOutEvent
-func callbackQLCDNumberFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -562,15 +729,30 @@ func (ptr *QLCDNumber) DisconnectHideEvent() {
 }
 
 //export callbackQLCDNumberHideEvent
-func callbackQLCDNumberHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -592,15 +774,30 @@ func (ptr *QLCDNumber) DisconnectLeaveEvent() {
 }
 
 //export callbackQLCDNumberLeaveEvent
-func callbackQLCDNumberLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -622,15 +819,30 @@ func (ptr *QLCDNumber) DisconnectMoveEvent() {
 }
 
 //export callbackQLCDNumberMoveEvent
-func callbackQLCDNumberMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectSetVisible(f func(visible bool)) {
@@ -652,7 +864,7 @@ func (ptr *QLCDNumber) DisconnectSetVisible() {
 }
 
 //export callbackQLCDNumberSetVisible
-func callbackQLCDNumberSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQLCDNumberSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QLCDNumber::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -661,6 +873,22 @@ func callbackQLCDNumberSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QLCDNumber) SetVisible(visible bool) {
+	defer qt.Recovering("QLCDNumber::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QLCDNumber) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QLCDNumber::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -682,15 +910,30 @@ func (ptr *QLCDNumber) DisconnectShowEvent() {
 }
 
 //export callbackQLCDNumberShowEvent
-func callbackQLCDNumberShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -712,15 +955,30 @@ func (ptr *QLCDNumber) DisconnectCloseEvent() {
 }
 
 //export callbackQLCDNumberCloseEvent
-func callbackQLCDNumberCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -742,15 +1000,30 @@ func (ptr *QLCDNumber) DisconnectContextMenuEvent() {
 }
 
 //export callbackQLCDNumberContextMenuEvent
-func callbackQLCDNumberContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -772,15 +1045,30 @@ func (ptr *QLCDNumber) DisconnectInitPainter() {
 }
 
 //export callbackQLCDNumberInitPainter
-func callbackQLCDNumberInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQLCDNumberInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QLCDNumber::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QLCDNumber) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QLCDNumber::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -802,15 +1090,30 @@ func (ptr *QLCDNumber) DisconnectInputMethodEvent() {
 }
 
 //export callbackQLCDNumberInputMethodEvent
-func callbackQLCDNumberInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -832,15 +1135,30 @@ func (ptr *QLCDNumber) DisconnectKeyPressEvent() {
 }
 
 //export callbackQLCDNumberKeyPressEvent
-func callbackQLCDNumberKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -862,15 +1180,30 @@ func (ptr *QLCDNumber) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQLCDNumberKeyReleaseEvent
-func callbackQLCDNumberKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -892,15 +1225,30 @@ func (ptr *QLCDNumber) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQLCDNumberMouseDoubleClickEvent
-func callbackQLCDNumberMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -922,15 +1270,30 @@ func (ptr *QLCDNumber) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQLCDNumberMouseMoveEvent
-func callbackQLCDNumberMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -952,15 +1315,30 @@ func (ptr *QLCDNumber) DisconnectMousePressEvent() {
 }
 
 //export callbackQLCDNumberMousePressEvent
-func callbackQLCDNumberMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -982,15 +1360,30 @@ func (ptr *QLCDNumber) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQLCDNumberMouseReleaseEvent
-func callbackQLCDNumberMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -1012,15 +1405,30 @@ func (ptr *QLCDNumber) DisconnectResizeEvent() {
 }
 
 //export callbackQLCDNumberResizeEvent
-func callbackQLCDNumberResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1042,15 +1450,30 @@ func (ptr *QLCDNumber) DisconnectTabletEvent() {
 }
 
 //export callbackQLCDNumberTabletEvent
-func callbackQLCDNumberTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1072,15 +1495,30 @@ func (ptr *QLCDNumber) DisconnectWheelEvent() {
 }
 
 //export callbackQLCDNumberWheelEvent
-func callbackQLCDNumberWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1102,15 +1540,30 @@ func (ptr *QLCDNumber) DisconnectTimerEvent() {
 }
 
 //export callbackQLCDNumberTimerEvent
-func callbackQLCDNumberTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1132,15 +1585,30 @@ func (ptr *QLCDNumber) DisconnectChildEvent() {
 }
 
 //export callbackQLCDNumberChildEvent
-func callbackQLCDNumberChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QLCDNumber) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1162,13 +1630,28 @@ func (ptr *QLCDNumber) DisconnectCustomEvent() {
 }
 
 //export callbackQLCDNumberCustomEvent
-func callbackQLCDNumberCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLCDNumberCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLCDNumber::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQLCDNumberFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLCDNumber) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QLCDNumber) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QLCDNumber::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLCDNumber_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

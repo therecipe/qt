@@ -120,15 +120,30 @@ func (ptr *QHttpMultiPart) DisconnectTimerEvent() {
 }
 
 //export callbackQHttpMultiPartTimerEvent
-func callbackQHttpMultiPartTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHttpMultiPartTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHttpMultiPart::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQHttpMultiPartFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHttpMultiPart) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHttpMultiPart::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHttpMultiPart_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QHttpMultiPart) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHttpMultiPart::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHttpMultiPart_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QHttpMultiPart) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -150,15 +165,30 @@ func (ptr *QHttpMultiPart) DisconnectChildEvent() {
 }
 
 //export callbackQHttpMultiPartChildEvent
-func callbackQHttpMultiPartChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHttpMultiPartChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHttpMultiPart::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQHttpMultiPartFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHttpMultiPart) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHttpMultiPart::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHttpMultiPart_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QHttpMultiPart) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHttpMultiPart::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHttpMultiPart_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QHttpMultiPart) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -180,13 +210,28 @@ func (ptr *QHttpMultiPart) DisconnectCustomEvent() {
 }
 
 //export callbackQHttpMultiPartCustomEvent
-func callbackQHttpMultiPartCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHttpMultiPartCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHttpMultiPart::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQHttpMultiPartFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHttpMultiPart) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QHttpMultiPart::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHttpMultiPart_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QHttpMultiPart) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QHttpMultiPart::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHttpMultiPart_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

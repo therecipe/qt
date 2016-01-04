@@ -76,15 +76,30 @@ func (ptr *QGraphicsSvgItem) DisconnectPaint() {
 }
 
 //export callbackQGraphicsSvgItemPaint
-func callbackQGraphicsSvgItemPaint(ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQGraphicsSvgItemPaint(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::paint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paint"); signal != nil {
 		signal.(func(*gui.QPainter, *widgets.QStyleOptionGraphicsItem, *widgets.QWidget))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionGraphicsItemFromPointer(option), widgets.NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).PaintDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionGraphicsItemFromPointer(option), widgets.NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QGraphicsSvgItem) Paint(painter gui.QPainter_ITF, option widgets.QStyleOptionGraphicsItem_ITF, widget widgets.QWidget_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionGraphicsItem(option), widgets.PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) PaintDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionGraphicsItem_ITF, widget widgets.QWidget_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::paint")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_PaintDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionGraphicsItem(option), widgets.PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QGraphicsSvgItem) Renderer() *QSvgRenderer {
@@ -148,15 +163,30 @@ func (ptr *QGraphicsSvgItem) DisconnectTimerEvent() {
 }
 
 //export callbackQGraphicsSvgItemTimerEvent
-func callbackQGraphicsSvgItemTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsSvgItemTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsSvgItem) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGraphicsSvgItem) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -178,15 +208,30 @@ func (ptr *QGraphicsSvgItem) DisconnectChildEvent() {
 }
 
 //export callbackQGraphicsSvgItemChildEvent
-func callbackQGraphicsSvgItemChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsSvgItemChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsSvgItem) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGraphicsSvgItem) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -208,13 +253,28 @@ func (ptr *QGraphicsSvgItem) DisconnectCustomEvent() {
 }
 
 //export callbackQGraphicsSvgItemCustomEvent
-func callbackQGraphicsSvgItemCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsSvgItemCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsSvgItem) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

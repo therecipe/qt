@@ -94,15 +94,30 @@ func (ptr *QQmlIncubationController) DisconnectIncubatingObjectCountChanged() {
 }
 
 //export callbackQQmlIncubationControllerIncubatingObjectCountChanged
-func callbackQQmlIncubationControllerIncubatingObjectCountChanged(ptrName *C.char, incubatingObjectCount C.int) bool {
+func callbackQQmlIncubationControllerIncubatingObjectCountChanged(ptr unsafe.Pointer, ptrName *C.char, incubatingObjectCount C.int) {
 	defer qt.Recovering("callback QQmlIncubationController::incubatingObjectCountChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "incubatingObjectCountChanged"); signal != nil {
 		signal.(func(int))(int(incubatingObjectCount))
-		return true
+	} else {
+		NewQQmlIncubationControllerFromPointer(ptr).IncubatingObjectCountChangedDefault(int(incubatingObjectCount))
 	}
-	return false
+}
 
+func (ptr *QQmlIncubationController) IncubatingObjectCountChanged(incubatingObjectCount int) {
+	defer qt.Recovering("QQmlIncubationController::incubatingObjectCountChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlIncubationController_IncubatingObjectCountChanged(ptr.Pointer(), C.int(incubatingObjectCount))
+	}
+}
+
+func (ptr *QQmlIncubationController) IncubatingObjectCountChangedDefault(incubatingObjectCount int) {
+	defer qt.Recovering("QQmlIncubationController::incubatingObjectCountChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlIncubationController_IncubatingObjectCountChangedDefault(ptr.Pointer(), C.int(incubatingObjectCount))
+	}
 }
 
 func (ptr *QQmlIncubationController) ObjectNameAbs() string {

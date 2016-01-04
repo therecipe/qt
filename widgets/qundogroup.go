@@ -71,13 +71,21 @@ func (ptr *QUndoGroup) DisconnectActiveStackChanged() {
 }
 
 //export callbackQUndoGroupActiveStackChanged
-func callbackQUndoGroupActiveStackChanged(ptrName *C.char, stack unsafe.Pointer) {
+func callbackQUndoGroupActiveStackChanged(ptr unsafe.Pointer, ptrName *C.char, stack unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoGroup::activeStackChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activeStackChanged"); signal != nil {
 		signal.(func(*QUndoStack))(NewQUndoStackFromPointer(stack))
 	}
 
+}
+
+func (ptr *QUndoGroup) ActiveStackChanged(stack QUndoStack_ITF) {
+	defer qt.Recovering("QUndoGroup::activeStackChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_ActiveStackChanged(ptr.Pointer(), PointerFromQUndoStack(stack))
+	}
 }
 
 func (ptr *QUndoGroup) AddStack(stack QUndoStack_ITF) {
@@ -116,13 +124,21 @@ func (ptr *QUndoGroup) DisconnectCanRedoChanged() {
 }
 
 //export callbackQUndoGroupCanRedoChanged
-func callbackQUndoGroupCanRedoChanged(ptrName *C.char, canRedo C.int) {
+func callbackQUndoGroupCanRedoChanged(ptr unsafe.Pointer, ptrName *C.char, canRedo C.int) {
 	defer qt.Recovering("callback QUndoGroup::canRedoChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "canRedoChanged"); signal != nil {
 		signal.(func(bool))(int(canRedo) != 0)
 	}
 
+}
+
+func (ptr *QUndoGroup) CanRedoChanged(canRedo bool) {
+	defer qt.Recovering("QUndoGroup::canRedoChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_CanRedoChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(canRedo)))
+	}
 }
 
 func (ptr *QUndoGroup) CanUndo() bool {
@@ -153,13 +169,21 @@ func (ptr *QUndoGroup) DisconnectCanUndoChanged() {
 }
 
 //export callbackQUndoGroupCanUndoChanged
-func callbackQUndoGroupCanUndoChanged(ptrName *C.char, canUndo C.int) {
+func callbackQUndoGroupCanUndoChanged(ptr unsafe.Pointer, ptrName *C.char, canUndo C.int) {
 	defer qt.Recovering("callback QUndoGroup::canUndoChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "canUndoChanged"); signal != nil {
 		signal.(func(bool))(int(canUndo) != 0)
 	}
 
+}
+
+func (ptr *QUndoGroup) CanUndoChanged(canUndo bool) {
+	defer qt.Recovering("QUndoGroup::canUndoChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_CanUndoChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(canUndo)))
+	}
 }
 
 func (ptr *QUndoGroup) ConnectCleanChanged(f func(clean bool)) {
@@ -181,13 +205,21 @@ func (ptr *QUndoGroup) DisconnectCleanChanged() {
 }
 
 //export callbackQUndoGroupCleanChanged
-func callbackQUndoGroupCleanChanged(ptrName *C.char, clean C.int) {
+func callbackQUndoGroupCleanChanged(ptr unsafe.Pointer, ptrName *C.char, clean C.int) {
 	defer qt.Recovering("callback QUndoGroup::cleanChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "cleanChanged"); signal != nil {
 		signal.(func(bool))(int(clean) != 0)
 	}
 
+}
+
+func (ptr *QUndoGroup) CleanChanged(clean bool) {
+	defer qt.Recovering("QUndoGroup::cleanChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_CleanChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(clean)))
+	}
 }
 
 func (ptr *QUndoGroup) CreateRedoAction(parent core.QObject_ITF, prefix string) *QAction {
@@ -227,13 +259,21 @@ func (ptr *QUndoGroup) DisconnectIndexChanged() {
 }
 
 //export callbackQUndoGroupIndexChanged
-func callbackQUndoGroupIndexChanged(ptrName *C.char, idx C.int) {
+func callbackQUndoGroupIndexChanged(ptr unsafe.Pointer, ptrName *C.char, idx C.int) {
 	defer qt.Recovering("callback QUndoGroup::indexChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "indexChanged"); signal != nil {
 		signal.(func(int))(int(idx))
 	}
 
+}
+
+func (ptr *QUndoGroup) IndexChanged(idx int) {
+	defer qt.Recovering("QUndoGroup::indexChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_IndexChanged(ptr.Pointer(), C.int(idx))
+	}
 }
 
 func (ptr *QUndoGroup) IsClean() bool {
@@ -281,13 +321,21 @@ func (ptr *QUndoGroup) DisconnectRedoTextChanged() {
 }
 
 //export callbackQUndoGroupRedoTextChanged
-func callbackQUndoGroupRedoTextChanged(ptrName *C.char, redoText *C.char) {
+func callbackQUndoGroupRedoTextChanged(ptr unsafe.Pointer, ptrName *C.char, redoText *C.char) {
 	defer qt.Recovering("callback QUndoGroup::redoTextChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "redoTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(redoText))
 	}
 
+}
+
+func (ptr *QUndoGroup) RedoTextChanged(redoText string) {
+	defer qt.Recovering("QUndoGroup::redoTextChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_RedoTextChanged(ptr.Pointer(), C.CString(redoText))
+	}
 }
 
 func (ptr *QUndoGroup) RemoveStack(stack QUndoStack_ITF) {
@@ -342,13 +390,21 @@ func (ptr *QUndoGroup) DisconnectUndoTextChanged() {
 }
 
 //export callbackQUndoGroupUndoTextChanged
-func callbackQUndoGroupUndoTextChanged(ptrName *C.char, undoText *C.char) {
+func callbackQUndoGroupUndoTextChanged(ptr unsafe.Pointer, ptrName *C.char, undoText *C.char) {
 	defer qt.Recovering("callback QUndoGroup::undoTextChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "undoTextChanged"); signal != nil {
 		signal.(func(string))(C.GoString(undoText))
 	}
 
+}
+
+func (ptr *QUndoGroup) UndoTextChanged(undoText string) {
+	defer qt.Recovering("QUndoGroup::undoTextChanged")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_UndoTextChanged(ptr.Pointer(), C.CString(undoText))
+	}
 }
 
 func (ptr *QUndoGroup) DestroyQUndoGroup() {
@@ -379,15 +435,30 @@ func (ptr *QUndoGroup) DisconnectTimerEvent() {
 }
 
 //export callbackQUndoGroupTimerEvent
-func callbackQUndoGroupTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoGroupTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoGroup::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoGroupFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoGroup) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QUndoGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QUndoGroup) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QUndoGroup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QUndoGroup) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -409,15 +480,30 @@ func (ptr *QUndoGroup) DisconnectChildEvent() {
 }
 
 //export callbackQUndoGroupChildEvent
-func callbackQUndoGroupChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoGroupChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoGroup::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoGroupFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoGroup) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QUndoGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QUndoGroup) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QUndoGroup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QUndoGroup) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -439,13 +525,28 @@ func (ptr *QUndoGroup) DisconnectCustomEvent() {
 }
 
 //export callbackQUndoGroupCustomEvent
-func callbackQUndoGroupCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQUndoGroupCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUndoGroup::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQUndoGroupFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QUndoGroup) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QUndoGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QUndoGroup) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QUndoGroup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QUndoGroup_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -76,13 +76,21 @@ func (ptr *QVideoWidgetControl) DisconnectBrightnessChanged() {
 }
 
 //export callbackQVideoWidgetControlBrightnessChanged
-func callbackQVideoWidgetControlBrightnessChanged(ptrName *C.char, brightness C.int) {
+func callbackQVideoWidgetControlBrightnessChanged(ptr unsafe.Pointer, ptrName *C.char, brightness C.int) {
 	defer qt.Recovering("callback QVideoWidgetControl::brightnessChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "brightnessChanged"); signal != nil {
 		signal.(func(int))(int(brightness))
 	}
 
+}
+
+func (ptr *QVideoWidgetControl) BrightnessChanged(brightness int) {
+	defer qt.Recovering("QVideoWidgetControl::brightnessChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_BrightnessChanged(ptr.Pointer(), C.int(brightness))
+	}
 }
 
 func (ptr *QVideoWidgetControl) Contrast() int {
@@ -113,13 +121,21 @@ func (ptr *QVideoWidgetControl) DisconnectContrastChanged() {
 }
 
 //export callbackQVideoWidgetControlContrastChanged
-func callbackQVideoWidgetControlContrastChanged(ptrName *C.char, contrast C.int) {
+func callbackQVideoWidgetControlContrastChanged(ptr unsafe.Pointer, ptrName *C.char, contrast C.int) {
 	defer qt.Recovering("callback QVideoWidgetControl::contrastChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contrastChanged"); signal != nil {
 		signal.(func(int))(int(contrast))
 	}
 
+}
+
+func (ptr *QVideoWidgetControl) ContrastChanged(contrast int) {
+	defer qt.Recovering("QVideoWidgetControl::contrastChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_ContrastChanged(ptr.Pointer(), C.int(contrast))
+	}
 }
 
 func (ptr *QVideoWidgetControl) ConnectFullScreenChanged(f func(fullScreen bool)) {
@@ -141,13 +157,21 @@ func (ptr *QVideoWidgetControl) DisconnectFullScreenChanged() {
 }
 
 //export callbackQVideoWidgetControlFullScreenChanged
-func callbackQVideoWidgetControlFullScreenChanged(ptrName *C.char, fullScreen C.int) {
+func callbackQVideoWidgetControlFullScreenChanged(ptr unsafe.Pointer, ptrName *C.char, fullScreen C.int) {
 	defer qt.Recovering("callback QVideoWidgetControl::fullScreenChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fullScreenChanged"); signal != nil {
 		signal.(func(bool))(int(fullScreen) != 0)
 	}
 
+}
+
+func (ptr *QVideoWidgetControl) FullScreenChanged(fullScreen bool) {
+	defer qt.Recovering("QVideoWidgetControl::fullScreenChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_FullScreenChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(fullScreen)))
+	}
 }
 
 func (ptr *QVideoWidgetControl) Hue() int {
@@ -178,13 +202,21 @@ func (ptr *QVideoWidgetControl) DisconnectHueChanged() {
 }
 
 //export callbackQVideoWidgetControlHueChanged
-func callbackQVideoWidgetControlHueChanged(ptrName *C.char, hue C.int) {
+func callbackQVideoWidgetControlHueChanged(ptr unsafe.Pointer, ptrName *C.char, hue C.int) {
 	defer qt.Recovering("callback QVideoWidgetControl::hueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hueChanged"); signal != nil {
 		signal.(func(int))(int(hue))
 	}
 
+}
+
+func (ptr *QVideoWidgetControl) HueChanged(hue int) {
+	defer qt.Recovering("QVideoWidgetControl::hueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_HueChanged(ptr.Pointer(), C.int(hue))
+	}
 }
 
 func (ptr *QVideoWidgetControl) IsFullScreen() bool {
@@ -224,13 +256,21 @@ func (ptr *QVideoWidgetControl) DisconnectSaturationChanged() {
 }
 
 //export callbackQVideoWidgetControlSaturationChanged
-func callbackQVideoWidgetControlSaturationChanged(ptrName *C.char, saturation C.int) {
+func callbackQVideoWidgetControlSaturationChanged(ptr unsafe.Pointer, ptrName *C.char, saturation C.int) {
 	defer qt.Recovering("callback QVideoWidgetControl::saturationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "saturationChanged"); signal != nil {
 		signal.(func(int))(int(saturation))
 	}
 
+}
+
+func (ptr *QVideoWidgetControl) SaturationChanged(saturation int) {
+	defer qt.Recovering("QVideoWidgetControl::saturationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_SaturationChanged(ptr.Pointer(), C.int(saturation))
+	}
 }
 
 func (ptr *QVideoWidgetControl) SetAspectRatioMode(mode core.Qt__AspectRatioMode) {
@@ -318,15 +358,30 @@ func (ptr *QVideoWidgetControl) DisconnectTimerEvent() {
 }
 
 //export callbackQVideoWidgetControlTimerEvent
-func callbackQVideoWidgetControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidgetControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidgetControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoWidgetControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QVideoWidgetControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoWidgetControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QVideoWidgetControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -348,15 +403,30 @@ func (ptr *QVideoWidgetControl) DisconnectChildEvent() {
 }
 
 //export callbackQVideoWidgetControlChildEvent
-func callbackQVideoWidgetControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidgetControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidgetControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoWidgetControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QVideoWidgetControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoWidgetControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QVideoWidgetControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -378,13 +448,28 @@ func (ptr *QVideoWidgetControl) DisconnectCustomEvent() {
 }
 
 //export callbackQVideoWidgetControlCustomEvent
-func callbackQVideoWidgetControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoWidgetControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoWidgetControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoWidgetControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoWidgetControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoWidgetControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QVideoWidgetControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoWidgetControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

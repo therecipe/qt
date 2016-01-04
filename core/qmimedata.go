@@ -235,15 +235,30 @@ func (ptr *QMimeData) DisconnectTimerEvent() {
 }
 
 //export callbackQMimeDataTimerEvent
-func callbackQMimeDataTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMimeDataTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMimeData::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMimeDataFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMimeData) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QMimeData::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMimeData_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMimeData) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QMimeData::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMimeData_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMimeData) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -265,15 +280,30 @@ func (ptr *QMimeData) DisconnectChildEvent() {
 }
 
 //export callbackQMimeDataChildEvent
-func callbackQMimeDataChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMimeDataChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMimeData::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMimeDataFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMimeData) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QMimeData::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMimeData_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMimeData) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QMimeData::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMimeData_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMimeData) ConnectCustomEvent(f func(event *QEvent)) {
@@ -295,13 +325,28 @@ func (ptr *QMimeData) DisconnectCustomEvent() {
 }
 
 //export callbackQMimeDataCustomEvent
-func callbackQMimeDataCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMimeDataCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMimeData::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMimeDataFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMimeData) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QMimeData::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMimeData_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMimeData) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QMimeData::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMimeData_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

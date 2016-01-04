@@ -128,13 +128,21 @@ func (ptr *QCameraImageCapture) DisconnectBufferFormatChanged() {
 }
 
 //export callbackQCameraImageCaptureBufferFormatChanged
-func callbackQCameraImageCaptureBufferFormatChanged(ptrName *C.char, format C.int) {
+func callbackQCameraImageCaptureBufferFormatChanged(ptr unsafe.Pointer, ptrName *C.char, format C.int) {
 	defer qt.Recovering("callback QCameraImageCapture::bufferFormatChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "bufferFormatChanged"); signal != nil {
 		signal.(func(QVideoFrame__PixelFormat))(QVideoFrame__PixelFormat(format))
 	}
 
+}
+
+func (ptr *QCameraImageCapture) BufferFormatChanged(format QVideoFrame__PixelFormat) {
+	defer qt.Recovering("QCameraImageCapture::bufferFormatChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_BufferFormatChanged(ptr.Pointer(), C.int(format))
+	}
 }
 
 func (ptr *QCameraImageCapture) CancelCapture() {
@@ -182,13 +190,21 @@ func (ptr *QCameraImageCapture) DisconnectCaptureDestinationChanged() {
 }
 
 //export callbackQCameraImageCaptureCaptureDestinationChanged
-func callbackQCameraImageCaptureCaptureDestinationChanged(ptrName *C.char, destination C.int) {
+func callbackQCameraImageCaptureCaptureDestinationChanged(ptr unsafe.Pointer, ptrName *C.char, destination C.int) {
 	defer qt.Recovering("callback QCameraImageCapture::captureDestinationChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "captureDestinationChanged"); signal != nil {
 		signal.(func(QCameraImageCapture__CaptureDestination))(QCameraImageCapture__CaptureDestination(destination))
 	}
 
+}
+
+func (ptr *QCameraImageCapture) CaptureDestinationChanged(destination QCameraImageCapture__CaptureDestination) {
+	defer qt.Recovering("QCameraImageCapture::captureDestinationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_CaptureDestinationChanged(ptr.Pointer(), C.int(destination))
+	}
 }
 
 func (ptr *QCameraImageCapture) ConnectError2(f func(id int, error QCameraImageCapture__Error, errorString string)) {
@@ -210,13 +226,21 @@ func (ptr *QCameraImageCapture) DisconnectError2() {
 }
 
 //export callbackQCameraImageCaptureError2
-func callbackQCameraImageCaptureError2(ptrName *C.char, id C.int, error C.int, errorString *C.char) {
+func callbackQCameraImageCaptureError2(ptr unsafe.Pointer, ptrName *C.char, id C.int, error C.int, errorString *C.char) {
 	defer qt.Recovering("callback QCameraImageCapture::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(int, QCameraImageCapture__Error, string))(int(id), QCameraImageCapture__Error(error), C.GoString(errorString))
 	}
 
+}
+
+func (ptr *QCameraImageCapture) Error2(id int, error QCameraImageCapture__Error, errorString string) {
+	defer qt.Recovering("QCameraImageCapture::error")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_Error2(ptr.Pointer(), C.int(id), C.int(error), C.CString(errorString))
+	}
 }
 
 func (ptr *QCameraImageCapture) Error() QCameraImageCapture__Error {
@@ -265,13 +289,21 @@ func (ptr *QCameraImageCapture) DisconnectImageExposed() {
 }
 
 //export callbackQCameraImageCaptureImageExposed
-func callbackQCameraImageCaptureImageExposed(ptrName *C.char, id C.int) {
+func callbackQCameraImageCaptureImageExposed(ptr unsafe.Pointer, ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QCameraImageCapture::imageExposed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "imageExposed"); signal != nil {
 		signal.(func(int))(int(id))
 	}
 
+}
+
+func (ptr *QCameraImageCapture) ImageExposed(id int) {
+	defer qt.Recovering("QCameraImageCapture::imageExposed")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_ImageExposed(ptr.Pointer(), C.int(id))
+	}
 }
 
 func (ptr *QCameraImageCapture) ConnectImageMetadataAvailable(f func(id int, key string, value *core.QVariant)) {
@@ -293,13 +325,21 @@ func (ptr *QCameraImageCapture) DisconnectImageMetadataAvailable() {
 }
 
 //export callbackQCameraImageCaptureImageMetadataAvailable
-func callbackQCameraImageCaptureImageMetadataAvailable(ptrName *C.char, id C.int, key *C.char, value unsafe.Pointer) {
+func callbackQCameraImageCaptureImageMetadataAvailable(ptr unsafe.Pointer, ptrName *C.char, id C.int, key *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraImageCapture::imageMetadataAvailable")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "imageMetadataAvailable"); signal != nil {
 		signal.(func(int, string, *core.QVariant))(int(id), C.GoString(key), core.NewQVariantFromPointer(value))
 	}
 
+}
+
+func (ptr *QCameraImageCapture) ImageMetadataAvailable(id int, key string, value core.QVariant_ITF) {
+	defer qt.Recovering("QCameraImageCapture::imageMetadataAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_ImageMetadataAvailable(ptr.Pointer(), C.int(id), C.CString(key), core.PointerFromQVariant(value))
+	}
 }
 
 func (ptr *QCameraImageCapture) ConnectImageSaved(f func(id int, fileName string)) {
@@ -321,13 +361,21 @@ func (ptr *QCameraImageCapture) DisconnectImageSaved() {
 }
 
 //export callbackQCameraImageCaptureImageSaved
-func callbackQCameraImageCaptureImageSaved(ptrName *C.char, id C.int, fileName *C.char) {
+func callbackQCameraImageCaptureImageSaved(ptr unsafe.Pointer, ptrName *C.char, id C.int, fileName *C.char) {
 	defer qt.Recovering("callback QCameraImageCapture::imageSaved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "imageSaved"); signal != nil {
 		signal.(func(int, string))(int(id), C.GoString(fileName))
 	}
 
+}
+
+func (ptr *QCameraImageCapture) ImageSaved(id int, fileName string) {
+	defer qt.Recovering("QCameraImageCapture::imageSaved")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_ImageSaved(ptr.Pointer(), C.int(id), C.CString(fileName))
+	}
 }
 
 func (ptr *QCameraImageCapture) IsAvailable() bool {
@@ -376,13 +424,21 @@ func (ptr *QCameraImageCapture) DisconnectReadyForCaptureChanged() {
 }
 
 //export callbackQCameraImageCaptureReadyForCaptureChanged
-func callbackQCameraImageCaptureReadyForCaptureChanged(ptrName *C.char, ready C.int) {
+func callbackQCameraImageCaptureReadyForCaptureChanged(ptr unsafe.Pointer, ptrName *C.char, ready C.int) {
 	defer qt.Recovering("callback QCameraImageCapture::readyForCaptureChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "readyForCaptureChanged"); signal != nil {
 		signal.(func(bool))(int(ready) != 0)
 	}
 
+}
+
+func (ptr *QCameraImageCapture) ReadyForCaptureChanged(ready bool) {
+	defer qt.Recovering("QCameraImageCapture::readyForCaptureChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_ReadyForCaptureChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(ready)))
+	}
 }
 
 func (ptr *QCameraImageCapture) SetBufferFormat(format QVideoFrame__PixelFormat) {
@@ -407,6 +463,15 @@ func (ptr *QCameraImageCapture) SetEncodingSettings(settings QImageEncoderSettin
 	if ptr.Pointer() != nil {
 		C.QCameraImageCapture_SetEncodingSettings(ptr.Pointer(), PointerFromQImageEncoderSettings(settings))
 	}
+}
+
+func (ptr *QCameraImageCapture) SetMediaObject(mediaObject QMediaObject_ITF) bool {
+	defer qt.Recovering("QCameraImageCapture::setMediaObject")
+
+	if ptr.Pointer() != nil {
+		return C.QCameraImageCapture_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(mediaObject)) != 0
+	}
+	return false
 }
 
 func (ptr *QCameraImageCapture) SupportedImageCodecs() []string {
@@ -446,15 +511,30 @@ func (ptr *QCameraImageCapture) DisconnectTimerEvent() {
 }
 
 //export callbackQCameraImageCaptureTimerEvent
-func callbackQCameraImageCaptureTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraImageCaptureTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraImageCapture::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraImageCaptureFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraImageCapture) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraImageCapture::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCameraImageCapture) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraImageCapture::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCameraImageCapture) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -476,15 +556,30 @@ func (ptr *QCameraImageCapture) DisconnectChildEvent() {
 }
 
 //export callbackQCameraImageCaptureChildEvent
-func callbackQCameraImageCaptureChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraImageCaptureChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraImageCapture::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraImageCaptureFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraImageCapture) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraImageCapture::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCameraImageCapture) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraImageCapture::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCameraImageCapture) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -506,13 +601,28 @@ func (ptr *QCameraImageCapture) DisconnectCustomEvent() {
 }
 
 //export callbackQCameraImageCaptureCustomEvent
-func callbackQCameraImageCaptureCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraImageCaptureCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraImageCapture::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraImageCaptureFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraImageCapture) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraImageCapture::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCameraImageCapture) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraImageCapture::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

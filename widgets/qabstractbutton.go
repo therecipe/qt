@@ -251,15 +251,30 @@ func (ptr *QAbstractButton) DisconnectChangeEvent() {
 }
 
 //export callbackQAbstractButtonChangeEvent
-func callbackQAbstractButtonChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQAbstractButtonChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QAbstractButton) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectCheckStateSet(f func()) {
@@ -281,15 +296,30 @@ func (ptr *QAbstractButton) DisconnectCheckStateSet() {
 }
 
 //export callbackQAbstractButtonCheckStateSet
-func callbackQAbstractButtonCheckStateSet(ptrName *C.char) bool {
+func callbackQAbstractButtonCheckStateSet(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractButton::checkStateSet")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "checkStateSet"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).CheckStateSetDefault()
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) CheckStateSet() {
+	defer qt.Recovering("QAbstractButton::checkStateSet")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_CheckStateSet(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractButton) CheckStateSetDefault() {
+	defer qt.Recovering("QAbstractButton::checkStateSet")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_CheckStateSetDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractButton) Click() {
@@ -319,13 +349,30 @@ func (ptr *QAbstractButton) DisconnectClicked() {
 }
 
 //export callbackQAbstractButtonClicked
-func callbackQAbstractButtonClicked(ptrName *C.char, checked C.int) {
+func callbackQAbstractButtonClicked(ptr unsafe.Pointer, ptrName *C.char, checked C.int) {
 	defer qt.Recovering("callback QAbstractButton::clicked")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clicked"); signal != nil {
 		signal.(func(bool))(int(checked) != 0)
 	}
 
+}
+
+func (ptr *QAbstractButton) Clicked(checked bool) {
+	defer qt.Recovering("QAbstractButton::clicked")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_Clicked(ptr.Pointer(), C.int(qt.GoBoolToInt(checked)))
+	}
+}
+
+func (ptr *QAbstractButton) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QAbstractButton::event")
+
+	if ptr.Pointer() != nil {
+		return C.QAbstractButton_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
 }
 
 func (ptr *QAbstractButton) ConnectFocusInEvent(f func(e *gui.QFocusEvent)) {
@@ -347,15 +394,30 @@ func (ptr *QAbstractButton) DisconnectFocusInEvent() {
 }
 
 //export callbackQAbstractButtonFocusInEvent
-func callbackQAbstractButtonFocusInEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQAbstractButtonFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) FocusInEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QAbstractButton) FocusInEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectFocusOutEvent(f func(e *gui.QFocusEvent)) {
@@ -377,15 +439,30 @@ func (ptr *QAbstractButton) DisconnectFocusOutEvent() {
 }
 
 //export callbackQAbstractButtonFocusOutEvent
-func callbackQAbstractButtonFocusOutEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQAbstractButtonFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) FocusOutEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QAbstractButton) FocusOutEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QAbstractButton) Group() *QButtonGroup {
@@ -395,6 +472,15 @@ func (ptr *QAbstractButton) Group() *QButtonGroup {
 		return NewQButtonGroupFromPointer(C.QAbstractButton_Group(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QAbstractButton) HitButton(pos core.QPoint_ITF) bool {
+	defer qt.Recovering("QAbstractButton::hitButton")
+
+	if ptr.Pointer() != nil {
+		return C.QAbstractButton_HitButton(ptr.Pointer(), core.PointerFromQPoint(pos)) != 0
+	}
+	return false
 }
 
 func (ptr *QAbstractButton) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
@@ -416,15 +502,30 @@ func (ptr *QAbstractButton) DisconnectKeyPressEvent() {
 }
 
 //export callbackQAbstractButtonKeyPressEvent
-func callbackQAbstractButtonKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQAbstractButtonKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QAbstractButton) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectKeyReleaseEvent(f func(e *gui.QKeyEvent)) {
@@ -446,15 +547,30 @@ func (ptr *QAbstractButton) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQAbstractButtonKeyReleaseEvent
-func callbackQAbstractButtonKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQAbstractButtonKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) KeyReleaseEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QAbstractButton) KeyReleaseEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
@@ -476,15 +592,30 @@ func (ptr *QAbstractButton) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQAbstractButtonMouseMoveEvent
-func callbackQAbstractButtonMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQAbstractButtonMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) MouseMoveEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QAbstractButton) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
@@ -506,15 +637,30 @@ func (ptr *QAbstractButton) DisconnectMousePressEvent() {
 }
 
 //export callbackQAbstractButtonMousePressEvent
-func callbackQAbstractButtonMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQAbstractButtonMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) MousePressEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QAbstractButton) MousePressEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -536,15 +682,30 @@ func (ptr *QAbstractButton) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQAbstractButtonMouseReleaseEvent
-func callbackQAbstractButtonMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQAbstractButtonMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QAbstractButton) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectNextCheckState(f func()) {
@@ -566,15 +727,30 @@ func (ptr *QAbstractButton) DisconnectNextCheckState() {
 }
 
 //export callbackQAbstractButtonNextCheckState
-func callbackQAbstractButtonNextCheckState(ptrName *C.char) bool {
+func callbackQAbstractButtonNextCheckState(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractButton::nextCheckState")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nextCheckState"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).NextCheckStateDefault()
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) NextCheckState() {
+	defer qt.Recovering("QAbstractButton::nextCheckState")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_NextCheckState(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractButton) NextCheckStateDefault() {
+	defer qt.Recovering("QAbstractButton::nextCheckState")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_NextCheckStateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractButton) ConnectPressed(f func()) {
@@ -596,13 +772,21 @@ func (ptr *QAbstractButton) DisconnectPressed() {
 }
 
 //export callbackQAbstractButtonPressed
-func callbackQAbstractButtonPressed(ptrName *C.char) {
+func callbackQAbstractButtonPressed(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractButton::pressed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "pressed"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QAbstractButton) Pressed() {
+	defer qt.Recovering("QAbstractButton::pressed")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_Pressed(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractButton) ConnectReleased(f func()) {
@@ -624,13 +808,21 @@ func (ptr *QAbstractButton) DisconnectReleased() {
 }
 
 //export callbackQAbstractButtonReleased
-func callbackQAbstractButtonReleased(ptrName *C.char) {
+func callbackQAbstractButtonReleased(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractButton::released")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "released"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QAbstractButton) Released() {
+	defer qt.Recovering("QAbstractButton::released")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_Released(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractButton) ConnectTimerEvent(f func(e *core.QTimerEvent)) {
@@ -652,15 +844,30 @@ func (ptr *QAbstractButton) DisconnectTimerEvent() {
 }
 
 //export callbackQAbstractButtonTimerEvent
-func callbackQAbstractButtonTimerEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQAbstractButtonTimerEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) TimerEvent(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
+}
+
+func (ptr *QAbstractButton) TimerEventDefault(e core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(e))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectToggled(f func(checked bool)) {
@@ -682,13 +889,21 @@ func (ptr *QAbstractButton) DisconnectToggled() {
 }
 
 //export callbackQAbstractButtonToggled
-func callbackQAbstractButtonToggled(ptrName *C.char, checked C.int) {
+func callbackQAbstractButtonToggled(ptr unsafe.Pointer, ptrName *C.char, checked C.int) {
 	defer qt.Recovering("callback QAbstractButton::toggled")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "toggled"); signal != nil {
 		signal.(func(bool))(int(checked) != 0)
 	}
 
+}
+
+func (ptr *QAbstractButton) Toggled(checked bool) {
+	defer qt.Recovering("QAbstractButton::toggled")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_Toggled(ptr.Pointer(), C.int(qt.GoBoolToInt(checked)))
+	}
 }
 
 func (ptr *QAbstractButton) DestroyQAbstractButton() {
@@ -719,15 +934,30 @@ func (ptr *QAbstractButton) DisconnectActionEvent() {
 }
 
 //export callbackQAbstractButtonActionEvent
-func callbackQAbstractButtonActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -749,15 +979,30 @@ func (ptr *QAbstractButton) DisconnectDragEnterEvent() {
 }
 
 //export callbackQAbstractButtonDragEnterEvent
-func callbackQAbstractButtonDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -779,15 +1024,30 @@ func (ptr *QAbstractButton) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQAbstractButtonDragLeaveEvent
-func callbackQAbstractButtonDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -809,15 +1069,30 @@ func (ptr *QAbstractButton) DisconnectDragMoveEvent() {
 }
 
 //export callbackQAbstractButtonDragMoveEvent
-func callbackQAbstractButtonDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -839,15 +1114,30 @@ func (ptr *QAbstractButton) DisconnectDropEvent() {
 }
 
 //export callbackQAbstractButtonDropEvent
-func callbackQAbstractButtonDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -869,15 +1159,30 @@ func (ptr *QAbstractButton) DisconnectEnterEvent() {
 }
 
 //export callbackQAbstractButtonEnterEvent
-func callbackQAbstractButtonEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -899,15 +1204,30 @@ func (ptr *QAbstractButton) DisconnectHideEvent() {
 }
 
 //export callbackQAbstractButtonHideEvent
-func callbackQAbstractButtonHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -929,15 +1249,30 @@ func (ptr *QAbstractButton) DisconnectLeaveEvent() {
 }
 
 //export callbackQAbstractButtonLeaveEvent
-func callbackQAbstractButtonLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -959,45 +1294,30 @@ func (ptr *QAbstractButton) DisconnectMoveEvent() {
 }
 
 //export callbackQAbstractButtonMoveEvent
-func callbackQAbstractButtonMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
-
 }
 
-func (ptr *QAbstractButton) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
-	defer qt.Recovering("connect QAbstractButton::paintEvent")
+func (ptr *QAbstractButton) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::moveEvent")
 
 	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+		C.QAbstractButton_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
 }
 
-func (ptr *QAbstractButton) DisconnectPaintEvent() {
-	defer qt.Recovering("disconnect QAbstractButton::paintEvent")
+func (ptr *QAbstractButton) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::moveEvent")
 
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+		C.QAbstractButton_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
-}
-
-//export callbackQAbstractButtonPaintEvent
-func callbackQAbstractButtonPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
-	defer qt.Recovering("callback QAbstractButton::paintEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
-		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
-	}
-	return false
-
 }
 
 func (ptr *QAbstractButton) ConnectSetVisible(f func(visible bool)) {
@@ -1019,7 +1339,7 @@ func (ptr *QAbstractButton) DisconnectSetVisible() {
 }
 
 //export callbackQAbstractButtonSetVisible
-func callbackQAbstractButtonSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQAbstractButtonSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QAbstractButton::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -1028,6 +1348,22 @@ func callbackQAbstractButtonSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QAbstractButton) SetVisible(visible bool) {
+	defer qt.Recovering("QAbstractButton::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QAbstractButton) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QAbstractButton::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -1049,15 +1385,30 @@ func (ptr *QAbstractButton) DisconnectShowEvent() {
 }
 
 //export callbackQAbstractButtonShowEvent
-func callbackQAbstractButtonShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -1079,15 +1430,30 @@ func (ptr *QAbstractButton) DisconnectCloseEvent() {
 }
 
 //export callbackQAbstractButtonCloseEvent
-func callbackQAbstractButtonCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -1109,15 +1475,30 @@ func (ptr *QAbstractButton) DisconnectContextMenuEvent() {
 }
 
 //export callbackQAbstractButtonContextMenuEvent
-func callbackQAbstractButtonContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1139,15 +1520,30 @@ func (ptr *QAbstractButton) DisconnectInitPainter() {
 }
 
 //export callbackQAbstractButtonInitPainter
-func callbackQAbstractButtonInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQAbstractButtonInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QAbstractButton::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QAbstractButton) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QAbstractButton::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -1169,15 +1565,30 @@ func (ptr *QAbstractButton) DisconnectInputMethodEvent() {
 }
 
 //export callbackQAbstractButtonInputMethodEvent
-func callbackQAbstractButtonInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1199,15 +1610,30 @@ func (ptr *QAbstractButton) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQAbstractButtonMouseDoubleClickEvent
-func callbackQAbstractButtonMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -1229,15 +1655,30 @@ func (ptr *QAbstractButton) DisconnectResizeEvent() {
 }
 
 //export callbackQAbstractButtonResizeEvent
-func callbackQAbstractButtonResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1259,15 +1700,30 @@ func (ptr *QAbstractButton) DisconnectTabletEvent() {
 }
 
 //export callbackQAbstractButtonTabletEvent
-func callbackQAbstractButtonTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1289,15 +1745,30 @@ func (ptr *QAbstractButton) DisconnectWheelEvent() {
 }
 
 //export callbackQAbstractButtonWheelEvent
-func callbackQAbstractButtonWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1319,15 +1790,30 @@ func (ptr *QAbstractButton) DisconnectChildEvent() {
 }
 
 //export callbackQAbstractButtonChildEvent
-func callbackQAbstractButtonChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAbstractButton) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1349,13 +1835,28 @@ func (ptr *QAbstractButton) DisconnectCustomEvent() {
 }
 
 //export callbackQAbstractButtonCustomEvent
-func callbackQAbstractButtonCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractButtonCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractButton::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractButtonFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractButton) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractButton) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractButton::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractButton_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

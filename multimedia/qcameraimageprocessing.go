@@ -234,15 +234,30 @@ func (ptr *QCameraImageProcessing) DisconnectTimerEvent() {
 }
 
 //export callbackQCameraImageProcessingTimerEvent
-func callbackQCameraImageProcessingTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraImageProcessingTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraImageProcessing::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraImageProcessingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraImageProcessing) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessing::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCameraImageProcessing) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessing::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCameraImageProcessing) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -264,15 +279,30 @@ func (ptr *QCameraImageProcessing) DisconnectChildEvent() {
 }
 
 //export callbackQCameraImageProcessingChildEvent
-func callbackQCameraImageProcessingChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraImageProcessingChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraImageProcessing::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraImageProcessingFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraImageProcessing) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessing::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCameraImageProcessing) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessing::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCameraImageProcessing) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -294,13 +324,28 @@ func (ptr *QCameraImageProcessing) DisconnectCustomEvent() {
 }
 
 //export callbackQCameraImageProcessingCustomEvent
-func callbackQCameraImageProcessingCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraImageProcessingCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraImageProcessing::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraImageProcessingFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraImageProcessing) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessing::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCameraImageProcessing) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraImageProcessing::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

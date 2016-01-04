@@ -76,13 +76,21 @@ func (ptr *QAbstractVideoSurface) DisconnectActiveChanged() {
 }
 
 //export callbackQAbstractVideoSurfaceActiveChanged
-func callbackQAbstractVideoSurfaceActiveChanged(ptrName *C.char, active C.int) {
+func callbackQAbstractVideoSurfaceActiveChanged(ptr unsafe.Pointer, ptrName *C.char, active C.int) {
 	defer qt.Recovering("callback QAbstractVideoSurface::activeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activeChanged"); signal != nil {
 		signal.(func(bool))(int(active) != 0)
 	}
 
+}
+
+func (ptr *QAbstractVideoSurface) ActiveChanged(active bool) {
+	defer qt.Recovering("QAbstractVideoSurface::activeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_ActiveChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(active)))
+	}
 }
 
 func (ptr *QAbstractVideoSurface) Error() QAbstractVideoSurface__Error {
@@ -131,13 +139,21 @@ func (ptr *QAbstractVideoSurface) DisconnectNativeResolutionChanged() {
 }
 
 //export callbackQAbstractVideoSurfaceNativeResolutionChanged
-func callbackQAbstractVideoSurfaceNativeResolutionChanged(ptrName *C.char, resolution unsafe.Pointer) {
+func callbackQAbstractVideoSurfaceNativeResolutionChanged(ptr unsafe.Pointer, ptrName *C.char, resolution unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractVideoSurface::nativeResolutionChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeResolutionChanged"); signal != nil {
 		signal.(func(*core.QSize))(core.NewQSizeFromPointer(resolution))
 	}
 
+}
+
+func (ptr *QAbstractVideoSurface) NativeResolutionChanged(resolution core.QSize_ITF) {
+	defer qt.Recovering("QAbstractVideoSurface::nativeResolutionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_NativeResolutionChanged(ptr.Pointer(), core.PointerFromQSize(resolution))
+	}
 }
 
 func (ptr *QAbstractVideoSurface) Present(frame QVideoFrame_ITF) bool {
@@ -177,15 +193,30 @@ func (ptr *QAbstractVideoSurface) DisconnectStop() {
 }
 
 //export callbackQAbstractVideoSurfaceStop
-func callbackQAbstractVideoSurfaceStop(ptrName *C.char) bool {
+func callbackQAbstractVideoSurfaceStop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractVideoSurface::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQAbstractVideoSurfaceFromPointer(ptr).StopDefault()
 	}
-	return false
+}
 
+func (ptr *QAbstractVideoSurface) Stop() {
+	defer qt.Recovering("QAbstractVideoSurface::stop")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractVideoSurface) StopDefault() {
+	defer qt.Recovering("QAbstractVideoSurface::stop")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_StopDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractVideoSurface) ConnectSupportedFormatsChanged(f func()) {
@@ -207,13 +238,21 @@ func (ptr *QAbstractVideoSurface) DisconnectSupportedFormatsChanged() {
 }
 
 //export callbackQAbstractVideoSurfaceSupportedFormatsChanged
-func callbackQAbstractVideoSurfaceSupportedFormatsChanged(ptrName *C.char) {
+func callbackQAbstractVideoSurfaceSupportedFormatsChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractVideoSurface::supportedFormatsChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "supportedFormatsChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QAbstractVideoSurface) SupportedFormatsChanged() {
+	defer qt.Recovering("QAbstractVideoSurface::supportedFormatsChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_SupportedFormatsChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractVideoSurface) DestroyQAbstractVideoSurface() {
@@ -244,15 +283,30 @@ func (ptr *QAbstractVideoSurface) DisconnectTimerEvent() {
 }
 
 //export callbackQAbstractVideoSurfaceTimerEvent
-func callbackQAbstractVideoSurfaceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractVideoSurfaceTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractVideoSurface::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractVideoSurfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractVideoSurface) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoSurface::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAbstractVideoSurface) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoSurface::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAbstractVideoSurface) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -274,15 +328,30 @@ func (ptr *QAbstractVideoSurface) DisconnectChildEvent() {
 }
 
 //export callbackQAbstractVideoSurfaceChildEvent
-func callbackQAbstractVideoSurfaceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractVideoSurfaceChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractVideoSurface::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractVideoSurfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractVideoSurface) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoSurface::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAbstractVideoSurface) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoSurface::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAbstractVideoSurface) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -304,13 +373,28 @@ func (ptr *QAbstractVideoSurface) DisconnectCustomEvent() {
 }
 
 //export callbackQAbstractVideoSurfaceCustomEvent
-func callbackQAbstractVideoSurfaceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractVideoSurfaceCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractVideoSurface::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractVideoSurfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractVideoSurface) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoSurface::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractVideoSurface) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoSurface::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

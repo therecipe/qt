@@ -97,13 +97,21 @@ func (ptr *QGraphicsOpacityEffect) DisconnectOpacityChanged() {
 }
 
 //export callbackQGraphicsOpacityEffectOpacityChanged
-func callbackQGraphicsOpacityEffectOpacityChanged(ptrName *C.char, opacity C.double) {
+func callbackQGraphicsOpacityEffectOpacityChanged(ptr unsafe.Pointer, ptrName *C.char, opacity C.double) {
 	defer qt.Recovering("callback QGraphicsOpacityEffect::opacityChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "opacityChanged"); signal != nil {
 		signal.(func(float64))(float64(opacity))
 	}
 
+}
+
+func (ptr *QGraphicsOpacityEffect) OpacityChanged(opacity float64) {
+	defer qt.Recovering("QGraphicsOpacityEffect::opacityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_OpacityChanged(ptr.Pointer(), C.double(opacity))
+	}
 }
 
 func (ptr *QGraphicsOpacityEffect) ConnectOpacityMaskChanged(f func(mask *gui.QBrush)) {
@@ -125,13 +133,21 @@ func (ptr *QGraphicsOpacityEffect) DisconnectOpacityMaskChanged() {
 }
 
 //export callbackQGraphicsOpacityEffectOpacityMaskChanged
-func callbackQGraphicsOpacityEffectOpacityMaskChanged(ptrName *C.char, mask unsafe.Pointer) {
+func callbackQGraphicsOpacityEffectOpacityMaskChanged(ptr unsafe.Pointer, ptrName *C.char, mask unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsOpacityEffect::opacityMaskChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "opacityMaskChanged"); signal != nil {
 		signal.(func(*gui.QBrush))(gui.NewQBrushFromPointer(mask))
 	}
 
+}
+
+func (ptr *QGraphicsOpacityEffect) OpacityMaskChanged(mask gui.QBrush_ITF) {
+	defer qt.Recovering("QGraphicsOpacityEffect::opacityMaskChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_OpacityMaskChanged(ptr.Pointer(), gui.PointerFromQBrush(mask))
+	}
 }
 
 func (ptr *QGraphicsOpacityEffect) DestroyQGraphicsOpacityEffect() {
@@ -162,15 +178,30 @@ func (ptr *QGraphicsOpacityEffect) DisconnectTimerEvent() {
 }
 
 //export callbackQGraphicsOpacityEffectTimerEvent
-func callbackQGraphicsOpacityEffectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsOpacityEffectTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsOpacityEffect::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsOpacityEffectFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsOpacityEffect) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsOpacityEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGraphicsOpacityEffect) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsOpacityEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGraphicsOpacityEffect) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -192,15 +223,30 @@ func (ptr *QGraphicsOpacityEffect) DisconnectChildEvent() {
 }
 
 //export callbackQGraphicsOpacityEffectChildEvent
-func callbackQGraphicsOpacityEffectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsOpacityEffectChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsOpacityEffect::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsOpacityEffectFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsOpacityEffect) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsOpacityEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGraphicsOpacityEffect) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsOpacityEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGraphicsOpacityEffect) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -222,13 +268,28 @@ func (ptr *QGraphicsOpacityEffect) DisconnectCustomEvent() {
 }
 
 //export callbackQGraphicsOpacityEffectCustomEvent
-func callbackQGraphicsOpacityEffectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsOpacityEffectCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsOpacityEffect::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsOpacityEffectFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsOpacityEffect) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsOpacityEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGraphicsOpacityEffect) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsOpacityEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

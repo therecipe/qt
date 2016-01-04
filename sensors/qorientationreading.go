@@ -86,15 +86,30 @@ func (ptr *QOrientationReading) DisconnectTimerEvent() {
 }
 
 //export callbackQOrientationReadingTimerEvent
-func callbackQOrientationReadingTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQOrientationReadingTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QOrientationReading::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQOrientationReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QOrientationReading) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QOrientationReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOrientationReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QOrientationReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QOrientationReading::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOrientationReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QOrientationReading) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -116,15 +131,30 @@ func (ptr *QOrientationReading) DisconnectChildEvent() {
 }
 
 //export callbackQOrientationReadingChildEvent
-func callbackQOrientationReadingChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQOrientationReadingChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QOrientationReading::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQOrientationReadingFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QOrientationReading) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QOrientationReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOrientationReading_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QOrientationReading) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QOrientationReading::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOrientationReading_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QOrientationReading) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -146,13 +176,28 @@ func (ptr *QOrientationReading) DisconnectCustomEvent() {
 }
 
 //export callbackQOrientationReadingCustomEvent
-func callbackQOrientationReadingCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQOrientationReadingCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QOrientationReading::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQOrientationReadingFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QOrientationReading) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QOrientationReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOrientationReading_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QOrientationReading) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QOrientationReading::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOrientationReading_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

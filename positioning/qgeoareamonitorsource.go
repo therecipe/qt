@@ -93,13 +93,21 @@ func (ptr *QGeoAreaMonitorSource) DisconnectError2() {
 }
 
 //export callbackQGeoAreaMonitorSourceError2
-func callbackQGeoAreaMonitorSourceError2(ptrName *C.char, areaMonitoringError C.int) {
+func callbackQGeoAreaMonitorSourceError2(ptr unsafe.Pointer, ptrName *C.char, areaMonitoringError C.int) {
 	defer qt.Recovering("callback QGeoAreaMonitorSource::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QGeoAreaMonitorSource__Error))(QGeoAreaMonitorSource__Error(areaMonitoringError))
 	}
 
+}
+
+func (ptr *QGeoAreaMonitorSource) Error2(areaMonitoringError QGeoAreaMonitorSource__Error) {
+	defer qt.Recovering("QGeoAreaMonitorSource::error")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_Error2(ptr.Pointer(), C.int(areaMonitoringError))
+	}
 }
 
 func (ptr *QGeoAreaMonitorSource) Error() QGeoAreaMonitorSource__Error {
@@ -148,15 +156,30 @@ func (ptr *QGeoAreaMonitorSource) DisconnectSetPositionInfoSource() {
 }
 
 //export callbackQGeoAreaMonitorSourceSetPositionInfoSource
-func callbackQGeoAreaMonitorSourceSetPositionInfoSource(ptrName *C.char, newSource unsafe.Pointer) bool {
+func callbackQGeoAreaMonitorSourceSetPositionInfoSource(ptr unsafe.Pointer, ptrName *C.char, newSource unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoAreaMonitorSource::setPositionInfoSource")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setPositionInfoSource"); signal != nil {
 		signal.(func(*QGeoPositionInfoSource))(NewQGeoPositionInfoSourceFromPointer(newSource))
-		return true
+	} else {
+		NewQGeoAreaMonitorSourceFromPointer(ptr).SetPositionInfoSourceDefault(NewQGeoPositionInfoSourceFromPointer(newSource))
 	}
-	return false
+}
 
+func (ptr *QGeoAreaMonitorSource) SetPositionInfoSource(newSource QGeoPositionInfoSource_ITF) {
+	defer qt.Recovering("QGeoAreaMonitorSource::setPositionInfoSource")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_SetPositionInfoSource(ptr.Pointer(), PointerFromQGeoPositionInfoSource(newSource))
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) SetPositionInfoSourceDefault(newSource QGeoPositionInfoSource_ITF) {
+	defer qt.Recovering("QGeoAreaMonitorSource::setPositionInfoSource")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_SetPositionInfoSourceDefault(ptr.Pointer(), PointerFromQGeoPositionInfoSource(newSource))
+	}
 }
 
 func (ptr *QGeoAreaMonitorSource) SourceName() string {
@@ -223,15 +246,30 @@ func (ptr *QGeoAreaMonitorSource) DisconnectTimerEvent() {
 }
 
 //export callbackQGeoAreaMonitorSourceTimerEvent
-func callbackQGeoAreaMonitorSourceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGeoAreaMonitorSourceTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoAreaMonitorSource::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGeoAreaMonitorSourceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGeoAreaMonitorSource) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGeoAreaMonitorSource::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGeoAreaMonitorSource::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGeoAreaMonitorSource) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -253,15 +291,30 @@ func (ptr *QGeoAreaMonitorSource) DisconnectChildEvent() {
 }
 
 //export callbackQGeoAreaMonitorSourceChildEvent
-func callbackQGeoAreaMonitorSourceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGeoAreaMonitorSourceChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoAreaMonitorSource::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGeoAreaMonitorSourceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGeoAreaMonitorSource) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGeoAreaMonitorSource::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGeoAreaMonitorSource::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGeoAreaMonitorSource) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -283,13 +336,28 @@ func (ptr *QGeoAreaMonitorSource) DisconnectCustomEvent() {
 }
 
 //export callbackQGeoAreaMonitorSourceCustomEvent
-func callbackQGeoAreaMonitorSourceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGeoAreaMonitorSourceCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoAreaMonitorSource::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGeoAreaMonitorSourceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGeoAreaMonitorSource) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGeoAreaMonitorSource::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGeoAreaMonitorSource::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

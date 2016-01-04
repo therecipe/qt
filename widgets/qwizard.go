@@ -121,15 +121,30 @@ func (ptr *QWizard) DisconnectCleanupPage() {
 }
 
 //export callbackQWizardCleanupPage
-func callbackQWizardCleanupPage(ptrName *C.char, id C.int) bool {
+func callbackQWizardCleanupPage(ptr unsafe.Pointer, ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QWizard::cleanupPage")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "cleanupPage"); signal != nil {
 		signal.(func(int))(int(id))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).CleanupPageDefault(int(id))
 	}
-	return false
+}
 
+func (ptr *QWizard) CleanupPage(id int) {
+	defer qt.Recovering("QWizard::cleanupPage")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_CleanupPage(ptr.Pointer(), C.int(id))
+	}
+}
+
+func (ptr *QWizard) CleanupPageDefault(id int) {
+	defer qt.Recovering("QWizard::cleanupPage")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_CleanupPageDefault(ptr.Pointer(), C.int(id))
+	}
 }
 
 func (ptr *QWizard) CurrentId() int {
@@ -169,15 +184,30 @@ func (ptr *QWizard) DisconnectInitializePage() {
 }
 
 //export callbackQWizardInitializePage
-func callbackQWizardInitializePage(ptrName *C.char, id C.int) bool {
+func callbackQWizardInitializePage(ptr unsafe.Pointer, ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QWizard::initializePage")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initializePage"); signal != nil {
 		signal.(func(int))(int(id))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).InitializePageDefault(int(id))
 	}
-	return false
+}
 
+func (ptr *QWizard) InitializePage(id int) {
+	defer qt.Recovering("QWizard::initializePage")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_InitializePage(ptr.Pointer(), C.int(id))
+	}
+}
+
+func (ptr *QWizard) InitializePageDefault(id int) {
+	defer qt.Recovering("QWizard::initializePage")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_InitializePageDefault(ptr.Pointer(), C.int(id))
+	}
 }
 
 func (ptr *QWizard) Options() QWizard__WizardOption {
@@ -342,13 +372,21 @@ func (ptr *QWizard) DisconnectCurrentIdChanged() {
 }
 
 //export callbackQWizardCurrentIdChanged
-func callbackQWizardCurrentIdChanged(ptrName *C.char, id C.int) {
+func callbackQWizardCurrentIdChanged(ptr unsafe.Pointer, ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QWizard::currentIdChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentIdChanged"); signal != nil {
 		signal.(func(int))(int(id))
 	}
 
+}
+
+func (ptr *QWizard) CurrentIdChanged(id int) {
+	defer qt.Recovering("QWizard::currentIdChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_CurrentIdChanged(ptr.Pointer(), C.int(id))
+	}
 }
 
 func (ptr *QWizard) CurrentPage() *QWizardPage {
@@ -379,13 +417,21 @@ func (ptr *QWizard) DisconnectCustomButtonClicked() {
 }
 
 //export callbackQWizardCustomButtonClicked
-func callbackQWizardCustomButtonClicked(ptrName *C.char, which C.int) {
+func callbackQWizardCustomButtonClicked(ptr unsafe.Pointer, ptrName *C.char, which C.int) {
 	defer qt.Recovering("callback QWizard::customButtonClicked")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customButtonClicked"); signal != nil {
 		signal.(func(int))(int(which))
 	}
 
+}
+
+func (ptr *QWizard) CustomButtonClicked(which int) {
+	defer qt.Recovering("QWizard::customButtonClicked")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_CustomButtonClicked(ptr.Pointer(), C.int(which))
+	}
 }
 
 func (ptr *QWizard) ConnectDone(f func(result int)) {
@@ -407,15 +453,39 @@ func (ptr *QWizard) DisconnectDone() {
 }
 
 //export callbackQWizardDone
-func callbackQWizardDone(ptrName *C.char, result C.int) bool {
+func callbackQWizardDone(ptr unsafe.Pointer, ptrName *C.char, result C.int) {
 	defer qt.Recovering("callback QWizard::done")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "done"); signal != nil {
 		signal.(func(int))(int(result))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).DoneDefault(int(result))
+	}
+}
+
+func (ptr *QWizard) Done(result int) {
+	defer qt.Recovering("QWizard::done")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_Done(ptr.Pointer(), C.int(result))
+	}
+}
+
+func (ptr *QWizard) DoneDefault(result int) {
+	defer qt.Recovering("QWizard::done")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_DoneDefault(ptr.Pointer(), C.int(result))
+	}
+}
+
+func (ptr *QWizard) Event(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QWizard::event")
+
+	if ptr.Pointer() != nil {
+		return C.QWizard_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
 	return false
-
 }
 
 func (ptr *QWizard) Field(name string) *core.QVariant {
@@ -446,13 +516,21 @@ func (ptr *QWizard) DisconnectHelpRequested() {
 }
 
 //export callbackQWizardHelpRequested
-func callbackQWizardHelpRequested(ptrName *C.char) {
+func callbackQWizardHelpRequested(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QWizard::helpRequested")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "helpRequested"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QWizard) HelpRequested() {
+	defer qt.Recovering("QWizard::helpRequested")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_HelpRequested(ptr.Pointer())
+	}
 }
 
 func (ptr *QWizard) Next() {
@@ -491,13 +569,21 @@ func (ptr *QWizard) DisconnectPageAdded() {
 }
 
 //export callbackQWizardPageAdded
-func callbackQWizardPageAdded(ptrName *C.char, id C.int) {
+func callbackQWizardPageAdded(ptr unsafe.Pointer, ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QWizard::pageAdded")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "pageAdded"); signal != nil {
 		signal.(func(int))(int(id))
 	}
 
+}
+
+func (ptr *QWizard) PageAdded(id int) {
+	defer qt.Recovering("QWizard::pageAdded")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_PageAdded(ptr.Pointer(), C.int(id))
+	}
 }
 
 func (ptr *QWizard) ConnectPageRemoved(f func(id int)) {
@@ -519,13 +605,21 @@ func (ptr *QWizard) DisconnectPageRemoved() {
 }
 
 //export callbackQWizardPageRemoved
-func callbackQWizardPageRemoved(ptrName *C.char, id C.int) {
+func callbackQWizardPageRemoved(ptr unsafe.Pointer, ptrName *C.char, id C.int) {
 	defer qt.Recovering("callback QWizard::pageRemoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "pageRemoved"); signal != nil {
 		signal.(func(int))(int(id))
 	}
 
+}
+
+func (ptr *QWizard) PageRemoved(id int) {
+	defer qt.Recovering("QWizard::pageRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_PageRemoved(ptr.Pointer(), C.int(id))
+	}
 }
 
 func (ptr *QWizard) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -547,15 +641,30 @@ func (ptr *QWizard) DisconnectPaintEvent() {
 }
 
 //export callbackQWizardPaintEvent
-func callbackQWizardPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QWizard::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QWizard) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QWizard::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QWizard) RemovePage(id int) {
@@ -585,15 +694,30 @@ func (ptr *QWizard) DisconnectResizeEvent() {
 }
 
 //export callbackQWizardResizeEvent
-func callbackQWizardResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QWizard::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QWizard) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QWizard::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QWizard) Restart() {
@@ -679,15 +803,30 @@ func (ptr *QWizard) DisconnectSetVisible() {
 }
 
 //export callbackQWizardSetVisible
-func callbackQWizardSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQWizardSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
 	defer qt.Recovering("callback QWizard::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
 	}
-	return false
+}
 
+func (ptr *QWizard) SetVisible(visible bool) {
+	defer qt.Recovering("QWizard::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QWizard) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QWizard::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QWizard) SideWidget() *QWidget {
@@ -754,7 +893,7 @@ func (ptr *QWizard) DisconnectAccept() {
 }
 
 //export callbackQWizardAccept
-func callbackQWizardAccept(ptrName *C.char) bool {
+func callbackQWizardAccept(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QWizard::accept")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "accept"); signal != nil {
@@ -763,6 +902,22 @@ func callbackQWizardAccept(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QWizard) Accept() {
+	defer qt.Recovering("QWizard::accept")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_Accept(ptr.Pointer())
+	}
+}
+
+func (ptr *QWizard) AcceptDefault() {
+	defer qt.Recovering("QWizard::accept")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_AcceptDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QWizard) ConnectCloseEvent(f func(e *gui.QCloseEvent)) {
@@ -784,15 +939,30 @@ func (ptr *QWizard) DisconnectCloseEvent() {
 }
 
 //export callbackQWizardCloseEvent
-func callbackQWizardCloseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQWizardCloseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QWizard) CloseEvent(e gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QWizard::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(e))
+	}
+}
+
+func (ptr *QWizard) CloseEventDefault(e gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QWizard::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(e))
+	}
 }
 
 func (ptr *QWizard) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
@@ -814,15 +984,30 @@ func (ptr *QWizard) DisconnectContextMenuEvent() {
 }
 
 //export callbackQWizardContextMenuEvent
-func callbackQWizardContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQWizardContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QWizard) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QWizard::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QWizard) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QWizard::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QWizard) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
@@ -844,15 +1029,30 @@ func (ptr *QWizard) DisconnectKeyPressEvent() {
 }
 
 //export callbackQWizardKeyPressEvent
-func callbackQWizardKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQWizardKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QWizard) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QWizard::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QWizard) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QWizard::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QWizard) ConnectOpen(f func()) {
@@ -874,7 +1074,7 @@ func (ptr *QWizard) DisconnectOpen() {
 }
 
 //export callbackQWizardOpen
-func callbackQWizardOpen(ptrName *C.char) bool {
+func callbackQWizardOpen(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QWizard::open")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "open"); signal != nil {
@@ -883,6 +1083,22 @@ func callbackQWizardOpen(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QWizard) Open() {
+	defer qt.Recovering("QWizard::open")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_Open(ptr.Pointer())
+	}
+}
+
+func (ptr *QWizard) OpenDefault() {
+	defer qt.Recovering("QWizard::open")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_OpenDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QWizard) ConnectReject(f func()) {
@@ -904,7 +1120,7 @@ func (ptr *QWizard) DisconnectReject() {
 }
 
 //export callbackQWizardReject
-func callbackQWizardReject(ptrName *C.char) bool {
+func callbackQWizardReject(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QWizard::reject")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reject"); signal != nil {
@@ -913,6 +1129,22 @@ func callbackQWizardReject(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QWizard) Reject() {
+	defer qt.Recovering("QWizard::reject")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_Reject(ptr.Pointer())
+	}
+}
+
+func (ptr *QWizard) RejectDefault() {
+	defer qt.Recovering("QWizard::reject")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_RejectDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QWizard) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -934,15 +1166,30 @@ func (ptr *QWizard) DisconnectShowEvent() {
 }
 
 //export callbackQWizardShowEvent
-func callbackQWizardShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QWizard::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QWizard) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QWizard::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -964,15 +1211,30 @@ func (ptr *QWizard) DisconnectActionEvent() {
 }
 
 //export callbackQWizardActionEvent
-func callbackQWizardActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QWizard::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QWizard) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QWizard::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -994,15 +1256,30 @@ func (ptr *QWizard) DisconnectDragEnterEvent() {
 }
 
 //export callbackQWizardDragEnterEvent
-func callbackQWizardDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QWizard::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QWizard) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QWizard::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -1024,15 +1301,30 @@ func (ptr *QWizard) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQWizardDragLeaveEvent
-func callbackQWizardDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QWizard::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QWizard) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QWizard::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -1054,15 +1346,30 @@ func (ptr *QWizard) DisconnectDragMoveEvent() {
 }
 
 //export callbackQWizardDragMoveEvent
-func callbackQWizardDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QWizard::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QWizard) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QWizard::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -1084,15 +1391,30 @@ func (ptr *QWizard) DisconnectDropEvent() {
 }
 
 //export callbackQWizardDropEvent
-func callbackQWizardDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QWizard::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QWizard) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QWizard::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -1114,15 +1436,30 @@ func (ptr *QWizard) DisconnectEnterEvent() {
 }
 
 //export callbackQWizardEnterEvent
-func callbackQWizardEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QWizard::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QWizard) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QWizard::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -1144,15 +1481,30 @@ func (ptr *QWizard) DisconnectFocusInEvent() {
 }
 
 //export callbackQWizardFocusInEvent
-func callbackQWizardFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QWizard::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QWizard) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QWizard::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -1174,15 +1526,30 @@ func (ptr *QWizard) DisconnectFocusOutEvent() {
 }
 
 //export callbackQWizardFocusOutEvent
-func callbackQWizardFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QWizard::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QWizard) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QWizard::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -1204,15 +1571,30 @@ func (ptr *QWizard) DisconnectHideEvent() {
 }
 
 //export callbackQWizardHideEvent
-func callbackQWizardHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QWizard::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QWizard) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QWizard::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -1234,15 +1616,30 @@ func (ptr *QWizard) DisconnectLeaveEvent() {
 }
 
 //export callbackQWizardLeaveEvent
-func callbackQWizardLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QWizard::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QWizard) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QWizard::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -1264,15 +1661,30 @@ func (ptr *QWizard) DisconnectMoveEvent() {
 }
 
 //export callbackQWizardMoveEvent
-func callbackQWizardMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QWizard::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QWizard) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QWizard::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -1294,15 +1706,30 @@ func (ptr *QWizard) DisconnectChangeEvent() {
 }
 
 //export callbackQWizardChangeEvent
-func callbackQWizardChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QWizard::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QWizard) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QWizard::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1324,15 +1751,30 @@ func (ptr *QWizard) DisconnectInitPainter() {
 }
 
 //export callbackQWizardInitPainter
-func callbackQWizardInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQWizardInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QWizard) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QWizard::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QWizard) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QWizard::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QWizard) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -1354,15 +1796,30 @@ func (ptr *QWizard) DisconnectInputMethodEvent() {
 }
 
 //export callbackQWizardInputMethodEvent
-func callbackQWizardInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QWizard::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QWizard) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QWizard::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -1384,15 +1841,30 @@ func (ptr *QWizard) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQWizardKeyReleaseEvent
-func callbackQWizardKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QWizard::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QWizard) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QWizard::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1414,15 +1886,30 @@ func (ptr *QWizard) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQWizardMouseDoubleClickEvent
-func callbackQWizardMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QWizard::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QWizard) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QWizard::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -1444,15 +1931,30 @@ func (ptr *QWizard) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQWizardMouseMoveEvent
-func callbackQWizardMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QWizard::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QWizard) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QWizard::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -1474,15 +1976,30 @@ func (ptr *QWizard) DisconnectMousePressEvent() {
 }
 
 //export callbackQWizardMousePressEvent
-func callbackQWizardMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QWizard::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QWizard) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QWizard::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1504,15 +2021,30 @@ func (ptr *QWizard) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQWizardMouseReleaseEvent
-func callbackQWizardMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QWizard::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QWizard) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QWizard::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1534,15 +2066,30 @@ func (ptr *QWizard) DisconnectTabletEvent() {
 }
 
 //export callbackQWizardTabletEvent
-func callbackQWizardTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QWizard::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QWizard) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QWizard::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1564,15 +2111,30 @@ func (ptr *QWizard) DisconnectWheelEvent() {
 }
 
 //export callbackQWizardWheelEvent
-func callbackQWizardWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QWizard::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QWizard) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QWizard::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1594,15 +2156,30 @@ func (ptr *QWizard) DisconnectTimerEvent() {
 }
 
 //export callbackQWizardTimerEvent
-func callbackQWizardTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QWizard::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QWizard) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QWizard::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1624,15 +2201,30 @@ func (ptr *QWizard) DisconnectChildEvent() {
 }
 
 //export callbackQWizardChildEvent
-func callbackQWizardChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QWizard::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QWizard) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QWizard::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QWizard) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1654,13 +2246,28 @@ func (ptr *QWizard) DisconnectCustomEvent() {
 }
 
 //export callbackQWizardCustomEvent
-func callbackQWizardCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQWizardCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QWizard::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQWizardFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QWizard) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QWizard::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QWizard) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QWizard::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWizard_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

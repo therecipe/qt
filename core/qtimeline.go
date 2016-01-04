@@ -236,7 +236,7 @@ func (ptr *QTimeLine) DisconnectFinished() {
 }
 
 //export callbackQTimeLineFinished
-func callbackQTimeLineFinished(ptrName *C.char) {
+func callbackQTimeLineFinished(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTimeLine::finished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
@@ -264,7 +264,7 @@ func (ptr *QTimeLine) DisconnectFrameChanged() {
 }
 
 //export callbackQTimeLineFrameChanged
-func callbackQTimeLineFrameChanged(ptrName *C.char, frame C.int) {
+func callbackQTimeLineFrameChanged(ptr unsafe.Pointer, ptrName *C.char, frame C.int) {
 	defer qt.Recovering("callback QTimeLine::frameChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "frameChanged"); signal != nil {
@@ -367,7 +367,7 @@ func (ptr *QTimeLine) DisconnectStateChanged() {
 }
 
 //export callbackQTimeLineStateChanged
-func callbackQTimeLineStateChanged(ptrName *C.char, newState C.int) {
+func callbackQTimeLineStateChanged(ptr unsafe.Pointer, ptrName *C.char, newState C.int) {
 	defer qt.Recovering("callback QTimeLine::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
@@ -403,15 +403,30 @@ func (ptr *QTimeLine) DisconnectTimerEvent() {
 }
 
 //export callbackQTimeLineTimerEvent
-func callbackQTimeLineTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTimeLineTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTimeLine::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTimeLineFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTimeLine) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QTimeLine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTimeLine_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTimeLine) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QTimeLine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTimeLine_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTimeLine) ToggleDirection() {
@@ -441,7 +456,7 @@ func (ptr *QTimeLine) DisconnectValueChanged() {
 }
 
 //export callbackQTimeLineValueChanged
-func callbackQTimeLineValueChanged(ptrName *C.char, value C.double) {
+func callbackQTimeLineValueChanged(ptr unsafe.Pointer, ptrName *C.char, value C.double) {
 	defer qt.Recovering("callback QTimeLine::valueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "valueChanged"); signal != nil {
@@ -487,15 +502,30 @@ func (ptr *QTimeLine) DisconnectChildEvent() {
 }
 
 //export callbackQTimeLineChildEvent
-func callbackQTimeLineChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTimeLineChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTimeLine::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTimeLineFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTimeLine) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QTimeLine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTimeLine_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTimeLine) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QTimeLine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTimeLine_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTimeLine) ConnectCustomEvent(f func(event *QEvent)) {
@@ -517,13 +547,28 @@ func (ptr *QTimeLine) DisconnectCustomEvent() {
 }
 
 //export callbackQTimeLineCustomEvent
-func callbackQTimeLineCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTimeLineCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTimeLine::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTimeLineFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTimeLine) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QTimeLine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTimeLine_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTimeLine) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QTimeLine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTimeLine_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

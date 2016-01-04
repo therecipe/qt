@@ -222,15 +222,30 @@ func (ptr *QGridLayout) DisconnectInvalidate() {
 }
 
 //export callbackQGridLayoutInvalidate
-func callbackQGridLayoutInvalidate(ptrName *C.char) bool {
+func callbackQGridLayoutInvalidate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGridLayout::invalidate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQGridLayoutFromPointer(ptr).InvalidateDefault()
 	}
-	return false
+}
 
+func (ptr *QGridLayout) Invalidate() {
+	defer qt.Recovering("QGridLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QGridLayout_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QGridLayout) InvalidateDefault() {
+	defer qt.Recovering("QGridLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QGridLayout_InvalidateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QGridLayout) ItemAt(index int) *QLayoutItem {
@@ -349,15 +364,30 @@ func (ptr *QGridLayout) DisconnectSetGeometry() {
 }
 
 //export callbackQGridLayoutSetGeometry
-func callbackQGridLayoutSetGeometry(ptrName *C.char, rect unsafe.Pointer) bool {
+func callbackQGridLayoutSetGeometry(ptr unsafe.Pointer, ptrName *C.char, rect unsafe.Pointer) {
 	defer qt.Recovering("callback QGridLayout::setGeometry")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
-		return true
+	} else {
+		NewQGridLayoutFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(rect))
 	}
-	return false
+}
 
+func (ptr *QGridLayout) SetGeometry(rect core.QRect_ITF) {
+	defer qt.Recovering("QGridLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QGridLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
+}
+
+func (ptr *QGridLayout) SetGeometryDefault(rect core.QRect_ITF) {
+	defer qt.Recovering("QGridLayout::setGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QGridLayout_SetGeometryDefault(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
 }
 
 func (ptr *QGridLayout) SetOriginCorner(corner core.Qt__Corner) {
@@ -447,15 +477,30 @@ func (ptr *QGridLayout) DisconnectChildEvent() {
 }
 
 //export callbackQGridLayoutChildEvent
-func callbackQGridLayoutChildEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQGridLayoutChildEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QGridLayout::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(e))
-		return true
+	} else {
+		NewQGridLayoutFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QGridLayout) ChildEvent(e core.QChildEvent_ITF) {
+	defer qt.Recovering("QGridLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGridLayout_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(e))
+	}
+}
+
+func (ptr *QGridLayout) ChildEventDefault(e core.QChildEvent_ITF) {
+	defer qt.Recovering("QGridLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGridLayout_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(e))
+	}
 }
 
 func (ptr *QGridLayout) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -477,15 +522,30 @@ func (ptr *QGridLayout) DisconnectTimerEvent() {
 }
 
 //export callbackQGridLayoutTimerEvent
-func callbackQGridLayoutTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGridLayoutTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGridLayout::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGridLayoutFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGridLayout) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGridLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGridLayout_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGridLayout) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGridLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGridLayout_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGridLayout) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -507,13 +567,28 @@ func (ptr *QGridLayout) DisconnectCustomEvent() {
 }
 
 //export callbackQGridLayoutCustomEvent
-func callbackQGridLayoutCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGridLayoutCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGridLayout::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGridLayoutFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGridLayout) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGridLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGridLayout_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGridLayout) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGridLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGridLayout_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

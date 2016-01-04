@@ -93,13 +93,21 @@ func (ptr *QNetworkConfigurationManager) DisconnectOnlineStateChanged() {
 }
 
 //export callbackQNetworkConfigurationManagerOnlineStateChanged
-func callbackQNetworkConfigurationManagerOnlineStateChanged(ptrName *C.char, isOnline C.int) {
+func callbackQNetworkConfigurationManagerOnlineStateChanged(ptr unsafe.Pointer, ptrName *C.char, isOnline C.int) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::onlineStateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "onlineStateChanged"); signal != nil {
 		signal.(func(bool))(int(isOnline) != 0)
 	}
 
+}
+
+func (ptr *QNetworkConfigurationManager) OnlineStateChanged(isOnline bool) {
+	defer qt.Recovering("QNetworkConfigurationManager::onlineStateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkConfigurationManager_OnlineStateChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(isOnline)))
+	}
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectUpdateCompleted(f func()) {
@@ -121,13 +129,21 @@ func (ptr *QNetworkConfigurationManager) DisconnectUpdateCompleted() {
 }
 
 //export callbackQNetworkConfigurationManagerUpdateCompleted
-func callbackQNetworkConfigurationManagerUpdateCompleted(ptrName *C.char) {
+func callbackQNetworkConfigurationManagerUpdateCompleted(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::updateCompleted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateCompleted"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QNetworkConfigurationManager) UpdateCompleted() {
+	defer qt.Recovering("QNetworkConfigurationManager::updateCompleted")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkConfigurationManager_UpdateCompleted(ptr.Pointer())
+	}
 }
 
 func (ptr *QNetworkConfigurationManager) UpdateConfigurations() {
@@ -166,15 +182,30 @@ func (ptr *QNetworkConfigurationManager) DisconnectTimerEvent() {
 }
 
 //export callbackQNetworkConfigurationManagerTimerEvent
-func callbackQNetworkConfigurationManagerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkConfigurationManagerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkConfigurationManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkConfigurationManager) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNetworkConfigurationManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkConfigurationManager_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QNetworkConfigurationManager) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNetworkConfigurationManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkConfigurationManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -196,15 +227,30 @@ func (ptr *QNetworkConfigurationManager) DisconnectChildEvent() {
 }
 
 //export callbackQNetworkConfigurationManagerChildEvent
-func callbackQNetworkConfigurationManagerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkConfigurationManagerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkConfigurationManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkConfigurationManager) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNetworkConfigurationManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkConfigurationManager_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QNetworkConfigurationManager) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNetworkConfigurationManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkConfigurationManager_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -226,13 +272,28 @@ func (ptr *QNetworkConfigurationManager) DisconnectCustomEvent() {
 }
 
 //export callbackQNetworkConfigurationManagerCustomEvent
-func callbackQNetworkConfigurationManagerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNetworkConfigurationManagerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQNetworkConfigurationManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNetworkConfigurationManager) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QNetworkConfigurationManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkConfigurationManager_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QNetworkConfigurationManager) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QNetworkConfigurationManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkConfigurationManager_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -89,13 +89,21 @@ func (ptr *QQmlNdefRecord) DisconnectRecordChanged() {
 }
 
 //export callbackQQmlNdefRecordRecordChanged
-func callbackQQmlNdefRecordRecordChanged(ptrName *C.char) {
+func callbackQQmlNdefRecordRecordChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQmlNdefRecord::recordChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "recordChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QQmlNdefRecord) RecordChanged() {
+	defer qt.Recovering("QQmlNdefRecord::recordChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlNdefRecord_RecordChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QQmlNdefRecord) SetRecord(record QNdefRecord_ITF) {
@@ -150,13 +158,21 @@ func (ptr *QQmlNdefRecord) DisconnectTypeChanged() {
 }
 
 //export callbackQQmlNdefRecordTypeChanged
-func callbackQQmlNdefRecordTypeChanged(ptrName *C.char) {
+func callbackQQmlNdefRecordTypeChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQmlNdefRecord::typeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "typeChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QQmlNdefRecord) TypeChanged() {
+	defer qt.Recovering("QQmlNdefRecord::typeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlNdefRecord_TypeChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QQmlNdefRecord) ConnectTypeNameFormatChanged(f func()) {
@@ -178,13 +194,21 @@ func (ptr *QQmlNdefRecord) DisconnectTypeNameFormatChanged() {
 }
 
 //export callbackQQmlNdefRecordTypeNameFormatChanged
-func callbackQQmlNdefRecordTypeNameFormatChanged(ptrName *C.char) {
+func callbackQQmlNdefRecordTypeNameFormatChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQmlNdefRecord::typeNameFormatChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "typeNameFormatChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QQmlNdefRecord) TypeNameFormatChanged() {
+	defer qt.Recovering("QQmlNdefRecord::typeNameFormatChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQmlNdefRecord_TypeNameFormatChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QQmlNdefRecord) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -206,15 +230,30 @@ func (ptr *QQmlNdefRecord) DisconnectTimerEvent() {
 }
 
 //export callbackQQmlNdefRecordTimerEvent
-func callbackQQmlNdefRecordTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlNdefRecordTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlNdefRecord::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlNdefRecordFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlNdefRecord) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlNdefRecord::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlNdefRecord_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQmlNdefRecord) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlNdefRecord::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlNdefRecord_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QQmlNdefRecord) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -236,15 +275,30 @@ func (ptr *QQmlNdefRecord) DisconnectChildEvent() {
 }
 
 //export callbackQQmlNdefRecordChildEvent
-func callbackQQmlNdefRecordChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlNdefRecordChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlNdefRecord::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlNdefRecordFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlNdefRecord) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlNdefRecord::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlNdefRecord_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQmlNdefRecord) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlNdefRecord::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlNdefRecord_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QQmlNdefRecord) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -266,13 +320,28 @@ func (ptr *QQmlNdefRecord) DisconnectCustomEvent() {
 }
 
 //export callbackQQmlNdefRecordCustomEvent
-func callbackQQmlNdefRecordCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlNdefRecordCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlNdefRecord::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlNdefRecordFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlNdefRecord) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlNdefRecord::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlNdefRecord_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQmlNdefRecord) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlNdefRecord::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlNdefRecord_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

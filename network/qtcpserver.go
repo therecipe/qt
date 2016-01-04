@@ -62,13 +62,21 @@ func (ptr *QTcpServer) DisconnectAcceptError() {
 }
 
 //export callbackQTcpServerAcceptError
-func callbackQTcpServerAcceptError(ptrName *C.char, socketError C.int) {
+func callbackQTcpServerAcceptError(ptr unsafe.Pointer, ptrName *C.char, socketError C.int) {
 	defer qt.Recovering("callback QTcpServer::acceptError")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "acceptError"); signal != nil {
 		signal.(func(QAbstractSocket__SocketError))(QAbstractSocket__SocketError(socketError))
 	}
 
+}
+
+func (ptr *QTcpServer) AcceptError(socketError QAbstractSocket__SocketError) {
+	defer qt.Recovering("QTcpServer::acceptError")
+
+	if ptr.Pointer() != nil {
+		C.QTcpServer_AcceptError(ptr.Pointer(), C.int(socketError))
+	}
 }
 
 func (ptr *QTcpServer) Close() {
@@ -134,13 +142,21 @@ func (ptr *QTcpServer) DisconnectNewConnection() {
 }
 
 //export callbackQTcpServerNewConnection
-func callbackQTcpServerNewConnection(ptrName *C.char) {
+func callbackQTcpServerNewConnection(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTcpServer::newConnection")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "newConnection"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QTcpServer) NewConnection() {
+	defer qt.Recovering("QTcpServer::newConnection")
+
+	if ptr.Pointer() != nil {
+		C.QTcpServer_NewConnection(ptr.Pointer())
+	}
 }
 
 func (ptr *QTcpServer) NextPendingConnection() *QTcpSocket {
@@ -230,15 +246,30 @@ func (ptr *QTcpServer) DisconnectTimerEvent() {
 }
 
 //export callbackQTcpServerTimerEvent
-func callbackQTcpServerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTcpServerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpServer::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTcpServerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTcpServer) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTcpServer::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTcpServer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTcpServer) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTcpServer::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTcpServer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTcpServer) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -260,15 +291,30 @@ func (ptr *QTcpServer) DisconnectChildEvent() {
 }
 
 //export callbackQTcpServerChildEvent
-func callbackQTcpServerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTcpServerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpServer::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTcpServerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTcpServer) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTcpServer::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTcpServer_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTcpServer) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTcpServer::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTcpServer_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTcpServer) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -290,13 +336,28 @@ func (ptr *QTcpServer) DisconnectCustomEvent() {
 }
 
 //export callbackQTcpServerCustomEvent
-func callbackQTcpServerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTcpServerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpServer::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTcpServerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTcpServer) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTcpServer::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTcpServer_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTcpServer) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTcpServer::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTcpServer_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

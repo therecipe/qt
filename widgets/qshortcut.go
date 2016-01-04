@@ -145,13 +145,21 @@ func (ptr *QShortcut) DisconnectActivated() {
 }
 
 //export callbackQShortcutActivated
-func callbackQShortcutActivated(ptrName *C.char) {
+func callbackQShortcutActivated(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QShortcut::activated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QShortcut) Activated() {
+	defer qt.Recovering("QShortcut::activated")
+
+	if ptr.Pointer() != nil {
+		C.QShortcut_Activated(ptr.Pointer())
+	}
 }
 
 func (ptr *QShortcut) ConnectActivatedAmbiguously(f func()) {
@@ -173,13 +181,21 @@ func (ptr *QShortcut) DisconnectActivatedAmbiguously() {
 }
 
 //export callbackQShortcutActivatedAmbiguously
-func callbackQShortcutActivatedAmbiguously(ptrName *C.char) {
+func callbackQShortcutActivatedAmbiguously(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QShortcut::activatedAmbiguously")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activatedAmbiguously"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QShortcut) ActivatedAmbiguously() {
+	defer qt.Recovering("QShortcut::activatedAmbiguously")
+
+	if ptr.Pointer() != nil {
+		C.QShortcut_ActivatedAmbiguously(ptr.Pointer())
+	}
 }
 
 func (ptr *QShortcut) Id() int {
@@ -228,15 +244,30 @@ func (ptr *QShortcut) DisconnectTimerEvent() {
 }
 
 //export callbackQShortcutTimerEvent
-func callbackQShortcutTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQShortcutTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QShortcut::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQShortcutFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QShortcut) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QShortcut::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QShortcut_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QShortcut) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QShortcut::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QShortcut_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QShortcut) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -258,15 +289,30 @@ func (ptr *QShortcut) DisconnectChildEvent() {
 }
 
 //export callbackQShortcutChildEvent
-func callbackQShortcutChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQShortcutChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QShortcut::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQShortcutFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QShortcut) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QShortcut::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QShortcut_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QShortcut) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QShortcut::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QShortcut_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QShortcut) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -288,13 +334,28 @@ func (ptr *QShortcut) DisconnectCustomEvent() {
 }
 
 //export callbackQShortcutCustomEvent
-func callbackQShortcutCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQShortcutCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QShortcut::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQShortcutFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QShortcut) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QShortcut::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QShortcut_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QShortcut) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QShortcut::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QShortcut_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

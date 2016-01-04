@@ -92,15 +92,30 @@ func (ptr *QImageEncoderControl) DisconnectTimerEvent() {
 }
 
 //export callbackQImageEncoderControlTimerEvent
-func callbackQImageEncoderControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQImageEncoderControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QImageEncoderControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQImageEncoderControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QImageEncoderControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QImageEncoderControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QImageEncoderControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QImageEncoderControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QImageEncoderControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QImageEncoderControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QImageEncoderControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -122,15 +137,30 @@ func (ptr *QImageEncoderControl) DisconnectChildEvent() {
 }
 
 //export callbackQImageEncoderControlChildEvent
-func callbackQImageEncoderControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQImageEncoderControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QImageEncoderControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQImageEncoderControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QImageEncoderControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QImageEncoderControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QImageEncoderControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QImageEncoderControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QImageEncoderControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QImageEncoderControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QImageEncoderControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -152,13 +182,28 @@ func (ptr *QImageEncoderControl) DisconnectCustomEvent() {
 }
 
 //export callbackQImageEncoderControlCustomEvent
-func callbackQImageEncoderControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQImageEncoderControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QImageEncoderControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQImageEncoderControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QImageEncoderControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QImageEncoderControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QImageEncoderControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QImageEncoderControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QImageEncoderControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QImageEncoderControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

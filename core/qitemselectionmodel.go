@@ -84,7 +84,7 @@ func (ptr *QItemSelectionModel) DisconnectClear() {
 }
 
 //export callbackQItemSelectionModelClear
-func callbackQItemSelectionModelClear(ptrName *C.char) bool {
+func callbackQItemSelectionModelClear(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QItemSelectionModel::clear")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
@@ -93,6 +93,22 @@ func callbackQItemSelectionModelClear(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QItemSelectionModel) Clear() {
+	defer qt.Recovering("QItemSelectionModel::clear")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QItemSelectionModel) ClearDefault() {
+	defer qt.Recovering("QItemSelectionModel::clear")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_ClearDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QItemSelectionModel) ConnectClearCurrentIndex(f func()) {
@@ -114,7 +130,7 @@ func (ptr *QItemSelectionModel) DisconnectClearCurrentIndex() {
 }
 
 //export callbackQItemSelectionModelClearCurrentIndex
-func callbackQItemSelectionModelClearCurrentIndex(ptrName *C.char) bool {
+func callbackQItemSelectionModelClearCurrentIndex(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QItemSelectionModel::clearCurrentIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clearCurrentIndex"); signal != nil {
@@ -123,6 +139,22 @@ func callbackQItemSelectionModelClearCurrentIndex(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QItemSelectionModel) ClearCurrentIndex() {
+	defer qt.Recovering("QItemSelectionModel::clearCurrentIndex")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_ClearCurrentIndex(ptr.Pointer())
+	}
+}
+
+func (ptr *QItemSelectionModel) ClearCurrentIndexDefault() {
+	defer qt.Recovering("QItemSelectionModel::clearCurrentIndex")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_ClearCurrentIndexDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QItemSelectionModel) ClearSelection() {
@@ -161,13 +193,21 @@ func (ptr *QItemSelectionModel) DisconnectCurrentChanged() {
 }
 
 //export callbackQItemSelectionModelCurrentChanged
-func callbackQItemSelectionModelCurrentChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
+func callbackQItemSelectionModelCurrentChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
 	defer qt.Recovering("callback QItemSelectionModel::currentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentChanged"); signal != nil {
 		signal.(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
 	}
 
+}
+
+func (ptr *QItemSelectionModel) CurrentChanged(current QModelIndex_ITF, previous QModelIndex_ITF) {
+	defer qt.Recovering("QItemSelectionModel::currentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_CurrentChanged(ptr.Pointer(), PointerFromQModelIndex(current), PointerFromQModelIndex(previous))
+	}
 }
 
 func (ptr *QItemSelectionModel) ConnectCurrentColumnChanged(f func(current *QModelIndex, previous *QModelIndex)) {
@@ -189,13 +229,21 @@ func (ptr *QItemSelectionModel) DisconnectCurrentColumnChanged() {
 }
 
 //export callbackQItemSelectionModelCurrentColumnChanged
-func callbackQItemSelectionModelCurrentColumnChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
+func callbackQItemSelectionModelCurrentColumnChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
 	defer qt.Recovering("callback QItemSelectionModel::currentColumnChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentColumnChanged"); signal != nil {
 		signal.(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
 	}
 
+}
+
+func (ptr *QItemSelectionModel) CurrentColumnChanged(current QModelIndex_ITF, previous QModelIndex_ITF) {
+	defer qt.Recovering("QItemSelectionModel::currentColumnChanged")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_CurrentColumnChanged(ptr.Pointer(), PointerFromQModelIndex(current), PointerFromQModelIndex(previous))
+	}
 }
 
 func (ptr *QItemSelectionModel) CurrentIndex() *QModelIndex {
@@ -226,13 +274,21 @@ func (ptr *QItemSelectionModel) DisconnectCurrentRowChanged() {
 }
 
 //export callbackQItemSelectionModelCurrentRowChanged
-func callbackQItemSelectionModelCurrentRowChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
+func callbackQItemSelectionModelCurrentRowChanged(ptr unsafe.Pointer, ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
 	defer qt.Recovering("callback QItemSelectionModel::currentRowChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentRowChanged"); signal != nil {
 		signal.(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
 	}
 
+}
+
+func (ptr *QItemSelectionModel) CurrentRowChanged(current QModelIndex_ITF, previous QModelIndex_ITF) {
+	defer qt.Recovering("QItemSelectionModel::currentRowChanged")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_CurrentRowChanged(ptr.Pointer(), PointerFromQModelIndex(current), PointerFromQModelIndex(previous))
+	}
 }
 
 func (ptr *QItemSelectionModel) HasSelection() bool {
@@ -308,13 +364,21 @@ func (ptr *QItemSelectionModel) DisconnectModelChanged() {
 }
 
 //export callbackQItemSelectionModelModelChanged
-func callbackQItemSelectionModelModelChanged(ptrName *C.char, model unsafe.Pointer) {
+func callbackQItemSelectionModelModelChanged(ptr unsafe.Pointer, ptrName *C.char, model unsafe.Pointer) {
 	defer qt.Recovering("callback QItemSelectionModel::modelChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "modelChanged"); signal != nil {
 		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(model))
 	}
 
+}
+
+func (ptr *QItemSelectionModel) ModelChanged(model QAbstractItemModel_ITF) {
+	defer qt.Recovering("QItemSelectionModel::modelChanged")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_ModelChanged(ptr.Pointer(), PointerFromQAbstractItemModel(model))
+	}
 }
 
 func (ptr *QItemSelectionModel) ConnectReset(f func()) {
@@ -336,7 +400,7 @@ func (ptr *QItemSelectionModel) DisconnectReset() {
 }
 
 //export callbackQItemSelectionModelReset
-func callbackQItemSelectionModelReset(ptrName *C.char) bool {
+func callbackQItemSelectionModelReset(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QItemSelectionModel::reset")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
@@ -345,6 +409,22 @@ func callbackQItemSelectionModelReset(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QItemSelectionModel) Reset() {
+	defer qt.Recovering("QItemSelectionModel::reset")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_Reset(ptr.Pointer())
+	}
+}
+
+func (ptr *QItemSelectionModel) ResetDefault() {
+	defer qt.Recovering("QItemSelectionModel::reset")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_ResetDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QItemSelectionModel) RowIntersectsSelection(row int, parent QModelIndex_ITF) bool {
@@ -375,7 +455,7 @@ func (ptr *QItemSelectionModel) DisconnectSelect() {
 }
 
 //export callbackQItemSelectionModelSelect
-func callbackQItemSelectionModelSelect(ptrName *C.char, index unsafe.Pointer, command C.int) bool {
+func callbackQItemSelectionModelSelect(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer, command C.int) bool {
 	defer qt.Recovering("callback QItemSelectionModel::select")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "select"); signal != nil {
@@ -384,6 +464,22 @@ func callbackQItemSelectionModelSelect(ptrName *C.char, index unsafe.Pointer, co
 	}
 	return false
 
+}
+
+func (ptr *QItemSelectionModel) Select(index QModelIndex_ITF, command QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QItemSelectionModel::select")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_Select(ptr.Pointer(), PointerFromQModelIndex(index), C.int(command))
+	}
+}
+
+func (ptr *QItemSelectionModel) SelectDefault(index QModelIndex_ITF, command QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QItemSelectionModel::select")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_SelectDefault(ptr.Pointer(), PointerFromQModelIndex(index), C.int(command))
+	}
 }
 
 func (ptr *QItemSelectionModel) ConnectSetCurrentIndex(f func(index *QModelIndex, command QItemSelectionModel__SelectionFlag)) {
@@ -405,7 +501,7 @@ func (ptr *QItemSelectionModel) DisconnectSetCurrentIndex() {
 }
 
 //export callbackQItemSelectionModelSetCurrentIndex
-func callbackQItemSelectionModelSetCurrentIndex(ptrName *C.char, index unsafe.Pointer, command C.int) bool {
+func callbackQItemSelectionModelSetCurrentIndex(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer, command C.int) bool {
 	defer qt.Recovering("callback QItemSelectionModel::setCurrentIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setCurrentIndex"); signal != nil {
@@ -414,6 +510,22 @@ func callbackQItemSelectionModelSetCurrentIndex(ptrName *C.char, index unsafe.Po
 	}
 	return false
 
+}
+
+func (ptr *QItemSelectionModel) SetCurrentIndex(index QModelIndex_ITF, command QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QItemSelectionModel::setCurrentIndex")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_SetCurrentIndex(ptr.Pointer(), PointerFromQModelIndex(index), C.int(command))
+	}
+}
+
+func (ptr *QItemSelectionModel) SetCurrentIndexDefault(index QModelIndex_ITF, command QItemSelectionModel__SelectionFlag) {
+	defer qt.Recovering("QItemSelectionModel::setCurrentIndex")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_SetCurrentIndexDefault(ptr.Pointer(), PointerFromQModelIndex(index), C.int(command))
+	}
 }
 
 func (ptr *QItemSelectionModel) SetModel(model QAbstractItemModel_ITF) {
@@ -452,15 +564,30 @@ func (ptr *QItemSelectionModel) DisconnectTimerEvent() {
 }
 
 //export callbackQItemSelectionModelTimerEvent
-func callbackQItemSelectionModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQItemSelectionModelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QItemSelectionModel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQItemSelectionModelFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QItemSelectionModel) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QItemSelectionModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QItemSelectionModel) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QItemSelectionModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QItemSelectionModel) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -482,15 +609,30 @@ func (ptr *QItemSelectionModel) DisconnectChildEvent() {
 }
 
 //export callbackQItemSelectionModelChildEvent
-func callbackQItemSelectionModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQItemSelectionModelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QItemSelectionModel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQItemSelectionModelFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QItemSelectionModel) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QItemSelectionModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QItemSelectionModel) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QItemSelectionModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QItemSelectionModel) ConnectCustomEvent(f func(event *QEvent)) {
@@ -512,13 +654,28 @@ func (ptr *QItemSelectionModel) DisconnectCustomEvent() {
 }
 
 //export callbackQItemSelectionModelCustomEvent
-func callbackQItemSelectionModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQItemSelectionModelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QItemSelectionModel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQItemSelectionModelFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QItemSelectionModel) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QItemSelectionModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QItemSelectionModel) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QItemSelectionModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

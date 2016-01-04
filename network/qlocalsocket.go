@@ -106,13 +106,21 @@ func (ptr *QLocalSocket) DisconnectConnected() {
 }
 
 //export callbackQLocalSocketConnected
-func callbackQLocalSocketConnected(ptrName *C.char) {
+func callbackQLocalSocketConnected(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QLocalSocket::connected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "connected"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QLocalSocket) Connected() {
+	defer qt.Recovering("QLocalSocket::connected")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_Connected(ptr.Pointer())
+	}
 }
 
 func (ptr *QLocalSocket) ConnectDisconnected(f func()) {
@@ -134,13 +142,21 @@ func (ptr *QLocalSocket) DisconnectDisconnected() {
 }
 
 //export callbackQLocalSocketDisconnected
-func callbackQLocalSocketDisconnected(ptrName *C.char) {
+func callbackQLocalSocketDisconnected(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QLocalSocket::disconnected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "disconnected"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QLocalSocket) Disconnected() {
+	defer qt.Recovering("QLocalSocket::disconnected")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_Disconnected(ptr.Pointer())
+	}
 }
 
 func (ptr *QLocalSocket) ConnectError2(f func(socketError QLocalSocket__LocalSocketError)) {
@@ -162,13 +178,21 @@ func (ptr *QLocalSocket) DisconnectError2() {
 }
 
 //export callbackQLocalSocketError2
-func callbackQLocalSocketError2(ptrName *C.char, socketError C.int) {
+func callbackQLocalSocketError2(ptr unsafe.Pointer, ptrName *C.char, socketError C.int) {
 	defer qt.Recovering("callback QLocalSocket::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QLocalSocket__LocalSocketError))(QLocalSocket__LocalSocketError(socketError))
 	}
 
+}
+
+func (ptr *QLocalSocket) Error2(socketError QLocalSocket__LocalSocketError) {
+	defer qt.Recovering("QLocalSocket::error")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_Error2(ptr.Pointer(), C.int(socketError))
+	}
 }
 
 func (ptr *QLocalSocket) FullServerName() string {
@@ -234,13 +258,21 @@ func (ptr *QLocalSocket) DisconnectStateChanged() {
 }
 
 //export callbackQLocalSocketStateChanged
-func callbackQLocalSocketStateChanged(ptrName *C.char, socketState C.int) {
+func callbackQLocalSocketStateChanged(ptr unsafe.Pointer, ptrName *C.char, socketState C.int) {
 	defer qt.Recovering("callback QLocalSocket::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QLocalSocket__LocalSocketState))(QLocalSocket__LocalSocketState(socketState))
 	}
 
+}
+
+func (ptr *QLocalSocket) StateChanged(socketState QLocalSocket__LocalSocketState) {
+	defer qt.Recovering("QLocalSocket::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_StateChanged(ptr.Pointer(), C.int(socketState))
+	}
 }
 
 func (ptr *QLocalSocket) DestroyQLocalSocket() {
@@ -306,15 +338,30 @@ func (ptr *QLocalSocket) DisconnectClose() {
 }
 
 //export callbackQLocalSocketClose
-func callbackQLocalSocketClose(ptrName *C.char) bool {
+func callbackQLocalSocketClose(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QLocalSocket::close")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQLocalSocketFromPointer(ptr).CloseDefault()
 	}
-	return false
+}
 
+func (ptr *QLocalSocket) Close() {
+	defer qt.Recovering("QLocalSocket::close")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QLocalSocket) CloseDefault() {
+	defer qt.Recovering("QLocalSocket::close")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_CloseDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QLocalSocket) ConnectToServer(openMode core.QIODevice__OpenModeFlag) {
@@ -369,6 +416,15 @@ func (ptr *QLocalSocket) ReadBufferSize() int64 {
 	return 0
 }
 
+func (ptr *QLocalSocket) ReadData(data string, c int64) int64 {
+	defer qt.Recovering("QLocalSocket::readData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QLocalSocket_ReadData(ptr.Pointer(), C.CString(data), C.longlong(c)))
+	}
+	return 0
+}
+
 func (ptr *QLocalSocket) SetReadBufferSize(size int64) {
 	defer qt.Recovering("QLocalSocket::setReadBufferSize")
 
@@ -413,6 +469,15 @@ func (ptr *QLocalSocket) WaitForReadyRead(msecs int) bool {
 	return false
 }
 
+func (ptr *QLocalSocket) WriteData(data string, c int64) int64 {
+	defer qt.Recovering("QLocalSocket::writeData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QLocalSocket_WriteData(ptr.Pointer(), C.CString(data), C.longlong(c)))
+	}
+	return 0
+}
+
 func (ptr *QLocalSocket) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	defer qt.Recovering("connect QLocalSocket::timerEvent")
 
@@ -432,15 +497,30 @@ func (ptr *QLocalSocket) DisconnectTimerEvent() {
 }
 
 //export callbackQLocalSocketTimerEvent
-func callbackQLocalSocketTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLocalSocketTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQLocalSocketFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLocalSocket) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLocalSocket::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QLocalSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLocalSocket::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QLocalSocket) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -462,15 +542,30 @@ func (ptr *QLocalSocket) DisconnectChildEvent() {
 }
 
 //export callbackQLocalSocketChildEvent
-func callbackQLocalSocketChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLocalSocketChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQLocalSocketFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLocalSocket) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLocalSocket::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QLocalSocket) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLocalSocket::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QLocalSocket) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -492,13 +587,28 @@ func (ptr *QLocalSocket) DisconnectCustomEvent() {
 }
 
 //export callbackQLocalSocketCustomEvent
-func callbackQLocalSocketCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLocalSocketCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQLocalSocketFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLocalSocket) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QLocalSocket::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QLocalSocket) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QLocalSocket::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

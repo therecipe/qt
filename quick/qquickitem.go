@@ -531,6 +531,15 @@ func (ptr *QQuickItem) ChildAt(x float64, y float64) *QQuickItem {
 	return nil
 }
 
+func (ptr *QQuickItem) ChildMouseEventFilter(item QQuickItem_ITF, event core.QEvent_ITF) bool {
+	defer qt.Recovering("QQuickItem::childMouseEventFilter")
+
+	if ptr.Pointer() != nil {
+		return C.QQuickItem_ChildMouseEventFilter(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
 func (ptr *QQuickItem) ConnectClassBegin(f func()) {
 	defer qt.Recovering("connect QQuickItem::classBegin")
 
@@ -550,15 +559,30 @@ func (ptr *QQuickItem) DisconnectClassBegin() {
 }
 
 //export callbackQQuickItemClassBegin
-func callbackQQuickItemClassBegin(ptrName *C.char) bool {
+func callbackQQuickItemClassBegin(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickItem::classBegin")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "classBegin"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).ClassBeginDefault()
 	}
-	return false
+}
 
+func (ptr *QQuickItem) ClassBegin() {
+	defer qt.Recovering("QQuickItem::classBegin")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_ClassBegin(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickItem) ClassBeginDefault() {
+	defer qt.Recovering("QQuickItem::classBegin")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_ClassBeginDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QQuickItem) ConnectComponentComplete(f func()) {
@@ -580,15 +604,30 @@ func (ptr *QQuickItem) DisconnectComponentComplete() {
 }
 
 //export callbackQQuickItemComponentComplete
-func callbackQQuickItemComponentComplete(ptrName *C.char) bool {
+func callbackQQuickItemComponentComplete(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickItem::componentComplete")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "componentComplete"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).ComponentCompleteDefault()
 	}
-	return false
+}
 
+func (ptr *QQuickItem) ComponentComplete() {
+	defer qt.Recovering("QQuickItem::componentComplete")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_ComponentComplete(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickItem) ComponentCompleteDefault() {
+	defer qt.Recovering("QQuickItem::componentComplete")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_ComponentCompleteDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QQuickItem) Contains(point core.QPointF_ITF) bool {
@@ -619,15 +658,30 @@ func (ptr *QQuickItem) DisconnectDragEnterEvent() {
 }
 
 //export callbackQQuickItemDragEnterEvent
-func callbackQQuickItemDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QQuickItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QQuickItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -649,15 +703,30 @@ func (ptr *QQuickItem) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQQuickItemDragLeaveEvent
-func callbackQQuickItemDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QQuickItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QQuickItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -679,15 +748,30 @@ func (ptr *QQuickItem) DisconnectDragMoveEvent() {
 }
 
 //export callbackQQuickItemDragMoveEvent
-func callbackQQuickItemDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QQuickItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QQuickItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -709,15 +793,39 @@ func (ptr *QQuickItem) DisconnectDropEvent() {
 }
 
 //export callbackQQuickItemDropEvent
-func callbackQQuickItemDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
+	}
+}
+
+func (ptr *QQuickItem) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QQuickItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QQuickItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) Event(ev core.QEvent_ITF) bool {
+	defer qt.Recovering("QQuickItem::event")
+
+	if ptr.Pointer() != nil {
+		return C.QQuickItem_Event(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
 	}
 	return false
-
 }
 
 func (ptr *QQuickItem) FiltersChildMouseEvents() bool {
@@ -757,15 +865,30 @@ func (ptr *QQuickItem) DisconnectFocusInEvent() {
 }
 
 //export callbackQQuickItemFocusInEvent
-func callbackQQuickItemFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QQuickItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QQuickItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -787,15 +910,30 @@ func (ptr *QQuickItem) DisconnectFocusOutEvent() {
 }
 
 //export callbackQQuickItemFocusOutEvent
-func callbackQQuickItemFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QQuickItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QQuickItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ForceActiveFocus() {
@@ -841,15 +979,30 @@ func (ptr *QQuickItem) DisconnectHoverEnterEvent() {
 }
 
 //export callbackQQuickItemHoverEnterEvent
-func callbackQQuickItemHoverEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemHoverEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::hoverEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hoverEnterEvent"); signal != nil {
 		signal.(func(*gui.QHoverEvent))(gui.NewQHoverEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).HoverEnterEventDefault(gui.NewQHoverEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) HoverEnterEvent(event gui.QHoverEvent_ITF) {
+	defer qt.Recovering("QQuickItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_HoverEnterEvent(ptr.Pointer(), gui.PointerFromQHoverEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) HoverEnterEventDefault(event gui.QHoverEvent_ITF) {
+	defer qt.Recovering("QQuickItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_HoverEnterEventDefault(ptr.Pointer(), gui.PointerFromQHoverEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectHoverLeaveEvent(f func(event *gui.QHoverEvent)) {
@@ -871,15 +1024,30 @@ func (ptr *QQuickItem) DisconnectHoverLeaveEvent() {
 }
 
 //export callbackQQuickItemHoverLeaveEvent
-func callbackQQuickItemHoverLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemHoverLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::hoverLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hoverLeaveEvent"); signal != nil {
 		signal.(func(*gui.QHoverEvent))(gui.NewQHoverEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).HoverLeaveEventDefault(gui.NewQHoverEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) HoverLeaveEvent(event gui.QHoverEvent_ITF) {
+	defer qt.Recovering("QQuickItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_HoverLeaveEvent(ptr.Pointer(), gui.PointerFromQHoverEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) HoverLeaveEventDefault(event gui.QHoverEvent_ITF) {
+	defer qt.Recovering("QQuickItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_HoverLeaveEventDefault(ptr.Pointer(), gui.PointerFromQHoverEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectHoverMoveEvent(f func(event *gui.QHoverEvent)) {
@@ -901,15 +1069,30 @@ func (ptr *QQuickItem) DisconnectHoverMoveEvent() {
 }
 
 //export callbackQQuickItemHoverMoveEvent
-func callbackQQuickItemHoverMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemHoverMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::hoverMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hoverMoveEvent"); signal != nil {
 		signal.(func(*gui.QHoverEvent))(gui.NewQHoverEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).HoverMoveEventDefault(gui.NewQHoverEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) HoverMoveEvent(event gui.QHoverEvent_ITF) {
+	defer qt.Recovering("QQuickItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_HoverMoveEvent(ptr.Pointer(), gui.PointerFromQHoverEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) HoverMoveEventDefault(event gui.QHoverEvent_ITF) {
+	defer qt.Recovering("QQuickItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_HoverMoveEventDefault(ptr.Pointer(), gui.PointerFromQHoverEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ImplicitWidth() float64 {
@@ -940,15 +1123,30 @@ func (ptr *QQuickItem) DisconnectInputMethodEvent() {
 }
 
 //export callbackQQuickItemInputMethodEvent
-func callbackQQuickItemInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QQuickItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QQuickItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
@@ -1006,15 +1204,30 @@ func (ptr *QQuickItem) DisconnectKeyPressEvent() {
 }
 
 //export callbackQQuickItemKeyPressEvent
-func callbackQQuickItemKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QQuickItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QQuickItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -1036,15 +1249,30 @@ func (ptr *QQuickItem) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQQuickItemKeyReleaseEvent
-func callbackQQuickItemKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QQuickItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QQuickItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1066,15 +1294,30 @@ func (ptr *QQuickItem) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQQuickItemMouseDoubleClickEvent
-func callbackQQuickItemMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QQuickItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QQuickItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -1096,15 +1339,30 @@ func (ptr *QQuickItem) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQQuickItemMouseMoveEvent
-func callbackQQuickItemMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QQuickItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QQuickItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -1126,15 +1384,30 @@ func (ptr *QQuickItem) DisconnectMousePressEvent() {
 }
 
 //export callbackQQuickItemMousePressEvent
-func callbackQQuickItemMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QQuickItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QQuickItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1156,15 +1429,30 @@ func (ptr *QQuickItem) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQQuickItemMouseReleaseEvent
-func callbackQQuickItemMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QQuickItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QQuickItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectMouseUngrabEvent(f func()) {
@@ -1186,15 +1474,30 @@ func (ptr *QQuickItem) DisconnectMouseUngrabEvent() {
 }
 
 //export callbackQQuickItemMouseUngrabEvent
-func callbackQQuickItemMouseUngrabEvent(ptrName *C.char) bool {
+func callbackQQuickItemMouseUngrabEvent(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickItem::mouseUngrabEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseUngrabEvent"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).MouseUngrabEventDefault()
 	}
-	return false
+}
 
+func (ptr *QQuickItem) MouseUngrabEvent() {
+	defer qt.Recovering("QQuickItem::mouseUngrabEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_MouseUngrabEvent(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickItem) MouseUngrabEventDefault() {
+	defer qt.Recovering("QQuickItem::mouseUngrabEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_MouseUngrabEventDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QQuickItem) NextItemInFocusChain(forward bool) *QQuickItem {
@@ -1233,15 +1536,30 @@ func (ptr *QQuickItem) DisconnectReleaseResources() {
 }
 
 //export callbackQQuickItemReleaseResources
-func callbackQQuickItemReleaseResources(ptrName *C.char) bool {
+func callbackQQuickItemReleaseResources(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickItem::releaseResources")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "releaseResources"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).ReleaseResourcesDefault()
 	}
-	return false
+}
 
+func (ptr *QQuickItem) ReleaseResources() {
+	defer qt.Recovering("QQuickItem::releaseResources")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_ReleaseResources(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickItem) ReleaseResourcesDefault() {
+	defer qt.Recovering("QQuickItem::releaseResources")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_ReleaseResourcesDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QQuickItem) ScopedFocusItem() *QQuickItem {
@@ -1352,15 +1670,30 @@ func (ptr *QQuickItem) DisconnectTouchEvent() {
 }
 
 //export callbackQQuickItemTouchEvent
-func callbackQQuickItemTouchEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemTouchEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::touchEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "touchEvent"); signal != nil {
 		signal.(func(*gui.QTouchEvent))(gui.NewQTouchEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).TouchEventDefault(gui.NewQTouchEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) TouchEvent(event gui.QTouchEvent_ITF) {
+	defer qt.Recovering("QQuickItem::touchEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_TouchEvent(ptr.Pointer(), gui.PointerFromQTouchEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) TouchEventDefault(event gui.QTouchEvent_ITF) {
+	defer qt.Recovering("QQuickItem::touchEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_TouchEventDefault(ptr.Pointer(), gui.PointerFromQTouchEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectTouchUngrabEvent(f func()) {
@@ -1382,15 +1715,30 @@ func (ptr *QQuickItem) DisconnectTouchUngrabEvent() {
 }
 
 //export callbackQQuickItemTouchUngrabEvent
-func callbackQQuickItemTouchUngrabEvent(ptrName *C.char) bool {
+func callbackQQuickItemTouchUngrabEvent(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickItem::touchUngrabEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "touchUngrabEvent"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).TouchUngrabEventDefault()
 	}
-	return false
+}
 
+func (ptr *QQuickItem) TouchUngrabEvent() {
+	defer qt.Recovering("QQuickItem::touchUngrabEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_TouchUngrabEvent(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickItem) TouchUngrabEventDefault() {
+	defer qt.Recovering("QQuickItem::touchUngrabEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_TouchUngrabEventDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QQuickItem) UngrabMouse() {
@@ -1444,15 +1792,30 @@ func (ptr *QQuickItem) DisconnectUpdatePolish() {
 }
 
 //export callbackQQuickItemUpdatePolish
-func callbackQQuickItemUpdatePolish(ptrName *C.char) bool {
+func callbackQQuickItemUpdatePolish(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickItem::updatePolish")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updatePolish"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).UpdatePolishDefault()
 	}
-	return false
+}
 
+func (ptr *QQuickItem) UpdatePolish() {
+	defer qt.Recovering("QQuickItem::updatePolish")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_UpdatePolish(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickItem) UpdatePolishDefault() {
+	defer qt.Recovering("QQuickItem::updatePolish")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_UpdatePolishDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QQuickItem) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1474,15 +1837,30 @@ func (ptr *QQuickItem) DisconnectWheelEvent() {
 }
 
 //export callbackQQuickItemWheelEvent
-func callbackQQuickItemWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QQuickItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QQuickItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) Window() *QQuickWindow {
@@ -1513,13 +1891,21 @@ func (ptr *QQuickItem) DisconnectWindowChanged() {
 }
 
 //export callbackQQuickItemWindowChanged
-func callbackQQuickItemWindowChanged(ptrName *C.char, window unsafe.Pointer) {
+func callbackQQuickItemWindowChanged(ptr unsafe.Pointer, ptrName *C.char, window unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::windowChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "windowChanged"); signal != nil {
 		signal.(func(*QQuickWindow))(NewQQuickWindowFromPointer(window))
 	}
 
+}
+
+func (ptr *QQuickItem) WindowChanged(window QQuickWindow_ITF) {
+	defer qt.Recovering("QQuickItem::windowChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_WindowChanged(ptr.Pointer(), PointerFromQQuickWindow(window))
+	}
 }
 
 func (ptr *QQuickItem) DestroyQQuickItem() {
@@ -1550,15 +1936,30 @@ func (ptr *QQuickItem) DisconnectTimerEvent() {
 }
 
 //export callbackQQuickItemTimerEvent
-func callbackQQuickItemTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQuickItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQuickItem::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1580,15 +1981,30 @@ func (ptr *QQuickItem) DisconnectChildEvent() {
 }
 
 //export callbackQQuickItemChildEvent
-func callbackQQuickItemChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQuickItem::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQuickItem::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QQuickItem) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1610,13 +2026,28 @@ func (ptr *QQuickItem) DisconnectCustomEvent() {
 }
 
 //export callbackQQuickItemCustomEvent
-func callbackQQuickItemCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQuickItemCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQuickItem::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQQuickItemFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQuickItem) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQuickItem::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQuickItem) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQuickItem::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

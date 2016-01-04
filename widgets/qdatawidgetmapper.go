@@ -82,7 +82,7 @@ func (ptr *QDataWidgetMapper) DisconnectSetCurrentIndex() {
 }
 
 //export callbackQDataWidgetMapperSetCurrentIndex
-func callbackQDataWidgetMapperSetCurrentIndex(ptrName *C.char, index C.int) bool {
+func callbackQDataWidgetMapperSetCurrentIndex(ptr unsafe.Pointer, ptrName *C.char, index C.int) bool {
 	defer qt.Recovering("callback QDataWidgetMapper::setCurrentIndex")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setCurrentIndex"); signal != nil {
@@ -91,6 +91,22 @@ func callbackQDataWidgetMapperSetCurrentIndex(ptrName *C.char, index C.int) bool
 	}
 	return false
 
+}
+
+func (ptr *QDataWidgetMapper) SetCurrentIndex(index int) {
+	defer qt.Recovering("QDataWidgetMapper::setCurrentIndex")
+
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper_SetCurrentIndex(ptr.Pointer(), C.int(index))
+	}
+}
+
+func (ptr *QDataWidgetMapper) SetCurrentIndexDefault(index int) {
+	defer qt.Recovering("QDataWidgetMapper::setCurrentIndex")
+
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper_SetCurrentIndexDefault(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QDataWidgetMapper) SetOrientation(aOrientation core.Qt__Orientation) {
@@ -167,13 +183,21 @@ func (ptr *QDataWidgetMapper) DisconnectCurrentIndexChanged() {
 }
 
 //export callbackQDataWidgetMapperCurrentIndexChanged
-func callbackQDataWidgetMapperCurrentIndexChanged(ptrName *C.char, index C.int) {
+func callbackQDataWidgetMapperCurrentIndexChanged(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QDataWidgetMapper::currentIndexChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "currentIndexChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
+}
+
+func (ptr *QDataWidgetMapper) CurrentIndexChanged(index int) {
+	defer qt.Recovering("QDataWidgetMapper::currentIndexChanged")
+
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper_CurrentIndexChanged(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QDataWidgetMapper) ItemDelegate() *QAbstractItemDelegate {
@@ -347,15 +371,30 @@ func (ptr *QDataWidgetMapper) DisconnectTimerEvent() {
 }
 
 //export callbackQDataWidgetMapperTimerEvent
-func callbackQDataWidgetMapperTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDataWidgetMapperTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDataWidgetMapper::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDataWidgetMapperFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDataWidgetMapper) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDataWidgetMapper::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDataWidgetMapper) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDataWidgetMapper::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDataWidgetMapper) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -377,15 +416,30 @@ func (ptr *QDataWidgetMapper) DisconnectChildEvent() {
 }
 
 //export callbackQDataWidgetMapperChildEvent
-func callbackQDataWidgetMapperChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDataWidgetMapperChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDataWidgetMapper::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDataWidgetMapperFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDataWidgetMapper) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDataWidgetMapper::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDataWidgetMapper) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDataWidgetMapper::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDataWidgetMapper) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -407,13 +461,28 @@ func (ptr *QDataWidgetMapper) DisconnectCustomEvent() {
 }
 
 //export callbackQDataWidgetMapperCustomEvent
-func callbackQDataWidgetMapperCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDataWidgetMapperCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDataWidgetMapper::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDataWidgetMapperFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDataWidgetMapper) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDataWidgetMapper::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDataWidgetMapper) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDataWidgetMapper::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

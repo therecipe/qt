@@ -82,6 +82,15 @@ func NewQPropertyAnimation2(target QObject_ITF, propertyName QByteArray_ITF, par
 	return NewQPropertyAnimationFromPointer(C.QPropertyAnimation_NewQPropertyAnimation2(PointerFromQObject(target), PointerFromQByteArray(propertyName), PointerFromQObject(parent)))
 }
 
+func (ptr *QPropertyAnimation) Event(event QEvent_ITF) bool {
+	defer qt.Recovering("QPropertyAnimation::event")
+
+	if ptr.Pointer() != nil {
+		return C.QPropertyAnimation_Event(ptr.Pointer(), PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
 func (ptr *QPropertyAnimation) ConnectUpdateCurrentValue(f func(value *QVariant)) {
 	defer qt.Recovering("connect QPropertyAnimation::updateCurrentValue")
 
@@ -101,15 +110,30 @@ func (ptr *QPropertyAnimation) DisconnectUpdateCurrentValue() {
 }
 
 //export callbackQPropertyAnimationUpdateCurrentValue
-func callbackQPropertyAnimationUpdateCurrentValue(ptrName *C.char, value unsafe.Pointer) bool {
+func callbackQPropertyAnimationUpdateCurrentValue(ptr unsafe.Pointer, ptrName *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QPropertyAnimation::updateCurrentValue")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentValue"); signal != nil {
 		signal.(func(*QVariant))(NewQVariantFromPointer(value))
-		return true
+	} else {
+		NewQPropertyAnimationFromPointer(ptr).UpdateCurrentValueDefault(NewQVariantFromPointer(value))
 	}
-	return false
+}
 
+func (ptr *QPropertyAnimation) UpdateCurrentValue(value QVariant_ITF) {
+	defer qt.Recovering("QPropertyAnimation::updateCurrentValue")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_UpdateCurrentValue(ptr.Pointer(), PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QPropertyAnimation) UpdateCurrentValueDefault(value QVariant_ITF) {
+	defer qt.Recovering("QPropertyAnimation::updateCurrentValue")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_UpdateCurrentValueDefault(ptr.Pointer(), PointerFromQVariant(value))
+	}
 }
 
 func (ptr *QPropertyAnimation) ConnectUpdateState(f func(newState QAbstractAnimation__State, oldState QAbstractAnimation__State)) {
@@ -131,15 +155,30 @@ func (ptr *QPropertyAnimation) DisconnectUpdateState() {
 }
 
 //export callbackQPropertyAnimationUpdateState
-func callbackQPropertyAnimationUpdateState(ptrName *C.char, newState C.int, oldState C.int) bool {
+func callbackQPropertyAnimationUpdateState(ptr unsafe.Pointer, ptrName *C.char, newState C.int, oldState C.int) {
 	defer qt.Recovering("callback QPropertyAnimation::updateState")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateState"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
-		return true
+	} else {
+		NewQPropertyAnimationFromPointer(ptr).UpdateStateDefault(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	}
-	return false
+}
 
+func (ptr *QPropertyAnimation) UpdateState(newState QAbstractAnimation__State, oldState QAbstractAnimation__State) {
+	defer qt.Recovering("QPropertyAnimation::updateState")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_UpdateState(ptr.Pointer(), C.int(newState), C.int(oldState))
+	}
+}
+
+func (ptr *QPropertyAnimation) UpdateStateDefault(newState QAbstractAnimation__State, oldState QAbstractAnimation__State) {
+	defer qt.Recovering("QPropertyAnimation::updateState")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_UpdateStateDefault(ptr.Pointer(), C.int(newState), C.int(oldState))
+	}
 }
 
 func (ptr *QPropertyAnimation) DestroyQPropertyAnimation() {
@@ -170,15 +209,30 @@ func (ptr *QPropertyAnimation) DisconnectUpdateCurrentTime() {
 }
 
 //export callbackQPropertyAnimationUpdateCurrentTime
-func callbackQPropertyAnimationUpdateCurrentTime(ptrName *C.char, v C.int) bool {
+func callbackQPropertyAnimationUpdateCurrentTime(ptr unsafe.Pointer, ptrName *C.char, v C.int) {
 	defer qt.Recovering("callback QPropertyAnimation::updateCurrentTime")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(v))
-		return true
+	} else {
+		NewQPropertyAnimationFromPointer(ptr).UpdateCurrentTimeDefault(int(v))
 	}
-	return false
+}
 
+func (ptr *QPropertyAnimation) UpdateCurrentTime(v int) {
+	defer qt.Recovering("QPropertyAnimation::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_UpdateCurrentTime(ptr.Pointer(), C.int(v))
+	}
+}
+
+func (ptr *QPropertyAnimation) UpdateCurrentTimeDefault(v int) {
+	defer qt.Recovering("QPropertyAnimation::updateCurrentTime")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_UpdateCurrentTimeDefault(ptr.Pointer(), C.int(v))
+	}
 }
 
 func (ptr *QPropertyAnimation) ConnectUpdateDirection(f func(direction QAbstractAnimation__Direction)) {
@@ -200,15 +254,30 @@ func (ptr *QPropertyAnimation) DisconnectUpdateDirection() {
 }
 
 //export callbackQPropertyAnimationUpdateDirection
-func callbackQPropertyAnimationUpdateDirection(ptrName *C.char, direction C.int) bool {
+func callbackQPropertyAnimationUpdateDirection(ptr unsafe.Pointer, ptrName *C.char, direction C.int) {
 	defer qt.Recovering("callback QPropertyAnimation::updateDirection")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateDirection"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
-		return true
+	} else {
+		NewQPropertyAnimationFromPointer(ptr).UpdateDirectionDefault(QAbstractAnimation__Direction(direction))
 	}
-	return false
+}
 
+func (ptr *QPropertyAnimation) UpdateDirection(direction QAbstractAnimation__Direction) {
+	defer qt.Recovering("QPropertyAnimation::updateDirection")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_UpdateDirection(ptr.Pointer(), C.int(direction))
+	}
+}
+
+func (ptr *QPropertyAnimation) UpdateDirectionDefault(direction QAbstractAnimation__Direction) {
+	defer qt.Recovering("QPropertyAnimation::updateDirection")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_UpdateDirectionDefault(ptr.Pointer(), C.int(direction))
+	}
 }
 
 func (ptr *QPropertyAnimation) ConnectTimerEvent(f func(event *QTimerEvent)) {
@@ -230,15 +299,30 @@ func (ptr *QPropertyAnimation) DisconnectTimerEvent() {
 }
 
 //export callbackQPropertyAnimationTimerEvent
-func callbackQPropertyAnimationTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPropertyAnimationTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPropertyAnimation::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQPropertyAnimationFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPropertyAnimation) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QPropertyAnimation::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QPropertyAnimation) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QPropertyAnimation::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QPropertyAnimation) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -260,15 +344,30 @@ func (ptr *QPropertyAnimation) DisconnectChildEvent() {
 }
 
 //export callbackQPropertyAnimationChildEvent
-func callbackQPropertyAnimationChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPropertyAnimationChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPropertyAnimation::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQPropertyAnimationFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPropertyAnimation) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QPropertyAnimation::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QPropertyAnimation) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QPropertyAnimation::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QPropertyAnimation) ConnectCustomEvent(f func(event *QEvent)) {
@@ -290,13 +389,28 @@ func (ptr *QPropertyAnimation) DisconnectCustomEvent() {
 }
 
 //export callbackQPropertyAnimationCustomEvent
-func callbackQPropertyAnimationCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPropertyAnimationCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPropertyAnimation::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQPropertyAnimationFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPropertyAnimation) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QPropertyAnimation::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPropertyAnimation) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QPropertyAnimation::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

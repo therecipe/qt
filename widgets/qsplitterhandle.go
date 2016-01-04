@@ -44,6 +44,15 @@ func NewQSplitterHandle(orientation core.Qt__Orientation, parent QSplitter_ITF) 
 	return NewQSplitterHandleFromPointer(C.QSplitterHandle_NewQSplitterHandle(C.int(orientation), PointerFromQSplitter(parent)))
 }
 
+func (ptr *QSplitterHandle) Event(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QSplitterHandle::event")
+
+	if ptr.Pointer() != nil {
+		return C.QSplitterHandle_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
 func (ptr *QSplitterHandle) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
 	defer qt.Recovering("connect QSplitterHandle::mouseMoveEvent")
 
@@ -63,15 +72,30 @@ func (ptr *QSplitterHandle) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQSplitterHandleMouseMoveEvent
-func callbackQSplitterHandleMouseMoveEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQSplitterHandleMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) MouseMoveEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QSplitterHandle) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
@@ -93,15 +117,30 @@ func (ptr *QSplitterHandle) DisconnectMousePressEvent() {
 }
 
 //export callbackQSplitterHandleMousePressEvent
-func callbackQSplitterHandleMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQSplitterHandleMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) MousePressEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QSplitterHandle) MousePressEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -123,15 +162,30 @@ func (ptr *QSplitterHandle) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQSplitterHandleMouseReleaseEvent
-func callbackQSplitterHandleMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQSplitterHandleMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QSplitterHandle) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QSplitterHandle) OpaqueResize() bool {
@@ -171,15 +225,30 @@ func (ptr *QSplitterHandle) DisconnectPaintEvent() {
 }
 
 //export callbackQSplitterHandlePaintEvent
-func callbackQSplitterHandlePaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQSplitterHandlePaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) PaintEvent(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
+}
+
+func (ptr *QSplitterHandle) PaintEventDefault(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -201,15 +270,30 @@ func (ptr *QSplitterHandle) DisconnectResizeEvent() {
 }
 
 //export callbackQSplitterHandleResizeEvent
-func callbackQSplitterHandleResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) SetOrientation(orientation core.Qt__Orientation) {
@@ -266,15 +350,30 @@ func (ptr *QSplitterHandle) DisconnectActionEvent() {
 }
 
 //export callbackQSplitterHandleActionEvent
-func callbackQSplitterHandleActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -296,15 +395,30 @@ func (ptr *QSplitterHandle) DisconnectDragEnterEvent() {
 }
 
 //export callbackQSplitterHandleDragEnterEvent
-func callbackQSplitterHandleDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -326,15 +440,30 @@ func (ptr *QSplitterHandle) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQSplitterHandleDragLeaveEvent
-func callbackQSplitterHandleDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -356,15 +485,30 @@ func (ptr *QSplitterHandle) DisconnectDragMoveEvent() {
 }
 
 //export callbackQSplitterHandleDragMoveEvent
-func callbackQSplitterHandleDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -386,15 +530,30 @@ func (ptr *QSplitterHandle) DisconnectDropEvent() {
 }
 
 //export callbackQSplitterHandleDropEvent
-func callbackQSplitterHandleDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -416,15 +575,30 @@ func (ptr *QSplitterHandle) DisconnectEnterEvent() {
 }
 
 //export callbackQSplitterHandleEnterEvent
-func callbackQSplitterHandleEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -446,15 +620,30 @@ func (ptr *QSplitterHandle) DisconnectFocusInEvent() {
 }
 
 //export callbackQSplitterHandleFocusInEvent
-func callbackQSplitterHandleFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -476,15 +665,30 @@ func (ptr *QSplitterHandle) DisconnectFocusOutEvent() {
 }
 
 //export callbackQSplitterHandleFocusOutEvent
-func callbackQSplitterHandleFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -506,15 +710,30 @@ func (ptr *QSplitterHandle) DisconnectHideEvent() {
 }
 
 //export callbackQSplitterHandleHideEvent
-func callbackQSplitterHandleHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -536,15 +755,30 @@ func (ptr *QSplitterHandle) DisconnectLeaveEvent() {
 }
 
 //export callbackQSplitterHandleLeaveEvent
-func callbackQSplitterHandleLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -566,15 +800,30 @@ func (ptr *QSplitterHandle) DisconnectMoveEvent() {
 }
 
 //export callbackQSplitterHandleMoveEvent
-func callbackQSplitterHandleMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectSetVisible(f func(visible bool)) {
@@ -596,7 +845,7 @@ func (ptr *QSplitterHandle) DisconnectSetVisible() {
 }
 
 //export callbackQSplitterHandleSetVisible
-func callbackQSplitterHandleSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQSplitterHandleSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QSplitterHandle::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -605,6 +854,22 @@ func callbackQSplitterHandleSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QSplitterHandle) SetVisible(visible bool) {
+	defer qt.Recovering("QSplitterHandle::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QSplitterHandle) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QSplitterHandle::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -626,15 +891,30 @@ func (ptr *QSplitterHandle) DisconnectShowEvent() {
 }
 
 //export callbackQSplitterHandleShowEvent
-func callbackQSplitterHandleShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -656,15 +936,30 @@ func (ptr *QSplitterHandle) DisconnectChangeEvent() {
 }
 
 //export callbackQSplitterHandleChangeEvent
-func callbackQSplitterHandleChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -686,15 +981,30 @@ func (ptr *QSplitterHandle) DisconnectCloseEvent() {
 }
 
 //export callbackQSplitterHandleCloseEvent
-func callbackQSplitterHandleCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -716,15 +1026,30 @@ func (ptr *QSplitterHandle) DisconnectContextMenuEvent() {
 }
 
 //export callbackQSplitterHandleContextMenuEvent
-func callbackQSplitterHandleContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -746,15 +1071,30 @@ func (ptr *QSplitterHandle) DisconnectInitPainter() {
 }
 
 //export callbackQSplitterHandleInitPainter
-func callbackQSplitterHandleInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQSplitterHandleInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QSplitterHandle::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QSplitterHandle) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QSplitterHandle::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -776,15 +1116,30 @@ func (ptr *QSplitterHandle) DisconnectInputMethodEvent() {
 }
 
 //export callbackQSplitterHandleInputMethodEvent
-func callbackQSplitterHandleInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -806,15 +1161,30 @@ func (ptr *QSplitterHandle) DisconnectKeyPressEvent() {
 }
 
 //export callbackQSplitterHandleKeyPressEvent
-func callbackQSplitterHandleKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -836,15 +1206,30 @@ func (ptr *QSplitterHandle) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQSplitterHandleKeyReleaseEvent
-func callbackQSplitterHandleKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -866,15 +1251,30 @@ func (ptr *QSplitterHandle) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQSplitterHandleMouseDoubleClickEvent
-func callbackQSplitterHandleMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -896,15 +1296,30 @@ func (ptr *QSplitterHandle) DisconnectTabletEvent() {
 }
 
 //export callbackQSplitterHandleTabletEvent
-func callbackQSplitterHandleTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -926,15 +1341,30 @@ func (ptr *QSplitterHandle) DisconnectWheelEvent() {
 }
 
 //export callbackQSplitterHandleWheelEvent
-func callbackQSplitterHandleWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -956,15 +1386,30 @@ func (ptr *QSplitterHandle) DisconnectTimerEvent() {
 }
 
 //export callbackQSplitterHandleTimerEvent
-func callbackQSplitterHandleTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -986,15 +1431,30 @@ func (ptr *QSplitterHandle) DisconnectChildEvent() {
 }
 
 //export callbackQSplitterHandleChildEvent
-func callbackQSplitterHandleChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSplitterHandle) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1016,13 +1476,28 @@ func (ptr *QSplitterHandle) DisconnectCustomEvent() {
 }
 
 //export callbackQSplitterHandleCustomEvent
-func callbackQSplitterHandleCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplitterHandleCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplitterHandle::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSplitterHandleFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplitterHandle) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSplitterHandle) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplitterHandle::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplitterHandle_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

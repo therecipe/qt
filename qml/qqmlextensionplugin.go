@@ -73,15 +73,30 @@ func (ptr *QQmlExtensionPlugin) DisconnectTimerEvent() {
 }
 
 //export callbackQQmlExtensionPluginTimerEvent
-func callbackQQmlExtensionPluginTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlExtensionPluginTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlExtensionPlugin::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlExtensionPluginFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlExtensionPlugin) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlExtensionPlugin::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExtensionPlugin_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQmlExtensionPlugin) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQmlExtensionPlugin::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExtensionPlugin_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -103,15 +118,30 @@ func (ptr *QQmlExtensionPlugin) DisconnectChildEvent() {
 }
 
 //export callbackQQmlExtensionPluginChildEvent
-func callbackQQmlExtensionPluginChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlExtensionPluginChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlExtensionPlugin::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlExtensionPluginFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlExtensionPlugin) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlExtensionPlugin::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExtensionPlugin_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQmlExtensionPlugin) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQmlExtensionPlugin::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExtensionPlugin_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -133,13 +163,28 @@ func (ptr *QQmlExtensionPlugin) DisconnectCustomEvent() {
 }
 
 //export callbackQQmlExtensionPluginCustomEvent
-func callbackQQmlExtensionPluginCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQQmlExtensionPluginCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlExtensionPlugin::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQQmlExtensionPluginFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QQmlExtensionPlugin) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlExtensionPlugin::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExtensionPlugin_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQmlExtensionPlugin) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQmlExtensionPlugin::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExtensionPlugin_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

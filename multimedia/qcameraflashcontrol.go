@@ -65,13 +65,21 @@ func (ptr *QCameraFlashControl) DisconnectFlashReady() {
 }
 
 //export callbackQCameraFlashControlFlashReady
-func callbackQCameraFlashControlFlashReady(ptrName *C.char, ready C.int) {
+func callbackQCameraFlashControlFlashReady(ptr unsafe.Pointer, ptrName *C.char, ready C.int) {
 	defer qt.Recovering("callback QCameraFlashControl::flashReady")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "flashReady"); signal != nil {
 		signal.(func(bool))(int(ready) != 0)
 	}
 
+}
+
+func (ptr *QCameraFlashControl) FlashReady(ready bool) {
+	defer qt.Recovering("QCameraFlashControl::flashReady")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFlashControl_FlashReady(ptr.Pointer(), C.int(qt.GoBoolToInt(ready)))
+	}
 }
 
 func (ptr *QCameraFlashControl) IsFlashModeSupported(mode QCameraExposure__FlashMode) bool {
@@ -128,15 +136,30 @@ func (ptr *QCameraFlashControl) DisconnectTimerEvent() {
 }
 
 //export callbackQCameraFlashControlTimerEvent
-func callbackQCameraFlashControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFlashControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFlashControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFlashControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFlashControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraFlashControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFlashControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCameraFlashControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraFlashControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFlashControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCameraFlashControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -158,15 +181,30 @@ func (ptr *QCameraFlashControl) DisconnectChildEvent() {
 }
 
 //export callbackQCameraFlashControlChildEvent
-func callbackQCameraFlashControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFlashControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFlashControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFlashControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFlashControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraFlashControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFlashControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCameraFlashControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraFlashControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFlashControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCameraFlashControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -188,13 +226,28 @@ func (ptr *QCameraFlashControl) DisconnectCustomEvent() {
 }
 
 //export callbackQCameraFlashControlCustomEvent
-func callbackQCameraFlashControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFlashControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFlashControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFlashControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFlashControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraFlashControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFlashControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCameraFlashControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraFlashControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFlashControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

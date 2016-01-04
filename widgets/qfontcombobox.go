@@ -97,6 +97,15 @@ func NewQFontComboBox(parent QWidget_ITF) *QFontComboBox {
 	return NewQFontComboBoxFromPointer(C.QFontComboBox_NewQFontComboBox(PointerFromQWidget(parent)))
 }
 
+func (ptr *QFontComboBox) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QFontComboBox::event")
+
+	if ptr.Pointer() != nil {
+		return C.QFontComboBox_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
 func (ptr *QFontComboBox) SizeHint() *core.QSize {
 	defer qt.Recovering("QFontComboBox::sizeHint")
 
@@ -134,15 +143,30 @@ func (ptr *QFontComboBox) DisconnectChangeEvent() {
 }
 
 //export callbackQFontComboBoxChangeEvent
-func callbackQFontComboBoxChangeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxChangeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) ChangeEvent(e core.QEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) ChangeEventDefault(e core.QEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
@@ -164,15 +188,30 @@ func (ptr *QFontComboBox) DisconnectContextMenuEvent() {
 }
 
 //export callbackQFontComboBoxContextMenuEvent
-func callbackQFontComboBoxContextMenuEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectFocusInEvent(f func(e *gui.QFocusEvent)) {
@@ -194,15 +233,30 @@ func (ptr *QFontComboBox) DisconnectFocusInEvent() {
 }
 
 //export callbackQFontComboBoxFocusInEvent
-func callbackQFontComboBoxFocusInEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) FocusInEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) FocusInEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectFocusOutEvent(f func(e *gui.QFocusEvent)) {
@@ -224,15 +278,30 @@ func (ptr *QFontComboBox) DisconnectFocusOutEvent() {
 }
 
 //export callbackQFontComboBoxFocusOutEvent
-func callbackQFontComboBoxFocusOutEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) FocusOutEvent(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) FocusOutEventDefault(e gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectHideEvent(f func(e *gui.QHideEvent)) {
@@ -254,15 +323,30 @@ func (ptr *QFontComboBox) DisconnectHideEvent() {
 }
 
 //export callbackQFontComboBoxHideEvent
-func callbackQFontComboBoxHideEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxHideEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) HideEvent(e gui.QHideEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) HideEventDefault(e gui.QHideEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectHidePopup(f func()) {
@@ -284,15 +368,30 @@ func (ptr *QFontComboBox) DisconnectHidePopup() {
 }
 
 //export callbackQFontComboBoxHidePopup
-func callbackQFontComboBoxHidePopup(ptrName *C.char) bool {
+func callbackQFontComboBoxHidePopup(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QFontComboBox::hidePopup")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hidePopup"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).HidePopupDefault()
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) HidePopup() {
+	defer qt.Recovering("QFontComboBox::hidePopup")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_HidePopup(ptr.Pointer())
+	}
+}
+
+func (ptr *QFontComboBox) HidePopupDefault() {
+	defer qt.Recovering("QFontComboBox::hidePopup")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_HidePopupDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QFontComboBox) ConnectInputMethodEvent(f func(e *gui.QInputMethodEvent)) {
@@ -314,15 +413,30 @@ func (ptr *QFontComboBox) DisconnectInputMethodEvent() {
 }
 
 //export callbackQFontComboBoxInputMethodEvent
-func callbackQFontComboBoxInputMethodEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) InputMethodEvent(e gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) InputMethodEventDefault(e gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
@@ -344,15 +458,30 @@ func (ptr *QFontComboBox) DisconnectKeyPressEvent() {
 }
 
 //export callbackQFontComboBoxKeyPressEvent
-func callbackQFontComboBoxKeyPressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) KeyPressEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectKeyReleaseEvent(f func(e *gui.QKeyEvent)) {
@@ -374,15 +503,30 @@ func (ptr *QFontComboBox) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQFontComboBoxKeyReleaseEvent
-func callbackQFontComboBoxKeyReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) KeyReleaseEvent(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) KeyReleaseEventDefault(e gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
@@ -404,15 +548,30 @@ func (ptr *QFontComboBox) DisconnectMousePressEvent() {
 }
 
 //export callbackQFontComboBoxMousePressEvent
-func callbackQFontComboBoxMousePressEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) MousePressEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) MousePressEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
@@ -434,15 +593,30 @@ func (ptr *QFontComboBox) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQFontComboBoxMouseReleaseEvent
-func callbackQFontComboBoxMouseReleaseEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectPaintEvent(f func(e *gui.QPaintEvent)) {
@@ -464,15 +638,30 @@ func (ptr *QFontComboBox) DisconnectPaintEvent() {
 }
 
 //export callbackQFontComboBoxPaintEvent
-func callbackQFontComboBoxPaintEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxPaintEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) PaintEvent(e gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) PaintEventDefault(e gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectResizeEvent(f func(e *gui.QResizeEvent)) {
@@ -494,15 +683,30 @@ func (ptr *QFontComboBox) DisconnectResizeEvent() {
 }
 
 //export callbackQFontComboBoxResizeEvent
-func callbackQFontComboBoxResizeEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxResizeEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) ResizeEvent(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) ResizeEventDefault(e gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectShowEvent(f func(e *gui.QShowEvent)) {
@@ -524,15 +728,30 @@ func (ptr *QFontComboBox) DisconnectShowEvent() {
 }
 
 //export callbackQFontComboBoxShowEvent
-func callbackQFontComboBoxShowEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxShowEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) ShowEvent(e gui.QShowEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) ShowEventDefault(e gui.QShowEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectShowPopup(f func()) {
@@ -554,15 +773,30 @@ func (ptr *QFontComboBox) DisconnectShowPopup() {
 }
 
 //export callbackQFontComboBoxShowPopup
-func callbackQFontComboBoxShowPopup(ptrName *C.char) bool {
+func callbackQFontComboBoxShowPopup(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QFontComboBox::showPopup")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showPopup"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).ShowPopupDefault()
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) ShowPopup() {
+	defer qt.Recovering("QFontComboBox::showPopup")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ShowPopup(ptr.Pointer())
+	}
+}
+
+func (ptr *QFontComboBox) ShowPopupDefault() {
+	defer qt.Recovering("QFontComboBox::showPopup")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ShowPopupDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QFontComboBox) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
@@ -584,15 +818,30 @@ func (ptr *QFontComboBox) DisconnectWheelEvent() {
 }
 
 //export callbackQFontComboBoxWheelEvent
-func callbackQFontComboBoxWheelEvent(ptrName *C.char, e unsafe.Pointer) bool {
+func callbackQFontComboBoxWheelEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(e))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) WheelEvent(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
+}
+
+func (ptr *QFontComboBox) WheelEventDefault(e gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectActionEvent(f func(event *gui.QActionEvent)) {
@@ -614,15 +863,30 @@ func (ptr *QFontComboBox) DisconnectActionEvent() {
 }
 
 //export callbackQFontComboBoxActionEvent
-func callbackQFontComboBoxActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -644,15 +908,30 @@ func (ptr *QFontComboBox) DisconnectDragEnterEvent() {
 }
 
 //export callbackQFontComboBoxDragEnterEvent
-func callbackQFontComboBoxDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -674,15 +953,30 @@ func (ptr *QFontComboBox) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQFontComboBoxDragLeaveEvent
-func callbackQFontComboBoxDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -704,15 +998,30 @@ func (ptr *QFontComboBox) DisconnectDragMoveEvent() {
 }
 
 //export callbackQFontComboBoxDragMoveEvent
-func callbackQFontComboBoxDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -734,15 +1043,30 @@ func (ptr *QFontComboBox) DisconnectDropEvent() {
 }
 
 //export callbackQFontComboBoxDropEvent
-func callbackQFontComboBoxDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -764,15 +1088,30 @@ func (ptr *QFontComboBox) DisconnectEnterEvent() {
 }
 
 //export callbackQFontComboBoxEnterEvent
-func callbackQFontComboBoxEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -794,15 +1133,30 @@ func (ptr *QFontComboBox) DisconnectLeaveEvent() {
 }
 
 //export callbackQFontComboBoxLeaveEvent
-func callbackQFontComboBoxLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -824,15 +1178,30 @@ func (ptr *QFontComboBox) DisconnectMoveEvent() {
 }
 
 //export callbackQFontComboBoxMoveEvent
-func callbackQFontComboBoxMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectSetVisible(f func(visible bool)) {
@@ -854,7 +1223,7 @@ func (ptr *QFontComboBox) DisconnectSetVisible() {
 }
 
 //export callbackQFontComboBoxSetVisible
-func callbackQFontComboBoxSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQFontComboBoxSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QFontComboBox::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -863,6 +1232,22 @@ func callbackQFontComboBoxSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QFontComboBox) SetVisible(visible bool) {
+	defer qt.Recovering("QFontComboBox::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QFontComboBox) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QFontComboBox::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -884,15 +1269,30 @@ func (ptr *QFontComboBox) DisconnectCloseEvent() {
 }
 
 //export callbackQFontComboBoxCloseEvent
-func callbackQFontComboBoxCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -914,15 +1314,30 @@ func (ptr *QFontComboBox) DisconnectInitPainter() {
 }
 
 //export callbackQFontComboBoxInitPainter
-func callbackQFontComboBoxInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQFontComboBoxInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QFontComboBox::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QFontComboBox) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QFontComboBox::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -944,15 +1359,30 @@ func (ptr *QFontComboBox) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQFontComboBoxMouseDoubleClickEvent
-func callbackQFontComboBoxMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -974,15 +1404,30 @@ func (ptr *QFontComboBox) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQFontComboBoxMouseMoveEvent
-func callbackQFontComboBoxMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1004,15 +1449,30 @@ func (ptr *QFontComboBox) DisconnectTabletEvent() {
 }
 
 //export callbackQFontComboBoxTabletEvent
-func callbackQFontComboBoxTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1034,15 +1494,30 @@ func (ptr *QFontComboBox) DisconnectTimerEvent() {
 }
 
 //export callbackQFontComboBoxTimerEvent
-func callbackQFontComboBoxTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1064,15 +1539,30 @@ func (ptr *QFontComboBox) DisconnectChildEvent() {
 }
 
 //export callbackQFontComboBoxChildEvent
-func callbackQFontComboBoxChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QFontComboBox) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1094,13 +1584,28 @@ func (ptr *QFontComboBox) DisconnectCustomEvent() {
 }
 
 //export callbackQFontComboBoxCustomEvent
-func callbackQFontComboBoxCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFontComboBoxCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFontComboBox::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFontComboBoxFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFontComboBox) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFontComboBox) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFontComboBox::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFontComboBox_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

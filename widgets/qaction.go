@@ -409,13 +409,21 @@ func (ptr *QAction) DisconnectChanged() {
 }
 
 //export callbackQActionChanged
-func callbackQActionChanged(ptrName *C.char) {
+func callbackQActionChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAction::changed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changed"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QAction) Changed() {
+	defer qt.Recovering("QAction::changed")
+
+	if ptr.Pointer() != nil {
+		C.QAction_Changed(ptr.Pointer())
+	}
 }
 
 func (ptr *QAction) Data() *core.QVariant {
@@ -425,6 +433,15 @@ func (ptr *QAction) Data() *core.QVariant {
 		return core.NewQVariantFromPointer(C.QAction_Data(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QAction) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QAction::event")
+
+	if ptr.Pointer() != nil {
+		return C.QAction_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
 }
 
 func (ptr *QAction) Hover() {
@@ -454,13 +471,21 @@ func (ptr *QAction) DisconnectHovered() {
 }
 
 //export callbackQActionHovered
-func callbackQActionHovered(ptrName *C.char) {
+func callbackQActionHovered(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAction::hovered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hovered"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QAction) Hovered() {
+	defer qt.Recovering("QAction::hovered")
+
+	if ptr.Pointer() != nil {
+		C.QAction_Hovered(ptr.Pointer())
+	}
 }
 
 func (ptr *QAction) IsSeparator() bool {
@@ -558,13 +583,21 @@ func (ptr *QAction) DisconnectToggled() {
 }
 
 //export callbackQActionToggled
-func callbackQActionToggled(ptrName *C.char, checked C.int) {
+func callbackQActionToggled(ptr unsafe.Pointer, ptrName *C.char, checked C.int) {
 	defer qt.Recovering("callback QAction::toggled")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "toggled"); signal != nil {
 		signal.(func(bool))(int(checked) != 0)
 	}
 
+}
+
+func (ptr *QAction) Toggled(checked bool) {
+	defer qt.Recovering("QAction::toggled")
+
+	if ptr.Pointer() != nil {
+		C.QAction_Toggled(ptr.Pointer(), C.int(qt.GoBoolToInt(checked)))
+	}
 }
 
 func (ptr *QAction) Trigger() {
@@ -594,13 +627,21 @@ func (ptr *QAction) DisconnectTriggered() {
 }
 
 //export callbackQActionTriggered
-func callbackQActionTriggered(ptrName *C.char, checked C.int) {
+func callbackQActionTriggered(ptr unsafe.Pointer, ptrName *C.char, checked C.int) {
 	defer qt.Recovering("callback QAction::triggered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "triggered"); signal != nil {
 		signal.(func(bool))(int(checked) != 0)
 	}
 
+}
+
+func (ptr *QAction) Triggered(checked bool) {
+	defer qt.Recovering("QAction::triggered")
+
+	if ptr.Pointer() != nil {
+		C.QAction_Triggered(ptr.Pointer(), C.int(qt.GoBoolToInt(checked)))
+	}
 }
 
 func (ptr *QAction) DestroyQAction() {
@@ -631,15 +672,30 @@ func (ptr *QAction) DisconnectTimerEvent() {
 }
 
 //export callbackQActionTimerEvent
-func callbackQActionTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQActionTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAction::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQActionFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAction) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAction::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAction_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAction) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAction::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAction_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAction) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -661,15 +717,30 @@ func (ptr *QAction) DisconnectChildEvent() {
 }
 
 //export callbackQActionChildEvent
-func callbackQActionChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQActionChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAction::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQActionFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAction) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAction::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAction_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAction) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAction::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAction_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAction) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -691,13 +762,28 @@ func (ptr *QAction) DisconnectCustomEvent() {
 }
 
 //export callbackQActionCustomEvent
-func callbackQActionCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQActionCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAction::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQActionFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAction) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAction::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAction_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAction) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAction::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAction_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

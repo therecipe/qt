@@ -77,15 +77,39 @@ func (ptr *QSplashScreen) DisconnectDrawContents() {
 }
 
 //export callbackQSplashScreenDrawContents
-func callbackQSplashScreenDrawContents(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQSplashScreenDrawContents(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::drawContents")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawContents"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).DrawContentsDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QSplashScreen) DrawContents(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QSplashScreen::drawContents")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DrawContents(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QSplashScreen) DrawContentsDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QSplashScreen::drawContents")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DrawContentsDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QSplashScreen) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QSplashScreen::event")
+
+	if ptr.Pointer() != nil {
+		return C.QSplashScreen_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
 	return false
-
 }
 
 func (ptr *QSplashScreen) Finish(mainWin QWidget_ITF) {
@@ -124,13 +148,21 @@ func (ptr *QSplashScreen) DisconnectMessageChanged() {
 }
 
 //export callbackQSplashScreenMessageChanged
-func callbackQSplashScreenMessageChanged(ptrName *C.char, message *C.char) {
+func callbackQSplashScreenMessageChanged(ptr unsafe.Pointer, ptrName *C.char, message *C.char) {
 	defer qt.Recovering("callback QSplashScreen::messageChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "messageChanged"); signal != nil {
 		signal.(func(string))(C.GoString(message))
 	}
 
+}
+
+func (ptr *QSplashScreen) MessageChanged(message string) {
+	defer qt.Recovering("QSplashScreen::messageChanged")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_MessageChanged(ptr.Pointer(), C.CString(message))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectMousePressEvent(f func(v *gui.QMouseEvent)) {
@@ -152,15 +184,30 @@ func (ptr *QSplashScreen) DisconnectMousePressEvent() {
 }
 
 //export callbackQSplashScreenMousePressEvent
-func callbackQSplashScreenMousePressEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQSplashScreenMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(v))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) MousePressEvent(v gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(v))
+	}
+}
+
+func (ptr *QSplashScreen) MousePressEventDefault(v gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(v))
+	}
 }
 
 func (ptr *QSplashScreen) Repaint() {
@@ -215,15 +262,30 @@ func (ptr *QSplashScreen) DisconnectActionEvent() {
 }
 
 //export callbackQSplashScreenActionEvent
-func callbackQSplashScreenActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -245,15 +307,30 @@ func (ptr *QSplashScreen) DisconnectDragEnterEvent() {
 }
 
 //export callbackQSplashScreenDragEnterEvent
-func callbackQSplashScreenDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -275,15 +352,30 @@ func (ptr *QSplashScreen) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQSplashScreenDragLeaveEvent
-func callbackQSplashScreenDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -305,15 +397,30 @@ func (ptr *QSplashScreen) DisconnectDragMoveEvent() {
 }
 
 //export callbackQSplashScreenDragMoveEvent
-func callbackQSplashScreenDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -335,15 +442,30 @@ func (ptr *QSplashScreen) DisconnectDropEvent() {
 }
 
 //export callbackQSplashScreenDropEvent
-func callbackQSplashScreenDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -365,15 +487,30 @@ func (ptr *QSplashScreen) DisconnectEnterEvent() {
 }
 
 //export callbackQSplashScreenEnterEvent
-func callbackQSplashScreenEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -395,15 +532,30 @@ func (ptr *QSplashScreen) DisconnectFocusInEvent() {
 }
 
 //export callbackQSplashScreenFocusInEvent
-func callbackQSplashScreenFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -425,15 +577,30 @@ func (ptr *QSplashScreen) DisconnectFocusOutEvent() {
 }
 
 //export callbackQSplashScreenFocusOutEvent
-func callbackQSplashScreenFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -455,15 +622,30 @@ func (ptr *QSplashScreen) DisconnectHideEvent() {
 }
 
 //export callbackQSplashScreenHideEvent
-func callbackQSplashScreenHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -485,15 +667,30 @@ func (ptr *QSplashScreen) DisconnectLeaveEvent() {
 }
 
 //export callbackQSplashScreenLeaveEvent
-func callbackQSplashScreenLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -515,15 +712,30 @@ func (ptr *QSplashScreen) DisconnectMoveEvent() {
 }
 
 //export callbackQSplashScreenMoveEvent
-func callbackQSplashScreenMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -545,15 +757,30 @@ func (ptr *QSplashScreen) DisconnectPaintEvent() {
 }
 
 //export callbackQSplashScreenPaintEvent
-func callbackQSplashScreenPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectSetVisible(f func(visible bool)) {
@@ -575,7 +802,7 @@ func (ptr *QSplashScreen) DisconnectSetVisible() {
 }
 
 //export callbackQSplashScreenSetVisible
-func callbackQSplashScreenSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQSplashScreenSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QSplashScreen::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -584,6 +811,22 @@ func callbackQSplashScreenSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QSplashScreen) SetVisible(visible bool) {
+	defer qt.Recovering("QSplashScreen::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QSplashScreen) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QSplashScreen::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -605,15 +848,30 @@ func (ptr *QSplashScreen) DisconnectShowEvent() {
 }
 
 //export callbackQSplashScreenShowEvent
-func callbackQSplashScreenShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectChangeEvent(f func(event *core.QEvent)) {
@@ -635,15 +893,30 @@ func (ptr *QSplashScreen) DisconnectChangeEvent() {
 }
 
 //export callbackQSplashScreenChangeEvent
-func callbackQSplashScreenChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -665,15 +938,30 @@ func (ptr *QSplashScreen) DisconnectCloseEvent() {
 }
 
 //export callbackQSplashScreenCloseEvent
-func callbackQSplashScreenCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -695,15 +983,30 @@ func (ptr *QSplashScreen) DisconnectContextMenuEvent() {
 }
 
 //export callbackQSplashScreenContextMenuEvent
-func callbackQSplashScreenContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -725,15 +1028,30 @@ func (ptr *QSplashScreen) DisconnectInitPainter() {
 }
 
 //export callbackQSplashScreenInitPainter
-func callbackQSplashScreenInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQSplashScreenInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QSplashScreen::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QSplashScreen) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QSplashScreen::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -755,15 +1073,30 @@ func (ptr *QSplashScreen) DisconnectInputMethodEvent() {
 }
 
 //export callbackQSplashScreenInputMethodEvent
-func callbackQSplashScreenInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -785,15 +1118,30 @@ func (ptr *QSplashScreen) DisconnectKeyPressEvent() {
 }
 
 //export callbackQSplashScreenKeyPressEvent
-func callbackQSplashScreenKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -815,15 +1163,30 @@ func (ptr *QSplashScreen) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQSplashScreenKeyReleaseEvent
-func callbackQSplashScreenKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -845,15 +1208,30 @@ func (ptr *QSplashScreen) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQSplashScreenMouseDoubleClickEvent
-func callbackQSplashScreenMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -875,15 +1253,30 @@ func (ptr *QSplashScreen) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQSplashScreenMouseMoveEvent
-func callbackQSplashScreenMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -905,15 +1298,30 @@ func (ptr *QSplashScreen) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQSplashScreenMouseReleaseEvent
-func callbackQSplashScreenMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -935,15 +1343,30 @@ func (ptr *QSplashScreen) DisconnectResizeEvent() {
 }
 
 //export callbackQSplashScreenResizeEvent
-func callbackQSplashScreenResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -965,15 +1388,30 @@ func (ptr *QSplashScreen) DisconnectTabletEvent() {
 }
 
 //export callbackQSplashScreenTabletEvent
-func callbackQSplashScreenTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -995,15 +1433,30 @@ func (ptr *QSplashScreen) DisconnectWheelEvent() {
 }
 
 //export callbackQSplashScreenWheelEvent
-func callbackQSplashScreenWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1025,15 +1478,30 @@ func (ptr *QSplashScreen) DisconnectTimerEvent() {
 }
 
 //export callbackQSplashScreenTimerEvent
-func callbackQSplashScreenTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1055,15 +1523,30 @@ func (ptr *QSplashScreen) DisconnectChildEvent() {
 }
 
 //export callbackQSplashScreenChildEvent
-func callbackQSplashScreenChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSplashScreen) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1085,13 +1568,28 @@ func (ptr *QSplashScreen) DisconnectCustomEvent() {
 }
 
 //export callbackQSplashScreenCustomEvent
-func callbackQSplashScreenCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSplashScreenCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSplashScreen::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSplashScreenFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSplashScreen) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSplashScreen) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSplashScreen::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

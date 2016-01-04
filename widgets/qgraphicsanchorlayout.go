@@ -114,15 +114,30 @@ func (ptr *QGraphicsAnchorLayout) DisconnectInvalidate() {
 }
 
 //export callbackQGraphicsAnchorLayoutInvalidate
-func callbackQGraphicsAnchorLayoutInvalidate(ptrName *C.char) bool {
+func callbackQGraphicsAnchorLayoutInvalidate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsAnchorLayout::invalidate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQGraphicsAnchorLayoutFromPointer(ptr).InvalidateDefault()
 	}
-	return false
+}
 
+func (ptr *QGraphicsAnchorLayout) Invalidate() {
+	defer qt.Recovering("QGraphicsAnchorLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchorLayout_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsAnchorLayout) InvalidateDefault() {
+	defer qt.Recovering("QGraphicsAnchorLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchorLayout_InvalidateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsAnchorLayout) ItemAt(index int) *QGraphicsLayoutItem {
@@ -153,15 +168,30 @@ func (ptr *QGraphicsAnchorLayout) DisconnectRemoveAt() {
 }
 
 //export callbackQGraphicsAnchorLayoutRemoveAt
-func callbackQGraphicsAnchorLayoutRemoveAt(ptrName *C.char, index C.int) bool {
+func callbackQGraphicsAnchorLayoutRemoveAt(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QGraphicsAnchorLayout::removeAt")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "removeAt"); signal != nil {
 		signal.(func(int))(int(index))
-		return true
+	} else {
+		NewQGraphicsAnchorLayoutFromPointer(ptr).RemoveAtDefault(int(index))
 	}
-	return false
+}
 
+func (ptr *QGraphicsAnchorLayout) RemoveAt(index int) {
+	defer qt.Recovering("QGraphicsAnchorLayout::removeAt")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchorLayout_RemoveAt(ptr.Pointer(), C.int(index))
+	}
+}
+
+func (ptr *QGraphicsAnchorLayout) RemoveAtDefault(index int) {
+	defer qt.Recovering("QGraphicsAnchorLayout::removeAt")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchorLayout_RemoveAtDefault(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QGraphicsAnchorLayout) SetHorizontalSpacing(spacing float64) {

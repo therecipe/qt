@@ -92,15 +92,30 @@ func (ptr *QAudioEncoderSettingsControl) DisconnectTimerEvent() {
 }
 
 //export callbackQAudioEncoderSettingsControlTimerEvent
-func callbackQAudioEncoderSettingsControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAudioEncoderSettingsControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAudioEncoderSettingsControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAudioEncoderSettingsControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAudioEncoderSettingsControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAudioEncoderSettingsControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioEncoderSettingsControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAudioEncoderSettingsControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAudioEncoderSettingsControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioEncoderSettingsControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAudioEncoderSettingsControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -122,15 +137,30 @@ func (ptr *QAudioEncoderSettingsControl) DisconnectChildEvent() {
 }
 
 //export callbackQAudioEncoderSettingsControlChildEvent
-func callbackQAudioEncoderSettingsControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAudioEncoderSettingsControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAudioEncoderSettingsControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAudioEncoderSettingsControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAudioEncoderSettingsControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAudioEncoderSettingsControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioEncoderSettingsControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAudioEncoderSettingsControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAudioEncoderSettingsControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioEncoderSettingsControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAudioEncoderSettingsControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -152,13 +182,28 @@ func (ptr *QAudioEncoderSettingsControl) DisconnectCustomEvent() {
 }
 
 //export callbackQAudioEncoderSettingsControlCustomEvent
-func callbackQAudioEncoderSettingsControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAudioEncoderSettingsControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAudioEncoderSettingsControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAudioEncoderSettingsControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAudioEncoderSettingsControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAudioEncoderSettingsControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioEncoderSettingsControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAudioEncoderSettingsControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAudioEncoderSettingsControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioEncoderSettingsControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

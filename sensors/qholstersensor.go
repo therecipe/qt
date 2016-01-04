@@ -80,15 +80,30 @@ func (ptr *QHolsterSensor) DisconnectTimerEvent() {
 }
 
 //export callbackQHolsterSensorTimerEvent
-func callbackQHolsterSensorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHolsterSensorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHolsterSensor::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQHolsterSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHolsterSensor) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHolsterSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QHolsterSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QHolsterSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QHolsterSensor) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -110,15 +125,30 @@ func (ptr *QHolsterSensor) DisconnectChildEvent() {
 }
 
 //export callbackQHolsterSensorChildEvent
-func callbackQHolsterSensorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHolsterSensorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHolsterSensor::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQHolsterSensorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHolsterSensor) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHolsterSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QHolsterSensor) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QHolsterSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QHolsterSensor) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -140,13 +170,28 @@ func (ptr *QHolsterSensor) DisconnectCustomEvent() {
 }
 
 //export callbackQHolsterSensorCustomEvent
-func callbackQHolsterSensorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQHolsterSensorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHolsterSensor::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQHolsterSensorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QHolsterSensor) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QHolsterSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QHolsterSensor) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QHolsterSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

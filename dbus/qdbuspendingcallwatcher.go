@@ -81,13 +81,21 @@ func (ptr *QDBusPendingCallWatcher) DisconnectFinished() {
 }
 
 //export callbackQDBusPendingCallWatcherFinished
-func callbackQDBusPendingCallWatcherFinished(ptrName *C.char, self unsafe.Pointer) {
+func callbackQDBusPendingCallWatcherFinished(ptr unsafe.Pointer, ptrName *C.char, self unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::finished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(*QDBusPendingCallWatcher))(NewQDBusPendingCallWatcherFromPointer(self))
 	}
 
+}
+
+func (ptr *QDBusPendingCallWatcher) Finished(self QDBusPendingCallWatcher_ITF) {
+	defer qt.Recovering("QDBusPendingCallWatcher::finished")
+
+	if ptr.Pointer() != nil {
+		C.QDBusPendingCallWatcher_Finished(ptr.Pointer(), PointerFromQDBusPendingCallWatcher(self))
+	}
 }
 
 func (ptr *QDBusPendingCallWatcher) IsFinished() bool {
@@ -127,15 +135,30 @@ func (ptr *QDBusPendingCallWatcher) DisconnectTimerEvent() {
 }
 
 //export callbackQDBusPendingCallWatcherTimerEvent
-func callbackQDBusPendingCallWatcherTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusPendingCallWatcherTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusPendingCallWatcherFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusPendingCallWatcher) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDBusPendingCallWatcher::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusPendingCallWatcher_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDBusPendingCallWatcher) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDBusPendingCallWatcher::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusPendingCallWatcher_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDBusPendingCallWatcher) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -157,15 +180,30 @@ func (ptr *QDBusPendingCallWatcher) DisconnectChildEvent() {
 }
 
 //export callbackQDBusPendingCallWatcherChildEvent
-func callbackQDBusPendingCallWatcherChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusPendingCallWatcherChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusPendingCallWatcherFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusPendingCallWatcher) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDBusPendingCallWatcher::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusPendingCallWatcher_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDBusPendingCallWatcher) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDBusPendingCallWatcher::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusPendingCallWatcher_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDBusPendingCallWatcher) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -187,13 +225,28 @@ func (ptr *QDBusPendingCallWatcher) DisconnectCustomEvent() {
 }
 
 //export callbackQDBusPendingCallWatcherCustomEvent
-func callbackQDBusPendingCallWatcherCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDBusPendingCallWatcherCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDBusPendingCallWatcherFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDBusPendingCallWatcher) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDBusPendingCallWatcher::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusPendingCallWatcher_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDBusPendingCallWatcher) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDBusPendingCallWatcher::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDBusPendingCallWatcher_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

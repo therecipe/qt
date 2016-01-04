@@ -781,15 +781,30 @@ func (ptr *QStyle) DisconnectPolish() {
 }
 
 //export callbackQStylePolish
-func callbackQStylePolish(ptrName *C.char, widget unsafe.Pointer) bool {
+func callbackQStylePolish(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QStyle::polish")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "polish"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQStyleFromPointer(ptr).PolishDefault(NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QStyle) Polish(widget QWidget_ITF) {
+	defer qt.Recovering("QStyle::polish")
+
+	if ptr.Pointer() != nil {
+		C.QStyle_Polish(ptr.Pointer(), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QStyle) PolishDefault(widget QWidget_ITF) {
+	defer qt.Recovering("QStyle::polish")
+
+	if ptr.Pointer() != nil {
+		C.QStyle_PolishDefault(ptr.Pointer(), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QStyle) SizeFromContents(ty QStyle__ContentsType, option QStyleOption_ITF, contentsSize core.QSize_ITF, widget QWidget_ITF) *core.QSize {
@@ -862,15 +877,30 @@ func (ptr *QStyle) DisconnectUnpolish() {
 }
 
 //export callbackQStyleUnpolish
-func callbackQStyleUnpolish(ptrName *C.char, widget unsafe.Pointer) bool {
+func callbackQStyleUnpolish(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QStyle::unpolish")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "unpolish"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQStyleFromPointer(ptr).UnpolishDefault(NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QStyle) Unpolish(widget QWidget_ITF) {
+	defer qt.Recovering("QStyle::unpolish")
+
+	if ptr.Pointer() != nil {
+		C.QStyle_Unpolish(ptr.Pointer(), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QStyle) UnpolishDefault(widget QWidget_ITF) {
+	defer qt.Recovering("QStyle::unpolish")
+
+	if ptr.Pointer() != nil {
+		C.QStyle_UnpolishDefault(ptr.Pointer(), PointerFromQWidget(widget))
+	}
 }
 
 func QStyle_VisualAlignment(direction core.Qt__LayoutDirection, alignment core.Qt__AlignmentFlag) core.Qt__AlignmentFlag {
@@ -907,15 +937,30 @@ func (ptr *QStyle) DisconnectTimerEvent() {
 }
 
 //export callbackQStyleTimerEvent
-func callbackQStyleTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStyleTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStyle::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQStyleFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStyle) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStyle::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyle_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QStyle) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStyle::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyle_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QStyle) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -937,15 +982,30 @@ func (ptr *QStyle) DisconnectChildEvent() {
 }
 
 //export callbackQStyleChildEvent
-func callbackQStyleChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStyleChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStyle::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQStyleFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStyle) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QStyle::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyle_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QStyle) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QStyle::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyle_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QStyle) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -967,13 +1027,28 @@ func (ptr *QStyle) DisconnectCustomEvent() {
 }
 
 //export callbackQStyleCustomEvent
-func callbackQStyleCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStyleCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStyle::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQStyleFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStyle) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QStyle::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyle_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QStyle) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QStyle::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyle_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

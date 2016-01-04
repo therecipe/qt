@@ -80,13 +80,28 @@ func (ptr *QAbstractPlanarVideoBuffer) DisconnectRelease() {
 }
 
 //export callbackQAbstractPlanarVideoBufferRelease
-func callbackQAbstractPlanarVideoBufferRelease(ptrName *C.char) bool {
+func callbackQAbstractPlanarVideoBufferRelease(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractPlanarVideoBuffer::release")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "release"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQAbstractPlanarVideoBufferFromPointer(ptr).ReleaseDefault()
 	}
-	return false
+}
 
+func (ptr *QAbstractPlanarVideoBuffer) Release() {
+	defer qt.Recovering("QAbstractPlanarVideoBuffer::release")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractPlanarVideoBuffer_Release(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) ReleaseDefault() {
+	defer qt.Recovering("QAbstractPlanarVideoBuffer::release")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractPlanarVideoBuffer_ReleaseDefault(ptr.Pointer())
+	}
 }

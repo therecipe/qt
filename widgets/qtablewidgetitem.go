@@ -210,15 +210,30 @@ func (ptr *QTableWidgetItem) DisconnectSetData() {
 }
 
 //export callbackQTableWidgetItemSetData
-func callbackQTableWidgetItemSetData(ptrName *C.char, role C.int, value unsafe.Pointer) bool {
+func callbackQTableWidgetItemSetData(ptr unsafe.Pointer, ptrName *C.char, role C.int, value unsafe.Pointer) {
 	defer qt.Recovering("callback QTableWidgetItem::setData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
 		signal.(func(int, *core.QVariant))(int(role), core.NewQVariantFromPointer(value))
-		return true
+	} else {
+		NewQTableWidgetItemFromPointer(ptr).SetDataDefault(int(role), core.NewQVariantFromPointer(value))
 	}
-	return false
+}
 
+func (ptr *QTableWidgetItem) SetData(role int, value core.QVariant_ITF) {
+	defer qt.Recovering("QTableWidgetItem::setData")
+
+	if ptr.Pointer() != nil {
+		C.QTableWidgetItem_SetData(ptr.Pointer(), C.int(role), core.PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QTableWidgetItem) SetDataDefault(role int, value core.QVariant_ITF) {
+	defer qt.Recovering("QTableWidgetItem::setData")
+
+	if ptr.Pointer() != nil {
+		C.QTableWidgetItem_SetDataDefault(ptr.Pointer(), C.int(role), core.PointerFromQVariant(value))
+	}
 }
 
 func (ptr *QTableWidgetItem) SetFont(font gui.QFont_ITF) {

@@ -78,6 +78,15 @@ func (ptr *QNmeaPositionInfoSource) MinimumUpdateInterval() int {
 	return 0
 }
 
+func (ptr *QNmeaPositionInfoSource) ParsePosInfoFromNmeaData(data string, size int, posInfo QGeoPositionInfo_ITF, hasFix bool) bool {
+	defer qt.Recovering("QNmeaPositionInfoSource::parsePosInfoFromNmeaData")
+
+	if ptr.Pointer() != nil {
+		return C.QNmeaPositionInfoSource_ParsePosInfoFromNmeaData(ptr.Pointer(), C.CString(data), C.int(size), PointerFromQGeoPositionInfo(posInfo), C.int(qt.GoBoolToInt(hasFix))) != 0
+	}
+	return false
+}
+
 func (ptr *QNmeaPositionInfoSource) ConnectRequestUpdate(f func(msec int)) {
 	defer qt.Recovering("connect QNmeaPositionInfoSource::requestUpdate")
 
@@ -97,7 +106,7 @@ func (ptr *QNmeaPositionInfoSource) DisconnectRequestUpdate() {
 }
 
 //export callbackQNmeaPositionInfoSourceRequestUpdate
-func callbackQNmeaPositionInfoSourceRequestUpdate(ptrName *C.char, msec C.int) bool {
+func callbackQNmeaPositionInfoSourceRequestUpdate(ptr unsafe.Pointer, ptrName *C.char, msec C.int) bool {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::requestUpdate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "requestUpdate"); signal != nil {
@@ -106,6 +115,22 @@ func callbackQNmeaPositionInfoSourceRequestUpdate(ptrName *C.char, msec C.int) b
 	}
 	return false
 
+}
+
+func (ptr *QNmeaPositionInfoSource) RequestUpdate(msec int) {
+	defer qt.Recovering("QNmeaPositionInfoSource::requestUpdate")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_RequestUpdate(ptr.Pointer(), C.int(msec))
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) RequestUpdateDefault(msec int) {
+	defer qt.Recovering("QNmeaPositionInfoSource::requestUpdate")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_RequestUpdateDefault(ptr.Pointer(), C.int(msec))
+	}
 }
 
 func (ptr *QNmeaPositionInfoSource) SetDevice(device core.QIODevice_ITF) {
@@ -135,15 +160,30 @@ func (ptr *QNmeaPositionInfoSource) DisconnectSetUpdateInterval() {
 }
 
 //export callbackQNmeaPositionInfoSourceSetUpdateInterval
-func callbackQNmeaPositionInfoSourceSetUpdateInterval(ptrName *C.char, msec C.int) bool {
+func callbackQNmeaPositionInfoSourceSetUpdateInterval(ptr unsafe.Pointer, ptrName *C.char, msec C.int) {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::setUpdateInterval")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setUpdateInterval"); signal != nil {
 		signal.(func(int))(int(msec))
-		return true
+	} else {
+		NewQNmeaPositionInfoSourceFromPointer(ptr).SetUpdateIntervalDefault(int(msec))
 	}
-	return false
+}
 
+func (ptr *QNmeaPositionInfoSource) SetUpdateInterval(msec int) {
+	defer qt.Recovering("QNmeaPositionInfoSource::setUpdateInterval")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_SetUpdateInterval(ptr.Pointer(), C.int(msec))
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) SetUpdateIntervalDefault(msec int) {
+	defer qt.Recovering("QNmeaPositionInfoSource::setUpdateInterval")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_SetUpdateIntervalDefault(ptr.Pointer(), C.int(msec))
+	}
 }
 
 func (ptr *QNmeaPositionInfoSource) ConnectStartUpdates(f func()) {
@@ -165,7 +205,7 @@ func (ptr *QNmeaPositionInfoSource) DisconnectStartUpdates() {
 }
 
 //export callbackQNmeaPositionInfoSourceStartUpdates
-func callbackQNmeaPositionInfoSourceStartUpdates(ptrName *C.char) bool {
+func callbackQNmeaPositionInfoSourceStartUpdates(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::startUpdates")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startUpdates"); signal != nil {
@@ -174,6 +214,22 @@ func callbackQNmeaPositionInfoSourceStartUpdates(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QNmeaPositionInfoSource) StartUpdates() {
+	defer qt.Recovering("QNmeaPositionInfoSource::startUpdates")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_StartUpdates(ptr.Pointer())
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) StartUpdatesDefault() {
+	defer qt.Recovering("QNmeaPositionInfoSource::startUpdates")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_StartUpdatesDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QNmeaPositionInfoSource) ConnectStopUpdates(f func()) {
@@ -195,7 +251,7 @@ func (ptr *QNmeaPositionInfoSource) DisconnectStopUpdates() {
 }
 
 //export callbackQNmeaPositionInfoSourceStopUpdates
-func callbackQNmeaPositionInfoSourceStopUpdates(ptrName *C.char) bool {
+func callbackQNmeaPositionInfoSourceStopUpdates(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::stopUpdates")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stopUpdates"); signal != nil {
@@ -204,6 +260,22 @@ func callbackQNmeaPositionInfoSourceStopUpdates(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QNmeaPositionInfoSource) StopUpdates() {
+	defer qt.Recovering("QNmeaPositionInfoSource::stopUpdates")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_StopUpdates(ptr.Pointer())
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) StopUpdatesDefault() {
+	defer qt.Recovering("QNmeaPositionInfoSource::stopUpdates")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_StopUpdatesDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QNmeaPositionInfoSource) SupportedPositioningMethods() QGeoPositionInfoSource__PositioningMethod {
@@ -252,15 +324,30 @@ func (ptr *QNmeaPositionInfoSource) DisconnectSetPreferredPositioningMethods() {
 }
 
 //export callbackQNmeaPositionInfoSourceSetPreferredPositioningMethods
-func callbackQNmeaPositionInfoSourceSetPreferredPositioningMethods(ptrName *C.char, methods C.int) bool {
+func callbackQNmeaPositionInfoSourceSetPreferredPositioningMethods(ptr unsafe.Pointer, ptrName *C.char, methods C.int) {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::setPreferredPositioningMethods")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setPreferredPositioningMethods"); signal != nil {
 		signal.(func(QGeoPositionInfoSource__PositioningMethod))(QGeoPositionInfoSource__PositioningMethod(methods))
-		return true
+	} else {
+		NewQNmeaPositionInfoSourceFromPointer(ptr).SetPreferredPositioningMethodsDefault(QGeoPositionInfoSource__PositioningMethod(methods))
 	}
-	return false
+}
 
+func (ptr *QNmeaPositionInfoSource) SetPreferredPositioningMethods(methods QGeoPositionInfoSource__PositioningMethod) {
+	defer qt.Recovering("QNmeaPositionInfoSource::setPreferredPositioningMethods")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_SetPreferredPositioningMethods(ptr.Pointer(), C.int(methods))
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) SetPreferredPositioningMethodsDefault(methods QGeoPositionInfoSource__PositioningMethod) {
+	defer qt.Recovering("QNmeaPositionInfoSource::setPreferredPositioningMethods")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_SetPreferredPositioningMethodsDefault(ptr.Pointer(), C.int(methods))
+	}
 }
 
 func (ptr *QNmeaPositionInfoSource) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -282,15 +369,30 @@ func (ptr *QNmeaPositionInfoSource) DisconnectTimerEvent() {
 }
 
 //export callbackQNmeaPositionInfoSourceTimerEvent
-func callbackQNmeaPositionInfoSourceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNmeaPositionInfoSourceTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQNmeaPositionInfoSourceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNmeaPositionInfoSource) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNmeaPositionInfoSource::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QNmeaPositionInfoSource::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QNmeaPositionInfoSource) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -312,15 +414,30 @@ func (ptr *QNmeaPositionInfoSource) DisconnectChildEvent() {
 }
 
 //export callbackQNmeaPositionInfoSourceChildEvent
-func callbackQNmeaPositionInfoSourceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNmeaPositionInfoSourceChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQNmeaPositionInfoSourceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNmeaPositionInfoSource) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNmeaPositionInfoSource::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QNmeaPositionInfoSource::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QNmeaPositionInfoSource) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -342,13 +459,28 @@ func (ptr *QNmeaPositionInfoSource) DisconnectCustomEvent() {
 }
 
 //export callbackQNmeaPositionInfoSourceCustomEvent
-func callbackQNmeaPositionInfoSourceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQNmeaPositionInfoSourceCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQNmeaPositionInfoSourceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QNmeaPositionInfoSource) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QNmeaPositionInfoSource::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QNmeaPositionInfoSource::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

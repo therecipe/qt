@@ -145,15 +145,30 @@ func (ptr *QPaintEngine) DisconnectDrawPolygon() {
 }
 
 //export callbackQPaintEngineDrawPolygon
-func callbackQPaintEngineDrawPolygon(ptrName *C.char, points unsafe.Pointer, pointCount C.int, mode C.int) bool {
+func callbackQPaintEngineDrawPolygon(ptr unsafe.Pointer, ptrName *C.char, points unsafe.Pointer, pointCount C.int, mode C.int) {
 	defer qt.Recovering("callback QPaintEngine::drawPolygon")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawPolygon"); signal != nil {
 		signal.(func(*core.QPointF, int, QPaintEngine__PolygonDrawMode))(core.NewQPointFFromPointer(points), int(pointCount), QPaintEngine__PolygonDrawMode(mode))
-		return true
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawPolygonDefault(core.NewQPointFFromPointer(points), int(pointCount), QPaintEngine__PolygonDrawMode(mode))
 	}
-	return false
+}
 
+func (ptr *QPaintEngine) DrawPolygon(points core.QPointF_ITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
+	defer qt.Recovering("QPaintEngine::drawPolygon")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPolygon(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount), C.int(mode))
+	}
+}
+
+func (ptr *QPaintEngine) DrawPolygonDefault(points core.QPointF_ITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
+	defer qt.Recovering("QPaintEngine::drawPolygon")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPolygonDefault(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount), C.int(mode))
+	}
 }
 
 func (ptr *QPaintEngine) Begin(pdev QPaintDevice_ITF) bool {
@@ -184,15 +199,30 @@ func (ptr *QPaintEngine) DisconnectDrawLines() {
 }
 
 //export callbackQPaintEngineDrawLines
-func callbackQPaintEngineDrawLines(ptrName *C.char, lines unsafe.Pointer, lineCount C.int) bool {
+func callbackQPaintEngineDrawLines(ptr unsafe.Pointer, ptrName *C.char, lines unsafe.Pointer, lineCount C.int) {
 	defer qt.Recovering("callback QPaintEngine::drawLines")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawLines"); signal != nil {
 		signal.(func(*core.QLineF, int))(core.NewQLineFFromPointer(lines), int(lineCount))
-		return true
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawLinesDefault(core.NewQLineFFromPointer(lines), int(lineCount))
 	}
-	return false
+}
 
+func (ptr *QPaintEngine) DrawLines(lines core.QLineF_ITF, lineCount int) {
+	defer qt.Recovering("QPaintEngine::drawLines")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawLines(ptr.Pointer(), core.PointerFromQLineF(lines), C.int(lineCount))
+	}
+}
+
+func (ptr *QPaintEngine) DrawLinesDefault(lines core.QLineF_ITF, lineCount int) {
+	defer qt.Recovering("QPaintEngine::drawLines")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawLinesDefault(ptr.Pointer(), core.PointerFromQLineF(lines), C.int(lineCount))
+	}
 }
 
 func (ptr *QPaintEngine) DrawPixmap(r core.QRectF_ITF, pm QPixmap_ITF, sr core.QRectF_ITF) {
@@ -222,15 +252,30 @@ func (ptr *QPaintEngine) DisconnectDrawPoints() {
 }
 
 //export callbackQPaintEngineDrawPoints
-func callbackQPaintEngineDrawPoints(ptrName *C.char, points unsafe.Pointer, pointCount C.int) bool {
+func callbackQPaintEngineDrawPoints(ptr unsafe.Pointer, ptrName *C.char, points unsafe.Pointer, pointCount C.int) {
 	defer qt.Recovering("callback QPaintEngine::drawPoints")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawPoints"); signal != nil {
 		signal.(func(*core.QPointF, int))(core.NewQPointFFromPointer(points), int(pointCount))
-		return true
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawPointsDefault(core.NewQPointFFromPointer(points), int(pointCount))
 	}
-	return false
+}
 
+func (ptr *QPaintEngine) DrawPoints(points core.QPointF_ITF, pointCount int) {
+	defer qt.Recovering("QPaintEngine::drawPoints")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPoints(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount))
+	}
+}
+
+func (ptr *QPaintEngine) DrawPointsDefault(points core.QPointF_ITF, pointCount int) {
+	defer qt.Recovering("QPaintEngine::drawPoints")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPointsDefault(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount))
+	}
 }
 
 func (ptr *QPaintEngine) ConnectDrawRects(f func(rects *core.QRectF, rectCount int)) {
@@ -252,15 +297,30 @@ func (ptr *QPaintEngine) DisconnectDrawRects() {
 }
 
 //export callbackQPaintEngineDrawRects
-func callbackQPaintEngineDrawRects(ptrName *C.char, rects unsafe.Pointer, rectCount C.int) bool {
+func callbackQPaintEngineDrawRects(ptr unsafe.Pointer, ptrName *C.char, rects unsafe.Pointer, rectCount C.int) {
 	defer qt.Recovering("callback QPaintEngine::drawRects")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawRects"); signal != nil {
 		signal.(func(*core.QRectF, int))(core.NewQRectFFromPointer(rects), int(rectCount))
-		return true
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawRectsDefault(core.NewQRectFFromPointer(rects), int(rectCount))
 	}
-	return false
+}
 
+func (ptr *QPaintEngine) DrawRects(rects core.QRectF_ITF, rectCount int) {
+	defer qt.Recovering("QPaintEngine::drawRects")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawRects(ptr.Pointer(), core.PointerFromQRectF(rects), C.int(rectCount))
+	}
+}
+
+func (ptr *QPaintEngine) DrawRectsDefault(rects core.QRectF_ITF, rectCount int) {
+	defer qt.Recovering("QPaintEngine::drawRects")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawRectsDefault(ptr.Pointer(), core.PointerFromQRectF(rects), C.int(rectCount))
+	}
 }
 
 func (ptr *QPaintEngine) End() bool {

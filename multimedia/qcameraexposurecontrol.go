@@ -82,13 +82,21 @@ func (ptr *QCameraExposureControl) DisconnectActualValueChanged() {
 }
 
 //export callbackQCameraExposureControlActualValueChanged
-func callbackQCameraExposureControlActualValueChanged(ptrName *C.char, parameter C.int) {
+func callbackQCameraExposureControlActualValueChanged(ptr unsafe.Pointer, ptrName *C.char, parameter C.int) {
 	defer qt.Recovering("callback QCameraExposureControl::actualValueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actualValueChanged"); signal != nil {
 		signal.(func(int))(int(parameter))
 	}
 
+}
+
+func (ptr *QCameraExposureControl) ActualValueChanged(parameter int) {
+	defer qt.Recovering("QCameraExposureControl::actualValueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposureControl_ActualValueChanged(ptr.Pointer(), C.int(parameter))
+	}
 }
 
 func (ptr *QCameraExposureControl) IsParameterSupported(parameter QCameraExposureControl__ExposureParameter) bool {
@@ -119,13 +127,21 @@ func (ptr *QCameraExposureControl) DisconnectParameterRangeChanged() {
 }
 
 //export callbackQCameraExposureControlParameterRangeChanged
-func callbackQCameraExposureControlParameterRangeChanged(ptrName *C.char, parameter C.int) {
+func callbackQCameraExposureControlParameterRangeChanged(ptr unsafe.Pointer, ptrName *C.char, parameter C.int) {
 	defer qt.Recovering("callback QCameraExposureControl::parameterRangeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "parameterRangeChanged"); signal != nil {
 		signal.(func(int))(int(parameter))
 	}
 
+}
+
+func (ptr *QCameraExposureControl) ParameterRangeChanged(parameter int) {
+	defer qt.Recovering("QCameraExposureControl::parameterRangeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposureControl_ParameterRangeChanged(ptr.Pointer(), C.int(parameter))
+	}
 }
 
 func (ptr *QCameraExposureControl) RequestedValue(parameter QCameraExposureControl__ExposureParameter) *core.QVariant {
@@ -156,13 +172,21 @@ func (ptr *QCameraExposureControl) DisconnectRequestedValueChanged() {
 }
 
 //export callbackQCameraExposureControlRequestedValueChanged
-func callbackQCameraExposureControlRequestedValueChanged(ptrName *C.char, parameter C.int) {
+func callbackQCameraExposureControlRequestedValueChanged(ptr unsafe.Pointer, ptrName *C.char, parameter C.int) {
 	defer qt.Recovering("callback QCameraExposureControl::requestedValueChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "requestedValueChanged"); signal != nil {
 		signal.(func(int))(int(parameter))
 	}
 
+}
+
+func (ptr *QCameraExposureControl) RequestedValueChanged(parameter int) {
+	defer qt.Recovering("QCameraExposureControl::requestedValueChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposureControl_RequestedValueChanged(ptr.Pointer(), C.int(parameter))
+	}
 }
 
 func (ptr *QCameraExposureControl) SetValue(parameter QCameraExposureControl__ExposureParameter, value core.QVariant_ITF) bool {
@@ -202,15 +226,30 @@ func (ptr *QCameraExposureControl) DisconnectTimerEvent() {
 }
 
 //export callbackQCameraExposureControlTimerEvent
-func callbackQCameraExposureControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraExposureControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraExposureControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraExposureControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraExposureControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraExposureControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposureControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCameraExposureControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraExposureControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposureControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCameraExposureControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -232,15 +271,30 @@ func (ptr *QCameraExposureControl) DisconnectChildEvent() {
 }
 
 //export callbackQCameraExposureControlChildEvent
-func callbackQCameraExposureControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraExposureControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraExposureControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraExposureControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraExposureControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraExposureControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposureControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCameraExposureControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraExposureControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposureControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCameraExposureControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -262,13 +316,28 @@ func (ptr *QCameraExposureControl) DisconnectCustomEvent() {
 }
 
 //export callbackQCameraExposureControlCustomEvent
-func callbackQCameraExposureControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraExposureControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraExposureControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraExposureControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraExposureControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraExposureControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposureControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCameraExposureControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraExposureControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraExposureControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

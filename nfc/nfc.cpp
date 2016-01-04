@@ -1,3 +1,5 @@
+#define protected public
+
 #include "nfc.h"
 #include "_cgo_export.h"
 
@@ -268,12 +270,11 @@ void QNdefRecord_DestroyQNdefRecord(void* ptr){
 
 class MyQNearFieldManager: public QNearFieldManager {
 public:
-	void Signal_TargetDetected(QNearFieldTarget * target) { callbackQNearFieldManagerTargetDetected(this->objectName().toUtf8().data(), target); };
-	void Signal_TargetLost(QNearFieldTarget * target) { callbackQNearFieldManagerTargetLost(this->objectName().toUtf8().data(), target); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQNearFieldManagerTimerEvent(this->objectName().toUtf8().data(), event)) { QNearFieldManager::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQNearFieldManagerChildEvent(this->objectName().toUtf8().data(), event)) { QNearFieldManager::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQNearFieldManagerCustomEvent(this->objectName().toUtf8().data(), event)) { QNearFieldManager::customEvent(event); }; };
+	void Signal_TargetDetected(QNearFieldTarget * target) { callbackQNearFieldManagerTargetDetected(this, this->objectName().toUtf8().data(), target); };
+	void Signal_TargetLost(QNearFieldTarget * target) { callbackQNearFieldManagerTargetLost(this, this->objectName().toUtf8().data(), target); };
+	void timerEvent(QTimerEvent * event) { callbackQNearFieldManagerTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQNearFieldManagerChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQNearFieldManagerCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 int QNearFieldManager_RegisterNdefMessageHandler(void* ptr, void* object, char* method){
@@ -320,12 +321,20 @@ void QNearFieldManager_DisconnectTargetDetected(void* ptr){
 	QObject::disconnect(static_cast<QNearFieldManager*>(ptr), static_cast<void (QNearFieldManager::*)(QNearFieldTarget *)>(&QNearFieldManager::targetDetected), static_cast<MyQNearFieldManager*>(ptr), static_cast<void (MyQNearFieldManager::*)(QNearFieldTarget *)>(&MyQNearFieldManager::Signal_TargetDetected));;
 }
 
+void QNearFieldManager_TargetDetected(void* ptr, void* target){
+	static_cast<QNearFieldManager*>(ptr)->targetDetected(static_cast<QNearFieldTarget*>(target));
+}
+
 void QNearFieldManager_ConnectTargetLost(void* ptr){
 	QObject::connect(static_cast<QNearFieldManager*>(ptr), static_cast<void (QNearFieldManager::*)(QNearFieldTarget *)>(&QNearFieldManager::targetLost), static_cast<MyQNearFieldManager*>(ptr), static_cast<void (MyQNearFieldManager::*)(QNearFieldTarget *)>(&MyQNearFieldManager::Signal_TargetLost));;
 }
 
 void QNearFieldManager_DisconnectTargetLost(void* ptr){
 	QObject::disconnect(static_cast<QNearFieldManager*>(ptr), static_cast<void (QNearFieldManager::*)(QNearFieldTarget *)>(&QNearFieldManager::targetLost), static_cast<MyQNearFieldManager*>(ptr), static_cast<void (MyQNearFieldManager::*)(QNearFieldTarget *)>(&MyQNearFieldManager::Signal_TargetLost));;
+}
+
+void QNearFieldManager_TargetLost(void* ptr, void* target){
+	static_cast<QNearFieldManager*>(ptr)->targetLost(static_cast<QNearFieldTarget*>(target));
 }
 
 int QNearFieldManager_UnregisterNdefMessageHandler(void* ptr, int handlerId){
@@ -336,15 +345,38 @@ void QNearFieldManager_DestroyQNearFieldManager(void* ptr){
 	static_cast<QNearFieldManager*>(ptr)->~QNearFieldManager();
 }
 
+void QNearFieldManager_TimerEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldManager*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QNearFieldManager_TimerEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QNearFieldManager_ChildEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldManager*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QNearFieldManager_ChildEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QNearFieldManager_CustomEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldManager*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QNearFieldManager_CustomEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQNearFieldShareManager: public QNearFieldShareManager {
 public:
-	void Signal_Error(QNearFieldShareManager::ShareError error) { callbackQNearFieldShareManagerError(this->objectName().toUtf8().data(), error); };
-	void Signal_ShareModesChanged(QNearFieldShareManager::ShareModes modes) { callbackQNearFieldShareManagerShareModesChanged(this->objectName().toUtf8().data(), modes); };
-	void Signal_TargetDetected(QNearFieldShareTarget * shareTarget) { callbackQNearFieldShareManagerTargetDetected(this->objectName().toUtf8().data(), shareTarget); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQNearFieldShareManagerTimerEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareManager::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQNearFieldShareManagerChildEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareManager::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQNearFieldShareManagerCustomEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareManager::customEvent(event); }; };
+	void Signal_Error(QNearFieldShareManager::ShareError error) { callbackQNearFieldShareManagerError(this, this->objectName().toUtf8().data(), error); };
+	void Signal_ShareModesChanged(QNearFieldShareManager::ShareModes modes) { callbackQNearFieldShareManagerShareModesChanged(this, this->objectName().toUtf8().data(), modes); };
+	void Signal_TargetDetected(QNearFieldShareTarget * shareTarget) { callbackQNearFieldShareManagerTargetDetected(this, this->objectName().toUtf8().data(), shareTarget); };
+	void timerEvent(QTimerEvent * event) { callbackQNearFieldShareManagerTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQNearFieldShareManagerChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQNearFieldShareManagerCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QNearFieldShareManager_NewQNearFieldShareManager(void* parent){
@@ -357,6 +389,10 @@ void QNearFieldShareManager_ConnectError(void* ptr){
 
 void QNearFieldShareManager_DisconnectError(void* ptr){
 	QObject::disconnect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareManager::error), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareManager::Signal_Error));;
+}
+
+void QNearFieldShareManager_Error(void* ptr, int error){
+	static_cast<QNearFieldShareManager*>(ptr)->error(static_cast<QNearFieldShareManager::ShareError>(error));
 }
 
 void QNearFieldShareManager_SetShareModes(void* ptr, int mode){
@@ -379,6 +415,10 @@ void QNearFieldShareManager_DisconnectShareModesChanged(void* ptr){
 	QObject::disconnect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&QNearFieldShareManager::shareModesChanged), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&MyQNearFieldShareManager::Signal_ShareModesChanged));;
 }
 
+void QNearFieldShareManager_ShareModesChanged(void* ptr, int modes){
+	static_cast<QNearFieldShareManager*>(ptr)->shareModesChanged(static_cast<QNearFieldShareManager::ShareMode>(modes));
+}
+
 int QNearFieldShareManager_QNearFieldShareManager_SupportedShareModes(){
 	return QNearFieldShareManager::supportedShareModes();
 }
@@ -391,18 +431,45 @@ void QNearFieldShareManager_DisconnectTargetDetected(void* ptr){
 	QObject::disconnect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareTarget *)>(&QNearFieldShareManager::targetDetected), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareTarget *)>(&MyQNearFieldShareManager::Signal_TargetDetected));;
 }
 
+void QNearFieldShareManager_TargetDetected(void* ptr, void* shareTarget){
+	static_cast<QNearFieldShareManager*>(ptr)->targetDetected(static_cast<QNearFieldShareTarget*>(shareTarget));
+}
+
 void QNearFieldShareManager_DestroyQNearFieldShareManager(void* ptr){
 	static_cast<QNearFieldShareManager*>(ptr)->~QNearFieldShareManager();
 }
 
+void QNearFieldShareManager_TimerEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldShareManager*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QNearFieldShareManager_TimerEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldShareManager*>(ptr)->QNearFieldShareManager::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QNearFieldShareManager_ChildEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldShareManager*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QNearFieldShareManager_ChildEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldShareManager*>(ptr)->QNearFieldShareManager::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QNearFieldShareManager_CustomEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldShareManager*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QNearFieldShareManager_CustomEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldShareManager*>(ptr)->QNearFieldShareManager::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQNearFieldShareTarget: public QNearFieldShareTarget {
 public:
-	void Signal_Error(QNearFieldShareManager::ShareError error) { callbackQNearFieldShareTargetError(this->objectName().toUtf8().data(), error); };
-	void Signal_ShareFinished() { callbackQNearFieldShareTargetShareFinished(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQNearFieldShareTargetTimerEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareTarget::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQNearFieldShareTargetChildEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareTarget::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQNearFieldShareTargetCustomEvent(this->objectName().toUtf8().data(), event)) { QNearFieldShareTarget::customEvent(event); }; };
+	void Signal_Error(QNearFieldShareManager::ShareError error) { callbackQNearFieldShareTargetError(this, this->objectName().toUtf8().data(), error); };
+	void Signal_ShareFinished() { callbackQNearFieldShareTargetShareFinished(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQNearFieldShareTargetTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQNearFieldShareTargetChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQNearFieldShareTargetCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QNearFieldShareTarget_Cancel(void* ptr){
@@ -415,6 +482,10 @@ void QNearFieldShareTarget_ConnectError(void* ptr){
 
 void QNearFieldShareTarget_DisconnectError(void* ptr){
 	QObject::disconnect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareTarget::error), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareTarget::Signal_Error));;
+}
+
+void QNearFieldShareTarget_Error(void* ptr, int error){
+	static_cast<QNearFieldShareTarget*>(ptr)->error(static_cast<QNearFieldShareManager::ShareError>(error));
 }
 
 int QNearFieldShareTarget_IsShareInProgress(void* ptr){
@@ -437,6 +508,10 @@ void QNearFieldShareTarget_DisconnectShareFinished(void* ptr){
 	QObject::disconnect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)()>(&QNearFieldShareTarget::shareFinished), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)()>(&MyQNearFieldShareTarget::Signal_ShareFinished));;
 }
 
+void QNearFieldShareTarget_ShareFinished(void* ptr){
+	static_cast<QNearFieldShareTarget*>(ptr)->shareFinished();
+}
+
 int QNearFieldShareTarget_ShareModes(void* ptr){
 	return static_cast<QNearFieldShareTarget*>(ptr)->shareModes();
 }
@@ -445,14 +520,37 @@ void QNearFieldShareTarget_DestroyQNearFieldShareTarget(void* ptr){
 	static_cast<QNearFieldShareTarget*>(ptr)->~QNearFieldShareTarget();
 }
 
+void QNearFieldShareTarget_TimerEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldShareTarget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QNearFieldShareTarget_TimerEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldShareTarget*>(ptr)->QNearFieldShareTarget::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QNearFieldShareTarget_ChildEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldShareTarget*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QNearFieldShareTarget_ChildEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldShareTarget*>(ptr)->QNearFieldShareTarget::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QNearFieldShareTarget_CustomEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldShareTarget*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QNearFieldShareTarget_CustomEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldShareTarget*>(ptr)->QNearFieldShareTarget::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQNearFieldTarget: public QNearFieldTarget {
 public:
-	void Signal_Disconnected() { callbackQNearFieldTargetDisconnected(this->objectName().toUtf8().data()); };
-	void Signal_NdefMessagesWritten() { callbackQNearFieldTargetNdefMessagesWritten(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQNearFieldTargetTimerEvent(this->objectName().toUtf8().data(), event)) { QNearFieldTarget::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQNearFieldTargetChildEvent(this->objectName().toUtf8().data(), event)) { QNearFieldTarget::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQNearFieldTargetCustomEvent(this->objectName().toUtf8().data(), event)) { QNearFieldTarget::customEvent(event); }; };
+	void Signal_Disconnected() { callbackQNearFieldTargetDisconnected(this, this->objectName().toUtf8().data()); };
+	void Signal_NdefMessagesWritten() { callbackQNearFieldTargetNdefMessagesWritten(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQNearFieldTargetTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQNearFieldTargetChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQNearFieldTargetCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 int QNearFieldTarget_AccessMethods(void* ptr){
@@ -465,6 +563,10 @@ void QNearFieldTarget_ConnectDisconnected(void* ptr){
 
 void QNearFieldTarget_DisconnectDisconnected(void* ptr){
 	QObject::disconnect(static_cast<QNearFieldTarget*>(ptr), static_cast<void (QNearFieldTarget::*)()>(&QNearFieldTarget::disconnected), static_cast<MyQNearFieldTarget*>(ptr), static_cast<void (MyQNearFieldTarget::*)()>(&MyQNearFieldTarget::Signal_Disconnected));;
+}
+
+void QNearFieldTarget_Disconnected(void* ptr){
+	static_cast<QNearFieldTarget*>(ptr)->disconnected();
 }
 
 int QNearFieldTarget_HasNdefMessage(void* ptr){
@@ -483,6 +585,10 @@ void QNearFieldTarget_DisconnectNdefMessagesWritten(void* ptr){
 	QObject::disconnect(static_cast<QNearFieldTarget*>(ptr), static_cast<void (QNearFieldTarget::*)()>(&QNearFieldTarget::ndefMessagesWritten), static_cast<MyQNearFieldTarget*>(ptr), static_cast<void (MyQNearFieldTarget::*)()>(&MyQNearFieldTarget::Signal_NdefMessagesWritten));;
 }
 
+void QNearFieldTarget_NdefMessagesWritten(void* ptr){
+	static_cast<QNearFieldTarget*>(ptr)->ndefMessagesWritten();
+}
+
 int QNearFieldTarget_Type(void* ptr){
 	return static_cast<QNearFieldTarget*>(ptr)->type();
 }
@@ -499,15 +605,38 @@ void QNearFieldTarget_DestroyQNearFieldTarget(void* ptr){
 	static_cast<QNearFieldTarget*>(ptr)->~QNearFieldTarget();
 }
 
+void QNearFieldTarget_TimerEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldTarget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QNearFieldTarget_TimerEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QNearFieldTarget_ChildEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldTarget*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QNearFieldTarget_ChildEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QNearFieldTarget_CustomEvent(void* ptr, void* event){
+	static_cast<MyQNearFieldTarget*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QNearFieldTarget_CustomEventDefault(void* ptr, void* event){
+	static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQQmlNdefRecord: public QQmlNdefRecord {
 public:
-	void Signal_RecordChanged() { callbackQQmlNdefRecordRecordChanged(this->objectName().toUtf8().data()); };
-	void Signal_TypeChanged() { callbackQQmlNdefRecordTypeChanged(this->objectName().toUtf8().data()); };
-	void Signal_TypeNameFormatChanged() { callbackQQmlNdefRecordTypeNameFormatChanged(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQQmlNdefRecordTimerEvent(this->objectName().toUtf8().data(), event)) { QQmlNdefRecord::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQQmlNdefRecordChildEvent(this->objectName().toUtf8().data(), event)) { QQmlNdefRecord::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQQmlNdefRecordCustomEvent(this->objectName().toUtf8().data(), event)) { QQmlNdefRecord::customEvent(event); }; };
+	void Signal_RecordChanged() { callbackQQmlNdefRecordRecordChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_TypeChanged() { callbackQQmlNdefRecordTypeChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_TypeNameFormatChanged() { callbackQQmlNdefRecordTypeNameFormatChanged(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQQmlNdefRecordTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQQmlNdefRecordChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQQmlNdefRecordCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 int QQmlNdefRecord_TypeNameFormat(void* ptr){
@@ -528,6 +657,10 @@ void QQmlNdefRecord_ConnectRecordChanged(void* ptr){
 
 void QQmlNdefRecord_DisconnectRecordChanged(void* ptr){
 	QObject::disconnect(static_cast<QQmlNdefRecord*>(ptr), static_cast<void (QQmlNdefRecord::*)()>(&QQmlNdefRecord::recordChanged), static_cast<MyQQmlNdefRecord*>(ptr), static_cast<void (MyQQmlNdefRecord::*)()>(&MyQQmlNdefRecord::Signal_RecordChanged));;
+}
+
+void QQmlNdefRecord_RecordChanged(void* ptr){
+	static_cast<QQmlNdefRecord*>(ptr)->recordChanged();
 }
 
 void QQmlNdefRecord_SetRecord(void* ptr, void* record){
@@ -554,11 +687,43 @@ void QQmlNdefRecord_DisconnectTypeChanged(void* ptr){
 	QObject::disconnect(static_cast<QQmlNdefRecord*>(ptr), static_cast<void (QQmlNdefRecord::*)()>(&QQmlNdefRecord::typeChanged), static_cast<MyQQmlNdefRecord*>(ptr), static_cast<void (MyQQmlNdefRecord::*)()>(&MyQQmlNdefRecord::Signal_TypeChanged));;
 }
 
+void QQmlNdefRecord_TypeChanged(void* ptr){
+	static_cast<QQmlNdefRecord*>(ptr)->typeChanged();
+}
+
 void QQmlNdefRecord_ConnectTypeNameFormatChanged(void* ptr){
 	QObject::connect(static_cast<QQmlNdefRecord*>(ptr), static_cast<void (QQmlNdefRecord::*)()>(&QQmlNdefRecord::typeNameFormatChanged), static_cast<MyQQmlNdefRecord*>(ptr), static_cast<void (MyQQmlNdefRecord::*)()>(&MyQQmlNdefRecord::Signal_TypeNameFormatChanged));;
 }
 
 void QQmlNdefRecord_DisconnectTypeNameFormatChanged(void* ptr){
 	QObject::disconnect(static_cast<QQmlNdefRecord*>(ptr), static_cast<void (QQmlNdefRecord::*)()>(&QQmlNdefRecord::typeNameFormatChanged), static_cast<MyQQmlNdefRecord*>(ptr), static_cast<void (MyQQmlNdefRecord::*)()>(&MyQQmlNdefRecord::Signal_TypeNameFormatChanged));;
+}
+
+void QQmlNdefRecord_TypeNameFormatChanged(void* ptr){
+	static_cast<QQmlNdefRecord*>(ptr)->typeNameFormatChanged();
+}
+
+void QQmlNdefRecord_TimerEvent(void* ptr, void* event){
+	static_cast<MyQQmlNdefRecord*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlNdefRecord_TimerEventDefault(void* ptr, void* event){
+	static_cast<QQmlNdefRecord*>(ptr)->QQmlNdefRecord::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QQmlNdefRecord_ChildEvent(void* ptr, void* event){
+	static_cast<MyQQmlNdefRecord*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlNdefRecord_ChildEventDefault(void* ptr, void* event){
+	static_cast<QQmlNdefRecord*>(ptr)->QQmlNdefRecord::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQmlNdefRecord_CustomEvent(void* ptr, void* event){
+	static_cast<MyQQmlNdefRecord*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QQmlNdefRecord_CustomEventDefault(void* ptr, void* event){
+	static_cast<QQmlNdefRecord*>(ptr)->QQmlNdefRecord::customEvent(static_cast<QEvent*>(event));
 }
 

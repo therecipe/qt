@@ -65,13 +65,21 @@ func (ptr *QMediaAvailabilityControl) DisconnectAvailabilityChanged() {
 }
 
 //export callbackQMediaAvailabilityControlAvailabilityChanged
-func callbackQMediaAvailabilityControlAvailabilityChanged(ptrName *C.char, availability C.int) {
+func callbackQMediaAvailabilityControlAvailabilityChanged(ptr unsafe.Pointer, ptrName *C.char, availability C.int) {
 	defer qt.Recovering("callback QMediaAvailabilityControl::availabilityChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "availabilityChanged"); signal != nil {
 		signal.(func(QMultimedia__AvailabilityStatus))(QMultimedia__AvailabilityStatus(availability))
 	}
 
+}
+
+func (ptr *QMediaAvailabilityControl) AvailabilityChanged(availability QMultimedia__AvailabilityStatus) {
+	defer qt.Recovering("QMediaAvailabilityControl::availabilityChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAvailabilityControl_AvailabilityChanged(ptr.Pointer(), C.int(availability))
+	}
 }
 
 func (ptr *QMediaAvailabilityControl) DestroyQMediaAvailabilityControl() {
@@ -102,15 +110,30 @@ func (ptr *QMediaAvailabilityControl) DisconnectTimerEvent() {
 }
 
 //export callbackQMediaAvailabilityControlTimerEvent
-func callbackQMediaAvailabilityControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaAvailabilityControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaAvailabilityControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaAvailabilityControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaAvailabilityControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaAvailabilityControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAvailabilityControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMediaAvailabilityControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaAvailabilityControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAvailabilityControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMediaAvailabilityControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -132,15 +155,30 @@ func (ptr *QMediaAvailabilityControl) DisconnectChildEvent() {
 }
 
 //export callbackQMediaAvailabilityControlChildEvent
-func callbackQMediaAvailabilityControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaAvailabilityControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaAvailabilityControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaAvailabilityControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaAvailabilityControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaAvailabilityControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAvailabilityControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMediaAvailabilityControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaAvailabilityControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAvailabilityControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMediaAvailabilityControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -162,13 +200,28 @@ func (ptr *QMediaAvailabilityControl) DisconnectCustomEvent() {
 }
 
 //export callbackQMediaAvailabilityControlCustomEvent
-func callbackQMediaAvailabilityControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaAvailabilityControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaAvailabilityControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaAvailabilityControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaAvailabilityControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaAvailabilityControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAvailabilityControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMediaAvailabilityControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaAvailabilityControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAvailabilityControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

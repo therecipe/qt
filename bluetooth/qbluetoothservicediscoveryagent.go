@@ -75,13 +75,21 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectCanceled() {
 }
 
 //export callbackQBluetoothServiceDiscoveryAgentCanceled
-func callbackQBluetoothServiceDiscoveryAgentCanceled(ptrName *C.char) {
+func callbackQBluetoothServiceDiscoveryAgentCanceled(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QBluetoothServiceDiscoveryAgent::canceled")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "canceled"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QBluetoothServiceDiscoveryAgent) Canceled() {
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::canceled")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_Canceled(ptr.Pointer())
+	}
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectError2(f func(error QBluetoothServiceDiscoveryAgent__Error)) {
@@ -103,13 +111,21 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectError2() {
 }
 
 //export callbackQBluetoothServiceDiscoveryAgentError2
-func callbackQBluetoothServiceDiscoveryAgentError2(ptrName *C.char, error C.int) {
+func callbackQBluetoothServiceDiscoveryAgentError2(ptr unsafe.Pointer, ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QBluetoothServiceDiscoveryAgent::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QBluetoothServiceDiscoveryAgent__Error))(QBluetoothServiceDiscoveryAgent__Error(error))
 	}
 
+}
+
+func (ptr *QBluetoothServiceDiscoveryAgent) Error2(error QBluetoothServiceDiscoveryAgent__Error) {
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::error")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_Error2(ptr.Pointer(), C.int(error))
+	}
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectFinished(f func()) {
@@ -131,13 +147,21 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectFinished() {
 }
 
 //export callbackQBluetoothServiceDiscoveryAgentFinished
-func callbackQBluetoothServiceDiscoveryAgentFinished(ptrName *C.char) {
+func callbackQBluetoothServiceDiscoveryAgentFinished(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QBluetoothServiceDiscoveryAgent::finished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QBluetoothServiceDiscoveryAgent) Finished() {
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::finished")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_Finished(ptr.Pointer())
+	}
 }
 
 func NewQBluetoothServiceDiscoveryAgent(parent core.QObject_ITF) *QBluetoothServiceDiscoveryAgent {
@@ -248,15 +272,30 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectTimerEvent() {
 }
 
 //export callbackQBluetoothServiceDiscoveryAgentTimerEvent
-func callbackQBluetoothServiceDiscoveryAgentTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQBluetoothServiceDiscoveryAgentTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothServiceDiscoveryAgent::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QBluetoothServiceDiscoveryAgent) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QBluetoothServiceDiscoveryAgent) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -278,15 +317,30 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectChildEvent() {
 }
 
 //export callbackQBluetoothServiceDiscoveryAgentChildEvent
-func callbackQBluetoothServiceDiscoveryAgentChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQBluetoothServiceDiscoveryAgentChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothServiceDiscoveryAgent::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QBluetoothServiceDiscoveryAgent) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QBluetoothServiceDiscoveryAgent) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -308,13 +362,28 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectCustomEvent() {
 }
 
 //export callbackQBluetoothServiceDiscoveryAgentCustomEvent
-func callbackQBluetoothServiceDiscoveryAgentCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQBluetoothServiceDiscoveryAgentCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothServiceDiscoveryAgent::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QBluetoothServiceDiscoveryAgent) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QBluetoothServiceDiscoveryAgent) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -149,13 +149,21 @@ func (ptr *QSystemTrayIcon) DisconnectActivated() {
 }
 
 //export callbackQSystemTrayIconActivated
-func callbackQSystemTrayIconActivated(ptrName *C.char, reason C.int) {
+func callbackQSystemTrayIconActivated(ptr unsafe.Pointer, ptrName *C.char, reason C.int) {
 	defer qt.Recovering("callback QSystemTrayIcon::activated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func(QSystemTrayIcon__ActivationReason))(QSystemTrayIcon__ActivationReason(reason))
 	}
 
+}
+
+func (ptr *QSystemTrayIcon) Activated(reason QSystemTrayIcon__ActivationReason) {
+	defer qt.Recovering("QSystemTrayIcon::activated")
+
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_Activated(ptr.Pointer(), C.int(reason))
+	}
 }
 
 func (ptr *QSystemTrayIcon) ContextMenu() *QMenu {
@@ -165,6 +173,15 @@ func (ptr *QSystemTrayIcon) ContextMenu() *QMenu {
 		return NewQMenuFromPointer(C.QSystemTrayIcon_ContextMenu(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QSystemTrayIcon) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QSystemTrayIcon::event")
+
+	if ptr.Pointer() != nil {
+		return C.QSystemTrayIcon_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
 }
 
 func (ptr *QSystemTrayIcon) Geometry() *core.QRect {
@@ -209,13 +226,21 @@ func (ptr *QSystemTrayIcon) DisconnectMessageClicked() {
 }
 
 //export callbackQSystemTrayIconMessageClicked
-func callbackQSystemTrayIconMessageClicked(ptrName *C.char) {
+func callbackQSystemTrayIconMessageClicked(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSystemTrayIcon::messageClicked")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "messageClicked"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QSystemTrayIcon) MessageClicked() {
+	defer qt.Recovering("QSystemTrayIcon::messageClicked")
+
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_MessageClicked(ptr.Pointer())
+	}
 }
 
 func (ptr *QSystemTrayIcon) SetContextMenu(menu QMenu_ITF) {
@@ -268,15 +293,30 @@ func (ptr *QSystemTrayIcon) DisconnectTimerEvent() {
 }
 
 //export callbackQSystemTrayIconTimerEvent
-func callbackQSystemTrayIconTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSystemTrayIconTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSystemTrayIcon::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSystemTrayIconFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSystemTrayIcon) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSystemTrayIcon::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSystemTrayIcon) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSystemTrayIcon::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSystemTrayIcon) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -298,15 +338,30 @@ func (ptr *QSystemTrayIcon) DisconnectChildEvent() {
 }
 
 //export callbackQSystemTrayIconChildEvent
-func callbackQSystemTrayIconChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSystemTrayIconChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSystemTrayIcon::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSystemTrayIconFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSystemTrayIcon) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSystemTrayIcon::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSystemTrayIcon) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSystemTrayIcon::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSystemTrayIcon) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -328,13 +383,28 @@ func (ptr *QSystemTrayIcon) DisconnectCustomEvent() {
 }
 
 //export callbackQSystemTrayIconCustomEvent
-func callbackQSystemTrayIconCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSystemTrayIconCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSystemTrayIcon::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSystemTrayIconFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSystemTrayIcon) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSystemTrayIcon::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSystemTrayIcon) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSystemTrayIcon::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

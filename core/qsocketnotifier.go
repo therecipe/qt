@@ -64,13 +64,22 @@ func (ptr *QSocketNotifier) DisconnectActivated() {
 }
 
 //export callbackQSocketNotifierActivated
-func callbackQSocketNotifierActivated(ptrName *C.char, socket C.int) {
+func callbackQSocketNotifierActivated(ptr unsafe.Pointer, ptrName *C.char, socket C.int) {
 	defer qt.Recovering("callback QSocketNotifier::activated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
 		signal.(func(int))(int(socket))
 	}
 
+}
+
+func (ptr *QSocketNotifier) Event(e QEvent_ITF) bool {
+	defer qt.Recovering("QSocketNotifier::event")
+
+	if ptr.Pointer() != nil {
+		return C.QSocketNotifier_Event(ptr.Pointer(), PointerFromQEvent(e)) != 0
+	}
+	return false
 }
 
 func (ptr *QSocketNotifier) IsEnabled() bool {
@@ -127,15 +136,30 @@ func (ptr *QSocketNotifier) DisconnectTimerEvent() {
 }
 
 //export callbackQSocketNotifierTimerEvent
-func callbackQSocketNotifierTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSocketNotifierTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSocketNotifier::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSocketNotifierFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSocketNotifier) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QSocketNotifier::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSocketNotifier_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSocketNotifier) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QSocketNotifier::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSocketNotifier_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSocketNotifier) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -157,15 +181,30 @@ func (ptr *QSocketNotifier) DisconnectChildEvent() {
 }
 
 //export callbackQSocketNotifierChildEvent
-func callbackQSocketNotifierChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSocketNotifierChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSocketNotifier::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSocketNotifierFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSocketNotifier) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QSocketNotifier::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSocketNotifier_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSocketNotifier) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QSocketNotifier::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSocketNotifier_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSocketNotifier) ConnectCustomEvent(f func(event *QEvent)) {
@@ -187,13 +226,28 @@ func (ptr *QSocketNotifier) DisconnectCustomEvent() {
 }
 
 //export callbackQSocketNotifierCustomEvent
-func callbackQSocketNotifierCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSocketNotifierCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSocketNotifier::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSocketNotifierFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSocketNotifier) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QSocketNotifier::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSocketNotifier_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSocketNotifier) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QSocketNotifier::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSocketNotifier_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

@@ -176,13 +176,28 @@ func (ptr *QSGSimpleTextureNode) DisconnectPreprocess() {
 }
 
 //export callbackQSGSimpleTextureNodePreprocess
-func callbackQSGSimpleTextureNodePreprocess(ptrName *C.char) bool {
+func callbackQSGSimpleTextureNodePreprocess(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGSimpleTextureNode::preprocess")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGSimpleTextureNodeFromPointer(ptr).PreprocessDefault()
 	}
-	return false
+}
 
+func (ptr *QSGSimpleTextureNode) Preprocess() {
+	defer qt.Recovering("QSGSimpleTextureNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGSimpleTextureNode_Preprocess(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGSimpleTextureNode) PreprocessDefault() {
+	defer qt.Recovering("QSGSimpleTextureNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGSimpleTextureNode_PreprocessDefault(ptr.Pointer())
+	}
 }

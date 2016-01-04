@@ -161,7 +161,7 @@ func (ptr *QFileSystemModel) DisconnectDirectoryLoaded() {
 }
 
 //export callbackQFileSystemModelDirectoryLoaded
-func callbackQFileSystemModelDirectoryLoaded(ptrName *C.char, path *C.char) {
+func callbackQFileSystemModelDirectoryLoaded(ptr unsafe.Pointer, ptrName *C.char, path *C.char) {
 	defer qt.Recovering("callback QFileSystemModel::directoryLoaded")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "directoryLoaded"); signal != nil {
@@ -170,11 +170,28 @@ func callbackQFileSystemModelDirectoryLoaded(ptrName *C.char, path *C.char) {
 
 }
 
+func (ptr *QFileSystemModel) DirectoryLoaded(path string) {
+	defer qt.Recovering("QFileSystemModel::directoryLoaded")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_DirectoryLoaded(ptr.Pointer(), C.CString(path))
+	}
+}
+
 func (ptr *QFileSystemModel) DropMimeData(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QFileSystemModel::dropMimeData")
 
 	if ptr.Pointer() != nil {
 		return C.QFileSystemModel_DropMimeData(ptr.Pointer(), core.PointerFromQMimeData(data), C.int(action), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+func (ptr *QFileSystemModel) Event(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QFileSystemModel::event")
+
+	if ptr.Pointer() != nil {
+		return C.QFileSystemModel_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
 	return false
 }
@@ -198,15 +215,30 @@ func (ptr *QFileSystemModel) DisconnectFetchMore() {
 }
 
 //export callbackQFileSystemModelFetchMore
-func callbackQFileSystemModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+func callbackQFileSystemModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
 	defer qt.Recovering("callback QFileSystemModel::fetchMore")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
-		return true
+	} else {
+		NewQFileSystemModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
 	}
-	return false
+}
 
+func (ptr *QFileSystemModel) FetchMore(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QFileSystemModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QFileSystemModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QFileSystemModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
 }
 
 func (ptr *QFileSystemModel) FileIcon(index core.QModelIndex_ITF) *gui.QIcon {
@@ -255,13 +287,21 @@ func (ptr *QFileSystemModel) DisconnectFileRenamed() {
 }
 
 //export callbackQFileSystemModelFileRenamed
-func callbackQFileSystemModelFileRenamed(ptrName *C.char, path *C.char, oldName *C.char, newName *C.char) {
+func callbackQFileSystemModelFileRenamed(ptr unsafe.Pointer, ptrName *C.char, path *C.char, oldName *C.char, newName *C.char) {
 	defer qt.Recovering("callback QFileSystemModel::fileRenamed")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fileRenamed"); signal != nil {
 		signal.(func(string, string, string))(C.GoString(path), C.GoString(oldName), C.GoString(newName))
 	}
 
+}
+
+func (ptr *QFileSystemModel) FileRenamed(path string, oldName string, newName string) {
+	defer qt.Recovering("QFileSystemModel::fileRenamed")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_FileRenamed(ptr.Pointer(), C.CString(path), C.CString(oldName), C.CString(newName))
+	}
 }
 
 func (ptr *QFileSystemModel) Filter() core.QDir__Filter {
@@ -427,13 +467,21 @@ func (ptr *QFileSystemModel) DisconnectRootPathChanged() {
 }
 
 //export callbackQFileSystemModelRootPathChanged
-func callbackQFileSystemModelRootPathChanged(ptrName *C.char, newPath *C.char) {
+func callbackQFileSystemModelRootPathChanged(ptr unsafe.Pointer, ptrName *C.char, newPath *C.char) {
 	defer qt.Recovering("callback QFileSystemModel::rootPathChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rootPathChanged"); signal != nil {
 		signal.(func(string))(C.GoString(newPath))
 	}
 
+}
+
+func (ptr *QFileSystemModel) RootPathChanged(newPath string) {
+	defer qt.Recovering("QFileSystemModel::rootPathChanged")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_RootPathChanged(ptr.Pointer(), C.CString(newPath))
+	}
 }
 
 func (ptr *QFileSystemModel) RowCount(parent core.QModelIndex_ITF) int {
@@ -515,15 +563,30 @@ func (ptr *QFileSystemModel) DisconnectSort() {
 }
 
 //export callbackQFileSystemModelSort
-func callbackQFileSystemModelSort(ptrName *C.char, column C.int, order C.int) bool {
+func callbackQFileSystemModelSort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
 	defer qt.Recovering("callback QFileSystemModel::sort")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
 		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
-		return true
+	} else {
+		NewQFileSystemModelFromPointer(ptr).SortDefault(int(column), core.Qt__SortOrder(order))
 	}
-	return false
+}
 
+func (ptr *QFileSystemModel) Sort(column int, order core.Qt__SortOrder) {
+	defer qt.Recovering("QFileSystemModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
+	}
+}
+
+func (ptr *QFileSystemModel) SortDefault(column int, order core.Qt__SortOrder) {
+	defer qt.Recovering("QFileSystemModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
+	}
 }
 
 func (ptr *QFileSystemModel) SupportedDropActions() core.Qt__DropAction {
@@ -554,15 +617,30 @@ func (ptr *QFileSystemModel) DisconnectTimerEvent() {
 }
 
 //export callbackQFileSystemModelTimerEvent
-func callbackQFileSystemModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileSystemModelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileSystemModel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQFileSystemModelFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileSystemModel) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFileSystemModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QFileSystemModel) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QFileSystemModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QFileSystemModel) Type(index core.QModelIndex_ITF) string {
@@ -602,7 +680,7 @@ func (ptr *QFileSystemModel) DisconnectRevert() {
 }
 
 //export callbackQFileSystemModelRevert
-func callbackQFileSystemModelRevert(ptrName *C.char) bool {
+func callbackQFileSystemModelRevert(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QFileSystemModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
@@ -611,6 +689,22 @@ func callbackQFileSystemModelRevert(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QFileSystemModel) Revert() {
+	defer qt.Recovering("QFileSystemModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_Revert(ptr.Pointer())
+	}
+}
+
+func (ptr *QFileSystemModel) RevertDefault() {
+	defer qt.Recovering("QFileSystemModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_RevertDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QFileSystemModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -632,15 +726,30 @@ func (ptr *QFileSystemModel) DisconnectChildEvent() {
 }
 
 //export callbackQFileSystemModelChildEvent
-func callbackQFileSystemModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileSystemModelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileSystemModel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQFileSystemModelFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileSystemModel) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QFileSystemModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QFileSystemModel) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QFileSystemModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QFileSystemModel) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -662,13 +771,28 @@ func (ptr *QFileSystemModel) DisconnectCustomEvent() {
 }
 
 //export callbackQFileSystemModelCustomEvent
-func callbackQFileSystemModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQFileSystemModelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QFileSystemModel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQFileSystemModelFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QFileSystemModel) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QFileSystemModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QFileSystemModel) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QFileSystemModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

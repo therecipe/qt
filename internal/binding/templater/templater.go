@@ -121,6 +121,11 @@ func isBlockedVirtual(fn string, cn string) bool {
 			return fn == "changeEvent"
 		}
 
+	case "QAbstractButton":
+		{
+			return fn == "paintEvent"
+		}
+
 	default:
 		{
 			return false

@@ -197,13 +197,21 @@ func (ptr *QScroller) DisconnectStateChanged() {
 }
 
 //export callbackQScrollerStateChanged
-func callbackQScrollerStateChanged(ptrName *C.char, newState C.int) {
+func callbackQScrollerStateChanged(ptr unsafe.Pointer, ptrName *C.char, newState C.int) {
 	defer qt.Recovering("callback QScroller::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QScroller__State))(QScroller__State(newState))
 	}
 
+}
+
+func (ptr *QScroller) StateChanged(newState QScroller__State) {
+	defer qt.Recovering("QScroller::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QScroller_StateChanged(ptr.Pointer(), C.int(newState))
+	}
 }
 
 func (ptr *QScroller) Stop() {
@@ -248,15 +256,30 @@ func (ptr *QScroller) DisconnectTimerEvent() {
 }
 
 //export callbackQScrollerTimerEvent
-func callbackQScrollerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScroller::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScroller) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QScroller::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScroller_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QScroller) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QScroller::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScroller_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QScroller) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -278,15 +301,30 @@ func (ptr *QScroller) DisconnectChildEvent() {
 }
 
 //export callbackQScrollerChildEvent
-func callbackQScrollerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScroller::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScroller) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QScroller::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScroller_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QScroller) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QScroller::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScroller_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QScroller) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -308,13 +346,28 @@ func (ptr *QScroller) DisconnectCustomEvent() {
 }
 
 //export callbackQScrollerCustomEvent
-func callbackQScrollerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQScrollerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QScroller::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQScrollerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QScroller) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QScroller::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScroller_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QScroller) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QScroller::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QScroller_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

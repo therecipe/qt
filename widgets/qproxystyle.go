@@ -66,15 +66,30 @@ func (ptr *QProxyStyle) DisconnectDrawComplexControl() {
 }
 
 //export callbackQProxyStyleDrawComplexControl
-func callbackQProxyStyleDrawComplexControl(ptrName *C.char, control C.int, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQProxyStyleDrawComplexControl(ptr unsafe.Pointer, ptrName *C.char, control C.int, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QProxyStyle::drawComplexControl")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawComplexControl"); signal != nil {
 		signal.(func(QStyle__ComplexControl, *QStyleOptionComplex, *gui.QPainter, *QWidget))(QStyle__ComplexControl(control), NewQStyleOptionComplexFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQProxyStyleFromPointer(ptr).DrawComplexControlDefault(QStyle__ComplexControl(control), NewQStyleOptionComplexFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QProxyStyle) DrawComplexControl(control QStyle__ComplexControl, option QStyleOptionComplex_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QProxyStyle::drawComplexControl")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_DrawComplexControl(ptr.Pointer(), C.int(control), PointerFromQStyleOptionComplex(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QProxyStyle) DrawComplexControlDefault(control QStyle__ComplexControl, option QStyleOptionComplex_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QProxyStyle::drawComplexControl")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_DrawComplexControlDefault(ptr.Pointer(), C.int(control), PointerFromQStyleOptionComplex(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QProxyStyle) ConnectDrawControl(f func(element QStyle__ControlElement, option *QStyleOption, painter *gui.QPainter, widget *QWidget)) {
@@ -96,15 +111,30 @@ func (ptr *QProxyStyle) DisconnectDrawControl() {
 }
 
 //export callbackQProxyStyleDrawControl
-func callbackQProxyStyleDrawControl(ptrName *C.char, element C.int, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQProxyStyleDrawControl(ptr unsafe.Pointer, ptrName *C.char, element C.int, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QProxyStyle::drawControl")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawControl"); signal != nil {
 		signal.(func(QStyle__ControlElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__ControlElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQProxyStyleFromPointer(ptr).DrawControlDefault(QStyle__ControlElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QProxyStyle) DrawControl(element QStyle__ControlElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QProxyStyle::drawControl")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_DrawControl(ptr.Pointer(), C.int(element), PointerFromQStyleOption(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QProxyStyle) DrawControlDefault(element QStyle__ControlElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QProxyStyle::drawControl")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_DrawControlDefault(ptr.Pointer(), C.int(element), PointerFromQStyleOption(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QProxyStyle) ConnectDrawPrimitive(f func(element QStyle__PrimitiveElement, option *QStyleOption, painter *gui.QPainter, widget *QWidget)) {
@@ -126,15 +156,39 @@ func (ptr *QProxyStyle) DisconnectDrawPrimitive() {
 }
 
 //export callbackQProxyStyleDrawPrimitive
-func callbackQProxyStyleDrawPrimitive(ptrName *C.char, element C.int, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) bool {
+func callbackQProxyStyleDrawPrimitive(ptr unsafe.Pointer, ptrName *C.char, element C.int, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QProxyStyle::drawPrimitive")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawPrimitive"); signal != nil {
 		signal.(func(QStyle__PrimitiveElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__PrimitiveElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQProxyStyleFromPointer(ptr).DrawPrimitiveDefault(QStyle__PrimitiveElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
+	}
+}
+
+func (ptr *QProxyStyle) DrawPrimitive(element QStyle__PrimitiveElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QProxyStyle::drawPrimitive")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_DrawPrimitive(ptr.Pointer(), C.int(element), PointerFromQStyleOption(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QProxyStyle) DrawPrimitiveDefault(element QStyle__PrimitiveElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	defer qt.Recovering("QProxyStyle::drawPrimitive")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_DrawPrimitiveDefault(ptr.Pointer(), C.int(element), PointerFromQStyleOption(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QProxyStyle) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QProxyStyle::event")
+
+	if ptr.Pointer() != nil {
+		return C.QProxyStyle_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
 	return false
-
 }
 
 func (ptr *QProxyStyle) HitTestComplexControl(control QStyle__ComplexControl, option QStyleOptionComplex_ITF, pos core.QPoint_ITF, widget QWidget_ITF) QStyle__SubControl {
@@ -201,15 +255,30 @@ func (ptr *QProxyStyle) DisconnectPolish() {
 }
 
 //export callbackQProxyStylePolish
-func callbackQProxyStylePolish(ptrName *C.char, widget unsafe.Pointer) bool {
+func callbackQProxyStylePolish(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QProxyStyle::polish")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "polish"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQProxyStyleFromPointer(ptr).PolishDefault(NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QProxyStyle) Polish(widget QWidget_ITF) {
+	defer qt.Recovering("QProxyStyle::polish")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_Polish(ptr.Pointer(), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QProxyStyle) PolishDefault(widget QWidget_ITF) {
+	defer qt.Recovering("QProxyStyle::polish")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_PolishDefault(ptr.Pointer(), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QProxyStyle) SetBaseStyle(style QStyle_ITF) {
@@ -284,15 +353,30 @@ func (ptr *QProxyStyle) DisconnectUnpolish() {
 }
 
 //export callbackQProxyStyleUnpolish
-func callbackQProxyStyleUnpolish(ptrName *C.char, widget unsafe.Pointer) bool {
+func callbackQProxyStyleUnpolish(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QProxyStyle::unpolish")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "unpolish"); signal != nil {
 		signal.(func(*QWidget))(NewQWidgetFromPointer(widget))
-		return true
+	} else {
+		NewQProxyStyleFromPointer(ptr).UnpolishDefault(NewQWidgetFromPointer(widget))
 	}
-	return false
+}
 
+func (ptr *QProxyStyle) Unpolish(widget QWidget_ITF) {
+	defer qt.Recovering("QProxyStyle::unpolish")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_Unpolish(ptr.Pointer(), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QProxyStyle) UnpolishDefault(widget QWidget_ITF) {
+	defer qt.Recovering("QProxyStyle::unpolish")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_UnpolishDefault(ptr.Pointer(), PointerFromQWidget(widget))
+	}
 }
 
 func (ptr *QProxyStyle) DestroyQProxyStyle() {
@@ -323,15 +407,30 @@ func (ptr *QProxyStyle) DisconnectTimerEvent() {
 }
 
 //export callbackQProxyStyleTimerEvent
-func callbackQProxyStyleTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProxyStyleTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProxyStyle::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQProxyStyleFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProxyStyle) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QProxyStyle::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QProxyStyle) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QProxyStyle::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QProxyStyle) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -353,15 +452,30 @@ func (ptr *QProxyStyle) DisconnectChildEvent() {
 }
 
 //export callbackQProxyStyleChildEvent
-func callbackQProxyStyleChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProxyStyleChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProxyStyle::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQProxyStyleFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProxyStyle) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QProxyStyle::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QProxyStyle) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QProxyStyle::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QProxyStyle) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -383,13 +497,28 @@ func (ptr *QProxyStyle) DisconnectCustomEvent() {
 }
 
 //export callbackQProxyStyleCustomEvent
-func callbackQProxyStyleCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProxyStyleCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProxyStyle::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQProxyStyleFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProxyStyle) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QProxyStyle::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QProxyStyle) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QProxyStyle::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProxyStyle_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

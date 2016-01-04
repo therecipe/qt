@@ -80,15 +80,30 @@ func (ptr *QAmbientTemperatureSensor) DisconnectTimerEvent() {
 }
 
 //export callbackQAmbientTemperatureSensorTimerEvent
-func callbackQAmbientTemperatureSensorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAmbientTemperatureSensorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAmbientTemperatureSensor::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAmbientTemperatureSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAmbientTemperatureSensor) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAmbientTemperatureSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAmbientTemperatureSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAmbientTemperatureSensor::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAmbientTemperatureSensor) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -110,15 +125,30 @@ func (ptr *QAmbientTemperatureSensor) DisconnectChildEvent() {
 }
 
 //export callbackQAmbientTemperatureSensorChildEvent
-func callbackQAmbientTemperatureSensorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAmbientTemperatureSensorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAmbientTemperatureSensor::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAmbientTemperatureSensorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAmbientTemperatureSensor) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAmbientTemperatureSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAmbientTemperatureSensor) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAmbientTemperatureSensor::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAmbientTemperatureSensor) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -140,13 +170,28 @@ func (ptr *QAmbientTemperatureSensor) DisconnectCustomEvent() {
 }
 
 //export callbackQAmbientTemperatureSensorCustomEvent
-func callbackQAmbientTemperatureSensorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAmbientTemperatureSensorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAmbientTemperatureSensor::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAmbientTemperatureSensorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAmbientTemperatureSensor) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAmbientTemperatureSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAmbientTemperatureSensor) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAmbientTemperatureSensor::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

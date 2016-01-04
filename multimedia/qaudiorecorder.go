@@ -72,13 +72,21 @@ func (ptr *QAudioRecorder) DisconnectAudioInputChanged() {
 }
 
 //export callbackQAudioRecorderAudioInputChanged
-func callbackQAudioRecorderAudioInputChanged(ptrName *C.char, name *C.char) {
+func callbackQAudioRecorderAudioInputChanged(ptr unsafe.Pointer, ptrName *C.char, name *C.char) {
 	defer qt.Recovering("callback QAudioRecorder::audioInputChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "audioInputChanged"); signal != nil {
 		signal.(func(string))(C.GoString(name))
 	}
 
+}
+
+func (ptr *QAudioRecorder) AudioInputChanged(name string) {
+	defer qt.Recovering("QAudioRecorder::audioInputChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioRecorder_AudioInputChanged(ptr.Pointer(), C.CString(name))
+	}
 }
 
 func (ptr *QAudioRecorder) AudioInputDescription(name string) string {
@@ -118,13 +126,21 @@ func (ptr *QAudioRecorder) DisconnectAvailableAudioInputsChanged() {
 }
 
 //export callbackQAudioRecorderAvailableAudioInputsChanged
-func callbackQAudioRecorderAvailableAudioInputsChanged(ptrName *C.char) {
+func callbackQAudioRecorderAvailableAudioInputsChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAudioRecorder::availableAudioInputsChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "availableAudioInputsChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QAudioRecorder) AvailableAudioInputsChanged() {
+	defer qt.Recovering("QAudioRecorder::availableAudioInputsChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioRecorder_AvailableAudioInputsChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QAudioRecorder) DefaultAudioInput() string {
@@ -172,15 +188,30 @@ func (ptr *QAudioRecorder) DisconnectTimerEvent() {
 }
 
 //export callbackQAudioRecorderTimerEvent
-func callbackQAudioRecorderTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAudioRecorderTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAudioRecorder::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAudioRecorderFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAudioRecorder) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAudioRecorder::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioRecorder_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAudioRecorder) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAudioRecorder::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioRecorder_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAudioRecorder) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -202,15 +233,30 @@ func (ptr *QAudioRecorder) DisconnectChildEvent() {
 }
 
 //export callbackQAudioRecorderChildEvent
-func callbackQAudioRecorderChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAudioRecorderChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAudioRecorder::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAudioRecorderFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAudioRecorder) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAudioRecorder::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioRecorder_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAudioRecorder) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAudioRecorder::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioRecorder_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAudioRecorder) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -232,13 +278,28 @@ func (ptr *QAudioRecorder) DisconnectCustomEvent() {
 }
 
 //export callbackQAudioRecorderCustomEvent
-func callbackQAudioRecorderCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAudioRecorderCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAudioRecorder::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAudioRecorderFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAudioRecorder) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAudioRecorder::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioRecorder_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAudioRecorder) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAudioRecorder::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAudioRecorder_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

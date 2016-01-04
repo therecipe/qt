@@ -106,15 +106,30 @@ func (ptr *QTextFrame) DisconnectTimerEvent() {
 }
 
 //export callbackQTextFrameTimerEvent
-func callbackQTextFrameTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextFrameTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextFrame::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTextFrameFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextFrame) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextFrame::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextFrame_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTextFrame) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTextFrame::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextFrame_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTextFrame) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -136,15 +151,30 @@ func (ptr *QTextFrame) DisconnectChildEvent() {
 }
 
 //export callbackQTextFrameChildEvent
-func callbackQTextFrameChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextFrameChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextFrame::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTextFrameFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextFrame) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextFrame::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextFrame_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTextFrame) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTextFrame::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextFrame_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTextFrame) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -166,13 +196,28 @@ func (ptr *QTextFrame) DisconnectCustomEvent() {
 }
 
 //export callbackQTextFrameCustomEvent
-func callbackQTextFrameCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTextFrameCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTextFrame::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTextFrameFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTextFrame) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextFrame::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextFrame_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTextFrame) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTextFrame::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTextFrame_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

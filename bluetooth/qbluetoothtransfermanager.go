@@ -71,13 +71,21 @@ func (ptr *QBluetoothTransferManager) DisconnectFinished() {
 }
 
 //export callbackQBluetoothTransferManagerFinished
-func callbackQBluetoothTransferManagerFinished(ptrName *C.char, reply unsafe.Pointer) {
+func callbackQBluetoothTransferManagerFinished(ptr unsafe.Pointer, ptrName *C.char, reply unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothTransferManager::finished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(*QBluetoothTransferReply))(NewQBluetoothTransferReplyFromPointer(reply))
 	}
 
+}
+
+func (ptr *QBluetoothTransferManager) Finished(reply QBluetoothTransferReply_ITF) {
+	defer qt.Recovering("QBluetoothTransferManager::finished")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferManager_Finished(ptr.Pointer(), PointerFromQBluetoothTransferReply(reply))
+	}
 }
 
 func (ptr *QBluetoothTransferManager) DestroyQBluetoothTransferManager() {
@@ -108,15 +116,30 @@ func (ptr *QBluetoothTransferManager) DisconnectTimerEvent() {
 }
 
 //export callbackQBluetoothTransferManagerTimerEvent
-func callbackQBluetoothTransferManagerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQBluetoothTransferManagerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothTransferManager::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQBluetoothTransferManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QBluetoothTransferManager) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QBluetoothTransferManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferManager_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QBluetoothTransferManager) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QBluetoothTransferManager::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QBluetoothTransferManager) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -138,15 +161,30 @@ func (ptr *QBluetoothTransferManager) DisconnectChildEvent() {
 }
 
 //export callbackQBluetoothTransferManagerChildEvent
-func callbackQBluetoothTransferManagerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQBluetoothTransferManagerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothTransferManager::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQBluetoothTransferManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QBluetoothTransferManager) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QBluetoothTransferManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferManager_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QBluetoothTransferManager) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QBluetoothTransferManager::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferManager_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QBluetoothTransferManager) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -168,13 +206,28 @@ func (ptr *QBluetoothTransferManager) DisconnectCustomEvent() {
 }
 
 //export callbackQBluetoothTransferManagerCustomEvent
-func callbackQBluetoothTransferManagerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQBluetoothTransferManagerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QBluetoothTransferManager::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQBluetoothTransferManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QBluetoothTransferManager) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QBluetoothTransferManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferManager_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QBluetoothTransferManager) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QBluetoothTransferManager::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferManager_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

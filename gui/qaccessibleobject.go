@@ -92,15 +92,38 @@ func (ptr *QAccessibleObject) DisconnectSetText() {
 }
 
 //export callbackQAccessibleObjectSetText
-func callbackQAccessibleObjectSetText(ptrName *C.char, t C.int, text *C.char) bool {
+func callbackQAccessibleObjectSetText(ptr unsafe.Pointer, ptrName *C.char, t C.int, text *C.char) {
 	defer qt.Recovering("callback QAccessibleObject::setText")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setText"); signal != nil {
 		signal.(func(QAccessible__Text, string))(QAccessible__Text(t), C.GoString(text))
-		return true
+	} else {
+		NewQAccessibleObjectFromPointer(ptr).SetTextDefault(QAccessible__Text(t), C.GoString(text))
 	}
-	return false
+}
 
+func (ptr *QAccessibleObject) SetText(t QAccessible__Text, text string) {
+	defer qt.Recovering("QAccessibleObject::setText")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleObject_SetText(ptr.Pointer(), C.int(t), C.CString(text))
+	}
+}
+
+func (ptr *QAccessibleObject) SetTextDefault(t QAccessible__Text, text string) {
+	defer qt.Recovering("QAccessibleObject::setText")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleObject_SetTextDefault(ptr.Pointer(), C.int(t), C.CString(text))
+	}
+}
+
+func (ptr *QAccessibleObject) DestroyQAccessibleObject() {
+	defer qt.Recovering("QAccessibleObject::~QAccessibleObject")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleObject_DestroyQAccessibleObject(ptr.Pointer())
+	}
 }
 
 func (ptr *QAccessibleObject) ObjectNameAbs() string {

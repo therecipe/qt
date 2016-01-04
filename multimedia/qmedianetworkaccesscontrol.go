@@ -65,15 +65,30 @@ func (ptr *QMediaNetworkAccessControl) DisconnectTimerEvent() {
 }
 
 //export callbackQMediaNetworkAccessControlTimerEvent
-func callbackQMediaNetworkAccessControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaNetworkAccessControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaNetworkAccessControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaNetworkAccessControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaNetworkAccessControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaNetworkAccessControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaNetworkAccessControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMediaNetworkAccessControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMediaNetworkAccessControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaNetworkAccessControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMediaNetworkAccessControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -95,15 +110,30 @@ func (ptr *QMediaNetworkAccessControl) DisconnectChildEvent() {
 }
 
 //export callbackQMediaNetworkAccessControlChildEvent
-func callbackQMediaNetworkAccessControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaNetworkAccessControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaNetworkAccessControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaNetworkAccessControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaNetworkAccessControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaNetworkAccessControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaNetworkAccessControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMediaNetworkAccessControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMediaNetworkAccessControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaNetworkAccessControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMediaNetworkAccessControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -125,13 +155,28 @@ func (ptr *QMediaNetworkAccessControl) DisconnectCustomEvent() {
 }
 
 //export callbackQMediaNetworkAccessControlCustomEvent
-func callbackQMediaNetworkAccessControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMediaNetworkAccessControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMediaNetworkAccessControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMediaNetworkAccessControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMediaNetworkAccessControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaNetworkAccessControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaNetworkAccessControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMediaNetworkAccessControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMediaNetworkAccessControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMediaNetworkAccessControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

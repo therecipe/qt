@@ -105,13 +105,21 @@ func (ptr *QGraphicsDropShadowEffect) DisconnectBlurRadiusChanged() {
 }
 
 //export callbackQGraphicsDropShadowEffectBlurRadiusChanged
-func callbackQGraphicsDropShadowEffectBlurRadiusChanged(ptrName *C.char, blurRadius C.double) {
+func callbackQGraphicsDropShadowEffectBlurRadiusChanged(ptr unsafe.Pointer, ptrName *C.char, blurRadius C.double) {
 	defer qt.Recovering("callback QGraphicsDropShadowEffect::blurRadiusChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "blurRadiusChanged"); signal != nil {
 		signal.(func(float64))(float64(blurRadius))
 	}
 
+}
+
+func (ptr *QGraphicsDropShadowEffect) BlurRadiusChanged(blurRadius float64) {
+	defer qt.Recovering("QGraphicsDropShadowEffect::blurRadiusChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_BlurRadiusChanged(ptr.Pointer(), C.double(blurRadius))
+	}
 }
 
 func (ptr *QGraphicsDropShadowEffect) ConnectColorChanged(f func(color *gui.QColor)) {
@@ -133,13 +141,21 @@ func (ptr *QGraphicsDropShadowEffect) DisconnectColorChanged() {
 }
 
 //export callbackQGraphicsDropShadowEffectColorChanged
-func callbackQGraphicsDropShadowEffectColorChanged(ptrName *C.char, color unsafe.Pointer) {
+func callbackQGraphicsDropShadowEffectColorChanged(ptr unsafe.Pointer, ptrName *C.char, color unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsDropShadowEffect::colorChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "colorChanged"); signal != nil {
 		signal.(func(*gui.QColor))(gui.NewQColorFromPointer(color))
 	}
 
+}
+
+func (ptr *QGraphicsDropShadowEffect) ColorChanged(color gui.QColor_ITF) {
+	defer qt.Recovering("QGraphicsDropShadowEffect::colorChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_ColorChanged(ptr.Pointer(), gui.PointerFromQColor(color))
+	}
 }
 
 func (ptr *QGraphicsDropShadowEffect) SetOffset3(d float64) {
@@ -220,15 +236,30 @@ func (ptr *QGraphicsDropShadowEffect) DisconnectTimerEvent() {
 }
 
 //export callbackQGraphicsDropShadowEffectTimerEvent
-func callbackQGraphicsDropShadowEffectTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsDropShadowEffectTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsDropShadowEffect::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsDropShadowEffectFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsDropShadowEffect) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsDropShadowEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGraphicsDropShadowEffect) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGraphicsDropShadowEffect::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGraphicsDropShadowEffect) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -250,15 +281,30 @@ func (ptr *QGraphicsDropShadowEffect) DisconnectChildEvent() {
 }
 
 //export callbackQGraphicsDropShadowEffectChildEvent
-func callbackQGraphicsDropShadowEffectChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsDropShadowEffectChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsDropShadowEffect::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsDropShadowEffectFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsDropShadowEffect) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsDropShadowEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGraphicsDropShadowEffect) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGraphicsDropShadowEffect::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGraphicsDropShadowEffect) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -280,13 +326,28 @@ func (ptr *QGraphicsDropShadowEffect) DisconnectCustomEvent() {
 }
 
 //export callbackQGraphicsDropShadowEffectCustomEvent
-func callbackQGraphicsDropShadowEffectCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGraphicsDropShadowEffectCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsDropShadowEffect::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGraphicsDropShadowEffectFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGraphicsDropShadowEffect) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsDropShadowEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGraphicsDropShadowEffect) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGraphicsDropShadowEffect::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

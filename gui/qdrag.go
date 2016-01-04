@@ -62,13 +62,21 @@ func (ptr *QDrag) DisconnectActionChanged() {
 }
 
 //export callbackQDragActionChanged
-func callbackQDragActionChanged(ptrName *C.char, action C.int) {
+func callbackQDragActionChanged(ptr unsafe.Pointer, ptrName *C.char, action C.int) {
 	defer qt.Recovering("callback QDrag::actionChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionChanged"); signal != nil {
 		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(action))
 	}
 
+}
+
+func (ptr *QDrag) ActionChanged(action core.Qt__DropAction) {
+	defer qt.Recovering("QDrag::actionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QDrag_ActionChanged(ptr.Pointer(), C.int(action))
+	}
 }
 
 func (ptr *QDrag) Exec(supportedActions core.Qt__DropAction) core.Qt__DropAction {
@@ -185,13 +193,21 @@ func (ptr *QDrag) DisconnectTargetChanged() {
 }
 
 //export callbackQDragTargetChanged
-func callbackQDragTargetChanged(ptrName *C.char, newTarget unsafe.Pointer) {
+func callbackQDragTargetChanged(ptr unsafe.Pointer, ptrName *C.char, newTarget unsafe.Pointer) {
 	defer qt.Recovering("callback QDrag::targetChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "targetChanged"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(newTarget))
 	}
 
+}
+
+func (ptr *QDrag) TargetChanged(newTarget core.QObject_ITF) {
+	defer qt.Recovering("QDrag::targetChanged")
+
+	if ptr.Pointer() != nil {
+		C.QDrag_TargetChanged(ptr.Pointer(), core.PointerFromQObject(newTarget))
+	}
 }
 
 func (ptr *QDrag) DestroyQDrag() {
@@ -222,15 +238,30 @@ func (ptr *QDrag) DisconnectTimerEvent() {
 }
 
 //export callbackQDragTimerEvent
-func callbackQDragTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDragTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDrag::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDragFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDrag) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDrag::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDrag_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDrag) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDrag::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDrag_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDrag) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -252,15 +283,30 @@ func (ptr *QDrag) DisconnectChildEvent() {
 }
 
 //export callbackQDragChildEvent
-func callbackQDragChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDragChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDrag::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDragFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDrag) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDrag::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDrag_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDrag) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDrag::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDrag_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDrag) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -282,13 +328,28 @@ func (ptr *QDrag) DisconnectCustomEvent() {
 }
 
 //export callbackQDragCustomEvent
-func callbackQDragCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDragCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDrag::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDragFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDrag) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDrag::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDrag_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDrag) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDrag::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDrag_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

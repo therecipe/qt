@@ -209,6 +209,15 @@ func (ptr *QSettings) EndGroup() {
 	}
 }
 
+func (ptr *QSettings) Event(event QEvent_ITF) bool {
+	defer qt.Recovering("QSettings::event")
+
+	if ptr.Pointer() != nil {
+		return C.QSettings_Event(ptr.Pointer(), PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
 func (ptr *QSettings) FallbacksEnabled() bool {
 	defer qt.Recovering("QSettings::fallbacksEnabled")
 
@@ -387,15 +396,30 @@ func (ptr *QSettings) DisconnectTimerEvent() {
 }
 
 //export callbackQSettingsTimerEvent
-func callbackQSettingsTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSettingsTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSettings::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSettingsFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSettings) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QSettings::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSettings_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSettings) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QSettings::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSettings_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSettings) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -417,15 +441,30 @@ func (ptr *QSettings) DisconnectChildEvent() {
 }
 
 //export callbackQSettingsChildEvent
-func callbackQSettingsChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSettingsChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSettings::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSettingsFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSettings) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QSettings::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSettings_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSettings) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QSettings::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSettings_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSettings) ConnectCustomEvent(f func(event *QEvent)) {
@@ -447,13 +486,28 @@ func (ptr *QSettings) DisconnectCustomEvent() {
 }
 
 //export callbackQSettingsCustomEvent
-func callbackQSettingsCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSettingsCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSettings::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSettingsFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSettings) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QSettings::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSettings_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSettings) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QSettings::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSettings_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

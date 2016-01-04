@@ -62,13 +62,21 @@ func (ptr *QVideoProbe) DisconnectFlush() {
 }
 
 //export callbackQVideoProbeFlush
-func callbackQVideoProbeFlush(ptrName *C.char) {
+func callbackQVideoProbeFlush(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QVideoProbe::flush")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "flush"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QVideoProbe) Flush() {
+	defer qt.Recovering("QVideoProbe::flush")
+
+	if ptr.Pointer() != nil {
+		C.QVideoProbe_Flush(ptr.Pointer())
+	}
 }
 
 func (ptr *QVideoProbe) IsActive() bool {
@@ -126,15 +134,30 @@ func (ptr *QVideoProbe) DisconnectTimerEvent() {
 }
 
 //export callbackQVideoProbeTimerEvent
-func callbackQVideoProbeTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoProbeTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoProbe::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoProbeFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoProbe) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoProbe::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoProbe_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QVideoProbe) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoProbe::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoProbe_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QVideoProbe) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -156,15 +179,30 @@ func (ptr *QVideoProbe) DisconnectChildEvent() {
 }
 
 //export callbackQVideoProbeChildEvent
-func callbackQVideoProbeChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoProbeChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoProbe::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoProbeFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoProbe) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoProbe::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoProbe_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QVideoProbe) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoProbe::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoProbe_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QVideoProbe) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -186,13 +224,28 @@ func (ptr *QVideoProbe) DisconnectCustomEvent() {
 }
 
 //export callbackQVideoProbeCustomEvent
-func callbackQVideoProbeCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoProbeCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoProbe::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoProbeFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoProbe) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoProbe::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoProbe_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QVideoProbe) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoProbe::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoProbe_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

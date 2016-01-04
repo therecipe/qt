@@ -92,13 +92,21 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectDevicesChanged() {
 }
 
 //export callbackQVideoDeviceSelectorControlDevicesChanged
-func callbackQVideoDeviceSelectorControlDevicesChanged(ptrName *C.char) {
+func callbackQVideoDeviceSelectorControlDevicesChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QVideoDeviceSelectorControl::devicesChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "devicesChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QVideoDeviceSelectorControl) DevicesChanged() {
+	defer qt.Recovering("QVideoDeviceSelectorControl::devicesChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_DevicesChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QVideoDeviceSelectorControl) SelectedDevice() int {
@@ -129,13 +137,21 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectSelectedDeviceChanged2() {
 }
 
 //export callbackQVideoDeviceSelectorControlSelectedDeviceChanged2
-func callbackQVideoDeviceSelectorControlSelectedDeviceChanged2(ptrName *C.char, name *C.char) {
+func callbackQVideoDeviceSelectorControlSelectedDeviceChanged2(ptr unsafe.Pointer, ptrName *C.char, name *C.char) {
 	defer qt.Recovering("callback QVideoDeviceSelectorControl::selectedDeviceChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectedDeviceChanged2"); signal != nil {
 		signal.(func(string))(C.GoString(name))
 	}
 
+}
+
+func (ptr *QVideoDeviceSelectorControl) SelectedDeviceChanged2(name string) {
+	defer qt.Recovering("QVideoDeviceSelectorControl::selectedDeviceChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_SelectedDeviceChanged2(ptr.Pointer(), C.CString(name))
+	}
 }
 
 func (ptr *QVideoDeviceSelectorControl) ConnectSelectedDeviceChanged(f func(index int)) {
@@ -157,13 +173,21 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectSelectedDeviceChanged() {
 }
 
 //export callbackQVideoDeviceSelectorControlSelectedDeviceChanged
-func callbackQVideoDeviceSelectorControlSelectedDeviceChanged(ptrName *C.char, index C.int) {
+func callbackQVideoDeviceSelectorControlSelectedDeviceChanged(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QVideoDeviceSelectorControl::selectedDeviceChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "selectedDeviceChanged"); signal != nil {
 		signal.(func(int))(int(index))
 	}
 
+}
+
+func (ptr *QVideoDeviceSelectorControl) SelectedDeviceChanged(index int) {
+	defer qt.Recovering("QVideoDeviceSelectorControl::selectedDeviceChanged")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_SelectedDeviceChanged(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QVideoDeviceSelectorControl) SetSelectedDevice(index int) {
@@ -202,15 +226,30 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectTimerEvent() {
 }
 
 //export callbackQVideoDeviceSelectorControlTimerEvent
-func callbackQVideoDeviceSelectorControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoDeviceSelectorControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoDeviceSelectorControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoDeviceSelectorControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoDeviceSelectorControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoDeviceSelectorControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QVideoDeviceSelectorControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoDeviceSelectorControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QVideoDeviceSelectorControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -232,15 +271,30 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectChildEvent() {
 }
 
 //export callbackQVideoDeviceSelectorControlChildEvent
-func callbackQVideoDeviceSelectorControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoDeviceSelectorControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoDeviceSelectorControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoDeviceSelectorControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoDeviceSelectorControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoDeviceSelectorControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QVideoDeviceSelectorControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoDeviceSelectorControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QVideoDeviceSelectorControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -262,13 +316,28 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectCustomEvent() {
 }
 
 //export callbackQVideoDeviceSelectorControlCustomEvent
-func callbackQVideoDeviceSelectorControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoDeviceSelectorControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoDeviceSelectorControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoDeviceSelectorControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoDeviceSelectorControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoDeviceSelectorControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QVideoDeviceSelectorControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoDeviceSelectorControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

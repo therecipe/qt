@@ -74,15 +74,30 @@ func (ptr *QAbstractUriResolver) DisconnectTimerEvent() {
 }
 
 //export callbackQAbstractUriResolverTimerEvent
-func callbackQAbstractUriResolverTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractUriResolverTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractUriResolver::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractUriResolverFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractUriResolver) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractUriResolver::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractUriResolver_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAbstractUriResolver) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractUriResolver::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractUriResolver_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAbstractUriResolver) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -104,15 +119,30 @@ func (ptr *QAbstractUriResolver) DisconnectChildEvent() {
 }
 
 //export callbackQAbstractUriResolverChildEvent
-func callbackQAbstractUriResolverChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractUriResolverChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractUriResolver::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractUriResolverFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractUriResolver) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractUriResolver::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractUriResolver_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAbstractUriResolver) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractUriResolver::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractUriResolver_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAbstractUriResolver) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -134,13 +164,28 @@ func (ptr *QAbstractUriResolver) DisconnectCustomEvent() {
 }
 
 //export callbackQAbstractUriResolverCustomEvent
-func callbackQAbstractUriResolverCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractUriResolverCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractUriResolver::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractUriResolverFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractUriResolver) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractUriResolver::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractUriResolver_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractUriResolver) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractUriResolver::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractUriResolver_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -74,15 +74,30 @@ func (ptr *QSqlDriverPlugin) DisconnectTimerEvent() {
 }
 
 //export callbackQSqlDriverPluginTimerEvent
-func callbackQSqlDriverPluginTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSqlDriverPluginTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlDriverPlugin::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSqlDriverPluginFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSqlDriverPlugin) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSqlDriverPlugin::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriverPlugin_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSqlDriverPlugin) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSqlDriverPlugin::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriverPlugin_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSqlDriverPlugin) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -104,15 +119,30 @@ func (ptr *QSqlDriverPlugin) DisconnectChildEvent() {
 }
 
 //export callbackQSqlDriverPluginChildEvent
-func callbackQSqlDriverPluginChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSqlDriverPluginChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlDriverPlugin::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSqlDriverPluginFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSqlDriverPlugin) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSqlDriverPlugin::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriverPlugin_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSqlDriverPlugin) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSqlDriverPlugin::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriverPlugin_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSqlDriverPlugin) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -134,13 +164,28 @@ func (ptr *QSqlDriverPlugin) DisconnectCustomEvent() {
 }
 
 //export callbackQSqlDriverPluginCustomEvent
-func callbackQSqlDriverPluginCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSqlDriverPluginCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlDriverPlugin::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSqlDriverPluginFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSqlDriverPlugin) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSqlDriverPlugin::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriverPlugin_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSqlDriverPlugin) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSqlDriverPlugin::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriverPlugin_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

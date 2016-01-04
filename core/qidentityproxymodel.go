@@ -169,15 +169,30 @@ func (ptr *QIdentityProxyModel) DisconnectSetSourceModel() {
 }
 
 //export callbackQIdentityProxyModelSetSourceModel
-func callbackQIdentityProxyModelSetSourceModel(ptrName *C.char, newSourceModel unsafe.Pointer) bool {
+func callbackQIdentityProxyModelSetSourceModel(ptr unsafe.Pointer, ptrName *C.char, newSourceModel unsafe.Pointer) {
 	defer qt.Recovering("callback QIdentityProxyModel::setSourceModel")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSourceModel"); signal != nil {
 		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(newSourceModel))
-		return true
+	} else {
+		NewQIdentityProxyModelFromPointer(ptr).SetSourceModelDefault(NewQAbstractItemModelFromPointer(newSourceModel))
 	}
-	return false
+}
 
+func (ptr *QIdentityProxyModel) SetSourceModel(newSourceModel QAbstractItemModel_ITF) {
+	defer qt.Recovering("QIdentityProxyModel::setSourceModel")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_SetSourceModel(ptr.Pointer(), PointerFromQAbstractItemModel(newSourceModel))
+	}
+}
+
+func (ptr *QIdentityProxyModel) SetSourceModelDefault(newSourceModel QAbstractItemModel_ITF) {
+	defer qt.Recovering("QIdentityProxyModel::setSourceModel")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_SetSourceModelDefault(ptr.Pointer(), PointerFromQAbstractItemModel(newSourceModel))
+	}
 }
 
 func (ptr *QIdentityProxyModel) Sibling(row int, column int, idx QModelIndex_ITF) *QModelIndex {
@@ -217,15 +232,30 @@ func (ptr *QIdentityProxyModel) DisconnectFetchMore() {
 }
 
 //export callbackQIdentityProxyModelFetchMore
-func callbackQIdentityProxyModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+func callbackQIdentityProxyModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
 	defer qt.Recovering("callback QIdentityProxyModel::fetchMore")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
-		return true
+	} else {
+		NewQIdentityProxyModelFromPointer(ptr).FetchMoreDefault(NewQModelIndexFromPointer(parent))
 	}
-	return false
+}
 
+func (ptr *QIdentityProxyModel) FetchMore(parent QModelIndex_ITF) {
+	defer qt.Recovering("QIdentityProxyModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_FetchMore(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QIdentityProxyModel) FetchMoreDefault(parent QModelIndex_ITF) {
+	defer qt.Recovering("QIdentityProxyModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_FetchMoreDefault(ptr.Pointer(), PointerFromQModelIndex(parent))
+	}
 }
 
 func (ptr *QIdentityProxyModel) ConnectRevert(f func()) {
@@ -247,15 +277,30 @@ func (ptr *QIdentityProxyModel) DisconnectRevert() {
 }
 
 //export callbackQIdentityProxyModelRevert
-func callbackQIdentityProxyModelRevert(ptrName *C.char) bool {
+func callbackQIdentityProxyModelRevert(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QIdentityProxyModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQIdentityProxyModelFromPointer(ptr).RevertDefault()
 	}
-	return false
+}
 
+func (ptr *QIdentityProxyModel) Revert() {
+	defer qt.Recovering("QIdentityProxyModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_Revert(ptr.Pointer())
+	}
+}
+
+func (ptr *QIdentityProxyModel) RevertDefault() {
+	defer qt.Recovering("QIdentityProxyModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_RevertDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QIdentityProxyModel) ConnectSort(f func(column int, order Qt__SortOrder)) {
@@ -277,15 +322,30 @@ func (ptr *QIdentityProxyModel) DisconnectSort() {
 }
 
 //export callbackQIdentityProxyModelSort
-func callbackQIdentityProxyModelSort(ptrName *C.char, column C.int, order C.int) bool {
+func callbackQIdentityProxyModelSort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
 	defer qt.Recovering("callback QIdentityProxyModel::sort")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(column), Qt__SortOrder(order))
-		return true
+	} else {
+		NewQIdentityProxyModelFromPointer(ptr).SortDefault(int(column), Qt__SortOrder(order))
 	}
-	return false
+}
 
+func (ptr *QIdentityProxyModel) Sort(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QIdentityProxyModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
+	}
+}
+
+func (ptr *QIdentityProxyModel) SortDefault(column int, order Qt__SortOrder) {
+	defer qt.Recovering("QIdentityProxyModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
+	}
 }
 
 func (ptr *QIdentityProxyModel) ConnectTimerEvent(f func(event *QTimerEvent)) {
@@ -307,15 +367,30 @@ func (ptr *QIdentityProxyModel) DisconnectTimerEvent() {
 }
 
 //export callbackQIdentityProxyModelTimerEvent
-func callbackQIdentityProxyModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIdentityProxyModelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIdentityProxyModel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQIdentityProxyModelFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIdentityProxyModel) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QIdentityProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QIdentityProxyModel) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QIdentityProxyModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QIdentityProxyModel) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -337,15 +412,30 @@ func (ptr *QIdentityProxyModel) DisconnectChildEvent() {
 }
 
 //export callbackQIdentityProxyModelChildEvent
-func callbackQIdentityProxyModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIdentityProxyModelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIdentityProxyModel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQIdentityProxyModelFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIdentityProxyModel) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QIdentityProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QIdentityProxyModel) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QIdentityProxyModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QIdentityProxyModel) ConnectCustomEvent(f func(event *QEvent)) {
@@ -367,13 +457,28 @@ func (ptr *QIdentityProxyModel) DisconnectCustomEvent() {
 }
 
 //export callbackQIdentityProxyModelCustomEvent
-func callbackQIdentityProxyModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQIdentityProxyModelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QIdentityProxyModel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQIdentityProxyModelFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QIdentityProxyModel) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QIdentityProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QIdentityProxyModel) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QIdentityProxyModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QIdentityProxyModel_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

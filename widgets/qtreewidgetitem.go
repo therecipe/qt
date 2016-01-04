@@ -354,15 +354,30 @@ func (ptr *QTreeWidgetItem) DisconnectSetData() {
 }
 
 //export callbackQTreeWidgetItemSetData
-func callbackQTreeWidgetItemSetData(ptrName *C.char, column C.int, role C.int, value unsafe.Pointer) bool {
+func callbackQTreeWidgetItemSetData(ptr unsafe.Pointer, ptrName *C.char, column C.int, role C.int, value unsafe.Pointer) {
 	defer qt.Recovering("callback QTreeWidgetItem::setData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
 		signal.(func(int, int, *core.QVariant))(int(column), int(role), core.NewQVariantFromPointer(value))
-		return true
+	} else {
+		NewQTreeWidgetItemFromPointer(ptr).SetDataDefault(int(column), int(role), core.NewQVariantFromPointer(value))
 	}
-	return false
+}
 
+func (ptr *QTreeWidgetItem) SetData(column int, role int, value core.QVariant_ITF) {
+	defer qt.Recovering("QTreeWidgetItem::setData")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidgetItem_SetData(ptr.Pointer(), C.int(column), C.int(role), core.PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QTreeWidgetItem) SetDataDefault(column int, role int, value core.QVariant_ITF) {
+	defer qt.Recovering("QTreeWidgetItem::setData")
+
+	if ptr.Pointer() != nil {
+		C.QTreeWidgetItem_SetDataDefault(ptr.Pointer(), C.int(column), C.int(role), core.PointerFromQVariant(value))
+	}
 }
 
 func (ptr *QTreeWidgetItem) SetDisabled(disabled bool) {

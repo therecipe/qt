@@ -171,13 +171,21 @@ func (ptr *QDnsLookup) DisconnectFinished() {
 }
 
 //export callbackQDnsLookupFinished
-func callbackQDnsLookupFinished(ptrName *C.char) {
+func callbackQDnsLookupFinished(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QDnsLookup::finished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QDnsLookup) Finished() {
+	defer qt.Recovering("QDnsLookup::finished")
+
+	if ptr.Pointer() != nil {
+		C.QDnsLookup_Finished(ptr.Pointer())
+	}
 }
 
 func (ptr *QDnsLookup) IsFinished() bool {
@@ -216,13 +224,21 @@ func (ptr *QDnsLookup) DisconnectNameChanged() {
 }
 
 //export callbackQDnsLookupNameChanged
-func callbackQDnsLookupNameChanged(ptrName *C.char, name *C.char) {
+func callbackQDnsLookupNameChanged(ptr unsafe.Pointer, ptrName *C.char, name *C.char) {
 	defer qt.Recovering("callback QDnsLookup::nameChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nameChanged"); signal != nil {
 		signal.(func(string))(C.GoString(name))
 	}
 
+}
+
+func (ptr *QDnsLookup) NameChanged(name string) {
+	defer qt.Recovering("QDnsLookup::nameChanged")
+
+	if ptr.Pointer() != nil {
+		C.QDnsLookup_NameChanged(ptr.Pointer(), C.CString(name))
+	}
 }
 
 func (ptr *QDnsLookup) ConnectTypeChanged(f func(ty QDnsLookup__Type)) {
@@ -244,13 +260,21 @@ func (ptr *QDnsLookup) DisconnectTypeChanged() {
 }
 
 //export callbackQDnsLookupTypeChanged
-func callbackQDnsLookupTypeChanged(ptrName *C.char, ty C.int) {
+func callbackQDnsLookupTypeChanged(ptr unsafe.Pointer, ptrName *C.char, ty C.int) {
 	defer qt.Recovering("callback QDnsLookup::typeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "typeChanged"); signal != nil {
 		signal.(func(QDnsLookup__Type))(QDnsLookup__Type(ty))
 	}
 
+}
+
+func (ptr *QDnsLookup) TypeChanged(ty QDnsLookup__Type) {
+	defer qt.Recovering("QDnsLookup::typeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QDnsLookup_TypeChanged(ptr.Pointer(), C.int(ty))
+	}
 }
 
 func (ptr *QDnsLookup) DestroyQDnsLookup() {
@@ -281,15 +305,30 @@ func (ptr *QDnsLookup) DisconnectTimerEvent() {
 }
 
 //export callbackQDnsLookupTimerEvent
-func callbackQDnsLookupTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDnsLookupTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDnsLookupFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDnsLookup) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDnsLookup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDnsLookup_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDnsLookup) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDnsLookup::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDnsLookup_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDnsLookup) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -311,15 +350,30 @@ func (ptr *QDnsLookup) DisconnectChildEvent() {
 }
 
 //export callbackQDnsLookupChildEvent
-func callbackQDnsLookupChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDnsLookupChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDnsLookupFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDnsLookup) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDnsLookup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDnsLookup_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDnsLookup) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDnsLookup::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDnsLookup_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDnsLookup) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -341,13 +395,28 @@ func (ptr *QDnsLookup) DisconnectCustomEvent() {
 }
 
 //export callbackQDnsLookupCustomEvent
-func callbackQDnsLookupCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDnsLookupCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDnsLookupFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDnsLookup) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDnsLookup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDnsLookup_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDnsLookup) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDnsLookup::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDnsLookup_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

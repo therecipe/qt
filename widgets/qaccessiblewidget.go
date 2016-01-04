@@ -111,15 +111,30 @@ func (ptr *QAccessibleWidget) DisconnectDoAction() {
 }
 
 //export callbackQAccessibleWidgetDoAction
-func callbackQAccessibleWidgetDoAction(ptrName *C.char, actionName *C.char) bool {
+func callbackQAccessibleWidgetDoAction(ptr unsafe.Pointer, ptrName *C.char, actionName *C.char) {
 	defer qt.Recovering("callback QAccessibleWidget::doAction")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "doAction"); signal != nil {
 		signal.(func(string))(C.GoString(actionName))
-		return true
+	} else {
+		NewQAccessibleWidgetFromPointer(ptr).DoActionDefault(C.GoString(actionName))
 	}
-	return false
+}
 
+func (ptr *QAccessibleWidget) DoAction(actionName string) {
+	defer qt.Recovering("QAccessibleWidget::doAction")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleWidget_DoAction(ptr.Pointer(), C.CString(actionName))
+	}
+}
+
+func (ptr *QAccessibleWidget) DoActionDefault(actionName string) {
+	defer qt.Recovering("QAccessibleWidget::doAction")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleWidget_DoActionDefault(ptr.Pointer(), C.CString(actionName))
+	}
 }
 
 func (ptr *QAccessibleWidget) FocusChild() *gui.QAccessibleInterface {
@@ -257,13 +272,28 @@ func (ptr *QAccessibleWidget) DisconnectSetText() {
 }
 
 //export callbackQAccessibleWidgetSetText
-func callbackQAccessibleWidgetSetText(ptrName *C.char, t C.int, text *C.char) bool {
+func callbackQAccessibleWidgetSetText(ptr unsafe.Pointer, ptrName *C.char, t C.int, text *C.char) {
 	defer qt.Recovering("callback QAccessibleWidget::setText")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setText"); signal != nil {
 		signal.(func(gui.QAccessible__Text, string))(gui.QAccessible__Text(t), C.GoString(text))
-		return true
+	} else {
+		NewQAccessibleWidgetFromPointer(ptr).SetTextDefault(gui.QAccessible__Text(t), C.GoString(text))
 	}
-	return false
+}
 
+func (ptr *QAccessibleWidget) SetText(t gui.QAccessible__Text, text string) {
+	defer qt.Recovering("QAccessibleWidget::setText")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleWidget_SetText(ptr.Pointer(), C.int(t), C.CString(text))
+	}
+}
+
+func (ptr *QAccessibleWidget) SetTextDefault(t gui.QAccessible__Text, text string) {
+	defer qt.Recovering("QAccessibleWidget::setText")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleWidget_SetTextDefault(ptr.Pointer(), C.int(t), C.CString(text))
+	}
 }

@@ -228,13 +228,21 @@ func (ptr *QSqlDriver) DisconnectNotification() {
 }
 
 //export callbackQSqlDriverNotification
-func callbackQSqlDriverNotification(ptrName *C.char, name *C.char) {
+func callbackQSqlDriverNotification(ptr unsafe.Pointer, ptrName *C.char, name *C.char) {
 	defer qt.Recovering("callback QSqlDriver::notification")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "notification"); signal != nil {
 		signal.(func(string))(C.GoString(name))
 	}
 
+}
+
+func (ptr *QSqlDriver) Notification(name string) {
+	defer qt.Recovering("QSqlDriver::notification")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_Notification(ptr.Pointer(), C.CString(name))
+	}
 }
 
 func (ptr *QSqlDriver) ConnectNotification2(f func(name string, source QSqlDriver__NotificationSource, payload *core.QVariant)) {
@@ -256,13 +264,21 @@ func (ptr *QSqlDriver) DisconnectNotification2() {
 }
 
 //export callbackQSqlDriverNotification2
-func callbackQSqlDriverNotification2(ptrName *C.char, name *C.char, source C.int, payload unsafe.Pointer) {
+func callbackQSqlDriverNotification2(ptr unsafe.Pointer, ptrName *C.char, name *C.char, source C.int, payload unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlDriver::notification")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "notification2"); signal != nil {
 		signal.(func(string, QSqlDriver__NotificationSource, *core.QVariant))(C.GoString(name), QSqlDriver__NotificationSource(source), core.NewQVariantFromPointer(payload))
 	}
 
+}
+
+func (ptr *QSqlDriver) Notification2(name string, source QSqlDriver__NotificationSource, payload core.QVariant_ITF) {
+	defer qt.Recovering("QSqlDriver::notification")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_Notification2(ptr.Pointer(), C.CString(name), C.int(source), core.PointerFromQVariant(payload))
+	}
 }
 
 func (ptr *QSqlDriver) Open(db string, user string, password string, host string, port int, options string) bool {
@@ -302,15 +318,30 @@ func (ptr *QSqlDriver) DisconnectSetOpen() {
 }
 
 //export callbackQSqlDriverSetOpen
-func callbackQSqlDriverSetOpen(ptrName *C.char, open C.int) bool {
+func callbackQSqlDriverSetOpen(ptr unsafe.Pointer, ptrName *C.char, open C.int) {
 	defer qt.Recovering("callback QSqlDriver::setOpen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setOpen"); signal != nil {
 		signal.(func(bool))(int(open) != 0)
-		return true
+	} else {
+		NewQSqlDriverFromPointer(ptr).SetOpenDefault(int(open) != 0)
 	}
-	return false
+}
 
+func (ptr *QSqlDriver) SetOpen(open bool) {
+	defer qt.Recovering("QSqlDriver::setOpen")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetOpen(ptr.Pointer(), C.int(qt.GoBoolToInt(open)))
+	}
+}
+
+func (ptr *QSqlDriver) SetOpenDefault(open bool) {
+	defer qt.Recovering("QSqlDriver::setOpen")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetOpenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(open)))
+	}
 }
 
 func (ptr *QSqlDriver) ConnectSetOpenError(f func(error bool)) {
@@ -332,15 +363,30 @@ func (ptr *QSqlDriver) DisconnectSetOpenError() {
 }
 
 //export callbackQSqlDriverSetOpenError
-func callbackQSqlDriverSetOpenError(ptrName *C.char, error C.int) bool {
+func callbackQSqlDriverSetOpenError(ptr unsafe.Pointer, ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QSqlDriver::setOpenError")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setOpenError"); signal != nil {
 		signal.(func(bool))(int(error) != 0)
-		return true
+	} else {
+		NewQSqlDriverFromPointer(ptr).SetOpenErrorDefault(int(error) != 0)
 	}
-	return false
+}
 
+func (ptr *QSqlDriver) SetOpenError(error bool) {
+	defer qt.Recovering("QSqlDriver::setOpenError")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetOpenError(ptr.Pointer(), C.int(qt.GoBoolToInt(error)))
+	}
+}
+
+func (ptr *QSqlDriver) SetOpenErrorDefault(error bool) {
+	defer qt.Recovering("QSqlDriver::setOpenError")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetOpenErrorDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(error)))
+	}
 }
 
 func (ptr *QSqlDriver) SqlStatement(ty QSqlDriver__StatementType, tableName string, rec QSqlRecord_ITF, preparedStatement bool) string {
@@ -416,15 +462,30 @@ func (ptr *QSqlDriver) DisconnectTimerEvent() {
 }
 
 //export callbackQSqlDriverTimerEvent
-func callbackQSqlDriverTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSqlDriverTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlDriver::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSqlDriverFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSqlDriver) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSqlDriver::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSqlDriver) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSqlDriver::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSqlDriver) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -446,15 +507,30 @@ func (ptr *QSqlDriver) DisconnectChildEvent() {
 }
 
 //export callbackQSqlDriverChildEvent
-func callbackQSqlDriverChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSqlDriverChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlDriver::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSqlDriverFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSqlDriver) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSqlDriver::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSqlDriver) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSqlDriver::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSqlDriver) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -476,13 +552,28 @@ func (ptr *QSqlDriver) DisconnectCustomEvent() {
 }
 
 //export callbackQSqlDriverCustomEvent
-func callbackQSqlDriverCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSqlDriverCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlDriver::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSqlDriverFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSqlDriver) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSqlDriver::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSqlDriver) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSqlDriver::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

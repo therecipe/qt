@@ -266,15 +266,30 @@ func (ptr *QLabel) DisconnectChangeEvent() {
 }
 
 //export callbackQLabelChangeEvent
-func callbackQLabelChangeEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQLabelChangeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QLabel) ChangeEvent(ev core.QEvent_ITF) {
+	defer qt.Recovering("QLabel::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
+}
+
+func (ptr *QLabel) ChangeEventDefault(ev core.QEvent_ITF) {
+	defer qt.Recovering("QLabel::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
+	}
 }
 
 func (ptr *QLabel) Clear() {
@@ -304,15 +319,39 @@ func (ptr *QLabel) DisconnectContextMenuEvent() {
 }
 
 //export callbackQLabelContextMenuEvent
-func callbackQLabelContextMenuEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQLabelContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(ev))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(ev))
+	}
+}
+
+func (ptr *QLabel) ContextMenuEvent(ev gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QLabel::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(ev))
+	}
+}
+
+func (ptr *QLabel) ContextMenuEventDefault(ev gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QLabel::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(ev))
+	}
+}
+
+func (ptr *QLabel) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QLabel::event")
+
+	if ptr.Pointer() != nil {
+		return C.QLabel_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
 	return false
-
 }
 
 func (ptr *QLabel) ConnectFocusInEvent(f func(ev *gui.QFocusEvent)) {
@@ -334,15 +373,39 @@ func (ptr *QLabel) DisconnectFocusInEvent() {
 }
 
 //export callbackQLabelFocusInEvent
-func callbackQLabelFocusInEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQLabelFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(ev))
+	}
+}
+
+func (ptr *QLabel) FocusInEvent(ev gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QLabel::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
+	}
+}
+
+func (ptr *QLabel) FocusInEventDefault(ev gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QLabel::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
+	}
+}
+
+func (ptr *QLabel) FocusNextPrevChild(next bool) bool {
+	defer qt.Recovering("QLabel::focusNextPrevChild")
+
+	if ptr.Pointer() != nil {
+		return C.QLabel_FocusNextPrevChild(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
 	}
 	return false
-
 }
 
 func (ptr *QLabel) ConnectFocusOutEvent(f func(ev *gui.QFocusEvent)) {
@@ -364,15 +427,30 @@ func (ptr *QLabel) DisconnectFocusOutEvent() {
 }
 
 //export callbackQLabelFocusOutEvent
-func callbackQLabelFocusOutEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQLabelFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QLabel) FocusOutEvent(ev gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QLabel::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
+	}
+}
+
+func (ptr *QLabel) FocusOutEventDefault(ev gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QLabel::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
+	}
 }
 
 func (ptr *QLabel) HeightForWidth(w int) int {
@@ -403,15 +481,30 @@ func (ptr *QLabel) DisconnectKeyPressEvent() {
 }
 
 //export callbackQLabelKeyPressEvent
-func callbackQLabelKeyPressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQLabelKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(ev))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QLabel) KeyPressEvent(ev gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QLabel::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(ev))
+	}
+}
+
+func (ptr *QLabel) KeyPressEventDefault(ev gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QLabel::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(ev))
+	}
 }
 
 func (ptr *QLabel) ConnectLinkActivated(f func(link string)) {
@@ -433,13 +526,21 @@ func (ptr *QLabel) DisconnectLinkActivated() {
 }
 
 //export callbackQLabelLinkActivated
-func callbackQLabelLinkActivated(ptrName *C.char, link *C.char) {
+func callbackQLabelLinkActivated(ptr unsafe.Pointer, ptrName *C.char, link *C.char) {
 	defer qt.Recovering("callback QLabel::linkActivated")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "linkActivated"); signal != nil {
 		signal.(func(string))(C.GoString(link))
 	}
 
+}
+
+func (ptr *QLabel) LinkActivated(link string) {
+	defer qt.Recovering("QLabel::linkActivated")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_LinkActivated(ptr.Pointer(), C.CString(link))
+	}
 }
 
 func (ptr *QLabel) ConnectLinkHovered(f func(link string)) {
@@ -461,13 +562,21 @@ func (ptr *QLabel) DisconnectLinkHovered() {
 }
 
 //export callbackQLabelLinkHovered
-func callbackQLabelLinkHovered(ptrName *C.char, link *C.char) {
+func callbackQLabelLinkHovered(ptr unsafe.Pointer, ptrName *C.char, link *C.char) {
 	defer qt.Recovering("callback QLabel::linkHovered")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "linkHovered"); signal != nil {
 		signal.(func(string))(C.GoString(link))
 	}
 
+}
+
+func (ptr *QLabel) LinkHovered(link string) {
+	defer qt.Recovering("QLabel::linkHovered")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_LinkHovered(ptr.Pointer(), C.CString(link))
+	}
 }
 
 func (ptr *QLabel) MinimumSizeHint() *core.QSize {
@@ -498,15 +607,30 @@ func (ptr *QLabel) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQLabelMouseMoveEvent
-func callbackQLabelMouseMoveEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQLabelMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QLabel) MouseMoveEvent(ev gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLabel::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(ev))
+	}
+}
+
+func (ptr *QLabel) MouseMoveEventDefault(ev gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLabel::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(ev))
+	}
 }
 
 func (ptr *QLabel) ConnectMousePressEvent(f func(ev *gui.QMouseEvent)) {
@@ -528,15 +652,30 @@ func (ptr *QLabel) DisconnectMousePressEvent() {
 }
 
 //export callbackQLabelMousePressEvent
-func callbackQLabelMousePressEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQLabelMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QLabel) MousePressEvent(ev gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLabel::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(ev))
+	}
+}
+
+func (ptr *QLabel) MousePressEventDefault(ev gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLabel::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(ev))
+	}
 }
 
 func (ptr *QLabel) ConnectMouseReleaseEvent(f func(ev *gui.QMouseEvent)) {
@@ -558,15 +697,30 @@ func (ptr *QLabel) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQLabelMouseReleaseEvent
-func callbackQLabelMouseReleaseEvent(ptrName *C.char, ev unsafe.Pointer) bool {
+func callbackQLabelMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(ev))
 	}
-	return false
+}
 
+func (ptr *QLabel) MouseReleaseEvent(ev gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLabel::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(ev))
+	}
+}
+
+func (ptr *QLabel) MouseReleaseEventDefault(ev gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLabel::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(ev))
+	}
 }
 
 func (ptr *QLabel) Movie() *gui.QMovie {
@@ -597,15 +751,30 @@ func (ptr *QLabel) DisconnectPaintEvent() {
 }
 
 //export callbackQLabelPaintEvent
-func callbackQLabelPaintEvent(ptrName *C.char, v unsafe.Pointer) bool {
+func callbackQLabelPaintEvent(ptr unsafe.Pointer, ptrName *C.char, v unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
-	return false
+}
 
+func (ptr *QLabel) PaintEvent(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QLabel::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
+}
+
+func (ptr *QLabel) PaintEventDefault(v gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QLabel::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(v))
+	}
 }
 
 func (ptr *QLabel) Picture() *gui.QPicture {
@@ -703,15 +872,30 @@ func (ptr *QLabel) DisconnectActionEvent() {
 }
 
 //export callbackQLabelActionEvent
-func callbackQLabelActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QLabel::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QLabel) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QLabel::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -733,15 +917,30 @@ func (ptr *QLabel) DisconnectDragEnterEvent() {
 }
 
 //export callbackQLabelDragEnterEvent
-func callbackQLabelDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QLabel::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QLabel) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QLabel::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -763,15 +962,30 @@ func (ptr *QLabel) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQLabelDragLeaveEvent
-func callbackQLabelDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QLabel::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QLabel) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QLabel::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -793,15 +1007,30 @@ func (ptr *QLabel) DisconnectDragMoveEvent() {
 }
 
 //export callbackQLabelDragMoveEvent
-func callbackQLabelDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QLabel::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QLabel) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QLabel::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -823,15 +1052,30 @@ func (ptr *QLabel) DisconnectDropEvent() {
 }
 
 //export callbackQLabelDropEvent
-func callbackQLabelDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QLabel::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QLabel) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QLabel::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -853,15 +1097,30 @@ func (ptr *QLabel) DisconnectEnterEvent() {
 }
 
 //export callbackQLabelEnterEvent
-func callbackQLabelEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QLabel::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QLabel) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QLabel::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -883,15 +1142,30 @@ func (ptr *QLabel) DisconnectHideEvent() {
 }
 
 //export callbackQLabelHideEvent
-func callbackQLabelHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QLabel::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QLabel) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QLabel::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -913,15 +1187,30 @@ func (ptr *QLabel) DisconnectLeaveEvent() {
 }
 
 //export callbackQLabelLeaveEvent
-func callbackQLabelLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QLabel::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QLabel) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QLabel::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -943,15 +1232,30 @@ func (ptr *QLabel) DisconnectMoveEvent() {
 }
 
 //export callbackQLabelMoveEvent
-func callbackQLabelMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QLabel::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QLabel) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QLabel::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectSetVisible(f func(visible bool)) {
@@ -973,7 +1277,7 @@ func (ptr *QLabel) DisconnectSetVisible() {
 }
 
 //export callbackQLabelSetVisible
-func callbackQLabelSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQLabelSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QLabel::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -982,6 +1286,22 @@ func callbackQLabelSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QLabel) SetVisible(visible bool) {
+	defer qt.Recovering("QLabel::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QLabel) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QLabel::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QLabel) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -1003,15 +1323,30 @@ func (ptr *QLabel) DisconnectShowEvent() {
 }
 
 //export callbackQLabelShowEvent
-func callbackQLabelShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QLabel::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QLabel) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QLabel::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -1033,15 +1368,30 @@ func (ptr *QLabel) DisconnectCloseEvent() {
 }
 
 //export callbackQLabelCloseEvent
-func callbackQLabelCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QLabel::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QLabel) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QLabel::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -1063,15 +1413,30 @@ func (ptr *QLabel) DisconnectInitPainter() {
 }
 
 //export callbackQLabelInitPainter
-func callbackQLabelInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQLabelInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QLabel) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QLabel::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QLabel) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QLabel::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QLabel) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -1093,15 +1458,30 @@ func (ptr *QLabel) DisconnectInputMethodEvent() {
 }
 
 //export callbackQLabelInputMethodEvent
-func callbackQLabelInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QLabel::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QLabel) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QLabel::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -1123,15 +1503,30 @@ func (ptr *QLabel) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQLabelKeyReleaseEvent
-func callbackQLabelKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QLabel::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QLabel) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QLabel::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1153,15 +1548,30 @@ func (ptr *QLabel) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQLabelMouseDoubleClickEvent
-func callbackQLabelMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLabel::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QLabel) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QLabel::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -1183,15 +1593,30 @@ func (ptr *QLabel) DisconnectResizeEvent() {
 }
 
 //export callbackQLabelResizeEvent
-func callbackQLabelResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QLabel::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QLabel) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QLabel::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1213,15 +1638,30 @@ func (ptr *QLabel) DisconnectTabletEvent() {
 }
 
 //export callbackQLabelTabletEvent
-func callbackQLabelTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QLabel::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QLabel) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QLabel::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1243,15 +1683,30 @@ func (ptr *QLabel) DisconnectWheelEvent() {
 }
 
 //export callbackQLabelWheelEvent
-func callbackQLabelWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QLabel::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QLabel) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QLabel::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1273,15 +1728,30 @@ func (ptr *QLabel) DisconnectTimerEvent() {
 }
 
 //export callbackQLabelTimerEvent
-func callbackQLabelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLabel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QLabel) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLabel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1303,15 +1773,30 @@ func (ptr *QLabel) DisconnectChildEvent() {
 }
 
 //export callbackQLabelChildEvent
-func callbackQLabelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLabel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QLabel) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLabel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QLabel) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1333,13 +1818,28 @@ func (ptr *QLabel) DisconnectCustomEvent() {
 }
 
 //export callbackQLabelCustomEvent
-func callbackQLabelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLabelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLabel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQLabelFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLabel) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QLabel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QLabel) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QLabel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLabel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

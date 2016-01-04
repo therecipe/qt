@@ -80,15 +80,30 @@ func (ptr *QCompass) DisconnectTimerEvent() {
 }
 
 //export callbackQCompassTimerEvent
-func callbackQCompassTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCompassTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCompass::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCompassFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCompass) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCompass::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompass_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCompass) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCompass::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompass_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCompass) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -110,15 +125,30 @@ func (ptr *QCompass) DisconnectChildEvent() {
 }
 
 //export callbackQCompassChildEvent
-func callbackQCompassChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCompassChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCompass::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCompassFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCompass) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCompass::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompass_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCompass) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCompass::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompass_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCompass) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -140,13 +170,28 @@ func (ptr *QCompass) DisconnectCustomEvent() {
 }
 
 //export callbackQCompassCustomEvent
-func callbackQCompassCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCompassCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCompass::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCompassFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCompass) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCompass::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompass_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCompass) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCompass::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCompass_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

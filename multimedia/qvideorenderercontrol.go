@@ -82,15 +82,30 @@ func (ptr *QVideoRendererControl) DisconnectTimerEvent() {
 }
 
 //export callbackQVideoRendererControlTimerEvent
-func callbackQVideoRendererControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoRendererControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoRendererControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoRendererControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoRendererControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoRendererControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoRendererControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QVideoRendererControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QVideoRendererControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoRendererControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QVideoRendererControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -112,15 +127,30 @@ func (ptr *QVideoRendererControl) DisconnectChildEvent() {
 }
 
 //export callbackQVideoRendererControlChildEvent
-func callbackQVideoRendererControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoRendererControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoRendererControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoRendererControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoRendererControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoRendererControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoRendererControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QVideoRendererControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QVideoRendererControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoRendererControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QVideoRendererControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -142,13 +172,28 @@ func (ptr *QVideoRendererControl) DisconnectCustomEvent() {
 }
 
 //export callbackQVideoRendererControlCustomEvent
-func callbackQVideoRendererControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQVideoRendererControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QVideoRendererControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQVideoRendererControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QVideoRendererControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoRendererControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoRendererControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QVideoRendererControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QVideoRendererControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QVideoRendererControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -93,9 +93,9 @@ func GoTemplate(c *parser.Class) (o string) {
 
 		for _, f := range c.Functions {
 			if i := goFunction(f); isSupportedFunction(c, f) {
-				if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
-					virtuals[f.Name] = true
-				}
+				//if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
+				virtuals[f.Name+f.OverloadNumber] = true
+				//}
 				if !isBlockedVirtual(f.Name, c.Name) {
 					o += fmt.Sprintf("%v\n\n", i)
 				}
@@ -110,9 +110,10 @@ func GoTemplate(c *parser.Class) (o string) {
 						tmpF.Fullname = strings.Replace(tmpF.Fullname, bc.Name, c.Name, -1)
 
 						if i := goFunction(&tmpF); isSupportedFunction(bc, &tmpF) && isSupportedClass(bc) {
-							if _, exists := virtuals[f.Name]; !exists {
-								virtuals[f.Name] = true
+							if _, exists := virtuals[f.Name+f.OverloadNumber]; !exists {
+								virtuals[f.Name+f.OverloadNumber] = true
 								if !isBlockedVirtual(f.Name, c.Name) {
+
 									var tmp = strings.Replace(fmt.Sprintf("%v\n\n", i), bc.Name+"::", c.Name+"::", -1)
 
 									if c.IsQObjectSubClass() {

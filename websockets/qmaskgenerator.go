@@ -74,15 +74,30 @@ func (ptr *QMaskGenerator) DisconnectTimerEvent() {
 }
 
 //export callbackQMaskGeneratorTimerEvent
-func callbackQMaskGeneratorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMaskGeneratorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMaskGenerator::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQMaskGeneratorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMaskGenerator) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMaskGenerator::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMaskGenerator_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QMaskGenerator) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QMaskGenerator::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMaskGenerator_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QMaskGenerator) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -104,15 +119,30 @@ func (ptr *QMaskGenerator) DisconnectChildEvent() {
 }
 
 //export callbackQMaskGeneratorChildEvent
-func callbackQMaskGeneratorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMaskGeneratorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMaskGenerator::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQMaskGeneratorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMaskGenerator) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMaskGenerator::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMaskGenerator_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QMaskGenerator) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QMaskGenerator::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMaskGenerator_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QMaskGenerator) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -134,13 +164,28 @@ func (ptr *QMaskGenerator) DisconnectCustomEvent() {
 }
 
 //export callbackQMaskGeneratorCustomEvent
-func callbackQMaskGeneratorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQMaskGeneratorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMaskGenerator::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQMaskGeneratorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QMaskGenerator) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QMaskGenerator::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMaskGenerator_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QMaskGenerator) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QMaskGenerator::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QMaskGenerator_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

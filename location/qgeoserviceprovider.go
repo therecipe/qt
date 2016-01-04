@@ -236,15 +236,30 @@ func (ptr *QGeoServiceProvider) DisconnectTimerEvent() {
 }
 
 //export callbackQGeoServiceProviderTimerEvent
-func callbackQGeoServiceProviderTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGeoServiceProviderTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoServiceProvider::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQGeoServiceProviderFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGeoServiceProvider) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGeoServiceProvider::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoServiceProvider_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QGeoServiceProvider) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QGeoServiceProvider::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoServiceProvider_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QGeoServiceProvider) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -266,15 +281,30 @@ func (ptr *QGeoServiceProvider) DisconnectChildEvent() {
 }
 
 //export callbackQGeoServiceProviderChildEvent
-func callbackQGeoServiceProviderChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGeoServiceProviderChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoServiceProvider::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQGeoServiceProviderFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGeoServiceProvider) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGeoServiceProvider::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoServiceProvider_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QGeoServiceProvider) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QGeoServiceProvider::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoServiceProvider_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QGeoServiceProvider) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -296,13 +326,28 @@ func (ptr *QGeoServiceProvider) DisconnectCustomEvent() {
 }
 
 //export callbackQGeoServiceProviderCustomEvent
-func callbackQGeoServiceProviderCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQGeoServiceProviderCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGeoServiceProvider::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQGeoServiceProviderFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QGeoServiceProvider) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QGeoServiceProvider::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoServiceProvider_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QGeoServiceProvider) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QGeoServiceProvider::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGeoServiceProvider_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

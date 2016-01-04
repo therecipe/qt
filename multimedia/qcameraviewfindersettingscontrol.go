@@ -103,15 +103,30 @@ func (ptr *QCameraViewfinderSettingsControl) DisconnectTimerEvent() {
 }
 
 //export callbackQCameraViewfinderSettingsControlTimerEvent
-func callbackQCameraViewfinderSettingsControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraViewfinderSettingsControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraViewfinderSettingsControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraViewfinderSettingsControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraViewfinderSettingsControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraViewfinderSettingsControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinderSettingsControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCameraViewfinderSettingsControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraViewfinderSettingsControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinderSettingsControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCameraViewfinderSettingsControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -133,15 +148,30 @@ func (ptr *QCameraViewfinderSettingsControl) DisconnectChildEvent() {
 }
 
 //export callbackQCameraViewfinderSettingsControlChildEvent
-func callbackQCameraViewfinderSettingsControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraViewfinderSettingsControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraViewfinderSettingsControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraViewfinderSettingsControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraViewfinderSettingsControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraViewfinderSettingsControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinderSettingsControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCameraViewfinderSettingsControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraViewfinderSettingsControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinderSettingsControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCameraViewfinderSettingsControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -163,13 +193,28 @@ func (ptr *QCameraViewfinderSettingsControl) DisconnectCustomEvent() {
 }
 
 //export callbackQCameraViewfinderSettingsControlCustomEvent
-func callbackQCameraViewfinderSettingsControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraViewfinderSettingsControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraViewfinderSettingsControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraViewfinderSettingsControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraViewfinderSettingsControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraViewfinderSettingsControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinderSettingsControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCameraViewfinderSettingsControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraViewfinderSettingsControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinderSettingsControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

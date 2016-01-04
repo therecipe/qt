@@ -83,15 +83,30 @@ func (ptr *QSqlQueryModel) DisconnectClear() {
 }
 
 //export callbackQSqlQueryModelClear
-func callbackQSqlQueryModelClear(ptrName *C.char) bool {
+func callbackQSqlQueryModelClear(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSqlQueryModel::clear")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clear"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSqlQueryModelFromPointer(ptr).ClearDefault()
 	}
-	return false
+}
 
+func (ptr *QSqlQueryModel) Clear() {
+	defer qt.Recovering("QSqlQueryModel::clear")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlQueryModel) ClearDefault() {
+	defer qt.Recovering("QSqlQueryModel::clear")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_ClearDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QSqlQueryModel) ColumnCount(index core.QModelIndex_ITF) int {
@@ -122,15 +137,30 @@ func (ptr *QSqlQueryModel) DisconnectFetchMore() {
 }
 
 //export callbackQSqlQueryModelFetchMore
-func callbackQSqlQueryModelFetchMore(ptrName *C.char, parent unsafe.Pointer) bool {
+func callbackQSqlQueryModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlQueryModel::fetchMore")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
-		return true
+	} else {
+		NewQSqlQueryModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
 	}
-	return false
+}
 
+func (ptr *QSqlQueryModel) FetchMore(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlQueryModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QSqlQueryModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlQueryModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
 }
 
 func (ptr *QSqlQueryModel) HeaderData(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
@@ -138,6 +168,15 @@ func (ptr *QSqlQueryModel) HeaderData(section int, orientation core.Qt__Orientat
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSqlQueryModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+	}
+	return nil
+}
+
+func (ptr *QSqlQueryModel) IndexInQuery(item core.QModelIndex_ITF) *core.QModelIndex {
+	defer qt.Recovering("QSqlQueryModel::indexInQuery")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QSqlQueryModel_IndexInQuery(ptr.Pointer(), core.PointerFromQModelIndex(item)))
 	}
 	return nil
 }
@@ -170,15 +209,30 @@ func (ptr *QSqlQueryModel) DisconnectQueryChange() {
 }
 
 //export callbackQSqlQueryModelQueryChange
-func callbackQSqlQueryModelQueryChange(ptrName *C.char) bool {
+func callbackQSqlQueryModelQueryChange(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSqlQueryModel::queryChange")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "queryChange"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSqlQueryModelFromPointer(ptr).QueryChangeDefault()
 	}
-	return false
+}
 
+func (ptr *QSqlQueryModel) QueryChange() {
+	defer qt.Recovering("QSqlQueryModel::queryChange")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_QueryChange(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlQueryModel) QueryChangeDefault() {
+	defer qt.Recovering("QSqlQueryModel::queryChange")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_QueryChangeDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QSqlQueryModel) RemoveColumns(column int, count int, parent core.QModelIndex_ITF) bool {
@@ -243,7 +297,7 @@ func (ptr *QSqlQueryModel) DisconnectRevert() {
 }
 
 //export callbackQSqlQueryModelRevert
-func callbackQSqlQueryModelRevert(ptrName *C.char) bool {
+func callbackQSqlQueryModelRevert(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QSqlQueryModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
@@ -252,6 +306,22 @@ func callbackQSqlQueryModelRevert(ptrName *C.char) bool {
 	}
 	return false
 
+}
+
+func (ptr *QSqlQueryModel) Revert() {
+	defer qt.Recovering("QSqlQueryModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_Revert(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlQueryModel) RevertDefault() {
+	defer qt.Recovering("QSqlQueryModel::revert")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_RevertDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QSqlQueryModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {
@@ -273,15 +343,30 @@ func (ptr *QSqlQueryModel) DisconnectSort() {
 }
 
 //export callbackQSqlQueryModelSort
-func callbackQSqlQueryModelSort(ptrName *C.char, column C.int, order C.int) bool {
+func callbackQSqlQueryModelSort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
 	defer qt.Recovering("callback QSqlQueryModel::sort")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
 		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
-		return true
+	} else {
+		NewQSqlQueryModelFromPointer(ptr).SortDefault(int(column), core.Qt__SortOrder(order))
 	}
-	return false
+}
 
+func (ptr *QSqlQueryModel) Sort(column int, order core.Qt__SortOrder) {
+	defer qt.Recovering("QSqlQueryModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
+	}
+}
+
+func (ptr *QSqlQueryModel) SortDefault(column int, order core.Qt__SortOrder) {
+	defer qt.Recovering("QSqlQueryModel::sort")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
+	}
 }
 
 func (ptr *QSqlQueryModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -303,15 +388,30 @@ func (ptr *QSqlQueryModel) DisconnectTimerEvent() {
 }
 
 //export callbackQSqlQueryModelTimerEvent
-func callbackQSqlQueryModelTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSqlQueryModelTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlQueryModel::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSqlQueryModelFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSqlQueryModel) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSqlQueryModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSqlQueryModel) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSqlQueryModel::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSqlQueryModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -333,15 +433,30 @@ func (ptr *QSqlQueryModel) DisconnectChildEvent() {
 }
 
 //export callbackQSqlQueryModelChildEvent
-func callbackQSqlQueryModelChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSqlQueryModelChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlQueryModel::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSqlQueryModelFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSqlQueryModel) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSqlQueryModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSqlQueryModel) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSqlQueryModel::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSqlQueryModel) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -363,13 +478,28 @@ func (ptr *QSqlQueryModel) DisconnectCustomEvent() {
 }
 
 //export callbackQSqlQueryModelCustomEvent
-func callbackQSqlQueryModelCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSqlQueryModelCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSqlQueryModel::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSqlQueryModelFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSqlQueryModel) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSqlQueryModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSqlQueryModel) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSqlQueryModel::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

@@ -86,13 +86,28 @@ func (ptr *QSGBasicGeometryNode) DisconnectPreprocess() {
 }
 
 //export callbackQSGBasicGeometryNodePreprocess
-func callbackQSGBasicGeometryNodePreprocess(ptrName *C.char) bool {
+func callbackQSGBasicGeometryNodePreprocess(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGBasicGeometryNode::preprocess")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "preprocess"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQSGBasicGeometryNodeFromPointer(ptr).PreprocessDefault()
 	}
-	return false
+}
 
+func (ptr *QSGBasicGeometryNode) Preprocess() {
+	defer qt.Recovering("QSGBasicGeometryNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGBasicGeometryNode_Preprocess(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGBasicGeometryNode) PreprocessDefault() {
+	defer qt.Recovering("QSGBasicGeometryNode::preprocess")
+
+	if ptr.Pointer() != nil {
+		C.QSGBasicGeometryNode_PreprocessDefault(ptr.Pointer())
+	}
 }

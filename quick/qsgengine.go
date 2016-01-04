@@ -115,15 +115,30 @@ func (ptr *QSGEngine) DisconnectTimerEvent() {
 }
 
 //export callbackQSGEngineTimerEvent
-func callbackQSGEngineTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSGEngineTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSGEngine::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSGEngineFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSGEngine) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSGEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGEngine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSGEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSGEngine::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSGEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -145,15 +160,30 @@ func (ptr *QSGEngine) DisconnectChildEvent() {
 }
 
 //export callbackQSGEngineChildEvent
-func callbackQSGEngineChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSGEngineChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSGEngine::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSGEngineFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSGEngine) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSGEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGEngine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSGEngine) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSGEngine::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGEngine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSGEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -175,13 +205,28 @@ func (ptr *QSGEngine) DisconnectCustomEvent() {
 }
 
 //export callbackQSGEngineCustomEvent
-func callbackQSGEngineCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSGEngineCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSGEngine::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSGEngineFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSGEngine) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSGEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGEngine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSGEngine) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSGEngine::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSGEngine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

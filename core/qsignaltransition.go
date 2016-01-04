@@ -48,6 +48,24 @@ func NewQSignalTransition2(sender QObject_ITF, signal string, sourceState QState
 	return NewQSignalTransitionFromPointer(C.QSignalTransition_NewQSignalTransition2(PointerFromQObject(sender), C.CString(signal), PointerFromQState(sourceState)))
 }
 
+func (ptr *QSignalTransition) Event(e QEvent_ITF) bool {
+	defer qt.Recovering("QSignalTransition::event")
+
+	if ptr.Pointer() != nil {
+		return C.QSignalTransition_Event(ptr.Pointer(), PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QSignalTransition) EventTest(event QEvent_ITF) bool {
+	defer qt.Recovering("QSignalTransition::eventTest")
+
+	if ptr.Pointer() != nil {
+		return C.QSignalTransition_EventTest(ptr.Pointer(), PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
 func (ptr *QSignalTransition) ConnectOnTransition(f func(event *QEvent)) {
 	defer qt.Recovering("connect QSignalTransition::onTransition")
 
@@ -67,15 +85,30 @@ func (ptr *QSignalTransition) DisconnectOnTransition() {
 }
 
 //export callbackQSignalTransitionOnTransition
-func callbackQSignalTransitionOnTransition(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSignalTransitionOnTransition(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalTransition::onTransition")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "onTransition"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSignalTransitionFromPointer(ptr).OnTransitionDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSignalTransition) OnTransition(event QEvent_ITF) {
+	defer qt.Recovering("QSignalTransition::onTransition")
+
+	if ptr.Pointer() != nil {
+		C.QSignalTransition_OnTransition(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSignalTransition) OnTransitionDefault(event QEvent_ITF) {
+	defer qt.Recovering("QSignalTransition::onTransition")
+
+	if ptr.Pointer() != nil {
+		C.QSignalTransition_OnTransitionDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QSignalTransition) SenderObject() *QObject {
@@ -106,7 +139,7 @@ func (ptr *QSignalTransition) DisconnectSenderObjectChanged() {
 }
 
 //export callbackQSignalTransitionSenderObjectChanged
-func callbackQSignalTransitionSenderObjectChanged(ptrName *C.char) {
+func callbackQSignalTransitionSenderObjectChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSignalTransition::senderObjectChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "senderObjectChanged"); signal != nil {
@@ -159,7 +192,7 @@ func (ptr *QSignalTransition) DisconnectSignalChanged() {
 }
 
 //export callbackQSignalTransitionSignalChanged
-func callbackQSignalTransitionSignalChanged(ptrName *C.char) {
+func callbackQSignalTransitionSignalChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSignalTransition::signalChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "signalChanged"); signal != nil {
@@ -196,15 +229,30 @@ func (ptr *QSignalTransition) DisconnectTimerEvent() {
 }
 
 //export callbackQSignalTransitionTimerEvent
-func callbackQSignalTransitionTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSignalTransitionTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalTransition::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSignalTransitionFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSignalTransition) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QSignalTransition::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalTransition_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSignalTransition) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QSignalTransition::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalTransition_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSignalTransition) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -226,15 +274,30 @@ func (ptr *QSignalTransition) DisconnectChildEvent() {
 }
 
 //export callbackQSignalTransitionChildEvent
-func callbackQSignalTransitionChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSignalTransitionChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalTransition::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSignalTransitionFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSignalTransition) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QSignalTransition::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalTransition_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSignalTransition) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QSignalTransition::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalTransition_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSignalTransition) ConnectCustomEvent(f func(event *QEvent)) {
@@ -256,13 +319,28 @@ func (ptr *QSignalTransition) DisconnectCustomEvent() {
 }
 
 //export callbackQSignalTransitionCustomEvent
-func callbackQSignalTransitionCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSignalTransitionCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalTransition::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSignalTransitionFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSignalTransition) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QSignalTransition::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalTransition_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSignalTransition) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QSignalTransition::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalTransition_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

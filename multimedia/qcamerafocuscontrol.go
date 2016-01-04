@@ -65,13 +65,21 @@ func (ptr *QCameraFocusControl) DisconnectFocusModeChanged() {
 }
 
 //export callbackQCameraFocusControlFocusModeChanged
-func callbackQCameraFocusControlFocusModeChanged(ptrName *C.char, mode C.int) {
+func callbackQCameraFocusControlFocusModeChanged(ptr unsafe.Pointer, ptrName *C.char, mode C.int) {
 	defer qt.Recovering("callback QCameraFocusControl::focusModeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusModeChanged"); signal != nil {
 		signal.(func(QCameraFocus__FocusMode))(QCameraFocus__FocusMode(mode))
 	}
 
+}
+
+func (ptr *QCameraFocusControl) FocusModeChanged(mode QCameraFocus__FocusMode) {
+	defer qt.Recovering("QCameraFocusControl::focusModeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_FocusModeChanged(ptr.Pointer(), C.int(mode))
+	}
 }
 
 func (ptr *QCameraFocusControl) FocusPointMode() QCameraFocus__FocusPointMode {
@@ -102,13 +110,21 @@ func (ptr *QCameraFocusControl) DisconnectFocusPointModeChanged() {
 }
 
 //export callbackQCameraFocusControlFocusPointModeChanged
-func callbackQCameraFocusControlFocusPointModeChanged(ptrName *C.char, mode C.int) {
+func callbackQCameraFocusControlFocusPointModeChanged(ptr unsafe.Pointer, ptrName *C.char, mode C.int) {
 	defer qt.Recovering("callback QCameraFocusControl::focusPointModeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusPointModeChanged"); signal != nil {
 		signal.(func(QCameraFocus__FocusPointMode))(QCameraFocus__FocusPointMode(mode))
 	}
 
+}
+
+func (ptr *QCameraFocusControl) FocusPointModeChanged(mode QCameraFocus__FocusPointMode) {
+	defer qt.Recovering("QCameraFocusControl::focusPointModeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_FocusPointModeChanged(ptr.Pointer(), C.int(mode))
+	}
 }
 
 func (ptr *QCameraFocusControl) ConnectFocusZonesChanged(f func()) {
@@ -130,13 +146,21 @@ func (ptr *QCameraFocusControl) DisconnectFocusZonesChanged() {
 }
 
 //export callbackQCameraFocusControlFocusZonesChanged
-func callbackQCameraFocusControlFocusZonesChanged(ptrName *C.char) {
+func callbackQCameraFocusControlFocusZonesChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraFocusControl::focusZonesChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusZonesChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QCameraFocusControl) FocusZonesChanged() {
+	defer qt.Recovering("QCameraFocusControl::focusZonesChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_FocusZonesChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QCameraFocusControl) IsFocusModeSupported(mode QCameraFocus__FocusMode) bool {
@@ -209,15 +233,30 @@ func (ptr *QCameraFocusControl) DisconnectTimerEvent() {
 }
 
 //export callbackQCameraFocusControlTimerEvent
-func callbackQCameraFocusControlTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFocusControlTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFocusControl::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFocusControlFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFocusControl) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraFocusControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCameraFocusControl) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraFocusControl::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCameraFocusControl) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -239,15 +278,30 @@ func (ptr *QCameraFocusControl) DisconnectChildEvent() {
 }
 
 //export callbackQCameraFocusControlChildEvent
-func callbackQCameraFocusControlChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFocusControlChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFocusControl::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFocusControlFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFocusControl) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraFocusControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCameraFocusControl) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraFocusControl::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCameraFocusControl) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -269,13 +323,28 @@ func (ptr *QCameraFocusControl) DisconnectCustomEvent() {
 }
 
 //export callbackQCameraFocusControlCustomEvent
-func callbackQCameraFocusControlCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFocusControlCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFocusControl::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFocusControlFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFocusControl) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraFocusControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCameraFocusControl) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraFocusControl::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

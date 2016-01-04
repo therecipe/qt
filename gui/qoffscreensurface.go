@@ -107,13 +107,21 @@ func (ptr *QOffscreenSurface) DisconnectScreenChanged() {
 }
 
 //export callbackQOffscreenSurfaceScreenChanged
-func callbackQOffscreenSurfaceScreenChanged(ptrName *C.char, screen unsafe.Pointer) {
+func callbackQOffscreenSurfaceScreenChanged(ptr unsafe.Pointer, ptrName *C.char, screen unsafe.Pointer) {
 	defer qt.Recovering("callback QOffscreenSurface::screenChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "screenChanged"); signal != nil {
 		signal.(func(*QScreen))(NewQScreenFromPointer(screen))
 	}
 
+}
+
+func (ptr *QOffscreenSurface) ScreenChanged(screen QScreen_ITF) {
+	defer qt.Recovering("QOffscreenSurface::screenChanged")
+
+	if ptr.Pointer() != nil {
+		C.QOffscreenSurface_ScreenChanged(ptr.Pointer(), PointerFromQScreen(screen))
+	}
 }
 
 func (ptr *QOffscreenSurface) SetFormat(format QSurfaceFormat_ITF) {
@@ -178,15 +186,30 @@ func (ptr *QOffscreenSurface) DisconnectTimerEvent() {
 }
 
 //export callbackQOffscreenSurfaceTimerEvent
-func callbackQOffscreenSurfaceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQOffscreenSurfaceTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QOffscreenSurface::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQOffscreenSurfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QOffscreenSurface) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QOffscreenSurface::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOffscreenSurface_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QOffscreenSurface) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QOffscreenSurface::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOffscreenSurface_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QOffscreenSurface) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -208,15 +231,30 @@ func (ptr *QOffscreenSurface) DisconnectChildEvent() {
 }
 
 //export callbackQOffscreenSurfaceChildEvent
-func callbackQOffscreenSurfaceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQOffscreenSurfaceChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QOffscreenSurface::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQOffscreenSurfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QOffscreenSurface) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QOffscreenSurface::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOffscreenSurface_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QOffscreenSurface) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QOffscreenSurface::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOffscreenSurface_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QOffscreenSurface) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -238,13 +276,28 @@ func (ptr *QOffscreenSurface) DisconnectCustomEvent() {
 }
 
 //export callbackQOffscreenSurfaceCustomEvent
-func callbackQOffscreenSurfaceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQOffscreenSurfaceCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QOffscreenSurface::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQOffscreenSurfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QOffscreenSurface) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QOffscreenSurface::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOffscreenSurface_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QOffscreenSurface) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QOffscreenSurface::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QOffscreenSurface_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

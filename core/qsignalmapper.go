@@ -77,13 +77,21 @@ func (ptr *QSignalMapper) DisconnectMapped4() {
 }
 
 //export callbackQSignalMapperMapped4
-func callbackQSignalMapperMapped4(ptrName *C.char, object unsafe.Pointer) {
+func callbackQSignalMapperMapped4(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalMapper::mapped")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mapped4"); signal != nil {
 		signal.(func(*QObject))(NewQObjectFromPointer(object))
 	}
 
+}
+
+func (ptr *QSignalMapper) Mapped4(object QObject_ITF) {
+	defer qt.Recovering("QSignalMapper::mapped")
+
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_Mapped4(ptr.Pointer(), PointerFromQObject(object))
+	}
 }
 
 func (ptr *QSignalMapper) ConnectMapped3(f func(widget unsafe.Pointer)) {
@@ -105,13 +113,21 @@ func (ptr *QSignalMapper) DisconnectMapped3() {
 }
 
 //export callbackQSignalMapperMapped3
-func callbackQSignalMapperMapped3(ptrName *C.char, widget unsafe.Pointer) {
+func callbackQSignalMapperMapped3(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalMapper::mapped")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mapped3"); signal != nil {
 		signal.(func(unsafe.Pointer))(unsafe.Pointer(widget))
 	}
 
+}
+
+func (ptr *QSignalMapper) Mapped3(widget unsafe.Pointer) {
+	defer qt.Recovering("QSignalMapper::mapped")
+
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_Mapped3(ptr.Pointer(), widget)
+	}
 }
 
 func (ptr *QSignalMapper) ConnectMapped2(f func(text string)) {
@@ -133,13 +149,21 @@ func (ptr *QSignalMapper) DisconnectMapped2() {
 }
 
 //export callbackQSignalMapperMapped2
-func callbackQSignalMapperMapped2(ptrName *C.char, text *C.char) {
+func callbackQSignalMapperMapped2(ptr unsafe.Pointer, ptrName *C.char, text *C.char) {
 	defer qt.Recovering("callback QSignalMapper::mapped")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mapped2"); signal != nil {
 		signal.(func(string))(C.GoString(text))
 	}
 
+}
+
+func (ptr *QSignalMapper) Mapped2(text string) {
+	defer qt.Recovering("QSignalMapper::mapped")
+
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_Mapped2(ptr.Pointer(), C.CString(text))
+	}
 }
 
 func (ptr *QSignalMapper) ConnectMapped(f func(i int)) {
@@ -161,13 +185,21 @@ func (ptr *QSignalMapper) DisconnectMapped() {
 }
 
 //export callbackQSignalMapperMapped
-func callbackQSignalMapperMapped(ptrName *C.char, i C.int) {
+func callbackQSignalMapperMapped(ptr unsafe.Pointer, ptrName *C.char, i C.int) {
 	defer qt.Recovering("callback QSignalMapper::mapped")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mapped"); signal != nil {
 		signal.(func(int))(int(i))
 	}
 
+}
+
+func (ptr *QSignalMapper) Mapped(i int) {
+	defer qt.Recovering("QSignalMapper::mapped")
+
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_Mapped(ptr.Pointer(), C.int(i))
+	}
 }
 
 func (ptr *QSignalMapper) Mapping4(object QObject_ITF) *QObject {
@@ -274,15 +306,30 @@ func (ptr *QSignalMapper) DisconnectTimerEvent() {
 }
 
 //export callbackQSignalMapperTimerEvent
-func callbackQSignalMapperTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSignalMapperTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalMapper::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQSignalMapperFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSignalMapper) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QSignalMapper::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSignalMapper) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QSignalMapper::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QSignalMapper) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -304,15 +351,30 @@ func (ptr *QSignalMapper) DisconnectChildEvent() {
 }
 
 //export callbackQSignalMapperChildEvent
-func callbackQSignalMapperChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSignalMapperChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalMapper::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQSignalMapperFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSignalMapper) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QSignalMapper::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSignalMapper) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QSignalMapper::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QSignalMapper) ConnectCustomEvent(f func(event *QEvent)) {
@@ -334,13 +396,28 @@ func (ptr *QSignalMapper) DisconnectCustomEvent() {
 }
 
 //export callbackQSignalMapperCustomEvent
-func callbackQSignalMapperCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQSignalMapperCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalMapper::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQSignalMapperFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QSignalMapper) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QSignalMapper::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSignalMapper) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QSignalMapper::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

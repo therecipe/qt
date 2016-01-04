@@ -37,6 +37,15 @@ func (ptr *QItemDelegate) QItemDelegate_PTR() *QItemDelegate {
 	return ptr
 }
 
+func (ptr *QItemDelegate) EventFilter(editor core.QObject_ITF, event core.QEvent_ITF) bool {
+	defer qt.Recovering("QItemDelegate::eventFilter")
+
+	if ptr.Pointer() != nil {
+		return C.QItemDelegate_EventFilter(ptr.Pointer(), core.PointerFromQObject(editor), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
 func (ptr *QItemDelegate) HasClipping() bool {
 	defer qt.Recovering("QItemDelegate::hasClipping")
 
@@ -69,6 +78,15 @@ func (ptr *QItemDelegate) CreateEditor(parent QWidget_ITF, option QStyleOptionVi
 	return nil
 }
 
+func (ptr *QItemDelegate) EditorEvent(event core.QEvent_ITF, model core.QAbstractItemModel_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
+	defer qt.Recovering("QItemDelegate::editorEvent")
+
+	if ptr.Pointer() != nil {
+		return C.QItemDelegate_EditorEvent(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+	}
+	return false
+}
+
 func (ptr *QItemDelegate) ItemEditorFactory() *QItemEditorFactory {
 	defer qt.Recovering("QItemDelegate::itemEditorFactory")
 
@@ -97,15 +115,30 @@ func (ptr *QItemDelegate) DisconnectSetEditorData() {
 }
 
 //export callbackQItemDelegateSetEditorData
-func callbackQItemDelegateSetEditorData(ptrName *C.char, editor unsafe.Pointer, index unsafe.Pointer) bool {
+func callbackQItemDelegateSetEditorData(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer, index unsafe.Pointer) {
 	defer qt.Recovering("callback QItemDelegate::setEditorData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setEditorData"); signal != nil {
 		signal.(func(*QWidget, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
-		return true
+	} else {
+		NewQItemDelegateFromPointer(ptr).SetEditorDataDefault(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
 	}
-	return false
+}
 
+func (ptr *QItemDelegate) SetEditorData(editor QWidget_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QItemDelegate::setEditorData")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_SetEditorData(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QItemDelegate) SetEditorDataDefault(editor QWidget_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QItemDelegate::setEditorData")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_SetEditorDataDefault(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+	}
 }
 
 func (ptr *QItemDelegate) SetItemEditorFactory(factory QItemEditorFactory_ITF) {
@@ -135,15 +168,30 @@ func (ptr *QItemDelegate) DisconnectSetModelData() {
 }
 
 //export callbackQItemDelegateSetModelData
-func callbackQItemDelegateSetModelData(ptrName *C.char, editor unsafe.Pointer, model unsafe.Pointer, index unsafe.Pointer) bool {
+func callbackQItemDelegateSetModelData(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer, model unsafe.Pointer, index unsafe.Pointer) {
 	defer qt.Recovering("callback QItemDelegate::setModelData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setModelData"); signal != nil {
 		signal.(func(*QWidget, *core.QAbstractItemModel, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
-		return true
+	} else {
+		NewQItemDelegateFromPointer(ptr).SetModelDataDefault(NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
 	}
-	return false
+}
 
+func (ptr *QItemDelegate) SetModelData(editor QWidget_ITF, model core.QAbstractItemModel_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QItemDelegate::setModelData")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_SetModelData(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQAbstractItemModel(model), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QItemDelegate) SetModelDataDefault(editor QWidget_ITF, model core.QAbstractItemModel_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QItemDelegate::setModelData")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_SetModelDataDefault(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQAbstractItemModel(model), core.PointerFromQModelIndex(index))
+	}
 }
 
 func (ptr *QItemDelegate) SizeHint(option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
@@ -183,15 +231,30 @@ func (ptr *QItemDelegate) DisconnectDestroyEditor() {
 }
 
 //export callbackQItemDelegateDestroyEditor
-func callbackQItemDelegateDestroyEditor(ptrName *C.char, editor unsafe.Pointer, index unsafe.Pointer) bool {
+func callbackQItemDelegateDestroyEditor(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer, index unsafe.Pointer) {
 	defer qt.Recovering("callback QItemDelegate::destroyEditor")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "destroyEditor"); signal != nil {
 		signal.(func(*QWidget, *core.QModelIndex))(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
-		return true
+	} else {
+		NewQItemDelegateFromPointer(ptr).DestroyEditorDefault(NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
 	}
-	return false
+}
 
+func (ptr *QItemDelegate) DestroyEditor(editor QWidget_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QItemDelegate::destroyEditor")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_DestroyEditor(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QItemDelegate) DestroyEditorDefault(editor QWidget_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QItemDelegate::destroyEditor")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_DestroyEditorDefault(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+	}
 }
 
 func (ptr *QItemDelegate) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -213,15 +276,30 @@ func (ptr *QItemDelegate) DisconnectTimerEvent() {
 }
 
 //export callbackQItemDelegateTimerEvent
-func callbackQItemDelegateTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQItemDelegateTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QItemDelegate::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQItemDelegateFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QItemDelegate) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QItemDelegate::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QItemDelegate) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QItemDelegate::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QItemDelegate) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -243,15 +321,30 @@ func (ptr *QItemDelegate) DisconnectChildEvent() {
 }
 
 //export callbackQItemDelegateChildEvent
-func callbackQItemDelegateChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQItemDelegateChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QItemDelegate::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQItemDelegateFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QItemDelegate) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QItemDelegate::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QItemDelegate) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QItemDelegate::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QItemDelegate) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -273,13 +366,28 @@ func (ptr *QItemDelegate) DisconnectCustomEvent() {
 }
 
 //export callbackQItemDelegateCustomEvent
-func callbackQItemDelegateCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQItemDelegateCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QItemDelegate::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQItemDelegateFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QItemDelegate) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QItemDelegate::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QItemDelegate) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QItemDelegate::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

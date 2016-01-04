@@ -106,15 +106,30 @@ func (ptr *QTranslator) DisconnectTimerEvent() {
 }
 
 //export callbackQTranslatorTimerEvent
-func callbackQTranslatorTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTranslatorTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTranslator::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTranslatorFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTranslator) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QTranslator::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTranslator_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTranslator) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QTranslator::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTranslator_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTranslator) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -136,15 +151,30 @@ func (ptr *QTranslator) DisconnectChildEvent() {
 }
 
 //export callbackQTranslatorChildEvent
-func callbackQTranslatorChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTranslatorChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTranslator::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTranslatorFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTranslator) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QTranslator::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTranslator_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTranslator) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QTranslator::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTranslator_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTranslator) ConnectCustomEvent(f func(event *QEvent)) {
@@ -166,13 +196,28 @@ func (ptr *QTranslator) DisconnectCustomEvent() {
 }
 
 //export callbackQTranslatorCustomEvent
-func callbackQTranslatorCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTranslatorCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTranslator::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTranslatorFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTranslator) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QTranslator::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTranslator_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTranslator) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QTranslator::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTranslator_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

@@ -186,13 +186,21 @@ func (ptr *QDialogButtonBox) DisconnectAccepted() {
 }
 
 //export callbackQDialogButtonBoxAccepted
-func callbackQDialogButtonBoxAccepted(ptrName *C.char) {
+func callbackQDialogButtonBoxAccepted(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QDialogButtonBox::accepted")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "accepted"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QDialogButtonBox) Accepted() {
+	defer qt.Recovering("QDialogButtonBox::accepted")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_Accepted(ptr.Pointer())
+	}
 }
 
 func (ptr *QDialogButtonBox) AddButton3(button QDialogButtonBox__StandardButton) *QPushButton {
@@ -258,15 +266,30 @@ func (ptr *QDialogButtonBox) DisconnectChangeEvent() {
 }
 
 //export callbackQDialogButtonBoxChangeEvent
-func callbackQDialogButtonBoxChangeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::changeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) ChangeEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) ChangeEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::changeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) Clear() {
@@ -296,13 +319,30 @@ func (ptr *QDialogButtonBox) DisconnectClicked() {
 }
 
 //export callbackQDialogButtonBoxClicked
-func callbackQDialogButtonBoxClicked(ptrName *C.char, button unsafe.Pointer) {
+func callbackQDialogButtonBoxClicked(ptr unsafe.Pointer, ptrName *C.char, button unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::clicked")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clicked"); signal != nil {
 		signal.(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
 	}
 
+}
+
+func (ptr *QDialogButtonBox) Clicked(button QAbstractButton_ITF) {
+	defer qt.Recovering("QDialogButtonBox::clicked")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_Clicked(ptr.Pointer(), PointerFromQAbstractButton(button))
+	}
+}
+
+func (ptr *QDialogButtonBox) Event(event core.QEvent_ITF) bool {
+	defer qt.Recovering("QDialogButtonBox::event")
+
+	if ptr.Pointer() != nil {
+		return C.QDialogButtonBox_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 func (ptr *QDialogButtonBox) ConnectHelpRequested(f func()) {
@@ -324,13 +364,21 @@ func (ptr *QDialogButtonBox) DisconnectHelpRequested() {
 }
 
 //export callbackQDialogButtonBoxHelpRequested
-func callbackQDialogButtonBoxHelpRequested(ptrName *C.char) {
+func callbackQDialogButtonBoxHelpRequested(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QDialogButtonBox::helpRequested")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "helpRequested"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QDialogButtonBox) HelpRequested() {
+	defer qt.Recovering("QDialogButtonBox::helpRequested")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_HelpRequested(ptr.Pointer())
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectRejected(f func()) {
@@ -352,13 +400,21 @@ func (ptr *QDialogButtonBox) DisconnectRejected() {
 }
 
 //export callbackQDialogButtonBoxRejected
-func callbackQDialogButtonBoxRejected(ptrName *C.char) {
+func callbackQDialogButtonBoxRejected(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QDialogButtonBox::rejected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rejected"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QDialogButtonBox) Rejected() {
+	defer qt.Recovering("QDialogButtonBox::rejected")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_Rejected(ptr.Pointer())
+	}
 }
 
 func (ptr *QDialogButtonBox) RemoveButton(button QAbstractButton_ITF) {
@@ -406,15 +462,30 @@ func (ptr *QDialogButtonBox) DisconnectActionEvent() {
 }
 
 //export callbackQDialogButtonBoxActionEvent
-func callbackQDialogButtonBoxActionEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::actionEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) ActionEvent(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) ActionEventDefault(event gui.QActionEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::actionEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -436,15 +507,30 @@ func (ptr *QDialogButtonBox) DisconnectDragEnterEvent() {
 }
 
 //export callbackQDialogButtonBoxDragEnterEvent
-func callbackQDialogButtonBoxDragEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::dragEnterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
@@ -466,15 +552,30 @@ func (ptr *QDialogButtonBox) DisconnectDragLeaveEvent() {
 }
 
 //export callbackQDialogButtonBoxDragLeaveEvent
-func callbackQDialogButtonBoxDragLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::dragLeaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
@@ -496,15 +597,30 @@ func (ptr *QDialogButtonBox) DisconnectDragMoveEvent() {
 }
 
 //export callbackQDialogButtonBoxDragMoveEvent
-func callbackQDialogButtonBoxDragMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::dragMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectDropEvent(f func(event *gui.QDropEvent)) {
@@ -526,15 +642,30 @@ func (ptr *QDialogButtonBox) DisconnectDropEvent() {
 }
 
 //export callbackQDialogButtonBoxDropEvent
-func callbackQDialogButtonBoxDropEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::dropEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) DropEvent(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) DropEventDefault(event gui.QDropEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectEnterEvent(f func(event *core.QEvent)) {
@@ -556,15 +687,30 @@ func (ptr *QDialogButtonBox) DisconnectEnterEvent() {
 }
 
 //export callbackQDialogButtonBoxEnterEvent
-func callbackQDialogButtonBoxEnterEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::enterEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) EnterEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) EnterEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::enterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
@@ -586,15 +732,30 @@ func (ptr *QDialogButtonBox) DisconnectFocusInEvent() {
 }
 
 //export callbackQDialogButtonBoxFocusInEvent
-func callbackQDialogButtonBoxFocusInEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::focusInEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
@@ -616,15 +777,30 @@ func (ptr *QDialogButtonBox) DisconnectFocusOutEvent() {
 }
 
 //export callbackQDialogButtonBoxFocusOutEvent
-func callbackQDialogButtonBoxFocusOutEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::focusOutEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectHideEvent(f func(event *gui.QHideEvent)) {
@@ -646,15 +822,30 @@ func (ptr *QDialogButtonBox) DisconnectHideEvent() {
 }
 
 //export callbackQDialogButtonBoxHideEvent
-func callbackQDialogButtonBoxHideEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxHideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::hideEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) HideEvent(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) HideEventDefault(event gui.QHideEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::hideEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectLeaveEvent(f func(event *core.QEvent)) {
@@ -676,15 +867,30 @@ func (ptr *QDialogButtonBox) DisconnectLeaveEvent() {
 }
 
 //export callbackQDialogButtonBoxLeaveEvent
-func callbackQDialogButtonBoxLeaveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::leaveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) LeaveEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) LeaveEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::leaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
@@ -706,15 +912,30 @@ func (ptr *QDialogButtonBox) DisconnectMoveEvent() {
 }
 
 //export callbackQDialogButtonBoxMoveEvent
-func callbackQDialogButtonBoxMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::moveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) MoveEvent(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::moveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
@@ -736,15 +957,30 @@ func (ptr *QDialogButtonBox) DisconnectPaintEvent() {
 }
 
 //export callbackQDialogButtonBoxPaintEvent
-func callbackQDialogButtonBoxPaintEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxPaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::paintEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) PaintEvent(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::paintEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectSetVisible(f func(visible bool)) {
@@ -766,7 +1002,7 @@ func (ptr *QDialogButtonBox) DisconnectSetVisible() {
 }
 
 //export callbackQDialogButtonBoxSetVisible
-func callbackQDialogButtonBoxSetVisible(ptrName *C.char, visible C.int) bool {
+func callbackQDialogButtonBoxSetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) bool {
 	defer qt.Recovering("callback QDialogButtonBox::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
@@ -775,6 +1011,22 @@ func callbackQDialogButtonBoxSetVisible(ptrName *C.char, visible C.int) bool {
 	}
 	return false
 
+}
+
+func (ptr *QDialogButtonBox) SetVisible(visible bool) {
+	defer qt.Recovering("QDialogButtonBox::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
+func (ptr *QDialogButtonBox) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QDialogButtonBox::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectShowEvent(f func(event *gui.QShowEvent)) {
@@ -796,15 +1048,30 @@ func (ptr *QDialogButtonBox) DisconnectShowEvent() {
 }
 
 //export callbackQDialogButtonBoxShowEvent
-func callbackQDialogButtonBoxShowEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::showEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) ShowEvent(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) ShowEventDefault(event gui.QShowEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::showEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
@@ -826,15 +1093,30 @@ func (ptr *QDialogButtonBox) DisconnectCloseEvent() {
 }
 
 //export callbackQDialogButtonBoxCloseEvent
-func callbackQDialogButtonBoxCloseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxCloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::closeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) CloseEvent(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::closeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
@@ -856,15 +1138,30 @@ func (ptr *QDialogButtonBox) DisconnectContextMenuEvent() {
 }
 
 //export callbackQDialogButtonBoxContextMenuEvent
-func callbackQDialogButtonBoxContextMenuEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::contextMenuEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectInitPainter(f func(painter *gui.QPainter)) {
@@ -886,15 +1183,30 @@ func (ptr *QDialogButtonBox) DisconnectInitPainter() {
 }
 
 //export callbackQDialogButtonBoxInitPainter
-func callbackQDialogButtonBoxInitPainter(ptrName *C.char, painter unsafe.Pointer) bool {
+func callbackQDialogButtonBoxInitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::initPainter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) InitPainter(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QDialogButtonBox::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QDialogButtonBox) InitPainterDefault(painter gui.QPainter_ITF) {
+	defer qt.Recovering("QDialogButtonBox::initPainter")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
@@ -916,15 +1228,30 @@ func (ptr *QDialogButtonBox) DisconnectInputMethodEvent() {
 }
 
 //export callbackQDialogButtonBoxInputMethodEvent
-func callbackQDialogButtonBoxInputMethodEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::inputMethodEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
@@ -946,15 +1273,30 @@ func (ptr *QDialogButtonBox) DisconnectKeyPressEvent() {
 }
 
 //export callbackQDialogButtonBoxKeyPressEvent
-func callbackQDialogButtonBoxKeyPressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::keyPressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
@@ -976,15 +1318,30 @@ func (ptr *QDialogButtonBox) DisconnectKeyReleaseEvent() {
 }
 
 //export callbackQDialogButtonBoxKeyReleaseEvent
-func callbackQDialogButtonBoxKeyReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::keyReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -1006,15 +1363,30 @@ func (ptr *QDialogButtonBox) DisconnectMouseDoubleClickEvent() {
 }
 
 //export callbackQDialogButtonBoxMouseDoubleClickEvent
-func callbackQDialogButtonBoxMouseDoubleClickEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
@@ -1036,15 +1408,30 @@ func (ptr *QDialogButtonBox) DisconnectMouseMoveEvent() {
 }
 
 //export callbackQDialogButtonBoxMouseMoveEvent
-func callbackQDialogButtonBoxMouseMoveEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::mouseMoveEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) MouseMoveEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
@@ -1066,15 +1453,30 @@ func (ptr *QDialogButtonBox) DisconnectMousePressEvent() {
 }
 
 //export callbackQDialogButtonBoxMousePressEvent
-func callbackQDialogButtonBoxMousePressEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::mousePressEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) MousePressEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) MousePressEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
@@ -1096,15 +1498,30 @@ func (ptr *QDialogButtonBox) DisconnectMouseReleaseEvent() {
 }
 
 //export callbackQDialogButtonBoxMouseReleaseEvent
-func callbackQDialogButtonBoxMouseReleaseEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
@@ -1126,15 +1543,30 @@ func (ptr *QDialogButtonBox) DisconnectResizeEvent() {
 }
 
 //export callbackQDialogButtonBoxResizeEvent
-func callbackQDialogButtonBoxResizeEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::resizeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) ResizeEvent(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::resizeEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
@@ -1156,15 +1588,30 @@ func (ptr *QDialogButtonBox) DisconnectTabletEvent() {
 }
 
 //export callbackQDialogButtonBoxTabletEvent
-func callbackQDialogButtonBoxTabletEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxTabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::tabletEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) TabletEvent(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) TabletEventDefault(event gui.QTabletEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::tabletEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
@@ -1186,15 +1633,30 @@ func (ptr *QDialogButtonBox) DisconnectWheelEvent() {
 }
 
 //export callbackQDialogButtonBoxWheelEvent
-func callbackQDialogButtonBoxWheelEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::wheelEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) WheelEvent(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) WheelEventDefault(event gui.QWheelEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -1216,15 +1678,30 @@ func (ptr *QDialogButtonBox) DisconnectTimerEvent() {
 }
 
 //export callbackQDialogButtonBoxTimerEvent
-func callbackQDialogButtonBoxTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -1246,15 +1723,30 @@ func (ptr *QDialogButtonBox) DisconnectChildEvent() {
 }
 
 //export callbackQDialogButtonBoxChildEvent
-func callbackQDialogButtonBoxChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QDialogButtonBox) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -1276,13 +1768,28 @@ func (ptr *QDialogButtonBox) DisconnectCustomEvent() {
 }
 
 //export callbackQDialogButtonBoxCustomEvent
-func callbackQDialogButtonBoxCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQDialogButtonBoxCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDialogButtonBox::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQDialogButtonBoxFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QDialogButtonBox) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QDialogButtonBox) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QDialogButtonBox::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

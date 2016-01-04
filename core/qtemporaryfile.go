@@ -152,15 +152,30 @@ func (ptr *QTemporaryFile) DisconnectClose() {
 }
 
 //export callbackQTemporaryFileClose
-func callbackQTemporaryFileClose(ptrName *C.char) bool {
+func callbackQTemporaryFileClose(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTemporaryFile::close")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQTemporaryFileFromPointer(ptr).CloseDefault()
 	}
-	return false
+}
 
+func (ptr *QTemporaryFile) Close() {
+	defer qt.Recovering("QTemporaryFile::close")
+
+	if ptr.Pointer() != nil {
+		C.QTemporaryFile_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QTemporaryFile) CloseDefault() {
+	defer qt.Recovering("QTemporaryFile::close")
+
+	if ptr.Pointer() != nil {
+		C.QTemporaryFile_CloseDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QTemporaryFile) ConnectTimerEvent(f func(event *QTimerEvent)) {
@@ -182,15 +197,30 @@ func (ptr *QTemporaryFile) DisconnectTimerEvent() {
 }
 
 //export callbackQTemporaryFileTimerEvent
-func callbackQTemporaryFileTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTemporaryFileTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTemporaryFile::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTemporaryFileFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTemporaryFile) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QTemporaryFile::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTemporaryFile_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTemporaryFile) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QTemporaryFile::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTemporaryFile_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTemporaryFile) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -212,15 +242,30 @@ func (ptr *QTemporaryFile) DisconnectChildEvent() {
 }
 
 //export callbackQTemporaryFileChildEvent
-func callbackQTemporaryFileChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTemporaryFileChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTemporaryFile::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTemporaryFileFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTemporaryFile) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QTemporaryFile::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTemporaryFile_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTemporaryFile) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QTemporaryFile::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTemporaryFile_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTemporaryFile) ConnectCustomEvent(f func(event *QEvent)) {
@@ -242,13 +287,28 @@ func (ptr *QTemporaryFile) DisconnectCustomEvent() {
 }
 
 //export callbackQTemporaryFileCustomEvent
-func callbackQTemporaryFileCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTemporaryFileCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTemporaryFile::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTemporaryFileFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTemporaryFile) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QTemporaryFile::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTemporaryFile_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTemporaryFile) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QTemporaryFile::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTemporaryFile_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

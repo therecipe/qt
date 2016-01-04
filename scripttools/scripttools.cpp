@@ -1,3 +1,5 @@
+#define protected public
+
 #include "scripttools.h"
 #include "_cgo_export.h"
 
@@ -13,12 +15,11 @@
 
 class MyQScriptEngineDebugger: public QScriptEngineDebugger {
 public:
-	void Signal_EvaluationResumed() { callbackQScriptEngineDebuggerEvaluationResumed(this->objectName().toUtf8().data()); };
-	void Signal_EvaluationSuspended() { callbackQScriptEngineDebuggerEvaluationSuspended(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQScriptEngineDebuggerTimerEvent(this->objectName().toUtf8().data(), event)) { QScriptEngineDebugger::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQScriptEngineDebuggerChildEvent(this->objectName().toUtf8().data(), event)) { QScriptEngineDebugger::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQScriptEngineDebuggerCustomEvent(this->objectName().toUtf8().data(), event)) { QScriptEngineDebugger::customEvent(event); }; };
+	void Signal_EvaluationResumed() { callbackQScriptEngineDebuggerEvaluationResumed(this, this->objectName().toUtf8().data()); };
+	void Signal_EvaluationSuspended() { callbackQScriptEngineDebuggerEvaluationSuspended(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQScriptEngineDebuggerTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQScriptEngineDebuggerChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQScriptEngineDebuggerCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent){
@@ -57,12 +58,20 @@ void QScriptEngineDebugger_DisconnectEvaluationResumed(void* ptr){
 	QObject::disconnect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationResumed), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationResumed));;
 }
 
+void QScriptEngineDebugger_EvaluationResumed(void* ptr){
+	static_cast<QScriptEngineDebugger*>(ptr)->evaluationResumed();
+}
+
 void QScriptEngineDebugger_ConnectEvaluationSuspended(void* ptr){
 	QObject::connect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationSuspended), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationSuspended));;
 }
 
 void QScriptEngineDebugger_DisconnectEvaluationSuspended(void* ptr){
 	QObject::disconnect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationSuspended), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationSuspended));;
+}
+
+void QScriptEngineDebugger_EvaluationSuspended(void* ptr){
+	static_cast<QScriptEngineDebugger*>(ptr)->evaluationSuspended();
 }
 
 void QScriptEngineDebugger_SetAutoShowStandardWindow(void* ptr, int autoShow){
@@ -83,5 +92,29 @@ void* QScriptEngineDebugger_Widget(void* ptr, int widget){
 
 void QScriptEngineDebugger_DestroyQScriptEngineDebugger(void* ptr){
 	static_cast<QScriptEngineDebugger*>(ptr)->~QScriptEngineDebugger();
+}
+
+void QScriptEngineDebugger_TimerEvent(void* ptr, void* event){
+	static_cast<MyQScriptEngineDebugger*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QScriptEngineDebugger_TimerEventDefault(void* ptr, void* event){
+	static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QScriptEngineDebugger_ChildEvent(void* ptr, void* event){
+	static_cast<MyQScriptEngineDebugger*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QScriptEngineDebugger_ChildEventDefault(void* ptr, void* event){
+	static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QScriptEngineDebugger_CustomEvent(void* ptr, void* event){
+	static_cast<MyQScriptEngineDebugger*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QScriptEngineDebugger_CustomEventDefault(void* ptr, void* event){
+	static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::customEvent(static_cast<QEvent*>(event));
 }
 

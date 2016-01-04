@@ -1,3 +1,5 @@
+#define protected public
+
 #include "websockets.h"
 #include "_cgo_export.h"
 
@@ -21,10 +23,9 @@
 
 class MyQMaskGenerator: public QMaskGenerator {
 public:
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQMaskGeneratorTimerEvent(this->objectName().toUtf8().data(), event)) { QMaskGenerator::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQMaskGeneratorChildEvent(this->objectName().toUtf8().data(), event)) { QMaskGenerator::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQMaskGeneratorCustomEvent(this->objectName().toUtf8().data(), event)) { QMaskGenerator::customEvent(event); }; };
+	void timerEvent(QTimerEvent * event) { callbackQMaskGeneratorTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQMaskGeneratorChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQMaskGeneratorCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 int QMaskGenerator_Seed(void* ptr){
@@ -35,23 +36,46 @@ void QMaskGenerator_DestroyQMaskGenerator(void* ptr){
 	static_cast<QMaskGenerator*>(ptr)->~QMaskGenerator();
 }
 
+void QMaskGenerator_TimerEvent(void* ptr, void* event){
+	static_cast<MyQMaskGenerator*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QMaskGenerator_TimerEventDefault(void* ptr, void* event){
+	static_cast<QMaskGenerator*>(ptr)->QMaskGenerator::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QMaskGenerator_ChildEvent(void* ptr, void* event){
+	static_cast<MyQMaskGenerator*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QMaskGenerator_ChildEventDefault(void* ptr, void* event){
+	static_cast<QMaskGenerator*>(ptr)->QMaskGenerator::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QMaskGenerator_CustomEvent(void* ptr, void* event){
+	static_cast<MyQMaskGenerator*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QMaskGenerator_CustomEventDefault(void* ptr, void* event){
+	static_cast<QMaskGenerator*>(ptr)->QMaskGenerator::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQWebSocket: public QWebSocket {
 public:
-	void Signal_AboutToClose() { callbackQWebSocketAboutToClose(this->objectName().toUtf8().data()); };
-	void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame) { callbackQWebSocketBinaryFrameReceived(this->objectName().toUtf8().data(), new QByteArray(frame), isLastFrame); };
-	void Signal_BinaryMessageReceived(const QByteArray & message) { callbackQWebSocketBinaryMessageReceived(this->objectName().toUtf8().data(), new QByteArray(message)); };
-	void Signal_BytesWritten(qint64 bytes) { callbackQWebSocketBytesWritten(this->objectName().toUtf8().data(), static_cast<long long>(bytes)); };
-	void Signal_Connected() { callbackQWebSocketConnected(this->objectName().toUtf8().data()); };
-	void Signal_Disconnected() { callbackQWebSocketDisconnected(this->objectName().toUtf8().data()); };
-	void Signal_Error2(QAbstractSocket::SocketError error) { callbackQWebSocketError2(this->objectName().toUtf8().data(), error); };
-	void Signal_ReadChannelFinished() { callbackQWebSocketReadChannelFinished(this->objectName().toUtf8().data()); };
-	void Signal_StateChanged(QAbstractSocket::SocketState state) { callbackQWebSocketStateChanged(this->objectName().toUtf8().data(), state); };
-	void Signal_TextFrameReceived(const QString & frame, bool isLastFrame) { callbackQWebSocketTextFrameReceived(this->objectName().toUtf8().data(), frame.toUtf8().data(), isLastFrame); };
-	void Signal_TextMessageReceived(const QString & message) { callbackQWebSocketTextMessageReceived(this->objectName().toUtf8().data(), message.toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQWebSocketTimerEvent(this->objectName().toUtf8().data(), event)) { QWebSocket::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQWebSocketChildEvent(this->objectName().toUtf8().data(), event)) { QWebSocket::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQWebSocketCustomEvent(this->objectName().toUtf8().data(), event)) { QWebSocket::customEvent(event); }; };
+	void Signal_AboutToClose() { callbackQWebSocketAboutToClose(this, this->objectName().toUtf8().data()); };
+	void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame) { callbackQWebSocketBinaryFrameReceived(this, this->objectName().toUtf8().data(), new QByteArray(frame), isLastFrame); };
+	void Signal_BinaryMessageReceived(const QByteArray & message) { callbackQWebSocketBinaryMessageReceived(this, this->objectName().toUtf8().data(), new QByteArray(message)); };
+	void Signal_BytesWritten(qint64 bytes) { callbackQWebSocketBytesWritten(this, this->objectName().toUtf8().data(), static_cast<long long>(bytes)); };
+	void Signal_Connected() { callbackQWebSocketConnected(this, this->objectName().toUtf8().data()); };
+	void Signal_Disconnected() { callbackQWebSocketDisconnected(this, this->objectName().toUtf8().data()); };
+	void Signal_Error2(QAbstractSocket::SocketError error) { callbackQWebSocketError2(this, this->objectName().toUtf8().data(), error); };
+	void Signal_ReadChannelFinished() { callbackQWebSocketReadChannelFinished(this, this->objectName().toUtf8().data()); };
+	void Signal_StateChanged(QAbstractSocket::SocketState state) { callbackQWebSocketStateChanged(this, this->objectName().toUtf8().data(), state); };
+	void Signal_TextFrameReceived(const QString & frame, bool isLastFrame) { callbackQWebSocketTextFrameReceived(this, this->objectName().toUtf8().data(), frame.toUtf8().data(), isLastFrame); };
+	void Signal_TextMessageReceived(const QString & message) { callbackQWebSocketTextMessageReceived(this, this->objectName().toUtf8().data(), message.toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQWebSocketTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQWebSocketChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQWebSocketCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void QWebSocket_Abort(void* ptr){
@@ -66,12 +90,20 @@ void QWebSocket_DisconnectAboutToClose(void* ptr){
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::aboutToClose), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_AboutToClose));;
 }
 
+void QWebSocket_AboutToClose(void* ptr){
+	static_cast<QWebSocket*>(ptr)->aboutToClose();
+}
+
 void QWebSocket_ConnectBinaryFrameReceived(void* ptr){
 	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QByteArray &, bool)>(&QWebSocket::binaryFrameReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QByteArray &, bool)>(&MyQWebSocket::Signal_BinaryFrameReceived));;
 }
 
 void QWebSocket_DisconnectBinaryFrameReceived(void* ptr){
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QByteArray &, bool)>(&QWebSocket::binaryFrameReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QByteArray &, bool)>(&MyQWebSocket::Signal_BinaryFrameReceived));;
+}
+
+void QWebSocket_BinaryFrameReceived(void* ptr, void* frame, int isLastFrame){
+	static_cast<QWebSocket*>(ptr)->binaryFrameReceived(*static_cast<QByteArray*>(frame), isLastFrame != 0);
 }
 
 void QWebSocket_ConnectBinaryMessageReceived(void* ptr){
@@ -82,12 +114,20 @@ void QWebSocket_DisconnectBinaryMessageReceived(void* ptr){
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QByteArray &)>(&QWebSocket::binaryMessageReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QByteArray &)>(&MyQWebSocket::Signal_BinaryMessageReceived));;
 }
 
+void QWebSocket_BinaryMessageReceived(void* ptr, void* message){
+	static_cast<QWebSocket*>(ptr)->binaryMessageReceived(*static_cast<QByteArray*>(message));
+}
+
 void QWebSocket_ConnectBytesWritten(void* ptr){
 	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(qint64)>(&QWebSocket::bytesWritten), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(qint64)>(&MyQWebSocket::Signal_BytesWritten));;
 }
 
 void QWebSocket_DisconnectBytesWritten(void* ptr){
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(qint64)>(&QWebSocket::bytesWritten), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(qint64)>(&MyQWebSocket::Signal_BytesWritten));;
+}
+
+void QWebSocket_BytesWritten(void* ptr, long long bytes){
+	static_cast<QWebSocket*>(ptr)->bytesWritten(static_cast<long long>(bytes));
 }
 
 char* QWebSocket_CloseReason(void* ptr){
@@ -102,6 +142,10 @@ void QWebSocket_DisconnectConnected(void* ptr){
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::connected), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_Connected));;
 }
 
+void QWebSocket_Connected(void* ptr){
+	static_cast<QWebSocket*>(ptr)->connected();
+}
+
 void QWebSocket_ConnectDisconnected(void* ptr){
 	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::disconnected), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_Disconnected));;
 }
@@ -110,12 +154,20 @@ void QWebSocket_DisconnectDisconnected(void* ptr){
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::disconnected), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_Disconnected));;
 }
 
+void QWebSocket_Disconnected(void* ptr){
+	static_cast<QWebSocket*>(ptr)->disconnected();
+}
+
 void QWebSocket_ConnectError2(void* ptr){
 	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(QAbstractSocket::SocketError)>(&MyQWebSocket::Signal_Error2));;
 }
 
 void QWebSocket_DisconnectError2(void* ptr){
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(QAbstractSocket::SocketError)>(&MyQWebSocket::Signal_Error2));;
+}
+
+void QWebSocket_Error2(void* ptr, int error){
+	static_cast<QWebSocket*>(ptr)->error(static_cast<QAbstractSocket::SocketError>(error));
 }
 
 int QWebSocket_Error(void* ptr){
@@ -174,6 +226,10 @@ void QWebSocket_DisconnectReadChannelFinished(void* ptr){
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::readChannelFinished), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_ReadChannelFinished));;
 }
 
+void QWebSocket_ReadChannelFinished(void* ptr){
+	static_cast<QWebSocket*>(ptr)->readChannelFinished();
+}
+
 void* QWebSocket_RequestUrl(void* ptr){
 	return new QUrl(static_cast<QWebSocket*>(ptr)->requestUrl());
 }
@@ -226,12 +282,20 @@ void QWebSocket_DisconnectStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(QAbstractSocket::SocketState)>(&QWebSocket::stateChanged), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(QAbstractSocket::SocketState)>(&MyQWebSocket::Signal_StateChanged));;
 }
 
+void QWebSocket_StateChanged(void* ptr, int state){
+	static_cast<QWebSocket*>(ptr)->stateChanged(static_cast<QAbstractSocket::SocketState>(state));
+}
+
 void QWebSocket_ConnectTextFrameReceived(void* ptr){
 	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QString &, bool)>(&QWebSocket::textFrameReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QString &, bool)>(&MyQWebSocket::Signal_TextFrameReceived));;
 }
 
 void QWebSocket_DisconnectTextFrameReceived(void* ptr){
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QString &, bool)>(&QWebSocket::textFrameReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QString &, bool)>(&MyQWebSocket::Signal_TextFrameReceived));;
+}
+
+void QWebSocket_TextFrameReceived(void* ptr, char* frame, int isLastFrame){
+	static_cast<QWebSocket*>(ptr)->textFrameReceived(QString(frame), isLastFrame != 0);
 }
 
 void QWebSocket_ConnectTextMessageReceived(void* ptr){
@@ -242,8 +306,36 @@ void QWebSocket_DisconnectTextMessageReceived(void* ptr){
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QString &)>(&QWebSocket::textMessageReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QString &)>(&MyQWebSocket::Signal_TextMessageReceived));;
 }
 
+void QWebSocket_TextMessageReceived(void* ptr, char* message){
+	static_cast<QWebSocket*>(ptr)->textMessageReceived(QString(message));
+}
+
 void QWebSocket_DestroyQWebSocket(void* ptr){
 	static_cast<QWebSocket*>(ptr)->~QWebSocket();
+}
+
+void QWebSocket_TimerEvent(void* ptr, void* event){
+	static_cast<MyQWebSocket*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QWebSocket_TimerEventDefault(void* ptr, void* event){
+	static_cast<QWebSocket*>(ptr)->QWebSocket::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QWebSocket_ChildEvent(void* ptr, void* event){
+	static_cast<MyQWebSocket*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QWebSocket_ChildEventDefault(void* ptr, void* event){
+	static_cast<QWebSocket*>(ptr)->QWebSocket::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QWebSocket_CustomEvent(void* ptr, void* event){
+	static_cast<MyQWebSocket*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QWebSocket_CustomEventDefault(void* ptr, void* event){
+	static_cast<QWebSocket*>(ptr)->QWebSocket::customEvent(static_cast<QEvent*>(event));
 }
 
 void* QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator3(void* other){
@@ -281,14 +373,13 @@ void QWebSocketCorsAuthenticator_DestroyQWebSocketCorsAuthenticator(void* ptr){
 class MyQWebSocketServer: public QWebSocketServer {
 public:
 	MyQWebSocketServer(const QString &serverName, SslMode secureMode, QObject *parent) : QWebSocketServer(serverName, secureMode, parent) {};
-	void Signal_AcceptError(QAbstractSocket::SocketError socketError) { callbackQWebSocketServerAcceptError(this->objectName().toUtf8().data(), socketError); };
-	void Signal_Closed() { callbackQWebSocketServerClosed(this->objectName().toUtf8().data()); };
-	void Signal_NewConnection() { callbackQWebSocketServerNewConnection(this->objectName().toUtf8().data()); };
-	void Signal_OriginAuthenticationRequired(QWebSocketCorsAuthenticator * authenticator) { callbackQWebSocketServerOriginAuthenticationRequired(this->objectName().toUtf8().data(), authenticator); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQWebSocketServerTimerEvent(this->objectName().toUtf8().data(), event)) { QWebSocketServer::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQWebSocketServerChildEvent(this->objectName().toUtf8().data(), event)) { QWebSocketServer::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQWebSocketServerCustomEvent(this->objectName().toUtf8().data(), event)) { QWebSocketServer::customEvent(event); }; };
+	void Signal_AcceptError(QAbstractSocket::SocketError socketError) { callbackQWebSocketServerAcceptError(this, this->objectName().toUtf8().data(), socketError); };
+	void Signal_Closed() { callbackQWebSocketServerClosed(this, this->objectName().toUtf8().data()); };
+	void Signal_NewConnection() { callbackQWebSocketServerNewConnection(this, this->objectName().toUtf8().data()); };
+	void Signal_OriginAuthenticationRequired(QWebSocketCorsAuthenticator * authenticator) { callbackQWebSocketServerOriginAuthenticationRequired(this, this->objectName().toUtf8().data(), authenticator); };
+	void timerEvent(QTimerEvent * event) { callbackQWebSocketServerTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQWebSocketServerChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQWebSocketServerCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QWebSocketServer_NewQWebSocketServer(char* serverName, int secureMode, void* parent){
@@ -303,6 +394,10 @@ void QWebSocketServer_DisconnectAcceptError(void* ptr){
 	QObject::disconnect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QAbstractSocket::SocketError)>(&QWebSocketServer::acceptError), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QAbstractSocket::SocketError)>(&MyQWebSocketServer::Signal_AcceptError));;
 }
 
+void QWebSocketServer_AcceptError(void* ptr, int socketError){
+	static_cast<QWebSocketServer*>(ptr)->acceptError(static_cast<QAbstractSocket::SocketError>(socketError));
+}
+
 void QWebSocketServer_Close(void* ptr){
 	static_cast<QWebSocketServer*>(ptr)->close();
 }
@@ -313,6 +408,10 @@ void QWebSocketServer_ConnectClosed(void* ptr){
 
 void QWebSocketServer_DisconnectClosed(void* ptr){
 	QObject::disconnect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)()>(&QWebSocketServer::closed), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)()>(&MyQWebSocketServer::Signal_Closed));;
+}
+
+void QWebSocketServer_Closed(void* ptr){
+	static_cast<QWebSocketServer*>(ptr)->closed();
 }
 
 char* QWebSocketServer_ErrorString(void* ptr){
@@ -339,6 +438,10 @@ void QWebSocketServer_DisconnectNewConnection(void* ptr){
 	QObject::disconnect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)()>(&QWebSocketServer::newConnection), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)()>(&MyQWebSocketServer::Signal_NewConnection));;
 }
 
+void QWebSocketServer_NewConnection(void* ptr){
+	static_cast<QWebSocketServer*>(ptr)->newConnection();
+}
+
 void* QWebSocketServer_NextPendingConnection(void* ptr){
 	return static_cast<QWebSocketServer*>(ptr)->nextPendingConnection();
 }
@@ -349,6 +452,10 @@ void QWebSocketServer_ConnectOriginAuthenticationRequired(void* ptr){
 
 void QWebSocketServer_DisconnectOriginAuthenticationRequired(void* ptr){
 	QObject::disconnect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QWebSocketCorsAuthenticator *)>(&QWebSocketServer::originAuthenticationRequired), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QWebSocketCorsAuthenticator *)>(&MyQWebSocketServer::Signal_OriginAuthenticationRequired));;
+}
+
+void QWebSocketServer_OriginAuthenticationRequired(void* ptr, void* authenticator){
+	static_cast<QWebSocketServer*>(ptr)->originAuthenticationRequired(static_cast<QWebSocketCorsAuthenticator*>(authenticator));
 }
 
 void QWebSocketServer_PauseAccepting(void* ptr){
@@ -397,5 +504,29 @@ int QWebSocketServer_SocketDescriptor(void* ptr){
 
 void QWebSocketServer_DestroyQWebSocketServer(void* ptr){
 	static_cast<QWebSocketServer*>(ptr)->~QWebSocketServer();
+}
+
+void QWebSocketServer_TimerEvent(void* ptr, void* event){
+	static_cast<MyQWebSocketServer*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QWebSocketServer_TimerEventDefault(void* ptr, void* event){
+	static_cast<QWebSocketServer*>(ptr)->QWebSocketServer::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QWebSocketServer_ChildEvent(void* ptr, void* event){
+	static_cast<MyQWebSocketServer*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QWebSocketServer_ChildEventDefault(void* ptr, void* event){
+	static_cast<QWebSocketServer*>(ptr)->QWebSocketServer::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QWebSocketServer_CustomEvent(void* ptr, void* event){
+	static_cast<MyQWebSocketServer*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QWebSocketServer_CustomEventDefault(void* ptr, void* event){
+	static_cast<QWebSocketServer*>(ptr)->QWebSocketServer::customEvent(static_cast<QEvent*>(event));
 }
 

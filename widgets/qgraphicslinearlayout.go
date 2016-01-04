@@ -118,15 +118,30 @@ func (ptr *QGraphicsLinearLayout) DisconnectInvalidate() {
 }
 
 //export callbackQGraphicsLinearLayoutInvalidate
-func callbackQGraphicsLinearLayoutInvalidate(ptrName *C.char) bool {
+func callbackQGraphicsLinearLayoutInvalidate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGraphicsLinearLayout::invalidate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "invalidate"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQGraphicsLinearLayoutFromPointer(ptr).InvalidateDefault()
 	}
-	return false
+}
 
+func (ptr *QGraphicsLinearLayout) Invalidate() {
+	defer qt.Recovering("QGraphicsLinearLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsLinearLayout_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsLinearLayout) InvalidateDefault() {
+	defer qt.Recovering("QGraphicsLinearLayout::invalidate")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsLinearLayout_InvalidateDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QGraphicsLinearLayout) ItemAt(index int) *QGraphicsLayoutItem {
@@ -175,15 +190,30 @@ func (ptr *QGraphicsLinearLayout) DisconnectRemoveAt() {
 }
 
 //export callbackQGraphicsLinearLayoutRemoveAt
-func callbackQGraphicsLinearLayoutRemoveAt(ptrName *C.char, index C.int) bool {
+func callbackQGraphicsLinearLayoutRemoveAt(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
 	defer qt.Recovering("callback QGraphicsLinearLayout::removeAt")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "removeAt"); signal != nil {
 		signal.(func(int))(int(index))
-		return true
+	} else {
+		NewQGraphicsLinearLayoutFromPointer(ptr).RemoveAtDefault(int(index))
 	}
-	return false
+}
 
+func (ptr *QGraphicsLinearLayout) RemoveAt(index int) {
+	defer qt.Recovering("QGraphicsLinearLayout::removeAt")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsLinearLayout_RemoveAt(ptr.Pointer(), C.int(index))
+	}
+}
+
+func (ptr *QGraphicsLinearLayout) RemoveAtDefault(index int) {
+	defer qt.Recovering("QGraphicsLinearLayout::removeAt")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsLinearLayout_RemoveAtDefault(ptr.Pointer(), C.int(index))
+	}
 }
 
 func (ptr *QGraphicsLinearLayout) RemoveItem(item QGraphicsLayoutItem_ITF) {

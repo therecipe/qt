@@ -191,13 +191,21 @@ func (ptr *QStyleHints) DisconnectCursorFlashTimeChanged() {
 }
 
 //export callbackQStyleHintsCursorFlashTimeChanged
-func callbackQStyleHintsCursorFlashTimeChanged(ptrName *C.char, cursorFlashTime C.int) {
+func callbackQStyleHintsCursorFlashTimeChanged(ptr unsafe.Pointer, ptrName *C.char, cursorFlashTime C.int) {
 	defer qt.Recovering("callback QStyleHints::cursorFlashTimeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "cursorFlashTimeChanged"); signal != nil {
 		signal.(func(int))(int(cursorFlashTime))
 	}
 
+}
+
+func (ptr *QStyleHints) CursorFlashTimeChanged(cursorFlashTime int) {
+	defer qt.Recovering("QStyleHints::cursorFlashTimeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_CursorFlashTimeChanged(ptr.Pointer(), C.int(cursorFlashTime))
+	}
 }
 
 func (ptr *QStyleHints) ConnectKeyboardInputIntervalChanged(f func(keyboardInputInterval int)) {
@@ -219,13 +227,21 @@ func (ptr *QStyleHints) DisconnectKeyboardInputIntervalChanged() {
 }
 
 //export callbackQStyleHintsKeyboardInputIntervalChanged
-func callbackQStyleHintsKeyboardInputIntervalChanged(ptrName *C.char, keyboardInputInterval C.int) {
+func callbackQStyleHintsKeyboardInputIntervalChanged(ptr unsafe.Pointer, ptrName *C.char, keyboardInputInterval C.int) {
 	defer qt.Recovering("callback QStyleHints::keyboardInputIntervalChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "keyboardInputIntervalChanged"); signal != nil {
 		signal.(func(int))(int(keyboardInputInterval))
 	}
 
+}
+
+func (ptr *QStyleHints) KeyboardInputIntervalChanged(keyboardInputInterval int) {
+	defer qt.Recovering("QStyleHints::keyboardInputIntervalChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_KeyboardInputIntervalChanged(ptr.Pointer(), C.int(keyboardInputInterval))
+	}
 }
 
 func (ptr *QStyleHints) ConnectMouseDoubleClickIntervalChanged(f func(mouseDoubleClickInterval int)) {
@@ -247,13 +263,21 @@ func (ptr *QStyleHints) DisconnectMouseDoubleClickIntervalChanged() {
 }
 
 //export callbackQStyleHintsMouseDoubleClickIntervalChanged
-func callbackQStyleHintsMouseDoubleClickIntervalChanged(ptrName *C.char, mouseDoubleClickInterval C.int) {
+func callbackQStyleHintsMouseDoubleClickIntervalChanged(ptr unsafe.Pointer, ptrName *C.char, mouseDoubleClickInterval C.int) {
 	defer qt.Recovering("callback QStyleHints::mouseDoubleClickIntervalChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickIntervalChanged"); signal != nil {
 		signal.(func(int))(int(mouseDoubleClickInterval))
 	}
 
+}
+
+func (ptr *QStyleHints) MouseDoubleClickIntervalChanged(mouseDoubleClickInterval int) {
+	defer qt.Recovering("QStyleHints::mouseDoubleClickIntervalChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_MouseDoubleClickIntervalChanged(ptr.Pointer(), C.int(mouseDoubleClickInterval))
+	}
 }
 
 func (ptr *QStyleHints) ConnectStartDragDistanceChanged(f func(startDragDistance int)) {
@@ -275,13 +299,21 @@ func (ptr *QStyleHints) DisconnectStartDragDistanceChanged() {
 }
 
 //export callbackQStyleHintsStartDragDistanceChanged
-func callbackQStyleHintsStartDragDistanceChanged(ptrName *C.char, startDragDistance C.int) {
+func callbackQStyleHintsStartDragDistanceChanged(ptr unsafe.Pointer, ptrName *C.char, startDragDistance C.int) {
 	defer qt.Recovering("callback QStyleHints::startDragDistanceChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startDragDistanceChanged"); signal != nil {
 		signal.(func(int))(int(startDragDistance))
 	}
 
+}
+
+func (ptr *QStyleHints) StartDragDistanceChanged(startDragDistance int) {
+	defer qt.Recovering("QStyleHints::startDragDistanceChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_StartDragDistanceChanged(ptr.Pointer(), C.int(startDragDistance))
+	}
 }
 
 func (ptr *QStyleHints) ConnectStartDragTimeChanged(f func(startDragTime int)) {
@@ -303,13 +335,21 @@ func (ptr *QStyleHints) DisconnectStartDragTimeChanged() {
 }
 
 //export callbackQStyleHintsStartDragTimeChanged
-func callbackQStyleHintsStartDragTimeChanged(ptrName *C.char, startDragTime C.int) {
+func callbackQStyleHintsStartDragTimeChanged(ptr unsafe.Pointer, ptrName *C.char, startDragTime C.int) {
 	defer qt.Recovering("callback QStyleHints::startDragTimeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startDragTimeChanged"); signal != nil {
 		signal.(func(int))(int(startDragTime))
 	}
 
+}
+
+func (ptr *QStyleHints) StartDragTimeChanged(startDragTime int) {
+	defer qt.Recovering("QStyleHints::startDragTimeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_StartDragTimeChanged(ptr.Pointer(), C.int(startDragTime))
+	}
 }
 
 func (ptr *QStyleHints) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
@@ -331,15 +371,30 @@ func (ptr *QStyleHints) DisconnectTimerEvent() {
 }
 
 //export callbackQStyleHintsTimerEvent
-func callbackQStyleHintsTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStyleHintsTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStyleHints::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQStyleHintsFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStyleHints) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStyleHints::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QStyleHints) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QStyleHints::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QStyleHints) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -361,15 +416,30 @@ func (ptr *QStyleHints) DisconnectChildEvent() {
 }
 
 //export callbackQStyleHintsChildEvent
-func callbackQStyleHintsChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStyleHintsChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStyleHints::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQStyleHintsFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStyleHints) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QStyleHints::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QStyleHints) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QStyleHints::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QStyleHints) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -391,13 +461,28 @@ func (ptr *QStyleHints) DisconnectCustomEvent() {
 }
 
 //export callbackQStyleHintsCustomEvent
-func callbackQStyleHintsCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQStyleHintsCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QStyleHints::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQStyleHintsFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QStyleHints) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QStyleHints::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QStyleHints) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QStyleHints::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

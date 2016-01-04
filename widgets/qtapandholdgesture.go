@@ -85,15 +85,30 @@ func (ptr *QTapAndHoldGesture) DisconnectTimerEvent() {
 }
 
 //export callbackQTapAndHoldGestureTimerEvent
-func callbackQTapAndHoldGestureTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTapAndHoldGestureTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTapAndHoldGesture::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQTapAndHoldGestureFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTapAndHoldGesture) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTapAndHoldGesture::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapAndHoldGesture_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QTapAndHoldGesture) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QTapAndHoldGesture::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapAndHoldGesture_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QTapAndHoldGesture) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -115,15 +130,30 @@ func (ptr *QTapAndHoldGesture) DisconnectChildEvent() {
 }
 
 //export callbackQTapAndHoldGestureChildEvent
-func callbackQTapAndHoldGestureChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTapAndHoldGestureChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTapAndHoldGesture::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQTapAndHoldGestureFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTapAndHoldGesture) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTapAndHoldGesture::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapAndHoldGesture_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QTapAndHoldGesture) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QTapAndHoldGesture::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapAndHoldGesture_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QTapAndHoldGesture) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -145,13 +175,28 @@ func (ptr *QTapAndHoldGesture) DisconnectCustomEvent() {
 }
 
 //export callbackQTapAndHoldGestureCustomEvent
-func callbackQTapAndHoldGestureCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQTapAndHoldGestureCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTapAndHoldGesture::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQTapAndHoldGestureFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QTapAndHoldGesture) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QTapAndHoldGesture::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapAndHoldGesture_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QTapAndHoldGesture) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QTapAndHoldGesture::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QTapAndHoldGesture_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

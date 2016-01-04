@@ -88,13 +88,21 @@ func (ptr *QLowEnergyController) DisconnectConnected() {
 }
 
 //export callbackQLowEnergyControllerConnected
-func callbackQLowEnergyControllerConnected(ptrName *C.char) {
+func callbackQLowEnergyControllerConnected(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QLowEnergyController::connected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "connected"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QLowEnergyController) Connected() {
+	defer qt.Recovering("QLowEnergyController::connected")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_Connected(ptr.Pointer())
+	}
 }
 
 func (ptr *QLowEnergyController) ConnectDisconnected(f func()) {
@@ -116,13 +124,21 @@ func (ptr *QLowEnergyController) DisconnectDisconnected() {
 }
 
 //export callbackQLowEnergyControllerDisconnected
-func callbackQLowEnergyControllerDisconnected(ptrName *C.char) {
+func callbackQLowEnergyControllerDisconnected(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QLowEnergyController::disconnected")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "disconnected"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QLowEnergyController) Disconnected() {
+	defer qt.Recovering("QLowEnergyController::disconnected")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_Disconnected(ptr.Pointer())
+	}
 }
 
 func (ptr *QLowEnergyController) ConnectDiscoveryFinished(f func()) {
@@ -144,13 +160,21 @@ func (ptr *QLowEnergyController) DisconnectDiscoveryFinished() {
 }
 
 //export callbackQLowEnergyControllerDiscoveryFinished
-func callbackQLowEnergyControllerDiscoveryFinished(ptrName *C.char) {
+func callbackQLowEnergyControllerDiscoveryFinished(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QLowEnergyController::discoveryFinished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "discoveryFinished"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QLowEnergyController) DiscoveryFinished() {
+	defer qt.Recovering("QLowEnergyController::discoveryFinished")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_DiscoveryFinished(ptr.Pointer())
+	}
 }
 
 func (ptr *QLowEnergyController) ConnectError2(f func(newError QLowEnergyController__Error)) {
@@ -172,13 +196,21 @@ func (ptr *QLowEnergyController) DisconnectError2() {
 }
 
 //export callbackQLowEnergyControllerError2
-func callbackQLowEnergyControllerError2(ptrName *C.char, newError C.int) {
+func callbackQLowEnergyControllerError2(ptr unsafe.Pointer, ptrName *C.char, newError C.int) {
 	defer qt.Recovering("callback QLowEnergyController::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QLowEnergyController__Error))(QLowEnergyController__Error(newError))
 	}
 
+}
+
+func (ptr *QLowEnergyController) Error2(newError QLowEnergyController__Error) {
+	defer qt.Recovering("QLowEnergyController::error")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_Error2(ptr.Pointer(), C.int(newError))
+	}
 }
 
 func (ptr *QLowEnergyController) ConnectStateChanged(f func(state QLowEnergyController__ControllerState)) {
@@ -200,13 +232,21 @@ func (ptr *QLowEnergyController) DisconnectStateChanged() {
 }
 
 //export callbackQLowEnergyControllerStateChanged
-func callbackQLowEnergyControllerStateChanged(ptrName *C.char, state C.int) {
+func callbackQLowEnergyControllerStateChanged(ptr unsafe.Pointer, ptrName *C.char, state C.int) {
 	defer qt.Recovering("callback QLowEnergyController::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QLowEnergyController__ControllerState))(QLowEnergyController__ControllerState(state))
 	}
 
+}
+
+func (ptr *QLowEnergyController) StateChanged(state QLowEnergyController__ControllerState) {
+	defer qt.Recovering("QLowEnergyController::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_StateChanged(ptr.Pointer(), C.int(state))
+	}
 }
 
 func NewQLowEnergyController(remoteDeviceInfo QBluetoothDeviceInfo_ITF, parent core.QObject_ITF) *QLowEnergyController {
@@ -329,15 +369,30 @@ func (ptr *QLowEnergyController) DisconnectTimerEvent() {
 }
 
 //export callbackQLowEnergyControllerTimerEvent
-func callbackQLowEnergyControllerTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLowEnergyControllerTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLowEnergyController::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQLowEnergyControllerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLowEnergyController) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLowEnergyController::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QLowEnergyController) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLowEnergyController::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QLowEnergyController) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -359,15 +414,30 @@ func (ptr *QLowEnergyController) DisconnectChildEvent() {
 }
 
 //export callbackQLowEnergyControllerChildEvent
-func callbackQLowEnergyControllerChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLowEnergyControllerChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLowEnergyController::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQLowEnergyControllerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLowEnergyController) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLowEnergyController::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QLowEnergyController) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLowEnergyController::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QLowEnergyController) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -389,13 +459,28 @@ func (ptr *QLowEnergyController) DisconnectCustomEvent() {
 }
 
 //export callbackQLowEnergyControllerCustomEvent
-func callbackQLowEnergyControllerCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLowEnergyControllerCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLowEnergyController::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQLowEnergyControllerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLowEnergyController) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QLowEnergyController::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QLowEnergyController) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QLowEnergyController::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

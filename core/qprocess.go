@@ -163,15 +163,30 @@ func (ptr *QProcess) DisconnectClose() {
 }
 
 //export callbackQProcessClose
-func callbackQProcessClose(ptrName *C.char) bool {
+func callbackQProcessClose(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QProcess::close")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQProcessFromPointer(ptr).CloseDefault()
 	}
-	return false
+}
 
+func (ptr *QProcess) Close() {
+	defer qt.Recovering("QProcess::close")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QProcess) CloseDefault() {
+	defer qt.Recovering("QProcess::close")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_CloseDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QProcess) CloseReadChannel(channel QProcess__ProcessChannel) {
@@ -209,13 +224,21 @@ func (ptr *QProcess) DisconnectError2() {
 }
 
 //export callbackQProcessError2
-func callbackQProcessError2(ptrName *C.char, error C.int) {
+func callbackQProcessError2(ptr unsafe.Pointer, ptrName *C.char, error C.int) {
 	defer qt.Recovering("callback QProcess::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QProcess__ProcessError))(QProcess__ProcessError(error))
 	}
 
+}
+
+func (ptr *QProcess) Error2(error QProcess__ProcessError) {
+	defer qt.Recovering("QProcess::error")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_Error2(ptr.Pointer(), C.int(error))
+	}
 }
 
 func (ptr *QProcess) Error() QProcess__ProcessError {
@@ -276,13 +299,21 @@ func (ptr *QProcess) DisconnectFinished() {
 }
 
 //export callbackQProcessFinished
-func callbackQProcessFinished(ptrName *C.char, exitCode C.int, exitStatus C.int) {
+func callbackQProcessFinished(ptr unsafe.Pointer, ptrName *C.char, exitCode C.int, exitStatus C.int) {
 	defer qt.Recovering("callback QProcess::finished")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
 		signal.(func(int, QProcess__ExitStatus))(int(exitCode), QProcess__ExitStatus(exitStatus))
 	}
 
+}
+
+func (ptr *QProcess) Finished(exitCode int, exitStatus QProcess__ExitStatus) {
+	defer qt.Recovering("QProcess::finished")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_Finished(ptr.Pointer(), C.int(exitCode), C.int(exitStatus))
+	}
 }
 
 func (ptr *QProcess) InputChannelMode() QProcess__InputChannelMode {
@@ -380,6 +411,15 @@ func (ptr *QProcess) ReadChannel() QProcess__ProcessChannel {
 	return 0
 }
 
+func (ptr *QProcess) ReadData(data string, maxlen int64) int64 {
+	defer qt.Recovering("QProcess::readData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QProcess_ReadData(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
+	}
+	return 0
+}
+
 func (ptr *QProcess) ConnectReadyReadStandardError(f func()) {
 	defer qt.Recovering("connect QProcess::readyReadStandardError")
 
@@ -399,7 +439,7 @@ func (ptr *QProcess) DisconnectReadyReadStandardError() {
 }
 
 //export callbackQProcessReadyReadStandardError
-func callbackQProcessReadyReadStandardError(ptrName *C.char) {
+func callbackQProcessReadyReadStandardError(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QProcess::readyReadStandardError")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "readyReadStandardError"); signal != nil {
@@ -427,7 +467,7 @@ func (ptr *QProcess) DisconnectReadyReadStandardOutput() {
 }
 
 //export callbackQProcessReadyReadStandardOutput
-func callbackQProcessReadyReadStandardOutput(ptrName *C.char) {
+func callbackQProcessReadyReadStandardOutput(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QProcess::readyReadStandardOutput")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "readyReadStandardOutput"); signal != nil {
@@ -543,15 +583,30 @@ func (ptr *QProcess) DisconnectSetupChildProcess() {
 }
 
 //export callbackQProcessSetupChildProcess
-func callbackQProcessSetupChildProcess(ptrName *C.char) bool {
+func callbackQProcessSetupChildProcess(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QProcess::setupChildProcess")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setupChildProcess"); signal != nil {
 		signal.(func())()
-		return true
+	} else {
+		NewQProcessFromPointer(ptr).SetupChildProcessDefault()
 	}
-	return false
+}
 
+func (ptr *QProcess) SetupChildProcess() {
+	defer qt.Recovering("QProcess::setupChildProcess")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_SetupChildProcess(ptr.Pointer())
+	}
+}
+
+func (ptr *QProcess) SetupChildProcessDefault() {
+	defer qt.Recovering("QProcess::setupChildProcess")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_SetupChildProcessDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QProcess) Start2(mode QIODevice__OpenModeFlag) {
@@ -603,7 +658,7 @@ func (ptr *QProcess) DisconnectStarted() {
 }
 
 //export callbackQProcessStarted
-func callbackQProcessStarted(ptrName *C.char) {
+func callbackQProcessStarted(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QProcess::started")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "started"); signal != nil {
@@ -640,7 +695,7 @@ func (ptr *QProcess) DisconnectStateChanged() {
 }
 
 //export callbackQProcessStateChanged
-func callbackQProcessStateChanged(ptrName *C.char, newState C.int) {
+func callbackQProcessStateChanged(ptr unsafe.Pointer, ptrName *C.char, newState C.int) {
 	defer qt.Recovering("callback QProcess::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
@@ -708,6 +763,15 @@ func (ptr *QProcess) WorkingDirectory() string {
 	return ""
 }
 
+func (ptr *QProcess) WriteData(data string, len int64) int64 {
+	defer qt.Recovering("QProcess::writeData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QProcess_WriteData(ptr.Pointer(), C.CString(data), C.longlong(len)))
+	}
+	return 0
+}
+
 func (ptr *QProcess) DestroyQProcess() {
 	defer qt.Recovering("QProcess::~QProcess")
 
@@ -736,15 +800,30 @@ func (ptr *QProcess) DisconnectTimerEvent() {
 }
 
 //export callbackQProcessTimerEvent
-func callbackQProcessTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProcessTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProcess::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQProcessFromPointer(ptr).TimerEventDefault(NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProcess) TimerEvent(event QTimerEvent_ITF) {
+	defer qt.Recovering("QProcess::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_TimerEvent(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QProcess) TimerEventDefault(event QTimerEvent_ITF) {
+	defer qt.Recovering("QProcess::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_TimerEventDefault(ptr.Pointer(), PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QProcess) ConnectChildEvent(f func(event *QChildEvent)) {
@@ -766,15 +845,30 @@ func (ptr *QProcess) DisconnectChildEvent() {
 }
 
 //export callbackQProcessChildEvent
-func callbackQProcessChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProcessChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProcess::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQProcessFromPointer(ptr).ChildEventDefault(NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProcess) ChildEvent(event QChildEvent_ITF) {
+	defer qt.Recovering("QProcess::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_ChildEvent(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QProcess) ChildEventDefault(event QChildEvent_ITF) {
+	defer qt.Recovering("QProcess::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_ChildEventDefault(ptr.Pointer(), PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QProcess) ConnectCustomEvent(f func(event *QEvent)) {
@@ -796,13 +890,28 @@ func (ptr *QProcess) DisconnectCustomEvent() {
 }
 
 //export callbackQProcessCustomEvent
-func callbackQProcessCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQProcessCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QProcess::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQProcessFromPointer(ptr).CustomEventDefault(NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QProcess) CustomEvent(event QEvent_ITF) {
+	defer qt.Recovering("QProcess::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_CustomEvent(ptr.Pointer(), PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QProcess) CustomEventDefault(event QEvent_ITF) {
+	defer qt.Recovering("QProcess::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QProcess_CustomEventDefault(ptr.Pointer(), PointerFromQEvent(event))
+	}
 }

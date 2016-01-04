@@ -95,13 +95,21 @@ func (ptr *QLowEnergyService) DisconnectError2() {
 }
 
 //export callbackQLowEnergyServiceError2
-func callbackQLowEnergyServiceError2(ptrName *C.char, newError C.int) {
+func callbackQLowEnergyServiceError2(ptr unsafe.Pointer, ptrName *C.char, newError C.int) {
 	defer qt.Recovering("callback QLowEnergyService::error")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "error2"); signal != nil {
 		signal.(func(QLowEnergyService__ServiceError))(QLowEnergyService__ServiceError(newError))
 	}
 
+}
+
+func (ptr *QLowEnergyService) Error2(newError QLowEnergyService__ServiceError) {
+	defer qt.Recovering("QLowEnergyService::error")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyService_Error2(ptr.Pointer(), C.int(newError))
+	}
 }
 
 func (ptr *QLowEnergyService) ConnectStateChanged(f func(newState QLowEnergyService__ServiceState)) {
@@ -123,13 +131,21 @@ func (ptr *QLowEnergyService) DisconnectStateChanged() {
 }
 
 //export callbackQLowEnergyServiceStateChanged
-func callbackQLowEnergyServiceStateChanged(ptrName *C.char, newState C.int) {
+func callbackQLowEnergyServiceStateChanged(ptr unsafe.Pointer, ptrName *C.char, newState C.int) {
 	defer qt.Recovering("callback QLowEnergyService::stateChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stateChanged"); signal != nil {
 		signal.(func(QLowEnergyService__ServiceState))(QLowEnergyService__ServiceState(newState))
 	}
 
+}
+
+func (ptr *QLowEnergyService) StateChanged(newState QLowEnergyService__ServiceState) {
+	defer qt.Recovering("QLowEnergyService::stateChanged")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyService_StateChanged(ptr.Pointer(), C.int(newState))
+	}
 }
 
 func (ptr *QLowEnergyService) Contains(characteristic QLowEnergyCharacteristic_ITF) bool {
@@ -254,15 +270,30 @@ func (ptr *QLowEnergyService) DisconnectTimerEvent() {
 }
 
 //export callbackQLowEnergyServiceTimerEvent
-func callbackQLowEnergyServiceTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLowEnergyServiceTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLowEnergyService::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQLowEnergyServiceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLowEnergyService) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLowEnergyService::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyService_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QLowEnergyService) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QLowEnergyService::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyService_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QLowEnergyService) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -284,15 +315,30 @@ func (ptr *QLowEnergyService) DisconnectChildEvent() {
 }
 
 //export callbackQLowEnergyServiceChildEvent
-func callbackQLowEnergyServiceChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLowEnergyServiceChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLowEnergyService::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQLowEnergyServiceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLowEnergyService) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLowEnergyService::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyService_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QLowEnergyService) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QLowEnergyService::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyService_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QLowEnergyService) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -314,13 +360,28 @@ func (ptr *QLowEnergyService) DisconnectCustomEvent() {
 }
 
 //export callbackQLowEnergyServiceCustomEvent
-func callbackQLowEnergyServiceCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQLowEnergyServiceCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLowEnergyService::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQLowEnergyServiceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QLowEnergyService) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QLowEnergyService::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyService_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QLowEnergyService) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QLowEnergyService::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyService_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

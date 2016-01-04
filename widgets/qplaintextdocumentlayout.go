@@ -80,15 +80,30 @@ func (ptr *QPlainTextDocumentLayout) DisconnectDocumentChanged() {
 }
 
 //export callbackQPlainTextDocumentLayoutDocumentChanged
-func callbackQPlainTextDocumentLayoutDocumentChanged(ptrName *C.char, from C.int, charsRemoved C.int, charsAdded C.int) bool {
+func callbackQPlainTextDocumentLayoutDocumentChanged(ptr unsafe.Pointer, ptrName *C.char, from C.int, charsRemoved C.int, charsAdded C.int) {
 	defer qt.Recovering("callback QPlainTextDocumentLayout::documentChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "documentChanged"); signal != nil {
 		signal.(func(int, int, int))(int(from), int(charsRemoved), int(charsAdded))
-		return true
+	} else {
+		NewQPlainTextDocumentLayoutFromPointer(ptr).DocumentChangedDefault(int(from), int(charsRemoved), int(charsAdded))
 	}
-	return false
+}
 
+func (ptr *QPlainTextDocumentLayout) DocumentChanged(from int, charsRemoved int, charsAdded int) {
+	defer qt.Recovering("QPlainTextDocumentLayout::documentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_DocumentChanged(ptr.Pointer(), C.int(from), C.int(charsRemoved), C.int(charsAdded))
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) DocumentChangedDefault(from int, charsRemoved int, charsAdded int) {
+	defer qt.Recovering("QPlainTextDocumentLayout::documentChanged")
+
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_DocumentChangedDefault(ptr.Pointer(), C.int(from), C.int(charsRemoved), C.int(charsAdded))
+	}
 }
 
 func (ptr *QPlainTextDocumentLayout) EnsureBlockLayout(block gui.QTextBlock_ITF) {
@@ -144,15 +159,30 @@ func (ptr *QPlainTextDocumentLayout) DisconnectTimerEvent() {
 }
 
 //export callbackQPlainTextDocumentLayoutTimerEvent
-func callbackQPlainTextDocumentLayoutTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPlainTextDocumentLayoutTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPlainTextDocumentLayout::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQPlainTextDocumentLayoutFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPlainTextDocumentLayout) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QPlainTextDocumentLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QPlainTextDocumentLayout::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QPlainTextDocumentLayout) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -174,15 +204,30 @@ func (ptr *QPlainTextDocumentLayout) DisconnectChildEvent() {
 }
 
 //export callbackQPlainTextDocumentLayoutChildEvent
-func callbackQPlainTextDocumentLayoutChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPlainTextDocumentLayoutChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPlainTextDocumentLayout::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQPlainTextDocumentLayoutFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPlainTextDocumentLayout) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QPlainTextDocumentLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QPlainTextDocumentLayout::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QPlainTextDocumentLayout) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -204,13 +249,28 @@ func (ptr *QPlainTextDocumentLayout) DisconnectCustomEvent() {
 }
 
 //export callbackQPlainTextDocumentLayoutCustomEvent
-func callbackQPlainTextDocumentLayoutCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPlainTextDocumentLayoutCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPlainTextDocumentLayout::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQPlainTextDocumentLayoutFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPlainTextDocumentLayout) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QPlainTextDocumentLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QPlainTextDocumentLayout::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

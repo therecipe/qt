@@ -1,3 +1,5 @@
+#define protected public
+
 #include "svg.h"
 #include "_cgo_export.h"
 
@@ -24,6 +26,7 @@
 #include <QMouseEvent>
 #include <QMoveEvent>
 #include <QObject>
+#include <QPaintDevice>
 #include <QPaintEvent>
 #include <QPainter>
 #include <QRect>
@@ -48,11 +51,10 @@
 
 class MyQGraphicsSvgItem: public QGraphicsSvgItem {
 public:
-	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { if (!callbackQGraphicsSvgItemPaint(this->objectName().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget)) { QGraphicsSvgItem::paint(painter, option, widget); }; };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQGraphicsSvgItemTimerEvent(this->objectName().toUtf8().data(), event)) { QGraphicsSvgItem::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQGraphicsSvgItemChildEvent(this->objectName().toUtf8().data(), event)) { QGraphicsSvgItem::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQGraphicsSvgItemCustomEvent(this->objectName().toUtf8().data(), event)) { QGraphicsSvgItem::customEvent(event); }; };
+	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsSvgItemPaint(this, this->objectName().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void timerEvent(QTimerEvent * event) { callbackQGraphicsSvgItemTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQGraphicsSvgItemChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQGraphicsSvgItemCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 char* QGraphicsSvgItem_ElementId(void* ptr){
@@ -64,7 +66,11 @@ void* QGraphicsSvgItem_MaximumCacheSize(void* ptr){
 }
 
 void QGraphicsSvgItem_Paint(void* ptr, void* painter, void* option, void* widget){
-	static_cast<QGraphicsSvgItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+	static_cast<MyQGraphicsSvgItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+}
+
+void QGraphicsSvgItem_PaintDefault(void* ptr, void* painter, void* option, void* widget){
+	static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
 void* QGraphicsSvgItem_Renderer(void* ptr){
@@ -87,13 +93,36 @@ int QGraphicsSvgItem_Type(void* ptr){
 	return static_cast<QGraphicsSvgItem*>(ptr)->type();
 }
 
+void QGraphicsSvgItem_TimerEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSvgItem*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QGraphicsSvgItem_TimerEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QGraphicsSvgItem_ChildEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSvgItem*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QGraphicsSvgItem_ChildEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QGraphicsSvgItem_CustomEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSvgItem*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QGraphicsSvgItem_CustomEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQSvgGenerator: public QSvgGenerator {
 public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQSvgGenerator() : QSvgGenerator() {};
-protected:
 };
 
 char* QSvgGenerator_Description(void* ptr){
@@ -156,6 +185,14 @@ void* QSvgGenerator_NewQSvgGenerator(){
 	return new MyQSvgGenerator();
 }
 
+int QSvgGenerator_Metric(void* ptr, int metric){
+	return static_cast<QSvgGenerator*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QSvgGenerator_PaintEngine(void* ptr){
+	return static_cast<QSvgGenerator*>(ptr)->paintEngine();
+}
+
 void* QSvgGenerator_ViewBox(void* ptr){
 	return new QRect(static_cast<QRect>(static_cast<QSvgGenerator*>(ptr)->viewBox()).x(), static_cast<QRect>(static_cast<QSvgGenerator*>(ptr)->viewBox()).y(), static_cast<QRect>(static_cast<QSvgGenerator*>(ptr)->viewBox()).width(), static_cast<QRect>(static_cast<QSvgGenerator*>(ptr)->viewBox()).height());
 }
@@ -179,11 +216,10 @@ void QSvgGenerator_SetObjectNameAbs(void* ptr, char* name){
 
 class MyQSvgRenderer: public QSvgRenderer {
 public:
-	void Signal_RepaintNeeded() { callbackQSvgRendererRepaintNeeded(this->objectName().toUtf8().data()); };
-protected:
-	void timerEvent(QTimerEvent * event) { if (!callbackQSvgRendererTimerEvent(this->objectName().toUtf8().data(), event)) { QSvgRenderer::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQSvgRendererChildEvent(this->objectName().toUtf8().data(), event)) { QSvgRenderer::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQSvgRendererCustomEvent(this->objectName().toUtf8().data(), event)) { QSvgRenderer::customEvent(event); }; };
+	void Signal_RepaintNeeded() { callbackQSvgRendererRepaintNeeded(this, this->objectName().toUtf8().data()); };
+	void timerEvent(QTimerEvent * event) { callbackQSvgRendererTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQSvgRendererChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQSvgRendererCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 int QSvgRenderer_FramesPerSecond(void* ptr){
@@ -266,6 +302,10 @@ void QSvgRenderer_DisconnectRepaintNeeded(void* ptr){
 	QObject::disconnect(static_cast<QSvgRenderer*>(ptr), static_cast<void (QSvgRenderer::*)()>(&QSvgRenderer::repaintNeeded), static_cast<MyQSvgRenderer*>(ptr), static_cast<void (MyQSvgRenderer::*)()>(&MyQSvgRenderer::Signal_RepaintNeeded));;
 }
 
+void QSvgRenderer_RepaintNeeded(void* ptr){
+	static_cast<QSvgRenderer*>(ptr)->repaintNeeded();
+}
+
 void* QSvgRenderer_ViewBox(void* ptr){
 	return new QRect(static_cast<QRect>(static_cast<QSvgRenderer*>(ptr)->viewBox()).x(), static_cast<QRect>(static_cast<QSvgRenderer*>(ptr)->viewBox()).y(), static_cast<QRect>(static_cast<QSvgRenderer*>(ptr)->viewBox()).width(), static_cast<QRect>(static_cast<QSvgRenderer*>(ptr)->viewBox()).height());
 }
@@ -274,42 +314,65 @@ void QSvgRenderer_DestroyQSvgRenderer(void* ptr){
 	static_cast<QSvgRenderer*>(ptr)->~QSvgRenderer();
 }
 
+void QSvgRenderer_TimerEvent(void* ptr, void* event){
+	static_cast<MyQSvgRenderer*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSvgRenderer_TimerEventDefault(void* ptr, void* event){
+	static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSvgRenderer_ChildEvent(void* ptr, void* event){
+	static_cast<MyQSvgRenderer*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QSvgRenderer_ChildEventDefault(void* ptr, void* event){
+	static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QSvgRenderer_CustomEvent(void* ptr, void* event){
+	static_cast<MyQSvgRenderer*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QSvgRenderer_CustomEventDefault(void* ptr, void* event){
+	static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::customEvent(static_cast<QEvent*>(event));
+}
+
 class MyQSvgWidget: public QSvgWidget {
 public:
 	MyQSvgWidget(QWidget *parent) : QSvgWidget(parent) {};
 	MyQSvgWidget(const QString &file, QWidget *parent) : QSvgWidget(file, parent) {};
-	void setVisible(bool visible) { if (!callbackQSvgWidgetSetVisible(this->objectName().toUtf8().data(), visible)) { QSvgWidget::setVisible(visible); }; };
-protected:
-	void paintEvent(QPaintEvent * event) { if (!callbackQSvgWidgetPaintEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::paintEvent(event); }; };
-	void actionEvent(QActionEvent * event) { if (!callbackQSvgWidgetActionEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::actionEvent(event); }; };
-	void dragEnterEvent(QDragEnterEvent * event) { if (!callbackQSvgWidgetDragEnterEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::dragEnterEvent(event); }; };
-	void dragLeaveEvent(QDragLeaveEvent * event) { if (!callbackQSvgWidgetDragLeaveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::dragLeaveEvent(event); }; };
-	void dragMoveEvent(QDragMoveEvent * event) { if (!callbackQSvgWidgetDragMoveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::dragMoveEvent(event); }; };
-	void dropEvent(QDropEvent * event) { if (!callbackQSvgWidgetDropEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::dropEvent(event); }; };
-	void enterEvent(QEvent * event) { if (!callbackQSvgWidgetEnterEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::enterEvent(event); }; };
-	void focusInEvent(QFocusEvent * event) { if (!callbackQSvgWidgetFocusInEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::focusInEvent(event); }; };
-	void focusOutEvent(QFocusEvent * event) { if (!callbackQSvgWidgetFocusOutEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::focusOutEvent(event); }; };
-	void hideEvent(QHideEvent * event) { if (!callbackQSvgWidgetHideEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::hideEvent(event); }; };
-	void leaveEvent(QEvent * event) { if (!callbackQSvgWidgetLeaveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::leaveEvent(event); }; };
-	void moveEvent(QMoveEvent * event) { if (!callbackQSvgWidgetMoveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::moveEvent(event); }; };
-	void showEvent(QShowEvent * event) { if (!callbackQSvgWidgetShowEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::showEvent(event); }; };
-	void changeEvent(QEvent * event) { if (!callbackQSvgWidgetChangeEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::changeEvent(event); }; };
-	void closeEvent(QCloseEvent * event) { if (!callbackQSvgWidgetCloseEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::closeEvent(event); }; };
-	void contextMenuEvent(QContextMenuEvent * event) { if (!callbackQSvgWidgetContextMenuEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::contextMenuEvent(event); }; };
-	void initPainter(QPainter * painter) const { if (!callbackQSvgWidgetInitPainter(this->objectName().toUtf8().data(), painter)) { QSvgWidget::initPainter(painter); }; };
-	void inputMethodEvent(QInputMethodEvent * event) { if (!callbackQSvgWidgetInputMethodEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::inputMethodEvent(event); }; };
-	void keyPressEvent(QKeyEvent * event) { if (!callbackQSvgWidgetKeyPressEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::keyPressEvent(event); }; };
-	void keyReleaseEvent(QKeyEvent * event) { if (!callbackQSvgWidgetKeyReleaseEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::keyReleaseEvent(event); }; };
-	void mouseDoubleClickEvent(QMouseEvent * event) { if (!callbackQSvgWidgetMouseDoubleClickEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::mouseDoubleClickEvent(event); }; };
-	void mouseMoveEvent(QMouseEvent * event) { if (!callbackQSvgWidgetMouseMoveEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::mouseMoveEvent(event); }; };
-	void mousePressEvent(QMouseEvent * event) { if (!callbackQSvgWidgetMousePressEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::mousePressEvent(event); }; };
-	void mouseReleaseEvent(QMouseEvent * event) { if (!callbackQSvgWidgetMouseReleaseEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::mouseReleaseEvent(event); }; };
-	void resizeEvent(QResizeEvent * event) { if (!callbackQSvgWidgetResizeEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::resizeEvent(event); }; };
-	void tabletEvent(QTabletEvent * event) { if (!callbackQSvgWidgetTabletEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::tabletEvent(event); }; };
-	void wheelEvent(QWheelEvent * event) { if (!callbackQSvgWidgetWheelEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::wheelEvent(event); }; };
-	void timerEvent(QTimerEvent * event) { if (!callbackQSvgWidgetTimerEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::timerEvent(event); }; };
-	void childEvent(QChildEvent * event) { if (!callbackQSvgWidgetChildEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::childEvent(event); }; };
-	void customEvent(QEvent * event) { if (!callbackQSvgWidgetCustomEvent(this->objectName().toUtf8().data(), event)) { QSvgWidget::customEvent(event); }; };
+	void paintEvent(QPaintEvent * event) { callbackQSvgWidgetPaintEvent(this, this->objectName().toUtf8().data(), event); };
+	void actionEvent(QActionEvent * event) { callbackQSvgWidgetActionEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragEnterEvent(QDragEnterEvent * event) { callbackQSvgWidgetDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQSvgWidgetDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragMoveEvent(QDragMoveEvent * event) { callbackQSvgWidgetDragMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void dropEvent(QDropEvent * event) { callbackQSvgWidgetDropEvent(this, this->objectName().toUtf8().data(), event); };
+	void enterEvent(QEvent * event) { callbackQSvgWidgetEnterEvent(this, this->objectName().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQSvgWidgetFocusInEvent(this, this->objectName().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQSvgWidgetFocusOutEvent(this, this->objectName().toUtf8().data(), event); };
+	void hideEvent(QHideEvent * event) { callbackQSvgWidgetHideEvent(this, this->objectName().toUtf8().data(), event); };
+	void leaveEvent(QEvent * event) { callbackQSvgWidgetLeaveEvent(this, this->objectName().toUtf8().data(), event); };
+	void moveEvent(QMoveEvent * event) { callbackQSvgWidgetMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void setVisible(bool visible) { if (!callbackQSvgWidgetSetVisible(this, this->objectName().toUtf8().data(), visible)) { QSvgWidget::setVisible(visible); }; };
+	void showEvent(QShowEvent * event) { callbackQSvgWidgetShowEvent(this, this->objectName().toUtf8().data(), event); };
+	void changeEvent(QEvent * event) { callbackQSvgWidgetChangeEvent(this, this->objectName().toUtf8().data(), event); };
+	void closeEvent(QCloseEvent * event) { callbackQSvgWidgetCloseEvent(this, this->objectName().toUtf8().data(), event); };
+	void contextMenuEvent(QContextMenuEvent * event) { callbackQSvgWidgetContextMenuEvent(this, this->objectName().toUtf8().data(), event); };
+	void initPainter(QPainter * painter) const { callbackQSvgWidgetInitPainter(const_cast<MyQSvgWidget*>(this), this->objectName().toUtf8().data(), painter); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQSvgWidgetInputMethodEvent(this, this->objectName().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQSvgWidgetKeyPressEvent(this, this->objectName().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQSvgWidgetKeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQSvgWidgetMouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseMoveEvent(QMouseEvent * event) { callbackQSvgWidgetMouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void mousePressEvent(QMouseEvent * event) { callbackQSvgWidgetMousePressEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseReleaseEvent(QMouseEvent * event) { callbackQSvgWidgetMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
+	void resizeEvent(QResizeEvent * event) { callbackQSvgWidgetResizeEvent(this, this->objectName().toUtf8().data(), event); };
+	void tabletEvent(QTabletEvent * event) { callbackQSvgWidgetTabletEvent(this, this->objectName().toUtf8().data(), event); };
+	void wheelEvent(QWheelEvent * event) { callbackQSvgWidgetWheelEvent(this, this->objectName().toUtf8().data(), event); };
+	void timerEvent(QTimerEvent * event) { callbackQSvgWidgetTimerEvent(this, this->objectName().toUtf8().data(), event); };
+	void childEvent(QChildEvent * event) { callbackQSvgWidgetChildEvent(this, this->objectName().toUtf8().data(), event); };
+	void customEvent(QEvent * event) { callbackQSvgWidgetCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
 void* QSvgWidget_NewQSvgWidget(void* parent){
@@ -328,6 +391,14 @@ void QSvgWidget_Load(void* ptr, char* file){
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QString, QString(file)));
 }
 
+void QSvgWidget_PaintEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
+}
+
+void QSvgWidget_PaintEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::paintEvent(static_cast<QPaintEvent*>(event));
+}
+
 void* QSvgWidget_Renderer(void* ptr){
 	return static_cast<QSvgWidget*>(ptr)->renderer();
 }
@@ -338,5 +409,245 @@ void* QSvgWidget_SizeHint(void* ptr){
 
 void QSvgWidget_DestroyQSvgWidget(void* ptr){
 	static_cast<QSvgWidget*>(ptr)->~QSvgWidget();
+}
+
+void QSvgWidget_ActionEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->actionEvent(static_cast<QActionEvent*>(event));
+}
+
+void QSvgWidget_ActionEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::actionEvent(static_cast<QActionEvent*>(event));
+}
+
+void QSvgWidget_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+}
+
+void QSvgWidget_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+}
+
+void QSvgWidget_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+}
+
+void QSvgWidget_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+}
+
+void QSvgWidget_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+}
+
+void QSvgWidget_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+}
+
+void QSvgWidget_DropEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->dropEvent(static_cast<QDropEvent*>(event));
+}
+
+void QSvgWidget_DropEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::dropEvent(static_cast<QDropEvent*>(event));
+}
+
+void QSvgWidget_EnterEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->enterEvent(static_cast<QEvent*>(event));
+}
+
+void QSvgWidget_EnterEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::enterEvent(static_cast<QEvent*>(event));
+}
+
+void QSvgWidget_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QSvgWidget_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QSvgWidget_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QSvgWidget_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QSvgWidget_HideEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->hideEvent(static_cast<QHideEvent*>(event));
+}
+
+void QSvgWidget_HideEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::hideEvent(static_cast<QHideEvent*>(event));
+}
+
+void QSvgWidget_LeaveEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->leaveEvent(static_cast<QEvent*>(event));
+}
+
+void QSvgWidget_LeaveEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::leaveEvent(static_cast<QEvent*>(event));
+}
+
+void QSvgWidget_MoveEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void QSvgWidget_MoveEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void QSvgWidget_SetVisible(void* ptr, int visible){
+	QMetaObject::invokeMethod(static_cast<MyQSvgWidget*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
+}
+
+void QSvgWidget_SetVisibleDefault(void* ptr, int visible){
+	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
+}
+
+void QSvgWidget_ShowEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->showEvent(static_cast<QShowEvent*>(event));
+}
+
+void QSvgWidget_ShowEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::showEvent(static_cast<QShowEvent*>(event));
+}
+
+void QSvgWidget_ChangeEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->changeEvent(static_cast<QEvent*>(event));
+}
+
+void QSvgWidget_ChangeEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::changeEvent(static_cast<QEvent*>(event));
+}
+
+void QSvgWidget_CloseEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->closeEvent(static_cast<QCloseEvent*>(event));
+}
+
+void QSvgWidget_CloseEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::closeEvent(static_cast<QCloseEvent*>(event));
+}
+
+void QSvgWidget_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+void QSvgWidget_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+void QSvgWidget_InitPainter(void* ptr, void* painter){
+	static_cast<MyQSvgWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
+}
+
+void QSvgWidget_InitPainterDefault(void* ptr, void* painter){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::initPainter(static_cast<QPainter*>(painter));
+}
+
+void QSvgWidget_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QSvgWidget_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QSvgWidget_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QSvgWidget_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QSvgWidget_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QSvgWidget_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QSvgWidget_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+}
+
+void QSvgWidget_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+}
+
+void QSvgWidget_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(event));
+}
+
+void QSvgWidget_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+}
+
+void QSvgWidget_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(event));
+}
+
+void QSvgWidget_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
+}
+
+void QSvgWidget_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+}
+
+void QSvgWidget_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+}
+
+void QSvgWidget_ResizeEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(event));
+}
+
+void QSvgWidget_ResizeEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::resizeEvent(static_cast<QResizeEvent*>(event));
+}
+
+void QSvgWidget_TabletEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->tabletEvent(static_cast<QTabletEvent*>(event));
+}
+
+void QSvgWidget_TabletEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::tabletEvent(static_cast<QTabletEvent*>(event));
+}
+
+void QSvgWidget_WheelEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(event));
+}
+
+void QSvgWidget_WheelEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::wheelEvent(static_cast<QWheelEvent*>(event));
+}
+
+void QSvgWidget_TimerEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSvgWidget_TimerEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSvgWidget_ChildEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QSvgWidget_ChildEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QSvgWidget_CustomEvent(void* ptr, void* event){
+	static_cast<MyQSvgWidget*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QSvgWidget_CustomEventDefault(void* ptr, void* event){
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::customEvent(static_cast<QEvent*>(event));
 }
 

@@ -78,6 +78,15 @@ func (ptr *QPdfWriter) NewPage() bool {
 	return false
 }
 
+func (ptr *QPdfWriter) PaintEngine() *QPaintEngine {
+	defer qt.Recovering("QPdfWriter::paintEngine")
+
+	if ptr.Pointer() != nil {
+		return NewQPaintEngineFromPointer(C.QPdfWriter_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPdfWriter) Resolution() int {
 	defer qt.Recovering("QPdfWriter::resolution")
 
@@ -193,15 +202,30 @@ func (ptr *QPdfWriter) DisconnectTimerEvent() {
 }
 
 //export callbackQPdfWriterTimerEvent
-func callbackQPdfWriterTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPdfWriterTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPdfWriter::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQPdfWriterFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPdfWriter) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QPdfWriter::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPdfWriter_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QPdfWriter) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QPdfWriter::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPdfWriter_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QPdfWriter) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -223,15 +247,30 @@ func (ptr *QPdfWriter) DisconnectChildEvent() {
 }
 
 //export callbackQPdfWriterChildEvent
-func callbackQPdfWriterChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPdfWriterChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPdfWriter::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQPdfWriterFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPdfWriter) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QPdfWriter::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPdfWriter_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QPdfWriter) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QPdfWriter::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPdfWriter_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QPdfWriter) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -253,13 +292,28 @@ func (ptr *QPdfWriter) DisconnectCustomEvent() {
 }
 
 //export callbackQPdfWriterCustomEvent
-func callbackQPdfWriterCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQPdfWriterCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPdfWriter::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQPdfWriterFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QPdfWriter) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QPdfWriter::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPdfWriter_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPdfWriter) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QPdfWriter::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QPdfWriter_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

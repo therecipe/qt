@@ -73,13 +73,21 @@ func (ptr *QAbstractVideoFilter) DisconnectActiveChanged() {
 }
 
 //export callbackQAbstractVideoFilterActiveChanged
-func callbackQAbstractVideoFilterActiveChanged(ptrName *C.char) {
+func callbackQAbstractVideoFilterActiveChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAbstractVideoFilter::activeChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "activeChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QAbstractVideoFilter) ActiveChanged() {
+	defer qt.Recovering("QAbstractVideoFilter::activeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter_ActiveChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QAbstractVideoFilter) CreateFilterRunnable() *QVideoFilterRunnable {
@@ -110,15 +118,30 @@ func (ptr *QAbstractVideoFilter) DisconnectTimerEvent() {
 }
 
 //export callbackQAbstractVideoFilterTimerEvent
-func callbackQAbstractVideoFilterTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractVideoFilterTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractVideoFilter::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractVideoFilterFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractVideoFilter) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoFilter::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QAbstractVideoFilter) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoFilter::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QAbstractVideoFilter) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -140,15 +163,30 @@ func (ptr *QAbstractVideoFilter) DisconnectChildEvent() {
 }
 
 //export callbackQAbstractVideoFilterChildEvent
-func callbackQAbstractVideoFilterChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractVideoFilterChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractVideoFilter::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractVideoFilterFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractVideoFilter) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoFilter::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QAbstractVideoFilter) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoFilter::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QAbstractVideoFilter) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -170,13 +208,28 @@ func (ptr *QAbstractVideoFilter) DisconnectCustomEvent() {
 }
 
 //export callbackQAbstractVideoFilterCustomEvent
-func callbackQAbstractVideoFilterCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQAbstractVideoFilterCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractVideoFilter::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQAbstractVideoFilterFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QAbstractVideoFilter) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoFilter::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractVideoFilter) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QAbstractVideoFilter::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }

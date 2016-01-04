@@ -138,13 +138,21 @@ func (ptr *QCameraFocus) DisconnectDigitalZoomChanged() {
 }
 
 //export callbackQCameraFocusDigitalZoomChanged
-func callbackQCameraFocusDigitalZoomChanged(ptrName *C.char, value C.double) {
+func callbackQCameraFocusDigitalZoomChanged(ptr unsafe.Pointer, ptrName *C.char, value C.double) {
 	defer qt.Recovering("callback QCameraFocus::digitalZoomChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "digitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
 
+}
+
+func (ptr *QCameraFocus) DigitalZoomChanged(value float64) {
+	defer qt.Recovering("QCameraFocus::digitalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_DigitalZoomChanged(ptr.Pointer(), C.double(value))
+	}
 }
 
 func (ptr *QCameraFocus) ConnectFocusZonesChanged(f func()) {
@@ -166,13 +174,21 @@ func (ptr *QCameraFocus) DisconnectFocusZonesChanged() {
 }
 
 //export callbackQCameraFocusFocusZonesChanged
-func callbackQCameraFocusFocusZonesChanged(ptrName *C.char) {
+func callbackQCameraFocusFocusZonesChanged(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraFocus::focusZonesChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "focusZonesChanged"); signal != nil {
 		signal.(func())()
 	}
 
+}
+
+func (ptr *QCameraFocus) FocusZonesChanged() {
+	defer qt.Recovering("QCameraFocus::focusZonesChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_FocusZonesChanged(ptr.Pointer())
+	}
 }
 
 func (ptr *QCameraFocus) IsAvailable() bool {
@@ -230,13 +246,21 @@ func (ptr *QCameraFocus) DisconnectMaximumDigitalZoomChanged() {
 }
 
 //export callbackQCameraFocusMaximumDigitalZoomChanged
-func callbackQCameraFocusMaximumDigitalZoomChanged(ptrName *C.char, zoom C.double) {
+func callbackQCameraFocusMaximumDigitalZoomChanged(ptr unsafe.Pointer, ptrName *C.char, zoom C.double) {
 	defer qt.Recovering("callback QCameraFocus::maximumDigitalZoomChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "maximumDigitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
 
+}
+
+func (ptr *QCameraFocus) MaximumDigitalZoomChanged(zoom float64) {
+	defer qt.Recovering("QCameraFocus::maximumDigitalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_MaximumDigitalZoomChanged(ptr.Pointer(), C.double(zoom))
+	}
 }
 
 func (ptr *QCameraFocus) MaximumOpticalZoom() float64 {
@@ -267,13 +291,21 @@ func (ptr *QCameraFocus) DisconnectMaximumOpticalZoomChanged() {
 }
 
 //export callbackQCameraFocusMaximumOpticalZoomChanged
-func callbackQCameraFocusMaximumOpticalZoomChanged(ptrName *C.char, zoom C.double) {
+func callbackQCameraFocusMaximumOpticalZoomChanged(ptr unsafe.Pointer, ptrName *C.char, zoom C.double) {
 	defer qt.Recovering("callback QCameraFocus::maximumOpticalZoomChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "maximumOpticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
 
+}
+
+func (ptr *QCameraFocus) MaximumOpticalZoomChanged(zoom float64) {
+	defer qt.Recovering("QCameraFocus::maximumOpticalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_MaximumOpticalZoomChanged(ptr.Pointer(), C.double(zoom))
+	}
 }
 
 func (ptr *QCameraFocus) ConnectOpticalZoomChanged(f func(value float64)) {
@@ -295,13 +327,21 @@ func (ptr *QCameraFocus) DisconnectOpticalZoomChanged() {
 }
 
 //export callbackQCameraFocusOpticalZoomChanged
-func callbackQCameraFocusOpticalZoomChanged(ptrName *C.char, value C.double) {
+func callbackQCameraFocusOpticalZoomChanged(ptr unsafe.Pointer, ptrName *C.char, value C.double) {
 	defer qt.Recovering("callback QCameraFocus::opticalZoomChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "opticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
 
+}
+
+func (ptr *QCameraFocus) OpticalZoomChanged(value float64) {
+	defer qt.Recovering("QCameraFocus::opticalZoomChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_OpticalZoomChanged(ptr.Pointer(), C.double(value))
+	}
 }
 
 func (ptr *QCameraFocus) ZoomTo(optical float64, digital float64) {
@@ -331,15 +371,30 @@ func (ptr *QCameraFocus) DisconnectTimerEvent() {
 }
 
 //export callbackQCameraFocusTimerEvent
-func callbackQCameraFocusTimerEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFocusTimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFocus::timerEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFocusFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFocus) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraFocus::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QCameraFocus) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QCameraFocus::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 func (ptr *QCameraFocus) ConnectChildEvent(f func(event *core.QChildEvent)) {
@@ -361,15 +416,30 @@ func (ptr *QCameraFocus) DisconnectChildEvent() {
 }
 
 //export callbackQCameraFocusChildEvent
-func callbackQCameraFocusChildEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFocusChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFocus::childEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFocusFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFocus) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraFocus::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QCameraFocus) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QCameraFocus::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
 }
 
 func (ptr *QCameraFocus) ConnectCustomEvent(f func(event *core.QEvent)) {
@@ -391,13 +461,28 @@ func (ptr *QCameraFocus) DisconnectCustomEvent() {
 }
 
 //export callbackQCameraFocusCustomEvent
-func callbackQCameraFocusCustomEvent(ptrName *C.char, event unsafe.Pointer) bool {
+func callbackQCameraFocusCustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QCameraFocus::customEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-		return true
+	} else {
+		NewQCameraFocusFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
-	return false
+}
 
+func (ptr *QCameraFocus) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraFocus::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QCameraFocus) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QCameraFocus::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocus_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
 }
