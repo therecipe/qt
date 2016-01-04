@@ -186,8 +186,9 @@ func callbackQStateMachineOnEntry(ptr unsafe.Pointer, ptrName *C.char, event uns
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "onEntry"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
+	} else {
+		NewQStateMachineFromPointer(ptr).OnEntryDefault(NewQEventFromPointer(event))
 	}
-
 }
 
 func (ptr *QStateMachine) OnEntry(event QEvent_ITF) {
@@ -230,8 +231,9 @@ func callbackQStateMachineOnExit(ptr unsafe.Pointer, ptrName *C.char, event unsa
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "onExit"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
+	} else {
+		NewQStateMachineFromPointer(ptr).OnExitDefault(NewQEventFromPointer(event))
 	}
-
 }
 
 func (ptr *QStateMachine) OnExit(event QEvent_ITF) {

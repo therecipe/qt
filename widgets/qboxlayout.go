@@ -353,8 +353,9 @@ func callbackQBoxLayoutSetGeometry(ptr unsafe.Pointer, ptrName *C.char, r unsafe
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
+	} else {
+		NewQBoxLayoutFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(r))
 	}
-
 }
 
 func (ptr *QBoxLayout) SetGeometry(r core.QRect_ITF) {

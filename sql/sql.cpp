@@ -699,7 +699,7 @@ void QSqlQuery_DestroyQSqlQuery(void* ptr){
 class MyQSqlQueryModel: public QSqlQueryModel {
 public:
 	void clear() { callbackQSqlQueryModelClear(this, this->objectName().toUtf8().data()); };
-	void fetchMore(const QModelIndex & parent) { callbackQSqlQueryModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
+	void fetchMore(const QModelIndex & parent) { callbackQSqlQueryModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void queryChange() { callbackQSqlQueryModelQueryChange(this, this->objectName().toUtf8().data()); };
 	void revert() { if (!callbackQSqlQueryModelRevert(this, this->objectName().toUtf8().data())) { QSqlQueryModel::revert(); }; };
 	void sort(int column, Qt::SortOrder order) { callbackQSqlQueryModelSort(this, this->objectName().toUtf8().data(), column, order); };
@@ -745,7 +745,7 @@ void* QSqlQueryModel_HeaderData(void* ptr, int section, int orientation, int rol
 }
 
 void* QSqlQueryModel_IndexInQuery(void* ptr, void* item){
-	return static_cast<QSqlQueryModel*>(ptr)->indexInQuery(*static_cast<QModelIndex*>(item)).internalPointer();
+	return new QModelIndex(static_cast<QSqlQueryModel*>(ptr)->indexInQuery(*static_cast<QModelIndex*>(item)));
 }
 
 int QSqlQueryModel_InsertColumns(void* ptr, int column, int count, void* parent){
@@ -946,7 +946,7 @@ public:
 	void setFilter(const QString & filter) { callbackQSqlRelationalTableModelSetFilter(this, this->objectName().toUtf8().data(), filter.toUtf8().data()); };
 	void setSort(int column, Qt::SortOrder order) { callbackQSqlRelationalTableModelSetSort(this, this->objectName().toUtf8().data(), column, order); };
 	void sort(int column, Qt::SortOrder order) { callbackQSqlRelationalTableModelSort(this, this->objectName().toUtf8().data(), column, order); };
-	void fetchMore(const QModelIndex & parent) { callbackQSqlRelationalTableModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
+	void fetchMore(const QModelIndex & parent) { callbackQSqlRelationalTableModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void queryChange() { callbackQSqlRelationalTableModelQueryChange(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlRelationalTableModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSqlRelationalTableModelChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -1200,7 +1200,7 @@ public:
 	void setSort(int column, Qt::SortOrder order) { callbackQSqlTableModelSetSort(this, this->objectName().toUtf8().data(), column, order); };
 	void setTable(const QString & tableName) { callbackQSqlTableModelSetTable(this, this->objectName().toUtf8().data(), tableName.toUtf8().data()); };
 	void sort(int column, Qt::SortOrder order) { callbackQSqlTableModelSort(this, this->objectName().toUtf8().data(), column, order); };
-	void fetchMore(const QModelIndex & parent) { callbackQSqlTableModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
+	void fetchMore(const QModelIndex & parent) { callbackQSqlTableModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void queryChange() { callbackQSqlTableModelQueryChange(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlTableModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSqlTableModelChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -1256,7 +1256,7 @@ void* QSqlTableModel_HeaderData(void* ptr, int section, int orientation, int rol
 }
 
 void* QSqlTableModel_IndexInQuery(void* ptr, void* item){
-	return static_cast<QSqlTableModel*>(ptr)->indexInQuery(*static_cast<QModelIndex*>(item)).internalPointer();
+	return new QModelIndex(static_cast<QSqlTableModel*>(ptr)->indexInQuery(*static_cast<QModelIndex*>(item)));
 }
 
 int QSqlTableModel_InsertRecord(void* ptr, int row, void* record){

@@ -462,8 +462,9 @@ func callbackQQuickPaintedItemClassBegin(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "classBegin"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickPaintedItemFromPointer(ptr).ClassBeginDefault()
 	}
-
 }
 
 func (ptr *QQuickPaintedItem) ClassBegin() {
@@ -506,8 +507,9 @@ func callbackQQuickPaintedItemComponentComplete(ptr unsafe.Pointer, ptrName *C.c
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "componentComplete"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickPaintedItemFromPointer(ptr).ComponentCompleteDefault()
 	}
-
 }
 
 func (ptr *QQuickPaintedItem) ComponentComplete() {

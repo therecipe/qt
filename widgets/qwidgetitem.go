@@ -139,8 +139,9 @@ func callbackQWidgetItemSetGeometry(ptr unsafe.Pointer, ptrName *C.char, rect un
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+	} else {
+		NewQWidgetItemFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(rect))
 	}
-
 }
 
 func (ptr *QWidgetItem) SetGeometry(rect core.QRect_ITF) {

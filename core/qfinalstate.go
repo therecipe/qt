@@ -75,8 +75,9 @@ func callbackQFinalStateOnEntry(ptr unsafe.Pointer, ptrName *C.char, event unsaf
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "onEntry"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
+	} else {
+		NewQFinalStateFromPointer(ptr).OnEntryDefault(NewQEventFromPointer(event))
 	}
-
 }
 
 func (ptr *QFinalState) OnEntry(event QEvent_ITF) {
@@ -119,8 +120,9 @@ func callbackQFinalStateOnExit(ptr unsafe.Pointer, ptrName *C.char, event unsafe
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "onExit"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
+	} else {
+		NewQFinalStateFromPointer(ptr).OnExitDefault(NewQEventFromPointer(event))
 	}
-
 }
 
 func (ptr *QFinalState) OnExit(event QEvent_ITF) {

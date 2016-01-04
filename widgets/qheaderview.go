@@ -1285,8 +1285,9 @@ func callbackQHeaderViewSetSelection(ptr unsafe.Pointer, ptrName *C.char, rect u
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
+	} else {
+		NewQHeaderViewFromPointer(ptr).SetSelectionDefault(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(flags))
 	}
-
 }
 
 func (ptr *QHeaderView) SetSelection(rect core.QRect_ITF, flags core.QItemSelectionModel__SelectionFlag) {

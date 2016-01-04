@@ -801,10 +801,10 @@ void QGeoShape_DestroyQGeoShape(void* ptr){
 class MyQNmeaPositionInfoSource: public QNmeaPositionInfoSource {
 public:
 	MyQNmeaPositionInfoSource(UpdateMode updateMode, QObject *parent) : QNmeaPositionInfoSource(updateMode, parent) {};
-	void requestUpdate(int msec) { callbackQNmeaPositionInfoSourceRequestUpdate(this, this->objectName().toUtf8().data(), msec); };
+	void requestUpdate(int msec) { if (!callbackQNmeaPositionInfoSourceRequestUpdate(this, this->objectName().toUtf8().data(), msec)) { QNmeaPositionInfoSource::requestUpdate(msec); }; };
 	void setUpdateInterval(int msec) { callbackQNmeaPositionInfoSourceSetUpdateInterval(this, this->objectName().toUtf8().data(), msec); };
-	void startUpdates() { callbackQNmeaPositionInfoSourceStartUpdates(this, this->objectName().toUtf8().data()); };
-	void stopUpdates() { callbackQNmeaPositionInfoSourceStopUpdates(this, this->objectName().toUtf8().data()); };
+	void startUpdates() { if (!callbackQNmeaPositionInfoSourceStartUpdates(this, this->objectName().toUtf8().data())) { QNmeaPositionInfoSource::startUpdates(); }; };
+	void stopUpdates() { if (!callbackQNmeaPositionInfoSourceStopUpdates(this, this->objectName().toUtf8().data())) { QNmeaPositionInfoSource::stopUpdates(); }; };
 	void setPreferredPositioningMethods(QNmeaPositionInfoSource::PositioningMethods methods) { callbackQNmeaPositionInfoSourceSetPreferredPositioningMethods(this, this->objectName().toUtf8().data(), methods); };
 	void timerEvent(QTimerEvent * event) { callbackQNmeaPositionInfoSourceTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQNmeaPositionInfoSourceChildEvent(this, this->objectName().toUtf8().data(), event); };

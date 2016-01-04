@@ -82,8 +82,9 @@ func callbackQVBoxLayoutAddItem(ptr unsafe.Pointer, ptrName *C.char, item unsafe
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "addItem"); signal != nil {
 		signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
+	} else {
+		NewQVBoxLayoutFromPointer(ptr).AddItemDefault(NewQLayoutItemFromPointer(item))
 	}
-
 }
 
 func (ptr *QVBoxLayout) AddItem(item QLayoutItem_ITF) {
@@ -171,8 +172,9 @@ func callbackQVBoxLayoutSetGeometry(ptr unsafe.Pointer, ptrName *C.char, r unsaf
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
+	} else {
+		NewQVBoxLayoutFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(r))
 	}
-
 }
 
 func (ptr *QVBoxLayout) SetGeometry(r core.QRect_ITF) {

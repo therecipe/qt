@@ -195,8 +195,9 @@ func callbackQGraphicsLinearLayoutRemoveAt(ptr unsafe.Pointer, ptrName *C.char, 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "removeAt"); signal != nil {
 		signal.(func(int))(int(index))
+	} else {
+		NewQGraphicsLinearLayoutFromPointer(ptr).RemoveAtDefault(int(index))
 	}
-
 }
 
 func (ptr *QGraphicsLinearLayout) RemoveAt(index int) {

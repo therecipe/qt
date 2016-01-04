@@ -281,8 +281,9 @@ func callbackQStackedLayoutSetGeometry(ptr unsafe.Pointer, ptrName *C.char, rect
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+	} else {
+		NewQStackedLayoutFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(rect))
 	}
-
 }
 
 func (ptr *QStackedLayout) SetGeometry(rect core.QRect_ITF) {

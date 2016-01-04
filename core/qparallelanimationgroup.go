@@ -78,8 +78,9 @@ func callbackQParallelAnimationGroupUpdateCurrentTime(ptr unsafe.Pointer, ptrNam
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(currentTime))
+	} else {
+		NewQParallelAnimationGroupFromPointer(ptr).UpdateCurrentTimeDefault(int(currentTime))
 	}
-
 }
 
 func (ptr *QParallelAnimationGroup) UpdateCurrentTime(currentTime int) {

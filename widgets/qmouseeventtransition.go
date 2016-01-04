@@ -101,8 +101,9 @@ func callbackQMouseEventTransitionOnTransition(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "onTransition"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQMouseEventTransitionFromPointer(ptr).OnTransitionDefault(core.NewQEventFromPointer(event))
 	}
-
 }
 
 func (ptr *QMouseEventTransition) OnTransition(event core.QEvent_ITF) {

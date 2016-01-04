@@ -178,8 +178,9 @@ func callbackQVariantAnimationUpdateCurrentTime(ptr unsafe.Pointer, ptrName *C.c
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(v))
+	} else {
+		NewQVariantAnimationFromPointer(ptr).UpdateCurrentTimeDefault(int(v))
 	}
-
 }
 
 func (ptr *QVariantAnimation) UpdateCurrentTime(v int) {

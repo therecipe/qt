@@ -289,12 +289,7 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			}
 
 			switch value {
-			case "QModelIndex":
-				{
-					return fmt.Sprintf("%v.internalPointer()", name)
-				}
-
-			case "QMediaContent", "QIcon", "QUrl", "QJSValue", "QScriptValue", "QVariant", "QStringRef", "QDateTime", "QTimeZone", "QRegularExpressionMatchIterator", "QRegularExpressionMatch", "QRegularExpression", "QDir", "QByteArray", "QEasingCurve", "QCommandLineOption", "QRegExp", "QJsonObject", "QJsonArray", "QJsonDocument", "QRegion", "QBrush", "QColor":
+			case "QModelIndex", "QMediaContent", "QIcon", "QUrl", "QJSValue", "QScriptValue", "QVariant", "QStringRef", "QDateTime", "QTimeZone", "QRegularExpressionMatchIterator", "QRegularExpressionMatch", "QRegularExpression", "QDir", "QByteArray", "QEasingCurve", "QCommandLineOption", "QRegExp", "QJsonObject", "QJsonArray", "QJsonDocument", "QRegion", "QBrush", "QColor":
 				{
 					return fmt.Sprintf("new %v(%v)", value, name)
 				}

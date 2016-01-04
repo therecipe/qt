@@ -163,8 +163,9 @@ func callbackQHistoryStateOnEntry(ptr unsafe.Pointer, ptrName *C.char, event uns
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "onEntry"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
+	} else {
+		NewQHistoryStateFromPointer(ptr).OnEntryDefault(NewQEventFromPointer(event))
 	}
-
 }
 
 func (ptr *QHistoryState) OnEntry(event QEvent_ITF) {
@@ -207,8 +208,9 @@ func callbackQHistoryStateOnExit(ptr unsafe.Pointer, ptrName *C.char, event unsa
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "onExit"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
+	} else {
+		NewQHistoryStateFromPointer(ptr).OnExitDefault(NewQEventFromPointer(event))
 	}
-
 }
 
 func (ptr *QHistoryState) OnExit(event QEvent_ITF) {

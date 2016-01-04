@@ -564,8 +564,9 @@ func callbackQQuickItemClassBegin(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "classBegin"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickItemFromPointer(ptr).ClassBeginDefault()
 	}
-
 }
 
 func (ptr *QQuickItem) ClassBegin() {
@@ -608,8 +609,9 @@ func callbackQQuickItemComponentComplete(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "componentComplete"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickItemFromPointer(ptr).ComponentCompleteDefault()
 	}
-
 }
 
 func (ptr *QQuickItem) ComponentComplete() {

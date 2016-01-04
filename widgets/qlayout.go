@@ -440,8 +440,9 @@ func callbackQLayoutSetGeometry(ptr unsafe.Pointer, ptrName *C.char, r unsafe.Po
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setGeometry"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(r))
+	} else {
+		NewQLayoutFromPointer(ptr).SetGeometryDefault(core.NewQRectFromPointer(r))
 	}
-
 }
 
 func (ptr *QLayout) SetGeometry(r core.QRect_ITF) {

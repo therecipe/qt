@@ -124,8 +124,9 @@ func callbackQCommandLinkButtonPaintEvent(ptr unsafe.Pointer, ptrName *C.char, v
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(v))
+	} else {
+		NewQCommandLinkButtonFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(v))
 	}
-
 }
 
 func (ptr *QCommandLinkButton) PaintEvent(v gui.QPaintEvent_ITF) {

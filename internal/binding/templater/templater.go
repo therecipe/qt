@@ -409,6 +409,9 @@ func isDerivedFromPure(of *parser.Function) bool {
 	for _, bcName := range c.GetAllBases([]string{}) {
 		if bc, exists := parser.ClassMap[bcName]; exists {
 			for _, f := range bc.Functions {
+				if f.Virtual == "impure" && !isDerivedFromSlot(of) {
+					return false
+				}
 				if f.Virtual == "pure" && f.Output == "void" {
 					if of.Name == f.Name {
 						return true

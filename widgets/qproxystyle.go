@@ -71,8 +71,9 @@ func callbackQProxyStyleDrawComplexControl(ptr unsafe.Pointer, ptrName *C.char, 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawComplexControl"); signal != nil {
 		signal.(func(QStyle__ComplexControl, *QStyleOptionComplex, *gui.QPainter, *QWidget))(QStyle__ComplexControl(control), NewQStyleOptionComplexFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
+	} else {
+		NewQProxyStyleFromPointer(ptr).DrawComplexControlDefault(QStyle__ComplexControl(control), NewQStyleOptionComplexFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
 	}
-
 }
 
 func (ptr *QProxyStyle) DrawComplexControl(control QStyle__ComplexControl, option QStyleOptionComplex_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
@@ -115,8 +116,9 @@ func callbackQProxyStyleDrawControl(ptr unsafe.Pointer, ptrName *C.char, element
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawControl"); signal != nil {
 		signal.(func(QStyle__ControlElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__ControlElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
+	} else {
+		NewQProxyStyleFromPointer(ptr).DrawControlDefault(QStyle__ControlElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
 	}
-
 }
 
 func (ptr *QProxyStyle) DrawControl(element QStyle__ControlElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
@@ -159,8 +161,9 @@ func callbackQProxyStyleDrawPrimitive(ptr unsafe.Pointer, ptrName *C.char, eleme
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "drawPrimitive"); signal != nil {
 		signal.(func(QStyle__PrimitiveElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__PrimitiveElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
+	} else {
+		NewQProxyStyleFromPointer(ptr).DrawPrimitiveDefault(QStyle__PrimitiveElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
 	}
-
 }
 
 func (ptr *QProxyStyle) DrawPrimitive(element QStyle__PrimitiveElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {

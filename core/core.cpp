@@ -453,23 +453,23 @@ void QAbstractEventDispatcher_CustomEventDefault(void* ptr, void* event){
 
 class MyQAbstractItemModel: public QAbstractItemModel {
 public:
-	void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsAboutToBeInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
-	void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn) { callbackQAbstractItemModelColumnsAboutToBeMoved(this, this->objectName().toUtf8().data(), sourceParent.internalPointer(), sourceStart, sourceEnd, destinationParent.internalPointer(), destinationColumn); };
-	void Signal_ColumnsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsAboutToBeRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
-	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
-	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQAbstractItemModelColumnsMoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end, destination.internalPointer(), column); };
-	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractItemModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
+	void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsAboutToBeInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
+	void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn) { callbackQAbstractItemModelColumnsAboutToBeMoved(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceStart, sourceEnd, new QModelIndex(destinationParent), destinationColumn); };
+	void Signal_ColumnsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
+	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
+	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQAbstractItemModelColumnsMoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end, new QModelIndex(destination), column); };
+	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
+	void fetchMore(const QModelIndex & parent) { callbackQAbstractItemModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQAbstractItemModelHeaderDataChanged(this, this->objectName().toUtf8().data(), orientation, first, last); };
 	void Signal_ModelAboutToBeReset() { callbackQAbstractItemModelModelAboutToBeReset(this, this->objectName().toUtf8().data()); };
 	void Signal_ModelReset() { callbackQAbstractItemModelModelReset(this, this->objectName().toUtf8().data()); };
 	void revert() { if (!callbackQAbstractItemModelRevert(this, this->objectName().toUtf8().data())) { QAbstractItemModel::revert(); }; };
-	void Signal_RowsAboutToBeInserted(const QModelIndex & parent, int start, int end) { callbackQAbstractItemModelRowsAboutToBeInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end); };
-	void Signal_RowsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationRow) { callbackQAbstractItemModelRowsAboutToBeMoved(this, this->objectName().toUtf8().data(), sourceParent.internalPointer(), sourceStart, sourceEnd, destinationParent.internalPointer(), destinationRow); };
-	void Signal_RowsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
-	void Signal_RowsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsInserted(this, this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
-	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackQAbstractItemModelRowsMoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), start, end, destination.internalPointer(), row); };
-	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsRemoved(this, this->objectName().toUtf8().data(), parent.internalPointer(), first, last); };
+	void Signal_RowsAboutToBeInserted(const QModelIndex & parent, int start, int end) { callbackQAbstractItemModelRowsAboutToBeInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end); };
+	void Signal_RowsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationRow) { callbackQAbstractItemModelRowsAboutToBeMoved(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceStart, sourceEnd, new QModelIndex(destinationParent), destinationRow); };
+	void Signal_RowsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
+	void Signal_RowsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
+	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackQAbstractItemModelRowsMoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end, new QModelIndex(destination), row); };
+	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractItemModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractItemModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractItemModelChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -477,11 +477,11 @@ public:
 };
 
 void* QAbstractItemModel_Sibling(void* ptr, int row, int column, void* index){
-	return static_cast<QAbstractItemModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(index)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractItemModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(index)));
 }
 
 void* QAbstractItemModel_Buddy(void* ptr, void* index){
-	return static_cast<QAbstractItemModel*>(ptr)->buddy(*static_cast<QModelIndex*>(index)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractItemModel*>(ptr)->buddy(*static_cast<QModelIndex*>(index)));
 }
 
 int QAbstractItemModel_CanDropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
@@ -589,7 +589,7 @@ void QAbstractItemModel_HeaderDataChanged(void* ptr, int orientation, int first,
 }
 
 void* QAbstractItemModel_Index(void* ptr, int row, int column, void* parent){
-	return static_cast<QAbstractItemModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractItemModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
 }
 
 int QAbstractItemModel_InsertColumn(void* ptr, int column, void* parent){
@@ -645,7 +645,7 @@ int QAbstractItemModel_MoveRows(void* ptr, void* sourceParent, int sourceRow, in
 }
 
 void* QAbstractItemModel_Parent(void* ptr, void* index){
-	return static_cast<QAbstractItemModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractItemModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
 }
 
 int QAbstractItemModel_RemoveColumn(void* ptr, int column, void* parent){
@@ -786,7 +786,7 @@ void QAbstractItemModel_CustomEventDefault(void* ptr, void* event){
 
 class MyQAbstractListModel: public QAbstractListModel {
 public:
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractListModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
+	void fetchMore(const QModelIndex & parent) { callbackQAbstractListModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQAbstractListModelRevert(this, this->objectName().toUtf8().data())) { QAbstractListModel::revert(); }; };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractListModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractListModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -795,7 +795,7 @@ public:
 };
 
 void* QAbstractListModel_Index(void* ptr, int row, int column, void* parent){
-	return static_cast<QAbstractListModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractListModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
 }
 
 int QAbstractListModel_DropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
@@ -807,7 +807,7 @@ int QAbstractListModel_Flags(void* ptr, void* index){
 }
 
 void* QAbstractListModel_Sibling(void* ptr, int row, int column, void* idx){
-	return static_cast<QAbstractListModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractListModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
 void QAbstractListModel_DestroyQAbstractListModel(void* ptr){
@@ -888,7 +888,7 @@ void QAbstractNativeEventFilter_SetObjectNameAbs(void* ptr, char* name){
 
 class MyQAbstractProxyModel: public QAbstractProxyModel {
 public:
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractProxyModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
+	void fetchMore(const QModelIndex & parent) { callbackQAbstractProxyModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQAbstractProxyModelRevert(this, this->objectName().toUtf8().data())) { QAbstractProxyModel::revert(); }; };
 	void setSourceModel(QAbstractItemModel * sourceModel) { callbackQAbstractProxyModelSetSourceModel(this, this->objectName().toUtf8().data(), sourceModel); };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractProxyModelSort(this, this->objectName().toUtf8().data(), column, order); };
@@ -899,7 +899,7 @@ public:
 };
 
 void* QAbstractProxyModel_Buddy(void* ptr, void* index){
-	return static_cast<QAbstractProxyModel*>(ptr)->buddy(*static_cast<QModelIndex*>(index)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->buddy(*static_cast<QModelIndex*>(index)));
 }
 
 int QAbstractProxyModel_CanDropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
@@ -939,11 +939,11 @@ void* QAbstractProxyModel_HeaderData(void* ptr, int section, int orientation, in
 }
 
 void* QAbstractProxyModel_MapFromSource(void* ptr, void* sourceIndex){
-	return static_cast<QAbstractProxyModel*>(ptr)->mapFromSource(*static_cast<QModelIndex*>(sourceIndex)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->mapFromSource(*static_cast<QModelIndex*>(sourceIndex)));
 }
 
 void* QAbstractProxyModel_MapToSource(void* ptr, void* proxyIndex){
-	return static_cast<QAbstractProxyModel*>(ptr)->mapToSource(*static_cast<QModelIndex*>(proxyIndex)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->mapToSource(*static_cast<QModelIndex*>(proxyIndex)));
 }
 
 char* QAbstractProxyModel_MimeTypes(void* ptr){
@@ -975,7 +975,7 @@ void QAbstractProxyModel_SetSourceModelDefault(void* ptr, void* sourceModel){
 }
 
 void* QAbstractProxyModel_Sibling(void* ptr, int row, int column, void* idx){
-	return static_cast<QAbstractProxyModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
 void QAbstractProxyModel_Sort(void* ptr, int column, int order){
@@ -1126,7 +1126,7 @@ void QAbstractState_CustomEventDefault(void* ptr, void* event){
 
 class MyQAbstractTableModel: public QAbstractTableModel {
 public:
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractTableModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
+	void fetchMore(const QModelIndex & parent) { callbackQAbstractTableModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQAbstractTableModelRevert(this, this->objectName().toUtf8().data())) { QAbstractTableModel::revert(); }; };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractTableModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractTableModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -1135,7 +1135,7 @@ public:
 };
 
 void* QAbstractTableModel_Index(void* ptr, int row, int column, void* parent){
-	return static_cast<QAbstractTableModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
 }
 
 int QAbstractTableModel_DropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
@@ -1147,7 +1147,7 @@ int QAbstractTableModel_Flags(void* ptr, void* index){
 }
 
 void* QAbstractTableModel_Sibling(void* ptr, int row, int column, void* idx){
-	return static_cast<QAbstractTableModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)).internalPointer();
+	return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
 void QAbstractTableModel_DestroyQAbstractTableModel(void* ptr){
@@ -4471,7 +4471,7 @@ class MyQIdentityProxyModel: public QIdentityProxyModel {
 public:
 	MyQIdentityProxyModel(QObject *parent) : QIdentityProxyModel(parent) {};
 	void setSourceModel(QAbstractItemModel * newSourceModel) { callbackQIdentityProxyModelSetSourceModel(this, this->objectName().toUtf8().data(), newSourceModel); };
-	void fetchMore(const QModelIndex & parent) { callbackQIdentityProxyModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
+	void fetchMore(const QModelIndex & parent) { callbackQIdentityProxyModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQIdentityProxyModelRevert(this, this->objectName().toUtf8().data())) { QIdentityProxyModel::revert(); }; };
 	void sort(int column, Qt::SortOrder order) { callbackQIdentityProxyModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void timerEvent(QTimerEvent * event) { callbackQIdentityProxyModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -4496,7 +4496,7 @@ void* QIdentityProxyModel_HeaderData(void* ptr, int section, int orientation, in
 }
 
 void* QIdentityProxyModel_Index(void* ptr, int row, int column, void* parent){
-	return static_cast<QIdentityProxyModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)).internalPointer();
+	return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
 }
 
 int QIdentityProxyModel_InsertColumns(void* ptr, int column, int count, void* parent){
@@ -4508,15 +4508,15 @@ int QIdentityProxyModel_InsertRows(void* ptr, int row, int count, void* parent){
 }
 
 void* QIdentityProxyModel_MapFromSource(void* ptr, void* sourceIndex){
-	return static_cast<QIdentityProxyModel*>(ptr)->mapFromSource(*static_cast<QModelIndex*>(sourceIndex)).internalPointer();
+	return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->mapFromSource(*static_cast<QModelIndex*>(sourceIndex)));
 }
 
 void* QIdentityProxyModel_MapToSource(void* ptr, void* proxyIndex){
-	return static_cast<QIdentityProxyModel*>(ptr)->mapToSource(*static_cast<QModelIndex*>(proxyIndex)).internalPointer();
+	return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->mapToSource(*static_cast<QModelIndex*>(proxyIndex)));
 }
 
 void* QIdentityProxyModel_Parent(void* ptr, void* child){
-	return static_cast<QIdentityProxyModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)).internalPointer();
+	return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)));
 }
 
 int QIdentityProxyModel_RemoveColumns(void* ptr, int column, int count, void* parent){
@@ -4540,7 +4540,7 @@ void QIdentityProxyModel_SetSourceModelDefault(void* ptr, void* newSourceModel){
 }
 
 void* QIdentityProxyModel_Sibling(void* ptr, int row, int column, void* idx){
-	return static_cast<QIdentityProxyModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)).internalPointer();
+	return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
 void QIdentityProxyModel_DestroyQIdentityProxyModel(void* ptr){
@@ -4625,13 +4625,13 @@ public:
 	MyQItemSelectionModel(QAbstractItemModel *model, QObject *parent) : QItemSelectionModel(model, parent) {};
 	void clear() { if (!callbackQItemSelectionModelClear(this, this->objectName().toUtf8().data())) { QItemSelectionModel::clear(); }; };
 	void clearCurrentIndex() { if (!callbackQItemSelectionModelClearCurrentIndex(this, this->objectName().toUtf8().data())) { QItemSelectionModel::clearCurrentIndex(); }; };
-	void Signal_CurrentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
-	void Signal_CurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentColumnChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
-	void Signal_CurrentRowChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentRowChanged(this, this->objectName().toUtf8().data(), current.internalPointer(), previous.internalPointer()); };
+	void Signal_CurrentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
+	void Signal_CurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentColumnChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
+	void Signal_CurrentRowChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentRowChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
 	void Signal_ModelChanged(QAbstractItemModel * model) { callbackQItemSelectionModelModelChanged(this, this->objectName().toUtf8().data(), model); };
 	void reset() { if (!callbackQItemSelectionModelReset(this, this->objectName().toUtf8().data())) { QItemSelectionModel::reset(); }; };
-	void select(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { if (!callbackQItemSelectionModelSelect(this, this->objectName().toUtf8().data(), index.internalPointer(), command)) { QItemSelectionModel::select(index, command); }; };
-	void setCurrentIndex(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { if (!callbackQItemSelectionModelSetCurrentIndex(this, this->objectName().toUtf8().data(), index.internalPointer(), command)) { QItemSelectionModel::setCurrentIndex(index, command); }; };
+	void select(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { if (!callbackQItemSelectionModelSelect(this, this->objectName().toUtf8().data(), new QModelIndex(index), command)) { QItemSelectionModel::select(index, command); }; };
+	void setCurrentIndex(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { if (!callbackQItemSelectionModelSetCurrentIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index), command)) { QItemSelectionModel::setCurrentIndex(index, command); }; };
 	void timerEvent(QTimerEvent * event) { callbackQItemSelectionModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQItemSelectionModelChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQItemSelectionModelCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -4694,7 +4694,7 @@ void QItemSelectionModel_CurrentColumnChanged(void* ptr, void* current, void* pr
 }
 
 void* QItemSelectionModel_CurrentIndex(void* ptr){
-	return static_cast<QItemSelectionModel*>(ptr)->currentIndex().internalPointer();
+	return new QModelIndex(static_cast<QItemSelectionModel*>(ptr)->currentIndex());
 }
 
 void QItemSelectionModel_ConnectCurrentRowChanged(void* ptr){
@@ -4858,7 +4858,7 @@ void* QItemSelectionRange_Model(void* ptr){
 }
 
 void* QItemSelectionRange_Parent(void* ptr){
-	return static_cast<QItemSelectionRange*>(ptr)->parent().internalPointer();
+	return new QModelIndex(static_cast<QItemSelectionRange*>(ptr)->parent());
 }
 
 int QItemSelectionRange_Right(void* ptr){
@@ -6390,7 +6390,7 @@ void* QModelIndex_NewQModelIndex(){
 }
 
 void* QModelIndex_Child(void* ptr, int row, int column){
-	return static_cast<QModelIndex*>(ptr)->child(row, column).internalPointer();
+	return new QModelIndex(static_cast<QModelIndex*>(ptr)->child(row, column));
 }
 
 int QModelIndex_Column(void* ptr){
@@ -6418,7 +6418,7 @@ void* QModelIndex_Model(void* ptr){
 }
 
 void* QModelIndex_Parent(void* ptr){
-	return static_cast<QModelIndex*>(ptr)->parent().internalPointer();
+	return new QModelIndex(static_cast<QModelIndex*>(ptr)->parent());
 }
 
 int QModelIndex_Row(void* ptr){
@@ -6426,7 +6426,7 @@ int QModelIndex_Row(void* ptr){
 }
 
 void* QModelIndex_Sibling(void* ptr, int row, int column){
-	return static_cast<QModelIndex*>(ptr)->sibling(row, column).internalPointer();
+	return new QModelIndex(static_cast<QModelIndex*>(ptr)->sibling(row, column));
 }
 
 void QMutex_Lock(void* ptr){
@@ -6854,7 +6854,7 @@ void* QPersistentModelIndex_NewQPersistentModelIndex(void* index){
 }
 
 void* QPersistentModelIndex_Child(void* ptr, int row, int column){
-	return static_cast<QPersistentModelIndex*>(ptr)->child(row, column).internalPointer();
+	return new QModelIndex(static_cast<QPersistentModelIndex*>(ptr)->child(row, column));
 }
 
 void* QPersistentModelIndex_Data(void* ptr, int role){
@@ -6870,11 +6870,11 @@ void* QPersistentModelIndex_Model(void* ptr){
 }
 
 void* QPersistentModelIndex_Parent(void* ptr){
-	return static_cast<QPersistentModelIndex*>(ptr)->parent().internalPointer();
+	return new QModelIndex(static_cast<QPersistentModelIndex*>(ptr)->parent());
 }
 
 void* QPersistentModelIndex_Sibling(void* ptr, int row, int column){
-	return static_cast<QPersistentModelIndex*>(ptr)->sibling(row, column).internalPointer();
+	return new QModelIndex(static_cast<QPersistentModelIndex*>(ptr)->sibling(row, column));
 }
 
 void QPersistentModelIndex_Swap(void* ptr, void* other){
@@ -9329,7 +9329,7 @@ void QSocketNotifier_CustomEventDefault(void* ptr, void* event){
 class MyQSortFilterProxyModel: public QSortFilterProxyModel {
 public:
 	MyQSortFilterProxyModel(QObject *parent) : QSortFilterProxyModel(parent) {};
-	void fetchMore(const QModelIndex & parent) { callbackQSortFilterProxyModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
+	void fetchMore(const QModelIndex & parent) { callbackQSortFilterProxyModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void setSourceModel(QAbstractItemModel * sourceModel) { callbackQSortFilterProxyModelSetSourceModel(this, this->objectName().toUtf8().data(), sourceModel); };
 	void sort(int column, Qt::SortOrder order) { callbackQSortFilterProxyModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void revert() { if (!callbackQSortFilterProxyModelRevert(this, this->objectName().toUtf8().data())) { QSortFilterProxyModel::revert(); }; };
@@ -9407,7 +9407,7 @@ void* QSortFilterProxyModel_NewQSortFilterProxyModel(void* parent){
 }
 
 void* QSortFilterProxyModel_Buddy(void* ptr, void* index){
-	return static_cast<QSortFilterProxyModel*>(ptr)->buddy(*static_cast<QModelIndex*>(index)).internalPointer();
+	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->buddy(*static_cast<QModelIndex*>(index)));
 }
 
 int QSortFilterProxyModel_CanFetchMore(void* ptr, void* parent){
@@ -9455,7 +9455,7 @@ void* QSortFilterProxyModel_HeaderData(void* ptr, int section, int orientation, 
 }
 
 void* QSortFilterProxyModel_Index(void* ptr, int row, int column, void* parent){
-	return static_cast<QSortFilterProxyModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)).internalPointer();
+	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
 }
 
 int QSortFilterProxyModel_InsertColumns(void* ptr, int column, int count, void* parent){
@@ -9475,11 +9475,11 @@ int QSortFilterProxyModel_LessThan(void* ptr, void* source_left, void* source_ri
 }
 
 void* QSortFilterProxyModel_MapFromSource(void* ptr, void* sourceIndex){
-	return static_cast<QSortFilterProxyModel*>(ptr)->mapFromSource(*static_cast<QModelIndex*>(sourceIndex)).internalPointer();
+	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->mapFromSource(*static_cast<QModelIndex*>(sourceIndex)));
 }
 
 void* QSortFilterProxyModel_MapToSource(void* ptr, void* proxyIndex){
-	return static_cast<QSortFilterProxyModel*>(ptr)->mapToSource(*static_cast<QModelIndex*>(proxyIndex)).internalPointer();
+	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->mapToSource(*static_cast<QModelIndex*>(proxyIndex)));
 }
 
 char* QSortFilterProxyModel_MimeTypes(void* ptr){
@@ -9487,7 +9487,7 @@ char* QSortFilterProxyModel_MimeTypes(void* ptr){
 }
 
 void* QSortFilterProxyModel_Parent(void* ptr, void* child){
-	return static_cast<QSortFilterProxyModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)).internalPointer();
+	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)));
 }
 
 int QSortFilterProxyModel_RemoveColumns(void* ptr, int column, int count, void* parent){
@@ -9531,7 +9531,7 @@ void QSortFilterProxyModel_SetSourceModelDefault(void* ptr, void* sourceModel){
 }
 
 void* QSortFilterProxyModel_Sibling(void* ptr, int row, int column, void* idx){
-	return static_cast<QSortFilterProxyModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)).internalPointer();
+	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
 void QSortFilterProxyModel_Sort(void* ptr, int column, int order){
@@ -10043,7 +10043,7 @@ void QStorageInfo_DestroyQStorageInfo(void* ptr){
 class MyQStringListModel: public QStringListModel {
 public:
 	void sort(int column, Qt::SortOrder order) { callbackQStringListModelSort(this, this->objectName().toUtf8().data(), column, order); };
-	void fetchMore(const QModelIndex & parent) { callbackQStringListModelFetchMore(this, this->objectName().toUtf8().data(), parent.internalPointer()); };
+	void fetchMore(const QModelIndex & parent) { callbackQStringListModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQStringListModelRevert(this, this->objectName().toUtf8().data())) { QStringListModel::revert(); }; };
 	void timerEvent(QTimerEvent * event) { callbackQStringListModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQStringListModelChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -10079,7 +10079,7 @@ void QStringListModel_SetStringList(void* ptr, char* strin){
 }
 
 void* QStringListModel_Sibling(void* ptr, int row, int column, void* idx){
-	return static_cast<QStringListModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)).internalPointer();
+	return new QModelIndex(static_cast<QStringListModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
 void QStringListModel_Sort(void* ptr, int column, int order){
@@ -12351,7 +12351,7 @@ void* QVariant_ToJsonObject(void* ptr){
 }
 
 void* QVariant_ToModelIndex(void* ptr){
-	return static_cast<QVariant*>(ptr)->toModelIndex().internalPointer();
+	return new QModelIndex(static_cast<QVariant*>(ptr)->toModelIndex());
 }
 
 double QVariant_ToReal(void* ptr, int ok){

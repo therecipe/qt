@@ -106,12 +106,14 @@ func (ptr *QNmeaPositionInfoSource) DisconnectRequestUpdate() {
 }
 
 //export callbackQNmeaPositionInfoSourceRequestUpdate
-func callbackQNmeaPositionInfoSourceRequestUpdate(ptr unsafe.Pointer, ptrName *C.char, msec C.int) {
+func callbackQNmeaPositionInfoSourceRequestUpdate(ptr unsafe.Pointer, ptrName *C.char, msec C.int) bool {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::requestUpdate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "requestUpdate"); signal != nil {
 		signal.(func(int))(int(msec))
+		return true
 	}
+	return false
 
 }
 
@@ -203,12 +205,14 @@ func (ptr *QNmeaPositionInfoSource) DisconnectStartUpdates() {
 }
 
 //export callbackQNmeaPositionInfoSourceStartUpdates
-func callbackQNmeaPositionInfoSourceStartUpdates(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQNmeaPositionInfoSourceStartUpdates(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::startUpdates")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "startUpdates"); signal != nil {
 		signal.(func())()
+		return true
 	}
+	return false
 
 }
 
@@ -247,12 +251,14 @@ func (ptr *QNmeaPositionInfoSource) DisconnectStopUpdates() {
 }
 
 //export callbackQNmeaPositionInfoSourceStopUpdates
-func callbackQNmeaPositionInfoSourceStopUpdates(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQNmeaPositionInfoSourceStopUpdates(ptr unsafe.Pointer, ptrName *C.char) bool {
 	defer qt.Recovering("callback QNmeaPositionInfoSource::stopUpdates")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stopUpdates"); signal != nil {
 		signal.(func())()
+		return true
 	}
+	return false
 
 }
 

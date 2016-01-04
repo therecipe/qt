@@ -214,8 +214,9 @@ func callbackQPropertyAnimationUpdateCurrentTime(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(v))
+	} else {
+		NewQPropertyAnimationFromPointer(ptr).UpdateCurrentTimeDefault(int(v))
 	}
-
 }
 
 func (ptr *QPropertyAnimation) UpdateCurrentTime(v int) {
