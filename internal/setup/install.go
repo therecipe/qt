@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -83,6 +85,10 @@ func main() {
 	}
 	runCmd(cmd, "install.std")
 
+	if runtime.GOOS == "windows" {
+		setLargeAddressAware(filepath.Join("C:", "Qt", "Qt5.5.1", "Tools", "mingw492_32", "libexec", "gcc", "i686-w64-mingw32", "4.9.2", "cc1plus.exe"))
+	}
+
 	fmt.Printf("________________________Install-%v________________________\n", buildTarget)
 
 	for _, m := range templater.GetLibs() {
@@ -132,4 +138,53 @@ func runCmd(cmd *exec.Cmd, n string) string {
 		os.Exit(1)
 	}
 	return string(out)
+}
+
+func setLargeAddressAware(fp string) {
+
+	var (
+		b, err = ioutil.ReadFile(fp)
+		br     = bytes.NewReader(b)
+	)
+
+	if err != nil {
+		println("setLargeAddressAware error: ReadFile")
+	} else {
+		//check if mz header is valid
+		var bb = make([]byte, 2)
+		br.Read(bb)
+		if !bytes.Equal(bb, []byte{'M', 'Z'}) {
+			println("setLargeAddressAware error: MZ header is invalid")
+			return
+		}
+
+		//seek pe header offset
+		br.Seek(60, 0)
+
+		bb = make([]byte, 1)
+		br.Read(bb)
+		var peHeaderLoc = int64(bb[0])
+
+		//seek pe header location
+		br.Seek(peHeaderLoc, 0)
+
+		//check if pe header is valid
+		bb = make([]byte, 2)
+		br.Read(bb)
+		if !bytes.Equal(bb, []byte{'P', 'E'}) {
+			println("setLargeAddressAware error: PE header is invalid")
+			return
+		}
+
+		//seek characteristics
+		br.Seek(peHeaderLoc+4+18, 0)
+
+		//check if large address aware is set
+		bb = make([]byte, 2)
+		br.Read(bb)
+		if !bytes.Equal(bb, []byte{47, 3}) {
+			ioutil.WriteFile(strings.Replace(fp, ".exe", "_backup.exe", -1), b, 0777)
+			ioutil.WriteFile(fp, bytes.Replace(b, bb, []byte{47, 3}, 1), 0777)
+		}
+	}
 }

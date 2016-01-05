@@ -82,10 +82,6 @@ func isBlocked(f *parser.Function) bool {
 		}
 	}
 
-	if f.Name == "exec" && runtime.GOOS == "linux" && !strings.Contains(f.Class(), "Sql") {
-		f.Virtual = ""
-	}
-
 	if f.Name == "value" && f.Class() == "QVariant" {
 		f.Access = "unsupported_goFunction"
 		return true
@@ -247,6 +243,7 @@ var Build = map[string]bool{
 	"Location":          false,
 	"ScriptTools":       false,
 	"MultimediaWidgets": false,
+	"UiTools":           false,
 }
 
 var Libs = []string{
@@ -275,6 +272,7 @@ var Libs = []string{
 	"Location",
 	"ScriptTools",
 	"MultimediaWidgets",
+	"UiTools",
 }
 
 func GetLibs() []string {
@@ -318,6 +316,7 @@ var LibDeps = map[string][]string{
 	"Location":          []string{"Core", "Gui", "Network", "Positioning", "Qml", "Quick"},
 	"ScriptTools":       []string{"Core", "Gui", "Script", "Widgets"},
 	"MultimediaWidgets": []string{"Core", "Gui", "Network", "Widgets", "OpenGL", "Multimedia"},
+	"UiTools":           []string{"Core", "Gui", "Widgets"},
 
 	/*
 		CLucene
@@ -325,7 +324,6 @@ var LibDeps = map[string][]string{
 		OpenGL
 		Concurrent
 		WinExtras
-		UiTools
 	*/
 }
 

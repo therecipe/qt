@@ -27,7 +27,7 @@ func main() {
 
 	runCmd(exec.Command("go", "build", "-o", path.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GetQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
 
-	for _, example := range []string{path.Join("widgets", "line_edits"), path.Join("widgets", "video_player"), path.Join("widgets", "graphicsscene"), path.Join("quick", "calc"), path.Join("quick", "dialog"), path.Join("quick", "view"), path.Join("qml", "application"), path.Join("qml", "prop")} {
+	for _, example := range []string{path.Join("widgets", "line_edits"), path.Join("widgets", "video_player"), path.Join("widgets", "graphicsscene"), path.Join("quick", "calc"), path.Join("quick", "dialog"), path.Join("quick", "view"), path.Join("qml", "application"), path.Join("qml", "prop"), path.Join("uitools", "calculator")} {
 		var before = time.Now()
 
 		fmt.Print(example)

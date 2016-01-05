@@ -46,7 +46,11 @@ func createCgoDarwin(module string) {
 
 	tmp += "#cgo CPPFLAGS:"
 	for _, m := range append(LibDeps[module], module) {
-		tmp += fmt.Sprintf(" -I/usr/local/Qt5.5.1/5.5/clang_64/lib/Qt%v.framework/Headers", m)
+		if m == "UiTools" {
+			tmp += fmt.Sprintf(" -I/usr/local/Qt5.5.1/5.5/clang_64/include/Qt%v", m)
+		} else {
+			tmp += fmt.Sprintf(" -I/usr/local/Qt5.5.1/5.5/clang_64/lib/Qt%v.framework/Headers", m)
+		}
 	}
 	tmp += "\n"
 
@@ -57,11 +61,19 @@ func createCgoDarwin(module string) {
 
 	tmp += "#cgo LDFLAGS: -F/usr/local/Qt5.5.1/5.5/clang_64/lib"
 	for _, m := range append(LibDeps[module], module) {
-		tmp += fmt.Sprintf(" -framework Qt%v", m)
+		if m == "UiTools" {
+			tmp += fmt.Sprintf(" -L/usr/local/Qt5.5.1/5.5/clang_64/lib -lQt5%v", m)
+		}
 	}
-	tmp += " -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL\n"
+	for _, m := range append(LibDeps[module], module) {
+		if m != "UiTools" {
+			tmp += fmt.Sprintf(" -framework Qt%v", m)
+		}
+	}
 
+	tmp += " -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL\n"
 	tmp += "*/\n"
+
 	tmp += fmt.Sprintf("import \"C\"\n")
 
 	utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_darwin_amd64.go"), tmp)
@@ -93,7 +105,14 @@ func createCgoWindows(module string) {
 
 	tmp += "#cgo LDFLAGS: -LC:/Qt/Qt5.5.1/5.5/mingw492_32/lib"
 	for _, m := range append(LibDeps[module], module) {
-		tmp += fmt.Sprintf(" -lQt5%v", m)
+		if m == "UiTools" {
+			tmp += fmt.Sprintf(" -lQt5%v", m)
+		}
+	}
+	for _, m := range append(LibDeps[module], module) {
+		if m != "UiTools" {
+			tmp += fmt.Sprintf(" -lQt5%v", m)
+		}
 	}
 
 	tmp += " -lmingw32 -lqtmain -lshell32\n"
@@ -130,12 +149,19 @@ func createCgoLinux(module string) {
 
 	tmp += "#cgo LDFLAGS: -L/usr/local/Qt5.5.1/5.5/gcc/lib -L/usr/lib64"
 	for _, m := range append(LibDeps[module], module) {
-		tmp += fmt.Sprintf(" -lQt5%v", m)
+		if m == "UiTools" {
+			tmp += fmt.Sprintf(" -lQt5%v", m)
+		}
+	}
+	for _, m := range append(LibDeps[module], module) {
+		if m != "UiTools" {
+			tmp += fmt.Sprintf(" -lQt5%v", m)
+		}
 	}
 
 	tmp += " -lpthread\n"
-
 	tmp += "*/\n"
+
 	tmp += fmt.Sprintf("import \"C\"\n")
 
 	utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_386.go"), strings.Replace(tmp, "lib64", "lib", -1))
@@ -168,12 +194,19 @@ func createCgoandroidDarwinAndLinux(module string) {
 
 	tmp += "#cgo LDFLAGS: -L/opt/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android-ndk/platforms/android-9/arch-arm//usr/lib -L/usr/local/Qt5.5.1/5.5/android_armv7/lib -L/opt/android/ndk/sources/cxx-stl/gnu-libstdc++/4.8/libs/armeabi-v7a -L/opt/android/ndk/platforms/android-9/arch-arm//usr/lib"
 	for _, m := range append(LibDeps[module], module) {
-		tmp += fmt.Sprintf(" -lQt5%v", m)
+		if m == "UiTools" {
+			tmp += fmt.Sprintf(" -lQt5%v", m)
+		}
+	}
+	for _, m := range append(LibDeps[module], module) {
+		if m != "UiTools" {
+			tmp += fmt.Sprintf(" -lQt5%v", m)
+		}
 	}
 
 	tmp += " -lGLESv2 -lgnustl_shared -llog -lz -lm -ldl -lc -lgcc\n"
-
 	tmp += "*/\n"
+
 	tmp += fmt.Sprintf("import \"C\"\n")
 
 	utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_android_arm.go"), tmp)
@@ -205,12 +238,19 @@ func createCgoandroidWindows(module string) {
 
 	tmp += "#cgo LDFLAGS: -LC:/android/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -LC:/android/android-ndk/platforms/android-9/arch-arm//usr/lib -LC:/Qt/Qt5.5.1/5.5/android_armv7/lib -LC:/android/android/ndk/sources/cxx-stl/gnu-libstdc++/4.8/libs/armeabi-v7a -LC:/android/android/ndk/platforms/android-9/arch-arm//usr/lib"
 	for _, m := range append(LibDeps[module], module) {
-		tmp += fmt.Sprintf(" -lQt5%v", m)
+		if m == "UiTools" {
+			tmp += fmt.Sprintf(" -lQt5%v", m)
+		}
+	}
+	for _, m := range append(LibDeps[module], module) {
+		if m != "UiTools" {
+			tmp += fmt.Sprintf(" -lQt5%v", m)
+		}
 	}
 
 	tmp += " -lGLESv2 -lgnustl_shared -llog -lz -lm -ldl -lc -lgcc\n"
-
 	tmp += "*/\n"
+
 	tmp += fmt.Sprintf("import \"C\"\n")
 
 	utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_android_arm.go"), tmp)
