@@ -83,7 +83,7 @@ func isBlocked(f *parser.Function) bool {
 	}
 
 	if f.Name == "exec" && runtime.GOOS == "linux" && !strings.Contains(f.Class(), "Sql") {
-		f.Output = "void"
+		f.Virtual = ""
 	}
 
 	if f.Name == "value" && f.Class() == "QVariant" {
