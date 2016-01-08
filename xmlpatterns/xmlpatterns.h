@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTXMLPATTERNS_H
+#define GO_QTXMLPATTERNS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -185,4 +190,6 @@ void QXmlSerializer_SetObjectNameAbs(void* ptr, char* name);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

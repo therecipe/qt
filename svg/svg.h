@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTSVG_H
+#define GO_QTSVG_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -143,4 +148,6 @@ void QSvgWidget_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

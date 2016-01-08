@@ -32,11 +32,11 @@ void QUiLoader_AddPluginPath(void* ptr, char* path){
 }
 
 char* QUiLoader_AvailableLayouts(void* ptr){
-	return static_cast<QUiLoader*>(ptr)->availableLayouts().join(",,,").toUtf8().data();
+	return static_cast<QUiLoader*>(ptr)->availableLayouts().join("|").toUtf8().data();
 }
 
 char* QUiLoader_AvailableWidgets(void* ptr){
-	return static_cast<QUiLoader*>(ptr)->availableWidgets().join(",,,").toUtf8().data();
+	return static_cast<QUiLoader*>(ptr)->availableWidgets().join("|").toUtf8().data();
 }
 
 void QUiLoader_ClearPluginPaths(void* ptr){
@@ -72,7 +72,7 @@ void* QUiLoader_Load(void* ptr, void* device, void* parentWidget){
 }
 
 char* QUiLoader_PluginPaths(void* ptr){
-	return static_cast<QUiLoader*>(ptr)->pluginPaths().join(",,,").toUtf8().data();
+	return static_cast<QUiLoader*>(ptr)->pluginPaths().join("|").toUtf8().data();
 }
 
 void QUiLoader_SetLanguageChangeEnabled(void* ptr, int enabled){

@@ -774,7 +774,7 @@ void* QHelpEngineCore_NewQHelpEngineCore(char* collectionFile, void* parent){
 }
 
 int QHelpEngineCore_AddCustomFilter(void* ptr, char* filterName, char* attributes){
-	return static_cast<QHelpEngineCore*>(ptr)->addCustomFilter(QString(filterName), QString(attributes).split(",,,", QString::SkipEmptyParts));
+	return static_cast<QHelpEngineCore*>(ptr)->addCustomFilter(QString(filterName), QString(attributes).split("|", QString::SkipEmptyParts));
 }
 
 int QHelpEngineCore_CopyCollectionFile(void* ptr, char* fileName){
@@ -794,7 +794,7 @@ void QHelpEngineCore_CurrentFilterChanged(void* ptr, char* newFilter){
 }
 
 char* QHelpEngineCore_CustomFilters(void* ptr){
-	return static_cast<QHelpEngineCore*>(ptr)->customFilters().join(",,,").toUtf8().data();
+	return static_cast<QHelpEngineCore*>(ptr)->customFilters().join("|").toUtf8().data();
 }
 
 void* QHelpEngineCore_CustomValue(void* ptr, char* key, void* defaultValue){
@@ -814,11 +814,11 @@ void* QHelpEngineCore_FileData(void* ptr, void* url){
 }
 
 char* QHelpEngineCore_FilterAttributes(void* ptr){
-	return static_cast<QHelpEngineCore*>(ptr)->filterAttributes().join(",,,").toUtf8().data();
+	return static_cast<QHelpEngineCore*>(ptr)->filterAttributes().join("|").toUtf8().data();
 }
 
 char* QHelpEngineCore_FilterAttributes2(void* ptr, char* filterName){
-	return static_cast<QHelpEngineCore*>(ptr)->filterAttributes(QString(filterName)).join(",,,").toUtf8().data();
+	return static_cast<QHelpEngineCore*>(ptr)->filterAttributes(QString(filterName)).join("|").toUtf8().data();
 }
 
 void* QHelpEngineCore_FindFile(void* ptr, void* url){
@@ -850,7 +850,7 @@ int QHelpEngineCore_RegisterDocumentation(void* ptr, char* documentationFileName
 }
 
 char* QHelpEngineCore_RegisteredDocumentations(void* ptr){
-	return static_cast<QHelpEngineCore*>(ptr)->registeredDocumentations().join(",,,").toUtf8().data();
+	return static_cast<QHelpEngineCore*>(ptr)->registeredDocumentations().join("|").toUtf8().data();
 }
 
 int QHelpEngineCore_RemoveCustomFilter(void* ptr, char* filterName){
@@ -1619,7 +1619,7 @@ void* QHelpSearchQuery_NewQHelpSearchQuery(){
 }
 
 void* QHelpSearchQuery_NewQHelpSearchQuery2(int field, char* wordList){
-	return new QHelpSearchQuery(static_cast<QHelpSearchQuery::FieldName>(field), QString(wordList).split(",,,", QString::SkipEmptyParts));
+	return new QHelpSearchQuery(static_cast<QHelpSearchQuery::FieldName>(field), QString(wordList).split("|", QString::SkipEmptyParts));
 }
 
 class MyQHelpSearchQueryWidget: public QHelpSearchQueryWidget {

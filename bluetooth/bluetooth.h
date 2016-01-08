@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTBLUETOOTH_H
+#define GO_QTBLUETOOTH_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -320,4 +325,6 @@ void QLowEnergyService_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

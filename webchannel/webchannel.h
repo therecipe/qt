@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTWEBCHANNEL_H
+#define GO_QTWEBCHANNEL_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -33,4 +38,6 @@ void QWebChannelAbstractTransport_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

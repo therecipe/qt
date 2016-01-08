@@ -27,7 +27,7 @@ func GenModule(name string) {
 		utils.MakeFolder(utils.GetQtPkgPath(pkgName))
 		CopyCgo(name)
 		if name == "AndroidExtras" {
-			utils.Save(utils.GetQtPkgPath(pkgName, "androidextras_android.go"), utils.Load(utils.GetQtPkgPath("internal", "binding", "files", "androidextras_android.go")))
+			utils.Save(utils.GetQtPkgPath(pkgName, "utils-androidextras_android.go"), utils.Load(utils.GetQtPkgPath("internal", "binding", "files", "utils-androidextras_android.go")))
 		}
 
 		//dry run
@@ -35,31 +35,20 @@ func GenModule(name string) {
 			if strings.TrimPrefix(c.Module, "Qt") == name {
 				AddObjectNameFunctionIfNeeded(c)
 				ManualWeakLink(c)
-				GoTemplate(c)
 			}
 		}
 		CppTemplate("Qt" + name)
 		HTemplate("Qt" + name)
+		GoTemplate("Qt"+name, false)
 
 		//generate
 		utils.Save(utils.GetQtPkgPath(pkgName, pkgName+suffix+".cpp"), CppTemplate("Qt"+name))
 		utils.Save(utils.GetQtPkgPath(pkgName, pkgName+suffix+".h"), HTemplate("Qt"+name))
 
-		for _, c := range parser.ClassMap {
-			if strings.TrimPrefix(c.Module, "Qt") == name {
-
-				if name == "AndroidExtras" {
-					utils.Save(utils.GetQtPkgPath(pkgName, strings.ToLower(c.Name)+suffix+".go"), GoTemplate(c))
-				}
-
-				c.Stub = (name == "AndroidExtras")
-				utils.Save(utils.GetQtPkgPath(pkgName, strings.ToLower(c.Name)+".go"), GoTemplate(c))
-				c.Stub = false
-
-				//c.Dump()
-			}
+		if name == "AndroidExtras" {
+			utils.Save(utils.GetQtPkgPath(pkgName, pkgName+suffix+".go"), GoTemplate("Qt"+name, false))
 		}
-
+		utils.Save(utils.GetQtPkgPath(pkgName, pkgName+".go"), GoTemplate("Qt"+name, name == "AndroidExtras"))
 	}
 }
 

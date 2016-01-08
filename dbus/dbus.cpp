@@ -232,7 +232,7 @@ int QDBusConnection_Connect2(void* ptr, char* service, char* path, char* interfa
 }
 
 int QDBusConnection_Connect3(void* ptr, char* service, char* path, char* interfa, char* name, char* argumentMatch, char* signature, void* receiver, char* slot){
-	return static_cast<QDBusConnection*>(ptr)->connect(QString(service), QString(path), QString(interfa), QString(name), QString(argumentMatch).split(",,,", QString::SkipEmptyParts), QString(signature), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+	return static_cast<QDBusConnection*>(ptr)->connect(QString(service), QString(path), QString(interfa), QString(name), QString(argumentMatch).split("|", QString::SkipEmptyParts), QString(signature), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
 }
 
 int QDBusConnection_ConnectionCapabilities(void* ptr){
@@ -728,11 +728,11 @@ void QDBusServiceWatcher_SetConnection(void* ptr, void* connection){
 }
 
 void QDBusServiceWatcher_SetWatchedServices(void* ptr, char* services){
-	static_cast<QDBusServiceWatcher*>(ptr)->setWatchedServices(QString(services).split(",,,", QString::SkipEmptyParts));
+	static_cast<QDBusServiceWatcher*>(ptr)->setWatchedServices(QString(services).split("|", QString::SkipEmptyParts));
 }
 
 char* QDBusServiceWatcher_WatchedServices(void* ptr){
-	return static_cast<QDBusServiceWatcher*>(ptr)->watchedServices().join(",,,").toUtf8().data();
+	return static_cast<QDBusServiceWatcher*>(ptr)->watchedServices().join("|").toUtf8().data();
 }
 
 void QDBusServiceWatcher_DestroyQDBusServiceWatcher(void* ptr){

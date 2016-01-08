@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTMACEXTRAS_H
+#define GO_QTMACEXTRAS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -46,4 +51,6 @@ void QMacToolBarItem_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

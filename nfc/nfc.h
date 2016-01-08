@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTNFC_H
+#define GO_QTNFC_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -171,4 +176,6 @@ void QQmlNdefRecord_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

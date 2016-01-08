@@ -3026,7 +3026,7 @@ void* QAccessibleWidget_NewQAccessibleWidget(void* w, int role, char* name){
 }
 
 char* QAccessibleWidget_ActionNames(void* ptr){
-	return static_cast<QAccessibleWidget*>(ptr)->actionNames().join(",,,").toUtf8().data();
+	return static_cast<QAccessibleWidget*>(ptr)->actionNames().join("|").toUtf8().data();
 }
 
 void* QAccessibleWidget_BackgroundColor(void* ptr){
@@ -3070,7 +3070,7 @@ int QAccessibleWidget_IsValid(void* ptr){
 }
 
 char* QAccessibleWidget_KeyBindingsForAction(void* ptr, char* actionName){
-	return static_cast<QAccessibleWidget*>(ptr)->keyBindingsForAction(QString(actionName)).join(",,,").toUtf8().data();
+	return static_cast<QAccessibleWidget*>(ptr)->keyBindingsForAction(QString(actionName)).join("|").toUtf8().data();
 }
 
 void* QAccessibleWidget_Parent(void* ptr){
@@ -3651,7 +3651,7 @@ void* QApplication_QApplication_WindowIcon(){
 }
 
 void* QApplication_NewQApplication(int argc, char* argv){
-	QList<QByteArray> aList = QByteArray(argv).split(',,,');
+	QList<QByteArray> aList = QByteArray(argv).split('|');
 	char *argvs[argc];
 	static int argcs = argc;
 	for (int i = 0; i < argc; i++)
@@ -6104,7 +6104,7 @@ void QComboBox_AddItem(void* ptr, char* text, void* userData){
 }
 
 void QComboBox_AddItems(void* ptr, char* texts){
-	static_cast<QComboBox*>(ptr)->addItems(QString(texts).split(",,,", QString::SkipEmptyParts));
+	static_cast<QComboBox*>(ptr)->addItems(QString(texts).split("|", QString::SkipEmptyParts));
 }
 
 void QComboBox_ChangeEvent(void* ptr, void* e){
@@ -6272,7 +6272,7 @@ void QComboBox_InsertItem(void* ptr, int index, char* text, void* userData){
 }
 
 void QComboBox_InsertItems(void* ptr, int index, char* list){
-	static_cast<QComboBox*>(ptr)->insertItems(index, QString(list).split(",,,", QString::SkipEmptyParts));
+	static_cast<QComboBox*>(ptr)->insertItems(index, QString(list).split("|", QString::SkipEmptyParts));
 }
 
 void QComboBox_InsertSeparator(void* ptr, int index){
@@ -7122,7 +7122,7 @@ void* QCompleter_NewQCompleter(void* parent){
 }
 
 void* QCompleter_NewQCompleter3(char* list, void* parent){
-	return new MyQCompleter(QString(list).split(",,,", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+	return new MyQCompleter(QString(list).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
 }
 
 void QCompleter_ConnectActivated2(void* ptr){
@@ -7234,7 +7234,7 @@ void QCompleter_SetWidget(void* ptr, void* widget){
 }
 
 char* QCompleter_SplitPath(void* ptr, char* path){
-	return static_cast<QCompleter*>(ptr)->splitPath(QString(path)).join(",,,").toUtf8().data();
+	return static_cast<QCompleter*>(ptr)->splitPath(QString(path)).join("|").toUtf8().data();
 }
 
 void* QCompleter_Widget(void* ptr){
@@ -10871,7 +10871,7 @@ public:
 	void Signal_DirectoryUrlEntered(const QUrl & directory) { callbackQFileDialogDirectoryUrlEntered(this, this->objectName().toUtf8().data(), new QUrl(directory)); };
 	void done(int result) { if (!callbackQFileDialogDone(this, this->objectName().toUtf8().data(), result)) { QFileDialog::done(result); }; };
 	void Signal_FileSelected(const QString & file) { callbackQFileDialogFileSelected(this, this->objectName().toUtf8().data(), file.toUtf8().data()); };
-	void Signal_FilesSelected(const QStringList & selected) { callbackQFileDialogFilesSelected(this, this->objectName().toUtf8().data(), selected.join(",,,").toUtf8().data()); };
+	void Signal_FilesSelected(const QStringList & selected) { callbackQFileDialogFilesSelected(this, this->objectName().toUtf8().data(), selected.join("|").toUtf8().data()); };
 	void Signal_FilterSelected(const QString & filter) { callbackQFileDialogFilterSelected(this, this->objectName().toUtf8().data(), filter.toUtf8().data()); };
 	void setVisible(bool visible) { if (!callbackQFileDialogSetVisible(this, this->objectName().toUtf8().data(), visible)) { QFileDialog::setVisible(visible); }; };
 	void Signal_UrlSelected(const QUrl & url) { callbackQFileDialogUrlSelected(this, this->objectName().toUtf8().data(), new QUrl(url)); };
@@ -11088,7 +11088,7 @@ void QFileDialog_DisconnectFilesSelected(void* ptr){
 }
 
 void QFileDialog_FilesSelected(void* ptr, char* selected){
-	static_cast<QFileDialog*>(ptr)->filesSelected(QString(selected).split(",,,", QString::SkipEmptyParts));
+	static_cast<QFileDialog*>(ptr)->filesSelected(QString(selected).split("|", QString::SkipEmptyParts));
 }
 
 int QFileDialog_Filter(void* ptr){
@@ -11112,7 +11112,7 @@ char* QFileDialog_QFileDialog_GetExistingDirectory(void* parent, char* caption, 
 }
 
 void* QFileDialog_QFileDialog_GetExistingDirectoryUrl(void* parent, char* caption, void* dir, int options, char* supportedSchemes){
-	return new QUrl(QFileDialog::getExistingDirectoryUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split(",,,", QString::SkipEmptyParts)));
+	return new QUrl(QFileDialog::getExistingDirectoryUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split("|", QString::SkipEmptyParts)));
 }
 
 char* QFileDialog_QFileDialog_GetOpenFileName(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, int options){
@@ -11120,11 +11120,11 @@ char* QFileDialog_QFileDialog_GetOpenFileName(void* parent, char* caption, char*
 }
 
 char* QFileDialog_QFileDialog_GetOpenFileNames(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, int options){
-	return QFileDialog::getOpenFileNames(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).join(",,,").toUtf8().data();
+	return QFileDialog::getOpenFileNames(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).join("|").toUtf8().data();
 }
 
 void* QFileDialog_QFileDialog_GetOpenFileUrl(void* parent, char* caption, void* dir, char* filter, char* selectedFilter, int options, char* supportedSchemes){
-	return new QUrl(QFileDialog::getOpenFileUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split(",,,", QString::SkipEmptyParts)));
+	return new QUrl(QFileDialog::getOpenFileUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split("|", QString::SkipEmptyParts)));
 }
 
 char* QFileDialog_QFileDialog_GetSaveFileName(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, int options){
@@ -11132,11 +11132,11 @@ char* QFileDialog_QFileDialog_GetSaveFileName(void* parent, char* caption, char*
 }
 
 void* QFileDialog_QFileDialog_GetSaveFileUrl(void* parent, char* caption, void* dir, char* filter, char* selectedFilter, int options, char* supportedSchemes){
-	return new QUrl(QFileDialog::getSaveFileUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split(",,,", QString::SkipEmptyParts)));
+	return new QUrl(QFileDialog::getSaveFileUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split("|", QString::SkipEmptyParts)));
 }
 
 char* QFileDialog_History(void* ptr){
-	return static_cast<QFileDialog*>(ptr)->history().join(",,,").toUtf8().data();
+	return static_cast<QFileDialog*>(ptr)->history().join("|").toUtf8().data();
 }
 
 void* QFileDialog_IconProvider(void* ptr){
@@ -11152,11 +11152,11 @@ char* QFileDialog_LabelText(void* ptr, int label){
 }
 
 char* QFileDialog_MimeTypeFilters(void* ptr){
-	return static_cast<QFileDialog*>(ptr)->mimeTypeFilters().join(",,,").toUtf8().data();
+	return static_cast<QFileDialog*>(ptr)->mimeTypeFilters().join("|").toUtf8().data();
 }
 
 char* QFileDialog_NameFilters(void* ptr){
-	return static_cast<QFileDialog*>(ptr)->nameFilters().join(",,,").toUtf8().data();
+	return static_cast<QFileDialog*>(ptr)->nameFilters().join("|").toUtf8().data();
 }
 
 void QFileDialog_Open(void* ptr, void* receiver, char* member){
@@ -11192,7 +11192,7 @@ void QFileDialog_SelectUrl(void* ptr, void* url){
 }
 
 char* QFileDialog_SelectedFiles(void* ptr){
-	return static_cast<QFileDialog*>(ptr)->selectedFiles().join(",,,").toUtf8().data();
+	return static_cast<QFileDialog*>(ptr)->selectedFiles().join("|").toUtf8().data();
 }
 
 char* QFileDialog_SelectedNameFilter(void* ptr){
@@ -11216,7 +11216,7 @@ void QFileDialog_SetFilter(void* ptr, int filters){
 }
 
 void QFileDialog_SetHistory(void* ptr, char* paths){
-	static_cast<QFileDialog*>(ptr)->setHistory(QString(paths).split(",,,", QString::SkipEmptyParts));
+	static_cast<QFileDialog*>(ptr)->setHistory(QString(paths).split("|", QString::SkipEmptyParts));
 }
 
 void QFileDialog_SetIconProvider(void* ptr, void* provider){
@@ -11232,7 +11232,7 @@ void QFileDialog_SetLabelText(void* ptr, int label, char* text){
 }
 
 void QFileDialog_SetMimeTypeFilters(void* ptr, char* filters){
-	static_cast<QFileDialog*>(ptr)->setMimeTypeFilters(QString(filters).split(",,,", QString::SkipEmptyParts));
+	static_cast<QFileDialog*>(ptr)->setMimeTypeFilters(QString(filters).split("|", QString::SkipEmptyParts));
 }
 
 void QFileDialog_SetNameFilter(void* ptr, char* filter){
@@ -11240,7 +11240,7 @@ void QFileDialog_SetNameFilter(void* ptr, char* filter){
 }
 
 void QFileDialog_SetNameFilters(void* ptr, char* filters){
-	static_cast<QFileDialog*>(ptr)->setNameFilters(QString(filters).split(",,,", QString::SkipEmptyParts));
+	static_cast<QFileDialog*>(ptr)->setNameFilters(QString(filters).split("|", QString::SkipEmptyParts));
 }
 
 void QFileDialog_SetOption(void* ptr, int option, int on){
@@ -11723,7 +11723,7 @@ void* QFileSystemModel_LastModified(void* ptr, void* index){
 }
 
 char* QFileSystemModel_MimeTypes(void* ptr){
-	return static_cast<QFileSystemModel*>(ptr)->mimeTypes().join(",,,").toUtf8().data();
+	return static_cast<QFileSystemModel*>(ptr)->mimeTypes().join("|").toUtf8().data();
 }
 
 void* QFileSystemModel_Mkdir(void* ptr, void* parent, char* name){
@@ -11735,7 +11735,7 @@ void* QFileSystemModel_MyComputer(void* ptr, int role){
 }
 
 char* QFileSystemModel_NameFilters(void* ptr){
-	return static_cast<QFileSystemModel*>(ptr)->nameFilters().join(",,,").toUtf8().data();
+	return static_cast<QFileSystemModel*>(ptr)->nameFilters().join("|").toUtf8().data();
 }
 
 void* QFileSystemModel_Parent(void* ptr, void* index){
@@ -11779,7 +11779,7 @@ void QFileSystemModel_SetIconProvider(void* ptr, void* provider){
 }
 
 void QFileSystemModel_SetNameFilters(void* ptr, char* filters){
-	static_cast<QFileSystemModel*>(ptr)->setNameFilters(QString(filters).split(",,,", QString::SkipEmptyParts));
+	static_cast<QFileSystemModel*>(ptr)->setNameFilters(QString(filters).split("|", QString::SkipEmptyParts));
 }
 
 void* QFileSystemModel_SetRootPath(void* ptr, char* newPath){
@@ -19085,7 +19085,7 @@ char* QInputDialog_CancelButtonText(void* ptr){
 }
 
 char* QInputDialog_ComboBoxItems(void* ptr){
-	return static_cast<QInputDialog*>(ptr)->comboBoxItems().join(",,,").toUtf8().data();
+	return static_cast<QInputDialog*>(ptr)->comboBoxItems().join("|").toUtf8().data();
 }
 
 int QInputDialog_DoubleDecimals(void* ptr){
@@ -19137,7 +19137,7 @@ void QInputDialog_SetComboBoxEditable(void* ptr, int editable){
 }
 
 void QInputDialog_SetComboBoxItems(void* ptr, char* items){
-	static_cast<QInputDialog*>(ptr)->setComboBoxItems(QString(items).split(",,,", QString::SkipEmptyParts));
+	static_cast<QInputDialog*>(ptr)->setComboBoxItems(QString(items).split("|", QString::SkipEmptyParts));
 }
 
 void QInputDialog_SetDoubleDecimals(void* ptr, int decimals){
@@ -19209,7 +19209,7 @@ int QInputDialog_QInputDialog_GetInt(void* parent, char* title, char* label, int
 }
 
 char* QInputDialog_QInputDialog_GetItem(void* parent, char* title, char* label, char* items, int current, int editable, int ok, int flags, int inputMethodHints){
-	return QInputDialog::getItem(static_cast<QWidget*>(parent), QString(title), QString(label), QString(items).split(",,,", QString::SkipEmptyParts), current, editable != 0, NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8().data();
+	return QInputDialog::getItem(static_cast<QWidget*>(parent), QString(title), QString(label), QString(items).split("|", QString::SkipEmptyParts), current, editable != 0, NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8().data();
 }
 
 char* QInputDialog_QInputDialog_GetMultiLineText(void* parent, char* title, char* label, char* text, int ok, int flags, int inputMethodHints){
@@ -22603,7 +22603,7 @@ void QListWidget_AddItem(void* ptr, char* label){
 }
 
 void QListWidget_AddItems(void* ptr, char* labels){
-	static_cast<QListWidget*>(ptr)->addItems(QString(labels).split(",,,", QString::SkipEmptyParts));
+	static_cast<QListWidget*>(ptr)->addItems(QString(labels).split("|", QString::SkipEmptyParts));
 }
 
 void QListWidget_Clear(void* ptr){
@@ -22683,7 +22683,7 @@ void QListWidget_InsertItem2(void* ptr, int row, char* label){
 }
 
 void QListWidget_InsertItems(void* ptr, int row, char* labels){
-	static_cast<QListWidget*>(ptr)->insertItems(row, QString(labels).split(",,,", QString::SkipEmptyParts));
+	static_cast<QListWidget*>(ptr)->insertItems(row, QString(labels).split("|", QString::SkipEmptyParts));
 }
 
 void* QListWidget_Item(void* ptr, int row){
@@ -22787,7 +22787,7 @@ void* QListWidget_ItemWidget(void* ptr, void* item){
 }
 
 char* QListWidget_MimeTypes(void* ptr){
-	return static_cast<QListWidget*>(ptr)->mimeTypes().join(",,,").toUtf8().data();
+	return static_cast<QListWidget*>(ptr)->mimeTypes().join("|").toUtf8().data();
 }
 
 void QListWidget_OpenPersistentEditor(void* ptr, void* item){
@@ -34834,7 +34834,7 @@ void* QStyleFactory_QStyleFactory_Create(char* key){
 }
 
 char* QStyleFactory_QStyleFactory_Keys(){
-	return QStyleFactory::keys().join(",,,").toUtf8().data();
+	return QStyleFactory::keys().join("|").toUtf8().data();
 }
 
 int QStyleHintReturn_SH_Mask_Type(){
@@ -37585,7 +37585,7 @@ void QTableWidget_ItemSelectionChanged(void* ptr){
 }
 
 char* QTableWidget_MimeTypes(void* ptr){
-	return static_cast<QTableWidget*>(ptr)->mimeTypes().join(",,,").toUtf8().data();
+	return static_cast<QTableWidget*>(ptr)->mimeTypes().join("|").toUtf8().data();
 }
 
 void QTableWidget_OpenPersistentEditor(void* ptr, void* item){
@@ -37645,7 +37645,7 @@ void QTableWidget_SetHorizontalHeaderItem(void* ptr, int column, void* item){
 }
 
 void QTableWidget_SetHorizontalHeaderLabels(void* ptr, char* labels){
-	static_cast<QTableWidget*>(ptr)->setHorizontalHeaderLabels(QString(labels).split(",,,", QString::SkipEmptyParts));
+	static_cast<QTableWidget*>(ptr)->setHorizontalHeaderLabels(QString(labels).split("|", QString::SkipEmptyParts));
 }
 
 void QTableWidget_SetItem(void* ptr, int row, int column, void* item){
@@ -37669,7 +37669,7 @@ void QTableWidget_SetVerticalHeaderItem(void* ptr, int row, void* item){
 }
 
 void QTableWidget_SetVerticalHeaderLabels(void* ptr, char* labels){
-	static_cast<QTableWidget*>(ptr)->setVerticalHeaderLabels(QString(labels).split(",,,", QString::SkipEmptyParts));
+	static_cast<QTableWidget*>(ptr)->setVerticalHeaderLabels(QString(labels).split("|", QString::SkipEmptyParts));
 }
 
 void QTableWidget_SortItems(void* ptr, int column, int order){
@@ -38429,7 +38429,7 @@ int QTextBrowser_OpenLinks(void* ptr){
 }
 
 char* QTextBrowser_SearchPaths(void* ptr){
-	return static_cast<QTextBrowser*>(ptr)->searchPaths().join(",,,").toUtf8().data();
+	return static_cast<QTextBrowser*>(ptr)->searchPaths().join("|").toUtf8().data();
 }
 
 void QTextBrowser_SetOpenExternalLinks(void* ptr, int open){
@@ -38441,7 +38441,7 @@ void QTextBrowser_SetOpenLinks(void* ptr, int open){
 }
 
 void QTextBrowser_SetSearchPaths(void* ptr, char* paths){
-	static_cast<QTextBrowser*>(ptr)->setSearchPaths(QString(paths).split(",,,", QString::SkipEmptyParts));
+	static_cast<QTextBrowser*>(ptr)->setSearchPaths(QString(paths).split("|", QString::SkipEmptyParts));
 }
 
 void QTextBrowser_SetSource(void* ptr, void* name){
@@ -42255,7 +42255,7 @@ void* QTreeWidget_ItemWidget(void* ptr, void* item, int column){
 }
 
 char* QTreeWidget_MimeTypes(void* ptr){
-	return static_cast<QTreeWidget*>(ptr)->mimeTypes().join(",,,").toUtf8().data();
+	return static_cast<QTreeWidget*>(ptr)->mimeTypes().join("|").toUtf8().data();
 }
 
 void QTreeWidget_OpenPersistentEditor(void* ptr, void* item, int column){
@@ -42295,7 +42295,7 @@ void QTreeWidget_SetHeaderLabel(void* ptr, char* label){
 }
 
 void QTreeWidget_SetHeaderLabels(void* ptr, char* labels){
-	static_cast<QTreeWidget*>(ptr)->setHeaderLabels(QString(labels).split(",,,", QString::SkipEmptyParts));
+	static_cast<QTreeWidget*>(ptr)->setHeaderLabels(QString(labels).split("|", QString::SkipEmptyParts));
 }
 
 void QTreeWidget_SetItemWidget(void* ptr, void* item, int column, void* widget){
@@ -42736,7 +42736,7 @@ void* QTreeWidgetItem_NewQTreeWidgetItem5(void* parent, void* preceding, int ty)
 }
 
 void* QTreeWidgetItem_NewQTreeWidgetItem4(void* parent, char* strin, int ty){
-	return new MyQTreeWidgetItem(static_cast<QTreeWidget*>(parent), QString(strin).split(",,,", QString::SkipEmptyParts), ty);
+	return new MyQTreeWidgetItem(static_cast<QTreeWidget*>(parent), QString(strin).split("|", QString::SkipEmptyParts), ty);
 }
 
 void* QTreeWidgetItem_NewQTreeWidgetItem3(void* parent, int ty){
@@ -42756,7 +42756,7 @@ void QTreeWidgetItem_SetFlags(void* ptr, int flags){
 }
 
 void* QTreeWidgetItem_NewQTreeWidgetItem7(void* parent, char* strin, int ty){
-	return new MyQTreeWidgetItem(static_cast<QTreeWidgetItem*>(parent), QString(strin).split(",,,", QString::SkipEmptyParts), ty);
+	return new MyQTreeWidgetItem(static_cast<QTreeWidgetItem*>(parent), QString(strin).split("|", QString::SkipEmptyParts), ty);
 }
 
 void* QTreeWidgetItem_NewQTreeWidgetItem6(void* parent, int ty){
@@ -42764,7 +42764,7 @@ void* QTreeWidgetItem_NewQTreeWidgetItem6(void* parent, int ty){
 }
 
 void* QTreeWidgetItem_NewQTreeWidgetItem2(char* strin, int ty){
-	return new MyQTreeWidgetItem(QString(strin).split(",,,", QString::SkipEmptyParts), ty);
+	return new MyQTreeWidgetItem(QString(strin).split("|", QString::SkipEmptyParts), ty);
 }
 
 void* QTreeWidgetItem_NewQTreeWidgetItem9(void* other){

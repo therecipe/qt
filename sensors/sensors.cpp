@@ -1898,15 +1898,15 @@ public:
 };
 
 void* QSensorGesture_NewQSensorGesture(char* ids, void* parent){
-	return new QSensorGesture(QString(ids).split(",,,", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+	return new QSensorGesture(QString(ids).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
 }
 
 char* QSensorGesture_GestureSignals(void* ptr){
-	return static_cast<QSensorGesture*>(ptr)->gestureSignals().join(",,,").toUtf8().data();
+	return static_cast<QSensorGesture*>(ptr)->gestureSignals().join("|").toUtf8().data();
 }
 
 char* QSensorGesture_InvalidIds(void* ptr){
-	return static_cast<QSensorGesture*>(ptr)->invalidIds().join(",,,").toUtf8().data();
+	return static_cast<QSensorGesture*>(ptr)->invalidIds().join("|").toUtf8().data();
 }
 
 int QSensorGesture_IsActive(void* ptr){
@@ -1922,7 +1922,7 @@ void QSensorGesture_StopDetection(void* ptr){
 }
 
 char* QSensorGesture_ValidIds(void* ptr){
-	return static_cast<QSensorGesture*>(ptr)->validIds().join(",,,").toUtf8().data();
+	return static_cast<QSensorGesture*>(ptr)->validIds().join("|").toUtf8().data();
 }
 
 void QSensorGesture_DestroyQSensorGesture(void* ptr){
@@ -1966,7 +1966,7 @@ void* QSensorGestureManager_NewQSensorGestureManager(void* parent){
 }
 
 char* QSensorGestureManager_GestureIds(void* ptr){
-	return static_cast<QSensorGestureManager*>(ptr)->gestureIds().join(",,,").toUtf8().data();
+	return static_cast<QSensorGestureManager*>(ptr)->gestureIds().join("|").toUtf8().data();
 }
 
 void QSensorGestureManager_ConnectNewSensorGestureAvailable(void* ptr){
@@ -1982,7 +1982,7 @@ void QSensorGestureManager_NewSensorGestureAvailable(void* ptr){
 }
 
 char* QSensorGestureManager_RecognizerSignals(void* ptr, char* gestureId){
-	return static_cast<QSensorGestureManager*>(ptr)->recognizerSignals(QString(gestureId)).join(",,,").toUtf8().data();
+	return static_cast<QSensorGestureManager*>(ptr)->recognizerSignals(QString(gestureId)).join("|").toUtf8().data();
 }
 
 int QSensorGestureManager_RegisterSensorGestureRecognizer(void* ptr, void* recognizer){
@@ -2033,7 +2033,7 @@ char* QSensorGesturePluginInterface_Name(void* ptr){
 }
 
 char* QSensorGesturePluginInterface_SupportedIds(void* ptr){
-	return static_cast<QSensorGesturePluginInterface*>(ptr)->supportedIds().join(",,,").toUtf8().data();
+	return static_cast<QSensorGesturePluginInterface*>(ptr)->supportedIds().join("|").toUtf8().data();
 }
 
 void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(void* ptr){
@@ -2065,7 +2065,7 @@ void QSensorGestureRecognizer_CreateBackend(void* ptr){
 }
 
 char* QSensorGestureRecognizer_GestureSignals(void* ptr){
-	return static_cast<QSensorGestureRecognizer*>(ptr)->gestureSignals().join(",,,").toUtf8().data();
+	return static_cast<QSensorGestureRecognizer*>(ptr)->gestureSignals().join("|").toUtf8().data();
 }
 
 char* QSensorGestureRecognizer_Id(void* ptr){

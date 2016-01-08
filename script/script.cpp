@@ -98,7 +98,7 @@ void* QScriptContext_ArgumentsObject(void* ptr){
 }
 
 char* QScriptContext_Backtrace(void* ptr){
-	return static_cast<QScriptContext*>(ptr)->backtrace().join(",,,").toUtf8().data();
+	return static_cast<QScriptContext*>(ptr)->backtrace().join("|").toUtf8().data();
 }
 
 void* QScriptContext_Callee(void* ptr){
@@ -182,7 +182,7 @@ char* QScriptContextInfo_FunctionName(void* ptr){
 }
 
 char* QScriptContextInfo_FunctionParameterNames(void* ptr){
-	return static_cast<QScriptContextInfo*>(ptr)->functionParameterNames().join(",,,").toUtf8().data();
+	return static_cast<QScriptContextInfo*>(ptr)->functionParameterNames().join("|").toUtf8().data();
 }
 
 int QScriptContextInfo_FunctionStartLineNumber(void* ptr){
@@ -236,7 +236,7 @@ void* QScriptEngine_Agent(void* ptr){
 }
 
 char* QScriptEngine_AvailableExtensions(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->availableExtensions().join(",,,").toUtf8().data();
+	return static_cast<QScriptEngine*>(ptr)->availableExtensions().join("|").toUtf8().data();
 }
 
 void QScriptEngine_ClearExceptions(void* ptr){
@@ -276,7 +276,7 @@ void* QScriptEngine_ImportExtension(void* ptr, char* extension){
 }
 
 char* QScriptEngine_ImportedExtensions(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->importedExtensions().join(",,,").toUtf8().data();
+	return static_cast<QScriptEngine*>(ptr)->importedExtensions().join("|").toUtf8().data();
 }
 
 void QScriptEngine_InstallTranslatorFunctions(void* ptr, void* object){
@@ -384,7 +384,7 @@ void* QScriptEngine_UncaughtException(void* ptr){
 }
 
 char* QScriptEngine_UncaughtExceptionBacktrace(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->uncaughtExceptionBacktrace().join(",,,").toUtf8().data();
+	return static_cast<QScriptEngine*>(ptr)->uncaughtExceptionBacktrace().join("|").toUtf8().data();
 }
 
 int QScriptEngine_UncaughtExceptionLineNumber(void* ptr){
@@ -550,7 +550,7 @@ void QScriptExtensionPlugin_Initialize(void* ptr, char* key, void* engine){
 }
 
 char* QScriptExtensionPlugin_Keys(void* ptr){
-	return static_cast<QScriptExtensionPlugin*>(ptr)->keys().join(",,,").toUtf8().data();
+	return static_cast<QScriptExtensionPlugin*>(ptr)->keys().join("|").toUtf8().data();
 }
 
 void* QScriptExtensionPlugin_SetupPackage(void* ptr, char* key, void* engine){

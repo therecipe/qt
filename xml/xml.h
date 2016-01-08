@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTXML_H
+#define GO_QTXML_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -375,4 +380,6 @@ void QXmlSimpleReader_SetObjectNameAbs(void* ptr, char* name);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

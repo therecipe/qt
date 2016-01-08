@@ -309,7 +309,7 @@ char* QAccessibleActionInterface_LocalizedActionName(void* ptr, char* actionName
 }
 
 char* QAccessibleActionInterface_ActionNames(void* ptr){
-	return static_cast<QAccessibleActionInterface*>(ptr)->actionNames().join(",,,").toUtf8().data();
+	return static_cast<QAccessibleActionInterface*>(ptr)->actionNames().join("|").toUtf8().data();
 }
 
 char* QAccessibleActionInterface_QAccessibleActionInterface_DecreaseAction(){
@@ -325,7 +325,7 @@ char* QAccessibleActionInterface_QAccessibleActionInterface_IncreaseAction(){
 }
 
 char* QAccessibleActionInterface_KeyBindingsForAction(void* ptr, char* actionName){
-	return static_cast<QAccessibleActionInterface*>(ptr)->keyBindingsForAction(QString(actionName)).join(",,,").toUtf8().data();
+	return static_cast<QAccessibleActionInterface*>(ptr)->keyBindingsForAction(QString(actionName)).join("|").toUtf8().data();
 }
 
 char* QAccessibleActionInterface_QAccessibleActionInterface_NextPageAction(){
@@ -1412,7 +1412,7 @@ double QColor_BlueF(void* ptr){
 }
 
 char* QColor_QColor_ColorNames(){
-	return QColor::colorNames().join(",,,").toUtf8().data();
+	return QColor::colorNames().join("|").toUtf8().data();
 }
 
 int QColor_Cyan(void* ptr){
@@ -2229,7 +2229,7 @@ void QFont_QFont_InsertSubstitution(char* familyName, char* substituteName){
 }
 
 void QFont_QFont_InsertSubstitutions(char* familyName, char* substituteNames){
-	QFont::insertSubstitutions(QString(familyName), QString(substituteNames).split(",,,", QString::SkipEmptyParts));
+	QFont::insertSubstitutions(QString(familyName), QString(substituteNames).split("|", QString::SkipEmptyParts));
 }
 
 int QFont_IsCopyOf(void* ptr, void* f){
@@ -2389,11 +2389,11 @@ char* QFont_QFont_Substitute(char* familyName){
 }
 
 char* QFont_QFont_Substitutes(char* familyName){
-	return QFont::substitutes(QString(familyName)).join(",,,").toUtf8().data();
+	return QFont::substitutes(QString(familyName)).join("|").toUtf8().data();
 }
 
 char* QFont_QFont_Substitutions(){
-	return QFont::substitutions().join(",,,").toUtf8().data();
+	return QFont::substitutions().join("|").toUtf8().data();
 }
 
 void QFont_Swap(void* ptr, void* other){
@@ -2457,7 +2457,7 @@ int QFontDatabase_QFontDatabase_AddApplicationFontFromData(void* fontData){
 }
 
 char* QFontDatabase_QFontDatabase_ApplicationFontFamilies(int id){
-	return QFontDatabase::applicationFontFamilies(id).join(",,,").toUtf8().data();
+	return QFontDatabase::applicationFontFamilies(id).join("|").toUtf8().data();
 }
 
 int QFontDatabase_Bold(void* ptr, char* family, char* style){
@@ -2465,7 +2465,7 @@ int QFontDatabase_Bold(void* ptr, char* family, char* style){
 }
 
 char* QFontDatabase_Families(void* ptr, int writingSystem){
-	return static_cast<QFontDatabase*>(ptr)->families(static_cast<QFontDatabase::WritingSystem>(writingSystem)).join(",,,").toUtf8().data();
+	return static_cast<QFontDatabase*>(ptr)->families(static_cast<QFontDatabase::WritingSystem>(writingSystem)).join("|").toUtf8().data();
 }
 
 int QFontDatabase_IsBitmapScalable(void* ptr, char* family, char* style){
@@ -2501,7 +2501,7 @@ char* QFontDatabase_StyleString2(void* ptr, void* fontInfo){
 }
 
 char* QFontDatabase_Styles(void* ptr, char* family){
-	return static_cast<QFontDatabase*>(ptr)->styles(QString(family)).join(",,,").toUtf8().data();
+	return static_cast<QFontDatabase*>(ptr)->styles(QString(family)).join("|").toUtf8().data();
 }
 
 int QFontDatabase_Weight(void* ptr, char* family, char* style){
@@ -2813,7 +2813,7 @@ void* QGenericPluginFactory_QGenericPluginFactory_Create(char* key, char* specif
 }
 
 char* QGenericPluginFactory_QGenericPluginFactory_Keys(){
-	return QGenericPluginFactory::keys().join(",,,").toUtf8().data();
+	return QGenericPluginFactory::keys().join("|").toUtf8().data();
 }
 
 void* QGlyphRun_NewQGlyphRun(){
@@ -3005,7 +3005,7 @@ void* QGuiApplication_QGuiApplication_WindowIcon(){
 }
 
 void* QGuiApplication_NewQGuiApplication(int argc, char* argv){
-	QList<QByteArray> aList = QByteArray(argv).split(',,,');
+	QList<QByteArray> aList = QByteArray(argv).split('|');
 	char *argvs[argc];
 	static int argcs = argc;
 	for (int i = 0; i < argc; i++)
@@ -3343,7 +3343,7 @@ void QIcon_QIcon_SetThemeName(char* name){
 }
 
 void QIcon_QIcon_SetThemeSearchPaths(char* paths){
-	QIcon::setThemeSearchPaths(QString(paths).split(",,,", QString::SkipEmptyParts));
+	QIcon::setThemeSearchPaths(QString(paths).split("|", QString::SkipEmptyParts));
 }
 
 void QIcon_Swap(void* ptr, void* other){
@@ -3355,7 +3355,7 @@ char* QIcon_QIcon_ThemeName(){
 }
 
 char* QIcon_QIcon_ThemeSearchPaths(){
-	return QIcon::themeSearchPaths().join(",,,").toUtf8().data();
+	return QIcon::themeSearchPaths().join("|").toUtf8().data();
 }
 
 void QIcon_DestroyQIcon(void* ptr){
@@ -3576,7 +3576,7 @@ char* QImage_Text(void* ptr, char* key){
 }
 
 char* QImage_TextKeys(void* ptr){
-	return static_cast<QImage*>(ptr)->textKeys().join(",,,").toUtf8().data();
+	return static_cast<QImage*>(ptr)->textKeys().join("|").toUtf8().data();
 }
 
 int QImage_QImage_ToImageFormat(void* format){
@@ -3772,7 +3772,7 @@ char* QImageReader_Text(void* ptr, char* key){
 }
 
 char* QImageReader_TextKeys(void* ptr){
-	return static_cast<QImageReader*>(ptr)->textKeys().join(",,,").toUtf8().data();
+	return static_cast<QImageReader*>(ptr)->textKeys().join("|").toUtf8().data();
 }
 
 int QImageReader_Transformation(void* ptr){
@@ -7993,7 +7993,7 @@ void QSessionManager_Cancel(void* ptr){
 }
 
 char* QSessionManager_DiscardCommand(void* ptr){
-	return static_cast<QSessionManager*>(ptr)->discardCommand().join(",,,").toUtf8().data();
+	return static_cast<QSessionManager*>(ptr)->discardCommand().join("|").toUtf8().data();
 }
 
 int QSessionManager_IsPhase2(void* ptr){
@@ -8009,7 +8009,7 @@ void QSessionManager_RequestPhase2(void* ptr){
 }
 
 char* QSessionManager_RestartCommand(void* ptr){
-	return static_cast<QSessionManager*>(ptr)->restartCommand().join(",,,").toUtf8().data();
+	return static_cast<QSessionManager*>(ptr)->restartCommand().join("|").toUtf8().data();
 }
 
 char* QSessionManager_SessionId(void* ptr){
@@ -8017,7 +8017,7 @@ char* QSessionManager_SessionId(void* ptr){
 }
 
 void QSessionManager_SetDiscardCommand(void* ptr, char* command){
-	static_cast<QSessionManager*>(ptr)->setDiscardCommand(QString(command).split(",,,", QString::SkipEmptyParts));
+	static_cast<QSessionManager*>(ptr)->setDiscardCommand(QString(command).split("|", QString::SkipEmptyParts));
 }
 
 void QSessionManager_SetManagerProperty2(void* ptr, char* name, char* value){
@@ -8025,11 +8025,11 @@ void QSessionManager_SetManagerProperty2(void* ptr, char* name, char* value){
 }
 
 void QSessionManager_SetManagerProperty(void* ptr, char* name, char* value){
-	static_cast<QSessionManager*>(ptr)->setManagerProperty(QString(name), QString(value).split(",,,", QString::SkipEmptyParts));
+	static_cast<QSessionManager*>(ptr)->setManagerProperty(QString(name), QString(value).split("|", QString::SkipEmptyParts));
 }
 
 void QSessionManager_SetRestartCommand(void* ptr, char* command){
-	static_cast<QSessionManager*>(ptr)->setRestartCommand(QString(command).split(",,,", QString::SkipEmptyParts));
+	static_cast<QSessionManager*>(ptr)->setRestartCommand(QString(command).split("|", QString::SkipEmptyParts));
 }
 
 void QSessionManager_SetRestartHint(void* ptr, int hint){
@@ -8523,7 +8523,7 @@ void* QStandardItemModel_ItemPrototype(void* ptr){
 }
 
 char* QStandardItemModel_MimeTypes(void* ptr){
-	return static_cast<QStandardItemModel*>(ptr)->mimeTypes().join(",,,").toUtf8().data();
+	return static_cast<QStandardItemModel*>(ptr)->mimeTypes().join("|").toUtf8().data();
 }
 
 void* QStandardItemModel_Parent(void* ptr, void* child){
@@ -8559,7 +8559,7 @@ void QStandardItemModel_SetHorizontalHeaderItem(void* ptr, int column, void* ite
 }
 
 void QStandardItemModel_SetHorizontalHeaderLabels(void* ptr, char* labels){
-	static_cast<QStandardItemModel*>(ptr)->setHorizontalHeaderLabels(QString(labels).split(",,,", QString::SkipEmptyParts));
+	static_cast<QStandardItemModel*>(ptr)->setHorizontalHeaderLabels(QString(labels).split("|", QString::SkipEmptyParts));
 }
 
 void QStandardItemModel_SetItem2(void* ptr, int row, void* item){
@@ -8583,7 +8583,7 @@ void QStandardItemModel_SetVerticalHeaderItem(void* ptr, int row, void* item){
 }
 
 void QStandardItemModel_SetVerticalHeaderLabels(void* ptr, char* labels){
-	static_cast<QStandardItemModel*>(ptr)->setVerticalHeaderLabels(QString(labels).split(",,,", QString::SkipEmptyParts));
+	static_cast<QStandardItemModel*>(ptr)->setVerticalHeaderLabels(QString(labels).split("|", QString::SkipEmptyParts));
 }
 
 void* QStandardItemModel_Sibling(void* ptr, int row, int column, void* idx){
@@ -9469,7 +9469,7 @@ void* QTextCharFormat_NewQTextCharFormat(){
 }
 
 char* QTextCharFormat_AnchorNames(void* ptr){
-	return static_cast<QTextCharFormat*>(ptr)->anchorNames().join(",,,").toUtf8().data();
+	return static_cast<QTextCharFormat*>(ptr)->anchorNames().join("|").toUtf8().data();
 }
 
 int QTextCharFormat_FontUnderline(void* ptr){
@@ -9565,7 +9565,7 @@ void QTextCharFormat_SetAnchorHref(void* ptr, char* value){
 }
 
 void QTextCharFormat_SetAnchorNames(void* ptr, char* names){
-	static_cast<QTextCharFormat*>(ptr)->setAnchorNames(QString(names).split(",,,", QString::SkipEmptyParts));
+	static_cast<QTextCharFormat*>(ptr)->setAnchorNames(QString(names).split("|", QString::SkipEmptyParts));
 }
 
 void QTextCharFormat_SetFont2(void* ptr, void* font){

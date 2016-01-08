@@ -54,7 +54,7 @@ char* QSqlDatabase_ConnectionName(void* ptr){
 }
 
 char* QSqlDatabase_QSqlDatabase_ConnectionNames(){
-	return QSqlDatabase::connectionNames().join(",,,").toUtf8().data();
+	return QSqlDatabase::connectionNames().join("|").toUtf8().data();
 }
 
 int QSqlDatabase_QSqlDatabase_Contains(char* connectionName){
@@ -74,7 +74,7 @@ char* QSqlDatabase_DriverName(void* ptr){
 }
 
 char* QSqlDatabase_QSqlDatabase_Drivers(){
-	return QSqlDatabase::drivers().join(",,,").toUtf8().data();
+	return QSqlDatabase::drivers().join("|").toUtf8().data();
 }
 
 char* QSqlDatabase_HostName(void* ptr){
@@ -281,7 +281,7 @@ int QSqlDriver_SubscribeToNotification(void* ptr, char* name){
 }
 
 char* QSqlDriver_SubscribedToNotifications(void* ptr){
-	return static_cast<QSqlDriver*>(ptr)->subscribedToNotifications().join(",,,").toUtf8().data();
+	return static_cast<QSqlDriver*>(ptr)->subscribedToNotifications().join("|").toUtf8().data();
 }
 
 int QSqlDriver_UnsubscribeFromNotification(void* ptr, char* name){

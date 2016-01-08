@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTWEBSOCKETS_H
+#define GO_QTWEBSOCKETS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -124,4 +129,6 @@ void QWebSocketServer_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

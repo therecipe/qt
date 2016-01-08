@@ -652,7 +652,7 @@ void* QQmlEngine_ImageProvider(void* ptr, char* providerId){
 }
 
 char* QQmlEngine_ImportPathList(void* ptr){
-	return static_cast<QQmlEngine*>(ptr)->importPathList().join(",,,").toUtf8().data();
+	return static_cast<QQmlEngine*>(ptr)->importPathList().join("|").toUtf8().data();
 }
 
 void* QQmlEngine_IncubationController(void* ptr){
@@ -676,7 +676,7 @@ int QQmlEngine_OutputWarningsToStandardError(void* ptr){
 }
 
 char* QQmlEngine_PluginPathList(void* ptr){
-	return static_cast<QQmlEngine*>(ptr)->pluginPathList().join(",,,").toUtf8().data();
+	return static_cast<QQmlEngine*>(ptr)->pluginPathList().join("|").toUtf8().data();
 }
 
 void QQmlEngine_ConnectQuit(void* ptr){
@@ -708,7 +708,7 @@ void QQmlEngine_QQmlEngine_SetContextForObject(void* object, void* context){
 }
 
 void QQmlEngine_SetImportPathList(void* ptr, char* paths){
-	static_cast<QQmlEngine*>(ptr)->setImportPathList(QString(paths).split(",,,", QString::SkipEmptyParts));
+	static_cast<QQmlEngine*>(ptr)->setImportPathList(QString(paths).split("|", QString::SkipEmptyParts));
 }
 
 void QQmlEngine_SetIncubationController(void* ptr, void* controller){
@@ -728,7 +728,7 @@ void QQmlEngine_SetOutputWarningsToStandardError(void* ptr, int enabled){
 }
 
 void QQmlEngine_SetPluginPathList(void* ptr, char* paths){
-	static_cast<QQmlEngine*>(ptr)->setPluginPathList(QString(paths).split(",,,", QString::SkipEmptyParts));
+	static_cast<QQmlEngine*>(ptr)->setPluginPathList(QString(paths).split("|", QString::SkipEmptyParts));
 }
 
 void QQmlEngine_TrimComponentCache(void* ptr){
@@ -986,11 +986,11 @@ void* QQmlFileSelector_QQmlFileSelector_Get(void* engine){
 }
 
 void QQmlFileSelector_SetExtraSelectors(void* ptr, char* strin){
-	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(QString(strin).split(",,,", QString::SkipEmptyParts));
+	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(QString(strin).split("|", QString::SkipEmptyParts));
 }
 
 void QQmlFileSelector_SetExtraSelectors2(void* ptr, char* strin){
-	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(QString(strin).split(",,,", QString::SkipEmptyParts));
+	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(QString(strin).split("|", QString::SkipEmptyParts));
 }
 
 void QQmlFileSelector_SetSelector(void* ptr, void* selector){
@@ -1416,7 +1416,7 @@ int QQmlPropertyMap_IsEmpty(void* ptr){
 }
 
 char* QQmlPropertyMap_Keys(void* ptr){
-	return static_cast<QQmlPropertyMap*>(ptr)->keys().join(",,,").toUtf8().data();
+	return static_cast<QQmlPropertyMap*>(ptr)->keys().join("|").toUtf8().data();
 }
 
 int QQmlPropertyMap_Size(void* ptr){

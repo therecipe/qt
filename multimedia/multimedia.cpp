@@ -512,7 +512,7 @@ void QAudioDecoder_Finished(void* ptr){
 }
 
 int QAudioDecoder_QAudioDecoder_HasSupport(char* mimeType, char* codecs){
-	return QAudioDecoder::hasSupport(QString(mimeType), QString(codecs).split(",,,", QString::SkipEmptyParts));
+	return QAudioDecoder::hasSupport(QString(mimeType), QString(codecs).split("|", QString::SkipEmptyParts));
 }
 
 long long QAudioDecoder_Position(void* ptr){
@@ -823,7 +823,7 @@ int QAudioDeviceInfo_IsNull(void* ptr){
 }
 
 char* QAudioDeviceInfo_SupportedCodecs(void* ptr){
-	return static_cast<QAudioDeviceInfo*>(ptr)->supportedCodecs().join(",,,").toUtf8().data();
+	return static_cast<QAudioDeviceInfo*>(ptr)->supportedCodecs().join("|").toUtf8().data();
 }
 
 void QAudioDeviceInfo_DestroyQAudioDeviceInfo(void* ptr){
@@ -918,7 +918,7 @@ void QAudioEncoderSettingsControl_SetAudioSettings(void* ptr, void* settings){
 }
 
 char* QAudioEncoderSettingsControl_SupportedAudioCodecs(void* ptr){
-	return static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedAudioCodecs().join(",,,").toUtf8().data();
+	return static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedAudioCodecs().join("|").toUtf8().data();
 }
 
 void QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(void* ptr){
@@ -1559,7 +1559,7 @@ char* QAudioRecorder_AudioInputDescription(void* ptr, char* name){
 }
 
 char* QAudioRecorder_AudioInputs(void* ptr){
-	return static_cast<QAudioRecorder*>(ptr)->audioInputs().join(",,,").toUtf8().data();
+	return static_cast<QAudioRecorder*>(ptr)->audioInputs().join("|").toUtf8().data();
 }
 
 void QAudioRecorder_ConnectAvailableAudioInputsChanged(void* ptr){
@@ -2979,7 +2979,7 @@ int QCameraImageCapture_SetMediaObject(void* ptr, void* mediaObject){
 }
 
 char* QCameraImageCapture_SupportedImageCodecs(void* ptr){
-	return static_cast<QCameraImageCapture*>(ptr)->supportedImageCodecs().join(",,,").toUtf8().data();
+	return static_cast<QCameraImageCapture*>(ptr)->supportedImageCodecs().join("|").toUtf8().data();
 }
 
 void QCameraImageCapture_DestroyQCameraImageCapture(void* ptr){
@@ -3713,7 +3713,7 @@ void QImageEncoderControl_SetImageSettings(void* ptr, void* settings){
 }
 
 char* QImageEncoderControl_SupportedImageCodecs(void* ptr){
-	return static_cast<QImageEncoderControl*>(ptr)->supportedImageCodecs().join(",,,").toUtf8().data();
+	return static_cast<QImageEncoderControl*>(ptr)->supportedImageCodecs().join("|").toUtf8().data();
 }
 
 void QImageEncoderControl_DestroyQImageEncoderControl(void* ptr){
@@ -3944,7 +3944,7 @@ void QMediaContainerControl_SetContainerFormat(void* ptr, char* format){
 }
 
 char* QMediaContainerControl_SupportedContainers(void* ptr){
-	return static_cast<QMediaContainerControl*>(ptr)->supportedContainers().join(",,,").toUtf8().data();
+	return static_cast<QMediaContainerControl*>(ptr)->supportedContainers().join("|").toUtf8().data();
 }
 
 void QMediaContainerControl_DestroyQMediaContainerControl(void* ptr){
@@ -4223,7 +4223,7 @@ void QMediaObject_AvailabilityChanged(void* ptr, int available){
 }
 
 char* QMediaObject_AvailableMetaData(void* ptr){
-	return static_cast<QMediaObject*>(ptr)->availableMetaData().join(",,,").toUtf8().data();
+	return static_cast<QMediaObject*>(ptr)->availableMetaData().join("|").toUtf8().data();
 }
 
 int QMediaObject_Bind(void* ptr, void* object){
@@ -4514,7 +4514,7 @@ int QMediaPlayer_Error(void* ptr){
 }
 
 int QMediaPlayer_QMediaPlayer_HasSupport(char* mimeType, char* codecs, int flags){
-	return QMediaPlayer::hasSupport(QString(mimeType), QString(codecs).split(",,,", QString::SkipEmptyParts), static_cast<QMediaPlayer::Flag>(flags));
+	return QMediaPlayer::hasSupport(QString(mimeType), QString(codecs).split("|", QString::SkipEmptyParts), static_cast<QMediaPlayer::Flag>(flags));
 }
 
 void QMediaPlayer_ConnectMediaChanged(void* ptr){
@@ -5361,7 +5361,7 @@ void QMediaRecorder_AvailabilityChanged(void* ptr, int available){
 }
 
 char* QMediaRecorder_AvailableMetaData(void* ptr){
-	return static_cast<QMediaRecorder*>(ptr)->availableMetaData().join(",,,").toUtf8().data();
+	return static_cast<QMediaRecorder*>(ptr)->availableMetaData().join("|").toUtf8().data();
 }
 
 char* QMediaRecorder_ContainerDescription(void* ptr, char* format){
@@ -5541,15 +5541,15 @@ void QMediaRecorder_Stop(void* ptr){
 }
 
 char* QMediaRecorder_SupportedAudioCodecs(void* ptr){
-	return static_cast<QMediaRecorder*>(ptr)->supportedAudioCodecs().join(",,,").toUtf8().data();
+	return static_cast<QMediaRecorder*>(ptr)->supportedAudioCodecs().join("|").toUtf8().data();
 }
 
 char* QMediaRecorder_SupportedContainers(void* ptr){
-	return static_cast<QMediaRecorder*>(ptr)->supportedContainers().join(",,,").toUtf8().data();
+	return static_cast<QMediaRecorder*>(ptr)->supportedContainers().join("|").toUtf8().data();
 }
 
 char* QMediaRecorder_SupportedVideoCodecs(void* ptr){
-	return static_cast<QMediaRecorder*>(ptr)->supportedVideoCodecs().join(",,,").toUtf8().data();
+	return static_cast<QMediaRecorder*>(ptr)->supportedVideoCodecs().join("|").toUtf8().data();
 }
 
 char* QMediaRecorder_VideoCodecDescription(void* ptr, char* codec){
@@ -6066,11 +6066,11 @@ public:
 };
 
 int QMediaServiceSupportedFormatsInterface_HasSupport(void* ptr, char* mimeType, char* codecs){
-	return static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->hasSupport(QString(mimeType), QString(codecs).split(",,,", QString::SkipEmptyParts));
+	return static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->hasSupport(QString(mimeType), QString(codecs).split("|", QString::SkipEmptyParts));
 }
 
 char* QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(void* ptr){
-	return static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->supportedMimeTypes().join(",,,").toUtf8().data();
+	return static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->supportedMimeTypes().join("|").toUtf8().data();
 }
 
 void QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(void* ptr){
@@ -6326,7 +6326,7 @@ public:
 };
 
 char* QMetaDataReaderControl_AvailableMetaData(void* ptr){
-	return static_cast<QMetaDataReaderControl*>(ptr)->availableMetaData().join(",,,").toUtf8().data();
+	return static_cast<QMetaDataReaderControl*>(ptr)->availableMetaData().join("|").toUtf8().data();
 }
 
 int QMetaDataReaderControl_IsMetaDataAvailable(void* ptr){
@@ -6413,7 +6413,7 @@ public:
 };
 
 char* QMetaDataWriterControl_AvailableMetaData(void* ptr){
-	return static_cast<QMetaDataWriterControl*>(ptr)->availableMetaData().join(",,,").toUtf8().data();
+	return static_cast<QMetaDataWriterControl*>(ptr)->availableMetaData().join("|").toUtf8().data();
 }
 
 int QMetaDataWriterControl_IsMetaDataAvailable(void* ptr){
@@ -7524,7 +7524,7 @@ void QSoundEffect_Stop(void* ptr){
 }
 
 char* QSoundEffect_QSoundEffect_SupportedMimeTypes(){
-	return QSoundEffect::supportedMimeTypes().join(",,,").toUtf8().data();
+	return QSoundEffect::supportedMimeTypes().join("|").toUtf8().data();
 }
 
 void* QSoundEffect_NewQSoundEffect(void* parent){
@@ -7901,7 +7901,7 @@ void QVideoEncoderSettingsControl_SetVideoSettings(void* ptr, void* settings){
 }
 
 char* QVideoEncoderSettingsControl_SupportedVideoCodecs(void* ptr){
-	return static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedVideoCodecs().join(",,,").toUtf8().data();
+	return static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedVideoCodecs().join("|").toUtf8().data();
 }
 
 char* QVideoEncoderSettingsControl_VideoCodecDescription(void* ptr, char* codec){

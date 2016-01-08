@@ -10,6 +10,12 @@ import (
 )
 
 func HTemplate(m string) (o string) {
+
+	o += "#pragma once\n\n"
+
+	o += fmt.Sprintf("#ifndef GO_%v_H\n", strings.ToUpper(m))
+	o += fmt.Sprintf("#define GO_%v_H\n\n", strings.ToUpper(m))
+
 	o += "#ifdef __cplusplus\nextern \"C\" {\n#endif\n\n"
 
 	var tmpArray = make([]string, 0)
@@ -120,7 +126,8 @@ func HTemplate(m string) (o string) {
 
 	}
 
-	o += "\n#ifdef __cplusplus\n}\n#endif"
+	o += "\n#ifdef __cplusplus\n}\n#endif\n\n#endif"
+
 	return
 }
 

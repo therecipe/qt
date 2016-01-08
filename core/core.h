@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTCORE_H
+#define GO_QTCORE_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -3310,4 +3315,6 @@ int Qt_LastGestureType_Type();
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

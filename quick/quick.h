@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTQUICK_H
+#define GO_QTQUICK_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -834,4 +839,6 @@ void QSGTransformNode_PreprocessDefault(void* ptr);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTSQL_H
+#define GO_QTSQL_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -390,4 +395,6 @@ void QSqlTableModel_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

@@ -39,7 +39,7 @@ func main() {
 	case "windows":
 		{
 			var (
-				qtPath = filepath.Join("C:", "Qt", "Qt5.5.1")
+				qtPath = filepath.Join("C:\\", "Qt", "Qt5.5.1")
 				_, err = ioutil.ReadDir(qtPath)
 			)
 			if err != nil {

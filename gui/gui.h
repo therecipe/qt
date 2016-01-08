@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTGUI_H
+#define GO_QTGUI_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -3202,4 +3207,6 @@ int QWindowStateChangeEvent_OldState(void* ptr);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

@@ -71,7 +71,7 @@ func cppFunctionBody(f *parser.Function) (o string) {
 	/*
 		for _, p := range f.Parameters {
 			if strings.Contains(p.Value, "**") && p.Name == "argv" {
-				o += "QList<QByteArray> aList = QByteArray(argv).split(',,,');\n"
+				o += "QList<QByteArray> aList = QByteArray(argv).split('|');\n"
 				o += "\tQVarLengthArray<const char*> argvs(argc);\n"
 				o += "\tstatic int argcs = argc;\n"
 				o += "\tfor (int i = 0; i < argc; i++)\n"
@@ -82,7 +82,7 @@ func cppFunctionBody(f *parser.Function) (o string) {
 
 	for _, p := range f.Parameters {
 		if strings.Contains(p.Value, "**") && p.Name == "argv" {
-			o += "QList<QByteArray> aList = QByteArray(argv).split(',,,');\n"
+			o += "QList<QByteArray> aList = QByteArray(argv).split('|');\n"
 			o += "\tchar *argvs[argc];\n"
 			o += "\tstatic int argcs = argc;\n"
 			o += "\tfor (int i = 0; i < argc; i++)\n"

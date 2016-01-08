@@ -609,7 +609,7 @@ int QAbstractItemModel_InsertRows(void* ptr, int row, int count, void* parent){
 }
 
 char* QAbstractItemModel_MimeTypes(void* ptr){
-	return static_cast<QAbstractItemModel*>(ptr)->mimeTypes().join(",,,").toUtf8().data();
+	return static_cast<QAbstractItemModel*>(ptr)->mimeTypes().join("|").toUtf8().data();
 }
 
 void QAbstractItemModel_ConnectModelAboutToBeReset(void* ptr){
@@ -947,7 +947,7 @@ void* QAbstractProxyModel_MapToSource(void* ptr, void* proxyIndex){
 }
 
 char* QAbstractProxyModel_MimeTypes(void* ptr){
-	return static_cast<QAbstractProxyModel*>(ptr)->mimeTypes().join(",,,").toUtf8().data();
+	return static_cast<QAbstractProxyModel*>(ptr)->mimeTypes().join("|").toUtf8().data();
 }
 
 void QAbstractProxyModel_Revert(void* ptr){
@@ -2123,15 +2123,15 @@ void* QCommandLineOption_NewQCommandLineOption3(char* name, char* description, c
 }
 
 void* QCommandLineOption_NewQCommandLineOption2(char* names){
-	return new QCommandLineOption(QString(names).split(",,,", QString::SkipEmptyParts));
+	return new QCommandLineOption(QString(names).split("|", QString::SkipEmptyParts));
 }
 
 void* QCommandLineOption_NewQCommandLineOption4(char* names, char* description, char* valueName, char* defaultValue){
-	return new QCommandLineOption(QString(names).split(",,,", QString::SkipEmptyParts), QString(description), QString(valueName), QString(defaultValue));
+	return new QCommandLineOption(QString(names).split("|", QString::SkipEmptyParts), QString(description), QString(valueName), QString(defaultValue));
 }
 
 char* QCommandLineOption_DefaultValues(void* ptr){
-	return static_cast<QCommandLineOption*>(ptr)->defaultValues().join(",,,").toUtf8().data();
+	return static_cast<QCommandLineOption*>(ptr)->defaultValues().join("|").toUtf8().data();
 }
 
 char* QCommandLineOption_Description(void* ptr){
@@ -2139,7 +2139,7 @@ char* QCommandLineOption_Description(void* ptr){
 }
 
 char* QCommandLineOption_Names(void* ptr){
-	return static_cast<QCommandLineOption*>(ptr)->names().join(",,,").toUtf8().data();
+	return static_cast<QCommandLineOption*>(ptr)->names().join("|").toUtf8().data();
 }
 
 void QCommandLineOption_SetDefaultValue(void* ptr, char* defaultValue){
@@ -2147,7 +2147,7 @@ void QCommandLineOption_SetDefaultValue(void* ptr, char* defaultValue){
 }
 
 void QCommandLineOption_SetDefaultValues(void* ptr, char* defaultValues){
-	static_cast<QCommandLineOption*>(ptr)->setDefaultValues(QString(defaultValues).split(",,,", QString::SkipEmptyParts));
+	static_cast<QCommandLineOption*>(ptr)->setDefaultValues(QString(defaultValues).split("|", QString::SkipEmptyParts));
 }
 
 void QCommandLineOption_SetDescription(void* ptr, char* description){
@@ -2215,15 +2215,15 @@ int QCommandLineParser_IsSet(void* ptr, char* name){
 }
 
 char* QCommandLineParser_OptionNames(void* ptr){
-	return static_cast<QCommandLineParser*>(ptr)->optionNames().join(",,,").toUtf8().data();
+	return static_cast<QCommandLineParser*>(ptr)->optionNames().join("|").toUtf8().data();
 }
 
 int QCommandLineParser_Parse(void* ptr, char* arguments){
-	return static_cast<QCommandLineParser*>(ptr)->parse(QString(arguments).split(",,,", QString::SkipEmptyParts));
+	return static_cast<QCommandLineParser*>(ptr)->parse(QString(arguments).split("|", QString::SkipEmptyParts));
 }
 
 char* QCommandLineParser_PositionalArguments(void* ptr){
-	return static_cast<QCommandLineParser*>(ptr)->positionalArguments().join(",,,").toUtf8().data();
+	return static_cast<QCommandLineParser*>(ptr)->positionalArguments().join("|").toUtf8().data();
 }
 
 void QCommandLineParser_Process2(void* ptr, void* app){
@@ -2231,7 +2231,7 @@ void QCommandLineParser_Process2(void* ptr, void* app){
 }
 
 void QCommandLineParser_Process(void* ptr, char* arguments){
-	static_cast<QCommandLineParser*>(ptr)->process(QString(arguments).split(",,,", QString::SkipEmptyParts));
+	static_cast<QCommandLineParser*>(ptr)->process(QString(arguments).split("|", QString::SkipEmptyParts));
 }
 
 void QCommandLineParser_SetApplicationDescription(void* ptr, char* description){
@@ -2251,7 +2251,7 @@ void QCommandLineParser_ShowVersion(void* ptr){
 }
 
 char* QCommandLineParser_UnknownOptionNames(void* ptr){
-	return static_cast<QCommandLineParser*>(ptr)->unknownOptionNames().join(",,,").toUtf8().data();
+	return static_cast<QCommandLineParser*>(ptr)->unknownOptionNames().join("|").toUtf8().data();
 }
 
 char* QCommandLineParser_Value2(void* ptr, void* option){
@@ -2263,11 +2263,11 @@ char* QCommandLineParser_Value(void* ptr, char* optionName){
 }
 
 char* QCommandLineParser_Values2(void* ptr, void* option){
-	return static_cast<QCommandLineParser*>(ptr)->values(*static_cast<QCommandLineOption*>(option)).join(",,,").toUtf8().data();
+	return static_cast<QCommandLineParser*>(ptr)->values(*static_cast<QCommandLineOption*>(option)).join("|").toUtf8().data();
 }
 
 char* QCommandLineParser_Values(void* ptr, char* optionName){
-	return static_cast<QCommandLineParser*>(ptr)->values(QString(optionName)).join(",,,").toUtf8().data();
+	return static_cast<QCommandLineParser*>(ptr)->values(QString(optionName)).join("|").toUtf8().data();
 }
 
 void QCommandLineParser_DestroyQCommandLineParser(void* ptr){
@@ -2316,7 +2316,7 @@ void QCoreApplication_QCoreApplication_SetOrganizationName(char* orgName){
 }
 
 void* QCoreApplication_NewQCoreApplication(int argc, char* argv){
-	QList<QByteArray> aList = QByteArray(argv).split(',,,');
+	QList<QByteArray> aList = QByteArray(argv).split('|');
 	char *argvs[argc];
 	static int argcs = argc;
 	for (int i = 0; i < argc; i++)
@@ -2350,7 +2350,7 @@ long long QCoreApplication_QCoreApplication_ApplicationPid(){
 }
 
 char* QCoreApplication_QCoreApplication_Arguments(){
-	return QCoreApplication::arguments().join(",,,").toUtf8().data();
+	return QCoreApplication::arguments().join("|").toUtf8().data();
 }
 
 int QCoreApplication_QCoreApplication_ClosingDown(){
@@ -2398,7 +2398,7 @@ int QCoreApplication_QCoreApplication_IsSetuidAllowed(){
 }
 
 char* QCoreApplication_QCoreApplication_LibraryPaths(){
-	return QCoreApplication::libraryPaths().join(",,,").toUtf8().data();
+	return QCoreApplication::libraryPaths().join("|").toUtf8().data();
 }
 
 int QCoreApplication_Notify(void* ptr, void* receiver, void* event){
@@ -2454,7 +2454,7 @@ void QCoreApplication_QCoreApplication_SetEventDispatcher(void* eventDispatcher)
 }
 
 void QCoreApplication_QCoreApplication_SetLibraryPaths(char* paths){
-	QCoreApplication::setLibraryPaths(QString(paths).split(",,,", QString::SkipEmptyParts));
+	QCoreApplication::setLibraryPaths(QString(paths).split("|", QString::SkipEmptyParts));
 }
 
 void QCoreApplication_QCoreApplication_SetQuitLockEnabled(int enabled){
@@ -2954,11 +2954,11 @@ char* QDir_DirName(void* ptr){
 }
 
 char* QDir_EntryList2(void* ptr, int filters, int sort){
-	return static_cast<QDir*>(ptr)->entryList(static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort)).join(",,,").toUtf8().data();
+	return static_cast<QDir*>(ptr)->entryList(static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort)).join("|").toUtf8().data();
 }
 
 char* QDir_EntryList(void* ptr, char* nameFilters, int filters, int sort){
-	return static_cast<QDir*>(ptr)->entryList(QString(nameFilters).split(",,,", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort)).join(",,,").toUtf8().data();
+	return static_cast<QDir*>(ptr)->entryList(QString(nameFilters).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort)).join("|").toUtf8().data();
 }
 
 int QDir_Exists2(void* ptr){
@@ -3022,7 +3022,7 @@ int QDir_QDir_Match(char* filter, char* fileName){
 }
 
 int QDir_QDir_Match2(char* filters, char* fileName){
-	return QDir::match(QString(filters).split(",,,", QString::SkipEmptyParts), QString(fileName));
+	return QDir::match(QString(filters).split("|", QString::SkipEmptyParts), QString(fileName));
 }
 
 int QDir_Mkdir(void* ptr, char* dirName){
@@ -3034,7 +3034,7 @@ int QDir_Mkpath(void* ptr, char* dirPath){
 }
 
 char* QDir_NameFilters(void* ptr){
-	return static_cast<QDir*>(ptr)->nameFilters().join(",,,").toUtf8().data();
+	return static_cast<QDir*>(ptr)->nameFilters().join("|").toUtf8().data();
 }
 
 char* QDir_Path(void* ptr){
@@ -3074,7 +3074,7 @@ char* QDir_QDir_RootPath(){
 }
 
 char* QDir_QDir_SearchPaths(char* prefix){
-	return QDir::searchPaths(QString(prefix)).join(",,,").toUtf8().data();
+	return QDir::searchPaths(QString(prefix)).join("|").toUtf8().data();
 }
 
 int QDir_QDir_SetCurrent(char* path){
@@ -3086,7 +3086,7 @@ void QDir_SetFilter(void* ptr, int filters){
 }
 
 void QDir_SetNameFilters(void* ptr, char* nameFilters){
-	static_cast<QDir*>(ptr)->setNameFilters(QString(nameFilters).split(",,,", QString::SkipEmptyParts));
+	static_cast<QDir*>(ptr)->setNameFilters(QString(nameFilters).split("|", QString::SkipEmptyParts));
 }
 
 void QDir_SetPath(void* ptr, char* path){
@@ -3094,7 +3094,7 @@ void QDir_SetPath(void* ptr, char* path){
 }
 
 void QDir_QDir_SetSearchPaths(char* prefix, char* searchPaths){
-	QDir::setSearchPaths(QString(prefix), QString(searchPaths).split(",,,", QString::SkipEmptyParts));
+	QDir::setSearchPaths(QString(prefix), QString(searchPaths).split("|", QString::SkipEmptyParts));
 }
 
 void QDir_SetSorting(void* ptr, int sort){
@@ -3936,11 +3936,11 @@ void* QFileSelector_NewQFileSelector(void* parent){
 }
 
 char* QFileSelector_AllSelectors(void* ptr){
-	return static_cast<QFileSelector*>(ptr)->allSelectors().join(",,,").toUtf8().data();
+	return static_cast<QFileSelector*>(ptr)->allSelectors().join("|").toUtf8().data();
 }
 
 char* QFileSelector_ExtraSelectors(void* ptr){
-	return static_cast<QFileSelector*>(ptr)->extraSelectors().join(",,,").toUtf8().data();
+	return static_cast<QFileSelector*>(ptr)->extraSelectors().join("|").toUtf8().data();
 }
 
 char* QFileSelector_Select(void* ptr, char* filePath){
@@ -3952,7 +3952,7 @@ void* QFileSelector_Select2(void* ptr, void* filePath){
 }
 
 void QFileSelector_SetExtraSelectors(void* ptr, char* list){
-	static_cast<QFileSelector*>(ptr)->setExtraSelectors(QString(list).split(",,,", QString::SkipEmptyParts));
+	static_cast<QFileSelector*>(ptr)->setExtraSelectors(QString(list).split("|", QString::SkipEmptyParts));
 }
 
 void QFileSelector_DestroyQFileSelector(void* ptr){
@@ -3993,11 +3993,11 @@ public:
 };
 
 char* QFileSystemWatcher_Directories(void* ptr){
-	return static_cast<QFileSystemWatcher*>(ptr)->directories().join(",,,").toUtf8().data();
+	return static_cast<QFileSystemWatcher*>(ptr)->directories().join("|").toUtf8().data();
 }
 
 char* QFileSystemWatcher_Files(void* ptr){
-	return static_cast<QFileSystemWatcher*>(ptr)->files().join(",,,").toUtf8().data();
+	return static_cast<QFileSystemWatcher*>(ptr)->files().join("|").toUtf8().data();
 }
 
 void* QFileSystemWatcher_NewQFileSystemWatcher(void* parent){
@@ -4005,7 +4005,7 @@ void* QFileSystemWatcher_NewQFileSystemWatcher(void* parent){
 }
 
 void* QFileSystemWatcher_NewQFileSystemWatcher2(char* paths, void* parent){
-	return new QFileSystemWatcher(QString(paths).split(",,,", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+	return new QFileSystemWatcher(QString(paths).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
 }
 
 int QFileSystemWatcher_AddPath(void* ptr, char* path){
@@ -4013,7 +4013,7 @@ int QFileSystemWatcher_AddPath(void* ptr, char* path){
 }
 
 char* QFileSystemWatcher_AddPaths(void* ptr, char* paths){
-	return static_cast<QFileSystemWatcher*>(ptr)->addPaths(QString(paths).split(",,,", QString::SkipEmptyParts)).join(",,,").toUtf8().data();
+	return static_cast<QFileSystemWatcher*>(ptr)->addPaths(QString(paths).split("|", QString::SkipEmptyParts)).join("|").toUtf8().data();
 }
 
 void QFileSystemWatcher_ConnectDirectoryChanged(void* ptr){
@@ -4037,7 +4037,7 @@ int QFileSystemWatcher_RemovePath(void* ptr, char* path){
 }
 
 char* QFileSystemWatcher_RemovePaths(void* ptr, char* paths){
-	return static_cast<QFileSystemWatcher*>(ptr)->removePaths(QString(paths).split(",,,", QString::SkipEmptyParts)).join(",,,").toUtf8().data();
+	return static_cast<QFileSystemWatcher*>(ptr)->removePaths(QString(paths).split("|", QString::SkipEmptyParts)).join("|").toUtf8().data();
 }
 
 void QFileSystemWatcher_DestroyQFileSystemWatcher(void* ptr){
@@ -4890,7 +4890,7 @@ int QJsonArray_Empty(void* ptr){
 }
 
 void* QJsonArray_QJsonArray_FromStringList(char* list){
-	return new QJsonArray(QJsonArray::fromStringList(QString(list).split(",,,", QString::SkipEmptyParts)));
+	return new QJsonArray(QJsonArray::fromStringList(QString(list).split("|", QString::SkipEmptyParts)));
 }
 
 int QJsonArray_IsEmpty(void* ptr){
@@ -5034,7 +5034,7 @@ int QJsonObject_IsEmpty(void* ptr){
 }
 
 char* QJsonObject_Keys(void* ptr){
-	return static_cast<QJsonObject*>(ptr)->keys().join(",,,").toUtf8().data();
+	return static_cast<QJsonObject*>(ptr)->keys().join("|").toUtf8().data();
 }
 
 int QJsonObject_Length(void* ptr){
@@ -5486,7 +5486,7 @@ char* QLocale_QLocale_CountryToString(int country){
 }
 
 char* QLocale_CreateSeparatedList(void* ptr, char* list){
-	return static_cast<QLocale*>(ptr)->createSeparatedList(QString(list).split(",,,", QString::SkipEmptyParts)).toUtf8().data();
+	return static_cast<QLocale*>(ptr)->createSeparatedList(QString(list).split("|", QString::SkipEmptyParts)).toUtf8().data();
 }
 
 char* QLocale_CurrencySymbol(void* ptr, int format){
@@ -5642,7 +5642,7 @@ char* QLocale_ToUpper(void* ptr, char* str){
 }
 
 char* QLocale_UiLanguages(void* ptr){
-	return static_cast<QLocale*>(ptr)->uiLanguages().join(",,,").toUtf8().data();
+	return static_cast<QLocale*>(ptr)->uiLanguages().join("|").toUtf8().data();
 }
 
 void QLocale_DestroyQLocale(void* ptr){
@@ -6210,7 +6210,7 @@ void* QMimeData_Data(void* ptr, char* mimeType){
 }
 
 char* QMimeData_Formats(void* ptr){
-	return static_cast<QMimeData*>(ptr)->formats().join(",,,").toUtf8().data();
+	return static_cast<QMimeData*>(ptr)->formats().join("|").toUtf8().data();
 }
 
 int QMimeData_HasColor(void* ptr){
@@ -6330,7 +6330,7 @@ char* QMimeType_GenericIconName(void* ptr){
 }
 
 char* QMimeType_GlobPatterns(void* ptr){
-	return static_cast<QMimeType*>(ptr)->globPatterns().join(",,,").toUtf8().data();
+	return static_cast<QMimeType*>(ptr)->globPatterns().join("|").toUtf8().data();
 }
 
 char* QMimeType_IconName(void* ptr){
@@ -6358,11 +6358,11 @@ void QMimeType_DestroyQMimeType(void* ptr){
 }
 
 char* QMimeType_Aliases(void* ptr){
-	return static_cast<QMimeType*>(ptr)->aliases().join(",,,").toUtf8().data();
+	return static_cast<QMimeType*>(ptr)->aliases().join("|").toUtf8().data();
 }
 
 char* QMimeType_AllAncestors(void* ptr){
-	return static_cast<QMimeType*>(ptr)->allAncestors().join(",,,").toUtf8().data();
+	return static_cast<QMimeType*>(ptr)->allAncestors().join("|").toUtf8().data();
 }
 
 char* QMimeType_Comment(void* ptr){
@@ -6370,7 +6370,7 @@ char* QMimeType_Comment(void* ptr){
 }
 
 char* QMimeType_ParentMimeTypes(void* ptr){
-	return static_cast<QMimeType*>(ptr)->parentMimeTypes().join(",,,").toUtf8().data();
+	return static_cast<QMimeType*>(ptr)->parentMimeTypes().join("|").toUtf8().data();
 }
 
 char* QMimeType_PreferredSuffix(void* ptr){
@@ -6378,7 +6378,7 @@ char* QMimeType_PreferredSuffix(void* ptr){
 }
 
 char* QMimeType_Suffixes(void* ptr){
-	return static_cast<QMimeType*>(ptr)->suffixes().join(",,,").toUtf8().data();
+	return static_cast<QMimeType*>(ptr)->suffixes().join("|").toUtf8().data();
 }
 
 void QMimeType_Swap(void* ptr, void* other){
@@ -7074,7 +7074,7 @@ void* QProcess_NewQProcess(void* parent){
 }
 
 char* QProcess_Arguments(void* ptr){
-	return static_cast<QProcess*>(ptr)->arguments().join(",,,").toUtf8().data();
+	return static_cast<QProcess*>(ptr)->arguments().join("|").toUtf8().data();
 }
 
 int QProcess_AtEnd(void* ptr){
@@ -7130,7 +7130,7 @@ int QProcess_QProcess_Execute2(char* command){
 }
 
 int QProcess_QProcess_Execute(char* program, char* arguments){
-	return QProcess::execute(QString(program), QString(arguments).split(",,,", QString::SkipEmptyParts));
+	return QProcess::execute(QString(program), QString(arguments).split("|", QString::SkipEmptyParts));
 }
 
 int QProcess_ExitCode(void* ptr){
@@ -7218,7 +7218,7 @@ void QProcess_DisconnectReadyReadStandardOutput(void* ptr){
 }
 
 void QProcess_SetArguments(void* ptr, char* arguments){
-	static_cast<QProcess*>(ptr)->setArguments(QString(arguments).split(",,,", QString::SkipEmptyParts));
+	static_cast<QProcess*>(ptr)->setArguments(QString(arguments).split("|", QString::SkipEmptyParts));
 }
 
 void QProcess_SetInputChannelMode(void* ptr, int mode){
@@ -7278,7 +7278,7 @@ void QProcess_Start3(void* ptr, char* command, int mode){
 }
 
 void QProcess_Start(void* ptr, char* program, char* arguments, int mode){
-	static_cast<QProcess*>(ptr)->start(QString(program), QString(arguments).split(",,,", QString::SkipEmptyParts), static_cast<QIODevice::OpenModeFlag>(mode));
+	static_cast<QProcess*>(ptr)->start(QString(program), QString(arguments).split("|", QString::SkipEmptyParts), static_cast<QIODevice::OpenModeFlag>(mode));
 }
 
 int QProcess_QProcess_StartDetached2(char* command){
@@ -7306,7 +7306,7 @@ void QProcess_DisconnectStateChanged(void* ptr){
 }
 
 char* QProcess_QProcess_SystemEnvironment(){
-	return QProcess::systemEnvironment().join(",,,").toUtf8().data();
+	return QProcess::systemEnvironment().join("|").toUtf8().data();
 }
 
 void QProcess_Terminate(void* ptr){
@@ -7386,7 +7386,7 @@ int QProcessEnvironment_IsEmpty(void* ptr){
 }
 
 char* QProcessEnvironment_Keys(void* ptr){
-	return static_cast<QProcessEnvironment*>(ptr)->keys().join(",,,").toUtf8().data();
+	return static_cast<QProcessEnvironment*>(ptr)->keys().join("|").toUtf8().data();
 }
 
 void QProcessEnvironment_Swap(void* ptr, void* other){
@@ -7394,7 +7394,7 @@ void QProcessEnvironment_Swap(void* ptr, void* other){
 }
 
 char* QProcessEnvironment_ToStringList(void* ptr){
-	return static_cast<QProcessEnvironment*>(ptr)->toStringList().join(",,,").toUtf8().data();
+	return static_cast<QProcessEnvironment*>(ptr)->toStringList().join("|").toUtf8().data();
 }
 
 char* QProcessEnvironment_Value(void* ptr, char* name, char* defaultValue){
@@ -8051,7 +8051,7 @@ int QRegExp_CaptureCount(void* ptr){
 }
 
 char* QRegExp_CapturedTexts(void* ptr){
-	return static_cast<QRegExp*>(ptr)->capturedTexts().join(",,,").toUtf8().data();
+	return static_cast<QRegExp*>(ptr)->capturedTexts().join("|").toUtf8().data();
 }
 
 int QRegExp_CaseSensitivity(void* ptr){
@@ -8171,7 +8171,7 @@ void* QRegularExpression_Match2(void* ptr, void* subjectRef, int offset, int mat
 }
 
 char* QRegularExpression_NamedCaptureGroups(void* ptr){
-	return static_cast<QRegularExpression*>(ptr)->namedCaptureGroups().join(",,,").toUtf8().data();
+	return static_cast<QRegularExpression*>(ptr)->namedCaptureGroups().join("|").toUtf8().data();
 }
 
 void QRegularExpression_Optimize(void* ptr){
@@ -8255,7 +8255,7 @@ int QRegularExpressionMatch_CapturedStart(void* ptr, int nth){
 }
 
 char* QRegularExpressionMatch_CapturedTexts(void* ptr){
-	return static_cast<QRegularExpressionMatch*>(ptr)->capturedTexts().join(",,,").toUtf8().data();
+	return static_cast<QRegularExpressionMatch*>(ptr)->capturedTexts().join("|").toUtf8().data();
 }
 
 int QRegularExpressionMatch_HasMatch(void* ptr){
@@ -8624,7 +8624,7 @@ void* QSettings_NewQSettings(char* organization, char* application, void* parent
 }
 
 char* QSettings_AllKeys(void* ptr){
-	return static_cast<QSettings*>(ptr)->allKeys().join(",,,").toUtf8().data();
+	return static_cast<QSettings*>(ptr)->allKeys().join("|").toUtf8().data();
 }
 
 char* QSettings_ApplicationName(void* ptr){
@@ -8644,11 +8644,11 @@ void QSettings_BeginWriteArray(void* ptr, char* prefix, int size){
 }
 
 char* QSettings_ChildGroups(void* ptr){
-	return static_cast<QSettings*>(ptr)->childGroups().join(",,,").toUtf8().data();
+	return static_cast<QSettings*>(ptr)->childGroups().join("|").toUtf8().data();
 }
 
 char* QSettings_ChildKeys(void* ptr){
-	return static_cast<QSettings*>(ptr)->childKeys().join(",,,").toUtf8().data();
+	return static_cast<QSettings*>(ptr)->childKeys().join("|").toUtf8().data();
 }
 
 void QSettings_Clear(void* ptr){
@@ -9483,7 +9483,7 @@ void* QSortFilterProxyModel_MapToSource(void* ptr, void* proxyIndex){
 }
 
 char* QSortFilterProxyModel_MimeTypes(void* ptr){
-	return static_cast<QSortFilterProxyModel*>(ptr)->mimeTypes().join(",,,").toUtf8().data();
+	return static_cast<QSortFilterProxyModel*>(ptr)->mimeTypes().join("|").toUtf8().data();
 }
 
 void* QSortFilterProxyModel_Parent(void* ptr, void* child){
@@ -9599,7 +9599,7 @@ void QStandardPaths_QStandardPaths_SetTestModeEnabled(int testMode){
 }
 
 char* QStandardPaths_QStandardPaths_FindExecutable(char* executableName, char* paths){
-	return QStandardPaths::findExecutable(QString(executableName), QString(paths).split(",,,", QString::SkipEmptyParts)).toUtf8().data();
+	return QStandardPaths::findExecutable(QString(executableName), QString(paths).split("|", QString::SkipEmptyParts)).toUtf8().data();
 }
 
 char* QStandardPaths_QStandardPaths_Locate(int ty, char* fileName, int options){
@@ -9607,7 +9607,7 @@ char* QStandardPaths_QStandardPaths_Locate(int ty, char* fileName, int options){
 }
 
 char* QStandardPaths_QStandardPaths_LocateAll(int ty, char* fileName, int options){
-	return QStandardPaths::locateAll(static_cast<QStandardPaths::StandardLocation>(ty), QString(fileName), static_cast<QStandardPaths::LocateOption>(options)).join(",,,").toUtf8().data();
+	return QStandardPaths::locateAll(static_cast<QStandardPaths::StandardLocation>(ty), QString(fileName), static_cast<QStandardPaths::LocateOption>(options)).join("|").toUtf8().data();
 }
 
 char* QStandardPaths_QStandardPaths_DisplayName(int ty){
@@ -9615,7 +9615,7 @@ char* QStandardPaths_QStandardPaths_DisplayName(int ty){
 }
 
 char* QStandardPaths_QStandardPaths_StandardLocations(int ty){
-	return QStandardPaths::standardLocations(static_cast<QStandardPaths::StandardLocation>(ty)).join(",,,").toUtf8().data();
+	return QStandardPaths::standardLocations(static_cast<QStandardPaths::StandardLocation>(ty)).join("|").toUtf8().data();
 }
 
 char* QStandardPaths_QStandardPaths_WritableLocation(int ty){
@@ -10075,7 +10075,7 @@ int QStringListModel_SetData(void* ptr, void* index, void* value, int role){
 }
 
 void QStringListModel_SetStringList(void* ptr, char* strin){
-	static_cast<QStringListModel*>(ptr)->setStringList(QString(strin).split(",,,", QString::SkipEmptyParts));
+	static_cast<QStringListModel*>(ptr)->setStringList(QString(strin).split("|", QString::SkipEmptyParts));
 }
 
 void* QStringListModel_Sibling(void* ptr, int row, int column, void* idx){
@@ -10091,7 +10091,7 @@ void QStringListModel_SortDefault(void* ptr, int column, int order){
 }
 
 char* QStringListModel_StringList(void* ptr){
-	return static_cast<QStringListModel*>(ptr)->stringList().join(",,,").toUtf8().data();
+	return static_cast<QStringListModel*>(ptr)->stringList().join("|").toUtf8().data();
 }
 
 int QStringListModel_SupportedDropActions(void* ptr){
@@ -11871,7 +11871,7 @@ char* QUrl_Host(void* ptr, int options){
 }
 
 char* QUrl_QUrl_IdnWhitelist(){
-	return QUrl::idnWhitelist().join(",,,").toUtf8().data();
+	return QUrl::idnWhitelist().join("|").toUtf8().data();
 }
 
 int QUrl_IsEmpty(void* ptr){
@@ -11935,7 +11935,7 @@ void QUrl_SetHost(void* ptr, char* host, int mode){
 }
 
 void QUrl_QUrl_SetIdnWhitelist(char* list){
-	QUrl::setIdnWhitelist(QString(list).split(",,,", QString::SkipEmptyParts));
+	QUrl::setIdnWhitelist(QString(list).split("|", QString::SkipEmptyParts));
 }
 
 void QUrl_SetPassword(void* ptr, char* password, int mode){
@@ -12043,7 +12043,7 @@ void QUrlQuery_AddQueryItem(void* ptr, char* key, char* value){
 }
 
 char* QUrlQuery_AllQueryItemValues(void* ptr, char* key, int encoding){
-	return static_cast<QUrlQuery*>(ptr)->allQueryItemValues(QString(key), static_cast<QUrl::ComponentFormattingOption>(encoding)).join(",,,").toUtf8().data();
+	return static_cast<QUrlQuery*>(ptr)->allQueryItemValues(QString(key), static_cast<QUrl::ComponentFormattingOption>(encoding)).join("|").toUtf8().data();
 }
 
 void QUrlQuery_Clear(void* ptr){
@@ -12227,7 +12227,7 @@ void* QVariant_NewQVariant17(char* val){
 }
 
 void* QVariant_NewQVariant19(char* val){
-	return new QVariant(QString(val).split(",,,", QString::SkipEmptyParts));
+	return new QVariant(QString(val).split("|", QString::SkipEmptyParts));
 }
 
 void* QVariant_NewQVariant22(void* val){
@@ -12287,7 +12287,7 @@ void* QVariant_ToSize(void* ptr){
 }
 
 char* QVariant_ToStringList(void* ptr){
-	return static_cast<QVariant*>(ptr)->toStringList().join(",,,").toUtf8().data();
+	return static_cast<QVariant*>(ptr)->toStringList().join("|").toUtf8().data();
 }
 
 void* QVariant_ToUrl(void* ptr){

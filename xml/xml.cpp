@@ -1226,11 +1226,11 @@ char* QXmlNamespaceSupport_Prefix(void* ptr, char* uri){
 }
 
 char* QXmlNamespaceSupport_Prefixes(void* ptr){
-	return static_cast<QXmlNamespaceSupport*>(ptr)->prefixes().join(",,,").toUtf8().data();
+	return static_cast<QXmlNamespaceSupport*>(ptr)->prefixes().join("|").toUtf8().data();
 }
 
 char* QXmlNamespaceSupport_Prefixes2(void* ptr, char* uri){
-	return static_cast<QXmlNamespaceSupport*>(ptr)->prefixes(QString(uri)).join(",,,").toUtf8().data();
+	return static_cast<QXmlNamespaceSupport*>(ptr)->prefixes(QString(uri)).join("|").toUtf8().data();
 }
 
 void QXmlNamespaceSupport_PushContext(void* ptr){

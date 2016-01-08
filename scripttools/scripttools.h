@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTSCRIPTTOOLS_H
+#define GO_QTSCRIPTTOOLS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -29,4 +34,6 @@ void QScriptEngineDebugger_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTMULTIMEDIAWIDGETS_H
+#define GO_QTMULTIMEDIAWIDGETS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -221,4 +226,6 @@ void QVideoWidgetControl_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

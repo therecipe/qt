@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTSENSORS_H
+#define GO_QTSENSORS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -535,4 +540,6 @@ void QTiltSensor_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

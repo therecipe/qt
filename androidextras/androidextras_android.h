@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTANDROIDEXTRAS_H
+#define GO_QTANDROIDEXTRAS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -65,4 +70,6 @@ void QAndroidJniObject_DestroyQAndroidJniObject(void* ptr);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

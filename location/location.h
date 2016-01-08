@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTLOCATION_H
+#define GO_QTLOCATION_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -252,4 +257,6 @@ void QPlaceSearchSuggestionReply_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

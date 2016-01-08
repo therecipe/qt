@@ -16,7 +16,7 @@ func goOutput(name string, value string, f *parser.Function) string {
 	switch value {
 	case "QStringList":
 		{
-			return fmt.Sprintf("strings.Split(%v, \",,,\")", goOutput(name, "QString", f))
+			return fmt.Sprintf("strings.Split(%v, \"|\")", goOutput(name, "QString", f))
 		}
 
 	case "uchar", "char", "QString":
@@ -165,7 +165,7 @@ func cgoOutput(name string, value string, f *parser.Function) string {
 	switch value {
 	case "QStringList":
 		{
-			return fmt.Sprintf("strings.Split(%v, \",,,\")", cgoOutput(name, "QString", f))
+			return fmt.Sprintf("strings.Split(%v, \"|\")", cgoOutput(name, "QString", f))
 		}
 
 	case "uchar", "char", "QString":
@@ -237,7 +237,7 @@ func cppOutput(name string, value string, f *parser.Function) string {
 	switch value {
 	case "QStringList":
 		{
-			return cppOutput(fmt.Sprintf("%v.join(\",,,\")", name), "QString", f)
+			return cppOutput(fmt.Sprintf("%v.join(\"|\")", name), "QString", f)
 		}
 
 	case "QString":

@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTPOSITIONING_H
+#define GO_QTPOSITIONING_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -217,4 +222,6 @@ void QNmeaPositionInfoSource_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

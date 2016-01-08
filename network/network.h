@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTNETWORK_H
+#define GO_QTNETWORK_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -850,4 +855,6 @@ void QUdpSocket_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

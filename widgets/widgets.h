@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTWIDGETS_H
+#define GO_QTWIDGETS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -11050,4 +11055,6 @@ void QWizardPage_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

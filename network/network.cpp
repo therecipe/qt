@@ -1320,7 +1320,7 @@ void QNetworkAccessManager_SetProxyFactory(void* ptr, void* factory){
 }
 
 char* QNetworkAccessManager_SupportedSchemes(void* ptr){
-	return static_cast<QNetworkAccessManager*>(ptr)->supportedSchemes().join(",,,").toUtf8().data();
+	return static_cast<QNetworkAccessManager*>(ptr)->supportedSchemes().join("|").toUtf8().data();
 }
 
 void QNetworkAccessManager_DestroyQNetworkAccessManager(void* ptr){
@@ -2538,11 +2538,11 @@ int QSslCertificate_IsSelfSigned(void* ptr){
 }
 
 char* QSslCertificate_IssuerInfo(void* ptr, int subject){
-	return static_cast<QSslCertificate*>(ptr)->issuerInfo(static_cast<QSslCertificate::SubjectInfo>(subject)).join(",,,").toUtf8().data();
+	return static_cast<QSslCertificate*>(ptr)->issuerInfo(static_cast<QSslCertificate::SubjectInfo>(subject)).join("|").toUtf8().data();
 }
 
 char* QSslCertificate_IssuerInfo2(void* ptr, void* attribute){
-	return static_cast<QSslCertificate*>(ptr)->issuerInfo(*static_cast<QByteArray*>(attribute)).join(",,,").toUtf8().data();
+	return static_cast<QSslCertificate*>(ptr)->issuerInfo(*static_cast<QByteArray*>(attribute)).join("|").toUtf8().data();
 }
 
 void* QSslCertificate_SerialNumber(void* ptr){
@@ -2550,11 +2550,11 @@ void* QSslCertificate_SerialNumber(void* ptr){
 }
 
 char* QSslCertificate_SubjectInfo(void* ptr, int subject){
-	return static_cast<QSslCertificate*>(ptr)->subjectInfo(static_cast<QSslCertificate::SubjectInfo>(subject)).join(",,,").toUtf8().data();
+	return static_cast<QSslCertificate*>(ptr)->subjectInfo(static_cast<QSslCertificate::SubjectInfo>(subject)).join("|").toUtf8().data();
 }
 
 char* QSslCertificate_SubjectInfo2(void* ptr, void* attribute){
-	return static_cast<QSslCertificate*>(ptr)->subjectInfo(*static_cast<QByteArray*>(attribute)).join(",,,").toUtf8().data();
+	return static_cast<QSslCertificate*>(ptr)->subjectInfo(*static_cast<QByteArray*>(attribute)).join("|").toUtf8().data();
 }
 
 void* QSslCertificate_ToDer(void* ptr){

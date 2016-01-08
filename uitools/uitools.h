@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTUITOOLS_H
+#define GO_QTUITOOLS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -32,4 +37,6 @@ void QUiLoader_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

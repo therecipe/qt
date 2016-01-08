@@ -661,7 +661,7 @@ int QGeoServiceProvider_AnyRoutingFeatures_Type(){
 }
 
 char* QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders(){
-	return QGeoServiceProvider::availableServiceProviders().join(",,,").toUtf8().data();
+	return QGeoServiceProvider::availableServiceProviders().join("|").toUtf8().data();
 }
 
 int QGeoServiceProvider_Error(void* ptr){

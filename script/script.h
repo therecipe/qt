@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTSCRIPT_H
+#define GO_QTSCRIPT_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -214,4 +219,6 @@ void* QScriptable_ThisObject(void* ptr);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

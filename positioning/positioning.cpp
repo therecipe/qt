@@ -182,7 +182,7 @@ public:
 };
 
 char* QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources(){
-	return QGeoAreaMonitorSource::availableSources().join(",,,").toUtf8().data();
+	return QGeoAreaMonitorSource::availableSources().join("|").toUtf8().data();
 }
 
 void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(void* parent){
@@ -413,7 +413,7 @@ int QGeoPositionInfoSource_UpdateInterval(void* ptr){
 }
 
 char* QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources(){
-	return QGeoPositionInfoSource::availableSources().join(",,,").toUtf8().data();
+	return QGeoPositionInfoSource::availableSources().join("|").toUtf8().data();
 }
 
 void* QGeoPositionInfoSource_QGeoPositionInfoSource_CreateDefaultSource(void* parent){
@@ -675,7 +675,7 @@ int QGeoSatelliteInfoSource_UpdateInterval(void* ptr){
 }
 
 char* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources(){
-	return QGeoSatelliteInfoSource::availableSources().join(",,,").toUtf8().data();
+	return QGeoSatelliteInfoSource::availableSources().join("|").toUtf8().data();
 }
 
 void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateDefaultSource(void* parent){

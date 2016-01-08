@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTDBUS_H
+#define GO_QTDBUS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -205,4 +210,6 @@ void QDBusVirtualObject_CustomEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

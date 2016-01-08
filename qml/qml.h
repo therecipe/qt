@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef GO_QTQML_H
+#define GO_QTQML_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -346,4 +351,6 @@ char* QQmlScriptString_StringLiteral(void* ptr);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif
