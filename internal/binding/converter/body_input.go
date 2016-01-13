@@ -2,7 +2,7 @@ package converter
 
 import (
 	"fmt"
-	"path"
+	"path/filepath"
 	"runtime"
 	"strings"
 
@@ -68,20 +68,20 @@ func IsPrivateSignal(f *parser.Function) bool {
 
 	switch runtime.GOOS {
 	case "darwin":
-		fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/clang_64/lib/%v.framework/Versions/5/Headers/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), path.Base(f.Filepath)))
+		fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/clang_64/lib/%v.framework/Versions/5/Headers/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
 
 	case "windows":
-		fData = utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\include\\%v\\%v", strings.Title(parser.ClassMap[f.Class()].DocModule), path.Base(f.Filepath)))
+		fData = utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\include\\%v\\%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
 
 	case "linux":
 		switch runtime.GOARCH {
 		case "amd64":
 			{
-				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc_64/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), path.Base(f.Filepath)))
+				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc_64/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
 			}
 		case "386":
 			{
-				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), path.Base(f.Filepath)))
+				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
 			}
 		}
 	}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"path"
+	"path/filepath"
 	"runtime"
 	"time"
 
@@ -25,14 +25,14 @@ func main() {
 
 	fmt.Printf("_________________________Test-%v__________________________\n", buildTarget)
 
-	runCmd(exec.Command("go", "build", "-o", path.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GetQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
+	runCmd(exec.Command("go", "build", "-o", filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GetQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
 
-	for _, example := range []string{path.Join("widgets", "line_edits"), path.Join("widgets", "video_player"), path.Join("widgets", "graphicsscene"), path.Join("quick", "calc"), path.Join("quick", "dialog"), path.Join("quick", "view"), path.Join("qml", "application"), path.Join("qml", "prop"), path.Join("uitools", "calculator")} {
+	for _, example := range []string{filepath.Join("widgets", "line_edits"), filepath.Join("widgets", "video_player"), filepath.Join("widgets", "graphicsscene"), filepath.Join("quick", "calc"), filepath.Join("quick", "dialog"), filepath.Join("quick", "view"), filepath.Join("qml", "application"), filepath.Join("qml", "prop"), filepath.Join("uitools", "calculator")} {
 		var before = time.Now()
 
 		fmt.Print(example)
 
-		runCmd(exec.Command(fmt.Sprintf("qtdeploy%v", ending), "test", buildTarget, path.Join(utils.GetQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
+		runCmd(exec.Command(fmt.Sprintf("qtdeploy%v", ending), "test", buildTarget, filepath.Join(utils.GetQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
 
 		var sep = "\t"
 		if len(example) < 8 {

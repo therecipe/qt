@@ -632,6 +632,9 @@ func pastdeploy() {
 			} else {
 				runCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "bin", "QtApp-debug.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.debug")
 			}
+
+			//TODO: copy manifest to android folder and change mindSdkVersion >= 16
+
 		}
 	case "desktop":
 		{

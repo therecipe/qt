@@ -101,7 +101,7 @@ func createCgoWindows(module string) {
 	}
 	tmp += "\n\n"
 
-	tmp += "#cgo LDFLAGS: -Wl,-s -Wl,-subsystem,windows -mthreads -Wl,--allow-multiple-definition\n"
+	tmp += "#cgo LDFLAGS: -Wl,-s -Wl,-subsystem,windows -mthreads\n"
 
 	tmp += "#cgo LDFLAGS: -LC:/Qt/Qt5.5.1/5.5/mingw492_32/lib"
 	for _, m := range append(LibDeps[module], module) {
