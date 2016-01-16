@@ -332,7 +332,7 @@ func build() {
 
 	if buildTarget != "desktop" || runtime.GOOS == "windows" {
 		if buildTarget != "desktop" {
-			cmd.Args = append(cmd.Args, "-buildmode", "c-shared") //TODO: pie in go 1.6
+			cmd.Args = append(cmd.Args, "-buildmode", "c-shared")
 		}
 		for key, value := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
