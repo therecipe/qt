@@ -38,6 +38,11 @@ func NewQAbstractOpenGLFunctionsFromPointer(ptr unsafe.Pointer) *QAbstractOpenGL
 	return n
 }
 
+func newQAbstractOpenGLFunctionsFromPointer(ptr unsafe.Pointer) *QAbstractOpenGLFunctions {
+	var n = NewQAbstractOpenGLFunctionsFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAbstractOpenGLFunctions) QAbstractOpenGLFunctions_PTR() *QAbstractOpenGLFunctions {
 	return ptr
 }
@@ -61,6 +66,11 @@ func PointerFromQAbstractTextDocumentLayout(ptr QAbstractTextDocumentLayout_ITF)
 func NewQAbstractTextDocumentLayoutFromPointer(ptr unsafe.Pointer) *QAbstractTextDocumentLayout {
 	var n = new(QAbstractTextDocumentLayout)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAbstractTextDocumentLayoutFromPointer(ptr unsafe.Pointer) *QAbstractTextDocumentLayout {
+	var n = NewQAbstractTextDocumentLayoutFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractTextDocumentLayout_") {
 		n.SetObjectName("QAbstractTextDocumentLayout_" + qt.Identifier())
 	}
@@ -340,6 +350,11 @@ func NewQAccessibleFromPointer(ptr unsafe.Pointer) *QAccessible {
 	return n
 }
 
+func newQAccessibleFromPointer(ptr unsafe.Pointer) *QAccessible {
+	var n = NewQAccessibleFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAccessible) QAccessible_PTR() *QAccessible {
 	return ptr
 }
@@ -599,6 +614,11 @@ func PointerFromQAccessibleActionInterface(ptr QAccessibleActionInterface_ITF) u
 func NewQAccessibleActionInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleActionInterface {
 	var n = new(QAccessibleActionInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccessibleActionInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleActionInterface {
+	var n = NewQAccessibleActionInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAccessibleActionInterface_") {
 		n.SetObjectNameAbs("QAccessibleActionInterface_" + qt.Identifier())
 	}
@@ -776,6 +796,11 @@ func PointerFromQAccessibleEditableTextInterface(ptr QAccessibleEditableTextInte
 func NewQAccessibleEditableTextInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleEditableTextInterface {
 	var n = new(QAccessibleEditableTextInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccessibleEditableTextInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleEditableTextInterface {
+	var n = NewQAccessibleEditableTextInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAccessibleEditableTextInterface_") {
 		n.SetObjectNameAbs("QAccessibleEditableTextInterface_" + qt.Identifier())
 	}
@@ -861,6 +886,11 @@ func PointerFromQAccessibleEvent(ptr QAccessibleEvent_ITF) unsafe.Pointer {
 func NewQAccessibleEventFromPointer(ptr unsafe.Pointer) *QAccessibleEvent {
 	var n = new(QAccessibleEvent)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccessibleEventFromPointer(ptr unsafe.Pointer) *QAccessibleEvent {
+	var n = NewQAccessibleEventFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAccessibleEvent_") {
 		n.SetObjectNameAbs("QAccessibleEvent_" + qt.Identifier())
 	}
@@ -874,13 +904,13 @@ func (ptr *QAccessibleEvent) QAccessibleEvent_PTR() *QAccessibleEvent {
 func NewQAccessibleEvent2(interfa QAccessibleInterface_ITF, ty QAccessible__Event) *QAccessibleEvent {
 	defer qt.Recovering("QAccessibleEvent::QAccessibleEvent")
 
-	return NewQAccessibleEventFromPointer(C.QAccessibleEvent_NewQAccessibleEvent2(PointerFromQAccessibleInterface(interfa), C.int(ty)))
+	return newQAccessibleEventFromPointer(C.QAccessibleEvent_NewQAccessibleEvent2(PointerFromQAccessibleInterface(interfa), C.int(ty)))
 }
 
 func NewQAccessibleEvent(object core.QObject_ITF, ty QAccessible__Event) *QAccessibleEvent {
 	defer qt.Recovering("QAccessibleEvent::QAccessibleEvent")
 
-	return NewQAccessibleEventFromPointer(C.QAccessibleEvent_NewQAccessibleEvent(core.PointerFromQObject(object), C.int(ty)))
+	return newQAccessibleEventFromPointer(C.QAccessibleEvent_NewQAccessibleEvent(core.PointerFromQObject(object), C.int(ty)))
 }
 
 func (ptr *QAccessibleEvent) AccessibleInterface() *QAccessibleInterface {
@@ -978,6 +1008,11 @@ func PointerFromQAccessibleInterface(ptr QAccessibleInterface_ITF) unsafe.Pointe
 func NewQAccessibleInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleInterface {
 	var n = new(QAccessibleInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccessibleInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleInterface {
+	var n = NewQAccessibleInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAccessibleInterface_") {
 		n.SetObjectNameAbs("QAccessibleInterface_" + qt.Identifier())
 	}
@@ -1220,6 +1255,11 @@ func PointerFromQAccessibleObject(ptr QAccessibleObject_ITF) unsafe.Pointer {
 func NewQAccessibleObjectFromPointer(ptr unsafe.Pointer) *QAccessibleObject {
 	var n = new(QAccessibleObject)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccessibleObjectFromPointer(ptr unsafe.Pointer) *QAccessibleObject {
+	var n = NewQAccessibleObjectFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAccessibleObject_") {
 		n.SetObjectNameAbs("QAccessibleObject_" + qt.Identifier())
 	}
@@ -1355,6 +1395,11 @@ func PointerFromQAccessiblePlugin(ptr QAccessiblePlugin_ITF) unsafe.Pointer {
 func NewQAccessiblePluginFromPointer(ptr unsafe.Pointer) *QAccessiblePlugin {
 	var n = new(QAccessiblePlugin)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccessiblePluginFromPointer(ptr unsafe.Pointer) *QAccessiblePlugin {
+	var n = NewQAccessiblePluginFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAccessiblePlugin_") {
 		n.SetObjectName("QAccessiblePlugin_" + qt.Identifier())
 	}
@@ -1384,6 +1429,11 @@ func PointerFromQAccessibleStateChangeEvent(ptr QAccessibleStateChangeEvent_ITF)
 func NewQAccessibleStateChangeEventFromPointer(ptr unsafe.Pointer) *QAccessibleStateChangeEvent {
 	var n = new(QAccessibleStateChangeEvent)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccessibleStateChangeEventFromPointer(ptr unsafe.Pointer) *QAccessibleStateChangeEvent {
+	var n = NewQAccessibleStateChangeEventFromPointer(ptr)
 	return n
 }
 
@@ -1417,6 +1467,11 @@ func PointerFromQAccessibleTableCellInterface(ptr QAccessibleTableCellInterface_
 func NewQAccessibleTableCellInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleTableCellInterface {
 	var n = new(QAccessibleTableCellInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccessibleTableCellInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleTableCellInterface {
+	var n = NewQAccessibleTableCellInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAccessibleTableCellInterface_") {
 		n.SetObjectNameAbs("QAccessibleTableCellInterface_" + qt.Identifier())
 	}
@@ -1532,6 +1587,11 @@ func PointerFromQAccessibleTableInterface(ptr QAccessibleTableInterface_ITF) uns
 func NewQAccessibleTableInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleTableInterface {
 	var n = new(QAccessibleTableInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccessibleTableInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleTableInterface {
+	var n = NewQAccessibleTableInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAccessibleTableInterface_") {
 		n.SetObjectNameAbs("QAccessibleTableInterface_" + qt.Identifier())
 	}
@@ -1741,6 +1801,11 @@ func NewQAccessibleTableModelChangeEventFromPointer(ptr unsafe.Pointer) *QAccess
 	return n
 }
 
+func newQAccessibleTableModelChangeEventFromPointer(ptr unsafe.Pointer) *QAccessibleTableModelChangeEvent {
+	var n = NewQAccessibleTableModelChangeEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAccessibleTableModelChangeEvent) QAccessibleTableModelChangeEvent_PTR() *QAccessibleTableModelChangeEvent {
 	return ptr
 }
@@ -1760,13 +1825,13 @@ const (
 func NewQAccessibleTableModelChangeEvent2(iface QAccessibleInterface_ITF, changeType QAccessibleTableModelChangeEvent__ModelChangeType) *QAccessibleTableModelChangeEvent {
 	defer qt.Recovering("QAccessibleTableModelChangeEvent::QAccessibleTableModelChangeEvent")
 
-	return NewQAccessibleTableModelChangeEventFromPointer(C.QAccessibleTableModelChangeEvent_NewQAccessibleTableModelChangeEvent2(PointerFromQAccessibleInterface(iface), C.int(changeType)))
+	return newQAccessibleTableModelChangeEventFromPointer(C.QAccessibleTableModelChangeEvent_NewQAccessibleTableModelChangeEvent2(PointerFromQAccessibleInterface(iface), C.int(changeType)))
 }
 
 func NewQAccessibleTableModelChangeEvent(object core.QObject_ITF, changeType QAccessibleTableModelChangeEvent__ModelChangeType) *QAccessibleTableModelChangeEvent {
 	defer qt.Recovering("QAccessibleTableModelChangeEvent::QAccessibleTableModelChangeEvent")
 
-	return NewQAccessibleTableModelChangeEventFromPointer(C.QAccessibleTableModelChangeEvent_NewQAccessibleTableModelChangeEvent(core.PointerFromQObject(object), C.int(changeType)))
+	return newQAccessibleTableModelChangeEventFromPointer(C.QAccessibleTableModelChangeEvent_NewQAccessibleTableModelChangeEvent(core.PointerFromQObject(object), C.int(changeType)))
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) FirstColumn() int {
@@ -1876,6 +1941,11 @@ func NewQAccessibleTextCursorEventFromPointer(ptr unsafe.Pointer) *QAccessibleTe
 	return n
 }
 
+func newQAccessibleTextCursorEventFromPointer(ptr unsafe.Pointer) *QAccessibleTextCursorEvent {
+	var n = NewQAccessibleTextCursorEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAccessibleTextCursorEvent) QAccessibleTextCursorEvent_PTR() *QAccessibleTextCursorEvent {
 	return ptr
 }
@@ -1883,13 +1953,13 @@ func (ptr *QAccessibleTextCursorEvent) QAccessibleTextCursorEvent_PTR() *QAccess
 func NewQAccessibleTextCursorEvent2(iface QAccessibleInterface_ITF, cursorPos int) *QAccessibleTextCursorEvent {
 	defer qt.Recovering("QAccessibleTextCursorEvent::QAccessibleTextCursorEvent")
 
-	return NewQAccessibleTextCursorEventFromPointer(C.QAccessibleTextCursorEvent_NewQAccessibleTextCursorEvent2(PointerFromQAccessibleInterface(iface), C.int(cursorPos)))
+	return newQAccessibleTextCursorEventFromPointer(C.QAccessibleTextCursorEvent_NewQAccessibleTextCursorEvent2(PointerFromQAccessibleInterface(iface), C.int(cursorPos)))
 }
 
 func NewQAccessibleTextCursorEvent(object core.QObject_ITF, cursorPos int) *QAccessibleTextCursorEvent {
 	defer qt.Recovering("QAccessibleTextCursorEvent::QAccessibleTextCursorEvent")
 
-	return NewQAccessibleTextCursorEventFromPointer(C.QAccessibleTextCursorEvent_NewQAccessibleTextCursorEvent(core.PointerFromQObject(object), C.int(cursorPos)))
+	return newQAccessibleTextCursorEventFromPointer(C.QAccessibleTextCursorEvent_NewQAccessibleTextCursorEvent(core.PointerFromQObject(object), C.int(cursorPos)))
 }
 
 func (ptr *QAccessibleTextCursorEvent) CursorPosition() int {
@@ -1931,6 +2001,11 @@ func NewQAccessibleTextInsertEventFromPointer(ptr unsafe.Pointer) *QAccessibleTe
 	return n
 }
 
+func newQAccessibleTextInsertEventFromPointer(ptr unsafe.Pointer) *QAccessibleTextInsertEvent {
+	var n = NewQAccessibleTextInsertEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAccessibleTextInsertEvent) QAccessibleTextInsertEvent_PTR() *QAccessibleTextInsertEvent {
 	return ptr
 }
@@ -1938,13 +2013,13 @@ func (ptr *QAccessibleTextInsertEvent) QAccessibleTextInsertEvent_PTR() *QAccess
 func NewQAccessibleTextInsertEvent2(iface QAccessibleInterface_ITF, position int, text string) *QAccessibleTextInsertEvent {
 	defer qt.Recovering("QAccessibleTextInsertEvent::QAccessibleTextInsertEvent")
 
-	return NewQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent2(PointerFromQAccessibleInterface(iface), C.int(position), C.CString(text)))
+	return newQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent2(PointerFromQAccessibleInterface(iface), C.int(position), C.CString(text)))
 }
 
 func NewQAccessibleTextInsertEvent(object core.QObject_ITF, position int, text string) *QAccessibleTextInsertEvent {
 	defer qt.Recovering("QAccessibleTextInsertEvent::QAccessibleTextInsertEvent")
 
-	return NewQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent(core.PointerFromQObject(object), C.int(position), C.CString(text)))
+	return newQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent(core.PointerFromQObject(object), C.int(position), C.CString(text)))
 }
 
 func (ptr *QAccessibleTextInsertEvent) ChangePosition() int {
@@ -1991,6 +2066,11 @@ func PointerFromQAccessibleTextInterface(ptr QAccessibleTextInterface_ITF) unsaf
 func NewQAccessibleTextInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleTextInterface {
 	var n = new(QAccessibleTextInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccessibleTextInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleTextInterface {
+	var n = NewQAccessibleTextInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAccessibleTextInterface_") {
 		n.SetObjectNameAbs("QAccessibleTextInterface_" + qt.Identifier())
 	}
@@ -2186,6 +2266,11 @@ func NewQAccessibleTextRemoveEventFromPointer(ptr unsafe.Pointer) *QAccessibleTe
 	return n
 }
 
+func newQAccessibleTextRemoveEventFromPointer(ptr unsafe.Pointer) *QAccessibleTextRemoveEvent {
+	var n = NewQAccessibleTextRemoveEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAccessibleTextRemoveEvent) QAccessibleTextRemoveEvent_PTR() *QAccessibleTextRemoveEvent {
 	return ptr
 }
@@ -2193,13 +2278,13 @@ func (ptr *QAccessibleTextRemoveEvent) QAccessibleTextRemoveEvent_PTR() *QAccess
 func NewQAccessibleTextRemoveEvent2(iface QAccessibleInterface_ITF, position int, text string) *QAccessibleTextRemoveEvent {
 	defer qt.Recovering("QAccessibleTextRemoveEvent::QAccessibleTextRemoveEvent")
 
-	return NewQAccessibleTextRemoveEventFromPointer(C.QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent2(PointerFromQAccessibleInterface(iface), C.int(position), C.CString(text)))
+	return newQAccessibleTextRemoveEventFromPointer(C.QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent2(PointerFromQAccessibleInterface(iface), C.int(position), C.CString(text)))
 }
 
 func NewQAccessibleTextRemoveEvent(object core.QObject_ITF, position int, text string) *QAccessibleTextRemoveEvent {
 	defer qt.Recovering("QAccessibleTextRemoveEvent::QAccessibleTextRemoveEvent")
 
-	return NewQAccessibleTextRemoveEventFromPointer(C.QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent(core.PointerFromQObject(object), C.int(position), C.CString(text)))
+	return newQAccessibleTextRemoveEventFromPointer(C.QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent(core.PointerFromQObject(object), C.int(position), C.CString(text)))
 }
 
 func (ptr *QAccessibleTextRemoveEvent) ChangePosition() int {
@@ -2242,6 +2327,11 @@ func NewQAccessibleTextSelectionEventFromPointer(ptr unsafe.Pointer) *QAccessibl
 	return n
 }
 
+func newQAccessibleTextSelectionEventFromPointer(ptr unsafe.Pointer) *QAccessibleTextSelectionEvent {
+	var n = NewQAccessibleTextSelectionEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAccessibleTextSelectionEvent) QAccessibleTextSelectionEvent_PTR() *QAccessibleTextSelectionEvent {
 	return ptr
 }
@@ -2249,13 +2339,13 @@ func (ptr *QAccessibleTextSelectionEvent) QAccessibleTextSelectionEvent_PTR() *Q
 func NewQAccessibleTextSelectionEvent2(iface QAccessibleInterface_ITF, start int, end int) *QAccessibleTextSelectionEvent {
 	defer qt.Recovering("QAccessibleTextSelectionEvent::QAccessibleTextSelectionEvent")
 
-	return NewQAccessibleTextSelectionEventFromPointer(C.QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent2(PointerFromQAccessibleInterface(iface), C.int(start), C.int(end)))
+	return newQAccessibleTextSelectionEventFromPointer(C.QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent2(PointerFromQAccessibleInterface(iface), C.int(start), C.int(end)))
 }
 
 func NewQAccessibleTextSelectionEvent(object core.QObject_ITF, start int, end int) *QAccessibleTextSelectionEvent {
 	defer qt.Recovering("QAccessibleTextSelectionEvent::QAccessibleTextSelectionEvent")
 
-	return NewQAccessibleTextSelectionEventFromPointer(C.QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent(core.PointerFromQObject(object), C.int(start), C.int(end)))
+	return newQAccessibleTextSelectionEventFromPointer(C.QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent(core.PointerFromQObject(object), C.int(start), C.int(end)))
 }
 
 func (ptr *QAccessibleTextSelectionEvent) SelectionEnd() int {
@@ -2306,6 +2396,11 @@ func NewQAccessibleTextUpdateEventFromPointer(ptr unsafe.Pointer) *QAccessibleTe
 	return n
 }
 
+func newQAccessibleTextUpdateEventFromPointer(ptr unsafe.Pointer) *QAccessibleTextUpdateEvent {
+	var n = NewQAccessibleTextUpdateEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAccessibleTextUpdateEvent) QAccessibleTextUpdateEvent_PTR() *QAccessibleTextUpdateEvent {
 	return ptr
 }
@@ -2313,13 +2408,13 @@ func (ptr *QAccessibleTextUpdateEvent) QAccessibleTextUpdateEvent_PTR() *QAccess
 func NewQAccessibleTextUpdateEvent2(iface QAccessibleInterface_ITF, position int, oldText string, text string) *QAccessibleTextUpdateEvent {
 	defer qt.Recovering("QAccessibleTextUpdateEvent::QAccessibleTextUpdateEvent")
 
-	return NewQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent2(PointerFromQAccessibleInterface(iface), C.int(position), C.CString(oldText), C.CString(text)))
+	return newQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent2(PointerFromQAccessibleInterface(iface), C.int(position), C.CString(oldText), C.CString(text)))
 }
 
 func NewQAccessibleTextUpdateEvent(object core.QObject_ITF, position int, oldText string, text string) *QAccessibleTextUpdateEvent {
 	defer qt.Recovering("QAccessibleTextUpdateEvent::QAccessibleTextUpdateEvent")
 
-	return NewQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent(core.PointerFromQObject(object), C.int(position), C.CString(oldText), C.CString(text)))
+	return newQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent(core.PointerFromQObject(object), C.int(position), C.CString(oldText), C.CString(text)))
 }
 
 func (ptr *QAccessibleTextUpdateEvent) ChangePosition() int {
@@ -2371,6 +2466,11 @@ func NewQAccessibleValueChangeEventFromPointer(ptr unsafe.Pointer) *QAccessibleV
 	return n
 }
 
+func newQAccessibleValueChangeEventFromPointer(ptr unsafe.Pointer) *QAccessibleValueChangeEvent {
+	var n = NewQAccessibleValueChangeEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAccessibleValueChangeEvent) QAccessibleValueChangeEvent_PTR() *QAccessibleValueChangeEvent {
 	return ptr
 }
@@ -2378,13 +2478,13 @@ func (ptr *QAccessibleValueChangeEvent) QAccessibleValueChangeEvent_PTR() *QAcce
 func NewQAccessibleValueChangeEvent2(iface QAccessibleInterface_ITF, val core.QVariant_ITF) *QAccessibleValueChangeEvent {
 	defer qt.Recovering("QAccessibleValueChangeEvent::QAccessibleValueChangeEvent")
 
-	return NewQAccessibleValueChangeEventFromPointer(C.QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent2(PointerFromQAccessibleInterface(iface), core.PointerFromQVariant(val)))
+	return newQAccessibleValueChangeEventFromPointer(C.QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent2(PointerFromQAccessibleInterface(iface), core.PointerFromQVariant(val)))
 }
 
 func NewQAccessibleValueChangeEvent(object core.QObject_ITF, value core.QVariant_ITF) *QAccessibleValueChangeEvent {
 	defer qt.Recovering("QAccessibleValueChangeEvent::QAccessibleValueChangeEvent")
 
-	return NewQAccessibleValueChangeEventFromPointer(C.QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent(core.PointerFromQObject(object), core.PointerFromQVariant(value)))
+	return newQAccessibleValueChangeEventFromPointer(C.QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent(core.PointerFromQObject(object), core.PointerFromQVariant(value)))
 }
 
 func (ptr *QAccessibleValueChangeEvent) SetValue(value core.QVariant_ITF) {
@@ -2430,6 +2530,11 @@ func PointerFromQAccessibleValueInterface(ptr QAccessibleValueInterface_ITF) uns
 func NewQAccessibleValueInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleValueInterface {
 	var n = new(QAccessibleValueInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccessibleValueInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleValueInterface {
+	var n = NewQAccessibleValueInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAccessibleValueInterface_") {
 		n.SetObjectNameAbs("QAccessibleValueInterface_" + qt.Identifier())
 	}
@@ -2531,6 +2636,11 @@ func NewQActionEventFromPointer(ptr unsafe.Pointer) *QActionEvent {
 	return n
 }
 
+func newQActionEventFromPointer(ptr unsafe.Pointer) *QActionEvent {
+	var n = NewQActionEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QActionEvent) QActionEvent_PTR() *QActionEvent {
 	return ptr
 }
@@ -2538,7 +2648,7 @@ func (ptr *QActionEvent) QActionEvent_PTR() *QActionEvent {
 func NewQActionEvent(ty int, action unsafe.Pointer, before unsafe.Pointer) *QActionEvent {
 	defer qt.Recovering("QActionEvent::QActionEvent")
 
-	return NewQActionEventFromPointer(C.QActionEvent_NewQActionEvent(C.int(ty), action, before))
+	return newQActionEventFromPointer(C.QActionEvent_NewQActionEvent(C.int(ty), action, before))
 }
 
 func (ptr *QActionEvent) Action() unsafe.Pointer {
@@ -2588,6 +2698,11 @@ func NewQBackingStoreFromPointer(ptr unsafe.Pointer) *QBackingStore {
 	return n
 }
 
+func newQBackingStoreFromPointer(ptr unsafe.Pointer) *QBackingStore {
+	var n = NewQBackingStoreFromPointer(ptr)
+	return n
+}
+
 func (ptr *QBackingStore) QBackingStore_PTR() *QBackingStore {
 	return ptr
 }
@@ -2604,7 +2719,7 @@ func (ptr *QBackingStore) PaintDevice() *QPaintDevice {
 func NewQBackingStore(window QWindow_ITF) *QBackingStore {
 	defer qt.Recovering("QBackingStore::QBackingStore")
 
-	return NewQBackingStoreFromPointer(C.QBackingStore_NewQBackingStore(PointerFromQWindow(window)))
+	return newQBackingStoreFromPointer(C.QBackingStore_NewQBackingStore(PointerFromQWindow(window)))
 }
 
 func (ptr *QBackingStore) BeginPaint(region QRegion_ITF) {
@@ -2722,6 +2837,11 @@ func NewQBitmapFromPointer(ptr unsafe.Pointer) *QBitmap {
 	return n
 }
 
+func newQBitmapFromPointer(ptr unsafe.Pointer) *QBitmap {
+	var n = NewQBitmapFromPointer(ptr)
+	return n
+}
+
 func (ptr *QBitmap) QBitmap_PTR() *QBitmap {
 	return ptr
 }
@@ -2779,6 +2899,11 @@ func NewQBrushFromPointer(ptr unsafe.Pointer) *QBrush {
 	return n
 }
 
+func newQBrushFromPointer(ptr unsafe.Pointer) *QBrush {
+	var n = NewQBrushFromPointer(ptr)
+	return n
+}
+
 func (ptr *QBrush) QBrush_PTR() *QBrush {
 	return ptr
 }
@@ -2786,7 +2911,7 @@ func (ptr *QBrush) QBrush_PTR() *QBrush {
 func NewQBrush4(color core.Qt__GlobalColor, style core.Qt__BrushStyle) *QBrush {
 	defer qt.Recovering("QBrush::QBrush")
 
-	return NewQBrushFromPointer(C.QBrush_NewQBrush4(C.int(color), C.int(style)))
+	return newQBrushFromPointer(C.QBrush_NewQBrush4(C.int(color), C.int(style)))
 }
 
 func (ptr *QBrush) SetColor(color QColor_ITF) {
@@ -2800,55 +2925,55 @@ func (ptr *QBrush) SetColor(color QColor_ITF) {
 func NewQBrush() *QBrush {
 	defer qt.Recovering("QBrush::QBrush")
 
-	return NewQBrushFromPointer(C.QBrush_NewQBrush())
+	return newQBrushFromPointer(C.QBrush_NewQBrush())
 }
 
 func NewQBrush2(style core.Qt__BrushStyle) *QBrush {
 	defer qt.Recovering("QBrush::QBrush")
 
-	return NewQBrushFromPointer(C.QBrush_NewQBrush2(C.int(style)))
+	return newQBrushFromPointer(C.QBrush_NewQBrush2(C.int(style)))
 }
 
 func NewQBrush6(color core.Qt__GlobalColor, pixmap QPixmap_ITF) *QBrush {
 	defer qt.Recovering("QBrush::QBrush")
 
-	return NewQBrushFromPointer(C.QBrush_NewQBrush6(C.int(color), PointerFromQPixmap(pixmap)))
+	return newQBrushFromPointer(C.QBrush_NewQBrush6(C.int(color), PointerFromQPixmap(pixmap)))
 }
 
 func NewQBrush9(other QBrush_ITF) *QBrush {
 	defer qt.Recovering("QBrush::QBrush")
 
-	return NewQBrushFromPointer(C.QBrush_NewQBrush9(PointerFromQBrush(other)))
+	return newQBrushFromPointer(C.QBrush_NewQBrush9(PointerFromQBrush(other)))
 }
 
 func NewQBrush3(color QColor_ITF, style core.Qt__BrushStyle) *QBrush {
 	defer qt.Recovering("QBrush::QBrush")
 
-	return NewQBrushFromPointer(C.QBrush_NewQBrush3(PointerFromQColor(color), C.int(style)))
+	return newQBrushFromPointer(C.QBrush_NewQBrush3(PointerFromQColor(color), C.int(style)))
 }
 
 func NewQBrush5(color QColor_ITF, pixmap QPixmap_ITF) *QBrush {
 	defer qt.Recovering("QBrush::QBrush")
 
-	return NewQBrushFromPointer(C.QBrush_NewQBrush5(PointerFromQColor(color), PointerFromQPixmap(pixmap)))
+	return newQBrushFromPointer(C.QBrush_NewQBrush5(PointerFromQColor(color), PointerFromQPixmap(pixmap)))
 }
 
 func NewQBrush10(gradient QGradient_ITF) *QBrush {
 	defer qt.Recovering("QBrush::QBrush")
 
-	return NewQBrushFromPointer(C.QBrush_NewQBrush10(PointerFromQGradient(gradient)))
+	return newQBrushFromPointer(C.QBrush_NewQBrush10(PointerFromQGradient(gradient)))
 }
 
 func NewQBrush8(image QImage_ITF) *QBrush {
 	defer qt.Recovering("QBrush::QBrush")
 
-	return NewQBrushFromPointer(C.QBrush_NewQBrush8(PointerFromQImage(image)))
+	return newQBrushFromPointer(C.QBrush_NewQBrush8(PointerFromQImage(image)))
 }
 
 func NewQBrush7(pixmap QPixmap_ITF) *QBrush {
 	defer qt.Recovering("QBrush::QBrush")
 
-	return NewQBrushFromPointer(C.QBrush_NewQBrush7(PointerFromQPixmap(pixmap)))
+	return newQBrushFromPointer(C.QBrush_NewQBrush7(PointerFromQPixmap(pixmap)))
 }
 
 func (ptr *QBrush) Color() *QColor {
@@ -2962,6 +3087,11 @@ func PointerFromQClipboard(ptr QClipboard_ITF) unsafe.Pointer {
 func NewQClipboardFromPointer(ptr unsafe.Pointer) *QClipboard {
 	var n = new(QClipboard)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQClipboardFromPointer(ptr unsafe.Pointer) *QClipboard {
+	var n = NewQClipboardFromPointer(ptr)
 	for len(n.ObjectName()) < len("QClipboard_") {
 		n.SetObjectName("QClipboard_" + qt.Identifier())
 	}
@@ -3386,6 +3516,11 @@ func NewQCloseEventFromPointer(ptr unsafe.Pointer) *QCloseEvent {
 	return n
 }
 
+func newQCloseEventFromPointer(ptr unsafe.Pointer) *QCloseEvent {
+	var n = NewQCloseEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QCloseEvent) QCloseEvent_PTR() *QCloseEvent {
 	return ptr
 }
@@ -3393,7 +3528,7 @@ func (ptr *QCloseEvent) QCloseEvent_PTR() *QCloseEvent {
 func NewQCloseEvent() *QCloseEvent {
 	defer qt.Recovering("QCloseEvent::QCloseEvent")
 
-	return NewQCloseEventFromPointer(C.QCloseEvent_NewQCloseEvent())
+	return newQCloseEventFromPointer(C.QCloseEvent_NewQCloseEvent())
 }
 
 type QColor struct {
@@ -3422,6 +3557,11 @@ func PointerFromQColor(ptr QColor_ITF) unsafe.Pointer {
 func NewQColorFromPointer(ptr unsafe.Pointer) *QColor {
 	var n = new(QColor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQColorFromPointer(ptr unsafe.Pointer) *QColor {
+	var n = NewQColorFromPointer(ptr)
 	return n
 }
 
@@ -3468,37 +3608,37 @@ func (ptr *QColor) SetRgbF(r float64, g float64, b float64, a float64) {
 func NewQColor() *QColor {
 	defer qt.Recovering("QColor::QColor")
 
-	return NewQColorFromPointer(C.QColor_NewQColor())
+	return newQColorFromPointer(C.QColor_NewQColor())
 }
 
 func NewQColor8(color core.Qt__GlobalColor) *QColor {
 	defer qt.Recovering("QColor::QColor")
 
-	return NewQColorFromPointer(C.QColor_NewQColor8(C.int(color)))
+	return newQColorFromPointer(C.QColor_NewQColor8(C.int(color)))
 }
 
 func NewQColor6(color QColor_ITF) *QColor {
 	defer qt.Recovering("QColor::QColor")
 
-	return NewQColorFromPointer(C.QColor_NewQColor6(PointerFromQColor(color)))
+	return newQColorFromPointer(C.QColor_NewQColor6(PointerFromQColor(color)))
 }
 
 func NewQColor4(name string) *QColor {
 	defer qt.Recovering("QColor::QColor")
 
-	return NewQColorFromPointer(C.QColor_NewQColor4(C.CString(name)))
+	return newQColorFromPointer(C.QColor_NewQColor4(C.CString(name)))
 }
 
 func NewQColor5(name string) *QColor {
 	defer qt.Recovering("QColor::QColor")
 
-	return NewQColorFromPointer(C.QColor_NewQColor5(C.CString(name)))
+	return newQColorFromPointer(C.QColor_NewQColor5(C.CString(name)))
 }
 
 func NewQColor2(r int, g int, b int, a int) *QColor {
 	defer qt.Recovering("QColor::QColor")
 
-	return NewQColorFromPointer(C.QColor_NewQColor2(C.int(r), C.int(g), C.int(b), C.int(a)))
+	return newQColorFromPointer(C.QColor_NewQColor2(C.int(r), C.int(g), C.int(b), C.int(a)))
 }
 
 func (ptr *QColor) Alpha() int {
@@ -4121,6 +4261,11 @@ func NewQConicalGradientFromPointer(ptr unsafe.Pointer) *QConicalGradient {
 	return n
 }
 
+func newQConicalGradientFromPointer(ptr unsafe.Pointer) *QConicalGradient {
+	var n = NewQConicalGradientFromPointer(ptr)
+	return n
+}
+
 func (ptr *QConicalGradient) QConicalGradient_PTR() *QConicalGradient {
 	return ptr
 }
@@ -4128,19 +4273,19 @@ func (ptr *QConicalGradient) QConicalGradient_PTR() *QConicalGradient {
 func NewQConicalGradient() *QConicalGradient {
 	defer qt.Recovering("QConicalGradient::QConicalGradient")
 
-	return NewQConicalGradientFromPointer(C.QConicalGradient_NewQConicalGradient())
+	return newQConicalGradientFromPointer(C.QConicalGradient_NewQConicalGradient())
 }
 
 func NewQConicalGradient2(center core.QPointF_ITF, angle float64) *QConicalGradient {
 	defer qt.Recovering("QConicalGradient::QConicalGradient")
 
-	return NewQConicalGradientFromPointer(C.QConicalGradient_NewQConicalGradient2(core.PointerFromQPointF(center), C.double(angle)))
+	return newQConicalGradientFromPointer(C.QConicalGradient_NewQConicalGradient2(core.PointerFromQPointF(center), C.double(angle)))
 }
 
 func NewQConicalGradient3(cx float64, cy float64, angle float64) *QConicalGradient {
 	defer qt.Recovering("QConicalGradient::QConicalGradient")
 
-	return NewQConicalGradientFromPointer(C.QConicalGradient_NewQConicalGradient3(C.double(cx), C.double(cy), C.double(angle)))
+	return newQConicalGradientFromPointer(C.QConicalGradient_NewQConicalGradient3(C.double(cx), C.double(cy), C.double(angle)))
 }
 
 func (ptr *QConicalGradient) Angle() float64 {
@@ -4198,6 +4343,11 @@ func NewQContextMenuEventFromPointer(ptr unsafe.Pointer) *QContextMenuEvent {
 	return n
 }
 
+func newQContextMenuEventFromPointer(ptr unsafe.Pointer) *QContextMenuEvent {
+	var n = NewQContextMenuEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QContextMenuEvent) QContextMenuEvent_PTR() *QContextMenuEvent {
 	return ptr
 }
@@ -4214,19 +4364,19 @@ const (
 func NewQContextMenuEvent3(reason QContextMenuEvent__Reason, pos core.QPoint_ITF) *QContextMenuEvent {
 	defer qt.Recovering("QContextMenuEvent::QContextMenuEvent")
 
-	return NewQContextMenuEventFromPointer(C.QContextMenuEvent_NewQContextMenuEvent3(C.int(reason), core.PointerFromQPoint(pos)))
+	return newQContextMenuEventFromPointer(C.QContextMenuEvent_NewQContextMenuEvent3(C.int(reason), core.PointerFromQPoint(pos)))
 }
 
 func NewQContextMenuEvent2(reason QContextMenuEvent__Reason, pos core.QPoint_ITF, globalPos core.QPoint_ITF) *QContextMenuEvent {
 	defer qt.Recovering("QContextMenuEvent::QContextMenuEvent")
 
-	return NewQContextMenuEventFromPointer(C.QContextMenuEvent_NewQContextMenuEvent2(C.int(reason), core.PointerFromQPoint(pos), core.PointerFromQPoint(globalPos)))
+	return newQContextMenuEventFromPointer(C.QContextMenuEvent_NewQContextMenuEvent2(C.int(reason), core.PointerFromQPoint(pos), core.PointerFromQPoint(globalPos)))
 }
 
 func NewQContextMenuEvent(reason QContextMenuEvent__Reason, pos core.QPoint_ITF, globalPos core.QPoint_ITF, modifiers core.Qt__KeyboardModifier) *QContextMenuEvent {
 	defer qt.Recovering("QContextMenuEvent::QContextMenuEvent")
 
-	return NewQContextMenuEventFromPointer(C.QContextMenuEvent_NewQContextMenuEvent(C.int(reason), core.PointerFromQPoint(pos), core.PointerFromQPoint(globalPos), C.int(modifiers)))
+	return newQContextMenuEventFromPointer(C.QContextMenuEvent_NewQContextMenuEvent(C.int(reason), core.PointerFromQPoint(pos), core.PointerFromQPoint(globalPos), C.int(modifiers)))
 }
 
 func (ptr *QContextMenuEvent) GlobalPos() *core.QPoint {
@@ -4321,6 +4471,11 @@ func NewQCursorFromPointer(ptr unsafe.Pointer) *QCursor {
 	return n
 }
 
+func newQCursorFromPointer(ptr unsafe.Pointer) *QCursor {
+	var n = NewQCursorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QCursor) QCursor_PTR() *QCursor {
 	return ptr
 }
@@ -4352,37 +4507,37 @@ func QCursor_SetPos(x int, y int) {
 func NewQCursor() *QCursor {
 	defer qt.Recovering("QCursor::QCursor")
 
-	return NewQCursorFromPointer(C.QCursor_NewQCursor())
+	return newQCursorFromPointer(C.QCursor_NewQCursor())
 }
 
 func NewQCursor6(other QCursor_ITF) *QCursor {
 	defer qt.Recovering("QCursor::QCursor")
 
-	return NewQCursorFromPointer(C.QCursor_NewQCursor6(PointerFromQCursor(other)))
+	return newQCursorFromPointer(C.QCursor_NewQCursor6(PointerFromQCursor(other)))
 }
 
 func NewQCursor2(shape core.Qt__CursorShape) *QCursor {
 	defer qt.Recovering("QCursor::QCursor")
 
-	return NewQCursorFromPointer(C.QCursor_NewQCursor2(C.int(shape)))
+	return newQCursorFromPointer(C.QCursor_NewQCursor2(C.int(shape)))
 }
 
 func NewQCursor3(bitmap QBitmap_ITF, mask QBitmap_ITF, hotX int, hotY int) *QCursor {
 	defer qt.Recovering("QCursor::QCursor")
 
-	return NewQCursorFromPointer(C.QCursor_NewQCursor3(PointerFromQBitmap(bitmap), PointerFromQBitmap(mask), C.int(hotX), C.int(hotY)))
+	return newQCursorFromPointer(C.QCursor_NewQCursor3(PointerFromQBitmap(bitmap), PointerFromQBitmap(mask), C.int(hotX), C.int(hotY)))
 }
 
 func NewQCursor5(c QCursor_ITF) *QCursor {
 	defer qt.Recovering("QCursor::QCursor")
 
-	return NewQCursorFromPointer(C.QCursor_NewQCursor5(PointerFromQCursor(c)))
+	return newQCursorFromPointer(C.QCursor_NewQCursor5(PointerFromQCursor(c)))
 }
 
 func NewQCursor4(pixmap QPixmap_ITF, hotX int, hotY int) *QCursor {
 	defer qt.Recovering("QCursor::QCursor")
 
-	return NewQCursorFromPointer(C.QCursor_NewQCursor4(PointerFromQPixmap(pixmap), C.int(hotX), C.int(hotY)))
+	return newQCursorFromPointer(C.QCursor_NewQCursor4(PointerFromQPixmap(pixmap), C.int(hotX), C.int(hotY)))
 }
 
 func (ptr *QCursor) Bitmap() *QBitmap {
@@ -4478,6 +4633,11 @@ func NewQDesktopServicesFromPointer(ptr unsafe.Pointer) *QDesktopServices {
 	return n
 }
 
+func newQDesktopServicesFromPointer(ptr unsafe.Pointer) *QDesktopServices {
+	var n = NewQDesktopServicesFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDesktopServices) QDesktopServices_PTR() *QDesktopServices {
 	return ptr
 }
@@ -4519,6 +4679,11 @@ func PointerFromQDoubleValidator(ptr QDoubleValidator_ITF) unsafe.Pointer {
 func NewQDoubleValidatorFromPointer(ptr unsafe.Pointer) *QDoubleValidator {
 	var n = new(QDoubleValidator)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDoubleValidatorFromPointer(ptr unsafe.Pointer) *QDoubleValidator {
+	var n = NewQDoubleValidatorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDoubleValidator_") {
 		n.SetObjectName("QDoubleValidator_" + qt.Identifier())
 	}
@@ -4565,7 +4730,7 @@ func (ptr *QDoubleValidator) SetNotation(v QDoubleValidator__Notation) {
 func NewQDoubleValidator(parent core.QObject_ITF) *QDoubleValidator {
 	defer qt.Recovering("QDoubleValidator::QDoubleValidator")
 
-	return NewQDoubleValidatorFromPointer(C.QDoubleValidator_NewQDoubleValidator(core.PointerFromQObject(parent)))
+	return newQDoubleValidatorFromPointer(C.QDoubleValidator_NewQDoubleValidator(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDoubleValidator) Decimals() int {
@@ -4740,6 +4905,11 @@ func PointerFromQDrag(ptr QDrag_ITF) unsafe.Pointer {
 func NewQDragFromPointer(ptr unsafe.Pointer) *QDrag {
 	var n = new(QDrag)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDragFromPointer(ptr unsafe.Pointer) *QDrag {
+	var n = NewQDragFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDrag_") {
 		n.SetObjectName("QDrag_" + qt.Identifier())
 	}
@@ -4753,7 +4923,7 @@ func (ptr *QDrag) QDrag_PTR() *QDrag {
 func NewQDrag(dragSource core.QObject_ITF) *QDrag {
 	defer qt.Recovering("QDrag::QDrag")
 
-	return NewQDragFromPointer(C.QDrag_NewQDrag(core.PointerFromQObject(dragSource)))
+	return newQDragFromPointer(C.QDrag_NewQDrag(core.PointerFromQObject(dragSource)))
 }
 
 func (ptr *QDrag) ConnectActionChanged(f func(action core.Qt__DropAction)) {
@@ -5089,6 +5259,11 @@ func NewQDragEnterEventFromPointer(ptr unsafe.Pointer) *QDragEnterEvent {
 	return n
 }
 
+func newQDragEnterEventFromPointer(ptr unsafe.Pointer) *QDragEnterEvent {
+	var n = NewQDragEnterEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDragEnterEvent) QDragEnterEvent_PTR() *QDragEnterEvent {
 	return ptr
 }
@@ -5096,7 +5271,7 @@ func (ptr *QDragEnterEvent) QDragEnterEvent_PTR() *QDragEnterEvent {
 func NewQDragEnterEvent(point core.QPoint_ITF, actions core.Qt__DropAction, data core.QMimeData_ITF, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QDragEnterEvent {
 	defer qt.Recovering("QDragEnterEvent::QDragEnterEvent")
 
-	return NewQDragEnterEventFromPointer(C.QDragEnterEvent_NewQDragEnterEvent(core.PointerFromQPoint(point), C.int(actions), core.PointerFromQMimeData(data), C.int(buttons), C.int(modifiers)))
+	return newQDragEnterEventFromPointer(C.QDragEnterEvent_NewQDragEnterEvent(core.PointerFromQPoint(point), C.int(actions), core.PointerFromQMimeData(data), C.int(buttons), C.int(modifiers)))
 }
 
 type QDragLeaveEvent struct {
@@ -5121,6 +5296,11 @@ func NewQDragLeaveEventFromPointer(ptr unsafe.Pointer) *QDragLeaveEvent {
 	return n
 }
 
+func newQDragLeaveEventFromPointer(ptr unsafe.Pointer) *QDragLeaveEvent {
+	var n = NewQDragLeaveEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDragLeaveEvent) QDragLeaveEvent_PTR() *QDragLeaveEvent {
 	return ptr
 }
@@ -5128,7 +5308,7 @@ func (ptr *QDragLeaveEvent) QDragLeaveEvent_PTR() *QDragLeaveEvent {
 func NewQDragLeaveEvent() *QDragLeaveEvent {
 	defer qt.Recovering("QDragLeaveEvent::QDragLeaveEvent")
 
-	return NewQDragLeaveEventFromPointer(C.QDragLeaveEvent_NewQDragLeaveEvent())
+	return newQDragLeaveEventFromPointer(C.QDragLeaveEvent_NewQDragLeaveEvent())
 }
 
 type QDragMoveEvent struct {
@@ -5153,6 +5333,11 @@ func NewQDragMoveEventFromPointer(ptr unsafe.Pointer) *QDragMoveEvent {
 	return n
 }
 
+func newQDragMoveEventFromPointer(ptr unsafe.Pointer) *QDragMoveEvent {
+	var n = NewQDragMoveEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDragMoveEvent) QDragMoveEvent_PTR() *QDragMoveEvent {
 	return ptr
 }
@@ -5160,7 +5345,7 @@ func (ptr *QDragMoveEvent) QDragMoveEvent_PTR() *QDragMoveEvent {
 func NewQDragMoveEvent(pos core.QPoint_ITF, actions core.Qt__DropAction, data core.QMimeData_ITF, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier, ty core.QEvent__Type) *QDragMoveEvent {
 	defer qt.Recovering("QDragMoveEvent::QDragMoveEvent")
 
-	return NewQDragMoveEventFromPointer(C.QDragMoveEvent_NewQDragMoveEvent(core.PointerFromQPoint(pos), C.int(actions), core.PointerFromQMimeData(data), C.int(buttons), C.int(modifiers), C.int(ty)))
+	return newQDragMoveEventFromPointer(C.QDragMoveEvent_NewQDragMoveEvent(core.PointerFromQPoint(pos), C.int(actions), core.PointerFromQMimeData(data), C.int(buttons), C.int(modifiers), C.int(ty)))
 }
 
 func (ptr *QDragMoveEvent) Accept2() {
@@ -5234,6 +5419,11 @@ func NewQDropEventFromPointer(ptr unsafe.Pointer) *QDropEvent {
 	return n
 }
 
+func newQDropEventFromPointer(ptr unsafe.Pointer) *QDropEvent {
+	var n = NewQDropEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDropEvent) QDropEvent_PTR() *QDropEvent {
 	return ptr
 }
@@ -5249,7 +5439,7 @@ func (ptr *QDropEvent) SetDropAction(action core.Qt__DropAction) {
 func NewQDropEvent(pos core.QPointF_ITF, actions core.Qt__DropAction, data core.QMimeData_ITF, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier, ty core.QEvent__Type) *QDropEvent {
 	defer qt.Recovering("QDropEvent::QDropEvent")
 
-	return NewQDropEventFromPointer(C.QDropEvent_NewQDropEvent(core.PointerFromQPointF(pos), C.int(actions), core.PointerFromQMimeData(data), C.int(buttons), C.int(modifiers), C.int(ty)))
+	return newQDropEventFromPointer(C.QDropEvent_NewQDropEvent(core.PointerFromQPointF(pos), C.int(actions), core.PointerFromQMimeData(data), C.int(buttons), C.int(modifiers), C.int(ty)))
 }
 
 func (ptr *QDropEvent) AcceptProposedAction() {
@@ -5354,6 +5544,11 @@ func NewQEnterEventFromPointer(ptr unsafe.Pointer) *QEnterEvent {
 	return n
 }
 
+func newQEnterEventFromPointer(ptr unsafe.Pointer) *QEnterEvent {
+	var n = NewQEnterEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QEnterEvent) QEnterEvent_PTR() *QEnterEvent {
 	return ptr
 }
@@ -5361,7 +5556,7 @@ func (ptr *QEnterEvent) QEnterEvent_PTR() *QEnterEvent {
 func NewQEnterEvent(localPos core.QPointF_ITF, windowPos core.QPointF_ITF, screenPos core.QPointF_ITF) *QEnterEvent {
 	defer qt.Recovering("QEnterEvent::QEnterEvent")
 
-	return NewQEnterEventFromPointer(C.QEnterEvent_NewQEnterEvent(core.PointerFromQPointF(localPos), core.PointerFromQPointF(windowPos), core.PointerFromQPointF(screenPos)))
+	return newQEnterEventFromPointer(C.QEnterEvent_NewQEnterEvent(core.PointerFromQPointF(localPos), core.PointerFromQPointF(windowPos), core.PointerFromQPointF(screenPos)))
 }
 
 func (ptr *QEnterEvent) GlobalPos() *core.QPoint {
@@ -5440,6 +5635,11 @@ func NewQExposeEventFromPointer(ptr unsafe.Pointer) *QExposeEvent {
 	return n
 }
 
+func newQExposeEventFromPointer(ptr unsafe.Pointer) *QExposeEvent {
+	var n = NewQExposeEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QExposeEvent) QExposeEvent_PTR() *QExposeEvent {
 	return ptr
 }
@@ -5447,7 +5647,7 @@ func (ptr *QExposeEvent) QExposeEvent_PTR() *QExposeEvent {
 func NewQExposeEvent(exposeRegion QRegion_ITF) *QExposeEvent {
 	defer qt.Recovering("QExposeEvent::QExposeEvent")
 
-	return NewQExposeEventFromPointer(C.QExposeEvent_NewQExposeEvent(PointerFromQRegion(exposeRegion)))
+	return newQExposeEventFromPointer(C.QExposeEvent_NewQExposeEvent(PointerFromQRegion(exposeRegion)))
 }
 
 func (ptr *QExposeEvent) Region() *QRegion {
@@ -5478,6 +5678,11 @@ func PointerFromQFileOpenEvent(ptr QFileOpenEvent_ITF) unsafe.Pointer {
 func NewQFileOpenEventFromPointer(ptr unsafe.Pointer) *QFileOpenEvent {
 	var n = new(QFileOpenEvent)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQFileOpenEventFromPointer(ptr unsafe.Pointer) *QFileOpenEvent {
+	var n = NewQFileOpenEventFromPointer(ptr)
 	return n
 }
 
@@ -5534,6 +5739,11 @@ func NewQFocusEventFromPointer(ptr unsafe.Pointer) *QFocusEvent {
 	return n
 }
 
+func newQFocusEventFromPointer(ptr unsafe.Pointer) *QFocusEvent {
+	var n = NewQFocusEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QFocusEvent) QFocusEvent_PTR() *QFocusEvent {
 	return ptr
 }
@@ -5541,7 +5751,7 @@ func (ptr *QFocusEvent) QFocusEvent_PTR() *QFocusEvent {
 func NewQFocusEvent(ty core.QEvent__Type, reason core.Qt__FocusReason) *QFocusEvent {
 	defer qt.Recovering("QFocusEvent::QFocusEvent")
 
-	return NewQFocusEventFromPointer(C.QFocusEvent_NewQFocusEvent(C.int(ty), C.int(reason)))
+	return newQFocusEventFromPointer(C.QFocusEvent_NewQFocusEvent(C.int(ty), C.int(reason)))
 }
 
 func (ptr *QFocusEvent) GotFocus() bool {
@@ -5597,6 +5807,11 @@ func PointerFromQFont(ptr QFont_ITF) unsafe.Pointer {
 func NewQFontFromPointer(ptr unsafe.Pointer) *QFont {
 	var n = new(QFont)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQFontFromPointer(ptr unsafe.Pointer) *QFont {
+	var n = NewQFontFromPointer(ptr)
 	return n
 }
 
@@ -5740,25 +5955,25 @@ func (ptr *QFont) LastResortFont() string {
 func NewQFont() *QFont {
 	defer qt.Recovering("QFont::QFont")
 
-	return NewQFontFromPointer(C.QFont_NewQFont())
+	return newQFontFromPointer(C.QFont_NewQFont())
 }
 
 func NewQFont4(font QFont_ITF) *QFont {
 	defer qt.Recovering("QFont::QFont")
 
-	return NewQFontFromPointer(C.QFont_NewQFont4(PointerFromQFont(font)))
+	return newQFontFromPointer(C.QFont_NewQFont4(PointerFromQFont(font)))
 }
 
 func NewQFont3(font QFont_ITF, pd QPaintDevice_ITF) *QFont {
 	defer qt.Recovering("QFont::QFont")
 
-	return NewQFontFromPointer(C.QFont_NewQFont3(PointerFromQFont(font), PointerFromQPaintDevice(pd)))
+	return newQFontFromPointer(C.QFont_NewQFont3(PointerFromQFont(font), PointerFromQPaintDevice(pd)))
 }
 
 func NewQFont2(family string, pointSize int, weight int, italic bool) *QFont {
 	defer qt.Recovering("QFont::QFont")
 
-	return NewQFontFromPointer(C.QFont_NewQFont2(C.CString(family), C.int(pointSize), C.int(weight), C.int(qt.GoBoolToInt(italic))))
+	return newQFontFromPointer(C.QFont_NewQFont2(C.CString(family), C.int(pointSize), C.int(weight), C.int(qt.GoBoolToInt(italic))))
 }
 
 func (ptr *QFont) Bold() bool {
@@ -6253,6 +6468,11 @@ func NewQFontDatabaseFromPointer(ptr unsafe.Pointer) *QFontDatabase {
 	return n
 }
 
+func newQFontDatabaseFromPointer(ptr unsafe.Pointer) *QFontDatabase {
+	var n = NewQFontDatabaseFromPointer(ptr)
+	return n
+}
+
 func (ptr *QFontDatabase) QFontDatabase_PTR() *QFontDatabase {
 	return ptr
 }
@@ -6324,7 +6544,7 @@ func QFontDatabase_RemoveApplicationFont(id int) bool {
 func NewQFontDatabase() *QFontDatabase {
 	defer qt.Recovering("QFontDatabase::QFontDatabase")
 
-	return NewQFontDatabaseFromPointer(C.QFontDatabase_NewQFontDatabase())
+	return newQFontDatabaseFromPointer(C.QFontDatabase_NewQFontDatabase())
 }
 
 func QFontDatabase_AddApplicationFont(fileName string) int {
@@ -6494,6 +6714,11 @@ func NewQFontInfoFromPointer(ptr unsafe.Pointer) *QFontInfo {
 	return n
 }
 
+func newQFontInfoFromPointer(ptr unsafe.Pointer) *QFontInfo {
+	var n = NewQFontInfoFromPointer(ptr)
+	return n
+}
+
 func (ptr *QFontInfo) QFontInfo_PTR() *QFontInfo {
 	return ptr
 }
@@ -6501,13 +6726,13 @@ func (ptr *QFontInfo) QFontInfo_PTR() *QFontInfo {
 func NewQFontInfo(font QFont_ITF) *QFontInfo {
 	defer qt.Recovering("QFontInfo::QFontInfo")
 
-	return NewQFontInfoFromPointer(C.QFontInfo_NewQFontInfo(PointerFromQFont(font)))
+	return newQFontInfoFromPointer(C.QFontInfo_NewQFontInfo(PointerFromQFont(font)))
 }
 
 func NewQFontInfo2(fi QFontInfo_ITF) *QFontInfo {
 	defer qt.Recovering("QFontInfo::QFontInfo")
 
-	return NewQFontInfoFromPointer(C.QFontInfo_NewQFontInfo2(PointerFromQFontInfo(fi)))
+	return newQFontInfoFromPointer(C.QFontInfo_NewQFontInfo2(PointerFromQFontInfo(fi)))
 }
 
 func (ptr *QFontInfo) Bold() bool {
@@ -6663,6 +6888,11 @@ func NewQFontMetricsFromPointer(ptr unsafe.Pointer) *QFontMetrics {
 	return n
 }
 
+func newQFontMetricsFromPointer(ptr unsafe.Pointer) *QFontMetrics {
+	var n = NewQFontMetricsFromPointer(ptr)
+	return n
+}
+
 func (ptr *QFontMetrics) QFontMetrics_PTR() *QFontMetrics {
 	return ptr
 }
@@ -6670,19 +6900,19 @@ func (ptr *QFontMetrics) QFontMetrics_PTR() *QFontMetrics {
 func NewQFontMetrics(font QFont_ITF) *QFontMetrics {
 	defer qt.Recovering("QFontMetrics::QFontMetrics")
 
-	return NewQFontMetricsFromPointer(C.QFontMetrics_NewQFontMetrics(PointerFromQFont(font)))
+	return newQFontMetricsFromPointer(C.QFontMetrics_NewQFontMetrics(PointerFromQFont(font)))
 }
 
 func NewQFontMetrics2(font QFont_ITF, paintdevice QPaintDevice_ITF) *QFontMetrics {
 	defer qt.Recovering("QFontMetrics::QFontMetrics")
 
-	return NewQFontMetricsFromPointer(C.QFontMetrics_NewQFontMetrics2(PointerFromQFont(font), PointerFromQPaintDevice(paintdevice)))
+	return newQFontMetricsFromPointer(C.QFontMetrics_NewQFontMetrics2(PointerFromQFont(font), PointerFromQPaintDevice(paintdevice)))
 }
 
 func NewQFontMetrics3(fm QFontMetrics_ITF) *QFontMetrics {
 	defer qt.Recovering("QFontMetrics::QFontMetrics")
 
-	return NewQFontMetricsFromPointer(C.QFontMetrics_NewQFontMetrics3(PointerFromQFontMetrics(fm)))
+	return newQFontMetricsFromPointer(C.QFontMetrics_NewQFontMetrics3(PointerFromQFontMetrics(fm)))
 }
 
 func (ptr *QFontMetrics) Ascent() int {
@@ -6964,6 +7194,11 @@ func NewQFontMetricsFFromPointer(ptr unsafe.Pointer) *QFontMetricsF {
 	return n
 }
 
+func newQFontMetricsFFromPointer(ptr unsafe.Pointer) *QFontMetricsF {
+	var n = NewQFontMetricsFFromPointer(ptr)
+	return n
+}
+
 func (ptr *QFontMetricsF) QFontMetricsF_PTR() *QFontMetricsF {
 	return ptr
 }
@@ -6971,25 +7206,25 @@ func (ptr *QFontMetricsF) QFontMetricsF_PTR() *QFontMetricsF {
 func NewQFontMetricsF(font QFont_ITF) *QFontMetricsF {
 	defer qt.Recovering("QFontMetricsF::QFontMetricsF")
 
-	return NewQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF(PointerFromQFont(font)))
+	return newQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF(PointerFromQFont(font)))
 }
 
 func NewQFontMetricsF2(font QFont_ITF, paintdevice QPaintDevice_ITF) *QFontMetricsF {
 	defer qt.Recovering("QFontMetricsF::QFontMetricsF")
 
-	return NewQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF2(PointerFromQFont(font), PointerFromQPaintDevice(paintdevice)))
+	return newQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF2(PointerFromQFont(font), PointerFromQPaintDevice(paintdevice)))
 }
 
 func NewQFontMetricsF3(fontMetrics QFontMetrics_ITF) *QFontMetricsF {
 	defer qt.Recovering("QFontMetricsF::QFontMetricsF")
 
-	return NewQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF3(PointerFromQFontMetrics(fontMetrics)))
+	return newQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF3(PointerFromQFontMetrics(fontMetrics)))
 }
 
 func NewQFontMetricsF4(fm QFontMetricsF_ITF) *QFontMetricsF {
 	defer qt.Recovering("QFontMetricsF::QFontMetricsF")
 
-	return NewQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF4(PointerFromQFontMetricsF(fm)))
+	return newQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF4(PointerFromQFontMetricsF(fm)))
 }
 
 func (ptr *QFontMetricsF) Ascent() float64 {
@@ -7217,6 +7452,11 @@ func NewQGenericMatrixFromPointer(ptr unsafe.Pointer) *QGenericMatrix {
 	return n
 }
 
+func newQGenericMatrixFromPointer(ptr unsafe.Pointer) *QGenericMatrix {
+	var n = NewQGenericMatrixFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGenericMatrix) QGenericMatrix_PTR() *QGenericMatrix {
 	return ptr
 }
@@ -7240,6 +7480,11 @@ func PointerFromQGenericPlugin(ptr QGenericPlugin_ITF) unsafe.Pointer {
 func NewQGenericPluginFromPointer(ptr unsafe.Pointer) *QGenericPlugin {
 	var n = new(QGenericPlugin)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGenericPluginFromPointer(ptr unsafe.Pointer) *QGenericPlugin {
+	var n = NewQGenericPluginFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGenericPlugin_") {
 		n.SetObjectName("QGenericPlugin_" + qt.Identifier())
 	}
@@ -7276,6 +7521,11 @@ func PointerFromQGenericPluginFactory(ptr QGenericPluginFactory_ITF) unsafe.Poin
 func NewQGenericPluginFactoryFromPointer(ptr unsafe.Pointer) *QGenericPluginFactory {
 	var n = new(QGenericPluginFactory)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGenericPluginFactoryFromPointer(ptr unsafe.Pointer) *QGenericPluginFactory {
+	var n = NewQGenericPluginFactoryFromPointer(ptr)
 	return n
 }
 
@@ -7324,6 +7574,11 @@ func NewQGlyphRunFromPointer(ptr unsafe.Pointer) *QGlyphRun {
 	return n
 }
 
+func newQGlyphRunFromPointer(ptr unsafe.Pointer) *QGlyphRun {
+	var n = NewQGlyphRunFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGlyphRun) QGlyphRun_PTR() *QGlyphRun {
 	return ptr
 }
@@ -7342,13 +7597,13 @@ const (
 func NewQGlyphRun() *QGlyphRun {
 	defer qt.Recovering("QGlyphRun::QGlyphRun")
 
-	return NewQGlyphRunFromPointer(C.QGlyphRun_NewQGlyphRun())
+	return newQGlyphRunFromPointer(C.QGlyphRun_NewQGlyphRun())
 }
 
 func NewQGlyphRun2(other QGlyphRun_ITF) *QGlyphRun {
 	defer qt.Recovering("QGlyphRun::QGlyphRun")
 
-	return NewQGlyphRunFromPointer(C.QGlyphRun_NewQGlyphRun2(PointerFromQGlyphRun(other)))
+	return newQGlyphRunFromPointer(C.QGlyphRun_NewQGlyphRun2(PointerFromQGlyphRun(other)))
 }
 
 func (ptr *QGlyphRun) Clear() {
@@ -7522,6 +7777,11 @@ func NewQGradientFromPointer(ptr unsafe.Pointer) *QGradient {
 	return n
 }
 
+func newQGradientFromPointer(ptr unsafe.Pointer) *QGradient {
+	var n = NewQGradientFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGradient) QGradient_PTR() *QGradient {
 	return ptr
 }
@@ -7624,6 +7884,11 @@ func PointerFromQGuiApplication(ptr QGuiApplication_ITF) unsafe.Pointer {
 func NewQGuiApplicationFromPointer(ptr unsafe.Pointer) *QGuiApplication {
 	var n = new(QGuiApplication)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGuiApplicationFromPointer(ptr unsafe.Pointer) *QGuiApplication {
+	var n = NewQGuiApplicationFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGuiApplication_") {
 		n.SetObjectName("QGuiApplication_" + qt.Identifier())
 	}
@@ -7757,7 +8022,7 @@ func QGuiApplication_WindowIcon() *QIcon {
 func NewQGuiApplication(argc int, argv []string) *QGuiApplication {
 	defer qt.Recovering("QGuiApplication::QGuiApplication")
 
-	return NewQGuiApplicationFromPointer(C.QGuiApplication_NewQGuiApplication(C.int(argc), C.CString(strings.Join(argv, "|"))))
+	return newQGuiApplicationFromPointer(C.QGuiApplication_NewQGuiApplication(C.int(argc), C.CString(strings.Join(argv, "|"))))
 }
 
 func (ptr *QGuiApplication) ConnectApplicationStateChanged(f func(state core.Qt__ApplicationState)) {
@@ -8355,6 +8620,11 @@ func NewQHelpEventFromPointer(ptr unsafe.Pointer) *QHelpEvent {
 	return n
 }
 
+func newQHelpEventFromPointer(ptr unsafe.Pointer) *QHelpEvent {
+	var n = NewQHelpEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QHelpEvent) QHelpEvent_PTR() *QHelpEvent {
 	return ptr
 }
@@ -8362,7 +8632,7 @@ func (ptr *QHelpEvent) QHelpEvent_PTR() *QHelpEvent {
 func NewQHelpEvent(ty core.QEvent__Type, pos core.QPoint_ITF, globalPos core.QPoint_ITF) *QHelpEvent {
 	defer qt.Recovering("QHelpEvent::QHelpEvent")
 
-	return NewQHelpEventFromPointer(C.QHelpEvent_NewQHelpEvent(C.int(ty), core.PointerFromQPoint(pos), core.PointerFromQPoint(globalPos)))
+	return newQHelpEventFromPointer(C.QHelpEvent_NewQHelpEvent(C.int(ty), core.PointerFromQPoint(pos), core.PointerFromQPoint(globalPos)))
 }
 
 func (ptr *QHelpEvent) GlobalPos() *core.QPoint {
@@ -8441,6 +8711,11 @@ func NewQHideEventFromPointer(ptr unsafe.Pointer) *QHideEvent {
 	return n
 }
 
+func newQHideEventFromPointer(ptr unsafe.Pointer) *QHideEvent {
+	var n = NewQHideEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QHideEvent) QHideEvent_PTR() *QHideEvent {
 	return ptr
 }
@@ -8448,7 +8723,7 @@ func (ptr *QHideEvent) QHideEvent_PTR() *QHideEvent {
 func NewQHideEvent() *QHideEvent {
 	defer qt.Recovering("QHideEvent::QHideEvent")
 
-	return NewQHideEventFromPointer(C.QHideEvent_NewQHideEvent())
+	return newQHideEventFromPointer(C.QHideEvent_NewQHideEvent())
 }
 
 type QHoverEvent struct {
@@ -8473,6 +8748,11 @@ func NewQHoverEventFromPointer(ptr unsafe.Pointer) *QHoverEvent {
 	return n
 }
 
+func newQHoverEventFromPointer(ptr unsafe.Pointer) *QHoverEvent {
+	var n = NewQHoverEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QHoverEvent) QHoverEvent_PTR() *QHoverEvent {
 	return ptr
 }
@@ -8480,7 +8760,7 @@ func (ptr *QHoverEvent) QHoverEvent_PTR() *QHoverEvent {
 func NewQHoverEvent(ty core.QEvent__Type, pos core.QPointF_ITF, oldPos core.QPointF_ITF, modifiers core.Qt__KeyboardModifier) *QHoverEvent {
 	defer qt.Recovering("QHoverEvent::QHoverEvent")
 
-	return NewQHoverEventFromPointer(C.QHoverEvent_NewQHoverEvent(C.int(ty), core.PointerFromQPointF(pos), core.PointerFromQPointF(oldPos), C.int(modifiers)))
+	return newQHoverEventFromPointer(C.QHoverEvent_NewQHoverEvent(C.int(ty), core.PointerFromQPointF(pos), core.PointerFromQPointF(oldPos), C.int(modifiers)))
 }
 
 func (ptr *QHoverEvent) OldPos() *core.QPoint {
@@ -8530,6 +8810,11 @@ func NewQIconFromPointer(ptr unsafe.Pointer) *QIcon {
 	return n
 }
 
+func newQIconFromPointer(ptr unsafe.Pointer) *QIcon {
+	var n = NewQIconFromPointer(ptr)
+	return n
+}
+
 func (ptr *QIcon) QIcon_PTR() *QIcon {
 	return ptr
 }
@@ -8555,37 +8840,37 @@ const (
 func NewQIcon() *QIcon {
 	defer qt.Recovering("QIcon::QIcon")
 
-	return NewQIconFromPointer(C.QIcon_NewQIcon())
+	return newQIconFromPointer(C.QIcon_NewQIcon())
 }
 
 func NewQIcon4(other QIcon_ITF) *QIcon {
 	defer qt.Recovering("QIcon::QIcon")
 
-	return NewQIconFromPointer(C.QIcon_NewQIcon4(PointerFromQIcon(other)))
+	return newQIconFromPointer(C.QIcon_NewQIcon4(PointerFromQIcon(other)))
 }
 
 func NewQIcon6(engine QIconEngine_ITF) *QIcon {
 	defer qt.Recovering("QIcon::QIcon")
 
-	return NewQIconFromPointer(C.QIcon_NewQIcon6(PointerFromQIconEngine(engine)))
+	return newQIconFromPointer(C.QIcon_NewQIcon6(PointerFromQIconEngine(engine)))
 }
 
 func NewQIcon3(other QIcon_ITF) *QIcon {
 	defer qt.Recovering("QIcon::QIcon")
 
-	return NewQIconFromPointer(C.QIcon_NewQIcon3(PointerFromQIcon(other)))
+	return newQIconFromPointer(C.QIcon_NewQIcon3(PointerFromQIcon(other)))
 }
 
 func NewQIcon2(pixmap QPixmap_ITF) *QIcon {
 	defer qt.Recovering("QIcon::QIcon")
 
-	return NewQIconFromPointer(C.QIcon_NewQIcon2(PointerFromQPixmap(pixmap)))
+	return newQIconFromPointer(C.QIcon_NewQIcon2(PointerFromQPixmap(pixmap)))
 }
 
 func NewQIcon5(fileName string) *QIcon {
 	defer qt.Recovering("QIcon::QIcon")
 
-	return NewQIconFromPointer(C.QIcon_NewQIcon5(C.CString(fileName)))
+	return newQIconFromPointer(C.QIcon_NewQIcon5(C.CString(fileName)))
 }
 
 func (ptr *QIcon) ActualSize2(window QWindow_ITF, size core.QSize_ITF, mode QIcon__Mode, state QIcon__State) *core.QSize {
@@ -8739,6 +9024,11 @@ func NewQIconDragEventFromPointer(ptr unsafe.Pointer) *QIconDragEvent {
 	return n
 }
 
+func newQIconDragEventFromPointer(ptr unsafe.Pointer) *QIconDragEvent {
+	var n = NewQIconDragEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QIconDragEvent) QIconDragEvent_PTR() *QIconDragEvent {
 	return ptr
 }
@@ -8746,7 +9036,7 @@ func (ptr *QIconDragEvent) QIconDragEvent_PTR() *QIconDragEvent {
 func NewQIconDragEvent() *QIconDragEvent {
 	defer qt.Recovering("QIconDragEvent::QIconDragEvent")
 
-	return NewQIconDragEventFromPointer(C.QIconDragEvent_NewQIconDragEvent())
+	return newQIconDragEventFromPointer(C.QIconDragEvent_NewQIconDragEvent())
 }
 
 type QIconEngine struct {
@@ -8775,6 +9065,11 @@ func PointerFromQIconEngine(ptr QIconEngine_ITF) unsafe.Pointer {
 func NewQIconEngineFromPointer(ptr unsafe.Pointer) *QIconEngine {
 	var n = new(QIconEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQIconEngineFromPointer(ptr unsafe.Pointer) *QIconEngine {
+	var n = NewQIconEngineFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QIconEngine_") {
 		n.SetObjectNameAbs("QIconEngine_" + qt.Identifier())
 	}
@@ -8944,6 +9239,11 @@ func PointerFromQIconEnginePlugin(ptr QIconEnginePlugin_ITF) unsafe.Pointer {
 func NewQIconEnginePluginFromPointer(ptr unsafe.Pointer) *QIconEnginePlugin {
 	var n = new(QIconEnginePlugin)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQIconEnginePluginFromPointer(ptr unsafe.Pointer) *QIconEnginePlugin {
+	var n = NewQIconEnginePluginFromPointer(ptr)
 	for len(n.ObjectName()) < len("QIconEnginePlugin_") {
 		n.SetObjectName("QIconEnginePlugin_" + qt.Identifier())
 	}
@@ -8973,6 +9273,11 @@ func PointerFromQImage(ptr QImage_ITF) unsafe.Pointer {
 func NewQImageFromPointer(ptr unsafe.Pointer) *QImage {
 	var n = new(QImage)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQImageFromPointer(ptr unsafe.Pointer) *QImage {
+	var n = NewQImageFromPointer(ptr)
 	return n
 }
 
@@ -9412,6 +9717,11 @@ func NewQImageIOHandlerFromPointer(ptr unsafe.Pointer) *QImageIOHandler {
 	return n
 }
 
+func newQImageIOHandlerFromPointer(ptr unsafe.Pointer) *QImageIOHandler {
+	var n = NewQImageIOHandlerFromPointer(ptr)
+	return n
+}
+
 func (ptr *QImageIOHandler) QImageIOHandler_PTR() *QImageIOHandler {
 	return ptr
 }
@@ -9475,6 +9785,11 @@ func PointerFromQImageIOPlugin(ptr QImageIOPlugin_ITF) unsafe.Pointer {
 func NewQImageIOPluginFromPointer(ptr unsafe.Pointer) *QImageIOPlugin {
 	var n = new(QImageIOPlugin)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQImageIOPluginFromPointer(ptr unsafe.Pointer) *QImageIOPlugin {
+	var n = NewQImageIOPluginFromPointer(ptr)
 	for len(n.ObjectName()) < len("QImageIOPlugin_") {
 		n.SetObjectName("QImageIOPlugin_" + qt.Identifier())
 	}
@@ -9523,6 +9838,11 @@ func NewQImageReaderFromPointer(ptr unsafe.Pointer) *QImageReader {
 	return n
 }
 
+func newQImageReaderFromPointer(ptr unsafe.Pointer) *QImageReader {
+	var n = NewQImageReaderFromPointer(ptr)
+	return n
+}
+
 func (ptr *QImageReader) QImageReader_PTR() *QImageReader {
 	return ptr
 }
@@ -9541,19 +9861,19 @@ const (
 func NewQImageReader() *QImageReader {
 	defer qt.Recovering("QImageReader::QImageReader")
 
-	return NewQImageReaderFromPointer(C.QImageReader_NewQImageReader())
+	return newQImageReaderFromPointer(C.QImageReader_NewQImageReader())
 }
 
 func NewQImageReader2(device core.QIODevice_ITF, format core.QByteArray_ITF) *QImageReader {
 	defer qt.Recovering("QImageReader::QImageReader")
 
-	return NewQImageReaderFromPointer(C.QImageReader_NewQImageReader2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
+	return newQImageReaderFromPointer(C.QImageReader_NewQImageReader2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 }
 
 func NewQImageReader3(fileName string, format core.QByteArray_ITF) *QImageReader {
 	defer qt.Recovering("QImageReader::QImageReader")
 
-	return NewQImageReaderFromPointer(C.QImageReader_NewQImageReader3(C.CString(fileName), core.PointerFromQByteArray(format)))
+	return newQImageReaderFromPointer(C.QImageReader_NewQImageReader3(C.CString(fileName), core.PointerFromQByteArray(format)))
 }
 
 func (ptr *QImageReader) AutoDetectImageFormat() bool {
@@ -9963,6 +10283,11 @@ func NewQImageWriterFromPointer(ptr unsafe.Pointer) *QImageWriter {
 	return n
 }
 
+func newQImageWriterFromPointer(ptr unsafe.Pointer) *QImageWriter {
+	var n = NewQImageWriterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QImageWriter) QImageWriter_PTR() *QImageWriter {
 	return ptr
 }
@@ -9979,19 +10304,19 @@ const (
 func NewQImageWriter() *QImageWriter {
 	defer qt.Recovering("QImageWriter::QImageWriter")
 
-	return NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter())
+	return newQImageWriterFromPointer(C.QImageWriter_NewQImageWriter())
 }
 
 func NewQImageWriter2(device core.QIODevice_ITF, format core.QByteArray_ITF) *QImageWriter {
 	defer qt.Recovering("QImageWriter::QImageWriter")
 
-	return NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
+	return newQImageWriterFromPointer(C.QImageWriter_NewQImageWriter2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 }
 
 func NewQImageWriter3(fileName string, format core.QByteArray_ITF) *QImageWriter {
 	defer qt.Recovering("QImageWriter::QImageWriter")
 
-	return NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter3(C.CString(fileName), core.PointerFromQByteArray(format)))
+	return newQImageWriterFromPointer(C.QImageWriter_NewQImageWriter3(C.CString(fileName), core.PointerFromQByteArray(format)))
 }
 
 func (ptr *QImageWriter) CanWrite() bool {
@@ -10230,6 +10555,11 @@ func NewQInputEventFromPointer(ptr unsafe.Pointer) *QInputEvent {
 	return n
 }
 
+func newQInputEventFromPointer(ptr unsafe.Pointer) *QInputEvent {
+	var n = NewQInputEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QInputEvent) QInputEvent_PTR() *QInputEvent {
 	return ptr
 }
@@ -10262,6 +10592,11 @@ func PointerFromQInputMethod(ptr QInputMethod_ITF) unsafe.Pointer {
 func NewQInputMethodFromPointer(ptr unsafe.Pointer) *QInputMethod {
 	var n = new(QInputMethod)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQInputMethodFromPointer(ptr unsafe.Pointer) *QInputMethod {
+	var n = NewQInputMethodFromPointer(ptr)
 	for len(n.ObjectName()) < len("QInputMethod_") {
 		n.SetObjectName("QInputMethod_" + qt.Identifier())
 	}
@@ -10758,6 +11093,11 @@ func NewQInputMethodEventFromPointer(ptr unsafe.Pointer) *QInputMethodEvent {
 	return n
 }
 
+func newQInputMethodEventFromPointer(ptr unsafe.Pointer) *QInputMethodEvent {
+	var n = NewQInputMethodEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QInputMethodEvent) QInputMethodEvent_PTR() *QInputMethodEvent {
 	return ptr
 }
@@ -10776,13 +11116,13 @@ const (
 func NewQInputMethodEvent() *QInputMethodEvent {
 	defer qt.Recovering("QInputMethodEvent::QInputMethodEvent")
 
-	return NewQInputMethodEventFromPointer(C.QInputMethodEvent_NewQInputMethodEvent())
+	return newQInputMethodEventFromPointer(C.QInputMethodEvent_NewQInputMethodEvent())
 }
 
 func NewQInputMethodEvent3(other QInputMethodEvent_ITF) *QInputMethodEvent {
 	defer qt.Recovering("QInputMethodEvent::QInputMethodEvent")
 
-	return NewQInputMethodEventFromPointer(C.QInputMethodEvent_NewQInputMethodEvent3(PointerFromQInputMethodEvent(other)))
+	return newQInputMethodEventFromPointer(C.QInputMethodEvent_NewQInputMethodEvent3(PointerFromQInputMethodEvent(other)))
 }
 
 func (ptr *QInputMethodEvent) CommitString() string {
@@ -10851,6 +11191,11 @@ func NewQInputMethodQueryEventFromPointer(ptr unsafe.Pointer) *QInputMethodQuery
 	return n
 }
 
+func newQInputMethodQueryEventFromPointer(ptr unsafe.Pointer) *QInputMethodQueryEvent {
+	var n = NewQInputMethodQueryEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QInputMethodQueryEvent) QInputMethodQueryEvent_PTR() *QInputMethodQueryEvent {
 	return ptr
 }
@@ -10858,7 +11203,7 @@ func (ptr *QInputMethodQueryEvent) QInputMethodQueryEvent_PTR() *QInputMethodQue
 func NewQInputMethodQueryEvent(queries core.Qt__InputMethodQuery) *QInputMethodQueryEvent {
 	defer qt.Recovering("QInputMethodQueryEvent::QInputMethodQueryEvent")
 
-	return NewQInputMethodQueryEventFromPointer(C.QInputMethodQueryEvent_NewQInputMethodQueryEvent(C.int(queries)))
+	return newQInputMethodQueryEventFromPointer(C.QInputMethodQueryEvent_NewQInputMethodQueryEvent(C.int(queries)))
 }
 
 func (ptr *QInputMethodQueryEvent) Queries() core.Qt__InputMethodQuery {
@@ -10906,6 +11251,11 @@ func PointerFromQIntValidator(ptr QIntValidator_ITF) unsafe.Pointer {
 func NewQIntValidatorFromPointer(ptr unsafe.Pointer) *QIntValidator {
 	var n = new(QIntValidator)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQIntValidatorFromPointer(ptr unsafe.Pointer) *QIntValidator {
+	var n = NewQIntValidatorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QIntValidator_") {
 		n.SetObjectName("QIntValidator_" + qt.Identifier())
 	}
@@ -10935,13 +11285,13 @@ func (ptr *QIntValidator) SetTop(v int) {
 func NewQIntValidator(parent core.QObject_ITF) *QIntValidator {
 	defer qt.Recovering("QIntValidator::QIntValidator")
 
-	return NewQIntValidatorFromPointer(C.QIntValidator_NewQIntValidator(core.PointerFromQObject(parent)))
+	return newQIntValidatorFromPointer(C.QIntValidator_NewQIntValidator(core.PointerFromQObject(parent)))
 }
 
 func NewQIntValidator2(minimum int, maximum int, parent core.QObject_ITF) *QIntValidator {
 	defer qt.Recovering("QIntValidator::QIntValidator")
 
-	return NewQIntValidatorFromPointer(C.QIntValidator_NewQIntValidator2(C.int(minimum), C.int(maximum), core.PointerFromQObject(parent)))
+	return newQIntValidatorFromPointer(C.QIntValidator_NewQIntValidator2(C.int(minimum), C.int(maximum), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QIntValidator) Bottom() int {
@@ -11173,6 +11523,11 @@ func NewQKeyEventFromPointer(ptr unsafe.Pointer) *QKeyEvent {
 	return n
 }
 
+func newQKeyEventFromPointer(ptr unsafe.Pointer) *QKeyEvent {
+	var n = NewQKeyEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QKeyEvent) QKeyEvent_PTR() *QKeyEvent {
 	return ptr
 }
@@ -11257,6 +11612,11 @@ func PointerFromQKeySequence(ptr QKeySequence_ITF) unsafe.Pointer {
 func NewQKeySequenceFromPointer(ptr unsafe.Pointer) *QKeySequence {
 	var n = new(QKeySequence)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQKeySequenceFromPointer(ptr unsafe.Pointer) *QKeySequence {
+	var n = NewQKeySequenceFromPointer(ptr)
 	return n
 }
 
@@ -11360,31 +11720,31 @@ const (
 func NewQKeySequence() *QKeySequence {
 	defer qt.Recovering("QKeySequence::QKeySequence")
 
-	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence())
+	return newQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence())
 }
 
 func NewQKeySequence5(key QKeySequence__StandardKey) *QKeySequence {
 	defer qt.Recovering("QKeySequence::QKeySequence")
 
-	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence5(C.int(key)))
+	return newQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence5(C.int(key)))
 }
 
 func NewQKeySequence4(keysequence QKeySequence_ITF) *QKeySequence {
 	defer qt.Recovering("QKeySequence::QKeySequence")
 
-	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence4(PointerFromQKeySequence(keysequence)))
+	return newQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence4(PointerFromQKeySequence(keysequence)))
 }
 
 func NewQKeySequence2(key string, format QKeySequence__SequenceFormat) *QKeySequence {
 	defer qt.Recovering("QKeySequence::QKeySequence")
 
-	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence2(C.CString(key), C.int(format)))
+	return newQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence2(C.CString(key), C.int(format)))
 }
 
 func NewQKeySequence3(k1 int, k2 int, k3 int, k4 int) *QKeySequence {
 	defer qt.Recovering("QKeySequence::QKeySequence")
 
-	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence3(C.int(k1), C.int(k2), C.int(k3), C.int(k4)))
+	return newQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence3(C.int(k1), C.int(k2), C.int(k3), C.int(k4)))
 }
 
 func (ptr *QKeySequence) Count() int {
@@ -11461,6 +11821,11 @@ func NewQLinearGradientFromPointer(ptr unsafe.Pointer) *QLinearGradient {
 	return n
 }
 
+func newQLinearGradientFromPointer(ptr unsafe.Pointer) *QLinearGradient {
+	var n = NewQLinearGradientFromPointer(ptr)
+	return n
+}
+
 func (ptr *QLinearGradient) QLinearGradient_PTR() *QLinearGradient {
 	return ptr
 }
@@ -11468,19 +11833,19 @@ func (ptr *QLinearGradient) QLinearGradient_PTR() *QLinearGradient {
 func NewQLinearGradient3(x1 float64, y1 float64, x2 float64, y2 float64) *QLinearGradient {
 	defer qt.Recovering("QLinearGradient::QLinearGradient")
 
-	return NewQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient3(C.double(x1), C.double(y1), C.double(x2), C.double(y2)))
+	return newQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient3(C.double(x1), C.double(y1), C.double(x2), C.double(y2)))
 }
 
 func NewQLinearGradient() *QLinearGradient {
 	defer qt.Recovering("QLinearGradient::QLinearGradient")
 
-	return NewQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient())
+	return newQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient())
 }
 
 func NewQLinearGradient2(start core.QPointF_ITF, finalStop core.QPointF_ITF) *QLinearGradient {
 	defer qt.Recovering("QLinearGradient::QLinearGradient")
 
-	return NewQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient2(core.PointerFromQPointF(start), core.PointerFromQPointF(finalStop)))
+	return newQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient2(core.PointerFromQPointF(start), core.PointerFromQPointF(finalStop)))
 }
 
 func (ptr *QLinearGradient) SetFinalStop(stop core.QPointF_ITF) {
@@ -11544,6 +11909,11 @@ func NewQMatrix4x4FromPointer(ptr unsafe.Pointer) *QMatrix4x4 {
 	return n
 }
 
+func newQMatrix4x4FromPointer(ptr unsafe.Pointer) *QMatrix4x4 {
+	var n = NewQMatrix4x4FromPointer(ptr)
+	return n
+}
+
 func (ptr *QMatrix4x4) QMatrix4x4_PTR() *QMatrix4x4 {
 	return ptr
 }
@@ -11551,13 +11921,13 @@ func (ptr *QMatrix4x4) QMatrix4x4_PTR() *QMatrix4x4 {
 func NewQMatrix4x4() *QMatrix4x4 {
 	defer qt.Recovering("QMatrix4x4::QMatrix4x4")
 
-	return NewQMatrix4x4FromPointer(C.QMatrix4x4_NewQMatrix4x4())
+	return newQMatrix4x4FromPointer(C.QMatrix4x4_NewQMatrix4x4())
 }
 
 func NewQMatrix4x47(transform QTransform_ITF) *QMatrix4x4 {
 	defer qt.Recovering("QMatrix4x4::QMatrix4x4")
 
-	return NewQMatrix4x4FromPointer(C.QMatrix4x4_NewQMatrix4x47(PointerFromQTransform(transform)))
+	return newQMatrix4x4FromPointer(C.QMatrix4x4_NewQMatrix4x47(PointerFromQTransform(transform)))
 }
 
 func (ptr *QMatrix4x4) IsAffine() bool {
@@ -11706,6 +12076,11 @@ func NewQMouseEventFromPointer(ptr unsafe.Pointer) *QMouseEvent {
 	return n
 }
 
+func newQMouseEventFromPointer(ptr unsafe.Pointer) *QMouseEvent {
+	var n = NewQMouseEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QMouseEvent) QMouseEvent_PTR() *QMouseEvent {
 	return ptr
 }
@@ -11713,19 +12088,19 @@ func (ptr *QMouseEvent) QMouseEvent_PTR() *QMouseEvent {
 func NewQMouseEvent(ty core.QEvent__Type, localPos core.QPointF_ITF, button core.Qt__MouseButton, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QMouseEvent {
 	defer qt.Recovering("QMouseEvent::QMouseEvent")
 
-	return NewQMouseEventFromPointer(C.QMouseEvent_NewQMouseEvent(C.int(ty), core.PointerFromQPointF(localPos), C.int(button), C.int(buttons), C.int(modifiers)))
+	return newQMouseEventFromPointer(C.QMouseEvent_NewQMouseEvent(C.int(ty), core.PointerFromQPointF(localPos), C.int(button), C.int(buttons), C.int(modifiers)))
 }
 
 func NewQMouseEvent2(ty core.QEvent__Type, localPos core.QPointF_ITF, screenPos core.QPointF_ITF, button core.Qt__MouseButton, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QMouseEvent {
 	defer qt.Recovering("QMouseEvent::QMouseEvent")
 
-	return NewQMouseEventFromPointer(C.QMouseEvent_NewQMouseEvent2(C.int(ty), core.PointerFromQPointF(localPos), core.PointerFromQPointF(screenPos), C.int(button), C.int(buttons), C.int(modifiers)))
+	return newQMouseEventFromPointer(C.QMouseEvent_NewQMouseEvent2(C.int(ty), core.PointerFromQPointF(localPos), core.PointerFromQPointF(screenPos), C.int(button), C.int(buttons), C.int(modifiers)))
 }
 
 func NewQMouseEvent3(ty core.QEvent__Type, localPos core.QPointF_ITF, windowPos core.QPointF_ITF, screenPos core.QPointF_ITF, button core.Qt__MouseButton, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QMouseEvent {
 	defer qt.Recovering("QMouseEvent::QMouseEvent")
 
-	return NewQMouseEventFromPointer(C.QMouseEvent_NewQMouseEvent3(C.int(ty), core.PointerFromQPointF(localPos), core.PointerFromQPointF(windowPos), core.PointerFromQPointF(screenPos), C.int(button), C.int(buttons), C.int(modifiers)))
+	return newQMouseEventFromPointer(C.QMouseEvent_NewQMouseEvent3(C.int(ty), core.PointerFromQPointF(localPos), core.PointerFromQPointF(windowPos), core.PointerFromQPointF(screenPos), C.int(button), C.int(buttons), C.int(modifiers)))
 }
 
 func (ptr *QMouseEvent) Button() core.Qt__MouseButton {
@@ -11840,6 +12215,11 @@ func NewQMoveEventFromPointer(ptr unsafe.Pointer) *QMoveEvent {
 	return n
 }
 
+func newQMoveEventFromPointer(ptr unsafe.Pointer) *QMoveEvent {
+	var n = NewQMoveEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QMoveEvent) QMoveEvent_PTR() *QMoveEvent {
 	return ptr
 }
@@ -11847,7 +12227,7 @@ func (ptr *QMoveEvent) QMoveEvent_PTR() *QMoveEvent {
 func NewQMoveEvent(pos core.QPoint_ITF, oldPos core.QPoint_ITF) *QMoveEvent {
 	defer qt.Recovering("QMoveEvent::QMoveEvent")
 
-	return NewQMoveEventFromPointer(C.QMoveEvent_NewQMoveEvent(core.PointerFromQPoint(pos), core.PointerFromQPoint(oldPos)))
+	return newQMoveEventFromPointer(C.QMoveEvent_NewQMoveEvent(core.PointerFromQPoint(pos), core.PointerFromQPoint(oldPos)))
 }
 
 func (ptr *QMoveEvent) OldPos() *core.QPoint {
@@ -11887,6 +12267,11 @@ func PointerFromQMovie(ptr QMovie_ITF) unsafe.Pointer {
 func NewQMovieFromPointer(ptr unsafe.Pointer) *QMovie {
 	var n = new(QMovie)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMovieFromPointer(ptr unsafe.Pointer) *QMovie {
+	var n = NewQMovieFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMovie_") {
 		n.SetObjectName("QMovie_" + qt.Identifier())
 	}
@@ -11951,19 +12336,19 @@ func (ptr *QMovie) Speed() int {
 func NewQMovie2(device core.QIODevice_ITF, format core.QByteArray_ITF, parent core.QObject_ITF) *QMovie {
 	defer qt.Recovering("QMovie::QMovie")
 
-	return NewQMovieFromPointer(C.QMovie_NewQMovie2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format), core.PointerFromQObject(parent)))
+	return newQMovieFromPointer(C.QMovie_NewQMovie2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format), core.PointerFromQObject(parent)))
 }
 
 func NewQMovie(parent core.QObject_ITF) *QMovie {
 	defer qt.Recovering("QMovie::QMovie")
 
-	return NewQMovieFromPointer(C.QMovie_NewQMovie(core.PointerFromQObject(parent)))
+	return newQMovieFromPointer(C.QMovie_NewQMovie(core.PointerFromQObject(parent)))
 }
 
 func NewQMovie3(fileName string, format core.QByteArray_ITF, parent core.QObject_ITF) *QMovie {
 	defer qt.Recovering("QMovie::QMovie")
 
-	return NewQMovieFromPointer(C.QMovie_NewQMovie3(C.CString(fileName), core.PointerFromQByteArray(format), core.PointerFromQObject(parent)))
+	return newQMovieFromPointer(C.QMovie_NewQMovie3(C.CString(fileName), core.PointerFromQByteArray(format), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QMovie) BackgroundColor() *QColor {
@@ -12574,6 +12959,11 @@ func NewQNativeGestureEventFromPointer(ptr unsafe.Pointer) *QNativeGestureEvent 
 	return n
 }
 
+func newQNativeGestureEventFromPointer(ptr unsafe.Pointer) *QNativeGestureEvent {
+	var n = NewQNativeGestureEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNativeGestureEvent) QNativeGestureEvent_PTR() *QNativeGestureEvent {
 	return ptr
 }
@@ -12644,6 +13034,11 @@ func PointerFromQOffscreenSurface(ptr QOffscreenSurface_ITF) unsafe.Pointer {
 func NewQOffscreenSurfaceFromPointer(ptr unsafe.Pointer) *QOffscreenSurface {
 	var n = new(QOffscreenSurface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOffscreenSurfaceFromPointer(ptr unsafe.Pointer) *QOffscreenSurface {
+	var n = NewQOffscreenSurfaceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOffscreenSurface_") {
 		n.SetObjectName("QOffscreenSurface_" + qt.Identifier())
 	}
@@ -12657,7 +13052,7 @@ func (ptr *QOffscreenSurface) QOffscreenSurface_PTR() *QOffscreenSurface {
 func NewQOffscreenSurface(targetScreen QScreen_ITF) *QOffscreenSurface {
 	defer qt.Recovering("QOffscreenSurface::QOffscreenSurface")
 
-	return NewQOffscreenSurfaceFromPointer(C.QOffscreenSurface_NewQOffscreenSurface(PointerFromQScreen(targetScreen)))
+	return newQOffscreenSurfaceFromPointer(C.QOffscreenSurface_NewQOffscreenSurface(PointerFromQScreen(targetScreen)))
 }
 
 func (ptr *QOffscreenSurface) Create() {
@@ -12937,6 +13332,11 @@ func NewQOpenGLBufferFromPointer(ptr unsafe.Pointer) *QOpenGLBuffer {
 	return n
 }
 
+func newQOpenGLBufferFromPointer(ptr unsafe.Pointer) *QOpenGLBuffer {
+	var n = NewQOpenGLBufferFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLBuffer) QOpenGLBuffer_PTR() *QOpenGLBuffer {
 	return ptr
 }
@@ -13006,6 +13406,11 @@ func PointerFromQOpenGLContext(ptr QOpenGLContext_ITF) unsafe.Pointer {
 func NewQOpenGLContextFromPointer(ptr unsafe.Pointer) *QOpenGLContext {
 	var n = new(QOpenGLContext)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLContextFromPointer(ptr unsafe.Pointer) *QOpenGLContext {
+	var n = NewQOpenGLContextFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLContext_") {
 		n.SetObjectName("QOpenGLContext_" + qt.Identifier())
 	}
@@ -13043,6 +13448,11 @@ func PointerFromQOpenGLContextGroup(ptr QOpenGLContextGroup_ITF) unsafe.Pointer 
 func NewQOpenGLContextGroupFromPointer(ptr unsafe.Pointer) *QOpenGLContextGroup {
 	var n = new(QOpenGLContextGroup)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLContextGroupFromPointer(ptr unsafe.Pointer) *QOpenGLContextGroup {
+	var n = NewQOpenGLContextGroupFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLContextGroup_") {
 		n.SetObjectName("QOpenGLContextGroup_" + qt.Identifier())
 	}
@@ -13072,6 +13482,11 @@ func PointerFromQOpenGLDebugLogger(ptr QOpenGLDebugLogger_ITF) unsafe.Pointer {
 func NewQOpenGLDebugLoggerFromPointer(ptr unsafe.Pointer) *QOpenGLDebugLogger {
 	var n = new(QOpenGLDebugLogger)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLDebugLoggerFromPointer(ptr unsafe.Pointer) *QOpenGLDebugLogger {
+	var n = NewQOpenGLDebugLoggerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLDebugLogger_") {
 		n.SetObjectName("QOpenGLDebugLogger_" + qt.Identifier())
 	}
@@ -13116,6 +13531,11 @@ func PointerFromQOpenGLDebugMessage(ptr QOpenGLDebugMessage_ITF) unsafe.Pointer 
 func NewQOpenGLDebugMessageFromPointer(ptr unsafe.Pointer) *QOpenGLDebugMessage {
 	var n = new(QOpenGLDebugMessage)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLDebugMessageFromPointer(ptr unsafe.Pointer) *QOpenGLDebugMessage {
+	var n = NewQOpenGLDebugMessageFromPointer(ptr)
 	return n
 }
 
@@ -13198,6 +13618,11 @@ func NewQOpenGLFramebufferObjectFromPointer(ptr unsafe.Pointer) *QOpenGLFramebuf
 	return n
 }
 
+func newQOpenGLFramebufferObjectFromPointer(ptr unsafe.Pointer) *QOpenGLFramebufferObject {
+	var n = NewQOpenGLFramebufferObjectFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFramebufferObject) QOpenGLFramebufferObject_PTR() *QOpenGLFramebufferObject {
 	return ptr
 }
@@ -13240,6 +13665,11 @@ func NewQOpenGLFramebufferObjectFormatFromPointer(ptr unsafe.Pointer) *QOpenGLFr
 	return n
 }
 
+func newQOpenGLFramebufferObjectFormatFromPointer(ptr unsafe.Pointer) *QOpenGLFramebufferObjectFormat {
+	var n = NewQOpenGLFramebufferObjectFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFramebufferObjectFormat) QOpenGLFramebufferObjectFormat_PTR() *QOpenGLFramebufferObjectFormat {
 	return ptr
 }
@@ -13270,6 +13700,11 @@ func PointerFromQOpenGLFunctions(ptr QOpenGLFunctions_ITF) unsafe.Pointer {
 func NewQOpenGLFunctionsFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions {
 	var n = new(QOpenGLFunctions)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctionsFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions {
+	var n = NewQOpenGLFunctionsFromPointer(ptr)
 	return n
 }
 
@@ -13321,6 +13756,11 @@ func NewQOpenGLFunctions_1_0FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_
 	return n
 }
 
+func newQOpenGLFunctions_1_0FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_0 {
+	var n = NewQOpenGLFunctions_1_0FromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_1_0) QOpenGLFunctions_1_0_PTR() *QOpenGLFunctions_1_0 {
 	return ptr
 }
@@ -13344,6 +13784,11 @@ func PointerFromQOpenGLFunctions_1_1(ptr QOpenGLFunctions_1_1_ITF) unsafe.Pointe
 func NewQOpenGLFunctions_1_1FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_1 {
 	var n = new(QOpenGLFunctions_1_1)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_1_1FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_1 {
+	var n = NewQOpenGLFunctions_1_1FromPointer(ptr)
 	return n
 }
 
@@ -13373,6 +13818,11 @@ func NewQOpenGLFunctions_1_2FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_
 	return n
 }
 
+func newQOpenGLFunctions_1_2FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_2 {
+	var n = NewQOpenGLFunctions_1_2FromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_1_2) QOpenGLFunctions_1_2_PTR() *QOpenGLFunctions_1_2 {
 	return ptr
 }
@@ -13396,6 +13846,11 @@ func PointerFromQOpenGLFunctions_1_3(ptr QOpenGLFunctions_1_3_ITF) unsafe.Pointe
 func NewQOpenGLFunctions_1_3FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_3 {
 	var n = new(QOpenGLFunctions_1_3)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_1_3FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_3 {
+	var n = NewQOpenGLFunctions_1_3FromPointer(ptr)
 	return n
 }
 
@@ -13425,6 +13880,11 @@ func NewQOpenGLFunctions_1_4FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_
 	return n
 }
 
+func newQOpenGLFunctions_1_4FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_4 {
+	var n = NewQOpenGLFunctions_1_4FromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_1_4) QOpenGLFunctions_1_4_PTR() *QOpenGLFunctions_1_4 {
 	return ptr
 }
@@ -13448,6 +13908,11 @@ func PointerFromQOpenGLFunctions_1_5(ptr QOpenGLFunctions_1_5_ITF) unsafe.Pointe
 func NewQOpenGLFunctions_1_5FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_5 {
 	var n = new(QOpenGLFunctions_1_5)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_1_5FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_1_5 {
+	var n = NewQOpenGLFunctions_1_5FromPointer(ptr)
 	return n
 }
 
@@ -13477,6 +13942,11 @@ func NewQOpenGLFunctions_2_0FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_2_
 	return n
 }
 
+func newQOpenGLFunctions_2_0FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_2_0 {
+	var n = NewQOpenGLFunctions_2_0FromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_2_0) QOpenGLFunctions_2_0_PTR() *QOpenGLFunctions_2_0 {
 	return ptr
 }
@@ -13500,6 +13970,11 @@ func PointerFromQOpenGLFunctions_2_1(ptr QOpenGLFunctions_2_1_ITF) unsafe.Pointe
 func NewQOpenGLFunctions_2_1FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_2_1 {
 	var n = new(QOpenGLFunctions_2_1)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_2_1FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_2_1 {
+	var n = NewQOpenGLFunctions_2_1FromPointer(ptr)
 	return n
 }
 
@@ -13529,6 +14004,11 @@ func NewQOpenGLFunctions_3_0FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_3_
 	return n
 }
 
+func newQOpenGLFunctions_3_0FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_3_0 {
+	var n = NewQOpenGLFunctions_3_0FromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_3_0) QOpenGLFunctions_3_0_PTR() *QOpenGLFunctions_3_0 {
 	return ptr
 }
@@ -13552,6 +14032,11 @@ func PointerFromQOpenGLFunctions_3_1(ptr QOpenGLFunctions_3_1_ITF) unsafe.Pointe
 func NewQOpenGLFunctions_3_1FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_3_1 {
 	var n = new(QOpenGLFunctions_3_1)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_3_1FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_3_1 {
+	var n = NewQOpenGLFunctions_3_1FromPointer(ptr)
 	return n
 }
 
@@ -13581,6 +14066,11 @@ func NewQOpenGLFunctions_3_2_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpen
 	return n
 }
 
+func newQOpenGLFunctions_3_2_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_3_2_Compatibility {
+	var n = NewQOpenGLFunctions_3_2_CompatibilityFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_3_2_Compatibility) QOpenGLFunctions_3_2_Compatibility_PTR() *QOpenGLFunctions_3_2_Compatibility {
 	return ptr
 }
@@ -13604,6 +14094,11 @@ func PointerFromQOpenGLFunctions_3_2_Core(ptr QOpenGLFunctions_3_2_Core_ITF) uns
 func NewQOpenGLFunctions_3_2_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_3_2_Core {
 	var n = new(QOpenGLFunctions_3_2_Core)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_3_2_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_3_2_Core {
+	var n = NewQOpenGLFunctions_3_2_CoreFromPointer(ptr)
 	return n
 }
 
@@ -13633,6 +14128,11 @@ func NewQOpenGLFunctions_3_3_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpen
 	return n
 }
 
+func newQOpenGLFunctions_3_3_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_3_3_Compatibility {
+	var n = NewQOpenGLFunctions_3_3_CompatibilityFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_3_3_Compatibility) QOpenGLFunctions_3_3_Compatibility_PTR() *QOpenGLFunctions_3_3_Compatibility {
 	return ptr
 }
@@ -13656,6 +14156,11 @@ func PointerFromQOpenGLFunctions_3_3_Core(ptr QOpenGLFunctions_3_3_Core_ITF) uns
 func NewQOpenGLFunctions_3_3_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_3_3_Core {
 	var n = new(QOpenGLFunctions_3_3_Core)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_3_3_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_3_3_Core {
+	var n = NewQOpenGLFunctions_3_3_CoreFromPointer(ptr)
 	return n
 }
 
@@ -13685,6 +14190,11 @@ func NewQOpenGLFunctions_4_0_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpen
 	return n
 }
 
+func newQOpenGLFunctions_4_0_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_0_Compatibility {
+	var n = NewQOpenGLFunctions_4_0_CompatibilityFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_4_0_Compatibility) QOpenGLFunctions_4_0_Compatibility_PTR() *QOpenGLFunctions_4_0_Compatibility {
 	return ptr
 }
@@ -13708,6 +14218,11 @@ func PointerFromQOpenGLFunctions_4_0_Core(ptr QOpenGLFunctions_4_0_Core_ITF) uns
 func NewQOpenGLFunctions_4_0_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_0_Core {
 	var n = new(QOpenGLFunctions_4_0_Core)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_4_0_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_0_Core {
+	var n = NewQOpenGLFunctions_4_0_CoreFromPointer(ptr)
 	return n
 }
 
@@ -13737,6 +14252,11 @@ func NewQOpenGLFunctions_4_1_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpen
 	return n
 }
 
+func newQOpenGLFunctions_4_1_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_1_Compatibility {
+	var n = NewQOpenGLFunctions_4_1_CompatibilityFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_4_1_Compatibility) QOpenGLFunctions_4_1_Compatibility_PTR() *QOpenGLFunctions_4_1_Compatibility {
 	return ptr
 }
@@ -13760,6 +14280,11 @@ func PointerFromQOpenGLFunctions_4_1_Core(ptr QOpenGLFunctions_4_1_Core_ITF) uns
 func NewQOpenGLFunctions_4_1_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_1_Core {
 	var n = new(QOpenGLFunctions_4_1_Core)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_4_1_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_1_Core {
+	var n = NewQOpenGLFunctions_4_1_CoreFromPointer(ptr)
 	return n
 }
 
@@ -13789,6 +14314,11 @@ func NewQOpenGLFunctions_4_2_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpen
 	return n
 }
 
+func newQOpenGLFunctions_4_2_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_2_Compatibility {
+	var n = NewQOpenGLFunctions_4_2_CompatibilityFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_4_2_Compatibility) QOpenGLFunctions_4_2_Compatibility_PTR() *QOpenGLFunctions_4_2_Compatibility {
 	return ptr
 }
@@ -13812,6 +14342,11 @@ func PointerFromQOpenGLFunctions_4_2_Core(ptr QOpenGLFunctions_4_2_Core_ITF) uns
 func NewQOpenGLFunctions_4_2_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_2_Core {
 	var n = new(QOpenGLFunctions_4_2_Core)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_4_2_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_2_Core {
+	var n = NewQOpenGLFunctions_4_2_CoreFromPointer(ptr)
 	return n
 }
 
@@ -13841,6 +14376,11 @@ func NewQOpenGLFunctions_4_3_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpen
 	return n
 }
 
+func newQOpenGLFunctions_4_3_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_3_Compatibility {
+	var n = NewQOpenGLFunctions_4_3_CompatibilityFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_4_3_Compatibility) QOpenGLFunctions_4_3_Compatibility_PTR() *QOpenGLFunctions_4_3_Compatibility {
 	return ptr
 }
@@ -13864,6 +14404,11 @@ func PointerFromQOpenGLFunctions_4_3_Core(ptr QOpenGLFunctions_4_3_Core_ITF) uns
 func NewQOpenGLFunctions_4_3_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_3_Core {
 	var n = new(QOpenGLFunctions_4_3_Core)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_4_3_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_3_Core {
+	var n = NewQOpenGLFunctions_4_3_CoreFromPointer(ptr)
 	return n
 }
 
@@ -13893,6 +14438,11 @@ func NewQOpenGLFunctions_4_4_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpen
 	return n
 }
 
+func newQOpenGLFunctions_4_4_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_4_Compatibility {
+	var n = NewQOpenGLFunctions_4_4_CompatibilityFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_4_4_Compatibility) QOpenGLFunctions_4_4_Compatibility_PTR() *QOpenGLFunctions_4_4_Compatibility {
 	return ptr
 }
@@ -13916,6 +14466,11 @@ func PointerFromQOpenGLFunctions_4_4_Core(ptr QOpenGLFunctions_4_4_Core_ITF) uns
 func NewQOpenGLFunctions_4_4_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_4_Core {
 	var n = new(QOpenGLFunctions_4_4_Core)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_4_4_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_4_Core {
+	var n = NewQOpenGLFunctions_4_4_CoreFromPointer(ptr)
 	return n
 }
 
@@ -13945,6 +14500,11 @@ func NewQOpenGLFunctions_4_5_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpen
 	return n
 }
 
+func newQOpenGLFunctions_4_5_CompatibilityFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_5_Compatibility {
+	var n = NewQOpenGLFunctions_4_5_CompatibilityFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_4_5_Compatibility) QOpenGLFunctions_4_5_Compatibility_PTR() *QOpenGLFunctions_4_5_Compatibility {
 	return ptr
 }
@@ -13968,6 +14528,11 @@ func PointerFromQOpenGLFunctions_4_5_Core(ptr QOpenGLFunctions_4_5_Core_ITF) uns
 func NewQOpenGLFunctions_4_5_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_5_Core {
 	var n = new(QOpenGLFunctions_4_5_Core)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLFunctions_4_5_CoreFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_4_5_Core {
+	var n = NewQOpenGLFunctions_4_5_CoreFromPointer(ptr)
 	return n
 }
 
@@ -13997,6 +14562,11 @@ func NewQOpenGLFunctions_ES2FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_ES
 	return n
 }
 
+func newQOpenGLFunctions_ES2FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_ES2 {
+	var n = NewQOpenGLFunctions_ES2FromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLFunctions_ES2) QOpenGLFunctions_ES2_PTR() *QOpenGLFunctions_ES2 {
 	return ptr
 }
@@ -14020,6 +14590,11 @@ func PointerFromQOpenGLPaintDevice(ptr QOpenGLPaintDevice_ITF) unsafe.Pointer {
 func NewQOpenGLPaintDeviceFromPointer(ptr unsafe.Pointer) *QOpenGLPaintDevice {
 	var n = new(QOpenGLPaintDevice)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLPaintDeviceFromPointer(ptr unsafe.Pointer) *QOpenGLPaintDevice {
+	var n = NewQOpenGLPaintDeviceFromPointer(ptr)
 	return n
 }
 
@@ -14056,6 +14631,11 @@ func NewQOpenGLPixelTransferOptionsFromPointer(ptr unsafe.Pointer) *QOpenGLPixel
 	return n
 }
 
+func newQOpenGLPixelTransferOptionsFromPointer(ptr unsafe.Pointer) *QOpenGLPixelTransferOptions {
+	var n = NewQOpenGLPixelTransferOptionsFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLPixelTransferOptions) QOpenGLPixelTransferOptions_PTR() *QOpenGLPixelTransferOptions {
 	return ptr
 }
@@ -14079,6 +14659,11 @@ func PointerFromQOpenGLShader(ptr QOpenGLShader_ITF) unsafe.Pointer {
 func NewQOpenGLShaderFromPointer(ptr unsafe.Pointer) *QOpenGLShader {
 	var n = new(QOpenGLShader)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLShaderFromPointer(ptr unsafe.Pointer) *QOpenGLShader {
+	var n = NewQOpenGLShaderFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLShader_") {
 		n.SetObjectName("QOpenGLShader_" + qt.Identifier())
 	}
@@ -14120,6 +14705,11 @@ func PointerFromQOpenGLShaderProgram(ptr QOpenGLShaderProgram_ITF) unsafe.Pointe
 func NewQOpenGLShaderProgramFromPointer(ptr unsafe.Pointer) *QOpenGLShaderProgram {
 	var n = new(QOpenGLShaderProgram)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLShaderProgramFromPointer(ptr unsafe.Pointer) *QOpenGLShaderProgram {
+	var n = NewQOpenGLShaderProgramFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLShaderProgram_") {
 		n.SetObjectName("QOpenGLShaderProgram_" + qt.Identifier())
 	}
@@ -14156,6 +14746,11 @@ func PointerFromQOpenGLTexture(ptr QOpenGLTexture_ITF) unsafe.Pointer {
 func NewQOpenGLTextureFromPointer(ptr unsafe.Pointer) *QOpenGLTexture {
 	var n = new(QOpenGLTexture)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLTextureFromPointer(ptr unsafe.Pointer) *QOpenGLTexture {
+	var n = NewQOpenGLTextureFromPointer(ptr)
 	return n
 }
 
@@ -14509,6 +15104,11 @@ func PointerFromQOpenGLTimeMonitor(ptr QOpenGLTimeMonitor_ITF) unsafe.Pointer {
 func NewQOpenGLTimeMonitorFromPointer(ptr unsafe.Pointer) *QOpenGLTimeMonitor {
 	var n = new(QOpenGLTimeMonitor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLTimeMonitorFromPointer(ptr unsafe.Pointer) *QOpenGLTimeMonitor {
+	var n = NewQOpenGLTimeMonitorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLTimeMonitor_") {
 		n.SetObjectName("QOpenGLTimeMonitor_" + qt.Identifier())
 	}
@@ -14538,6 +15138,11 @@ func PointerFromQOpenGLTimerQuery(ptr QOpenGLTimerQuery_ITF) unsafe.Pointer {
 func NewQOpenGLTimerQueryFromPointer(ptr unsafe.Pointer) *QOpenGLTimerQuery {
 	var n = new(QOpenGLTimerQuery)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLTimerQueryFromPointer(ptr unsafe.Pointer) *QOpenGLTimerQuery {
+	var n = NewQOpenGLTimerQueryFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLTimerQuery_") {
 		n.SetObjectName("QOpenGLTimerQuery_" + qt.Identifier())
 	}
@@ -14577,6 +15182,11 @@ func NewQOpenGLVersionProfileFromPointer(ptr unsafe.Pointer) *QOpenGLVersionProf
 	return n
 }
 
+func newQOpenGLVersionProfileFromPointer(ptr unsafe.Pointer) *QOpenGLVersionProfile {
+	var n = NewQOpenGLVersionProfileFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOpenGLVersionProfile) QOpenGLVersionProfile_PTR() *QOpenGLVersionProfile {
 	return ptr
 }
@@ -14600,6 +15210,11 @@ func PointerFromQOpenGLVertexArrayObject(ptr QOpenGLVertexArrayObject_ITF) unsaf
 func NewQOpenGLVertexArrayObjectFromPointer(ptr unsafe.Pointer) *QOpenGLVertexArrayObject {
 	var n = new(QOpenGLVertexArrayObject)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLVertexArrayObjectFromPointer(ptr unsafe.Pointer) *QOpenGLVertexArrayObject {
+	var n = NewQOpenGLVertexArrayObjectFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLVertexArrayObject_") {
 		n.SetObjectName("QOpenGLVertexArrayObject_" + qt.Identifier())
 	}
@@ -14629,6 +15244,11 @@ func PointerFromQOpenGLWindow(ptr QOpenGLWindow_ITF) unsafe.Pointer {
 func NewQOpenGLWindowFromPointer(ptr unsafe.Pointer) *QOpenGLWindow {
 	var n = new(QOpenGLWindow)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLWindowFromPointer(ptr unsafe.Pointer) *QOpenGLWindow {
+	var n = NewQOpenGLWindowFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOpenGLWindow_") {
 		n.SetObjectName("QOpenGLWindow_" + qt.Identifier())
 	}
@@ -14677,6 +15297,11 @@ func NewQPageLayoutFromPointer(ptr unsafe.Pointer) *QPageLayout {
 	return n
 }
 
+func newQPageLayoutFromPointer(ptr unsafe.Pointer) *QPageLayout {
+	var n = NewQPageLayoutFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPageLayout) QPageLayout_PTR() *QPageLayout {
 	return ptr
 }
@@ -14712,19 +15337,19 @@ const (
 func NewQPageLayout() *QPageLayout {
 	defer qt.Recovering("QPageLayout::QPageLayout")
 
-	return NewQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout())
+	return newQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout())
 }
 
 func NewQPageLayout3(other QPageLayout_ITF) *QPageLayout {
 	defer qt.Recovering("QPageLayout::QPageLayout")
 
-	return NewQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout3(PointerFromQPageLayout(other)))
+	return newQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout3(PointerFromQPageLayout(other)))
 }
 
 func NewQPageLayout2(pageSize QPageSize_ITF, orientation QPageLayout__Orientation, margins core.QMarginsF_ITF, units QPageLayout__Unit, minMargins core.QMarginsF_ITF) *QPageLayout {
 	defer qt.Recovering("QPageLayout::QPageLayout")
 
-	return NewQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout2(PointerFromQPageSize(pageSize), C.int(orientation), core.PointerFromQMarginsF(margins), C.int(units), core.PointerFromQMarginsF(minMargins)))
+	return newQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout2(PointerFromQPageSize(pageSize), C.int(orientation), core.PointerFromQMarginsF(margins), C.int(units), core.PointerFromQMarginsF(minMargins)))
 }
 
 func (ptr *QPageLayout) FullRectPixels(resolution int) *core.QRect {
@@ -14938,6 +15563,11 @@ func NewQPageSizeFromPointer(ptr unsafe.Pointer) *QPageSize {
 	return n
 }
 
+func newQPageSizeFromPointer(ptr unsafe.Pointer) *QPageSize {
+	var n = NewQPageSizeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPageSize) QPageSize_PTR() *QPageSize {
 	return ptr
 }
@@ -15099,31 +15729,31 @@ const (
 func NewQPageSize() *QPageSize {
 	defer qt.Recovering("QPageSize::QPageSize")
 
-	return NewQPageSizeFromPointer(C.QPageSize_NewQPageSize())
+	return newQPageSizeFromPointer(C.QPageSize_NewQPageSize())
 }
 
 func NewQPageSize2(pageSize QPageSize__PageSizeId) *QPageSize {
 	defer qt.Recovering("QPageSize::QPageSize")
 
-	return NewQPageSizeFromPointer(C.QPageSize_NewQPageSize2(C.int(pageSize)))
+	return newQPageSizeFromPointer(C.QPageSize_NewQPageSize2(C.int(pageSize)))
 }
 
 func NewQPageSize5(other QPageSize_ITF) *QPageSize {
 	defer qt.Recovering("QPageSize::QPageSize")
 
-	return NewQPageSizeFromPointer(C.QPageSize_NewQPageSize5(PointerFromQPageSize(other)))
+	return newQPageSizeFromPointer(C.QPageSize_NewQPageSize5(PointerFromQPageSize(other)))
 }
 
 func NewQPageSize3(pointSize core.QSize_ITF, name string, matchPolicy QPageSize__SizeMatchPolicy) *QPageSize {
 	defer qt.Recovering("QPageSize::QPageSize")
 
-	return NewQPageSizeFromPointer(C.QPageSize_NewQPageSize3(core.PointerFromQSize(pointSize), C.CString(name), C.int(matchPolicy)))
+	return newQPageSizeFromPointer(C.QPageSize_NewQPageSize3(core.PointerFromQSize(pointSize), C.CString(name), C.int(matchPolicy)))
 }
 
 func NewQPageSize4(size core.QSizeF_ITF, units QPageSize__Unit, name string, matchPolicy QPageSize__SizeMatchPolicy) *QPageSize {
 	defer qt.Recovering("QPageSize::QPageSize")
 
-	return NewQPageSizeFromPointer(C.QPageSize_NewQPageSize4(core.PointerFromQSizeF(size), C.int(units), C.CString(name), C.int(matchPolicy)))
+	return newQPageSizeFromPointer(C.QPageSize_NewQPageSize4(core.PointerFromQSizeF(size), C.int(units), C.CString(name), C.int(matchPolicy)))
 }
 
 func QPageSize_DefinitionUnits2(pageSizeId QPageSize__PageSizeId) QPageSize__Unit {
@@ -15314,6 +15944,11 @@ func PointerFromQPagedPaintDevice(ptr QPagedPaintDevice_ITF) unsafe.Pointer {
 func NewQPagedPaintDeviceFromPointer(ptr unsafe.Pointer) *QPagedPaintDevice {
 	var n = new(QPagedPaintDevice)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPagedPaintDeviceFromPointer(ptr unsafe.Pointer) *QPagedPaintDevice {
+	var n = NewQPagedPaintDeviceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QPagedPaintDevice_") {
 		n.SetObjectNameAbs("QPagedPaintDevice_" + qt.Identifier())
 	}
@@ -15571,6 +16206,11 @@ func PointerFromQPaintDevice(ptr QPaintDevice_ITF) unsafe.Pointer {
 func NewQPaintDeviceFromPointer(ptr unsafe.Pointer) *QPaintDevice {
 	var n = new(QPaintDevice)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPaintDeviceFromPointer(ptr unsafe.Pointer) *QPaintDevice {
+	var n = NewQPaintDeviceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QPaintDevice_") {
 		n.SetObjectNameAbs("QPaintDevice_" + qt.Identifier())
 	}
@@ -15779,6 +16419,11 @@ func PointerFromQPaintDeviceWindow(ptr QPaintDeviceWindow_ITF) unsafe.Pointer {
 func NewQPaintDeviceWindowFromPointer(ptr unsafe.Pointer) *QPaintDeviceWindow {
 	var n = new(QPaintDeviceWindow)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPaintDeviceWindowFromPointer(ptr unsafe.Pointer) *QPaintDeviceWindow {
+	var n = NewQPaintDeviceWindowFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPaintDeviceWindow_") {
 		n.SetObjectName("QPaintDeviceWindow_" + qt.Identifier())
 	}
@@ -16739,6 +17384,11 @@ func PointerFromQPaintEngine(ptr QPaintEngine_ITF) unsafe.Pointer {
 func NewQPaintEngineFromPointer(ptr unsafe.Pointer) *QPaintEngine {
 	var n = new(QPaintEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPaintEngineFromPointer(ptr unsafe.Pointer) *QPaintEngine {
+	var n = NewQPaintEngineFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QPaintEngine_") {
 		n.SetObjectNameAbs("QPaintEngine_" + qt.Identifier())
 	}
@@ -17152,6 +17802,11 @@ func NewQPaintEngineStateFromPointer(ptr unsafe.Pointer) *QPaintEngineState {
 	return n
 }
 
+func newQPaintEngineStateFromPointer(ptr unsafe.Pointer) *QPaintEngineState {
+	var n = NewQPaintEngineStateFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPaintEngineState) QPaintEngineState_PTR() *QPaintEngineState {
 	return ptr
 }
@@ -17295,6 +17950,11 @@ func NewQPaintEventFromPointer(ptr unsafe.Pointer) *QPaintEvent {
 	return n
 }
 
+func newQPaintEventFromPointer(ptr unsafe.Pointer) *QPaintEvent {
+	var n = NewQPaintEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPaintEvent) QPaintEvent_PTR() *QPaintEvent {
 	return ptr
 }
@@ -17302,13 +17962,13 @@ func (ptr *QPaintEvent) QPaintEvent_PTR() *QPaintEvent {
 func NewQPaintEvent2(paintRect core.QRect_ITF) *QPaintEvent {
 	defer qt.Recovering("QPaintEvent::QPaintEvent")
 
-	return NewQPaintEventFromPointer(C.QPaintEvent_NewQPaintEvent2(core.PointerFromQRect(paintRect)))
+	return newQPaintEventFromPointer(C.QPaintEvent_NewQPaintEvent2(core.PointerFromQRect(paintRect)))
 }
 
 func NewQPaintEvent(paintRegion QRegion_ITF) *QPaintEvent {
 	defer qt.Recovering("QPaintEvent::QPaintEvent")
 
-	return NewQPaintEventFromPointer(C.QPaintEvent_NewQPaintEvent(PointerFromQRegion(paintRegion)))
+	return newQPaintEventFromPointer(C.QPaintEvent_NewQPaintEvent(PointerFromQRegion(paintRegion)))
 }
 
 func (ptr *QPaintEvent) Rect() *core.QRect {
@@ -17355,6 +18015,11 @@ func PointerFromQPainter(ptr QPainter_ITF) unsafe.Pointer {
 func NewQPainterFromPointer(ptr unsafe.Pointer) *QPainter {
 	var n = new(QPainter)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPainterFromPointer(ptr unsafe.Pointer) *QPainter {
+	var n = NewQPainterFromPointer(ptr)
 	return n
 }
 
@@ -17428,7 +18093,7 @@ const (
 func NewQPainter2(device QPaintDevice_ITF) *QPainter {
 	defer qt.Recovering("QPainter::QPainter")
 
-	return NewQPainterFromPointer(C.QPainter_NewQPainter2(PointerFromQPaintDevice(device)))
+	return newQPainterFromPointer(C.QPainter_NewQPainter2(PointerFromQPaintDevice(device)))
 }
 
 func (ptr *QPainter) Begin(device QPaintDevice_ITF) bool {
@@ -17732,7 +18397,7 @@ func (ptr *QPainter) SetWindow(rectangle core.QRect_ITF) {
 func NewQPainter() *QPainter {
 	defer qt.Recovering("QPainter::QPainter")
 
-	return NewQPainterFromPointer(C.QPainter_NewQPainter())
+	return newQPainterFromPointer(C.QPainter_NewQPainter())
 }
 
 func (ptr *QPainter) Background() *QBrush {
@@ -18840,6 +19505,11 @@ func NewQPainterPathFromPointer(ptr unsafe.Pointer) *QPainterPath {
 	return n
 }
 
+func newQPainterPathFromPointer(ptr unsafe.Pointer) *QPainterPath {
+	var n = NewQPainterPathFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPainterPath) QPainterPath_PTR() *QPainterPath {
 	return ptr
 }
@@ -18857,7 +19527,7 @@ const (
 func NewQPainterPath3(path QPainterPath_ITF) *QPainterPath {
 	defer qt.Recovering("QPainterPath::QPainterPath")
 
-	return NewQPainterPathFromPointer(C.QPainterPath_NewQPainterPath3(PointerFromQPainterPath(path)))
+	return newQPainterPathFromPointer(C.QPainterPath_NewQPainterPath3(PointerFromQPainterPath(path)))
 }
 
 func (ptr *QPainterPath) AddEllipse(boundingRectangle core.QRectF_ITF) {
@@ -19012,13 +19682,13 @@ func (ptr *QPainterPath) SetFillRule(fillRule core.Qt__FillRule) {
 func NewQPainterPath() *QPainterPath {
 	defer qt.Recovering("QPainterPath::QPainterPath")
 
-	return NewQPainterPathFromPointer(C.QPainterPath_NewQPainterPath())
+	return newQPainterPathFromPointer(C.QPainterPath_NewQPainterPath())
 }
 
 func NewQPainterPath2(startPoint core.QPointF_ITF) *QPainterPath {
 	defer qt.Recovering("QPainterPath::QPainterPath")
 
-	return NewQPainterPathFromPointer(C.QPainterPath_NewQPainterPath2(core.PointerFromQPointF(startPoint)))
+	return newQPainterPathFromPointer(C.QPainterPath_NewQPainterPath2(core.PointerFromQPointF(startPoint)))
 }
 
 func (ptr *QPainterPath) AddEllipse3(center core.QPointF_ITF, rx float64, ry float64) {
@@ -19265,6 +19935,11 @@ func NewQPainterPathStrokerFromPointer(ptr unsafe.Pointer) *QPainterPathStroker 
 	return n
 }
 
+func newQPainterPathStrokerFromPointer(ptr unsafe.Pointer) *QPainterPathStroker {
+	var n = NewQPainterPathStrokerFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPainterPathStroker) QPainterPathStroker_PTR() *QPainterPathStroker {
 	return ptr
 }
@@ -19272,13 +19947,13 @@ func (ptr *QPainterPathStroker) QPainterPathStroker_PTR() *QPainterPathStroker {
 func NewQPainterPathStroker() *QPainterPathStroker {
 	defer qt.Recovering("QPainterPathStroker::QPainterPathStroker")
 
-	return NewQPainterPathStrokerFromPointer(C.QPainterPathStroker_NewQPainterPathStroker())
+	return newQPainterPathStrokerFromPointer(C.QPainterPathStroker_NewQPainterPathStroker())
 }
 
 func NewQPainterPathStroker2(pen QPen_ITF) *QPainterPathStroker {
 	defer qt.Recovering("QPainterPathStroker::QPainterPathStroker")
 
-	return NewQPainterPathStrokerFromPointer(C.QPainterPathStroker_NewQPainterPathStroker2(PointerFromQPen(pen)))
+	return newQPainterPathStrokerFromPointer(C.QPainterPathStroker_NewQPainterPathStroker2(PointerFromQPen(pen)))
 }
 
 func (ptr *QPainterPathStroker) CapStyle() core.Qt__PenCapStyle {
@@ -19428,6 +20103,11 @@ func NewQPaletteFromPointer(ptr unsafe.Pointer) *QPalette {
 	return n
 }
 
+func newQPaletteFromPointer(ptr unsafe.Pointer) *QPalette {
+	var n = NewQPaletteFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPalette) QPalette_PTR() *QPalette {
 	return ptr
 }
@@ -19503,43 +20183,43 @@ func (ptr *QPalette) SetBrush2(group QPalette__ColorGroup, role QPalette__ColorR
 func NewQPalette() *QPalette {
 	defer qt.Recovering("QPalette::QPalette")
 
-	return NewQPaletteFromPointer(C.QPalette_NewQPalette())
+	return newQPaletteFromPointer(C.QPalette_NewQPalette())
 }
 
 func NewQPalette8(other QPalette_ITF) *QPalette {
 	defer qt.Recovering("QPalette::QPalette")
 
-	return NewQPaletteFromPointer(C.QPalette_NewQPalette8(PointerFromQPalette(other)))
+	return newQPaletteFromPointer(C.QPalette_NewQPalette8(PointerFromQPalette(other)))
 }
 
 func NewQPalette3(button core.Qt__GlobalColor) *QPalette {
 	defer qt.Recovering("QPalette::QPalette")
 
-	return NewQPaletteFromPointer(C.QPalette_NewQPalette3(C.int(button)))
+	return newQPaletteFromPointer(C.QPalette_NewQPalette3(C.int(button)))
 }
 
 func NewQPalette5(windowText QBrush_ITF, button QBrush_ITF, light QBrush_ITF, dark QBrush_ITF, mid QBrush_ITF, text QBrush_ITF, bright_text QBrush_ITF, base QBrush_ITF, window QBrush_ITF) *QPalette {
 	defer qt.Recovering("QPalette::QPalette")
 
-	return NewQPaletteFromPointer(C.QPalette_NewQPalette5(PointerFromQBrush(windowText), PointerFromQBrush(button), PointerFromQBrush(light), PointerFromQBrush(dark), PointerFromQBrush(mid), PointerFromQBrush(text), PointerFromQBrush(bright_text), PointerFromQBrush(base), PointerFromQBrush(window)))
+	return newQPaletteFromPointer(C.QPalette_NewQPalette5(PointerFromQBrush(windowText), PointerFromQBrush(button), PointerFromQBrush(light), PointerFromQBrush(dark), PointerFromQBrush(mid), PointerFromQBrush(text), PointerFromQBrush(bright_text), PointerFromQBrush(base), PointerFromQBrush(window)))
 }
 
 func NewQPalette2(button QColor_ITF) *QPalette {
 	defer qt.Recovering("QPalette::QPalette")
 
-	return NewQPaletteFromPointer(C.QPalette_NewQPalette2(PointerFromQColor(button)))
+	return newQPaletteFromPointer(C.QPalette_NewQPalette2(PointerFromQColor(button)))
 }
 
 func NewQPalette4(button QColor_ITF, window QColor_ITF) *QPalette {
 	defer qt.Recovering("QPalette::QPalette")
 
-	return NewQPaletteFromPointer(C.QPalette_NewQPalette4(PointerFromQColor(button), PointerFromQColor(window)))
+	return newQPaletteFromPointer(C.QPalette_NewQPalette4(PointerFromQColor(button), PointerFromQColor(window)))
 }
 
 func NewQPalette7(p QPalette_ITF) *QPalette {
 	defer qt.Recovering("QPalette::QPalette")
 
-	return NewQPaletteFromPointer(C.QPalette_NewQPalette7(PointerFromQPalette(p)))
+	return newQPaletteFromPointer(C.QPalette_NewQPalette7(PointerFromQPalette(p)))
 }
 
 func (ptr *QPalette) AlternateBase() *QBrush {
@@ -19862,6 +20542,11 @@ func PointerFromQPdfWriter(ptr QPdfWriter_ITF) unsafe.Pointer {
 func NewQPdfWriterFromPointer(ptr unsafe.Pointer) *QPdfWriter {
 	var n = new(QPdfWriter)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPdfWriterFromPointer(ptr unsafe.Pointer) *QPdfWriter {
+	var n = NewQPdfWriterFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPdfWriter_") {
 		n.SetObjectName("QPdfWriter_" + qt.Identifier())
 	}
@@ -19875,13 +20560,13 @@ func (ptr *QPdfWriter) QPdfWriter_PTR() *QPdfWriter {
 func NewQPdfWriter2(device core.QIODevice_ITF) *QPdfWriter {
 	defer qt.Recovering("QPdfWriter::QPdfWriter")
 
-	return NewQPdfWriterFromPointer(C.QPdfWriter_NewQPdfWriter2(core.PointerFromQIODevice(device)))
+	return newQPdfWriterFromPointer(C.QPdfWriter_NewQPdfWriter2(core.PointerFromQIODevice(device)))
 }
 
 func NewQPdfWriter(filename string) *QPdfWriter {
 	defer qt.Recovering("QPdfWriter::QPdfWriter")
 
-	return NewQPdfWriterFromPointer(C.QPdfWriter_NewQPdfWriter(C.CString(filename)))
+	return newQPdfWriterFromPointer(C.QPdfWriter_NewQPdfWriter(C.CString(filename)))
 }
 
 func (ptr *QPdfWriter) Creator() string {
@@ -20171,6 +20856,11 @@ func NewQPenFromPointer(ptr unsafe.Pointer) *QPen {
 	return n
 }
 
+func newQPenFromPointer(ptr unsafe.Pointer) *QPen {
+	var n = NewQPenFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPen) QPen_PTR() *QPen {
 	return ptr
 }
@@ -20178,13 +20868,13 @@ func (ptr *QPen) QPen_PTR() *QPen {
 func NewQPen4(brush QBrush_ITF, width float64, style core.Qt__PenStyle, cap core.Qt__PenCapStyle, join core.Qt__PenJoinStyle) *QPen {
 	defer qt.Recovering("QPen::QPen")
 
-	return NewQPenFromPointer(C.QPen_NewQPen4(PointerFromQBrush(brush), C.double(width), C.int(style), C.int(cap), C.int(join)))
+	return newQPenFromPointer(C.QPen_NewQPen4(PointerFromQBrush(brush), C.double(width), C.int(style), C.int(cap), C.int(join)))
 }
 
 func NewQPen5(pen QPen_ITF) *QPen {
 	defer qt.Recovering("QPen::QPen")
 
-	return NewQPenFromPointer(C.QPen_NewQPen5(PointerFromQPen(pen)))
+	return newQPenFromPointer(C.QPen_NewQPen5(PointerFromQPen(pen)))
 }
 
 func (ptr *QPen) Color() *QColor {
@@ -20266,25 +20956,25 @@ func (ptr *QPen) WidthF() float64 {
 func NewQPen() *QPen {
 	defer qt.Recovering("QPen::QPen")
 
-	return NewQPenFromPointer(C.QPen_NewQPen())
+	return newQPenFromPointer(C.QPen_NewQPen())
 }
 
 func NewQPen6(pen QPen_ITF) *QPen {
 	defer qt.Recovering("QPen::QPen")
 
-	return NewQPenFromPointer(C.QPen_NewQPen6(PointerFromQPen(pen)))
+	return newQPenFromPointer(C.QPen_NewQPen6(PointerFromQPen(pen)))
 }
 
 func NewQPen2(style core.Qt__PenStyle) *QPen {
 	defer qt.Recovering("QPen::QPen")
 
-	return NewQPenFromPointer(C.QPen_NewQPen2(C.int(style)))
+	return newQPenFromPointer(C.QPen_NewQPen2(C.int(style)))
 }
 
 func NewQPen3(color QColor_ITF) *QPen {
 	defer qt.Recovering("QPen::QPen")
 
-	return NewQPenFromPointer(C.QPen_NewQPen3(PointerFromQColor(color)))
+	return newQPenFromPointer(C.QPen_NewQPen3(PointerFromQColor(color)))
 }
 
 func (ptr *QPen) Brush() *QBrush {
@@ -20425,6 +21115,11 @@ func PointerFromQPicture(ptr QPicture_ITF) unsafe.Pointer {
 func NewQPictureFromPointer(ptr unsafe.Pointer) *QPicture {
 	var n = new(QPicture)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPictureFromPointer(ptr unsafe.Pointer) *QPicture {
+	var n = NewQPictureFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QPicture_") {
 		n.SetObjectNameAbs("QPicture_" + qt.Identifier())
 	}
@@ -20568,6 +21263,11 @@ func NewQPixelFormatFromPointer(ptr unsafe.Pointer) *QPixelFormat {
 	return n
 }
 
+func newQPixelFormatFromPointer(ptr unsafe.Pointer) *QPixelFormat {
+	var n = NewQPixelFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPixelFormat) QPixelFormat_PTR() *QPixelFormat {
 	return ptr
 }
@@ -20655,7 +21355,7 @@ const (
 func NewQPixelFormat() *QPixelFormat {
 	defer qt.Recovering("QPixelFormat::QPixelFormat")
 
-	return NewQPixelFormatFromPointer(C.QPixelFormat_NewQPixelFormat())
+	return newQPixelFormatFromPointer(C.QPixelFormat_NewQPixelFormat())
 }
 
 func (ptr *QPixelFormat) AlphaPosition() QPixelFormat__AlphaPosition {
@@ -20740,6 +21440,11 @@ func PointerFromQPixmap(ptr QPixmap_ITF) unsafe.Pointer {
 func NewQPixmapFromPointer(ptr unsafe.Pointer) *QPixmap {
 	var n = new(QPixmap)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPixmapFromPointer(ptr unsafe.Pointer) *QPixmap {
+	var n = NewQPixmapFromPointer(ptr)
 	return n
 }
 
@@ -20990,6 +21695,11 @@ func NewQPixmapCacheFromPointer(ptr unsafe.Pointer) *QPixmapCache {
 	return n
 }
 
+func newQPixmapCacheFromPointer(ptr unsafe.Pointer) *QPixmapCache {
+	var n = NewQPixmapCacheFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPixmapCache) QPixmapCache_PTR() *QPixmapCache {
 	return ptr
 }
@@ -21031,6 +21741,11 @@ func PointerFromQPlatformGraphicsBuffer(ptr QPlatformGraphicsBuffer_ITF) unsafe.
 func NewQPlatformGraphicsBufferFromPointer(ptr unsafe.Pointer) *QPlatformGraphicsBuffer {
 	var n = new(QPlatformGraphicsBuffer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlatformGraphicsBufferFromPointer(ptr unsafe.Pointer) *QPlatformGraphicsBuffer {
+	var n = NewQPlatformGraphicsBufferFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPlatformGraphicsBuffer_") {
 		n.SetObjectName("QPlatformGraphicsBuffer_" + qt.Identifier())
 	}
@@ -21082,6 +21797,11 @@ func NewQPlatformSurfaceEventFromPointer(ptr unsafe.Pointer) *QPlatformSurfaceEv
 	return n
 }
 
+func newQPlatformSurfaceEventFromPointer(ptr unsafe.Pointer) *QPlatformSurfaceEvent {
+	var n = NewQPlatformSurfaceEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlatformSurfaceEvent) QPlatformSurfaceEvent_PTR() *QPlatformSurfaceEvent {
 	return ptr
 }
@@ -21097,7 +21817,7 @@ const (
 func NewQPlatformSurfaceEvent(surfaceEventType QPlatformSurfaceEvent__SurfaceEventType) *QPlatformSurfaceEvent {
 	defer qt.Recovering("QPlatformSurfaceEvent::QPlatformSurfaceEvent")
 
-	return NewQPlatformSurfaceEventFromPointer(C.QPlatformSurfaceEvent_NewQPlatformSurfaceEvent(C.int(surfaceEventType)))
+	return newQPlatformSurfaceEventFromPointer(C.QPlatformSurfaceEvent_NewQPlatformSurfaceEvent(C.int(surfaceEventType)))
 }
 
 func (ptr *QPlatformSurfaceEvent) SurfaceEventType() QPlatformSurfaceEvent__SurfaceEventType {
@@ -21128,6 +21848,11 @@ func PointerFromQPlatformSystemTrayIcon(ptr QPlatformSystemTrayIcon_ITF) unsafe.
 func NewQPlatformSystemTrayIconFromPointer(ptr unsafe.Pointer) *QPlatformSystemTrayIcon {
 	var n = new(QPlatformSystemTrayIcon)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlatformSystemTrayIconFromPointer(ptr unsafe.Pointer) *QPlatformSystemTrayIcon {
+	var n = NewQPlatformSystemTrayIconFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPlatformSystemTrayIcon_") {
 		n.SetObjectName("QPlatformSystemTrayIcon_" + qt.Identifier())
 	}
@@ -21181,6 +21906,11 @@ func NewQPolygonFromPointer(ptr unsafe.Pointer) *QPolygon {
 	return n
 }
 
+func newQPolygonFromPointer(ptr unsafe.Pointer) *QPolygon {
+	var n = NewQPolygonFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPolygon) QPolygon_PTR() *QPolygon {
 	return ptr
 }
@@ -21188,7 +21918,7 @@ func (ptr *QPolygon) QPolygon_PTR() *QPolygon {
 func NewQPolygon5(rectangle core.QRect_ITF, closed bool) *QPolygon {
 	defer qt.Recovering("QPolygon::QPolygon")
 
-	return NewQPolygonFromPointer(C.QPolygon_NewQPolygon5(core.PointerFromQRect(rectangle), C.int(qt.GoBoolToInt(closed))))
+	return newQPolygonFromPointer(C.QPolygon_NewQPolygon5(core.PointerFromQRect(rectangle), C.int(qt.GoBoolToInt(closed))))
 }
 
 func (ptr *QPolygon) ContainsPoint(point core.QPoint_ITF, fillRule core.Qt__FillRule) bool {
@@ -21211,19 +21941,19 @@ func (ptr *QPolygon) PutPoints3(index int, nPoints int, fromPolygon QPolygon_ITF
 func NewQPolygon() *QPolygon {
 	defer qt.Recovering("QPolygon::QPolygon")
 
-	return NewQPolygonFromPointer(C.QPolygon_NewQPolygon())
+	return newQPolygonFromPointer(C.QPolygon_NewQPolygon())
 }
 
 func NewQPolygon3(polygon QPolygon_ITF) *QPolygon {
 	defer qt.Recovering("QPolygon::QPolygon")
 
-	return NewQPolygonFromPointer(C.QPolygon_NewQPolygon3(PointerFromQPolygon(polygon)))
+	return newQPolygonFromPointer(C.QPolygon_NewQPolygon3(PointerFromQPolygon(polygon)))
 }
 
 func NewQPolygon2(size int) *QPolygon {
 	defer qt.Recovering("QPolygon::QPolygon")
 
-	return NewQPolygonFromPointer(C.QPolygon_NewQPolygon2(C.int(size)))
+	return newQPolygonFromPointer(C.QPolygon_NewQPolygon2(C.int(size)))
 }
 
 func (ptr *QPolygon) BoundingRect() *core.QRect {
@@ -21330,6 +22060,11 @@ func NewQPolygonFFromPointer(ptr unsafe.Pointer) *QPolygonF {
 	return n
 }
 
+func newQPolygonFFromPointer(ptr unsafe.Pointer) *QPolygonF {
+	var n = NewQPolygonFFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPolygonF) QPolygonF_PTR() *QPolygonF {
 	return ptr
 }
@@ -21337,13 +22072,13 @@ func (ptr *QPolygonF) QPolygonF_PTR() *QPolygonF {
 func NewQPolygonF6(polygon QPolygon_ITF) *QPolygonF {
 	defer qt.Recovering("QPolygonF::QPolygonF")
 
-	return NewQPolygonFFromPointer(C.QPolygonF_NewQPolygonF6(PointerFromQPolygon(polygon)))
+	return newQPolygonFFromPointer(C.QPolygonF_NewQPolygonF6(PointerFromQPolygon(polygon)))
 }
 
 func NewQPolygonF5(rectangle core.QRectF_ITF) *QPolygonF {
 	defer qt.Recovering("QPolygonF::QPolygonF")
 
-	return NewQPolygonFFromPointer(C.QPolygonF_NewQPolygonF5(core.PointerFromQRectF(rectangle)))
+	return newQPolygonFFromPointer(C.QPolygonF_NewQPolygonF5(core.PointerFromQRectF(rectangle)))
 }
 
 func (ptr *QPolygonF) ContainsPoint(point core.QPointF_ITF, fillRule core.Qt__FillRule) bool {
@@ -21358,19 +22093,19 @@ func (ptr *QPolygonF) ContainsPoint(point core.QPointF_ITF, fillRule core.Qt__Fi
 func NewQPolygonF() *QPolygonF {
 	defer qt.Recovering("QPolygonF::QPolygonF")
 
-	return NewQPolygonFFromPointer(C.QPolygonF_NewQPolygonF())
+	return newQPolygonFFromPointer(C.QPolygonF_NewQPolygonF())
 }
 
 func NewQPolygonF3(polygon QPolygonF_ITF) *QPolygonF {
 	defer qt.Recovering("QPolygonF::QPolygonF")
 
-	return NewQPolygonFFromPointer(C.QPolygonF_NewQPolygonF3(PointerFromQPolygonF(polygon)))
+	return newQPolygonFFromPointer(C.QPolygonF_NewQPolygonF3(PointerFromQPolygonF(polygon)))
 }
 
 func NewQPolygonF2(size int) *QPolygonF {
 	defer qt.Recovering("QPolygonF::QPolygonF")
 
-	return NewQPolygonFFromPointer(C.QPolygonF_NewQPolygonF2(C.int(size)))
+	return newQPolygonFFromPointer(C.QPolygonF_NewQPolygonF2(C.int(size)))
 }
 
 func (ptr *QPolygonF) IsClosed() bool {
@@ -21443,6 +22178,11 @@ func NewQQuaternionFromPointer(ptr unsafe.Pointer) *QQuaternion {
 	return n
 }
 
+func newQQuaternionFromPointer(ptr unsafe.Pointer) *QQuaternion {
+	var n = NewQQuaternionFromPointer(ptr)
+	return n
+}
+
 func (ptr *QQuaternion) QQuaternion_PTR() *QQuaternion {
 	return ptr
 }
@@ -21450,13 +22190,13 @@ func (ptr *QQuaternion) QQuaternion_PTR() *QQuaternion {
 func NewQQuaternion() *QQuaternion {
 	defer qt.Recovering("QQuaternion::QQuaternion")
 
-	return NewQQuaternionFromPointer(C.QQuaternion_NewQQuaternion())
+	return newQQuaternionFromPointer(C.QQuaternion_NewQQuaternion())
 }
 
 func NewQQuaternion5(vector QVector4D_ITF) *QQuaternion {
 	defer qt.Recovering("QQuaternion::QQuaternion")
 
-	return NewQQuaternionFromPointer(C.QQuaternion_NewQQuaternion5(PointerFromQVector4D(vector)))
+	return newQQuaternionFromPointer(C.QQuaternion_NewQQuaternion5(PointerFromQVector4D(vector)))
 }
 
 func (ptr *QQuaternion) GetAxes(xAxis QVector3D_ITF, yAxis QVector3D_ITF, zAxis QVector3D_ITF) {
@@ -21523,6 +22263,11 @@ func NewQRadialGradientFromPointer(ptr unsafe.Pointer) *QRadialGradient {
 	return n
 }
 
+func newQRadialGradientFromPointer(ptr unsafe.Pointer) *QRadialGradient {
+	var n = NewQRadialGradientFromPointer(ptr)
+	return n
+}
+
 func (ptr *QRadialGradient) QRadialGradient_PTR() *QRadialGradient {
 	return ptr
 }
@@ -21530,43 +22275,43 @@ func (ptr *QRadialGradient) QRadialGradient_PTR() *QRadialGradient {
 func NewQRadialGradient() *QRadialGradient {
 	defer qt.Recovering("QRadialGradient::QRadialGradient")
 
-	return NewQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient())
+	return newQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient())
 }
 
 func NewQRadialGradient6(center core.QPointF_ITF, centerRadius float64, focalPoint core.QPointF_ITF, focalRadius float64) *QRadialGradient {
 	defer qt.Recovering("QRadialGradient::QRadialGradient")
 
-	return NewQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient6(core.PointerFromQPointF(center), C.double(centerRadius), core.PointerFromQPointF(focalPoint), C.double(focalRadius)))
+	return newQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient6(core.PointerFromQPointF(center), C.double(centerRadius), core.PointerFromQPointF(focalPoint), C.double(focalRadius)))
 }
 
 func NewQRadialGradient4(center core.QPointF_ITF, radius float64) *QRadialGradient {
 	defer qt.Recovering("QRadialGradient::QRadialGradient")
 
-	return NewQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient4(core.PointerFromQPointF(center), C.double(radius)))
+	return newQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient4(core.PointerFromQPointF(center), C.double(radius)))
 }
 
 func NewQRadialGradient2(center core.QPointF_ITF, radius float64, focalPoint core.QPointF_ITF) *QRadialGradient {
 	defer qt.Recovering("QRadialGradient::QRadialGradient")
 
-	return NewQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient2(core.PointerFromQPointF(center), C.double(radius), core.PointerFromQPointF(focalPoint)))
+	return newQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient2(core.PointerFromQPointF(center), C.double(radius), core.PointerFromQPointF(focalPoint)))
 }
 
 func NewQRadialGradient7(cx float64, cy float64, centerRadius float64, fx float64, fy float64, focalRadius float64) *QRadialGradient {
 	defer qt.Recovering("QRadialGradient::QRadialGradient")
 
-	return NewQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient7(C.double(cx), C.double(cy), C.double(centerRadius), C.double(fx), C.double(fy), C.double(focalRadius)))
+	return newQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient7(C.double(cx), C.double(cy), C.double(centerRadius), C.double(fx), C.double(fy), C.double(focalRadius)))
 }
 
 func NewQRadialGradient5(cx float64, cy float64, radius float64) *QRadialGradient {
 	defer qt.Recovering("QRadialGradient::QRadialGradient")
 
-	return NewQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient5(C.double(cx), C.double(cy), C.double(radius)))
+	return newQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient5(C.double(cx), C.double(cy), C.double(radius)))
 }
 
 func NewQRadialGradient3(cx float64, cy float64, radius float64, fx float64, fy float64) *QRadialGradient {
 	defer qt.Recovering("QRadialGradient::QRadialGradient")
 
-	return NewQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient3(C.double(cx), C.double(cy), C.double(radius), C.double(fx), C.double(fy)))
+	return newQRadialGradientFromPointer(C.QRadialGradient_NewQRadialGradient3(C.double(cx), C.double(cy), C.double(radius), C.double(fx), C.double(fy)))
 }
 
 func (ptr *QRadialGradient) CenterRadius() float64 {
@@ -21674,6 +22419,11 @@ func NewQRasterPaintEngineFromPointer(ptr unsafe.Pointer) *QRasterPaintEngine {
 	return n
 }
 
+func newQRasterPaintEngineFromPointer(ptr unsafe.Pointer) *QRasterPaintEngine {
+	var n = NewQRasterPaintEngineFromPointer(ptr)
+	return n
+}
+
 func (ptr *QRasterPaintEngine) QRasterPaintEngine_PTR() *QRasterPaintEngine {
 	return ptr
 }
@@ -21697,6 +22447,11 @@ func PointerFromQRasterWindow(ptr QRasterWindow_ITF) unsafe.Pointer {
 func NewQRasterWindowFromPointer(ptr unsafe.Pointer) *QRasterWindow {
 	var n = new(QRasterWindow)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQRasterWindowFromPointer(ptr unsafe.Pointer) *QRasterWindow {
+	var n = NewQRasterWindowFromPointer(ptr)
 	for len(n.ObjectName()) < len("QRasterWindow_") {
 		n.SetObjectName("QRasterWindow_" + qt.Identifier())
 	}
@@ -21710,7 +22465,7 @@ func (ptr *QRasterWindow) QRasterWindow_PTR() *QRasterWindow {
 func NewQRasterWindow(parent QWindow_ITF) *QRasterWindow {
 	defer qt.Recovering("QRasterWindow::QRasterWindow")
 
-	return NewQRasterWindowFromPointer(C.QRasterWindow_NewQRasterWindow(PointerFromQWindow(parent)))
+	return newQRasterWindowFromPointer(C.QRasterWindow_NewQRasterWindow(PointerFromQWindow(parent)))
 }
 
 func (ptr *QRasterWindow) ConnectPaintEvent(f func(event *QPaintEvent)) {
@@ -22642,6 +23397,11 @@ func NewQRawFontFromPointer(ptr unsafe.Pointer) *QRawFont {
 	return n
 }
 
+func newQRawFontFromPointer(ptr unsafe.Pointer) *QRawFont {
+	var n = NewQRawFontFromPointer(ptr)
+	return n
+}
+
 func (ptr *QRawFont) QRawFont_PTR() *QRawFont {
 	return ptr
 }
@@ -22666,25 +23426,25 @@ const (
 func NewQRawFont() *QRawFont {
 	defer qt.Recovering("QRawFont::QRawFont")
 
-	return NewQRawFontFromPointer(C.QRawFont_NewQRawFont())
+	return newQRawFontFromPointer(C.QRawFont_NewQRawFont())
 }
 
 func NewQRawFont3(fontData core.QByteArray_ITF, pixelSize float64, hintingPreference QFont__HintingPreference) *QRawFont {
 	defer qt.Recovering("QRawFont::QRawFont")
 
-	return NewQRawFontFromPointer(C.QRawFont_NewQRawFont3(core.PointerFromQByteArray(fontData), C.double(pixelSize), C.int(hintingPreference)))
+	return newQRawFontFromPointer(C.QRawFont_NewQRawFont3(core.PointerFromQByteArray(fontData), C.double(pixelSize), C.int(hintingPreference)))
 }
 
 func NewQRawFont4(other QRawFont_ITF) *QRawFont {
 	defer qt.Recovering("QRawFont::QRawFont")
 
-	return NewQRawFontFromPointer(C.QRawFont_NewQRawFont4(PointerFromQRawFont(other)))
+	return newQRawFontFromPointer(C.QRawFont_NewQRawFont4(PointerFromQRawFont(other)))
 }
 
 func NewQRawFont2(fileName string, pixelSize float64, hintingPreference QFont__HintingPreference) *QRawFont {
 	defer qt.Recovering("QRawFont::QRawFont")
 
-	return NewQRawFontFromPointer(C.QRawFont_NewQRawFont2(C.CString(fileName), C.double(pixelSize), C.int(hintingPreference)))
+	return newQRawFontFromPointer(C.QRawFont_NewQRawFont2(C.CString(fileName), C.double(pixelSize), C.int(hintingPreference)))
 }
 
 func (ptr *QRawFont) Ascent() float64 {
@@ -22908,6 +23668,11 @@ func PointerFromQRegExpValidator(ptr QRegExpValidator_ITF) unsafe.Pointer {
 func NewQRegExpValidatorFromPointer(ptr unsafe.Pointer) *QRegExpValidator {
 	var n = new(QRegExpValidator)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQRegExpValidatorFromPointer(ptr unsafe.Pointer) *QRegExpValidator {
+	var n = NewQRegExpValidatorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QRegExpValidator_") {
 		n.SetObjectName("QRegExpValidator_" + qt.Identifier())
 	}
@@ -22929,13 +23694,13 @@ func (ptr *QRegExpValidator) SetRegExp(rx core.QRegExp_ITF) {
 func NewQRegExpValidator(parent core.QObject_ITF) *QRegExpValidator {
 	defer qt.Recovering("QRegExpValidator::QRegExpValidator")
 
-	return NewQRegExpValidatorFromPointer(C.QRegExpValidator_NewQRegExpValidator(core.PointerFromQObject(parent)))
+	return newQRegExpValidatorFromPointer(C.QRegExpValidator_NewQRegExpValidator(core.PointerFromQObject(parent)))
 }
 
 func NewQRegExpValidator2(rx core.QRegExp_ITF, parent core.QObject_ITF) *QRegExpValidator {
 	defer qt.Recovering("QRegExpValidator::QRegExpValidator")
 
-	return NewQRegExpValidatorFromPointer(C.QRegExpValidator_NewQRegExpValidator2(core.PointerFromQRegExp(rx), core.PointerFromQObject(parent)))
+	return newQRegExpValidatorFromPointer(C.QRegExpValidator_NewQRegExpValidator2(core.PointerFromQRegExp(rx), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QRegExpValidator) RegExp() *core.QRegExp {
@@ -23120,6 +23885,11 @@ func NewQRegionFromPointer(ptr unsafe.Pointer) *QRegion {
 	return n
 }
 
+func newQRegionFromPointer(ptr unsafe.Pointer) *QRegion {
+	var n = NewQRegionFromPointer(ptr)
+	return n
+}
+
 func (ptr *QRegion) QRegion_PTR() *QRegion {
 	return ptr
 }
@@ -23135,31 +23905,31 @@ const (
 func NewQRegion() *QRegion {
 	defer qt.Recovering("QRegion::QRegion")
 
-	return NewQRegionFromPointer(C.QRegion_NewQRegion())
+	return newQRegionFromPointer(C.QRegion_NewQRegion())
 }
 
 func NewQRegion5(bm QBitmap_ITF) *QRegion {
 	defer qt.Recovering("QRegion::QRegion")
 
-	return NewQRegionFromPointer(C.QRegion_NewQRegion5(PointerFromQBitmap(bm)))
+	return newQRegionFromPointer(C.QRegion_NewQRegion5(PointerFromQBitmap(bm)))
 }
 
 func NewQRegion3(a QPolygon_ITF, fillRule core.Qt__FillRule) *QRegion {
 	defer qt.Recovering("QRegion::QRegion")
 
-	return NewQRegionFromPointer(C.QRegion_NewQRegion3(PointerFromQPolygon(a), C.int(fillRule)))
+	return newQRegionFromPointer(C.QRegion_NewQRegion3(PointerFromQPolygon(a), C.int(fillRule)))
 }
 
 func NewQRegion6(r core.QRect_ITF, t QRegion__RegionType) *QRegion {
 	defer qt.Recovering("QRegion::QRegion")
 
-	return NewQRegionFromPointer(C.QRegion_NewQRegion6(core.PointerFromQRect(r), C.int(t)))
+	return newQRegionFromPointer(C.QRegion_NewQRegion6(core.PointerFromQRect(r), C.int(t)))
 }
 
 func NewQRegion4(r QRegion_ITF) *QRegion {
 	defer qt.Recovering("QRegion::QRegion")
 
-	return NewQRegionFromPointer(C.QRegion_NewQRegion4(PointerFromQRegion(r)))
+	return newQRegionFromPointer(C.QRegion_NewQRegion4(PointerFromQRegion(r)))
 }
 
 func (ptr *QRegion) BoundingRect() *core.QRect {
@@ -23298,7 +24068,7 @@ func (ptr *QRegion) Xored(r QRegion_ITF) *QRegion {
 func NewQRegion2(x int, y int, w int, h int, t QRegion__RegionType) *QRegion {
 	defer qt.Recovering("QRegion::QRegion")
 
-	return NewQRegionFromPointer(C.QRegion_NewQRegion2(C.int(x), C.int(y), C.int(w), C.int(h), C.int(t)))
+	return newQRegionFromPointer(C.QRegion_NewQRegion2(C.int(x), C.int(y), C.int(w), C.int(h), C.int(t)))
 }
 
 func (ptr *QRegion) Intersects(region QRegion_ITF) bool {
@@ -23363,6 +24133,11 @@ func PointerFromQRegularExpressionValidator(ptr QRegularExpressionValidator_ITF)
 func NewQRegularExpressionValidatorFromPointer(ptr unsafe.Pointer) *QRegularExpressionValidator {
 	var n = new(QRegularExpressionValidator)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQRegularExpressionValidatorFromPointer(ptr unsafe.Pointer) *QRegularExpressionValidator {
+	var n = NewQRegularExpressionValidatorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QRegularExpressionValidator_") {
 		n.SetObjectName("QRegularExpressionValidator_" + qt.Identifier())
 	}
@@ -23393,13 +24168,13 @@ func (ptr *QRegularExpressionValidator) SetRegularExpression(re core.QRegularExp
 func NewQRegularExpressionValidator(parent core.QObject_ITF) *QRegularExpressionValidator {
 	defer qt.Recovering("QRegularExpressionValidator::QRegularExpressionValidator")
 
-	return NewQRegularExpressionValidatorFromPointer(C.QRegularExpressionValidator_NewQRegularExpressionValidator(core.PointerFromQObject(parent)))
+	return newQRegularExpressionValidatorFromPointer(C.QRegularExpressionValidator_NewQRegularExpressionValidator(core.PointerFromQObject(parent)))
 }
 
 func NewQRegularExpressionValidator2(re core.QRegularExpression_ITF, parent core.QObject_ITF) *QRegularExpressionValidator {
 	defer qt.Recovering("QRegularExpressionValidator::QRegularExpressionValidator")
 
-	return NewQRegularExpressionValidatorFromPointer(C.QRegularExpressionValidator_NewQRegularExpressionValidator2(core.PointerFromQRegularExpression(re), core.PointerFromQObject(parent)))
+	return newQRegularExpressionValidatorFromPointer(C.QRegularExpressionValidator_NewQRegularExpressionValidator2(core.PointerFromQRegularExpression(re), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QRegularExpressionValidator) ConnectRegularExpressionChanged(f func(re *core.QRegularExpression)) {
@@ -23604,6 +24379,11 @@ func NewQResizeEventFromPointer(ptr unsafe.Pointer) *QResizeEvent {
 	return n
 }
 
+func newQResizeEventFromPointer(ptr unsafe.Pointer) *QResizeEvent {
+	var n = NewQResizeEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QResizeEvent) QResizeEvent_PTR() *QResizeEvent {
 	return ptr
 }
@@ -23611,7 +24391,7 @@ func (ptr *QResizeEvent) QResizeEvent_PTR() *QResizeEvent {
 func NewQResizeEvent(size core.QSize_ITF, oldSize core.QSize_ITF) *QResizeEvent {
 	defer qt.Recovering("QResizeEvent::QResizeEvent")
 
-	return NewQResizeEventFromPointer(C.QResizeEvent_NewQResizeEvent(core.PointerFromQSize(size), core.PointerFromQSize(oldSize)))
+	return newQResizeEventFromPointer(C.QResizeEvent_NewQResizeEvent(core.PointerFromQSize(size), core.PointerFromQSize(oldSize)))
 }
 
 func (ptr *QResizeEvent) OldSize() *core.QSize {
@@ -23651,6 +24431,11 @@ func PointerFromQScreen(ptr QScreen_ITF) unsafe.Pointer {
 func NewQScreenFromPointer(ptr unsafe.Pointer) *QScreen {
 	var n = new(QScreen)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQScreenFromPointer(ptr unsafe.Pointer) *QScreen {
+	var n = NewQScreenFromPointer(ptr)
 	for len(n.ObjectName()) < len("QScreen_") {
 		n.SetObjectName("QScreen_" + qt.Identifier())
 	}
@@ -24357,6 +25142,11 @@ func NewQScrollEventFromPointer(ptr unsafe.Pointer) *QScrollEvent {
 	return n
 }
 
+func newQScrollEventFromPointer(ptr unsafe.Pointer) *QScrollEvent {
+	var n = NewQScrollEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QScrollEvent) QScrollEvent_PTR() *QScrollEvent {
 	return ptr
 }
@@ -24373,7 +25163,7 @@ const (
 func NewQScrollEvent(contentPos core.QPointF_ITF, overshootDistance core.QPointF_ITF, scrollState QScrollEvent__ScrollState) *QScrollEvent {
 	defer qt.Recovering("QScrollEvent::QScrollEvent")
 
-	return NewQScrollEventFromPointer(C.QScrollEvent_NewQScrollEvent(core.PointerFromQPointF(contentPos), core.PointerFromQPointF(overshootDistance), C.int(scrollState)))
+	return newQScrollEventFromPointer(C.QScrollEvent_NewQScrollEvent(core.PointerFromQPointF(contentPos), core.PointerFromQPointF(overshootDistance), C.int(scrollState)))
 }
 
 func (ptr *QScrollEvent) ScrollState() QScrollEvent__ScrollState {
@@ -24415,6 +25205,11 @@ func NewQScrollPrepareEventFromPointer(ptr unsafe.Pointer) *QScrollPrepareEvent 
 	return n
 }
 
+func newQScrollPrepareEventFromPointer(ptr unsafe.Pointer) *QScrollPrepareEvent {
+	var n = NewQScrollPrepareEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QScrollPrepareEvent) QScrollPrepareEvent_PTR() *QScrollPrepareEvent {
 	return ptr
 }
@@ -24422,7 +25217,7 @@ func (ptr *QScrollPrepareEvent) QScrollPrepareEvent_PTR() *QScrollPrepareEvent {
 func NewQScrollPrepareEvent(startPos core.QPointF_ITF) *QScrollPrepareEvent {
 	defer qt.Recovering("QScrollPrepareEvent::QScrollPrepareEvent")
 
-	return NewQScrollPrepareEventFromPointer(C.QScrollPrepareEvent_NewQScrollPrepareEvent(core.PointerFromQPointF(startPos)))
+	return newQScrollPrepareEventFromPointer(C.QScrollPrepareEvent_NewQScrollPrepareEvent(core.PointerFromQPointF(startPos)))
 }
 
 func (ptr *QScrollPrepareEvent) SetContentPos(pos core.QPointF_ITF) {
@@ -24476,6 +25271,11 @@ func PointerFromQSessionManager(ptr QSessionManager_ITF) unsafe.Pointer {
 func NewQSessionManagerFromPointer(ptr unsafe.Pointer) *QSessionManager {
 	var n = new(QSessionManager)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSessionManagerFromPointer(ptr unsafe.Pointer) *QSessionManager {
+	var n = NewQSessionManagerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSessionManager_") {
 		n.SetObjectName("QSessionManager_" + qt.Identifier())
 	}
@@ -24789,6 +25589,11 @@ func NewQShortcutEventFromPointer(ptr unsafe.Pointer) *QShortcutEvent {
 	return n
 }
 
+func newQShortcutEventFromPointer(ptr unsafe.Pointer) *QShortcutEvent {
+	var n = NewQShortcutEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QShortcutEvent) QShortcutEvent_PTR() *QShortcutEvent {
 	return ptr
 }
@@ -24796,7 +25601,7 @@ func (ptr *QShortcutEvent) QShortcutEvent_PTR() *QShortcutEvent {
 func NewQShortcutEvent(key QKeySequence_ITF, id int, ambiguous bool) *QShortcutEvent {
 	defer qt.Recovering("QShortcutEvent::QShortcutEvent")
 
-	return NewQShortcutEventFromPointer(C.QShortcutEvent_NewQShortcutEvent(PointerFromQKeySequence(key), C.int(id), C.int(qt.GoBoolToInt(ambiguous))))
+	return newQShortcutEventFromPointer(C.QShortcutEvent_NewQShortcutEvent(PointerFromQKeySequence(key), C.int(id), C.int(qt.GoBoolToInt(ambiguous))))
 }
 
 func (ptr *QShortcutEvent) IsAmbiguous() bool {
@@ -24847,6 +25652,11 @@ func NewQShowEventFromPointer(ptr unsafe.Pointer) *QShowEvent {
 	return n
 }
 
+func newQShowEventFromPointer(ptr unsafe.Pointer) *QShowEvent {
+	var n = NewQShowEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QShowEvent) QShowEvent_PTR() *QShowEvent {
 	return ptr
 }
@@ -24854,7 +25664,7 @@ func (ptr *QShowEvent) QShowEvent_PTR() *QShowEvent {
 func NewQShowEvent() *QShowEvent {
 	defer qt.Recovering("QShowEvent::QShowEvent")
 
-	return NewQShowEventFromPointer(C.QShowEvent_NewQShowEvent())
+	return newQShowEventFromPointer(C.QShowEvent_NewQShowEvent())
 }
 
 type QStandardItem struct {
@@ -24883,6 +25693,11 @@ func PointerFromQStandardItem(ptr QStandardItem_ITF) unsafe.Pointer {
 func NewQStandardItemFromPointer(ptr unsafe.Pointer) *QStandardItem {
 	var n = new(QStandardItem)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQStandardItemFromPointer(ptr unsafe.Pointer) *QStandardItem {
+	var n = NewQStandardItemFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QStandardItem_") {
 		n.SetObjectNameAbs("QStandardItem_" + qt.Identifier())
 	}
@@ -24904,25 +25719,25 @@ const (
 func NewQStandardItem() *QStandardItem {
 	defer qt.Recovering("QStandardItem::QStandardItem")
 
-	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem())
+	return newQStandardItemFromPointer(C.QStandardItem_NewQStandardItem())
 }
 
 func NewQStandardItem3(icon QIcon_ITF, text string) *QStandardItem {
 	defer qt.Recovering("QStandardItem::QStandardItem")
 
-	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem3(PointerFromQIcon(icon), C.CString(text)))
+	return newQStandardItemFromPointer(C.QStandardItem_NewQStandardItem3(PointerFromQIcon(icon), C.CString(text)))
 }
 
 func NewQStandardItem2(text string) *QStandardItem {
 	defer qt.Recovering("QStandardItem::QStandardItem")
 
-	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem2(C.CString(text)))
+	return newQStandardItemFromPointer(C.QStandardItem_NewQStandardItem2(C.CString(text)))
 }
 
 func NewQStandardItem4(rows int, columns int) *QStandardItem {
 	defer qt.Recovering("QStandardItem::QStandardItem")
 
-	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem4(C.int(rows), C.int(columns)))
+	return newQStandardItemFromPointer(C.QStandardItem_NewQStandardItem4(C.int(rows), C.int(columns)))
 }
 
 func (ptr *QStandardItem) AccessibleDescription() string {
@@ -25583,6 +26398,11 @@ func PointerFromQStandardItemModel(ptr QStandardItemModel_ITF) unsafe.Pointer {
 func NewQStandardItemModelFromPointer(ptr unsafe.Pointer) *QStandardItemModel {
 	var n = new(QStandardItemModel)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQStandardItemModelFromPointer(ptr unsafe.Pointer) *QStandardItemModel {
+	var n = NewQStandardItemModelFromPointer(ptr)
 	for len(n.ObjectName()) < len("QStandardItemModel_") {
 		n.SetObjectName("QStandardItemModel_" + qt.Identifier())
 	}
@@ -25613,13 +26433,13 @@ func (ptr *QStandardItemModel) SortRole() int {
 func NewQStandardItemModel(parent core.QObject_ITF) *QStandardItemModel {
 	defer qt.Recovering("QStandardItemModel::QStandardItemModel")
 
-	return NewQStandardItemModelFromPointer(C.QStandardItemModel_NewQStandardItemModel(core.PointerFromQObject(parent)))
+	return newQStandardItemModelFromPointer(C.QStandardItemModel_NewQStandardItemModel(core.PointerFromQObject(parent)))
 }
 
 func NewQStandardItemModel2(rows int, columns int, parent core.QObject_ITF) *QStandardItemModel {
 	defer qt.Recovering("QStandardItemModel::QStandardItemModel")
 
-	return NewQStandardItemModelFromPointer(C.QStandardItemModel_NewQStandardItemModel2(C.int(rows), C.int(columns), core.PointerFromQObject(parent)))
+	return newQStandardItemModelFromPointer(C.QStandardItemModel_NewQStandardItemModel2(C.int(rows), C.int(columns), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QStandardItemModel) AppendRow2(item QStandardItem_ITF) {
@@ -26333,6 +27153,11 @@ func NewQStaticTextFromPointer(ptr unsafe.Pointer) *QStaticText {
 	return n
 }
 
+func newQStaticTextFromPointer(ptr unsafe.Pointer) *QStaticText {
+	var n = NewQStaticTextFromPointer(ptr)
+	return n
+}
+
 func (ptr *QStaticText) QStaticText_PTR() *QStaticText {
 	return ptr
 }
@@ -26348,19 +27173,19 @@ const (
 func NewQStaticText() *QStaticText {
 	defer qt.Recovering("QStaticText::QStaticText")
 
-	return NewQStaticTextFromPointer(C.QStaticText_NewQStaticText())
+	return newQStaticTextFromPointer(C.QStaticText_NewQStaticText())
 }
 
 func NewQStaticText3(other QStaticText_ITF) *QStaticText {
 	defer qt.Recovering("QStaticText::QStaticText")
 
-	return NewQStaticTextFromPointer(C.QStaticText_NewQStaticText3(PointerFromQStaticText(other)))
+	return newQStaticTextFromPointer(C.QStaticText_NewQStaticText3(PointerFromQStaticText(other)))
 }
 
 func NewQStaticText2(text string) *QStaticText {
 	defer qt.Recovering("QStaticText::QStaticText")
 
-	return NewQStaticTextFromPointer(C.QStaticText_NewQStaticText2(C.CString(text)))
+	return newQStaticTextFromPointer(C.QStaticText_NewQStaticText2(C.CString(text)))
 }
 
 func (ptr *QStaticText) PerformanceHint() QStaticText__PerformanceHint {
@@ -26485,6 +27310,11 @@ func NewQStatusTipEventFromPointer(ptr unsafe.Pointer) *QStatusTipEvent {
 	return n
 }
 
+func newQStatusTipEventFromPointer(ptr unsafe.Pointer) *QStatusTipEvent {
+	var n = NewQStatusTipEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QStatusTipEvent) QStatusTipEvent_PTR() *QStatusTipEvent {
 	return ptr
 }
@@ -26492,7 +27322,7 @@ func (ptr *QStatusTipEvent) QStatusTipEvent_PTR() *QStatusTipEvent {
 func NewQStatusTipEvent(tip string) *QStatusTipEvent {
 	defer qt.Recovering("QStatusTipEvent::QStatusTipEvent")
 
-	return NewQStatusTipEventFromPointer(C.QStatusTipEvent_NewQStatusTipEvent(C.CString(tip)))
+	return newQStatusTipEventFromPointer(C.QStatusTipEvent_NewQStatusTipEvent(C.CString(tip)))
 }
 
 func (ptr *QStatusTipEvent) Tip() string {
@@ -26523,6 +27353,11 @@ func PointerFromQStyleHints(ptr QStyleHints_ITF) unsafe.Pointer {
 func NewQStyleHintsFromPointer(ptr unsafe.Pointer) *QStyleHints {
 	var n = new(QStyleHints)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQStyleHintsFromPointer(ptr unsafe.Pointer) *QStyleHints {
+	var n = NewQStyleHintsFromPointer(ptr)
 	for len(n.ObjectName()) < len("QStyleHints_") {
 		n.SetObjectName("QStyleHints_" + qt.Identifier())
 	}
@@ -27012,6 +27847,11 @@ func NewQSupportedWritingSystemsFromPointer(ptr unsafe.Pointer) *QSupportedWriti
 	return n
 }
 
+func newQSupportedWritingSystemsFromPointer(ptr unsafe.Pointer) *QSupportedWritingSystems {
+	var n = NewQSupportedWritingSystemsFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSupportedWritingSystems) QSupportedWritingSystems_PTR() *QSupportedWritingSystems {
 	return ptr
 }
@@ -27042,6 +27882,11 @@ func PointerFromQSurface(ptr QSurface_ITF) unsafe.Pointer {
 func NewQSurfaceFromPointer(ptr unsafe.Pointer) *QSurface {
 	var n = new(QSurface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSurfaceFromPointer(ptr unsafe.Pointer) *QSurface {
+	var n = NewQSurfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QSurface_") {
 		n.SetObjectNameAbs("QSurface_" + qt.Identifier())
 	}
@@ -27159,6 +28004,11 @@ func NewQSurfaceFormatFromPointer(ptr unsafe.Pointer) *QSurfaceFormat {
 	return n
 }
 
+func newQSurfaceFormatFromPointer(ptr unsafe.Pointer) *QSurfaceFormat {
+	var n = NewQSurfaceFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSurfaceFormat) QSurfaceFormat_PTR() *QSurfaceFormat {
 	return ptr
 }
@@ -27205,19 +28055,19 @@ const (
 func NewQSurfaceFormat() *QSurfaceFormat {
 	defer qt.Recovering("QSurfaceFormat::QSurfaceFormat")
 
-	return NewQSurfaceFormatFromPointer(C.QSurfaceFormat_NewQSurfaceFormat())
+	return newQSurfaceFormatFromPointer(C.QSurfaceFormat_NewQSurfaceFormat())
 }
 
 func NewQSurfaceFormat2(options QSurfaceFormat__FormatOption) *QSurfaceFormat {
 	defer qt.Recovering("QSurfaceFormat::QSurfaceFormat")
 
-	return NewQSurfaceFormatFromPointer(C.QSurfaceFormat_NewQSurfaceFormat2(C.int(options)))
+	return newQSurfaceFormatFromPointer(C.QSurfaceFormat_NewQSurfaceFormat2(C.int(options)))
 }
 
 func NewQSurfaceFormat3(other QSurfaceFormat_ITF) *QSurfaceFormat {
 	defer qt.Recovering("QSurfaceFormat::QSurfaceFormat")
 
-	return NewQSurfaceFormatFromPointer(C.QSurfaceFormat_NewQSurfaceFormat3(PointerFromQSurfaceFormat(other)))
+	return newQSurfaceFormatFromPointer(C.QSurfaceFormat_NewQSurfaceFormat3(PointerFromQSurfaceFormat(other)))
 }
 
 func (ptr *QSurfaceFormat) AlphaBufferSize() int {
@@ -27542,6 +28392,11 @@ func PointerFromQSyntaxHighlighter(ptr QSyntaxHighlighter_ITF) unsafe.Pointer {
 func NewQSyntaxHighlighterFromPointer(ptr unsafe.Pointer) *QSyntaxHighlighter {
 	var n = new(QSyntaxHighlighter)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSyntaxHighlighterFromPointer(ptr unsafe.Pointer) *QSyntaxHighlighter {
+	var n = NewQSyntaxHighlighterFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSyntaxHighlighter_") {
 		n.SetObjectName("QSyntaxHighlighter_" + qt.Identifier())
 	}
@@ -27751,6 +28606,11 @@ func NewQTabletEventFromPointer(ptr unsafe.Pointer) *QTabletEvent {
 	return n
 }
 
+func newQTabletEventFromPointer(ptr unsafe.Pointer) *QTabletEvent {
+	var n = NewQTabletEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTabletEvent) QTabletEvent_PTR() *QTabletEvent {
 	return ptr
 }
@@ -27781,7 +28641,7 @@ const (
 func NewQTabletEvent(ty core.QEvent__Type, pos core.QPointF_ITF, globalPos core.QPointF_ITF, device int, pointerType int, pressure float64, xTilt int, yTilt int, tangentialPressure float64, rotation float64, z int, keyState core.Qt__KeyboardModifier, uniqueID int64, button core.Qt__MouseButton, buttons core.Qt__MouseButton) *QTabletEvent {
 	defer qt.Recovering("QTabletEvent::QTabletEvent")
 
-	return NewQTabletEventFromPointer(C.QTabletEvent_NewQTabletEvent(C.int(ty), core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), C.int(device), C.int(pointerType), C.double(pressure), C.int(xTilt), C.int(yTilt), C.double(tangentialPressure), C.double(rotation), C.int(z), C.int(keyState), C.longlong(uniqueID), C.int(button), C.int(buttons)))
+	return newQTabletEventFromPointer(C.QTabletEvent_NewQTabletEvent(C.int(ty), core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), C.int(device), C.int(pointerType), C.double(pressure), C.int(xTilt), C.int(yTilt), C.double(tangentialPressure), C.double(rotation), C.int(z), C.int(keyState), C.longlong(uniqueID), C.int(button), C.int(buttons)))
 }
 
 func (ptr *QTabletEvent) Button() core.Qt__MouseButton {
@@ -27984,6 +28844,11 @@ func NewQTextBlockFromPointer(ptr unsafe.Pointer) *QTextBlock {
 	return n
 }
 
+func newQTextBlockFromPointer(ptr unsafe.Pointer) *QTextBlock {
+	var n = NewQTextBlockFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextBlock) QTextBlock_PTR() *QTextBlock {
 	return ptr
 }
@@ -28000,7 +28865,7 @@ func (ptr *QTextBlock) IsValid() bool {
 func NewQTextBlock(other QTextBlock_ITF) *QTextBlock {
 	defer qt.Recovering("QTextBlock::QTextBlock")
 
-	return NewQTextBlockFromPointer(C.QTextBlock_NewQTextBlock(PointerFromQTextBlock(other)))
+	return newQTextBlockFromPointer(C.QTextBlock_NewQTextBlock(PointerFromQTextBlock(other)))
 }
 
 func (ptr *QTextBlock) BlockFormatIndex() int {
@@ -28226,6 +29091,11 @@ func NewQTextBlockFormatFromPointer(ptr unsafe.Pointer) *QTextBlockFormat {
 	return n
 }
 
+func newQTextBlockFormatFromPointer(ptr unsafe.Pointer) *QTextBlockFormat {
+	var n = NewQTextBlockFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextBlockFormat) QTextBlockFormat_PTR() *QTextBlockFormat {
 	return ptr
 }
@@ -28244,7 +29114,7 @@ const (
 func NewQTextBlockFormat() *QTextBlockFormat {
 	defer qt.Recovering("QTextBlockFormat::QTextBlockFormat")
 
-	return NewQTextBlockFormatFromPointer(C.QTextBlockFormat_NewQTextBlockFormat())
+	return newQTextBlockFormatFromPointer(C.QTextBlockFormat_NewQTextBlockFormat())
 }
 
 func (ptr *QTextBlockFormat) Alignment() core.Qt__AlignmentFlag {
@@ -28463,6 +29333,11 @@ func PointerFromQTextBlockGroup(ptr QTextBlockGroup_ITF) unsafe.Pointer {
 func NewQTextBlockGroupFromPointer(ptr unsafe.Pointer) *QTextBlockGroup {
 	var n = new(QTextBlockGroup)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTextBlockGroupFromPointer(ptr unsafe.Pointer) *QTextBlockGroup {
+	var n = NewQTextBlockGroupFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTextBlockGroup_") {
 		n.SetObjectName("QTextBlockGroup_" + qt.Identifier())
 	}
@@ -28634,6 +29509,11 @@ func PointerFromQTextBlockUserData(ptr QTextBlockUserData_ITF) unsafe.Pointer {
 func NewQTextBlockUserDataFromPointer(ptr unsafe.Pointer) *QTextBlockUserData {
 	var n = new(QTextBlockUserData)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTextBlockUserDataFromPointer(ptr unsafe.Pointer) *QTextBlockUserData {
+	var n = NewQTextBlockUserDataFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QTextBlockUserData_") {
 		n.SetObjectNameAbs("QTextBlockUserData_" + qt.Identifier())
 	}
@@ -28691,6 +29571,11 @@ func NewQTextCharFormatFromPointer(ptr unsafe.Pointer) *QTextCharFormat {
 	return n
 }
 
+func newQTextCharFormatFromPointer(ptr unsafe.Pointer) *QTextCharFormat {
+	var n = NewQTextCharFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextCharFormat) QTextCharFormat_PTR() *QTextCharFormat {
 	return ptr
 }
@@ -28733,7 +29618,7 @@ const (
 func NewQTextCharFormat() *QTextCharFormat {
 	defer qt.Recovering("QTextCharFormat::QTextCharFormat")
 
-	return NewQTextCharFormatFromPointer(C.QTextCharFormat_NewQTextCharFormat())
+	return newQTextCharFormatFromPointer(C.QTextCharFormat_NewQTextCharFormat())
 }
 
 func (ptr *QTextCharFormat) AnchorNames() []string {
@@ -29206,6 +30091,11 @@ func NewQTextCursorFromPointer(ptr unsafe.Pointer) *QTextCursor {
 	return n
 }
 
+func newQTextCursorFromPointer(ptr unsafe.Pointer) *QTextCursor {
+	var n = NewQTextCursorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextCursor) QTextCursor_PTR() *QTextCursor {
 	return ptr
 }
@@ -29305,31 +30195,31 @@ func (ptr *QTextCursor) MovePosition(operation QTextCursor__MoveOperation, mode 
 func NewQTextCursor() *QTextCursor {
 	defer qt.Recovering("QTextCursor::QTextCursor")
 
-	return NewQTextCursorFromPointer(C.QTextCursor_NewQTextCursor())
+	return newQTextCursorFromPointer(C.QTextCursor_NewQTextCursor())
 }
 
 func NewQTextCursor2(document QTextDocument_ITF) *QTextCursor {
 	defer qt.Recovering("QTextCursor::QTextCursor")
 
-	return NewQTextCursorFromPointer(C.QTextCursor_NewQTextCursor2(PointerFromQTextDocument(document)))
+	return newQTextCursorFromPointer(C.QTextCursor_NewQTextCursor2(PointerFromQTextDocument(document)))
 }
 
 func NewQTextCursor4(frame QTextFrame_ITF) *QTextCursor {
 	defer qt.Recovering("QTextCursor::QTextCursor")
 
-	return NewQTextCursorFromPointer(C.QTextCursor_NewQTextCursor4(PointerFromQTextFrame(frame)))
+	return newQTextCursorFromPointer(C.QTextCursor_NewQTextCursor4(PointerFromQTextFrame(frame)))
 }
 
 func NewQTextCursor5(block QTextBlock_ITF) *QTextCursor {
 	defer qt.Recovering("QTextCursor::QTextCursor")
 
-	return NewQTextCursorFromPointer(C.QTextCursor_NewQTextCursor5(PointerFromQTextBlock(block)))
+	return newQTextCursorFromPointer(C.QTextCursor_NewQTextCursor5(PointerFromQTextBlock(block)))
 }
 
 func NewQTextCursor7(cursor QTextCursor_ITF) *QTextCursor {
 	defer qt.Recovering("QTextCursor::QTextCursor")
 
-	return NewQTextCursorFromPointer(C.QTextCursor_NewQTextCursor7(PointerFromQTextCursor(cursor)))
+	return newQTextCursorFromPointer(C.QTextCursor_NewQTextCursor7(PointerFromQTextCursor(cursor)))
 }
 
 func (ptr *QTextCursor) Anchor() int {
@@ -29843,6 +30733,11 @@ func PointerFromQTextDocument(ptr QTextDocument_ITF) unsafe.Pointer {
 func NewQTextDocumentFromPointer(ptr unsafe.Pointer) *QTextDocument {
 	var n = new(QTextDocument)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTextDocumentFromPointer(ptr unsafe.Pointer) *QTextDocument {
+	var n = NewQTextDocumentFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTextDocument_") {
 		n.SetObjectName("QTextDocument_" + qt.Identifier())
 	}
@@ -30071,13 +30966,13 @@ func (ptr *QTextDocument) UseDesignMetrics() bool {
 func NewQTextDocument(parent core.QObject_ITF) *QTextDocument {
 	defer qt.Recovering("QTextDocument::QTextDocument")
 
-	return NewQTextDocumentFromPointer(C.QTextDocument_NewQTextDocument(core.PointerFromQObject(parent)))
+	return newQTextDocumentFromPointer(C.QTextDocument_NewQTextDocument(core.PointerFromQObject(parent)))
 }
 
 func NewQTextDocument2(text string, parent core.QObject_ITF) *QTextDocument {
 	defer qt.Recovering("QTextDocument::QTextDocument")
 
-	return NewQTextDocumentFromPointer(C.QTextDocument_NewQTextDocument2(C.CString(text), core.PointerFromQObject(parent)))
+	return newQTextDocumentFromPointer(C.QTextDocument_NewQTextDocument2(C.CString(text), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QTextDocument) AddResource(ty int, name core.QUrl_ITF, resource core.QVariant_ITF) {
@@ -30947,6 +31842,11 @@ func NewQTextDocumentFragmentFromPointer(ptr unsafe.Pointer) *QTextDocumentFragm
 	return n
 }
 
+func newQTextDocumentFragmentFromPointer(ptr unsafe.Pointer) *QTextDocumentFragment {
+	var n = NewQTextDocumentFragmentFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextDocumentFragment) QTextDocumentFragment_PTR() *QTextDocumentFragment {
 	return ptr
 }
@@ -30954,25 +31854,25 @@ func (ptr *QTextDocumentFragment) QTextDocumentFragment_PTR() *QTextDocumentFrag
 func NewQTextDocumentFragment4(other QTextDocumentFragment_ITF) *QTextDocumentFragment {
 	defer qt.Recovering("QTextDocumentFragment::QTextDocumentFragment")
 
-	return NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_NewQTextDocumentFragment4(PointerFromQTextDocumentFragment(other)))
+	return newQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_NewQTextDocumentFragment4(PointerFromQTextDocumentFragment(other)))
 }
 
 func NewQTextDocumentFragment() *QTextDocumentFragment {
 	defer qt.Recovering("QTextDocumentFragment::QTextDocumentFragment")
 
-	return NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_NewQTextDocumentFragment())
+	return newQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_NewQTextDocumentFragment())
 }
 
 func NewQTextDocumentFragment3(cursor QTextCursor_ITF) *QTextDocumentFragment {
 	defer qt.Recovering("QTextDocumentFragment::QTextDocumentFragment")
 
-	return NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_NewQTextDocumentFragment3(PointerFromQTextCursor(cursor)))
+	return newQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_NewQTextDocumentFragment3(PointerFromQTextCursor(cursor)))
 }
 
 func NewQTextDocumentFragment2(document QTextDocument_ITF) *QTextDocumentFragment {
 	defer qt.Recovering("QTextDocumentFragment::QTextDocumentFragment")
 
-	return NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_NewQTextDocumentFragment2(PointerFromQTextDocument(document)))
+	return newQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_NewQTextDocumentFragment2(PointerFromQTextDocument(document)))
 }
 
 func (ptr *QTextDocumentFragment) IsEmpty() bool {
@@ -31039,6 +31939,11 @@ func NewQTextDocumentWriterFromPointer(ptr unsafe.Pointer) *QTextDocumentWriter 
 	return n
 }
 
+func newQTextDocumentWriterFromPointer(ptr unsafe.Pointer) *QTextDocumentWriter {
+	var n = NewQTextDocumentWriterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextDocumentWriter) QTextDocumentWriter_PTR() *QTextDocumentWriter {
 	return ptr
 }
@@ -31046,19 +31951,19 @@ func (ptr *QTextDocumentWriter) QTextDocumentWriter_PTR() *QTextDocumentWriter {
 func NewQTextDocumentWriter() *QTextDocumentWriter {
 	defer qt.Recovering("QTextDocumentWriter::QTextDocumentWriter")
 
-	return NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter())
+	return newQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter())
 }
 
 func NewQTextDocumentWriter2(device core.QIODevice_ITF, format core.QByteArray_ITF) *QTextDocumentWriter {
 	defer qt.Recovering("QTextDocumentWriter::QTextDocumentWriter")
 
-	return NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
+	return newQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 }
 
 func NewQTextDocumentWriter3(fileName string, format core.QByteArray_ITF) *QTextDocumentWriter {
 	defer qt.Recovering("QTextDocumentWriter::QTextDocumentWriter")
 
-	return NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter3(C.CString(fileName), core.PointerFromQByteArray(format)))
+	return newQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter3(C.CString(fileName), core.PointerFromQByteArray(format)))
 }
 
 func (ptr *QTextDocumentWriter) Codec() *core.QTextCodec {
@@ -31181,6 +32086,11 @@ func PointerFromQTextFormat(ptr QTextFormat_ITF) unsafe.Pointer {
 func NewQTextFormatFromPointer(ptr unsafe.Pointer) *QTextFormat {
 	var n = new(QTextFormat)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTextFormatFromPointer(ptr unsafe.Pointer) *QTextFormat {
+	var n = NewQTextFormatFromPointer(ptr)
 	return n
 }
 
@@ -31312,7 +32222,7 @@ const (
 func NewQTextFormat3(other QTextFormat_ITF) *QTextFormat {
 	defer qt.Recovering("QTextFormat::QTextFormat")
 
-	return NewQTextFormatFromPointer(C.QTextFormat_NewQTextFormat3(PointerFromQTextFormat(other)))
+	return newQTextFormatFromPointer(C.QTextFormat_NewQTextFormat3(PointerFromQTextFormat(other)))
 }
 
 func (ptr *QTextFormat) SetObjectIndex(index int) {
@@ -31326,13 +32236,13 @@ func (ptr *QTextFormat) SetObjectIndex(index int) {
 func NewQTextFormat() *QTextFormat {
 	defer qt.Recovering("QTextFormat::QTextFormat")
 
-	return NewQTextFormatFromPointer(C.QTextFormat_NewQTextFormat())
+	return newQTextFormatFromPointer(C.QTextFormat_NewQTextFormat())
 }
 
 func NewQTextFormat2(ty int) *QTextFormat {
 	defer qt.Recovering("QTextFormat::QTextFormat")
 
-	return NewQTextFormatFromPointer(C.QTextFormat_NewQTextFormat2(C.int(ty)))
+	return newQTextFormatFromPointer(C.QTextFormat_NewQTextFormat2(C.int(ty)))
 }
 
 func (ptr *QTextFormat) Background() *QBrush {
@@ -31668,6 +32578,11 @@ func NewQTextFragmentFromPointer(ptr unsafe.Pointer) *QTextFragment {
 	return n
 }
 
+func newQTextFragmentFromPointer(ptr unsafe.Pointer) *QTextFragment {
+	var n = NewQTextFragmentFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextFragment) QTextFragment_PTR() *QTextFragment {
 	return ptr
 }
@@ -31675,13 +32590,13 @@ func (ptr *QTextFragment) QTextFragment_PTR() *QTextFragment {
 func NewQTextFragment() *QTextFragment {
 	defer qt.Recovering("QTextFragment::QTextFragment")
 
-	return NewQTextFragmentFromPointer(C.QTextFragment_NewQTextFragment())
+	return newQTextFragmentFromPointer(C.QTextFragment_NewQTextFragment())
 }
 
 func NewQTextFragment3(other QTextFragment_ITF) *QTextFragment {
 	defer qt.Recovering("QTextFragment::QTextFragment")
 
-	return NewQTextFragmentFromPointer(C.QTextFragment_NewQTextFragment3(PointerFromQTextFragment(other)))
+	return newQTextFragmentFromPointer(C.QTextFragment_NewQTextFragment3(PointerFromQTextFragment(other)))
 }
 
 func (ptr *QTextFragment) CharFormatIndex() int {
@@ -31757,6 +32672,11 @@ func PointerFromQTextFrame(ptr QTextFrame_ITF) unsafe.Pointer {
 func NewQTextFrameFromPointer(ptr unsafe.Pointer) *QTextFrame {
 	var n = new(QTextFrame)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTextFrameFromPointer(ptr unsafe.Pointer) *QTextFrame {
+	var n = NewQTextFrameFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTextFrame_") {
 		n.SetObjectName("QTextFrame_" + qt.Identifier())
 	}
@@ -31770,7 +32690,7 @@ func (ptr *QTextFrame) QTextFrame_PTR() *QTextFrame {
 func NewQTextFrame(document QTextDocument_ITF) *QTextFrame {
 	defer qt.Recovering("QTextFrame::QTextFrame")
 
-	return NewQTextFrameFromPointer(C.QTextFrame_NewQTextFrame(PointerFromQTextDocument(document)))
+	return newQTextFrameFromPointer(C.QTextFrame_NewQTextFrame(PointerFromQTextDocument(document)))
 }
 
 func (ptr *QTextFrame) FirstPosition() int {
@@ -31974,6 +32894,11 @@ func NewQTextFrameFormatFromPointer(ptr unsafe.Pointer) *QTextFrameFormat {
 	return n
 }
 
+func newQTextFrameFormatFromPointer(ptr unsafe.Pointer) *QTextFrameFormat {
+	var n = NewQTextFrameFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextFrameFormat) QTextFrameFormat_PTR() *QTextFrameFormat {
 	return ptr
 }
@@ -32007,7 +32932,7 @@ const (
 func NewQTextFrameFormat() *QTextFrameFormat {
 	defer qt.Recovering("QTextFrameFormat::QTextFrameFormat")
 
-	return NewQTextFrameFormatFromPointer(C.QTextFrameFormat_NewQTextFrameFormat())
+	return newQTextFrameFormatFromPointer(C.QTextFrameFormat_NewQTextFrameFormat())
 }
 
 func (ptr *QTextFrameFormat) BottomMargin() float64 {
@@ -32260,6 +33185,11 @@ func NewQTextImageFormatFromPointer(ptr unsafe.Pointer) *QTextImageFormat {
 	return n
 }
 
+func newQTextImageFormatFromPointer(ptr unsafe.Pointer) *QTextImageFormat {
+	var n = NewQTextImageFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextImageFormat) QTextImageFormat_PTR() *QTextImageFormat {
 	return ptr
 }
@@ -32267,7 +33197,7 @@ func (ptr *QTextImageFormat) QTextImageFormat_PTR() *QTextImageFormat {
 func NewQTextImageFormat() *QTextImageFormat {
 	defer qt.Recovering("QTextImageFormat::QTextImageFormat")
 
-	return NewQTextImageFormatFromPointer(C.QTextImageFormat_NewQTextImageFormat())
+	return newQTextImageFormatFromPointer(C.QTextImageFormat_NewQTextImageFormat())
 }
 
 func (ptr *QTextImageFormat) Height() float64 {
@@ -32356,6 +33286,11 @@ func PointerFromQTextInlineObject(ptr QTextInlineObject_ITF) unsafe.Pointer {
 func NewQTextInlineObjectFromPointer(ptr unsafe.Pointer) *QTextInlineObject {
 	var n = new(QTextInlineObject)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTextInlineObjectFromPointer(ptr unsafe.Pointer) *QTextInlineObject {
+	var n = NewQTextInlineObjectFromPointer(ptr)
 	return n
 }
 
@@ -32488,6 +33423,11 @@ func NewQTextItemFromPointer(ptr unsafe.Pointer) *QTextItem {
 	return n
 }
 
+func newQTextItemFromPointer(ptr unsafe.Pointer) *QTextItem {
+	var n = NewQTextItemFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextItem) QTextItem_PTR() *QTextItem {
 	return ptr
 }
@@ -32577,6 +33517,11 @@ func NewQTextLayoutFromPointer(ptr unsafe.Pointer) *QTextLayout {
 	return n
 }
 
+func newQTextLayoutFromPointer(ptr unsafe.Pointer) *QTextLayout {
+	var n = NewQTextLayoutFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextLayout) QTextLayout_PTR() *QTextLayout {
 	return ptr
 }
@@ -32608,19 +33553,19 @@ func (ptr *QTextLayout) DrawCursor(painter QPainter_ITF, position core.QPointF_I
 func NewQTextLayout() *QTextLayout {
 	defer qt.Recovering("QTextLayout::QTextLayout")
 
-	return NewQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout())
+	return newQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout())
 }
 
 func NewQTextLayout2(text string) *QTextLayout {
 	defer qt.Recovering("QTextLayout::QTextLayout")
 
-	return NewQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout2(C.CString(text)))
+	return newQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout2(C.CString(text)))
 }
 
 func NewQTextLayout3(text string, font QFont_ITF, paintdevice QPaintDevice_ITF) *QTextLayout {
 	defer qt.Recovering("QTextLayout::QTextLayout")
 
-	return NewQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout3(C.CString(text), PointerFromQFont(font), PointerFromQPaintDevice(paintdevice)))
+	return newQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout3(C.CString(text), PointerFromQFont(font), PointerFromQPaintDevice(paintdevice)))
 }
 
 func (ptr *QTextLayout) BeginLayout() {
@@ -32865,6 +33810,11 @@ func NewQTextLengthFromPointer(ptr unsafe.Pointer) *QTextLength {
 	return n
 }
 
+func newQTextLengthFromPointer(ptr unsafe.Pointer) *QTextLength {
+	var n = NewQTextLengthFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextLength) QTextLength_PTR() *QTextLength {
 	return ptr
 }
@@ -32881,13 +33831,13 @@ const (
 func NewQTextLength() *QTextLength {
 	defer qt.Recovering("QTextLength::QTextLength")
 
-	return NewQTextLengthFromPointer(C.QTextLength_NewQTextLength())
+	return newQTextLengthFromPointer(C.QTextLength_NewQTextLength())
 }
 
 func NewQTextLength2(ty QTextLength__Type, value float64) *QTextLength {
 	defer qt.Recovering("QTextLength::QTextLength")
 
-	return NewQTextLengthFromPointer(C.QTextLength_NewQTextLength2(C.int(ty), C.double(value)))
+	return newQTextLengthFromPointer(C.QTextLength_NewQTextLength2(C.int(ty), C.double(value)))
 }
 
 func (ptr *QTextLength) RawValue() float64 {
@@ -32946,6 +33896,11 @@ func NewQTextLineFromPointer(ptr unsafe.Pointer) *QTextLine {
 	return n
 }
 
+func newQTextLineFromPointer(ptr unsafe.Pointer) *QTextLine {
+	var n = NewQTextLineFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextLine) QTextLine_PTR() *QTextLine {
 	return ptr
 }
@@ -32978,7 +33933,7 @@ func (ptr *QTextLine) XToCursor(x float64, cpos QTextLine__CursorPosition) int {
 func NewQTextLine() *QTextLine {
 	defer qt.Recovering("QTextLine::QTextLine")
 
-	return NewQTextLineFromPointer(C.QTextLine_NewQTextLine())
+	return newQTextLineFromPointer(C.QTextLine_NewQTextLine())
 }
 
 func (ptr *QTextLine) Ascent() float64 {
@@ -33184,6 +34139,11 @@ func PointerFromQTextList(ptr QTextList_ITF) unsafe.Pointer {
 func NewQTextListFromPointer(ptr unsafe.Pointer) *QTextList {
 	var n = new(QTextList)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTextListFromPointer(ptr unsafe.Pointer) *QTextList {
+	var n = NewQTextListFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTextList_") {
 		n.SetObjectName("QTextList_" + qt.Identifier())
 	}
@@ -33402,6 +34362,11 @@ func NewQTextListFormatFromPointer(ptr unsafe.Pointer) *QTextListFormat {
 	return n
 }
 
+func newQTextListFormatFromPointer(ptr unsafe.Pointer) *QTextListFormat {
+	var n = NewQTextListFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextListFormat) QTextListFormat_PTR() *QTextListFormat {
 	return ptr
 }
@@ -33424,7 +34389,7 @@ var (
 func NewQTextListFormat() *QTextListFormat {
 	defer qt.Recovering("QTextListFormat::QTextListFormat")
 
-	return NewQTextListFormatFromPointer(C.QTextListFormat_NewQTextListFormat())
+	return newQTextListFormatFromPointer(C.QTextListFormat_NewQTextListFormat())
 }
 
 func (ptr *QTextListFormat) Indent() int {
@@ -33523,6 +34488,11 @@ func PointerFromQTextObject(ptr QTextObject_ITF) unsafe.Pointer {
 func NewQTextObjectFromPointer(ptr unsafe.Pointer) *QTextObject {
 	var n = new(QTextObject)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTextObjectFromPointer(ptr unsafe.Pointer) *QTextObject {
+	var n = NewQTextObjectFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTextObject_") {
 		n.SetObjectName("QTextObject_" + qt.Identifier())
 	}
@@ -33721,6 +34691,11 @@ func PointerFromQTextObjectInterface(ptr QTextObjectInterface_ITF) unsafe.Pointe
 func NewQTextObjectInterfaceFromPointer(ptr unsafe.Pointer) *QTextObjectInterface {
 	var n = new(QTextObjectInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTextObjectInterfaceFromPointer(ptr unsafe.Pointer) *QTextObjectInterface {
+	var n = NewQTextObjectInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QTextObjectInterface_") {
 		n.SetObjectNameAbs("QTextObjectInterface_" + qt.Identifier())
 	}
@@ -33793,6 +34768,11 @@ func NewQTextOptionFromPointer(ptr unsafe.Pointer) *QTextOption {
 	return n
 }
 
+func newQTextOptionFromPointer(ptr unsafe.Pointer) *QTextOption {
+	var n = NewQTextOptionFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextOption) QTextOption_PTR() *QTextOption {
 	return ptr
 }
@@ -33832,19 +34812,19 @@ const (
 func NewQTextOption3(other QTextOption_ITF) *QTextOption {
 	defer qt.Recovering("QTextOption::QTextOption")
 
-	return NewQTextOptionFromPointer(C.QTextOption_NewQTextOption3(PointerFromQTextOption(other)))
+	return newQTextOptionFromPointer(C.QTextOption_NewQTextOption3(PointerFromQTextOption(other)))
 }
 
 func NewQTextOption() *QTextOption {
 	defer qt.Recovering("QTextOption::QTextOption")
 
-	return NewQTextOptionFromPointer(C.QTextOption_NewQTextOption())
+	return newQTextOptionFromPointer(C.QTextOption_NewQTextOption())
 }
 
 func NewQTextOption2(alignment core.Qt__AlignmentFlag) *QTextOption {
 	defer qt.Recovering("QTextOption::QTextOption")
 
-	return NewQTextOptionFromPointer(C.QTextOption_NewQTextOption2(C.int(alignment)))
+	return newQTextOptionFromPointer(C.QTextOption_NewQTextOption2(C.int(alignment)))
 }
 
 func (ptr *QTextOption) Alignment() core.Qt__AlignmentFlag {
@@ -33976,6 +34956,11 @@ func PointerFromQTextTable(ptr QTextTable_ITF) unsafe.Pointer {
 func NewQTextTableFromPointer(ptr unsafe.Pointer) *QTextTable {
 	var n = new(QTextTable)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTextTableFromPointer(ptr unsafe.Pointer) *QTextTable {
+	var n = NewQTextTableFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTextTable_") {
 		n.SetObjectName("QTextTable_" + qt.Identifier())
 	}
@@ -34256,6 +35241,11 @@ func NewQTextTableCellFromPointer(ptr unsafe.Pointer) *QTextTableCell {
 	return n
 }
 
+func newQTextTableCellFromPointer(ptr unsafe.Pointer) *QTextTableCell {
+	var n = NewQTextTableCellFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextTableCell) QTextTableCell_PTR() *QTextTableCell {
 	return ptr
 }
@@ -34263,13 +35253,13 @@ func (ptr *QTextTableCell) QTextTableCell_PTR() *QTextTableCell {
 func NewQTextTableCell() *QTextTableCell {
 	defer qt.Recovering("QTextTableCell::QTextTableCell")
 
-	return NewQTextTableCellFromPointer(C.QTextTableCell_NewQTextTableCell())
+	return newQTextTableCellFromPointer(C.QTextTableCell_NewQTextTableCell())
 }
 
 func NewQTextTableCell2(other QTextTableCell_ITF) *QTextTableCell {
 	defer qt.Recovering("QTextTableCell::QTextTableCell")
 
-	return NewQTextTableCellFromPointer(C.QTextTableCell_NewQTextTableCell2(PointerFromQTextTableCell(other)))
+	return newQTextTableCellFromPointer(C.QTextTableCell_NewQTextTableCell2(PointerFromQTextTableCell(other)))
 }
 
 func (ptr *QTextTableCell) Column() int {
@@ -34364,6 +35354,11 @@ func NewQTextTableCellFormatFromPointer(ptr unsafe.Pointer) *QTextTableCellForma
 	return n
 }
 
+func newQTextTableCellFormatFromPointer(ptr unsafe.Pointer) *QTextTableCellFormat {
+	var n = NewQTextTableCellFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextTableCellFormat) QTextTableCellFormat_PTR() *QTextTableCellFormat {
 	return ptr
 }
@@ -34371,7 +35366,7 @@ func (ptr *QTextTableCellFormat) QTextTableCellFormat_PTR() *QTextTableCellForma
 func NewQTextTableCellFormat() *QTextTableCellFormat {
 	defer qt.Recovering("QTextTableCellFormat::QTextTableCellFormat")
 
-	return NewQTextTableCellFormatFromPointer(C.QTextTableCellFormat_NewQTextTableCellFormat())
+	return newQTextTableCellFormatFromPointer(C.QTextTableCellFormat_NewQTextTableCellFormat())
 }
 
 func (ptr *QTextTableCellFormat) BottomPadding() float64 {
@@ -34481,6 +35476,11 @@ func NewQTextTableFormatFromPointer(ptr unsafe.Pointer) *QTextTableFormat {
 	return n
 }
 
+func newQTextTableFormatFromPointer(ptr unsafe.Pointer) *QTextTableFormat {
+	var n = NewQTextTableFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTextTableFormat) QTextTableFormat_PTR() *QTextTableFormat {
 	return ptr
 }
@@ -34488,7 +35488,7 @@ func (ptr *QTextTableFormat) QTextTableFormat_PTR() *QTextTableFormat {
 func NewQTextTableFormat() *QTextTableFormat {
 	defer qt.Recovering("QTextTableFormat::QTextTableFormat")
 
-	return NewQTextTableFormatFromPointer(C.QTextTableFormat_NewQTextTableFormat())
+	return newQTextTableFormatFromPointer(C.QTextTableFormat_NewQTextTableFormat())
 }
 
 func (ptr *QTextTableFormat) Alignment() core.Qt__AlignmentFlag {
@@ -34614,6 +35614,11 @@ func NewQTouchDeviceFromPointer(ptr unsafe.Pointer) *QTouchDevice {
 	return n
 }
 
+func newQTouchDeviceFromPointer(ptr unsafe.Pointer) *QTouchDevice {
+	var n = NewQTouchDeviceFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTouchDevice) QTouchDevice_PTR() *QTouchDevice {
 	return ptr
 }
@@ -34642,7 +35647,7 @@ const (
 func NewQTouchDevice() *QTouchDevice {
 	defer qt.Recovering("QTouchDevice::QTouchDevice")
 
-	return NewQTouchDeviceFromPointer(C.QTouchDevice_NewQTouchDevice())
+	return newQTouchDeviceFromPointer(C.QTouchDevice_NewQTouchDevice())
 }
 
 func (ptr *QTouchDevice) Capabilities() QTouchDevice__CapabilityFlag {
@@ -34743,6 +35748,11 @@ func NewQTouchEventFromPointer(ptr unsafe.Pointer) *QTouchEvent {
 	return n
 }
 
+func newQTouchEventFromPointer(ptr unsafe.Pointer) *QTouchEvent {
+	var n = NewQTouchEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTouchEvent) QTouchEvent_PTR() *QTouchEvent {
 	return ptr
 }
@@ -34820,6 +35830,11 @@ func NewQTransformFromPointer(ptr unsafe.Pointer) *QTransform {
 	return n
 }
 
+func newQTransformFromPointer(ptr unsafe.Pointer) *QTransform {
+	var n = NewQTransformFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTransform) QTransform_PTR() *QTransform {
 	return ptr
 }
@@ -34839,13 +35854,13 @@ const (
 func NewQTransform3(m11 float64, m12 float64, m13 float64, m21 float64, m22 float64, m23 float64, m31 float64, m32 float64, m33 float64) *QTransform {
 	defer qt.Recovering("QTransform::QTransform")
 
-	return NewQTransformFromPointer(C.QTransform_NewQTransform3(C.double(m11), C.double(m12), C.double(m13), C.double(m21), C.double(m22), C.double(m23), C.double(m31), C.double(m32), C.double(m33)))
+	return newQTransformFromPointer(C.QTransform_NewQTransform3(C.double(m11), C.double(m12), C.double(m13), C.double(m21), C.double(m22), C.double(m23), C.double(m31), C.double(m32), C.double(m33)))
 }
 
 func NewQTransform4(m11 float64, m12 float64, m21 float64, m22 float64, dx float64, dy float64) *QTransform {
 	defer qt.Recovering("QTransform::QTransform")
 
-	return NewQTransformFromPointer(C.QTransform_NewQTransform4(C.double(m11), C.double(m12), C.double(m21), C.double(m22), C.double(dx), C.double(dy)))
+	return newQTransformFromPointer(C.QTransform_NewQTransform4(C.double(m11), C.double(m12), C.double(m21), C.double(m22), C.double(dx), C.double(dy)))
 }
 
 func (ptr *QTransform) Map3(point core.QPoint_ITF) *core.QPoint {
@@ -34884,7 +35899,7 @@ func QTransform_QuadToSquare(quad QPolygonF_ITF, trans QTransform_ITF) bool {
 func NewQTransform() *QTransform {
 	defer qt.Recovering("QTransform::QTransform")
 
-	return NewQTransformFromPointer(C.QTransform_NewQTransform())
+	return newQTransformFromPointer(C.QTransform_NewQTransform())
 }
 
 func (ptr *QTransform) Determinant() float64 {
@@ -35113,6 +36128,11 @@ func PointerFromQValidator(ptr QValidator_ITF) unsafe.Pointer {
 func NewQValidatorFromPointer(ptr unsafe.Pointer) *QValidator {
 	var n = new(QValidator)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQValidatorFromPointer(ptr unsafe.Pointer) *QValidator {
+	var n = NewQValidatorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QValidator_") {
 		n.SetObjectName("QValidator_" + qt.Identifier())
 	}
@@ -35349,6 +36369,11 @@ func NewQVector2DFromPointer(ptr unsafe.Pointer) *QVector2D {
 	return n
 }
 
+func newQVector2DFromPointer(ptr unsafe.Pointer) *QVector2D {
+	var n = NewQVector2DFromPointer(ptr)
+	return n
+}
+
 func (ptr *QVector2D) QVector2D_PTR() *QVector2D {
 	return ptr
 }
@@ -35356,31 +36381,31 @@ func (ptr *QVector2D) QVector2D_PTR() *QVector2D {
 func NewQVector2D() *QVector2D {
 	defer qt.Recovering("QVector2D::QVector2D")
 
-	return NewQVector2DFromPointer(C.QVector2D_NewQVector2D())
+	return newQVector2DFromPointer(C.QVector2D_NewQVector2D())
 }
 
 func NewQVector2D4(point core.QPoint_ITF) *QVector2D {
 	defer qt.Recovering("QVector2D::QVector2D")
 
-	return NewQVector2DFromPointer(C.QVector2D_NewQVector2D4(core.PointerFromQPoint(point)))
+	return newQVector2DFromPointer(C.QVector2D_NewQVector2D4(core.PointerFromQPoint(point)))
 }
 
 func NewQVector2D5(point core.QPointF_ITF) *QVector2D {
 	defer qt.Recovering("QVector2D::QVector2D")
 
-	return NewQVector2DFromPointer(C.QVector2D_NewQVector2D5(core.PointerFromQPointF(point)))
+	return newQVector2DFromPointer(C.QVector2D_NewQVector2D5(core.PointerFromQPointF(point)))
 }
 
 func NewQVector2D6(vector QVector3D_ITF) *QVector2D {
 	defer qt.Recovering("QVector2D::QVector2D")
 
-	return NewQVector2DFromPointer(C.QVector2D_NewQVector2D6(PointerFromQVector3D(vector)))
+	return newQVector2DFromPointer(C.QVector2D_NewQVector2D6(PointerFromQVector3D(vector)))
 }
 
 func NewQVector2D7(vector QVector4D_ITF) *QVector2D {
 	defer qt.Recovering("QVector2D::QVector2D")
 
-	return NewQVector2DFromPointer(C.QVector2D_NewQVector2D7(PointerFromQVector4D(vector)))
+	return newQVector2DFromPointer(C.QVector2D_NewQVector2D7(PointerFromQVector4D(vector)))
 }
 
 func (ptr *QVector2D) IsNull() bool {
@@ -35438,6 +36463,11 @@ func NewQVector3DFromPointer(ptr unsafe.Pointer) *QVector3D {
 	return n
 }
 
+func newQVector3DFromPointer(ptr unsafe.Pointer) *QVector3D {
+	var n = NewQVector3DFromPointer(ptr)
+	return n
+}
+
 func (ptr *QVector3D) QVector3D_PTR() *QVector3D {
 	return ptr
 }
@@ -35445,31 +36475,31 @@ func (ptr *QVector3D) QVector3D_PTR() *QVector3D {
 func NewQVector3D() *QVector3D {
 	defer qt.Recovering("QVector3D::QVector3D")
 
-	return NewQVector3DFromPointer(C.QVector3D_NewQVector3D())
+	return newQVector3DFromPointer(C.QVector3D_NewQVector3D())
 }
 
 func NewQVector3D4(point core.QPoint_ITF) *QVector3D {
 	defer qt.Recovering("QVector3D::QVector3D")
 
-	return NewQVector3DFromPointer(C.QVector3D_NewQVector3D4(core.PointerFromQPoint(point)))
+	return newQVector3DFromPointer(C.QVector3D_NewQVector3D4(core.PointerFromQPoint(point)))
 }
 
 func NewQVector3D5(point core.QPointF_ITF) *QVector3D {
 	defer qt.Recovering("QVector3D::QVector3D")
 
-	return NewQVector3DFromPointer(C.QVector3D_NewQVector3D5(core.PointerFromQPointF(point)))
+	return newQVector3DFromPointer(C.QVector3D_NewQVector3D5(core.PointerFromQPointF(point)))
 }
 
 func NewQVector3D6(vector QVector2D_ITF) *QVector3D {
 	defer qt.Recovering("QVector3D::QVector3D")
 
-	return NewQVector3DFromPointer(C.QVector3D_NewQVector3D6(PointerFromQVector2D(vector)))
+	return newQVector3DFromPointer(C.QVector3D_NewQVector3D6(PointerFromQVector2D(vector)))
 }
 
 func NewQVector3D8(vector QVector4D_ITF) *QVector3D {
 	defer qt.Recovering("QVector3D::QVector3D")
 
-	return NewQVector3DFromPointer(C.QVector3D_NewQVector3D8(PointerFromQVector4D(vector)))
+	return newQVector3DFromPointer(C.QVector3D_NewQVector3D8(PointerFromQVector4D(vector)))
 }
 
 func (ptr *QVector3D) IsNull() bool {
@@ -35527,6 +36557,11 @@ func NewQVector4DFromPointer(ptr unsafe.Pointer) *QVector4D {
 	return n
 }
 
+func newQVector4DFromPointer(ptr unsafe.Pointer) *QVector4D {
+	var n = NewQVector4DFromPointer(ptr)
+	return n
+}
+
 func (ptr *QVector4D) QVector4D_PTR() *QVector4D {
 	return ptr
 }
@@ -35534,31 +36569,31 @@ func (ptr *QVector4D) QVector4D_PTR() *QVector4D {
 func NewQVector4D() *QVector4D {
 	defer qt.Recovering("QVector4D::QVector4D")
 
-	return NewQVector4DFromPointer(C.QVector4D_NewQVector4D())
+	return newQVector4DFromPointer(C.QVector4D_NewQVector4D())
 }
 
 func NewQVector4D4(point core.QPoint_ITF) *QVector4D {
 	defer qt.Recovering("QVector4D::QVector4D")
 
-	return NewQVector4DFromPointer(C.QVector4D_NewQVector4D4(core.PointerFromQPoint(point)))
+	return newQVector4DFromPointer(C.QVector4D_NewQVector4D4(core.PointerFromQPoint(point)))
 }
 
 func NewQVector4D5(point core.QPointF_ITF) *QVector4D {
 	defer qt.Recovering("QVector4D::QVector4D")
 
-	return NewQVector4DFromPointer(C.QVector4D_NewQVector4D5(core.PointerFromQPointF(point)))
+	return newQVector4DFromPointer(C.QVector4D_NewQVector4D5(core.PointerFromQPointF(point)))
 }
 
 func NewQVector4D6(vector QVector2D_ITF) *QVector4D {
 	defer qt.Recovering("QVector4D::QVector4D")
 
-	return NewQVector4DFromPointer(C.QVector4D_NewQVector4D6(PointerFromQVector2D(vector)))
+	return newQVector4DFromPointer(C.QVector4D_NewQVector4D6(PointerFromQVector2D(vector)))
 }
 
 func NewQVector4D8(vector QVector3D_ITF) *QVector4D {
 	defer qt.Recovering("QVector4D::QVector4D")
 
-	return NewQVector4DFromPointer(C.QVector4D_NewQVector4D8(PointerFromQVector3D(vector)))
+	return newQVector4DFromPointer(C.QVector4D_NewQVector4D8(PointerFromQVector3D(vector)))
 }
 
 func (ptr *QVector4D) IsNull() bool {
@@ -35609,6 +36644,11 @@ func NewQWhatsThisClickedEventFromPointer(ptr unsafe.Pointer) *QWhatsThisClicked
 	return n
 }
 
+func newQWhatsThisClickedEventFromPointer(ptr unsafe.Pointer) *QWhatsThisClickedEvent {
+	var n = NewQWhatsThisClickedEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QWhatsThisClickedEvent) QWhatsThisClickedEvent_PTR() *QWhatsThisClickedEvent {
 	return ptr
 }
@@ -35616,7 +36656,7 @@ func (ptr *QWhatsThisClickedEvent) QWhatsThisClickedEvent_PTR() *QWhatsThisClick
 func NewQWhatsThisClickedEvent(href string) *QWhatsThisClickedEvent {
 	defer qt.Recovering("QWhatsThisClickedEvent::QWhatsThisClickedEvent")
 
-	return NewQWhatsThisClickedEventFromPointer(C.QWhatsThisClickedEvent_NewQWhatsThisClickedEvent(C.CString(href)))
+	return newQWhatsThisClickedEventFromPointer(C.QWhatsThisClickedEvent_NewQWhatsThisClickedEvent(C.CString(href)))
 }
 
 func (ptr *QWhatsThisClickedEvent) Href() string {
@@ -35650,6 +36690,11 @@ func NewQWheelEventFromPointer(ptr unsafe.Pointer) *QWheelEvent {
 	return n
 }
 
+func newQWheelEventFromPointer(ptr unsafe.Pointer) *QWheelEvent {
+	var n = NewQWheelEventFromPointer(ptr)
+	return n
+}
+
 func (ptr *QWheelEvent) QWheelEvent_PTR() *QWheelEvent {
 	return ptr
 }
@@ -35657,19 +36702,19 @@ func (ptr *QWheelEvent) QWheelEvent_PTR() *QWheelEvent {
 func NewQWheelEvent(pos core.QPointF_ITF, globalPos core.QPointF_ITF, pixelDelta core.QPoint_ITF, angleDelta core.QPoint_ITF, qt4Delta int, qt4Orientation core.Qt__Orientation, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QWheelEvent {
 	defer qt.Recovering("QWheelEvent::QWheelEvent")
 
-	return NewQWheelEventFromPointer(C.QWheelEvent_NewQWheelEvent(core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), core.PointerFromQPoint(pixelDelta), core.PointerFromQPoint(angleDelta), C.int(qt4Delta), C.int(qt4Orientation), C.int(buttons), C.int(modifiers)))
+	return newQWheelEventFromPointer(C.QWheelEvent_NewQWheelEvent(core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), core.PointerFromQPoint(pixelDelta), core.PointerFromQPoint(angleDelta), C.int(qt4Delta), C.int(qt4Orientation), C.int(buttons), C.int(modifiers)))
 }
 
 func NewQWheelEvent4(pos core.QPointF_ITF, globalPos core.QPointF_ITF, pixelDelta core.QPoint_ITF, angleDelta core.QPoint_ITF, qt4Delta int, qt4Orientation core.Qt__Orientation, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier, phase core.Qt__ScrollPhase) *QWheelEvent {
 	defer qt.Recovering("QWheelEvent::QWheelEvent")
 
-	return NewQWheelEventFromPointer(C.QWheelEvent_NewQWheelEvent4(core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), core.PointerFromQPoint(pixelDelta), core.PointerFromQPoint(angleDelta), C.int(qt4Delta), C.int(qt4Orientation), C.int(buttons), C.int(modifiers), C.int(phase)))
+	return newQWheelEventFromPointer(C.QWheelEvent_NewQWheelEvent4(core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), core.PointerFromQPoint(pixelDelta), core.PointerFromQPoint(angleDelta), C.int(qt4Delta), C.int(qt4Orientation), C.int(buttons), C.int(modifiers), C.int(phase)))
 }
 
 func NewQWheelEvent5(pos core.QPointF_ITF, globalPos core.QPointF_ITF, pixelDelta core.QPoint_ITF, angleDelta core.QPoint_ITF, qt4Delta int, qt4Orientation core.Qt__Orientation, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier, phase core.Qt__ScrollPhase, source core.Qt__MouseEventSource) *QWheelEvent {
 	defer qt.Recovering("QWheelEvent::QWheelEvent")
 
-	return NewQWheelEventFromPointer(C.QWheelEvent_NewQWheelEvent5(core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), core.PointerFromQPoint(pixelDelta), core.PointerFromQPoint(angleDelta), C.int(qt4Delta), C.int(qt4Orientation), C.int(buttons), C.int(modifiers), C.int(phase), C.int(source)))
+	return newQWheelEventFromPointer(C.QWheelEvent_NewQWheelEvent5(core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), core.PointerFromQPoint(pixelDelta), core.PointerFromQPoint(angleDelta), C.int(qt4Delta), C.int(qt4Orientation), C.int(buttons), C.int(modifiers), C.int(phase), C.int(source)))
 }
 
 func (ptr *QWheelEvent) AngleDelta() *core.QPoint {
@@ -35801,6 +36846,11 @@ func PointerFromQWindow(ptr QWindow_ITF) unsafe.Pointer {
 func NewQWindowFromPointer(ptr unsafe.Pointer) *QWindow {
 	var n = new(QWindow)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQWindowFromPointer(ptr unsafe.Pointer) *QWindow {
+	var n = NewQWindowFromPointer(ptr)
 	for len(n.ObjectName()) < len("QWindow_") {
 		n.SetObjectName("QWindow_" + qt.Identifier())
 	}
@@ -36035,13 +37085,13 @@ func (ptr *QWindow) Visibility() QWindow__Visibility {
 func NewQWindow(targetScreen QScreen_ITF) *QWindow {
 	defer qt.Recovering("QWindow::QWindow")
 
-	return NewQWindowFromPointer(C.QWindow_NewQWindow(PointerFromQScreen(targetScreen)))
+	return newQWindowFromPointer(C.QWindow_NewQWindow(PointerFromQScreen(targetScreen)))
 }
 
 func NewQWindow2(parent QWindow_ITF) *QWindow {
 	defer qt.Recovering("QWindow::QWindow")
 
-	return NewQWindowFromPointer(C.QWindow_NewQWindow2(PointerFromQWindow(parent)))
+	return newQWindowFromPointer(C.QWindow_NewQWindow2(PointerFromQWindow(parent)))
 }
 
 func (ptr *QWindow) ConnectActiveChanged(f func()) {
@@ -38188,6 +39238,11 @@ func PointerFromQWindowStateChangeEvent(ptr QWindowStateChangeEvent_ITF) unsafe.
 func NewQWindowStateChangeEventFromPointer(ptr unsafe.Pointer) *QWindowStateChangeEvent {
 	var n = new(QWindowStateChangeEvent)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQWindowStateChangeEventFromPointer(ptr unsafe.Pointer) *QWindowStateChangeEvent {
+	var n = NewQWindowStateChangeEventFromPointer(ptr)
 	return n
 }
 

@@ -28,6 +28,11 @@ func PointerFromQAbstractNetworkCache(ptr QAbstractNetworkCache_ITF) unsafe.Poin
 func NewQAbstractNetworkCacheFromPointer(ptr unsafe.Pointer) *QAbstractNetworkCache {
 	var n = new(QAbstractNetworkCache)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAbstractNetworkCacheFromPointer(ptr unsafe.Pointer) *QAbstractNetworkCache {
+	var n = NewQAbstractNetworkCacheFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractNetworkCache_") {
 		n.SetObjectName("QAbstractNetworkCache_" + qt.Identifier())
 	}
@@ -244,6 +249,11 @@ func PointerFromQAbstractSocket(ptr QAbstractSocket_ITF) unsafe.Pointer {
 func NewQAbstractSocketFromPointer(ptr unsafe.Pointer) *QAbstractSocket {
 	var n = new(QAbstractSocket)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAbstractSocketFromPointer(ptr unsafe.Pointer) *QAbstractSocket {
+	var n = NewQAbstractSocketFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractSocket_") {
 		n.SetObjectName("QAbstractSocket_" + qt.Identifier())
 	}
@@ -350,7 +360,7 @@ const (
 func NewQAbstractSocket(socketType QAbstractSocket__SocketType, parent core.QObject_ITF) *QAbstractSocket {
 	defer qt.Recovering("QAbstractSocket::QAbstractSocket")
 
-	return NewQAbstractSocketFromPointer(C.QAbstractSocket_NewQAbstractSocket(C.int(socketType), core.PointerFromQObject(parent)))
+	return newQAbstractSocketFromPointer(C.QAbstractSocket_NewQAbstractSocket(C.int(socketType), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAbstractSocket) Abort() {
@@ -1144,6 +1154,11 @@ func NewQAuthenticatorFromPointer(ptr unsafe.Pointer) *QAuthenticator {
 	return n
 }
 
+func newQAuthenticatorFromPointer(ptr unsafe.Pointer) *QAuthenticator {
+	var n = NewQAuthenticatorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAuthenticator) QAuthenticator_PTR() *QAuthenticator {
 	return ptr
 }
@@ -1151,13 +1166,13 @@ func (ptr *QAuthenticator) QAuthenticator_PTR() *QAuthenticator {
 func NewQAuthenticator() *QAuthenticator {
 	defer qt.Recovering("QAuthenticator::QAuthenticator")
 
-	return NewQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator())
+	return newQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator())
 }
 
 func NewQAuthenticator2(other QAuthenticator_ITF) *QAuthenticator {
 	defer qt.Recovering("QAuthenticator::QAuthenticator")
 
-	return NewQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator2(PointerFromQAuthenticator(other)))
+	return newQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator2(PointerFromQAuthenticator(other)))
 }
 
 func (ptr *QAuthenticator) IsNull() bool {
@@ -1266,6 +1281,11 @@ func NewQDnsDomainNameRecordFromPointer(ptr unsafe.Pointer) *QDnsDomainNameRecor
 	return n
 }
 
+func newQDnsDomainNameRecordFromPointer(ptr unsafe.Pointer) *QDnsDomainNameRecord {
+	var n = NewQDnsDomainNameRecordFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDnsDomainNameRecord) QDnsDomainNameRecord_PTR() *QDnsDomainNameRecord {
 	return ptr
 }
@@ -1273,13 +1293,13 @@ func (ptr *QDnsDomainNameRecord) QDnsDomainNameRecord_PTR() *QDnsDomainNameRecor
 func NewQDnsDomainNameRecord() *QDnsDomainNameRecord {
 	defer qt.Recovering("QDnsDomainNameRecord::QDnsDomainNameRecord")
 
-	return NewQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord())
+	return newQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord())
 }
 
 func NewQDnsDomainNameRecord2(other QDnsDomainNameRecord_ITF) *QDnsDomainNameRecord {
 	defer qt.Recovering("QDnsDomainNameRecord::QDnsDomainNameRecord")
 
-	return NewQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord2(PointerFromQDnsDomainNameRecord(other)))
+	return newQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord2(PointerFromQDnsDomainNameRecord(other)))
 }
 
 func (ptr *QDnsDomainNameRecord) Name() string {
@@ -1345,6 +1365,11 @@ func NewQDnsHostAddressRecordFromPointer(ptr unsafe.Pointer) *QDnsHostAddressRec
 	return n
 }
 
+func newQDnsHostAddressRecordFromPointer(ptr unsafe.Pointer) *QDnsHostAddressRecord {
+	var n = NewQDnsHostAddressRecordFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDnsHostAddressRecord) QDnsHostAddressRecord_PTR() *QDnsHostAddressRecord {
 	return ptr
 }
@@ -1352,13 +1377,13 @@ func (ptr *QDnsHostAddressRecord) QDnsHostAddressRecord_PTR() *QDnsHostAddressRe
 func NewQDnsHostAddressRecord() *QDnsHostAddressRecord {
 	defer qt.Recovering("QDnsHostAddressRecord::QDnsHostAddressRecord")
 
-	return NewQDnsHostAddressRecordFromPointer(C.QDnsHostAddressRecord_NewQDnsHostAddressRecord())
+	return newQDnsHostAddressRecordFromPointer(C.QDnsHostAddressRecord_NewQDnsHostAddressRecord())
 }
 
 func NewQDnsHostAddressRecord2(other QDnsHostAddressRecord_ITF) *QDnsHostAddressRecord {
 	defer qt.Recovering("QDnsHostAddressRecord::QDnsHostAddressRecord")
 
-	return NewQDnsHostAddressRecordFromPointer(C.QDnsHostAddressRecord_NewQDnsHostAddressRecord2(PointerFromQDnsHostAddressRecord(other)))
+	return newQDnsHostAddressRecordFromPointer(C.QDnsHostAddressRecord_NewQDnsHostAddressRecord2(PointerFromQDnsHostAddressRecord(other)))
 }
 
 func (ptr *QDnsHostAddressRecord) Name() string {
@@ -1405,6 +1430,11 @@ func PointerFromQDnsLookup(ptr QDnsLookup_ITF) unsafe.Pointer {
 func NewQDnsLookupFromPointer(ptr unsafe.Pointer) *QDnsLookup {
 	var n = new(QDnsLookup)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDnsLookupFromPointer(ptr unsafe.Pointer) *QDnsLookup {
+	var n = NewQDnsLookupFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDnsLookup_") {
 		n.SetObjectName("QDnsLookup_" + qt.Identifier())
 	}
@@ -1447,7 +1477,7 @@ const (
 func NewQDnsLookup3(ty QDnsLookup__Type, name string, nameserver QHostAddress_ITF, parent core.QObject_ITF) *QDnsLookup {
 	defer qt.Recovering("QDnsLookup::QDnsLookup")
 
-	return NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup3(C.int(ty), C.CString(name), PointerFromQHostAddress(nameserver), core.PointerFromQObject(parent)))
+	return newQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup3(C.int(ty), C.CString(name), PointerFromQHostAddress(nameserver), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDnsLookup) Error() QDnsLookup__Error {
@@ -1513,13 +1543,13 @@ func (ptr *QDnsLookup) Type() QDnsLookup__Type {
 func NewQDnsLookup(parent core.QObject_ITF) *QDnsLookup {
 	defer qt.Recovering("QDnsLookup::QDnsLookup")
 
-	return NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup(core.PointerFromQObject(parent)))
+	return newQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup(core.PointerFromQObject(parent)))
 }
 
 func NewQDnsLookup2(ty QDnsLookup__Type, name string, parent core.QObject_ITF) *QDnsLookup {
 	defer qt.Recovering("QDnsLookup::QDnsLookup")
 
-	return NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup2(C.int(ty), C.CString(name), core.PointerFromQObject(parent)))
+	return newQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup2(C.int(ty), C.CString(name), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDnsLookup) Abort() {
@@ -1828,6 +1858,11 @@ func NewQDnsMailExchangeRecordFromPointer(ptr unsafe.Pointer) *QDnsMailExchangeR
 	return n
 }
 
+func newQDnsMailExchangeRecordFromPointer(ptr unsafe.Pointer) *QDnsMailExchangeRecord {
+	var n = NewQDnsMailExchangeRecordFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDnsMailExchangeRecord) QDnsMailExchangeRecord_PTR() *QDnsMailExchangeRecord {
 	return ptr
 }
@@ -1835,13 +1870,13 @@ func (ptr *QDnsMailExchangeRecord) QDnsMailExchangeRecord_PTR() *QDnsMailExchang
 func NewQDnsMailExchangeRecord() *QDnsMailExchangeRecord {
 	defer qt.Recovering("QDnsMailExchangeRecord::QDnsMailExchangeRecord")
 
-	return NewQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord())
+	return newQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord())
 }
 
 func NewQDnsMailExchangeRecord2(other QDnsMailExchangeRecord_ITF) *QDnsMailExchangeRecord {
 	defer qt.Recovering("QDnsMailExchangeRecord::QDnsMailExchangeRecord")
 
-	return NewQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord2(PointerFromQDnsMailExchangeRecord(other)))
+	return newQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord2(PointerFromQDnsMailExchangeRecord(other)))
 }
 
 func (ptr *QDnsMailExchangeRecord) Exchange() string {
@@ -1907,6 +1942,11 @@ func NewQDnsServiceRecordFromPointer(ptr unsafe.Pointer) *QDnsServiceRecord {
 	return n
 }
 
+func newQDnsServiceRecordFromPointer(ptr unsafe.Pointer) *QDnsServiceRecord {
+	var n = NewQDnsServiceRecordFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDnsServiceRecord) QDnsServiceRecord_PTR() *QDnsServiceRecord {
 	return ptr
 }
@@ -1914,13 +1954,13 @@ func (ptr *QDnsServiceRecord) QDnsServiceRecord_PTR() *QDnsServiceRecord {
 func NewQDnsServiceRecord() *QDnsServiceRecord {
 	defer qt.Recovering("QDnsServiceRecord::QDnsServiceRecord")
 
-	return NewQDnsServiceRecordFromPointer(C.QDnsServiceRecord_NewQDnsServiceRecord())
+	return newQDnsServiceRecordFromPointer(C.QDnsServiceRecord_NewQDnsServiceRecord())
 }
 
 func NewQDnsServiceRecord2(other QDnsServiceRecord_ITF) *QDnsServiceRecord {
 	defer qt.Recovering("QDnsServiceRecord::QDnsServiceRecord")
 
-	return NewQDnsServiceRecordFromPointer(C.QDnsServiceRecord_NewQDnsServiceRecord2(PointerFromQDnsServiceRecord(other)))
+	return newQDnsServiceRecordFromPointer(C.QDnsServiceRecord_NewQDnsServiceRecord2(PointerFromQDnsServiceRecord(other)))
 }
 
 func (ptr *QDnsServiceRecord) Name() string {
@@ -1986,6 +2026,11 @@ func NewQDnsTextRecordFromPointer(ptr unsafe.Pointer) *QDnsTextRecord {
 	return n
 }
 
+func newQDnsTextRecordFromPointer(ptr unsafe.Pointer) *QDnsTextRecord {
+	var n = NewQDnsTextRecordFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDnsTextRecord) QDnsTextRecord_PTR() *QDnsTextRecord {
 	return ptr
 }
@@ -1993,13 +2038,13 @@ func (ptr *QDnsTextRecord) QDnsTextRecord_PTR() *QDnsTextRecord {
 func NewQDnsTextRecord() *QDnsTextRecord {
 	defer qt.Recovering("QDnsTextRecord::QDnsTextRecord")
 
-	return NewQDnsTextRecordFromPointer(C.QDnsTextRecord_NewQDnsTextRecord())
+	return newQDnsTextRecordFromPointer(C.QDnsTextRecord_NewQDnsTextRecord())
 }
 
 func NewQDnsTextRecord2(other QDnsTextRecord_ITF) *QDnsTextRecord {
 	defer qt.Recovering("QDnsTextRecord::QDnsTextRecord")
 
-	return NewQDnsTextRecordFromPointer(C.QDnsTextRecord_NewQDnsTextRecord2(PointerFromQDnsTextRecord(other)))
+	return newQDnsTextRecordFromPointer(C.QDnsTextRecord_NewQDnsTextRecord2(PointerFromQDnsTextRecord(other)))
 }
 
 func (ptr *QDnsTextRecord) Name() string {
@@ -2056,6 +2101,11 @@ func NewQHostAddressFromPointer(ptr unsafe.Pointer) *QHostAddress {
 	return n
 }
 
+func newQHostAddressFromPointer(ptr unsafe.Pointer) *QHostAddress {
+	var n = NewQHostAddressFromPointer(ptr)
+	return n
+}
+
 func (ptr *QHostAddress) QHostAddress_PTR() *QHostAddress {
 	return ptr
 }
@@ -2076,25 +2126,25 @@ const (
 func NewQHostAddress() *QHostAddress {
 	defer qt.Recovering("QHostAddress::QHostAddress")
 
-	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress())
+	return newQHostAddressFromPointer(C.QHostAddress_NewQHostAddress())
 }
 
 func NewQHostAddress9(address QHostAddress__SpecialAddress) *QHostAddress {
 	defer qt.Recovering("QHostAddress::QHostAddress")
 
-	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress9(C.int(address)))
+	return newQHostAddressFromPointer(C.QHostAddress_NewQHostAddress9(C.int(address)))
 }
 
 func NewQHostAddress8(address QHostAddress_ITF) *QHostAddress {
 	defer qt.Recovering("QHostAddress::QHostAddress")
 
-	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress8(PointerFromQHostAddress(address)))
+	return newQHostAddressFromPointer(C.QHostAddress_NewQHostAddress8(PointerFromQHostAddress(address)))
 }
 
 func NewQHostAddress7(address string) *QHostAddress {
 	defer qt.Recovering("QHostAddress::QHostAddress")
 
-	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress7(C.CString(address)))
+	return newQHostAddressFromPointer(C.QHostAddress_NewQHostAddress7(C.CString(address)))
 }
 
 func (ptr *QHostAddress) Clear() {
@@ -2213,6 +2263,11 @@ func NewQHostInfoFromPointer(ptr unsafe.Pointer) *QHostInfo {
 	return n
 }
 
+func newQHostInfoFromPointer(ptr unsafe.Pointer) *QHostInfo {
+	var n = NewQHostInfoFromPointer(ptr)
+	return n
+}
+
 func (ptr *QHostInfo) QHostInfo_PTR() *QHostInfo {
 	return ptr
 }
@@ -2229,13 +2284,13 @@ const (
 func NewQHostInfo2(other QHostInfo_ITF) *QHostInfo {
 	defer qt.Recovering("QHostInfo::QHostInfo")
 
-	return NewQHostInfoFromPointer(C.QHostInfo_NewQHostInfo2(PointerFromQHostInfo(other)))
+	return newQHostInfoFromPointer(C.QHostInfo_NewQHostInfo2(PointerFromQHostInfo(other)))
 }
 
 func NewQHostInfo(id int) *QHostInfo {
 	defer qt.Recovering("QHostInfo::QHostInfo")
 
-	return NewQHostInfoFromPointer(C.QHostInfo_NewQHostInfo(C.int(id)))
+	return newQHostInfoFromPointer(C.QHostInfo_NewQHostInfo(C.int(id)))
 }
 
 func QHostInfo_AbortHostLookup(id int) {
@@ -2357,6 +2412,11 @@ func PointerFromQHttpMultiPart(ptr QHttpMultiPart_ITF) unsafe.Pointer {
 func NewQHttpMultiPartFromPointer(ptr unsafe.Pointer) *QHttpMultiPart {
 	var n = new(QHttpMultiPart)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHttpMultiPartFromPointer(ptr unsafe.Pointer) *QHttpMultiPart {
+	var n = NewQHttpMultiPartFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHttpMultiPart_") {
 		n.SetObjectName("QHttpMultiPart_" + qt.Identifier())
 	}
@@ -2380,13 +2440,13 @@ const (
 func NewQHttpMultiPart2(contentType QHttpMultiPart__ContentType, parent core.QObject_ITF) *QHttpMultiPart {
 	defer qt.Recovering("QHttpMultiPart::QHttpMultiPart")
 
-	return NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart2(C.int(contentType), core.PointerFromQObject(parent)))
+	return newQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart2(C.int(contentType), core.PointerFromQObject(parent)))
 }
 
 func NewQHttpMultiPart(parent core.QObject_ITF) *QHttpMultiPart {
 	defer qt.Recovering("QHttpMultiPart::QHttpMultiPart")
 
-	return NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart(core.PointerFromQObject(parent)))
+	return newQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHttpMultiPart) Append(httpPart QHttpPart_ITF) {
@@ -2595,6 +2655,11 @@ func NewQHttpPartFromPointer(ptr unsafe.Pointer) *QHttpPart {
 	return n
 }
 
+func newQHttpPartFromPointer(ptr unsafe.Pointer) *QHttpPart {
+	var n = NewQHttpPartFromPointer(ptr)
+	return n
+}
+
 func (ptr *QHttpPart) QHttpPart_PTR() *QHttpPart {
 	return ptr
 }
@@ -2602,13 +2667,13 @@ func (ptr *QHttpPart) QHttpPart_PTR() *QHttpPart {
 func NewQHttpPart() *QHttpPart {
 	defer qt.Recovering("QHttpPart::QHttpPart")
 
-	return NewQHttpPartFromPointer(C.QHttpPart_NewQHttpPart())
+	return newQHttpPartFromPointer(C.QHttpPart_NewQHttpPart())
 }
 
 func NewQHttpPart2(other QHttpPart_ITF) *QHttpPart {
 	defer qt.Recovering("QHttpPart::QHttpPart")
 
-	return NewQHttpPartFromPointer(C.QHttpPart_NewQHttpPart2(PointerFromQHttpPart(other)))
+	return newQHttpPartFromPointer(C.QHttpPart_NewQHttpPart2(PointerFromQHttpPart(other)))
 }
 
 func (ptr *QHttpPart) SetBody(body core.QByteArray_ITF) {
@@ -2678,6 +2743,11 @@ func PointerFromQLocalServer(ptr QLocalServer_ITF) unsafe.Pointer {
 func NewQLocalServerFromPointer(ptr unsafe.Pointer) *QLocalServer {
 	var n = new(QLocalServer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQLocalServerFromPointer(ptr unsafe.Pointer) *QLocalServer {
+	var n = NewQLocalServerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QLocalServer_") {
 		n.SetObjectName("QLocalServer_" + qt.Identifier())
 	}
@@ -2710,7 +2780,7 @@ func (ptr *QLocalServer) SetSocketOptions(options QLocalServer__SocketOption) {
 func NewQLocalServer(parent core.QObject_ITF) *QLocalServer {
 	defer qt.Recovering("QLocalServer::QLocalServer")
 
-	return NewQLocalServerFromPointer(C.QLocalServer_NewQLocalServer(core.PointerFromQObject(parent)))
+	return newQLocalServerFromPointer(C.QLocalServer_NewQLocalServer(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QLocalServer) Close() {
@@ -3033,6 +3103,11 @@ func PointerFromQLocalSocket(ptr QLocalSocket_ITF) unsafe.Pointer {
 func NewQLocalSocketFromPointer(ptr unsafe.Pointer) *QLocalSocket {
 	var n = new(QLocalSocket)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQLocalSocketFromPointer(ptr unsafe.Pointer) *QLocalSocket {
+	var n = NewQLocalSocketFromPointer(ptr)
 	for len(n.ObjectName()) < len("QLocalSocket_") {
 		n.SetObjectName("QLocalSocket_" + qt.Identifier())
 	}
@@ -3082,7 +3157,7 @@ func (ptr *QLocalSocket) Open(openMode core.QIODevice__OpenModeFlag) bool {
 func NewQLocalSocket(parent core.QObject_ITF) *QLocalSocket {
 	defer qt.Recovering("QLocalSocket::QLocalSocket")
 
-	return NewQLocalSocketFromPointer(C.QLocalSocket_NewQLocalSocket(core.PointerFromQObject(parent)))
+	return newQLocalSocketFromPointer(C.QLocalSocket_NewQLocalSocket(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QLocalSocket) ConnectToServer2(name string, openMode core.QIODevice__OpenModeFlag) {
@@ -3638,6 +3713,11 @@ func PointerFromQNetworkAccessManager(ptr QNetworkAccessManager_ITF) unsafe.Poin
 func NewQNetworkAccessManagerFromPointer(ptr unsafe.Pointer) *QNetworkAccessManager {
 	var n = new(QNetworkAccessManager)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNetworkAccessManagerFromPointer(ptr unsafe.Pointer) *QNetworkAccessManager {
+	var n = NewQNetworkAccessManagerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QNetworkAccessManager_") {
 		n.SetObjectName("QNetworkAccessManager_" + qt.Identifier())
 	}
@@ -3682,7 +3762,7 @@ func (ptr *QNetworkAccessManager) ProxyFactory() *QNetworkProxyFactory {
 func NewQNetworkAccessManager(parent core.QObject_ITF) *QNetworkAccessManager {
 	defer qt.Recovering("QNetworkAccessManager::QNetworkAccessManager")
 
-	return NewQNetworkAccessManagerFromPointer(C.QNetworkAccessManager_NewQNetworkAccessManager(core.PointerFromQObject(parent)))
+	return newQNetworkAccessManagerFromPointer(C.QNetworkAccessManager_NewQNetworkAccessManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNetworkAccessManager) ConnectAuthenticationRequired(f func(reply *QNetworkReply, authenticator *QAuthenticator)) {
@@ -4229,6 +4309,11 @@ func NewQNetworkAddressEntryFromPointer(ptr unsafe.Pointer) *QNetworkAddressEntr
 	return n
 }
 
+func newQNetworkAddressEntryFromPointer(ptr unsafe.Pointer) *QNetworkAddressEntry {
+	var n = NewQNetworkAddressEntryFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNetworkAddressEntry) QNetworkAddressEntry_PTR() *QNetworkAddressEntry {
 	return ptr
 }
@@ -4236,13 +4321,13 @@ func (ptr *QNetworkAddressEntry) QNetworkAddressEntry_PTR() *QNetworkAddressEntr
 func NewQNetworkAddressEntry() *QNetworkAddressEntry {
 	defer qt.Recovering("QNetworkAddressEntry::QNetworkAddressEntry")
 
-	return NewQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry())
+	return newQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry())
 }
 
 func NewQNetworkAddressEntry2(other QNetworkAddressEntry_ITF) *QNetworkAddressEntry {
 	defer qt.Recovering("QNetworkAddressEntry::QNetworkAddressEntry")
 
-	return NewQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry2(PointerFromQNetworkAddressEntry(other)))
+	return newQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry2(PointerFromQNetworkAddressEntry(other)))
 }
 
 func (ptr *QNetworkAddressEntry) PrefixLength() int {
@@ -4331,6 +4416,11 @@ func NewQNetworkCacheMetaDataFromPointer(ptr unsafe.Pointer) *QNetworkCacheMetaD
 	return n
 }
 
+func newQNetworkCacheMetaDataFromPointer(ptr unsafe.Pointer) *QNetworkCacheMetaData {
+	var n = NewQNetworkCacheMetaDataFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNetworkCacheMetaData) QNetworkCacheMetaData_PTR() *QNetworkCacheMetaData {
 	return ptr
 }
@@ -4338,13 +4428,13 @@ func (ptr *QNetworkCacheMetaData) QNetworkCacheMetaData_PTR() *QNetworkCacheMeta
 func NewQNetworkCacheMetaData() *QNetworkCacheMetaData {
 	defer qt.Recovering("QNetworkCacheMetaData::QNetworkCacheMetaData")
 
-	return NewQNetworkCacheMetaDataFromPointer(C.QNetworkCacheMetaData_NewQNetworkCacheMetaData())
+	return newQNetworkCacheMetaDataFromPointer(C.QNetworkCacheMetaData_NewQNetworkCacheMetaData())
 }
 
 func NewQNetworkCacheMetaData2(other QNetworkCacheMetaData_ITF) *QNetworkCacheMetaData {
 	defer qt.Recovering("QNetworkCacheMetaData::QNetworkCacheMetaData")
 
-	return NewQNetworkCacheMetaDataFromPointer(C.QNetworkCacheMetaData_NewQNetworkCacheMetaData2(PointerFromQNetworkCacheMetaData(other)))
+	return newQNetworkCacheMetaDataFromPointer(C.QNetworkCacheMetaData_NewQNetworkCacheMetaData2(PointerFromQNetworkCacheMetaData(other)))
 }
 
 func (ptr *QNetworkCacheMetaData) ExpirationDate() *core.QDateTime {
@@ -4469,6 +4559,11 @@ func NewQNetworkConfigurationFromPointer(ptr unsafe.Pointer) *QNetworkConfigurat
 	return n
 }
 
+func newQNetworkConfigurationFromPointer(ptr unsafe.Pointer) *QNetworkConfiguration {
+	var n = NewQNetworkConfigurationFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNetworkConfiguration) QNetworkConfiguration_PTR() *QNetworkConfiguration {
 	return ptr
 }
@@ -4525,13 +4620,13 @@ const (
 func NewQNetworkConfiguration() *QNetworkConfiguration {
 	defer qt.Recovering("QNetworkConfiguration::QNetworkConfiguration")
 
-	return NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration())
+	return newQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration())
 }
 
 func NewQNetworkConfiguration2(other QNetworkConfiguration_ITF) *QNetworkConfiguration {
 	defer qt.Recovering("QNetworkConfiguration::QNetworkConfiguration")
 
-	return NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration2(PointerFromQNetworkConfiguration(other)))
+	return newQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration2(PointerFromQNetworkConfiguration(other)))
 }
 
 func (ptr *QNetworkConfiguration) BearerType() QNetworkConfiguration__BearerType {
@@ -4659,6 +4754,11 @@ func PointerFromQNetworkConfigurationManager(ptr QNetworkConfigurationManager_IT
 func NewQNetworkConfigurationManagerFromPointer(ptr unsafe.Pointer) *QNetworkConfigurationManager {
 	var n = new(QNetworkConfigurationManager)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNetworkConfigurationManagerFromPointer(ptr unsafe.Pointer) *QNetworkConfigurationManager {
+	var n = NewQNetworkConfigurationManagerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QNetworkConfigurationManager_") {
 		n.SetObjectName("QNetworkConfigurationManager_" + qt.Identifier())
 	}
@@ -4685,7 +4785,7 @@ const (
 func NewQNetworkConfigurationManager(parent core.QObject_ITF) *QNetworkConfigurationManager {
 	defer qt.Recovering("QNetworkConfigurationManager::QNetworkConfigurationManager")
 
-	return NewQNetworkConfigurationManagerFromPointer(C.QNetworkConfigurationManager_NewQNetworkConfigurationManager(core.PointerFromQObject(parent)))
+	return newQNetworkConfigurationManagerFromPointer(C.QNetworkConfigurationManager_NewQNetworkConfigurationManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNetworkConfigurationManager) Capabilities() QNetworkConfigurationManager__Capability {
@@ -4959,6 +5059,11 @@ func NewQNetworkCookieFromPointer(ptr unsafe.Pointer) *QNetworkCookie {
 	return n
 }
 
+func newQNetworkCookieFromPointer(ptr unsafe.Pointer) *QNetworkCookie {
+	var n = NewQNetworkCookieFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNetworkCookie) QNetworkCookie_PTR() *QNetworkCookie {
 	return ptr
 }
@@ -4974,13 +5079,13 @@ const (
 func NewQNetworkCookie(name core.QByteArray_ITF, value core.QByteArray_ITF) *QNetworkCookie {
 	defer qt.Recovering("QNetworkCookie::QNetworkCookie")
 
-	return NewQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie(core.PointerFromQByteArray(name), core.PointerFromQByteArray(value)))
+	return newQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie(core.PointerFromQByteArray(name), core.PointerFromQByteArray(value)))
 }
 
 func NewQNetworkCookie2(other QNetworkCookie_ITF) *QNetworkCookie {
 	defer qt.Recovering("QNetworkCookie::QNetworkCookie")
 
-	return NewQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie2(PointerFromQNetworkCookie(other)))
+	return newQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie2(PointerFromQNetworkCookie(other)))
 }
 
 func (ptr *QNetworkCookie) Domain() string {
@@ -5172,6 +5277,11 @@ func PointerFromQNetworkCookieJar(ptr QNetworkCookieJar_ITF) unsafe.Pointer {
 func NewQNetworkCookieJarFromPointer(ptr unsafe.Pointer) *QNetworkCookieJar {
 	var n = new(QNetworkCookieJar)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNetworkCookieJarFromPointer(ptr unsafe.Pointer) *QNetworkCookieJar {
+	var n = NewQNetworkCookieJarFromPointer(ptr)
 	for len(n.ObjectName()) < len("QNetworkCookieJar_") {
 		n.SetObjectName("QNetworkCookieJar_" + qt.Identifier())
 	}
@@ -5185,7 +5295,7 @@ func (ptr *QNetworkCookieJar) QNetworkCookieJar_PTR() *QNetworkCookieJar {
 func NewQNetworkCookieJar(parent core.QObject_ITF) *QNetworkCookieJar {
 	defer qt.Recovering("QNetworkCookieJar::QNetworkCookieJar")
 
-	return NewQNetworkCookieJarFromPointer(C.QNetworkCookieJar_NewQNetworkCookieJar(core.PointerFromQObject(parent)))
+	return newQNetworkCookieJarFromPointer(C.QNetworkCookieJar_NewQNetworkCookieJar(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNetworkCookieJar) DeleteCookie(cookie QNetworkCookie_ITF) bool {
@@ -5387,6 +5497,11 @@ func PointerFromQNetworkDiskCache(ptr QNetworkDiskCache_ITF) unsafe.Pointer {
 func NewQNetworkDiskCacheFromPointer(ptr unsafe.Pointer) *QNetworkDiskCache {
 	var n = new(QNetworkDiskCache)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNetworkDiskCacheFromPointer(ptr unsafe.Pointer) *QNetworkDiskCache {
+	var n = NewQNetworkDiskCacheFromPointer(ptr)
 	for len(n.ObjectName()) < len("QNetworkDiskCache_") {
 		n.SetObjectName("QNetworkDiskCache_" + qt.Identifier())
 	}
@@ -5400,7 +5515,7 @@ func (ptr *QNetworkDiskCache) QNetworkDiskCache_PTR() *QNetworkDiskCache {
 func NewQNetworkDiskCache(parent core.QObject_ITF) *QNetworkDiskCache {
 	defer qt.Recovering("QNetworkDiskCache::QNetworkDiskCache")
 
-	return NewQNetworkDiskCacheFromPointer(C.QNetworkDiskCache_NewQNetworkDiskCache(core.PointerFromQObject(parent)))
+	return newQNetworkDiskCacheFromPointer(C.QNetworkDiskCache_NewQNetworkDiskCache(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNetworkDiskCache) CacheDirectory() string {
@@ -5690,6 +5805,11 @@ func NewQNetworkInterfaceFromPointer(ptr unsafe.Pointer) *QNetworkInterface {
 	return n
 }
 
+func newQNetworkInterfaceFromPointer(ptr unsafe.Pointer) *QNetworkInterface {
+	var n = NewQNetworkInterfaceFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNetworkInterface) QNetworkInterface_PTR() *QNetworkInterface {
 	return ptr
 }
@@ -5709,13 +5829,13 @@ const (
 func NewQNetworkInterface() *QNetworkInterface {
 	defer qt.Recovering("QNetworkInterface::QNetworkInterface")
 
-	return NewQNetworkInterfaceFromPointer(C.QNetworkInterface_NewQNetworkInterface())
+	return newQNetworkInterfaceFromPointer(C.QNetworkInterface_NewQNetworkInterface())
 }
 
 func NewQNetworkInterface2(other QNetworkInterface_ITF) *QNetworkInterface {
 	defer qt.Recovering("QNetworkInterface::QNetworkInterface")
 
-	return NewQNetworkInterfaceFromPointer(C.QNetworkInterface_NewQNetworkInterface2(PointerFromQNetworkInterface(other)))
+	return newQNetworkInterfaceFromPointer(C.QNetworkInterface_NewQNetworkInterface2(PointerFromQNetworkInterface(other)))
 }
 
 func (ptr *QNetworkInterface) Flags() QNetworkInterface__InterfaceFlag {
@@ -5817,6 +5937,11 @@ func NewQNetworkProxyFromPointer(ptr unsafe.Pointer) *QNetworkProxy {
 	return n
 }
 
+func newQNetworkProxyFromPointer(ptr unsafe.Pointer) *QNetworkProxy {
+	var n = NewQNetworkProxyFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNetworkProxy) QNetworkProxy_PTR() *QNetworkProxy {
 	return ptr
 }
@@ -5847,13 +5972,13 @@ const (
 func NewQNetworkProxy() *QNetworkProxy {
 	defer qt.Recovering("QNetworkProxy::QNetworkProxy")
 
-	return NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy())
+	return newQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy())
 }
 
 func NewQNetworkProxy3(other QNetworkProxy_ITF) *QNetworkProxy {
 	defer qt.Recovering("QNetworkProxy::QNetworkProxy")
 
-	return NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy3(PointerFromQNetworkProxy(other)))
+	return newQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy3(PointerFromQNetworkProxy(other)))
 }
 
 func (ptr *QNetworkProxy) Capabilities() QNetworkProxy__Capability {
@@ -6050,6 +6175,11 @@ func PointerFromQNetworkProxyFactory(ptr QNetworkProxyFactory_ITF) unsafe.Pointe
 func NewQNetworkProxyFactoryFromPointer(ptr unsafe.Pointer) *QNetworkProxyFactory {
 	var n = new(QNetworkProxyFactory)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNetworkProxyFactoryFromPointer(ptr unsafe.Pointer) *QNetworkProxyFactory {
+	var n = NewQNetworkProxyFactoryFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QNetworkProxyFactory_") {
 		n.SetObjectNameAbs("QNetworkProxyFactory_" + qt.Identifier())
 	}
@@ -6126,6 +6256,11 @@ func NewQNetworkProxyQueryFromPointer(ptr unsafe.Pointer) *QNetworkProxyQuery {
 	return n
 }
 
+func newQNetworkProxyQueryFromPointer(ptr unsafe.Pointer) *QNetworkProxyQuery {
+	var n = NewQNetworkProxyQueryFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNetworkProxyQuery) QNetworkProxyQuery_PTR() *QNetworkProxyQuery {
 	return ptr
 }
@@ -6143,37 +6278,37 @@ const (
 func NewQNetworkProxyQuery() *QNetworkProxyQuery {
 	defer qt.Recovering("QNetworkProxyQuery::QNetworkProxyQuery")
 
-	return NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery())
+	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery())
 }
 
 func NewQNetworkProxyQuery7(networkConfiguration QNetworkConfiguration_ITF, hostname string, port int, protocolTag string, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
 	defer qt.Recovering("QNetworkProxyQuery::QNetworkProxyQuery")
 
-	return NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery7(PointerFromQNetworkConfiguration(networkConfiguration), C.CString(hostname), C.int(port), C.CString(protocolTag), C.int(queryType)))
+	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery7(PointerFromQNetworkConfiguration(networkConfiguration), C.CString(hostname), C.int(port), C.CString(protocolTag), C.int(queryType)))
 }
 
 func NewQNetworkProxyQuery6(networkConfiguration QNetworkConfiguration_ITF, requestUrl core.QUrl_ITF, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
 	defer qt.Recovering("QNetworkProxyQuery::QNetworkProxyQuery")
 
-	return NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery6(PointerFromQNetworkConfiguration(networkConfiguration), core.PointerFromQUrl(requestUrl), C.int(queryType)))
+	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery6(PointerFromQNetworkConfiguration(networkConfiguration), core.PointerFromQUrl(requestUrl), C.int(queryType)))
 }
 
 func NewQNetworkProxyQuery5(other QNetworkProxyQuery_ITF) *QNetworkProxyQuery {
 	defer qt.Recovering("QNetworkProxyQuery::QNetworkProxyQuery")
 
-	return NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery5(PointerFromQNetworkProxyQuery(other)))
+	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery5(PointerFromQNetworkProxyQuery(other)))
 }
 
 func NewQNetworkProxyQuery3(hostname string, port int, protocolTag string, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
 	defer qt.Recovering("QNetworkProxyQuery::QNetworkProxyQuery")
 
-	return NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery3(C.CString(hostname), C.int(port), C.CString(protocolTag), C.int(queryType)))
+	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery3(C.CString(hostname), C.int(port), C.CString(protocolTag), C.int(queryType)))
 }
 
 func NewQNetworkProxyQuery2(requestUrl core.QUrl_ITF, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
 	defer qt.Recovering("QNetworkProxyQuery::QNetworkProxyQuery")
 
-	return NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery2(core.PointerFromQUrl(requestUrl), C.int(queryType)))
+	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery2(core.PointerFromQUrl(requestUrl), C.int(queryType)))
 }
 
 func (ptr *QNetworkProxyQuery) LocalPort() int {
@@ -6321,6 +6456,11 @@ func PointerFromQNetworkReply(ptr QNetworkReply_ITF) unsafe.Pointer {
 func NewQNetworkReplyFromPointer(ptr unsafe.Pointer) *QNetworkReply {
 	var n = new(QNetworkReply)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNetworkReplyFromPointer(ptr unsafe.Pointer) *QNetworkReply {
+	var n = NewQNetworkReplyFromPointer(ptr)
 	for len(n.ObjectName()) < len("QNetworkReply_") {
 		n.SetObjectName("QNetworkReply_" + qt.Identifier())
 	}
@@ -7045,6 +7185,11 @@ func NewQNetworkRequestFromPointer(ptr unsafe.Pointer) *QNetworkRequest {
 	return n
 }
 
+func newQNetworkRequestFromPointer(ptr unsafe.Pointer) *QNetworkRequest {
+	var n = NewQNetworkRequestFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNetworkRequest) QNetworkRequest_PTR() *QNetworkRequest {
 	return ptr
 }
@@ -7123,13 +7268,13 @@ const (
 func NewQNetworkRequest2(other QNetworkRequest_ITF) *QNetworkRequest {
 	defer qt.Recovering("QNetworkRequest::QNetworkRequest")
 
-	return NewQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest2(PointerFromQNetworkRequest(other)))
+	return newQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest2(PointerFromQNetworkRequest(other)))
 }
 
 func NewQNetworkRequest(url core.QUrl_ITF) *QNetworkRequest {
 	defer qt.Recovering("QNetworkRequest::QNetworkRequest")
 
-	return NewQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest(core.PointerFromQUrl(url)))
+	return newQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest(core.PointerFromQUrl(url)))
 }
 
 func (ptr *QNetworkRequest) Attribute(code QNetworkRequest__Attribute, defaultValue core.QVariant_ITF) *core.QVariant {
@@ -7286,6 +7431,11 @@ func PointerFromQNetworkSession(ptr QNetworkSession_ITF) unsafe.Pointer {
 func NewQNetworkSessionFromPointer(ptr unsafe.Pointer) *QNetworkSession {
 	var n = new(QNetworkSession)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNetworkSessionFromPointer(ptr unsafe.Pointer) *QNetworkSession {
+	var n = NewQNetworkSessionFromPointer(ptr)
 	for len(n.ObjectName()) < len("QNetworkSession_") {
 		n.SetObjectName("QNetworkSession_" + qt.Identifier())
 	}
@@ -7331,7 +7481,7 @@ const (
 func NewQNetworkSession(connectionConfig QNetworkConfiguration_ITF, parent core.QObject_ITF) *QNetworkSession {
 	defer qt.Recovering("QNetworkSession::QNetworkSession")
 
-	return NewQNetworkSessionFromPointer(C.QNetworkSession_NewQNetworkSession(PointerFromQNetworkConfiguration(connectionConfig), core.PointerFromQObject(parent)))
+	return newQNetworkSessionFromPointer(C.QNetworkSession_NewQNetworkSession(PointerFromQNetworkConfiguration(connectionConfig), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNetworkSession) Accept() {
@@ -7850,6 +8000,11 @@ func NewQSslCertificateFromPointer(ptr unsafe.Pointer) *QSslCertificate {
 	return n
 }
 
+func newQSslCertificateFromPointer(ptr unsafe.Pointer) *QSslCertificate {
+	var n = NewQSslCertificateFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSslCertificate) QSslCertificate_PTR() *QSslCertificate {
 	return ptr
 }
@@ -7872,7 +8027,7 @@ const (
 func NewQSslCertificate3(other QSslCertificate_ITF) *QSslCertificate {
 	defer qt.Recovering("QSslCertificate::QSslCertificate")
 
-	return NewQSslCertificateFromPointer(C.QSslCertificate_NewQSslCertificate3(PointerFromQSslCertificate(other)))
+	return newQSslCertificateFromPointer(C.QSslCertificate_NewQSslCertificate3(PointerFromQSslCertificate(other)))
 }
 
 func (ptr *QSslCertificate) Clear() {
@@ -8063,6 +8218,11 @@ func NewQSslCertificateExtensionFromPointer(ptr unsafe.Pointer) *QSslCertificate
 	return n
 }
 
+func newQSslCertificateExtensionFromPointer(ptr unsafe.Pointer) *QSslCertificateExtension {
+	var n = NewQSslCertificateExtensionFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSslCertificateExtension) QSslCertificateExtension_PTR() *QSslCertificateExtension {
 	return ptr
 }
@@ -8070,13 +8230,13 @@ func (ptr *QSslCertificateExtension) QSslCertificateExtension_PTR() *QSslCertifi
 func NewQSslCertificateExtension() *QSslCertificateExtension {
 	defer qt.Recovering("QSslCertificateExtension::QSslCertificateExtension")
 
-	return NewQSslCertificateExtensionFromPointer(C.QSslCertificateExtension_NewQSslCertificateExtension())
+	return newQSslCertificateExtensionFromPointer(C.QSslCertificateExtension_NewQSslCertificateExtension())
 }
 
 func NewQSslCertificateExtension2(other QSslCertificateExtension_ITF) *QSslCertificateExtension {
 	defer qt.Recovering("QSslCertificateExtension::QSslCertificateExtension")
 
-	return NewQSslCertificateExtensionFromPointer(C.QSslCertificateExtension_NewQSslCertificateExtension2(PointerFromQSslCertificateExtension(other)))
+	return newQSslCertificateExtensionFromPointer(C.QSslCertificateExtension_NewQSslCertificateExtension2(PointerFromQSslCertificateExtension(other)))
 }
 
 func (ptr *QSslCertificateExtension) IsCritical() bool {
@@ -8169,6 +8329,11 @@ func NewQSslCipherFromPointer(ptr unsafe.Pointer) *QSslCipher {
 	return n
 }
 
+func newQSslCipherFromPointer(ptr unsafe.Pointer) *QSslCipher {
+	var n = NewQSslCipherFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSslCipher) QSslCipher_PTR() *QSslCipher {
 	return ptr
 }
@@ -8176,19 +8341,19 @@ func (ptr *QSslCipher) QSslCipher_PTR() *QSslCipher {
 func NewQSslCipher() *QSslCipher {
 	defer qt.Recovering("QSslCipher::QSslCipher")
 
-	return NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher())
+	return newQSslCipherFromPointer(C.QSslCipher_NewQSslCipher())
 }
 
 func NewQSslCipher4(other QSslCipher_ITF) *QSslCipher {
 	defer qt.Recovering("QSslCipher::QSslCipher")
 
-	return NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher4(PointerFromQSslCipher(other)))
+	return newQSslCipherFromPointer(C.QSslCipher_NewQSslCipher4(PointerFromQSslCipher(other)))
 }
 
 func NewQSslCipher2(name string) *QSslCipher {
 	defer qt.Recovering("QSslCipher::QSslCipher")
 
-	return NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher2(C.CString(name)))
+	return newQSslCipherFromPointer(C.QSslCipher_NewQSslCipher2(C.CString(name)))
 }
 
 func (ptr *QSslCipher) AuthenticationMethod() string {
@@ -8308,6 +8473,11 @@ func NewQSslConfigurationFromPointer(ptr unsafe.Pointer) *QSslConfiguration {
 	return n
 }
 
+func newQSslConfigurationFromPointer(ptr unsafe.Pointer) *QSslConfiguration {
+	var n = NewQSslConfigurationFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSslConfiguration) QSslConfiguration_PTR() *QSslConfiguration {
 	return ptr
 }
@@ -8324,13 +8494,13 @@ const (
 func NewQSslConfiguration() *QSslConfiguration {
 	defer qt.Recovering("QSslConfiguration::QSslConfiguration")
 
-	return NewQSslConfigurationFromPointer(C.QSslConfiguration_NewQSslConfiguration())
+	return newQSslConfigurationFromPointer(C.QSslConfiguration_NewQSslConfiguration())
 }
 
 func NewQSslConfiguration2(other QSslConfiguration_ITF) *QSslConfiguration {
 	defer qt.Recovering("QSslConfiguration::QSslConfiguration")
 
-	return NewQSslConfigurationFromPointer(C.QSslConfiguration_NewQSslConfiguration2(PointerFromQSslConfiguration(other)))
+	return newQSslConfigurationFromPointer(C.QSslConfiguration_NewQSslConfiguration2(PointerFromQSslConfiguration(other)))
 }
 
 func (ptr *QSslConfiguration) IsNull() bool {
@@ -8487,6 +8657,11 @@ func NewQSslEllipticCurveFromPointer(ptr unsafe.Pointer) *QSslEllipticCurve {
 	return n
 }
 
+func newQSslEllipticCurveFromPointer(ptr unsafe.Pointer) *QSslEllipticCurve {
+	var n = NewQSslEllipticCurveFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSslEllipticCurve) QSslEllipticCurve_PTR() *QSslEllipticCurve {
 	return ptr
 }
@@ -8494,7 +8669,7 @@ func (ptr *QSslEllipticCurve) QSslEllipticCurve_PTR() *QSslEllipticCurve {
 func NewQSslEllipticCurve() *QSslEllipticCurve {
 	defer qt.Recovering("QSslEllipticCurve::QSslEllipticCurve")
 
-	return NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_NewQSslEllipticCurve())
+	return newQSslEllipticCurveFromPointer(C.QSslEllipticCurve_NewQSslEllipticCurve())
 }
 
 func (ptr *QSslEllipticCurve) IsValid() bool {
@@ -8562,6 +8737,11 @@ func NewQSslErrorFromPointer(ptr unsafe.Pointer) *QSslError {
 	return n
 }
 
+func newQSslErrorFromPointer(ptr unsafe.Pointer) *QSslError {
+	var n = NewQSslErrorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSslError) QSslError_PTR() *QSslError {
 	return ptr
 }
@@ -8601,25 +8781,25 @@ const (
 func NewQSslError() *QSslError {
 	defer qt.Recovering("QSslError::QSslError")
 
-	return NewQSslErrorFromPointer(C.QSslError_NewQSslError())
+	return newQSslErrorFromPointer(C.QSslError_NewQSslError())
 }
 
 func NewQSslError2(error QSslError__SslError) *QSslError {
 	defer qt.Recovering("QSslError::QSslError")
 
-	return NewQSslErrorFromPointer(C.QSslError_NewQSslError2(C.int(error)))
+	return newQSslErrorFromPointer(C.QSslError_NewQSslError2(C.int(error)))
 }
 
 func NewQSslError3(error QSslError__SslError, certificate QSslCertificate_ITF) *QSslError {
 	defer qt.Recovering("QSslError::QSslError")
 
-	return NewQSslErrorFromPointer(C.QSslError_NewQSslError3(C.int(error), PointerFromQSslCertificate(certificate)))
+	return newQSslErrorFromPointer(C.QSslError_NewQSslError3(C.int(error), PointerFromQSslCertificate(certificate)))
 }
 
 func NewQSslError4(other QSslError_ITF) *QSslError {
 	defer qt.Recovering("QSslError::QSslError")
 
-	return NewQSslErrorFromPointer(C.QSslError_NewQSslError4(PointerFromQSslError(other)))
+	return newQSslErrorFromPointer(C.QSslError_NewQSslError4(PointerFromQSslError(other)))
 }
 
 func (ptr *QSslError) Error() QSslError__SslError {
@@ -8685,6 +8865,11 @@ func NewQSslKeyFromPointer(ptr unsafe.Pointer) *QSslKey {
 	return n
 }
 
+func newQSslKeyFromPointer(ptr unsafe.Pointer) *QSslKey {
+	var n = NewQSslKeyFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSslKey) QSslKey_PTR() *QSslKey {
 	return ptr
 }
@@ -8692,13 +8877,13 @@ func (ptr *QSslKey) QSslKey_PTR() *QSslKey {
 func NewQSslKey() *QSslKey {
 	defer qt.Recovering("QSslKey::QSslKey")
 
-	return NewQSslKeyFromPointer(C.QSslKey_NewQSslKey())
+	return newQSslKeyFromPointer(C.QSslKey_NewQSslKey())
 }
 
 func NewQSslKey5(other QSslKey_ITF) *QSslKey {
 	defer qt.Recovering("QSslKey::QSslKey")
 
-	return NewQSslKeyFromPointer(C.QSslKey_NewQSslKey5(PointerFromQSslKey(other)))
+	return newQSslKeyFromPointer(C.QSslKey_NewQSslKey5(PointerFromQSslKey(other)))
 }
 
 func (ptr *QSslKey) Clear() {
@@ -8790,6 +8975,11 @@ func NewQSslPreSharedKeyAuthenticatorFromPointer(ptr unsafe.Pointer) *QSslPreSha
 	return n
 }
 
+func newQSslPreSharedKeyAuthenticatorFromPointer(ptr unsafe.Pointer) *QSslPreSharedKeyAuthenticator {
+	var n = NewQSslPreSharedKeyAuthenticatorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSslPreSharedKeyAuthenticator) QSslPreSharedKeyAuthenticator_PTR() *QSslPreSharedKeyAuthenticator {
 	return ptr
 }
@@ -8797,13 +8987,13 @@ func (ptr *QSslPreSharedKeyAuthenticator) QSslPreSharedKeyAuthenticator_PTR() *Q
 func NewQSslPreSharedKeyAuthenticator() *QSslPreSharedKeyAuthenticator {
 	defer qt.Recovering("QSslPreSharedKeyAuthenticator::QSslPreSharedKeyAuthenticator")
 
-	return NewQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator())
+	return newQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator())
 }
 
 func NewQSslPreSharedKeyAuthenticator2(authenticator QSslPreSharedKeyAuthenticator_ITF) *QSslPreSharedKeyAuthenticator {
 	defer qt.Recovering("QSslPreSharedKeyAuthenticator::QSslPreSharedKeyAuthenticator")
 
-	return NewQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator2(PointerFromQSslPreSharedKeyAuthenticator(authenticator)))
+	return newQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator2(PointerFromQSslPreSharedKeyAuthenticator(authenticator)))
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) Identity() *core.QByteArray {
@@ -8902,6 +9092,11 @@ func PointerFromQSslSocket(ptr QSslSocket_ITF) unsafe.Pointer {
 func NewQSslSocketFromPointer(ptr unsafe.Pointer) *QSslSocket {
 	var n = new(QSslSocket)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSslSocketFromPointer(ptr unsafe.Pointer) *QSslSocket {
+	var n = NewQSslSocketFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSslSocket_") {
 		n.SetObjectName("QSslSocket_" + qt.Identifier())
 	}
@@ -8934,7 +9129,7 @@ const (
 func NewQSslSocket(parent core.QObject_ITF) *QSslSocket {
 	defer qt.Recovering("QSslSocket::QSslSocket")
 
-	return NewQSslSocketFromPointer(C.QSslSocket_NewQSslSocket(core.PointerFromQObject(parent)))
+	return newQSslSocketFromPointer(C.QSslSocket_NewQSslSocket(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSslSocket) Abort() {
@@ -9761,6 +9956,11 @@ func PointerFromQTcpServer(ptr QTcpServer_ITF) unsafe.Pointer {
 func NewQTcpServerFromPointer(ptr unsafe.Pointer) *QTcpServer {
 	var n = new(QTcpServer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTcpServerFromPointer(ptr unsafe.Pointer) *QTcpServer {
+	var n = NewQTcpServerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTcpServer_") {
 		n.SetObjectName("QTcpServer_" + qt.Identifier())
 	}
@@ -9774,7 +9974,7 @@ func (ptr *QTcpServer) QTcpServer_PTR() *QTcpServer {
 func NewQTcpServer(parent core.QObject_ITF) *QTcpServer {
 	defer qt.Recovering("QTcpServer::QTcpServer")
 
-	return NewQTcpServerFromPointer(C.QTcpServer_NewQTcpServer(core.PointerFromQObject(parent)))
+	return newQTcpServerFromPointer(C.QTcpServer_NewQTcpServer(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QTcpServer) ConnectAcceptError(f func(socketError QAbstractSocket__SocketError)) {
@@ -10115,6 +10315,11 @@ func PointerFromQTcpSocket(ptr QTcpSocket_ITF) unsafe.Pointer {
 func NewQTcpSocketFromPointer(ptr unsafe.Pointer) *QTcpSocket {
 	var n = new(QTcpSocket)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTcpSocketFromPointer(ptr unsafe.Pointer) *QTcpSocket {
+	var n = NewQTcpSocketFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTcpSocket_") {
 		n.SetObjectName("QTcpSocket_" + qt.Identifier())
 	}
@@ -10128,7 +10333,7 @@ func (ptr *QTcpSocket) QTcpSocket_PTR() *QTcpSocket {
 func NewQTcpSocket(parent core.QObject_ITF) *QTcpSocket {
 	defer qt.Recovering("QTcpSocket::QTcpSocket")
 
-	return NewQTcpSocketFromPointer(C.QTcpSocket_NewQTcpSocket(core.PointerFromQObject(parent)))
+	return newQTcpSocketFromPointer(C.QTcpSocket_NewQTcpSocket(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QTcpSocket) DestroyQTcpSocket() {
@@ -10519,6 +10724,11 @@ func PointerFromQUdpSocket(ptr QUdpSocket_ITF) unsafe.Pointer {
 func NewQUdpSocketFromPointer(ptr unsafe.Pointer) *QUdpSocket {
 	var n = new(QUdpSocket)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQUdpSocketFromPointer(ptr unsafe.Pointer) *QUdpSocket {
+	var n = NewQUdpSocketFromPointer(ptr)
 	for len(n.ObjectName()) < len("QUdpSocket_") {
 		n.SetObjectName("QUdpSocket_" + qt.Identifier())
 	}
@@ -10532,7 +10742,7 @@ func (ptr *QUdpSocket) QUdpSocket_PTR() *QUdpSocket {
 func NewQUdpSocket(parent core.QObject_ITF) *QUdpSocket {
 	defer qt.Recovering("QUdpSocket::QUdpSocket")
 
-	return NewQUdpSocketFromPointer(C.QUdpSocket_NewQUdpSocket(core.PointerFromQObject(parent)))
+	return newQUdpSocketFromPointer(C.QUdpSocket_NewQUdpSocket(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QUdpSocket) HasPendingDatagrams() bool {

@@ -99,6 +99,20 @@ func goFunctionBody(f *parser.Function) (o string) {
 		o += fmt.Sprintf("if ptr.Pointer() != nil {\n")
 	}
 
+	for _, p := range f.Parameters {
+		if p.Value == "..." {
+			for i := 0; i < 10; i++ {
+				o += fmt.Sprintf("var p%v,d%v = assertion(%v, v...)\n", i, i, i)
+				o += fmt.Sprintf("if d%v != nil {\ndefer d%v()\n}\n", i, i)
+			}
+		}
+
+		if p.Value == "T" && parser.ClassMap[f.Class()].Module == "QtAndroidExtras" && f.TemplateMode == "" {
+			o += fmt.Sprintf("var p0,d0 = assertion(0, %v)\n", p.Name)
+			o += "if d0 != nil {\ndefer d0()\n}\n"
+		}
+	}
+
 	if converter.GoHeaderOutput(f) != "" {
 		o += "return "
 	}

@@ -28,6 +28,11 @@ func PointerFromQAccelerometer(ptr QAccelerometer_ITF) unsafe.Pointer {
 func NewQAccelerometerFromPointer(ptr unsafe.Pointer) *QAccelerometer {
 	var n = new(QAccelerometer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccelerometerFromPointer(ptr unsafe.Pointer) *QAccelerometer {
+	var n = NewQAccelerometerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAccelerometer_") {
 		n.SetObjectName("QAccelerometer_" + qt.Identifier())
 	}
@@ -68,7 +73,7 @@ func (ptr *QAccelerometer) Reading() *QAccelerometerReading {
 func NewQAccelerometer(parent core.QObject_ITF) *QAccelerometer {
 	defer qt.Recovering("QAccelerometer::QAccelerometer")
 
-	return NewQAccelerometerFromPointer(C.QAccelerometer_NewQAccelerometer(core.PointerFromQObject(parent)))
+	return newQAccelerometerFromPointer(C.QAccelerometer_NewQAccelerometer(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAccelerometer) ConnectAccelerationModeChanged(f func(accelerationMode QAccelerometer__AccelerationMode)) {
@@ -281,6 +286,11 @@ func NewQAccelerometerFilterFromPointer(ptr unsafe.Pointer) *QAccelerometerFilte
 	return n
 }
 
+func newQAccelerometerFilterFromPointer(ptr unsafe.Pointer) *QAccelerometerFilter {
+	var n = NewQAccelerometerFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAccelerometerFilter) QAccelerometerFilter_PTR() *QAccelerometerFilter {
 	return ptr
 }
@@ -313,6 +323,11 @@ func PointerFromQAccelerometerReading(ptr QAccelerometerReading_ITF) unsafe.Poin
 func NewQAccelerometerReadingFromPointer(ptr unsafe.Pointer) *QAccelerometerReading {
 	var n = new(QAccelerometerReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAccelerometerReadingFromPointer(ptr unsafe.Pointer) *QAccelerometerReading {
+	var n = NewQAccelerometerReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAccelerometerReading_") {
 		n.SetObjectName("QAccelerometerReading_" + qt.Identifier())
 	}
@@ -528,6 +543,11 @@ func PointerFromQAltimeter(ptr QAltimeter_ITF) unsafe.Pointer {
 func NewQAltimeterFromPointer(ptr unsafe.Pointer) *QAltimeter {
 	var n = new(QAltimeter)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAltimeterFromPointer(ptr unsafe.Pointer) *QAltimeter {
+	var n = NewQAltimeterFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAltimeter_") {
 		n.SetObjectName("QAltimeter_" + qt.Identifier())
 	}
@@ -550,7 +570,7 @@ func (ptr *QAltimeter) Reading() *QAltimeterReading {
 func NewQAltimeter(parent core.QObject_ITF) *QAltimeter {
 	defer qt.Recovering("QAltimeter::QAltimeter")
 
-	return NewQAltimeterFromPointer(C.QAltimeter_NewQAltimeter(core.PointerFromQObject(parent)))
+	return newQAltimeterFromPointer(C.QAltimeter_NewQAltimeter(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAltimeter) DestroyQAltimeter() {
@@ -719,6 +739,11 @@ func NewQAltimeterFilterFromPointer(ptr unsafe.Pointer) *QAltimeterFilter {
 	return n
 }
 
+func newQAltimeterFilterFromPointer(ptr unsafe.Pointer) *QAltimeterFilter {
+	var n = NewQAltimeterFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAltimeterFilter) QAltimeterFilter_PTR() *QAltimeterFilter {
 	return ptr
 }
@@ -751,6 +776,11 @@ func PointerFromQAltimeterReading(ptr QAltimeterReading_ITF) unsafe.Pointer {
 func NewQAltimeterReadingFromPointer(ptr unsafe.Pointer) *QAltimeterReading {
 	var n = new(QAltimeterReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAltimeterReadingFromPointer(ptr unsafe.Pointer) *QAltimeterReading {
+	var n = NewQAltimeterReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAltimeterReading_") {
 		n.SetObjectName("QAltimeterReading_" + qt.Identifier())
 	}
@@ -935,6 +965,11 @@ func NewQAmbientLightFilterFromPointer(ptr unsafe.Pointer) *QAmbientLightFilter 
 	return n
 }
 
+func newQAmbientLightFilterFromPointer(ptr unsafe.Pointer) *QAmbientLightFilter {
+	var n = NewQAmbientLightFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAmbientLightFilter) QAmbientLightFilter_PTR() *QAmbientLightFilter {
 	return ptr
 }
@@ -967,6 +1002,11 @@ func PointerFromQAmbientLightReading(ptr QAmbientLightReading_ITF) unsafe.Pointe
 func NewQAmbientLightReadingFromPointer(ptr unsafe.Pointer) *QAmbientLightReading {
 	var n = new(QAmbientLightReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAmbientLightReadingFromPointer(ptr unsafe.Pointer) *QAmbientLightReading {
+	var n = NewQAmbientLightReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAmbientLightReading_") {
 		n.SetObjectName("QAmbientLightReading_" + qt.Identifier())
 	}
@@ -1160,6 +1200,11 @@ func PointerFromQAmbientLightSensor(ptr QAmbientLightSensor_ITF) unsafe.Pointer 
 func NewQAmbientLightSensorFromPointer(ptr unsafe.Pointer) *QAmbientLightSensor {
 	var n = new(QAmbientLightSensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAmbientLightSensorFromPointer(ptr unsafe.Pointer) *QAmbientLightSensor {
+	var n = NewQAmbientLightSensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAmbientLightSensor_") {
 		n.SetObjectName("QAmbientLightSensor_" + qt.Identifier())
 	}
@@ -1182,7 +1227,7 @@ func (ptr *QAmbientLightSensor) Reading() *QAmbientLightReading {
 func NewQAmbientLightSensor(parent core.QObject_ITF) *QAmbientLightSensor {
 	defer qt.Recovering("QAmbientLightSensor::QAmbientLightSensor")
 
-	return NewQAmbientLightSensorFromPointer(C.QAmbientLightSensor_NewQAmbientLightSensor(core.PointerFromQObject(parent)))
+	return newQAmbientLightSensorFromPointer(C.QAmbientLightSensor_NewQAmbientLightSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensor() {
@@ -1351,6 +1396,11 @@ func NewQAmbientTemperatureFilterFromPointer(ptr unsafe.Pointer) *QAmbientTemper
 	return n
 }
 
+func newQAmbientTemperatureFilterFromPointer(ptr unsafe.Pointer) *QAmbientTemperatureFilter {
+	var n = NewQAmbientTemperatureFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAmbientTemperatureFilter) QAmbientTemperatureFilter_PTR() *QAmbientTemperatureFilter {
 	return ptr
 }
@@ -1383,6 +1433,11 @@ func PointerFromQAmbientTemperatureReading(ptr QAmbientTemperatureReading_ITF) u
 func NewQAmbientTemperatureReadingFromPointer(ptr unsafe.Pointer) *QAmbientTemperatureReading {
 	var n = new(QAmbientTemperatureReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAmbientTemperatureReadingFromPointer(ptr unsafe.Pointer) *QAmbientTemperatureReading {
+	var n = NewQAmbientTemperatureReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAmbientTemperatureReading_") {
 		n.SetObjectName("QAmbientTemperatureReading_" + qt.Identifier())
 	}
@@ -1564,6 +1619,11 @@ func PointerFromQAmbientTemperatureSensor(ptr QAmbientTemperatureSensor_ITF) uns
 func NewQAmbientTemperatureSensorFromPointer(ptr unsafe.Pointer) *QAmbientTemperatureSensor {
 	var n = new(QAmbientTemperatureSensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAmbientTemperatureSensorFromPointer(ptr unsafe.Pointer) *QAmbientTemperatureSensor {
+	var n = NewQAmbientTemperatureSensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAmbientTemperatureSensor_") {
 		n.SetObjectName("QAmbientTemperatureSensor_" + qt.Identifier())
 	}
@@ -1586,7 +1646,7 @@ func (ptr *QAmbientTemperatureSensor) Reading() *QAmbientTemperatureReading {
 func NewQAmbientTemperatureSensor(parent core.QObject_ITF) *QAmbientTemperatureSensor {
 	defer qt.Recovering("QAmbientTemperatureSensor::QAmbientTemperatureSensor")
 
-	return NewQAmbientTemperatureSensorFromPointer(C.QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(core.PointerFromQObject(parent)))
+	return newQAmbientTemperatureSensorFromPointer(C.QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAmbientTemperatureSensor) DestroyQAmbientTemperatureSensor() {
@@ -1752,6 +1812,11 @@ func PointerFromQCompass(ptr QCompass_ITF) unsafe.Pointer {
 func NewQCompassFromPointer(ptr unsafe.Pointer) *QCompass {
 	var n = new(QCompass)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCompassFromPointer(ptr unsafe.Pointer) *QCompass {
+	var n = NewQCompassFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCompass_") {
 		n.SetObjectName("QCompass_" + qt.Identifier())
 	}
@@ -1774,7 +1839,7 @@ func (ptr *QCompass) Reading() *QCompassReading {
 func NewQCompass(parent core.QObject_ITF) *QCompass {
 	defer qt.Recovering("QCompass::QCompass")
 
-	return NewQCompassFromPointer(C.QCompass_NewQCompass(core.PointerFromQObject(parent)))
+	return newQCompassFromPointer(C.QCompass_NewQCompass(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QCompass) DestroyQCompass() {
@@ -1943,6 +2008,11 @@ func NewQCompassFilterFromPointer(ptr unsafe.Pointer) *QCompassFilter {
 	return n
 }
 
+func newQCompassFilterFromPointer(ptr unsafe.Pointer) *QCompassFilter {
+	var n = NewQCompassFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QCompassFilter) QCompassFilter_PTR() *QCompassFilter {
 	return ptr
 }
@@ -1975,6 +2045,11 @@ func PointerFromQCompassReading(ptr QCompassReading_ITF) unsafe.Pointer {
 func NewQCompassReadingFromPointer(ptr unsafe.Pointer) *QCompassReading {
 	var n = new(QCompassReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCompassReadingFromPointer(ptr unsafe.Pointer) *QCompassReading {
+	var n = NewQCompassReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCompassReading_") {
 		n.SetObjectName("QCompassReading_" + qt.Identifier())
 	}
@@ -2176,6 +2251,11 @@ func NewQDistanceFilterFromPointer(ptr unsafe.Pointer) *QDistanceFilter {
 	return n
 }
 
+func newQDistanceFilterFromPointer(ptr unsafe.Pointer) *QDistanceFilter {
+	var n = NewQDistanceFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDistanceFilter) QDistanceFilter_PTR() *QDistanceFilter {
 	return ptr
 }
@@ -2208,6 +2288,11 @@ func PointerFromQDistanceReading(ptr QDistanceReading_ITF) unsafe.Pointer {
 func NewQDistanceReadingFromPointer(ptr unsafe.Pointer) *QDistanceReading {
 	var n = new(QDistanceReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDistanceReadingFromPointer(ptr unsafe.Pointer) *QDistanceReading {
+	var n = NewQDistanceReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDistanceReading_") {
 		n.SetObjectName("QDistanceReading_" + qt.Identifier())
 	}
@@ -2389,6 +2474,11 @@ func PointerFromQDistanceSensor(ptr QDistanceSensor_ITF) unsafe.Pointer {
 func NewQDistanceSensorFromPointer(ptr unsafe.Pointer) *QDistanceSensor {
 	var n = new(QDistanceSensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDistanceSensorFromPointer(ptr unsafe.Pointer) *QDistanceSensor {
+	var n = NewQDistanceSensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDistanceSensor_") {
 		n.SetObjectName("QDistanceSensor_" + qt.Identifier())
 	}
@@ -2411,7 +2501,7 @@ func (ptr *QDistanceSensor) Reading() *QDistanceReading {
 func NewQDistanceSensor(parent core.QObject_ITF) *QDistanceSensor {
 	defer qt.Recovering("QDistanceSensor::QDistanceSensor")
 
-	return NewQDistanceSensorFromPointer(C.QDistanceSensor_NewQDistanceSensor(core.PointerFromQObject(parent)))
+	return newQDistanceSensorFromPointer(C.QDistanceSensor_NewQDistanceSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDistanceSensor) DestroyQDistanceSensor() {
@@ -2577,6 +2667,11 @@ func PointerFromQGyroscope(ptr QGyroscope_ITF) unsafe.Pointer {
 func NewQGyroscopeFromPointer(ptr unsafe.Pointer) *QGyroscope {
 	var n = new(QGyroscope)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGyroscopeFromPointer(ptr unsafe.Pointer) *QGyroscope {
+	var n = NewQGyroscopeFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGyroscope_") {
 		n.SetObjectName("QGyroscope_" + qt.Identifier())
 	}
@@ -2599,7 +2694,7 @@ func (ptr *QGyroscope) Reading() *QGyroscopeReading {
 func NewQGyroscope(parent core.QObject_ITF) *QGyroscope {
 	defer qt.Recovering("QGyroscope::QGyroscope")
 
-	return NewQGyroscopeFromPointer(C.QGyroscope_NewQGyroscope(core.PointerFromQObject(parent)))
+	return newQGyroscopeFromPointer(C.QGyroscope_NewQGyroscope(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGyroscope) DestroyQGyroscope() {
@@ -2768,6 +2863,11 @@ func NewQGyroscopeFilterFromPointer(ptr unsafe.Pointer) *QGyroscopeFilter {
 	return n
 }
 
+func newQGyroscopeFilterFromPointer(ptr unsafe.Pointer) *QGyroscopeFilter {
+	var n = NewQGyroscopeFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGyroscopeFilter) QGyroscopeFilter_PTR() *QGyroscopeFilter {
 	return ptr
 }
@@ -2800,6 +2900,11 @@ func PointerFromQGyroscopeReading(ptr QGyroscopeReading_ITF) unsafe.Pointer {
 func NewQGyroscopeReadingFromPointer(ptr unsafe.Pointer) *QGyroscopeReading {
 	var n = new(QGyroscopeReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGyroscopeReadingFromPointer(ptr unsafe.Pointer) *QGyroscopeReading {
+	var n = NewQGyroscopeReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGyroscopeReading_") {
 		n.SetObjectName("QGyroscopeReading_" + qt.Identifier())
 	}
@@ -3018,6 +3123,11 @@ func NewQHolsterFilterFromPointer(ptr unsafe.Pointer) *QHolsterFilter {
 	return n
 }
 
+func newQHolsterFilterFromPointer(ptr unsafe.Pointer) *QHolsterFilter {
+	var n = NewQHolsterFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QHolsterFilter) QHolsterFilter_PTR() *QHolsterFilter {
 	return ptr
 }
@@ -3050,6 +3160,11 @@ func PointerFromQHolsterReading(ptr QHolsterReading_ITF) unsafe.Pointer {
 func NewQHolsterReadingFromPointer(ptr unsafe.Pointer) *QHolsterReading {
 	var n = new(QHolsterReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHolsterReadingFromPointer(ptr unsafe.Pointer) *QHolsterReading {
+	var n = NewQHolsterReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHolsterReading_") {
 		n.SetObjectName("QHolsterReading_" + qt.Identifier())
 	}
@@ -3231,6 +3346,11 @@ func PointerFromQHolsterSensor(ptr QHolsterSensor_ITF) unsafe.Pointer {
 func NewQHolsterSensorFromPointer(ptr unsafe.Pointer) *QHolsterSensor {
 	var n = new(QHolsterSensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHolsterSensorFromPointer(ptr unsafe.Pointer) *QHolsterSensor {
+	var n = NewQHolsterSensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHolsterSensor_") {
 		n.SetObjectName("QHolsterSensor_" + qt.Identifier())
 	}
@@ -3253,7 +3373,7 @@ func (ptr *QHolsterSensor) Reading() *QHolsterReading {
 func NewQHolsterSensor(parent core.QObject_ITF) *QHolsterSensor {
 	defer qt.Recovering("QHolsterSensor::QHolsterSensor")
 
-	return NewQHolsterSensorFromPointer(C.QHolsterSensor_NewQHolsterSensor(core.PointerFromQObject(parent)))
+	return newQHolsterSensorFromPointer(C.QHolsterSensor_NewQHolsterSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHolsterSensor) DestroyQHolsterSensor() {
@@ -3422,6 +3542,11 @@ func NewQIRProximityFilterFromPointer(ptr unsafe.Pointer) *QIRProximityFilter {
 	return n
 }
 
+func newQIRProximityFilterFromPointer(ptr unsafe.Pointer) *QIRProximityFilter {
+	var n = NewQIRProximityFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QIRProximityFilter) QIRProximityFilter_PTR() *QIRProximityFilter {
 	return ptr
 }
@@ -3454,6 +3579,11 @@ func PointerFromQIRProximityReading(ptr QIRProximityReading_ITF) unsafe.Pointer 
 func NewQIRProximityReadingFromPointer(ptr unsafe.Pointer) *QIRProximityReading {
 	var n = new(QIRProximityReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQIRProximityReadingFromPointer(ptr unsafe.Pointer) *QIRProximityReading {
+	var n = NewQIRProximityReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QIRProximityReading_") {
 		n.SetObjectName("QIRProximityReading_" + qt.Identifier())
 	}
@@ -3635,6 +3765,11 @@ func PointerFromQIRProximitySensor(ptr QIRProximitySensor_ITF) unsafe.Pointer {
 func NewQIRProximitySensorFromPointer(ptr unsafe.Pointer) *QIRProximitySensor {
 	var n = new(QIRProximitySensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQIRProximitySensorFromPointer(ptr unsafe.Pointer) *QIRProximitySensor {
+	var n = NewQIRProximitySensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QIRProximitySensor_") {
 		n.SetObjectName("QIRProximitySensor_" + qt.Identifier())
 	}
@@ -3657,7 +3792,7 @@ func (ptr *QIRProximitySensor) Reading() *QIRProximityReading {
 func NewQIRProximitySensor(parent core.QObject_ITF) *QIRProximitySensor {
 	defer qt.Recovering("QIRProximitySensor::QIRProximitySensor")
 
-	return NewQIRProximitySensorFromPointer(C.QIRProximitySensor_NewQIRProximitySensor(core.PointerFromQObject(parent)))
+	return newQIRProximitySensorFromPointer(C.QIRProximitySensor_NewQIRProximitySensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QIRProximitySensor) DestroyQIRProximitySensor() {
@@ -3826,6 +3961,11 @@ func NewQLightFilterFromPointer(ptr unsafe.Pointer) *QLightFilter {
 	return n
 }
 
+func newQLightFilterFromPointer(ptr unsafe.Pointer) *QLightFilter {
+	var n = NewQLightFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QLightFilter) QLightFilter_PTR() *QLightFilter {
 	return ptr
 }
@@ -3858,6 +3998,11 @@ func PointerFromQLightReading(ptr QLightReading_ITF) unsafe.Pointer {
 func NewQLightReadingFromPointer(ptr unsafe.Pointer) *QLightReading {
 	var n = new(QLightReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQLightReadingFromPointer(ptr unsafe.Pointer) *QLightReading {
+	var n = NewQLightReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QLightReading_") {
 		n.SetObjectName("QLightReading_" + qt.Identifier())
 	}
@@ -4039,6 +4184,11 @@ func PointerFromQLightSensor(ptr QLightSensor_ITF) unsafe.Pointer {
 func NewQLightSensorFromPointer(ptr unsafe.Pointer) *QLightSensor {
 	var n = new(QLightSensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQLightSensorFromPointer(ptr unsafe.Pointer) *QLightSensor {
+	var n = NewQLightSensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QLightSensor_") {
 		n.SetObjectName("QLightSensor_" + qt.Identifier())
 	}
@@ -4070,7 +4220,7 @@ func (ptr *QLightSensor) Reading() *QLightReading {
 func NewQLightSensor(parent core.QObject_ITF) *QLightSensor {
 	defer qt.Recovering("QLightSensor::QLightSensor")
 
-	return NewQLightSensorFromPointer(C.QLightSensor_NewQLightSensor(core.PointerFromQObject(parent)))
+	return newQLightSensorFromPointer(C.QLightSensor_NewQLightSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QLightSensor) ConnectFieldOfViewChanged(f func(fieldOfView float64)) {
@@ -4280,6 +4430,11 @@ func PointerFromQMagnetometer(ptr QMagnetometer_ITF) unsafe.Pointer {
 func NewQMagnetometerFromPointer(ptr unsafe.Pointer) *QMagnetometer {
 	var n = new(QMagnetometer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMagnetometerFromPointer(ptr unsafe.Pointer) *QMagnetometer {
+	var n = NewQMagnetometerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMagnetometer_") {
 		n.SetObjectName("QMagnetometer_" + qt.Identifier())
 	}
@@ -4319,7 +4474,7 @@ func (ptr *QMagnetometer) SetReturnGeoValues(returnGeoValues bool) {
 func NewQMagnetometer(parent core.QObject_ITF) *QMagnetometer {
 	defer qt.Recovering("QMagnetometer::QMagnetometer")
 
-	return NewQMagnetometerFromPointer(C.QMagnetometer_NewQMagnetometer(core.PointerFromQObject(parent)))
+	return newQMagnetometerFromPointer(C.QMagnetometer_NewQMagnetometer(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QMagnetometer) ConnectReturnGeoValuesChanged(f func(returnGeoValues bool)) {
@@ -4524,6 +4679,11 @@ func NewQMagnetometerFilterFromPointer(ptr unsafe.Pointer) *QMagnetometerFilter 
 	return n
 }
 
+func newQMagnetometerFilterFromPointer(ptr unsafe.Pointer) *QMagnetometerFilter {
+	var n = NewQMagnetometerFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QMagnetometerFilter) QMagnetometerFilter_PTR() *QMagnetometerFilter {
 	return ptr
 }
@@ -4556,6 +4716,11 @@ func PointerFromQMagnetometerReading(ptr QMagnetometerReading_ITF) unsafe.Pointe
 func NewQMagnetometerReadingFromPointer(ptr unsafe.Pointer) *QMagnetometerReading {
 	var n = new(QMagnetometerReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMagnetometerReadingFromPointer(ptr unsafe.Pointer) *QMagnetometerReading {
+	var n = NewQMagnetometerReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMagnetometerReading_") {
 		n.SetObjectName("QMagnetometerReading_" + qt.Identifier())
 	}
@@ -4791,6 +4956,11 @@ func NewQOrientationFilterFromPointer(ptr unsafe.Pointer) *QOrientationFilter {
 	return n
 }
 
+func newQOrientationFilterFromPointer(ptr unsafe.Pointer) *QOrientationFilter {
+	var n = NewQOrientationFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QOrientationFilter) QOrientationFilter_PTR() *QOrientationFilter {
 	return ptr
 }
@@ -4823,6 +4993,11 @@ func PointerFromQOrientationReading(ptr QOrientationReading_ITF) unsafe.Pointer 
 func NewQOrientationReadingFromPointer(ptr unsafe.Pointer) *QOrientationReading {
 	var n = new(QOrientationReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOrientationReadingFromPointer(ptr unsafe.Pointer) *QOrientationReading {
+	var n = NewQOrientationReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOrientationReading_") {
 		n.SetObjectName("QOrientationReading_" + qt.Identifier())
 	}
@@ -5017,6 +5192,11 @@ func PointerFromQOrientationSensor(ptr QOrientationSensor_ITF) unsafe.Pointer {
 func NewQOrientationSensorFromPointer(ptr unsafe.Pointer) *QOrientationSensor {
 	var n = new(QOrientationSensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQOrientationSensorFromPointer(ptr unsafe.Pointer) *QOrientationSensor {
+	var n = NewQOrientationSensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QOrientationSensor_") {
 		n.SetObjectName("QOrientationSensor_" + qt.Identifier())
 	}
@@ -5039,7 +5219,7 @@ func (ptr *QOrientationSensor) Reading() *QOrientationReading {
 func NewQOrientationSensor(parent core.QObject_ITF) *QOrientationSensor {
 	defer qt.Recovering("QOrientationSensor::QOrientationSensor")
 
-	return NewQOrientationSensorFromPointer(C.QOrientationSensor_NewQOrientationSensor(core.PointerFromQObject(parent)))
+	return newQOrientationSensorFromPointer(C.QOrientationSensor_NewQOrientationSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QOrientationSensor) DestroyQOrientationSensor() {
@@ -5208,6 +5388,11 @@ func NewQPressureFilterFromPointer(ptr unsafe.Pointer) *QPressureFilter {
 	return n
 }
 
+func newQPressureFilterFromPointer(ptr unsafe.Pointer) *QPressureFilter {
+	var n = NewQPressureFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPressureFilter) QPressureFilter_PTR() *QPressureFilter {
 	return ptr
 }
@@ -5240,6 +5425,11 @@ func PointerFromQPressureReading(ptr QPressureReading_ITF) unsafe.Pointer {
 func NewQPressureReadingFromPointer(ptr unsafe.Pointer) *QPressureReading {
 	var n = new(QPressureReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPressureReadingFromPointer(ptr unsafe.Pointer) *QPressureReading {
+	var n = NewQPressureReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPressureReading_") {
 		n.SetObjectName("QPressureReading_" + qt.Identifier())
 	}
@@ -5438,6 +5628,11 @@ func PointerFromQPressureSensor(ptr QPressureSensor_ITF) unsafe.Pointer {
 func NewQPressureSensorFromPointer(ptr unsafe.Pointer) *QPressureSensor {
 	var n = new(QPressureSensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPressureSensorFromPointer(ptr unsafe.Pointer) *QPressureSensor {
+	var n = NewQPressureSensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPressureSensor_") {
 		n.SetObjectName("QPressureSensor_" + qt.Identifier())
 	}
@@ -5460,7 +5655,7 @@ func (ptr *QPressureSensor) Reading() *QPressureReading {
 func NewQPressureSensor(parent core.QObject_ITF) *QPressureSensor {
 	defer qt.Recovering("QPressureSensor::QPressureSensor")
 
-	return NewQPressureSensorFromPointer(C.QPressureSensor_NewQPressureSensor(core.PointerFromQObject(parent)))
+	return newQPressureSensorFromPointer(C.QPressureSensor_NewQPressureSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QPressureSensor) DestroyQPressureSensor() {
@@ -5629,6 +5824,11 @@ func NewQProximityFilterFromPointer(ptr unsafe.Pointer) *QProximityFilter {
 	return n
 }
 
+func newQProximityFilterFromPointer(ptr unsafe.Pointer) *QProximityFilter {
+	var n = NewQProximityFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QProximityFilter) QProximityFilter_PTR() *QProximityFilter {
 	return ptr
 }
@@ -5661,6 +5861,11 @@ func PointerFromQProximityReading(ptr QProximityReading_ITF) unsafe.Pointer {
 func NewQProximityReadingFromPointer(ptr unsafe.Pointer) *QProximityReading {
 	var n = new(QProximityReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQProximityReadingFromPointer(ptr unsafe.Pointer) *QProximityReading {
+	var n = NewQProximityReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QProximityReading_") {
 		n.SetObjectName("QProximityReading_" + qt.Identifier())
 	}
@@ -5842,6 +6047,11 @@ func PointerFromQProximitySensor(ptr QProximitySensor_ITF) unsafe.Pointer {
 func NewQProximitySensorFromPointer(ptr unsafe.Pointer) *QProximitySensor {
 	var n = new(QProximitySensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQProximitySensorFromPointer(ptr unsafe.Pointer) *QProximitySensor {
+	var n = NewQProximitySensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QProximitySensor_") {
 		n.SetObjectName("QProximitySensor_" + qt.Identifier())
 	}
@@ -5864,7 +6074,7 @@ func (ptr *QProximitySensor) Reading() *QProximityReading {
 func NewQProximitySensor(parent core.QObject_ITF) *QProximitySensor {
 	defer qt.Recovering("QProximitySensor::QProximitySensor")
 
-	return NewQProximitySensorFromPointer(C.QProximitySensor_NewQProximitySensor(core.PointerFromQObject(parent)))
+	return newQProximitySensorFromPointer(C.QProximitySensor_NewQProximitySensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QProximitySensor) DestroyQProximitySensor() {
@@ -6033,6 +6243,11 @@ func NewQRotationFilterFromPointer(ptr unsafe.Pointer) *QRotationFilter {
 	return n
 }
 
+func newQRotationFilterFromPointer(ptr unsafe.Pointer) *QRotationFilter {
+	var n = NewQRotationFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QRotationFilter) QRotationFilter_PTR() *QRotationFilter {
 	return ptr
 }
@@ -6065,6 +6280,11 @@ func PointerFromQRotationReading(ptr QRotationReading_ITF) unsafe.Pointer {
 func NewQRotationReadingFromPointer(ptr unsafe.Pointer) *QRotationReading {
 	var n = new(QRotationReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQRotationReadingFromPointer(ptr unsafe.Pointer) *QRotationReading {
+	var n = NewQRotationReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QRotationReading_") {
 		n.SetObjectName("QRotationReading_" + qt.Identifier())
 	}
@@ -6264,6 +6484,11 @@ func PointerFromQRotationSensor(ptr QRotationSensor_ITF) unsafe.Pointer {
 func NewQRotationSensorFromPointer(ptr unsafe.Pointer) *QRotationSensor {
 	var n = new(QRotationSensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQRotationSensorFromPointer(ptr unsafe.Pointer) *QRotationSensor {
+	var n = NewQRotationSensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QRotationSensor_") {
 		n.SetObjectName("QRotationSensor_" + qt.Identifier())
 	}
@@ -6295,7 +6520,7 @@ func (ptr *QRotationSensor) Reading() *QRotationReading {
 func NewQRotationSensor(parent core.QObject_ITF) *QRotationSensor {
 	defer qt.Recovering("QRotationSensor::QRotationSensor")
 
-	return NewQRotationSensorFromPointer(C.QRotationSensor_NewQRotationSensor(core.PointerFromQObject(parent)))
+	return newQRotationSensorFromPointer(C.QRotationSensor_NewQRotationSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QRotationSensor) ConnectHasZChanged(f func(hasZ bool)) {
@@ -6505,6 +6730,11 @@ func PointerFromQSensor(ptr QSensor_ITF) unsafe.Pointer {
 func NewQSensorFromPointer(ptr unsafe.Pointer) *QSensor {
 	var n = new(QSensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSensorFromPointer(ptr unsafe.Pointer) *QSensor {
+	var n = NewQSensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSensor_") {
 		n.SetObjectName("QSensor_" + qt.Identifier())
 	}
@@ -6768,7 +6998,7 @@ func (ptr *QSensor) UserOrientation() int {
 func NewQSensor(ty core.QByteArray_ITF, parent core.QObject_ITF) *QSensor {
 	defer qt.Recovering("QSensor::QSensor")
 
-	return NewQSensorFromPointer(C.QSensor_NewQSensor(core.PointerFromQByteArray(ty), core.PointerFromQObject(parent)))
+	return newQSensorFromPointer(C.QSensor_NewQSensor(core.PointerFromQByteArray(ty), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSensor) ConnectActiveChanged(f func()) {
@@ -7527,6 +7757,11 @@ func PointerFromQSensorBackend(ptr QSensorBackend_ITF) unsafe.Pointer {
 func NewQSensorBackendFromPointer(ptr unsafe.Pointer) *QSensorBackend {
 	var n = new(QSensorBackend)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSensorBackendFromPointer(ptr unsafe.Pointer) *QSensorBackend {
+	var n = NewQSensorBackendFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSensorBackend_") {
 		n.SetObjectName("QSensorBackend_" + qt.Identifier())
 	}
@@ -7808,6 +8043,11 @@ func NewQSensorBackendFactoryFromPointer(ptr unsafe.Pointer) *QSensorBackendFact
 	return n
 }
 
+func newQSensorBackendFactoryFromPointer(ptr unsafe.Pointer) *QSensorBackendFactory {
+	var n = NewQSensorBackendFactoryFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSensorBackendFactory) QSensorBackendFactory_PTR() *QSensorBackendFactory {
 	return ptr
 }
@@ -7850,6 +8090,11 @@ func NewQSensorChangesInterfaceFromPointer(ptr unsafe.Pointer) *QSensorChangesIn
 	return n
 }
 
+func newQSensorChangesInterfaceFromPointer(ptr unsafe.Pointer) *QSensorChangesInterface {
+	var n = NewQSensorChangesInterfaceFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSensorChangesInterface) QSensorChangesInterface_PTR() *QSensorChangesInterface {
 	return ptr
 }
@@ -7888,6 +8133,11 @@ func PointerFromQSensorFilter(ptr QSensorFilter_ITF) unsafe.Pointer {
 func NewQSensorFilterFromPointer(ptr unsafe.Pointer) *QSensorFilter {
 	var n = new(QSensorFilter)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSensorFilterFromPointer(ptr unsafe.Pointer) *QSensorFilter {
+	var n = NewQSensorFilterFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QSensorFilter_") {
 		n.SetObjectNameAbs("QSensorFilter_" + qt.Identifier())
 	}
@@ -7951,6 +8201,11 @@ func PointerFromQSensorGesture(ptr QSensorGesture_ITF) unsafe.Pointer {
 func NewQSensorGestureFromPointer(ptr unsafe.Pointer) *QSensorGesture {
 	var n = new(QSensorGesture)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSensorGestureFromPointer(ptr unsafe.Pointer) *QSensorGesture {
+	var n = NewQSensorGestureFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSensorGesture_") {
 		n.SetObjectName("QSensorGesture_" + qt.Identifier())
 	}
@@ -7964,7 +8219,7 @@ func (ptr *QSensorGesture) QSensorGesture_PTR() *QSensorGesture {
 func NewQSensorGesture(ids []string, parent core.QObject_ITF) *QSensorGesture {
 	defer qt.Recovering("QSensorGesture::QSensorGesture")
 
-	return NewQSensorGestureFromPointer(C.QSensorGesture_NewQSensorGesture(C.CString(strings.Join(ids, "|")), core.PointerFromQObject(parent)))
+	return newQSensorGestureFromPointer(C.QSensorGesture_NewQSensorGesture(C.CString(strings.Join(ids, "|")), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSensorGesture) GestureSignals() []string {
@@ -8182,6 +8437,11 @@ func PointerFromQSensorGestureManager(ptr QSensorGestureManager_ITF) unsafe.Poin
 func NewQSensorGestureManagerFromPointer(ptr unsafe.Pointer) *QSensorGestureManager {
 	var n = new(QSensorGestureManager)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSensorGestureManagerFromPointer(ptr unsafe.Pointer) *QSensorGestureManager {
+	var n = NewQSensorGestureManagerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSensorGestureManager_") {
 		n.SetObjectName("QSensorGestureManager_" + qt.Identifier())
 	}
@@ -8195,7 +8455,7 @@ func (ptr *QSensorGestureManager) QSensorGestureManager_PTR() *QSensorGestureMan
 func NewQSensorGestureManager(parent core.QObject_ITF) *QSensorGestureManager {
 	defer qt.Recovering("QSensorGestureManager::QSensorGestureManager")
 
-	return NewQSensorGestureManagerFromPointer(C.QSensorGestureManager_NewQSensorGestureManager(core.PointerFromQObject(parent)))
+	return newQSensorGestureManagerFromPointer(C.QSensorGestureManager_NewQSensorGestureManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSensorGestureManager) GestureIds() []string {
@@ -8437,6 +8697,11 @@ func PointerFromQSensorGesturePluginInterface(ptr QSensorGesturePluginInterface_
 func NewQSensorGesturePluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorGesturePluginInterface {
 	var n = new(QSensorGesturePluginInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSensorGesturePluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorGesturePluginInterface {
+	var n = NewQSensorGesturePluginInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QSensorGesturePluginInterface_") {
 		n.SetObjectNameAbs("QSensorGesturePluginInterface_" + qt.Identifier())
 	}
@@ -8509,6 +8774,11 @@ func PointerFromQSensorGestureRecognizer(ptr QSensorGestureRecognizer_ITF) unsaf
 func NewQSensorGestureRecognizerFromPointer(ptr unsafe.Pointer) *QSensorGestureRecognizer {
 	var n = new(QSensorGestureRecognizer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSensorGestureRecognizerFromPointer(ptr unsafe.Pointer) *QSensorGestureRecognizer {
+	var n = NewQSensorGestureRecognizerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSensorGestureRecognizer_") {
 		n.SetObjectName("QSensorGestureRecognizer_" + qt.Identifier())
 	}
@@ -8743,6 +9013,11 @@ func NewQSensorManagerFromPointer(ptr unsafe.Pointer) *QSensorManager {
 	return n
 }
 
+func newQSensorManagerFromPointer(ptr unsafe.Pointer) *QSensorManager {
+	var n = NewQSensorManagerFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSensorManager) QSensorManager_PTR() *QSensorManager {
 	return ptr
 }
@@ -8806,6 +9081,11 @@ func NewQSensorPluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorPluginInte
 	return n
 }
 
+func newQSensorPluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorPluginInterface {
+	var n = NewQSensorPluginInterfaceFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSensorPluginInterface) QSensorPluginInterface_PTR() *QSensorPluginInterface {
 	return ptr
 }
@@ -8837,6 +9117,11 @@ func PointerFromQSensorReading(ptr QSensorReading_ITF) unsafe.Pointer {
 func NewQSensorReadingFromPointer(ptr unsafe.Pointer) *QSensorReading {
 	var n = new(QSensorReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSensorReadingFromPointer(ptr unsafe.Pointer) *QSensorReading {
+	var n = NewQSensorReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSensorReading_") {
 		n.SetObjectName("QSensorReading_" + qt.Identifier())
 	}
@@ -9022,6 +9307,11 @@ func NewQTapFilterFromPointer(ptr unsafe.Pointer) *QTapFilter {
 	return n
 }
 
+func newQTapFilterFromPointer(ptr unsafe.Pointer) *QTapFilter {
+	var n = NewQTapFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTapFilter) QTapFilter_PTR() *QTapFilter {
 	return ptr
 }
@@ -9054,6 +9344,11 @@ func PointerFromQTapReading(ptr QTapReading_ITF) unsafe.Pointer {
 func NewQTapReadingFromPointer(ptr unsafe.Pointer) *QTapReading {
 	var n = new(QTapReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTapReadingFromPointer(ptr unsafe.Pointer) *QTapReading {
+	var n = NewQTapReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTapReading_") {
 		n.SetObjectName("QTapReading_" + qt.Identifier())
 	}
@@ -9271,6 +9566,11 @@ func PointerFromQTapSensor(ptr QTapSensor_ITF) unsafe.Pointer {
 func NewQTapSensorFromPointer(ptr unsafe.Pointer) *QTapSensor {
 	var n = new(QTapSensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTapSensorFromPointer(ptr unsafe.Pointer) *QTapSensor {
+	var n = NewQTapSensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTapSensor_") {
 		n.SetObjectName("QTapSensor_" + qt.Identifier())
 	}
@@ -9310,7 +9610,7 @@ func (ptr *QTapSensor) SetReturnDoubleTapEvents(returnDoubleTapEvents bool) {
 func NewQTapSensor(parent core.QObject_ITF) *QTapSensor {
 	defer qt.Recovering("QTapSensor::QTapSensor")
 
-	return NewQTapSensorFromPointer(C.QTapSensor_NewQTapSensor(core.PointerFromQObject(parent)))
+	return newQTapSensorFromPointer(C.QTapSensor_NewQTapSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QTapSensor) ConnectReturnDoubleTapEventsChanged(f func(returnDoubleTapEvents bool)) {
@@ -9515,6 +9815,11 @@ func NewQTiltFilterFromPointer(ptr unsafe.Pointer) *QTiltFilter {
 	return n
 }
 
+func newQTiltFilterFromPointer(ptr unsafe.Pointer) *QTiltFilter {
+	var n = NewQTiltFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QTiltFilter) QTiltFilter_PTR() *QTiltFilter {
 	return ptr
 }
@@ -9547,6 +9852,11 @@ func PointerFromQTiltReading(ptr QTiltReading_ITF) unsafe.Pointer {
 func NewQTiltReadingFromPointer(ptr unsafe.Pointer) *QTiltReading {
 	var n = new(QTiltReading)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTiltReadingFromPointer(ptr unsafe.Pointer) *QTiltReading {
+	var n = NewQTiltReadingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTiltReading_") {
 		n.SetObjectName("QTiltReading_" + qt.Identifier())
 	}
@@ -9745,6 +10055,11 @@ func PointerFromQTiltSensor(ptr QTiltSensor_ITF) unsafe.Pointer {
 func NewQTiltSensorFromPointer(ptr unsafe.Pointer) *QTiltSensor {
 	var n = new(QTiltSensor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQTiltSensorFromPointer(ptr unsafe.Pointer) *QTiltSensor {
+	var n = NewQTiltSensorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QTiltSensor_") {
 		n.SetObjectName("QTiltSensor_" + qt.Identifier())
 	}
@@ -9758,7 +10073,7 @@ func (ptr *QTiltSensor) QTiltSensor_PTR() *QTiltSensor {
 func NewQTiltSensor(parent core.QObject_ITF) *QTiltSensor {
 	defer qt.Recovering("QTiltSensor::QTiltSensor")
 
-	return NewQTiltSensorFromPointer(C.QTiltSensor_NewQTiltSensor(core.PointerFromQObject(parent)))
+	return newQTiltSensorFromPointer(C.QTiltSensor_NewQTiltSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QTiltSensor) Reading() *QTiltReading {

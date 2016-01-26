@@ -28,6 +28,11 @@ func PointerFromQDBusAbstractAdaptor(ptr QDBusAbstractAdaptor_ITF) unsafe.Pointe
 func NewQDBusAbstractAdaptorFromPointer(ptr unsafe.Pointer) *QDBusAbstractAdaptor {
 	var n = new(QDBusAbstractAdaptor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDBusAbstractAdaptorFromPointer(ptr unsafe.Pointer) *QDBusAbstractAdaptor {
+	var n = NewQDBusAbstractAdaptorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusAbstractAdaptor_") {
 		n.SetObjectName("QDBusAbstractAdaptor_" + qt.Identifier())
 	}
@@ -201,6 +206,11 @@ func PointerFromQDBusAbstractInterface(ptr QDBusAbstractInterface_ITF) unsafe.Po
 func NewQDBusAbstractInterfaceFromPointer(ptr unsafe.Pointer) *QDBusAbstractInterface {
 	var n = new(QDBusAbstractInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDBusAbstractInterfaceFromPointer(ptr unsafe.Pointer) *QDBusAbstractInterface {
+	var n = NewQDBusAbstractInterfaceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusAbstractInterface_") {
 		n.SetObjectName("QDBusAbstractInterface_" + qt.Identifier())
 	}
@@ -437,6 +447,11 @@ func NewQDBusArgumentFromPointer(ptr unsafe.Pointer) *QDBusArgument {
 	return n
 }
 
+func newQDBusArgumentFromPointer(ptr unsafe.Pointer) *QDBusArgument {
+	var n = NewQDBusArgumentFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDBusArgument) QDBusArgument_PTR() *QDBusArgument {
 	return ptr
 }
@@ -457,13 +472,13 @@ const (
 func NewQDBusArgument() *QDBusArgument {
 	defer qt.Recovering("QDBusArgument::QDBusArgument")
 
-	return NewQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument())
+	return newQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument())
 }
 
 func NewQDBusArgument2(other QDBusArgument_ITF) *QDBusArgument {
 	defer qt.Recovering("QDBusArgument::QDBusArgument")
 
-	return NewQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument2(PointerFromQDBusArgument(other)))
+	return newQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument2(PointerFromQDBusArgument(other)))
 }
 
 func (ptr *QDBusArgument) AsVariant() *core.QVariant {
@@ -658,6 +673,11 @@ func NewQDBusConnectionFromPointer(ptr unsafe.Pointer) *QDBusConnection {
 	return n
 }
 
+func newQDBusConnectionFromPointer(ptr unsafe.Pointer) *QDBusConnection {
+	var n = NewQDBusConnectionFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDBusConnection) QDBusConnection_PTR() *QDBusConnection {
 	return ptr
 }
@@ -712,13 +732,13 @@ const (
 func NewQDBusConnection2(other QDBusConnection_ITF) *QDBusConnection {
 	defer qt.Recovering("QDBusConnection::QDBusConnection")
 
-	return NewQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection2(PointerFromQDBusConnection(other)))
+	return newQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection2(PointerFromQDBusConnection(other)))
 }
 
 func NewQDBusConnection(name string) *QDBusConnection {
 	defer qt.Recovering("QDBusConnection::QDBusConnection")
 
-	return NewQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection(C.CString(name)))
+	return newQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection(C.CString(name)))
 }
 
 func (ptr *QDBusConnection) BaseService() string {
@@ -909,6 +929,11 @@ func PointerFromQDBusConnectionInterface(ptr QDBusConnectionInterface_ITF) unsaf
 func NewQDBusConnectionInterfaceFromPointer(ptr unsafe.Pointer) *QDBusConnectionInterface {
 	var n = new(QDBusConnectionInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDBusConnectionInterfaceFromPointer(ptr unsafe.Pointer) *QDBusConnectionInterface {
+	var n = NewQDBusConnectionInterfaceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusConnectionInterface_") {
 		n.SetObjectName("QDBusConnectionInterface_" + qt.Identifier())
 	}
@@ -1181,6 +1206,11 @@ func NewQDBusContextFromPointer(ptr unsafe.Pointer) *QDBusContext {
 	return n
 }
 
+func newQDBusContextFromPointer(ptr unsafe.Pointer) *QDBusContext {
+	var n = NewQDBusContextFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDBusContext) QDBusContext_PTR() *QDBusContext {
 	return ptr
 }
@@ -1188,7 +1218,7 @@ func (ptr *QDBusContext) QDBusContext_PTR() *QDBusContext {
 func NewQDBusContext() *QDBusContext {
 	defer qt.Recovering("QDBusContext::QDBusContext")
 
-	return NewQDBusContextFromPointer(C.QDBusContext_NewQDBusContext())
+	return newQDBusContextFromPointer(C.QDBusContext_NewQDBusContext())
 }
 
 func (ptr *QDBusContext) CalledFromDBus() bool {
@@ -1267,6 +1297,11 @@ func PointerFromQDBusError(ptr QDBusError_ITF) unsafe.Pointer {
 func NewQDBusErrorFromPointer(ptr unsafe.Pointer) *QDBusError {
 	var n = new(QDBusError)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDBusErrorFromPointer(ptr unsafe.Pointer) *QDBusError {
+	var n = NewQDBusErrorFromPointer(ptr)
 	return n
 }
 
@@ -1369,6 +1404,11 @@ func PointerFromQDBusInterface(ptr QDBusInterface_ITF) unsafe.Pointer {
 func NewQDBusInterfaceFromPointer(ptr unsafe.Pointer) *QDBusInterface {
 	var n = new(QDBusInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDBusInterfaceFromPointer(ptr unsafe.Pointer) *QDBusInterface {
+	var n = NewQDBusInterfaceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusInterface_") {
 		n.SetObjectName("QDBusInterface_" + qt.Identifier())
 	}
@@ -1382,7 +1422,7 @@ func (ptr *QDBusInterface) QDBusInterface_PTR() *QDBusInterface {
 func NewQDBusInterface(service string, path string, interfa string, connection QDBusConnection_ITF, parent core.QObject_ITF) *QDBusInterface {
 	defer qt.Recovering("QDBusInterface::QDBusInterface")
 
-	return NewQDBusInterfaceFromPointer(C.QDBusInterface_NewQDBusInterface(C.CString(service), C.CString(path), C.CString(interfa), PointerFromQDBusConnection(connection), core.PointerFromQObject(parent)))
+	return newQDBusInterfaceFromPointer(C.QDBusInterface_NewQDBusInterface(C.CString(service), C.CString(path), C.CString(interfa), PointerFromQDBusConnection(connection), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDBusInterface) DestroyQDBusInterface() {
@@ -1558,6 +1598,11 @@ func NewQDBusMessageFromPointer(ptr unsafe.Pointer) *QDBusMessage {
 	return n
 }
 
+func newQDBusMessageFromPointer(ptr unsafe.Pointer) *QDBusMessage {
+	var n = NewQDBusMessageFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDBusMessage) QDBusMessage_PTR() *QDBusMessage {
 	return ptr
 }
@@ -1576,13 +1621,13 @@ const (
 func NewQDBusMessage() *QDBusMessage {
 	defer qt.Recovering("QDBusMessage::QDBusMessage")
 
-	return NewQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage())
+	return newQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage())
 }
 
 func NewQDBusMessage2(other QDBusMessage_ITF) *QDBusMessage {
 	defer qt.Recovering("QDBusMessage::QDBusMessage")
 
-	return NewQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage2(PointerFromQDBusMessage(other)))
+	return newQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage2(PointerFromQDBusMessage(other)))
 }
 
 func (ptr *QDBusMessage) AutoStartService() bool {
@@ -1737,6 +1782,11 @@ func NewQDBusObjectPathFromPointer(ptr unsafe.Pointer) *QDBusObjectPath {
 	return n
 }
 
+func newQDBusObjectPathFromPointer(ptr unsafe.Pointer) *QDBusObjectPath {
+	var n = NewQDBusObjectPathFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDBusObjectPath) QDBusObjectPath_PTR() *QDBusObjectPath {
 	return ptr
 }
@@ -1744,25 +1794,25 @@ func (ptr *QDBusObjectPath) QDBusObjectPath_PTR() *QDBusObjectPath {
 func NewQDBusObjectPath() *QDBusObjectPath {
 	defer qt.Recovering("QDBusObjectPath::QDBusObjectPath")
 
-	return NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath())
+	return newQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath())
 }
 
 func NewQDBusObjectPath3(path core.QLatin1String_ITF) *QDBusObjectPath {
 	defer qt.Recovering("QDBusObjectPath::QDBusObjectPath")
 
-	return NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath3(core.PointerFromQLatin1String(path)))
+	return newQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath3(core.PointerFromQLatin1String(path)))
 }
 
 func NewQDBusObjectPath4(path string) *QDBusObjectPath {
 	defer qt.Recovering("QDBusObjectPath::QDBusObjectPath")
 
-	return NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath4(C.CString(path)))
+	return newQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath4(C.CString(path)))
 }
 
 func NewQDBusObjectPath2(path string) *QDBusObjectPath {
 	defer qt.Recovering("QDBusObjectPath::QDBusObjectPath")
 
-	return NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath2(C.CString(path)))
+	return newQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath2(C.CString(path)))
 }
 
 func (ptr *QDBusObjectPath) Path() string {
@@ -1811,6 +1861,11 @@ func NewQDBusPendingCallFromPointer(ptr unsafe.Pointer) *QDBusPendingCall {
 	return n
 }
 
+func newQDBusPendingCallFromPointer(ptr unsafe.Pointer) *QDBusPendingCall {
+	var n = NewQDBusPendingCallFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDBusPendingCall) QDBusPendingCall_PTR() *QDBusPendingCall {
 	return ptr
 }
@@ -1818,7 +1873,7 @@ func (ptr *QDBusPendingCall) QDBusPendingCall_PTR() *QDBusPendingCall {
 func NewQDBusPendingCall(other QDBusPendingCall_ITF) *QDBusPendingCall {
 	defer qt.Recovering("QDBusPendingCall::QDBusPendingCall")
 
-	return NewQDBusPendingCallFromPointer(C.QDBusPendingCall_NewQDBusPendingCall(PointerFromQDBusPendingCall(other)))
+	return newQDBusPendingCallFromPointer(C.QDBusPendingCall_NewQDBusPendingCall(PointerFromQDBusPendingCall(other)))
 }
 
 func (ptr *QDBusPendingCall) Swap(other QDBusPendingCall_ITF) {
@@ -1867,6 +1922,11 @@ func PointerFromQDBusPendingCallWatcher(ptr QDBusPendingCallWatcher_ITF) unsafe.
 func NewQDBusPendingCallWatcherFromPointer(ptr unsafe.Pointer) *QDBusPendingCallWatcher {
 	var n = new(QDBusPendingCallWatcher)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDBusPendingCallWatcherFromPointer(ptr unsafe.Pointer) *QDBusPendingCallWatcher {
+	var n = NewQDBusPendingCallWatcherFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusPendingCallWatcher_") {
 		n.SetObjectName("QDBusPendingCallWatcher_" + qt.Identifier())
 	}
@@ -1888,7 +1948,7 @@ func (ptr *QDBusPendingCallWatcher) WaitForFinished() {
 func NewQDBusPendingCallWatcher(call QDBusPendingCall_ITF, parent core.QObject_ITF) *QDBusPendingCallWatcher {
 	defer qt.Recovering("QDBusPendingCallWatcher::QDBusPendingCallWatcher")
 
-	return NewQDBusPendingCallWatcherFromPointer(C.QDBusPendingCallWatcher_NewQDBusPendingCallWatcher(PointerFromQDBusPendingCall(call), core.PointerFromQObject(parent)))
+	return newQDBusPendingCallWatcherFromPointer(C.QDBusPendingCallWatcher_NewQDBusPendingCallWatcher(PointerFromQDBusPendingCall(call), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDBusPendingCallWatcher) ConnectFinished(f func(self *QDBusPendingCallWatcher)) {
@@ -2102,6 +2162,11 @@ func NewQDBusPendingReplyFromPointer(ptr unsafe.Pointer) *QDBusPendingReply {
 	return n
 }
 
+func newQDBusPendingReplyFromPointer(ptr unsafe.Pointer) *QDBusPendingReply {
+	var n = NewQDBusPendingReplyFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDBusPendingReply) QDBusPendingReply_PTR() *QDBusPendingReply {
 	return ptr
 }
@@ -2135,6 +2200,11 @@ func NewQDBusReplyFromPointer(ptr unsafe.Pointer) *QDBusReply {
 	return n
 }
 
+func newQDBusReplyFromPointer(ptr unsafe.Pointer) *QDBusReply {
+	var n = NewQDBusReplyFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDBusReply) QDBusReply_PTR() *QDBusReply {
 	return ptr
 }
@@ -2158,6 +2228,11 @@ func PointerFromQDBusServer(ptr QDBusServer_ITF) unsafe.Pointer {
 func NewQDBusServerFromPointer(ptr unsafe.Pointer) *QDBusServer {
 	var n = new(QDBusServer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDBusServerFromPointer(ptr unsafe.Pointer) *QDBusServer {
+	var n = NewQDBusServerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusServer_") {
 		n.SetObjectName("QDBusServer_" + qt.Identifier())
 	}
@@ -2171,13 +2246,13 @@ func (ptr *QDBusServer) QDBusServer_PTR() *QDBusServer {
 func NewQDBusServer2(parent core.QObject_ITF) *QDBusServer {
 	defer qt.Recovering("QDBusServer::QDBusServer")
 
-	return NewQDBusServerFromPointer(C.QDBusServer_NewQDBusServer2(core.PointerFromQObject(parent)))
+	return newQDBusServerFromPointer(C.QDBusServer_NewQDBusServer2(core.PointerFromQObject(parent)))
 }
 
 func NewQDBusServer(address string, parent core.QObject_ITF) *QDBusServer {
 	defer qt.Recovering("QDBusServer::QDBusServer")
 
-	return NewQDBusServerFromPointer(C.QDBusServer_NewQDBusServer(C.CString(address), core.PointerFromQObject(parent)))
+	return newQDBusServerFromPointer(C.QDBusServer_NewQDBusServer(C.CString(address), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDBusServer) Address() string {
@@ -2378,6 +2453,11 @@ func PointerFromQDBusServiceWatcher(ptr QDBusServiceWatcher_ITF) unsafe.Pointer 
 func NewQDBusServiceWatcherFromPointer(ptr unsafe.Pointer) *QDBusServiceWatcher {
 	var n = new(QDBusServiceWatcher)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDBusServiceWatcherFromPointer(ptr unsafe.Pointer) *QDBusServiceWatcher {
+	var n = NewQDBusServiceWatcherFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusServiceWatcher_") {
 		n.SetObjectName("QDBusServiceWatcher_" + qt.Identifier())
 	}
@@ -2417,13 +2497,13 @@ func (ptr *QDBusServiceWatcher) WatchMode() QDBusServiceWatcher__WatchModeFlag {
 func NewQDBusServiceWatcher(parent core.QObject_ITF) *QDBusServiceWatcher {
 	defer qt.Recovering("QDBusServiceWatcher::QDBusServiceWatcher")
 
-	return NewQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher(core.PointerFromQObject(parent)))
+	return newQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher(core.PointerFromQObject(parent)))
 }
 
 func NewQDBusServiceWatcher2(service string, connection QDBusConnection_ITF, watchMode QDBusServiceWatcher__WatchModeFlag, parent core.QObject_ITF) *QDBusServiceWatcher {
 	defer qt.Recovering("QDBusServiceWatcher::QDBusServiceWatcher")
 
-	return NewQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher2(C.CString(service), PointerFromQDBusConnection(connection), C.int(watchMode), core.PointerFromQObject(parent)))
+	return newQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher2(C.CString(service), PointerFromQDBusConnection(connection), C.int(watchMode), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDBusServiceWatcher) AddWatchedService(newService string) {
@@ -2749,6 +2829,11 @@ func NewQDBusSignatureFromPointer(ptr unsafe.Pointer) *QDBusSignature {
 	return n
 }
 
+func newQDBusSignatureFromPointer(ptr unsafe.Pointer) *QDBusSignature {
+	var n = NewQDBusSignatureFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDBusSignature) QDBusSignature_PTR() *QDBusSignature {
 	return ptr
 }
@@ -2756,25 +2841,25 @@ func (ptr *QDBusSignature) QDBusSignature_PTR() *QDBusSignature {
 func NewQDBusSignature() *QDBusSignature {
 	defer qt.Recovering("QDBusSignature::QDBusSignature")
 
-	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature())
+	return newQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature())
 }
 
 func NewQDBusSignature3(signature core.QLatin1String_ITF) *QDBusSignature {
 	defer qt.Recovering("QDBusSignature::QDBusSignature")
 
-	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature3(core.PointerFromQLatin1String(signature)))
+	return newQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature3(core.PointerFromQLatin1String(signature)))
 }
 
 func NewQDBusSignature4(signature string) *QDBusSignature {
 	defer qt.Recovering("QDBusSignature::QDBusSignature")
 
-	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature4(C.CString(signature)))
+	return newQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature4(C.CString(signature)))
 }
 
 func NewQDBusSignature2(signature string) *QDBusSignature {
 	defer qt.Recovering("QDBusSignature::QDBusSignature")
 
-	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature2(C.CString(signature)))
+	return newQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature2(C.CString(signature)))
 }
 
 func (ptr *QDBusSignature) SetSignature(signature string) {
@@ -2823,6 +2908,11 @@ func NewQDBusUnixFileDescriptorFromPointer(ptr unsafe.Pointer) *QDBusUnixFileDes
 	return n
 }
 
+func newQDBusUnixFileDescriptorFromPointer(ptr unsafe.Pointer) *QDBusUnixFileDescriptor {
+	var n = NewQDBusUnixFileDescriptorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDBusUnixFileDescriptor) QDBusUnixFileDescriptor_PTR() *QDBusUnixFileDescriptor {
 	return ptr
 }
@@ -2830,19 +2920,19 @@ func (ptr *QDBusUnixFileDescriptor) QDBusUnixFileDescriptor_PTR() *QDBusUnixFile
 func NewQDBusUnixFileDescriptor() *QDBusUnixFileDescriptor {
 	defer qt.Recovering("QDBusUnixFileDescriptor::QDBusUnixFileDescriptor")
 
-	return NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor())
+	return newQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor())
 }
 
 func NewQDBusUnixFileDescriptor3(other QDBusUnixFileDescriptor_ITF) *QDBusUnixFileDescriptor {
 	defer qt.Recovering("QDBusUnixFileDescriptor::QDBusUnixFileDescriptor")
 
-	return NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor3(PointerFromQDBusUnixFileDescriptor(other)))
+	return newQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor3(PointerFromQDBusUnixFileDescriptor(other)))
 }
 
 func NewQDBusUnixFileDescriptor2(fileDescriptor int) *QDBusUnixFileDescriptor {
 	defer qt.Recovering("QDBusUnixFileDescriptor::QDBusUnixFileDescriptor")
 
-	return NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor2(C.int(fileDescriptor)))
+	return newQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor2(C.int(fileDescriptor)))
 }
 
 func (ptr *QDBusUnixFileDescriptor) FileDescriptor() int {
@@ -2922,6 +3012,11 @@ func NewQDBusVariantFromPointer(ptr unsafe.Pointer) *QDBusVariant {
 	return n
 }
 
+func newQDBusVariantFromPointer(ptr unsafe.Pointer) *QDBusVariant {
+	var n = NewQDBusVariantFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDBusVariant) QDBusVariant_PTR() *QDBusVariant {
 	return ptr
 }
@@ -2929,13 +3024,13 @@ func (ptr *QDBusVariant) QDBusVariant_PTR() *QDBusVariant {
 func NewQDBusVariant() *QDBusVariant {
 	defer qt.Recovering("QDBusVariant::QDBusVariant")
 
-	return NewQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant())
+	return newQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant())
 }
 
 func NewQDBusVariant2(variant core.QVariant_ITF) *QDBusVariant {
 	defer qt.Recovering("QDBusVariant::QDBusVariant")
 
-	return NewQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant2(core.PointerFromQVariant(variant)))
+	return newQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant2(core.PointerFromQVariant(variant)))
 }
 
 func (ptr *QDBusVariant) SetVariant(variant core.QVariant_ITF) {
@@ -2974,6 +3069,11 @@ func PointerFromQDBusVirtualObject(ptr QDBusVirtualObject_ITF) unsafe.Pointer {
 func NewQDBusVirtualObjectFromPointer(ptr unsafe.Pointer) *QDBusVirtualObject {
 	var n = new(QDBusVirtualObject)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQDBusVirtualObjectFromPointer(ptr unsafe.Pointer) *QDBusVirtualObject {
+	var n = NewQDBusVirtualObjectFromPointer(ptr)
 	for len(n.ObjectName()) < len("QDBusVirtualObject_") {
 		n.SetObjectName("QDBusVirtualObject_" + qt.Identifier())
 	}

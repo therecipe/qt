@@ -29,6 +29,11 @@ func PointerFromQGraphicsSvgItem(ptr QGraphicsSvgItem_ITF) unsafe.Pointer {
 func NewQGraphicsSvgItemFromPointer(ptr unsafe.Pointer) *QGraphicsSvgItem {
 	var n = new(QGraphicsSvgItem)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGraphicsSvgItemFromPointer(ptr unsafe.Pointer) *QGraphicsSvgItem {
+	var n = NewQGraphicsSvgItemFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGraphicsSvgItem_") {
 		n.SetObjectName("QGraphicsSvgItem_" + qt.Identifier())
 	}
@@ -298,6 +303,11 @@ func PointerFromQSvgGenerator(ptr QSvgGenerator_ITF) unsafe.Pointer {
 func NewQSvgGeneratorFromPointer(ptr unsafe.Pointer) *QSvgGenerator {
 	var n = new(QSvgGenerator)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSvgGeneratorFromPointer(ptr unsafe.Pointer) *QSvgGenerator {
+	var n = NewQSvgGeneratorFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QSvgGenerator_") {
 		n.SetObjectNameAbs("QSvgGenerator_" + qt.Identifier())
 	}
@@ -429,7 +439,7 @@ func (ptr *QSvgGenerator) Title() string {
 func NewQSvgGenerator() *QSvgGenerator {
 	defer qt.Recovering("QSvgGenerator::QSvgGenerator")
 
-	return NewQSvgGeneratorFromPointer(C.QSvgGenerator_NewQSvgGenerator())
+	return newQSvgGeneratorFromPointer(C.QSvgGenerator_NewQSvgGenerator())
 }
 
 func (ptr *QSvgGenerator) Metric(metric gui.QPaintDevice__PaintDeviceMetric) int {
@@ -503,6 +513,11 @@ func PointerFromQSvgRenderer(ptr QSvgRenderer_ITF) unsafe.Pointer {
 func NewQSvgRendererFromPointer(ptr unsafe.Pointer) *QSvgRenderer {
 	var n = new(QSvgRenderer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSvgRendererFromPointer(ptr unsafe.Pointer) *QSvgRenderer {
+	var n = NewQSvgRendererFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSvgRenderer_") {
 		n.SetObjectName("QSvgRenderer_" + qt.Identifier())
 	}
@@ -549,25 +564,25 @@ func (ptr *QSvgRenderer) SetViewBox2(viewbox core.QRectF_ITF) {
 func NewQSvgRenderer(parent core.QObject_ITF) *QSvgRenderer {
 	defer qt.Recovering("QSvgRenderer::QSvgRenderer")
 
-	return NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer(core.PointerFromQObject(parent)))
+	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer(core.PointerFromQObject(parent)))
 }
 
 func NewQSvgRenderer4(contents core.QXmlStreamReader_ITF, parent core.QObject_ITF) *QSvgRenderer {
 	defer qt.Recovering("QSvgRenderer::QSvgRenderer")
 
-	return NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer4(core.PointerFromQXmlStreamReader(contents), core.PointerFromQObject(parent)))
+	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer4(core.PointerFromQXmlStreamReader(contents), core.PointerFromQObject(parent)))
 }
 
 func NewQSvgRenderer3(contents core.QByteArray_ITF, parent core.QObject_ITF) *QSvgRenderer {
 	defer qt.Recovering("QSvgRenderer::QSvgRenderer")
 
-	return NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer3(core.PointerFromQByteArray(contents), core.PointerFromQObject(parent)))
+	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer3(core.PointerFromQByteArray(contents), core.PointerFromQObject(parent)))
 }
 
 func NewQSvgRenderer2(filename string, parent core.QObject_ITF) *QSvgRenderer {
 	defer qt.Recovering("QSvgRenderer::QSvgRenderer")
 
-	return NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer2(C.CString(filename), core.PointerFromQObject(parent)))
+	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer2(C.CString(filename), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSvgRenderer) Animated() bool {
@@ -865,6 +880,11 @@ func PointerFromQSvgWidget(ptr QSvgWidget_ITF) unsafe.Pointer {
 func NewQSvgWidgetFromPointer(ptr unsafe.Pointer) *QSvgWidget {
 	var n = new(QSvgWidget)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSvgWidgetFromPointer(ptr unsafe.Pointer) *QSvgWidget {
+	var n = NewQSvgWidgetFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSvgWidget_") {
 		n.SetObjectName("QSvgWidget_" + qt.Identifier())
 	}
@@ -878,13 +898,13 @@ func (ptr *QSvgWidget) QSvgWidget_PTR() *QSvgWidget {
 func NewQSvgWidget(parent widgets.QWidget_ITF) *QSvgWidget {
 	defer qt.Recovering("QSvgWidget::QSvgWidget")
 
-	return NewQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget(widgets.PointerFromQWidget(parent)))
+	return newQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget(widgets.PointerFromQWidget(parent)))
 }
 
 func NewQSvgWidget2(file string, parent widgets.QWidget_ITF) *QSvgWidget {
 	defer qt.Recovering("QSvgWidget::QSvgWidget")
 
-	return NewQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget2(C.CString(file), widgets.PointerFromQWidget(parent)))
+	return newQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget2(C.CString(file), widgets.PointerFromQWidget(parent)))
 }
 
 func (ptr *QSvgWidget) Load2(contents core.QByteArray_ITF) {

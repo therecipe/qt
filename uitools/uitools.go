@@ -29,6 +29,11 @@ func PointerFromQUiLoader(ptr QUiLoader_ITF) unsafe.Pointer {
 func NewQUiLoaderFromPointer(ptr unsafe.Pointer) *QUiLoader {
 	var n = new(QUiLoader)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQUiLoaderFromPointer(ptr unsafe.Pointer) *QUiLoader {
+	var n = NewQUiLoaderFromPointer(ptr)
 	for len(n.ObjectName()) < len("QUiLoader_") {
 		n.SetObjectName("QUiLoader_" + qt.Identifier())
 	}
@@ -42,7 +47,7 @@ func (ptr *QUiLoader) QUiLoader_PTR() *QUiLoader {
 func NewQUiLoader(parent core.QObject_ITF) *QUiLoader {
 	defer qt.Recovering("QUiLoader::QUiLoader")
 
-	return NewQUiLoaderFromPointer(C.QUiLoader_NewQUiLoader(core.PointerFromQObject(parent)))
+	return newQUiLoaderFromPointer(C.QUiLoader_NewQUiLoader(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QUiLoader) AddPluginPath(path string) {

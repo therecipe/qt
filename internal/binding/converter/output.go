@@ -92,6 +92,10 @@ func goOutput(name string, value string, f *parser.Function) string {
 				}
 				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, value, name)
 			}
+
+			if f.Meta == "constructor" {
+				return fmt.Sprintf("new%vFromPointer(%v)", value, name)
+			}
 			return fmt.Sprintf("New%vFromPointer(%v)", value, name)
 		}
 	}

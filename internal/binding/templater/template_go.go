@@ -78,6 +78,10 @@ func GoTemplate(module string, stub bool) (o string) {
 			o += fmt.Sprintf("func New%vFromPointer(ptr unsafe.Pointer) *%v {\n", c.Name, c.Name)
 			o += fmt.Sprintf("var n = new(%v)\n", c.Name)
 			o += "n.SetPointer(ptr)\n"
+			o += "return n\n}\n\n"
+
+			o += fmt.Sprintf("func new%vFromPointer(ptr unsafe.Pointer) *%v {\n", c.Name, c.Name)
+			o += fmt.Sprintf("var n = New%vFromPointer(ptr)\n", c.Name)
 
 			if isObjectSubClass(c.Name) {
 				o += fmt.Sprintf("for len(n.ObjectName()) < len(\"%v_\") {\n", c.Name)

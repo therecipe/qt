@@ -30,6 +30,11 @@ func PointerFromQQuickFramebufferObject(ptr QQuickFramebufferObject_ITF) unsafe.
 func NewQQuickFramebufferObjectFromPointer(ptr unsafe.Pointer) *QQuickFramebufferObject {
 	var n = new(QQuickFramebufferObject)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickFramebufferObjectFromPointer(ptr unsafe.Pointer) *QQuickFramebufferObject {
+	var n = NewQQuickFramebufferObjectFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickFramebufferObject_") {
 		n.SetObjectName("QQuickFramebufferObject_" + qt.Identifier())
 	}
@@ -1345,6 +1350,11 @@ func PointerFromQQuickImageProvider(ptr QQuickImageProvider_ITF) unsafe.Pointer 
 func NewQQuickImageProviderFromPointer(ptr unsafe.Pointer) *QQuickImageProvider {
 	var n = new(QQuickImageProvider)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickImageProviderFromPointer(ptr unsafe.Pointer) *QQuickImageProvider {
+	var n = NewQQuickImageProviderFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QQuickImageProvider_") {
 		n.SetObjectNameAbs("QQuickImageProvider_" + qt.Identifier())
 	}
@@ -1358,7 +1368,7 @@ func (ptr *QQuickImageProvider) QQuickImageProvider_PTR() *QQuickImageProvider {
 func NewQQuickImageProvider(ty qml.QQmlImageProviderBase__ImageType, flags qml.QQmlImageProviderBase__Flag) *QQuickImageProvider {
 	defer qt.Recovering("QQuickImageProvider::QQuickImageProvider")
 
-	return NewQQuickImageProviderFromPointer(C.QQuickImageProvider_NewQQuickImageProvider(C.int(ty), C.int(flags)))
+	return newQQuickImageProviderFromPointer(C.QQuickImageProvider_NewQQuickImageProvider(C.int(ty), C.int(flags)))
 }
 
 func (ptr *QQuickImageProvider) Flags() qml.QQmlImageProviderBase__Flag {
@@ -1434,6 +1444,11 @@ func PointerFromQQuickItem(ptr QQuickItem_ITF) unsafe.Pointer {
 func NewQQuickItemFromPointer(ptr unsafe.Pointer) *QQuickItem {
 	var n = new(QQuickItem)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickItemFromPointer(ptr unsafe.Pointer) *QQuickItem {
+	var n = NewQQuickItemFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickItem_") {
 		n.SetObjectName("QQuickItem_" + qt.Identifier())
 	}
@@ -1488,7 +1503,7 @@ const (
 func NewQQuickItem(parent QQuickItem_ITF) *QQuickItem {
 	defer qt.Recovering("QQuickItem::QQuickItem")
 
-	return NewQQuickItemFromPointer(C.QQuickItem_NewQQuickItem(PointerFromQQuickItem(parent)))
+	return newQQuickItemFromPointer(C.QQuickItem_NewQQuickItem(PointerFromQQuickItem(parent)))
 }
 
 func (ptr *QQuickItem) ActiveFocusOnTab() bool {
@@ -3465,6 +3480,11 @@ func PointerFromQQuickItemGrabResult(ptr QQuickItemGrabResult_ITF) unsafe.Pointe
 func NewQQuickItemGrabResultFromPointer(ptr unsafe.Pointer) *QQuickItemGrabResult {
 	var n = new(QQuickItemGrabResult)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickItemGrabResultFromPointer(ptr unsafe.Pointer) *QQuickItemGrabResult {
+	var n = NewQQuickItemGrabResultFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickItemGrabResult_") {
 		n.SetObjectName("QQuickItemGrabResult_" + qt.Identifier())
 	}
@@ -3683,6 +3703,11 @@ func PointerFromQQuickPaintedItem(ptr QQuickPaintedItem_ITF) unsafe.Pointer {
 func NewQQuickPaintedItemFromPointer(ptr unsafe.Pointer) *QQuickPaintedItem {
 	var n = new(QQuickPaintedItem)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickPaintedItemFromPointer(ptr unsafe.Pointer) *QQuickPaintedItem {
+	var n = NewQQuickPaintedItemFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickPaintedItem_") {
 		n.SetObjectName("QQuickPaintedItem_" + qt.Identifier())
 	}
@@ -5282,6 +5307,11 @@ func PointerFromQQuickRenderControl(ptr QQuickRenderControl_ITF) unsafe.Pointer 
 func NewQQuickRenderControlFromPointer(ptr unsafe.Pointer) *QQuickRenderControl {
 	var n = new(QQuickRenderControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickRenderControlFromPointer(ptr unsafe.Pointer) *QQuickRenderControl {
+	var n = NewQQuickRenderControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickRenderControl_") {
 		n.SetObjectName("QQuickRenderControl_" + qt.Identifier())
 	}
@@ -5295,7 +5325,7 @@ func (ptr *QQuickRenderControl) QQuickRenderControl_PTR() *QQuickRenderControl {
 func NewQQuickRenderControl(parent core.QObject_ITF) *QQuickRenderControl {
 	defer qt.Recovering("QQuickRenderControl::QQuickRenderControl")
 
-	return NewQQuickRenderControlFromPointer(C.QQuickRenderControl_NewQQuickRenderControl(core.PointerFromQObject(parent)))
+	return newQQuickRenderControlFromPointer(C.QQuickRenderControl_NewQQuickRenderControl(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQuickRenderControl) Initialize(gl gui.QOpenGLContext_ITF) {
@@ -5597,6 +5627,11 @@ func PointerFromQQuickTextDocument(ptr QQuickTextDocument_ITF) unsafe.Pointer {
 func NewQQuickTextDocumentFromPointer(ptr unsafe.Pointer) *QQuickTextDocument {
 	var n = new(QQuickTextDocument)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickTextDocumentFromPointer(ptr unsafe.Pointer) *QQuickTextDocument {
+	var n = NewQQuickTextDocumentFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickTextDocument_") {
 		n.SetObjectName("QQuickTextDocument_" + qt.Identifier())
 	}
@@ -5610,7 +5645,7 @@ func (ptr *QQuickTextDocument) QQuickTextDocument_PTR() *QQuickTextDocument {
 func NewQQuickTextDocument(parent QQuickItem_ITF) *QQuickTextDocument {
 	defer qt.Recovering("QQuickTextDocument::QQuickTextDocument")
 
-	return NewQQuickTextDocumentFromPointer(C.QQuickTextDocument_NewQQuickTextDocument(PointerFromQQuickItem(parent)))
+	return newQQuickTextDocumentFromPointer(C.QQuickTextDocument_NewQQuickTextDocument(PointerFromQQuickItem(parent)))
 }
 
 func (ptr *QQuickTextDocument) TextDocument() *gui.QTextDocument {
@@ -5776,6 +5811,11 @@ func PointerFromQQuickTextureFactory(ptr QQuickTextureFactory_ITF) unsafe.Pointe
 func NewQQuickTextureFactoryFromPointer(ptr unsafe.Pointer) *QQuickTextureFactory {
 	var n = new(QQuickTextureFactory)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickTextureFactoryFromPointer(ptr unsafe.Pointer) *QQuickTextureFactory {
+	var n = NewQQuickTextureFactoryFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickTextureFactory_") {
 		n.SetObjectName("QQuickTextureFactory_" + qt.Identifier())
 	}
@@ -5976,6 +6016,11 @@ func PointerFromQQuickView(ptr QQuickView_ITF) unsafe.Pointer {
 func NewQQuickViewFromPointer(ptr unsafe.Pointer) *QQuickView {
 	var n = new(QQuickView)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickViewFromPointer(ptr unsafe.Pointer) *QQuickView {
+	var n = NewQQuickViewFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickView_") {
 		n.SetObjectName("QQuickView_" + qt.Identifier())
 	}
@@ -6033,19 +6078,19 @@ func (ptr *QQuickView) Status() QQuickView__Status {
 func NewQQuickView2(engine qml.QQmlEngine_ITF, parent gui.QWindow_ITF) *QQuickView {
 	defer qt.Recovering("QQuickView::QQuickView")
 
-	return NewQQuickViewFromPointer(C.QQuickView_NewQQuickView2(qml.PointerFromQQmlEngine(engine), gui.PointerFromQWindow(parent)))
+	return newQQuickViewFromPointer(C.QQuickView_NewQQuickView2(qml.PointerFromQQmlEngine(engine), gui.PointerFromQWindow(parent)))
 }
 
 func NewQQuickView(parent gui.QWindow_ITF) *QQuickView {
 	defer qt.Recovering("QQuickView::QQuickView")
 
-	return NewQQuickViewFromPointer(C.QQuickView_NewQQuickView(gui.PointerFromQWindow(parent)))
+	return newQQuickViewFromPointer(C.QQuickView_NewQQuickView(gui.PointerFromQWindow(parent)))
 }
 
 func NewQQuickView3(source core.QUrl_ITF, parent gui.QWindow_ITF) *QQuickView {
 	defer qt.Recovering("QQuickView::QQuickView")
 
-	return NewQQuickViewFromPointer(C.QQuickView_NewQQuickView3(core.PointerFromQUrl(source), gui.PointerFromQWindow(parent)))
+	return newQQuickViewFromPointer(C.QQuickView_NewQQuickView3(core.PointerFromQUrl(source), gui.PointerFromQWindow(parent)))
 }
 
 func (ptr *QQuickView) Engine() *qml.QQmlEngine {
@@ -7020,6 +7065,11 @@ func PointerFromQQuickWidget(ptr QQuickWidget_ITF) unsafe.Pointer {
 func NewQQuickWidgetFromPointer(ptr unsafe.Pointer) *QQuickWidget {
 	var n = new(QQuickWidget)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickWidgetFromPointer(ptr unsafe.Pointer) *QQuickWidget {
+	var n = NewQQuickWidgetFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickWidget_") {
 		n.SetObjectName("QQuickWidget_" + qt.Identifier())
 	}
@@ -7167,19 +7217,19 @@ func (ptr *QQuickWidget) Status() QQuickWidget__Status {
 func NewQQuickWidget2(engine qml.QQmlEngine_ITF, parent widgets.QWidget_ITF) *QQuickWidget {
 	defer qt.Recovering("QQuickWidget::QQuickWidget")
 
-	return NewQQuickWidgetFromPointer(C.QQuickWidget_NewQQuickWidget2(qml.PointerFromQQmlEngine(engine), widgets.PointerFromQWidget(parent)))
+	return newQQuickWidgetFromPointer(C.QQuickWidget_NewQQuickWidget2(qml.PointerFromQQmlEngine(engine), widgets.PointerFromQWidget(parent)))
 }
 
 func NewQQuickWidget(parent widgets.QWidget_ITF) *QQuickWidget {
 	defer qt.Recovering("QQuickWidget::QQuickWidget")
 
-	return NewQQuickWidgetFromPointer(C.QQuickWidget_NewQQuickWidget(widgets.PointerFromQWidget(parent)))
+	return newQQuickWidgetFromPointer(C.QQuickWidget_NewQQuickWidget(widgets.PointerFromQWidget(parent)))
 }
 
 func NewQQuickWidget3(source core.QUrl_ITF, parent widgets.QWidget_ITF) *QQuickWidget {
 	defer qt.Recovering("QQuickWidget::QQuickWidget")
 
-	return NewQQuickWidgetFromPointer(C.QQuickWidget_NewQQuickWidget3(core.PointerFromQUrl(source), widgets.PointerFromQWidget(parent)))
+	return newQQuickWidgetFromPointer(C.QQuickWidget_NewQQuickWidget3(core.PointerFromQUrl(source), widgets.PointerFromQWidget(parent)))
 }
 
 func (ptr *QQuickWidget) ConnectDragEnterEvent(f func(e *gui.QDragEnterEvent)) {
@@ -8675,6 +8725,11 @@ func PointerFromQQuickWindow(ptr QQuickWindow_ITF) unsafe.Pointer {
 func NewQQuickWindowFromPointer(ptr unsafe.Pointer) *QQuickWindow {
 	var n = new(QQuickWindow)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickWindowFromPointer(ptr unsafe.Pointer) *QQuickWindow {
+	var n = NewQQuickWindowFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQuickWindow_") {
 		n.SetObjectName("QQuickWindow_" + qt.Identifier())
 	}
@@ -8751,7 +8806,7 @@ func (ptr *QQuickWindow) SetColor(color gui.QColor_ITF) {
 func NewQQuickWindow(parent gui.QWindow_ITF) *QQuickWindow {
 	defer qt.Recovering("QQuickWindow::QQuickWindow")
 
-	return NewQQuickWindowFromPointer(C.QQuickWindow_NewQQuickWindow(gui.PointerFromQWindow(parent)))
+	return newQQuickWindowFromPointer(C.QQuickWindow_NewQQuickWindow(gui.PointerFromQWindow(parent)))
 }
 
 func (ptr *QQuickWindow) AccessibleRoot() *gui.QAccessibleInterface {
@@ -10316,6 +10371,11 @@ func PointerFromQSGAbstractRenderer(ptr QSGAbstractRenderer_ITF) unsafe.Pointer 
 func NewQSGAbstractRendererFromPointer(ptr unsafe.Pointer) *QSGAbstractRenderer {
 	var n = new(QSGAbstractRenderer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGAbstractRendererFromPointer(ptr unsafe.Pointer) *QSGAbstractRenderer {
+	var n = NewQSGAbstractRendererFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSGAbstractRenderer_") {
 		n.SetObjectName("QSGAbstractRenderer_" + qt.Identifier())
 	}
@@ -10628,6 +10688,11 @@ func NewQSGBasicGeometryNodeFromPointer(ptr unsafe.Pointer) *QSGBasicGeometryNod
 	return n
 }
 
+func newQSGBasicGeometryNodeFromPointer(ptr unsafe.Pointer) *QSGBasicGeometryNode {
+	var n = NewQSGBasicGeometryNodeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSGBasicGeometryNode) QSGBasicGeometryNode_PTR() *QSGBasicGeometryNode {
 	return ptr
 }
@@ -10733,6 +10798,11 @@ func NewQSGClipNodeFromPointer(ptr unsafe.Pointer) *QSGClipNode {
 	return n
 }
 
+func newQSGClipNodeFromPointer(ptr unsafe.Pointer) *QSGClipNode {
+	var n = NewQSGClipNodeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSGClipNode) QSGClipNode_PTR() *QSGClipNode {
 	return ptr
 }
@@ -10740,7 +10810,7 @@ func (ptr *QSGClipNode) QSGClipNode_PTR() *QSGClipNode {
 func NewQSGClipNode() *QSGClipNode {
 	defer qt.Recovering("QSGClipNode::QSGClipNode")
 
-	return NewQSGClipNodeFromPointer(C.QSGClipNode_NewQSGClipNode())
+	return newQSGClipNodeFromPointer(C.QSGClipNode_NewQSGClipNode())
 }
 
 func (ptr *QSGClipNode) IsRectangular() bool {
@@ -10840,6 +10910,11 @@ func PointerFromQSGDynamicTexture(ptr QSGDynamicTexture_ITF) unsafe.Pointer {
 func NewQSGDynamicTextureFromPointer(ptr unsafe.Pointer) *QSGDynamicTexture {
 	var n = new(QSGDynamicTexture)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGDynamicTextureFromPointer(ptr unsafe.Pointer) *QSGDynamicTexture {
+	var n = NewQSGDynamicTextureFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSGDynamicTexture_") {
 		n.SetObjectName("QSGDynamicTexture_" + qt.Identifier())
 	}
@@ -11013,6 +11088,11 @@ func PointerFromQSGEngine(ptr QSGEngine_ITF) unsafe.Pointer {
 func NewQSGEngineFromPointer(ptr unsafe.Pointer) *QSGEngine {
 	var n = new(QSGEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGEngineFromPointer(ptr unsafe.Pointer) *QSGEngine {
+	var n = NewQSGEngineFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSGEngine_") {
 		n.SetObjectName("QSGEngine_" + qt.Identifier())
 	}
@@ -11035,7 +11115,7 @@ const (
 func NewQSGEngine(parent core.QObject_ITF) *QSGEngine {
 	defer qt.Recovering("QSGEngine::QSGEngine")
 
-	return NewQSGEngineFromPointer(C.QSGEngine_NewQSGEngine(core.PointerFromQObject(parent)))
+	return newQSGEngineFromPointer(C.QSGEngine_NewQSGEngine(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSGEngine) CreateRenderer() *QSGAbstractRenderer {
@@ -11238,6 +11318,11 @@ func NewQSGFlatColorMaterialFromPointer(ptr unsafe.Pointer) *QSGFlatColorMateria
 	return n
 }
 
+func newQSGFlatColorMaterialFromPointer(ptr unsafe.Pointer) *QSGFlatColorMaterial {
+	var n = NewQSGFlatColorMaterialFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSGFlatColorMaterial) QSGFlatColorMaterial_PTR() *QSGFlatColorMaterial {
 	return ptr
 }
@@ -11285,6 +11370,11 @@ func PointerFromQSGGeometry(ptr QSGGeometry_ITF) unsafe.Pointer {
 func NewQSGGeometryFromPointer(ptr unsafe.Pointer) *QSGGeometry {
 	var n = new(QSGGeometry)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGGeometryFromPointer(ptr unsafe.Pointer) *QSGGeometry {
+	var n = NewQSGGeometryFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QSGGeometry_") {
 		n.SetObjectNameAbs("QSGGeometry_" + qt.Identifier())
 	}
@@ -11512,6 +11602,11 @@ func NewQSGGeometryNodeFromPointer(ptr unsafe.Pointer) *QSGGeometryNode {
 	return n
 }
 
+func newQSGGeometryNodeFromPointer(ptr unsafe.Pointer) *QSGGeometryNode {
+	var n = NewQSGGeometryNodeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSGGeometryNode) QSGGeometryNode_PTR() *QSGGeometryNode {
 	return ptr
 }
@@ -11519,7 +11614,7 @@ func (ptr *QSGGeometryNode) QSGGeometryNode_PTR() *QSGGeometryNode {
 func NewQSGGeometryNode() *QSGGeometryNode {
 	defer qt.Recovering("QSGGeometryNode::QSGGeometryNode")
 
-	return NewQSGGeometryNodeFromPointer(C.QSGGeometryNode_NewQSGGeometryNode())
+	return newQSGGeometryNodeFromPointer(C.QSGGeometryNode_NewQSGGeometryNode())
 }
 
 func (ptr *QSGGeometryNode) Material() *QSGMaterial {
@@ -11635,6 +11730,11 @@ func PointerFromQSGMaterial(ptr QSGMaterial_ITF) unsafe.Pointer {
 func NewQSGMaterialFromPointer(ptr unsafe.Pointer) *QSGMaterial {
 	var n = new(QSGMaterial)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGMaterialFromPointer(ptr unsafe.Pointer) *QSGMaterial {
+	var n = NewQSGMaterialFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QSGMaterial_") {
 		n.SetObjectNameAbs("QSGMaterial_" + qt.Identifier())
 	}
@@ -11743,6 +11843,11 @@ func PointerFromQSGMaterialShader(ptr QSGMaterialShader_ITF) unsafe.Pointer {
 func NewQSGMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGMaterialShader {
 	var n = new(QSGMaterialShader)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGMaterialShader {
+	var n = NewQSGMaterialShaderFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QSGMaterialShader_") {
 		n.SetObjectNameAbs("QSGMaterialShader_" + qt.Identifier())
 	}
@@ -11988,6 +12093,11 @@ func NewQSGMaterialTypeFromPointer(ptr unsafe.Pointer) *QSGMaterialType {
 	return n
 }
 
+func newQSGMaterialTypeFromPointer(ptr unsafe.Pointer) *QSGMaterialType {
+	var n = NewQSGMaterialTypeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSGMaterialType) QSGMaterialType_PTR() *QSGMaterialType {
 	return ptr
 }
@@ -12018,6 +12128,11 @@ func PointerFromQSGNode(ptr QSGNode_ITF) unsafe.Pointer {
 func NewQSGNodeFromPointer(ptr unsafe.Pointer) *QSGNode {
 	var n = new(QSGNode)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGNodeFromPointer(ptr unsafe.Pointer) *QSGNode {
+	var n = NewQSGNodeFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QSGNode_") {
 		n.SetObjectNameAbs("QSGNode_" + qt.Identifier())
 	}
@@ -12085,7 +12200,7 @@ func (ptr *QSGNode) ChildCount() int {
 func NewQSGNode() *QSGNode {
 	defer qt.Recovering("QSGNode::QSGNode")
 
-	return NewQSGNodeFromPointer(C.QSGNode_NewQSGNode())
+	return newQSGNodeFromPointer(C.QSGNode_NewQSGNode())
 }
 
 func (ptr *QSGNode) AppendChildNode(node QSGNode_ITF) {
@@ -12324,6 +12439,11 @@ func NewQSGOpacityNodeFromPointer(ptr unsafe.Pointer) *QSGOpacityNode {
 	return n
 }
 
+func newQSGOpacityNodeFromPointer(ptr unsafe.Pointer) *QSGOpacityNode {
+	var n = NewQSGOpacityNodeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSGOpacityNode) QSGOpacityNode_PTR() *QSGOpacityNode {
 	return ptr
 }
@@ -12331,7 +12451,7 @@ func (ptr *QSGOpacityNode) QSGOpacityNode_PTR() *QSGOpacityNode {
 func NewQSGOpacityNode() *QSGOpacityNode {
 	defer qt.Recovering("QSGOpacityNode::QSGOpacityNode")
 
-	return NewQSGOpacityNodeFromPointer(C.QSGOpacityNode_NewQSGOpacityNode())
+	return newQSGOpacityNodeFromPointer(C.QSGOpacityNode_NewQSGOpacityNode())
 }
 
 func (ptr *QSGOpacityNode) Opacity() float64 {
@@ -12423,6 +12543,11 @@ func PointerFromQSGOpaqueTextureMaterial(ptr QSGOpaqueTextureMaterial_ITF) unsaf
 func NewQSGOpaqueTextureMaterialFromPointer(ptr unsafe.Pointer) *QSGOpaqueTextureMaterial {
 	var n = new(QSGOpaqueTextureMaterial)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGOpaqueTextureMaterialFromPointer(ptr unsafe.Pointer) *QSGOpaqueTextureMaterial {
+	var n = NewQSGOpaqueTextureMaterialFromPointer(ptr)
 	return n
 }
 
@@ -12537,6 +12662,11 @@ func NewQSGSimpleMaterialFromPointer(ptr unsafe.Pointer) *QSGSimpleMaterial {
 	return n
 }
 
+func newQSGSimpleMaterialFromPointer(ptr unsafe.Pointer) *QSGSimpleMaterial {
+	var n = NewQSGSimpleMaterialFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSGSimpleMaterial) QSGSimpleMaterial_PTR() *QSGSimpleMaterial {
 	return ptr
 }
@@ -12560,6 +12690,11 @@ func PointerFromQSGSimpleMaterialShader(ptr QSGSimpleMaterialShader_ITF) unsafe.
 func NewQSGSimpleMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGSimpleMaterialShader {
 	var n = new(QSGSimpleMaterialShader)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGSimpleMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGSimpleMaterialShader {
+	var n = NewQSGSimpleMaterialShaderFromPointer(ptr)
 	return n
 }
 
@@ -12589,6 +12724,11 @@ func NewQSGSimpleRectNodeFromPointer(ptr unsafe.Pointer) *QSGSimpleRectNode {
 	return n
 }
 
+func newQSGSimpleRectNodeFromPointer(ptr unsafe.Pointer) *QSGSimpleRectNode {
+	var n = NewQSGSimpleRectNodeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSGSimpleRectNode) QSGSimpleRectNode_PTR() *QSGSimpleRectNode {
 	return ptr
 }
@@ -12596,13 +12736,13 @@ func (ptr *QSGSimpleRectNode) QSGSimpleRectNode_PTR() *QSGSimpleRectNode {
 func NewQSGSimpleRectNode2() *QSGSimpleRectNode {
 	defer qt.Recovering("QSGSimpleRectNode::QSGSimpleRectNode")
 
-	return NewQSGSimpleRectNodeFromPointer(C.QSGSimpleRectNode_NewQSGSimpleRectNode2())
+	return newQSGSimpleRectNodeFromPointer(C.QSGSimpleRectNode_NewQSGSimpleRectNode2())
 }
 
 func NewQSGSimpleRectNode(rect core.QRectF_ITF, color gui.QColor_ITF) *QSGSimpleRectNode {
 	defer qt.Recovering("QSGSimpleRectNode::QSGSimpleRectNode")
 
-	return NewQSGSimpleRectNodeFromPointer(C.QSGSimpleRectNode_NewQSGSimpleRectNode(core.PointerFromQRectF(rect), gui.PointerFromQColor(color)))
+	return newQSGSimpleRectNodeFromPointer(C.QSGSimpleRectNode_NewQSGSimpleRectNode(core.PointerFromQRectF(rect), gui.PointerFromQColor(color)))
 }
 
 func (ptr *QSGSimpleRectNode) Color() *gui.QColor {
@@ -12705,6 +12845,11 @@ func NewQSGSimpleTextureNodeFromPointer(ptr unsafe.Pointer) *QSGSimpleTextureNod
 	return n
 }
 
+func newQSGSimpleTextureNodeFromPointer(ptr unsafe.Pointer) *QSGSimpleTextureNode {
+	var n = NewQSGSimpleTextureNodeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSGSimpleTextureNode) QSGSimpleTextureNode_PTR() *QSGSimpleTextureNode {
 	return ptr
 }
@@ -12721,7 +12866,7 @@ const (
 func NewQSGSimpleTextureNode() *QSGSimpleTextureNode {
 	defer qt.Recovering("QSGSimpleTextureNode::QSGSimpleTextureNode")
 
-	return NewQSGSimpleTextureNodeFromPointer(C.QSGSimpleTextureNode_NewQSGSimpleTextureNode())
+	return newQSGSimpleTextureNodeFromPointer(C.QSGSimpleTextureNode_NewQSGSimpleTextureNode())
 }
 
 func (ptr *QSGSimpleTextureNode) Filtering() QSGTexture__Filtering {
@@ -12896,6 +13041,11 @@ func PointerFromQSGTexture(ptr QSGTexture_ITF) unsafe.Pointer {
 func NewQSGTextureFromPointer(ptr unsafe.Pointer) *QSGTexture {
 	var n = new(QSGTexture)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGTextureFromPointer(ptr unsafe.Pointer) *QSGTexture {
+	var n = NewQSGTextureFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSGTexture_") {
 		n.SetObjectName("QSGTexture_" + qt.Identifier())
 	}
@@ -13227,6 +13377,11 @@ func NewQSGTextureMaterialFromPointer(ptr unsafe.Pointer) *QSGTextureMaterial {
 	return n
 }
 
+func newQSGTextureMaterialFromPointer(ptr unsafe.Pointer) *QSGTextureMaterial {
+	var n = NewQSGTextureMaterialFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSGTextureMaterial) QSGTextureMaterial_PTR() *QSGTextureMaterial {
 	return ptr
 }
@@ -13250,6 +13405,11 @@ func PointerFromQSGTextureProvider(ptr QSGTextureProvider_ITF) unsafe.Pointer {
 func NewQSGTextureProviderFromPointer(ptr unsafe.Pointer) *QSGTextureProvider {
 	var n = new(QSGTextureProvider)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGTextureProviderFromPointer(ptr unsafe.Pointer) *QSGTextureProvider {
+	var n = NewQSGTextureProviderFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSGTextureProvider_") {
 		n.SetObjectName("QSGTextureProvider_" + qt.Identifier())
 	}
@@ -13462,6 +13622,11 @@ func NewQSGTransformNodeFromPointer(ptr unsafe.Pointer) *QSGTransformNode {
 	return n
 }
 
+func newQSGTransformNodeFromPointer(ptr unsafe.Pointer) *QSGTransformNode {
+	var n = NewQSGTransformNodeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSGTransformNode) QSGTransformNode_PTR() *QSGTransformNode {
 	return ptr
 }
@@ -13469,7 +13634,7 @@ func (ptr *QSGTransformNode) QSGTransformNode_PTR() *QSGTransformNode {
 func NewQSGTransformNode() *QSGTransformNode {
 	defer qt.Recovering("QSGTransformNode::QSGTransformNode")
 
-	return NewQSGTransformNodeFromPointer(C.QSGTransformNode_NewQSGTransformNode())
+	return newQSGTransformNodeFromPointer(C.QSGTransformNode_NewQSGTransformNode())
 }
 
 func (ptr *QSGTransformNode) SetMatrix(matrix gui.QMatrix4x4_ITF) {
@@ -13552,6 +13717,11 @@ func PointerFromQSGVertexColorMaterial(ptr QSGVertexColorMaterial_ITF) unsafe.Po
 func NewQSGVertexColorMaterialFromPointer(ptr unsafe.Pointer) *QSGVertexColorMaterial {
 	var n = new(QSGVertexColorMaterial)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSGVertexColorMaterialFromPointer(ptr unsafe.Pointer) *QSGVertexColorMaterial {
+	var n = NewQSGVertexColorMaterialFromPointer(ptr)
 	return n
 }
 

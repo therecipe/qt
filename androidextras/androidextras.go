@@ -36,6 +36,11 @@ func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidA
 	return n
 }
 
+func newQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidActivityResultReceiver {
+	var n = NewQAndroidActivityResultReceiverFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAndroidActivityResultReceiver) QAndroidActivityResultReceiver_PTR() *QAndroidActivityResultReceiver {
 	return ptr
 }
@@ -70,6 +75,11 @@ func PointerFromQAndroidJniEnvironment(ptr QAndroidJniEnvironment_ITF) unsafe.Po
 func NewQAndroidJniEnvironmentFromPointer(ptr unsafe.Pointer) *QAndroidJniEnvironment {
 	var n = new(QAndroidJniEnvironment)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAndroidJniEnvironmentFromPointer(ptr unsafe.Pointer) *QAndroidJniEnvironment {
+	var n = NewQAndroidJniEnvironmentFromPointer(ptr)
 	return n
 }
 
@@ -117,6 +127,11 @@ func PointerFromQAndroidJniObject(ptr QAndroidJniObject_ITF) unsafe.Pointer {
 func NewQAndroidJniObjectFromPointer(ptr unsafe.Pointer) *QAndroidJniObject {
 	var n = new(QAndroidJniObject)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAndroidJniObjectFromPointer(ptr unsafe.Pointer) *QAndroidJniObject {
+	var n = NewQAndroidJniObjectFromPointer(ptr)
 	return n
 }
 

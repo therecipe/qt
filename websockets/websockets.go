@@ -28,6 +28,11 @@ func PointerFromQMaskGenerator(ptr QMaskGenerator_ITF) unsafe.Pointer {
 func NewQMaskGeneratorFromPointer(ptr unsafe.Pointer) *QMaskGenerator {
 	var n = new(QMaskGenerator)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMaskGeneratorFromPointer(ptr unsafe.Pointer) *QMaskGenerator {
+	var n = NewQMaskGeneratorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMaskGenerator_") {
 		n.SetObjectName("QMaskGenerator_" + qt.Identifier())
 	}
@@ -210,6 +215,11 @@ func PointerFromQWebSocket(ptr QWebSocket_ITF) unsafe.Pointer {
 func NewQWebSocketFromPointer(ptr unsafe.Pointer) *QWebSocket {
 	var n = new(QWebSocket)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQWebSocketFromPointer(ptr unsafe.Pointer) *QWebSocket {
+	var n = NewQWebSocketFromPointer(ptr)
 	for len(n.ObjectName()) < len("QWebSocket_") {
 		n.SetObjectName("QWebSocket_" + qt.Identifier())
 	}
@@ -1004,6 +1014,11 @@ func NewQWebSocketCorsAuthenticatorFromPointer(ptr unsafe.Pointer) *QWebSocketCo
 	return n
 }
 
+func newQWebSocketCorsAuthenticatorFromPointer(ptr unsafe.Pointer) *QWebSocketCorsAuthenticator {
+	var n = NewQWebSocketCorsAuthenticatorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QWebSocketCorsAuthenticator) QWebSocketCorsAuthenticator_PTR() *QWebSocketCorsAuthenticator {
 	return ptr
 }
@@ -1011,19 +1026,19 @@ func (ptr *QWebSocketCorsAuthenticator) QWebSocketCorsAuthenticator_PTR() *QWebS
 func NewQWebSocketCorsAuthenticator3(other QWebSocketCorsAuthenticator_ITF) *QWebSocketCorsAuthenticator {
 	defer qt.Recovering("QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator")
 
-	return NewQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator3(PointerFromQWebSocketCorsAuthenticator(other)))
+	return newQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator3(PointerFromQWebSocketCorsAuthenticator(other)))
 }
 
 func NewQWebSocketCorsAuthenticator(origin string) *QWebSocketCorsAuthenticator {
 	defer qt.Recovering("QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator")
 
-	return NewQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator(C.CString(origin)))
+	return newQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator(C.CString(origin)))
 }
 
 func NewQWebSocketCorsAuthenticator2(other QWebSocketCorsAuthenticator_ITF) *QWebSocketCorsAuthenticator {
 	defer qt.Recovering("QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator")
 
-	return NewQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator2(PointerFromQWebSocketCorsAuthenticator(other)))
+	return newQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator2(PointerFromQWebSocketCorsAuthenticator(other)))
 }
 
 func (ptr *QWebSocketCorsAuthenticator) Allowed() bool {
@@ -1087,6 +1102,11 @@ func PointerFromQWebSocketServer(ptr QWebSocketServer_ITF) unsafe.Pointer {
 func NewQWebSocketServerFromPointer(ptr unsafe.Pointer) *QWebSocketServer {
 	var n = new(QWebSocketServer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQWebSocketServerFromPointer(ptr unsafe.Pointer) *QWebSocketServer {
+	var n = NewQWebSocketServerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QWebSocketServer_") {
 		n.SetObjectName("QWebSocketServer_" + qt.Identifier())
 	}
@@ -1108,7 +1128,7 @@ const (
 func NewQWebSocketServer(serverName string, secureMode QWebSocketServer__SslMode, parent core.QObject_ITF) *QWebSocketServer {
 	defer qt.Recovering("QWebSocketServer::QWebSocketServer")
 
-	return NewQWebSocketServerFromPointer(C.QWebSocketServer_NewQWebSocketServer(C.CString(serverName), C.int(secureMode), core.PointerFromQObject(parent)))
+	return newQWebSocketServerFromPointer(C.QWebSocketServer_NewQWebSocketServer(C.CString(serverName), C.int(secureMode), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QWebSocketServer) ConnectAcceptError(f func(socketError network.QAbstractSocket__SocketError)) {

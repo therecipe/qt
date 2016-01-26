@@ -38,6 +38,11 @@ func NewQGeoAddressFromPointer(ptr unsafe.Pointer) *QGeoAddress {
 	return n
 }
 
+func newQGeoAddressFromPointer(ptr unsafe.Pointer) *QGeoAddress {
+	var n = NewQGeoAddressFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoAddress) QGeoAddress_PTR() *QGeoAddress {
 	return ptr
 }
@@ -45,13 +50,13 @@ func (ptr *QGeoAddress) QGeoAddress_PTR() *QGeoAddress {
 func NewQGeoAddress() *QGeoAddress {
 	defer qt.Recovering("QGeoAddress::QGeoAddress")
 
-	return NewQGeoAddressFromPointer(C.QGeoAddress_NewQGeoAddress())
+	return newQGeoAddressFromPointer(C.QGeoAddress_NewQGeoAddress())
 }
 
 func NewQGeoAddress2(other QGeoAddress_ITF) *QGeoAddress {
 	defer qt.Recovering("QGeoAddress::QGeoAddress")
 
-	return NewQGeoAddressFromPointer(C.QGeoAddress_NewQGeoAddress2(PointerFromQGeoAddress(other)))
+	return newQGeoAddressFromPointer(C.QGeoAddress_NewQGeoAddress2(PointerFromQGeoAddress(other)))
 }
 
 func (ptr *QGeoAddress) City() string {
@@ -270,6 +275,11 @@ func NewQGeoAreaMonitorInfoFromPointer(ptr unsafe.Pointer) *QGeoAreaMonitorInfo 
 	return n
 }
 
+func newQGeoAreaMonitorInfoFromPointer(ptr unsafe.Pointer) *QGeoAreaMonitorInfo {
+	var n = NewQGeoAreaMonitorInfoFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoAreaMonitorInfo) QGeoAreaMonitorInfo_PTR() *QGeoAreaMonitorInfo {
 	return ptr
 }
@@ -277,13 +287,13 @@ func (ptr *QGeoAreaMonitorInfo) QGeoAreaMonitorInfo_PTR() *QGeoAreaMonitorInfo {
 func NewQGeoAreaMonitorInfo2(other QGeoAreaMonitorInfo_ITF) *QGeoAreaMonitorInfo {
 	defer qt.Recovering("QGeoAreaMonitorInfo::QGeoAreaMonitorInfo")
 
-	return NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo2(PointerFromQGeoAreaMonitorInfo(other)))
+	return newQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo2(PointerFromQGeoAreaMonitorInfo(other)))
 }
 
 func NewQGeoAreaMonitorInfo(name string) *QGeoAreaMonitorInfo {
 	defer qt.Recovering("QGeoAreaMonitorInfo::QGeoAreaMonitorInfo")
 
-	return NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo(C.CString(name)))
+	return newQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo(C.CString(name)))
 }
 
 func (ptr *QGeoAreaMonitorInfo) Expiration() *core.QDateTime {
@@ -390,6 +400,11 @@ func PointerFromQGeoAreaMonitorSource(ptr QGeoAreaMonitorSource_ITF) unsafe.Poin
 func NewQGeoAreaMonitorSourceFromPointer(ptr unsafe.Pointer) *QGeoAreaMonitorSource {
 	var n = new(QGeoAreaMonitorSource)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoAreaMonitorSourceFromPointer(ptr unsafe.Pointer) *QGeoAreaMonitorSource {
+	var n = NewQGeoAreaMonitorSourceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoAreaMonitorSource_") {
 		n.SetObjectName("QGeoAreaMonitorSource_" + qt.Identifier())
 	}
@@ -746,6 +761,11 @@ func NewQGeoCircleFromPointer(ptr unsafe.Pointer) *QGeoCircle {
 	return n
 }
 
+func newQGeoCircleFromPointer(ptr unsafe.Pointer) *QGeoCircle {
+	var n = NewQGeoCircleFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoCircle) QGeoCircle_PTR() *QGeoCircle {
 	return ptr
 }
@@ -753,25 +773,25 @@ func (ptr *QGeoCircle) QGeoCircle_PTR() *QGeoCircle {
 func NewQGeoCircle() *QGeoCircle {
 	defer qt.Recovering("QGeoCircle::QGeoCircle")
 
-	return NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle())
+	return newQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle())
 }
 
 func NewQGeoCircle3(other QGeoCircle_ITF) *QGeoCircle {
 	defer qt.Recovering("QGeoCircle::QGeoCircle")
 
-	return NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle3(PointerFromQGeoCircle(other)))
+	return newQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle3(PointerFromQGeoCircle(other)))
 }
 
 func NewQGeoCircle2(center QGeoCoordinate_ITF, radius float64) *QGeoCircle {
 	defer qt.Recovering("QGeoCircle::QGeoCircle")
 
-	return NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle2(PointerFromQGeoCoordinate(center), C.double(radius)))
+	return newQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle2(PointerFromQGeoCoordinate(center), C.double(radius)))
 }
 
 func NewQGeoCircle4(other QGeoShape_ITF) *QGeoCircle {
 	defer qt.Recovering("QGeoCircle::QGeoCircle")
 
-	return NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle4(PointerFromQGeoShape(other)))
+	return newQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle4(PointerFromQGeoShape(other)))
 }
 
 func (ptr *QGeoCircle) Radius() float64 {
@@ -845,6 +865,11 @@ func NewQGeoCoordinateFromPointer(ptr unsafe.Pointer) *QGeoCoordinate {
 	return n
 }
 
+func newQGeoCoordinateFromPointer(ptr unsafe.Pointer) *QGeoCoordinate {
+	var n = NewQGeoCoordinateFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoCoordinate) QGeoCoordinate_PTR() *QGeoCoordinate {
 	return ptr
 }
@@ -873,13 +898,13 @@ const (
 func NewQGeoCoordinate() *QGeoCoordinate {
 	defer qt.Recovering("QGeoCoordinate::QGeoCoordinate")
 
-	return NewQGeoCoordinateFromPointer(C.QGeoCoordinate_NewQGeoCoordinate())
+	return newQGeoCoordinateFromPointer(C.QGeoCoordinate_NewQGeoCoordinate())
 }
 
 func NewQGeoCoordinate4(other QGeoCoordinate_ITF) *QGeoCoordinate {
 	defer qt.Recovering("QGeoCoordinate::QGeoCoordinate")
 
-	return NewQGeoCoordinateFromPointer(C.QGeoCoordinate_NewQGeoCoordinate4(PointerFromQGeoCoordinate(other)))
+	return newQGeoCoordinateFromPointer(C.QGeoCoordinate_NewQGeoCoordinate4(PointerFromQGeoCoordinate(other)))
 }
 
 func (ptr *QGeoCoordinate) AzimuthTo(other QGeoCoordinate_ITF) float64 {
@@ -964,6 +989,11 @@ func NewQGeoLocationFromPointer(ptr unsafe.Pointer) *QGeoLocation {
 	return n
 }
 
+func newQGeoLocationFromPointer(ptr unsafe.Pointer) *QGeoLocation {
+	var n = NewQGeoLocationFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoLocation) QGeoLocation_PTR() *QGeoLocation {
 	return ptr
 }
@@ -997,6 +1027,11 @@ func NewQGeoPositionInfoFromPointer(ptr unsafe.Pointer) *QGeoPositionInfo {
 	return n
 }
 
+func newQGeoPositionInfoFromPointer(ptr unsafe.Pointer) *QGeoPositionInfo {
+	var n = NewQGeoPositionInfoFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoPositionInfo) QGeoPositionInfo_PTR() *QGeoPositionInfo {
 	return ptr
 }
@@ -1016,19 +1051,19 @@ const (
 func NewQGeoPositionInfo() *QGeoPositionInfo {
 	defer qt.Recovering("QGeoPositionInfo::QGeoPositionInfo")
 
-	return NewQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo())
+	return newQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo())
 }
 
 func NewQGeoPositionInfo2(coordinate QGeoCoordinate_ITF, timestamp core.QDateTime_ITF) *QGeoPositionInfo {
 	defer qt.Recovering("QGeoPositionInfo::QGeoPositionInfo")
 
-	return NewQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo2(PointerFromQGeoCoordinate(coordinate), core.PointerFromQDateTime(timestamp)))
+	return newQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo2(PointerFromQGeoCoordinate(coordinate), core.PointerFromQDateTime(timestamp)))
 }
 
 func NewQGeoPositionInfo3(other QGeoPositionInfo_ITF) *QGeoPositionInfo {
 	defer qt.Recovering("QGeoPositionInfo::QGeoPositionInfo")
 
-	return NewQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo3(PointerFromQGeoPositionInfo(other)))
+	return newQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo3(PointerFromQGeoPositionInfo(other)))
 }
 
 func (ptr *QGeoPositionInfo) Attribute(attribute QGeoPositionInfo__Attribute) float64 {
@@ -1126,6 +1161,11 @@ func PointerFromQGeoPositionInfoSource(ptr QGeoPositionInfoSource_ITF) unsafe.Po
 func NewQGeoPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QGeoPositionInfoSource {
 	var n = new(QGeoPositionInfoSource)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QGeoPositionInfoSource {
+	var n = NewQGeoPositionInfoSourceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoPositionInfoSource_") {
 		n.SetObjectName("QGeoPositionInfoSource_" + qt.Identifier())
 	}
@@ -1584,6 +1624,11 @@ func PointerFromQGeoPositionInfoSourceFactory(ptr QGeoPositionInfoSourceFactory_
 func NewQGeoPositionInfoSourceFactoryFromPointer(ptr unsafe.Pointer) *QGeoPositionInfoSourceFactory {
 	var n = new(QGeoPositionInfoSourceFactory)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoPositionInfoSourceFactoryFromPointer(ptr unsafe.Pointer) *QGeoPositionInfoSourceFactory {
+	var n = NewQGeoPositionInfoSourceFactoryFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QGeoPositionInfoSourceFactory_") {
 		n.SetObjectNameAbs("QGeoPositionInfoSourceFactory_" + qt.Identifier())
 	}
@@ -1668,6 +1713,11 @@ func NewQGeoRectangleFromPointer(ptr unsafe.Pointer) *QGeoRectangle {
 	return n
 }
 
+func newQGeoRectangleFromPointer(ptr unsafe.Pointer) *QGeoRectangle {
+	var n = NewQGeoRectangleFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoRectangle) QGeoRectangle_PTR() *QGeoRectangle {
 	return ptr
 }
@@ -1675,25 +1725,25 @@ func (ptr *QGeoRectangle) QGeoRectangle_PTR() *QGeoRectangle {
 func NewQGeoRectangle() *QGeoRectangle {
 	defer qt.Recovering("QGeoRectangle::QGeoRectangle")
 
-	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle())
+	return newQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle())
 }
 
 func NewQGeoRectangle3(topLeft QGeoCoordinate_ITF, bottomRight QGeoCoordinate_ITF) *QGeoRectangle {
 	defer qt.Recovering("QGeoRectangle::QGeoRectangle")
 
-	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle3(PointerFromQGeoCoordinate(topLeft), PointerFromQGeoCoordinate(bottomRight)))
+	return newQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle3(PointerFromQGeoCoordinate(topLeft), PointerFromQGeoCoordinate(bottomRight)))
 }
 
 func NewQGeoRectangle5(other QGeoRectangle_ITF) *QGeoRectangle {
 	defer qt.Recovering("QGeoRectangle::QGeoRectangle")
 
-	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle5(PointerFromQGeoRectangle(other)))
+	return newQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle5(PointerFromQGeoRectangle(other)))
 }
 
 func NewQGeoRectangle6(other QGeoShape_ITF) *QGeoRectangle {
 	defer qt.Recovering("QGeoRectangle::QGeoRectangle")
 
-	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle6(PointerFromQGeoShape(other)))
+	return newQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle6(PointerFromQGeoShape(other)))
 }
 
 func (ptr *QGeoRectangle) Contains(rectangle QGeoRectangle_ITF) bool {
@@ -1800,6 +1850,11 @@ func NewQGeoSatelliteInfoFromPointer(ptr unsafe.Pointer) *QGeoSatelliteInfo {
 	return n
 }
 
+func newQGeoSatelliteInfoFromPointer(ptr unsafe.Pointer) *QGeoSatelliteInfo {
+	var n = NewQGeoSatelliteInfoFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoSatelliteInfo) QGeoSatelliteInfo_PTR() *QGeoSatelliteInfo {
 	return ptr
 }
@@ -1824,13 +1879,13 @@ const (
 func NewQGeoSatelliteInfo() *QGeoSatelliteInfo {
 	defer qt.Recovering("QGeoSatelliteInfo::QGeoSatelliteInfo")
 
-	return NewQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfo_NewQGeoSatelliteInfo())
+	return newQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfo_NewQGeoSatelliteInfo())
 }
 
 func NewQGeoSatelliteInfo2(other QGeoSatelliteInfo_ITF) *QGeoSatelliteInfo {
 	defer qt.Recovering("QGeoSatelliteInfo::QGeoSatelliteInfo")
 
-	return NewQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfo_NewQGeoSatelliteInfo2(PointerFromQGeoSatelliteInfo(other)))
+	return newQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfo_NewQGeoSatelliteInfo2(PointerFromQGeoSatelliteInfo(other)))
 }
 
 func (ptr *QGeoSatelliteInfo) Attribute(attribute QGeoSatelliteInfo__Attribute) float64 {
@@ -1945,6 +2000,11 @@ func PointerFromQGeoSatelliteInfoSource(ptr QGeoSatelliteInfoSource_ITF) unsafe.
 func NewQGeoSatelliteInfoSourceFromPointer(ptr unsafe.Pointer) *QGeoSatelliteInfoSource {
 	var n = new(QGeoSatelliteInfoSource)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoSatelliteInfoSourceFromPointer(ptr unsafe.Pointer) *QGeoSatelliteInfoSource {
+	var n = NewQGeoSatelliteInfoSourceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoSatelliteInfoSource_") {
 		n.SetObjectName("QGeoSatelliteInfoSource_" + qt.Identifier())
 	}
@@ -2333,6 +2393,11 @@ func NewQGeoShapeFromPointer(ptr unsafe.Pointer) *QGeoShape {
 	return n
 }
 
+func newQGeoShapeFromPointer(ptr unsafe.Pointer) *QGeoShape {
+	var n = NewQGeoShapeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoShape) QGeoShape_PTR() *QGeoShape {
 	return ptr
 }
@@ -2349,13 +2414,13 @@ const (
 func NewQGeoShape() *QGeoShape {
 	defer qt.Recovering("QGeoShape::QGeoShape")
 
-	return NewQGeoShapeFromPointer(C.QGeoShape_NewQGeoShape())
+	return newQGeoShapeFromPointer(C.QGeoShape_NewQGeoShape())
 }
 
 func NewQGeoShape2(other QGeoShape_ITF) *QGeoShape {
 	defer qt.Recovering("QGeoShape::QGeoShape")
 
-	return NewQGeoShapeFromPointer(C.QGeoShape_NewQGeoShape2(PointerFromQGeoShape(other)))
+	return newQGeoShapeFromPointer(C.QGeoShape_NewQGeoShape2(PointerFromQGeoShape(other)))
 }
 
 func (ptr *QGeoShape) Contains(coordinate QGeoCoordinate_ITF) bool {
@@ -2438,6 +2503,11 @@ func PointerFromQNmeaPositionInfoSource(ptr QNmeaPositionInfoSource_ITF) unsafe.
 func NewQNmeaPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QNmeaPositionInfoSource {
 	var n = new(QNmeaPositionInfoSource)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNmeaPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QNmeaPositionInfoSource {
+	var n = NewQNmeaPositionInfoSourceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QNmeaPositionInfoSource_") {
 		n.SetObjectName("QNmeaPositionInfoSource_" + qt.Identifier())
 	}
@@ -2459,7 +2529,7 @@ const (
 func NewQNmeaPositionInfoSource(updateMode QNmeaPositionInfoSource__UpdateMode, parent core.QObject_ITF) *QNmeaPositionInfoSource {
 	defer qt.Recovering("QNmeaPositionInfoSource::QNmeaPositionInfoSource")
 
-	return NewQNmeaPositionInfoSourceFromPointer(C.QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(C.int(updateMode), core.PointerFromQObject(parent)))
+	return newQNmeaPositionInfoSourceFromPointer(C.QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(C.int(updateMode), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNmeaPositionInfoSource) Device() *core.QIODevice {

@@ -38,6 +38,11 @@ func NewQBluetoothAddressFromPointer(ptr unsafe.Pointer) *QBluetoothAddress {
 	return n
 }
 
+func newQBluetoothAddressFromPointer(ptr unsafe.Pointer) *QBluetoothAddress {
+	var n = NewQBluetoothAddressFromPointer(ptr)
+	return n
+}
+
 func (ptr *QBluetoothAddress) QBluetoothAddress_PTR() *QBluetoothAddress {
 	return ptr
 }
@@ -45,19 +50,19 @@ func (ptr *QBluetoothAddress) QBluetoothAddress_PTR() *QBluetoothAddress {
 func NewQBluetoothAddress() *QBluetoothAddress {
 	defer qt.Recovering("QBluetoothAddress::QBluetoothAddress")
 
-	return NewQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress())
+	return newQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress())
 }
 
 func NewQBluetoothAddress4(other QBluetoothAddress_ITF) *QBluetoothAddress {
 	defer qt.Recovering("QBluetoothAddress::QBluetoothAddress")
 
-	return NewQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress4(PointerFromQBluetoothAddress(other)))
+	return newQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress4(PointerFromQBluetoothAddress(other)))
 }
 
 func NewQBluetoothAddress3(address string) *QBluetoothAddress {
 	defer qt.Recovering("QBluetoothAddress::QBluetoothAddress")
 
-	return NewQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress3(C.CString(address)))
+	return newQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress3(C.CString(address)))
 }
 
 func (ptr *QBluetoothAddress) Clear() {
@@ -113,6 +118,11 @@ func PointerFromQBluetoothDeviceDiscoveryAgent(ptr QBluetoothDeviceDiscoveryAgen
 func NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr unsafe.Pointer) *QBluetoothDeviceDiscoveryAgent {
 	var n = new(QBluetoothDeviceDiscoveryAgent)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQBluetoothDeviceDiscoveryAgentFromPointer(ptr unsafe.Pointer) *QBluetoothDeviceDiscoveryAgent {
+	var n = NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr)
 	for len(n.ObjectName()) < len("QBluetoothDeviceDiscoveryAgent_") {
 		n.SetObjectName("QBluetoothDeviceDiscoveryAgent_" + qt.Identifier())
 	}
@@ -254,13 +264,13 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) Finished() {
 func NewQBluetoothDeviceDiscoveryAgent(parent core.QObject_ITF) *QBluetoothDeviceDiscoveryAgent {
 	defer qt.Recovering("QBluetoothDeviceDiscoveryAgent::QBluetoothDeviceDiscoveryAgent")
 
-	return NewQBluetoothDeviceDiscoveryAgentFromPointer(C.QBluetoothDeviceDiscoveryAgent_NewQBluetoothDeviceDiscoveryAgent(core.PointerFromQObject(parent)))
+	return newQBluetoothDeviceDiscoveryAgentFromPointer(C.QBluetoothDeviceDiscoveryAgent_NewQBluetoothDeviceDiscoveryAgent(core.PointerFromQObject(parent)))
 }
 
 func NewQBluetoothDeviceDiscoveryAgent2(deviceAdapter QBluetoothAddress_ITF, parent core.QObject_ITF) *QBluetoothDeviceDiscoveryAgent {
 	defer qt.Recovering("QBluetoothDeviceDiscoveryAgent::QBluetoothDeviceDiscoveryAgent")
 
-	return NewQBluetoothDeviceDiscoveryAgentFromPointer(C.QBluetoothDeviceDiscoveryAgent_NewQBluetoothDeviceDiscoveryAgent2(PointerFromQBluetoothAddress(deviceAdapter), core.PointerFromQObject(parent)))
+	return newQBluetoothDeviceDiscoveryAgentFromPointer(C.QBluetoothDeviceDiscoveryAgent_NewQBluetoothDeviceDiscoveryAgent2(PointerFromQBluetoothAddress(deviceAdapter), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) Error() QBluetoothDeviceDiscoveryAgent__Error {
@@ -496,6 +506,11 @@ func NewQBluetoothDeviceInfoFromPointer(ptr unsafe.Pointer) *QBluetoothDeviceInf
 	return n
 }
 
+func newQBluetoothDeviceInfoFromPointer(ptr unsafe.Pointer) *QBluetoothDeviceInfo {
+	var n = NewQBluetoothDeviceInfoFromPointer(ptr)
+	return n
+}
+
 func (ptr *QBluetoothDeviceInfo) QBluetoothDeviceInfo_PTR() *QBluetoothDeviceInfo {
 	return ptr
 }
@@ -689,13 +704,13 @@ const (
 func NewQBluetoothDeviceInfo() *QBluetoothDeviceInfo {
 	defer qt.Recovering("QBluetoothDeviceInfo::QBluetoothDeviceInfo")
 
-	return NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo())
+	return newQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo())
 }
 
 func NewQBluetoothDeviceInfo4(other QBluetoothDeviceInfo_ITF) *QBluetoothDeviceInfo {
 	defer qt.Recovering("QBluetoothDeviceInfo::QBluetoothDeviceInfo")
 
-	return NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo4(PointerFromQBluetoothDeviceInfo(other)))
+	return newQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo4(PointerFromQBluetoothDeviceInfo(other)))
 }
 
 func (ptr *QBluetoothDeviceInfo) CoreConfigurations() QBluetoothDeviceInfo__CoreConfiguration {
@@ -822,6 +837,11 @@ func NewQBluetoothHostInfoFromPointer(ptr unsafe.Pointer) *QBluetoothHostInfo {
 	return n
 }
 
+func newQBluetoothHostInfoFromPointer(ptr unsafe.Pointer) *QBluetoothHostInfo {
+	var n = NewQBluetoothHostInfoFromPointer(ptr)
+	return n
+}
+
 func (ptr *QBluetoothHostInfo) QBluetoothHostInfo_PTR() *QBluetoothHostInfo {
 	return ptr
 }
@@ -829,13 +849,13 @@ func (ptr *QBluetoothHostInfo) QBluetoothHostInfo_PTR() *QBluetoothHostInfo {
 func NewQBluetoothHostInfo() *QBluetoothHostInfo {
 	defer qt.Recovering("QBluetoothHostInfo::QBluetoothHostInfo")
 
-	return NewQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo())
+	return newQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo())
 }
 
 func NewQBluetoothHostInfo2(other QBluetoothHostInfo_ITF) *QBluetoothHostInfo {
 	defer qt.Recovering("QBluetoothHostInfo::QBluetoothHostInfo")
 
-	return NewQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo2(PointerFromQBluetoothHostInfo(other)))
+	return newQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo2(PointerFromQBluetoothHostInfo(other)))
 }
 
 func (ptr *QBluetoothHostInfo) Name() string {
@@ -890,6 +910,11 @@ func PointerFromQBluetoothLocalDevice(ptr QBluetoothLocalDevice_ITF) unsafe.Poin
 func NewQBluetoothLocalDeviceFromPointer(ptr unsafe.Pointer) *QBluetoothLocalDevice {
 	var n = new(QBluetoothLocalDevice)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQBluetoothLocalDeviceFromPointer(ptr unsafe.Pointer) *QBluetoothLocalDevice {
+	var n = NewQBluetoothLocalDeviceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QBluetoothLocalDevice_") {
 		n.SetObjectName("QBluetoothLocalDevice_" + qt.Identifier())
 	}
@@ -1021,13 +1046,13 @@ func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDevice() {
 func NewQBluetoothLocalDevice(parent core.QObject_ITF) *QBluetoothLocalDevice {
 	defer qt.Recovering("QBluetoothLocalDevice::QBluetoothLocalDevice")
 
-	return NewQBluetoothLocalDeviceFromPointer(C.QBluetoothLocalDevice_NewQBluetoothLocalDevice(core.PointerFromQObject(parent)))
+	return newQBluetoothLocalDeviceFromPointer(C.QBluetoothLocalDevice_NewQBluetoothLocalDevice(core.PointerFromQObject(parent)))
 }
 
 func NewQBluetoothLocalDevice2(address QBluetoothAddress_ITF, parent core.QObject_ITF) *QBluetoothLocalDevice {
 	defer qt.Recovering("QBluetoothLocalDevice::QBluetoothLocalDevice")
 
-	return NewQBluetoothLocalDeviceFromPointer(C.QBluetoothLocalDevice_NewQBluetoothLocalDevice2(PointerFromQBluetoothAddress(address), core.PointerFromQObject(parent)))
+	return newQBluetoothLocalDeviceFromPointer(C.QBluetoothLocalDevice_NewQBluetoothLocalDevice2(PointerFromQBluetoothAddress(address), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBluetoothLocalDevice) HostMode() QBluetoothLocalDevice__HostMode {
@@ -1243,6 +1268,11 @@ func PointerFromQBluetoothServer(ptr QBluetoothServer_ITF) unsafe.Pointer {
 func NewQBluetoothServerFromPointer(ptr unsafe.Pointer) *QBluetoothServer {
 	var n = new(QBluetoothServer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQBluetoothServerFromPointer(ptr unsafe.Pointer) *QBluetoothServer {
+	var n = NewQBluetoothServerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QBluetoothServer_") {
 		n.SetObjectName("QBluetoothServer_" + qt.Identifier())
 	}
@@ -1268,7 +1298,7 @@ const (
 func NewQBluetoothServer(serverType QBluetoothServiceInfo__Protocol, parent core.QObject_ITF) *QBluetoothServer {
 	defer qt.Recovering("QBluetoothServer::QBluetoothServer")
 
-	return NewQBluetoothServerFromPointer(C.QBluetoothServer_NewQBluetoothServer(C.int(serverType), core.PointerFromQObject(parent)))
+	return newQBluetoothServerFromPointer(C.QBluetoothServer_NewQBluetoothServer(C.int(serverType), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBluetoothServer) ConnectError2(f func(error QBluetoothServer__Error)) {
@@ -1576,6 +1606,11 @@ func PointerFromQBluetoothServiceDiscoveryAgent(ptr QBluetoothServiceDiscoveryAg
 func NewQBluetoothServiceDiscoveryAgentFromPointer(ptr unsafe.Pointer) *QBluetoothServiceDiscoveryAgent {
 	var n = new(QBluetoothServiceDiscoveryAgent)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQBluetoothServiceDiscoveryAgentFromPointer(ptr unsafe.Pointer) *QBluetoothServiceDiscoveryAgent {
+	var n = NewQBluetoothServiceDiscoveryAgentFromPointer(ptr)
 	for len(n.ObjectName()) < len("QBluetoothServiceDiscoveryAgent_") {
 		n.SetObjectName("QBluetoothServiceDiscoveryAgent_" + qt.Identifier())
 	}
@@ -1716,13 +1751,13 @@ func (ptr *QBluetoothServiceDiscoveryAgent) Finished() {
 func NewQBluetoothServiceDiscoveryAgent(parent core.QObject_ITF) *QBluetoothServiceDiscoveryAgent {
 	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::QBluetoothServiceDiscoveryAgent")
 
-	return NewQBluetoothServiceDiscoveryAgentFromPointer(C.QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent(core.PointerFromQObject(parent)))
+	return newQBluetoothServiceDiscoveryAgentFromPointer(C.QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent(core.PointerFromQObject(parent)))
 }
 
 func NewQBluetoothServiceDiscoveryAgent2(deviceAdapter QBluetoothAddress_ITF, parent core.QObject_ITF) *QBluetoothServiceDiscoveryAgent {
 	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::QBluetoothServiceDiscoveryAgent")
 
-	return NewQBluetoothServiceDiscoveryAgentFromPointer(C.QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent2(PointerFromQBluetoothAddress(deviceAdapter), core.PointerFromQObject(parent)))
+	return newQBluetoothServiceDiscoveryAgentFromPointer(C.QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent2(PointerFromQBluetoothAddress(deviceAdapter), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) Clear() {
@@ -1966,6 +2001,11 @@ func NewQBluetoothServiceInfoFromPointer(ptr unsafe.Pointer) *QBluetoothServiceI
 	return n
 }
 
+func newQBluetoothServiceInfoFromPointer(ptr unsafe.Pointer) *QBluetoothServiceInfo {
+	var n = NewQBluetoothServiceInfoFromPointer(ptr)
+	return n
+}
+
 func (ptr *QBluetoothServiceInfo) QBluetoothServiceInfo_PTR() *QBluetoothServiceInfo {
 	return ptr
 }
@@ -2065,13 +2105,13 @@ func (ptr *QBluetoothServiceInfo) SetServiceUuid(uuid QBluetoothUuid_ITF) {
 func NewQBluetoothServiceInfo() *QBluetoothServiceInfo {
 	defer qt.Recovering("QBluetoothServiceInfo::QBluetoothServiceInfo")
 
-	return NewQBluetoothServiceInfoFromPointer(C.QBluetoothServiceInfo_NewQBluetoothServiceInfo())
+	return newQBluetoothServiceInfoFromPointer(C.QBluetoothServiceInfo_NewQBluetoothServiceInfo())
 }
 
 func NewQBluetoothServiceInfo2(other QBluetoothServiceInfo_ITF) *QBluetoothServiceInfo {
 	defer qt.Recovering("QBluetoothServiceInfo::QBluetoothServiceInfo")
 
-	return NewQBluetoothServiceInfoFromPointer(C.QBluetoothServiceInfo_NewQBluetoothServiceInfo2(PointerFromQBluetoothServiceInfo(other)))
+	return newQBluetoothServiceInfoFromPointer(C.QBluetoothServiceInfo_NewQBluetoothServiceInfo2(PointerFromQBluetoothServiceInfo(other)))
 }
 
 func (ptr *QBluetoothServiceInfo) IsComplete() bool {
@@ -2181,6 +2221,11 @@ func PointerFromQBluetoothSocket(ptr QBluetoothSocket_ITF) unsafe.Pointer {
 func NewQBluetoothSocketFromPointer(ptr unsafe.Pointer) *QBluetoothSocket {
 	var n = new(QBluetoothSocket)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQBluetoothSocketFromPointer(ptr unsafe.Pointer) *QBluetoothSocket {
+	var n = NewQBluetoothSocketFromPointer(ptr)
 	for len(n.ObjectName()) < len("QBluetoothSocket_") {
 		n.SetObjectName("QBluetoothSocket_" + qt.Identifier())
 	}
@@ -2364,13 +2409,13 @@ func (ptr *QBluetoothSocket) StateChanged(state QBluetoothSocket__SocketState) {
 func NewQBluetoothSocket(socketType QBluetoothServiceInfo__Protocol, parent core.QObject_ITF) *QBluetoothSocket {
 	defer qt.Recovering("QBluetoothSocket::QBluetoothSocket")
 
-	return NewQBluetoothSocketFromPointer(C.QBluetoothSocket_NewQBluetoothSocket(C.int(socketType), core.PointerFromQObject(parent)))
+	return newQBluetoothSocketFromPointer(C.QBluetoothSocket_NewQBluetoothSocket(C.int(socketType), core.PointerFromQObject(parent)))
 }
 
 func NewQBluetoothSocket2(parent core.QObject_ITF) *QBluetoothSocket {
 	defer qt.Recovering("QBluetoothSocket::QBluetoothSocket")
 
-	return NewQBluetoothSocketFromPointer(C.QBluetoothSocket_NewQBluetoothSocket2(core.PointerFromQObject(parent)))
+	return newQBluetoothSocketFromPointer(C.QBluetoothSocket_NewQBluetoothSocket2(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBluetoothSocket) Abort() {
@@ -2739,6 +2784,11 @@ func PointerFromQBluetoothTransferManager(ptr QBluetoothTransferManager_ITF) uns
 func NewQBluetoothTransferManagerFromPointer(ptr unsafe.Pointer) *QBluetoothTransferManager {
 	var n = new(QBluetoothTransferManager)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQBluetoothTransferManagerFromPointer(ptr unsafe.Pointer) *QBluetoothTransferManager {
+	var n = NewQBluetoothTransferManagerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QBluetoothTransferManager_") {
 		n.SetObjectName("QBluetoothTransferManager_" + qt.Identifier())
 	}
@@ -2761,7 +2811,7 @@ func (ptr *QBluetoothTransferManager) Put(request QBluetoothTransferRequest_ITF,
 func NewQBluetoothTransferManager(parent core.QObject_ITF) *QBluetoothTransferManager {
 	defer qt.Recovering("QBluetoothTransferManager::QBluetoothTransferManager")
 
-	return NewQBluetoothTransferManagerFromPointer(C.QBluetoothTransferManager_NewQBluetoothTransferManager(core.PointerFromQObject(parent)))
+	return newQBluetoothTransferManagerFromPointer(C.QBluetoothTransferManager_NewQBluetoothTransferManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBluetoothTransferManager) ConnectFinished(f func(reply *QBluetoothTransferReply)) {
@@ -2963,6 +3013,11 @@ func PointerFromQBluetoothTransferReply(ptr QBluetoothTransferReply_ITF) unsafe.
 func NewQBluetoothTransferReplyFromPointer(ptr unsafe.Pointer) *QBluetoothTransferReply {
 	var n = new(QBluetoothTransferReply)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQBluetoothTransferReplyFromPointer(ptr unsafe.Pointer) *QBluetoothTransferReply {
+	var n = NewQBluetoothTransferReplyFromPointer(ptr)
 	for len(n.ObjectName()) < len("QBluetoothTransferReply_") {
 		n.SetObjectName("QBluetoothTransferReply_" + qt.Identifier())
 	}
@@ -3321,6 +3376,11 @@ func NewQBluetoothTransferRequestFromPointer(ptr unsafe.Pointer) *QBluetoothTran
 	return n
 }
 
+func newQBluetoothTransferRequestFromPointer(ptr unsafe.Pointer) *QBluetoothTransferRequest {
+	var n = NewQBluetoothTransferRequestFromPointer(ptr)
+	return n
+}
+
 func (ptr *QBluetoothTransferRequest) QBluetoothTransferRequest_PTR() *QBluetoothTransferRequest {
 	return ptr
 }
@@ -3339,13 +3399,13 @@ const (
 func NewQBluetoothTransferRequest(address QBluetoothAddress_ITF) *QBluetoothTransferRequest {
 	defer qt.Recovering("QBluetoothTransferRequest::QBluetoothTransferRequest")
 
-	return NewQBluetoothTransferRequestFromPointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest(PointerFromQBluetoothAddress(address)))
+	return newQBluetoothTransferRequestFromPointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest(PointerFromQBluetoothAddress(address)))
 }
 
 func NewQBluetoothTransferRequest2(other QBluetoothTransferRequest_ITF) *QBluetoothTransferRequest {
 	defer qt.Recovering("QBluetoothTransferRequest::QBluetoothTransferRequest")
 
-	return NewQBluetoothTransferRequestFromPointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest2(PointerFromQBluetoothTransferRequest(other)))
+	return newQBluetoothTransferRequestFromPointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest2(PointerFromQBluetoothTransferRequest(other)))
 }
 
 func (ptr *QBluetoothTransferRequest) Attribute(code QBluetoothTransferRequest__Attribute, defaultValue core.QVariant_ITF) *core.QVariant {
@@ -3392,6 +3452,11 @@ func PointerFromQBluetoothUuid(ptr QBluetoothUuid_ITF) unsafe.Pointer {
 func NewQBluetoothUuidFromPointer(ptr unsafe.Pointer) *QBluetoothUuid {
 	var n = new(QBluetoothUuid)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQBluetoothUuidFromPointer(ptr unsafe.Pointer) *QBluetoothUuid {
+	var n = NewQBluetoothUuidFromPointer(ptr)
 	return n
 }
 
@@ -3692,49 +3757,49 @@ const (
 func NewQBluetoothUuid() *QBluetoothUuid {
 	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
-	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid())
+	return newQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid())
 }
 
 func NewQBluetoothUuid4(uuid QBluetoothUuid__CharacteristicType) *QBluetoothUuid {
 	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
-	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid4(C.int(uuid)))
+	return newQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid4(C.int(uuid)))
 }
 
 func NewQBluetoothUuid5(uuid QBluetoothUuid__DescriptorType) *QBluetoothUuid {
 	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
-	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid5(C.int(uuid)))
+	return newQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid5(C.int(uuid)))
 }
 
 func NewQBluetoothUuid2(uuid QBluetoothUuid__ProtocolUuid) *QBluetoothUuid {
 	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
-	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid2(C.int(uuid)))
+	return newQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid2(C.int(uuid)))
 }
 
 func NewQBluetoothUuid3(uuid QBluetoothUuid__ServiceClassUuid) *QBluetoothUuid {
 	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
-	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid3(C.int(uuid)))
+	return newQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid3(C.int(uuid)))
 }
 
 func NewQBluetoothUuid10(uuid QBluetoothUuid_ITF) *QBluetoothUuid {
 	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
-	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid10(PointerFromQBluetoothUuid(uuid)))
+	return newQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid10(PointerFromQBluetoothUuid(uuid)))
 }
 
 func NewQBluetoothUuid9(uuid string) *QBluetoothUuid {
 	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
-	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid9(C.CString(uuid)))
+	return newQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid9(C.CString(uuid)))
 }
 
 func NewQBluetoothUuid11(uuid core.QUuid_ITF) *QBluetoothUuid {
 	defer qt.Recovering("QBluetoothUuid::QBluetoothUuid")
 
-	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid11(core.PointerFromQUuid(uuid)))
+	return newQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid11(core.PointerFromQUuid(uuid)))
 }
 
 func QBluetoothUuid_CharacteristicToString(uuid QBluetoothUuid__CharacteristicType) string {
@@ -3807,6 +3872,11 @@ func NewQLowEnergyCharacteristicFromPointer(ptr unsafe.Pointer) *QLowEnergyChara
 	return n
 }
 
+func newQLowEnergyCharacteristicFromPointer(ptr unsafe.Pointer) *QLowEnergyCharacteristic {
+	var n = NewQLowEnergyCharacteristicFromPointer(ptr)
+	return n
+}
+
 func (ptr *QLowEnergyCharacteristic) QLowEnergyCharacteristic_PTR() *QLowEnergyCharacteristic {
 	return ptr
 }
@@ -3829,13 +3899,13 @@ const (
 func NewQLowEnergyCharacteristic() *QLowEnergyCharacteristic {
 	defer qt.Recovering("QLowEnergyCharacteristic::QLowEnergyCharacteristic")
 
-	return NewQLowEnergyCharacteristicFromPointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic())
+	return newQLowEnergyCharacteristicFromPointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic())
 }
 
 func NewQLowEnergyCharacteristic2(other QLowEnergyCharacteristic_ITF) *QLowEnergyCharacteristic {
 	defer qt.Recovering("QLowEnergyCharacteristic::QLowEnergyCharacteristic")
 
-	return NewQLowEnergyCharacteristicFromPointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic2(PointerFromQLowEnergyCharacteristic(other)))
+	return newQLowEnergyCharacteristicFromPointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic2(PointerFromQLowEnergyCharacteristic(other)))
 }
 
 func (ptr *QLowEnergyCharacteristic) IsValid() bool {
@@ -3901,6 +3971,11 @@ func PointerFromQLowEnergyController(ptr QLowEnergyController_ITF) unsafe.Pointe
 func NewQLowEnergyControllerFromPointer(ptr unsafe.Pointer) *QLowEnergyController {
 	var n = new(QLowEnergyController)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQLowEnergyControllerFromPointer(ptr unsafe.Pointer) *QLowEnergyController {
+	var n = NewQLowEnergyControllerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QLowEnergyController_") {
 		n.SetObjectName("QLowEnergyController_" + qt.Identifier())
 	}
@@ -4126,7 +4201,7 @@ func (ptr *QLowEnergyController) StateChanged(state QLowEnergyController__Contro
 func NewQLowEnergyController(remoteDeviceInfo QBluetoothDeviceInfo_ITF, parent core.QObject_ITF) *QLowEnergyController {
 	defer qt.Recovering("QLowEnergyController::QLowEnergyController")
 
-	return NewQLowEnergyControllerFromPointer(C.QLowEnergyController_NewQLowEnergyController(PointerFromQBluetoothDeviceInfo(remoteDeviceInfo), core.PointerFromQObject(parent)))
+	return newQLowEnergyControllerFromPointer(C.QLowEnergyController_NewQLowEnergyController(PointerFromQBluetoothDeviceInfo(remoteDeviceInfo), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QLowEnergyController) ConnectToDevice() {
@@ -4388,6 +4463,11 @@ func NewQLowEnergyDescriptorFromPointer(ptr unsafe.Pointer) *QLowEnergyDescripto
 	return n
 }
 
+func newQLowEnergyDescriptorFromPointer(ptr unsafe.Pointer) *QLowEnergyDescriptor {
+	var n = NewQLowEnergyDescriptorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QLowEnergyDescriptor) QLowEnergyDescriptor_PTR() *QLowEnergyDescriptor {
 	return ptr
 }
@@ -4395,13 +4475,13 @@ func (ptr *QLowEnergyDescriptor) QLowEnergyDescriptor_PTR() *QLowEnergyDescripto
 func NewQLowEnergyDescriptor() *QLowEnergyDescriptor {
 	defer qt.Recovering("QLowEnergyDescriptor::QLowEnergyDescriptor")
 
-	return NewQLowEnergyDescriptorFromPointer(C.QLowEnergyDescriptor_NewQLowEnergyDescriptor())
+	return newQLowEnergyDescriptorFromPointer(C.QLowEnergyDescriptor_NewQLowEnergyDescriptor())
 }
 
 func NewQLowEnergyDescriptor2(other QLowEnergyDescriptor_ITF) *QLowEnergyDescriptor {
 	defer qt.Recovering("QLowEnergyDescriptor::QLowEnergyDescriptor")
 
-	return NewQLowEnergyDescriptorFromPointer(C.QLowEnergyDescriptor_NewQLowEnergyDescriptor2(PointerFromQLowEnergyDescriptor(other)))
+	return newQLowEnergyDescriptorFromPointer(C.QLowEnergyDescriptor_NewQLowEnergyDescriptor2(PointerFromQLowEnergyDescriptor(other)))
 }
 
 func (ptr *QLowEnergyDescriptor) IsValid() bool {
@@ -4467,6 +4547,11 @@ func PointerFromQLowEnergyService(ptr QLowEnergyService_ITF) unsafe.Pointer {
 func NewQLowEnergyServiceFromPointer(ptr unsafe.Pointer) *QLowEnergyService {
 	var n = new(QLowEnergyService)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQLowEnergyServiceFromPointer(ptr unsafe.Pointer) *QLowEnergyService {
+	var n = NewQLowEnergyServiceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QLowEnergyService_") {
 		n.SetObjectName("QLowEnergyService_" + qt.Identifier())
 	}

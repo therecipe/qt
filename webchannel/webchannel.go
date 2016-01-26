@@ -27,6 +27,11 @@ func PointerFromQWebChannel(ptr QWebChannel_ITF) unsafe.Pointer {
 func NewQWebChannelFromPointer(ptr unsafe.Pointer) *QWebChannel {
 	var n = new(QWebChannel)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQWebChannelFromPointer(ptr unsafe.Pointer) *QWebChannel {
+	var n = NewQWebChannelFromPointer(ptr)
 	for len(n.ObjectName()) < len("QWebChannel_") {
 		n.SetObjectName("QWebChannel_" + qt.Identifier())
 	}
@@ -57,7 +62,7 @@ func (ptr *QWebChannel) SetBlockUpdates(block bool) {
 func NewQWebChannel(parent core.QObject_ITF) *QWebChannel {
 	defer qt.Recovering("QWebChannel::QWebChannel")
 
-	return NewQWebChannelFromPointer(C.QWebChannel_NewQWebChannel(core.PointerFromQObject(parent)))
+	return newQWebChannelFromPointer(C.QWebChannel_NewQWebChannel(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QWebChannel) ConnectBlockUpdatesChanged(f func(block bool)) {
@@ -291,6 +296,11 @@ func PointerFromQWebChannelAbstractTransport(ptr QWebChannelAbstractTransport_IT
 func NewQWebChannelAbstractTransportFromPointer(ptr unsafe.Pointer) *QWebChannelAbstractTransport {
 	var n = new(QWebChannelAbstractTransport)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQWebChannelAbstractTransportFromPointer(ptr unsafe.Pointer) *QWebChannelAbstractTransport {
+	var n = NewQWebChannelAbstractTransportFromPointer(ptr)
 	for len(n.ObjectName()) < len("QWebChannelAbstractTransport_") {
 		n.SetObjectName("QWebChannelAbstractTransport_" + qt.Identifier())
 	}

@@ -29,6 +29,11 @@ func PointerFromQScriptEngineDebugger(ptr QScriptEngineDebugger_ITF) unsafe.Poin
 func NewQScriptEngineDebuggerFromPointer(ptr unsafe.Pointer) *QScriptEngineDebugger {
 	var n = new(QScriptEngineDebugger)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQScriptEngineDebuggerFromPointer(ptr unsafe.Pointer) *QScriptEngineDebugger {
+	var n = NewQScriptEngineDebuggerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QScriptEngineDebugger_") {
 		n.SetObjectName("QScriptEngineDebugger_" + qt.Identifier())
 	}
@@ -86,7 +91,7 @@ const (
 func NewQScriptEngineDebugger(parent core.QObject_ITF) *QScriptEngineDebugger {
 	defer qt.Recovering("QScriptEngineDebugger::QScriptEngineDebugger")
 
-	return NewQScriptEngineDebuggerFromPointer(C.QScriptEngineDebugger_NewQScriptEngineDebugger(core.PointerFromQObject(parent)))
+	return newQScriptEngineDebuggerFromPointer(C.QScriptEngineDebugger_NewQScriptEngineDebugger(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QScriptEngineDebugger) Action(action QScriptEngineDebugger__DebuggerAction) *widgets.QAction {

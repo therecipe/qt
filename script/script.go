@@ -35,6 +35,11 @@ func PointerFromQScriptClass(ptr QScriptClass_ITF) unsafe.Pointer {
 func NewQScriptClassFromPointer(ptr unsafe.Pointer) *QScriptClass {
 	var n = new(QScriptClass)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQScriptClassFromPointer(ptr unsafe.Pointer) *QScriptClass {
+	var n = NewQScriptClassFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QScriptClass_") {
 		n.SetObjectNameAbs("QScriptClass_" + qt.Identifier())
 	}
@@ -64,7 +69,7 @@ const (
 func NewQScriptClass(engine QScriptEngine_ITF) *QScriptClass {
 	defer qt.Recovering("QScriptClass::QScriptClass")
 
-	return NewQScriptClassFromPointer(C.QScriptClass_NewQScriptClass(PointerFromQScriptEngine(engine)))
+	return newQScriptClassFromPointer(C.QScriptClass_NewQScriptClass(PointerFromQScriptEngine(engine)))
 }
 
 func (ptr *QScriptClass) Engine() *QScriptEngine {
@@ -175,6 +180,11 @@ func NewQScriptClassPropertyIteratorFromPointer(ptr unsafe.Pointer) *QScriptClas
 	return n
 }
 
+func newQScriptClassPropertyIteratorFromPointer(ptr unsafe.Pointer) *QScriptClassPropertyIterator {
+	var n = NewQScriptClassPropertyIteratorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QScriptClassPropertyIterator) QScriptClassPropertyIterator_PTR() *QScriptClassPropertyIterator {
 	return ptr
 }
@@ -205,6 +215,11 @@ func PointerFromQScriptContext(ptr QScriptContext_ITF) unsafe.Pointer {
 func NewQScriptContextFromPointer(ptr unsafe.Pointer) *QScriptContext {
 	var n = new(QScriptContext)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQScriptContextFromPointer(ptr unsafe.Pointer) *QScriptContext {
+	var n = NewQScriptContextFromPointer(ptr)
 	return n
 }
 
@@ -420,6 +435,11 @@ func NewQScriptContextInfoFromPointer(ptr unsafe.Pointer) *QScriptContextInfo {
 	return n
 }
 
+func newQScriptContextInfoFromPointer(ptr unsafe.Pointer) *QScriptContextInfo {
+	var n = NewQScriptContextInfoFromPointer(ptr)
+	return n
+}
+
 func (ptr *QScriptContextInfo) QScriptContextInfo_PTR() *QScriptContextInfo {
 	return ptr
 }
@@ -437,19 +457,19 @@ const (
 func NewQScriptContextInfo3() *QScriptContextInfo {
 	defer qt.Recovering("QScriptContextInfo::QScriptContextInfo")
 
-	return NewQScriptContextInfoFromPointer(C.QScriptContextInfo_NewQScriptContextInfo3())
+	return newQScriptContextInfoFromPointer(C.QScriptContextInfo_NewQScriptContextInfo3())
 }
 
 func NewQScriptContextInfo(context QScriptContext_ITF) *QScriptContextInfo {
 	defer qt.Recovering("QScriptContextInfo::QScriptContextInfo")
 
-	return NewQScriptContextInfoFromPointer(C.QScriptContextInfo_NewQScriptContextInfo(PointerFromQScriptContext(context)))
+	return newQScriptContextInfoFromPointer(C.QScriptContextInfo_NewQScriptContextInfo(PointerFromQScriptContext(context)))
 }
 
 func NewQScriptContextInfo2(other QScriptContextInfo_ITF) *QScriptContextInfo {
 	defer qt.Recovering("QScriptContextInfo::QScriptContextInfo")
 
-	return NewQScriptContextInfoFromPointer(C.QScriptContextInfo_NewQScriptContextInfo2(PointerFromQScriptContextInfo(other)))
+	return newQScriptContextInfoFromPointer(C.QScriptContextInfo_NewQScriptContextInfo2(PointerFromQScriptContextInfo(other)))
 }
 
 func (ptr *QScriptContextInfo) FileName() string {
@@ -569,6 +589,11 @@ func PointerFromQScriptEngine(ptr QScriptEngine_ITF) unsafe.Pointer {
 func NewQScriptEngineFromPointer(ptr unsafe.Pointer) *QScriptEngine {
 	var n = new(QScriptEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQScriptEngineFromPointer(ptr unsafe.Pointer) *QScriptEngine {
+	var n = NewQScriptEngineFromPointer(ptr)
 	for len(n.ObjectName()) < len("QScriptEngine_") {
 		n.SetObjectName("QScriptEngine_" + qt.Identifier())
 	}
@@ -606,13 +631,13 @@ const (
 func NewQScriptEngine() *QScriptEngine {
 	defer qt.Recovering("QScriptEngine::QScriptEngine")
 
-	return NewQScriptEngineFromPointer(C.QScriptEngine_NewQScriptEngine())
+	return newQScriptEngineFromPointer(C.QScriptEngine_NewQScriptEngine())
 }
 
 func NewQScriptEngine2(parent core.QObject_ITF) *QScriptEngine {
 	defer qt.Recovering("QScriptEngine::QScriptEngine")
 
-	return NewQScriptEngineFromPointer(C.QScriptEngine_NewQScriptEngine2(core.PointerFromQObject(parent)))
+	return newQScriptEngineFromPointer(C.QScriptEngine_NewQScriptEngine2(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QScriptEngine) AbortEvaluation(result QScriptValue_ITF) {
@@ -1162,6 +1187,11 @@ func PointerFromQScriptEngineAgent(ptr QScriptEngineAgent_ITF) unsafe.Pointer {
 func NewQScriptEngineAgentFromPointer(ptr unsafe.Pointer) *QScriptEngineAgent {
 	var n = new(QScriptEngineAgent)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQScriptEngineAgentFromPointer(ptr unsafe.Pointer) *QScriptEngineAgent {
+	var n = NewQScriptEngineAgentFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QScriptEngineAgent_") {
 		n.SetObjectNameAbs("QScriptEngineAgent_" + qt.Identifier())
 	}
@@ -1182,7 +1212,7 @@ const (
 func NewQScriptEngineAgent(engine QScriptEngine_ITF) *QScriptEngineAgent {
 	defer qt.Recovering("QScriptEngineAgent::QScriptEngineAgent")
 
-	return NewQScriptEngineAgentFromPointer(C.QScriptEngineAgent_NewQScriptEngineAgent(PointerFromQScriptEngine(engine)))
+	return newQScriptEngineAgentFromPointer(C.QScriptEngineAgent_NewQScriptEngineAgent(PointerFromQScriptEngine(engine)))
 }
 
 func (ptr *QScriptEngineAgent) ConnectContextPop(f func()) {
@@ -1661,6 +1691,11 @@ func PointerFromQScriptExtensionPlugin(ptr QScriptExtensionPlugin_ITF) unsafe.Po
 func NewQScriptExtensionPluginFromPointer(ptr unsafe.Pointer) *QScriptExtensionPlugin {
 	var n = new(QScriptExtensionPlugin)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQScriptExtensionPluginFromPointer(ptr unsafe.Pointer) *QScriptExtensionPlugin {
+	var n = NewQScriptExtensionPluginFromPointer(ptr)
 	for len(n.ObjectName()) < len("QScriptExtensionPlugin_") {
 		n.SetObjectName("QScriptExtensionPlugin_" + qt.Identifier())
 	}
@@ -1870,6 +1905,11 @@ func NewQScriptProgramFromPointer(ptr unsafe.Pointer) *QScriptProgram {
 	return n
 }
 
+func newQScriptProgramFromPointer(ptr unsafe.Pointer) *QScriptProgram {
+	var n = NewQScriptProgramFromPointer(ptr)
+	return n
+}
+
 func (ptr *QScriptProgram) QScriptProgram_PTR() *QScriptProgram {
 	return ptr
 }
@@ -1877,19 +1917,19 @@ func (ptr *QScriptProgram) QScriptProgram_PTR() *QScriptProgram {
 func NewQScriptProgram() *QScriptProgram {
 	defer qt.Recovering("QScriptProgram::QScriptProgram")
 
-	return NewQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram())
+	return newQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram())
 }
 
 func NewQScriptProgram3(other QScriptProgram_ITF) *QScriptProgram {
 	defer qt.Recovering("QScriptProgram::QScriptProgram")
 
-	return NewQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram3(PointerFromQScriptProgram(other)))
+	return newQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram3(PointerFromQScriptProgram(other)))
 }
 
 func NewQScriptProgram2(sourceCode string, fileName string, firstLineNumber int) *QScriptProgram {
 	defer qt.Recovering("QScriptProgram::QScriptProgram")
 
-	return NewQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram2(C.CString(sourceCode), C.CString(fileName), C.int(firstLineNumber)))
+	return newQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram2(C.CString(sourceCode), C.CString(fileName), C.int(firstLineNumber)))
 }
 
 func (ptr *QScriptProgram) FileName() string {
@@ -1965,6 +2005,11 @@ func NewQScriptStringFromPointer(ptr unsafe.Pointer) *QScriptString {
 	return n
 }
 
+func newQScriptStringFromPointer(ptr unsafe.Pointer) *QScriptString {
+	var n = NewQScriptStringFromPointer(ptr)
+	return n
+}
+
 func (ptr *QScriptString) QScriptString_PTR() *QScriptString {
 	return ptr
 }
@@ -1972,13 +2017,13 @@ func (ptr *QScriptString) QScriptString_PTR() *QScriptString {
 func NewQScriptString() *QScriptString {
 	defer qt.Recovering("QScriptString::QScriptString")
 
-	return NewQScriptStringFromPointer(C.QScriptString_NewQScriptString())
+	return newQScriptStringFromPointer(C.QScriptString_NewQScriptString())
 }
 
 func NewQScriptString2(other QScriptString_ITF) *QScriptString {
 	defer qt.Recovering("QScriptString::QScriptString")
 
-	return NewQScriptStringFromPointer(C.QScriptString_NewQScriptString2(PointerFromQScriptString(other)))
+	return newQScriptStringFromPointer(C.QScriptString_NewQScriptString2(PointerFromQScriptString(other)))
 }
 
 func (ptr *QScriptString) IsValid() bool {
@@ -2036,6 +2081,11 @@ func NewQScriptSyntaxCheckResultFromPointer(ptr unsafe.Pointer) *QScriptSyntaxCh
 	return n
 }
 
+func newQScriptSyntaxCheckResultFromPointer(ptr unsafe.Pointer) *QScriptSyntaxCheckResult {
+	var n = NewQScriptSyntaxCheckResultFromPointer(ptr)
+	return n
+}
+
 func (ptr *QScriptSyntaxCheckResult) QScriptSyntaxCheckResult_PTR() *QScriptSyntaxCheckResult {
 	return ptr
 }
@@ -2052,7 +2102,7 @@ const (
 func NewQScriptSyntaxCheckResult(other QScriptSyntaxCheckResult_ITF) *QScriptSyntaxCheckResult {
 	defer qt.Recovering("QScriptSyntaxCheckResult::QScriptSyntaxCheckResult")
 
-	return NewQScriptSyntaxCheckResultFromPointer(C.QScriptSyntaxCheckResult_NewQScriptSyntaxCheckResult(PointerFromQScriptSyntaxCheckResult(other)))
+	return newQScriptSyntaxCheckResultFromPointer(C.QScriptSyntaxCheckResult_NewQScriptSyntaxCheckResult(PointerFromQScriptSyntaxCheckResult(other)))
 }
 
 func (ptr *QScriptSyntaxCheckResult) ErrorColumnNumber() int {
@@ -2128,6 +2178,11 @@ func NewQScriptValueFromPointer(ptr unsafe.Pointer) *QScriptValue {
 	return n
 }
 
+func newQScriptValueFromPointer(ptr unsafe.Pointer) *QScriptValue {
+	var n = NewQScriptValueFromPointer(ptr)
+	return n
+}
+
 func (ptr *QScriptValue) QScriptValue_PTR() *QScriptValue {
 	return ptr
 }
@@ -2167,49 +2222,49 @@ const (
 func NewQScriptValue() *QScriptValue {
 	defer qt.Recovering("QScriptValue::QScriptValue")
 
-	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue())
+	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue())
 }
 
 func NewQScriptValue10(value QScriptValue__SpecialValue) *QScriptValue {
 	defer qt.Recovering("QScriptValue::QScriptValue")
 
-	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue10(C.int(value)))
+	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue10(C.int(value)))
 }
 
 func NewQScriptValue11(value bool) *QScriptValue {
 	defer qt.Recovering("QScriptValue::QScriptValue")
 
-	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue11(C.int(qt.GoBoolToInt(value))))
+	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue11(C.int(qt.GoBoolToInt(value))))
 }
 
 func NewQScriptValue16(value core.QLatin1String_ITF) *QScriptValue {
 	defer qt.Recovering("QScriptValue::QScriptValue")
 
-	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue16(core.PointerFromQLatin1String(value)))
+	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue16(core.PointerFromQLatin1String(value)))
 }
 
 func NewQScriptValue2(other QScriptValue_ITF) *QScriptValue {
 	defer qt.Recovering("QScriptValue::QScriptValue")
 
-	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue2(PointerFromQScriptValue(other)))
+	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue2(PointerFromQScriptValue(other)))
 }
 
 func NewQScriptValue15(value string) *QScriptValue {
 	defer qt.Recovering("QScriptValue::QScriptValue")
 
-	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue15(C.CString(value)))
+	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue15(C.CString(value)))
 }
 
 func NewQScriptValue17(value string) *QScriptValue {
 	defer qt.Recovering("QScriptValue::QScriptValue")
 
-	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue17(C.CString(value)))
+	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue17(C.CString(value)))
 }
 
 func NewQScriptValue12(value int) *QScriptValue {
 	defer qt.Recovering("QScriptValue::QScriptValue")
 
-	return NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue12(C.int(value)))
+	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue12(C.int(value)))
 }
 
 func (ptr *QScriptValue) Call2(thisObject QScriptValue_ITF, arguments QScriptValue_ITF) *QScriptValue {
@@ -2613,6 +2668,11 @@ func NewQScriptValueIteratorFromPointer(ptr unsafe.Pointer) *QScriptValueIterato
 	return n
 }
 
+func newQScriptValueIteratorFromPointer(ptr unsafe.Pointer) *QScriptValueIterator {
+	var n = NewQScriptValueIteratorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QScriptValueIterator) QScriptValueIterator_PTR() *QScriptValueIterator {
 	return ptr
 }
@@ -2643,6 +2703,11 @@ func PointerFromQScriptable(ptr QScriptable_ITF) unsafe.Pointer {
 func NewQScriptableFromPointer(ptr unsafe.Pointer) *QScriptable {
 	var n = new(QScriptable)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQScriptableFromPointer(ptr unsafe.Pointer) *QScriptable {
+	var n = NewQScriptableFromPointer(ptr)
 	return n
 }
 

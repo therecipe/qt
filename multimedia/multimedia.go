@@ -30,6 +30,11 @@ func PointerFromQAbstractPlanarVideoBuffer(ptr QAbstractPlanarVideoBuffer_ITF) u
 func NewQAbstractPlanarVideoBufferFromPointer(ptr unsafe.Pointer) *QAbstractPlanarVideoBuffer {
 	var n = new(QAbstractPlanarVideoBuffer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAbstractPlanarVideoBufferFromPointer(ptr unsafe.Pointer) *QAbstractPlanarVideoBuffer {
+	var n = NewQAbstractPlanarVideoBufferFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAbstractPlanarVideoBuffer_") {
 		n.SetObjectNameAbs("QAbstractPlanarVideoBuffer_" + qt.Identifier())
 	}
@@ -136,6 +141,11 @@ func PointerFromQAbstractVideoBuffer(ptr QAbstractVideoBuffer_ITF) unsafe.Pointe
 func NewQAbstractVideoBufferFromPointer(ptr unsafe.Pointer) *QAbstractVideoBuffer {
 	var n = new(QAbstractVideoBuffer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAbstractVideoBufferFromPointer(ptr unsafe.Pointer) *QAbstractVideoBuffer {
+	var n = NewQAbstractVideoBufferFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAbstractVideoBuffer_") {
 		n.SetObjectNameAbs("QAbstractVideoBuffer_" + qt.Identifier())
 	}
@@ -293,6 +303,11 @@ func PointerFromQAbstractVideoFilter(ptr QAbstractVideoFilter_ITF) unsafe.Pointe
 func NewQAbstractVideoFilterFromPointer(ptr unsafe.Pointer) *QAbstractVideoFilter {
 	var n = new(QAbstractVideoFilter)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAbstractVideoFilterFromPointer(ptr unsafe.Pointer) *QAbstractVideoFilter {
+	var n = NewQAbstractVideoFilterFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractVideoFilter_") {
 		n.SetObjectName("QAbstractVideoFilter_" + qt.Identifier())
 	}
@@ -519,6 +534,11 @@ func PointerFromQAbstractVideoSurface(ptr QAbstractVideoSurface_ITF) unsafe.Poin
 func NewQAbstractVideoSurfaceFromPointer(ptr unsafe.Pointer) *QAbstractVideoSurface {
 	var n = new(QAbstractVideoSurface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAbstractVideoSurfaceFromPointer(ptr unsafe.Pointer) *QAbstractVideoSurface {
+	var n = NewQAbstractVideoSurfaceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractVideoSurface_") {
 		n.SetObjectName("QAbstractVideoSurface_" + qt.Identifier())
 	}
@@ -949,6 +969,11 @@ func NewQAudioBufferFromPointer(ptr unsafe.Pointer) *QAudioBuffer {
 	return n
 }
 
+func newQAudioBufferFromPointer(ptr unsafe.Pointer) *QAudioBuffer {
+	var n = NewQAudioBufferFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAudioBuffer) QAudioBuffer_PTR() *QAudioBuffer {
 	return ptr
 }
@@ -956,25 +981,25 @@ func (ptr *QAudioBuffer) QAudioBuffer_PTR() *QAudioBuffer {
 func NewQAudioBuffer() *QAudioBuffer {
 	defer qt.Recovering("QAudioBuffer::QAudioBuffer")
 
-	return NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer())
+	return newQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer())
 }
 
 func NewQAudioBuffer3(other QAudioBuffer_ITF) *QAudioBuffer {
 	defer qt.Recovering("QAudioBuffer::QAudioBuffer")
 
-	return NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer3(PointerFromQAudioBuffer(other)))
+	return newQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer3(PointerFromQAudioBuffer(other)))
 }
 
 func NewQAudioBuffer4(data core.QByteArray_ITF, format QAudioFormat_ITF, startTime int64) *QAudioBuffer {
 	defer qt.Recovering("QAudioBuffer::QAudioBuffer")
 
-	return NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer4(core.PointerFromQByteArray(data), PointerFromQAudioFormat(format), C.longlong(startTime)))
+	return newQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer4(core.PointerFromQByteArray(data), PointerFromQAudioFormat(format), C.longlong(startTime)))
 }
 
 func NewQAudioBuffer5(numFrames int, format QAudioFormat_ITF, startTime int64) *QAudioBuffer {
 	defer qt.Recovering("QAudioBuffer::QAudioBuffer")
 
-	return NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer5(C.int(numFrames), PointerFromQAudioFormat(format), C.longlong(startTime)))
+	return newQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer5(C.int(numFrames), PointerFromQAudioFormat(format), C.longlong(startTime)))
 }
 
 func (ptr *QAudioBuffer) ByteCount() int {
@@ -1085,6 +1110,11 @@ func PointerFromQAudioDecoder(ptr QAudioDecoder_ITF) unsafe.Pointer {
 func NewQAudioDecoderFromPointer(ptr unsafe.Pointer) *QAudioDecoder {
 	var n = new(QAudioDecoder)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAudioDecoderFromPointer(ptr unsafe.Pointer) *QAudioDecoder {
+	var n = NewQAudioDecoderFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioDecoder_") {
 		n.SetObjectName("QAudioDecoder_" + qt.Identifier())
 	}
@@ -1135,7 +1165,7 @@ func (ptr *QAudioDecoder) State() QAudioDecoder__State {
 func NewQAudioDecoder(parent core.QObject_ITF) *QAudioDecoder {
 	defer qt.Recovering("QAudioDecoder::QAudioDecoder")
 
-	return NewQAudioDecoderFromPointer(C.QAudioDecoder_NewQAudioDecoder(core.PointerFromQObject(parent)))
+	return newQAudioDecoderFromPointer(C.QAudioDecoder_NewQAudioDecoder(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAudioDecoder) BufferAvailable() bool {
@@ -1734,6 +1764,11 @@ func PointerFromQAudioDecoderControl(ptr QAudioDecoderControl_ITF) unsafe.Pointe
 func NewQAudioDecoderControlFromPointer(ptr unsafe.Pointer) *QAudioDecoderControl {
 	var n = new(QAudioDecoderControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAudioDecoderControlFromPointer(ptr unsafe.Pointer) *QAudioDecoderControl {
+	var n = NewQAudioDecoderControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioDecoderControl_") {
 		n.SetObjectName("QAudioDecoderControl_" + qt.Identifier())
 	}
@@ -2299,6 +2334,11 @@ func NewQAudioDeviceInfoFromPointer(ptr unsafe.Pointer) *QAudioDeviceInfo {
 	return n
 }
 
+func newQAudioDeviceInfoFromPointer(ptr unsafe.Pointer) *QAudioDeviceInfo {
+	var n = NewQAudioDeviceInfoFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAudioDeviceInfo) QAudioDeviceInfo_PTR() *QAudioDeviceInfo {
 	return ptr
 }
@@ -2306,13 +2346,13 @@ func (ptr *QAudioDeviceInfo) QAudioDeviceInfo_PTR() *QAudioDeviceInfo {
 func NewQAudioDeviceInfo() *QAudioDeviceInfo {
 	defer qt.Recovering("QAudioDeviceInfo::QAudioDeviceInfo")
 
-	return NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_NewQAudioDeviceInfo())
+	return newQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_NewQAudioDeviceInfo())
 }
 
 func NewQAudioDeviceInfo2(other QAudioDeviceInfo_ITF) *QAudioDeviceInfo {
 	defer qt.Recovering("QAudioDeviceInfo::QAudioDeviceInfo")
 
-	return NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_NewQAudioDeviceInfo2(PointerFromQAudioDeviceInfo(other)))
+	return newQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_NewQAudioDeviceInfo2(PointerFromQAudioDeviceInfo(other)))
 }
 
 func (ptr *QAudioDeviceInfo) DeviceName() string {
@@ -2388,6 +2428,11 @@ func NewQAudioEncoderSettingsFromPointer(ptr unsafe.Pointer) *QAudioEncoderSetti
 	return n
 }
 
+func newQAudioEncoderSettingsFromPointer(ptr unsafe.Pointer) *QAudioEncoderSettings {
+	var n = NewQAudioEncoderSettingsFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAudioEncoderSettings) QAudioEncoderSettings_PTR() *QAudioEncoderSettings {
 	return ptr
 }
@@ -2395,13 +2440,13 @@ func (ptr *QAudioEncoderSettings) QAudioEncoderSettings_PTR() *QAudioEncoderSett
 func NewQAudioEncoderSettings() *QAudioEncoderSettings {
 	defer qt.Recovering("QAudioEncoderSettings::QAudioEncoderSettings")
 
-	return NewQAudioEncoderSettingsFromPointer(C.QAudioEncoderSettings_NewQAudioEncoderSettings())
+	return newQAudioEncoderSettingsFromPointer(C.QAudioEncoderSettings_NewQAudioEncoderSettings())
 }
 
 func NewQAudioEncoderSettings2(other QAudioEncoderSettings_ITF) *QAudioEncoderSettings {
 	defer qt.Recovering("QAudioEncoderSettings::QAudioEncoderSettings")
 
-	return NewQAudioEncoderSettingsFromPointer(C.QAudioEncoderSettings_NewQAudioEncoderSettings2(PointerFromQAudioEncoderSettings(other)))
+	return newQAudioEncoderSettingsFromPointer(C.QAudioEncoderSettings_NewQAudioEncoderSettings2(PointerFromQAudioEncoderSettings(other)))
 }
 
 func (ptr *QAudioEncoderSettings) BitRate() int {
@@ -2559,6 +2604,11 @@ func PointerFromQAudioEncoderSettingsControl(ptr QAudioEncoderSettingsControl_IT
 func NewQAudioEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QAudioEncoderSettingsControl {
 	var n = new(QAudioEncoderSettingsControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAudioEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QAudioEncoderSettingsControl {
+	var n = NewQAudioEncoderSettingsControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioEncoderSettingsControl_") {
 		n.SetObjectName("QAudioEncoderSettingsControl_" + qt.Identifier())
 	}
@@ -2768,6 +2818,11 @@ func NewQAudioFormatFromPointer(ptr unsafe.Pointer) *QAudioFormat {
 	return n
 }
 
+func newQAudioFormatFromPointer(ptr unsafe.Pointer) *QAudioFormat {
+	var n = NewQAudioFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QAudioFormat) QAudioFormat_PTR() *QAudioFormat {
 	return ptr
 }
@@ -2793,13 +2848,13 @@ const (
 func NewQAudioFormat() *QAudioFormat {
 	defer qt.Recovering("QAudioFormat::QAudioFormat")
 
-	return NewQAudioFormatFromPointer(C.QAudioFormat_NewQAudioFormat())
+	return newQAudioFormatFromPointer(C.QAudioFormat_NewQAudioFormat())
 }
 
 func NewQAudioFormat2(other QAudioFormat_ITF) *QAudioFormat {
 	defer qt.Recovering("QAudioFormat::QAudioFormat")
 
-	return NewQAudioFormatFromPointer(C.QAudioFormat_NewQAudioFormat2(PointerFromQAudioFormat(other)))
+	return newQAudioFormatFromPointer(C.QAudioFormat_NewQAudioFormat2(PointerFromQAudioFormat(other)))
 }
 
 func (ptr *QAudioFormat) ByteOrder() QAudioFormat__Endian {
@@ -2949,6 +3004,11 @@ func PointerFromQAudioInput(ptr QAudioInput_ITF) unsafe.Pointer {
 func NewQAudioInputFromPointer(ptr unsafe.Pointer) *QAudioInput {
 	var n = new(QAudioInput)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAudioInputFromPointer(ptr unsafe.Pointer) *QAudioInput {
+	var n = NewQAudioInputFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioInput_") {
 		n.SetObjectName("QAudioInput_" + qt.Identifier())
 	}
@@ -2962,13 +3022,13 @@ func (ptr *QAudioInput) QAudioInput_PTR() *QAudioInput {
 func NewQAudioInput2(audioDevice QAudioDeviceInfo_ITF, format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioInput {
 	defer qt.Recovering("QAudioInput::QAudioInput")
 
-	return NewQAudioInputFromPointer(C.QAudioInput_NewQAudioInput2(PointerFromQAudioDeviceInfo(audioDevice), PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
+	return newQAudioInputFromPointer(C.QAudioInput_NewQAudioInput2(PointerFromQAudioDeviceInfo(audioDevice), PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
 }
 
 func NewQAudioInput(format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioInput {
 	defer qt.Recovering("QAudioInput::QAudioInput")
 
-	return NewQAudioInputFromPointer(C.QAudioInput_NewQAudioInput(PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
+	return newQAudioInputFromPointer(C.QAudioInput_NewQAudioInput(PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAudioInput) BufferSize() int {
@@ -3360,6 +3420,11 @@ func PointerFromQAudioInputSelectorControl(ptr QAudioInputSelectorControl_ITF) u
 func NewQAudioInputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioInputSelectorControl {
 	var n = new(QAudioInputSelectorControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAudioInputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioInputSelectorControl {
+	var n = NewQAudioInputSelectorControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioInputSelectorControl_") {
 		n.SetObjectName("QAudioInputSelectorControl_" + qt.Identifier())
 	}
@@ -3640,6 +3705,11 @@ func PointerFromQAudioOutput(ptr QAudioOutput_ITF) unsafe.Pointer {
 func NewQAudioOutputFromPointer(ptr unsafe.Pointer) *QAudioOutput {
 	var n = new(QAudioOutput)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAudioOutputFromPointer(ptr unsafe.Pointer) *QAudioOutput {
+	var n = NewQAudioOutputFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioOutput_") {
 		n.SetObjectName("QAudioOutput_" + qt.Identifier())
 	}
@@ -3653,13 +3723,13 @@ func (ptr *QAudioOutput) QAudioOutput_PTR() *QAudioOutput {
 func NewQAudioOutput2(audioDevice QAudioDeviceInfo_ITF, format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioOutput {
 	defer qt.Recovering("QAudioOutput::QAudioOutput")
 
-	return NewQAudioOutputFromPointer(C.QAudioOutput_NewQAudioOutput2(PointerFromQAudioDeviceInfo(audioDevice), PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
+	return newQAudioOutputFromPointer(C.QAudioOutput_NewQAudioOutput2(PointerFromQAudioDeviceInfo(audioDevice), PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
 }
 
 func NewQAudioOutput(format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioOutput {
 	defer qt.Recovering("QAudioOutput::QAudioOutput")
 
-	return NewQAudioOutputFromPointer(C.QAudioOutput_NewQAudioOutput(PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
+	return newQAudioOutputFromPointer(C.QAudioOutput_NewQAudioOutput(PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAudioOutput) BufferSize() int {
@@ -4068,6 +4138,11 @@ func PointerFromQAudioOutputSelectorControl(ptr QAudioOutputSelectorControl_ITF)
 func NewQAudioOutputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioOutputSelectorControl {
 	var n = new(QAudioOutputSelectorControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAudioOutputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioOutputSelectorControl {
+	var n = NewQAudioOutputSelectorControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioOutputSelectorControl_") {
 		n.SetObjectName("QAudioOutputSelectorControl_" + qt.Identifier())
 	}
@@ -4348,6 +4423,11 @@ func PointerFromQAudioProbe(ptr QAudioProbe_ITF) unsafe.Pointer {
 func NewQAudioProbeFromPointer(ptr unsafe.Pointer) *QAudioProbe {
 	var n = new(QAudioProbe)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAudioProbeFromPointer(ptr unsafe.Pointer) *QAudioProbe {
+	var n = NewQAudioProbeFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioProbe_") {
 		n.SetObjectName("QAudioProbe_" + qt.Identifier())
 	}
@@ -4361,7 +4441,7 @@ func (ptr *QAudioProbe) QAudioProbe_PTR() *QAudioProbe {
 func NewQAudioProbe(parent core.QObject_ITF) *QAudioProbe {
 	defer qt.Recovering("QAudioProbe::QAudioProbe")
 
-	return NewQAudioProbeFromPointer(C.QAudioProbe_NewQAudioProbe(core.PointerFromQObject(parent)))
+	return newQAudioProbeFromPointer(C.QAudioProbe_NewQAudioProbe(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAudioProbe) ConnectFlush(f func()) {
@@ -4590,6 +4670,11 @@ func PointerFromQAudioRecorder(ptr QAudioRecorder_ITF) unsafe.Pointer {
 func NewQAudioRecorderFromPointer(ptr unsafe.Pointer) *QAudioRecorder {
 	var n = new(QAudioRecorder)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAudioRecorderFromPointer(ptr unsafe.Pointer) *QAudioRecorder {
+	var n = NewQAudioRecorderFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAudioRecorder_") {
 		n.SetObjectName("QAudioRecorder_" + qt.Identifier())
 	}
@@ -4603,7 +4688,7 @@ func (ptr *QAudioRecorder) QAudioRecorder_PTR() *QAudioRecorder {
 func NewQAudioRecorder(parent core.QObject_ITF) *QAudioRecorder {
 	defer qt.Recovering("QAudioRecorder::QAudioRecorder")
 
-	return NewQAudioRecorderFromPointer(C.QAudioRecorder_NewQAudioRecorder(core.PointerFromQObject(parent)))
+	return newQAudioRecorderFromPointer(C.QAudioRecorder_NewQAudioRecorder(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAudioRecorder) AudioInput() string {
@@ -4885,6 +4970,11 @@ func PointerFromQCamera(ptr QCamera_ITF) unsafe.Pointer {
 func NewQCameraFromPointer(ptr unsafe.Pointer) *QCamera {
 	var n = new(QCamera)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraFromPointer(ptr unsafe.Pointer) *QCamera {
+	var n = NewQCameraFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCamera_") {
 		n.SetObjectName("QCamera_" + qt.Identifier())
 	}
@@ -5024,25 +5114,25 @@ func (ptr *QCamera) Status() QCamera__Status {
 func NewQCamera4(position QCamera__Position, parent core.QObject_ITF) *QCamera {
 	defer qt.Recovering("QCamera::QCamera")
 
-	return NewQCameraFromPointer(C.QCamera_NewQCamera4(C.int(position), core.PointerFromQObject(parent)))
+	return newQCameraFromPointer(C.QCamera_NewQCamera4(C.int(position), core.PointerFromQObject(parent)))
 }
 
 func NewQCamera(parent core.QObject_ITF) *QCamera {
 	defer qt.Recovering("QCamera::QCamera")
 
-	return NewQCameraFromPointer(C.QCamera_NewQCamera(core.PointerFromQObject(parent)))
+	return newQCameraFromPointer(C.QCamera_NewQCamera(core.PointerFromQObject(parent)))
 }
 
 func NewQCamera2(deviceName core.QByteArray_ITF, parent core.QObject_ITF) *QCamera {
 	defer qt.Recovering("QCamera::QCamera")
 
-	return NewQCameraFromPointer(C.QCamera_NewQCamera2(core.PointerFromQByteArray(deviceName), core.PointerFromQObject(parent)))
+	return newQCameraFromPointer(C.QCamera_NewQCamera2(core.PointerFromQByteArray(deviceName), core.PointerFromQObject(parent)))
 }
 
 func NewQCamera3(cameraInfo QCameraInfo_ITF, parent core.QObject_ITF) *QCamera {
 	defer qt.Recovering("QCamera::QCamera")
 
-	return NewQCameraFromPointer(C.QCamera_NewQCamera3(PointerFromQCameraInfo(cameraInfo), core.PointerFromQObject(parent)))
+	return newQCameraFromPointer(C.QCamera_NewQCamera3(PointerFromQCameraInfo(cameraInfo), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QCamera) Availability() QMultimedia__AvailabilityStatus {
@@ -5728,6 +5818,11 @@ func PointerFromQCameraCaptureBufferFormatControl(ptr QCameraCaptureBufferFormat
 func NewQCameraCaptureBufferFormatControlFromPointer(ptr unsafe.Pointer) *QCameraCaptureBufferFormatControl {
 	var n = new(QCameraCaptureBufferFormatControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraCaptureBufferFormatControlFromPointer(ptr unsafe.Pointer) *QCameraCaptureBufferFormatControl {
+	var n = NewQCameraCaptureBufferFormatControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraCaptureBufferFormatControl_") {
 		n.SetObjectName("QCameraCaptureBufferFormatControl_" + qt.Identifier())
 	}
@@ -5954,6 +6049,11 @@ func PointerFromQCameraCaptureDestinationControl(ptr QCameraCaptureDestinationCo
 func NewQCameraCaptureDestinationControlFromPointer(ptr unsafe.Pointer) *QCameraCaptureDestinationControl {
 	var n = new(QCameraCaptureDestinationControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraCaptureDestinationControlFromPointer(ptr unsafe.Pointer) *QCameraCaptureDestinationControl {
+	var n = NewQCameraCaptureDestinationControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraCaptureDestinationControl_") {
 		n.SetObjectName("QCameraCaptureDestinationControl_" + qt.Identifier())
 	}
@@ -6189,6 +6289,11 @@ func PointerFromQCameraControl(ptr QCameraControl_ITF) unsafe.Pointer {
 func NewQCameraControlFromPointer(ptr unsafe.Pointer) *QCameraControl {
 	var n = new(QCameraControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraControlFromPointer(ptr unsafe.Pointer) *QCameraControl {
+	var n = NewQCameraControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraControl_") {
 		n.SetObjectName("QCameraControl_" + qt.Identifier())
 	}
@@ -6578,6 +6683,11 @@ func PointerFromQCameraExposure(ptr QCameraExposure_ITF) unsafe.Pointer {
 func NewQCameraExposureFromPointer(ptr unsafe.Pointer) *QCameraExposure {
 	var n = new(QCameraExposure)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraExposureFromPointer(ptr unsafe.Pointer) *QCameraExposure {
+	var n = NewQCameraExposureFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraExposure_") {
 		n.SetObjectName("QCameraExposure_" + qt.Identifier())
 	}
@@ -7270,6 +7380,11 @@ func PointerFromQCameraExposureControl(ptr QCameraExposureControl_ITF) unsafe.Po
 func NewQCameraExposureControlFromPointer(ptr unsafe.Pointer) *QCameraExposureControl {
 	var n = new(QCameraExposureControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraExposureControlFromPointer(ptr unsafe.Pointer) *QCameraExposureControl {
+	var n = NewQCameraExposureControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraExposureControl_") {
 		n.SetObjectName("QCameraExposureControl_" + qt.Identifier())
 	}
@@ -7604,6 +7719,11 @@ func PointerFromQCameraFeedbackControl(ptr QCameraFeedbackControl_ITF) unsafe.Po
 func NewQCameraFeedbackControlFromPointer(ptr unsafe.Pointer) *QCameraFeedbackControl {
 	var n = new(QCameraFeedbackControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraFeedbackControlFromPointer(ptr unsafe.Pointer) *QCameraFeedbackControl {
+	var n = NewQCameraFeedbackControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraFeedbackControl_") {
 		n.SetObjectName("QCameraFeedbackControl_" + qt.Identifier())
 	}
@@ -7838,6 +7958,11 @@ func PointerFromQCameraFlashControl(ptr QCameraFlashControl_ITF) unsafe.Pointer 
 func NewQCameraFlashControlFromPointer(ptr unsafe.Pointer) *QCameraFlashControl {
 	var n = new(QCameraFlashControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraFlashControlFromPointer(ptr unsafe.Pointer) *QCameraFlashControl {
+	var n = NewQCameraFlashControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraFlashControl_") {
 		n.SetObjectName("QCameraFlashControl_" + qt.Identifier())
 	}
@@ -8082,6 +8207,11 @@ func PointerFromQCameraFocus(ptr QCameraFocus_ITF) unsafe.Pointer {
 func NewQCameraFocusFromPointer(ptr unsafe.Pointer) *QCameraFocus {
 	var n = new(QCameraFocus)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraFocusFromPointer(ptr unsafe.Pointer) *QCameraFocus {
+	var n = NewQCameraFocusFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraFocus_") {
 		n.SetObjectName("QCameraFocus_" + qt.Identifier())
 	}
@@ -8561,6 +8691,11 @@ func PointerFromQCameraFocusControl(ptr QCameraFocusControl_ITF) unsafe.Pointer 
 func NewQCameraFocusControlFromPointer(ptr unsafe.Pointer) *QCameraFocusControl {
 	var n = new(QCameraFocusControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraFocusControlFromPointer(ptr unsafe.Pointer) *QCameraFocusControl {
+	var n = NewQCameraFocusControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraFocusControl_") {
 		n.SetObjectName("QCameraFocusControl_" + qt.Identifier())
 	}
@@ -8912,6 +9047,11 @@ func NewQCameraFocusZoneFromPointer(ptr unsafe.Pointer) *QCameraFocusZone {
 	return n
 }
 
+func newQCameraFocusZoneFromPointer(ptr unsafe.Pointer) *QCameraFocusZone {
+	var n = NewQCameraFocusZoneFromPointer(ptr)
+	return n
+}
+
 func (ptr *QCameraFocusZone) QCameraFocusZone_PTR() *QCameraFocusZone {
 	return ptr
 }
@@ -8929,7 +9069,7 @@ const (
 func NewQCameraFocusZone(other QCameraFocusZone_ITF) *QCameraFocusZone {
 	defer qt.Recovering("QCameraFocusZone::QCameraFocusZone")
 
-	return NewQCameraFocusZoneFromPointer(C.QCameraFocusZone_NewQCameraFocusZone(PointerFromQCameraFocusZone(other)))
+	return newQCameraFocusZoneFromPointer(C.QCameraFocusZone_NewQCameraFocusZone(PointerFromQCameraFocusZone(other)))
 }
 
 func (ptr *QCameraFocusZone) IsValid() bool {
@@ -8988,6 +9128,11 @@ func PointerFromQCameraImageCapture(ptr QCameraImageCapture_ITF) unsafe.Pointer 
 func NewQCameraImageCaptureFromPointer(ptr unsafe.Pointer) *QCameraImageCapture {
 	var n = new(QCameraImageCapture)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraImageCaptureFromPointer(ptr unsafe.Pointer) *QCameraImageCapture {
+	var n = NewQCameraImageCaptureFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraImageCapture_") {
 		n.SetObjectName("QCameraImageCapture_" + qt.Identifier())
 	}
@@ -9037,7 +9182,7 @@ func (ptr *QCameraImageCapture) IsReadyForCapture() bool {
 func NewQCameraImageCapture(mediaObject QMediaObject_ITF, parent core.QObject_ITF) *QCameraImageCapture {
 	defer qt.Recovering("QCameraImageCapture::QCameraImageCapture")
 
-	return NewQCameraImageCaptureFromPointer(C.QCameraImageCapture_NewQCameraImageCapture(PointerFromQMediaObject(mediaObject), core.PointerFromQObject(parent)))
+	return newQCameraImageCaptureFromPointer(C.QCameraImageCapture_NewQCameraImageCapture(PointerFromQMediaObject(mediaObject), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QCameraImageCapture) Availability() QMultimedia__AvailabilityStatus {
@@ -9595,6 +9740,11 @@ func PointerFromQCameraImageCaptureControl(ptr QCameraImageCaptureControl_ITF) u
 func NewQCameraImageCaptureControlFromPointer(ptr unsafe.Pointer) *QCameraImageCaptureControl {
 	var n = new(QCameraImageCaptureControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraImageCaptureControlFromPointer(ptr unsafe.Pointer) *QCameraImageCaptureControl {
+	var n = NewQCameraImageCaptureControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraImageCaptureControl_") {
 		n.SetObjectName("QCameraImageCaptureControl_" + qt.Identifier())
 	}
@@ -9991,6 +10141,11 @@ func PointerFromQCameraImageProcessing(ptr QCameraImageProcessing_ITF) unsafe.Po
 func NewQCameraImageProcessingFromPointer(ptr unsafe.Pointer) *QCameraImageProcessing {
 	var n = new(QCameraImageProcessing)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraImageProcessingFromPointer(ptr unsafe.Pointer) *QCameraImageProcessing {
+	var n = NewQCameraImageProcessingFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraImageProcessing_") {
 		n.SetObjectName("QCameraImageProcessing_" + qt.Identifier())
 	}
@@ -10333,6 +10488,11 @@ func PointerFromQCameraImageProcessingControl(ptr QCameraImageProcessingControl_
 func NewQCameraImageProcessingControlFromPointer(ptr unsafe.Pointer) *QCameraImageProcessingControl {
 	var n = new(QCameraImageProcessingControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraImageProcessingControlFromPointer(ptr unsafe.Pointer) *QCameraImageProcessingControl {
+	var n = NewQCameraImageProcessingControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraImageProcessingControl_") {
 		n.SetObjectName("QCameraImageProcessingControl_" + qt.Identifier())
 	}
@@ -10571,6 +10731,11 @@ func NewQCameraInfoFromPointer(ptr unsafe.Pointer) *QCameraInfo {
 	return n
 }
 
+func newQCameraInfoFromPointer(ptr unsafe.Pointer) *QCameraInfo {
+	var n = NewQCameraInfoFromPointer(ptr)
+	return n
+}
+
 func (ptr *QCameraInfo) QCameraInfo_PTR() *QCameraInfo {
 	return ptr
 }
@@ -10578,19 +10743,19 @@ func (ptr *QCameraInfo) QCameraInfo_PTR() *QCameraInfo {
 func NewQCameraInfo(name core.QByteArray_ITF) *QCameraInfo {
 	defer qt.Recovering("QCameraInfo::QCameraInfo")
 
-	return NewQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo(core.PointerFromQByteArray(name)))
+	return newQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo(core.PointerFromQByteArray(name)))
 }
 
 func NewQCameraInfo2(camera QCamera_ITF) *QCameraInfo {
 	defer qt.Recovering("QCameraInfo::QCameraInfo")
 
-	return NewQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo2(PointerFromQCamera(camera)))
+	return newQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo2(PointerFromQCamera(camera)))
 }
 
 func NewQCameraInfo3(other QCameraInfo_ITF) *QCameraInfo {
 	defer qt.Recovering("QCameraInfo::QCameraInfo")
 
-	return NewQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo3(PointerFromQCameraInfo(other)))
+	return newQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo3(PointerFromQCameraInfo(other)))
 }
 
 func (ptr *QCameraInfo) Description() string {
@@ -10665,6 +10830,11 @@ func PointerFromQCameraInfoControl(ptr QCameraInfoControl_ITF) unsafe.Pointer {
 func NewQCameraInfoControlFromPointer(ptr unsafe.Pointer) *QCameraInfoControl {
 	var n = new(QCameraInfoControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraInfoControlFromPointer(ptr unsafe.Pointer) *QCameraInfoControl {
+	var n = NewQCameraInfoControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraInfoControl_") {
 		n.SetObjectName("QCameraInfoControl_" + qt.Identifier())
 	}
@@ -10856,6 +11026,11 @@ func PointerFromQCameraLocksControl(ptr QCameraLocksControl_ITF) unsafe.Pointer 
 func NewQCameraLocksControlFromPointer(ptr unsafe.Pointer) *QCameraLocksControl {
 	var n = new(QCameraLocksControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraLocksControlFromPointer(ptr unsafe.Pointer) *QCameraLocksControl {
+	var n = NewQCameraLocksControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraLocksControl_") {
 		n.SetObjectName("QCameraLocksControl_" + qt.Identifier())
 	}
@@ -11109,6 +11284,11 @@ func NewQCameraViewfinderSettingsFromPointer(ptr unsafe.Pointer) *QCameraViewfin
 	return n
 }
 
+func newQCameraViewfinderSettingsFromPointer(ptr unsafe.Pointer) *QCameraViewfinderSettings {
+	var n = NewQCameraViewfinderSettingsFromPointer(ptr)
+	return n
+}
+
 func (ptr *QCameraViewfinderSettings) QCameraViewfinderSettings_PTR() *QCameraViewfinderSettings {
 	return ptr
 }
@@ -11116,13 +11296,13 @@ func (ptr *QCameraViewfinderSettings) QCameraViewfinderSettings_PTR() *QCameraVi
 func NewQCameraViewfinderSettings() *QCameraViewfinderSettings {
 	defer qt.Recovering("QCameraViewfinderSettings::QCameraViewfinderSettings")
 
-	return NewQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettings_NewQCameraViewfinderSettings())
+	return newQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettings_NewQCameraViewfinderSettings())
 }
 
 func NewQCameraViewfinderSettings2(other QCameraViewfinderSettings_ITF) *QCameraViewfinderSettings {
 	defer qt.Recovering("QCameraViewfinderSettings::QCameraViewfinderSettings")
 
-	return NewQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettings_NewQCameraViewfinderSettings2(PointerFromQCameraViewfinderSettings(other)))
+	return newQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettings_NewQCameraViewfinderSettings2(PointerFromQCameraViewfinderSettings(other)))
 }
 
 func (ptr *QCameraViewfinderSettings) IsNull() bool {
@@ -11270,6 +11450,11 @@ func PointerFromQCameraViewfinderSettingsControl(ptr QCameraViewfinderSettingsCo
 func NewQCameraViewfinderSettingsControlFromPointer(ptr unsafe.Pointer) *QCameraViewfinderSettingsControl {
 	var n = new(QCameraViewfinderSettingsControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraViewfinderSettingsControlFromPointer(ptr unsafe.Pointer) *QCameraViewfinderSettingsControl {
+	var n = NewQCameraViewfinderSettingsControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraViewfinderSettingsControl_") {
 		n.SetObjectName("QCameraViewfinderSettingsControl_" + qt.Identifier())
 	}
@@ -11481,6 +11666,11 @@ func PointerFromQCameraViewfinderSettingsControl2(ptr QCameraViewfinderSettingsC
 func NewQCameraViewfinderSettingsControl2FromPointer(ptr unsafe.Pointer) *QCameraViewfinderSettingsControl2 {
 	var n = new(QCameraViewfinderSettingsControl2)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraViewfinderSettingsControl2FromPointer(ptr unsafe.Pointer) *QCameraViewfinderSettingsControl2 {
+	var n = NewQCameraViewfinderSettingsControl2FromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraViewfinderSettingsControl2_") {
 		n.SetObjectName("QCameraViewfinderSettingsControl2_" + qt.Identifier())
 	}
@@ -11662,6 +11852,11 @@ func PointerFromQCameraZoomControl(ptr QCameraZoomControl_ITF) unsafe.Pointer {
 func NewQCameraZoomControlFromPointer(ptr unsafe.Pointer) *QCameraZoomControl {
 	var n = new(QCameraZoomControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraZoomControlFromPointer(ptr unsafe.Pointer) *QCameraZoomControl {
+	var n = NewQCameraZoomControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraZoomControl_") {
 		n.SetObjectName("QCameraZoomControl_" + qt.Identifier())
 	}
@@ -12113,6 +12308,11 @@ func PointerFromQImageEncoderControl(ptr QImageEncoderControl_ITF) unsafe.Pointe
 func NewQImageEncoderControlFromPointer(ptr unsafe.Pointer) *QImageEncoderControl {
 	var n = new(QImageEncoderControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQImageEncoderControlFromPointer(ptr unsafe.Pointer) *QImageEncoderControl {
+	var n = NewQImageEncoderControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QImageEncoderControl_") {
 		n.SetObjectName("QImageEncoderControl_" + qt.Identifier())
 	}
@@ -12322,6 +12522,11 @@ func NewQImageEncoderSettingsFromPointer(ptr unsafe.Pointer) *QImageEncoderSetti
 	return n
 }
 
+func newQImageEncoderSettingsFromPointer(ptr unsafe.Pointer) *QImageEncoderSettings {
+	var n = NewQImageEncoderSettingsFromPointer(ptr)
+	return n
+}
+
 func (ptr *QImageEncoderSettings) QImageEncoderSettings_PTR() *QImageEncoderSettings {
 	return ptr
 }
@@ -12329,13 +12534,13 @@ func (ptr *QImageEncoderSettings) QImageEncoderSettings_PTR() *QImageEncoderSett
 func NewQImageEncoderSettings() *QImageEncoderSettings {
 	defer qt.Recovering("QImageEncoderSettings::QImageEncoderSettings")
 
-	return NewQImageEncoderSettingsFromPointer(C.QImageEncoderSettings_NewQImageEncoderSettings())
+	return newQImageEncoderSettingsFromPointer(C.QImageEncoderSettings_NewQImageEncoderSettings())
 }
 
 func NewQImageEncoderSettings2(other QImageEncoderSettings_ITF) *QImageEncoderSettings {
 	defer qt.Recovering("QImageEncoderSettings::QImageEncoderSettings")
 
-	return NewQImageEncoderSettingsFromPointer(C.QImageEncoderSettings_NewQImageEncoderSettings2(PointerFromQImageEncoderSettings(other)))
+	return newQImageEncoderSettingsFromPointer(C.QImageEncoderSettings_NewQImageEncoderSettings2(PointerFromQImageEncoderSettings(other)))
 }
 
 func (ptr *QImageEncoderSettings) Codec() string {
@@ -12450,6 +12655,11 @@ func PointerFromQMediaAudioProbeControl(ptr QMediaAudioProbeControl_ITF) unsafe.
 func NewQMediaAudioProbeControlFromPointer(ptr unsafe.Pointer) *QMediaAudioProbeControl {
 	var n = new(QMediaAudioProbeControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaAudioProbeControlFromPointer(ptr unsafe.Pointer) *QMediaAudioProbeControl {
+	var n = NewQMediaAudioProbeControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaAudioProbeControl_") {
 		n.SetObjectName("QMediaAudioProbeControl_" + qt.Identifier())
 	}
@@ -12659,6 +12869,11 @@ func PointerFromQMediaAvailabilityControl(ptr QMediaAvailabilityControl_ITF) uns
 func NewQMediaAvailabilityControlFromPointer(ptr unsafe.Pointer) *QMediaAvailabilityControl {
 	var n = new(QMediaAvailabilityControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaAvailabilityControlFromPointer(ptr unsafe.Pointer) *QMediaAvailabilityControl {
+	var n = NewQMediaAvailabilityControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaAvailabilityControl_") {
 		n.SetObjectName("QMediaAvailabilityControl_" + qt.Identifier())
 	}
@@ -12884,6 +13099,11 @@ func PointerFromQMediaBindableInterface(ptr QMediaBindableInterface_ITF) unsafe.
 func NewQMediaBindableInterfaceFromPointer(ptr unsafe.Pointer) *QMediaBindableInterface {
 	var n = new(QMediaBindableInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaBindableInterfaceFromPointer(ptr unsafe.Pointer) *QMediaBindableInterface {
+	var n = NewQMediaBindableInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QMediaBindableInterface_") {
 		n.SetObjectNameAbs("QMediaBindableInterface_" + qt.Identifier())
 	}
@@ -12947,6 +13167,11 @@ func PointerFromQMediaContainerControl(ptr QMediaContainerControl_ITF) unsafe.Po
 func NewQMediaContainerControlFromPointer(ptr unsafe.Pointer) *QMediaContainerControl {
 	var n = new(QMediaContainerControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaContainerControlFromPointer(ptr unsafe.Pointer) *QMediaContainerControl {
+	var n = NewQMediaContainerControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaContainerControl_") {
 		n.SetObjectName("QMediaContainerControl_" + qt.Identifier())
 	}
@@ -13165,6 +13390,11 @@ func NewQMediaContentFromPointer(ptr unsafe.Pointer) *QMediaContent {
 	return n
 }
 
+func newQMediaContentFromPointer(ptr unsafe.Pointer) *QMediaContent {
+	var n = NewQMediaContentFromPointer(ptr)
+	return n
+}
+
 func (ptr *QMediaContent) QMediaContent_PTR() *QMediaContent {
 	return ptr
 }
@@ -13172,37 +13402,37 @@ func (ptr *QMediaContent) QMediaContent_PTR() *QMediaContent {
 func NewQMediaContent() *QMediaContent {
 	defer qt.Recovering("QMediaContent::QMediaContent")
 
-	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent())
+	return newQMediaContentFromPointer(C.QMediaContent_NewQMediaContent())
 }
 
 func NewQMediaContent7(playlist QMediaPlaylist_ITF, contentUrl core.QUrl_ITF, takeOwnership bool) *QMediaContent {
 	defer qt.Recovering("QMediaContent::QMediaContent")
 
-	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent7(PointerFromQMediaPlaylist(playlist), core.PointerFromQUrl(contentUrl), C.int(qt.GoBoolToInt(takeOwnership))))
+	return newQMediaContentFromPointer(C.QMediaContent_NewQMediaContent7(PointerFromQMediaPlaylist(playlist), core.PointerFromQUrl(contentUrl), C.int(qt.GoBoolToInt(takeOwnership))))
 }
 
 func NewQMediaContent6(other QMediaContent_ITF) *QMediaContent {
 	defer qt.Recovering("QMediaContent::QMediaContent")
 
-	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent6(PointerFromQMediaContent(other)))
+	return newQMediaContentFromPointer(C.QMediaContent_NewQMediaContent6(PointerFromQMediaContent(other)))
 }
 
 func NewQMediaContent4(resource QMediaResource_ITF) *QMediaContent {
 	defer qt.Recovering("QMediaContent::QMediaContent")
 
-	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent4(PointerFromQMediaResource(resource)))
+	return newQMediaContentFromPointer(C.QMediaContent_NewQMediaContent4(PointerFromQMediaResource(resource)))
 }
 
 func NewQMediaContent3(request network.QNetworkRequest_ITF) *QMediaContent {
 	defer qt.Recovering("QMediaContent::QMediaContent")
 
-	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent3(network.PointerFromQNetworkRequest(request)))
+	return newQMediaContentFromPointer(C.QMediaContent_NewQMediaContent3(network.PointerFromQNetworkRequest(request)))
 }
 
 func NewQMediaContent2(url core.QUrl_ITF) *QMediaContent {
 	defer qt.Recovering("QMediaContent::QMediaContent")
 
-	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent2(core.PointerFromQUrl(url)))
+	return newQMediaContentFromPointer(C.QMediaContent_NewQMediaContent2(core.PointerFromQUrl(url)))
 }
 
 func (ptr *QMediaContent) CanonicalUrl() *core.QUrl {
@@ -13259,6 +13489,11 @@ func PointerFromQMediaControl(ptr QMediaControl_ITF) unsafe.Pointer {
 func NewQMediaControlFromPointer(ptr unsafe.Pointer) *QMediaControl {
 	var n = new(QMediaControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaControlFromPointer(ptr unsafe.Pointer) *QMediaControl {
+	var n = NewQMediaControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaControl_") {
 		n.SetObjectName("QMediaControl_" + qt.Identifier())
 	}
@@ -13432,6 +13667,11 @@ func PointerFromQMediaGaplessPlaybackControl(ptr QMediaGaplessPlaybackControl_IT
 func NewQMediaGaplessPlaybackControlFromPointer(ptr unsafe.Pointer) *QMediaGaplessPlaybackControl {
 	var n = new(QMediaGaplessPlaybackControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaGaplessPlaybackControlFromPointer(ptr unsafe.Pointer) *QMediaGaplessPlaybackControl {
+	var n = NewQMediaGaplessPlaybackControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaGaplessPlaybackControl_") {
 		n.SetObjectName("QMediaGaplessPlaybackControl_" + qt.Identifier())
 	}
@@ -13756,6 +13996,11 @@ func PointerFromQMediaNetworkAccessControl(ptr QMediaNetworkAccessControl_ITF) u
 func NewQMediaNetworkAccessControlFromPointer(ptr unsafe.Pointer) *QMediaNetworkAccessControl {
 	var n = new(QMediaNetworkAccessControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaNetworkAccessControlFromPointer(ptr unsafe.Pointer) *QMediaNetworkAccessControl {
+	var n = NewQMediaNetworkAccessControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaNetworkAccessControl_") {
 		n.SetObjectName("QMediaNetworkAccessControl_" + qt.Identifier())
 	}
@@ -13929,6 +14174,11 @@ func PointerFromQMediaObject(ptr QMediaObject_ITF) unsafe.Pointer {
 func NewQMediaObjectFromPointer(ptr unsafe.Pointer) *QMediaObject {
 	var n = new(QMediaObject)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaObjectFromPointer(ptr unsafe.Pointer) *QMediaObject {
+	var n = NewQMediaObjectFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaObject_") {
 		n.SetObjectName("QMediaObject_" + qt.Identifier())
 	}
@@ -14443,6 +14693,11 @@ func PointerFromQMediaPlayer(ptr QMediaPlayer_ITF) unsafe.Pointer {
 func NewQMediaPlayerFromPointer(ptr unsafe.Pointer) *QMediaPlayer {
 	var n = new(QMediaPlayer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaPlayerFromPointer(ptr unsafe.Pointer) *QMediaPlayer {
+	var n = NewQMediaPlayerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaPlayer_") {
 		n.SetObjectName("QMediaPlayer_" + qt.Identifier())
 	}
@@ -14693,7 +14948,7 @@ func (ptr *QMediaPlayer) Volume() int {
 func NewQMediaPlayer(parent core.QObject_ITF, flags QMediaPlayer__Flag) *QMediaPlayer {
 	defer qt.Recovering("QMediaPlayer::QMediaPlayer")
 
-	return NewQMediaPlayerFromPointer(C.QMediaPlayer_NewQMediaPlayer(core.PointerFromQObject(parent), C.int(flags)))
+	return newQMediaPlayerFromPointer(C.QMediaPlayer_NewQMediaPlayer(core.PointerFromQObject(parent), C.int(flags)))
 }
 
 func (ptr *QMediaPlayer) ConnectAudioAvailableChanged(f func(available bool)) {
@@ -15481,6 +15736,11 @@ func PointerFromQMediaPlayerControl(ptr QMediaPlayerControl_ITF) unsafe.Pointer 
 func NewQMediaPlayerControlFromPointer(ptr unsafe.Pointer) *QMediaPlayerControl {
 	var n = new(QMediaPlayerControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaPlayerControlFromPointer(ptr unsafe.Pointer) *QMediaPlayerControl {
+	var n = NewQMediaPlayerControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaPlayerControl_") {
 		n.SetObjectName("QMediaPlayerControl_" + qt.Identifier())
 	}
@@ -16314,6 +16574,11 @@ func PointerFromQMediaPlaylist(ptr QMediaPlaylist_ITF) unsafe.Pointer {
 func NewQMediaPlaylistFromPointer(ptr unsafe.Pointer) *QMediaPlaylist {
 	var n = new(QMediaPlaylist)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaPlaylistFromPointer(ptr unsafe.Pointer) *QMediaPlaylist {
+	var n = NewQMediaPlaylistFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaPlaylist_") {
 		n.SetObjectName("QMediaPlaylist_" + qt.Identifier())
 	}
@@ -16366,7 +16631,7 @@ func (ptr *QMediaPlaylist) SetPlaybackMode(mode QMediaPlaylist__PlaybackMode) {
 func NewQMediaPlaylist(parent core.QObject_ITF) *QMediaPlaylist {
 	defer qt.Recovering("QMediaPlaylist::QMediaPlaylist")
 
-	return NewQMediaPlaylistFromPointer(C.QMediaPlaylist_NewQMediaPlaylist(core.PointerFromQObject(parent)))
+	return newQMediaPlaylistFromPointer(C.QMediaPlaylist_NewQMediaPlaylist(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QMediaPlaylist) AddMedia(content QMediaContent_ITF) bool {
@@ -17121,6 +17386,11 @@ func PointerFromQMediaRecorder(ptr QMediaRecorder_ITF) unsafe.Pointer {
 func NewQMediaRecorderFromPointer(ptr unsafe.Pointer) *QMediaRecorder {
 	var n = new(QMediaRecorder)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaRecorderFromPointer(ptr unsafe.Pointer) *QMediaRecorder {
+	var n = NewQMediaRecorderFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaRecorder_") {
 		n.SetObjectName("QMediaRecorder_" + qt.Identifier())
 	}
@@ -17255,7 +17525,7 @@ func (ptr *QMediaRecorder) Volume() float64 {
 func NewQMediaRecorder(mediaObject QMediaObject_ITF, parent core.QObject_ITF) *QMediaRecorder {
 	defer qt.Recovering("QMediaRecorder::QMediaRecorder")
 
-	return NewQMediaRecorderFromPointer(C.QMediaRecorder_NewQMediaRecorder(PointerFromQMediaObject(mediaObject), core.PointerFromQObject(parent)))
+	return newQMediaRecorderFromPointer(C.QMediaRecorder_NewQMediaRecorder(PointerFromQMediaObject(mediaObject), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QMediaRecorder) ConnectActualLocationChanged(f func(location *core.QUrl)) {
@@ -18097,6 +18367,11 @@ func PointerFromQMediaRecorderControl(ptr QMediaRecorderControl_ITF) unsafe.Poin
 func NewQMediaRecorderControlFromPointer(ptr unsafe.Pointer) *QMediaRecorderControl {
 	var n = new(QMediaRecorderControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaRecorderControlFromPointer(ptr unsafe.Pointer) *QMediaRecorderControl {
+	var n = NewQMediaRecorderControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaRecorderControl_") {
 		n.SetObjectName("QMediaRecorderControl_" + qt.Identifier())
 	}
@@ -18627,6 +18902,11 @@ func NewQMediaResourceFromPointer(ptr unsafe.Pointer) *QMediaResource {
 	return n
 }
 
+func newQMediaResourceFromPointer(ptr unsafe.Pointer) *QMediaResource {
+	var n = NewQMediaResourceFromPointer(ptr)
+	return n
+}
+
 func (ptr *QMediaResource) QMediaResource_PTR() *QMediaResource {
 	return ptr
 }
@@ -18634,25 +18914,25 @@ func (ptr *QMediaResource) QMediaResource_PTR() *QMediaResource {
 func NewQMediaResource() *QMediaResource {
 	defer qt.Recovering("QMediaResource::QMediaResource")
 
-	return NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource())
+	return newQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource())
 }
 
 func NewQMediaResource4(other QMediaResource_ITF) *QMediaResource {
 	defer qt.Recovering("QMediaResource::QMediaResource")
 
-	return NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource4(PointerFromQMediaResource(other)))
+	return newQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource4(PointerFromQMediaResource(other)))
 }
 
 func NewQMediaResource3(request network.QNetworkRequest_ITF, mimeType string) *QMediaResource {
 	defer qt.Recovering("QMediaResource::QMediaResource")
 
-	return NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource3(network.PointerFromQNetworkRequest(request), C.CString(mimeType)))
+	return newQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource3(network.PointerFromQNetworkRequest(request), C.CString(mimeType)))
 }
 
 func NewQMediaResource2(url core.QUrl_ITF, mimeType string) *QMediaResource {
 	defer qt.Recovering("QMediaResource::QMediaResource")
 
-	return NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource2(core.PointerFromQUrl(url), C.CString(mimeType)))
+	return newQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource2(core.PointerFromQUrl(url), C.CString(mimeType)))
 }
 
 func (ptr *QMediaResource) AudioBitRate() int {
@@ -18870,6 +19150,11 @@ func PointerFromQMediaService(ptr QMediaService_ITF) unsafe.Pointer {
 func NewQMediaServiceFromPointer(ptr unsafe.Pointer) *QMediaService {
 	var n = new(QMediaService)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaServiceFromPointer(ptr unsafe.Pointer) *QMediaService {
+	var n = NewQMediaServiceFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaService_") {
 		n.SetObjectName("QMediaService_" + qt.Identifier())
 	}
@@ -19076,6 +19361,11 @@ func PointerFromQMediaServiceCameraInfoInterface(ptr QMediaServiceCameraInfoInte
 func NewQMediaServiceCameraInfoInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceCameraInfoInterface {
 	var n = new(QMediaServiceCameraInfoInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaServiceCameraInfoInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceCameraInfoInterface {
+	var n = NewQMediaServiceCameraInfoInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QMediaServiceCameraInfoInterface_") {
 		n.SetObjectNameAbs("QMediaServiceCameraInfoInterface_" + qt.Identifier())
 	}
@@ -19155,6 +19445,11 @@ func PointerFromQMediaServiceDefaultDeviceInterface(ptr QMediaServiceDefaultDevi
 func NewQMediaServiceDefaultDeviceInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceDefaultDeviceInterface {
 	var n = new(QMediaServiceDefaultDeviceInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaServiceDefaultDeviceInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceDefaultDeviceInterface {
+	var n = NewQMediaServiceDefaultDeviceInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QMediaServiceDefaultDeviceInterface_") {
 		n.SetObjectNameAbs("QMediaServiceDefaultDeviceInterface_" + qt.Identifier())
 	}
@@ -19225,6 +19520,11 @@ func PointerFromQMediaServiceFeaturesInterface(ptr QMediaServiceFeaturesInterfac
 func NewQMediaServiceFeaturesInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceFeaturesInterface {
 	var n = new(QMediaServiceFeaturesInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaServiceFeaturesInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceFeaturesInterface {
+	var n = NewQMediaServiceFeaturesInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QMediaServiceFeaturesInterface_") {
 		n.SetObjectNameAbs("QMediaServiceFeaturesInterface_" + qt.Identifier())
 	}
@@ -19279,6 +19579,11 @@ func PointerFromQMediaServiceProviderPlugin(ptr QMediaServiceProviderPlugin_ITF)
 func NewQMediaServiceProviderPluginFromPointer(ptr unsafe.Pointer) *QMediaServiceProviderPlugin {
 	var n = new(QMediaServiceProviderPlugin)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaServiceProviderPluginFromPointer(ptr unsafe.Pointer) *QMediaServiceProviderPlugin {
+	var n = NewQMediaServiceProviderPluginFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaServiceProviderPlugin_") {
 		n.SetObjectName("QMediaServiceProviderPlugin_" + qt.Identifier())
 	}
@@ -19467,6 +19772,11 @@ func PointerFromQMediaServiceSupportedDevicesInterface(ptr QMediaServiceSupporte
 func NewQMediaServiceSupportedDevicesInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceSupportedDevicesInterface {
 	var n = new(QMediaServiceSupportedDevicesInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaServiceSupportedDevicesInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceSupportedDevicesInterface {
+	var n = NewQMediaServiceSupportedDevicesInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QMediaServiceSupportedDevicesInterface_") {
 		n.SetObjectNameAbs("QMediaServiceSupportedDevicesInterface_" + qt.Identifier())
 	}
@@ -19537,6 +19847,11 @@ func PointerFromQMediaServiceSupportedFormatsInterface(ptr QMediaServiceSupporte
 func NewQMediaServiceSupportedFormatsInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceSupportedFormatsInterface {
 	var n = new(QMediaServiceSupportedFormatsInterface)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaServiceSupportedFormatsInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceSupportedFormatsInterface {
+	var n = NewQMediaServiceSupportedFormatsInterfaceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QMediaServiceSupportedFormatsInterface_") {
 		n.SetObjectNameAbs("QMediaServiceSupportedFormatsInterface_" + qt.Identifier())
 	}
@@ -19609,6 +19924,11 @@ func PointerFromQMediaStreamsControl(ptr QMediaStreamsControl_ITF) unsafe.Pointe
 func NewQMediaStreamsControlFromPointer(ptr unsafe.Pointer) *QMediaStreamsControl {
 	var n = new(QMediaStreamsControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaStreamsControlFromPointer(ptr unsafe.Pointer) *QMediaStreamsControl {
+	var n = NewQMediaStreamsControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaStreamsControl_") {
 		n.SetObjectName("QMediaStreamsControl_" + qt.Identifier())
 	}
@@ -19919,6 +20239,11 @@ func NewQMediaTimeIntervalFromPointer(ptr unsafe.Pointer) *QMediaTimeInterval {
 	return n
 }
 
+func newQMediaTimeIntervalFromPointer(ptr unsafe.Pointer) *QMediaTimeInterval {
+	var n = NewQMediaTimeIntervalFromPointer(ptr)
+	return n
+}
+
 func (ptr *QMediaTimeInterval) QMediaTimeInterval_PTR() *QMediaTimeInterval {
 	return ptr
 }
@@ -19926,19 +20251,19 @@ func (ptr *QMediaTimeInterval) QMediaTimeInterval_PTR() *QMediaTimeInterval {
 func NewQMediaTimeInterval() *QMediaTimeInterval {
 	defer qt.Recovering("QMediaTimeInterval::QMediaTimeInterval")
 
-	return NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval())
+	return newQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval())
 }
 
 func NewQMediaTimeInterval3(other QMediaTimeInterval_ITF) *QMediaTimeInterval {
 	defer qt.Recovering("QMediaTimeInterval::QMediaTimeInterval")
 
-	return NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval3(PointerFromQMediaTimeInterval(other)))
+	return newQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval3(PointerFromQMediaTimeInterval(other)))
 }
 
 func NewQMediaTimeInterval2(start int64, end int64) *QMediaTimeInterval {
 	defer qt.Recovering("QMediaTimeInterval::QMediaTimeInterval")
 
-	return NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval2(C.longlong(start), C.longlong(end)))
+	return newQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval2(C.longlong(start), C.longlong(end)))
 }
 
 func (ptr *QMediaTimeInterval) Contains(time int64) bool {
@@ -20006,6 +20331,11 @@ func NewQMediaTimeRangeFromPointer(ptr unsafe.Pointer) *QMediaTimeRange {
 	return n
 }
 
+func newQMediaTimeRangeFromPointer(ptr unsafe.Pointer) *QMediaTimeRange {
+	var n = NewQMediaTimeRangeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QMediaTimeRange) QMediaTimeRange_PTR() *QMediaTimeRange {
 	return ptr
 }
@@ -20013,25 +20343,25 @@ func (ptr *QMediaTimeRange) QMediaTimeRange_PTR() *QMediaTimeRange {
 func NewQMediaTimeRange() *QMediaTimeRange {
 	defer qt.Recovering("QMediaTimeRange::QMediaTimeRange")
 
-	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange())
+	return newQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange())
 }
 
 func NewQMediaTimeRange3(interval QMediaTimeInterval_ITF) *QMediaTimeRange {
 	defer qt.Recovering("QMediaTimeRange::QMediaTimeRange")
 
-	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange3(PointerFromQMediaTimeInterval(interval)))
+	return newQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange3(PointerFromQMediaTimeInterval(interval)))
 }
 
 func NewQMediaTimeRange4(ran QMediaTimeRange_ITF) *QMediaTimeRange {
 	defer qt.Recovering("QMediaTimeRange::QMediaTimeRange")
 
-	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange4(PointerFromQMediaTimeRange(ran)))
+	return newQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange4(PointerFromQMediaTimeRange(ran)))
 }
 
 func NewQMediaTimeRange2(start int64, end int64) *QMediaTimeRange {
 	defer qt.Recovering("QMediaTimeRange::QMediaTimeRange")
 
-	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange2(C.longlong(start), C.longlong(end)))
+	return newQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange2(C.longlong(start), C.longlong(end)))
 }
 
 func (ptr *QMediaTimeRange) AddInterval(interval QMediaTimeInterval_ITF) {
@@ -20162,6 +20492,11 @@ func PointerFromQMediaVideoProbeControl(ptr QMediaVideoProbeControl_ITF) unsafe.
 func NewQMediaVideoProbeControlFromPointer(ptr unsafe.Pointer) *QMediaVideoProbeControl {
 	var n = new(QMediaVideoProbeControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMediaVideoProbeControlFromPointer(ptr unsafe.Pointer) *QMediaVideoProbeControl {
+	var n = NewQMediaVideoProbeControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMediaVideoProbeControl_") {
 		n.SetObjectName("QMediaVideoProbeControl_" + qt.Identifier())
 	}
@@ -20371,6 +20706,11 @@ func PointerFromQMetaDataReaderControl(ptr QMetaDataReaderControl_ITF) unsafe.Po
 func NewQMetaDataReaderControlFromPointer(ptr unsafe.Pointer) *QMetaDataReaderControl {
 	var n = new(QMetaDataReaderControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMetaDataReaderControlFromPointer(ptr unsafe.Pointer) *QMetaDataReaderControl {
+	var n = NewQMetaDataReaderControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMetaDataReaderControl_") {
 		n.SetObjectName("QMetaDataReaderControl_" + qt.Identifier())
 	}
@@ -20679,6 +21019,11 @@ func PointerFromQMetaDataWriterControl(ptr QMetaDataWriterControl_ITF) unsafe.Po
 func NewQMetaDataWriterControlFromPointer(ptr unsafe.Pointer) *QMetaDataWriterControl {
 	var n = new(QMetaDataWriterControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMetaDataWriterControlFromPointer(ptr unsafe.Pointer) *QMetaDataWriterControl {
+	var n = NewQMetaDataWriterControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMetaDataWriterControl_") {
 		n.SetObjectName("QMetaDataWriterControl_" + qt.Identifier())
 	}
@@ -21092,6 +21437,11 @@ func PointerFromQRadioData(ptr QRadioData_ITF) unsafe.Pointer {
 func NewQRadioDataFromPointer(ptr unsafe.Pointer) *QRadioData {
 	var n = new(QRadioData)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQRadioDataFromPointer(ptr unsafe.Pointer) *QRadioData {
+	var n = NewQRadioDataFromPointer(ptr)
 	for len(n.ObjectName()) < len("QRadioData_") {
 		n.SetObjectName("QRadioData_" + qt.Identifier())
 	}
@@ -21231,7 +21581,7 @@ func (ptr *QRadioData) StationName() string {
 func NewQRadioData(mediaObject QMediaObject_ITF, parent core.QObject_ITF) *QRadioData {
 	defer qt.Recovering("QRadioData::QRadioData")
 
-	return NewQRadioDataFromPointer(C.QRadioData_NewQRadioData(PointerFromQMediaObject(mediaObject), core.PointerFromQObject(parent)))
+	return newQRadioDataFromPointer(C.QRadioData_NewQRadioData(PointerFromQMediaObject(mediaObject), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QRadioData) ConnectAlternativeFrequenciesEnabledChanged(f func(enabled bool)) {
@@ -21694,6 +22044,11 @@ func PointerFromQRadioDataControl(ptr QRadioDataControl_ITF) unsafe.Pointer {
 func NewQRadioDataControlFromPointer(ptr unsafe.Pointer) *QRadioDataControl {
 	var n = new(QRadioDataControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQRadioDataControlFromPointer(ptr unsafe.Pointer) *QRadioDataControl {
+	var n = NewQRadioDataControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QRadioDataControl_") {
 		n.SetObjectName("QRadioDataControl_" + qt.Identifier())
 	}
@@ -22199,6 +22554,11 @@ func PointerFromQRadioTuner(ptr QRadioTuner_ITF) unsafe.Pointer {
 func NewQRadioTunerFromPointer(ptr unsafe.Pointer) *QRadioTuner {
 	var n = new(QRadioTuner)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQRadioTunerFromPointer(ptr unsafe.Pointer) *QRadioTuner {
+	var n = NewQRadioTunerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QRadioTuner_") {
 		n.SetObjectName("QRadioTuner_" + qt.Identifier())
 	}
@@ -22381,7 +22741,7 @@ func (ptr *QRadioTuner) Volume() int {
 func NewQRadioTuner(parent core.QObject_ITF) *QRadioTuner {
 	defer qt.Recovering("QRadioTuner::QRadioTuner")
 
-	return NewQRadioTunerFromPointer(C.QRadioTuner_NewQRadioTuner(core.PointerFromQObject(parent)))
+	return newQRadioTunerFromPointer(C.QRadioTuner_NewQRadioTuner(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QRadioTuner) ConnectAntennaConnectedChanged(f func(connectionStatus bool)) {
@@ -23097,6 +23457,11 @@ func PointerFromQRadioTunerControl(ptr QRadioTunerControl_ITF) unsafe.Pointer {
 func NewQRadioTunerControlFromPointer(ptr unsafe.Pointer) *QRadioTunerControl {
 	var n = new(QRadioTunerControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQRadioTunerControlFromPointer(ptr unsafe.Pointer) *QRadioTunerControl {
+	var n = NewQRadioTunerControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QRadioTunerControl_") {
 		n.SetObjectName("QRadioTunerControl_" + qt.Identifier())
 	}
@@ -23880,6 +24245,11 @@ func PointerFromQSound(ptr QSound_ITF) unsafe.Pointer {
 func NewQSoundFromPointer(ptr unsafe.Pointer) *QSound {
 	var n = new(QSound)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSoundFromPointer(ptr unsafe.Pointer) *QSound {
+	var n = NewQSoundFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSound_") {
 		n.SetObjectName("QSound_" + qt.Identifier())
 	}
@@ -23908,7 +24278,7 @@ func (ptr *QSound) SetLoops(number int) {
 func NewQSound(filename string, parent core.QObject_ITF) *QSound {
 	defer qt.Recovering("QSound::QSound")
 
-	return NewQSoundFromPointer(C.QSound_NewQSound(C.CString(filename), core.PointerFromQObject(parent)))
+	return newQSoundFromPointer(C.QSound_NewQSound(C.CString(filename), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSound) FileName() string {
@@ -24132,6 +24502,11 @@ func PointerFromQSoundEffect(ptr QSoundEffect_ITF) unsafe.Pointer {
 func NewQSoundEffectFromPointer(ptr unsafe.Pointer) *QSoundEffect {
 	var n = new(QSoundEffect)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSoundEffectFromPointer(ptr unsafe.Pointer) *QSoundEffect {
+	var n = NewQSoundEffectFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSoundEffect_") {
 		n.SetObjectName("QSoundEffect_" + qt.Identifier())
 	}
@@ -24202,7 +24577,7 @@ func QSoundEffect_SupportedMimeTypes() []string {
 func NewQSoundEffect(parent core.QObject_ITF) *QSoundEffect {
 	defer qt.Recovering("QSoundEffect::QSoundEffect")
 
-	return NewQSoundEffectFromPointer(C.QSoundEffect_NewQSoundEffect(core.PointerFromQObject(parent)))
+	return newQSoundEffectFromPointer(C.QSoundEffect_NewQSoundEffect(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSoundEffect) Category() string {
@@ -24795,6 +25170,11 @@ func PointerFromQVideoDeviceSelectorControl(ptr QVideoDeviceSelectorControl_ITF)
 func NewQVideoDeviceSelectorControlFromPointer(ptr unsafe.Pointer) *QVideoDeviceSelectorControl {
 	var n = new(QVideoDeviceSelectorControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQVideoDeviceSelectorControlFromPointer(ptr unsafe.Pointer) *QVideoDeviceSelectorControl {
+	var n = NewQVideoDeviceSelectorControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoDeviceSelectorControl_") {
 		n.SetObjectName("QVideoDeviceSelectorControl_" + qt.Identifier())
 	}
@@ -25139,6 +25519,11 @@ func NewQVideoEncoderSettingsFromPointer(ptr unsafe.Pointer) *QVideoEncoderSetti
 	return n
 }
 
+func newQVideoEncoderSettingsFromPointer(ptr unsafe.Pointer) *QVideoEncoderSettings {
+	var n = NewQVideoEncoderSettingsFromPointer(ptr)
+	return n
+}
+
 func (ptr *QVideoEncoderSettings) QVideoEncoderSettings_PTR() *QVideoEncoderSettings {
 	return ptr
 }
@@ -25154,13 +25539,13 @@ func (ptr *QVideoEncoderSettings) SetFrameRate(rate float64) {
 func NewQVideoEncoderSettings() *QVideoEncoderSettings {
 	defer qt.Recovering("QVideoEncoderSettings::QVideoEncoderSettings")
 
-	return NewQVideoEncoderSettingsFromPointer(C.QVideoEncoderSettings_NewQVideoEncoderSettings())
+	return newQVideoEncoderSettingsFromPointer(C.QVideoEncoderSettings_NewQVideoEncoderSettings())
 }
 
 func NewQVideoEncoderSettings2(other QVideoEncoderSettings_ITF) *QVideoEncoderSettings {
 	defer qt.Recovering("QVideoEncoderSettings::QVideoEncoderSettings")
 
-	return NewQVideoEncoderSettingsFromPointer(C.QVideoEncoderSettings_NewQVideoEncoderSettings2(PointerFromQVideoEncoderSettings(other)))
+	return newQVideoEncoderSettingsFromPointer(C.QVideoEncoderSettings_NewQVideoEncoderSettings2(PointerFromQVideoEncoderSettings(other)))
 }
 
 func (ptr *QVideoEncoderSettings) BitRate() int {
@@ -25318,6 +25703,11 @@ func PointerFromQVideoEncoderSettingsControl(ptr QVideoEncoderSettingsControl_IT
 func NewQVideoEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QVideoEncoderSettingsControl {
 	var n = new(QVideoEncoderSettingsControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQVideoEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QVideoEncoderSettingsControl {
+	var n = NewQVideoEncoderSettingsControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoEncoderSettingsControl_") {
 		n.SetObjectName("QVideoEncoderSettingsControl_" + qt.Identifier())
 	}
@@ -25527,6 +25917,11 @@ func NewQVideoFilterRunnableFromPointer(ptr unsafe.Pointer) *QVideoFilterRunnabl
 	return n
 }
 
+func newQVideoFilterRunnableFromPointer(ptr unsafe.Pointer) *QVideoFilterRunnable {
+	var n = NewQVideoFilterRunnableFromPointer(ptr)
+	return n
+}
+
 func (ptr *QVideoFilterRunnable) QVideoFilterRunnable_PTR() *QVideoFilterRunnable {
 	return ptr
 }
@@ -25564,6 +25959,11 @@ func PointerFromQVideoFrame(ptr QVideoFrame_ITF) unsafe.Pointer {
 func NewQVideoFrameFromPointer(ptr unsafe.Pointer) *QVideoFrame {
 	var n = new(QVideoFrame)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQVideoFrameFromPointer(ptr unsafe.Pointer) *QVideoFrame {
+	var n = NewQVideoFrameFromPointer(ptr)
 	return n
 }
 
@@ -25624,31 +26024,31 @@ const (
 func NewQVideoFrame() *QVideoFrame {
 	defer qt.Recovering("QVideoFrame::QVideoFrame")
 
-	return NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame())
+	return newQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame())
 }
 
 func NewQVideoFrame2(buffer QAbstractVideoBuffer_ITF, size core.QSize_ITF, format QVideoFrame__PixelFormat) *QVideoFrame {
 	defer qt.Recovering("QVideoFrame::QVideoFrame")
 
-	return NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame2(PointerFromQAbstractVideoBuffer(buffer), core.PointerFromQSize(size), C.int(format)))
+	return newQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame2(PointerFromQAbstractVideoBuffer(buffer), core.PointerFromQSize(size), C.int(format)))
 }
 
 func NewQVideoFrame4(image gui.QImage_ITF) *QVideoFrame {
 	defer qt.Recovering("QVideoFrame::QVideoFrame")
 
-	return NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame4(gui.PointerFromQImage(image)))
+	return newQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame4(gui.PointerFromQImage(image)))
 }
 
 func NewQVideoFrame5(other QVideoFrame_ITF) *QVideoFrame {
 	defer qt.Recovering("QVideoFrame::QVideoFrame")
 
-	return NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame5(PointerFromQVideoFrame(other)))
+	return newQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame5(PointerFromQVideoFrame(other)))
 }
 
 func NewQVideoFrame3(bytes int, size core.QSize_ITF, bytesPerLine int, format QVideoFrame__PixelFormat) *QVideoFrame {
 	defer qt.Recovering("QVideoFrame::QVideoFrame")
 
-	return NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame3(C.int(bytes), core.PointerFromQSize(size), C.int(bytesPerLine), C.int(format)))
+	return newQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame3(C.int(bytes), core.PointerFromQSize(size), C.int(bytesPerLine), C.int(format)))
 }
 
 func (ptr *QVideoFrame) BytesPerLine() int {
@@ -25910,6 +26310,11 @@ func PointerFromQVideoProbe(ptr QVideoProbe_ITF) unsafe.Pointer {
 func NewQVideoProbeFromPointer(ptr unsafe.Pointer) *QVideoProbe {
 	var n = new(QVideoProbe)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQVideoProbeFromPointer(ptr unsafe.Pointer) *QVideoProbe {
+	var n = NewQVideoProbeFromPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoProbe_") {
 		n.SetObjectName("QVideoProbe_" + qt.Identifier())
 	}
@@ -25923,7 +26328,7 @@ func (ptr *QVideoProbe) QVideoProbe_PTR() *QVideoProbe {
 func NewQVideoProbe(parent core.QObject_ITF) *QVideoProbe {
 	defer qt.Recovering("QVideoProbe::QVideoProbe")
 
-	return NewQVideoProbeFromPointer(C.QVideoProbe_NewQVideoProbe(core.PointerFromQObject(parent)))
+	return newQVideoProbeFromPointer(C.QVideoProbe_NewQVideoProbe(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QVideoProbe) ConnectFlush(f func()) {
@@ -26152,6 +26557,11 @@ func PointerFromQVideoRendererControl(ptr QVideoRendererControl_ITF) unsafe.Poin
 func NewQVideoRendererControlFromPointer(ptr unsafe.Pointer) *QVideoRendererControl {
 	var n = new(QVideoRendererControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQVideoRendererControlFromPointer(ptr unsafe.Pointer) *QVideoRendererControl {
+	var n = NewQVideoRendererControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoRendererControl_") {
 		n.SetObjectName("QVideoRendererControl_" + qt.Identifier())
 	}
@@ -26352,6 +26762,11 @@ func NewQVideoSurfaceFormatFromPointer(ptr unsafe.Pointer) *QVideoSurfaceFormat 
 	return n
 }
 
+func newQVideoSurfaceFormatFromPointer(ptr unsafe.Pointer) *QVideoSurfaceFormat {
+	var n = NewQVideoSurfaceFormatFromPointer(ptr)
+	return n
+}
+
 func (ptr *QVideoSurfaceFormat) QVideoSurfaceFormat_PTR() *QVideoSurfaceFormat {
 	return ptr
 }
@@ -26379,19 +26794,19 @@ const (
 func NewQVideoSurfaceFormat() *QVideoSurfaceFormat {
 	defer qt.Recovering("QVideoSurfaceFormat::QVideoSurfaceFormat")
 
-	return NewQVideoSurfaceFormatFromPointer(C.QVideoSurfaceFormat_NewQVideoSurfaceFormat())
+	return newQVideoSurfaceFormatFromPointer(C.QVideoSurfaceFormat_NewQVideoSurfaceFormat())
 }
 
 func NewQVideoSurfaceFormat2(size core.QSize_ITF, format QVideoFrame__PixelFormat, ty QAbstractVideoBuffer__HandleType) *QVideoSurfaceFormat {
 	defer qt.Recovering("QVideoSurfaceFormat::QVideoSurfaceFormat")
 
-	return NewQVideoSurfaceFormatFromPointer(C.QVideoSurfaceFormat_NewQVideoSurfaceFormat2(core.PointerFromQSize(size), C.int(format), C.int(ty)))
+	return newQVideoSurfaceFormatFromPointer(C.QVideoSurfaceFormat_NewQVideoSurfaceFormat2(core.PointerFromQSize(size), C.int(format), C.int(ty)))
 }
 
 func NewQVideoSurfaceFormat3(other QVideoSurfaceFormat_ITF) *QVideoSurfaceFormat {
 	defer qt.Recovering("QVideoSurfaceFormat::QVideoSurfaceFormat")
 
-	return NewQVideoSurfaceFormatFromPointer(C.QVideoSurfaceFormat_NewQVideoSurfaceFormat3(PointerFromQVideoSurfaceFormat(other)))
+	return newQVideoSurfaceFormatFromPointer(C.QVideoSurfaceFormat_NewQVideoSurfaceFormat3(PointerFromQVideoSurfaceFormat(other)))
 }
 
 func (ptr *QVideoSurfaceFormat) FrameHeight() int {
@@ -26610,6 +27025,11 @@ func PointerFromQVideoWindowControl(ptr QVideoWindowControl_ITF) unsafe.Pointer 
 func NewQVideoWindowControlFromPointer(ptr unsafe.Pointer) *QVideoWindowControl {
 	var n = new(QVideoWindowControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQVideoWindowControlFromPointer(ptr unsafe.Pointer) *QVideoWindowControl {
+	var n = NewQVideoWindowControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoWindowControl_") {
 		n.SetObjectName("QVideoWindowControl_" + qt.Identifier())
 	}

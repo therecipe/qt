@@ -30,6 +30,11 @@ func PointerFromQCameraViewfinder(ptr QCameraViewfinder_ITF) unsafe.Pointer {
 func NewQCameraViewfinderFromPointer(ptr unsafe.Pointer) *QCameraViewfinder {
 	var n = new(QCameraViewfinder)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQCameraViewfinderFromPointer(ptr unsafe.Pointer) *QCameraViewfinder {
+	var n = NewQCameraViewfinderFromPointer(ptr)
 	for len(n.ObjectName()) < len("QCameraViewfinder_") {
 		n.SetObjectName("QCameraViewfinder_" + qt.Identifier())
 	}
@@ -43,7 +48,7 @@ func (ptr *QCameraViewfinder) QCameraViewfinder_PTR() *QCameraViewfinder {
 func NewQCameraViewfinder(parent widgets.QWidget_ITF) *QCameraViewfinder {
 	defer qt.Recovering("QCameraViewfinder::QCameraViewfinder")
 
-	return NewQCameraViewfinderFromPointer(C.QCameraViewfinder_NewQCameraViewfinder(widgets.PointerFromQWidget(parent)))
+	return newQCameraViewfinderFromPointer(C.QCameraViewfinder_NewQCameraViewfinder(widgets.PointerFromQWidget(parent)))
 }
 
 func (ptr *QCameraViewfinder) MediaObject() *multimedia.QMediaObject {
@@ -1499,6 +1504,11 @@ func PointerFromQGraphicsVideoItem(ptr QGraphicsVideoItem_ITF) unsafe.Pointer {
 func NewQGraphicsVideoItemFromPointer(ptr unsafe.Pointer) *QGraphicsVideoItem {
 	var n = new(QGraphicsVideoItem)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGraphicsVideoItemFromPointer(ptr unsafe.Pointer) *QGraphicsVideoItem {
+	var n = NewQGraphicsVideoItemFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGraphicsVideoItem_") {
 		n.SetObjectName("QGraphicsVideoItem_" + qt.Identifier())
 	}
@@ -1512,7 +1522,7 @@ func (ptr *QGraphicsVideoItem) QGraphicsVideoItem_PTR() *QGraphicsVideoItem {
 func NewQGraphicsVideoItem(parent widgets.QGraphicsItem_ITF) *QGraphicsVideoItem {
 	defer qt.Recovering("QGraphicsVideoItem::QGraphicsVideoItem")
 
-	return NewQGraphicsVideoItemFromPointer(C.QGraphicsVideoItem_NewQGraphicsVideoItem(widgets.PointerFromQGraphicsItem(parent)))
+	return newQGraphicsVideoItemFromPointer(C.QGraphicsVideoItem_NewQGraphicsVideoItem(widgets.PointerFromQGraphicsItem(parent)))
 }
 
 func (ptr *QGraphicsVideoItem) AspectRatioMode() core.Qt__AspectRatioMode {
@@ -1776,6 +1786,11 @@ func PointerFromQVideoWidget(ptr QVideoWidget_ITF) unsafe.Pointer {
 func NewQVideoWidgetFromPointer(ptr unsafe.Pointer) *QVideoWidget {
 	var n = new(QVideoWidget)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQVideoWidgetFromPointer(ptr unsafe.Pointer) *QVideoWidget {
+	var n = NewQVideoWidgetFromPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoWidget_") {
 		n.SetObjectName("QVideoWidget_" + qt.Identifier())
 	}
@@ -1891,7 +1906,7 @@ func (ptr *QVideoWidget) SetSaturation(saturation int) {
 func NewQVideoWidget(parent widgets.QWidget_ITF) *QVideoWidget {
 	defer qt.Recovering("QVideoWidget::QVideoWidget")
 
-	return NewQVideoWidgetFromPointer(C.QVideoWidget_NewQVideoWidget(widgets.PointerFromQWidget(parent)))
+	return newQVideoWidgetFromPointer(C.QVideoWidget_NewQVideoWidget(widgets.PointerFromQWidget(parent)))
 }
 
 func (ptr *QVideoWidget) ConnectBrightnessChanged(f func(brightness int)) {
@@ -3525,6 +3540,11 @@ func PointerFromQVideoWidgetControl(ptr QVideoWidgetControl_ITF) unsafe.Pointer 
 func NewQVideoWidgetControlFromPointer(ptr unsafe.Pointer) *QVideoWidgetControl {
 	var n = new(QVideoWidgetControl)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQVideoWidgetControlFromPointer(ptr unsafe.Pointer) *QVideoWidgetControl {
+	var n = NewQVideoWidgetControlFromPointer(ptr)
 	for len(n.ObjectName()) < len("QVideoWidgetControl_") {
 		n.SetObjectName("QVideoWidgetControl_" + qt.Identifier())
 	}

@@ -56,10 +56,11 @@ func goInput(name string, value string, f *parser.Function) string {
 		{
 			var tmp string
 			for i := 0; i < 10; i++ {
-				tmp += fmt.Sprintf("assertion(%v, %v...), ", i, name)
+				tmp += fmt.Sprintf("p%v, ", i)
 			}
 			return strings.TrimSuffix(tmp, ", ")
 		}
+
 	case "T":
 		{
 			switch f.TemplateMode {
@@ -71,7 +72,7 @@ func goInput(name string, value string, f *parser.Function) string {
 			}
 
 			if module(f) == "androidextras" {
-				return fmt.Sprintf("assertion(0, %v)", name)
+				return "p0"
 			}
 		}
 	}
@@ -206,6 +207,7 @@ func cppInput(name string, value string, f *parser.Function) string {
 			}
 			return strings.TrimSuffix(tmp, ", ")
 		}
+
 	case "T":
 		{
 			switch f.TemplateMode {

@@ -37,6 +37,11 @@ func NewQNdefFilterFromPointer(ptr unsafe.Pointer) *QNdefFilter {
 	return n
 }
 
+func newQNdefFilterFromPointer(ptr unsafe.Pointer) *QNdefFilter {
+	var n = NewQNdefFilterFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNdefFilter) QNdefFilter_PTR() *QNdefFilter {
 	return ptr
 }
@@ -44,13 +49,13 @@ func (ptr *QNdefFilter) QNdefFilter_PTR() *QNdefFilter {
 func NewQNdefFilter() *QNdefFilter {
 	defer qt.Recovering("QNdefFilter::QNdefFilter")
 
-	return NewQNdefFilterFromPointer(C.QNdefFilter_NewQNdefFilter())
+	return newQNdefFilterFromPointer(C.QNdefFilter_NewQNdefFilter())
 }
 
 func NewQNdefFilter2(other QNdefFilter_ITF) *QNdefFilter {
 	defer qt.Recovering("QNdefFilter::QNdefFilter")
 
-	return NewQNdefFilterFromPointer(C.QNdefFilter_NewQNdefFilter2(PointerFromQNdefFilter(other)))
+	return newQNdefFilterFromPointer(C.QNdefFilter_NewQNdefFilter2(PointerFromQNdefFilter(other)))
 }
 
 func (ptr *QNdefFilter) Clear() {
@@ -117,6 +122,11 @@ func NewQNdefMessageFromPointer(ptr unsafe.Pointer) *QNdefMessage {
 	return n
 }
 
+func newQNdefMessageFromPointer(ptr unsafe.Pointer) *QNdefMessage {
+	var n = NewQNdefMessageFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNdefMessage) QNdefMessage_PTR() *QNdefMessage {
 	return ptr
 }
@@ -124,19 +134,19 @@ func (ptr *QNdefMessage) QNdefMessage_PTR() *QNdefMessage {
 func NewQNdefMessage() *QNdefMessage {
 	defer qt.Recovering("QNdefMessage::QNdefMessage")
 
-	return NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage())
+	return newQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage())
 }
 
 func NewQNdefMessage3(message QNdefMessage_ITF) *QNdefMessage {
 	defer qt.Recovering("QNdefMessage::QNdefMessage")
 
-	return NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage3(PointerFromQNdefMessage(message)))
+	return newQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage3(PointerFromQNdefMessage(message)))
 }
 
 func NewQNdefMessage2(record QNdefRecord_ITF) *QNdefMessage {
 	defer qt.Recovering("QNdefMessage::QNdefMessage")
 
-	return NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage2(PointerFromQNdefRecord(record)))
+	return newQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage2(PointerFromQNdefRecord(record)))
 }
 
 func (ptr *QNdefMessage) ToByteArray() *core.QByteArray {
@@ -170,6 +180,11 @@ func NewQNdefNfcSmartPosterRecordFromPointer(ptr unsafe.Pointer) *QNdefNfcSmartP
 	return n
 }
 
+func newQNdefNfcSmartPosterRecordFromPointer(ptr unsafe.Pointer) *QNdefNfcSmartPosterRecord {
+	var n = NewQNdefNfcSmartPosterRecordFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNdefNfcSmartPosterRecord) QNdefNfcSmartPosterRecord_PTR() *QNdefNfcSmartPosterRecord {
 	return ptr
 }
@@ -187,19 +202,19 @@ const (
 func NewQNdefNfcSmartPosterRecord() *QNdefNfcSmartPosterRecord {
 	defer qt.Recovering("QNdefNfcSmartPosterRecord::QNdefNfcSmartPosterRecord")
 
-	return NewQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord())
+	return newQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord())
 }
 
 func NewQNdefNfcSmartPosterRecord3(other QNdefNfcSmartPosterRecord_ITF) *QNdefNfcSmartPosterRecord {
 	defer qt.Recovering("QNdefNfcSmartPosterRecord::QNdefNfcSmartPosterRecord")
 
-	return NewQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord3(PointerFromQNdefNfcSmartPosterRecord(other)))
+	return newQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord3(PointerFromQNdefNfcSmartPosterRecord(other)))
 }
 
 func NewQNdefNfcSmartPosterRecord2(other QNdefRecord_ITF) *QNdefNfcSmartPosterRecord {
 	defer qt.Recovering("QNdefNfcSmartPosterRecord::QNdefNfcSmartPosterRecord")
 
-	return NewQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord2(PointerFromQNdefRecord(other)))
+	return newQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord2(PointerFromQNdefRecord(other)))
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) Action() QNdefNfcSmartPosterRecord__Action {
@@ -425,6 +440,11 @@ func NewQNdefNfcTextRecordFromPointer(ptr unsafe.Pointer) *QNdefNfcTextRecord {
 	return n
 }
 
+func newQNdefNfcTextRecordFromPointer(ptr unsafe.Pointer) *QNdefNfcTextRecord {
+	var n = NewQNdefNfcTextRecordFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNdefNfcTextRecord) QNdefNfcTextRecord_PTR() *QNdefNfcTextRecord {
 	return ptr
 }
@@ -440,13 +460,13 @@ const (
 func NewQNdefNfcTextRecord() *QNdefNfcTextRecord {
 	defer qt.Recovering("QNdefNfcTextRecord::QNdefNfcTextRecord")
 
-	return NewQNdefNfcTextRecordFromPointer(C.QNdefNfcTextRecord_NewQNdefNfcTextRecord())
+	return newQNdefNfcTextRecordFromPointer(C.QNdefNfcTextRecord_NewQNdefNfcTextRecord())
 }
 
 func NewQNdefNfcTextRecord2(other QNdefRecord_ITF) *QNdefNfcTextRecord {
 	defer qt.Recovering("QNdefNfcTextRecord::QNdefNfcTextRecord")
 
-	return NewQNdefNfcTextRecordFromPointer(C.QNdefNfcTextRecord_NewQNdefNfcTextRecord2(PointerFromQNdefRecord(other)))
+	return newQNdefNfcTextRecordFromPointer(C.QNdefNfcTextRecord_NewQNdefNfcTextRecord2(PointerFromQNdefRecord(other)))
 }
 
 func (ptr *QNdefNfcTextRecord) Encoding() QNdefNfcTextRecord__Encoding {
@@ -522,6 +542,11 @@ func NewQNdefNfcUriRecordFromPointer(ptr unsafe.Pointer) *QNdefNfcUriRecord {
 	return n
 }
 
+func newQNdefNfcUriRecordFromPointer(ptr unsafe.Pointer) *QNdefNfcUriRecord {
+	var n = NewQNdefNfcUriRecordFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNdefNfcUriRecord) QNdefNfcUriRecord_PTR() *QNdefNfcUriRecord {
 	return ptr
 }
@@ -529,13 +554,13 @@ func (ptr *QNdefNfcUriRecord) QNdefNfcUriRecord_PTR() *QNdefNfcUriRecord {
 func NewQNdefNfcUriRecord() *QNdefNfcUriRecord {
 	defer qt.Recovering("QNdefNfcUriRecord::QNdefNfcUriRecord")
 
-	return NewQNdefNfcUriRecordFromPointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord())
+	return newQNdefNfcUriRecordFromPointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord())
 }
 
 func NewQNdefNfcUriRecord2(other QNdefRecord_ITF) *QNdefNfcUriRecord {
 	defer qt.Recovering("QNdefNfcUriRecord::QNdefNfcUriRecord")
 
-	return NewQNdefNfcUriRecordFromPointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord2(PointerFromQNdefRecord(other)))
+	return newQNdefNfcUriRecordFromPointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord2(PointerFromQNdefRecord(other)))
 }
 
 func (ptr *QNdefNfcUriRecord) SetUri(uri core.QUrl_ITF) {
@@ -584,6 +609,11 @@ func NewQNdefRecordFromPointer(ptr unsafe.Pointer) *QNdefRecord {
 	return n
 }
 
+func newQNdefRecordFromPointer(ptr unsafe.Pointer) *QNdefRecord {
+	var n = NewQNdefRecordFromPointer(ptr)
+	return n
+}
+
 func (ptr *QNdefRecord) QNdefRecord_PTR() *QNdefRecord {
 	return ptr
 }
@@ -603,13 +633,13 @@ const (
 func NewQNdefRecord() *QNdefRecord {
 	defer qt.Recovering("QNdefRecord::QNdefRecord")
 
-	return NewQNdefRecordFromPointer(C.QNdefRecord_NewQNdefRecord())
+	return newQNdefRecordFromPointer(C.QNdefRecord_NewQNdefRecord())
 }
 
 func NewQNdefRecord2(other QNdefRecord_ITF) *QNdefRecord {
 	defer qt.Recovering("QNdefRecord::QNdefRecord")
 
-	return NewQNdefRecordFromPointer(C.QNdefRecord_NewQNdefRecord2(PointerFromQNdefRecord(other)))
+	return newQNdefRecordFromPointer(C.QNdefRecord_NewQNdefRecord2(PointerFromQNdefRecord(other)))
 }
 
 func (ptr *QNdefRecord) Id() *core.QByteArray {
@@ -716,6 +746,11 @@ func PointerFromQNearFieldManager(ptr QNearFieldManager_ITF) unsafe.Pointer {
 func NewQNearFieldManagerFromPointer(ptr unsafe.Pointer) *QNearFieldManager {
 	var n = new(QNearFieldManager)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNearFieldManagerFromPointer(ptr unsafe.Pointer) *QNearFieldManager {
+	var n = NewQNearFieldManagerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QNearFieldManager_") {
 		n.SetObjectName("QNearFieldManager_" + qt.Identifier())
 	}
@@ -757,7 +792,7 @@ func (ptr *QNearFieldManager) StartTargetDetection() bool {
 func NewQNearFieldManager(parent core.QObject_ITF) *QNearFieldManager {
 	defer qt.Recovering("QNearFieldManager::QNearFieldManager")
 
-	return NewQNearFieldManagerFromPointer(C.QNearFieldManager_NewQNearFieldManager(core.PointerFromQObject(parent)))
+	return newQNearFieldManagerFromPointer(C.QNearFieldManager_NewQNearFieldManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNearFieldManager) IsAvailable() bool {
@@ -1056,6 +1091,11 @@ func PointerFromQNearFieldShareManager(ptr QNearFieldShareManager_ITF) unsafe.Po
 func NewQNearFieldShareManagerFromPointer(ptr unsafe.Pointer) *QNearFieldShareManager {
 	var n = new(QNearFieldShareManager)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNearFieldShareManagerFromPointer(ptr unsafe.Pointer) *QNearFieldShareManager {
+	var n = NewQNearFieldShareManagerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QNearFieldShareManager_") {
 		n.SetObjectName("QNearFieldShareManager_" + qt.Identifier())
 	}
@@ -1093,7 +1133,7 @@ const (
 func NewQNearFieldShareManager(parent core.QObject_ITF) *QNearFieldShareManager {
 	defer qt.Recovering("QNearFieldShareManager::QNearFieldShareManager")
 
-	return NewQNearFieldShareManagerFromPointer(C.QNearFieldShareManager_NewQNearFieldShareManager(core.PointerFromQObject(parent)))
+	return newQNearFieldShareManagerFromPointer(C.QNearFieldShareManager_NewQNearFieldShareManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNearFieldShareManager) ConnectError(f func(error QNearFieldShareManager__ShareError)) {
@@ -1399,6 +1439,11 @@ func PointerFromQNearFieldShareTarget(ptr QNearFieldShareTarget_ITF) unsafe.Poin
 func NewQNearFieldShareTargetFromPointer(ptr unsafe.Pointer) *QNearFieldShareTarget {
 	var n = new(QNearFieldShareTarget)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNearFieldShareTargetFromPointer(ptr unsafe.Pointer) *QNearFieldShareTarget {
+	var n = NewQNearFieldShareTargetFromPointer(ptr)
 	for len(n.ObjectName()) < len("QNearFieldShareTarget_") {
 		n.SetObjectName("QNearFieldShareTarget_" + qt.Identifier())
 	}
@@ -1688,6 +1733,11 @@ func PointerFromQNearFieldTarget(ptr QNearFieldTarget_ITF) unsafe.Pointer {
 func NewQNearFieldTargetFromPointer(ptr unsafe.Pointer) *QNearFieldTarget {
 	var n = new(QNearFieldTarget)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQNearFieldTargetFromPointer(ptr unsafe.Pointer) *QNearFieldTarget {
+	var n = NewQNearFieldTargetFromPointer(ptr)
 	for len(n.ObjectName()) < len("QNearFieldTarget_") {
 		n.SetObjectName("QNearFieldTarget_" + qt.Identifier())
 	}
@@ -2024,6 +2074,11 @@ func PointerFromQQmlNdefRecord(ptr QQmlNdefRecord_ITF) unsafe.Pointer {
 func NewQQmlNdefRecordFromPointer(ptr unsafe.Pointer) *QQmlNdefRecord {
 	var n = new(QQmlNdefRecord)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlNdefRecordFromPointer(ptr unsafe.Pointer) *QQmlNdefRecord {
+	var n = NewQQmlNdefRecordFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlNdefRecord_") {
 		n.SetObjectName("QQmlNdefRecord_" + qt.Identifier())
 	}
@@ -2058,13 +2113,13 @@ func (ptr *QQmlNdefRecord) TypeNameFormat() QQmlNdefRecord__TypeNameFormat {
 func NewQQmlNdefRecord(parent core.QObject_ITF) *QQmlNdefRecord {
 	defer qt.Recovering("QQmlNdefRecord::QQmlNdefRecord")
 
-	return NewQQmlNdefRecordFromPointer(C.QQmlNdefRecord_NewQQmlNdefRecord(core.PointerFromQObject(parent)))
+	return newQQmlNdefRecordFromPointer(C.QQmlNdefRecord_NewQQmlNdefRecord(core.PointerFromQObject(parent)))
 }
 
 func NewQQmlNdefRecord2(record QNdefRecord_ITF, parent core.QObject_ITF) *QQmlNdefRecord {
 	defer qt.Recovering("QQmlNdefRecord::QQmlNdefRecord")
 
-	return NewQQmlNdefRecordFromPointer(C.QQmlNdefRecord_NewQQmlNdefRecord2(PointerFromQNdefRecord(record), core.PointerFromQObject(parent)))
+	return newQQmlNdefRecordFromPointer(C.QQmlNdefRecord_NewQQmlNdefRecord2(PointerFromQNdefRecord(record), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlNdefRecord) ConnectRecordChanged(f func()) {

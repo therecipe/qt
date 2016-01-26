@@ -29,6 +29,11 @@ func PointerFromQGeoCodeReply(ptr QGeoCodeReply_ITF) unsafe.Pointer {
 func NewQGeoCodeReplyFromPointer(ptr unsafe.Pointer) *QGeoCodeReply {
 	var n = new(QGeoCodeReply)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoCodeReplyFromPointer(ptr unsafe.Pointer) *QGeoCodeReply {
+	var n = NewQGeoCodeReplyFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoCodeReply_") {
 		n.SetObjectName("QGeoCodeReply_" + qt.Identifier())
 	}
@@ -71,6 +76,11 @@ func PointerFromQGeoCodingManager(ptr QGeoCodingManager_ITF) unsafe.Pointer {
 func NewQGeoCodingManagerFromPointer(ptr unsafe.Pointer) *QGeoCodingManager {
 	var n = new(QGeoCodingManager)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoCodingManagerFromPointer(ptr unsafe.Pointer) *QGeoCodingManager {
+	var n = NewQGeoCodingManagerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoCodingManager_") {
 		n.SetObjectName("QGeoCodingManager_" + qt.Identifier())
 	}
@@ -100,6 +110,11 @@ func PointerFromQGeoCodingManagerEngine(ptr QGeoCodingManagerEngine_ITF) unsafe.
 func NewQGeoCodingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoCodingManagerEngine {
 	var n = new(QGeoCodingManagerEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoCodingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoCodingManagerEngine {
+	var n = NewQGeoCodingManagerEngineFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoCodingManagerEngine_") {
 		n.SetObjectName("QGeoCodingManagerEngine_" + qt.Identifier())
 	}
@@ -139,6 +154,11 @@ func NewQGeoManeuverFromPointer(ptr unsafe.Pointer) *QGeoManeuver {
 	return n
 }
 
+func newQGeoManeuverFromPointer(ptr unsafe.Pointer) *QGeoManeuver {
+	var n = NewQGeoManeuverFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoManeuver) QGeoManeuver_PTR() *QGeoManeuver {
 	return ptr
 }
@@ -164,13 +184,13 @@ const (
 func NewQGeoManeuver() *QGeoManeuver {
 	defer qt.Recovering("QGeoManeuver::QGeoManeuver")
 
-	return NewQGeoManeuverFromPointer(C.QGeoManeuver_NewQGeoManeuver())
+	return newQGeoManeuverFromPointer(C.QGeoManeuver_NewQGeoManeuver())
 }
 
 func NewQGeoManeuver2(other QGeoManeuver_ITF) *QGeoManeuver {
 	defer qt.Recovering("QGeoManeuver::QGeoManeuver")
 
-	return NewQGeoManeuverFromPointer(C.QGeoManeuver_NewQGeoManeuver2(PointerFromQGeoManeuver(other)))
+	return newQGeoManeuverFromPointer(C.QGeoManeuver_NewQGeoManeuver2(PointerFromQGeoManeuver(other)))
 }
 
 func (ptr *QGeoManeuver) Direction() QGeoManeuver__InstructionDirection {
@@ -303,6 +323,11 @@ func NewQGeoRouteFromPointer(ptr unsafe.Pointer) *QGeoRoute {
 	return n
 }
 
+func newQGeoRouteFromPointer(ptr unsafe.Pointer) *QGeoRoute {
+	var n = NewQGeoRouteFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoRoute) QGeoRoute_PTR() *QGeoRoute {
 	return ptr
 }
@@ -310,13 +335,13 @@ func (ptr *QGeoRoute) QGeoRoute_PTR() *QGeoRoute {
 func NewQGeoRoute() *QGeoRoute {
 	defer qt.Recovering("QGeoRoute::QGeoRoute")
 
-	return NewQGeoRouteFromPointer(C.QGeoRoute_NewQGeoRoute())
+	return newQGeoRouteFromPointer(C.QGeoRoute_NewQGeoRoute())
 }
 
 func NewQGeoRoute2(other QGeoRoute_ITF) *QGeoRoute {
 	defer qt.Recovering("QGeoRoute::QGeoRoute")
 
-	return NewQGeoRouteFromPointer(C.QGeoRoute_NewQGeoRoute2(PointerFromQGeoRoute(other)))
+	return newQGeoRouteFromPointer(C.QGeoRoute_NewQGeoRoute2(PointerFromQGeoRoute(other)))
 }
 
 func (ptr *QGeoRoute) Distance() float64 {
@@ -438,6 +463,11 @@ func PointerFromQGeoRouteReply(ptr QGeoRouteReply_ITF) unsafe.Pointer {
 func NewQGeoRouteReplyFromPointer(ptr unsafe.Pointer) *QGeoRouteReply {
 	var n = new(QGeoRouteReply)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoRouteReplyFromPointer(ptr unsafe.Pointer) *QGeoRouteReply {
+	var n = NewQGeoRouteReplyFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoRouteReply_") {
 		n.SetObjectName("QGeoRouteReply_" + qt.Identifier())
 	}
@@ -463,7 +493,7 @@ const (
 func NewQGeoRouteReply(error QGeoRouteReply__Error, errorString string, parent core.QObject_ITF) *QGeoRouteReply {
 	defer qt.Recovering("QGeoRouteReply::QGeoRouteReply")
 
-	return NewQGeoRouteReplyFromPointer(C.QGeoRouteReply_NewQGeoRouteReply(C.int(error), C.CString(errorString), core.PointerFromQObject(parent)))
+	return newQGeoRouteReplyFromPointer(C.QGeoRouteReply_NewQGeoRouteReply(C.int(error), C.CString(errorString), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGeoRouteReply) ConnectAbort(f func()) {
@@ -783,6 +813,11 @@ func NewQGeoRouteRequestFromPointer(ptr unsafe.Pointer) *QGeoRouteRequest {
 	return n
 }
 
+func newQGeoRouteRequestFromPointer(ptr unsafe.Pointer) *QGeoRouteRequest {
+	var n = NewQGeoRouteRequestFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoRouteRequest) QGeoRouteRequest_PTR() *QGeoRouteRequest {
 	return ptr
 }
@@ -853,13 +888,13 @@ const (
 func NewQGeoRouteRequest2(origin positioning.QGeoCoordinate_ITF, destination positioning.QGeoCoordinate_ITF) *QGeoRouteRequest {
 	defer qt.Recovering("QGeoRouteRequest::QGeoRouteRequest")
 
-	return NewQGeoRouteRequestFromPointer(C.QGeoRouteRequest_NewQGeoRouteRequest2(positioning.PointerFromQGeoCoordinate(origin), positioning.PointerFromQGeoCoordinate(destination)))
+	return newQGeoRouteRequestFromPointer(C.QGeoRouteRequest_NewQGeoRouteRequest2(positioning.PointerFromQGeoCoordinate(origin), positioning.PointerFromQGeoCoordinate(destination)))
 }
 
 func NewQGeoRouteRequest3(other QGeoRouteRequest_ITF) *QGeoRouteRequest {
 	defer qt.Recovering("QGeoRouteRequest::QGeoRouteRequest")
 
-	return NewQGeoRouteRequestFromPointer(C.QGeoRouteRequest_NewQGeoRouteRequest3(PointerFromQGeoRouteRequest(other)))
+	return newQGeoRouteRequestFromPointer(C.QGeoRouteRequest_NewQGeoRouteRequest3(PointerFromQGeoRouteRequest(other)))
 }
 
 func (ptr *QGeoRouteRequest) FeatureWeight(featureType QGeoRouteRequest__FeatureType) QGeoRouteRequest__FeatureWeight {
@@ -1001,6 +1036,11 @@ func NewQGeoRouteSegmentFromPointer(ptr unsafe.Pointer) *QGeoRouteSegment {
 	return n
 }
 
+func newQGeoRouteSegmentFromPointer(ptr unsafe.Pointer) *QGeoRouteSegment {
+	var n = NewQGeoRouteSegmentFromPointer(ptr)
+	return n
+}
+
 func (ptr *QGeoRouteSegment) QGeoRouteSegment_PTR() *QGeoRouteSegment {
 	return ptr
 }
@@ -1008,13 +1048,13 @@ func (ptr *QGeoRouteSegment) QGeoRouteSegment_PTR() *QGeoRouteSegment {
 func NewQGeoRouteSegment() *QGeoRouteSegment {
 	defer qt.Recovering("QGeoRouteSegment::QGeoRouteSegment")
 
-	return NewQGeoRouteSegmentFromPointer(C.QGeoRouteSegment_NewQGeoRouteSegment())
+	return newQGeoRouteSegmentFromPointer(C.QGeoRouteSegment_NewQGeoRouteSegment())
 }
 
 func NewQGeoRouteSegment2(other QGeoRouteSegment_ITF) *QGeoRouteSegment {
 	defer qt.Recovering("QGeoRouteSegment::QGeoRouteSegment")
 
-	return NewQGeoRouteSegmentFromPointer(C.QGeoRouteSegment_NewQGeoRouteSegment2(PointerFromQGeoRouteSegment(other)))
+	return newQGeoRouteSegmentFromPointer(C.QGeoRouteSegment_NewQGeoRouteSegment2(PointerFromQGeoRouteSegment(other)))
 }
 
 func (ptr *QGeoRouteSegment) Distance() float64 {
@@ -1103,6 +1143,11 @@ func PointerFromQGeoRoutingManager(ptr QGeoRoutingManager_ITF) unsafe.Pointer {
 func NewQGeoRoutingManagerFromPointer(ptr unsafe.Pointer) *QGeoRoutingManager {
 	var n = new(QGeoRoutingManager)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoRoutingManagerFromPointer(ptr unsafe.Pointer) *QGeoRoutingManager {
+	var n = NewQGeoRoutingManagerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoRoutingManager_") {
 		n.SetObjectName("QGeoRoutingManager_" + qt.Identifier())
 	}
@@ -1463,6 +1508,11 @@ func PointerFromQGeoRoutingManagerEngine(ptr QGeoRoutingManagerEngine_ITF) unsaf
 func NewQGeoRoutingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoRoutingManagerEngine {
 	var n = new(QGeoRoutingManagerEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoRoutingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoRoutingManagerEngine {
+	var n = NewQGeoRoutingManagerEngineFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoRoutingManagerEngine_") {
 		n.SetObjectName("QGeoRoutingManagerEngine_" + qt.Identifier())
 	}
@@ -1823,6 +1873,11 @@ func PointerFromQGeoServiceProvider(ptr QGeoServiceProvider_ITF) unsafe.Pointer 
 func NewQGeoServiceProviderFromPointer(ptr unsafe.Pointer) *QGeoServiceProvider {
 	var n = new(QGeoServiceProvider)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoServiceProviderFromPointer(ptr unsafe.Pointer) *QGeoServiceProvider {
+	var n = NewQGeoServiceProviderFromPointer(ptr)
 	for len(n.ObjectName()) < len("QGeoServiceProvider_") {
 		n.SetObjectName("QGeoServiceProvider_" + qt.Identifier())
 	}
@@ -2173,6 +2228,11 @@ func PointerFromQGeoServiceProviderFactory(ptr QGeoServiceProviderFactory_ITF) u
 func NewQGeoServiceProviderFactoryFromPointer(ptr unsafe.Pointer) *QGeoServiceProviderFactory {
 	var n = new(QGeoServiceProviderFactory)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQGeoServiceProviderFactoryFromPointer(ptr unsafe.Pointer) *QGeoServiceProviderFactory {
+	var n = NewQGeoServiceProviderFactoryFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QGeoServiceProviderFactory_") {
 		n.SetObjectNameAbs("QGeoServiceProviderFactory_" + qt.Identifier())
 	}
@@ -2237,6 +2297,11 @@ func NewQPlaceFromPointer(ptr unsafe.Pointer) *QPlace {
 	return n
 }
 
+func newQPlaceFromPointer(ptr unsafe.Pointer) *QPlace {
+	var n = NewQPlaceFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlace) QPlace_PTR() *QPlace {
 	return ptr
 }
@@ -2267,6 +2332,11 @@ func PointerFromQPlaceAttribute(ptr QPlaceAttribute_ITF) unsafe.Pointer {
 func NewQPlaceAttributeFromPointer(ptr unsafe.Pointer) *QPlaceAttribute {
 	var n = new(QPlaceAttribute)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceAttributeFromPointer(ptr unsafe.Pointer) *QPlaceAttribute {
+	var n = NewQPlaceAttributeFromPointer(ptr)
 	return n
 }
 
@@ -2303,6 +2373,11 @@ func NewQPlaceCategoryFromPointer(ptr unsafe.Pointer) *QPlaceCategory {
 	return n
 }
 
+func newQPlaceCategoryFromPointer(ptr unsafe.Pointer) *QPlaceCategory {
+	var n = NewQPlaceCategoryFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlaceCategory) QPlaceCategory_PTR() *QPlaceCategory {
 	return ptr
 }
@@ -2333,6 +2408,11 @@ func PointerFromQPlaceContactDetail(ptr QPlaceContactDetail_ITF) unsafe.Pointer 
 func NewQPlaceContactDetailFromPointer(ptr unsafe.Pointer) *QPlaceContactDetail {
 	var n = new(QPlaceContactDetail)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceContactDetailFromPointer(ptr unsafe.Pointer) *QPlaceContactDetail {
+	var n = NewQPlaceContactDetailFromPointer(ptr)
 	return n
 }
 
@@ -2369,6 +2449,11 @@ func NewQPlaceContentFromPointer(ptr unsafe.Pointer) *QPlaceContent {
 	return n
 }
 
+func newQPlaceContentFromPointer(ptr unsafe.Pointer) *QPlaceContent {
+	var n = NewQPlaceContentFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlaceContent) QPlaceContent_PTR() *QPlaceContent {
 	return ptr
 }
@@ -2402,6 +2487,11 @@ func PointerFromQPlaceContentReply(ptr QPlaceContentReply_ITF) unsafe.Pointer {
 func NewQPlaceContentReplyFromPointer(ptr unsafe.Pointer) *QPlaceContentReply {
 	var n = new(QPlaceContentReply)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceContentReplyFromPointer(ptr unsafe.Pointer) *QPlaceContentReply {
+	var n = NewQPlaceContentReplyFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceContentReply_") {
 		n.SetObjectName("QPlaceContentReply_" + qt.Identifier())
 	}
@@ -2441,6 +2531,11 @@ func NewQPlaceContentRequestFromPointer(ptr unsafe.Pointer) *QPlaceContentReques
 	return n
 }
 
+func newQPlaceContentRequestFromPointer(ptr unsafe.Pointer) *QPlaceContentRequest {
+	var n = NewQPlaceContentRequestFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlaceContentRequest) QPlaceContentRequest_PTR() *QPlaceContentRequest {
 	return ptr
 }
@@ -2464,6 +2559,11 @@ func PointerFromQPlaceDetailsReply(ptr QPlaceDetailsReply_ITF) unsafe.Pointer {
 func NewQPlaceDetailsReplyFromPointer(ptr unsafe.Pointer) *QPlaceDetailsReply {
 	var n = new(QPlaceDetailsReply)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceDetailsReplyFromPointer(ptr unsafe.Pointer) *QPlaceDetailsReply {
+	var n = NewQPlaceDetailsReplyFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceDetailsReply_") {
 		n.SetObjectName("QPlaceDetailsReply_" + qt.Identifier())
 	}
@@ -2493,6 +2593,11 @@ func PointerFromQPlaceEditorial(ptr QPlaceEditorial_ITF) unsafe.Pointer {
 func NewQPlaceEditorialFromPointer(ptr unsafe.Pointer) *QPlaceEditorial {
 	var n = new(QPlaceEditorial)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceEditorialFromPointer(ptr unsafe.Pointer) *QPlaceEditorial {
+	var n = NewQPlaceEditorialFromPointer(ptr)
 	return n
 }
 
@@ -2529,6 +2634,11 @@ func NewQPlaceIconFromPointer(ptr unsafe.Pointer) *QPlaceIcon {
 	return n
 }
 
+func newQPlaceIconFromPointer(ptr unsafe.Pointer) *QPlaceIcon {
+	var n = NewQPlaceIconFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlaceIcon) QPlaceIcon_PTR() *QPlaceIcon {
 	return ptr
 }
@@ -2552,6 +2662,11 @@ func PointerFromQPlaceIdReply(ptr QPlaceIdReply_ITF) unsafe.Pointer {
 func NewQPlaceIdReplyFromPointer(ptr unsafe.Pointer) *QPlaceIdReply {
 	var n = new(QPlaceIdReply)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceIdReplyFromPointer(ptr unsafe.Pointer) *QPlaceIdReply {
+	var n = NewQPlaceIdReplyFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceIdReply_") {
 		n.SetObjectName("QPlaceIdReply_" + qt.Identifier())
 	}
@@ -2594,6 +2709,11 @@ func NewQPlaceImageFromPointer(ptr unsafe.Pointer) *QPlaceImage {
 	return n
 }
 
+func newQPlaceImageFromPointer(ptr unsafe.Pointer) *QPlaceImage {
+	var n = NewQPlaceImageFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlaceImage) QPlaceImage_PTR() *QPlaceImage {
 	return ptr
 }
@@ -2617,6 +2737,11 @@ func PointerFromQPlaceManager(ptr QPlaceManager_ITF) unsafe.Pointer {
 func NewQPlaceManagerFromPointer(ptr unsafe.Pointer) *QPlaceManager {
 	var n = new(QPlaceManager)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceManagerFromPointer(ptr unsafe.Pointer) *QPlaceManager {
+	var n = NewQPlaceManagerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceManager_") {
 		n.SetObjectName("QPlaceManager_" + qt.Identifier())
 	}
@@ -2646,6 +2771,11 @@ func PointerFromQPlaceManagerEngine(ptr QPlaceManagerEngine_ITF) unsafe.Pointer 
 func NewQPlaceManagerEngineFromPointer(ptr unsafe.Pointer) *QPlaceManagerEngine {
 	var n = new(QPlaceManagerEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceManagerEngineFromPointer(ptr unsafe.Pointer) *QPlaceManagerEngine {
+	var n = NewQPlaceManagerEngineFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceManagerEngine_") {
 		n.SetObjectName("QPlaceManagerEngine_" + qt.Identifier())
 	}
@@ -2675,6 +2805,11 @@ func PointerFromQPlaceMatchReply(ptr QPlaceMatchReply_ITF) unsafe.Pointer {
 func NewQPlaceMatchReplyFromPointer(ptr unsafe.Pointer) *QPlaceMatchReply {
 	var n = new(QPlaceMatchReply)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceMatchReplyFromPointer(ptr unsafe.Pointer) *QPlaceMatchReply {
+	var n = NewQPlaceMatchReplyFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceMatchReply_") {
 		n.SetObjectName("QPlaceMatchReply_" + qt.Identifier())
 	}
@@ -2714,6 +2849,11 @@ func NewQPlaceMatchRequestFromPointer(ptr unsafe.Pointer) *QPlaceMatchRequest {
 	return n
 }
 
+func newQPlaceMatchRequestFromPointer(ptr unsafe.Pointer) *QPlaceMatchRequest {
+	var n = NewQPlaceMatchRequestFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlaceMatchRequest) QPlaceMatchRequest_PTR() *QPlaceMatchRequest {
 	return ptr
 }
@@ -2737,6 +2877,11 @@ func PointerFromQPlaceProposedSearchResult(ptr QPlaceProposedSearchResult_ITF) u
 func NewQPlaceProposedSearchResultFromPointer(ptr unsafe.Pointer) *QPlaceProposedSearchResult {
 	var n = new(QPlaceProposedSearchResult)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceProposedSearchResultFromPointer(ptr unsafe.Pointer) *QPlaceProposedSearchResult {
+	var n = NewQPlaceProposedSearchResultFromPointer(ptr)
 	return n
 }
 
@@ -2773,6 +2918,11 @@ func NewQPlaceRatingsFromPointer(ptr unsafe.Pointer) *QPlaceRatings {
 	return n
 }
 
+func newQPlaceRatingsFromPointer(ptr unsafe.Pointer) *QPlaceRatings {
+	var n = NewQPlaceRatingsFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlaceRatings) QPlaceRatings_PTR() *QPlaceRatings {
 	return ptr
 }
@@ -2796,6 +2946,11 @@ func PointerFromQPlaceReply(ptr QPlaceReply_ITF) unsafe.Pointer {
 func NewQPlaceReplyFromPointer(ptr unsafe.Pointer) *QPlaceReply {
 	var n = new(QPlaceReply)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceReplyFromPointer(ptr unsafe.Pointer) *QPlaceReply {
+	var n = NewQPlaceReplyFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceReply_") {
 		n.SetObjectName("QPlaceReply_" + qt.Identifier())
 	}
@@ -2857,6 +3012,11 @@ func NewQPlaceResultFromPointer(ptr unsafe.Pointer) *QPlaceResult {
 	return n
 }
 
+func newQPlaceResultFromPointer(ptr unsafe.Pointer) *QPlaceResult {
+	var n = NewQPlaceResultFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlaceResult) QPlaceResult_PTR() *QPlaceResult {
 	return ptr
 }
@@ -2883,6 +3043,11 @@ func NewQPlaceReviewFromPointer(ptr unsafe.Pointer) *QPlaceReview {
 	return n
 }
 
+func newQPlaceReviewFromPointer(ptr unsafe.Pointer) *QPlaceReview {
+	var n = NewQPlaceReviewFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlaceReview) QPlaceReview_PTR() *QPlaceReview {
 	return ptr
 }
@@ -2906,6 +3071,11 @@ func PointerFromQPlaceSearchReply(ptr QPlaceSearchReply_ITF) unsafe.Pointer {
 func NewQPlaceSearchReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchReply {
 	var n = new(QPlaceSearchReply)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceSearchReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchReply {
+	var n = NewQPlaceSearchReplyFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceSearchReply_") {
 		n.SetObjectName("QPlaceSearchReply_" + qt.Identifier())
 	}
@@ -2942,6 +3112,11 @@ func PointerFromQPlaceSearchRequest(ptr QPlaceSearchRequest_ITF) unsafe.Pointer 
 func NewQPlaceSearchRequestFromPointer(ptr unsafe.Pointer) *QPlaceSearchRequest {
 	var n = new(QPlaceSearchRequest)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceSearchRequestFromPointer(ptr unsafe.Pointer) *QPlaceSearchRequest {
+	var n = NewQPlaceSearchRequestFromPointer(ptr)
 	return n
 }
 
@@ -2987,6 +3162,11 @@ func NewQPlaceSearchResultFromPointer(ptr unsafe.Pointer) *QPlaceSearchResult {
 	return n
 }
 
+func newQPlaceSearchResultFromPointer(ptr unsafe.Pointer) *QPlaceSearchResult {
+	var n = NewQPlaceSearchResultFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlaceSearchResult) QPlaceSearchResult_PTR() *QPlaceSearchResult {
 	return ptr
 }
@@ -3019,6 +3199,11 @@ func PointerFromQPlaceSearchSuggestionReply(ptr QPlaceSearchSuggestionReply_ITF)
 func NewQPlaceSearchSuggestionReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchSuggestionReply {
 	var n = new(QPlaceSearchSuggestionReply)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceSearchSuggestionReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchSuggestionReply {
+	var n = NewQPlaceSearchSuggestionReplyFromPointer(ptr)
 	for len(n.ObjectName()) < len("QPlaceSearchSuggestionReply_") {
 		n.SetObjectName("QPlaceSearchSuggestionReply_" + qt.Identifier())
 	}
@@ -3058,6 +3243,11 @@ func NewQPlaceSupplierFromPointer(ptr unsafe.Pointer) *QPlaceSupplier {
 	return n
 }
 
+func newQPlaceSupplierFromPointer(ptr unsafe.Pointer) *QPlaceSupplier {
+	var n = NewQPlaceSupplierFromPointer(ptr)
+	return n
+}
+
 func (ptr *QPlaceSupplier) QPlaceSupplier_PTR() *QPlaceSupplier {
 	return ptr
 }
@@ -3088,6 +3278,11 @@ func PointerFromQPlaceUser(ptr QPlaceUser_ITF) unsafe.Pointer {
 func NewQPlaceUserFromPointer(ptr unsafe.Pointer) *QPlaceUser {
 	var n = new(QPlaceUser)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQPlaceUserFromPointer(ptr unsafe.Pointer) *QPlaceUser {
+	var n = NewQPlaceUserFromPointer(ptr)
 	return n
 }
 

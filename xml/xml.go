@@ -31,6 +31,11 @@ func NewQDomAttrFromPointer(ptr unsafe.Pointer) *QDomAttr {
 	return n
 }
 
+func newQDomAttrFromPointer(ptr unsafe.Pointer) *QDomAttr {
+	var n = NewQDomAttrFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomAttr) QDomAttr_PTR() *QDomAttr {
 	return ptr
 }
@@ -38,13 +43,13 @@ func (ptr *QDomAttr) QDomAttr_PTR() *QDomAttr {
 func NewQDomAttr() *QDomAttr {
 	defer qt.Recovering("QDomAttr::QDomAttr")
 
-	return NewQDomAttrFromPointer(C.QDomAttr_NewQDomAttr())
+	return newQDomAttrFromPointer(C.QDomAttr_NewQDomAttr())
 }
 
 func NewQDomAttr2(x QDomAttr_ITF) *QDomAttr {
 	defer qt.Recovering("QDomAttr::QDomAttr")
 
-	return NewQDomAttrFromPointer(C.QDomAttr_NewQDomAttr2(PointerFromQDomAttr(x)))
+	return newQDomAttrFromPointer(C.QDomAttr_NewQDomAttr2(PointerFromQDomAttr(x)))
 }
 
 func (ptr *QDomAttr) Name() string {
@@ -113,6 +118,11 @@ func NewQDomCDATASectionFromPointer(ptr unsafe.Pointer) *QDomCDATASection {
 	return n
 }
 
+func newQDomCDATASectionFromPointer(ptr unsafe.Pointer) *QDomCDATASection {
+	var n = NewQDomCDATASectionFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomCDATASection) QDomCDATASection_PTR() *QDomCDATASection {
 	return ptr
 }
@@ -120,13 +130,13 @@ func (ptr *QDomCDATASection) QDomCDATASection_PTR() *QDomCDATASection {
 func NewQDomCDATASection() *QDomCDATASection {
 	defer qt.Recovering("QDomCDATASection::QDomCDATASection")
 
-	return NewQDomCDATASectionFromPointer(C.QDomCDATASection_NewQDomCDATASection())
+	return newQDomCDATASectionFromPointer(C.QDomCDATASection_NewQDomCDATASection())
 }
 
 func NewQDomCDATASection2(x QDomCDATASection_ITF) *QDomCDATASection {
 	defer qt.Recovering("QDomCDATASection::QDomCDATASection")
 
-	return NewQDomCDATASectionFromPointer(C.QDomCDATASection_NewQDomCDATASection2(PointerFromQDomCDATASection(x)))
+	return newQDomCDATASectionFromPointer(C.QDomCDATASection_NewQDomCDATASection2(PointerFromQDomCDATASection(x)))
 }
 
 func (ptr *QDomCDATASection) NodeType() QDomNode__NodeType {
@@ -160,6 +170,11 @@ func NewQDomCharacterDataFromPointer(ptr unsafe.Pointer) *QDomCharacterData {
 	return n
 }
 
+func newQDomCharacterDataFromPointer(ptr unsafe.Pointer) *QDomCharacterData {
+	var n = NewQDomCharacterDataFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomCharacterData) QDomCharacterData_PTR() *QDomCharacterData {
 	return ptr
 }
@@ -167,13 +182,13 @@ func (ptr *QDomCharacterData) QDomCharacterData_PTR() *QDomCharacterData {
 func NewQDomCharacterData() *QDomCharacterData {
 	defer qt.Recovering("QDomCharacterData::QDomCharacterData")
 
-	return NewQDomCharacterDataFromPointer(C.QDomCharacterData_NewQDomCharacterData())
+	return newQDomCharacterDataFromPointer(C.QDomCharacterData_NewQDomCharacterData())
 }
 
 func NewQDomCharacterData2(x QDomCharacterData_ITF) *QDomCharacterData {
 	defer qt.Recovering("QDomCharacterData::QDomCharacterData")
 
-	return NewQDomCharacterDataFromPointer(C.QDomCharacterData_NewQDomCharacterData2(PointerFromQDomCharacterData(x)))
+	return newQDomCharacterDataFromPointer(C.QDomCharacterData_NewQDomCharacterData2(PointerFromQDomCharacterData(x)))
 }
 
 func (ptr *QDomCharacterData) AppendData(arg string) {
@@ -241,6 +256,11 @@ func NewQDomCommentFromPointer(ptr unsafe.Pointer) *QDomComment {
 	return n
 }
 
+func newQDomCommentFromPointer(ptr unsafe.Pointer) *QDomComment {
+	var n = NewQDomCommentFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomComment) QDomComment_PTR() *QDomComment {
 	return ptr
 }
@@ -248,13 +268,13 @@ func (ptr *QDomComment) QDomComment_PTR() *QDomComment {
 func NewQDomComment() *QDomComment {
 	defer qt.Recovering("QDomComment::QDomComment")
 
-	return NewQDomCommentFromPointer(C.QDomComment_NewQDomComment())
+	return newQDomCommentFromPointer(C.QDomComment_NewQDomComment())
 }
 
 func NewQDomComment2(x QDomComment_ITF) *QDomComment {
 	defer qt.Recovering("QDomComment::QDomComment")
 
-	return NewQDomCommentFromPointer(C.QDomComment_NewQDomComment2(PointerFromQDomComment(x)))
+	return newQDomCommentFromPointer(C.QDomComment_NewQDomComment2(PointerFromQDomComment(x)))
 }
 
 func (ptr *QDomComment) NodeType() QDomNode__NodeType {
@@ -288,6 +308,11 @@ func NewQDomDocumentFromPointer(ptr unsafe.Pointer) *QDomDocument {
 	return n
 }
 
+func newQDomDocumentFromPointer(ptr unsafe.Pointer) *QDomDocument {
+	var n = NewQDomDocumentFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomDocument) QDomDocument_PTR() *QDomDocument {
 	return ptr
 }
@@ -295,25 +320,25 @@ func (ptr *QDomDocument) QDomDocument_PTR() *QDomDocument {
 func NewQDomDocument() *QDomDocument {
 	defer qt.Recovering("QDomDocument::QDomDocument")
 
-	return NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument())
+	return newQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument())
 }
 
 func NewQDomDocument4(x QDomDocument_ITF) *QDomDocument {
 	defer qt.Recovering("QDomDocument::QDomDocument")
 
-	return NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument4(PointerFromQDomDocument(x)))
+	return newQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument4(PointerFromQDomDocument(x)))
 }
 
 func NewQDomDocument3(doctype QDomDocumentType_ITF) *QDomDocument {
 	defer qt.Recovering("QDomDocument::QDomDocument")
 
-	return NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument3(PointerFromQDomDocumentType(doctype)))
+	return newQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument3(PointerFromQDomDocumentType(doctype)))
 }
 
 func NewQDomDocument2(name string) *QDomDocument {
 	defer qt.Recovering("QDomDocument::QDomDocument")
 
-	return NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument2(C.CString(name)))
+	return newQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument2(C.CString(name)))
 }
 
 func (ptr *QDomDocument) NodeType() QDomNode__NodeType {
@@ -445,6 +470,11 @@ func NewQDomDocumentFragmentFromPointer(ptr unsafe.Pointer) *QDomDocumentFragmen
 	return n
 }
 
+func newQDomDocumentFragmentFromPointer(ptr unsafe.Pointer) *QDomDocumentFragment {
+	var n = NewQDomDocumentFragmentFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomDocumentFragment) QDomDocumentFragment_PTR() *QDomDocumentFragment {
 	return ptr
 }
@@ -452,13 +482,13 @@ func (ptr *QDomDocumentFragment) QDomDocumentFragment_PTR() *QDomDocumentFragmen
 func NewQDomDocumentFragment() *QDomDocumentFragment {
 	defer qt.Recovering("QDomDocumentFragment::QDomDocumentFragment")
 
-	return NewQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment())
+	return newQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment())
 }
 
 func NewQDomDocumentFragment2(x QDomDocumentFragment_ITF) *QDomDocumentFragment {
 	defer qt.Recovering("QDomDocumentFragment::QDomDocumentFragment")
 
-	return NewQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment2(PointerFromQDomDocumentFragment(x)))
+	return newQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment2(PointerFromQDomDocumentFragment(x)))
 }
 
 func (ptr *QDomDocumentFragment) NodeType() QDomNode__NodeType {
@@ -492,6 +522,11 @@ func NewQDomDocumentTypeFromPointer(ptr unsafe.Pointer) *QDomDocumentType {
 	return n
 }
 
+func newQDomDocumentTypeFromPointer(ptr unsafe.Pointer) *QDomDocumentType {
+	var n = NewQDomDocumentTypeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomDocumentType) QDomDocumentType_PTR() *QDomDocumentType {
 	return ptr
 }
@@ -499,13 +534,13 @@ func (ptr *QDomDocumentType) QDomDocumentType_PTR() *QDomDocumentType {
 func NewQDomDocumentType() *QDomDocumentType {
 	defer qt.Recovering("QDomDocumentType::QDomDocumentType")
 
-	return NewQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType())
+	return newQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType())
 }
 
 func NewQDomDocumentType2(n QDomDocumentType_ITF) *QDomDocumentType {
 	defer qt.Recovering("QDomDocumentType::QDomDocumentType")
 
-	return NewQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType2(PointerFromQDomDocumentType(n)))
+	return newQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType2(PointerFromQDomDocumentType(n)))
 }
 
 func (ptr *QDomDocumentType) InternalSubset() string {
@@ -575,6 +610,11 @@ func NewQDomElementFromPointer(ptr unsafe.Pointer) *QDomElement {
 	return n
 }
 
+func newQDomElementFromPointer(ptr unsafe.Pointer) *QDomElement {
+	var n = NewQDomElementFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomElement) QDomElement_PTR() *QDomElement {
 	return ptr
 }
@@ -582,13 +622,13 @@ func (ptr *QDomElement) QDomElement_PTR() *QDomElement {
 func NewQDomElement() *QDomElement {
 	defer qt.Recovering("QDomElement::QDomElement")
 
-	return NewQDomElementFromPointer(C.QDomElement_NewQDomElement())
+	return newQDomElementFromPointer(C.QDomElement_NewQDomElement())
 }
 
 func NewQDomElement2(x QDomElement_ITF) *QDomElement {
 	defer qt.Recovering("QDomElement::QDomElement")
 
-	return NewQDomElementFromPointer(C.QDomElement_NewQDomElement2(PointerFromQDomElement(x)))
+	return newQDomElementFromPointer(C.QDomElement_NewQDomElement2(PointerFromQDomElement(x)))
 }
 
 func (ptr *QDomElement) Attribute(name string, defValue string) string {
@@ -732,6 +772,11 @@ func NewQDomEntityFromPointer(ptr unsafe.Pointer) *QDomEntity {
 	return n
 }
 
+func newQDomEntityFromPointer(ptr unsafe.Pointer) *QDomEntity {
+	var n = NewQDomEntityFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomEntity) QDomEntity_PTR() *QDomEntity {
 	return ptr
 }
@@ -739,13 +784,13 @@ func (ptr *QDomEntity) QDomEntity_PTR() *QDomEntity {
 func NewQDomEntity() *QDomEntity {
 	defer qt.Recovering("QDomEntity::QDomEntity")
 
-	return NewQDomEntityFromPointer(C.QDomEntity_NewQDomEntity())
+	return newQDomEntityFromPointer(C.QDomEntity_NewQDomEntity())
 }
 
 func NewQDomEntity2(x QDomEntity_ITF) *QDomEntity {
 	defer qt.Recovering("QDomEntity::QDomEntity")
 
-	return NewQDomEntityFromPointer(C.QDomEntity_NewQDomEntity2(PointerFromQDomEntity(x)))
+	return newQDomEntityFromPointer(C.QDomEntity_NewQDomEntity2(PointerFromQDomEntity(x)))
 }
 
 func (ptr *QDomEntity) NodeType() QDomNode__NodeType {
@@ -806,6 +851,11 @@ func NewQDomEntityReferenceFromPointer(ptr unsafe.Pointer) *QDomEntityReference 
 	return n
 }
 
+func newQDomEntityReferenceFromPointer(ptr unsafe.Pointer) *QDomEntityReference {
+	var n = NewQDomEntityReferenceFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomEntityReference) QDomEntityReference_PTR() *QDomEntityReference {
 	return ptr
 }
@@ -813,13 +863,13 @@ func (ptr *QDomEntityReference) QDomEntityReference_PTR() *QDomEntityReference {
 func NewQDomEntityReference() *QDomEntityReference {
 	defer qt.Recovering("QDomEntityReference::QDomEntityReference")
 
-	return NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference())
+	return newQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference())
 }
 
 func NewQDomEntityReference2(x QDomEntityReference_ITF) *QDomEntityReference {
 	defer qt.Recovering("QDomEntityReference::QDomEntityReference")
 
-	return NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference2(PointerFromQDomEntityReference(x)))
+	return newQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference2(PointerFromQDomEntityReference(x)))
 }
 
 func (ptr *QDomEntityReference) NodeType() QDomNode__NodeType {
@@ -860,6 +910,11 @@ func NewQDomImplementationFromPointer(ptr unsafe.Pointer) *QDomImplementation {
 	return n
 }
 
+func newQDomImplementationFromPointer(ptr unsafe.Pointer) *QDomImplementation {
+	var n = NewQDomImplementationFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomImplementation) QDomImplementation_PTR() *QDomImplementation {
 	return ptr
 }
@@ -876,13 +931,13 @@ const (
 func NewQDomImplementation() *QDomImplementation {
 	defer qt.Recovering("QDomImplementation::QDomImplementation")
 
-	return NewQDomImplementationFromPointer(C.QDomImplementation_NewQDomImplementation())
+	return newQDomImplementationFromPointer(C.QDomImplementation_NewQDomImplementation())
 }
 
 func NewQDomImplementation2(x QDomImplementation_ITF) *QDomImplementation {
 	defer qt.Recovering("QDomImplementation::QDomImplementation")
 
-	return NewQDomImplementationFromPointer(C.QDomImplementation_NewQDomImplementation2(PointerFromQDomImplementation(x)))
+	return newQDomImplementationFromPointer(C.QDomImplementation_NewQDomImplementation2(PointerFromQDomImplementation(x)))
 }
 
 func (ptr *QDomImplementation) HasFeature(feature string, version string) bool {
@@ -952,6 +1007,11 @@ func NewQDomNamedNodeMapFromPointer(ptr unsafe.Pointer) *QDomNamedNodeMap {
 	return n
 }
 
+func newQDomNamedNodeMapFromPointer(ptr unsafe.Pointer) *QDomNamedNodeMap {
+	var n = NewQDomNamedNodeMapFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomNamedNodeMap) QDomNamedNodeMap_PTR() *QDomNamedNodeMap {
 	return ptr
 }
@@ -959,13 +1019,13 @@ func (ptr *QDomNamedNodeMap) QDomNamedNodeMap_PTR() *QDomNamedNodeMap {
 func NewQDomNamedNodeMap() *QDomNamedNodeMap {
 	defer qt.Recovering("QDomNamedNodeMap::QDomNamedNodeMap")
 
-	return NewQDomNamedNodeMapFromPointer(C.QDomNamedNodeMap_NewQDomNamedNodeMap())
+	return newQDomNamedNodeMapFromPointer(C.QDomNamedNodeMap_NewQDomNamedNodeMap())
 }
 
 func NewQDomNamedNodeMap2(n QDomNamedNodeMap_ITF) *QDomNamedNodeMap {
 	defer qt.Recovering("QDomNamedNodeMap::QDomNamedNodeMap")
 
-	return NewQDomNamedNodeMapFromPointer(C.QDomNamedNodeMap_NewQDomNamedNodeMap2(PointerFromQDomNamedNodeMap(n)))
+	return newQDomNamedNodeMapFromPointer(C.QDomNamedNodeMap_NewQDomNamedNodeMap2(PointerFromQDomNamedNodeMap(n)))
 }
 
 func (ptr *QDomNamedNodeMap) Contains(name string) bool {
@@ -1050,6 +1110,11 @@ func NewQDomNodeFromPointer(ptr unsafe.Pointer) *QDomNode {
 	return n
 }
 
+func newQDomNodeFromPointer(ptr unsafe.Pointer) *QDomNode {
+	var n = NewQDomNodeFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomNode) QDomNode_PTR() *QDomNode {
 	return ptr
 }
@@ -1085,13 +1150,13 @@ const (
 func NewQDomNode() *QDomNode {
 	defer qt.Recovering("QDomNode::QDomNode")
 
-	return NewQDomNodeFromPointer(C.QDomNode_NewQDomNode())
+	return newQDomNodeFromPointer(C.QDomNode_NewQDomNode())
 }
 
 func NewQDomNode2(n QDomNode_ITF) *QDomNode {
 	defer qt.Recovering("QDomNode::QDomNode")
 
-	return NewQDomNodeFromPointer(C.QDomNode_NewQDomNode2(PointerFromQDomNode(n)))
+	return newQDomNodeFromPointer(C.QDomNode_NewQDomNode2(PointerFromQDomNode(n)))
 }
 
 func (ptr *QDomNode) Clear() {
@@ -1396,6 +1461,11 @@ func NewQDomNodeListFromPointer(ptr unsafe.Pointer) *QDomNodeList {
 	return n
 }
 
+func newQDomNodeListFromPointer(ptr unsafe.Pointer) *QDomNodeList {
+	var n = NewQDomNodeListFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomNodeList) QDomNodeList_PTR() *QDomNodeList {
 	return ptr
 }
@@ -1403,13 +1473,13 @@ func (ptr *QDomNodeList) QDomNodeList_PTR() *QDomNodeList {
 func NewQDomNodeList() *QDomNodeList {
 	defer qt.Recovering("QDomNodeList::QDomNodeList")
 
-	return NewQDomNodeListFromPointer(C.QDomNodeList_NewQDomNodeList())
+	return newQDomNodeListFromPointer(C.QDomNodeList_NewQDomNodeList())
 }
 
 func NewQDomNodeList2(n QDomNodeList_ITF) *QDomNodeList {
 	defer qt.Recovering("QDomNodeList::QDomNodeList")
 
-	return NewQDomNodeListFromPointer(C.QDomNodeList_NewQDomNodeList2(PointerFromQDomNodeList(n)))
+	return newQDomNodeListFromPointer(C.QDomNodeList_NewQDomNodeList2(PointerFromQDomNodeList(n)))
 }
 
 func (ptr *QDomNodeList) Count() int {
@@ -1478,6 +1548,11 @@ func NewQDomNotationFromPointer(ptr unsafe.Pointer) *QDomNotation {
 	return n
 }
 
+func newQDomNotationFromPointer(ptr unsafe.Pointer) *QDomNotation {
+	var n = NewQDomNotationFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomNotation) QDomNotation_PTR() *QDomNotation {
 	return ptr
 }
@@ -1485,13 +1560,13 @@ func (ptr *QDomNotation) QDomNotation_PTR() *QDomNotation {
 func NewQDomNotation() *QDomNotation {
 	defer qt.Recovering("QDomNotation::QDomNotation")
 
-	return NewQDomNotationFromPointer(C.QDomNotation_NewQDomNotation())
+	return newQDomNotationFromPointer(C.QDomNotation_NewQDomNotation())
 }
 
 func NewQDomNotation2(x QDomNotation_ITF) *QDomNotation {
 	defer qt.Recovering("QDomNotation::QDomNotation")
 
-	return NewQDomNotationFromPointer(C.QDomNotation_NewQDomNotation2(PointerFromQDomNotation(x)))
+	return newQDomNotationFromPointer(C.QDomNotation_NewQDomNotation2(PointerFromQDomNotation(x)))
 }
 
 func (ptr *QDomNotation) NodeType() QDomNode__NodeType {
@@ -1543,6 +1618,11 @@ func NewQDomProcessingInstructionFromPointer(ptr unsafe.Pointer) *QDomProcessing
 	return n
 }
 
+func newQDomProcessingInstructionFromPointer(ptr unsafe.Pointer) *QDomProcessingInstruction {
+	var n = NewQDomProcessingInstructionFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomProcessingInstruction) QDomProcessingInstruction_PTR() *QDomProcessingInstruction {
 	return ptr
 }
@@ -1550,13 +1630,13 @@ func (ptr *QDomProcessingInstruction) QDomProcessingInstruction_PTR() *QDomProce
 func NewQDomProcessingInstruction() *QDomProcessingInstruction {
 	defer qt.Recovering("QDomProcessingInstruction::QDomProcessingInstruction")
 
-	return NewQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction())
+	return newQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction())
 }
 
 func NewQDomProcessingInstruction2(x QDomProcessingInstruction_ITF) *QDomProcessingInstruction {
 	defer qt.Recovering("QDomProcessingInstruction::QDomProcessingInstruction")
 
-	return NewQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction2(PointerFromQDomProcessingInstruction(x)))
+	return newQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction2(PointerFromQDomProcessingInstruction(x)))
 }
 
 func (ptr *QDomProcessingInstruction) Data() string {
@@ -1616,6 +1696,11 @@ func NewQDomTextFromPointer(ptr unsafe.Pointer) *QDomText {
 	return n
 }
 
+func newQDomTextFromPointer(ptr unsafe.Pointer) *QDomText {
+	var n = NewQDomTextFromPointer(ptr)
+	return n
+}
+
 func (ptr *QDomText) QDomText_PTR() *QDomText {
 	return ptr
 }
@@ -1623,13 +1708,13 @@ func (ptr *QDomText) QDomText_PTR() *QDomText {
 func NewQDomText() *QDomText {
 	defer qt.Recovering("QDomText::QDomText")
 
-	return NewQDomTextFromPointer(C.QDomText_NewQDomText())
+	return newQDomTextFromPointer(C.QDomText_NewQDomText())
 }
 
 func NewQDomText2(x QDomText_ITF) *QDomText {
 	defer qt.Recovering("QDomText::QDomText")
 
-	return NewQDomTextFromPointer(C.QDomText_NewQDomText2(PointerFromQDomText(x)))
+	return newQDomTextFromPointer(C.QDomText_NewQDomText2(PointerFromQDomText(x)))
 }
 
 func (ptr *QDomText) NodeType() QDomNode__NodeType {
@@ -1667,6 +1752,11 @@ func PointerFromQXmlAttributes(ptr QXmlAttributes_ITF) unsafe.Pointer {
 func NewQXmlAttributesFromPointer(ptr unsafe.Pointer) *QXmlAttributes {
 	var n = new(QXmlAttributes)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlAttributesFromPointer(ptr unsafe.Pointer) *QXmlAttributes {
+	var n = NewQXmlAttributesFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlAttributes_") {
 		n.SetObjectNameAbs("QXmlAttributes_" + qt.Identifier())
 	}
@@ -1680,7 +1770,7 @@ func (ptr *QXmlAttributes) QXmlAttributes_PTR() *QXmlAttributes {
 func NewQXmlAttributes() *QXmlAttributes {
 	defer qt.Recovering("QXmlAttributes::QXmlAttributes")
 
-	return NewQXmlAttributesFromPointer(C.QXmlAttributes_NewQXmlAttributes())
+	return newQXmlAttributesFromPointer(C.QXmlAttributes_NewQXmlAttributes())
 }
 
 func (ptr *QXmlAttributes) DestroyQXmlAttributes() {
@@ -1885,6 +1975,11 @@ func PointerFromQXmlContentHandler(ptr QXmlContentHandler_ITF) unsafe.Pointer {
 func NewQXmlContentHandlerFromPointer(ptr unsafe.Pointer) *QXmlContentHandler {
 	var n = new(QXmlContentHandler)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlContentHandlerFromPointer(ptr unsafe.Pointer) *QXmlContentHandler {
+	var n = NewQXmlContentHandlerFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlContentHandler_") {
 		n.SetObjectNameAbs("QXmlContentHandler_" + qt.Identifier())
 	}
@@ -2053,6 +2148,11 @@ func PointerFromQXmlDTDHandler(ptr QXmlDTDHandler_ITF) unsafe.Pointer {
 func NewQXmlDTDHandlerFromPointer(ptr unsafe.Pointer) *QXmlDTDHandler {
 	var n = new(QXmlDTDHandler)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlDTDHandlerFromPointer(ptr unsafe.Pointer) *QXmlDTDHandler {
+	var n = NewQXmlDTDHandlerFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlDTDHandler_") {
 		n.SetObjectNameAbs("QXmlDTDHandler_" + qt.Identifier())
 	}
@@ -2141,6 +2241,11 @@ func PointerFromQXmlDeclHandler(ptr QXmlDeclHandler_ITF) unsafe.Pointer {
 func NewQXmlDeclHandlerFromPointer(ptr unsafe.Pointer) *QXmlDeclHandler {
 	var n = new(QXmlDeclHandler)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlDeclHandlerFromPointer(ptr unsafe.Pointer) *QXmlDeclHandler {
+	var n = NewQXmlDeclHandlerFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlDeclHandler_") {
 		n.SetObjectNameAbs("QXmlDeclHandler_" + qt.Identifier())
 	}
@@ -2254,6 +2359,11 @@ func PointerFromQXmlDefaultHandler(ptr QXmlDefaultHandler_ITF) unsafe.Pointer {
 func NewQXmlDefaultHandlerFromPointer(ptr unsafe.Pointer) *QXmlDefaultHandler {
 	var n = new(QXmlDefaultHandler)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlDefaultHandlerFromPointer(ptr unsafe.Pointer) *QXmlDefaultHandler {
+	var n = NewQXmlDefaultHandlerFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlDefaultHandler_") {
 		n.SetObjectNameAbs("QXmlDefaultHandler_" + qt.Identifier())
 	}
@@ -2267,7 +2377,7 @@ func (ptr *QXmlDefaultHandler) QXmlDefaultHandler_PTR() *QXmlDefaultHandler {
 func NewQXmlDefaultHandler() *QXmlDefaultHandler {
 	defer qt.Recovering("QXmlDefaultHandler::QXmlDefaultHandler")
 
-	return NewQXmlDefaultHandlerFromPointer(C.QXmlDefaultHandler_NewQXmlDefaultHandler())
+	return newQXmlDefaultHandlerFromPointer(C.QXmlDefaultHandler_NewQXmlDefaultHandler())
 }
 
 func (ptr *QXmlDefaultHandler) DestroyQXmlDefaultHandler() {
@@ -2600,6 +2710,11 @@ func PointerFromQXmlEntityResolver(ptr QXmlEntityResolver_ITF) unsafe.Pointer {
 func NewQXmlEntityResolverFromPointer(ptr unsafe.Pointer) *QXmlEntityResolver {
 	var n = new(QXmlEntityResolver)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlEntityResolverFromPointer(ptr unsafe.Pointer) *QXmlEntityResolver {
+	var n = NewQXmlEntityResolverFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlEntityResolver_") {
 		n.SetObjectNameAbs("QXmlEntityResolver_" + qt.Identifier())
 	}
@@ -2670,6 +2785,11 @@ func PointerFromQXmlErrorHandler(ptr QXmlErrorHandler_ITF) unsafe.Pointer {
 func NewQXmlErrorHandlerFromPointer(ptr unsafe.Pointer) *QXmlErrorHandler {
 	var n = new(QXmlErrorHandler)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlErrorHandlerFromPointer(ptr unsafe.Pointer) *QXmlErrorHandler {
+	var n = NewQXmlErrorHandlerFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlErrorHandler_") {
 		n.SetObjectNameAbs("QXmlErrorHandler_" + qt.Identifier())
 	}
@@ -2767,6 +2887,11 @@ func PointerFromQXmlInputSource(ptr QXmlInputSource_ITF) unsafe.Pointer {
 func NewQXmlInputSourceFromPointer(ptr unsafe.Pointer) *QXmlInputSource {
 	var n = new(QXmlInputSource)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlInputSourceFromPointer(ptr unsafe.Pointer) *QXmlInputSource {
+	var n = NewQXmlInputSourceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlInputSource_") {
 		n.SetObjectNameAbs("QXmlInputSource_" + qt.Identifier())
 	}
@@ -2780,13 +2905,13 @@ func (ptr *QXmlInputSource) QXmlInputSource_PTR() *QXmlInputSource {
 func NewQXmlInputSource() *QXmlInputSource {
 	defer qt.Recovering("QXmlInputSource::QXmlInputSource")
 
-	return NewQXmlInputSourceFromPointer(C.QXmlInputSource_NewQXmlInputSource())
+	return newQXmlInputSourceFromPointer(C.QXmlInputSource_NewQXmlInputSource())
 }
 
 func NewQXmlInputSource2(dev core.QIODevice_ITF) *QXmlInputSource {
 	defer qt.Recovering("QXmlInputSource::QXmlInputSource")
 
-	return NewQXmlInputSourceFromPointer(C.QXmlInputSource_NewQXmlInputSource2(core.PointerFromQIODevice(dev)))
+	return newQXmlInputSourceFromPointer(C.QXmlInputSource_NewQXmlInputSource2(core.PointerFromQIODevice(dev)))
 }
 
 func (ptr *QXmlInputSource) Data() string {
@@ -2993,6 +3118,11 @@ func PointerFromQXmlLexicalHandler(ptr QXmlLexicalHandler_ITF) unsafe.Pointer {
 func NewQXmlLexicalHandlerFromPointer(ptr unsafe.Pointer) *QXmlLexicalHandler {
 	var n = new(QXmlLexicalHandler)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlLexicalHandlerFromPointer(ptr unsafe.Pointer) *QXmlLexicalHandler {
+	var n = NewQXmlLexicalHandlerFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlLexicalHandler_") {
 		n.SetObjectNameAbs("QXmlLexicalHandler_" + qt.Identifier())
 	}
@@ -3126,6 +3256,11 @@ func PointerFromQXmlLocator(ptr QXmlLocator_ITF) unsafe.Pointer {
 func NewQXmlLocatorFromPointer(ptr unsafe.Pointer) *QXmlLocator {
 	var n = new(QXmlLocator)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlLocatorFromPointer(ptr unsafe.Pointer) *QXmlLocator {
+	var n = NewQXmlLocatorFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlLocator_") {
 		n.SetObjectNameAbs("QXmlLocator_" + qt.Identifier())
 	}
@@ -3208,6 +3343,11 @@ func NewQXmlNamespaceSupportFromPointer(ptr unsafe.Pointer) *QXmlNamespaceSuppor
 	return n
 }
 
+func newQXmlNamespaceSupportFromPointer(ptr unsafe.Pointer) *QXmlNamespaceSupport {
+	var n = NewQXmlNamespaceSupportFromPointer(ptr)
+	return n
+}
+
 func (ptr *QXmlNamespaceSupport) QXmlNamespaceSupport_PTR() *QXmlNamespaceSupport {
 	return ptr
 }
@@ -3215,7 +3355,7 @@ func (ptr *QXmlNamespaceSupport) QXmlNamespaceSupport_PTR() *QXmlNamespaceSuppor
 func NewQXmlNamespaceSupport() *QXmlNamespaceSupport {
 	defer qt.Recovering("QXmlNamespaceSupport::QXmlNamespaceSupport")
 
-	return NewQXmlNamespaceSupportFromPointer(C.QXmlNamespaceSupport_NewQXmlNamespaceSupport())
+	return newQXmlNamespaceSupportFromPointer(C.QXmlNamespaceSupport_NewQXmlNamespaceSupport())
 }
 
 func (ptr *QXmlNamespaceSupport) PopContext() {
@@ -3323,6 +3463,11 @@ func NewQXmlParseExceptionFromPointer(ptr unsafe.Pointer) *QXmlParseException {
 	return n
 }
 
+func newQXmlParseExceptionFromPointer(ptr unsafe.Pointer) *QXmlParseException {
+	var n = NewQXmlParseExceptionFromPointer(ptr)
+	return n
+}
+
 func (ptr *QXmlParseException) QXmlParseException_PTR() *QXmlParseException {
 	return ptr
 }
@@ -3330,13 +3475,13 @@ func (ptr *QXmlParseException) QXmlParseException_PTR() *QXmlParseException {
 func NewQXmlParseException(name string, c int, l int, p string, s string) *QXmlParseException {
 	defer qt.Recovering("QXmlParseException::QXmlParseException")
 
-	return NewQXmlParseExceptionFromPointer(C.QXmlParseException_NewQXmlParseException(C.CString(name), C.int(c), C.int(l), C.CString(p), C.CString(s)))
+	return newQXmlParseExceptionFromPointer(C.QXmlParseException_NewQXmlParseException(C.CString(name), C.int(c), C.int(l), C.CString(p), C.CString(s)))
 }
 
 func NewQXmlParseException2(other QXmlParseException_ITF) *QXmlParseException {
 	defer qt.Recovering("QXmlParseException::QXmlParseException")
 
-	return NewQXmlParseExceptionFromPointer(C.QXmlParseException_NewQXmlParseException2(PointerFromQXmlParseException(other)))
+	return newQXmlParseExceptionFromPointer(C.QXmlParseException_NewQXmlParseException2(PointerFromQXmlParseException(other)))
 }
 
 func (ptr *QXmlParseException) ColumnNumber() int {
@@ -3418,6 +3563,11 @@ func PointerFromQXmlReader(ptr QXmlReader_ITF) unsafe.Pointer {
 func NewQXmlReaderFromPointer(ptr unsafe.Pointer) *QXmlReader {
 	var n = new(QXmlReader)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlReaderFromPointer(ptr unsafe.Pointer) *QXmlReader {
+	var n = NewQXmlReaderFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlReader_") {
 		n.SetObjectNameAbs("QXmlReader_" + qt.Identifier())
 	}
@@ -3627,6 +3777,11 @@ func PointerFromQXmlSimpleReader(ptr QXmlSimpleReader_ITF) unsafe.Pointer {
 func NewQXmlSimpleReaderFromPointer(ptr unsafe.Pointer) *QXmlSimpleReader {
 	var n = new(QXmlSimpleReader)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlSimpleReaderFromPointer(ptr unsafe.Pointer) *QXmlSimpleReader {
+	var n = NewQXmlSimpleReaderFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlSimpleReader_") {
 		n.SetObjectNameAbs("QXmlSimpleReader_" + qt.Identifier())
 	}
@@ -3649,7 +3804,7 @@ func (ptr *QXmlSimpleReader) DTDHandler() *QXmlDTDHandler {
 func NewQXmlSimpleReader() *QXmlSimpleReader {
 	defer qt.Recovering("QXmlSimpleReader::QXmlSimpleReader")
 
-	return NewQXmlSimpleReaderFromPointer(C.QXmlSimpleReader_NewQXmlSimpleReader())
+	return newQXmlSimpleReaderFromPointer(C.QXmlSimpleReader_NewQXmlSimpleReader())
 }
 
 func (ptr *QXmlSimpleReader) ContentHandler() *QXmlContentHandler {

@@ -38,6 +38,11 @@ func NewQSqlDatabaseFromPointer(ptr unsafe.Pointer) *QSqlDatabase {
 	return n
 }
 
+func newQSqlDatabaseFromPointer(ptr unsafe.Pointer) *QSqlDatabase {
+	var n = NewQSqlDatabaseFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSqlDatabase) QSqlDatabase_PTR() *QSqlDatabase {
 	return ptr
 }
@@ -45,13 +50,13 @@ func (ptr *QSqlDatabase) QSqlDatabase_PTR() *QSqlDatabase {
 func NewQSqlDatabase() *QSqlDatabase {
 	defer qt.Recovering("QSqlDatabase::QSqlDatabase")
 
-	return NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase())
+	return newQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase())
 }
 
 func NewQSqlDatabase2(other QSqlDatabase_ITF) *QSqlDatabase {
 	defer qt.Recovering("QSqlDatabase::QSqlDatabase")
 
-	return NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase2(PointerFromQSqlDatabase(other)))
+	return newQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase2(PointerFromQSqlDatabase(other)))
 }
 
 func (ptr *QSqlDatabase) Close() {
@@ -326,6 +331,11 @@ func PointerFromQSqlDriver(ptr QSqlDriver_ITF) unsafe.Pointer {
 func NewQSqlDriverFromPointer(ptr unsafe.Pointer) *QSqlDriver {
 	var n = new(QSqlDriver)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSqlDriverFromPointer(ptr unsafe.Pointer) *QSqlDriver {
+	var n = NewQSqlDriverFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSqlDriver_") {
 		n.SetObjectName("QSqlDriver_" + qt.Identifier())
 	}
@@ -898,6 +908,11 @@ func NewQSqlDriverCreatorFromPointer(ptr unsafe.Pointer) *QSqlDriverCreator {
 	return n
 }
 
+func newQSqlDriverCreatorFromPointer(ptr unsafe.Pointer) *QSqlDriverCreator {
+	var n = NewQSqlDriverCreatorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSqlDriverCreator) QSqlDriverCreator_PTR() *QSqlDriverCreator {
 	return ptr
 }
@@ -928,6 +943,11 @@ func PointerFromQSqlDriverCreatorBase(ptr QSqlDriverCreatorBase_ITF) unsafe.Poin
 func NewQSqlDriverCreatorBaseFromPointer(ptr unsafe.Pointer) *QSqlDriverCreatorBase {
 	var n = new(QSqlDriverCreatorBase)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSqlDriverCreatorBaseFromPointer(ptr unsafe.Pointer) *QSqlDriverCreatorBase {
+	var n = NewQSqlDriverCreatorBaseFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QSqlDriverCreatorBase_") {
 		n.SetObjectNameAbs("QSqlDriverCreatorBase_" + qt.Identifier())
 	}
@@ -991,6 +1011,11 @@ func PointerFromQSqlDriverPlugin(ptr QSqlDriverPlugin_ITF) unsafe.Pointer {
 func NewQSqlDriverPluginFromPointer(ptr unsafe.Pointer) *QSqlDriverPlugin {
 	var n = new(QSqlDriverPlugin)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSqlDriverPluginFromPointer(ptr unsafe.Pointer) *QSqlDriverPlugin {
+	var n = NewQSqlDriverPluginFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSqlDriverPlugin_") {
 		n.SetObjectName("QSqlDriverPlugin_" + qt.Identifier())
 	}
@@ -1183,6 +1208,11 @@ func NewQSqlErrorFromPointer(ptr unsafe.Pointer) *QSqlError {
 	return n
 }
 
+func newQSqlErrorFromPointer(ptr unsafe.Pointer) *QSqlError {
+	var n = NewQSqlErrorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSqlError) QSqlError_PTR() *QSqlError {
 	return ptr
 }
@@ -1201,13 +1231,13 @@ const (
 func NewQSqlError3(other QSqlError_ITF) *QSqlError {
 	defer qt.Recovering("QSqlError::QSqlError")
 
-	return NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError3(PointerFromQSqlError(other)))
+	return newQSqlErrorFromPointer(C.QSqlError_NewQSqlError3(PointerFromQSqlError(other)))
 }
 
 func NewQSqlError(driverText string, databaseText string, ty QSqlError__ErrorType, code string) *QSqlError {
 	defer qt.Recovering("QSqlError::QSqlError")
 
-	return NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError(C.CString(driverText), C.CString(databaseText), C.int(ty), C.CString(code)))
+	return newQSqlErrorFromPointer(C.QSqlError_NewQSqlError(C.CString(driverText), C.CString(databaseText), C.int(ty), C.CString(code)))
 }
 
 func (ptr *QSqlError) DatabaseText() string {
@@ -1301,6 +1331,11 @@ func NewQSqlFieldFromPointer(ptr unsafe.Pointer) *QSqlField {
 	return n
 }
 
+func newQSqlFieldFromPointer(ptr unsafe.Pointer) *QSqlField {
+	var n = NewQSqlFieldFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSqlField) QSqlField_PTR() *QSqlField {
 	return ptr
 }
@@ -1317,7 +1352,7 @@ const (
 func NewQSqlField2(other QSqlField_ITF) *QSqlField {
 	defer qt.Recovering("QSqlField::QSqlField")
 
-	return NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField2(PointerFromQSqlField(other)))
+	return newQSqlFieldFromPointer(C.QSqlField_NewQSqlField2(PointerFromQSqlField(other)))
 }
 
 func (ptr *QSqlField) Clear() {
@@ -1537,6 +1572,11 @@ func NewQSqlIndexFromPointer(ptr unsafe.Pointer) *QSqlIndex {
 	return n
 }
 
+func newQSqlIndexFromPointer(ptr unsafe.Pointer) *QSqlIndex {
+	var n = NewQSqlIndexFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSqlIndex) QSqlIndex_PTR() *QSqlIndex {
 	return ptr
 }
@@ -1544,13 +1584,13 @@ func (ptr *QSqlIndex) QSqlIndex_PTR() *QSqlIndex {
 func NewQSqlIndex2(other QSqlIndex_ITF) *QSqlIndex {
 	defer qt.Recovering("QSqlIndex::QSqlIndex")
 
-	return NewQSqlIndexFromPointer(C.QSqlIndex_NewQSqlIndex2(PointerFromQSqlIndex(other)))
+	return newQSqlIndexFromPointer(C.QSqlIndex_NewQSqlIndex2(PointerFromQSqlIndex(other)))
 }
 
 func NewQSqlIndex(cursorname string, name string) *QSqlIndex {
 	defer qt.Recovering("QSqlIndex::QSqlIndex")
 
-	return NewQSqlIndexFromPointer(C.QSqlIndex_NewQSqlIndex(C.CString(cursorname), C.CString(name)))
+	return newQSqlIndexFromPointer(C.QSqlIndex_NewQSqlIndex(C.CString(cursorname), C.CString(name)))
 }
 
 func (ptr *QSqlIndex) Append(field QSqlField_ITF) {
@@ -1657,6 +1697,11 @@ func NewQSqlQueryFromPointer(ptr unsafe.Pointer) *QSqlQuery {
 	return n
 }
 
+func newQSqlQueryFromPointer(ptr unsafe.Pointer) *QSqlQuery {
+	var n = NewQSqlQueryFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSqlQuery) QSqlQuery_PTR() *QSqlQuery {
 	return ptr
 }
@@ -1672,25 +1717,25 @@ const (
 func NewQSqlQuery3(db QSqlDatabase_ITF) *QSqlQuery {
 	defer qt.Recovering("QSqlQuery::QSqlQuery")
 
-	return NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery3(PointerFromQSqlDatabase(db)))
+	return newQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery3(PointerFromQSqlDatabase(db)))
 }
 
 func NewQSqlQuery(result QSqlResult_ITF) *QSqlQuery {
 	defer qt.Recovering("QSqlQuery::QSqlQuery")
 
-	return NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery(PointerFromQSqlResult(result)))
+	return newQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery(PointerFromQSqlResult(result)))
 }
 
 func NewQSqlQuery4(other QSqlQuery_ITF) *QSqlQuery {
 	defer qt.Recovering("QSqlQuery::QSqlQuery")
 
-	return NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery4(PointerFromQSqlQuery(other)))
+	return newQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery4(PointerFromQSqlQuery(other)))
 }
 
 func NewQSqlQuery2(query string, db QSqlDatabase_ITF) *QSqlQuery {
 	defer qt.Recovering("QSqlQuery::QSqlQuery")
 
-	return NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery2(C.CString(query), PointerFromQSqlDatabase(db)))
+	return newQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery2(C.CString(query), PointerFromQSqlDatabase(db)))
 }
 
 func (ptr *QSqlQuery) At() int {
@@ -1996,6 +2041,11 @@ func PointerFromQSqlQueryModel(ptr QSqlQueryModel_ITF) unsafe.Pointer {
 func NewQSqlQueryModelFromPointer(ptr unsafe.Pointer) *QSqlQueryModel {
 	var n = new(QSqlQueryModel)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSqlQueryModelFromPointer(ptr unsafe.Pointer) *QSqlQueryModel {
+	var n = NewQSqlQueryModelFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSqlQueryModel_") {
 		n.SetObjectName("QSqlQueryModel_" + qt.Identifier())
 	}
@@ -2502,6 +2552,11 @@ func NewQSqlRecordFromPointer(ptr unsafe.Pointer) *QSqlRecord {
 	return n
 }
 
+func newQSqlRecordFromPointer(ptr unsafe.Pointer) *QSqlRecord {
+	var n = NewQSqlRecordFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSqlRecord) QSqlRecord_PTR() *QSqlRecord {
 	return ptr
 }
@@ -2509,13 +2564,13 @@ func (ptr *QSqlRecord) QSqlRecord_PTR() *QSqlRecord {
 func NewQSqlRecord() *QSqlRecord {
 	defer qt.Recovering("QSqlRecord::QSqlRecord")
 
-	return NewQSqlRecordFromPointer(C.QSqlRecord_NewQSqlRecord())
+	return newQSqlRecordFromPointer(C.QSqlRecord_NewQSqlRecord())
 }
 
 func NewQSqlRecord2(other QSqlRecord_ITF) *QSqlRecord {
 	defer qt.Recovering("QSqlRecord::QSqlRecord")
 
-	return NewQSqlRecordFromPointer(C.QSqlRecord_NewQSqlRecord2(PointerFromQSqlRecord(other)))
+	return newQSqlRecordFromPointer(C.QSqlRecord_NewQSqlRecord2(PointerFromQSqlRecord(other)))
 }
 
 func (ptr *QSqlRecord) Append(field QSqlField_ITF) {
@@ -2726,6 +2781,11 @@ func NewQSqlRelationFromPointer(ptr unsafe.Pointer) *QSqlRelation {
 	return n
 }
 
+func newQSqlRelationFromPointer(ptr unsafe.Pointer) *QSqlRelation {
+	var n = NewQSqlRelationFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSqlRelation) QSqlRelation_PTR() *QSqlRelation {
 	return ptr
 }
@@ -2733,13 +2793,13 @@ func (ptr *QSqlRelation) QSqlRelation_PTR() *QSqlRelation {
 func NewQSqlRelation() *QSqlRelation {
 	defer qt.Recovering("QSqlRelation::QSqlRelation")
 
-	return NewQSqlRelationFromPointer(C.QSqlRelation_NewQSqlRelation())
+	return newQSqlRelationFromPointer(C.QSqlRelation_NewQSqlRelation())
 }
 
 func NewQSqlRelation2(tableName string, indexColumn string, displayColumn string) *QSqlRelation {
 	defer qt.Recovering("QSqlRelation::QSqlRelation")
 
-	return NewQSqlRelationFromPointer(C.QSqlRelation_NewQSqlRelation2(C.CString(tableName), C.CString(indexColumn), C.CString(displayColumn)))
+	return newQSqlRelationFromPointer(C.QSqlRelation_NewQSqlRelation2(C.CString(tableName), C.CString(indexColumn), C.CString(displayColumn)))
 }
 
 func (ptr *QSqlRelation) DisplayColumn() string {
@@ -2807,6 +2867,11 @@ func NewQSqlRelationalDelegateFromPointer(ptr unsafe.Pointer) *QSqlRelationalDel
 	return n
 }
 
+func newQSqlRelationalDelegateFromPointer(ptr unsafe.Pointer) *QSqlRelationalDelegate {
+	var n = NewQSqlRelationalDelegateFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSqlRelationalDelegate) QSqlRelationalDelegate_PTR() *QSqlRelationalDelegate {
 	return ptr
 }
@@ -2830,6 +2895,11 @@ func PointerFromQSqlRelationalTableModel(ptr QSqlRelationalTableModel_ITF) unsaf
 func NewQSqlRelationalTableModelFromPointer(ptr unsafe.Pointer) *QSqlRelationalTableModel {
 	var n = new(QSqlRelationalTableModel)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSqlRelationalTableModelFromPointer(ptr unsafe.Pointer) *QSqlRelationalTableModel {
+	var n = NewQSqlRelationalTableModelFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSqlRelationalTableModel_") {
 		n.SetObjectName("QSqlRelationalTableModel_" + qt.Identifier())
 	}
@@ -3559,6 +3629,11 @@ func PointerFromQSqlResult(ptr QSqlResult_ITF) unsafe.Pointer {
 func NewQSqlResultFromPointer(ptr unsafe.Pointer) *QSqlResult {
 	var n = new(QSqlResult)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSqlResultFromPointer(ptr unsafe.Pointer) *QSqlResult {
+	var n = NewQSqlResultFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QSqlResult_") {
 		n.SetObjectNameAbs("QSqlResult_" + qt.Identifier())
 	}
@@ -3864,6 +3939,11 @@ func PointerFromQSqlTableModel(ptr QSqlTableModel_ITF) unsafe.Pointer {
 func NewQSqlTableModelFromPointer(ptr unsafe.Pointer) *QSqlTableModel {
 	var n = new(QSqlTableModel)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSqlTableModelFromPointer(ptr unsafe.Pointer) *QSqlTableModel {
+	var n = NewQSqlTableModelFromPointer(ptr)
 	for len(n.ObjectName()) < len("QSqlTableModel_") {
 		n.SetObjectName("QSqlTableModel_" + qt.Identifier())
 	}

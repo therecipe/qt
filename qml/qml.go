@@ -29,6 +29,11 @@ func PointerFromQJSEngine(ptr QJSEngine_ITF) unsafe.Pointer {
 func NewQJSEngineFromPointer(ptr unsafe.Pointer) *QJSEngine {
 	var n = new(QJSEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQJSEngineFromPointer(ptr unsafe.Pointer) *QJSEngine {
+	var n = NewQJSEngineFromPointer(ptr)
 	for len(n.ObjectName()) < len("QJSEngine_") {
 		n.SetObjectName("QJSEngine_" + qt.Identifier())
 	}
@@ -42,13 +47,13 @@ func (ptr *QJSEngine) QJSEngine_PTR() *QJSEngine {
 func NewQJSEngine() *QJSEngine {
 	defer qt.Recovering("QJSEngine::QJSEngine")
 
-	return NewQJSEngineFromPointer(C.QJSEngine_NewQJSEngine())
+	return newQJSEngineFromPointer(C.QJSEngine_NewQJSEngine())
 }
 
 func NewQJSEngine2(parent core.QObject_ITF) *QJSEngine {
 	defer qt.Recovering("QJSEngine::QJSEngine")
 
-	return NewQJSEngineFromPointer(C.QJSEngine_NewQJSEngine2(core.PointerFromQObject(parent)))
+	return newQJSEngineFromPointer(C.QJSEngine_NewQJSEngine2(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QJSEngine) CollectGarbage() {
@@ -276,6 +281,11 @@ func NewQJSValueFromPointer(ptr unsafe.Pointer) *QJSValue {
 	return n
 }
 
+func newQJSValueFromPointer(ptr unsafe.Pointer) *QJSValue {
+	var n = NewQJSValueFromPointer(ptr)
+	return n
+}
+
 func (ptr *QJSValue) QJSValue_PTR() *QJSValue {
 	return ptr
 }
@@ -291,49 +301,49 @@ const (
 func NewQJSValue3(other QJSValue_ITF) *QJSValue {
 	defer qt.Recovering("QJSValue::QJSValue")
 
-	return NewQJSValueFromPointer(C.QJSValue_NewQJSValue3(PointerFromQJSValue(other)))
+	return newQJSValueFromPointer(C.QJSValue_NewQJSValue3(PointerFromQJSValue(other)))
 }
 
 func NewQJSValue(value QJSValue__SpecialValue) *QJSValue {
 	defer qt.Recovering("QJSValue::QJSValue")
 
-	return NewQJSValueFromPointer(C.QJSValue_NewQJSValue(C.int(value)))
+	return newQJSValueFromPointer(C.QJSValue_NewQJSValue(C.int(value)))
 }
 
 func NewQJSValue4(value bool) *QJSValue {
 	defer qt.Recovering("QJSValue::QJSValue")
 
-	return NewQJSValueFromPointer(C.QJSValue_NewQJSValue4(C.int(qt.GoBoolToInt(value))))
+	return newQJSValueFromPointer(C.QJSValue_NewQJSValue4(C.int(qt.GoBoolToInt(value))))
 }
 
 func NewQJSValue2(other QJSValue_ITF) *QJSValue {
 	defer qt.Recovering("QJSValue::QJSValue")
 
-	return NewQJSValueFromPointer(C.QJSValue_NewQJSValue2(PointerFromQJSValue(other)))
+	return newQJSValueFromPointer(C.QJSValue_NewQJSValue2(PointerFromQJSValue(other)))
 }
 
 func NewQJSValue9(value core.QLatin1String_ITF) *QJSValue {
 	defer qt.Recovering("QJSValue::QJSValue")
 
-	return NewQJSValueFromPointer(C.QJSValue_NewQJSValue9(core.PointerFromQLatin1String(value)))
+	return newQJSValueFromPointer(C.QJSValue_NewQJSValue9(core.PointerFromQLatin1String(value)))
 }
 
 func NewQJSValue8(value string) *QJSValue {
 	defer qt.Recovering("QJSValue::QJSValue")
 
-	return NewQJSValueFromPointer(C.QJSValue_NewQJSValue8(C.CString(value)))
+	return newQJSValueFromPointer(C.QJSValue_NewQJSValue8(C.CString(value)))
 }
 
 func NewQJSValue10(value string) *QJSValue {
 	defer qt.Recovering("QJSValue::QJSValue")
 
-	return NewQJSValueFromPointer(C.QJSValue_NewQJSValue10(C.CString(value)))
+	return newQJSValueFromPointer(C.QJSValue_NewQJSValue10(C.CString(value)))
 }
 
 func NewQJSValue5(value int) *QJSValue {
 	defer qt.Recovering("QJSValue::QJSValue")
 
-	return NewQJSValueFromPointer(C.QJSValue_NewQJSValue5(C.int(value)))
+	return newQJSValueFromPointer(C.QJSValue_NewQJSValue5(C.int(value)))
 }
 
 func (ptr *QJSValue) DeleteProperty(name string) bool {
@@ -614,6 +624,11 @@ func NewQJSValueIteratorFromPointer(ptr unsafe.Pointer) *QJSValueIterator {
 	return n
 }
 
+func newQJSValueIteratorFromPointer(ptr unsafe.Pointer) *QJSValueIterator {
+	var n = NewQJSValueIteratorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QJSValueIterator) QJSValueIterator_PTR() *QJSValueIterator {
 	return ptr
 }
@@ -644,6 +659,11 @@ func PointerFromQQmlAbstractUrlInterceptor(ptr QQmlAbstractUrlInterceptor_ITF) u
 func NewQQmlAbstractUrlInterceptorFromPointer(ptr unsafe.Pointer) *QQmlAbstractUrlInterceptor {
 	var n = new(QQmlAbstractUrlInterceptor)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlAbstractUrlInterceptorFromPointer(ptr unsafe.Pointer) *QQmlAbstractUrlInterceptor {
+	var n = NewQQmlAbstractUrlInterceptorFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QQmlAbstractUrlInterceptor_") {
 		n.SetObjectNameAbs("QQmlAbstractUrlInterceptor_" + qt.Identifier())
 	}
@@ -717,6 +737,11 @@ func PointerFromQQmlApplicationEngine(ptr QQmlApplicationEngine_ITF) unsafe.Poin
 func NewQQmlApplicationEngineFromPointer(ptr unsafe.Pointer) *QQmlApplicationEngine {
 	var n = new(QQmlApplicationEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlApplicationEngineFromPointer(ptr unsafe.Pointer) *QQmlApplicationEngine {
+	var n = NewQQmlApplicationEngineFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlApplicationEngine_") {
 		n.SetObjectName("QQmlApplicationEngine_" + qt.Identifier())
 	}
@@ -730,19 +755,19 @@ func (ptr *QQmlApplicationEngine) QQmlApplicationEngine_PTR() *QQmlApplicationEn
 func NewQQmlApplicationEngine(parent core.QObject_ITF) *QQmlApplicationEngine {
 	defer qt.Recovering("QQmlApplicationEngine::QQmlApplicationEngine")
 
-	return NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine(core.PointerFromQObject(parent)))
+	return newQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine(core.PointerFromQObject(parent)))
 }
 
 func NewQQmlApplicationEngine3(filePath string, parent core.QObject_ITF) *QQmlApplicationEngine {
 	defer qt.Recovering("QQmlApplicationEngine::QQmlApplicationEngine")
 
-	return NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine3(C.CString(filePath), core.PointerFromQObject(parent)))
+	return newQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine3(C.CString(filePath), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlApplicationEngine2(url core.QUrl_ITF, parent core.QObject_ITF) *QQmlApplicationEngine {
 	defer qt.Recovering("QQmlApplicationEngine::QQmlApplicationEngine")
 
-	return NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine2(core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
+	return newQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine2(core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlApplicationEngine) Load2(filePath string) {
@@ -968,6 +993,11 @@ func PointerFromQQmlComponent(ptr QQmlComponent_ITF) unsafe.Pointer {
 func NewQQmlComponentFromPointer(ptr unsafe.Pointer) *QQmlComponent {
 	var n = new(QQmlComponent)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlComponentFromPointer(ptr unsafe.Pointer) *QQmlComponent {
+	var n = NewQQmlComponentFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlComponent_") {
 		n.SetObjectName("QQmlComponent_" + qt.Identifier())
 	}
@@ -1026,31 +1056,31 @@ func (ptr *QQmlComponent) Url() *core.QUrl {
 func NewQQmlComponent(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlComponent {
 	defer qt.Recovering("QQmlComponent::QQmlComponent")
 
-	return NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
+	return newQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlComponent4(engine QQmlEngine_ITF, fileName string, mode QQmlComponent__CompilationMode, parent core.QObject_ITF) *QQmlComponent {
 	defer qt.Recovering("QQmlComponent::QQmlComponent")
 
-	return NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent4(PointerFromQQmlEngine(engine), C.CString(fileName), C.int(mode), core.PointerFromQObject(parent)))
+	return newQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent4(PointerFromQQmlEngine(engine), C.CString(fileName), C.int(mode), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlComponent3(engine QQmlEngine_ITF, fileName string, parent core.QObject_ITF) *QQmlComponent {
 	defer qt.Recovering("QQmlComponent::QQmlComponent")
 
-	return NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent3(PointerFromQQmlEngine(engine), C.CString(fileName), core.PointerFromQObject(parent)))
+	return newQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent3(PointerFromQQmlEngine(engine), C.CString(fileName), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlComponent6(engine QQmlEngine_ITF, url core.QUrl_ITF, mode QQmlComponent__CompilationMode, parent core.QObject_ITF) *QQmlComponent {
 	defer qt.Recovering("QQmlComponent::QQmlComponent")
 
-	return NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent6(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), C.int(mode), core.PointerFromQObject(parent)))
+	return newQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent6(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), C.int(mode), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlComponent5(engine QQmlEngine_ITF, url core.QUrl_ITF, parent core.QObject_ITF) *QQmlComponent {
 	defer qt.Recovering("QQmlComponent::QQmlComponent")
 
-	return NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent5(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
+	return newQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent5(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlComponent) BeginCreate(publicContext QQmlContext_ITF) *core.QObject {
@@ -1428,6 +1458,11 @@ func PointerFromQQmlContext(ptr QQmlContext_ITF) unsafe.Pointer {
 func NewQQmlContextFromPointer(ptr unsafe.Pointer) *QQmlContext {
 	var n = new(QQmlContext)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlContextFromPointer(ptr unsafe.Pointer) *QQmlContext {
+	var n = NewQQmlContextFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlContext_") {
 		n.SetObjectName("QQmlContext_" + qt.Identifier())
 	}
@@ -1441,13 +1476,13 @@ func (ptr *QQmlContext) QQmlContext_PTR() *QQmlContext {
 func NewQQmlContext2(parentContext QQmlContext_ITF, parent core.QObject_ITF) *QQmlContext {
 	defer qt.Recovering("QQmlContext::QQmlContext")
 
-	return NewQQmlContextFromPointer(C.QQmlContext_NewQQmlContext2(PointerFromQQmlContext(parentContext), core.PointerFromQObject(parent)))
+	return newQQmlContextFromPointer(C.QQmlContext_NewQQmlContext2(PointerFromQQmlContext(parentContext), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlContext(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlContext {
 	defer qt.Recovering("QQmlContext::QQmlContext")
 
-	return NewQQmlContextFromPointer(C.QQmlContext_NewQQmlContext(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
+	return newQQmlContextFromPointer(C.QQmlContext_NewQQmlContext(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlContext) BaseUrl() *core.QUrl {
@@ -1717,6 +1752,11 @@ func PointerFromQQmlEngine(ptr QQmlEngine_ITF) unsafe.Pointer {
 func NewQQmlEngineFromPointer(ptr unsafe.Pointer) *QQmlEngine {
 	var n = new(QQmlEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlEngineFromPointer(ptr unsafe.Pointer) *QQmlEngine {
+	var n = NewQQmlEngineFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlEngine_") {
 		n.SetObjectName("QQmlEngine_" + qt.Identifier())
 	}
@@ -1755,7 +1795,7 @@ func (ptr *QQmlEngine) SetOfflineStoragePath(dir string) {
 func NewQQmlEngine(parent core.QObject_ITF) *QQmlEngine {
 	defer qt.Recovering("QQmlEngine::QQmlEngine")
 
-	return NewQQmlEngineFromPointer(C.QQmlEngine_NewQQmlEngine(core.PointerFromQObject(parent)))
+	return newQQmlEngineFromPointer(C.QQmlEngine_NewQQmlEngine(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlEngine) AddImageProvider(providerId string, provider QQmlImageProviderBase_ITF) {
@@ -2177,6 +2217,11 @@ func NewQQmlErrorFromPointer(ptr unsafe.Pointer) *QQmlError {
 	return n
 }
 
+func newQQmlErrorFromPointer(ptr unsafe.Pointer) *QQmlError {
+	var n = NewQQmlErrorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QQmlError) QQmlError_PTR() *QQmlError {
 	return ptr
 }
@@ -2184,13 +2229,13 @@ func (ptr *QQmlError) QQmlError_PTR() *QQmlError {
 func NewQQmlError() *QQmlError {
 	defer qt.Recovering("QQmlError::QQmlError")
 
-	return NewQQmlErrorFromPointer(C.QQmlError_NewQQmlError())
+	return newQQmlErrorFromPointer(C.QQmlError_NewQQmlError())
 }
 
 func NewQQmlError2(other QQmlError_ITF) *QQmlError {
 	defer qt.Recovering("QQmlError::QQmlError")
 
-	return NewQQmlErrorFromPointer(C.QQmlError_NewQQmlError2(PointerFromQQmlError(other)))
+	return newQQmlErrorFromPointer(C.QQmlError_NewQQmlError2(PointerFromQQmlError(other)))
 }
 
 func (ptr *QQmlError) Column() int {
@@ -2315,6 +2360,11 @@ func PointerFromQQmlExpression(ptr QQmlExpression_ITF) unsafe.Pointer {
 func NewQQmlExpressionFromPointer(ptr unsafe.Pointer) *QQmlExpression {
 	var n = new(QQmlExpression)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlExpressionFromPointer(ptr unsafe.Pointer) *QQmlExpression {
+	var n = NewQQmlExpressionFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlExpression_") {
 		n.SetObjectName("QQmlExpression_" + qt.Identifier())
 	}
@@ -2328,19 +2378,19 @@ func (ptr *QQmlExpression) QQmlExpression_PTR() *QQmlExpression {
 func NewQQmlExpression() *QQmlExpression {
 	defer qt.Recovering("QQmlExpression::QQmlExpression")
 
-	return NewQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression())
+	return newQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression())
 }
 
 func NewQQmlExpression2(ctxt QQmlContext_ITF, scope core.QObject_ITF, expression string, parent core.QObject_ITF) *QQmlExpression {
 	defer qt.Recovering("QQmlExpression::QQmlExpression")
 
-	return NewQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression2(PointerFromQQmlContext(ctxt), core.PointerFromQObject(scope), C.CString(expression), core.PointerFromQObject(parent)))
+	return newQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression2(PointerFromQQmlContext(ctxt), core.PointerFromQObject(scope), C.CString(expression), core.PointerFromQObject(parent)))
 }
 
 func NewQQmlExpression3(script QQmlScriptString_ITF, ctxt QQmlContext_ITF, scope core.QObject_ITF, parent core.QObject_ITF) *QQmlExpression {
 	defer qt.Recovering("QQmlExpression::QQmlExpression")
 
-	return NewQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression3(PointerFromQQmlScriptString(script), PointerFromQQmlContext(ctxt), core.PointerFromQObject(scope), core.PointerFromQObject(parent)))
+	return newQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression3(PointerFromQQmlScriptString(script), PointerFromQQmlContext(ctxt), core.PointerFromQObject(scope), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlExpression) ClearError() {
@@ -2664,6 +2714,11 @@ func PointerFromQQmlExtensionPlugin(ptr QQmlExtensionPlugin_ITF) unsafe.Pointer 
 func NewQQmlExtensionPluginFromPointer(ptr unsafe.Pointer) *QQmlExtensionPlugin {
 	var n = new(QQmlExtensionPlugin)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlExtensionPluginFromPointer(ptr unsafe.Pointer) *QQmlExtensionPlugin {
+	var n = NewQQmlExtensionPluginFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlExtensionPlugin_") {
 		n.SetObjectName("QQmlExtensionPlugin_" + qt.Identifier())
 	}
@@ -2845,6 +2900,11 @@ func PointerFromQQmlFileSelector(ptr QQmlFileSelector_ITF) unsafe.Pointer {
 func NewQQmlFileSelectorFromPointer(ptr unsafe.Pointer) *QQmlFileSelector {
 	var n = new(QQmlFileSelector)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlFileSelectorFromPointer(ptr unsafe.Pointer) *QQmlFileSelector {
+	var n = NewQQmlFileSelectorFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlFileSelector_") {
 		n.SetObjectName("QQmlFileSelector_" + qt.Identifier())
 	}
@@ -2858,7 +2918,7 @@ func (ptr *QQmlFileSelector) QQmlFileSelector_PTR() *QQmlFileSelector {
 func NewQQmlFileSelector(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlFileSelector {
 	defer qt.Recovering("QQmlFileSelector::QQmlFileSelector")
 
-	return NewQQmlFileSelectorFromPointer(C.QQmlFileSelector_NewQQmlFileSelector(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
+	return newQQmlFileSelectorFromPointer(C.QQmlFileSelector_NewQQmlFileSelector(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 }
 
 func QQmlFileSelector_Get(engine QQmlEngine_ITF) *QQmlFileSelector {
@@ -3064,6 +3124,11 @@ func NewQQmlImageProviderBaseFromPointer(ptr unsafe.Pointer) *QQmlImageProviderB
 	return n
 }
 
+func newQQmlImageProviderBaseFromPointer(ptr unsafe.Pointer) *QQmlImageProviderBase {
+	var n = NewQQmlImageProviderBaseFromPointer(ptr)
+	return n
+}
+
 func (ptr *QQmlImageProviderBase) QQmlImageProviderBase_PTR() *QQmlImageProviderBase {
 	return ptr
 }
@@ -3129,6 +3194,11 @@ func PointerFromQQmlIncubationController(ptr QQmlIncubationController_ITF) unsaf
 func NewQQmlIncubationControllerFromPointer(ptr unsafe.Pointer) *QQmlIncubationController {
 	var n = new(QQmlIncubationController)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlIncubationControllerFromPointer(ptr unsafe.Pointer) *QQmlIncubationController {
+	var n = NewQQmlIncubationControllerFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QQmlIncubationController_") {
 		n.SetObjectNameAbs("QQmlIncubationController_" + qt.Identifier())
 	}
@@ -3142,7 +3212,7 @@ func (ptr *QQmlIncubationController) QQmlIncubationController_PTR() *QQmlIncubat
 func NewQQmlIncubationController() *QQmlIncubationController {
 	defer qt.Recovering("QQmlIncubationController::QQmlIncubationController")
 
-	return NewQQmlIncubationControllerFromPointer(C.QQmlIncubationController_NewQQmlIncubationController())
+	return newQQmlIncubationControllerFromPointer(C.QQmlIncubationController_NewQQmlIncubationController())
 }
 
 func (ptr *QQmlIncubationController) Engine() *QQmlEngine {
@@ -3259,6 +3329,11 @@ func PointerFromQQmlIncubator(ptr QQmlIncubator_ITF) unsafe.Pointer {
 func NewQQmlIncubatorFromPointer(ptr unsafe.Pointer) *QQmlIncubator {
 	var n = new(QQmlIncubator)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlIncubatorFromPointer(ptr unsafe.Pointer) *QQmlIncubator {
+	var n = NewQQmlIncubatorFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QQmlIncubator_") {
 		n.SetObjectNameAbs("QQmlIncubator_" + qt.Identifier())
 	}
@@ -3291,7 +3366,7 @@ const (
 func NewQQmlIncubator(mode QQmlIncubator__IncubationMode) *QQmlIncubator {
 	defer qt.Recovering("QQmlIncubator::QQmlIncubator")
 
-	return NewQQmlIncubatorFromPointer(C.QQmlIncubator_NewQQmlIncubator(C.int(mode)))
+	return newQQmlIncubatorFromPointer(C.QQmlIncubator_NewQQmlIncubator(C.int(mode)))
 }
 
 func (ptr *QQmlIncubator) Clear() {
@@ -3509,6 +3584,11 @@ func NewQQmlListPropertyFromPointer(ptr unsafe.Pointer) *QQmlListProperty {
 	return n
 }
 
+func newQQmlListPropertyFromPointer(ptr unsafe.Pointer) *QQmlListProperty {
+	var n = NewQQmlListPropertyFromPointer(ptr)
+	return n
+}
+
 func (ptr *QQmlListProperty) QQmlListProperty_PTR() *QQmlListProperty {
 	return ptr
 }
@@ -3542,6 +3622,11 @@ func NewQQmlListReferenceFromPointer(ptr unsafe.Pointer) *QQmlListReference {
 	return n
 }
 
+func newQQmlListReferenceFromPointer(ptr unsafe.Pointer) *QQmlListReference {
+	var n = NewQQmlListReferenceFromPointer(ptr)
+	return n
+}
+
 func (ptr *QQmlListReference) QQmlListReference_PTR() *QQmlListReference {
 	return ptr
 }
@@ -3549,13 +3634,13 @@ func (ptr *QQmlListReference) QQmlListReference_PTR() *QQmlListReference {
 func NewQQmlListReference() *QQmlListReference {
 	defer qt.Recovering("QQmlListReference::QQmlListReference")
 
-	return NewQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference())
+	return newQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference())
 }
 
 func NewQQmlListReference2(object core.QObject_ITF, property string, engine QQmlEngine_ITF) *QQmlListReference {
 	defer qt.Recovering("QQmlListReference::QQmlListReference")
 
-	return NewQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference2(core.PointerFromQObject(object), C.CString(property), PointerFromQQmlEngine(engine)))
+	return newQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference2(core.PointerFromQObject(object), C.CString(property), PointerFromQQmlEngine(engine)))
 }
 
 func (ptr *QQmlListReference) Append(object core.QObject_ITF) bool {
@@ -3701,6 +3786,11 @@ func PointerFromQQmlNetworkAccessManagerFactory(ptr QQmlNetworkAccessManagerFact
 func NewQQmlNetworkAccessManagerFactoryFromPointer(ptr unsafe.Pointer) *QQmlNetworkAccessManagerFactory {
 	var n = new(QQmlNetworkAccessManagerFactory)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlNetworkAccessManagerFactoryFromPointer(ptr unsafe.Pointer) *QQmlNetworkAccessManagerFactory {
+	var n = NewQQmlNetworkAccessManagerFactoryFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QQmlNetworkAccessManagerFactory_") {
 		n.SetObjectNameAbs("QQmlNetworkAccessManagerFactory_" + qt.Identifier())
 	}
@@ -3774,6 +3864,11 @@ func NewQQmlParserStatusFromPointer(ptr unsafe.Pointer) *QQmlParserStatus {
 	return n
 }
 
+func newQQmlParserStatusFromPointer(ptr unsafe.Pointer) *QQmlParserStatus {
+	var n = NewQQmlParserStatusFromPointer(ptr)
+	return n
+}
+
 func (ptr *QQmlParserStatus) QQmlParserStatus_PTR() *QQmlParserStatus {
 	return ptr
 }
@@ -3823,6 +3918,11 @@ func NewQQmlPropertyFromPointer(ptr unsafe.Pointer) *QQmlProperty {
 	return n
 }
 
+func newQQmlPropertyFromPointer(ptr unsafe.Pointer) *QQmlProperty {
+	var n = NewQQmlPropertyFromPointer(ptr)
+	return n
+}
+
 func (ptr *QQmlProperty) QQmlProperty_PTR() *QQmlProperty {
 	return ptr
 }
@@ -3849,49 +3949,49 @@ const (
 func NewQQmlProperty() *QQmlProperty {
 	defer qt.Recovering("QQmlProperty::QQmlProperty")
 
-	return NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty())
+	return newQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty())
 }
 
 func NewQQmlProperty2(obj core.QObject_ITF) *QQmlProperty {
 	defer qt.Recovering("QQmlProperty::QQmlProperty")
 
-	return NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty2(core.PointerFromQObject(obj)))
+	return newQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty2(core.PointerFromQObject(obj)))
 }
 
 func NewQQmlProperty3(obj core.QObject_ITF, ctxt QQmlContext_ITF) *QQmlProperty {
 	defer qt.Recovering("QQmlProperty::QQmlProperty")
 
-	return NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty3(core.PointerFromQObject(obj), PointerFromQQmlContext(ctxt)))
+	return newQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty3(core.PointerFromQObject(obj), PointerFromQQmlContext(ctxt)))
 }
 
 func NewQQmlProperty4(obj core.QObject_ITF, engine QQmlEngine_ITF) *QQmlProperty {
 	defer qt.Recovering("QQmlProperty::QQmlProperty")
 
-	return NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty4(core.PointerFromQObject(obj), PointerFromQQmlEngine(engine)))
+	return newQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty4(core.PointerFromQObject(obj), PointerFromQQmlEngine(engine)))
 }
 
 func NewQQmlProperty5(obj core.QObject_ITF, name string) *QQmlProperty {
 	defer qt.Recovering("QQmlProperty::QQmlProperty")
 
-	return NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty5(core.PointerFromQObject(obj), C.CString(name)))
+	return newQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty5(core.PointerFromQObject(obj), C.CString(name)))
 }
 
 func NewQQmlProperty6(obj core.QObject_ITF, name string, ctxt QQmlContext_ITF) *QQmlProperty {
 	defer qt.Recovering("QQmlProperty::QQmlProperty")
 
-	return NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty6(core.PointerFromQObject(obj), C.CString(name), PointerFromQQmlContext(ctxt)))
+	return newQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty6(core.PointerFromQObject(obj), C.CString(name), PointerFromQQmlContext(ctxt)))
 }
 
 func NewQQmlProperty7(obj core.QObject_ITF, name string, engine QQmlEngine_ITF) *QQmlProperty {
 	defer qt.Recovering("QQmlProperty::QQmlProperty")
 
-	return NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty7(core.PointerFromQObject(obj), C.CString(name), PointerFromQQmlEngine(engine)))
+	return newQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty7(core.PointerFromQObject(obj), C.CString(name), PointerFromQQmlEngine(engine)))
 }
 
 func NewQQmlProperty8(other QQmlProperty_ITF) *QQmlProperty {
 	defer qt.Recovering("QQmlProperty::QQmlProperty")
 
-	return NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty8(PointerFromQQmlProperty(other)))
+	return newQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty8(PointerFromQQmlProperty(other)))
 }
 
 func (ptr *QQmlProperty) ConnectNotifySignal(dest core.QObject_ITF, slot string) bool {
@@ -4120,6 +4220,11 @@ func PointerFromQQmlPropertyMap(ptr QQmlPropertyMap_ITF) unsafe.Pointer {
 func NewQQmlPropertyMapFromPointer(ptr unsafe.Pointer) *QQmlPropertyMap {
 	var n = new(QQmlPropertyMap)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlPropertyMapFromPointer(ptr unsafe.Pointer) *QQmlPropertyMap {
+	var n = NewQQmlPropertyMapFromPointer(ptr)
 	for len(n.ObjectName()) < len("QQmlPropertyMap_") {
 		n.SetObjectName("QQmlPropertyMap_" + qt.Identifier())
 	}
@@ -4133,7 +4238,7 @@ func (ptr *QQmlPropertyMap) QQmlPropertyMap_PTR() *QQmlPropertyMap {
 func NewQQmlPropertyMap(parent core.QObject_ITF) *QQmlPropertyMap {
 	defer qt.Recovering("QQmlPropertyMap::QQmlPropertyMap")
 
-	return NewQQmlPropertyMapFromPointer(C.QQmlPropertyMap_NewQQmlPropertyMap(core.PointerFromQObject(parent)))
+	return newQQmlPropertyMapFromPointer(C.QQmlPropertyMap_NewQQmlPropertyMap(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlPropertyMap) Clear(key string) {
@@ -4413,6 +4518,11 @@ func PointerFromQQmlPropertyValueSource(ptr QQmlPropertyValueSource_ITF) unsafe.
 func NewQQmlPropertyValueSourceFromPointer(ptr unsafe.Pointer) *QQmlPropertyValueSource {
 	var n = new(QQmlPropertyValueSource)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQQmlPropertyValueSourceFromPointer(ptr unsafe.Pointer) *QQmlPropertyValueSource {
+	var n = NewQQmlPropertyValueSourceFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QQmlPropertyValueSource_") {
 		n.SetObjectNameAbs("QQmlPropertyValueSource_" + qt.Identifier())
 	}
@@ -4485,6 +4595,11 @@ func NewQQmlScriptStringFromPointer(ptr unsafe.Pointer) *QQmlScriptString {
 	return n
 }
 
+func newQQmlScriptStringFromPointer(ptr unsafe.Pointer) *QQmlScriptString {
+	var n = NewQQmlScriptStringFromPointer(ptr)
+	return n
+}
+
 func (ptr *QQmlScriptString) QQmlScriptString_PTR() *QQmlScriptString {
 	return ptr
 }
@@ -4492,13 +4607,13 @@ func (ptr *QQmlScriptString) QQmlScriptString_PTR() *QQmlScriptString {
 func NewQQmlScriptString() *QQmlScriptString {
 	defer qt.Recovering("QQmlScriptString::QQmlScriptString")
 
-	return NewQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString())
+	return newQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString())
 }
 
 func NewQQmlScriptString2(other QQmlScriptString_ITF) *QQmlScriptString {
 	defer qt.Recovering("QQmlScriptString::QQmlScriptString")
 
-	return NewQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString2(PointerFromQQmlScriptString(other)))
+	return newQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString2(PointerFromQQmlScriptString(other)))
 }
 
 func (ptr *QQmlScriptString) BooleanLiteral(ok bool) bool {

@@ -40,6 +40,11 @@ func NewQHelpContentItemFromPointer(ptr unsafe.Pointer) *QHelpContentItem {
 	return n
 }
 
+func newQHelpContentItemFromPointer(ptr unsafe.Pointer) *QHelpContentItem {
+	var n = NewQHelpContentItemFromPointer(ptr)
+	return n
+}
+
 func (ptr *QHelpContentItem) QHelpContentItem_PTR() *QHelpContentItem {
 	return ptr
 }
@@ -134,6 +139,11 @@ func PointerFromQHelpContentModel(ptr QHelpContentModel_ITF) unsafe.Pointer {
 func NewQHelpContentModelFromPointer(ptr unsafe.Pointer) *QHelpContentModel {
 	var n = new(QHelpContentModel)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHelpContentModelFromPointer(ptr unsafe.Pointer) *QHelpContentModel {
+	var n = NewQHelpContentModelFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpContentModel_") {
 		n.SetObjectName("QHelpContentModel_" + qt.Identifier())
 	}
@@ -586,6 +596,11 @@ func PointerFromQHelpContentWidget(ptr QHelpContentWidget_ITF) unsafe.Pointer {
 func NewQHelpContentWidgetFromPointer(ptr unsafe.Pointer) *QHelpContentWidget {
 	var n = new(QHelpContentWidget)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHelpContentWidgetFromPointer(ptr unsafe.Pointer) *QHelpContentWidget {
+	var n = NewQHelpContentWidgetFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpContentWidget_") {
 		n.SetObjectName("QHelpContentWidget_" + qt.Identifier())
 	}
@@ -2921,6 +2936,11 @@ func PointerFromQHelpEngine(ptr QHelpEngine_ITF) unsafe.Pointer {
 func NewQHelpEngineFromPointer(ptr unsafe.Pointer) *QHelpEngine {
 	var n = new(QHelpEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHelpEngineFromPointer(ptr unsafe.Pointer) *QHelpEngine {
+	var n = NewQHelpEngineFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpEngine_") {
 		n.SetObjectName("QHelpEngine_" + qt.Identifier())
 	}
@@ -2934,7 +2954,7 @@ func (ptr *QHelpEngine) QHelpEngine_PTR() *QHelpEngine {
 func NewQHelpEngine(collectionFile string, parent core.QObject_ITF) *QHelpEngine {
 	defer qt.Recovering("QHelpEngine::QHelpEngine")
 
-	return NewQHelpEngineFromPointer(C.QHelpEngine_NewQHelpEngine(C.CString(collectionFile), core.PointerFromQObject(parent)))
+	return newQHelpEngineFromPointer(C.QHelpEngine_NewQHelpEngine(C.CString(collectionFile), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHelpEngine) ContentModel() *QHelpContentModel {
@@ -3145,6 +3165,11 @@ func PointerFromQHelpEngineCore(ptr QHelpEngineCore_ITF) unsafe.Pointer {
 func NewQHelpEngineCoreFromPointer(ptr unsafe.Pointer) *QHelpEngineCore {
 	var n = new(QHelpEngineCore)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHelpEngineCoreFromPointer(ptr unsafe.Pointer) *QHelpEngineCore {
+	var n = NewQHelpEngineCoreFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpEngineCore_") {
 		n.SetObjectName("QHelpEngineCore_" + qt.Identifier())
 	}
@@ -3209,7 +3234,7 @@ func (ptr *QHelpEngineCore) SetCurrentFilter(filterName string) {
 func NewQHelpEngineCore(collectionFile string, parent core.QObject_ITF) *QHelpEngineCore {
 	defer qt.Recovering("QHelpEngineCore::QHelpEngineCore")
 
-	return NewQHelpEngineCoreFromPointer(C.QHelpEngineCore_NewQHelpEngineCore(C.CString(collectionFile), core.PointerFromQObject(parent)))
+	return newQHelpEngineCoreFromPointer(C.QHelpEngineCore_NewQHelpEngineCore(C.CString(collectionFile), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHelpEngineCore) AddCustomFilter(filterName string, attributes []string) bool {
@@ -3720,6 +3745,11 @@ func PointerFromQHelpIndexModel(ptr QHelpIndexModel_ITF) unsafe.Pointer {
 func NewQHelpIndexModelFromPointer(ptr unsafe.Pointer) *QHelpIndexModel {
 	var n = new(QHelpIndexModel)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHelpIndexModelFromPointer(ptr unsafe.Pointer) *QHelpIndexModel {
+	var n = NewQHelpIndexModelFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpIndexModel_") {
 		n.SetObjectName("QHelpIndexModel_" + qt.Identifier())
 	}
@@ -4118,6 +4148,11 @@ func PointerFromQHelpIndexWidget(ptr QHelpIndexWidget_ITF) unsafe.Pointer {
 func NewQHelpIndexWidgetFromPointer(ptr unsafe.Pointer) *QHelpIndexWidget {
 	var n = new(QHelpIndexWidget)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHelpIndexWidgetFromPointer(ptr unsafe.Pointer) *QHelpIndexWidget {
+	var n = NewQHelpIndexWidgetFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpIndexWidget_") {
 		n.SetObjectName("QHelpIndexWidget_" + qt.Identifier())
 	}
@@ -6415,6 +6450,11 @@ func PointerFromQHelpSearchEngine(ptr QHelpSearchEngine_ITF) unsafe.Pointer {
 func NewQHelpSearchEngineFromPointer(ptr unsafe.Pointer) *QHelpSearchEngine {
 	var n = new(QHelpSearchEngine)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHelpSearchEngineFromPointer(ptr unsafe.Pointer) *QHelpSearchEngine {
+	var n = NewQHelpSearchEngineFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpSearchEngine_") {
 		n.SetObjectName("QHelpSearchEngine_" + qt.Identifier())
 	}
@@ -6428,7 +6468,7 @@ func (ptr *QHelpSearchEngine) QHelpSearchEngine_PTR() *QHelpSearchEngine {
 func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_ITF) *QHelpSearchEngine {
 	defer qt.Recovering("QHelpSearchEngine::QHelpSearchEngine")
 
-	return NewQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
+	return newQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHelpSearchEngine) CancelIndexing() {
@@ -6799,6 +6839,11 @@ func NewQHelpSearchQueryFromPointer(ptr unsafe.Pointer) *QHelpSearchQuery {
 	return n
 }
 
+func newQHelpSearchQueryFromPointer(ptr unsafe.Pointer) *QHelpSearchQuery {
+	var n = NewQHelpSearchQueryFromPointer(ptr)
+	return n
+}
+
 func (ptr *QHelpSearchQuery) QHelpSearchQuery_PTR() *QHelpSearchQuery {
 	return ptr
 }
@@ -6818,13 +6863,13 @@ const (
 func NewQHelpSearchQuery() *QHelpSearchQuery {
 	defer qt.Recovering("QHelpSearchQuery::QHelpSearchQuery")
 
-	return NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery())
+	return newQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery())
 }
 
 func NewQHelpSearchQuery2(field QHelpSearchQuery__FieldName, wordList []string) *QHelpSearchQuery {
 	defer qt.Recovering("QHelpSearchQuery::QHelpSearchQuery")
 
-	return NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.int(field), C.CString(strings.Join(wordList, "|"))))
+	return newQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.int(field), C.CString(strings.Join(wordList, "|"))))
 }
 
 type QHelpSearchQueryWidget struct {
@@ -6846,6 +6891,11 @@ func PointerFromQHelpSearchQueryWidget(ptr QHelpSearchQueryWidget_ITF) unsafe.Po
 func NewQHelpSearchQueryWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchQueryWidget {
 	var n = new(QHelpSearchQueryWidget)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHelpSearchQueryWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchQueryWidget {
+	var n = NewQHelpSearchQueryWidgetFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpSearchQueryWidget_") {
 		n.SetObjectName("QHelpSearchQueryWidget_" + qt.Identifier())
 	}
@@ -6868,7 +6918,7 @@ func (ptr *QHelpSearchQueryWidget) IsCompactMode() bool {
 func NewQHelpSearchQueryWidget(parent widgets.QWidget_ITF) *QHelpSearchQueryWidget {
 	defer qt.Recovering("QHelpSearchQueryWidget::QHelpSearchQueryWidget")
 
-	return NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(widgets.PointerFromQWidget(parent)))
+	return newQHelpSearchQueryWidgetFromPointer(C.QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(widgets.PointerFromQWidget(parent)))
 }
 
 func (ptr *QHelpSearchQueryWidget) CollapseExtendedSearch() {
@@ -8257,6 +8307,11 @@ func PointerFromQHelpSearchResultWidget(ptr QHelpSearchResultWidget_ITF) unsafe.
 func NewQHelpSearchResultWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchResultWidget {
 	var n = new(QHelpSearchResultWidget)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQHelpSearchResultWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchResultWidget {
+	var n = NewQHelpSearchResultWidgetFromPointer(ptr)
 	for len(n.ObjectName()) < len("QHelpSearchResultWidget_") {
 		n.SetObjectName("QHelpSearchResultWidget_" + qt.Identifier())
 	}

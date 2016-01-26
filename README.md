@@ -26,11 +26,11 @@
 ## Desktop (Windows / Mac OS X / Linux)
 
 1. Install Go >= 1.5.2 and setup a proper [GOPATH](https://golang.org/doc/code.html#GOPATH)
-	* https://storage.googleapis.com/golang/go1.5.2.windows-386.msi
-	* https://storage.googleapis.com/golang/go1.5.2.windows-amd64.msi
-	* https://storage.googleapis.com/golang/go1.5.2.darwin-amd64.pkg
-	* https://storage.googleapis.com/golang/go1.5.2.linux-386.tar.gz
-	* https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz
+	* https://storage.googleapis.com/golang/go1.5.3.windows-386.msi
+	* https://storage.googleapis.com/golang/go1.5.3.windows-amd64.msi
+	* https://storage.googleapis.com/golang/go1.5.3.darwin-amd64.pkg
+	* https://storage.googleapis.com/golang/go1.5.3.linux-386.tar.gz
+	* https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz
 
 2. Install Qt 5.5.1 in `C:\Qt\Qt5.5.1\` or `/usr/local/Qt5.5.1/`
 	* https://download.qt.io/official_releases/qt/5.5/5.5.1/qt-opensource-windows-x86-android-5.5.1.exe
@@ -146,8 +146,8 @@ func main() {
 3. Open the command line in `[GOPATH]/src` and run
 `qtdeploy build desktop qtExample`
 
-4. Wait a minute, then you will find the executable file here
-`[GOPATH]/src/qtExample/deploy/[GOOS]/qtExample`
+4. You will find the executable file here
+`[GOPATH]/src/qtExample/deploy/[GOOS]/qtExample(.exe)`
 
 5. Take a look at the [other examples](https://github.com/therecipe/qt/tree/master/internal/examples)
 

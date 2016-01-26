@@ -35,6 +35,11 @@ func PointerFromQMacPasteboardMime(ptr QMacPasteboardMime_ITF) unsafe.Pointer {
 func NewQMacPasteboardMimeFromPointer(ptr unsafe.Pointer) *QMacPasteboardMime {
 	var n = new(QMacPasteboardMime)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMacPasteboardMimeFromPointer(ptr unsafe.Pointer) *QMacPasteboardMime {
+	var n = NewQMacPasteboardMimeFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QMacPasteboardMime_") {
 		n.SetObjectNameAbs("QMacPasteboardMime_" + qt.Identifier())
 	}
@@ -125,6 +130,11 @@ func PointerFromQMacToolBar(ptr QMacToolBar_ITF) unsafe.Pointer {
 func NewQMacToolBarFromPointer(ptr unsafe.Pointer) *QMacToolBar {
 	var n = new(QMacToolBar)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMacToolBarFromPointer(ptr unsafe.Pointer) *QMacToolBar {
+	var n = NewQMacToolBarFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMacToolBar_") {
 		n.SetObjectName("QMacToolBar_" + qt.Identifier())
 	}
@@ -138,13 +148,13 @@ func (ptr *QMacToolBar) QMacToolBar_PTR() *QMacToolBar {
 func NewQMacToolBar(parent core.QObject_ITF) *QMacToolBar {
 	defer qt.Recovering("QMacToolBar::QMacToolBar")
 
-	return NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar(core.PointerFromQObject(parent)))
+	return newQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar(core.PointerFromQObject(parent)))
 }
 
 func NewQMacToolBar2(identifier string, parent core.QObject_ITF) *QMacToolBar {
 	defer qt.Recovering("QMacToolBar::QMacToolBar")
 
-	return NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar2(C.CString(identifier), core.PointerFromQObject(parent)))
+	return newQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar2(C.CString(identifier), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QMacToolBar) AddAllowedItem(icon gui.QIcon_ITF, text string) *QMacToolBarItem {
@@ -352,6 +362,11 @@ func PointerFromQMacToolBarItem(ptr QMacToolBarItem_ITF) unsafe.Pointer {
 func NewQMacToolBarItemFromPointer(ptr unsafe.Pointer) *QMacToolBarItem {
 	var n = new(QMacToolBarItem)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQMacToolBarItemFromPointer(ptr unsafe.Pointer) *QMacToolBarItem {
+	var n = NewQMacToolBarItemFromPointer(ptr)
 	for len(n.ObjectName()) < len("QMacToolBarItem_") {
 		n.SetObjectName("QMacToolBarItem_" + qt.Identifier())
 	}
@@ -374,7 +389,7 @@ const (
 func NewQMacToolBarItem(parent core.QObject_ITF) *QMacToolBarItem {
 	defer qt.Recovering("QMacToolBarItem::QMacToolBarItem")
 
-	return NewQMacToolBarItemFromPointer(C.QMacToolBarItem_NewQMacToolBarItem(core.PointerFromQObject(parent)))
+	return newQMacToolBarItemFromPointer(C.QMacToolBarItem_NewQMacToolBarItem(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QMacToolBarItem) ConnectActivated(f func()) {

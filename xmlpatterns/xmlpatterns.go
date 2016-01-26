@@ -28,6 +28,11 @@ func PointerFromQAbstractMessageHandler(ptr QAbstractMessageHandler_ITF) unsafe.
 func NewQAbstractMessageHandlerFromPointer(ptr unsafe.Pointer) *QAbstractMessageHandler {
 	var n = new(QAbstractMessageHandler)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAbstractMessageHandlerFromPointer(ptr unsafe.Pointer) *QAbstractMessageHandler {
+	var n = NewQAbstractMessageHandlerFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractMessageHandler_") {
 		n.SetObjectName("QAbstractMessageHandler_" + qt.Identifier())
 	}
@@ -201,6 +206,11 @@ func PointerFromQAbstractUriResolver(ptr QAbstractUriResolver_ITF) unsafe.Pointe
 func NewQAbstractUriResolverFromPointer(ptr unsafe.Pointer) *QAbstractUriResolver {
 	var n = new(QAbstractUriResolver)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAbstractUriResolverFromPointer(ptr unsafe.Pointer) *QAbstractUriResolver {
+	var n = NewQAbstractUriResolverFromPointer(ptr)
 	for len(n.ObjectName()) < len("QAbstractUriResolver_") {
 		n.SetObjectName("QAbstractUriResolver_" + qt.Identifier())
 	}
@@ -383,6 +393,11 @@ func PointerFromQAbstractXmlNodeModel(ptr QAbstractXmlNodeModel_ITF) unsafe.Poin
 func NewQAbstractXmlNodeModelFromPointer(ptr unsafe.Pointer) *QAbstractXmlNodeModel {
 	var n = new(QAbstractXmlNodeModel)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAbstractXmlNodeModelFromPointer(ptr unsafe.Pointer) *QAbstractXmlNodeModel {
+	var n = NewQAbstractXmlNodeModelFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAbstractXmlNodeModel_") {
 		n.SetObjectNameAbs("QAbstractXmlNodeModel_" + qt.Identifier())
 	}
@@ -508,6 +523,11 @@ func PointerFromQAbstractXmlReceiver(ptr QAbstractXmlReceiver_ITF) unsafe.Pointe
 func NewQAbstractXmlReceiverFromPointer(ptr unsafe.Pointer) *QAbstractXmlReceiver {
 	var n = new(QAbstractXmlReceiver)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQAbstractXmlReceiverFromPointer(ptr unsafe.Pointer) *QAbstractXmlReceiver {
+	var n = NewQAbstractXmlReceiverFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QAbstractXmlReceiver_") {
 		n.SetObjectNameAbs("QAbstractXmlReceiver_" + qt.Identifier())
 	}
@@ -650,6 +670,11 @@ func PointerFromQSimpleXmlNodeModel(ptr QSimpleXmlNodeModel_ITF) unsafe.Pointer 
 func NewQSimpleXmlNodeModelFromPointer(ptr unsafe.Pointer) *QSimpleXmlNodeModel {
 	var n = new(QSimpleXmlNodeModel)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQSimpleXmlNodeModelFromPointer(ptr unsafe.Pointer) *QSimpleXmlNodeModel {
+	var n = NewQSimpleXmlNodeModelFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QSimpleXmlNodeModel_") {
 		n.SetObjectNameAbs("QSimpleXmlNodeModel_" + qt.Identifier())
 	}
@@ -732,6 +757,11 @@ func NewQSourceLocationFromPointer(ptr unsafe.Pointer) *QSourceLocation {
 	return n
 }
 
+func newQSourceLocationFromPointer(ptr unsafe.Pointer) *QSourceLocation {
+	var n = NewQSourceLocationFromPointer(ptr)
+	return n
+}
+
 func (ptr *QSourceLocation) QSourceLocation_PTR() *QSourceLocation {
 	return ptr
 }
@@ -739,19 +769,19 @@ func (ptr *QSourceLocation) QSourceLocation_PTR() *QSourceLocation {
 func NewQSourceLocation() *QSourceLocation {
 	defer qt.Recovering("QSourceLocation::QSourceLocation")
 
-	return NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation())
+	return newQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation())
 }
 
 func NewQSourceLocation2(other QSourceLocation_ITF) *QSourceLocation {
 	defer qt.Recovering("QSourceLocation::QSourceLocation")
 
-	return NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation2(PointerFromQSourceLocation(other)))
+	return newQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation2(PointerFromQSourceLocation(other)))
 }
 
 func NewQSourceLocation3(u core.QUrl_ITF, l int, c int) *QSourceLocation {
 	defer qt.Recovering("QSourceLocation::QSourceLocation")
 
-	return NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation3(core.PointerFromQUrl(u), C.int(l), C.int(c)))
+	return newQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation3(core.PointerFromQUrl(u), C.int(l), C.int(c)))
 }
 
 func (ptr *QSourceLocation) Column() int64 {
@@ -841,6 +871,11 @@ func PointerFromQXmlFormatter(ptr QXmlFormatter_ITF) unsafe.Pointer {
 func NewQXmlFormatterFromPointer(ptr unsafe.Pointer) *QXmlFormatter {
 	var n = new(QXmlFormatter)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlFormatterFromPointer(ptr unsafe.Pointer) *QXmlFormatter {
+	var n = NewQXmlFormatterFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlFormatter_") {
 		n.SetObjectNameAbs("QXmlFormatter_" + qt.Identifier())
 	}
@@ -854,7 +889,7 @@ func (ptr *QXmlFormatter) QXmlFormatter_PTR() *QXmlFormatter {
 func NewQXmlFormatter(query QXmlQuery_ITF, outputDevice core.QIODevice_ITF) *QXmlFormatter {
 	defer qt.Recovering("QXmlFormatter::QXmlFormatter")
 
-	return NewQXmlFormatterFromPointer(C.QXmlFormatter_NewQXmlFormatter(PointerFromQXmlQuery(query), core.PointerFromQIODevice(outputDevice)))
+	return newQXmlFormatterFromPointer(C.QXmlFormatter_NewQXmlFormatter(PointerFromQXmlQuery(query), core.PointerFromQIODevice(outputDevice)))
 }
 
 func (ptr *QXmlFormatter) ConnectCharacters(f func(value *core.QStringRef)) {
@@ -1235,6 +1270,11 @@ func NewQXmlItemFromPointer(ptr unsafe.Pointer) *QXmlItem {
 	return n
 }
 
+func newQXmlItemFromPointer(ptr unsafe.Pointer) *QXmlItem {
+	var n = NewQXmlItemFromPointer(ptr)
+	return n
+}
+
 func (ptr *QXmlItem) QXmlItem_PTR() *QXmlItem {
 	return ptr
 }
@@ -1242,25 +1282,25 @@ func (ptr *QXmlItem) QXmlItem_PTR() *QXmlItem {
 func NewQXmlItem() *QXmlItem {
 	defer qt.Recovering("QXmlItem::QXmlItem")
 
-	return NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem())
+	return newQXmlItemFromPointer(C.QXmlItem_NewQXmlItem())
 }
 
 func NewQXmlItem4(atomicValue core.QVariant_ITF) *QXmlItem {
 	defer qt.Recovering("QXmlItem::QXmlItem")
 
-	return NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem4(core.PointerFromQVariant(atomicValue)))
+	return newQXmlItemFromPointer(C.QXmlItem_NewQXmlItem4(core.PointerFromQVariant(atomicValue)))
 }
 
 func NewQXmlItem2(other QXmlItem_ITF) *QXmlItem {
 	defer qt.Recovering("QXmlItem::QXmlItem")
 
-	return NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem2(PointerFromQXmlItem(other)))
+	return newQXmlItemFromPointer(C.QXmlItem_NewQXmlItem2(PointerFromQXmlItem(other)))
 }
 
 func NewQXmlItem3(node QXmlNodeModelIndex_ITF) *QXmlItem {
 	defer qt.Recovering("QXmlItem::QXmlItem")
 
-	return NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem3(PointerFromQXmlNodeModelIndex(node)))
+	return newQXmlItemFromPointer(C.QXmlItem_NewQXmlItem3(PointerFromQXmlNodeModelIndex(node)))
 }
 
 func (ptr *QXmlItem) IsNode() bool {
@@ -1318,6 +1358,11 @@ func NewQXmlNameFromPointer(ptr unsafe.Pointer) *QXmlName {
 	return n
 }
 
+func newQXmlNameFromPointer(ptr unsafe.Pointer) *QXmlName {
+	var n = NewQXmlNameFromPointer(ptr)
+	return n
+}
+
 func (ptr *QXmlName) QXmlName_PTR() *QXmlName {
 	return ptr
 }
@@ -1325,13 +1370,13 @@ func (ptr *QXmlName) QXmlName_PTR() *QXmlName {
 func NewQXmlName() *QXmlName {
 	defer qt.Recovering("QXmlName::QXmlName")
 
-	return NewQXmlNameFromPointer(C.QXmlName_NewQXmlName())
+	return newQXmlNameFromPointer(C.QXmlName_NewQXmlName())
 }
 
 func NewQXmlName2(namePool QXmlNamePool_ITF, localName string, namespaceURI string, prefix string) *QXmlName {
 	defer qt.Recovering("QXmlName::QXmlName")
 
-	return NewQXmlNameFromPointer(C.QXmlName_NewQXmlName2(PointerFromQXmlNamePool(namePool), C.CString(localName), C.CString(namespaceURI), C.CString(prefix)))
+	return newQXmlNameFromPointer(C.QXmlName_NewQXmlName2(PointerFromQXmlNamePool(namePool), C.CString(localName), C.CString(namespaceURI), C.CString(prefix)))
 }
 
 func QXmlName_IsNCName(candidate string) bool {
@@ -1414,6 +1459,11 @@ func NewQXmlNamePoolFromPointer(ptr unsafe.Pointer) *QXmlNamePool {
 	return n
 }
 
+func newQXmlNamePoolFromPointer(ptr unsafe.Pointer) *QXmlNamePool {
+	var n = NewQXmlNamePoolFromPointer(ptr)
+	return n
+}
+
 func (ptr *QXmlNamePool) QXmlNamePool_PTR() *QXmlNamePool {
 	return ptr
 }
@@ -1421,13 +1471,13 @@ func (ptr *QXmlNamePool) QXmlNamePool_PTR() *QXmlNamePool {
 func NewQXmlNamePool() *QXmlNamePool {
 	defer qt.Recovering("QXmlNamePool::QXmlNamePool")
 
-	return NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool())
+	return newQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool())
 }
 
 func NewQXmlNamePool2(other QXmlNamePool_ITF) *QXmlNamePool {
 	defer qt.Recovering("QXmlNamePool::QXmlNamePool")
 
-	return NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool2(PointerFromQXmlNamePool(other)))
+	return newQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool2(PointerFromQXmlNamePool(other)))
 }
 
 func (ptr *QXmlNamePool) DestroyQXmlNamePool() {
@@ -1467,6 +1517,11 @@ func NewQXmlNodeModelIndexFromPointer(ptr unsafe.Pointer) *QXmlNodeModelIndex {
 	return n
 }
 
+func newQXmlNodeModelIndexFromPointer(ptr unsafe.Pointer) *QXmlNodeModelIndex {
+	var n = NewQXmlNodeModelIndexFromPointer(ptr)
+	return n
+}
+
 func (ptr *QXmlNodeModelIndex) QXmlNodeModelIndex_PTR() *QXmlNodeModelIndex {
 	return ptr
 }
@@ -1496,13 +1551,13 @@ const (
 func NewQXmlNodeModelIndex() *QXmlNodeModelIndex {
 	defer qt.Recovering("QXmlNodeModelIndex::QXmlNodeModelIndex")
 
-	return NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex())
+	return newQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex())
 }
 
 func NewQXmlNodeModelIndex2(other QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
 	defer qt.Recovering("QXmlNodeModelIndex::QXmlNodeModelIndex")
 
-	return NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex2(PointerFromQXmlNodeModelIndex(other)))
+	return newQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex2(PointerFromQXmlNodeModelIndex(other)))
 }
 
 func (ptr *QXmlNodeModelIndex) AdditionalData() int64 {
@@ -1579,6 +1634,11 @@ func NewQXmlQueryFromPointer(ptr unsafe.Pointer) *QXmlQuery {
 	return n
 }
 
+func newQXmlQueryFromPointer(ptr unsafe.Pointer) *QXmlQuery {
+	var n = NewQXmlQueryFromPointer(ptr)
+	return n
+}
+
 func (ptr *QXmlQuery) QXmlQuery_PTR() *QXmlQuery {
 	return ptr
 }
@@ -1597,25 +1657,25 @@ const (
 func NewQXmlQuery() *QXmlQuery {
 	defer qt.Recovering("QXmlQuery::QXmlQuery")
 
-	return NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery())
+	return newQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery())
 }
 
 func NewQXmlQuery4(queryLanguage QXmlQuery__QueryLanguage, np QXmlNamePool_ITF) *QXmlQuery {
 	defer qt.Recovering("QXmlQuery::QXmlQuery")
 
-	return NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery4(C.int(queryLanguage), PointerFromQXmlNamePool(np)))
+	return newQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery4(C.int(queryLanguage), PointerFromQXmlNamePool(np)))
 }
 
 func NewQXmlQuery3(np QXmlNamePool_ITF) *QXmlQuery {
 	defer qt.Recovering("QXmlQuery::QXmlQuery")
 
-	return NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery3(PointerFromQXmlNamePool(np)))
+	return newQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery3(PointerFromQXmlNamePool(np)))
 }
 
 func NewQXmlQuery2(other QXmlQuery_ITF) *QXmlQuery {
 	defer qt.Recovering("QXmlQuery::QXmlQuery")
 
-	return NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery2(PointerFromQXmlQuery(other)))
+	return newQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery2(PointerFromQXmlQuery(other)))
 }
 
 func (ptr *QXmlQuery) BindVariable5(localName string, device core.QIODevice_ITF) {
@@ -1844,6 +1904,11 @@ func PointerFromQXmlResultItems(ptr QXmlResultItems_ITF) unsafe.Pointer {
 func NewQXmlResultItemsFromPointer(ptr unsafe.Pointer) *QXmlResultItems {
 	var n = new(QXmlResultItems)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlResultItemsFromPointer(ptr unsafe.Pointer) *QXmlResultItems {
+	var n = NewQXmlResultItemsFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlResultItems_") {
 		n.SetObjectNameAbs("QXmlResultItems_" + qt.Identifier())
 	}
@@ -1857,7 +1922,7 @@ func (ptr *QXmlResultItems) QXmlResultItems_PTR() *QXmlResultItems {
 func NewQXmlResultItems() *QXmlResultItems {
 	defer qt.Recovering("QXmlResultItems::QXmlResultItems")
 
-	return NewQXmlResultItemsFromPointer(C.QXmlResultItems_NewQXmlResultItems())
+	return newQXmlResultItemsFromPointer(C.QXmlResultItems_NewQXmlResultItems())
 }
 
 func (ptr *QXmlResultItems) HasError() bool {
@@ -1923,6 +1988,11 @@ func NewQXmlSchemaFromPointer(ptr unsafe.Pointer) *QXmlSchema {
 	return n
 }
 
+func newQXmlSchemaFromPointer(ptr unsafe.Pointer) *QXmlSchema {
+	var n = NewQXmlSchemaFromPointer(ptr)
+	return n
+}
+
 func (ptr *QXmlSchema) QXmlSchema_PTR() *QXmlSchema {
 	return ptr
 }
@@ -1930,13 +2000,13 @@ func (ptr *QXmlSchema) QXmlSchema_PTR() *QXmlSchema {
 func NewQXmlSchema() *QXmlSchema {
 	defer qt.Recovering("QXmlSchema::QXmlSchema")
 
-	return NewQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema())
+	return newQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema())
 }
 
 func NewQXmlSchema2(other QXmlSchema_ITF) *QXmlSchema {
 	defer qt.Recovering("QXmlSchema::QXmlSchema")
 
-	return NewQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema2(PointerFromQXmlSchema(other)))
+	return newQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema2(PointerFromQXmlSchema(other)))
 }
 
 func (ptr *QXmlSchema) DocumentUri() *core.QUrl {
@@ -2072,6 +2142,11 @@ func NewQXmlSchemaValidatorFromPointer(ptr unsafe.Pointer) *QXmlSchemaValidator 
 	return n
 }
 
+func newQXmlSchemaValidatorFromPointer(ptr unsafe.Pointer) *QXmlSchemaValidator {
+	var n = NewQXmlSchemaValidatorFromPointer(ptr)
+	return n
+}
+
 func (ptr *QXmlSchemaValidator) QXmlSchemaValidator_PTR() *QXmlSchemaValidator {
 	return ptr
 }
@@ -2079,13 +2154,13 @@ func (ptr *QXmlSchemaValidator) QXmlSchemaValidator_PTR() *QXmlSchemaValidator {
 func NewQXmlSchemaValidator() *QXmlSchemaValidator {
 	defer qt.Recovering("QXmlSchemaValidator::QXmlSchemaValidator")
 
-	return NewQXmlSchemaValidatorFromPointer(C.QXmlSchemaValidator_NewQXmlSchemaValidator())
+	return newQXmlSchemaValidatorFromPointer(C.QXmlSchemaValidator_NewQXmlSchemaValidator())
 }
 
 func NewQXmlSchemaValidator2(schema QXmlSchema_ITF) *QXmlSchemaValidator {
 	defer qt.Recovering("QXmlSchemaValidator::QXmlSchemaValidator")
 
-	return NewQXmlSchemaValidatorFromPointer(C.QXmlSchemaValidator_NewQXmlSchemaValidator2(PointerFromQXmlSchema(schema)))
+	return newQXmlSchemaValidatorFromPointer(C.QXmlSchemaValidator_NewQXmlSchemaValidator2(PointerFromQXmlSchema(schema)))
 }
 
 func (ptr *QXmlSchemaValidator) MessageHandler() *QAbstractMessageHandler {
@@ -2201,6 +2276,11 @@ func PointerFromQXmlSerializer(ptr QXmlSerializer_ITF) unsafe.Pointer {
 func NewQXmlSerializerFromPointer(ptr unsafe.Pointer) *QXmlSerializer {
 	var n = new(QXmlSerializer)
 	n.SetPointer(ptr)
+	return n
+}
+
+func newQXmlSerializerFromPointer(ptr unsafe.Pointer) *QXmlSerializer {
+	var n = NewQXmlSerializerFromPointer(ptr)
 	for len(n.ObjectNameAbs()) < len("QXmlSerializer_") {
 		n.SetObjectNameAbs("QXmlSerializer_" + qt.Identifier())
 	}
@@ -2214,7 +2294,7 @@ func (ptr *QXmlSerializer) QXmlSerializer_PTR() *QXmlSerializer {
 func NewQXmlSerializer(query QXmlQuery_ITF, outputDevice core.QIODevice_ITF) *QXmlSerializer {
 	defer qt.Recovering("QXmlSerializer::QXmlSerializer")
 
-	return NewQXmlSerializerFromPointer(C.QXmlSerializer_NewQXmlSerializer(PointerFromQXmlQuery(query), core.PointerFromQIODevice(outputDevice)))
+	return newQXmlSerializerFromPointer(C.QXmlSerializer_NewQXmlSerializer(PointerFromQXmlQuery(query), core.PointerFromQIODevice(outputDevice)))
 }
 
 func (ptr *QXmlSerializer) ConnectCharacters(f func(value *core.QStringRef)) {
