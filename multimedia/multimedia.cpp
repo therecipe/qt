@@ -8421,6 +8421,14 @@ void QVideoWindowControl_SetSaturation(void* ptr, int saturation){
 	static_cast<QVideoWindowControl*>(ptr)->setSaturation(saturation);
 }
 
+void QVideoWindowControl_SetWinId(void* ptr, unsigned long long id){
+	static_cast<QVideoWindowControl*>(ptr)->setWinId(static_cast<unsigned long long>(id));
+}
+
+unsigned long long QVideoWindowControl_WinId(void* ptr){
+	return static_cast<unsigned long long>(static_cast<QVideoWindowControl*>(ptr)->winId());
+}
+
 void QVideoWindowControl_DestroyQVideoWindowControl(void* ptr){
 	static_cast<QVideoWindowControl*>(ptr)->~QVideoWindowControl();
 }

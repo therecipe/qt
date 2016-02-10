@@ -37433,6 +37433,12 @@ func (ptr *QWindow) FramePosition() *core.QPoint {
 	return nil
 }
 
+func QWindow_FromWinId(id uintptr) *QWindow {
+	defer qt.Recovering("QWindow::fromWinId")
+
+	return NewQWindowFromPointer(C.QWindow_QWindow_FromWinId(C.ulonglong(id)))
+}
+
 func (ptr *QWindow) Geometry() *core.QRect {
 	defer qt.Recovering("QWindow::geometry")
 
@@ -38902,6 +38908,15 @@ func (ptr *QWindow) WidthChanged(arg int) {
 	if ptr.Pointer() != nil {
 		C.QWindow_WidthChanged(ptr.Pointer(), C.int(arg))
 	}
+}
+
+func (ptr *QWindow) WinId() uintptr {
+	defer qt.Recovering("QWindow::winId")
+
+	if ptr.Pointer() != nil {
+		return uintptr(C.QWindow_WinId(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QWindow) WindowState() core.Qt__WindowState {

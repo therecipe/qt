@@ -70,6 +70,11 @@ func goOutput(name string, value string, f *parser.Function) string {
 		{
 			return fmt.Sprintf("int64(%v)", name)
 		}
+
+	case "WId":
+		{
+			return fmt.Sprintf("uintptr(%v)", name)
+		}
 	}
 
 	switch {
@@ -113,7 +118,7 @@ func goOutputFailed(value string, f *parser.Function) string {
 	case "bool":
 		return "false"
 
-	case "int", "qreal", "qint64":
+	case "int", "qreal", "qint64", "WId":
 		return "0"
 
 	case "uchar", "char", "QString":
@@ -274,6 +279,11 @@ func cppOutput(name string, value string, f *parser.Function) string {
 	case "qint64":
 		{
 			return fmt.Sprintf("static_cast<long long>(%v)", name)
+		}
+
+	case "WId":
+		{
+			return fmt.Sprintf("static_cast<unsigned long long>(%v)", name)
 		}
 	}
 

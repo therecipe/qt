@@ -27392,6 +27392,23 @@ func (ptr *QVideoWindowControl) SetSaturation(saturation int) {
 	}
 }
 
+func (ptr *QVideoWindowControl) SetWinId(id uintptr) {
+	defer qt.Recovering("QVideoWindowControl::setWinId")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWindowControl_SetWinId(ptr.Pointer(), C.ulonglong(id))
+	}
+}
+
+func (ptr *QVideoWindowControl) WinId() uintptr {
+	defer qt.Recovering("QVideoWindowControl::winId")
+
+	if ptr.Pointer() != nil {
+		return uintptr(C.QVideoWindowControl_WinId(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QVideoWindowControl) DestroyQVideoWindowControl() {
 	defer qt.Recovering("QVideoWindowControl::~QVideoWindowControl")
 

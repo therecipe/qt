@@ -44487,6 +44487,10 @@ char* QWidget_WhatsThis(void* ptr){
 	return static_cast<QWidget*>(ptr)->whatsThis().toUtf8().data();
 }
 
+unsigned long long QWidget_WinId(void* ptr){
+	return static_cast<unsigned long long>(static_cast<QWidget*>(ptr)->winId());
+}
+
 char* QWidget_WindowFilePath(void* ptr){
 	return static_cast<QWidget*>(ptr)->windowFilePath().toUtf8().data();
 }
@@ -44593,6 +44597,10 @@ void QWidget_DisconnectCustomContextMenuRequested(void* ptr){
 
 void QWidget_CustomContextMenuRequested(void* ptr, void* pos){
 	static_cast<QWidget*>(ptr)->customContextMenuRequested(*static_cast<QPoint*>(pos));
+}
+
+unsigned long long QWidget_EffectiveWinId(void* ptr){
+	return static_cast<unsigned long long>(static_cast<QWidget*>(ptr)->effectiveWinId());
 }
 
 void QWidget_EnsurePolished(void* ptr){

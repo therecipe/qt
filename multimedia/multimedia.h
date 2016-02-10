@@ -1930,6 +1930,8 @@ void QVideoWindowControl_SetDisplayRect(void* ptr, void* rect);
 void QVideoWindowControl_SetFullScreen(void* ptr, int fullScreen);
 void QVideoWindowControl_SetHue(void* ptr, int hue);
 void QVideoWindowControl_SetSaturation(void* ptr, int saturation);
+void QVideoWindowControl_SetWinId(void* ptr, unsigned long long id);
+unsigned long long QVideoWindowControl_WinId(void* ptr);
 void QVideoWindowControl_DestroyQVideoWindowControl(void* ptr);
 void QVideoWindowControl_TimerEvent(void* ptr, void* event);
 void QVideoWindowControl_TimerEventDefault(void* ptr, void* event);

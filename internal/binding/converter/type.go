@@ -83,6 +83,11 @@ func goType(f *parser.Function, value string) string {
 		{
 			return "int64"
 		}
+
+	case "WId":
+		{
+			return "uintptr"
+		}
 	}
 
 	switch {
@@ -230,6 +235,11 @@ func cppType(f *parser.Function, value string) string {
 	case "qint64":
 		{
 			return "long long"
+		}
+
+	case "WId":
+		{
+			return "unsigned long long"
 		}
 	}
 

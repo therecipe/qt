@@ -12190,6 +12190,10 @@ void* QWindow_FramePosition(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QWindow*>(ptr)->framePosition()).x(), static_cast<QPoint>(static_cast<QWindow*>(ptr)->framePosition()).y());
 }
 
+void* QWindow_QWindow_FromWinId(unsigned long long id){
+	return QWindow::fromWinId(static_cast<unsigned long long>(id));
+}
+
 void* QWindow_Geometry(void* ptr){
 	return new QRect(static_cast<QRect>(static_cast<QWindow*>(ptr)->geometry()).x(), static_cast<QRect>(static_cast<QWindow*>(ptr)->geometry()).y(), static_cast<QRect>(static_cast<QWindow*>(ptr)->geometry()).width(), static_cast<QRect>(static_cast<QWindow*>(ptr)->geometry()).height());
 }
@@ -12656,6 +12660,10 @@ void QWindow_DisconnectWidthChanged(void* ptr){
 
 void QWindow_WidthChanged(void* ptr, int arg){
 	static_cast<QWindow*>(ptr)->widthChanged(arg);
+}
+
+unsigned long long QWindow_WinId(void* ptr){
+	return static_cast<unsigned long long>(static_cast<QWindow*>(ptr)->winId());
 }
 
 int QWindow_WindowState(void* ptr){

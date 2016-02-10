@@ -47,6 +47,11 @@ func goInput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.longlong(%v)", name)
 		}
 
+	case "WId":
+		{
+			return fmt.Sprintf("C.ulonglong(%v)", name)
+		}
+
 	case "jclass", "jobject":
 		{
 			return name
@@ -188,6 +193,16 @@ func cppInput(name string, value string, f *parser.Function) string {
 			}
 
 			return fmt.Sprintf("static_cast<long long>(%v)", name)
+		}
+
+	case "WId":
+		{
+			if strings.Contains(vOld, "*") {
+				f.Access = "unsupported_CppInput"
+				return f.Access
+			}
+
+			return fmt.Sprintf("static_cast<unsigned long long>(%v)", name)
 		}
 
 	case "jclass", "jobject":
