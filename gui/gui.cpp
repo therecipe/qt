@@ -1120,6 +1120,26 @@ void QBackingStore_DestroyQBackingStore(void* ptr){
 	static_cast<QBackingStore*>(ptr)->~QBackingStore();
 }
 
+void* QBitmap_NewQBitmap3(int width, int height){
+	return new QBitmap(width, height);
+}
+
+void* QBitmap_NewQBitmap(){
+	return new QBitmap();
+}
+
+void* QBitmap_NewQBitmap2(void* pixmap){
+	return new QBitmap(*static_cast<QPixmap*>(pixmap));
+}
+
+void* QBitmap_NewQBitmap4(void* size){
+	return new QBitmap(*static_cast<QSize*>(size));
+}
+
+void* QBitmap_NewQBitmap5(char* fileName, char* format){
+	return new QBitmap(QString(fileName), const_cast<const char*>(format));
+}
+
 void QBitmap_Clear(void* ptr){
 	static_cast<QBitmap*>(ptr)->clear();
 }
@@ -3469,6 +3489,30 @@ void* QImage_Size(void* ptr){
 
 int QImage_Width(void* ptr){
 	return static_cast<QImage*>(ptr)->width();
+}
+
+void* QImage_NewQImage(){
+	return new QImage();
+}
+
+void* QImage_NewQImage11(void* other){
+	return new QImage(*static_cast<QImage*>(other));
+}
+
+void* QImage_NewQImage10(void* image){
+	return new QImage(*static_cast<QImage*>(image));
+}
+
+void* QImage_NewQImage2(void* size, int format){
+	return new QImage(*static_cast<QSize*>(size), static_cast<QImage::Format>(format));
+}
+
+void* QImage_NewQImage9(char* fileName, char* format){
+	return new QImage(QString(fileName), const_cast<const char*>(format));
+}
+
+void* QImage_NewQImage3(int width, int height, int format){
+	return new QImage(width, height, static_cast<QImage::Format>(format));
 }
 
 int QImage_AllGray(void* ptr){
@@ -6775,10 +6819,20 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQPicture(const QPicture &pic) : QPicture(pic) {};
+	MyQPicture(int formatVersion) : QPicture(formatVersion) {};
 };
 
 int QPicture_IsNull(void* ptr){
 	return static_cast<QPicture*>(ptr)->isNull();
+}
+
+void* QPicture_NewQPicture2(void* pic){
+	return new MyQPicture(*static_cast<QPicture*>(pic));
+}
+
+void* QPicture_NewQPicture(int formatVersion){
+	return new MyQPicture(formatVersion);
 }
 
 void* QPicture_BoundingRect(void* ptr){
@@ -6862,6 +6916,10 @@ int QPixelFormat_YuvLayout(void* ptr){
 	return static_cast<QPixelFormat*>(ptr)->yuvLayout();
 }
 
+void* QPixmap_NewQPixmap3(int width, int height){
+	return new QPixmap(width, height);
+}
+
 int QPixmap_Depth(void* ptr){
 	return static_cast<QPixmap*>(ptr)->depth();
 }
@@ -6888,6 +6946,22 @@ void* QPixmap_Size(void* ptr){
 
 int QPixmap_Width(void* ptr){
 	return static_cast<QPixmap*>(ptr)->width();
+}
+
+void* QPixmap_NewQPixmap(){
+	return new QPixmap();
+}
+
+void* QPixmap_NewQPixmap6(void* pixmap){
+	return new QPixmap(*static_cast<QPixmap*>(pixmap));
+}
+
+void* QPixmap_NewQPixmap8(void* size){
+	return new QPixmap(*static_cast<QSize*>(size));
+}
+
+void* QPixmap_NewQPixmap4(char* fileName, char* format, int flags){
+	return new QPixmap(QString(fileName), const_cast<const char*>(format), static_cast<Qt::ImageConversionFlag>(flags));
 }
 
 long long QPixmap_CacheKey(void* ptr){

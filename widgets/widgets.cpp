@@ -18192,6 +18192,7 @@ void QHBoxLayout_CustomEventDefault(void* ptr, void* event){
 
 class MyQHeaderView: public QHeaderView {
 public:
+	MyQHeaderView(Qt::Orientation orientation, QWidget *parent) : QHeaderView(orientation, parent) {};
 	void currentChanged(const QModelIndex & current, const QModelIndex & old) { if (!callbackQHeaderViewCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(old))) { QHeaderView::currentChanged(current, old); }; };
 	void Signal_GeometriesChanged() { callbackQHeaderViewGeometriesChanged(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * e) { callbackQHeaderViewMouseDoubleClickEvent(this, this->objectName().toUtf8().data(), e); };
@@ -18327,6 +18328,10 @@ void QHeaderView_SetStretchLastSection(void* ptr, int stretch){
 
 int QHeaderView_StretchLastSection(void* ptr){
 	return static_cast<QHeaderView*>(ptr)->stretchLastSection();
+}
+
+void* QHeaderView_NewQHeaderView(int orientation, void* parent){
+	return new MyQHeaderView(static_cast<Qt::Orientation>(orientation), static_cast<QWidget*>(parent));
 }
 
 int QHeaderView_Count(void* ptr){
@@ -36620,6 +36625,7 @@ void QTabWidget_CustomEventDefault(void* ptr, void* event){
 
 class MyQTableView: public QTableView {
 public:
+	MyQTableView(QWidget *parent) : QTableView(parent) {};
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags flags) { callbackQTableViewSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), flags); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQTableViewCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous))) { QTableView::currentChanged(current, previous); }; };
 	void paintEvent(QPaintEvent * event) { callbackQTableViewPaintEvent(this, this->objectName().toUtf8().data(), event); };
@@ -36720,6 +36726,10 @@ int QTableView_ShowGrid(void* ptr){
 
 int QTableView_WordWrap(void* ptr){
 	return static_cast<QTableView*>(ptr)->wordWrap();
+}
+
+void* QTableView_NewQTableView(void* parent){
+	return new MyQTableView(static_cast<QWidget*>(parent));
 }
 
 void QTableView_ClearSpans(void* ptr){
@@ -37256,6 +37266,8 @@ void QTableView_CustomEventDefault(void* ptr, void* event){
 
 class MyQTableWidget: public QTableWidget {
 public:
+	MyQTableWidget(QWidget *parent) : QTableWidget(parent) {};
+	MyQTableWidget(int rows, int columns, QWidget *parent) : QTableWidget(rows, columns, parent) {};
 	void Signal_CellActivated(int row, int column) { callbackQTableWidgetCellActivated(this, this->objectName().toUtf8().data(), row, column); };
 	void Signal_CellChanged(int row, int column) { callbackQTableWidgetCellChanged(this, this->objectName().toUtf8().data(), row, column); };
 	void Signal_CellClicked(int row, int column) { callbackQTableWidgetCellClicked(this, this->objectName().toUtf8().data(), row, column); };
@@ -37322,6 +37334,14 @@ public:
 
 void* QTableWidget_ItemAt(void* ptr, void* point){
 	return static_cast<QTableWidget*>(ptr)->itemAt(*static_cast<QPoint*>(point));
+}
+
+void* QTableWidget_NewQTableWidget(void* parent){
+	return new MyQTableWidget(static_cast<QWidget*>(parent));
+}
+
+void* QTableWidget_NewQTableWidget2(int rows, int columns, void* parent){
+	return new MyQTableWidget(rows, columns, static_cast<QWidget*>(parent));
 }
 
 void QTableWidget_ConnectCellActivated(void* ptr){

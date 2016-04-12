@@ -1,10 +1,13 @@
 package templater
 
 import (
+	"fmt"
+	"path/filepath"
 	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func isSupportedFunction(c *parser.Class, f *parser.Function) bool {
@@ -17,7 +20,7 @@ func isNotAbstractConstructor(c *parser.Class, f *parser.Function) bool {
 
 func hasPureVirtualFunctions(c string) bool {
 
-	if c == "QGraphicsObject" {
+	if c == "QGraphicsObject" || c == "QAccessibleObject" || c == "QAbstractGraphicsShapeItem" {
 		return true
 	}
 
@@ -32,7 +35,9 @@ func hasPureVirtualFunctions(c string) bool {
 					for _, fBase := range bl.Functions {
 						if fBase.Virtual == "pure" {
 							if !classHasRealFunction(c, fBase.Name) {
-								return true
+								if !classHasRealFunctionFromFile(c, fBase.Name) {
+									return true
+								}
 							}
 						}
 					}
@@ -56,6 +61,46 @@ func classHasRealFunction(c string, n string) bool {
 			}
 		}
 	}
+	return false
+}
+
+func classHasRealFunctionFromFile(c string, n string) bool {
+
+	var (
+		f     = parser.ClassMap[c].Functions[0]
+		fData string
+	)
+
+	switch runtime.GOOS {
+	case "darwin":
+		fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/clang_64/lib/%v.framework/Versions/5/Headers/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
+
+	case "windows":
+		fData = utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\include\\%v\\%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
+
+	case "linux":
+		switch runtime.GOARCH {
+		case "amd64":
+			{
+				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc_64/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
+			}
+		case "386":
+			{
+				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
+			}
+		}
+	}
+
+	if fData != "" {
+		for _, l := range strings.Split(fData, "\n") {
+			if strings.Contains(l, n) && strings.Contains(l, "Q_DECL_OVERRIDE") {
+				return true
+			}
+		}
+	} else {
+		fmt.Println("templater.classHasRealFunctionFromFile", f.Class(), f.Name)
+	}
+
 	return false
 }
 

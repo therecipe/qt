@@ -2846,6 +2846,36 @@ func (ptr *QBitmap) QBitmap_PTR() *QBitmap {
 	return ptr
 }
 
+func NewQBitmap3(width int, height int) *QBitmap {
+	defer qt.Recovering("QBitmap::QBitmap")
+
+	return newQBitmapFromPointer(C.QBitmap_NewQBitmap3(C.int(width), C.int(height)))
+}
+
+func NewQBitmap() *QBitmap {
+	defer qt.Recovering("QBitmap::QBitmap")
+
+	return newQBitmapFromPointer(C.QBitmap_NewQBitmap())
+}
+
+func NewQBitmap2(pixmap QPixmap_ITF) *QBitmap {
+	defer qt.Recovering("QBitmap::QBitmap")
+
+	return newQBitmapFromPointer(C.QBitmap_NewQBitmap2(PointerFromQPixmap(pixmap)))
+}
+
+func NewQBitmap4(size core.QSize_ITF) *QBitmap {
+	defer qt.Recovering("QBitmap::QBitmap")
+
+	return newQBitmapFromPointer(C.QBitmap_NewQBitmap4(core.PointerFromQSize(size)))
+}
+
+func NewQBitmap5(fileName string, format string) *QBitmap {
+	defer qt.Recovering("QBitmap::QBitmap")
+
+	return newQBitmapFromPointer(C.QBitmap_NewQBitmap5(C.CString(fileName), C.CString(format)))
+}
+
 func (ptr *QBitmap) Clear() {
 	defer qt.Recovering("QBitmap::clear")
 
@@ -9417,6 +9447,42 @@ func (ptr *QImage) Width() int {
 		return int(C.QImage_Width(ptr.Pointer()))
 	}
 	return 0
+}
+
+func NewQImage() *QImage {
+	defer qt.Recovering("QImage::QImage")
+
+	return newQImageFromPointer(C.QImage_NewQImage())
+}
+
+func NewQImage11(other QImage_ITF) *QImage {
+	defer qt.Recovering("QImage::QImage")
+
+	return newQImageFromPointer(C.QImage_NewQImage11(PointerFromQImage(other)))
+}
+
+func NewQImage10(image QImage_ITF) *QImage {
+	defer qt.Recovering("QImage::QImage")
+
+	return newQImageFromPointer(C.QImage_NewQImage10(PointerFromQImage(image)))
+}
+
+func NewQImage2(size core.QSize_ITF, format QImage__Format) *QImage {
+	defer qt.Recovering("QImage::QImage")
+
+	return newQImageFromPointer(C.QImage_NewQImage2(core.PointerFromQSize(size), C.int(format)))
+}
+
+func NewQImage9(fileName string, format string) *QImage {
+	defer qt.Recovering("QImage::QImage")
+
+	return newQImageFromPointer(C.QImage_NewQImage9(C.CString(fileName), C.CString(format)))
+}
+
+func NewQImage3(width int, height int, format QImage__Format) *QImage {
+	defer qt.Recovering("QImage::QImage")
+
+	return newQImageFromPointer(C.QImage_NewQImage3(C.int(width), C.int(height), C.int(format)))
 }
 
 func (ptr *QImage) AllGray() bool {
@@ -21139,6 +21205,18 @@ func (ptr *QPicture) IsNull() bool {
 	return false
 }
 
+func NewQPicture2(pic QPicture_ITF) *QPicture {
+	defer qt.Recovering("QPicture::QPicture")
+
+	return newQPictureFromPointer(C.QPicture_NewQPicture2(PointerFromQPicture(pic)))
+}
+
+func NewQPicture(formatVersion int) *QPicture {
+	defer qt.Recovering("QPicture::QPicture")
+
+	return newQPictureFromPointer(C.QPicture_NewQPicture(C.int(formatVersion)))
+}
+
 func (ptr *QPicture) BoundingRect() *core.QRect {
 	defer qt.Recovering("QPicture::boundingRect")
 
@@ -21452,6 +21530,12 @@ func (ptr *QPixmap) QPixmap_PTR() *QPixmap {
 	return ptr
 }
 
+func NewQPixmap3(width int, height int) *QPixmap {
+	defer qt.Recovering("QPixmap::QPixmap")
+
+	return newQPixmapFromPointer(C.QPixmap_NewQPixmap3(C.int(width), C.int(height)))
+}
+
 func (ptr *QPixmap) Depth() int {
 	defer qt.Recovering("QPixmap::depth")
 
@@ -21513,6 +21597,30 @@ func (ptr *QPixmap) Width() int {
 		return int(C.QPixmap_Width(ptr.Pointer()))
 	}
 	return 0
+}
+
+func NewQPixmap() *QPixmap {
+	defer qt.Recovering("QPixmap::QPixmap")
+
+	return newQPixmapFromPointer(C.QPixmap_NewQPixmap())
+}
+
+func NewQPixmap6(pixmap QPixmap_ITF) *QPixmap {
+	defer qt.Recovering("QPixmap::QPixmap")
+
+	return newQPixmapFromPointer(C.QPixmap_NewQPixmap6(PointerFromQPixmap(pixmap)))
+}
+
+func NewQPixmap8(size core.QSize_ITF) *QPixmap {
+	defer qt.Recovering("QPixmap::QPixmap")
+
+	return newQPixmapFromPointer(C.QPixmap_NewQPixmap8(core.PointerFromQSize(size)))
+}
+
+func NewQPixmap4(fileName string, format string, flags core.Qt__ImageConversionFlag) *QPixmap {
+	defer qt.Recovering("QPixmap::QPixmap")
+
+	return newQPixmapFromPointer(C.QPixmap_NewQPixmap4(C.CString(fileName), C.CString(format), C.int(flags)))
 }
 
 func (ptr *QPixmap) CacheKey() int64 {
