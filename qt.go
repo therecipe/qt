@@ -5,36 +5,48 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"sync"
 
 	_ "github.com/therecipe/qt/internal/android/cgo"
 )
 
 var (
-	signals = make(map[string]interface{})
-	ids     int
+	signals      = make(map[string]interface{})
+	signalsMutex = new(sync.Mutex)
+	ids          int
 )
 
 func init() { runtime.LockOSThread() }
 
 func ConnectSignal(name string, signal string, function interface{}) {
+	signalsMutex.Lock()
 	signals[name+":"+signal] = function
+	signalsMutex.Unlock()
 }
 
 func GetSignal(name string, signal string) interface{} {
 	if signal == "destroyed" {
 		defer DisconnectAllSignals(name)
 	}
-	return signals[name+":"+signal]
+	var s interface{}
+	signalsMutex.Lock()
+	s = signals[name+":"+signal]
+	signalsMutex.Unlock()
+	return s
 }
 
 func DisconnectSignal(name string, signal string) {
+	signalsMutex.Lock()
 	delete(signals, name+":"+signal)
+	signalsMutex.Unlock()
 }
 
 func DisconnectAllSignals(name string) {
 	for entry := range signals {
 		if strings.Contains(entry, name) {
+			signalsMutex.Lock()
 			delete(signals, entry)
+			signalsMutex.Unlock()
 		}
 	}
 }
