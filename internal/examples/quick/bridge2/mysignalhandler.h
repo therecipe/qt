@@ -8,7 +8,8 @@ class MySignalHandler : public QObject
     Q_OBJECT
 public:
     explicit MySignalHandler(QObject *parent = 0);
-
+signals:
+    void sendToQml(QString value);
 public slots:
     void callbackFromQml(QString value);
 };

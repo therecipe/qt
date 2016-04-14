@@ -7,6 +7,8 @@ extern "C" {
 
 void initSignalHandler(void* rootContext);
 
+void sendSignalToQml(char* value);
+
 #ifdef __cplusplus
 }
 #endif

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
@@ -33,9 +34,17 @@ func main() {
 	gui.NewQGuiApplication(len(os.Args), os.Args)
 
 	var view = quick.NewQQuickView(nil)
+	C.initSignalHandler(view.Engine().RootContext().Pointer())
 	view.SetSource(core.NewQUrl3("qrc:///qml/bridge.qml", 0))
 	view.SetResizeMode(quick.QQuickView__SizeRootObjectToView)
-	C.initSignalHandler(view.Engine().RootContext().Pointer())
+	ticker := time.NewTicker(time.Second * 1)
+
+	go func() {
+		for t := range ticker.C {
+			str := t.Format(time.ANSIC)
+			C.sendSignalToQml(C.CString(str))
+		}
+	}()
 	view.Show()
 
 	gui.QGuiApplication_Exec()
