@@ -13038,6 +13038,12 @@ func (ptr *QGenericArgument) QGenericArgument_PTR() *QGenericArgument {
 	return ptr
 }
 
+func NewQGenericArgument(name string, data unsafe.Pointer) *QGenericArgument {
+	defer qt.Recovering("QGenericArgument::QGenericArgument")
+
+	return newQGenericArgumentFromPointer(C.QGenericArgument_NewQGenericArgument(C.CString(name), data))
+}
+
 func (ptr *QGenericArgument) Data() unsafe.Pointer {
 	defer qt.Recovering("QGenericArgument::data")
 
@@ -13076,6 +13082,12 @@ func newQGenericReturnArgumentFromPointer(ptr unsafe.Pointer) *QGenericReturnArg
 
 func (ptr *QGenericReturnArgument) QGenericReturnArgument_PTR() *QGenericReturnArgument {
 	return ptr
+}
+
+func NewQGenericReturnArgument(name string, data unsafe.Pointer) *QGenericReturnArgument {
+	defer qt.Recovering("QGenericReturnArgument::QGenericReturnArgument")
+
+	return newQGenericReturnArgumentFromPointer(C.QGenericReturnArgument_NewQGenericReturnArgument(C.CString(name), data))
 }
 
 type QGlobalStatic struct {
@@ -19886,6 +19898,24 @@ func (ptr *QMetaMethod) Invoke(object QObject_ITF, connectionType Qt__Connection
 	return false
 }
 
+func (ptr *QMetaMethod) InvokeOnGadget2(gadget unsafe.Pointer, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
+	defer qt.Recovering("QMetaMethod::invokeOnGadget")
+
+	if ptr.Pointer() != nil {
+		return C.QMetaMethod_InvokeOnGadget2(ptr.Pointer(), gadget, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	}
+	return false
+}
+
+func (ptr *QMetaMethod) InvokeOnGadget(gadget unsafe.Pointer, returnValue QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
+	defer qt.Recovering("QMetaMethod::invokeOnGadget")
+
+	if ptr.Pointer() != nil {
+		return C.QMetaMethod_InvokeOnGadget(ptr.Pointer(), gadget, PointerFromQGenericReturnArgument(returnValue), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	}
+	return false
+}
+
 func (ptr *QMetaMethod) IsValid() bool {
 	defer qt.Recovering("QMetaMethod::isValid")
 
@@ -20403,11 +20433,29 @@ func (ptr *QMetaProperty) Read(object QObject_ITF) *QVariant {
 	return nil
 }
 
+func (ptr *QMetaProperty) ReadOnGadget(gadget unsafe.Pointer) *QVariant {
+	defer qt.Recovering("QMetaProperty::readOnGadget")
+
+	if ptr.Pointer() != nil {
+		return NewQVariantFromPointer(C.QMetaProperty_ReadOnGadget(ptr.Pointer(), gadget))
+	}
+	return nil
+}
+
 func (ptr *QMetaProperty) Reset(object QObject_ITF) bool {
 	defer qt.Recovering("QMetaProperty::reset")
 
 	if ptr.Pointer() != nil {
 		return C.QMetaProperty_Reset(ptr.Pointer(), PointerFromQObject(object)) != 0
+	}
+	return false
+}
+
+func (ptr *QMetaProperty) ResetOnGadget(gadget unsafe.Pointer) bool {
+	defer qt.Recovering("QMetaProperty::resetOnGadget")
+
+	if ptr.Pointer() != nil {
+		return C.QMetaProperty_ResetOnGadget(ptr.Pointer(), gadget) != 0
 	}
 	return false
 }
@@ -20435,6 +20483,15 @@ func (ptr *QMetaProperty) Write(object QObject_ITF, value QVariant_ITF) bool {
 
 	if ptr.Pointer() != nil {
 		return C.QMetaProperty_Write(ptr.Pointer(), PointerFromQObject(object), PointerFromQVariant(value)) != 0
+	}
+	return false
+}
+
+func (ptr *QMetaProperty) WriteOnGadget(gadget unsafe.Pointer, value QVariant_ITF) bool {
+	defer qt.Recovering("QMetaProperty::writeOnGadget")
+
+	if ptr.Pointer() != nil {
+		return C.QMetaProperty_WriteOnGadget(ptr.Pointer(), gadget, PointerFromQVariant(value)) != 0
 	}
 	return false
 }
@@ -20581,6 +20638,88 @@ func NewQMetaType(typeId int) *QMetaType {
 	return newQMetaTypeFromPointer(C.QMetaType_NewQMetaType(C.int(typeId)))
 }
 
+func QMetaType_Compare(lhs unsafe.Pointer, rhs unsafe.Pointer, typeId int, result int) bool {
+	defer qt.Recovering("QMetaType::compare")
+
+	return C.QMetaType_QMetaType_Compare(lhs, rhs, C.int(typeId), C.int(result)) != 0
+}
+
+func QMetaType_Construct(ty int, where unsafe.Pointer, copy unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("QMetaType::construct")
+
+	return unsafe.Pointer(C.QMetaType_QMetaType_Construct(C.int(ty), where, copy))
+}
+
+func (ptr *QMetaType) Construct3(where unsafe.Pointer, copy unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("QMetaType::construct")
+
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QMetaType_Construct3(ptr.Pointer(), where, copy))
+	}
+	return nil
+}
+
+func QMetaType_Convert(from unsafe.Pointer, fromTypeId int, to unsafe.Pointer, toTypeId int) bool {
+	defer qt.Recovering("QMetaType::convert")
+
+	return C.QMetaType_QMetaType_Convert(from, C.int(fromTypeId), to, C.int(toTypeId)) != 0
+}
+
+func QMetaType_Create(ty int, copy unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("QMetaType::create")
+
+	return unsafe.Pointer(C.QMetaType_QMetaType_Create(C.int(ty), copy))
+}
+
+func (ptr *QMetaType) Create2(copy unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("QMetaType::create")
+
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QMetaType_Create2(ptr.Pointer(), copy))
+	}
+	return nil
+}
+
+func QMetaType_DebugStream(dbg QDebug_ITF, rhs unsafe.Pointer, typeId int) bool {
+	defer qt.Recovering("QMetaType::debugStream")
+
+	return C.QMetaType_QMetaType_DebugStream(PointerFromQDebug(dbg), rhs, C.int(typeId)) != 0
+}
+
+func QMetaType_Destroy(ty int, data unsafe.Pointer) {
+	defer qt.Recovering("QMetaType::destroy")
+
+	C.QMetaType_QMetaType_Destroy(C.int(ty), data)
+}
+
+func (ptr *QMetaType) Destroy2(data unsafe.Pointer) {
+	defer qt.Recovering("QMetaType::destroy")
+
+	if ptr.Pointer() != nil {
+		C.QMetaType_Destroy2(ptr.Pointer(), data)
+	}
+}
+
+func QMetaType_Destruct(ty int, where unsafe.Pointer) {
+	defer qt.Recovering("QMetaType::destruct")
+
+	C.QMetaType_QMetaType_Destruct(C.int(ty), where)
+}
+
+func (ptr *QMetaType) Destruct2(data unsafe.Pointer) {
+	defer qt.Recovering("QMetaType::destruct")
+
+	if ptr.Pointer() != nil {
+		C.QMetaType_Destruct2(ptr.Pointer(), data)
+	}
+}
+
+func QMetaType_Equals(lhs unsafe.Pointer, rhs unsafe.Pointer, typeId int, result int) bool {
+	defer qt.Recovering("QMetaType::equals")
+
+	return C.QMetaType_QMetaType_Equals(lhs, rhs, C.int(typeId), C.int(result)) != 0
+}
+
 func (ptr *QMetaType) Flags() QMetaType__TypeFlag {
 	defer qt.Recovering("QMetaType::flags")
 
@@ -20614,6 +20753,12 @@ func (ptr *QMetaType) IsValid() bool {
 	return false
 }
 
+func QMetaType_Load(stream QDataStream_ITF, ty int, data unsafe.Pointer) bool {
+	defer qt.Recovering("QMetaType::load")
+
+	return C.QMetaType_QMetaType_Load(PointerFromQDataStream(stream), C.int(ty), data) != 0
+}
+
 func (ptr *QMetaType) MetaObject() *QMetaObject {
 	defer qt.Recovering("QMetaType::metaObject")
 
@@ -20627,6 +20772,12 @@ func QMetaType_MetaObjectForType(ty int) *QMetaObject {
 	defer qt.Recovering("QMetaType::metaObjectForType")
 
 	return NewQMetaObjectFromPointer(C.QMetaType_QMetaType_MetaObjectForType(C.int(ty)))
+}
+
+func QMetaType_Save(stream QDataStream_ITF, ty int, data unsafe.Pointer) bool {
+	defer qt.Recovering("QMetaType::save")
+
+	return C.QMetaType_QMetaType_Save(PointerFromQDataStream(stream), C.int(ty), data) != 0
 }
 
 func QMetaType_SizeOf(ty int) int {
@@ -36560,11 +36711,11 @@ func QThread_IdealThreadCount() int {
 	return int(C.QThread_QThread_IdealThreadCount())
 }
 
-func (ptr *QThread) Start(priority QThread__Priority) {
+func (ptr *QThread) Start() {
 	defer qt.Recovering("QThread::start")
 
 	if ptr.Pointer() != nil {
-		C.QThread_Start(ptr.Pointer(), C.int(priority))
+		C.QThread_Start(ptr.Pointer())
 	}
 }
 
@@ -39990,6 +40141,12 @@ func NewQVariant14(val string) *QVariant {
 	defer qt.Recovering("QVariant::QVariant")
 
 	return newQVariantFromPointer(C.QVariant_NewQVariant14(C.CString(val)))
+}
+
+func NewQVariant3(typeId int, copy unsafe.Pointer) *QVariant {
+	defer qt.Recovering("QVariant::QVariant")
+
+	return newQVariantFromPointer(C.QVariant_NewQVariant3(C.int(typeId), copy))
 }
 
 func NewQVariant7(val int) *QVariant {

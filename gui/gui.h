@@ -803,6 +803,8 @@ char* QIconEngine_KeyDefault(void* ptr);
 void QIconEngine_Paint(void* ptr, void* painter, void* rect, int mode, int state);
 int QIconEngine_Read(void* ptr, void* in);
 int QIconEngine_ReadDefault(void* ptr, void* in);
+void QIconEngine_Virtual_hook(void* ptr, int id, void* data);
+void QIconEngine_Virtual_hookDefault(void* ptr, int id, void* data);
 int QIconEngine_Write(void* ptr, void* out);
 int QIconEngine_WriteDefault(void* ptr, void* out);
 void QIconEngine_DestroyQIconEngine(void* ptr);

@@ -18,13 +18,17 @@ func GetModule(s string) (m *Module) {
 
 	switch runtime.GOOS {
 	case "darwin", "linux":
-		xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/Docs/Qt-5.5/qt%v/qt%v.index", s, s))), &m)
+		{
+			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/Docs/Qt-5.5/qt%v/qt%v.index", s, s))), &m)
+		}
 
 	case "windows":
-		xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.5.1\\Docs\\Qt-5.5\\qt%v\\qt%v.index", s, s))), &m)
+		{
+			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.5.1\\Docs\\Qt-5.5\\qt%v\\qt%v.index", s, s))), &m)
+		}
 	}
 
-	m.prepare()
+	m.Prepare()
 
 	return m
 }

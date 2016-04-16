@@ -2,9 +2,10 @@ package templater
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
-	"strings"
 )
 
 func cppEnum(e *parser.Enum, v *parser.Value) string {

@@ -64,31 +64,41 @@ func CppBodyInput(f *parser.Function) (o string) {
 
 func IsPrivateSignal(f *parser.Function) bool {
 
-	var fData string
+	if parser.ClassMap[f.Class()].Module != "main" {
 
-	switch runtime.GOOS {
-	case "darwin":
-		fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/clang_64/lib/%v.framework/Versions/5/Headers/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
+		var fData string
 
-	case "windows":
-		fData = utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\include\\%v\\%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
-
-	case "linux":
-		switch runtime.GOARCH {
-		case "amd64":
+		switch runtime.GOOS {
+		case "darwin":
 			{
-				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc_64/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
+				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/clang_64/lib/%v.framework/Versions/5/Headers/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
 			}
-		case "386":
+
+		case "windows":
 			{
-				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
+				fData = utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\include\\%v\\%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
+			}
+
+		case "linux":
+			{
+				switch runtime.GOARCH {
+				case "amd64":
+					{
+						fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc_64/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
+					}
+
+				case "386":
+					{
+						fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), filepath.Base(f.Filepath)))
+					}
+				}
 			}
 		}
-	}
 
-	if fData != "" {
-		return strings.Contains(strings.Split(strings.Split(fData, f.Name+"(")[1], ")")[0], "QPrivateSignal")
-	} else {
+		if fData != "" {
+			return strings.Contains(strings.Split(strings.Split(fData, f.Name+"(")[1], ")")[0], "QPrivateSignal")
+		}
+
 		fmt.Println("converter.IsPrivateSignal", f.Class())
 	}
 
@@ -110,7 +120,7 @@ func CppBodyInputCallback(f *parser.Function) (o string) {
 
 func CppBodyOutputCallback(f *parser.Function) (o string) {
 
-	//TODO: parse from docs
+	//TODO: parse from docs if const
 	var this = "this"
 	if strings.Contains(strings.Split(f.Signature, ")")[1], "const") {
 		this = fmt.Sprintf("const_cast<My%v*>(this)", f.Class())

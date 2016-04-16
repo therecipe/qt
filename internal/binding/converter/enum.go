@@ -11,7 +11,7 @@ import (
 func GoEnum(n string, v string, e *parser.Enum) string {
 	var _, err = strconv.Atoi(v)
 	switch {
-	case strings.ContainsAny(v, "()<>~+") || v == "":
+	case strings.ContainsAny(v, "()<>~+"), v == "", v == "0x1FFFFFFFU":
 		{
 			e.NoConst = true
 			return fmt.Sprintf("C.%v_%v_Type()", strings.Split(e.Fullname, "::")[0], n)

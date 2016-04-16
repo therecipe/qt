@@ -136,7 +136,15 @@ func goFunctionBody(f *parser.Function) (o string) {
 				if f.Meta == "slot" || isDerivedFromSlot(f) {
 					o += fmt.Sprintf("\treturn true\n}\nreturn false\n")
 				} else {
-					o += fmt.Sprintf("} else {\n\tNew%vFromPointer(ptr).%vDefault(%v)\n}", f.Class(), strings.Title(f.Name), converter.GoBodyInputSignalValues(f))
+					if parser.ClassMap[f.Class()].Module == "main" {
+						if !classHasRealFunction(parser.ClassMap[f.Class()].Bases, f.Name) {
+							o += "}\n"
+						} else {
+							o += fmt.Sprintf("} else {\n\tNew%vFromPointer(ptr).%vDefault(%v)\n}", f.Class(), strings.Title(f.Name), converter.GoBodyInputSignalValues(f))
+						}
+					} else {
+						o += fmt.Sprintf("} else {\n\tNew%vFromPointer(ptr).%vDefault(%v)\n}", f.Class(), strings.Title(f.Name), converter.GoBodyInputSignalValues(f))
+					}
 				}
 			}
 		} else {

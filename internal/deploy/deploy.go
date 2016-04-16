@@ -27,6 +27,7 @@ func main() {
 	switch buildMode {
 	case "build", "test":
 		{
+			moc()
 			qrc()
 			build()
 			predeploy()
@@ -118,15 +119,21 @@ func args() {
 	}
 }
 
+func moc() {
+	var moc = exec.Command("qtmoc")
+	moc.Dir = appPath
+	runCmd(moc, "qtdeploy.moc")
+}
+
 func qrc() {
 
 	utils.MakeFolder(filepath.Join(appPath, "qml"))
 
 	var (
 		rccPath string
-		qmlGo   = filepath.Join(appPath, "qtQrc.go")
-		qmlQrc  = filepath.Join(appPath, "qtQrc.qrc")
-		qmlCpp  = filepath.Join(appPath, "qtQrc.cpp")
+		qmlGo   = filepath.Join(appPath, "qrc_cgo.go")
+		qmlQrc  = filepath.Join(appPath, "qrc.qrc")
+		qmlCpp  = filepath.Join(appPath, "qrc.cpp")
 	)
 
 	switch buildTarget {
@@ -651,9 +658,9 @@ func pastdeploy() {
 
 func cleanup() {
 	var (
-		qmlGo  = filepath.Join(appPath, "qtQrc.go")
-		qmlQrc = filepath.Join(appPath, "qtQrc.qrc")
-		qmlCpp = filepath.Join(appPath, "qtQrc.cpp")
+		qmlGo  = filepath.Join(appPath, "qrc_cgo.go")
+		qmlQrc = filepath.Join(appPath, "qrc.qrc")
+		qmlCpp = filepath.Join(appPath, "qrc.cpp")
 	)
 
 	utils.RemoveAll(qmlGo)

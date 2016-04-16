@@ -1,16 +1,15 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'mysignalhandler.h'
+** Meta object code from reading C++ file 'moc.cpp'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "./mysignalhandler.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'mysignalhandler.h' doesn't include <QObject>."
+#error "The header file 'moc.cpp' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -18,30 +17,29 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_MySignalHandler_t {
+struct qt_meta_stringdata_QmlBridge_t {
     QByteArrayData data[5];
-    char stringdata0[49];
+    char stringdata0[35];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_MySignalHandler_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_QmlBridge_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_MySignalHandler_t qt_meta_stringdata_MySignalHandler = {
+static const qt_meta_stringdata_QmlBridge_t qt_meta_stringdata_QmlBridge = {
     {
-QT_MOC_LITERAL(0, 0, 15), // "MySignalHandler"
-QT_MOC_LITERAL(1, 16, 9), // "sendToQml"
-QT_MOC_LITERAL(2, 26, 0), // ""
-QT_MOC_LITERAL(3, 27, 5), // "value"
-QT_MOC_LITERAL(4, 33, 15) // "callbackFromQml"
+QT_MOC_LITERAL(0, 0, 9), // "QmlBridge"
+QT_MOC_LITERAL(1, 10, 9), // "sendToQml"
+QT_MOC_LITERAL(2, 20, 0), // ""
+QT_MOC_LITERAL(3, 21, 4), // "data"
+QT_MOC_LITERAL(4, 26, 8) // "sendToGo"
 
     },
-    "MySignalHandler\0sendToQml\0\0value\0"
-    "callbackFromQml"
+    "QmlBridge\0sendToQml\0\0data\0sendToGo"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_MySignalHandler[] = {
+static const uint qt_meta_data_QmlBridge[] = {
 
  // content:
        7,       // revision
@@ -69,48 +67,48 @@ static const uint qt_meta_data_MySignalHandler[] = {
        0        // eod
 };
 
-void MySignalHandler::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void QmlBridge::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        MySignalHandler *_t = static_cast<MySignalHandler *>(_o);
+        QmlBridge *_t = static_cast<QmlBridge *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->sendToQml((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 1: _t->callbackFromQml((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 1: _t->sendToGo((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (MySignalHandler::*_t)(QString );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MySignalHandler::sendToQml)) {
+            typedef void (QmlBridge::*_t)(QString );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&QmlBridge::sendToQml)) {
                 *result = 0;
             }
         }
     }
 }
 
-const QMetaObject MySignalHandler::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_MySignalHandler.data,
-      qt_meta_data_MySignalHandler,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+const QMetaObject QmlBridge::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_QmlBridge.data,
+      qt_meta_data_QmlBridge,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
-const QMetaObject *MySignalHandler::metaObject() const
+const QMetaObject *QmlBridge::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *MySignalHandler::qt_metacast(const char *_clname)
+void *QmlBridge::qt_metacast(const char *_clname)
 {
     if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_MySignalHandler.stringdata0))
-        return static_cast<void*>(const_cast< MySignalHandler*>(this));
+    if (!strcmp(_clname, qt_meta_stringdata_QmlBridge.stringdata0))
+        return static_cast<void*>(const_cast< QmlBridge*>(this));
     return QObject::qt_metacast(_clname);
 }
 
-int MySignalHandler::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int QmlBridge::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
@@ -128,7 +126,7 @@ int MySignalHandler::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MySignalHandler::sendToQml(QString _t1)
+void QmlBridge::sendToQml(QString _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

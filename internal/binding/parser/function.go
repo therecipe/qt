@@ -1,10 +1,14 @@
 package parser
 
-import "strings"
+import (
+	"strconv"
+	"strings"
+)
 
 type Function struct {
 	Name           string       `xml:"name,attr"`
 	Fullname       string       `xml:"fullname,attr"`
+	Href           string       `xml:"href,attr"`
 	Status         string       `xml:"status,attr"`
 	Access         string       `xml:"access,attr"`
 	Filepath       string       `xml:"filepath,attr"`
@@ -32,5 +36,27 @@ func (f *Function) register(module string) {
 		ClassMap[f.Class()] = &Class{Name: f.Class(), Module: module, Access: "public", Functions: []*Function{f}}
 	} else {
 		c.Functions = append(c.Functions, f)
+	}
+}
+
+func (f *Function) fix() {
+	if f.Fullname == "QThread::start" {
+		f.Parameters = make([]*Parameter, 0)
+	}
+}
+
+func (f *Function) fixOverload() {
+
+	if strings.Contains(f.Href, "-") {
+		var tmp, err = strconv.Atoi(strings.Split(f.Href, "-")[1])
+		if err == nil && tmp > 0 {
+			f.Overload = true
+			f.OverloadNumber = strconv.Itoa(tmp)
+		}
+	}
+
+	if f.OverloadNumber == "0" {
+		f.Overload = false
+		f.OverloadNumber = ""
 	}
 }

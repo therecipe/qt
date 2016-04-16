@@ -47,3 +47,8 @@ func GetAbsPath(appPath string) string {
 func GetQtPkgPath(s ...string) string {
 	return filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "therecipe", "qt", filepath.Join(s...))
 }
+
+func Exists(name string) bool {
+	var _, err = ioutil.ReadFile(name)
+	return err == nil
+}

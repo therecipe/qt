@@ -23,10 +23,14 @@ func GoHeaderName(f *parser.Function) (o string) {
 
 	switch f.Meta {
 	case "constructor":
-		o += "New"
+		{
+			o += "New"
+		}
 
 	case "destructor":
-		o += "Destroy"
+		{
+			o += "Destroy"
+		}
 	}
 
 	o += f.SignalMode

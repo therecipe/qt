@@ -9216,6 +9216,51 @@ func (ptr *QIconEngine) Read(in core.QDataStream_ITF) bool {
 	return false
 }
 
+func (ptr *QIconEngine) ConnectVirtual_hook(f func(id int, data unsafe.Pointer)) {
+	defer qt.Recovering("connect QIconEngine::virtual_hook")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "virtual_hook", f)
+	}
+}
+
+func (ptr *QIconEngine) DisconnectVirtual_hook() {
+	defer qt.Recovering("disconnect QIconEngine::virtual_hook")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "virtual_hook")
+	}
+}
+
+//export callbackQIconEngineVirtual_hook
+func callbackQIconEngineVirtual_hook(ptr unsafe.Pointer, ptrName *C.char, id C.int, data unsafe.Pointer) {
+	defer qt.Recovering("callback QIconEngine::virtual_hook")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "virtual_hook"); signal != nil {
+		signal.(func(int, unsafe.Pointer))(int(id), data)
+	} else {
+		NewQIconEngineFromPointer(ptr).Virtual_hookDefault(int(id), data)
+	}
+}
+
+func (ptr *QIconEngine) Virtual_hook(id int, data unsafe.Pointer) {
+	defer qt.Recovering("QIconEngine::virtual_hook")
+
+	if ptr.Pointer() != nil {
+		C.QIconEngine_Virtual_hook(ptr.Pointer(), C.int(id), data)
+	}
+}
+
+func (ptr *QIconEngine) Virtual_hookDefault(id int, data unsafe.Pointer) {
+	defer qt.Recovering("QIconEngine::virtual_hook")
+
+	if ptr.Pointer() != nil {
+		C.QIconEngine_Virtual_hookDefault(ptr.Pointer(), C.int(id), data)
+	}
+}
+
 func (ptr *QIconEngine) Write(out core.QDataStream_ITF) bool {
 	defer qt.Recovering("QIconEngine::write")
 

@@ -184,7 +184,9 @@ func findEnumHelper(value, name, typedef string) (string, string) {
 
 	switch value {
 	case name, typedef:
-		return fullName, typedef
+		{
+			return fullName, typedef
+		}
 	}
 	return "", ""
 }
@@ -195,7 +197,9 @@ func goEnum(inter interface{}, value string) string {
 
 	switch inter.(type) {
 	case *parser.Enum:
-		findByValue = true
+		{
+			findByValue = true
+		}
 	}
 
 	if outE, _ := findEnum(class(inter), value, findByValue); outE != "" {

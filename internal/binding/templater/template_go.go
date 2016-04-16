@@ -25,21 +25,24 @@ func GoTemplate(module string, stub bool) (o string) {
 
 		if c.Name != "Qt" && c.Name != "QMultimedia" && c.Name != "QAudio" {
 
-			o += fmt.Sprintf("type %v struct {\n", c.Name)
-			if c.Bases == "" {
-				o += "ptr unsafe.Pointer"
-			} else {
-				for _, b := range c.GetBases() {
-					if bC, exists := parser.ClassMap[b]; exists {
-						if m := shortModule(bC.Module); m != shortModule(c.Module) {
-							o += fmt.Sprintf("%v.%v\n", m, b)
-						} else {
-							o += fmt.Sprintf("%v\n", b)
+			if module != "main" {
+
+				o += fmt.Sprintf("type %v struct {\n", c.Name)
+				if c.Bases == "" {
+					o += "ptr unsafe.Pointer"
+				} else {
+					for _, b := range c.GetBases() {
+						if bC, exists := parser.ClassMap[b]; exists {
+							if m := shortModule(bC.Module); m != shortModule(c.Module) {
+								o += fmt.Sprintf("%v.%v\n", m, b)
+							} else {
+								o += fmt.Sprintf("%v\n", b)
+							}
 						}
 					}
 				}
+				o += "}\n\n"
 			}
-			o += "}\n\n"
 
 			o += fmt.Sprintf("type %v_ITF interface {\n", c.Name)
 
@@ -110,6 +113,13 @@ func GoTemplate(module string, stub bool) (o string) {
 			var virtuals = make(map[string]bool)
 
 			for _, f := range c.Functions {
+
+				var tmpMeta string
+				if module == "main" && (f.Meta == "signal" || f.Meta == "slot") {
+					tmpMeta = f.Meta
+					f.Meta = "signal"
+				}
+
 				if i := goFunction(f); isSupportedFunction(c, f) {
 					//if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
 					virtuals[f.Name+f.OverloadNumber] = true
@@ -117,6 +127,10 @@ func GoTemplate(module string, stub bool) (o string) {
 					if !isBlockedVirtual(f.Name, c.Name) {
 						o += fmt.Sprintf("%v\n\n", i)
 					}
+				}
+
+				if module == "main" && (f.Meta == "signal" || f.Meta == "slot") {
+					f.Meta = tmpMeta
 				}
 			}
 
@@ -157,6 +171,9 @@ func GoTemplate(module string, stub bool) (o string) {
 }
 
 func preambleGo(module, input string, stub bool) string {
+	if module == "main" {
+		LibDeps["main"] = make([]string, 0)
+	}
 
 	var tmp string
 
@@ -171,7 +188,11 @@ func preambleGo(module, input string, stub bool) string {
 			tmp += fmt.Sprintf("//#include \"%v_android.h\"\n", shortModule(module))
 		}
 	} else {
-		tmp += fmt.Sprintf("//#include \"%v.h\"\n", shortModule(module))
+		if module == "main" {
+			tmp += "//#include \"moc.h\"\n"
+		} else {
+			tmp += fmt.Sprintf("//#include \"%v.h\"\n", shortModule(module))
+		}
 	}
 
 	tmp += "import \"C\"\n"
@@ -183,13 +204,23 @@ func preambleGo(module, input string, stub bool) string {
 		if strings.Contains(input, fmt.Sprintf("%v.", i)) && i != shortModule(module) {
 			switch i {
 			case "qt":
-				tmp += fmt.Sprintf("\"github.com/therecipe/%v\"\n", i)
+				{
+					tmp += fmt.Sprintf("\"github.com/therecipe/%v\"\n", i)
+				}
 
 			case "strings", "unsafe", "log":
-				tmp += fmt.Sprintf("\"%v\"\n", i)
+				{
+					tmp += fmt.Sprintf("\"%v\"\n", i)
+				}
 
 			default:
-				tmp += fmt.Sprintf("\"github.com/therecipe/qt/%v\"\n", i)
+				{
+					tmp += fmt.Sprintf("\"github.com/therecipe/qt/%v\"\n", i)
+
+					if module == "main" {
+						LibDeps["main"] = append(LibDeps["main"], strings.Title(i))
+					}
+				}
 			}
 		}
 

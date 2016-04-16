@@ -1364,6 +1364,10 @@ void QXmlReader_SetLexicalHandler(void* ptr, void* handler){
 	static_cast<QXmlReader*>(ptr)->setLexicalHandler(static_cast<QXmlLexicalHandler*>(handler));
 }
 
+void QXmlReader_SetProperty(void* ptr, char* name, void* value){
+	static_cast<QXmlReader*>(ptr)->setProperty(QString(name), value);
+}
+
 void QXmlReader_DestroyQXmlReader(void* ptr){
 	static_cast<QXmlReader*>(ptr)->~QXmlReader();
 }
@@ -1394,6 +1398,7 @@ public:
 	void setErrorHandler(QXmlErrorHandler * handler) { callbackQXmlSimpleReaderSetErrorHandler(this, this->objectNameAbs().toUtf8().data(), handler); };
 	void setFeature(const QString & name, bool enable) { callbackQXmlSimpleReaderSetFeature(this, this->objectNameAbs().toUtf8().data(), name.toUtf8().data(), enable); };
 	void setLexicalHandler(QXmlLexicalHandler * handler) { callbackQXmlSimpleReaderSetLexicalHandler(this, this->objectNameAbs().toUtf8().data(), handler); };
+	void setProperty(const QString & name, void * value) { callbackQXmlSimpleReaderSetProperty(this, this->objectNameAbs().toUtf8().data(), name.toUtf8().data(), value); };
 };
 
 void* QXmlSimpleReader_DTDHandler(void* ptr){
@@ -1502,6 +1507,14 @@ void QXmlSimpleReader_SetLexicalHandler(void* ptr, void* handler){
 
 void QXmlSimpleReader_SetLexicalHandlerDefault(void* ptr, void* handler){
 	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setLexicalHandler(static_cast<QXmlLexicalHandler*>(handler));
+}
+
+void QXmlSimpleReader_SetProperty(void* ptr, char* name, void* value){
+	static_cast<MyQXmlSimpleReader*>(ptr)->setProperty(QString(name), value);
+}
+
+void QXmlSimpleReader_SetPropertyDefault(void* ptr, char* name, void* value){
+	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setProperty(QString(name), value);
 }
 
 void QXmlSimpleReader_DestroyQXmlSimpleReader(void* ptr){

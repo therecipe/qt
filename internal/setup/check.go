@@ -36,6 +36,7 @@ func main() {
 				os.Exit(1)
 			}
 		}
+
 	case "windows":
 		{
 			var (
@@ -58,6 +59,7 @@ func main() {
 				os.Exit(1)
 			}
 		}
+
 	case "linux":
 		{
 			var _, err = exec.LookPath("g++")
@@ -66,6 +68,7 @@ func main() {
 				os.Exit(1)
 			}
 		}
+
 	case "windows":
 		{
 			var _, err = exec.LookPath("gcc.exe")

@@ -3392,6 +3392,7 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	void addFile(const QString & fileName, const QSize & size, QIcon::Mode mode, QIcon::State state) { callbackQIconEngineAddFile(this, this->objectNameAbs().toUtf8().data(), fileName.toUtf8().data(), new QSize(static_cast<QSize>(size).width(), static_cast<QSize>(size).height()), mode, state); };
+	void virtual_hook(int id, void * data) { callbackQIconEngineVirtual_hook(this, this->objectNameAbs().toUtf8().data(), id, data); };
 };
 
 void* QIconEngine_ActualSize(void* ptr, void* size, int mode, int state){
@@ -3424,6 +3425,14 @@ void QIconEngine_Paint(void* ptr, void* painter, void* rect, int mode, int state
 
 int QIconEngine_Read(void* ptr, void* in){
 	return static_cast<QIconEngine*>(ptr)->read(*static_cast<QDataStream*>(in));
+}
+
+void QIconEngine_Virtual_hook(void* ptr, int id, void* data){
+	static_cast<MyQIconEngine*>(ptr)->virtual_hook(id, data);
+}
+
+void QIconEngine_Virtual_hookDefault(void* ptr, int id, void* data){
+	static_cast<QIconEngine*>(ptr)->QIconEngine::virtual_hook(id, data);
 }
 
 int QIconEngine_Write(void* ptr, void* out){

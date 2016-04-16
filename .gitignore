@@ -1,2 +1,5 @@
-**/deploy/
 .DS_Store
+**/deploy/windows/
+**/deploy/darwin/
+**/deploy/linux/
+**/deploy/android/

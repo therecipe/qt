@@ -49,10 +49,12 @@ func goOutput(name string, value string, f *parser.Function) string {
 				{
 					return fmt.Sprintf("int(%v)", name)
 				}
+
 			case "Boolean":
 				{
 					return fmt.Sprintf("int(%v) != 0", name)
 				}
+
 			case "Void":
 				{
 					return name
@@ -116,57 +118,78 @@ func goOutputFailed(value string, f *parser.Function) string {
 
 	switch value {
 	case "bool":
-		return "false"
+		{
+			return "false"
+		}
 
 	case "int", "qreal", "qint64", "WId":
-		return "0"
+		{
+			return "0"
+		}
 
 	case "uchar", "char", "QString":
-		return "\"\""
+		{
+			return "\"\""
+		}
 
 	case "QStringList":
-		return "make([]string, 0)"
+		{
+			return "make([]string, 0)"
+		}
 
 	case "void", "":
-		if strings.Contains(vOld, "*") {
-			return "nil"
+		{
+			if strings.Contains(vOld, "*") {
+				return "nil"
+			}
+			return ""
 		}
-		return ""
 
 	case "T", "JavaVM", "jclass", "jobject":
+		{
+			switch f.TemplateMode {
+			case "Int":
+				{
+					return "0"
+				}
 
-		switch f.TemplateMode {
-		case "Int":
-			{
-				return "0"
+			case "Boolean":
+				{
+					return "false"
+				}
+
+			case "Void":
+				{
+					return ""
+				}
 			}
-		case "Boolean":
-			{
-				return "false"
-			}
-		case "Void":
-			{
-				return ""
-			}
+
+			return "nil"
 		}
-
-		return "nil"
 	}
 
 	switch {
 	case isEnum(f.Class(), value):
-		return "0"
+		{
+			return "0"
+		}
 
 	case isClass(value):
-		return "nil"
+		{
+			return "nil"
+		}
 
 	default:
-		f.Access = "unsupported_GoBodyOutputFailed"
-		return f.Access
+		{
+			f.Access = "unsupported_GoBodyOutputFailed"
+			return f.Access
+		}
 	}
 }
 
 func cgoOutput(name string, value string, f *parser.Function) string {
+
+	var vOld = value
 
 	name = cleanName(name)
 	value = cleanValue(value)
@@ -194,6 +217,9 @@ func cgoOutput(name string, value string, f *parser.Function) string {
 
 	case "void", "":
 		{
+			if strings.Contains(vOld, "*") {
+				return name
+			}
 			return ""
 		}
 

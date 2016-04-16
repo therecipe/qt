@@ -47,12 +47,16 @@ func goType(f *parser.Function, value string) string {
 				{
 					return "int"
 				}
+
 			case "Boolean":
 				{
 					return "bool"
 				}
+
 			case "Void":
-				return ""
+				{
+					return ""
+				}
 			}
 
 			if module(f) == "androidextras" && f.Name != "object" {
@@ -120,6 +124,8 @@ func goType(f *parser.Function, value string) string {
 
 func cgoType(f *parser.Function, value string) string {
 
+	var vOld = value
+
 	value = cleanValue(value)
 
 	switch value {
@@ -135,6 +141,9 @@ func cgoType(f *parser.Function, value string) string {
 
 	case "void", "":
 		{
+			if strings.Contains(vOld, "*") {
+				return "unsafe.Pointer"
+			}
 			return ""
 		}
 
@@ -196,10 +205,12 @@ func cppType(f *parser.Function, value string) string {
 				{
 					return "int"
 				}
+
 			case "Boolean":
 				{
 					return "int"
 				}
+
 			case "Void":
 				{
 					return "void"

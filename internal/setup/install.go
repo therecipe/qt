@@ -96,7 +96,7 @@ func main() {
 
 	for _, m := range templater.GetLibs() {
 
-		if buildTarget == "android" && (m == "DBus" || m == "MacExtras") {
+		if buildTarget == "android" && (m == "DBus" || m == "MacExtras" || m == "WebEngine" || m == "Designer") {
 
 		} else {
 
@@ -105,7 +105,6 @@ func main() {
 			fmt.Print(strings.ToLower(m))
 
 			if templater.ShouldBuild(m) {
-
 				var cmd = exec.Command("go")
 				cmd.Args = append(cmd.Args,
 					"install",
@@ -121,15 +120,7 @@ func main() {
 				runCmd(cmd, fmt.Sprintf("install.%v", m))
 			}
 
-			var sep = "\t"
-			if len(m) < 8 {
-				sep += "\t\t"
-			}
-			if len(m) >= 8 && len(m) < 17 {
-				sep += "\t"
-			}
-
-			fmt.Printf("%v\t\t%v\n", sep, time.Since(before)/time.Second*time.Second)
+			fmt.Println(strings.Repeat(" ", 30-len(m)), time.Since(before)/time.Second*time.Second)
 		}
 	}
 }

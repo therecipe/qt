@@ -70,14 +70,25 @@ func goInput(name string, value string, f *parser.Function) string {
 		{
 			switch f.TemplateMode {
 			case "Int":
-				return fmt.Sprintf("C.int(%v)", name)
+				{
+					return fmt.Sprintf("C.int(%v)", name)
+				}
 
 			case "Boolean":
-				return fmt.Sprintf("C.int(qt.GoBoolToInt(%v))", name)
+				{
+					return fmt.Sprintf("C.int(qt.GoBoolToInt(%v))", name)
+				}
 			}
 
 			if module(f) == "androidextras" {
 				return "p0"
+			}
+		}
+
+	case "void":
+		{
+			if strings.Contains(vOld, "*") {
+				return name
 			}
 		}
 	}
@@ -227,11 +238,20 @@ func cppInput(name string, value string, f *parser.Function) string {
 		{
 			switch f.TemplateMode {
 			case "Int", "Boolean":
-				return name
+				{
+					return name
+				}
 			}
 
 			if module(f) == "androidextras" {
 				return fmt.Sprintf("static_cast<jobject>(%v)", name)
+			}
+		}
+
+	case "void":
+		{
+			if strings.Contains(vOld, "*") {
+				return name
 			}
 		}
 	}

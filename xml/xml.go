@@ -3733,6 +3733,14 @@ func (ptr *QXmlReader) SetLexicalHandler(handler QXmlLexicalHandler_ITF) {
 	}
 }
 
+func (ptr *QXmlReader) SetProperty(name string, value unsafe.Pointer) {
+	defer qt.Recovering("QXmlReader::setProperty")
+
+	if ptr.Pointer() != nil {
+		C.QXmlReader_SetProperty(ptr.Pointer(), C.CString(name), value)
+	}
+}
+
 func (ptr *QXmlReader) DestroyQXmlReader() {
 	defer qt.Recovering("QXmlReader::~QXmlReader")
 
@@ -4211,6 +4219,50 @@ func (ptr *QXmlSimpleReader) SetLexicalHandlerDefault(handler QXmlLexicalHandler
 
 	if ptr.Pointer() != nil {
 		C.QXmlSimpleReader_SetLexicalHandlerDefault(ptr.Pointer(), PointerFromQXmlLexicalHandler(handler))
+	}
+}
+
+func (ptr *QXmlSimpleReader) ConnectSetProperty(f func(name string, value unsafe.Pointer)) {
+	defer qt.Recovering("connect QXmlSimpleReader::setProperty")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "setProperty", f)
+	}
+}
+
+func (ptr *QXmlSimpleReader) DisconnectSetProperty() {
+	defer qt.Recovering("disconnect QXmlSimpleReader::setProperty")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setProperty")
+	}
+}
+
+//export callbackQXmlSimpleReaderSetProperty
+func callbackQXmlSimpleReaderSetProperty(ptr unsafe.Pointer, ptrName *C.char, name *C.char, value unsafe.Pointer) {
+	defer qt.Recovering("callback QXmlSimpleReader::setProperty")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "setProperty"); signal != nil {
+		signal.(func(string, unsafe.Pointer))(C.GoString(name), value)
+	}
+
+}
+
+func (ptr *QXmlSimpleReader) SetProperty(name string, value unsafe.Pointer) {
+	defer qt.Recovering("QXmlSimpleReader::setProperty")
+
+	if ptr.Pointer() != nil {
+		C.QXmlSimpleReader_SetProperty(ptr.Pointer(), C.CString(name), value)
+	}
+}
+
+func (ptr *QXmlSimpleReader) SetPropertyDefault(name string, value unsafe.Pointer) {
+	defer qt.Recovering("QXmlSimpleReader::setProperty")
+
+	if ptr.Pointer() != nil {
+		C.QXmlSimpleReader_SetPropertyDefault(ptr.Pointer(), C.CString(name), value)
 	}
 }
 

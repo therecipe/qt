@@ -137,6 +137,14 @@ func isBlocked(f *parser.Function) bool {
 		return true
 	}
 
+	if false {
+		//Fixes for 5.6
+		if f.Fullname == "QGraphicsDropShadowEffect::setOffset" || f.Fullname == "QGraphicsScene::setSceneRect" || f.Fullname == "QGraphicsView::setSceneRect" || f.Fullname == "QQuickItem::setFocus" || f.Fullname == "QAccessibleWidget::setText" || f.Fullname == "QSvgGenerator::setViewBox" || f.Fullname == "QSvgRenderer::setViewBox" {
+			f.Access = "unsupported_goFunction"
+			return true
+		}
+	}
+
 	return false
 }
 
@@ -217,7 +225,7 @@ func isSupportedEnum(e *parser.Enum) bool {
 }
 
 func needsCppValueGlue(v *parser.Value) bool {
-	return strings.ContainsAny(v.Value, "()<>~+") || v.Value == ""
+	return strings.ContainsAny(v.Value, "()<>~+") || v.Value == "" || v.Value == "0x1FFFFFFFU"
 }
 
 func isSupportedFile(c *parser.Class) bool {
@@ -239,7 +247,9 @@ func isSupportedFile(c *parser.Class) bool {
 		"QGeoCodeReply",
 		"QGeoCodingManager",
 		"QGeoCodingManagerEngine":
-		return false
+		{
+			return false
+		}
 	}
 
 	if strings.Contains(c.Name, "QPlace") {
@@ -325,7 +335,8 @@ func GetLibs() []string {
 		switch {
 		case
 			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
-			runtime.GOOS != "windows" && Libs[i] == "WinExtras":
+			runtime.GOOS != "windows" && Libs[i] == "WinExtras",
+			runtime.GOOS == "android" && (Libs[i] == "WebEngine" || Libs[i] == "Designer"):
 			{
 				Libs = append(Libs[:i], Libs[i+1:]...)
 			}
@@ -376,7 +387,9 @@ func isGeneric(f *parser.Function) bool {
 
 	switch f.Fullname {
 	case "QAndroidJniObject::getStaticField", "QAndroidJniObject::getField", "QAndroidJniObject::callStaticMethod", "QAndroidJniObject::callMethod":
-		return true
+		{
+			return true
+		}
 
 	case "QAndroidJniObject::setStaticField":
 		{
@@ -393,15 +406,20 @@ func jniGenericModes(f *parser.Function) []string {
 
 	switch f.Name {
 	case "callMethod", "callStaticMethod":
-		return []string{"Int", "Boolean", "Void"} //TODO: add std string function
+		{
+			return []string{"Int", "Boolean", "Void"} //TODO: add std string function
+		}
 
 	case "getField", "getStaticField", "setStaticField":
-		return []string{"Int", "Boolean"} //TODO: add std string function
+		{
+			return []string{"Int", "Boolean"} //TODO: add std string function
+		}
 
 	default:
-		return make([]string, 0)
+		{
+			return make([]string, 0)
+		}
 	}
-
 }
 
 func hasVirtualFunction(c *parser.Class) bool {

@@ -41,10 +41,12 @@ func DeduceGeneric(f *parser.Function) string {
 		{
 			return "<jint>"
 		}
+
 	case "Boolean":
 		{
 			return "<jboolean>"
 		}
+
 	case "Void":
 		{
 			return "<void>"

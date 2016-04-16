@@ -17,7 +17,7 @@ type SubNamespace struct {
 	Enums []*Enum `xml:"enum"`
 }
 
-func (m *Module) prepare() {
+func (m *Module) Prepare() {
 
 	//Register Namespace
 	for _, c := range m.Namespace.Classes {
@@ -41,6 +41,22 @@ func (m *Module) prepare() {
 			c.removeEnums()
 			c.registerAbstact()
 			//TODO: register *Class in *Function
+		}
+	}
+
+	//Fixes for 5.6
+	for _, c := range ClassMap {
+		if c.Module == m.Project {
+			//c.fixBases()
+
+			for _, f := range c.Functions {
+				f.fix()
+				f.fixOverload()
+
+				if f.Virtual == "virtual" {
+					f.Virtual = "impure"
+				}
+			}
 		}
 	}
 }

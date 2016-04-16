@@ -72,7 +72,9 @@ func HTemplate(m string) (o string) {
 							if i := cppFunctionHeader(f); isSupportedFunction(c, f) {
 								virtuals[f.Name+f.OverloadNumber] = true
 								o += fmt.Sprintf("%v;\n", i)
-								o += strings.Replace(fmt.Sprintf("%v;\n", i), "_"+strings.Title(f.Name), "_"+strings.Title(f.Name)+"Default", -1)
+								if m != "main" {
+									o += strings.Replace(fmt.Sprintf("%v;\n", i), "_"+strings.Title(f.Name), "_"+strings.Title(f.Name)+"Default", -1)
+								}
 							}
 							f.Meta = tmpMeta
 						}
@@ -108,6 +110,7 @@ func HTemplate(m string) (o string) {
 
 						var tmpMeta = f.Meta
 						f.Meta = "plain"
+
 						if i := cppFunctionHeader(f); isSupportedFunction(bc, f) && isSupportedClass(bc) {
 							if _, exists := virtuals[f.Name+f.OverloadNumber]; !exists {
 								virtuals[f.Name+f.OverloadNumber] = true
@@ -139,7 +142,42 @@ func CppTemplate(module string) (o string) {
 			tmpArray = append(tmpArray, c.Name)
 		}
 	}
-	sort.Stable(sort.StringSlice(tmpArray))
+
+	if module == "main" {
+		var items = make(map[string]string)
+
+		for _, class := range tmpArray {
+			items[class] = parser.ClassMap[class].Bases
+		}
+
+		var provided = make([]string, 0)
+
+		for len(items) > 0 {
+			for item, dependency := range items {
+				var existsInOtherModule bool
+				if parser.ClassMap[dependency].Module != "main" {
+					existsInOtherModule = true
+				}
+				var existsInCurrentOrder bool
+				for _, providedItem := range provided {
+					if dependency == providedItem {
+						existsInCurrentOrder = true
+						break
+					}
+				}
+
+				if existsInOtherModule || existsInCurrentOrder {
+					provided = append(provided, item)
+					delete(items, item)
+				}
+			}
+		}
+
+		tmpArray = provided
+
+	} else {
+		sort.Stable(sort.StringSlice(tmpArray))
+	}
 
 	for _, cName := range tmpArray {
 		var c = parser.ClassMap[cName]
@@ -147,7 +185,13 @@ func CppTemplate(module string) (o string) {
 
 		if isSupportedClass(c) && (hasVirtualFunction(c) || hasSignalFunction(c)) {
 			if !strings.Contains(c.Name, "tomic") {
-				o += fmt.Sprintf("class My%v: public %v {\n", c.Name, c.Name)
+
+				if module == "main" {
+					o += fmt.Sprintf("class %v: public %v {\n", c.Name, c.GetBases()[0])
+					o += "Q_OBJECT\n"
+				} else {
+					o += fmt.Sprintf("class My%v: public %v {\n", c.Name, c.Name)
+				}
 
 				o += "public:\n"
 				if !c.IsQObjectSubClass() {
@@ -174,27 +218,33 @@ func CppTemplate(module string) (o string) {
 							}
 							originalInput = strings.TrimSuffix(originalInput, ", ")
 
-							o += fmt.Sprintf("\tMy%v(%v) : %v(%v) {};\n", f.Class(), strings.Split(strings.Split(f.Signature, "(")[1], ")")[0], f.Class(), originalInput)
+							if module == "main" {
+								o += fmt.Sprintf("\t%v(%v) : %v(%v) {};\n", f.Class(), strings.Split(strings.Split(f.Signature, "(")[1], ")")[0], parser.ClassMap[f.Class()].GetBases()[0], originalInput)
+							} else {
+								o += fmt.Sprintf("\tMy%v(%v) : %v(%v) {};\n", f.Class(), strings.Split(strings.Split(f.Signature, "(")[1], ")")[0], f.Class(), originalInput)
+							}
 						}
 					}
 				}
 
 				for _, f := range c.Functions {
-					if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.Output == "void" {
-						if i := cppFunctionSignal(f); isSupportedFunction(c, f) {
-							if strings.Contains(f.Virtual, "impure") {
-								if _, exists := virtuals[f.Name+f.OverloadNumber]; !exists {
-									virtuals[f.Name+f.OverloadNumber] = true
-									if !isBlockedVirtual(f.Name, c.Name) {
-										o += fmt.Sprintf("\t%v;\n", i)
+					if !(module == "main" && f.Meta == "slot") {
+						if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.Output == "void" {
+							if i := cppFunctionSignal(f); isSupportedFunction(c, f) {
+								if strings.Contains(f.Virtual, "impure") {
+									if _, exists := virtuals[f.Name+f.OverloadNumber]; !exists {
+										virtuals[f.Name+f.OverloadNumber] = true
+										if !isBlockedVirtual(f.Name, c.Name) {
+											o += fmt.Sprintf("\t%v;\n", i)
+										}
 									}
+								} else {
+									o += fmt.Sprintf("\t%v;\n", i)
 								}
-							} else {
-								o += fmt.Sprintf("\t%v;\n", i)
 							}
+						} else {
+							virtuals[f.Name+f.OverloadNumber] = true
 						}
-					} else {
-						virtuals[f.Name+f.OverloadNumber] = true
 					}
 				}
 
@@ -211,6 +261,30 @@ func CppTemplate(module string) (o string) {
 									}
 								}
 							}
+						}
+					}
+				}
+
+				if module == "main" {
+					o += "signals:\n"
+					for _, f := range c.Functions {
+						if f.Meta == "signal" {
+							var fb = cppFunctionSignal(f)
+							fb = strings.Replace(fb, "Signal_"+strings.Title(f.Name), f.Name, -1)
+							fb = strings.Split(fb, " {")[0]
+							o += fmt.Sprintf("\t%v;\n", fb)
+						}
+					}
+
+					o += "public slots:\n"
+					for _, f := range c.Functions {
+						if f.Meta == "slot" {
+							var tmpVirtual = f.Virtual
+							f.Virtual = "non"
+							var fb = cppFunctionSignal(f)
+							fb = strings.Replace(fb, "Signal_"+strings.Title(f.Name), f.Name, -1)
+							o += fmt.Sprintf("\t%v;\n", fb)
+							f.Virtual = tmpVirtual
 						}
 					}
 				}
@@ -262,16 +336,20 @@ func CppTemplate(module string) (o string) {
 								var normal = fmt.Sprintf("%v\n\n", i)
 
 								if strings.Contains(f.Virtual, "impure") && f.Output == "void" && (hasVirtualFunction(c) || hasSignalFunction(c)) {
-									normal = strings.Replace(normal, "static_cast<"+c.Name+"*>(ptr)", "static_cast<My"+c.Name+"*>(ptr)", -1)
+									if module != "main" {
+										normal = strings.Replace(normal, "static_cast<"+c.Name+"*>(ptr)", "static_cast<My"+c.Name+"*>(ptr)", -1)
+									}
 								}
 
 								o += normal
 
-								if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
-									var tmp = strings.Replace(fmt.Sprintf("%v\n\n", i), "_"+strings.Title(f.Name), "_"+strings.Title(f.Name)+"Default", -1)
-									tmp = strings.Replace(tmp, "->"+f.Name, "->"+c.Name+"::"+f.Name, -1)
+								if module != "main" {
+									if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
+										var tmp = strings.Replace(fmt.Sprintf("%v\n\n", i), "_"+strings.Title(f.Name), "_"+strings.Title(f.Name)+"Default", -1)
+										tmp = strings.Replace(tmp, "->"+f.Name, "->"+c.Name+"::"+f.Name, -1)
 
-									o += tmp
+										o += tmp
+									}
 								}
 							}
 						}
@@ -292,13 +370,22 @@ func CppTemplate(module string) (o string) {
 
 										var normal = strings.Replace(fmt.Sprintf("%v\n\n", i), bc.Name, c.Name, -1)
 										if strings.Contains(f.Virtual, "impure") && f.Output == "void" && (hasVirtualFunction(c) || hasSignalFunction(c)) {
-											normal = strings.Replace(normal, "static_cast<"+c.Name+"*>(ptr)", "static_cast<My"+c.Name+"*>(ptr)", -1)
+											if module == "main" {
+												normal = strings.Replace(normal, "static_cast<"+c.Name+"*>(ptr)", "static_cast<"+c.Name+"*>(ptr)", -1)
+											} else {
+												normal = strings.Replace(normal, "static_cast<"+c.Name+"*>(ptr)", "static_cast<My"+c.Name+"*>(ptr)", -1)
+											}
 										}
 
 										o += normal
 
 										var tmp = strings.Replace(strings.Replace(fmt.Sprintf("%v\n\n", i), bc.Name, c.Name, -1), "_"+strings.Title(f.Name), "_"+strings.Title(f.Name)+"Default", -1)
 										tmp = strings.Replace(tmp, "->"+f.Name, "->"+c.Name+"::"+f.Name, -1)
+
+										if module == "main" {
+											tmp = strings.Replace(tmp, "<"+c.Name+"*>", "<"+f.Class()+"*>", -1)
+											tmp = strings.Replace(tmp, c.Name+"::", f.Class()+"::", -1)
+										}
 
 										o += tmp
 									}
@@ -317,8 +404,8 @@ func CppTemplate(module string) (o string) {
 func managedImportsCpp(module, input string) string {
 	var tmpIM = make([]string, 0)
 
-	for m := range parser.ClassMap {
-		if strings.Contains(input, m) && strings.HasPrefix(m, "Q") && !strings.HasPrefix(m, "Qt") {
+	for m, c := range parser.ClassMap {
+		if strings.Contains(input, m) && strings.HasPrefix(m, "Q") && !strings.HasPrefix(m, "Qt") && c.Module != "main" {
 			tmpIM = append(tmpIM, m)
 		}
 	}
@@ -332,13 +419,21 @@ func managedImportsCpp(module, input string) string {
 	if strings.Contains(module, "droid") {
 		tmpI += fmt.Sprintf("#include \"%v_android.h\"\n", shortModule(module))
 	} else {
-		tmpI += fmt.Sprintf("#include \"%v.h\"\n", shortModule(module))
+		if module == "main" {
+			tmpI += "#include \"moc.h\"\n"
+		} else {
+			tmpI += fmt.Sprintf("#include \"%v.h\"\n", shortModule(module))
+		}
 	}
 
 	tmpI += "#include \"_cgo_export.h\"\n\n"
 
 	for _, i := range tmpIM {
 		tmpI += fmt.Sprintf("#include <%v>\n", i)
+	}
+
+	if module == "main" {
+		input += "#include \"moc_moc.h\""
 	}
 
 	return tmpI + "\n" + input

@@ -4134,8 +4134,16 @@ void* QFlag_NewQFlag(int value){
 	return new QFlag(value);
 }
 
+void* QGenericArgument_NewQGenericArgument(char* name, void* data){
+	return new QGenericArgument(const_cast<const char*>(name), data);
+}
+
 void* QGenericArgument_Data(void* ptr){
 	return static_cast<QGenericArgument*>(ptr)->data();
+}
+
+void* QGenericReturnArgument_NewQGenericReturnArgument(char* name, void* data){
+	return new QGenericReturnArgument(const_cast<const char*>(name), data);
 }
 
 class MyQHistoryState: public QHistoryState {
@@ -5909,6 +5917,14 @@ int QMetaMethod_Invoke(void* ptr, void* object, int connectionType, void* return
 	return static_cast<QMetaMethod*>(ptr)->invoke(static_cast<QObject*>(object), static_cast<Qt::ConnectionType>(connectionType), *static_cast<QGenericReturnArgument*>(returnValue), *static_cast<QGenericArgument*>(val0), *static_cast<QGenericArgument*>(val1), *static_cast<QGenericArgument*>(val2), *static_cast<QGenericArgument*>(val3), *static_cast<QGenericArgument*>(val4), *static_cast<QGenericArgument*>(val5), *static_cast<QGenericArgument*>(val6), *static_cast<QGenericArgument*>(val7), *static_cast<QGenericArgument*>(val8), *static_cast<QGenericArgument*>(val9));
 }
 
+int QMetaMethod_InvokeOnGadget2(void* ptr, void* gadget, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9){
+	return static_cast<QMetaMethod*>(ptr)->invokeOnGadget(gadget, *static_cast<QGenericArgument*>(val0), *static_cast<QGenericArgument*>(val1), *static_cast<QGenericArgument*>(val2), *static_cast<QGenericArgument*>(val3), *static_cast<QGenericArgument*>(val4), *static_cast<QGenericArgument*>(val5), *static_cast<QGenericArgument*>(val6), *static_cast<QGenericArgument*>(val7), *static_cast<QGenericArgument*>(val8), *static_cast<QGenericArgument*>(val9));
+}
+
+int QMetaMethod_InvokeOnGadget(void* ptr, void* gadget, void* returnValue, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9){
+	return static_cast<QMetaMethod*>(ptr)->invokeOnGadget(gadget, *static_cast<QGenericReturnArgument*>(returnValue), *static_cast<QGenericArgument*>(val0), *static_cast<QGenericArgument*>(val1), *static_cast<QGenericArgument*>(val2), *static_cast<QGenericArgument*>(val3), *static_cast<QGenericArgument*>(val4), *static_cast<QGenericArgument*>(val5), *static_cast<QGenericArgument*>(val6), *static_cast<QGenericArgument*>(val7), *static_cast<QGenericArgument*>(val8), *static_cast<QGenericArgument*>(val9));
+}
+
 int QMetaMethod_IsValid(void* ptr){
 	return static_cast<QMetaMethod*>(ptr)->isValid();
 }
@@ -6117,8 +6133,16 @@ void* QMetaProperty_Read(void* ptr, void* object){
 	return new QVariant(static_cast<QMetaProperty*>(ptr)->read(static_cast<QObject*>(object)));
 }
 
+void* QMetaProperty_ReadOnGadget(void* ptr, void* gadget){
+	return new QVariant(static_cast<QMetaProperty*>(ptr)->readOnGadget(gadget));
+}
+
 int QMetaProperty_Reset(void* ptr, void* object){
 	return static_cast<QMetaProperty*>(ptr)->reset(static_cast<QObject*>(object));
+}
+
+int QMetaProperty_ResetOnGadget(void* ptr, void* gadget){
+	return static_cast<QMetaProperty*>(ptr)->resetOnGadget(gadget);
 }
 
 int QMetaProperty_Revision(void* ptr){
@@ -6133,8 +6157,60 @@ int QMetaProperty_Write(void* ptr, void* object, void* value){
 	return static_cast<QMetaProperty*>(ptr)->write(static_cast<QObject*>(object), *static_cast<QVariant*>(value));
 }
 
+int QMetaProperty_WriteOnGadget(void* ptr, void* gadget, void* value){
+	return static_cast<QMetaProperty*>(ptr)->writeOnGadget(gadget, *static_cast<QVariant*>(value));
+}
+
 void* QMetaType_NewQMetaType(int typeId){
 	return new QMetaType(typeId);
+}
+
+int QMetaType_QMetaType_Compare(void* lhs, void* rhs, int typeId, int result){
+	return QMetaType::compare(lhs, rhs, typeId, &result);
+}
+
+void* QMetaType_QMetaType_Construct(int ty, void* where, void* copy){
+	return QMetaType::construct(ty, where, copy);
+}
+
+void* QMetaType_Construct3(void* ptr, void* where, void* copy){
+	return static_cast<QMetaType*>(ptr)->construct(where, copy);
+}
+
+int QMetaType_QMetaType_Convert(void* from, int fromTypeId, void* to, int toTypeId){
+	return QMetaType::convert(from, fromTypeId, to, toTypeId);
+}
+
+void* QMetaType_QMetaType_Create(int ty, void* copy){
+	return QMetaType::create(ty, copy);
+}
+
+void* QMetaType_Create2(void* ptr, void* copy){
+	return static_cast<QMetaType*>(ptr)->create(copy);
+}
+
+int QMetaType_QMetaType_DebugStream(void* dbg, void* rhs, int typeId){
+	return QMetaType::debugStream(*static_cast<QDebug*>(dbg), rhs, typeId);
+}
+
+void QMetaType_QMetaType_Destroy(int ty, void* data){
+	QMetaType::destroy(ty, data);
+}
+
+void QMetaType_Destroy2(void* ptr, void* data){
+	static_cast<QMetaType*>(ptr)->destroy(data);
+}
+
+void QMetaType_QMetaType_Destruct(int ty, void* where){
+	QMetaType::destruct(ty, where);
+}
+
+void QMetaType_Destruct2(void* ptr, void* data){
+	static_cast<QMetaType*>(ptr)->destruct(data);
+}
+
+int QMetaType_QMetaType_Equals(void* lhs, void* rhs, int typeId, int result){
+	return QMetaType::equals(lhs, rhs, typeId, &result);
 }
 
 int QMetaType_Flags(void* ptr){
@@ -6153,12 +6229,20 @@ int QMetaType_IsValid(void* ptr){
 	return static_cast<QMetaType*>(ptr)->isValid();
 }
 
+int QMetaType_QMetaType_Load(void* stream, int ty, void* data){
+	return QMetaType::load(*static_cast<QDataStream*>(stream), ty, data);
+}
+
 void* QMetaType_MetaObject(void* ptr){
 	return const_cast<QMetaObject*>(static_cast<QMetaType*>(ptr)->metaObject());
 }
 
 void* QMetaType_QMetaType_MetaObjectForType(int ty){
 	return const_cast<QMetaObject*>(QMetaType::metaObjectForType(ty));
+}
+
+int QMetaType_QMetaType_Save(void* stream, int ty, void* data){
+	return QMetaType::save(*static_cast<QDataStream*>(stream), ty, data);
 }
 
 int QMetaType_QMetaType_SizeOf(int ty){
@@ -11133,8 +11217,8 @@ int QThread_QThread_IdealThreadCount(){
 	return QThread::idealThreadCount();
 }
 
-void QThread_Start(void* ptr, int priority){
-	QMetaObject::invokeMethod(static_cast<QThread*>(ptr), "start", Q_ARG(QThread::Priority, static_cast<QThread::Priority>(priority)));
+void QThread_Start(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QThread*>(ptr), "start");
 }
 
 void QThread_Terminate(void* ptr){
@@ -12248,6 +12332,10 @@ void* QVariant_NewQVariant5(void* p){
 
 void* QVariant_NewQVariant14(char* val){
 	return new QVariant(const_cast<const char*>(val));
+}
+
+void* QVariant_NewQVariant3(int typeId, void* copy){
+	return new QVariant(typeId, copy);
 }
 
 void* QVariant_NewQVariant7(int val){
